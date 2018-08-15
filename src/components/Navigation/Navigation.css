@@ -15,3 +15,21 @@
 .white {
     color: white;
 }
+
+.navBrandLogo{
+    /* padding: 5px; */
+    margin-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.navItem{
+
+    margin-top: 40px;
+    padding-left: 40px;
+    padding-right:40px;
+}
+.navItem:hover {
+ background-color: dodgerblue;
+
+}
