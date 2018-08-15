@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import  classNames  from 'classnames';
 import styles from './Navigation.css';
 import logo from "../../assets/images/adobe-logo-nav.svg";
+import { Route,Link } from 'react-router-dom';
+
 class Navigation extends Component {
 
     
@@ -13,15 +15,15 @@ class Navigation extends Component {
             <a className="navbar-brand" href="#">
               <img className="imgLogo" src={logo}  />
             </a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-          
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <p className="navText navbar-text" >OCF - DMe GTM Running the Business</p>
-                <br />
-                <h5 className="white">SUMMARY</h5>
-            </div>
+            <ul>
+                <li> 
+                <Link to="/">Home</Link>
+                </li>
+                <li>
+                <Link to="/post">Post a Comment</Link>
+                </li>
+                
+            </ul>
           </nav>
         );
     }

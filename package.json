@@ -25,6 +25,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "hammerjs": "^2.0.8",
     "moxios": "^0.4.0",
+    "node-sass-chokidar": "^1.3.3",
     "react": "^16.4.2",
     "react-accessible-accordion": "^2.4.4",
     "react-dom": "^16.4.2",
@@ -36,6 +37,8 @@
     "tv4": "^1.3.0"
   },
   "scripts": {
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

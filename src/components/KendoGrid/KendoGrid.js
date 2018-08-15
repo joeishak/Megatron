@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, GridColumn as Column, GridToolbar } from '@progress/kendo-react-grid';
 import '@progress/kendo-theme-default/dist/all.css'
+import {connect } from 'react-redux';
 
 import { sampleProducts } from './sample-products';
 

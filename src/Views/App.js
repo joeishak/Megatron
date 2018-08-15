@@ -3,7 +3,8 @@ import Navigation from 'components/Navigation/Navigation';
 import { Route,Link } from 'react-router-dom';
 import {connect } from 'react-redux';
 import * as actions from 'actions';
-
+import {Fade, Expand, Animation } from '@progress/kendo-react-animation';
+import styles from '../styles/styles.css';
 // Kendo Components
 import KendoPanelBar from 'components/KendoPanelBar/KendoPanelBar';
 import KendoGrid from 'components/KendoGrid/KendoGrid';
@@ -11,40 +12,24 @@ import KendoButton from 'components/KendoButton/KendoButton';
 import KendoSwitch from 'components/KendoSwitch/KendoSwitch';
 import KendoNumericTextBox from 'components/KendoNumericTextBox/KendoNumericTextBox';
 import KendoInput from 'components/KendoInput/KendoInput';
+import KendoDropDownList from 'components/KendoDropDownList/KendoDropDownList';
 // import { changeAuth } from '../actions';
 class App extends Component {
-
-  renderButton(){
-
-    if(this.props.auth){
-      return (
-      <button onClick={() => this.props.changeAuth(false)}>
-        Sign Out
-      </button>)
-    } else{
-      return (
-      <button onClick={() => this.props.changeAuth(true)}>
-        Sign In 
-      </button>)
-
-    }
+  constructor(props){
+    super(props);
+    this.state ={index: 0,
+      show: true};
   }
- 
-  render(){ return (
-    
-    <div> 
-      <Navigation> </Navigation>
-     
-        <KendoPanelBar > 
-    </KendoPanelBar >
-    <KendoGrid> 
-      </KendoGrid>
-      <KendoButton />
-      <KendoSwitch />
-      <KendoInput />
-      <KendoNumericTextBox />
-    </div>
   
+
+  render(){
+ 
+
+     return (
+       <div>
+        <Navigation />
+       
+        </div>
   )
 }
 }

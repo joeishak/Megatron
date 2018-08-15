@@ -5,7 +5,6 @@ import reducers from 'reducers';
 import stateValidator from 'middlewares/stateValidator'
 import async from 'middlewares/async';
 
-
 export default ({children, initialState ={}}) =>{
     const store = createStore(
         reducers,
@@ -14,7 +13,7 @@ export default ({children, initialState ={}}) =>{
     );
     return (
         <Provider store={store}>
-            {children}
+                {children}
         </ Provider>
     )
 }

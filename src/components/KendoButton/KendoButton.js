@@ -7,13 +7,16 @@ class KendoButton extends Component {
     constructor(props){
         super(props);
         this.state = {
-            primary: props.primary || true,
-            disabled: props.disabled || true
+            primary: this.props.primary ,
+            disabled: this.props.disabled 
         }
+    }
+    buttonIsClicked = (event) =>{
+        this.props.buttonEventHandler(event);
     }
     render(){
         return(
-            <Button primary={this.state.primary} disabled={this.state.disabled}>Browse</Button>
+            <Button  onClick={this.buttonIsClicked} primary={this.state.primary} disabled={this.state.disabled}>Browse</Button>
         )
     }
 }

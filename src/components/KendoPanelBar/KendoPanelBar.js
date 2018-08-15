@@ -1,6 +1,9 @@
 import {  PanelBar, PanelBarItem  } from '@progress/kendo-react-layout';
 import React, { Component } from 'react';
+import classNames from 'classnames'
+import styles from './KendoPanelBar.css';
 import '@progress/kendo-theme-default/dist/all.css'
+
 class KendoPanelBar extends Component {
 
     constructor(props){
@@ -30,12 +33,15 @@ class KendoPanelBar extends Component {
     }
 
  render(){
+    var red = classNames({
+        'red': true
+    });
      return(
-        <div className="panelbar-wrapper">
+        <div className={'panel-wrapper'}>
                    <PanelBar >
                        <PanelBarItem expanded={true} title="My Teammates">
                            <div>
-                               <div className="teamMate">
+                               <div className={red + "teamMate"}>
                                    <img src={this.imageUrl('andrew')} alt="Andrew Fuller" />
                                    <span className="mate-info">
                                        <h2>Andrew Fuller</h2>
