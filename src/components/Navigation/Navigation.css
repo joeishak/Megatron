@@ -1,0 +1,17 @@
+.navContainer{
+    height: 78px;
+}
+
+.imgLogo {
+    top: -13px;
+     position: relative;
+}
+
+.navText {
+    font-size: 0.8em; 
+    margin-top: 20px;
+}
+
+.white {
+    color: white;
+}
