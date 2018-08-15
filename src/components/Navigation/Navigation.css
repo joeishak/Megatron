@@ -1,5 +1,6 @@
 .navContainer{
-    height: 78px;
+    height: 70px;
+    /* background-color: red; */
 }
 
 .imgLogo {
@@ -18,18 +19,24 @@
 
 .navBrandLogo{
     /* padding: 5px; */
-    margin-top: 40px;
+    margin-top: 25px;
     padding-left: 40px;
     padding-right: 40px;
 }
 
 .navItem{
-
-    margin-top: 40px;
-    padding-left: 40px;
-    padding-right:40px;
+    margin-top: 20px;
+    /* padding-left: 40px;
+    padding-right:40px; */
+    margin-left: 25px;
+    margin-right: 25px;
 }
-.navItem:hover {
- background-color: dodgerblue;
 
+.navItem a {
+    color: black;
+}
+
+.navItem:hover {
+    /* background-color: dodgerblue; */
+    border-bottom: 4px solid red;
 }

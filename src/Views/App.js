@@ -14,6 +14,7 @@ import KendoNumericTextBox from 'components/KendoNumericTextBox/KendoNumericText
 import KendoInput from 'components/KendoInput/KendoInput';
 import KendoDropDownList from 'components/KendoDropDownList/KendoDropDownList';
 // import { changeAuth } from '../actions';
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -24,11 +25,9 @@ class App extends Component {
 
   render(){
  
-
      return (
        <div>
         <Navigation />
-       
         </div>
   )
 }
