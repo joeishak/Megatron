@@ -1,0 +1,12 @@
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+
+class {Class Name} extends Component {
+    render(){
+        return(
+
+        )
+    }
+}
+
+export default (Class Name)
