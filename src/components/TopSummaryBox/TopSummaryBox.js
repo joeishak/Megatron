@@ -8,9 +8,9 @@ const inStyles = {
 
     sumChartSqaure:{
         height: '270px',
-        width: '290px',
+        width: '100%',
         border: '2px solid red',
-        marginTop: '20px'
+        marginTop: '15px'
     },
     sumChartContent:{
         height:'100%',
@@ -36,8 +36,8 @@ class TopSummaryBox extends Component {
                     Summary
                     </Col>
                     <Col  xs={12} md={8} lg={3} >&nbsp;</Col>
-                    <Col className="switchCol" xs={12} md={8} lg={3}>
-                    <div >
+                    <Col  xs={12} md={8} lg={3}>
+                    <div className="switchCol">
                         <span className="financialsLabel">Financials</span>
                         < KendoSwitch  style={{float:'right'}} onLabel="F" offLabel="J" />
                         <span className="journeysLabel">Journeys</span>
@@ -45,7 +45,7 @@ class TopSummaryBox extends Component {
                     </Col>
                 </Row>
                 <Row className="chartRow">
-                    <Col  xs={12} md={8} lg={3}  >
+                    <Col  xs={12} md={8} lg={3} xlg={3} >
                         <div style={inStyles.sumChartSqaure} >
                             <div style={inStyles.sumChartContent}>
                                 <div style={inStyles.sumChartHeader} >
@@ -56,7 +56,7 @@ class TopSummaryBox extends Component {
                             </div>
                         </div>
                     </Col>
-                    <Col  xs={12} md={8} lg={3}  >
+                    <Col  xs={12} md={8} lg={3}  xlg={3}>
                         <div style={inStyles.sumChartSqaure} >
                         <div style={inStyles.sumChartContent}>
                         <div style={inStyles.sumChartContent}>
@@ -70,7 +70,7 @@ class TopSummaryBox extends Component {
                             </div>
                         </div>
                     </Col>
-                    <Col  xs={12} md={8} lg={3}  >
+                    <Col  xs={12} md={8} lg={3} xlg={3} >
                         <div style={inStyles.sumChartSqaure} >
                         <div style={inStyles.sumChartContent}>
                         <div style={inStyles.sumChartContent}>
@@ -84,7 +84,7 @@ class TopSummaryBox extends Component {
                             </div>
                         </div>
                     </Col>
-                    <Col  xs={12} md={8} lg={3}  >
+                    <Col  xs={12} md={8} lg={3}  xlg={3}>
                         <div style={inStyles.sumChartSqaure} >
                         <div style={inStyles.sumChartContent}>
                         <div style={inStyles.sumChartContent}>
