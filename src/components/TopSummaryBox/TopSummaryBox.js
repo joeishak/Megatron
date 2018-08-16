@@ -27,6 +27,9 @@ const inStyles = {
     }
 }
 class TopSummaryBox extends Component {
+    componentDidMount(){
+
+    }
     render(){
         return(
 
@@ -45,7 +48,7 @@ class TopSummaryBox extends Component {
                     </Col>
                 </Row>
                 <Row className="chartRow">
-                    <Col  xs={12} md={8} lg={3} xlg={3} >
+                    <Col  xs={12} s={12} md={6} lg={3} >
                         <div style={inStyles.sumChartSqaure} >
                             <div style={inStyles.sumChartContent}>
                                 <div style={inStyles.sumChartHeader} >
@@ -56,7 +59,7 @@ class TopSummaryBox extends Component {
                             </div>
                         </div>
                     </Col>
-                    <Col  xs={12} md={8} lg={3}  xlg={3}>
+                    <Col  xs={12} s={12} md={6} lg={3}>
                         <div style={inStyles.sumChartSqaure} >
                         <div style={inStyles.sumChartContent}>
                         <div style={inStyles.sumChartContent}>
@@ -70,7 +73,7 @@ class TopSummaryBox extends Component {
                             </div>
                         </div>
                     </Col>
-                    <Col  xs={12} md={8} lg={3} xlg={3} >
+                    <Col  xs={12} s={12} md={6} lg={3} >
                         <div style={inStyles.sumChartSqaure} >
                         <div style={inStyles.sumChartContent}>
                         <div style={inStyles.sumChartContent}>
@@ -84,7 +87,7 @@ class TopSummaryBox extends Component {
                             </div>
                         </div>
                     </Col>
-                    <Col  xs={12} md={8} lg={3}  xlg={3}>
+                    <Col xs={12} s={12} md={6} lg={3} >
                         <div style={inStyles.sumChartSqaure} >
                         <div style={inStyles.sumChartContent}>
                         <div style={inStyles.sumChartContent}>
