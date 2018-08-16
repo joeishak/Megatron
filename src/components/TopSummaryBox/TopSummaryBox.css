@@ -1,0 +1,38 @@
+.switchCol{
+    float: right;
+    margin-top: 20px;
+    color: white;
+}
+
+.summaryTitleCol{
+    float: left;
+    padding: 20px;
+    font-size: 1.9em;
+    color: white;
+}
+
+.financialsLabel {
+    padding: 5px, 5px, 5px, 5px;
+    margin-right: 5px;
+}
+.journeysLabel{
+    padding: 5px, 5px, 5px, 5px;
+    margin-left: 5px;
+
+
+}
+
+.gridContainer{
+    background-color: #383838;
+    height: 300px;
+}
+.chartRow{
+    padding: 20px;
+    float: left;
+}
+
+.sumChartSquare{
+    height: 200px !important;
+    width: 175px !important;
+    border: 2px solid red !important;
+}

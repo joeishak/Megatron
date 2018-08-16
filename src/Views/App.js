@@ -17,6 +17,7 @@ import KendoInput from 'components/KendoInput/KendoInput';
 import KendoDropDownList from 'components/KendoDropDownList/KendoDropDownList';
 // Custom Components
 import FilterBox from 'components/FilterBox/FilterBox';
+import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
 // import { changeAuth } from '../actions';
 
 class App extends Component {
@@ -33,6 +34,7 @@ class App extends Component {
        <div>
         <Navigation />
        <FilterBox />
+       <TopSummaryBox />
         </div>
   )
 }
