@@ -5,6 +5,8 @@ import {connect } from 'react-redux';
 import * as actions from 'actions';
 import {Fade, Expand, Animation } from '@progress/kendo-react-animation';
 import styles from '../styles/styles.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 // Kendo Components
 import KendoPanelBar from 'components/KendoPanelBar/KendoPanelBar';
 import KendoGrid from 'components/KendoGrid/KendoGrid';
@@ -13,6 +15,8 @@ import KendoSwitch from 'components/KendoSwitch/KendoSwitch';
 import KendoNumericTextBox from 'components/KendoNumericTextBox/KendoNumericTextBox';
 import KendoInput from 'components/KendoInput/KendoInput';
 import KendoDropDownList from 'components/KendoDropDownList/KendoDropDownList';
+// Custom Components
+import FilterBox from 'components/FilterBox/FilterBox';
 // import { changeAuth } from '../actions';
 
 class App extends Component {
@@ -28,6 +32,7 @@ class App extends Component {
      return (
        <div>
         <Navigation />
+       <FilterBox />
         </div>
   )
 }
