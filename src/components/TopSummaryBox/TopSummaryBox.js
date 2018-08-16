@@ -35,17 +35,18 @@ class TopSummaryBox extends Component {
 
             <Grid className="gridContainer" fluid>
                 <Row >
-                    <Col className="summaryTitleCol" xs={12} md={8} lg={6}>
+                    <Col className="summaryTitleCol" xs={12} md={12} lg={12}>
                     Summary
-                    </Col>
-                    <Col  xs={12} md={8} lg={3} >&nbsp;</Col>
-                    <Col  xs={12} md={8} lg={3}>
                     <div className="switchCol">
                         <span className="financialsLabel">Financials</span>
-                        < KendoSwitch  style={{float:'right'}} onLabel="F" offLabel="J" />
+                        < KendoSwitch   onLabel="F" offLabel="J" />
                         <span className="journeysLabel">Journeys</span>
                     </div>
                     </Col>
+                    {/* <Col  xs={12} md={6} lg={3} >&nbsp;</Col> */}
+                    {/* <Col  xs={12} md={6} lg={3}>
+                    
+                    </Col> */}
                 </Row>
                 <Row className="chartRow">
                     <Col  xs={12} s={12} md={6} lg={3} >
