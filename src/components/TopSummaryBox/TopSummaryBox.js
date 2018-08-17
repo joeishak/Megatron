@@ -58,7 +58,7 @@ class TopSummaryBox extends Component {
                 </div>
                     <div className="donutChart arrow_box">
                     <KendoDonutChart donutCenterRender= {()=> 
-                    <div><h3>$149.9M</h3><span>TARGET</span><h6>$277.9M</h6></div>}/> 
+                    <div><h2>$149.9M</h2><span>TARGET</span><h6>$277.9M</h6></div>}/> 
                     </div>
                 </div>
         </div>) : null;
@@ -71,7 +71,7 @@ class TopSummaryBox extends Component {
                     </div>
                         <div className="donutChart">
                         <KendoDonutChart donutCenterRender= {()=> 
-                            <div><h3>$159.9M</h3><span>TARGET</span><h6>$277.9M</h6></div>}/> 
+                            <div><h2>$159.9M</h2><span>TARGET</span><h6>$277.9M</h6></div>}/> 
                         </div>
                 </div>
                 </div>
@@ -85,7 +85,7 @@ class TopSummaryBox extends Component {
                     </div>
                     <div className="donutChart">
                     <KendoDonutChart donutCenterRender= {()=> 
-                    <div><h3>$217.5M</h3><span>TARGET</span><h6>$277.9M</h6></div>} />
+                    <div><h2>$217.5M</h2><span>TARGET</span><h6>$277.9M</h6></div>} />
                     </div>
                 </div>
                 </div>
@@ -100,7 +100,7 @@ class TopSummaryBox extends Component {
                     </div>
                     <div className="donutChart">
                     <KendoDonutChart donutCenterRender= {()=> 
-                    <div><h3>$32.1M</h3><span>TARGET</span><h6>$277.9M</h6></div>} />
+                    <div><h2>$32.1M</h2><span></span><h6>$277.9M</h6></div>} />
                     </div>
                 </div>
                 </div>

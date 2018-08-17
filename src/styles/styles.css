@@ -1,3 +1,6 @@
+
+
+
 .content {
     width: 300px;
     padding: 10px;
@@ -9,7 +12,10 @@
     text-align: center;
     border: 1px solid rgba(0,0,0,.05);
     display: visible;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
   }
   .animation-wrapper {
       margin-bottom: 40px;
   }
+
+
