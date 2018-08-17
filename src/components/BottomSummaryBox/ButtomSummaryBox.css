@@ -10,7 +10,16 @@
 
 }
 
-
+.header-appear {
+    opacity: 0;
+    transform: translateY(-80px);
+}
+  
+.header-appear.header-appear-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 1s ease-out;
+}
 .gridRow1{
 margin-right: 20px;
 margin-left: 20px;

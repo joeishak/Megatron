@@ -18,23 +18,21 @@ class ButtomSummaryBox extends Component {
                 <div className="row gridRow1">
                     <div className = "titleHeader col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <CSSTransitionGroup
-                        className="header"
-                            transitionName="header"
+                            transitionName="example"
                             transitionAppear={true}
-                            transitionAppearTimeout={200}
+                            transitionAppearTimeout={1000}
                             transitionEnter={false} 
-                            transitionLeave={false} onClick = {this.props.handleSummaryClick}>
-                            <span>
+                            transitionLeave={false} >
+                            <div>
                             Net New ARR
-                            </span>
-                        </CSSTransitionGroup>
+                        
 
                          <CSSTransitionGroup
                             transitionName="example"
                             transitionAppear={true}
                             transitionAppearTimeout={800}
                             transitionEnter={false} 
-                            transitionLeave={false} onClick = {this.props.handleSummaryClick}>
+                            transitionLeave={false} >
                          <div className="statsHeader"> 
                             <span className="green"> -2.9%</span><br/>
                             <span> Y/Y </span>
@@ -45,7 +43,7 @@ class ButtomSummaryBox extends Component {
                             transitionAppear={true}
                             transitionAppearTimeout={600}
                             transitionEnter={false} 
-                            transitionLeave={false} onClick = {this.props.handleSummaryClick}>
+                            transitionLeave={false} >
                         <div className="statsHeader"> 
                             <span className="red"> -17.0%</span><br/>
                             <span> Q/Q LY </span>
@@ -57,7 +55,7 @@ class ButtomSummaryBox extends Component {
                             transitionAppear={true}
                             transitionAppearTimeout={400}
                             transitionEnter={false} 
-                            transitionLeave={false} onClick = {this.props.handleSummaryClick}>
+                            transitionLeave={false} >
                         <div className="statsHeader"> 
                             <span className="red"> -20.4%</span><br/>
                             <span> Q/Q TY </span>
@@ -69,19 +67,28 @@ class ButtomSummaryBox extends Component {
                             transitionAppear={true}
                             transitionAppearTimeout={200}
                             transitionEnter={false} 
-                            transitionLeave={false} onClick = {this.props.handleSummaryClick}>
+                            transitionLeave={false} >
                         <div className="statsHeader"> 
                             <span className="red"> -2.8%</span><br/>
                             <span> vs QRF </span>
                         </div>
                         </CSSTransitionGroup>
                     
-                    
+                        </div>
+                        </CSSTransitionGroup>
                    
                 </div> 
+                <CSSTransitionGroup
+                            transitionName="example"
+                            transitionAppear={true}
+                            transitionAppearTimeout={200}
+                            transitionEnter={false} 
+                            transitionLeave={false} >
                 <div className="row gridRow2">
                     <KendoMultiChart style={inStyles.multichart} />
                 </div> 
+                </CSSTransitionGroup>
+
                 </div>
             </div>
        
