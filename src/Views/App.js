@@ -5,6 +5,7 @@ import {connect } from 'react-redux';
 import * as actions from 'actions';
 import {Fade, Expand, Animation } from '@progress/kendo-react-animation';
 import styles from '../styles/styles.css';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Kendo Components
@@ -15,6 +16,8 @@ import KendoSwitch from 'components/KendoSwitch/KendoSwitch';
 import KendoNumericTextBox from 'components/KendoNumericTextBox/KendoNumericTextBox';
 import KendoInput from 'components/KendoInput/KendoInput';
 import KendoDropDownList from 'components/KendoDropDownList/KendoDropDownList';
+import KendoDialog from 'components/KendoDialog/KendoDialog';
+
 // Custom Components
 import FilterBox from 'components/FilterBox/FilterBox';
 import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
@@ -23,18 +26,29 @@ import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
 class App extends Component {
   constructor(props){
     super(props);
-    this.state ={index: 0,
-      show: true};
+    this.state ={
+      index: 0,
+      show: true,
+      dialogIsOpen: false};
   }
   
 
+  openDialog = () => {
+    this.setState({dialogIsOpen: true})
+  }
+  closeDialog = () => {
+    this.setState({dialogIsOpen: false})
+
+  }
+  
   render(){
  
      return (
        <div>
         <Navigation />
        <FilterBox />
-       <TopSummaryBox />
+       <TopSummaryBox handleSummaryClick={this.openDialog}/>
+       <KendoDialog handleDialogClose={this.closeDialog} title="Detail ARR" visible={this.state.dialogIsOpen} appContent={[]}/>
         </div>
   )
 }
