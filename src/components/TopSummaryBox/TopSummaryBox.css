@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+* {
+    font-family: 'Varela Round', sans-serif;
+}
+
 .switchCol{
     float: right;
     color: #383838;
@@ -25,15 +30,52 @@
 
 }
 
+.donutChart {
+    padding-top: 22px;
+}
+
 .gridContainer{
-    background-color: #383838;
-    height: 300px;
+    /* background-color: #383838; */
+    background-image: linear-gradient(rgb(58, 58, 58),rgb(150, 150, 150));
+    height: 390px;
 }
 
 .sumChartSquare{
     height: 200px !important;
     width: 175px !important;
     border: 2px solid red !important;
+}
+
+/* Arrow */
+
+.arrow_box {
+	position: relative;
+	background: white;
+    border-bottom: 5px solid #3f3f3f;
+    height: 270px;
+}
+.arrow_box:after, .arrow_box:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-top-color:rgb(58, 58, 58);
+	border-width: 15px;
+	margin-left: -15px;
+}
+.arrow_box:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-top-color: #3f3f3f;
+	border-width: 21px;
+	margin-left: -21px;
 }
 
 /* Animation */

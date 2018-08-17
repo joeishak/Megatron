@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './FilterBox.css';
-import {MultiSelect} from '@progress/kendo-react-dropdowns'
+import { MultiSelect } from '@progress/kendo-react-dropdowns';
+
 class FilterBox extends Component {
     render(){
         return(

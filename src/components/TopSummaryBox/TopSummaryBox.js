@@ -12,9 +12,9 @@ import { CSSTransitionGroup } from 'react-transition-group';
 const inStyles = {
 
     sumChartSqaure:{
-        height: '270px',
+        height: '320px',
         width: '100%',
-        border: '2px solid red',
+        // border: '1px solid #FD6060',
         marginTop: '15px'
     },
     sumChartContent:{
@@ -23,16 +23,20 @@ const inStyles = {
         backgroundColor:'white'
     },
     sumChartHeader:{
-        height: '25%',
+        height: '18%',
         width: '100%',
         textAlign: 'center',
         fontSize: '1.4em',
-        paddingTop:'10px'
-     
+        paddingTop:'10px',
+        backgroundColor: '#FD6060',
+    },
+    sumChartHeaderText: {
+        color: 'white',
+        paddingTop: '8px',
+        
     },
     slideContainer:{
-
-         width:'90%',
+        width:'90%',
         alignContent:'center'
     }
 }
@@ -40,29 +44,22 @@ class TopSummaryBox extends Component {
 
     constructor(props){
         super(props);
-      
         this.state = { show: true };
-        // this.ShowCharts =  this.ShowCharts.bind(this);
-        // this.ShowCharts();
     }
   
    
-    // ShowCharts () {
-    //     this.timeout =  setTimeout(() => { 
-    //     this.setState({ show: !this.state.show});
-    //     }, 2000);
-
-    // }
     render(){
         
         const chart1 = this.state.show ? ( 
         <div style={inStyles.sumChartSqaure} >
             <div style={inStyles.sumChartContent}>
                 <div style={inStyles.sumChartHeader} >
-                Net New ARR
+                <p style={inStyles.sumChartHeaderText}>Net New ARR</p>
                 </div>
+                    <div className="donutChart arrow_box">
                     <KendoDonutChart donutCenterRender= {()=> 
-                    <div><h3>$149.9M</h3><span>TARGET</span><h6>$277.9M</h6></div>}/> 
+                    <div><h2>$149.9M</h2><span>TARGET</span><h6>$277.9M</h6></div>}/> 
+                    </div>
                 </div>
         </div>) : null;
         const chart2 = this.state.show ? ( 
@@ -70,10 +67,12 @@ class TopSummaryBox extends Component {
             <div style={inStyles.sumChartContent}>
             <div style={inStyles.sumChartContent}>
                     <div style={inStyles.sumChartHeader} >
-                    Gross New ARR
+                    <p style={inStyles.sumChartHeaderText}>Gross New ARR</p>
                     </div>
-                    <KendoDonutChart donutCenterRender= {()=> 
-                    <div><h3>$159.9M</h3><span>TARGET</span><h6>$277.9M</h6></div>}/> 
+                        <div className="donutChart">
+                        <KendoDonutChart donutCenterRender= {()=> 
+                            <div><h2>$159.9M</h2><span>TARGET</span><h6>$277.9M</h6></div>}/> 
+                        </div>
                 </div>
                 </div>
             </div>) : null;
@@ -82,10 +81,12 @@ class TopSummaryBox extends Component {
             <div style={inStyles.sumChartContent}>
             <div style={inStyles.sumChartContent}>
                     <div style={inStyles.sumChartHeader} >
-                    Cancellations ARR
+                    <p style={inStyles.sumChartHeaderText}>Cancellations ARR</p>
                     </div>
+                    <div className="donutChart">
                     <KendoDonutChart donutCenterRender= {()=> 
-                    <div><h3>$217.5M</h3><span>TARGET</span><h6>$277.9M</h6></div>} />
+                    <div><h2>$217.5M</h2><span>TARGET</span><h6>$277.9M</h6></div>} />
+                    </div>
                 </div>
                 </div>
             </div>) : null;
@@ -94,9 +95,13 @@ class TopSummaryBox extends Component {
             <div style={inStyles.sumChartContent}>
             <div style={inStyles.sumChartContent}>
                     <div style={inStyles.sumChartHeader} >
-                    Renewel@FP ARR
+                    
+                    <p style={inStyles.sumChartHeaderText}>Renewel@FP ARR</p>
                     </div>
-                    <KendoDonutChart donutCenterRender= {()=> <div><h3>$32.1M</h3><span>TARGET</span><h6>$277.9M</h6></div>} />
+                    <div className="donutChart">
+                    <KendoDonutChart donutCenterRender= {()=> 
+                    <div><h2>$32.1M</h2><span></span><h6>$277.9M</h6></div>} />
+                    </div>
                 </div>
                 </div>
             </div>) : null;
@@ -104,7 +109,7 @@ class TopSummaryBox extends Component {
         return(
 
             <Grid className="gridContainer" fluid>
-                <Row >
+                <Row bsClass="fluid">
                     <Col className="summaryTitleCol" xs={12} md={12} lg={12} >
                     Summary
                     <div className="switchCol">
@@ -113,17 +118,10 @@ class TopSummaryBox extends Component {
                         <span className="journeysLabel">Journeys</span>
                     </div>
                     </Col>
-                    {/* <Col  xs={12} md={6} lg={3} >&nbsp;</Col> */}
-                    {/* <Col  xs={12} md={6} lg={3}>
-                    
-                    </Col> */}
+
                 </Row>
                 <div className="chartRow">
-                    {/* <Col  xs={12} s={12} md={6} lg={3} onClick = {this.props.handleSummaryClick}></Col>
-                    <Col  xs={12} s={12} md={6} lg={3} onClick = {this.props.handleSummaryClick}></Col>
-                    <Col  xs={12} s={12} md={6} lg={3} onClick = {this.props.handleSummaryClick}></Col>
-                    <Col xs={12} s={12} md={6} lg={3} onClick = {this.props.handleSummaryClick}></Col> */}
-                    <div className="col-xs-12 col-md-6 col-lg-3">
+                    <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <CSSTransitionGroup
                             transitionName="example"
                             transitionAppear={true}
@@ -133,7 +131,7 @@ class TopSummaryBox extends Component {
                                 {chart1} 
                         </CSSTransitionGroup>
                     </div>
-                    <div className="col-xs-12 col-md-6 col-lg-3">
+                    <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <CSSTransitionGroup
                             transitionName="example"
                             transitionAppear={true}
@@ -142,7 +140,7 @@ class TopSummaryBox extends Component {
                             transitionLeave={false} onClick = {this.props.handleSummaryClick}>
                                 {chart2}
                         </CSSTransitionGroup></div>
-                    <div className="col-xs-12 col-md-6 col-lg-3">
+                    <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <CSSTransitionGroup
                             transitionName="example"
                             transitionAppear={true}
@@ -151,7 +149,7 @@ class TopSummaryBox extends Component {
                             transitionLeave={false} onClick = {this.props.handleSummaryClick}>
                                 {chart3}
                         </CSSTransitionGroup></div>
-                    <div className="col-xs-12 col-md-6 col-lg-3">
+                    <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <CSSTransitionGroup
                             transitionName="example"
                             transitionAppear={true}
