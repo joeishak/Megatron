@@ -29,12 +29,22 @@
     background-color: #383838;
     height: 300px;
 }
-.chartRow{
-    /* float: left; */
-}
 
 .sumChartSquare{
     height: 200px !important;
     width: 175px !important;
     border: 2px solid red !important;
+}
+
+/* Animation */
+
+.example-appear {
+    opacity: 0;
+    transform: translateY(-80px);
+}
+  
+.example-appear.example-appear-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 1s ease-out;
 }

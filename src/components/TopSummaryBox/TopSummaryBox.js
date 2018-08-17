@@ -5,6 +5,9 @@ import  KendoSwitch  from '../KendoSwitch/KendoSwitch';
 import styles from './TopSummaryBox.css'
 import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
 import {Fade, Expand, Animation, Slide } from '@progress/kendo-react-animation';
+import { CSSTransitionGroup } from 'react-transition-group';
+
+//https://github.com/reactjs/react-transition-group/tree/v1-stable
 
 const inStyles = {
 
@@ -38,19 +41,18 @@ class TopSummaryBox extends Component {
     constructor(props){
         super(props);
       
-        this.state = { show: false };
-        this.ShowCharts =  this.ShowCharts.bind(this);
-        this.ShowCharts();
+        this.state = { show: true };
+        // this.ShowCharts =  this.ShowCharts.bind(this);
+        // this.ShowCharts();
     }
   
    
-    ShowCharts () {
-        this.timeout =  setTimeout(() => { 
-        this.setState({ show: !this.state.show});
-        }, 500);
+    // ShowCharts () {
+    //     this.timeout =  setTimeout(() => { 
+    //     this.setState({ show: !this.state.show});
+    //     }, 2000);
 
-        // this.setState({ show: true});
-    }
+    // }
     render(){
         
         const chart1 = this.state.show ? ( 
@@ -116,20 +118,50 @@ class TopSummaryBox extends Component {
                     
                     </Col> */}
                 </Row>
-                <Row className="chartRow">
-                    <Col  xs={12} s={12} md={6} lg={3} onClick = {this.props.handleSummaryClick} >
-                      <Slide transitionEnterDuration="500">{chart1}</Slide>
-                    </Col>
-                    <Col  xs={12} s={12} md={6} lg={3} onClick = {this.props.handleSummaryClick}>
-                      <Slide transitionEnterDuration="800">{chart2}</Slide>
-                    </Col>
-                    <Col  xs={12} s={12} md={6} lg={3} onClick = {this.props.handleSummaryClick}>
-                      <Slide transitionEnterDuration="1100">{chart3}</Slide>
-                    </Col>
-                    <Col xs={12} s={12} md={6} lg={3} onClick = {this.props.handleSummaryClick}>
-                      <Slide transitionEnterDuration="1400">{chart4}</Slide>
-                    </Col>
-                </Row>
+                <div className="chartRow">
+                    {/* <Col  xs={12} s={12} md={6} lg={3} onClick = {this.props.handleSummaryClick}></Col>
+                    <Col  xs={12} s={12} md={6} lg={3} onClick = {this.props.handleSummaryClick}></Col>
+                    <Col  xs={12} s={12} md={6} lg={3} onClick = {this.props.handleSummaryClick}></Col>
+                    <Col xs={12} s={12} md={6} lg={3} onClick = {this.props.handleSummaryClick}></Col> */}
+                    <div className="col-xs-12 col-md-6 col-lg-3">
+                        <CSSTransitionGroup
+                            transitionName="example"
+                            transitionAppear={true}
+                            transitionAppearTimeout={1000}
+                            transitionEnter={false} 
+                            transitionLeave={false} onClick = {this.props.handleSummaryClick}>
+                                {chart1} 
+                        </CSSTransitionGroup>
+                    </div>
+                    <div className="col-xs-12 col-md-6 col-lg-3">
+                        <CSSTransitionGroup
+                            transitionName="example"
+                            transitionAppear={true}
+                            transitionAppearTimeout={1000}
+                            transitionEnter={false} 
+                            transitionLeave={false} onClick = {this.props.handleSummaryClick}>
+                                {chart2}
+                        </CSSTransitionGroup></div>
+                    <div className="col-xs-12 col-md-6 col-lg-3">
+                        <CSSTransitionGroup
+                            transitionName="example"
+                            transitionAppear={true}
+                            transitionAppearTimeout={1000}
+                            transitionEnter={false} 
+                            transitionLeave={false} onClick = {this.props.handleSummaryClick}>
+                                {chart3}
+                        </CSSTransitionGroup></div>
+                    <div className="col-xs-12 col-md-6 col-lg-3">
+                        <CSSTransitionGroup
+                            transitionName="example"
+                            transitionAppear={true}
+                            transitionAppearTimeout={1000}
+                            transitionEnter={false} 
+                            transitionLeave={false} onClick = {this.props.handleSummaryClick}>
+                                {chart4}
+                        </CSSTransitionGroup>
+                    </div>
+                </div>
             </Grid>
         )
     }
