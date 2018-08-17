@@ -81,7 +81,7 @@ class TopSummaryBox extends Component {
                                 <div style={inStyles.sumChartHeader} >
                                 Net New ARR
                                 </div>
-                                <Slide style={inStyles.slideContainer}>
+                                <Slide direction="right" transitionEnterDuration={200} style={inStyles.slideContainer}>
                                 {chart1}
                                 </Slide>
                                 
@@ -96,7 +96,7 @@ class TopSummaryBox extends Component {
                                 <div style={inStyles.sumChartHeader} >
                                 Gross New ARR
                                 </div>
-                                <Slide style={inStyles.slideContainer}>
+                                <Slide direction="down" transitionEnterDuration={600} style={inStyles.slideContainer}>
                                 {chart2}
                                 </Slide>
 
@@ -111,7 +111,7 @@ class TopSummaryBox extends Component {
                                 <div style={inStyles.sumChartHeader} >
                                 Cancellations ARR
                                 </div>
-                                <Slide style={inStyles.slideContainer}>
+                                <Slide direction="down" transitionEnterDuration={900} style={inStyles.slideContainer}>
                                 {chart3}
                                 </Slide>
 
@@ -126,7 +126,7 @@ class TopSummaryBox extends Component {
                                 <div style={inStyles.sumChartHeader} >
                                 Renewel@FP ARR
                                 </div>
-                                <Slide style={inStyles.slideContainer}>
+                                <Slide direction="left" transitionEnterDuration={1000} style={inStyles.slideContainer}>
                                 {chart4}
                                 </Slide>
                             </div>
