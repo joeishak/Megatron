@@ -10,26 +10,40 @@ import {
     ChartSeriesItem,
     ChartSeriesLabels
   } from '@progress/kendo-react-charts';
+
+const inStyles = {
+    offColor:{
+        color: '#F6F5F5'
+    },
+    onColor:{
+        color: '#FD4D4D'
+    }
+}
+  
 class KendoDonutChart extends Component {
     constructor(props){
         super(props);
     }
 
+
+
     render(){
        const ChartContainer = () => (
         <Chart donutCenterRender={this.props.donutCenterRender}>
         <ChartLegend visible={false} />
-        <ChartArea background="none" height={200}/>
+        <ChartArea background="none" height={210}/>
         <ChartSeries>
             <ChartSeriesItem
             type="donut"
-            startAngle={150}
-            data={[{"kind":"Data","Share":.35},{ "kind": "Missed","Share":.25}]}
+            startAngle={90}
+            padding={0}
+            data={[{"kind":"Data","Share":.65, "color": '#FD6060'},{ "kind": "Missed","Share":.25, "color": '#F6F5F5' }]}
             field="Share"
             categoryField="kind"
             colorField="color"
-            holeSize={85}
+            holeSize={90}
             dynamicHeight='true'
+            
             >
             </ChartSeriesItem>
         </ChartSeries>
