@@ -4,8 +4,13 @@ import Root from 'Root';
 import {BrowserRouter,Route} from 'react-router-dom';
 import App from 'Views/App';
 import registerServiceWorker from './registerServiceWorker';
+const inStyles={
+	root: {
+		height: '100%'
+	}
+}
 ReactDOM.render(
-	<Root  >
+	<Root  style={inStyles.root}>
 		<BrowserRouter>
 			<Route path="/" component={App} />
 		</BrowserRouter>

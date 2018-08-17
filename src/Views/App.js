@@ -4,7 +4,7 @@ import { Route,Link } from 'react-router-dom';
 import {connect } from 'react-redux';
 import * as actions from 'actions';
 import {Fade, Expand, Animation } from '@progress/kendo-react-animation';
-import styles from '../styles/styles.css';
+import styles from './App.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -21,6 +21,7 @@ import KendoDialog from 'components/KendoDialog/KendoDialog';
 // Custom Components
 import FilterBox from 'components/FilterBox/FilterBox';
 import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
+import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 // import { changeAuth } from '../actions';
 
 class App extends Component {
@@ -44,12 +45,16 @@ class App extends Component {
   render(){
  
      return (
-       <div>
+      <div>
         <Navigation />
-       <FilterBox />
-       <TopSummaryBox handleSummaryClick={this.openDialog}/>
-       <KendoDialog handleDialogClose={this.closeDialog} title="Detail ARR" visible={this.state.dialogIsOpen} appContent={[]}/>
+        <FilterBox />
+        <TopSummaryBox handleSummaryClick={this.openDialog}/>
+        <KendoDialog handleDialogClose={this.closeDialog} title="Detail ARR" visible={this.state.dialogIsOpen} appContent={[]}/>
+        <div className='bottomSummaryContainer'>
+          <ButtomSummaryBox />
+
         </div>
+      </div>
   )
 }
 }
