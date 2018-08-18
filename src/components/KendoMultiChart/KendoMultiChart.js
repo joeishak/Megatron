@@ -8,7 +8,8 @@ import {
     ChartSeriesItem,
     ChartCategoryAxis,
     ChartCategoryAxisTitle,
-    ChartCategoryAxisItem
+    ChartCategoryAxisItem,
+    ChartArea
 } from '@progress/kendo-react-charts';
 
 class KendoMultiChart extends Component {
@@ -23,15 +24,16 @@ class KendoMultiChart extends Component {
         const categories = ['Q1', 'Q2', 'Q3', 'Q4'];
         const ChartContainer = () => (
         <Chart>
-            <ChartTitle text="Units sold" />
+            <ChartArea background="transparent" ></ChartArea>
+            {/* <ChartTitle text="Units sold" /> */}
             <ChartCategoryAxis>
                 <ChartCategoryAxisItem categories={categories}>
                 <ChartCategoryAxisTitle text="Months" />
                 </ChartCategoryAxisItem>
             </ChartCategoryAxis>
             <ChartSeries>
-                <ChartSeriesItem type="bar" gap={2} spacing={0.25} data={firstSeries} />
-                <ChartSeriesItem type="bar" data={secondSeries} />
+                <ChartSeriesItem type="column" gap={2} spacing={0.25} data={firstSeries} />
+                <ChartSeriesItem type="column" data={secondSeries} />
                 <ChartSeriesItem type="line" data={thirdSeries} />
                 <ChartSeriesItem type="line" data={fourthSeries} />
             </ChartSeries>

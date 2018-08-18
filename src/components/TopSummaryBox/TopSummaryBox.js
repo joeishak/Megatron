@@ -49,6 +49,8 @@ class TopSummaryBox extends Component {
   
    
     render(){
+
+
         
         const chart1 = this.state.show ? ( 
         <div style={inStyles.sumChartSqaure} >
@@ -121,6 +123,7 @@ class TopSummaryBox extends Component {
 
                 </Row>
                 <div className="chartRow">
+
                     <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <CSSTransitionGroup
                             transitionName="example"

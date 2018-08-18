@@ -52,7 +52,6 @@ class App extends Component {
         <KendoDialog handleDialogClose={this.closeDialog} title="Detail ARR" visible={this.state.dialogIsOpen} appContent={[]}/>
         <div className='bottomSummaryContainer'>
           <ButtomSummaryBox />
-
         </div>
       </div>
   )

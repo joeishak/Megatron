@@ -36,7 +36,8 @@
 
 .gridContainer{
     /* background-color: #383838; */
-    background-image: linear-gradient(rgb(58, 58, 58),rgb(150, 150, 150));
+    background-image: linear-gradient(rgb(68, 68, 68),rgb(62, 62, 62),rgb(16, 16, 16));
+
     height: 390px;
 }
 
@@ -51,7 +52,7 @@
 .arrow_box {
 	position: relative;
 	background: white;
-    border-bottom: 5px solid #3f3f3f;
+    border-bottom: 5px solid #3a3a3a;
     height: 270px;
 }
 .arrow_box:after, .arrow_box:before {
@@ -73,7 +74,7 @@
 }
 .arrow_box:before {
 	border-color: rgba(194, 225, 245, 0);
-	border-top-color: #3f3f3f;
+	border-top-color:#3a3a3a;
 	border-width: 21px;
 	margin-left: -21px;
 }
@@ -82,11 +83,15 @@
 
 .example-appear {
     opacity: 0;
-    transform: translateY(-80px);
+    transform: translateY(-200px);
+    animation-duration: 4s;
+    animation-delay: 2s;
 }
   
 .example-appear.example-appear-active {
     opacity: 1;
     transform: translateY(0px);
     transition: all 1s ease-out;
+    animation-duration: 100s;
+    animation-delay: 5s;
 }
