@@ -112,6 +112,12 @@ class TopSummaryBox extends Component {
 
             <Grid className="gridContainer" fluid>
                 <Row bsClass="fluid">
+                <CSSTransitionGroup
+                            transitionName="example"
+                            transitionAppear={true}
+                            transitionAppearTimeout={1000}
+                            transitionEnter={false} 
+                            transitionLeave={false} onClick = {this.props.handleSummaryClick}>
                     <Col className="summaryTitleCol" xs={12} md={12} lg={12} >
                     Summary
                     <div className="switchCol">
@@ -120,6 +126,7 @@ class TopSummaryBox extends Component {
                         <span className="journeysLabel">Journeys</span>
                     </div>
                     </Col>
+                    </CSSTransitionGroup>
 
                 </Row>
                 <div className="chartRow">
@@ -162,7 +169,9 @@ class TopSummaryBox extends Component {
                                 {chart4}
                         </CSSTransitionGroup>
                     </div>
+
                 </div>
+
             </Grid>
         )
     }
