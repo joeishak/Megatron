@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import {connect} from 'react-redux';
 import {Grid, Row, Col} from 'react-bootstrap';
 import  KendoSwitch  from '../KendoSwitch/KendoSwitch';
 import styles from './TopSummaryBox.css'
@@ -50,8 +51,6 @@ class TopSummaryBox extends Component {
    
     render(){
 
-
-        
         const chart1 = this.state.show ? ( 
         <div style={inStyles.sumChartSqaure} >
             <div style={inStyles.sumChartContent}>
@@ -117,7 +116,7 @@ class TopSummaryBox extends Component {
                             transitionAppear={true}
                             transitionAppearTimeout={1000}
                             transitionEnter={false} 
-                            transitionLeave={false} onClick = {this.props.handleSummaryClick}>
+                            transitionLeave={false} >
                     <Col className="summaryTitleCol" xs={12} md={12} lg={12} >
                     Summary
                     <div className="switchCol">
@@ -177,4 +176,8 @@ class TopSummaryBox extends Component {
     }
 }
 
-export default (TopSummaryBox)
+function mapStateToProps(state) {
+    return { filters: state.filters };
+}
+
+export default connect(mapStateToProps)(TopSummaryBox)
