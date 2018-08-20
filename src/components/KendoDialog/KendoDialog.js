@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Dialog, DialogActionsBar } from '@progress/kendo-react-dialogs';
 import KendoMultiChart from '../KendoMultiChart/KendoMultiChart';
-import NivoBarChart from '../NivoBarChart/NivoBarChart';
-import NivoCalendar from '../NivoCalendar/NivoCalendar'
+
 
 import {Grid, Row, Col } from 'react-bootstrap';
 
@@ -43,12 +42,12 @@ class KendoDialog extends Component {
                     <Row>
                         <Col xs={12} s={12} md={6} lg={6}>
                         <div style={inStyles.nivoBar}> 
-                            <NivoBarChart />
+         
                         </div>
                         </Col>
                         <Col xs={12} s={12} md={6} lg={6}>
                         <div style={inStyles.nivoBar}> 
-                            <NivoCalendar />
+
                         </div>
                         </Col>
                     </Row>

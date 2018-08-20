@@ -24,7 +24,6 @@ import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 
 // Custom Nivo Components
-import NivoBarChart from 'components/NivoBarChart/NivoBarChart';
 // import { changeAuth } from '../actions';
 
 const inStyles = {
