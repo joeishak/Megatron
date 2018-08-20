@@ -6,7 +6,7 @@ import logo from "../../assets/images/adobe-logo-nav-1.svg";
 import { Route,Link } from 'react-router-dom';
 import {Nav, NavItem, Navbar, NavDropdown, MenuItem} from 'react-bootstrap';
 import { Animation, Expand, Fade, Push, Slide, Zoom, Reveal } from '@progress/kendo-react-animation';
-
+import App from '../../Views/App.js';
 
 class Navigation extends Component {
       
@@ -41,30 +41,32 @@ class Navigation extends Component {
         return(
 
         <Navbar  fluid className="navContainer">
-
-        
           <Navbar.Header>
             <Navbar.Brand className="navBrandLogo">
-              <a href="#brand" style={{width: 130}}><Expand>{logos}</Expand></a>
+              <div href="#brand" style={{width: 130}}><Expand>{logos}</Expand></div>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse >
-            <Nav>
-              <NavItem eventKey={1} href="#" className="navItem">
-                <p className="navText">Summary</p>
-              </NavItem>
-              <NavItem eventKey={2} href="#" className="navItem" >
-                <p className="navText">Journeys</p>
-              </NavItem>
-              <NavItem eventKey={2} href="#" className="navItem">
-               <p className="navText">Products</p>
-              </NavItem>
-              <NavItem eventKey={2} href="#" className="navItem">
-               <p className="navText">Quarterly</p>
-              </NavItem>
+            <ul className="nav navbar-nav">
+              <li   className="navItem">
+                <Link  to="/summary" className=" navText">Summary</Link>
+                <Route path = "/post" component ={App} />
+              </li>
+              <li  className="navItem" >
+                <Link  to="/journeys" className="navText">Journeys</Link>
+                <Route path = "/post" component ={App} />
+              </li>
+              <li  className="navItem">
+                <Link  to="/products" className="navText">Products</Link>
+                <Route path = "/post" component ={App} />
+              </li>
+              <li   className="navItem">
+                <Link  to="/quarterly" className="navText">Quarterly</Link>
+                <Route path = "/post" component ={App} />
+              </li>
 
-            </Nav>
+            </ul>
             <Nav pullRight>
               <NavDropdown eventKey={3} className="dropDownContainer" title={this.state.loggedUser} id="nav-dropdown">
                 <MenuItem eventKey={3.1}>Log Out</MenuItem>

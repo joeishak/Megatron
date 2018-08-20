@@ -47,6 +47,13 @@
     border: 2px solid red !important;
 }
 
+/* 4 Charts */
+chart1:hover{
+    position: relative;
+	background: white;
+    border-bottom: 5px solid #3a3a3a;
+    height: 270px;
+}
 /* Arrow */
 
 .arrow_box {

@@ -22,8 +22,17 @@ import KendoDialog from 'components/KendoDialog/KendoDialog';
 import FilterBox from 'components/FilterBox/FilterBox';
 import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
+
+// Custom Nivo Components
+import NivoBarChart from 'components/NivoBarChart/NivoBarChart';
 // import { changeAuth } from '../actions';
 
+const inStyles = {
+  nivoContainer:{
+    height:'1000px',
+    width: '1000px'
+  }
+}
 class App extends Component {
   constructor(props){
     super(props);
@@ -31,25 +40,36 @@ class App extends Component {
       index: 0,
       show: true,
       dialogIsOpen: false};
+
+
+      this.props.getAdobeData();
   }
   
+  enableArrow = (event)  => {
 
+    console.log('I am hovering from App');
+}
   openDialog = () => {
+    this.props.updateDialogVisibility(true);
     this.setState({dialogIsOpen: true})
   }
   closeDialog = () => {
-    this.setState({dialogIsOpen: false})
+    this.props.updateDialogVisibility(false);
 
+    this.setState({dialogIsOpen: false})
   }
   
+  handleFilterUpdates = () => {
+    this.render();
+  }
   render(){
  
      return (
       <div>
         <Navigation />
-        <FilterBox />
-        <TopSummaryBox handleSummaryClick={this.openDialog}/>
-        <KendoDialog handleDialogClose={this.closeDialog} title="Detail ARR" visible={this.state.dialogIsOpen} appContent={[]}/>
+        <FilterBox handleFilterUpdates={this.handleFilterUpdates}/>
+        <TopSummaryBox handleSummaryClick={this.openDialog} hoverHandler={this.enableArrow}/>
+        <KendoDialog handleDialogClose={this.closeDialog} title="Detail ARR" visible={this.props.isDialogOpen} appContent={[]}/>
         <div className='bottomSummaryContainer'>
           <ButtomSummaryBox />
         </div>
@@ -59,7 +79,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return {auth: state.auth};
+  return {isDialogOpen: state.isDialogOpen};
 }
 
 export default connect(mapStateToProps,actions)(App);

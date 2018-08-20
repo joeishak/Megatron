@@ -4,8 +4,14 @@ import {createStore, applyMiddleware} from 'redux';
 import reducers from 'reducers';
 import stateValidator from 'middlewares/stateValidator'
 import async from 'middlewares/async';
-
-export default ({children, initialState ={}}) =>{
+export default ({children, initialState ={
+    filters: {
+        updated: false,
+        values: []
+    },
+    isDialogOpen: false,
+    adobeData: []
+}}) => {
     const store = createStore(
         reducers,
         initialState,

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
+import  * as actions from 'actions';
 
 import {  Switch } from '@progress/kendo-react-inputs';
 
@@ -9,11 +11,18 @@ class KendoSwitch extends Component {
         super(props);
     }
     
+    changeSwitch = (event) =>{
+        this.props.updateSwitchFilterValue(event.target.value);
+    }
     render(){
         return(
-            <Switch onLabel={this.props.onLabel} offLabel={this.props.offLabel}/>
+            <Switch onChange={this.changeSwitch} onLabel={this.props.onLabel} offLabel={this.props.offLabel}/>
         );
     }
 }
 
-export default (KendoSwitch);
+function mapStateToProps(state) {
+    return {};
+  }
+  
+  export default connect(mapStateToProps,actions) (KendoSwitch);
