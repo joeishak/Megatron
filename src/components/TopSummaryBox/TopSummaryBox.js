@@ -132,14 +132,40 @@ class TopSummaryBox extends Component {
                 <div className="chartRow">
 
                     <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                        <CSSTransitionGroup
+                    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                        <div class="flipper">
+                            <div class="front">
+                                {/* <!-- front content --> */}
+                                <CSSTransitionGroup
+                                    transitionName="example"
+                                    transitionAppear={true}
+                                    transitionAppearTimeout={1000}
+                                    transitionEnter={false} 
+                                    transitionLeave={false} onClick = {this.props.handleSummaryClick}>
+                                        {chart1} 
+                                </CSSTransitionGroup>
+                            </div>
+                            <div class="back">
+                                {/* <!-- back content --> */}
+                                <CSSTransitionGroup
+                                    transitionName="example"
+                                    transitionAppear={true}
+                                    transitionAppearTimeout={1000}
+                                    transitionEnter={false} 
+                                    transitionLeave={false} onClick = {this.props.handleSummaryClick}>
+                                        {chart1} 
+                                </CSSTransitionGroup>
+                            </div>
+                        </div>
+                    </div>
+                        {/* <CSSTransitionGroup
                             transitionName="example"
                             transitionAppear={true}
                             transitionAppearTimeout={1000}
                             transitionEnter={false} 
                             transitionLeave={false} onClick = {this.props.handleSummaryClick}>
                                 {chart1} 
-                        </CSSTransitionGroup>
+                        </CSSTransitionGroup> */}
                     </div>
                     <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <CSSTransitionGroup
