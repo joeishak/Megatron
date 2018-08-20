@@ -40,9 +40,15 @@ class App extends Component {
       index: 0,
       show: true,
       dialogIsOpen: false};
+
+
+      this.props.getAdobeData();
   }
   
+  enableArrow = (event)  => {
 
+    console.log('I am hovering from App');
+}
   openDialog = () => {
     this.props.updateDialogVisibility(true);
     this.setState({dialogIsOpen: true})
@@ -62,7 +68,7 @@ class App extends Component {
       <div>
         <Navigation />
         <FilterBox handleFilterUpdates={this.handleFilterUpdates}/>
-        <TopSummaryBox handleSummaryClick={this.openDialog}/>
+        <TopSummaryBox handleSummaryClick={this.openDialog} hoverHandler={this.enableArrow}/>
         <KendoDialog handleDialogClose={this.closeDialog} title="Detail ARR" visible={this.props.isDialogOpen} appContent={[]}/>
         <div className='bottomSummaryContainer'>
           <ButtomSummaryBox />

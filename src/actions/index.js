@@ -2,7 +2,9 @@ import {
     CHANGE_AUTH, 
     UPDATE_SWITCH_FILTER_VALUE,
     UPDATE_DIALOG_VISIBILITY , 
-    UPDATE_MULTI_FILTER_VALUES
+    UPDATE_MULTI_FILTER_VALUES,
+    GET_ALL_DATA
+
 } from 'actions/types';
 import axios from 'axios';
 
@@ -69,5 +71,18 @@ export function updateMultiFilterStatus(status) {
         payload: status
     }
 }
+
+/**
+ * Get all the data for adobe
+ * 
+ * @param {boolean} status
+ */
+export function getAdobeData() {
+    return {
+        type: GET_ALL_DATA,
+        payload: {}
+    }
+}
+
 
 

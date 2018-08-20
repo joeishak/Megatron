@@ -11,3 +11,6 @@ export const UPDATE_SWITCH_FILTER_VALUE     = "update_switch_filter_value";
 
 // Modal Dialog Box
 export const UPDATE_DIALOG_VISIBILITY       = "update_dialog_visibility";
+
+// All Data
+export const GET_ALL_DATA                   = "get_all_data";
