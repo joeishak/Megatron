@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
 * {
-    font-family: 'Varela Round', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .switchCol{
@@ -51,8 +51,8 @@
 
 .arrow_box {
 	position: relative;
-	background: white;
-    border-bottom: 5px solid #3a3a3a;
+	background: transparent;
+    border-bottom: 7px solid #3a3a3a;
     height: 270px;
 }
 .arrow_box:after, .arrow_box:before {
@@ -136,4 +136,15 @@
 /* back, initially hidden pane */
 .back {
 	transform: rotateY(180deg);
+}
+
+/* On Hover Zoom for Card Charts - Donut */
+
+.zoom {
+	padding-top: 7px;
+    transition: transform .2s; /* Animation */
+}
+
+.zoom:hover {
+    transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }

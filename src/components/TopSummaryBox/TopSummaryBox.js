@@ -62,8 +62,6 @@ class TopSummaryBox extends Component {
             chart2ArrowCSS: "",
             chart3ArrowCSS: "",
             chart4ArrowCSS: "",
-
-        
         };
         this.enableChart1Arrow = this.enableChart1Arrow.bind(this);
         this.enableChart2Arrow = this.enableChart2Arrow.bind(this);
@@ -128,8 +126,10 @@ class TopSummaryBox extends Component {
                 <p style={inStyles.sumChartHeaderText}>Net New ARR</p>
                 </div>
                     <div className={"donutChart " + this.state.chart1ArrowCSS}>
-                    <KendoDonutChart donutCenterRender= {()=> 
-                    <div><h2>$149.9M</h2><span>TARGET</span><h6>$277.9M</h6></div>}/> 
+                        <div className="zoom">
+                        <KendoDonutChart donutCenterRender= {()=> 
+                        <div><h2>$149.9M</h2><span>TARGET</span><h6>$277.9M</h6></div>}/> 
+                        </div>
                     </div>
                 </div>
         </div>) : null;
@@ -156,10 +156,12 @@ class TopSummaryBox extends Component {
                     <div style={inStyles.sumChartHeader} >
                     <p style={inStyles.sumChartHeaderText}>Gross New ARR</p>
                     </div>
-                        <div className={ "donutChart " + this.state.chart2ArrowCSS}>
-                        <KendoDonutChart donutCenterRender= {()=> 
-                            <div><h2>$159.9M</h2><span>TARGET</span><h6>$277.9M</h6></div>}/> 
+                    <div className={ "donutChart " + this.state.chart2ArrowCSS}>
+                        <div className="zoom">
+                            <KendoDonutChart donutCenterRender= {()=> 
+                                <div><h2>$159.9M</h2><span>TARGET</span><h6>$277.9M</h6></div>}/> 
                         </div>
+                    </div>
                 </div>
                 </div>
             </div>) : null;
@@ -188,8 +190,10 @@ class TopSummaryBox extends Component {
                     <p style={inStyles.sumChartHeaderText}>Cancellations ARR</p>
                     </div>
                     <div className={"donutChart "+ this.state.chart3ArrowCSS}>
-                    <KendoDonutChart donutCenterRender= {()=> 
-                    <div><h2>$217.5M</h2><span>TARGET</span><h6>$277.9M</h6></div>} />
+                        <div  className="zoom">
+                        <KendoDonutChart donutCenterRender= {()=> 
+                        <div><h2>$217.5M</h2><span>TARGET</span><h6>$277.9M</h6></div>} />
+                        </div>
                     </div>
                 </div>
                 </div>
@@ -219,8 +223,10 @@ class TopSummaryBox extends Component {
                     <p style={inStyles.sumChartHeaderText}>Renewel@FP ARR</p>
                     </div>
                     <div className= {"donutChart "+ this.state.chart4ArrowCSS}>
-                    <KendoDonutChart donutCenterRender= {()=> 
-                    <div><h2>$32.1M</h2><span></span><h6>$277.9M</h6></div>} />
+                        <div  className="zoom">
+                        <KendoDonutChart donutCenterRender= {()=> 
+                        <div><h2>$32.1M</h2><span></span><h6>$277.9M</h6></div>} />
+                        </div>
                     </div>
                 </div>
                 </div>
@@ -250,36 +256,25 @@ class TopSummaryBox extends Component {
                 <div className="chartRow">
 
                     <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.enableChart1Arrow}>
-                        <div className="flip-container" ontouchstart="this.classList.toggle('hover');">
+                        <div className="" ontouchstart="this.classList.toggle('hover');">
                             <div className="flipper">
-                                <div className="front">
+                                <div className="front ">
                                     {/* <!-- front content --> */}
                                     <CSSTransitionGroup
-                                        
                                         transitionName="example"
                                         transitionAppear={true}
                                         transitionAppearTimeout={1000}
                                         transitionEnter={false} 
                                         transitionLeave={false}>
-                                        {chart1} 
+                                        {chart1}
                                     </CSSTransitionGroup>
                                 </div>
-                                <div className="back">
-                                    {/* <!-- back content --> */}
-                                    <CSSTransitionGroup
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={1000}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
-                                        {chart1Back}
-                                    </CSSTransitionGroup>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                     <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" onClick = {this.enableChart2Arrow}>
-                    <div className="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div className="" ontouchstart="this.classList.toggle('hover');">
                             <div className="flipper">
                                 <div className="front">
                                     {/* <!-- front content --> */}
@@ -293,22 +288,12 @@ class TopSummaryBox extends Component {
                                         {chart2} 
                                     </CSSTransitionGroup>
                                 </div>
-                                <div className="back">
-                                    {/* <!-- back content --> */}
-                                    <CSSTransitionGroup
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={1000}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
-                                        {chart2Back}
-                                    </CSSTransitionGroup>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                     <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" onClick = {this.enableChart3Arrow}>
-                    <div className="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div className="" ontouchstart="this.classList.toggle('hover');">
                             <div className="flipper">
                                 <div className="front">
                                     {/* <!-- front content --> */}
@@ -322,22 +307,12 @@ class TopSummaryBox extends Component {
                                             {chart3} 
                                     </CSSTransitionGroup>
                                 </div>
-                                <div className="back">
-                                    {/* <!-- back content --> */}
-                                    <CSSTransitionGroup
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={1000}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
-                                        {chart3Back}
-                                    </CSSTransitionGroup>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                     <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" onClick = {this.enableChart4Arrow}>
-                    <div className="flip-container" ontouchstart="this.classList.toggle('hover');">
+                    <div className="" ontouchstart="this.classList.toggle('hover');">
                             <div className="flipper">
                                 <div className="front">
                                     {/* <!-- front content --> */}
@@ -351,17 +326,7 @@ class TopSummaryBox extends Component {
                                             {chart4} 
                                     </CSSTransitionGroup>
                                 </div>
-                                <div className="back">
-                                    {/* <!-- back content --> */}
-                                    <CSSTransitionGroup
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={1000}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
-                                        {chart4Back}
-                                    </CSSTransitionGroup>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>

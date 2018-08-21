@@ -57,11 +57,6 @@ class Navigation extends Component {
           this.setState({activeTab: ''});
           break;
       }
-      // console.log(index);
-      // e.preventDefault();
-      // this.setState({
-      //   isSelected: !this.state.isSelected
-      // })
     }
 
     
@@ -83,20 +78,26 @@ class Navigation extends Component {
           </Navbar.Header>
           <Navbar.Collapse >  
             <ul className="nav navbar-nav">
-              <li className={`navItem ${activeTab === 'tab1' ? 'selected' : ''}`} onClick={e => this.selectedNavItem(e, 'tab1')}>
-                <Link  to="/summary" className="navText">Summary</Link>
+              <li >
+                <Link  to="/summary" className="navText">
+                <div className={`navItem ${activeTab === 'tab1' ? 'selected' : ''}`} onClick={e => this.selectedNavItem(e, 'tab1')}>Summary</div></Link>
                 <Route path = "/post" component ={App} />
               </li>
-              <li className={`navItem ${activeTab === 'tab2' ? 'selected' : ''}`} onClick={e => this.selectedNavItem(e, 'tab2' )} >
-                <Link  to="/journeys" className="navText">Journeys</Link>
+              <li >
+                <Link  to="/journeys" className="navText">
+                <div  className={`navItem ${activeTab === 'tab2' ? 'selected' : ''}`} onClick={e => this.selectedNavItem(e, 'tab2' )}>Journeys</div></Link>
                 <Route path = "/post" component ={App} />
               </li>
-              <li className={`navItem ${activeTab === 'tab3' ? 'selected' : ''}`} onClick={e => this.selectedNavItem(e, 'tab3')}>
-                <Link  to="/products" className="navText">Products</Link>
+              <li >
+                <Link  to="/products" className="navText">
+                <div className={`navItem ${activeTab === 'tab3' ? 'selected' : ''}`} onClick={e => this.selectedNavItem(e, 'tab3')}>Products</div>
+                </Link>
                 <Route path = "/post" component ={App} />
               </li>
-              <li className={`navItem ${activeTab === 'tab4' ? 'selected' : ''}`} onClick={e => this.selectedNavItem(e, 'tab4')}>
-                <Link  to="/quarterly" className="navText">Quarterly</Link>
+              <li >
+                <Link  to="/quarterly" className="navText">
+                <div className={`navItem ${activeTab === 'tab4' ? 'selected' : ''}`} onClick={e => this.selectedNavItem(e, 'tab4')}>Quarterly</div>
+                </Link>
                 <Route path = "/post" component ={App} />
               </li>
 
