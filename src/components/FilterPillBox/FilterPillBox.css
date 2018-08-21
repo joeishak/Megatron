@@ -1,0 +1,23 @@
+
+.multiSelect {
+    background-color: #3c3c3c;
+}
+
+.filterText{
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    padding: 10px;
+    width: inherit;
+
+}
+.filterText, .xButton{
+ color: #ffffff;
+ background-color: #3c3c3c;
+ 
+}
+
+.xButton{
+    padding-left: 15px;
+    font-size: 1.5em;
+}
+

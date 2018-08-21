@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import { DropDownList } from '@progress/kendo-react-dropdowns';
+const inStyles = {
+    background :{
+        backgroundColor: '#3c3c3c'
+    }
+}
 class KendoDropDownList extends Component {
     constructor (props) {
         super(props);
@@ -9,7 +14,7 @@ class KendoDropDownList extends Component {
     }
     render(){
         return(
-            <DropDownList data={this.props.data} defaultValue="Basketball" />
+            <DropDownList style={inStyles.background} data={this.props.data} defaultValue="Basketball" />
         )
     }
 }

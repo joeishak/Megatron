@@ -3,7 +3,7 @@ import Navigation from 'components/Navigation/Navigation';
 import { Route,Link } from 'react-router-dom';
 import {connect } from 'react-redux';
 import * as actions from 'actions';
-import {Fade, Expand, Animation } from '@progress/kendo-react-animation';
+import {Fade, Expand, Slide, Animation } from '@progress/kendo-react-animation';
 import styles from './App.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -37,7 +37,7 @@ class App extends Component {
     super(props);
     this.state ={
       index: 0,
-      show: true,
+      show: false,
       dialogIsOpen: false,
       renderFooter: false};
 
@@ -50,14 +50,16 @@ class App extends Component {
 
   renderBarGraph(index){
   this.setState({renderFooter: !this.state.render});
+  console.log('setting state');
+  // this.setState({dialogIsOpen: true})
+
+  this.openDialog();
   }
 
   renderFooter(body){
-    return 
   }
   openDialog = () => {
     this.props.updateDialogVisibility(true);
-    this.setState({dialogIsOpen: true})
   }
   closeDialog = () => {
     this.props.updateDialogVisibility(false);
@@ -70,12 +72,16 @@ class App extends Component {
   }
   render(){
  
+    const show = this.state.dialogIsOpen;
+    const kendoDialog = show ? (<KendoDialog handleDialogClose={this.closeDialog} title="Detail ARR"  visible={true} appContent={[]}/>) : null;
      return (
       <div>
         <Navigation />
         <FilterBox handleFilterUpdates={this.handleFilterUpdates}/>
         <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
-        <KendoDialog handleDialogClose={this.closeDialog} title="Detail ARR" visible={this.props.isDialogOpen} appContent={[]}/>
+        <Slide direction="up">
+          {kendoDialog}
+        </Slide>
         <div className='bottomSummaryContainer'>
           <ButtomSummaryBox rerender={this.state.renderFooter}/>
         </div>

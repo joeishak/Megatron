@@ -36,7 +36,7 @@ class KendoDialog extends Component {
     render(){
         return(
             <div>
-            { this.props.visible  &&
+            {/* { this.props.visible  && */}
             <Dialog width='70%' height={700} title={this.state.title} onClose={this.toggleDialog}>
                 <Grid>
                     <Row>
@@ -52,7 +52,7 @@ class KendoDialog extends Component {
                     </Row>
                 </Grid>
             </Dialog>
-            }
+            {/* } */}
             </div>
         )
     }

@@ -4,7 +4,7 @@ import { MultiSelect } from '@progress/kendo-react-dropdowns';
 import { connect } from 'react-redux';
 import  * as actions from 'actions';
 
-const sports = [ "2018 Q3", "Digital Media", "Product" ];
+const sports = [  ];
 
 class KendoMultiSelect extends Component {
 
@@ -19,7 +19,7 @@ class KendoMultiSelect extends Component {
             <MultiSelect
                         data={sports}
                         onChange={this.onChange}
-                        value={this.props.filters.value}
+                        value={this.props.filters.values}
                     />
         )
     }

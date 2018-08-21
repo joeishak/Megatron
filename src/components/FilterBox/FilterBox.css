@@ -1,8 +1,109 @@
 .filterContainer {
-    background-color: rgb(66, 66, 66);
-    padding: 10px;
+    background-color: #3c3c3c;
+    padding: 20px;
+    /* padding-right: 20px;
+    padding-top: 20px; */
+
+    height: 5%;
+  
+}
+expandBox{
+    height: 100%;
+    width: 100%;
+}
+.multiSelect {
+    background-color: #3c3c3c;
 }
 
-.multiSelect {
-    background-color:rgb(66, 66, 66);
+.filterText{
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    padding: 10px;
+    width: inherit;
+
+}
+.filterText, .xButton{
+ color: #ffffff;
+ background-color: #3c3c3c;
+ 
+}
+
+.xButton{
+    padding-left: 15px;
+    font-size: 1.5em;
+}
+
+.newFilterDiv{
+    float: right;
+    color: #ffffff;
+}
+.newFilterButton{
+
+    display: inline-block;
+    padding-left:9px;
+    padding-right: 9px;
+    font-size:1.5em;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+}
+.newFilterText{
+    padding-right: 5px;
+}
+
+.newFilterButton-selected{
+    -webkit-transform: rotate(135deg);
+    -webkit-transition-duration: .5s;
+    background-color: #1573e6;
+    border: #1573e6;
+
+}
+.newFilterButton-close{
+    -webkit-transform: rotate(-180deg);
+    -webkit-transition-duration: .5s;
+}
+
+
+.example-appear {
+    opacity: 0;
+    transform: translateY(-200px);
+    animation-duration: 4s;
+    animation-delay: 2s;
+}
+  
+.example-appear.example-appear-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 1s ease-out;
+    animation-duration: 100s;
+    animation-delay: 5s;
+}
+.example-leave {
+    opacity: 1;
+  }
+  
+  .example-leave.example-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }
+.panelBarContainer{
+    height: 300px;
+    width: 100%;
+}
+.panelBarContainer-open{
+    color: white;
+    margin-top: 20px;
+    padding-top: 10px;
+
+}
+
+.panelBarContainer-closed{
+    height: 300px;
+    display: none;
+
+}
+
+.quarterFilterContainer{
+    float:left;
+    margin-right: 20px;
+    padding-top: 20px;
 }
