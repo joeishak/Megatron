@@ -1,0 +1,55 @@
+
+
+.example-appear {
+    opacity: 0;
+    transform: translateY(-200px);
+    animation-duration: 4s;
+    animation-delay: 2s;
+}
+  
+.example-appear.example-appear-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 1s ease-out;
+    animation-duration: 100s;
+    animation-delay: 5s;
+}
+.example-leave {
+    opacity: 1;
+  }
+  
+  .example-leave.example-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }
+
+.panelBarContainer{
+    height: 0;
+    width: 100%;
+    background-color: #3c3c3c;
+    /* padding-right: 20px;
+    padding-top: 20px; */
+
+    padding-bottom:30px;
+}
+.panelBarContainer-open{
+    color: white;
+    background-color: #3c3c3c;
+
+    height: 150px;
+    padding: 20px;
+
+
+}
+
+.panelBarContainer-closed{
+    height: 0px;
+    display: none;
+
+}
+
+.quarterFilterContainer{
+    float:left;
+    margin-right: 20px;
+    padding-top: 20px;
+}

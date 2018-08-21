@@ -5,7 +5,7 @@ import {connect } from 'react-redux';
 import * as actions from 'actions';
 import {Fade, Expand, Slide, Animation } from '@progress/kendo-react-animation';
 import styles from './App.css';
-
+import _ from 'lodash';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Kendo Components
@@ -22,6 +22,7 @@ import KendoDialog from 'components/KendoDialog/KendoDialog';
 import FilterBox from 'components/FilterBox/FilterBox';
 import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
+import CustomDropDownPanel from 'components/CustomDropDownPanel/CustomDropDownPanel';
 
 // Custom Nivo Components
 // import { changeAuth } from '../actions';
@@ -33,20 +34,24 @@ const inStyles = {
   }
 }
 class App extends Component {
-  constructor(props){
+  mafData;
+  constructor(props) {
     super(props);
     this.state ={
       index: 0,
       show: false,
       dialogIsOpen: false,
-      renderFooter: false};
+      renderFooter: false,
+      marketAreaFilters: [],
+      filterPanelIsOpen: false};
 
 
-      this.props.getAdobeData();
       this.renderFooter = this.renderFooter.bind(this);
       this.renderBarGraph = this.renderBarGraph.bind(this);
+      this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
+   
   }
-  
+ 
 
   renderBarGraph(index){
   this.setState({renderFooter: !this.state.render});
@@ -66,22 +71,26 @@ class App extends Component {
 
     this.setState({dialogIsOpen: false})
   }
-  
+  openDialogFilterPanel(){
+    console.log('changed');
+    this.setState({filterPanelIsOpen: !this.state.filterPanelIsOpen});
+  }
   handleFilterUpdates = () => {
     this.render();
   }
   render(){
  
-    const show = this.state.dialogIsOpen;
-    const kendoDialog = show ? (<KendoDialog handleDialogClose={this.closeDialog} title="Detail ARR"  visible={true} appContent={[]}/>) : null;
+    // const show = this.state.dialogIsOpen;
+    // const kendoDialog = show ? (<KendoDialog handleDialogClose={this.closeDialog} title="Detail ARR"  visible={true} appContent={[]}/>) : null;
      return (
       <div>
         <Navigation />
-        <FilterBox handleFilterUpdates={this.handleFilterUpdates}/>
+        <FilterBox marketAreaFilter={this.mafData} handleFilterUpdates={this.handleFilterUpdates} handleNewFilterClick={this.openDialogFilterPanel}/>
+        <CustomDropDownPanel showSlide={this.state.filterPanelIsOpen}/>
         <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
-        <Slide direction="up">
+        {/* <Slide direction="up">
           {kendoDialog}
-        </Slide>
+        </Slide> */}
         <div className='bottomSummaryContainer'>
           <ButtomSummaryBox rerender={this.state.renderFooter}/>
         </div>
@@ -91,7 +100,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return {isDialogOpen: state.isDialogOpen};
+  return {isDialogOpen: state.isDialogOpen, allData: state.adobeData};
 }
 
 export default connect(mapStateToProps,actions)(App);

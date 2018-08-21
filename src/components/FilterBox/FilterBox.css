@@ -1,10 +1,9 @@
 .filterContainer {
     background-color: #3c3c3c;
-    padding: 20px;
     /* padding-right: 20px;
     padding-top: 20px; */
 
-    height: 5%;
+    height: 50px;
   
 }
 expandBox{
@@ -36,18 +35,23 @@ expandBox{
 .newFilterDiv{
     float: right;
     color: #ffffff;
+    padding:20px;
 }
 .newFilterButton{
 
+    width:30px;
+    height:30px;
     display: inline-block;
-    padding-left:9px;
-    padding-right: 9px;
+     padding-left:8px;
+   /* padding-bottom:0px; */
     font-size:1.5em;
     border: 1px solid #ffffff;
-    border-radius: 20px;
+    border-radius: 50%;
+    vertical-align: center;
+    align-items: center;
 }
 .newFilterText{
-    padding-right: 5px;
+    padding-bottom: 5px;
 }
 
 .newFilterButton-selected{
@@ -62,48 +66,3 @@ expandBox{
     -webkit-transition-duration: .5s;
 }
 
-
-.example-appear {
-    opacity: 0;
-    transform: translateY(-200px);
-    animation-duration: 4s;
-    animation-delay: 2s;
-}
-  
-.example-appear.example-appear-active {
-    opacity: 1;
-    transform: translateY(0px);
-    transition: all 1s ease-out;
-    animation-duration: 100s;
-    animation-delay: 5s;
-}
-.example-leave {
-    opacity: 1;
-  }
-  
-  .example-leave.example-leave-active {
-    opacity: 0.01;
-    transition: opacity 300ms ease-in;
-  }
-.panelBarContainer{
-    height: 300px;
-    width: 100%;
-}
-.panelBarContainer-open{
-    color: white;
-    margin-top: 20px;
-    padding-top: 10px;
-
-}
-
-.panelBarContainer-closed{
-    height: 300px;
-    display: none;
-
-}
-
-.quarterFilterContainer{
-    float:left;
-    margin-right: 20px;
-    padding-top: 20px;
-}
