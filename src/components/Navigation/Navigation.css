@@ -38,6 +38,6 @@
     /* color: black; */
 }
 
-.navItem:hover {
-    border-bottom: 4px solid red;
+.selected {
+    border-bottom: 5px solid red;
 }
