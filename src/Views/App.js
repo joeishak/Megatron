@@ -38,16 +38,23 @@ class App extends Component {
     this.state ={
       index: 0,
       show: true,
-      dialogIsOpen: false};
+      dialogIsOpen: false,
+      renderFooter: false};
 
 
       this.props.getAdobeData();
+      this.renderFooter = this.renderFooter.bind(this);
+      this.renderBarGraph = this.renderBarGraph.bind(this);
   }
   
-  enableArrow = (event)  => {
 
-    console.log('I am hovering from App');
-}
+  renderBarGraph(index){
+  this.setState({renderFooter: !this.state.render});
+  }
+
+  renderFooter(body){
+    return 
+  }
   openDialog = () => {
     this.props.updateDialogVisibility(true);
     this.setState({dialogIsOpen: true})
@@ -67,10 +74,10 @@ class App extends Component {
       <div>
         <Navigation />
         <FilterBox handleFilterUpdates={this.handleFilterUpdates}/>
-        <TopSummaryBox handleSummaryClick={this.openDialog} hoverHandler={this.enableArrow}/>
+        <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
         <KendoDialog handleDialogClose={this.closeDialog} title="Detail ARR" visible={this.props.isDialogOpen} appContent={[]}/>
         <div className='bottomSummaryContainer'>
-          <ButtomSummaryBox />
+          <ButtomSummaryBox rerender={this.state.renderFooter}/>
         </div>
       </div>
   )

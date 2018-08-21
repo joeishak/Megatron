@@ -11,6 +11,12 @@ const inStyles = {
     }
 }
 class ButtomSummaryBox extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            rerender: this.props.rerender
+        }
+    }
     render(){
         return(
 

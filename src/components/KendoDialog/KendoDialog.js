@@ -47,7 +47,6 @@ class KendoDialog extends Component {
                         </Col>
                         <Col xs={12} s={12} md={6} lg={6}>
                         <div style={inStyles.nivoBar}> 
-
                         </div>
                         </Col>
                     </Row>

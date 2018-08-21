@@ -25,7 +25,7 @@ class KendoMultiChart extends Component {
         const ChartContainer = () => (
         <Chart pannable={true} zoomable={true}>
             <ChartArea background="transparent" ></ChartArea>
-            {/* <ChartTitle text="Units sold" /> */}
+            <ChartTitle text="Units sold" />
             <ChartCategoryAxis>
                 <ChartCategoryAxisItem categories={categories}>
                 <ChartCategoryAxisTitle text="Months" />
