@@ -15,41 +15,61 @@ class CustomDropDownPanel extends Component {
         this.state= {
             isOpen: false,
             isClosed: true,
-            showSlide: false
+            showSlide: this.props.showSlide,
+            showContainer: this.props.showContainer
         }
     }
 
  
    
  
+    componentWillUpdate(){
+       
+    }
     render(){
        const show = this.props.showSlide;
-       const DropDownChildren = show ? (
-        <div>
+    //    const DropDownChildren = show ? (
+       
+    //    ): null;
+        var panelDropDownContainer = classNames({
+            'panelDropDownContainer': true,
+            'panelBarContainer-open': (this.props.showContainer)? true: false,
+            'panelBarContainer-closed': (this.props.showContainer)? false: true
+
+        })
+        return(
+
+            <div className={panelDropDownContainer} >
+                {/* {DropDownChildren} */}
+
+                 <div>
             <CSSTransitionGroup
-            transitionName="example"
-            transitionAppear={true}
-            transitionAppearTimeout={100}
-            transitionEnter={false} 
-            transitionLeave={true}>
+            in={show}
+            classNames="ddFilter"
+            timeout={500}
+            unmountOnExit
+            >
                 <div className="quarterFilterContainer" >
                     <p> Quarter</p>
                     <KendoDropDownList />
                 </div>
             </CSSTransitionGroup>
-            <CSSTransitionGroup
-                transitionName="example"
+            {/* <CSSTransitionGroup
+                transitionName="ddFilter"
                 transitionAppear={true}
                 transitionAppearTimeout={300}
                 transitionEnter={false} 
-                transitionLeave={false}>
+                transitionLeave={true}
+            transitionLeaveTimeout={100}
+            >
+
                     <div className="quarterFilterContainer" >
                         <p> Geo</p>
                         <KendoDropDownList />
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
-                transitionName="example"
+                transitionName="ddFilter"
                 transitionAppear={true}
                 transitionAppearTimeout={500}
                 transitionEnter={false} 
@@ -60,7 +80,7 @@ class CustomDropDownPanel extends Component {
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
-                transitionName="example"
+                transitionName="ddFilter"
                 transitionAppear={true}
                 transitionAppearTimeout={700}
                 transitionEnter={false} 
@@ -71,7 +91,7 @@ class CustomDropDownPanel extends Component {
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
-                transitionName="example"
+                transitionName="ddFilter"
                 transitionAppear={true}
                 transitionAppearTimeout={900}
                 transitionEnter={false} 
@@ -82,7 +102,7 @@ class CustomDropDownPanel extends Component {
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
-                transitionName="example"
+                transitionName="ddFilter"
                 transitionAppear={true}
                 transitionAppearTimeout={1100}
                 transitionEnter={false} 
@@ -93,7 +113,7 @@ class CustomDropDownPanel extends Component {
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
-                transitionName="example"
+                transitionName="ddFilter"
                 transitionAppear={true}
                 transitionAppearTimeout={1300}
                 transitionEnter={false} 
@@ -104,7 +124,7 @@ class CustomDropDownPanel extends Component {
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
-                transitionName="example"
+                transitionName="ddFilter"
                 transitionAppear={true}
                 transitionAppearTimeout={1500}
                 transitionEnter={false} 
@@ -113,19 +133,8 @@ class CustomDropDownPanel extends Component {
                     <p> Make these my default settings</p>
                     <input type='checkbox' />
                     </div>
-            </CSSTransitionGroup>
+            </CSSTransitionGroup> */}
         </div>
-       ): null;
-        var panelDropDownContainer = classNames({
-            'panelDropDownContainer': true,
-            'panelBarContainer-open': (this.props.showSlide)? true: false,
-            'panelBarContainer-closed': (this.props.showSlide)? false: true
-
-        })
-        return(
-
-            <div className={panelDropDownContainer} >
-                {DropDownChildren}
             </div>
         )
     }
