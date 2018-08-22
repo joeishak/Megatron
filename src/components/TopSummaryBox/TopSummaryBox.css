@@ -35,25 +35,29 @@
 }
 
 .gridContainer{
+<<<<<<< HEAD
+    background-color: #383838;
+=======
     background-color: #3c3c3c;
+>>>>>>> 50960c27a28ba9a4de657af1ac135b200824967c
     /* background-image: linear-gradient(rgb(68, 68, 68),rgb(62, 62, 62),rgb(16, 16, 16)); */
 
     height: 390px;
 }
 
-.sumChartSquare{
+/* .sumChartSquare{
     height: 200px !important;
     width: 175px !important;
     border: 2px solid red !important;
-}
+} */
 
 /* Arrow */
 
 .arrow_box {
 	position: relative;
 	background: transparent;
-    border-bottom: 7px solid #3a3a3a;
-    height: 270px;
+    border-bottom: 4px solid #3a3a3a;
+    height: 262px;
 }
 .arrow_box:after, .arrow_box:before {
 	top: 100%;
@@ -147,4 +151,157 @@
 
 .zoom:hover {
     transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+/* Label Toggle Switch */
+.switch {
+	position: relative;
+	/* display: inline-block; */
+	width: 250px;
+	height: 39px;
+}
+
+.switch input {display:none;}
+  
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #1f1f1f;
+	-webkit-transition: .8s;
+	transition: .8s;
+  }
+  
+  .slider:before {
+	position: absolute;
+	content: 'Financials';
+	color: white;
+	padding-top: 2px;
+	padding-left: 20px;
+	font-size: 19px;
+	height: 32px;
+	width: 128px;
+	left: 7px;
+	bottom: 4px;
+	background-color: rgb(13, 106, 220);
+	-webkit-transition: .4s;
+	transition: .4s;
+  }
+  
+  input:checked + .slider {
+	background-color: #1f1f1f;
+  }
+  
+  input:focus + .slider {
+	box-shadow: 0 0 1px #1f1f1f;
+  }
+  
+  input:checked + .slider:before {
+	-webkit-transform: translateX(110px);
+	-ms-transform: translateX(110px);
+	transform: translateX(110px);
+  }
+  
+  .toggleOn .toggleOff {
+	  color: white;
+	  position: absolute;
+	  top: 50%;
+	  bottom: 50%;
+  }
+  
+  .on, .off
+  {
+	color: rgb(73, 73, 73);
+	font-size: 19px;
+  }
+
+  .on {
+	  margin-left: 17px;
+	  float: left;
+	  margin-top: 5px;
+  }
+
+  .off {
+	  margin-right: 24px;
+	  float: right;
+	  margin-top: 5px;
+  }
+  
+input:checked+ .slider:before {
+	color: white;
+	content: 'Financials';
+	padding-left: 30px;
+
+} 
+  
+input:checked + .slider:before  {
+	color: white;
+	content: 'Journeys';
+
+}
+ 
+  /* Rounded sliders */
+.slider.round {
+	border-radius: 32px;
+}
+  
+.slider.round:before {
+	border-radius: 32px;
+}
+
+/* Previous Inline Style */
+.sumChartSquare {
+	height: 320px; 
+	width: 100%;
+	margin-top: 10px;
+}
+
+.sumChartContent {
+	height:100%;
+	width:100%;
+	background-color: white;
+}
+
+.sumChartHeader{
+	height: 18%;
+	width: 100%;
+	text-align: center;
+	font-size: 1.4em;
+	padding-top: 10px;
+	/* dynamic */
+	background-color: white;
+}
+
+/* dynamic */
+.selectedCardHeader {
+	background-color: red;
+}
+
+.selectedCardText {
+	color: white !important;
+}
+
+.selectedCardSquare {
+	height: 310px;
+}
+
+.selectedCard {
+	height: 320px;
+
+	padding-top: 6px;
+	margin-bottom: 20px;
+}
+
+.sumChartHeaderText {
+	/* dynamic */
+	color: rgb(21, 21, 21);
+	padding-top: 8px;
+}
+
+.slideContainer {
+	width: 90%;
+	align-content: center;
 }

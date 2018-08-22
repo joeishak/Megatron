@@ -62,6 +62,7 @@ class TopSummaryBox extends Component {
             chart2ArrowCSS: "",
             chart3ArrowCSS: "",
             chart4ArrowCSS: "",
+            activeCard: 'card1'
         };
         this.enableChart1Arrow = this.enableChart1Arrow.bind(this);
         this.enableChart2Arrow = this.enableChart2Arrow.bind(this);
@@ -102,28 +103,49 @@ class TopSummaryBox extends Component {
         this.props.handleSummaryClick(4);
 
     }
+
+    selectedCard (e, card) {
+        e.preventDefault();
+        switch(card) {
+          case 'card1':
+            this.setState({activeCard: 'card1'});
+            break;
+          case 'card2':
+            this.setState({activeCard: 'card2'});
+            break;
+          case 'card3':
+            this.setState({activeCard: 'card3'});
+            break;
+          case 'card4':
+            this.setState({activeCard: 'card4'});
+            break;
+        }
+      }
    
     render(){
+        const { activeCard } = this.state;
 
         // Back of Chart 1
-        const chart1Back = this.state.show ? (
-        <div style={inStyles.sumChartSqaure} >
-            <div style={inStyles.sumChartContent}>
-                <div style={inStyles.sumChartHeaderBack} >
-                <p style={inStyles.sumChartHeaderTextBlack}>Chart 1 Back Title</p>
-                </div>
-                    <div className={"donutChart " + this.state.chart1ArrowCSS}  >
-                        {/* Back Content for Chart 1 Goes Here */}
-                    </div>
-                </div>
-        </div>): null;
+        // const chart1Back = this.state.show ? (
+        // <div className="sumChartSquare" >
+        //     <div className="sumChartContent">
+        //         <div style={inStyles.sumChartHeaderBack} >
+        //         <p style={inStyles.sumChartHeaderTextBlack}>Chart 1 Back Title</p>
+        //         </div>
+        //             <div className={"donutChart " + this.state.chart1ArrowCSS}  >
+        //                 {/* Back Content for Chart 1 Goes Here */}
+        //             </div>
+        //         </div>
+        // </div>): null;
 
         // Front of Chart 1
         const chart1 = this.state.show ? ( 
-        <div style={inStyles.sumChartSqaure} >
-            <div style={inStyles.sumChartContent}>
-                <div style={inStyles.sumChartHeader} >
-                <p style={inStyles.sumChartHeaderText}>Net New ARR</p>
+        <div className={`sumChartSquare ${activeCard === 'card1' ? 'selectedCard ' : ''}`} 
+        onClick={e => this.selectedCard(e, 'card1')}>
+            <div className="sumChartContent">
+                <div className={`sumChartHeader ${activeCard === 'card1' ? 'selectedCardHeader' : ''}`}>
+                <p className={`sumChartHeaderText ${activeCard === 'card1' ? 'selectedCardText' : ''}`}
+                >Net New ARR</p>
                 </div>
                     <div className={"donutChart " + this.state.chart1ArrowCSS}>
                         <div className="zoom">
@@ -135,26 +157,26 @@ class TopSummaryBox extends Component {
         </div>) : null;
 
         // Back of Chart 2
-        const chart2Back = this.state.show ? (
-            <div style={inStyles.sumChartSqaure} >
-                <div style={inStyles.sumChartContent}>
-                    <div style={inStyles.sumChartHeaderBack} >
-                    <p style={inStyles.sumChartHeaderTextBlack}>Chart 2 Back Title</p>
-                    </div>
-                      {/* arrow_box on bottom when clicked */}
-                        <div className={"donutChart " + this.state.chart2ArrowCSS}>
-                            {/* Back Content for Chart 1 Goes Here */}
-                        </div>
-                    </div>
-            </div>): null;
+        // const chart2Back = this.state.show ? (
+        //     <div className="sumChartSquare" >
+        //         <div className="sumChartContent">
+        //             <div style={inStyles.sumChartHeaderBack} >
+        //             <p style={inStyles.sumChartHeaderTextBlack}>Chart 2 Back Title</p>
+        //             </div>
+        //               {/* arrow_box on bottom when clicked */}
+        //                 <div className={"donutChart " + this.state.chart2ArrowCSS}>
+        //                     {/* Back Content for Chart 1 Goes Here */}
+        //                 </div>
+        //             </div>
+        //     </div>): null;
 
         // Front of Chart 2
         const chart2 = this.state.show ? ( 
-        <div style={inStyles.sumChartSqaure} >
-            <div style={inStyles.sumChartContent}>
-            <div style={inStyles.sumChartContent}>
-                    <div style={inStyles.sumChartHeader} >
-                    <p style={inStyles.sumChartHeaderText}>Gross New ARR</p>
+        <div className={`sumChartSquare ${activeCard === 'card2' ? 'selectedCard' : ''}`} 
+        onClick={e => this.selectedCard(e, 'card2')}>
+            <div className="sumChartContent">
+                <div className={`sumChartHeader ${activeCard === 'card2' ? 'selectedCardHeader' : ''}`} >
+                    <p className={`sumChartHeaderTest ${activeCard === 'card2' ? 'selectedCardText' : ''}`}>Gross New ARR</p>
                     </div>
                     <div className={ "donutChart " + this.state.chart2ArrowCSS}>
                         <div className="zoom">
@@ -163,31 +185,32 @@ class TopSummaryBox extends Component {
                         </div>
                     </div>
                 </div>
-                </div>
+                
             </div>) : null;
 
         // Back of Chart 3
-        const chart3Back = this.state.show ? (
-            <div style={inStyles.sumChartSqaure} >
-                <div style={inStyles.sumChartContent}>
-                    <div style={inStyles.sumChartHeaderBack} >
-                    <p style={inStyles.sumChartHeaderTextBlack}>Chart 3 Back Title</p>
-                    </div>
-                      {/* arrow_box on bottom when clicked */}
-                        <div className={"donutChart " + this.state.chart3ArrowCSS}>
-                            {/* Back Content for Chart 1 Goes Here */}
-                        </div>
-                    </div>
-            </div>): null;
+        // const chart3Back = this.state.show ? (
+        //     <div className="sumChartSquare" >
+        //         <div className="sumChartContent">
+        //             <div style={inStyles.sumChartHeaderBack} >
+        //             <p style={inStyles.sumChartHeaderTextBlack}>Chart 3 Back Title</p>
+        //             </div>
+        //               {/* arrow_box on bottom when clicked */}
+        //                 <div className={"donutChart " + this.state.chart3ArrowCSS}>
+        //                     {/* Back Content for Chart 1 Goes Here */}
+        //                 </div>
+        //             </div>
+        //     </div>): null;
 
 
         // Front of Chart 3
         const chart3 = this.state.show ? (
-        <div style={inStyles.sumChartSqaure} >
-            <div style={inStyles.sumChartContent}>
-            <div style={inStyles.sumChartContent}>
-                    <div style={inStyles.sumChartHeader} >
-                    <p style={inStyles.sumChartHeaderText}>Cancellations ARR</p>
+        <div className={`sumChartSquare ${activeCard === 'card3' ? 'selectedCard' : ''}`} 
+        onClick={e => this.selectedCard(e, 'card3')} >
+            <div className="sumChartContent">
+            
+                    <div className={`sumChartHeader ${activeCard === 'card3' ? 'selectedCardHeader' : ''}`} >
+                    <p className={`sumChartHeaderText ${activeCard === 'card3' ? 'selectedCardText' : ''}`}>Cancellations ARR</p>
                     </div>
                     <div className={"donutChart "+ this.state.chart3ArrowCSS}>
                         <div  className="zoom">
@@ -196,31 +219,32 @@ class TopSummaryBox extends Component {
                         </div>
                     </div>
                 </div>
-                </div>
+                
             </div>) : null;
 
         // Back of Chart 4
-        const chart4Back = this.state.show ? (
-            <div style={inStyles.sumChartSqaure} >
-                <div style={inStyles.sumChartContent}>
-                    <div style={inStyles.sumChartHeaderBack} >
-                    <p style={inStyles.sumChartHeaderTextBlack}>Chart 4 Back Title</p>
-                    </div>
-                        {/* Put arrow_box class on bottom div when activated or clicked */}
-                        <div className={"donutChart " + this.state.chart4ArrowCSS}>
-                            {/* Back Content for Chart 1 Goes Here */}
-                        </div>
-                    </div>
-            </div>): null;
+        // const chart4Back = this.state.show ? (
+        //     <div className="sumChartSquare" >
+        //         <div className="sumChartContent">
+        //             <div style={inStyles.sumChartHeaderBack} >
+        //             <p style={inStyles.sumChartHeaderTextBlack}>Chart 4 Back Title</p>
+        //             </div>
+        //                 {/* Put arrow_box class on bottom div when activated or clicked */}
+        //                 <div className={"donutChart " + this.state.chart4ArrowCSS}>
+        //                     {/* Back Content for Chart 1 Goes Here */}
+        //                 </div>
+        //             </div>
+        //     </div>): null;
 
         // Front of Chart 4
         const chart4 = this.state.show ? (                      
-        <div style={inStyles.sumChartSqaure} >
-            <div style={inStyles.sumChartContent}>
-            <div style={inStyles.sumChartContent}>
-                    <div style={inStyles.sumChartHeader} >
+        <div className={`sumChartSquare ${activeCard === 'card4' ? 'selectedCard' : ''}`} 
+        onClick={e => this.selectedCard(e, 'card4')} >
+            <div className="sumChartContent">
+                    <div className={`sumChartHeader ${activeCard === 'card4' ? 'selectedCardHeader' : ''}`} >
                     
-                    <p style={inStyles.sumChartHeaderText}>Renewel@FP ARR</p>
+                    <p className={`sumChartHeaderText ${activeCard === 'card4' ? 'selectedCardText' : ''}`}
+                >Renewel@FP ARR</p>
                     </div>
                     <div className= {"donutChart "+ this.state.chart4ArrowCSS}>
                         <div  className="zoom">
@@ -229,30 +253,33 @@ class TopSummaryBox extends Component {
                         </div>
                     </div>
                 </div>
-                </div>
+  
             </div>) : null;
 
         return(
 
             <Grid className="gridContainer" fluid>
-                <Row bsClass="fluid">
-                <CSSTransitionGroup
-                            transitionName="example"
-                            transitionAppear={true}
-                            transitionAppearTimeout={1000}
-                            transitionEnter={false} 
-                            transitionLeave={false} >
-                    <Col className="summaryTitleCol" xs={12} md={12} lg={12} >
-                    Summary
-                    <div className="switchCol">
-                        <span className="financialsLabel">Financials</span>
-                        < KendoSwitch   onLabel="F" offLabel="J" />
-                        <span className="journeysLabel">Journeys</span>
-                    </div>
-                    </Col>
-                    </CSSTransitionGroup>
 
-                </Row>
+                <CSSTransitionGroup transitionName="example"
+                    transitionAppear={true} transitionAppearTimeout={1000}
+                    transitionEnter={false} transitionLeave={false} >
+
+                <div className="container-fluid row">
+                    <div className="col summaryTitleCol k-float-left">Financials Summary</div>
+                        <div className="col summaryTitleCol k-float-right"><label class="switch">
+                            <input type="checkbox" id="togBtn"></input>
+                            <div class="slider round">
+                            <div class="on">Financials</div>
+                            <div class="off">Journeys</div>
+                            </div>
+                        </label>
+                        </div>
+                    </div>
+       
+                    
+                </CSSTransitionGroup>
+
+              
                 <div className="chartRow">
 
                     <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.enableChart1Arrow}>
@@ -266,7 +293,7 @@ class TopSummaryBox extends Component {
                                         transitionAppearTimeout={1000}
                                         transitionEnter={false} 
                                         transitionLeave={false}>
-                                        {chart1}
+                                         {chart1}
                                     </CSSTransitionGroup>
                                 </div>
                                 
@@ -285,7 +312,7 @@ class TopSummaryBox extends Component {
                                         transitionAppearTimeout={1000}
                                         transitionEnter={false} 
                                         transitionLeave={false} >
-                                        {chart2} 
+                                          {chart2} 
                                     </CSSTransitionGroup>
                                 </div>
                                 
