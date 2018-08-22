@@ -15,9 +15,6 @@ export default function(state = [], action) {
                     return filter;
                 }
             })
-            if(filters[0]==undefined){
-                filters=[];
-            }
 
             return filters;
         default: 
