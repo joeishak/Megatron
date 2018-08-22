@@ -1,7 +1,7 @@
-import { combineReducers } from '../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/redux';
+import { combineReducers } from 'redux';
 // import authReducer from 'reducers/auth'
 import filterReducer from 'reducers/filters';
-import switchReducer from 'reducers/switchFilter';
+import switchReducer from 'reducers/switchFilter'; 
 import dialogReducer from 'reducers/dialog';
 import allDataReducer from 'reducers/allData';
 import multiFilterReducer from 'reducers/multiFilter';

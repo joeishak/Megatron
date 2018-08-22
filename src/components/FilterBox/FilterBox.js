@@ -27,7 +27,8 @@ class FilterBox extends Component {
             newFilterSelected: false,
             addNewFilterActive: false,
             closeNewFilterActive: false,
-            showSlide: false
+            showSlide: false,
+            filterButtonTitle: 'Add Filters'
         }
 
         this.changeFilterPanelStatus = this.changeFilterPanelStatus.bind(this);
@@ -49,13 +50,15 @@ class FilterBox extends Component {
         )
     }
     }
-    changeFilterPanelStatus(){
+    changeFilterPanelStatus = () => {
+        
         this.props.handleNewFilterClick();
         if(this.state.filterPanelIsOpen){
+            this.setState({filterButtonTitle: 'Add Filters'})
             this.setState({showSlide: false})
             this.setState({addNewFilterActive:false,closeNewFilterActive: true, filterPanelIsOpen: false,filterPanelIsClosed: true});
-
         } else{
+            this.setState({filterButtonTitle: 'Hide Filters'})
             this.setState({addNewFilterActive:true,closeNewFilterActive: false,filterPanelIsOpen: true, filterPanelIsClosed: false,showSlide: true});
         }
     }

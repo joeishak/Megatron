@@ -58,11 +58,12 @@ class TopSummaryBox extends Component {
         super(props);
         this.state = { 
             show: true,
-            chart1ArrowCSS: "",
+            chart1ArrowCSS: "arrow_box",
             chart2ArrowCSS: "",
             chart3ArrowCSS: "",
             chart4ArrowCSS: "",
-            activeCard: 'card1'
+            activeCard: 'card1',
+            isToggleButtonChecked: false
         };
         this.enableChart1Arrow = this.enableChart1Arrow.bind(this);
         this.enableChart2Arrow = this.enableChart2Arrow.bind(this);
@@ -121,6 +122,12 @@ class TopSummaryBox extends Component {
             break;
         }
       }
+
+    //   Event handler for toggle change 'Financials' and 'Joruneys'
+    onToggleButtonChanged = (e) => {
+        let toggleState = this.state.isToggleButtonChecked;
+        this.setState({isToggleButtonChecked: !toggleState});
+    }
    
     render(){
         const { activeCard } = this.state;
@@ -264,10 +271,11 @@ class TopSummaryBox extends Component {
                     transitionAppear={true} transitionAppearTimeout={1000}
                     transitionEnter={false} transitionLeave={false} >
 
+                {/* Toggle Button */}
                 <div className="container-fluid row">
                     <div className="col summaryTitleCol k-float-left">Financials Summary</div>
                         <div className="col summaryTitleCol k-float-right"><label className="switch">
-                            <input type="checkbox" id="togBtn"></input>
+                            <input type="checkbox" id="togBtn" onChange={(e) => this.onToggleButtonChanged(e)}></input>
                             <div className="slider round">
                             <div className="on">Financials</div>
                             <div className="off">Journeys</div>
@@ -283,7 +291,7 @@ class TopSummaryBox extends Component {
                 <div className="chartRow">
 
                     <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.enableChart1Arrow}>
-                        <div className="" ontouchstart="this.classList.toggle('hover');">
+                        <div >
                             <div className="flipper">
                                 <div className="front ">
                                     {/* <!-- front content --> */}
@@ -301,7 +309,7 @@ class TopSummaryBox extends Component {
                         </div>
                     </div>
                     <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" onClick = {this.enableChart2Arrow}>
-                    <div className="" ontouchstart="this.classList.toggle('hover');">
+                    <div >
                             <div className="flipper">
                                 <div className="front">
                                     {/* <!-- front content --> */}
@@ -320,7 +328,7 @@ class TopSummaryBox extends Component {
                         </div>
                     </div>
                     <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" onClick = {this.enableChart3Arrow}>
-                    <div className="" ontouchstart="this.classList.toggle('hover');">
+                    <div >
                             <div className="flipper">
                                 <div className="front">
                                     {/* <!-- front content --> */}
@@ -339,7 +347,7 @@ class TopSummaryBox extends Component {
                         </div>
                     </div>
                     <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" onClick = {this.enableChart4Arrow}>
-                    <div className="" ontouchstart="this.classList.toggle('hover');">
+                    <div >
                             <div className="flipper">
                                 <div className="front">
                                     {/* <!-- front content --> */}
