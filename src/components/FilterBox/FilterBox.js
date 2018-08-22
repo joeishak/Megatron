@@ -40,12 +40,15 @@ class FilterBox extends Component {
     }
     renderFilterPills(){
         console.log('rendering pill boxes');
+        if(this.props.activeFilters.length>0){
         return(
             this.props.activeFilters.map(filter =>{
-                return <FilterPillBox data={filter}/>
+                if(filter!==undefined){
+                return <FilterPillBox key={filter.value} data={filter}/>
+                }
             })
         )
-        this.render();
+    }
     }
     changeFilterPanelStatus(){
         this.props.handleNewFilterClick();
