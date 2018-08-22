@@ -5,7 +5,8 @@ import {
     UPDATE_MULTI_FILTER_VALUES,
     GET_ALL_DATA,
     GENERATE_FILTER_DATA,
-    ADD_MULTI_FILTER
+    ADD_MULTI_FILTER,
+    REMOVE_MULTI_FILTER
 
 } from 'actions/types';
 import axios from 'axios';
@@ -107,4 +108,11 @@ export function generateFilterData() {
         type: ADD_MULTI_FILTER,
         payload: filter
     }
+ }
+
+ export function removeMultiFilter(filter){
+     return {
+         type: REMOVE_MULTI_FILTER,
+         payload: filter
+     }
  }
