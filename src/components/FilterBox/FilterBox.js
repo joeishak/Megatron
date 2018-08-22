@@ -9,6 +9,7 @@ import KendoDropDownList from '../KendoDropDownList/KendoDropDownList'
 import FilterPillBox from '../FilterPillBox/FilterPillBox';
 import  classNames from 'classnames';
 import { CSSTransitionGroup } from 'react-transition-group';
+import addIcon from './add-icon.svg';
 
 const inStyles={
     expansionBox: {
@@ -62,10 +63,12 @@ class FilterBox extends Component {
        
         return(
 
-            <div className="filterContainer">
+            <div className="filterContainer container-fluid">
                 <div className="newFilterDiv"> 
                     <span className="newFilterText" >Add Filter</span> 
-                    <div  className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}>+</div>
+                    {/* <div  className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}> */}
+                        <img src={addIcon} className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img>
+                    {/* </div> */}
                 </div>
             </div>
         )

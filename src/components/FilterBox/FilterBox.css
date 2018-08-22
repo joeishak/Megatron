@@ -38,31 +38,31 @@ expandBox{
     padding:20px;
 }
 .newFilterButton{
-
     width:30px;
     height:30px;
     display: inline-block;
-     padding-left:8px;
-   /* padding-bottom:0px; */
-    font-size:1.5em;
     border: 1px solid #ffffff;
     border-radius: 50%;
-    vertical-align: center;
-    align-items: center;
+    text-align: center;
+
 }
 .newFilterText{
     padding-bottom: 5px;
+    padding-right: 10px;
 }
+
 
 .newFilterButton-selected{
     -webkit-transform: rotate(135deg);
     -webkit-transition-duration: .5s;
     background-color: #1573e6;
     border: #1573e6;
+    cursor: pointer;
 
 }
 .newFilterButton-close{
     -webkit-transform: rotate(-180deg);
     -webkit-transition-duration: .5s;
+    cursor: pointer;
 }
 

@@ -8,16 +8,16 @@
     color: #383838;
 }
 
+
 .summaryTitleCol{
-    float: left;
+    /* float: left; */
     padding: 15px;
     margin-top: 20px;
-
     font-size: 1.9em;
     color: white;
 }
 
-.financialsLabel {
+/* .financialsLabel {
     padding: 5px, 5px, 5px, 5px;
     margin-right: 5px;
     color: white;
@@ -26,9 +26,7 @@
     padding: 5px, 5px, 5px, 5px;
     margin-left: 5px;
     color: white;
-
-
-}
+} */
 
 .donutChart {
     padding-top: 22px;
