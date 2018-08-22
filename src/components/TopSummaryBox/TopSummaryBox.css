@@ -8,16 +8,16 @@
     color: #383838;
 }
 
+
 .summaryTitleCol{
-    float: left;
+    /* float: left; */
     padding: 15px;
     margin-top: 20px;
-
     font-size: 1.9em;
     color: white;
 }
 
-.financialsLabel {
+/* .financialsLabel {
     padding: 5px, 5px, 5px, 5px;
     margin-right: 5px;
     color: white;
@@ -26,22 +26,17 @@
     padding: 5px, 5px, 5px, 5px;
     margin-left: 5px;
     color: white;
-
-
-}
+} */
 
 .donutChart {
     padding-top: 22px;
 }
 
 .gridContainer{
-<<<<<<< HEAD
-    background-color: #383838;
-=======
     background-color: #3c3c3c;
->>>>>>> 50960c27a28ba9a4de657af1ac135b200824967c
     /* background-image: linear-gradient(rgb(68, 68, 68),rgb(62, 62, 62),rgb(16, 16, 16)); */
-
+	padding-top: 30px;
+	padding-bottom: 400px;
     height: 390px;
 }
 
