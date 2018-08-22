@@ -14,3 +14,6 @@ export const UPDATE_DIALOG_VISIBILITY       = "update_dialog_visibility";
 
 // All Data
 export const GET_ALL_DATA                   = "get_all_data";
+
+// Data for the Filters
+export const GENERATE_FILTER_DATA           = "generate_filter_data";

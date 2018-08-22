@@ -35,7 +35,11 @@
 }
 
 .gridContainer{
+<<<<<<< HEAD
     background-color: #383838;
+=======
+    background-color: #3c3c3c;
+>>>>>>> 50960c27a28ba9a4de657af1ac135b200824967c
     /* background-image: linear-gradient(rgb(68, 68, 68),rgb(62, 62, 62),rgb(16, 16, 16)); */
 
     height: 390px;

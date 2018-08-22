@@ -3,12 +3,11 @@ import {
     UPDATE_SWITCH_FILTER_VALUE,
     UPDATE_DIALOG_VISIBILITY , 
     UPDATE_MULTI_FILTER_VALUES,
-    GET_ALL_DATA
+    GET_ALL_DATA,
+    GENERATE_FILTER_DATA
 
 } from 'actions/types';
 import axios from 'axios';
-
-
 
 /**
  * Change the state of Authentication for the user.
@@ -84,5 +83,13 @@ export function getAdobeData() {
     }
 }
 
-
-
+/**
+ * Generate the data that goes into the filter box
+ * 
+ */
+export function generateFilterData() {
+    return{
+        type: GENERATE_FILTER_DATA,
+        payload: {}
+    }
+}

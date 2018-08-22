@@ -1,8 +1,68 @@
 .filterContainer {
-    background-color: rgb(66, 66, 66);
-    padding: 10px;
+    background-color: #3c3c3c;
+    /* padding-right: 20px;
+    padding-top: 20px; */
+
+    height: 50px;
+  
+}
+expandBox{
+    height: 100%;
+    width: 100%;
+}
+.multiSelect {
+    background-color: #3c3c3c;
 }
 
-.multiSelect {
-    background-color:rgb(66, 66, 66);
+.filterText{
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    padding: 10px;
+    width: inherit;
+
 }
+.filterText, .xButton{
+ color: #ffffff;
+ background-color: #3c3c3c;
+ 
+}
+
+.xButton{
+    padding-left: 15px;
+    font-size: 1.5em;
+}
+
+.newFilterDiv{
+    float: right;
+    color: #ffffff;
+    padding:20px;
+}
+.newFilterButton{
+
+    width:30px;
+    height:30px;
+    display: inline-block;
+     padding-left:8px;
+   /* padding-bottom:0px; */
+    font-size:1.5em;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    vertical-align: center;
+    align-items: center;
+}
+.newFilterText{
+    padding-bottom: 5px;
+}
+
+.newFilterButton-selected{
+    -webkit-transform: rotate(135deg);
+    -webkit-transition-duration: .5s;
+    background-color: #1573e6;
+    border: #1573e6;
+
+}
+.newFilterButton-close{
+    -webkit-transform: rotate(-180deg);
+    -webkit-transition-duration: .5s;
+}
+
