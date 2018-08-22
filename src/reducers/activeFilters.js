@@ -18,8 +18,9 @@ export default function(state = [], action) {
         case REMOVE_MULTI_FILTER:
            let filterToBeRemoved = action.payload;
            console.log('The filter you want to remove', filterToBeRemoved);
-           let newFilters = {...state};
+           let newFilters = [...state];
            console.log('The new copy of state',newFilters);
+
            _.remove(newFilters,(n)=>{
                return n.index===filterToBeRemoved.index;
            });
