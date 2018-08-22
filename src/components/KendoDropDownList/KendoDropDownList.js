@@ -14,7 +14,10 @@ class KendoDropDownList extends Component {
     }
     render(){
         return(
-            <DropDownList style={inStyles.background} data={this.props.data} defaultValue="Basketball" />
+            <DropDownList 
+                style={inStyles.background} 
+                data={this.props.data} 
+                onChange={this.props.handleFilterChange}/>
         )
     }
 }

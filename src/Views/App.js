@@ -49,13 +49,20 @@ class App extends Component {
       /*Bindings  */
       this.renderBarGraph = this.renderBarGraph.bind(this);
       this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
-   
-      /* Action Calls */
-      this.props.getAdobeData();
-      this.props.generateFilterData();
+      this.getFilters  =this.getFilters.bind(this);
 
+      this.getFilters();
   }
  
+  componentDidMount(){
+ 
+  }
+
+  getFilters(){
+    /* Action Calls */
+    this.props.getAdobeData();
+    this.props.generateFilterData();
+  }
   /* Sets the state passed to the bottom summary box so that it re renders */
   renderBarGraph(index){
     this.setState({renderFooter: !this.state.render});

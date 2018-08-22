@@ -266,11 +266,11 @@ class TopSummaryBox extends Component {
 
                 <div className="container-fluid row">
                     <div className="col summaryTitleCol k-float-left">Financials Summary</div>
-                        <div className="col summaryTitleCol k-float-right"><label class="switch">
+                        <div className="col summaryTitleCol k-float-right"><label className="switch">
                             <input type="checkbox" id="togBtn"></input>
-                            <div class="slider round">
-                            <div class="on">Financials</div>
-                            <div class="off">Journeys</div>
+                            <div className="slider round">
+                            <div className="on">Financials</div>
+                            <div className="off">Journeys</div>
                             </div>
                         </label>
                         </div>

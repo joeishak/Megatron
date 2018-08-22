@@ -35,13 +35,10 @@
 }
 
 .gridContainer{
-<<<<<<< HEAD
-    background-color: #383838;
-=======
     background-color: #3c3c3c;
->>>>>>> 50960c27a28ba9a4de657af1ac135b200824967c
     /* background-image: linear-gradient(rgb(68, 68, 68),rgb(62, 62, 62),rgb(16, 16, 16)); */
-
+	padding-top: 30px;
+	padding-bottom: 400px;
     height: 390px;
 }
 
@@ -152,7 +149,9 @@
 .zoom:hover {
     transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
-
+.chartRow{
+	padding-bottom: 60px;
+}
 /* Label Toggle Switch */
 .switch {
 	position: relative;

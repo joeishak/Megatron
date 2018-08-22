@@ -12,7 +12,7 @@ export default function(state = [], action) {
             let geos = _.map(data,function(row) { return row.geo_code});
             let products= _.map(data,function(row) { return row.product_name});
             let subscriptionOfferings= _.map(data,function(row) { return row.subscription_offering});
-            let marketAreas= _.map(data,function(row) { return row.market_area});
+            let marketAreas= _.map(data,function(row) { return row.market_area_code});
             let routeToMarkets= _.map(data,function(row) { return row.route_to_market});
             let segments= _.map(data,function(row) { return row.web_segment});
 
@@ -26,13 +26,13 @@ export default function(state = [], action) {
             segments = _.uniq(segments);
 
             let newState = {
-                quarters,
-                geos,
-                products,
-                subscriptionOfferings,
-                marketAreas,
-                routeToMarkets,
-                segments
+                quarters: quarters,
+                geos: geos,
+                products: products,
+                subscriptionOfferings:subscriptionOfferings,
+                marketAreas:marketAreas,
+                routeToMarkets:routeToMarkets,
+                segments:segments
             }
 
             return newState;

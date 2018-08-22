@@ -11,5 +11,5 @@ export default combineReducers({
     switchFilter: switchReducer,
     isDialogOpen: dialogReducer,
     adobeData: allDataReducer,
-    avialableFilters: multiFilterReducer
+    availableFilters: multiFilterReducer
 });

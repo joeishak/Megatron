@@ -22,7 +22,10 @@ class CustomDropDownPanel extends Component {
 
  
    
- 
+ componentDidUpdate(){
+    // console.log(this.props.avilableFilters);
+
+ }
     componentWillUpdate(){
        
     }
@@ -33,7 +36,6 @@ class CustomDropDownPanel extends Component {
             <div>
                 
                 <CSSTransitionGroup
-                in={show}
                 transitionName="ddFilter"
                 transitionAppear={true}
                 transitionAppearTimeout={1500}
@@ -43,7 +45,7 @@ class CustomDropDownPanel extends Component {
                 >
                 <div className="quarterFilterContainer" >
                     <p> Quarter</p>
-                    <KendoDropDownList />
+                    <KendoDropDownList category="quarter" data={this.props.availableFilters.quarters}/>
                 </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
@@ -51,13 +53,13 @@ class CustomDropDownPanel extends Component {
                 transitionAppear={true}
                 transitionAppearTimeout={1300}
                 transitionEnter={false} 
-                transitionLeave={true}
+                transitionLeave={false}
             transitionLeaveTimeout={100}
             >
 
                     <div className="quarterFilterContainer" >
                         <p> Geo</p>
-                        <KendoDropDownList />
+                        <KendoDropDownList category="geo" data={this.props.availableFilters.geos}/>
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
@@ -68,7 +70,7 @@ class CustomDropDownPanel extends Component {
                 transitionLeave={false}>
                     <div className="quarterFilterContainer" >
                         <p> Product Name</p>
-                        <KendoDropDownList />
+                        <KendoDropDownList category="product" data={this.props.availableFilters.products}/>
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
@@ -79,7 +81,7 @@ class CustomDropDownPanel extends Component {
                 transitionLeave={false}>
                     <div className="quarterFilterContainer" >
                         <p> Subscription Offering</p>
-                        <KendoDropDownList />
+                        <KendoDropDownList category="subscription" data={this.props.availableFilters.subscriptionOfferings} />
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
@@ -88,10 +90,10 @@ class CustomDropDownPanel extends Component {
                 transitionAppearTimeout={700}
                 transitionEnter={false} 
                 transitionLeave={false}
-                unmountOnExit>
+                >
                     <div className="quarterFilterContainer" >
                         <p> Market Area</p>
-                        <KendoDropDownList />
+                        <KendoDropDownList category="market" data={this.props.availableFilters.marketAreas} />
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
@@ -102,18 +104,18 @@ class CustomDropDownPanel extends Component {
                 transitionLeave={false}>
                     <div className="quarterFilterContainer" >
                         <p>  Route To Market</p>
-                        <KendoDropDownList />
+                        <KendoDropDownList category="route" data={this.props.availableFilters.routeToMarkets}/>
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
                 transitionName="ddFilter"
                 transitionAppear={true}
                 transitionAppearTimeout={300}
-                transitionEnter={true} 
-                transitionLeave={true}>
+                transitionEnter={false} 
+                transitionLeave={false}>
                     <div className="quarterFilterContainer" >
                         <p> Segment</p>
-                        <KendoDropDownList />
+                        <KendoDropDownList category="segment" data={this.props.availableFilters.segments}/>
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
@@ -121,7 +123,7 @@ class CustomDropDownPanel extends Component {
                 transitionAppear={true}
                 transitionAppearTimeout={100}
                 transitionEnter={false} 
-                transitionLeave={true}>
+                transitionLeave={false}>
                     <div className="quarterFilterContainer" >
                     <p> Make these my default settings</p>
                     <input type='checkbox' />
@@ -145,7 +147,8 @@ class CustomDropDownPanel extends Component {
     }
 }
 function mapStateToProps(state) {
-    return {};
+    console.log(state);
+    return {availableFilters: state.availableFilters};
   }
   
   export default connect(mapStateToProps,actions) (CustomDropDownPanel)
