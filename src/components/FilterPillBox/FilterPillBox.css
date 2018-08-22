@@ -4,9 +4,10 @@
 }
 
 .filterText{
-    border: 1px solid #ffffff;
+    border: 1px solid #ffffffd8;
     border-radius: 20px;
     padding: 10px;
+    margin-bottom: 20px;
     margin-top:40px;
     width: inherit;
     margin-right: 10px;

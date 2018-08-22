@@ -39,7 +39,6 @@ class FilterBox extends Component {
 
     }
     renderFilterPills(){
-        console.log('rendering pill boxes');
         if(this.props.activeFilters.length>0){
         return(
             this.props.activeFilters.map(filter =>{
@@ -73,9 +72,12 @@ class FilterBox extends Component {
        
         return(
 
-            <div className="filterContainer container-fluid">
+            <div className="filterContainer container-fluid row">
+                <div className="pillsContainer col-10">
                 { this.renderFilterPills()}
-                <div className="newFilterDiv"> 
+
+                </div>
+                <div className="newFilterDiv col-2"> 
                     <span className="newFilterText" >Add Filter</span> 
                     {/* <div  className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}> */}
                         <img src={addIcon} className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img>

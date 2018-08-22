@@ -7,6 +7,10 @@
     height: 50px;
   
 }
+.pillsContainer{
+    overflow: wrap;
+    float:left;
+}
 expandBox{
     height: 100%;
     width: 100%;
