@@ -20,6 +20,7 @@ const inStyles={
 class FilterBox extends Component {
     constructor(props){
         super(props);
+
         this.state= {
             filterPanelIsOpen: false,
             filterPanelIsClosed: true,
@@ -30,7 +31,7 @@ class FilterBox extends Component {
         }
 
         this.changeFilterPanelStatus = this.changeFilterPanelStatus.bind(this);
-        this.renderFilterPills = this.renderFilterPills.bind(this);
+        // this.renderFilterPills = this.renderFilterPills.bind(this);
     }
 
     componentDidUpdate(){
@@ -38,7 +39,13 @@ class FilterBox extends Component {
 
     }
     renderFilterPills(){
-        
+        console.log('rendering pill boxes');
+        return(
+            this.props.activeFilters.map(filter =>{
+                return <FilterPillBox data={filter}/>
+            })
+        )
+        this.render();
     }
     changeFilterPanelStatus(){
         this.props.handleNewFilterClick();
@@ -64,6 +71,7 @@ class FilterBox extends Component {
         return(
 
             <div className="filterContainer container-fluid">
+                { this.renderFilterPills()}
                 <div className="newFilterDiv"> 
                     <span className="newFilterText" >Add Filter</span> 
                     {/* <div  className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}> */}
@@ -75,7 +83,8 @@ class FilterBox extends Component {
     }
 }
 function mapStateToProps(state) {
-    return {filters: state.filters};
+    console.log(state);
+    return {filters: state.filters, activeFilters: state.activeFilters};
   }
   
   export default connect(mapStateToProps,actions) (FilterBox)

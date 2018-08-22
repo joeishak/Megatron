@@ -4,7 +4,8 @@ import {
     UPDATE_DIALOG_VISIBILITY , 
     UPDATE_MULTI_FILTER_VALUES,
     GET_ALL_DATA,
-    GENERATE_FILTER_DATA
+    GENERATE_FILTER_DATA,
+    ADD_MULTI_FILTER
 
 } from 'actions/types';
 import axios from 'axios';
@@ -93,3 +94,17 @@ export function generateFilterData() {
         payload: {}
     }
 }
+
+
+/**
+ * Add a value to the active filters for the multi filter
+ * 
+ * @param {object} filter
+ */
+
+ export function addValueToActiveMultiFilter(filter) {
+    return {
+        type: ADD_MULTI_FILTER,
+        payload: filter
+    }
+ }

@@ -3,6 +3,7 @@
     /* padding-right: 20px;
     padding-top: 20px; */
 
+    padding: 20px;
     height: 50px;
   
 }
@@ -35,7 +36,7 @@ expandBox{
 .newFilterDiv{
     float: right;
     color: #ffffff;
-    padding:20px;
+    /* padding:20px; */
 }
 .newFilterButton{
     width:30px;

@@ -17,7 +17,7 @@ class FilterPillBox extends Component {
     
     render(){
         return(
-            <span className="filterText" >{this.state.filter.value}<span className="xButton" onClick={this.props.removefilter}>x</span></span>
+            <span className="filterText" >{this.props.data.value}<span className="xButton" onClick={this.props.removefilter}>x</span></span>
         )
     }
 }
