@@ -43,7 +43,7 @@ class FilterBox extends Component {
         console.log('rendering pill boxes');
         return(
             this.props.activeFilters.map(filter =>{
-                return <FilterPillBox data={filter}/>
+                return <FilterPillBox data={filter} />
             })
         )
         this.render();
