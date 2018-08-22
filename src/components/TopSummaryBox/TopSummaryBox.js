@@ -58,7 +58,7 @@ class TopSummaryBox extends Component {
         super(props);
         this.state = { 
             show: true,
-            chart1ArrowCSS: "",
+            chart1ArrowCSS: "arrow_box",
             chart2ArrowCSS: "",
             chart3ArrowCSS: "",
             chart4ArrowCSS: "",

@@ -20,17 +20,19 @@ const inStyles={
 class FilterBox extends Component {
     constructor(props){
         super(props);
+
         this.state= {
             filterPanelIsOpen: false,
             filterPanelIsClosed: true,
             newFilterSelected: false,
             addNewFilterActive: false,
             closeNewFilterActive: false,
-            showSlide: false
+            showSlide: false,
+            filterButtonTitle: 'Add Filters'
         }
 
         this.changeFilterPanelStatus = this.changeFilterPanelStatus.bind(this);
-        this.renderFilterPills = this.renderFilterPills.bind(this);
+        // this.renderFilterPills = this.renderFilterPills.bind(this);
     }
 
     componentDidUpdate(){
@@ -38,15 +40,23 @@ class FilterBox extends Component {
 
     }
     renderFilterPills(){
-        
+        console.log('rendering pill boxes');
+        return(
+            this.props.activeFilters.map(filter =>{
+                return <FilterPillBox data={filter}/>
+            })
+        )
+        this.render();
     }
-    changeFilterPanelStatus(){
+    changeFilterPanelStatus = () => {
+        
         this.props.handleNewFilterClick();
         if(this.state.filterPanelIsOpen){
+            this.setState({filterButtonTitle: 'Add Filters'})
             this.setState({showSlide: false})
             this.setState({addNewFilterActive:false,closeNewFilterActive: true, filterPanelIsOpen: false,filterPanelIsClosed: true});
-
         } else{
+            this.setState({filterButtonTitle: 'Hide Filters'})
             this.setState({addNewFilterActive:true,closeNewFilterActive: false,filterPanelIsOpen: true, filterPanelIsClosed: false,showSlide: true});
         }
     }
@@ -64,16 +74,18 @@ class FilterBox extends Component {
         return(
 
             <div className="filterContainer container-fluid">
+                { this.renderFilterPills()}
                 <div className="newFilterDiv"> 
-                    <span className="newFilterText" >Add Filter</span> 
-                    <img src={addIcon} className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img>
+                    <span className="newFilterText" >{this.state.filterButtonTitle}</span> 
+                    <img src={addIcon} className={newFilterButtonClass} onClick={(e) => this.changeFilterPanelStatus(e)}></img>
                 </div>
             </div>
         )
     }
 }
 function mapStateToProps(state) {
-    return {filters: state.filters};
+    console.log(state);
+    return {filters: state.filters, activeFilters: state.activeFilters};
   }
   
   export default connect(mapStateToProps,actions) (FilterBox)

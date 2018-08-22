@@ -10,7 +10,9 @@ export default ({children, initialState ={
         values: []
     },
     isDialogOpen: false,
-    adobeData: []
+    adobeData: [],
+    availableFilters: {    },
+    activeFilters:[]
 }}) => {
     const store = createStore(
         reducers,

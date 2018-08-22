@@ -34,35 +34,65 @@ const inStyles = {
   }
 }
 class App extends Component {
-  mafData;
   constructor(props) {
     super(props);
+    /* Initializing local state */
     this.state ={
       index: 0,
       show: false,
       dialogIsOpen: false,
       renderFooter: false,
       marketAreaFilters: [],
-      filterPanelIsOpen: false};
+      filterPanelIsOpen: false,
+      showDropDowns: false};
 
-
-      this.renderFooter = this.renderFooter.bind(this);
+      /*Bindings  */
       this.renderBarGraph = this.renderBarGraph.bind(this);
       this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
-   
+      this.getFilters  =this.getFilters.bind(this);
+
+      this.getFilters();
   }
  
+  componentDidMount(){
+ 
+  }
 
+  getFilters(){
+    /* Action Calls */
+    this.props.getAdobeData();
+    this.props.generateFilterData();
+  }
+  /* Sets the state passed to the bottom summary box so that it re renders */
   renderBarGraph(index){
-  this.setState({renderFooter: !this.state.render});
-  console.log('setting state');
-  // this.setState({dialogIsOpen: true})
-
-  this.openDialog();
+    this.setState({renderFooter: !this.state.render});
   }
 
-  renderFooter(body){
+  /* Event Handler for the Filter Box to open the filter panel with the drop downs */
+  openDialogFilterPanel(){
+    // Opening the panel
+    if(!this.state.filterPanelIsOpen){
+      this.setState({showDropDowns: true});
+      this.setState({filterPanelIsOpen: true})
+    } else { /* Closing the Panel */
+
+      this.setState({showDropDowns: false});
+      // this.setState({filterPanelIsOpen: false});
+      
+      this.time = setTimeout(()=>{
+      this.setState({filterPanelIsOpen: false});
+
+        },300);
+    }
+    
   }
+
+
+
+
+ /***
+  * Use these functions to open and close the dialog box
+ 
   openDialog = () => {
     this.props.updateDialogVisibility(true);
   }
@@ -70,14 +100,13 @@ class App extends Component {
     this.props.updateDialogVisibility(false);
 
     this.setState({dialogIsOpen: false})
-  }
-  openDialogFilterPanel(){
-    console.log('changed');
-    this.setState({filterPanelIsOpen: !this.state.filterPanelIsOpen});
-  }
-  handleFilterUpdates = () => {
-    this.render();
-  }
+  } 
+  
+  
+  */
+
+  
+ 
   render(){
  
     // const show = this.state.dialogIsOpen;
@@ -85,8 +114,8 @@ class App extends Component {
      return (
       <div>
         <Navigation />
-        <FilterBox marketAreaFilter={this.mafData} handleFilterUpdates={this.handleFilterUpdates} handleNewFilterClick={this.openDialogFilterPanel}/>
-        <CustomDropDownPanel showSlide={this.state.filterPanelIsOpen}/>
+        <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
+        <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
         <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
         {/* <Slide direction="up">
           {kendoDialog}
