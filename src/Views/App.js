@@ -52,7 +52,7 @@ class App extends Component {
    
       /* Action Calls */
       this.props.getAdobeData();
-
+      this.props.generateFilterData();
 
   }
  
@@ -65,15 +65,17 @@ class App extends Component {
   openDialogFilterPanel(){
     // Opening the panel
     if(!this.state.filterPanelIsOpen){
-      this.setState({showDropDowns: !this.state.showDropDowns});
+      this.setState({showDropDowns: true});
       this.setState({filterPanelIsOpen: true})
     } else { /* Closing the Panel */
 
-      this.setState({showDropDowns: !this.state.showDropDowns});
+      this.setState({showDropDowns: false});
+      // this.setState({filterPanelIsOpen: false});
+      
       this.time = setTimeout(()=>{
       this.setState({filterPanelIsOpen: false});
 
-        },1000);
+        },300);
     }
     
   }
