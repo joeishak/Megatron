@@ -1,3 +1,13 @@
+
+/* Disable images from being selected */
+img {
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
 .filterContainer {
     background-color: #3c3c3c;
     /* padding-right: 20px;
@@ -24,12 +34,6 @@ expandBox{
 .filterText, .xButton{
  color: #ffffff;
  background-color: #3c3c3c;
- 
-}
-
-.xButton{
-    padding-left: 15px;
-    font-size: 1.5em;
 }
 
 .newFilterDiv{
@@ -41,7 +45,7 @@ expandBox{
     width:30px;
     height:30px;
     display: inline-block;
-    border: 1px solid #ffffff;
+    /* border: 1px solid #ffffff; */
     border-radius: 50%;
     text-align: center;
 
@@ -51,7 +55,7 @@ expandBox{
     padding-right: 10px;
 }
 
-
+/* Animate when clicking and closing */
 .newFilterButton-selected{
     -webkit-transform: rotate(135deg);
     -webkit-transition-duration: .5s;
@@ -65,4 +69,5 @@ expandBox{
     -webkit-transition-duration: .5s;
     cursor: pointer;
 }
+
 

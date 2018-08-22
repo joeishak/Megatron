@@ -66,9 +66,7 @@ class FilterBox extends Component {
             <div className="filterContainer container-fluid">
                 <div className="newFilterDiv"> 
                     <span className="newFilterText" >Add Filter</span> 
-                    {/* <div  className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}> */}
-                        <img src={addIcon} className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img>
-                    {/* </div> */}
+                    <img src={addIcon} className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img>
                 </div>
             </div>
         )

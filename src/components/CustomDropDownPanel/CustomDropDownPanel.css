@@ -17,7 +17,6 @@
 .example-leave {
     opacity: 1;
   }
-  
   .example-leave.example-leave-active {
     opacity: 0.01;
     transition: opacity 300ms ease-in;
@@ -29,23 +28,18 @@
     background-color: #3c3c3c;
     /* padding-right: 20px;
     padding-top: 20px; */
-
     padding-bottom:30px;
 }
 .panelBarContainer-open{
     color: white;
     background-color: #3c3c3c;
-
     height: 150px;
     padding: 20px;
-
-
 }
 
 .panelBarContainer-closed{
     height: 0px;
     display: none;
-
 }
 
 .quarterFilterContainer{
