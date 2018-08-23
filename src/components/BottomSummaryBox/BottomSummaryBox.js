@@ -92,16 +92,18 @@ class ButtomSummaryBox extends Component {
                         </CSSTransitionGroup>
                    
                 </div> 
-                <CSSTransitionGroup
+                {/* <CSSTransitionGroup
                             transitionName="example"
                             transitionAppear={true}
                             transitionAppearTimeout={200}
                             transitionEnter={false} 
-                            transitionLeave={false} >
-                <div className="row gridRow2">
-                    <KendoMultiChart style={inStyles.multichart} />
-                </div> 
-                </CSSTransitionGroup>
+                            transitionLeave={false} > */}
+                    <div className="row gridRow2 chartBig container-fluid">
+                        <KendoMultiChart style={inStyles.multichart} />
+                    </div> 
+                    <div className="over"></div>
+
+                {/* </CSSTransitionGroup> */}
 
                 </div>
             </div>
