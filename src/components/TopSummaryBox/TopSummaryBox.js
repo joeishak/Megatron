@@ -63,7 +63,8 @@ class TopSummaryBox extends Component {
             // chart3ArrowCSS: "",
             // chart4ArrowCSS: "",
             // activeCard: 'card1',
-            isToggleButtonChecked: false
+            isToggleButtonChecked: false,
+            summaryTitle: 'Financials Summary'
         };
         this.enableChart1Arrow = this.enableChart1Arrow.bind(this);
         this.enableChart2Arrow = this.enableChart2Arrow.bind(this);
@@ -127,6 +128,14 @@ class TopSummaryBox extends Component {
     onToggleButtonChanged = (e) => {
         let toggleState = this.state.isToggleButtonChecked;
         this.setState({isToggleButtonChecked: !toggleState});
+    }
+
+    getSummaryTitle() {
+        if (this.state.isToggleButtonChecked) {
+            return 'Journeys Summary'
+        } else {
+            return 'Financials Summary'
+        }
     }
    
     render(){
@@ -214,7 +223,7 @@ class TopSummaryBox extends Component {
 
                 {/* Toggle Button */}
                 <div className="container-fluid row">
-                    <div className="col summaryTitleCol k-float-left">Financials Summary</div>
+                    <div className="col summaryTitleCol k-float-left">{this.getSummaryTitle()}</div>
                         <div className="col summaryTitleCol k-float-right"><label className="switch">
                             <input type="checkbox" id="togBtn" onChange={(e) => this.onToggleButtonChanged(e)}></input>
                             <div className="slider round">

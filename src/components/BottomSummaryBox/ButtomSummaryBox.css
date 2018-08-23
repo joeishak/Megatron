@@ -1,3 +1,5 @@
+
+
 .titleHeader {
     background-color:#e8e8e8;
     height: 40px;
@@ -39,13 +41,19 @@ padding-bottom: 50px;
 .green{
     color: green;
 }
+
 .detailButton{
     background-color:#1573e6;
-    border-radius:25px;
+    border-radius:18px;
+    width: 133px;
+    height: 36px;
     color: #ffffff;
     margin-left:20px;
     padding:5px;
     font-size:16px;
     display:inline-block;
     border:none;
+    font-size: 16px;
+    line-height: 16px;
+
 }

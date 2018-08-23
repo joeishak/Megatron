@@ -39,7 +39,7 @@ class KendoMultiChart extends Component {
                 </ChartCategoryAxisItem>
             </ChartCategoryAxis>
             <ChartSeries>
-                <ChartSeriesItem type="column" gap={2} spacing={0.25} data={firstSeries} >
+                <ChartSeriesItem type="column" gap={2} spacing={0.25} data={firstSeries} color="black">
                 <ChartSeriesItemTooltip background="#3c3c3c" />
                 </ChartSeriesItem>
                 <ChartSeriesItem type="line" data={secondSeries} >

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300');
 * {
     font-family: 'Ubuntu', sans-serif;
 }
@@ -33,7 +33,7 @@
 }
 
 .gridContainer{
-    background-color: #3c3c3c;
+    background-color: #1F1F1F;
     /* background-image: linear-gradient(rgb(68, 68, 68),rgb(62, 62, 62),rgb(16, 16, 16)); */
 	padding-top: 30px;
 	padding-bottom: 400px;
@@ -150,6 +150,8 @@
 .chartRow{
 	padding-bottom: 60px;
 }
+
+
 /* Label Toggle Switch */
 .switch {
 	position: relative;
@@ -167,7 +169,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: #1f1f1f;
+	background-color: black;
 	-webkit-transition: .8s;
 	transition: .8s;
   }
@@ -175,7 +177,7 @@
   .slider:before {
 	position: absolute;
 	content: 'Financials';
-	color: white;
+	color: black;
 	padding-top: 2px;
 	padding-left: 20px;
 	font-size: 19px;
@@ -183,13 +185,13 @@
 	width: 128px;
 	left: 7px;
 	bottom: 4px;
-	background-color: rgb(13, 106, 220);
+	background-color: #EAEAEA;
 	-webkit-transition: .4s;
 	transition: .4s;
   }
   
   input:checked + .slider {
-	background-color: #1f1f1f;
+	background-color: black;
   }
   
   input:focus + .slider {
@@ -228,19 +230,18 @@
   }
   
 input:checked+ .slider:before {
-	color: white;
+	color: black;
 	content: 'Financials';
 	padding-left: 30px;
 
 } 
   
 input:checked + .slider:before  {
-	color: white;
+	color: black;
 	content: 'Journeys';
 
 }
  
-  /* Rounded sliders */
 .slider.round {
 	border-radius: 32px;
 }

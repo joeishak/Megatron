@@ -81,7 +81,7 @@ class FilterBox extends Component {
 
                 </div>
                 <div className="newFilterDiv col-2"> 
-                    <span className="newFilterText" >Add Filter</span> 
+                    <span className="newFilterText" >{this.state.filterButtonTitle}</span> 
                     {/* <div  className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}> */}
                         <img src={addIcon} className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img>
                     {/* </div> */}
