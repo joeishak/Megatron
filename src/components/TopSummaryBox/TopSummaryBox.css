@@ -273,8 +273,11 @@ input:checked + .slider:before  {
 }
 
 /* dynamic */
-.selectedCardHeader {
+.selectedCardHeaderRed {
 	background-color: red;
+}
+.selectedCardHeaderGreen {
+	background-color: green;
 }
 
 .selectedCardText {
