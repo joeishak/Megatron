@@ -40,20 +40,21 @@ class App extends Component {
     this.state ={
       index: 0,
       show: false,
-      dialogIsOpen: false,
       renderFooter: false,
-      marketAreaFilters: [],
+      marketAreaFilters: this.props.activeFilters,
       filterPanelIsOpen: false,
-      showDropDowns: false};
+      showDropDowns: false
+    };
 
       /*Bindings  */
       this.renderBarGraph = this.renderBarGraph.bind(this);
       this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
       this.getFilters  =this.getFilters.bind(this);
 
+      console.log(this.props);
       this.getFilters();
   }
- 
+  
   componentDidMount(){
  
   }
@@ -70,7 +71,6 @@ class App extends Component {
 
   /* Event Handler for the Filter Box to open the filter panel with the drop downs */
   openDialogFilterPanel(){
-    console.log('opening panel');
     // Opening the panel
     if(!this.state.filterPanelIsOpen){
       this.setState({showDropDowns: true});
@@ -96,33 +96,35 @@ class App extends Component {
  
   openDialog = () => {
     this.props.updateDialogVisibility(true);
-  }
-  closeDialog = () => {
-    this.props.updateDialogVisibility(false);
-
-    this.setState({dialogIsOpen: false})
   } 
-  
-  
   */
+  // closeDialog = () => {
+  //   this.props.updateDialogVisibility(false);
+
+  //   this.setState({dialogIsOpen: false})
+  // } 
+  
+ 
 
   
  
   render(){
  
-    const show = this.state.dialogIsOpen;
-    const kendoDialog = show ? (<KendoDialog handleDialogClose={this.closeDialog} title="Detail ARR"  visible={true} appContent={[]}/>) : null;
+    const show = this.props.dialogIsOpen
+    const kendoDialog = show ? (<KendoDialog title="Detail ARR"  appContent={[]}/>) : null;
      return (
       <div>
         <Navigation />
         <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
         <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
         <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
-        <Slide direction="up">
-          {kendoDialog}
-        </Slide>
+        <div style={{width: '100%'}}>
+        <Expand>
+        {kendoDialog}
+        </Expand>
+        </div>
         <div className='bottomSummaryContainer'>
-          <ButtomSummaryBox handleViewDetails={this.openDialogFilterPanel} rerender={this.state.renderFooter}/>
+          <ButtomSummaryBox rerender={this.state.renderFooter}/>
         </div>
       </div>
   )
@@ -130,7 +132,11 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return {isDialogOpen: state.isDialogOpen, allData: state.adobeData};
+  // console.log(state);
+  return {
+    dialogIsOpen:state.isDialogOpen,
+    activeFilters: state.activeFilters
+  };
 }
 
 export default connect(mapStateToProps,actions)(App);

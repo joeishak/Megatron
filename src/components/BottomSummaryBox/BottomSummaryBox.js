@@ -6,6 +6,7 @@ import {Grid, Row, Col} from 'react-bootstrap';
 import KendoMultiChart from '../KendoMultiChart/KendoMultiChart';
 import {connect } from 'react-redux';
 import * as actions from 'actions';
+import { open } from 'fs';
 const inStyles = {
     multichart:{
         backgroundColor: '#e8e8e8'
@@ -21,7 +22,7 @@ class ButtomSummaryBox extends Component {
     }
 
     openDialog = ()=>{
-        
+        this.props.updateDialogVisibility(true)
     }
     render(){
         return(
@@ -37,7 +38,7 @@ class ButtomSummaryBox extends Component {
                             transitionLeave={false} >
                             <div>
                             Net New ARR
-                            <button className="detailButton" onClick={this.props.handleViewDetails} >View Details </button>
+                            <button className="detailButton" onClick={this.openDialog} >View Details </button>
                         
 
                          <CSSTransitionGroup
@@ -108,5 +109,7 @@ class ButtomSummaryBox extends Component {
         )
     }
 }
-
-export default (ButtomSummaryBox)
+function mapStateToProps(state){
+    return { }
+}
+export default connect(mapStateToProps,actions)(ButtomSummaryBox)
