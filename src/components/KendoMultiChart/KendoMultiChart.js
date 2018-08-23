@@ -10,7 +10,9 @@ import {
     ChartCategoryAxisTitle,
     ChartCategoryAxisItem,
     ChartArea,
-    ChartAxisDefaults
+    ChartAxisDefaults,
+    ChartSeriesItemTooltip,
+    ChartTooltip
 } from '@progress/kendo-react-charts';
 
 class KendoMultiChart extends Component {
@@ -27,6 +29,7 @@ class KendoMultiChart extends Component {
         const categories = ['Q3Y18', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
         const ChartContainer = () => (
         <Chart pannable={false} zoomable={false} >
+        <ChartTooltip />
          <ChartAxisDefaults majorGridLines={false} minorGridLines={false}/>
             <ChartArea background="transparent" /* gridLines='{visible: false}' */></ChartArea>
             <ChartTitle text="" />
@@ -36,9 +39,17 @@ class KendoMultiChart extends Component {
                 </ChartCategoryAxisItem>
             </ChartCategoryAxis>
             <ChartSeries>
-                <ChartSeriesItem type="column" gap={2} spacing={0.25} data={firstSeries} />
-                <ChartSeriesItem type="line" data={secondSeries} />
-                <ChartSeriesItem type="line" data={thirdSeries} />
+                <ChartSeriesItem type="column" gap={2} spacing={0.25} data={firstSeries} >
+                <ChartSeriesItemTooltip background="#3c3c3c" />
+                </ChartSeriesItem>
+                <ChartSeriesItem type="line" data={secondSeries} >
+                <ChartSeriesItemTooltip background="#3c3c3c" />
+
+                </ChartSeriesItem>
+                <ChartSeriesItem type="line" data={thirdSeries} >
+                <ChartSeriesItemTooltip background="#3c3c3c" />
+
+                </ChartSeriesItem>
             </ChartSeries>
         </Chart>
     );

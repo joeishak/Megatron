@@ -143,7 +143,7 @@ class TopSummaryBox extends Component {
                     <div className={`donutChart ${activeCard === 'card1' ? 'arrow_box' : ''}`}>
                         <div className="zoom">
                         <KendoDonutChart donutColor="red" donutCenterRender= {()=> 
-                        <div><h2>$149.9M</h2><span>TARGET</span><h6>$277.9M</h6></div>}/> 
+                        <div><h2>$149.9M</h2><h6>Target</h6><h4>$277.9M</h4></div>}/> 
                         </div>
                     </div>
                 </div>
@@ -159,7 +159,7 @@ class TopSummaryBox extends Component {
                     <div className={`donutChart ${activeCard === 'card2' ? 'arrow_box' : ''}`}>
                         <div className="zoom">
                             <KendoDonutChart donutColor="red" donutCenterRender= {()=> 
-                                <div><h2>$159.9M</h2><span>TARGET</span><h6>$277.9M</h6></div>}/> 
+                                <div><h2>$159.9M</h2><h6>Target</h6><h4>$277.9M</h4></div>}/> 
                         </div>
                     </div>
                 </div>
@@ -178,7 +178,7 @@ class TopSummaryBox extends Component {
                     <div className={`donutChart ${activeCard === 'card3' ? 'arrow_box' : ''}`}>
                         <div  className="zoom">
                         <KendoDonutChart donutColor="red" donutCenterRender= {()=> 
-                        <div><h2>$217.5M</h2><span>TARGET</span><h6>$277.9M</h6></div>} />
+                        <div><h2>$217.5M</h2><h6>Target</h6><h4>$277.9M</h4></div>} />
                         </div>
                     </div>
                 </div>
@@ -197,7 +197,7 @@ class TopSummaryBox extends Component {
                     <div className={`donutChart ${activeCard === 'card4' ? 'arrow_box' : ''}`}>
                         <div className="zoom">
                         <KendoDonutChart donutColor="green" donutCenterRender= {()=> 
-                        <div><h2>$278.0M</h2><span></span><h6>$277.9M</h6></div>} />
+                        <div><h2>$278.0M</h2><h6>Target</h6><h4>$277.9M</h4></div>} />
                         </div>
                     </div>
                 </div>

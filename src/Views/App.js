@@ -7,6 +7,7 @@ import {Fade, Expand, Slide, Animation } from '@progress/kendo-react-animation';
 import styles from './App.css';
 import _ from 'lodash';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 // Kendo Components
 import KendoPanelBar from 'components/KendoPanelBar/KendoPanelBar';
@@ -111,18 +112,21 @@ class App extends Component {
   render(){
  
     const show = this.props.dialogIsOpen
-    const kendoDialog = show ? (<KendoDialog title="Detail ARR"  appContent={[]}/>) : null;
+    const kendoDialog = show ? ( 
+        <KendoDialog title="Detail ARR"  appContent={[]}/>
+      ) : null;
      return (
       <div>
         <Navigation />
         <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
         <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
         <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
-        <div style={{width: '100%'}}>
-        <Expand>
-        {kendoDialog}
-        </Expand>
+        <div>
+          <Slide>
+           {kendoDialog}
+          </Slide>
         </div>
+
         <div className='bottomSummaryContainer'>
           <ButtomSummaryBox rerender={this.state.renderFooter}/>
         </div>
