@@ -147,7 +147,7 @@ class CustomDropDownPanel extends Component {
     }
 }
 function mapStateToProps(state) {
-    // console.log(state);
+    console.log(state);
     return {availableFilters: state.availableFilters};
   }
   

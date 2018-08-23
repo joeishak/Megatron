@@ -70,6 +70,7 @@ class App extends Component {
 
   /* Event Handler for the Filter Box to open the filter panel with the drop downs */
   openDialogFilterPanel(){
+    console.log('opening panel');
     // Opening the panel
     if(!this.state.filterPanelIsOpen){
       this.setState({showDropDowns: true});
@@ -109,19 +110,19 @@ class App extends Component {
  
   render(){
  
-    // const show = this.state.dialogIsOpen;
-    // const kendoDialog = show ? (<KendoDialog handleDialogClose={this.closeDialog} title="Detail ARR"  visible={true} appContent={[]}/>) : null;
+    const show = this.state.dialogIsOpen;
+    const kendoDialog = show ? (<KendoDialog handleDialogClose={this.closeDialog} title="Detail ARR"  visible={true} appContent={[]}/>) : null;
      return (
       <div>
         <Navigation />
         <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
         <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
         <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
-        {/* <Slide direction="up">
+        <Slide direction="up">
           {kendoDialog}
-        </Slide> */}
+        </Slide>
         <div className='bottomSummaryContainer'>
-          <ButtomSummaryBox rerender={this.state.renderFooter}/>
+          <ButtomSummaryBox handleViewDetails={this.openDialogFilterPanel} rerender={this.state.renderFooter}/>
         </div>
       </div>
   )

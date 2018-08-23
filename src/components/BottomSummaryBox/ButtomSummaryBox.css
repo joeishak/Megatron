@@ -39,3 +39,13 @@ padding-bottom: 50px;
 .green{
     color: green;
 }
+.detailButton{
+    background-color:#1573e6;
+    border-radius:25px;
+    color: #ffffff;
+    margin-left:20px;
+    padding:5px;
+    font-size:16px;
+    display:inline-block;
+    border:none;
+}

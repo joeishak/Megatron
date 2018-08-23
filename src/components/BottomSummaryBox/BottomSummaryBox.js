@@ -4,7 +4,8 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import styles from './ButtomSummaryBox.css';
 import {Grid, Row, Col} from 'react-bootstrap';
 import KendoMultiChart from '../KendoMultiChart/KendoMultiChart';
-
+import {connect } from 'react-redux';
+import * as actions from 'actions';
 const inStyles = {
     multichart:{
         backgroundColor: '#e8e8e8'
@@ -16,6 +17,11 @@ class ButtomSummaryBox extends Component {
         this.state = {
             rerender: this.props.rerender
         }
+        this.openDialog= this.openDialog.bind(this);
+    }
+
+    openDialog = ()=>{
+        
     }
     render(){
         return(
@@ -31,6 +37,7 @@ class ButtomSummaryBox extends Component {
                             transitionLeave={false} >
                             <div>
                             Net New ARR
+                            <button className="detailButton" onClick={this.props.handleViewDetails} >View Details </button>
                         
 
                          <CSSTransitionGroup

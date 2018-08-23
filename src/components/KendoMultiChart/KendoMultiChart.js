@@ -9,7 +9,8 @@ import {
     ChartCategoryAxis,
     ChartCategoryAxisTitle,
     ChartCategoryAxisItem,
-    ChartArea
+    ChartArea,
+    ChartAxisDefaults
 } from '@progress/kendo-react-charts';
 
 class KendoMultiChart extends Component {
@@ -20,22 +21,24 @@ class KendoMultiChart extends Component {
     }
 
     render(){
-        const [ firstSeries, secondSeries, thirdSeries, fourthSeries ] = [[100, 123, 234, 343], [120, 67, 231, 196], [45, 124, 189, 143], [87, 154, 210, 215]];
-        const categories = ['Q1', 'Q2', 'Q3', 'Q4'];
+        const [ firstSeries, secondSeries, thirdSeries ] = [[100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                                                            [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
+                                                            [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]];
+        const categories = ['Q3Y18', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
         const ChartContainer = () => (
-        <Chart pannable={true} zoomable={true}>
-            <ChartArea background="transparent" ></ChartArea>
-            <ChartTitle text="Units sold" />
-            <ChartCategoryAxis>
+        <Chart pannable={false} zoomable={false} >
+         <ChartAxisDefaults majorGridLines={false} minorGridLines={false}/>
+            <ChartArea background="transparent" /* gridLines='{visible: false}' */></ChartArea>
+            <ChartTitle text="" />
+            <ChartCategoryAxis major>
                 <ChartCategoryAxisItem categories={categories}>
                 <ChartCategoryAxisTitle text="Months" />
                 </ChartCategoryAxisItem>
             </ChartCategoryAxis>
             <ChartSeries>
                 <ChartSeriesItem type="column" gap={2} spacing={0.25} data={firstSeries} />
-                <ChartSeriesItem type="column" data={secondSeries} />
+                <ChartSeriesItem type="line" data={secondSeries} />
                 <ChartSeriesItem type="line" data={thirdSeries} />
-                <ChartSeriesItem type="line" data={fourthSeries} />
             </ChartSeries>
         </Chart>
     );

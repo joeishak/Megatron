@@ -13,13 +13,15 @@ img {
     /* padding-right: 20px;
     padding-top: 20px; */
 
-    padding: 20px;
+    /* padding: 20px; */
     height: 50px;
   
 }
 .pillsContainer{
     overflow: wrap;
     float:left;
+    padding-top:20px;
+    padding-left: 20px;
 }
 expandBox{
     height: 100%;
@@ -44,7 +46,7 @@ expandBox{
 .newFilterDiv{
     float: right;
     color: #ffffff;
-    /* padding:20px; */
+    padding:20px;
 }
 .newFilterButton{
     width:30px;
