@@ -3,6 +3,9 @@ export const UPDATE_MULTI_FILTER_VALUES      = "update_multi_filter_values";
 export const UPDATE_MULTI_FILTER_STATUS      = "update_multi_filter_status";
 export const ADD_MULTI_FILTER                = "add_multi_filter";
 export const REMOVE_MULTI_FILTER             = "remove_multi_filter";
+export const INDEX_FILTER_DATA               = "index_filter_data";
+
+
 // Authentication
 export const CHANGE_AUTH                     = 'change_auth';
 

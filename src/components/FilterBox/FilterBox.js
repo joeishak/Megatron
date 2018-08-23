@@ -44,7 +44,7 @@ class FilterBox extends Component {
         return(
             this.props.activeFilters.map(filter =>{
                 if(filter!==undefined){
-                return <FilterPillBox key={filter.value} data={filter}/>
+                return <FilterPillBox key={filter.index} data={filter} />
                 }
             })
         )
@@ -91,7 +91,7 @@ class FilterBox extends Component {
     }
 }
 function mapStateToProps(state) {
-    console.log(state);
+    // console.log(state);
     return {filters: state.filters, activeFilters: state.activeFilters};
   }
   

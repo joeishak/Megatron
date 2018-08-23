@@ -5,22 +5,20 @@ import {connect } from 'react-redux';
 import * as actions from 'actions';
 import KendoMultiSelect  from '../KendoMultiSelect/KendoMultiSelect';
 import {CSSTransitionGroup} from 'react-transition-group';
+
 class FilterPillBox extends  Component {
     constructor(props){
         super(props);
         this.state = {
-            filter:{
-                filterCategory: "",
-                value: ""
-            }
-           
+            value: this.props.data.value
         }
+
+        console.log(this.props);
         this.removeFilter = this.removeFilter.bind(this);
     }
     
     removeFilter(){
-        console.log('removing filter',this.props.data);
-        this.props.removeMultiFilter(this.props.data);
+        this.props.removeMultiFilter(this.props.data.index);
     }
     render(){
         return(
@@ -31,7 +29,7 @@ class FilterPillBox extends  Component {
                                         transitionAppearTimeout={1000}
                                         transitionEnter={false} 
                                         transitionLeave={false} >
-            <span className="filterText" >{this.props.data.value}<span className="xButton" onClick={this.removeFilter}>x</span></span>
+            <span className="filterText" >{this.state.value}<span className="xButton" onClick={this.removeFilter}>x</span></span>
             </CSSTransitionGroup>
 
         )

@@ -45,7 +45,7 @@ class CustomDropDownPanel extends Component {
                 >
                 <div className="quarterFilterContainer" >
                     <p> Quarter</p>
-                    <KendoDropDownList category="quarter" data={this.props.availableFilters.quarters}/>
+                    <KendoDropDownList  data={this.props.availableFilters.quarters}/>
                 </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
@@ -59,7 +59,7 @@ class CustomDropDownPanel extends Component {
 
                     <div className="quarterFilterContainer" >
                         <p> Geo</p>
-                        <KendoDropDownList category="geo" data={this.props.availableFilters.geos}/>
+                        <KendoDropDownList  data={this.props.availableFilters.geos}/>
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
@@ -70,7 +70,7 @@ class CustomDropDownPanel extends Component {
                 transitionLeave={false}>
                     <div className="quarterFilterContainer" >
                         <p> Product Name</p>
-                        <KendoDropDownList category="product" data={this.props.availableFilters.products}/>
+                        <KendoDropDownList  data={this.props.availableFilters.products}/>
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
@@ -81,7 +81,7 @@ class CustomDropDownPanel extends Component {
                 transitionLeave={false}>
                     <div className="quarterFilterContainer" >
                         <p> Subscription Offering</p>
-                        <KendoDropDownList category="subscription" data={this.props.availableFilters.subscriptionOfferings} />
+                        <KendoDropDownList  data={this.props.availableFilters.subscriptionOfferings} />
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
@@ -93,7 +93,7 @@ class CustomDropDownPanel extends Component {
                 >
                     <div className="quarterFilterContainer" >
                         <p> Market Area</p>
-                        <KendoDropDownList category="market" data={this.props.availableFilters.marketAreas} />
+                        <KendoDropDownList  data={this.props.availableFilters.marketAreas} />
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
@@ -104,7 +104,7 @@ class CustomDropDownPanel extends Component {
                 transitionLeave={false}>
                     <div className="quarterFilterContainer" >
                         <p>  Route To Market</p>
-                        <KendoDropDownList category="route" data={this.props.availableFilters.routeToMarkets}/>
+                        <KendoDropDownList data={this.props.availableFilters.routeToMarkets}/>
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup
@@ -115,7 +115,7 @@ class CustomDropDownPanel extends Component {
                 transitionLeave={false}>
                     <div className="quarterFilterContainer" >
                         <p> Segment</p>
-                        <KendoDropDownList category="segment" data={this.props.availableFilters.segments}/>
+                        <KendoDropDownList  data={this.props.availableFilters.segments}/>
                     </div>
             </CSSTransitionGroup>
             <CSSTransitionGroup

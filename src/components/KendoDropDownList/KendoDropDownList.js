@@ -12,30 +12,36 @@ const inStyles = {
 class KendoDropDownList extends Component {
     constructor (props) {
         super(props);
-        
+        this.state = {
+            data: props.data,
+            value: props.data[0]
+            
+        }
         this.handleFilterChange = this.handleFilterChange.bind(this);
+        // console.log(this.state.data[0])
     }
 
+     
     handleFilterChange(event){
-
-        console.log(event);
-        this.props.addValueToActiveMultiFilter({
-            category: this.props.category,
-            value: event.target.value
-        });
+        this.setState({value: event.target.value});
+        this.props.addValueToActiveMultiFilter(event.target.value);
     }
     render(){
         return(
             <DropDownList 
                 style={inStyles.background} 
-                data={this.props.data} 
-                onChange={this.handleFilterChange}/>
+                textField="value"
+                data={this.state.data} 
+                onChange={this.handleFilterChange}
+                value={this.state.value}
+                defaultvalue={this.state.data[0]}
+                />
         )
     }
 }
 
 function mapStateToProps(state) {
-    return {};
+    return {activeFilters:state.activeFilters};
   }
   
 export default connect(mapStateToProps,actions)(KendoDropDownList)
