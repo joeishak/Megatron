@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+}
+
 .bottomSummaryContainer{
     padding-top: 80px;
     background-color: #e8e8e8;

@@ -74,20 +74,23 @@ padding-bottom: 50px;
     animation-delay: 5s;
 }
 
+/* Animations for the MultiChart on  */
 .over {
   background: #e8e8e8;
   float: left;
   height: 350px;
   width:auto;
-  margin-top: -624px;
+  margin-top: -399px;
   margin-left: 71px;
   overflow: visible;
-  position: fixed;
+  position: relative;
   width: 1700px;
+
+
   -webkit-animation: mover 4s ease-in-out forwards;
   -moz-animation: mover 4s ease-in-out forwards;
   -o-animation: mover 4s ease-in-out forwards;
-  animation: mover 4s ease-in-out forwards;
+  animation: mover 4s ease-in-out forwards; 
 }
 
 
