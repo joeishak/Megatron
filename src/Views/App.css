@@ -4,7 +4,6 @@
     height: 100%;
 }
 
-
 /* Animation */
 
 .example-appear {
@@ -20,4 +19,18 @@
     transition: all 1s ease-out;
     animation-duration: 100s;
     animation-delay: 5s;
+}
+
+
+/* .custom-animation {
+    width: 100%;
+    height: 100%;
+   
+} */
+.custom-animation-enter {
+    transform: scale(0);
+    transition: transform 500ms ease-in-out;
+}
+.custom-animation-enter-active {
+    transform: scale(1);
 }

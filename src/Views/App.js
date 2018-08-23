@@ -3,12 +3,13 @@ import Navigation from 'components/Navigation/Navigation';
 import { Route,Link } from 'react-router-dom';
 import {connect } from 'react-redux';
 import * as actions from 'actions';
-import {Fade, Expand, Slide, Animation } from '@progress/kendo-react-animation';
+import {Slide, Animation } from '@progress/kendo-react-animation';
 import styles from './App.css';
 import _ from 'lodash';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CSSTransitionGroup } from 'react-transition-group';
 
+import '@progress/kendo-theme-default/dist/all.css';
 // Kendo Components
 import KendoPanelBar from 'components/KendoPanelBar/KendoPanelBar';
 import KendoGrid from 'components/KendoGrid/KendoGrid';
@@ -44,7 +45,8 @@ class App extends Component {
       renderFooter: false,
       marketAreaFilters: this.props.activeFilters,
       filterPanelIsOpen: false,
-      showDropDowns: false
+      showDropDowns: false,
+      dialogIsOpen: this.props.dialogIsOpen
     };
 
       /*Bindings  */
@@ -113,19 +115,33 @@ class App extends Component {
  
     const show = this.props.dialogIsOpen
     const kendoDialog = show ? ( 
-        <KendoDialog title="Detail ARR"  appContent={[]}/>
+
+      <Animation 
+      // style={{width:'70%',height:'700px'}}
+        appear={false}
+        enter={true}
+        exit={true}
+        transitionName="custom-animation"
+        className="custom-animation"
+        transitionEnterDuration={300}
+        transitionExitDuration={300}
+
+        >
+        <KendoDialog title="Detail ARR"  appContent={[]}></KendoDialog>
+        </Animation>
       ) : null;
      return (
-      <div>
+      <div style={{width:'100%',height:'100%'}}>
+        <div style={{width:'100%',height:'inherit'}}>
+
+        <KendoDialog />
+        </div>
         <Navigation />
         <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
         <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
         <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
-        <div>
-          <Slide>
-           {kendoDialog}
-          </Slide>
-        </div>
+         
+       
 
         <div className='bottomSummaryContainer'>
           <ButtomSummaryBox rerender={this.state.renderFooter}/>
