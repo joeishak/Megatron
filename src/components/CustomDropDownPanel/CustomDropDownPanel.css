@@ -66,7 +66,7 @@
 .panelBarContainer-open{
     color: white;
     background-color: #3c3c3c;
-    height: 150px;
+    height: 130px;
     padding: 20px;
 }
 
@@ -79,4 +79,20 @@
     float:left;
     margin-right: 20px;
     padding-top: 20px;
+}
+
+@media only screen and (max-width: 1607px) {
+    /* tablets and desktop */
+    .panelBarContainer-open{
+        height: 210px;
+
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    /* tablets and desktop */
+    .panelBarContainer-open{
+        height: 350px;
+
+    }
 }
