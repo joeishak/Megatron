@@ -74,31 +74,23 @@ padding-bottom: 50px;
     animation-delay: 5s;
 }
 
-
-  
-.chartBig {
-    /* background-color: white; */
-    /* width: 1330px;
-    position: absolute; */
-}
 .over {
   background: #e8e8e8;
   float: left;
   height: 350px;
   width:auto;
-  margin-top: -403px;
+  margin-top: -624px;
   margin-left: 71px;
   overflow: visible;
-  /* position: relative; */
-  width: 1500px;
-  color: #FFFFFF;
-
-
+  position: fixed;
+  width: 1700px;
   -webkit-animation: mover 4s ease-in-out forwards;
   -moz-animation: mover 4s ease-in-out forwards;
   -o-animation: mover 4s ease-in-out forwards;
   animation: mover 4s ease-in-out forwards;
 }
+
+
 
 @-webkit-keyframes mover {
     0% { -webkit-transform: translateX(0); }
