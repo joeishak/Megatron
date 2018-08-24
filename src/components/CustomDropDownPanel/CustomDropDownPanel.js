@@ -141,7 +141,6 @@ class CustomDropDownPanel extends Component {
 
             <div className={panelDropDownContainer} >
                 {DropDownChildren}
-                
         </div>
         )
     }

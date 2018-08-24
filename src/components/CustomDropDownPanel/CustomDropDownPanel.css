@@ -58,9 +58,6 @@
     height: 0;
     width: 100%;
     background-color: #3c3c3c;
-    /* padding-right: 20px;
-    padding-top: 20px; */
-    
     padding-bottom:30px;
 }
 .panelBarContainer-open{
@@ -95,4 +92,39 @@
         height: 350px;
 
     }
+}
+
+.k-dropdown .k-dropdown-wrap .k-select, .k-ie .k-dropdown .k-dropdown-wrap .k-select, .k-ff .k-dropdown .k-dropdown-wrap .k-select {
+    background-color: rgb(34, 34, 34) !important;
+    color: white !important;
+    color: white;
+}
+
+[data-role="popup"] {
+    background-color: rgb(34, 34, 34) !important;
+    color: white !important;
+}
+
+[data-role="popup"] ul li[class="k-item k-state-hover"], [data-role="popup"] ul li[class="k-item k-state-selected k-state-focused"] {
+    border-radius: 0px;
+}
+
+.k-select .k-dropdown .k-dropdown-wrap .k-ff .k-select {
+    background-color: rgb(34, 34, 34) !important;
+    color: white !important;
+    color: white !important;
+}
+
+.k-list-container {
+    white-space: nowrap !important;
+}
+
+.k-input {
+    background-color: rgb(34, 34, 34) !important;
+    color: white !important;
+}
+
+.k-dropdown{
+    background-color: rgb(34, 34, 34) !important;
+    color: white !important;
 }
