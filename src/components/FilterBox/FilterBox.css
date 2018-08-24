@@ -1,42 +1,15 @@
 
-/* Disable images from being selected */
-img {
-    -khtml-user-select: none;
-    -o-user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
 .filterContainer {
     background-color: #3c3c3c;
     height: 70px;
   
 }
+
 .pillsContainer{
     overflow: wrap;
     float:left;
     padding-top:20px;
     padding-left: 20px;
-}
-expandBox{
-    height: 100%;
-    width: 100%;
-}
-.multiSelect {
-    background-color: #3c3c3c;
-}
-
-.filterText{
-    border: 1px solid #ffffff;
-    border-radius: 20px;
-    padding: 10px;
-    width: inherit;
-
-}
-.filterText, .xButton{
- color: #ffffff;
- background-color: #3c3c3c;
 }
 
 .newFilterDiv{
@@ -44,6 +17,12 @@ expandBox{
     color: #ffffff;
     padding:20px;
 }
+
+.newFilterText{
+    padding-bottom: 5px;
+    padding-right: 10px;
+}
+
 .newFilterButton{
     width:30px;
     height:30px;
@@ -51,11 +30,6 @@ expandBox{
     /* border: 1px solid #ffffff; */
     border-radius: 50%;
     text-align: center;
-
-}
-.newFilterText{
-    padding-bottom: 5px;
-    padding-right: 10px;
 }
 
 /* Animate when clicking and closing */
@@ -65,12 +39,26 @@ expandBox{
     background-color: #1573e6;
     border: #1573e6;
     cursor: pointer;
-
 }
+
 .newFilterButton-close{
     -webkit-transform: rotate(-180deg);
     -webkit-transition-duration: .5s;
     cursor: pointer;
 }
+
+/* Disable images from being selected */
+img {
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+
+
+
+
 
 

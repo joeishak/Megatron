@@ -14,46 +14,7 @@
     animation-duration: 100s;
     animation-delay: 5s;
 }
-.ddFilter-leave {
-    opacity: 0;
-    transform: translateX(200px);
-    animation-duration: 4s;
-    animation-delay: 2s;
-  }
-  
-  .ddFilter-leave .ddFilter-leave-active {
-    opacity: 0.01;
-    transition: opacity 300ms ease-in;
-  }
 
-
-
-/* 
-  
-.ddFilter-enter {
-    opacity: 0.01;
-    transform: translateX(-200px);
-    animation-duration: 4s;
-    animation-delay: 2s;
-  }
-  .ddFilter-enter-active {
-    opacity: 1;
-    transform: translateY(0px);
-    transition: all 1s ease-out;
-    animation-duration: 100s;
-    animation-delay: 5s;
-  
-  }
-  .ddFilter-exit {
-    opacity: 0;
-    transform: translateX(200px);
-    animation-duration: 4s;
-    animation-delay: 2s;
-  }
-  .ddFilter-exit-active {
-    opacity: 0.01;
-    transition: opacity 300ms ease-in;
-  } */
 .panelBarContainer{
     height: 0;
     width: 100%;

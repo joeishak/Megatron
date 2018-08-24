@@ -12,17 +12,8 @@ export default ({children, initialState ={
     isDialogOpen: false,
     adobeData: [],
     availableFilters: {    },
-    activeFilters:[
-        // {index: 52, category: 'geos', value: "All Data"},
-        // {index: 55, category: 'marketAreas', value: "All Data"},
-        // {index: 53, category: 'products', value: "All Data"},
-        // {index: 51, category: 'quarters', value: "All Data"},
-        // {index: 56, category: 'routeToMarkets', value: "All Data"},
-        // {index: 57, category: 'segments', value: "All Data"},
-        // {index: 54, category: 'subscriptionOfferings', value: "All Data"}
-
-
-    ]
+    activeFilters:[],
+    switchFilter: false
 }}) => {
     const store = createStore(
         reducers,

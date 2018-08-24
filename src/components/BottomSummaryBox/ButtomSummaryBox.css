@@ -1,31 +1,8 @@
 
-
-.titleHeader {
-    background-color:#e8e8e8;
-    height: 40px;
-    font-size: 1.9em;
-}
-.statsHeader {
- float: right;
- margin-left: 40px;
- font-size: 1em;
-
-}
-
-.header-appear {
-    opacity: 0;
-    transform: translateY(-80px);
-}
-  
-.header-appear.header-appear-active {
-    opacity: 1;
-    transform: translateY(0px);
-    transition: all 1s ease-out;
-}
 .gridRow1{
-margin-right: 20px;
-margin-left: 20px;
-padding-bottom: 50px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-bottom: 50px;
 }
 
 .gridRow2{
@@ -33,15 +10,28 @@ padding-bottom: 50px;
     margin-left: 20px;
     margin-top: 100px;
 }
-
-.red{
-    color: red;
-
-}
-.green{
-    color: green;
+.titleHeader {
+    background-color:#e8e8e8;
+    height: 40px;
+    font-size: 1.9em;
 }
 
+/* Animation */
+.example-appear {
+    opacity: 0;
+    transform: translateY(-200px);
+    animation-duration: 4s;
+    animation-delay: 2s;
+}
+.example-appear.example-appear-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 1s ease-out;
+    animation-duration: 100s;
+    animation-delay: 5s;
+}
+
+/* View Details Button */
 .detailButton{
     background-color:#1573e6;
     border-radius:18px;
@@ -55,24 +45,23 @@ padding-bottom: 50px;
     border:none;
     font-size: 16px;
     line-height: 16px;
+}
 
+.statsHeader {
+    float: right;
+    margin-left: 40px;
+    font-size: 1em;
 }
 
 
-.example-appear {
-    opacity: 0;
-    transform: translateY(-200px);
-    animation-duration: 4s;
-    animation-delay: 2s;
+/* Background Indicators */
+.red{
+    color: red;
 }
-  
-.example-appear.example-appear-active {
-    opacity: 1;
-    transform: translateY(0px);
-    transition: all 1s ease-out;
-    animation-duration: 100s;
-    animation-delay: 5s;
+.green{
+    color: green;
 }
+
 
 /* Animations for the MultiChart on  */
 .over {
@@ -92,8 +81,6 @@ padding-bottom: 50px;
   -o-animation: mover 4s ease-in-out forwards;
   animation: mover 4s ease-in-out forwards; 
 }
-
-
 
 @-webkit-keyframes mover {
     0% { -webkit-transform: translateX(0); }

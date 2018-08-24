@@ -12,6 +12,7 @@ class KendoSwitch extends Component {
     }
     
     changeSwitch = (event) =>{
+        console.log(event.target.value)
         this.props.updateSwitchFilterValue(event.target.value);
     }
     render(){

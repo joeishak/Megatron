@@ -1,6 +1,6 @@
+// Npm Modules
 import React, {Component } from 'react';
 import ReactDOM from 'react-dom';
-
 import {
     Chart,
     ChartTitle,
@@ -17,8 +17,10 @@ import {
 
 class KendoMultiChart extends Component {
 
+    //When the component is constructed
     constructor(props){
         super(props);
+        // Initialize state
         this.state = { data: [] };
     }
 
