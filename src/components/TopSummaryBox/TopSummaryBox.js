@@ -5,12 +5,13 @@ import {connect} from 'react-redux';
 import {Grid, Row, Col} from 'react-bootstrap';
 import {Fade, Expand, Animation, Slide } from '@progress/kendo-react-animation';
 import { CSSTransitionGroup } from 'react-transition-group';
-
+import classNames from 'classnames';
 // Custom Components and Styles
 import  * as actions from 'actions';
 import styles from './TopSummaryBox.css'
 import  KendoSwitch  from '../KendoSwitch/KendoSwitch';
 import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
+import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 
 class TopSummaryBox extends Component {
 
@@ -33,6 +34,11 @@ class TopSummaryBox extends Component {
         this.enableChart2Arrow = this.enableChart2Arrow.bind(this);
         this.enableChart3Arrow = this.enableChart3Arrow.bind(this);
         this.enableChart4Arrow = this.enableChart4Arrow.bind(this);
+
+
+    }
+    componentDidUpdate(){
+        console.log(this.props.switchFilter);
 
     }
    //Event handlers for each chart square to render the arrow
@@ -89,8 +95,14 @@ class TopSummaryBox extends Component {
     }
    
     render(){
+        var SummaryBoxStyles = classNames({
+            summaryBox: true,
+            'gridContainer':this.props.switchFilter ? true: false,
+            summaryBox_financial: this.props.switchFilter ? false: true
+        })
         const { activeCard } = this.state;
 
+        
         const chart1 = this.state.show ? ( 
         <div className={`sumChartSquare ${activeCard === 'card1' ? 'selectedCard ' : ''}`} 
         onClick={e => this.selectedCard(e, 'card1')}>
@@ -162,10 +174,91 @@ class TopSummaryBox extends Component {
                 </div>
   
             </div>) : null;
+const summaryViewIsFinancial= (!this.props.switchFilter) ?(
+    <div className="chartRow">
 
+                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.enableChart1Arrow}>
+                    <div >
+                        <div className="flipper">
+                            <div className="front ">
+                                {/* <!-- front content --> */}
+                                <CSSTransitionGroup
+                                    transitionName="example"
+                                    transitionAppear={true}
+                                    transitionAppearTimeout={1000}
+                                    transitionEnter={false} 
+                                    transitionLeave={false}>
+                                     {chart1}
+                                </CSSTransitionGroup>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" onClick = {this.enableChart2Arrow}>
+                <div >
+                        <div className="flipper">
+                            <div className="front">
+                                {/* <!-- front content --> */}
+                                <CSSTransitionGroup
+                                    className="chart1"
+                                    transitionName="example"
+                                    transitionAppear={true}
+                                    transitionAppearTimeout={1000}
+                                    transitionEnter={false} 
+                                    transitionLeave={false} >
+                                      {chart2} 
+                                </CSSTransitionGroup>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" onClick = {this.enableChart3Arrow}>
+                <div >
+                        <div className="flipper">
+                            <div className="front">
+                                {/* <!-- front content --> */}
+                                <CSSTransitionGroup
+                                    className="chart1"
+                                    transitionName="example"
+                                    transitionAppear={true}
+                                    transitionAppearTimeout={1000}
+                                    transitionEnter={false} 
+                                    transitionLeave={false} >
+                                        {chart3} 
+                                </CSSTransitionGroup>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" onClick = {this.enableChart4Arrow}>
+                <div >
+                        <div className="flipper">
+                            <div className="front">
+                                {/* <!-- front content --> */}
+                                <CSSTransitionGroup
+                                    className="chart1"
+                                    transitionName="example"
+                                    transitionAppear={true}
+                                    transitionAppearTimeout={1000}
+                                    transitionEnter={false} 
+                                    transitionLeave={false} >
+                                        {chart4} 
+                                </CSSTransitionGroup>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+               
+
+    </div>):
+    null;
         return(
 
-            <Grid className="gridContainer" fluid>
+            <Grid className={SummaryBoxStyles} fluid>
 
                 <CSSTransitionGroup transitionName="example"
                     transitionAppear={true} transitionAppearTimeout={1000}
@@ -187,86 +280,9 @@ class TopSummaryBox extends Component {
                     
                 </CSSTransitionGroup>
 
-              
-                <div className="chartRow">
+              {summaryViewIsFinancial}
 
-                    <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.enableChart1Arrow}>
-                        <div >
-                            <div className="flipper">
-                                <div className="front ">
-                                    {/* <!-- front content --> */}
-                                    <CSSTransitionGroup
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={1000}
-                                        transitionEnter={false} 
-                                        transitionLeave={false}>
-                                         {chart1}
-                                    </CSSTransitionGroup>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" onClick = {this.enableChart2Arrow}>
-                    <div >
-                            <div className="flipper">
-                                <div className="front">
-                                    {/* <!-- front content --> */}
-                                    <CSSTransitionGroup
-                                        className="chart1"
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={1000}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
-                                          {chart2} 
-                                    </CSSTransitionGroup>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" onClick = {this.enableChart3Arrow}>
-                    <div >
-                            <div className="flipper">
-                                <div className="front">
-                                    {/* <!-- front content --> */}
-                                    <CSSTransitionGroup
-                                        className="chart1"
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={1000}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
-                                            {chart3} 
-                                    </CSSTransitionGroup>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" onClick = {this.enableChart4Arrow}>
-                    <div >
-                            <div className="flipper">
-                                <div className="front">
-                                    {/* <!-- front content --> */}
-                                    <CSSTransitionGroup
-                                        className="chart1"
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={1000}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
-                                            {chart4} 
-                                    </CSSTransitionGroup>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+            
 
             </Grid>
         )
@@ -274,7 +290,7 @@ class TopSummaryBox extends Component {
 }
 
 function mapStateToProps(state) {
-    // console.log(state);
+    console.log('Switch Filter'+ state.switchFilter);
     return { filters: state.filters, switchFilter:state.switchFilter };
 }
 

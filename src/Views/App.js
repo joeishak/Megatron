@@ -113,12 +113,12 @@ class App extends Component {
  
   render(){
 
-    const summary = !this.props.switchFilter ? 
-        <div><TopSummaryBox handleSummaryClick={this.renderBarGraph} />
-            <div className='bottomSummaryContainer'>
-              <ButtomSummaryBox rerender={this.state.renderFooter}/>
-            </div>
-        </div> : null;
+    // const summary = !this.props.switchFilter ? 
+    //     <div><TopSummaryBox handleSummaryClick={this.renderBarGraph} />
+    //         <div className='bottomSummaryContainer'>
+    //           <ButtomSummaryBox rerender={this.state.renderFooter}/>
+    //         </div>
+    //     </div> : null;
 
  
     const show = this.props.dialogIsOpen
@@ -138,6 +138,12 @@ class App extends Component {
         <KendoDialog title="Detail ARR"  appContent={[]}></KendoDialog>
         </Animation>
       ) : null;
+
+      const bottomSummary = !this.props.switchFilter ? 
+      <div className='bottomSummaryContainer'>
+      <ButtomSummaryBox rerender={this.state.renderFooter}/>
+      </div>:
+      null;
      return (
       <div style={{width:'100%',height:'100%'}}>
         <div style={{width:'100%',height:'inherit'}}>
@@ -148,8 +154,9 @@ class App extends Component {
         <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
         <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
 
-        
-        {summary}
+        <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
+       {bottomSummary}
+          {/* {summary} */}
         
       </div>
   )
@@ -157,7 +164,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+    console.log(state);
   return {
     dialogIsOpen:state.isDialogOpen,
     activeFilters: state.activeFilters,

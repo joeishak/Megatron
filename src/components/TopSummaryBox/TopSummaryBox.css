@@ -40,6 +40,15 @@
     height: 390px;
 }
 
+.summaryBox{
+	background-color: #1F1F1F;
+    /* background-image: linear-gradient(rgb(68, 68, 68),rgb(62, 62, 62),rgb(16, 16, 16)); */
+	/* padding-top: 30px; */
+	padding-bottom: 400px;
+    height: 100%;
+}
+
+.summaryBox_financial
 /* .sumChartSquare{
     height: 200px !important;
     width: 175px !important;
@@ -305,4 +314,10 @@ input:checked + .slider:before  {
 .slideContainer {
 	width: 90%;
 	align-content: center;
+}
+
+.bottomSummaryContainer{
+    padding-top: 80px;
+    background-color: #e8e8e8;
+    height: 100%;
 }
