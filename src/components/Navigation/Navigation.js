@@ -1,31 +1,34 @@
+// Npm Modules
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import  classNames  from 'classnames';
-import styles from './Navigation.css';
-import logo from "../../assets/images/adobe-logo-nav-1.svg";
 import { Route,Link } from 'react-router-dom';
 import {Nav, NavItem, Navbar, NavDropdown, MenuItem} from 'react-bootstrap';
 import { Animation, Expand, Fade, Push, Slide, Zoom, Reveal } from '@progress/kendo-react-animation';
+// Custom Components and Styles
 import App from '../../Views/App.js';
 import userIcon from './user-icon.svg';
+import styles from './Navigation.css';
+import logo from "../../assets/images/adobe-logo-nav-1.svg";
 
 class Navigation extends Component {
       
 
+    //When the component is constructed
     constructor(props) {
         super(props);
-
+        // Initialize state
+        this.state = {
+          loggedUser: 'J. Summerson',
+          show: false,
+          activeTab: 'tab1'
+        }
+        //Binding functions to this
         this.showLogo = this.showLogo.bind(this);
         this.showLogo();
     }
 
-    state = {
-      loggedUser: 'J. Summerson',
-      show: false,
-      activeTab: 'tab1'
-    }
-
-
+    // Function to show the logo after 1 second
     showLogo = () => {
       this.timeout = setTimeout(() => { 
         this.setState({
@@ -34,6 +37,8 @@ class Navigation extends Component {
       }, 1000);
     }
 
+    //Event handler for setting the active tab
+    // Dictates the style for the chosen tab
     selectedNavItem (e, tab) {
       e.preventDefault();
       switch(tab) {
@@ -63,9 +68,10 @@ class Navigation extends Component {
     
     render() {
 
+      //local constants for showing the logo with an animation 
       const { show } = this.state;
       const logos = show ? (<img src={logo} className="imgLogo"/>) : null;
-
+      
       const { activeTab } = this.state;
     
         return(

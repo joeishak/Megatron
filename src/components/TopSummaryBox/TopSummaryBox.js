@@ -1,61 +1,23 @@
+// Npm Modules
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {Grid, Row, Col} from 'react-bootstrap';
-import  KendoSwitch  from '../KendoSwitch/KendoSwitch';
-import styles from './TopSummaryBox.css'
-import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
 import {Fade, Expand, Animation, Slide } from '@progress/kendo-react-animation';
 import { CSSTransitionGroup } from 'react-transition-group';
 
-//https://github.com/reactjs/react-transition-group/tree/v1-stable
+// Custom Components and Styles
+import  * as actions from 'actions';
+import styles from './TopSummaryBox.css'
+import  KendoSwitch  from '../KendoSwitch/KendoSwitch';
+import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
 
-// const inStyles = {
-
-//     sumChartSqaure:{
-//         height: '320px',
-//         width: '100%',
-//         // border: '1px solid #FD6060',
-//         marginTop: '15px'
-//     },
-//     sumChartContent:{
-//         height:'100%',
-//         width:'100%',
-//         backgroundColor:'white'
-//     },
-//     sumChartHeader:{
-//         height: '18%',
-//         width: '100%',
-//         textAlign: 'center',
-//         fontSize: '1.4em',
-//         paddingTop:'10px',
-//         backgroundColor: '#FD6060',
-//     },
-//     sumChartHeaderBack: {
-//         height: '18%',
-//         width: '100%',
-//         textAlign: 'center',
-//         fontSize: '1.4em',
-//         paddingTop:'10px',
-//         backgroundColor: 'white'
-//     },
-//     sumChartHeaderText: {
-//         color: 'white',
-//         paddingTop: '8px',
-//     },
-//     sumChartHeaderTextBack: {
-//         color: 'black',
-//         paddingTop: '8px',
-//     },
-//     slideContainer:{
-//         width:'90%',
-//         alignContent:'center'
-//     }
-// }
 class TopSummaryBox extends Component {
 
+    //When the component is constructed
     constructor(props){
         super(props);
+        // Initialize state
         this.state = { 
             show: true,
             // chart1ArrowCSS: "arrow_box",
@@ -66,46 +28,28 @@ class TopSummaryBox extends Component {
             isToggleButtonChecked: false,
             summaryTitle: 'Financials Summary'
         };
+        //Binding functions to this
         this.enableChart1Arrow = this.enableChart1Arrow.bind(this);
         this.enableChart2Arrow = this.enableChart2Arrow.bind(this);
         this.enableChart3Arrow = this.enableChart3Arrow.bind(this);
         this.enableChart4Arrow = this.enableChart4Arrow.bind(this);
 
     }
-  
+   //Event handlers for each chart square to render the arrow
     enableChart1Arrow(event){
-
-        // this.setState({ chart1ArrowCSS: "arrow_box",
-        //                 chart2ArrowCSS: "",
-        //                 chart3ArrowCSS: "",
-        //                 chart4ArrowCSS: "" });
         this.props.handleSummaryClick(1);
     }
     enableChart2Arrow(){
-        // this.setState({ chart2ArrowCSS: "arrow_box",
-        //                 chart1ArrowCSS: "",
-        //                 chart3ArrowCSS: "",
-        //                 chart4ArrowCSS: ""});
         this.props.handleSummaryClick(2);
-
     }
     enableChart3Arrow(){
-        // this.setState({ chart3ArrowCSS: "arrow_box",
-        //                 chart2ArrowCSS: "",
-        //                 chart1ArrowCSS: "",
-        //                 chart4ArrowCSS: ""});
         this.props.handleSummaryClick(3);
-
     }
     enableChart4Arrow(){
-        // this.setState({ chart4ArrowCSS: "arrow_box",
-        //                 chart2ArrowCSS: "",
-        //                 chart1ArrowCSS: "",
-        //                 chart3ArrowCSS: ""});
         this.props.handleSummaryClick(4);
-
     }
 
+    //Event handler that sets the active card
     selectedCard (e, card) {
         e.preventDefault();
         switch(card) {
@@ -127,9 +71,15 @@ class TopSummaryBox extends Component {
     //   Event handler for toggle change 'Financials' and 'Joruneys'
     onToggleButtonChanged = (e) => {
         let toggleState = this.state.isToggleButtonChecked;
-        this.setState({isToggleButtonChecked: !toggleState});
+        
+
+        this.setState({isToggleButtonChecked: !toggleState},()=>{
+            this.props.updateSwitchFilterValue(this.state.isToggleButtonChecked);
+
+        });
     }
 
+    //Function to check state and return either Financials summary or Journeys Summary
     getSummaryTitle() {
         if (this.state.isToggleButtonChecked) {
             return 'Journeys Summary'
@@ -324,7 +274,8 @@ class TopSummaryBox extends Component {
 }
 
 function mapStateToProps(state) {
-    return { filters: state.filters };
+    // console.log(state);
+    return { filters: state.filters, switchFilter:state.switchFilter };
 }
 
-export default connect(mapStateToProps)(TopSummaryBox)
+export default connect(mapStateToProps,actions)(TopSummaryBox)

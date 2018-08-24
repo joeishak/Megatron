@@ -1,22 +1,27 @@
+// Npm Modules
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import styles from './FilterPillBox.css';
 import {connect } from 'react-redux';
+import {CSSTransitionGroup} from 'react-transition-group';
+// Custom Components and Styles
+import styles from './FilterPillBox.css';
 import * as actions from 'actions';
 import KendoMultiSelect  from '../KendoMultiSelect/KendoMultiSelect';
-import {CSSTransitionGroup} from 'react-transition-group';
 
 class FilterPillBox extends  Component {
+    //When the component is constructed
     constructor(props){
         super(props);
+        // Initialize state
         this.state = {
             value: this.props.data.value
         }
 
-        console.log(this.props);
+        //Binding functions to this
         this.removeFilter = this.removeFilter.bind(this);
     }
     
+    //Function that calls the action which removes the specified multifilter according to the index
     removeFilter(){
         this.props.removeMultiFilter(this.props.data.index);
     }
