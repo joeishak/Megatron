@@ -45,10 +45,12 @@
     /* background-image: linear-gradient(rgb(68, 68, 68),rgb(62, 62, 62),rgb(16, 16, 16)); */
 	/* padding-top: 30px; */
 	padding-bottom: 400px;
-    height: 100%;
+    height: 390px;
 }
 
-.summaryBox_financial
+.summaryBox_financial{
+	height: 100%;
+}
 /* .sumChartSquare{
     height: 200px !important;
     width: 175px !important;

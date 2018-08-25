@@ -97,8 +97,7 @@ class TopSummaryBox extends Component {
     render(){
         var SummaryBoxStyles = classNames({
             summaryBox: true,
-            'gridContainer':this.props.switchFilter ? true: false,
-            summaryBox_financial: this.props.switchFilter ? false: true
+            summaryBox_financial: !this.props.switchFilter ? false: true
         })
         const { activeCard } = this.state;
 
