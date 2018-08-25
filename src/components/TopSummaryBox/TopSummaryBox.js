@@ -98,7 +98,19 @@ class TopSummaryBox extends Component {
         var SummaryBoxStyles = classNames({
             summaryBox: true,
             summaryBox_financial: !this.props.switchFilter ? false: true
+        });
+
+        var JourneysSquareStyles = classNames({
+            journeySquareStyle:true
+        });
+
+        var JourneysSquareHeader = classNames({
+            journeySquareHeader: true
         })
+        var JourneySquareContent = classNames({
+            journeySquareContent: true
+        })
+
         const { activeCard } = this.state;
 
         
@@ -279,7 +291,44 @@ const summaryViewIsFinancial= (!this.props.switchFilter) ?(
                     
                 </CSSTransitionGroup>
 
-              {summaryViewIsFinancial}
+              {/* {summaryViewIsFinancial} */}
+              <div className="chartRow">
+
+                <div className=" col-xs-12 col-sm-6 col-md-3 col-lg-9" >
+                    <div className={JourneysSquareStyles} >
+                       <div className={JourneysSquareHeader}>
+                            Header
+                        </div>
+                        {/* <div className={JourneySquareContent}>
+                        </div> */}
+                    </div>
+                    <div className={JourneysSquareStyles} >
+                       
+                    </div>
+                    <div className={JourneysSquareStyles} >
+                       
+                    </div>
+                    <div className={JourneysSquareStyles} >
+                       
+                    </div>
+                    <div className={JourneysSquareStyles} >
+                       
+                    </div>
+                </div>
+                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-9" >
+                <div >
+                        <div className="">
+                            <div className="">
+                                {/* <!-- front content --> */}
+                              
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
 
             
 

@@ -41,12 +41,12 @@
 }
 
 .summaryBox{
-	background-color: #1F1F1F;
+	background-color: #1f1f1f;
     /* background-image: linear-gradient(rgb(68, 68, 68),rgb(62, 62, 62),rgb(16, 16, 16)); */
 	/* padding-top: 30px; */
 	padding-bottom: 400px;
     height: 390px;
-}
+} 
 
 .summaryBox_financial{
 	height: 100%;
@@ -322,4 +322,43 @@ input:checked + .slider:before  {
     padding-top: 80px;
     background-color: #e8e8e8;
     height: 100%;
+}
+/**Journeys*/
+.journeySquareStyle{
+	height:109px;
+	width:262px;
+	background-color: #000000;
+	margin-top: 1px;
+	/* float: left; */
+	
+}
+.journeySquareHeader{
+	height:40px;
+	width:109px;
+	background-color: #3c3c3c;
+	margin-top:1px;	
+	color:white;
+	text-align: center;
+	transform: rotate(-90deg);
+	margin-top:13%;
+	margin-right: 0%;
+}
+.journeySquareContent{
+	background-color:#000000;
+	height:109px;
+	width:222px;
+	
+}
+.journeyContentHeader{
+	transform: rotate(-90deg);
+	color:white;
+	float: left;
+	position: relative;
+	margin:auto;
+	text-align: center;
+	height:100%;
+	width:100%;
+
+	
+
 }
