@@ -12,10 +12,10 @@ import {
   ChartArea
 } from '@progress/kendo-react-charts';
 
-const KendoBulletChart = () => {
+const KendoBulletChart = (props) => {
   const hidden = { visible: false };
 
-  const hum = [146.7, 242.3];
+  // const values = [146.7, 242.3];
 
   const tooltipRender = ({ point }) => {
     const { value } = point;
@@ -28,15 +28,26 @@ const KendoBulletChart = () => {
       </span>
     )};
 
+  const colorRender = () => {
+    let color = '';
+    if (props.values[0] > props.values[1]) {
+      color = 'green';
+    } else {
+      color = 'red';
+    }
+
+    return color;
+  }
+
   return (
     <div>
       <Chart style={{ height: 40 }}>
       <ChartArea background="transparent"></ChartArea>
           <ChartSeries>
-              <ChartSeriesItem type="bullet" color="red" data={hum} />
+              <ChartSeriesItem type="bullet" color={colorRender} data={props.values} />
           </ChartSeries>
           <ChartCategoryAxis>
-            <ChartCategoryAxisItem majorGridLines={false} minorGridLines={false} />
+            <ChartCategoryAxisItem  majorGridLines={false} minorGridLines={false} />
           </ChartCategoryAxis>
           <ChartTooltip render={tooltipRender} />
       </Chart>
