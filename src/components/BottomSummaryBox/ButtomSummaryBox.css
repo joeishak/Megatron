@@ -10,10 +10,16 @@
     margin-left: 20px;
     margin-top: 100px;
 }
-.titleHeader {
+.summaryTitleHeader {
     background-color:#e8e8e8;
     height: 40px;
     font-size: 1.9em;
+}
+.journeyTitleHeader {
+    background-color:#1F1F1F;
+    height: 40px;
+    font-size: 1.9em;
+    color:white;
 }
 
 /* Animation */
@@ -64,8 +70,16 @@
 
 
 /* Animations for the MultiChart on  */
-.over {
+.summaryOver {
   background: #e8e8e8;
+
+}
+.journeyOver{
+  background: #1f1f1f;
+
+}
+.over {
+  /* background: #e8e8e8; */
   float: left;
   height: 350px;
   width:auto;

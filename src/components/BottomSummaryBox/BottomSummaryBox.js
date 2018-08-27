@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {connect } from 'react-redux';
+import classNames from 'classnames';
 import * as actions from 'actions';
 import {Grid, Row, Col} from 'react-bootstrap';
 import { CSSTransitionGroup } from 'react-transition-group';
@@ -24,6 +25,7 @@ class ButtomSummaryBox extends Component {
         // Initialize state
         this.state = {
             rerender: this.props.rerender
+
         }
 
         //Binding functions to this
@@ -36,10 +38,19 @@ class ButtomSummaryBox extends Component {
         this.props.updateDialogVisibility(true)
     }
     render(){
+        var titleHeader= classNames({
+            summaryTitleHeader: (this.props.switchFilter)? false:true,
+            journeyTitleHeader: (this.props.switchFilter)? true: false
+        });
+        var over = classNames({
+            over: true,
+            summaryOver: (this.props.switchFilter)? false:true,
+            journeyOver: (this.props.switchFilter)? true: false
+        })
         return(
             <div className="" >
                 <div className="row gridRow1">
-                    <div className = "titleHeader col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div className = {titleHeader + " col-xs-12 col-sm-12 col-md-12 col-lg-12"} >
                         <CSSTransitionGroup
                             transitionName="example"
                             transitionAppear={true}
@@ -100,7 +111,7 @@ class ButtomSummaryBox extends Component {
                     <div className="row gridRow2 chartBig container-fluid">
                         <KendoMultiChart style={inStyles.multichart} />
                     </div> 
-                    <div className="over"></div>
+                    <div className={over}></div>
                 </div>
             </div>
        
@@ -108,6 +119,6 @@ class ButtomSummaryBox extends Component {
     }
 }
 function mapStateToProps(state){
-    return { }
+    return { switchFilter: state.switchFilter }
 }
 export default connect(mapStateToProps,actions)(ButtomSummaryBox)

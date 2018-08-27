@@ -101,10 +101,10 @@ class TopSummaryBox extends Component {
 
         var JourneysSquareHeader = classNames({
             journeySquareHeader: true
-        })
+        });
         var JourneySquareContent = classNames({
             journeySquareContent: true
-        })
+        });
 
         const { activeCard } = this.state;
 
@@ -112,7 +112,7 @@ class TopSummaryBox extends Component {
         const chart1 = this.state.show ? ( 
         <div className={`sumChartSquare ${activeCard === 'card1' ? 'selectedCard ' : ''}`} 
         onClick={e => this.selectedCard(e, 'card1')}>
-            <div className="sumChartContent">
+            <div className="spinMeFirst sumChartContent">
                 <div className={`sumChartHeader ${activeCard === 'card1' ? 'selectedCardHeaderRed' : ''}`}>
                 <p className={`sumChartHeaderText ${activeCard === 'card1' ? 'selectedCardText' : ''}`}
                 >Net New ARR</p>
@@ -129,7 +129,7 @@ class TopSummaryBox extends Component {
         const chart2 = this.state.show ? ( 
         <div className={`sumChartSquare ${activeCard === 'card2' ? 'selectedCard' : ''}`} 
         onClick={e => this.selectedCard(e, 'card2')}>
-            <div className="sumChartContent">
+            <div className="spinMeSecond sumChartContent">
                 <div className={`sumChartHeader ${activeCard === 'card2' ? 'selectedCardHeaderRed' : ''}`} >
                     <p className={`sumChartHeaderTest ${activeCard === 'card2' ? 'selectedCardText' : ''}`}>Gross New ARR</p>
                     </div>
@@ -147,7 +147,7 @@ class TopSummaryBox extends Component {
         const chart3 = this.state.show ? (
         <div className={`sumChartSquare ${activeCard === 'card3' ? 'selectedCard' : ''}`} 
         onClick={e => this.selectedCard(e, 'card3')} >
-            <div className="sumChartContent">
+            <div className="spinMeThird sumChartContent">
             
                     <div className={`sumChartHeader ${activeCard === 'card3' ? 'selectedCardHeaderRed' : ''}`} >
                     <p className={`sumChartHeaderText ${activeCard === 'card3' ? 'selectedCardText' : ''}`}>Cancellations ARR</p>
@@ -166,7 +166,7 @@ class TopSummaryBox extends Component {
         const chart4 = this.state.show ? (                      
         <div className={`sumChartSquare ${activeCard === 'card4' ? 'selectedCard' : ''}`} 
         onClick={e => this.selectedCard(e, 'card4')} >
-            <div className="sumChartContent">
+            <div className="spinMeFourth sumChartContent">
                     <div className={`sumChartHeader ${activeCard === 'card4' ? 'selectedCardHeaderGreen' : ''}`} >
                     <p className={`sumChartHeaderText ${activeCard === 'card4' ? 'selectedCardText' : ''}`}
                 >Renewel@FP ARR</p>
@@ -267,7 +267,7 @@ class TopSummaryBox extends Component {
         const journeysView = this.state.isToggleButtonChecked ? (
             <div className="row">
                 <div className="col-lg-3 col-md-3">
-                    <div className="journeyBox journeyBoxAlert">
+                    <div className="vertSpinMeFirst journeyBox journeyBoxAlert">
                         <div className="journeyHeader journeyHeaderAlert k-float-left">
                             <div className="verticalText1"><p className="journeyHeaderTitle ">Discover</p></div>
                         </div>
@@ -285,31 +285,33 @@ class TopSummaryBox extends Component {
                             </div>  
                         </div>
                     </div>  
-                    <div className="journeyBox">
+                    <div className="vertSpinMeSecond journeyBox">
                         <div className="journeyHeader">
                             <div className="verticalText2"><p className="journeyHeaderTitle">Try</p></div>
                                 </div>
                         </div>   
-                    <div className="journeyBox">
+                    <div className="vertSpinMeThird journeyBox">
                         <div className="journeyHeader">
                             <div className="verticalText3"><p className="journeyHeaderTitle">Buy</p></div>
                                 </div>
                         </div>   
-                    <div className="journeyBox">
+                    <div className="vertSpinMeFourth journeyBox">
                     <div className="journeyHeader">
                             <div className="verticalText4"><p className="journeyHeaderTitle">Use</p></div>
                                 </div>
                         </div>  
-                    <div className="journeyBox">
+                    <div className="vertSpinMeFifth journeyBox">
                         <div className="journeyHeader">
                                 <div className="verticalText5"><p className="journeyHeaderTitle">Renew</p></div>
                                     </div>
                         </div>                   
                     </div>
                 <div className="col-lg-9 col-md-9">
-                    GRAPH
+                    <ButtomSummaryBox />
                 </div>
-            </div>
+                </div>
+
+                
 
         ) : null;
         return(
