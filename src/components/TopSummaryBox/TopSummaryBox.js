@@ -21,11 +21,6 @@ class TopSummaryBox extends Component {
         // Initialize state
         this.state = { 
             show: true,
-            // chart1ArrowCSS: "arrow_box",
-            // chart2ArrowCSS: "",
-            // chart3ArrowCSS: "",
-            // chart4ArrowCSS: "",
-            // activeCard: 'card1',
             isToggleButtonChecked: false,
             summaryTitle: 'Financials Summary'
         };
@@ -185,8 +180,9 @@ class TopSummaryBox extends Component {
                 </div>
   
             </div>) : null;
-const summaryViewIsFinancial= (!this.props.switchFilter) ?(
-    <div className="chartRow">
+            
+        const summaryViewIsFinancial= (!this.props.switchFilter) ? (
+             <div className="chartRow">
 
                 <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.enableChart1Arrow}>
                     <div >
@@ -265,8 +261,55 @@ const summaryViewIsFinancial= (!this.props.switchFilter) ?(
                 </div>
                
 
-    </div>):
-    null;
+            </div>):
+            null;
+
+        const journeysView = this.state.isToggleButtonChecked ? (
+            <div className="row">
+                <div className="col-lg-3 col-md-3">
+                    <div className="journeyBox journeyBoxAlert">
+                        <div className="journeyHeader journeyHeaderAlert k-float-left">
+                            <div className="verticalText1"><p className="journeyHeaderTitle ">Discover</p></div>
+                        </div>
+                        <div className="journeyContent">
+                            <p>Traffic</p>
+                            <div className="row">
+                                <div className="col journeysAmount k-float-left">$146.7M</div>
+                                <div className="col journeysTarget k-float-right">TARGET $242.3M</div>
+                                
+                            </div>
+                            <div className="row k-float-left">
+                                <div className="journeyKendoGraph">GRAPH</div>
+                            </div>  
+                        </div>
+                    </div>  
+                    <div className="journeyBox">
+                        <div className="journeyHeader">
+                            <div className="verticalText2"><p className="journeyHeaderTitle">Try</p></div>
+                                </div>
+                        </div>   
+                    <div className="journeyBox">
+                        <div className="journeyHeader">
+                            <div className="verticalText3"><p className="journeyHeaderTitle">Buy</p></div>
+                                </div>
+                        </div>   
+                    <div className="journeyBox">
+                    <div className="journeyHeader">
+                            <div className="verticalText4"><p className="journeyHeaderTitle">Use</p></div>
+                                </div>
+                        </div>  
+                    <div className="journeyBox">
+                        <div className="journeyHeader">
+                                <div className="verticalText5"><p className="journeyHeaderTitle">Renew</p></div>
+                                    </div>
+                        </div>                   
+                    </div>
+                <div className="col-lg-9 col-md-9">
+                    GRAPH
+                </div>
+            </div>
+
+        ) : null;
         return(
 
             <Grid className={SummaryBoxStyles} fluid>
@@ -291,44 +334,9 @@ const summaryViewIsFinancial= (!this.props.switchFilter) ?(
                     
                 </CSSTransitionGroup>
 
-              {/* {summaryViewIsFinancial} */}
-              <div className="chartRow">
-
-                <div className=" col-xs-12 col-sm-6 col-md-3 col-lg-9" >
-                    <div className={JourneysSquareStyles} >
-                       <div className={JourneysSquareHeader}>
-                            Header
-                        </div>
-                        {/* <div className={JourneySquareContent}>
-                        </div> */}
-                    </div>
-                    <div className={JourneysSquareStyles} >
-                       
-                    </div>
-                    <div className={JourneysSquareStyles} >
-                       
-                    </div>
-                    <div className={JourneysSquareStyles} >
-                       
-                    </div>
-                    <div className={JourneysSquareStyles} >
-                       
-                    </div>
-                </div>
-                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-9" >
-                <div >
-                        <div className="">
-                            <div className="">
-                                {/* <!-- front content --> */}
-                              
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
+              {summaryViewIsFinancial}
+              
+              {journeysView}
 
             
 

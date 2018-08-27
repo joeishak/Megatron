@@ -34,8 +34,6 @@
 
 .gridContainer{
     background-color: #1F1F1F;
-    /* background-image: linear-gradient(rgb(68, 68, 68),rgb(62, 62, 62),rgb(16, 16, 16)); */
-	/* padding-top: 30px; */
 	padding-bottom: 400px;
     height: 390px;
 }
@@ -47,6 +45,7 @@
 	padding-bottom: 400px;
     height: 390px;
 } 
+
 
 .summaryBox_financial{
 	height: 100%;
@@ -272,7 +271,14 @@ input:checked + .slider:before  {
 	height:100%;
 	width:100%;
 	background-color: white;
+	animation: flipper 1s ease-in-out forwards; 
 }
+
+@-webkit-keyframes flipper {
+    0% { -webkit-transform: translateX(0); }
+	50% { -webkit-transform: rotateY(180deg); }
+	100% { -webkit-transform: rotateY(-180deg); }
+} 
 
 .sumChartHeader{
 	height: 18%;
@@ -358,7 +364,119 @@ input:checked + .slider:before  {
 	text-align: center;
 	height:100%;
 	width:100%;
+}
 
-	
+/* Figma Styles */
+.journeyBox {
+	width: auto;
+	height: 124px;
+	background: #000000;
+	/* Dynamic */
+	border: 2px solid #3c3c3c;
+	box-sizing: border-box;
+}
 
+
+
+.journeyHeader {
+	height: 124px;
+	width: 40px;
+	left: 0%;
+	right: 96.09%;
+	top: 27.86%;
+	bottom: 57.94%;
+	/* dynamic */
+	background: #3c3c3c;
+}
+
+.journeyHeaderTitle {
+	font-family: Ubuntu;
+	font-style: normal;
+	line-height: normal;
+	font-size: 14px;
+	text-align: center;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	/* vertical text */
+	-webkit-transform: rotate(-90deg);	
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+
+
+}
+
+.verticalText1 {
+	padding-top: 68px;
+}
+.verticalText2 {
+	padding-top: 50px;
+}
+.verticalText3 {
+	padding-top: 50px;
+}
+.verticalText4 {
+	padding-top: 50px;
+}
+.verticalText5 {
+	padding-top: 55px;
+}
+
+
+
+.journeyBoxAlert {
+	border: 2px solid #FF0000;
+}
+
+.journeyHeaderAlert {
+	fill: solid #FF0000;
+	background-color: #FF0000;
+}
+
+
+.journeyContent {
+	font-family: Ubuntu;
+	font-style: normal;
+	font-weight: 200;
+	line-height: normal;
+	font-size: 15px;
+	padding-left: 60px;
+	padding-top: 14px;
+	color: #FFFFFF;
+
+}
+
+.journeysAmount {
+	font-family: Ubuntu;
+	padding-left: 13px;
+	font-style: normal;
+	font-weight: 300;
+	line-height: normal;
+	font-size: 32px;
+
+	color: #FF0000;
+}
+
+.journeysTarget {
+	align-content: center;
+	text-align: center;
+	width: 40px;
+	font-family: Ubuntu;
+	font-style: normal;
+	font-weight: 300;
+	line-height: normal;
+	font-size: 11px;
+	padding-right: 160px;
+	padding-top: 6px;
+
+	color: #FFFFFF;
+}
+
+.journeyKendoGraph {
+	height: 40px;
+	width: 250px;
+	border: 1px dotted red ;
+	margin-top: -45px;
 }
