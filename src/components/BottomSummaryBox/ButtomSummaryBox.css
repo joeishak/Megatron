@@ -70,8 +70,16 @@
 
 
 /* Animations for the MultiChart on  */
-.over {
+.summaryOver {
   background: #e8e8e8;
+
+}
+.journeyOver{
+  background: #1f1f1f;
+
+}
+.over {
+  /* background: #e8e8e8; */
   float: left;
   height: 350px;
   width:auto;

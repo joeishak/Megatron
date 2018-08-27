@@ -41,6 +41,11 @@ class ButtomSummaryBox extends Component {
         var titleHeader= classNames({
             summaryTitleHeader: (this.props.switchFilter)? false:true,
             journeyTitleHeader: (this.props.switchFilter)? true: false
+        });
+        var over = classNames({
+            over: true,
+            summaryOver: (this.props.switchFilter)? false:true,
+            journeyOver: (this.props.switchFilter)? true: false
         })
         return(
             <div className="" >
@@ -106,7 +111,7 @@ class ButtomSummaryBox extends Component {
                     <div className="row gridRow2 chartBig container-fluid">
                         <KendoMultiChart style={inStyles.multichart} />
                     </div> 
-                    <div className="over"></div>
+                    <div className={over}></div>
                 </div>
             </div>
        
