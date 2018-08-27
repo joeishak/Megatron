@@ -271,15 +271,71 @@ input:checked + .slider:before  {
 	height:100%;
 	width:100%;
 	background-color: white;
-	animation: flipper 1s ease-in-out forwards; 
 }
 
-@-webkit-keyframes flipper {
-    0% { -webkit-transform: translateX(0); }
-	50% { -webkit-transform: rotateY(180deg); }
-	100% { -webkit-transform: rotateY(-180deg); }
-} 
+/**Horizontal Spins**/
+.spinMeFirst{
+	animation: spin 1s ease-in-out forwards; 
 
+}
+.spinMeSecond{
+	animation: spin 2s ease-in-out forwards; 
+
+}
+.spinMeThird{
+	animation: spin 3s ease-in-out forwards; 
+
+}
+.spinMeFourth{
+	animation: spin 4s ease-in-out forwards; 
+
+}
+@-moz-keyframes spin {
+  from {-moz-transform: rotateY(0deg);}
+  to {-moz-transform: rotateY(720deg);}
+} 
+@-webkit-keyframes spin {
+	from {-webkit-transform: rotateY(0deg);}
+	to {-webkit-transform: rotateY(720deg);}
+  } 
+  @keyframes spin {
+	from {transform: rotateY(0deg);}
+	to {transform: rotateY(720deg);}
+  } 
+
+  /**Vertical Spins**/
+.vertSpinMeFirst{
+	animation: spin 1s  forwards; 
+
+}
+.vertSpinMeSecond{
+	animation: spin 2s  forwards; 
+
+}
+.vertSpinMeThird{
+	animation: spin 3s  forwards; 
+
+}
+.vertSpinMeFourth{
+	animation: spin 4s  forwards; 
+
+}
+.vertSpinMeFifth{
+	animation: spin 5s  forwards; 
+
+}
+  @-moz-keyframes vertspin {
+	from {-moz-transform: rotateX(0deg);}
+	to {-moz-transform: rotateX(720deg);}
+  } 
+  @-webkit-keyframes vertspin {
+	  from {-webkit-transform: rotateX(0deg);}
+	  to {-webkit-transform: rotateX(720deg);}
+	} 
+	@keyframes vertspin {
+	  from {transform: rotateX(0deg);}
+	  to {transform: rotateX(720deg);}
+	} 
 .sumChartHeader{
 	height: 18%;
 	width: 100%;
@@ -479,4 +535,107 @@ input:checked + .slider:before  {
 	width: 250px;
 	border: 1px dotted red ;
 	margin-top: -45px;
+}
+
+/**Right Summary Box**/
+
+.gridRow1{
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-bottom: 50px;
+}
+
+.gridRow2{
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 100px;
+}
+.titleHeader {
+	/* background-color:#e8e8e8; */
+	color:white;
+    height: 40px;
+    font-size: 1.9em;
+}
+
+/* Animation */
+.example-appear {
+    opacity: 0;
+    transform: translateY(-200px);
+    animation-duration: 4s;
+    animation-delay: 2s;
+}
+.example-appear.example-appear-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 1s ease-out;
+    animation-duration: 100s;
+    animation-delay: 5s;
+}
+
+/* View Details Button */
+.detailButton{
+    background-color:#1573e6;
+    border-radius:18px;
+    width: 133px;
+    height: 36px;
+    color: #ffffff;
+    margin-left:20px;
+    padding:5px;
+    font-size:16px;
+    display:inline-block;
+    border:none;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.statsHeader {
+    float: right;
+    margin-left: 40px;
+    font-size: 1em;
+}
+
+
+/* Background Indicators */
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}
+
+
+/* Animations for the MultiChart on  */
+.over {
+  background: #e8e8e8;
+  float: left;
+  height: 350px;
+  width:auto;
+  margin-top: -399px;
+  margin-left: 71px;
+  overflow: visible;
+  position: relative;
+  width: 1700px;
+
+
+  -webkit-animation: mover 4s ease-in-out forwards;
+  -moz-animation: mover 4s ease-in-out forwards;
+  -o-animation: mover 4s ease-in-out forwards;
+  animation: mover 4s ease-in-out forwards; 
+}
+
+@-webkit-keyframes mover {
+    0% { -webkit-transform: translateX(0); }
+    100% { -webkit-transform: translateX(1500px); }
+} 
+@-moz-keyframes mover {
+    0% { -moz-transform: translateX(0); }
+    100% { -moz-transform: translateX(1500px); }
+} 
+@-o-keyframes mover {
+    0% { -o-transform: translateX(0); }
+    100% { -o-transform: translateX(1500px); }
+} 
+@keyframes mover {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(1500px); }
 }
