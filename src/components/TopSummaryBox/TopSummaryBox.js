@@ -12,7 +12,7 @@ import styles from './TopSummaryBox.css'
 import  KendoSwitch  from '../KendoSwitch/KendoSwitch';
 import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
-
+import KendoBulletChart from '../KendoBullet/KendoBullet';
 class TopSummaryBox extends Component {
 
     //When the component is constructed
@@ -279,7 +279,9 @@ class TopSummaryBox extends Component {
                                 
                             </div>
                             <div className="row k-float-left">
-                                <div className="journeyKendoGraph">GRAPH</div>
+                                <div className="journeyKendoGraph">
+                                    <KendoBulletChart></KendoBulletChart>
+                                </div>
                             </div>  
                         </div>
                     </div>  

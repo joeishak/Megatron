@@ -271,14 +271,21 @@ input:checked + .slider:before  {
 	height:100%;
 	width:100%;
 	background-color: white;
-	animation: flipper 1s ease-in-out forwards; 
+	animation: spin 1s ease-in-out forwards; 
 }
 
-@-webkit-keyframes flipper {
-    0% { -webkit-transform: translateX(0); }
-	50% { -webkit-transform: rotateY(180deg); }
-	100% { -webkit-transform: rotateY(-180deg); }
-} 
+@-moz-keyframes spin {
+    from { -moz-transform: rotateY(0deg); }
+    to { -moz-transform: rotateY(720deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotateY(0deg); }
+    to { -webkit-transform: rotateY(720deg); }
+}
+@keyframes spin {
+    from {transform:rotateY(0deg);}
+    to {transform:rotateY(720deg);}
+}
 
 .sumChartHeader{
 	height: 18%;
@@ -476,7 +483,6 @@ input:checked + .slider:before  {
 
 .journeyKendoGraph {
 	height: 40px;
-	width: 250px;
 	border: 1px dotted red ;
 	margin-top: -45px;
 }
