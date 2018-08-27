@@ -60,7 +60,7 @@ class ButtomSummaryBox extends Component {
                                 <div>
                                     Net New ARR
                                     <button className="detailButton" onClick={this.openDialog} >View Details </button>
-                                    <hr />
+                                  
                                     {(this.props.switchFilter==false) ? 
                                     <span>
                                     <CSSTransitionGroup
@@ -114,7 +114,9 @@ class ButtomSummaryBox extends Component {
                         </CSSTransitionGroup>
                     </div> 
                     {(this.props.switchFilter==true)? 
+                    
                     <div className="journeyStatsContainer">
+                        <div className="darkGrey horizontalRule"></div>
                         Traffic
                         <CSSTransitionGroup
                                         transitionName="example"
