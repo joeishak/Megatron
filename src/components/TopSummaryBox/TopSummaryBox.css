@@ -305,23 +305,23 @@ input:checked + .slider:before  {
 
   /**Vertical Spins**/
 .vertSpinMeFirst{
-	animation: spin 1s  forwards; 
+	animation: vertspin 1s  forwards; 
 
 }
 .vertSpinMeSecond{
-	animation: spin 2s  forwards; 
+	animation: vertspin 2s  forwards; 
 
 }
 .vertSpinMeThird{
-	animation: spin 3s  forwards; 
+	animation: vertspin 3s  forwards; 
 
 }
 .vertSpinMeFourth{
-	animation: spin 4s  forwards; 
+	animation: vertspin 4s  forwards; 
 
 }
 .vertSpinMeFifth{
-	animation: spin 5s  forwards; 
+	animation: vertspin 5s  forwards; 
 
 }
   @-moz-keyframes vertspin {
