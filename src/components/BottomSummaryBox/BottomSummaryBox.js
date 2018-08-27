@@ -60,6 +60,9 @@ class ButtomSummaryBox extends Component {
                                 <div>
                                     Net New ARR
                                     <button className="detailButton" onClick={this.openDialog} >View Details </button>
+                                    <hr />
+                                    {(this.props.switchFilter==false) ? 
+                                    <span>
                                     <CSSTransitionGroup
                                         transitionName="example"
                                         transitionAppear={true}
@@ -103,11 +106,62 @@ class ButtomSummaryBox extends Component {
                                             <span className="red"> -2.8%</span><br/>
                                             <span> vs QRF </span>
                                         </div>
-                                    </CSSTransitionGroup>
+                                    </CSSTransitionGroup> 
+                                    </span>
+                                    : null}
                         
                                 </div>
                         </CSSTransitionGroup>
                     </div> 
+                    {(this.props.switchFilter==true)? 
+                    <div className="journeyStatsContainer">
+                        Traffic
+                        <CSSTransitionGroup
+                                        transitionName="example"
+                                        transitionAppear={true}
+                                        transitionAppearTimeout={800}
+                                        transitionEnter={false} 
+                                        transitionLeave={false} >
+                                        <div className="statsHeader"> 
+                                            <span className="green"> -2.9%</span><br/>
+                                            <span> Y/Y </span>
+                                        </div>
+                                    </CSSTransitionGroup>
+                                    <CSSTransitionGroup
+                                        transitionName="example"
+                                        transitionAppear={true}
+                                        transitionAppearTimeout={600}
+                                        transitionEnter={false} 
+                                        transitionLeave={false} >
+                                        <div className="statsHeader"> 
+                                            <span className="red"> -17.0%</span><br/>
+                                            <span> Q/Q LY </span>
+                                        </div>
+                                    </CSSTransitionGroup>
+                                    <CSSTransitionGroup
+                                        transitionName="example"
+                                        transitionAppear={true}
+                                        transitionAppearTimeout={400}
+                                        transitionEnter={false} 
+                                        transitionLeave={false} >
+                                        <div className="statsHeader"> 
+                                            <span className="red"> -20.4%</span><br/>
+                                            <span> Q/Q TY </span>
+                                        </div>
+                                    </CSSTransitionGroup>
+                                    <CSSTransitionGroup
+                                        transitionName="example"
+                                        transitionAppear={true}
+                                        transitionAppearTimeout={200}
+                                        transitionEnter={false} 
+                                        transitionLeave={false} >
+                                        <div className="statsHeader"> 
+                                            <span className="red"> -2.8%</span><br/>
+                                            <span> vs QRF </span>
+                                        </div>
+                                    </CSSTransitionGroup> 
+                    </div> 
+                    : null}
                     <div className="row gridRow2 chartBig container-fluid">
                         <KendoMultiChart style={inStyles.multichart} />
                     </div> 
