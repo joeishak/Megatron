@@ -2,7 +2,7 @@
 
 .ddFilter-appear {
     opacity: 0;
-    transform: translateX(-200px);
+    transform: translateY(-200px);
     animation-duration: 4s;
     animation-delay: 2s;
 }

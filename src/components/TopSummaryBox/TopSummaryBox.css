@@ -292,15 +292,15 @@ input:checked + .slider:before  {
 }
 @-moz-keyframes spin {
   from {-moz-transform: rotateY(0deg);}
-  to {-moz-transform: rotateY(720deg);}
+  to {-moz-transform: rotateY(360deg);}
 } 
 @-webkit-keyframes spin {
 	from {-webkit-transform: rotateY(0deg);}
-	to {-webkit-transform: rotateY(720deg);}
+	to {-webkit-transform: rotateY(360deg);}
   } 
   @keyframes spin {
 	from {transform: rotateY(0deg);}
-	to {transform: rotateY(720deg);}
+	to {transform: rotateY(360deg);}
   } 
 
   /**Vertical Spins**/
@@ -351,7 +351,7 @@ input:checked + .slider:before  {
 	background-color: red;
 }
 .selectedCardHeaderGreen {
-	background-color: green;
+	background-color: #0DB16e;
 }
 
 .selectedCardText {
@@ -515,9 +515,9 @@ input:checked + .slider:before  {
 /* END DYNAMIC RED */
 
 /* Journey Card Selected Dynamic - GREEN */
-.journeyBoxAlertGreen { border: 2px solid green;}
+.journeyBoxAlertGreen { border: 2px solid #0DB16E;}
 
-.journeyHeaderAlertGreen { background-color:green;}
+.journeyHeaderAlertGreen { background-color:#0DB16E;}
 
 
 .journeyBoxAlertGreen:after, .journeyBoxAlertGreen:before {
@@ -533,13 +533,13 @@ input:checked + .slider:before  {
 
 .journeyBoxAlertGreen:after {
 	border-color: rgba(213, 213, 213, 0);
-	border-left-color:green;
+	border-left-color:#0DB16E;
 	border-width: 15px;
 	margin-top: -15px;
 }
 .journeyBoxAlertGreen:before {
 	border-color: rgba(245, 0, 0, 0);
-	border-left-color: green;
+	border-left-color: #0DB16E;
 	border-width: 18px;
 	margin-top: -18px;
 }
@@ -568,12 +568,8 @@ input:checked + .slider:before  {
 }
 
 .journeyAmountGreen {
-	color: green;
+	color: #0DB16E;
 }
-
-
-
-
 
 .journeysTarget {
 	align-content: center;
@@ -659,7 +655,7 @@ input:checked + .slider:before  {
     color: red;
 }
 .green{
-    color: green;
+    color: #0DB16E;
 }
 
 
