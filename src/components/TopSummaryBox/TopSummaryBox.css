@@ -434,6 +434,8 @@ input:checked + .slider:before  {
 
 
 
+
+
 .journeyHeader {
 	height: 124px;
 	width: 40px;
@@ -695,4 +697,13 @@ input:checked + .slider:before  {
 @keyframes mover {
     0% { transform: translateX(0); }
     100% { transform: translateX(1500px); }
+}
+
+
+.journeyBoxHover:hover {
+	animation: grow .20s ease-in-out forwards;
+	}
+	
+@keyframes grow {
+	100% {transform: scale(0.96); }
 }

@@ -12,7 +12,7 @@ export const FinancialData = {
             header: 'Gross New ARR',
             value: 335.3,
             target: 277.9,
-            css: ['card2', 'spinMeSecond', 'red']
+            css: ['card2', 'spinMeSecond', 'green']
         },
         {
             index:3,

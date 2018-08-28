@@ -181,8 +181,9 @@ class TopSummaryBox extends Component {
             return(
                 <div className="row">
                 <div className="col-lg-3 col-md-3">
-                    <div className={`vertSpinMeFirst journeyBox ${activeJourneyCard === 'journeyCard1' ? 'journeyBoxAlert ' : ''}`} onClick={e => this.onJourneyCardClicked(e, 'journeyCard1')}>
-
+                    <div className="journeyBoxHover">
+                    <div className={`vertSpinMeFirst journeyBox  ${activeJourneyCard === 'journeyCard1' ? 'journeyBoxAlert ' : ''}`} onClick={e => this.onJourneyCardClicked(e, 'journeyCard1')}>
+                     
                         <div  className={`journeyHeader k-float-left ${activeJourneyCard === 'journeyCard1' ? 'journeyHeaderAlert ' : ''}`} >
                             <div className="verticalText1"><p className="journeyHeaderTitle ">Discover</p></div>
                         </div>
@@ -199,10 +200,12 @@ class TopSummaryBox extends Component {
                                 </div>
                             </div>  
                         </div>
-                        
+                    </div>
                     </div>  
-                    <div className={`vertSpinMeSecond journeyBox ${activeJourneyCard === 'journeyCard2' ? 'journeyBoxAlert ' : ''}`} onClick={e => this.onJourneyCardClicked(e, 'journeyCard2')}>
 
+                    <div className="journeyBoxHover">
+                    <div className={`vertSpinMeSecond journeyBox ${activeJourneyCard === 'journeyCard2' ? 'journeyBoxAlert ' : ''}`} onClick={e => this.onJourneyCardClicked(e, 'journeyCard2')}>
+                    
                         <div  className={`journeyHeader k-float-left ${activeJourneyCard === 'journeyCard2' ? 'journeyHeaderAlert ' : ''}`}>
                             <div className="verticalText3"><p className="journeyHeaderTitle ">Buy</p></div>
                         </div>
@@ -219,8 +222,10 @@ class TopSummaryBox extends Component {
                                 </div>
                             </div>  
                         </div>
-                        
+                        </div>
                     </div>   
+
+                    <div className="journeyBoxHover">
                     <div className="vertSpinMeThird journeyBox">
 
                         <div className="journeyHeader k-float-left">
@@ -229,7 +234,7 @@ class TopSummaryBox extends Component {
                         <div className="journeyContent">
                             <p>Conversion</p>
                             <div className="row">
-                                <div className="col journeysAmount k-float-left journeyAmountGreen">0.85%</div>
+                                <div className="col journeysAmount k-float-left x">0.85%</div>
                                 <div className="col journeysTarget k-float-right">TARGET 0.88%</div>
                                 
                             </div>
@@ -239,8 +244,10 @@ class TopSummaryBox extends Component {
                                 </div>
                             </div>  
                         </div>
-      
+                    </div>
                     </div>   
+
+                    <div className="journeyBoxHover">
                     <div className="vertSpinMeFourth journeyBox">
                     
                             <div className="journeyHeader k-float-left">
@@ -260,6 +267,9 @@ class TopSummaryBox extends Component {
                                     </div>  
                             </div>
                     </div>  
+                    </div>
+
+                    <div className="journeyBoxHover">
                     <div className="vertSpinMeFifth journeyBox">
                     <div className="journeyHeader k-float-left">
                                     <div className="verticalText5"><p className="journeyHeaderTitle ">Renew</p></div>
@@ -278,6 +288,7 @@ class TopSummaryBox extends Component {
                                     </div>  
                             </div>
                     </div>                   
+                </div>
                 </div>
                 <div className="col-lg-9 col-md-9">
                     <ButtomSummaryBox />
