@@ -229,7 +229,7 @@ class TopSummaryBox extends Component {
                 
                 </div>
                 <div className="col-lg-9 col-md-9">
-                    <ButtomSummaryBox />
+                    <ButtomSummaryBox chartHeight="350px"/>
                 </div>
             </div>
             )
