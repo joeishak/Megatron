@@ -23,7 +23,7 @@ export const FinancialData = {
         },
         {
             index:4,
-            header: 'Renewel@FP ARR',
+            header: 'Renewal@FP ARR',
             value: 80.1,
             target: 57.9,
             css: ['card4', 'spinMeFourth', 'green']

@@ -211,7 +211,8 @@ class TopSummaryBox extends Component {
                             <div className="journeyContent">
                                 <p>{item.header}</p>
                                 <div className="row">
-                                    <div className="col journeysAmount k-float-left">${item.value}M</div>
+                                    <div className={`col journeysAmount k-float-left ${item.value > item.target ? 'journeysAmountGreen' : ''}`}
+                                    >${item.value}M</div>
                                     <div className="col journeysTarget k-float-right">TARGET ${item.target}M</div>
                                     
                                 </div>
