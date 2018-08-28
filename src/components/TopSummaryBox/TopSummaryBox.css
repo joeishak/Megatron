@@ -451,19 +451,15 @@ input:checked + .slider:before  {
 /* Figma Styles */
 .journeyBox {
 	width: auto;
-	height: 124px;
+	height: 109px;
 	background: #000000;
 	/* Dynamic */
 	border: 2px solid #3c3c3c;
 	box-sizing: border-box;
 }
 
-
-
-
-
 .journeyHeader {
-	height: 124px;
+	height: 109px;
 	width: 40px;
 	left: 0%;
 	right: 96.09%;
@@ -494,19 +490,19 @@ input:checked + .slider:before  {
 
 
 .verticalText1 {
-	padding-top: 68px;
+	padding-top: 58px;
 }
 .verticalText2 {
-	padding-top: 50px;
+	padding-top: 40px;
 }
 .verticalText3 {
-	padding-top: 50px;
+	padding-top: 40px;
 }
 .verticalText4 {
-	padding-top: 50px;
+	padding-top: 40px;
 }
 .verticalText5 {
-	padding-top: 55px;
+	padding-top: 50px;
 }
 
 
@@ -613,9 +609,9 @@ input:checked + .slider:before  {
 	font-weight: 300;
 	line-height: normal;
 	font-size: 11px;
-	padding-right: 160px;
+	padding-right: 70px;
 	padding-top: 6px;
-
+	float:right;
 	color: #FFFFFF;
 }
 

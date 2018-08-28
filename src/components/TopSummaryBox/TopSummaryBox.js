@@ -196,7 +196,7 @@ class TopSummaryBox extends Component {
         } else {
             return(
                 <div className="row">
-                <div className="col-lg-3 col-md-3">
+                <div className="col-lg-3 col-md-4">
 
                 {this.props.appData.journey.squares.map(item => {
                     return (
@@ -211,14 +211,14 @@ class TopSummaryBox extends Component {
                             <div className="journeyContent">
                                 <p>{item.header}</p>
                                 <div className="row">
-                                    <div className={`col journeysAmount k-float-left ${item.value > item.target ? 'journeysAmountGreen' : ''}`}
-                                    >${item.value}M</div>
-                                    <div className="col journeysTarget k-float-right">TARGET ${item.target}M</div>
-                                    
+                                
+                                    <div className={`col journeysAmount k-float-left ${item.value > item.target ? 'journeysAmountGreen' : ''}`}>${item.value}M</div>
+                                    <div className="col journeysTarget ">TARGET ${item.target}M</div>
+ 
                                 </div>
                                 <div className="row k-float-left">
                                     <div className="journeyKendoGraph">
-                                        <KendoBulletChart values={[item.value, item.target]} ></KendoBulletChart>
+                                        {/* <KendoBulletChart values={[item.value, item.target]} ></KendoBulletChart> */}
                                     </div>
                                 </div>  
                             </div>
@@ -228,7 +228,7 @@ class TopSummaryBox extends Component {
                 })}
                 
                 </div>
-                <div className="col-lg-9 col-md-9">
+                <div className="col-lg-9 col-md-8">
                     <ButtomSummaryBox chartHeight="350px"/>
                 </div>
             </div>
