@@ -15,7 +15,8 @@ import {
     ChartArea,
     ChartAxisDefaults,
     ChartSeriesItemTooltip,
-    ChartTooltip
+    ChartTooltip,
+    ChartLegend
 } from '@progress/kendo-react-charts';
 
 class KendoMultiChart extends Component {
@@ -35,6 +36,8 @@ class KendoMultiChart extends Component {
         const ChartContainer = () => (
         <Chart pannable={false} zoomable={false} >
         <ChartTooltip />
+        <ChartLegend position="bottom" orientation="horizontal" />
+
          <ChartAxisDefaults majorGridLines={false} minorGridLines={false}/>
             <ChartArea background="transparent" height={this.props.chartHeight}/* gridLines='{visible: false}' */></ChartArea>
             <ChartTitle text="" />
