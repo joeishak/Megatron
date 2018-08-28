@@ -20,3 +20,12 @@ export const GET_ALL_DATA                    = "get_all_data";
  
 // Data for the Filters 
 export const GENERATE_FILTER_DATA            = "generate_filter_data";
+
+// Summary View Details
+export const SHOW_SUMMARY_VIEW_DETAILS               = "show_summary_view_details";
+export const HIDE_SUMMARY_VIEW_DETAILS               = "hide_summary_view_details";
+
+
+// Data Preferences
+export const SHOW_DATA_PREFERENCES               = "show_data_preferences";
+export const HIDE_DATA_PREFERENCES               = "hide_data_preferences";

@@ -36,6 +36,7 @@ class ButtomSummaryBox extends Component {
     openDialog = ()=>{
         // Call an action for mapped props to update the dialog/windows visibility to True
         this.props.updateDialogVisibility(true)
+        this.props.showSummaryDetails();
     }
     render(){
         var titleHeader= classNames({

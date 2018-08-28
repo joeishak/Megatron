@@ -13,7 +13,8 @@ export default ({children, initialState ={
     adobeData: [],
     availableFilters: {    },
     activeFilters:[],
-    switchFilter: false
+    switchFilter: false,
+    detailsIsOpen: false
 }}) => {
     const store = createStore(
         reducers,

@@ -25,6 +25,7 @@ import FilterBox from 'components/FilterBox/FilterBox';
 import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 import CustomDropDownPanel from 'components/CustomDropDownPanel/CustomDropDownPanel';
+import SummaryViewDetails from 'components/SummaryViewDetails/SummaryViewDetails';
 
 // Custom Nivo Components
 // import { changeAuth } from '../actions';
@@ -89,51 +90,66 @@ class App extends Component {
     }
     
   }
+getSummaryDetails(){
 
+}
  
   render(){
 
- 
-    const show = this.props.dialogIsOpen
-    const kendoDialog = show ? ( 
-
-      <Animation 
-        appear={false}
-        enter={true}
-        exit={true}
-        transitionName="custom-animation"
-        className="custom-animation"
-        transitionEnterDuration={300}
-        transitionExitDuration={300}>
-          <KendoDialog title="Detail ARR"  appContent={[]}></KendoDialog>
-      </Animation>
-      ) : null;
-
-      const bottomSummary = !this.props.switchFilter ? 
+    const bottomSummary = !this.props.switchFilter ? 
       
-        <div className='bottomSummaryContainer'>
-          <ButtomSummaryBox chartHeight="180px" rerender={this.state.renderFooter}/>
-        </div> : null;
+    <div className='bottomSummaryContainer'>
+      <ButtomSummaryBox chartHeight="180px" rerender={this.state.renderFooter}/>
+    </div> : null;
+    /**Summary View Details */
+    const Summary = this.props.detailIsOpen ? 
+      <div >
+      <SummaryViewDetails />
+     </div>
+     : 
+    <div>
+       <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
+       {bottomSummary}
+      </div>
+    ;
+    // const show = this.props.dialogIsOpen
+    // const kendoDialog = true ? ( 
+
+    //   <Animation 
+    //     appear={false}
+    //     enter={true}
+    //     exit={true}
+    //     transitionName="custom-animation"
+    //     className="custom-animation"
+    //     transitionEnterDuration={300}
+    //     transitionExitDuration={300}>
+    //       <SummaryViewDetails />
+    //   </Animation>
+    //   ) : null;
+
+      
+     
 
     return (
 
       <div style={{width:'100%',height:'100%'}}>
-        <KendoDialog />
-        <Navigation />
-        <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
-        <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
-        <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
-        {bottomSummary}
+        {/* <KendoDialog /> */}
+         <Navigation />
+          <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
+          <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
+          {Summary}
       </div>
   )
 }
 }
 
 function mapStateToProps(state) {
+  console.log(`App.js state to props: `, state.detailsIsOpen);
   return {
     dialogIsOpen:state.isDialogOpen,
     activeFilters: state.activeFilters,
-    switchFilter: state.switchFilter
+    switchFilter: state.switchFilter,
+    detailIsOpen: state.detailsIsOpen
   };
 }
 
