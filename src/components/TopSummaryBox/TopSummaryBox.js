@@ -62,50 +62,41 @@ class TopSummaryBox extends Component {
     }
 
     //Event handler that sets the active card
-    selectedCard (e, card) {
+    selectedCard (e, index) {
         e.preventDefault();
-        switch(card) {
-          case 'card1':
-            this.setState({activeCard: 'card1'});
-            break;
-          case 'card2':
-            this.setState({activeCard: 'card2'});
-            break;
-          case 'card3':
-            this.setState({activeCard: 'card3'});
-            break;
-          case 'card4':
-            this.setState({activeCard: 'card4'});
-            break;
-        }
+
+        // Finds the passed props for the right card to set as active
+        this.setState({activeCard: this.props.appData.financial.squares[index -1].css[0]});
+
+        // title 'Net New ARR'
+        const selectedHeader = this.props.appData.financial.squares[index -1].header;
+
+        // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
+        console.log(selectedHeader);
     }
 
-    onJourneyCardClicked (e, card) {
-          e.preventDefault();
-          switch(card) {
-            case 'journeyCard1':
-              this.setState({activeJourneyCard: 'journeyCard1'});
-              break;
-            case 'journeyCard2':
-              this.setState({activeJourneyCard: 'journeyCard2'});
-              break;
-            case 'journeyCard3':
-              this.setState({activeJourneyCard: 'journeyCard3'});
-              break;
-            case 'journeyCard4':
-              this.setState({activeJourneyCard: 'journeyCard4'});
-              break;
-            case 'journeyCard5':
-              this.setState({activeJourneyCard: 'journeyCard5'});
-              break;
-          }
+    // Event handler when the Journey Card is active and clicked
+    onJourneyCardClicked (e, index) {
+        e.preventDefault();
+
+        // Finds the passed props for the right card to set as active
+        this.setState({activeJourneyCard: this.props.appData.journey.squares[index -1].css[0]})
+
+        // title 'Net New ARR'
+        const selectedTitle = this.props.appData.journey.squares[index -1].title;
+        const selectedSubtitle = this.props.appData.journey.squares[index -1].header;
+
+              // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
+        console.log(selectedTitle);
+        console.log(selectedSubtitle);    
+          
     }
 
     //   Event handler for toggle change 'Financials' and 'Joruneys'
     onToggleButtonChanged = (e) => {
         let toggleState = this.state.isToggleButtonChecked;
         
-
+        
         this.setState({isToggleButtonChecked: !toggleState},()=>{
             this.props.updateSwitchFilterValue(this.state.isToggleButtonChecked);
 
@@ -121,6 +112,7 @@ class TopSummaryBox extends Component {
         }
     }
 
+    // Need to Refactor
     getColor(value, target, type, header) {
 
         let retColor = '';
@@ -169,7 +161,7 @@ class TopSummaryBox extends Component {
                                             transitionLeave={false}>
                                             {this.state.show ? (
                                             // {/* Financial Summary  */}
-                                            <div className={`sumChartSquare zoom ${activeCard === item.css[0] ? 'selectedCard ' : ''}`} onClick={e => this.selectedCard(e, item.css[0])}>
+                                            <div className={`sumChartSquare zoom ${activeCard === item.css[0] ? 'selectedCard ' : ''}`} onClick={e => this.selectedCard(e, item.index)}>
                                                 <div className={`sumChartContent ${item.css[1]}`}>
                                                     <div className={`sumChartHeader ${activeCard === item.css[0] ? this.getColor(item.value, item.target, 'financial') : ''}`}>
                                                     <p className={`sumChartHeaderText ${activeCard === item.css[0] ? 'selectedCardText' : ''}`}
@@ -200,8 +192,9 @@ class TopSummaryBox extends Component {
 
                 {this.props.appData.journey.squares.map(item => {
                     return (
-                    <div className="journeyBoxHover">    
-                    <div className={ `journeyBox ${item.css[1]} ${activeJourneyCard === item.css[0] ? this.getColor(item.value, item.target, 'journey', false) : ''}`} onClick={e => this.onJourneyCardClicked(e, item.css[0])}>
+                    <div className="journeyBoxHover" key={item.index}>    
+                    <div className={ `journeyBox ${item.css[1]} ${activeJourneyCard === item.css[0] ? this.getColor(item.value, item.target, 'journey', false) : ''}`} 
+                    onClick={e => this.onJourneyCardClicked(e, item.index)}>
                 
                     <div  className={`journeyHeader k-float-left ${activeJourneyCard === item.css[0] ? this.getColor(item.value, item.target, 'journey', true) : ''}`} >
                         <div className={item.css[2]}><p className="journeyHeaderTitle ">{item.title}</p></div>
@@ -218,7 +211,7 @@ class TopSummaryBox extends Component {
                                 </div>
                                 <div className="row k-float-left">
                                     <div className="journeyKendoGraph">
-                                        <KendoBulletChart values={[item.value, item.target]} ></KendoBulletChart>
+                                        <KendoBulletChart values={[item.value, item.target]} key={item.index} ></KendoBulletChart>
                                     </div>
                                 </div>  
                             </div>
@@ -229,7 +222,7 @@ class TopSummaryBox extends Component {
                 
                 </div>
                 <div className="col-lg-9 col-md-8">
-                    <ButtomSummaryBox chartHeight="350px"/>
+                    <ButtomSummaryBox chartHeight="350px" selectedTitleAndSubtitle={this.state.bottomSummaryComp}/>
                 </div>
             </div>
             )
