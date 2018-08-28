@@ -7,19 +7,17 @@ import {
   ChartSeriesItem,
   ChartCategoryAxis,
   ChartCategoryAxisItem,
+  ChartArea,
   ChartValueAxis,
-  ChartValueAxisItem,
-  ChartArea
+  ChartValueAxisItem
+
 } from '@progress/kendo-react-charts';
 
 const KendoBulletChart = (props) => {
   const hidden = { visible: false };
 
-  // const values = [146.7, 242.3];
-
   const tooltipRender = ({ point }) => {
     const { value } = point;
-
     return (
       <span>
         Target: { value.target }
@@ -41,14 +39,18 @@ const KendoBulletChart = (props) => {
 
   return (
     <div>
-      <Chart style={{ height: 40, width: 240}}>
-      <ChartArea background="transparent"></ChartArea>
+
+      <Chart style={{ height: 36, width: 240 }}>
+        <ChartArea background="transparent"/>
           <ChartSeries>
               <ChartSeriesItem type="bullet" color={colorRender} data={props.values} />
           </ChartSeries>
           <ChartCategoryAxis>
-            <ChartCategoryAxisItem  majorGridLines={false} minorGridLines={false} />
+            <ChartCategoryAxisItem majorGridLines={hidden} minorGridLines={hidden} />
           </ChartCategoryAxis>
+          <ChartValueAxis>
+            <ChartValueAxisItem labels={hidden} majorGridLines={hidden} minorTicks={hidden} />
+          </ChartValueAxis>
           <ChartTooltip render={tooltipRender} />
       </Chart>
     </div>

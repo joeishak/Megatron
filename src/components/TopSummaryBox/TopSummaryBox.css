@@ -616,9 +616,9 @@ input:checked + .slider:before  {
 }
 
 .journeyKendoGraph {
-	height: 40px;
+	height: 36px;
 	/* border: 1px dotted red ; */
-	margin-top: -45px;
+	margin-top: -37px;
 }
 
 /**Right Summary Box**/
