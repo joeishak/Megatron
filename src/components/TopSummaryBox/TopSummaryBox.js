@@ -39,7 +39,7 @@ class TopSummaryBox extends Component {
         this.enableChart3Arrow = this.enableChart3Arrow.bind(this);
         this.enableChart4Arrow = this.enableChart4Arrow.bind(this);
         this.getSummaryContent = this.getSummaryContent.bind(this);
-        this.getFinancialSquares = this.getFinancialSquares.bind(this);
+        // this.getFinancialSquares = this.getFinancialSquares.bind(this);
 
         // console.log(this.state);
     }
@@ -119,6 +119,17 @@ class TopSummaryBox extends Component {
             return 'Financials Summary'
         }
     }
+
+    getColor(value, target) {
+        let retColor = '';
+        if (value > target) {
+            retColor = 'selectedCardHeaderGreen';
+        } else {
+            retColor = 'selectedCardHeaderRed';
+        }
+
+        return retColor;
+    }
    
     getSummaryContent(){
         const { activeCard } = this.state;
@@ -129,7 +140,7 @@ class TopSummaryBox extends Component {
              <div className="chartRow">
               { this.state.data.squares.map(item=>{
                 return (
-                    <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.enableChart1Arrow}>
+                    <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.enableChart1Arrow} key={item.index}>
                             <div >
                                 <div className="flipper">
                                     <div className="front ">
@@ -142,15 +153,15 @@ class TopSummaryBox extends Component {
                                             transitionLeave={false}>
                                             {this.state.show ? (
                                             // {/* Financial Summary  */}
-                                            <div className={`sumChartSquare ${activeCard === 'card1' ? 'selectedCard ' : ''}`} onClick={e => this.selectedCard(e, 'card1')}>
-                                                <div className="spinMeFirst sumChartContent">
-                                                    <div className={`sumChartHeader ${activeCard === 'card1' ? 'selectedCardHeaderRed' : ''}`}>
-                                                    <p className={`sumChartHeaderText ${activeCard === 'card1' ? 'selectedCardText' : ''}`}
-                                                    >item.header</p>
+                                            <div className={`sumChartSquare ${activeCard === item.css[0] ? 'selectedCard ' : ''}`} onClick={e => this.selectedCard(e, item.css[0])}>
+                                                <div className={`sumChartContent ${item.css[1]}`}>
+                                                    <div className={`sumChartHeader ${activeCard === item.css[0] ? this.getColor(item.value, item.target) : ''}`}>
+                                                    <p className={`sumChartHeaderText ${activeCard === item.css[0] ? 'selectedCardText' : ''}`}
+                                                    >{item.header}</p>
                                                     </div>
-                                                        <div className={`donutChart ${activeCard === 'card1' ? 'arrow_box' : ''}`}>
+                                                        <div className={`donutChart ${activeCard === item.css[0] ? 'arrow_box' : ''}`}>
                                                             <div className="zoom">
-                                                            <KendoDonutChart donutColor="red" donutCenterRender= {()=> 
+                                                            <KendoDonutChart donutColor={item.css[2]} key={item.index} donutCenterRender= {()=> 
                                                             <div><h2>${item.value}M</h2><h6>Target</h6><h4>${item.target}M</h4></div>}/> 
                                                             </div>
                                                         </div>

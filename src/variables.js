@@ -4,25 +4,29 @@ export const FinancialData = {
             index:1,
             header: 'Net New ARR',
             value: 149.9,
-            target: 277.9
+            target: 277.9,
+            css: ['card1', 'spinMeFirst', 'red']
         },
         {
             index:2,
             header: 'Gross New ARR',
             value: 335.3,
-            target: 277.9
+            target: 277.9,
+            css: ['card2', 'spinMeSecond', 'red']
         },
         {
             index:3,
             header: 'Cancellations ARR',
             value: 217.5,
-            target: 277.9
+            target: 277.9,
+            css: ['card3', 'spinMeThird', 'red']
         },
         {
             index:4,
             header: 'Renewel@FP ARR',
             value: 80.1,
-            target: 57.9
+            target: 57.9,
+            css: ['card4', 'spinMeFourth', 'green']
         }
     ],
     multiChart:[
