@@ -41,7 +41,7 @@ const KendoBulletChart = (props) => {
 
   return (
     <div>
-      <Chart style={{ height: 40 }}>
+      <Chart style={{ height: 40, width: 240}}>
       <ChartArea background="transparent"></ChartArea>
           <ChartSeries>
               <ChartSeriesItem type="bullet" color={colorRender} data={props.values} />

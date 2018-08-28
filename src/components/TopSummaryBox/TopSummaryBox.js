@@ -178,7 +178,7 @@ class TopSummaryBox extends Component {
                                                         <div className={`donutChart ${activeCard === item.css[0] ? 'arrow_box' : ''}`}>
                                                             <div >
                                                             <KendoDonutChart donutColor={item.css[2]} key={item.index} donutCenterRender= {()=> 
-                                                            <div><h2>${item.value}M</h2><h6>Target</h6><h4>${item.target}M</h4></div>}/> 
+                                                            <div className="insideDonut"><h2>${item.value}M</h2><h6>Target</h6><h4>${item.target}M</h4></div>}/> 
                                                             </div>
                                                         </div>
                                                     </div>

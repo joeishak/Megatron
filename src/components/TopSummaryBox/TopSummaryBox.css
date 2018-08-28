@@ -12,7 +12,7 @@
 .summaryTitleCol{
     /* float: left; */
     padding: 15px;
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 1.9em;
     color: white;
 }
@@ -29,21 +29,21 @@
 } */
 
 .donutChart {
-    padding-top: 22px;
+    padding-top: 4px;
 }
 
-.gridContainer{
-    background-color: #1F1F1F;
-	padding-bottom: 400px;
-    height: 390px;
-}
+/* .gridContainer{
+    background-color: red;
+	padding-bottom: 100px;
+    height: 285px;
+} */
 
 .summaryBox{
 	background-color: #1f1f1f;
     /* background-image: linear-gradient(rgb(68, 68, 68),rgb(62, 62, 62),rgb(16, 16, 16)); */
 	/* padding-top: 30px; */
-	padding-bottom: 400px;
-    height: 390px;
+	padding-bottom: 250px;
+    height: 285px;
 } 
 
 
@@ -62,7 +62,7 @@
 	position: relative;
 	background: transparent;
     border-bottom: 4px solid #3a3a3a;
-    height: 262px;
+    height: 175px;
 }
 .arrow_box:after, .arrow_box:before {
 	top: 100%;
@@ -263,7 +263,7 @@ input:checked + .slider:before  {
 
 /* Previous Inline Style */
 .sumChartSquare {
-	height: 320px; 
+	height: 230px; 
 	width: 100%;
 	margin-top: 10px;
 }
@@ -337,14 +337,24 @@ input:checked + .slider:before  {
 	  from {transform: rotateX(0deg);}
 	  to {transform: rotateX(720deg);}
 	} 
+
 .sumChartHeader{
 	height: 18%;
 	width: 100%;
 	text-align: center;
-	font-size: 1.4em;
-	padding-top: 10px;
+	font-size: 16px;
+	padding-top: 2px;
 	/* dynamic */
 	background-color: white;
+}
+
+/* Inside the Donut Charts */
+.insideDonut h2 {
+	font-size: 28px;
+}
+
+.insideDonut h6 h4 {
+	font-size: 8px;
 }
 
 /* dynamic */
@@ -353,20 +363,20 @@ input:checked + .slider:before  {
 }
 .selectedCardHeaderGreen {
 	background-color: #0DB16e;
-}
+} 
 
 .selectedCardText {
 	color: white !important;
 }
 
 .selectedCardSquare {
-	height: 310px;
+	height: 225px;
 }
 
 .selectedCard {
-	height: 320px;
+	height: 225px;
 
-	padding-top: 6px;
+	padding-top: 15px;
 	margin-bottom: 20px;
 }
 

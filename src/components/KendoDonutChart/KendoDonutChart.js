@@ -24,7 +24,7 @@ class KendoDonutChart extends Component {
        const ChartContainer = () => (
         <Chart donutCenterRender={this.props.donutCenterRender}>
         <ChartLegend visible={false} />
-        <ChartArea background="none" height={210}/>
+        <ChartArea background="none" height={160}/>
         <ChartSeries>
             <ChartSeriesItem
             type="donut"
@@ -34,7 +34,7 @@ class KendoDonutChart extends Component {
             field="Share"
             categoryField="kind"
             colorField="color"
-            holeSize={90}
+            holeSize={70}
             dynamicHeight='true'
             
             >
