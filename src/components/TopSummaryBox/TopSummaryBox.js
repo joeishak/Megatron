@@ -200,14 +200,14 @@ class TopSummaryBox extends Component {
 
                 {this.props.appData.journey.squares.map(item => {
                     return (
-                                        
+                    <div className="journeyBoxHover">    
                     <div className={ `journeyBox ${item.css[1]} ${activeJourneyCard === item.css[0] ? this.getColor(item.value, item.target, 'journey', false) : ''}`} onClick={e => this.onJourneyCardClicked(e, item.css[0])}>
                 
                     <div  className={`journeyHeader k-float-left ${activeJourneyCard === item.css[0] ? this.getColor(item.value, item.target, 'journey', true) : ''}`} >
                         <div className={item.css[2]}><p className="journeyHeaderTitle ">{item.title}</p></div>
                     </div>
                   
-                        <div className="journeyBoxHover">
+                        
                             <div className="journeyContent">
                                 <p>{item.header}</p>
                                 <div className="row">

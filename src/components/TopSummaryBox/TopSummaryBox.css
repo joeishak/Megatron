@@ -724,5 +724,5 @@ input:checked + .slider:before  {
 	}
 	
 @keyframes grow {
-	100% {transform: scale(1.04); }
+	100% {transform: scale(1.02); }
 }
