@@ -36,7 +36,7 @@ class KendoMultiChart extends Component {
         <Chart pannable={false} zoomable={false} >
         <ChartTooltip />
          <ChartAxisDefaults majorGridLines={false} minorGridLines={false}/>
-            <ChartArea background="transparent" /* gridLines='{visible: false}' */></ChartArea>
+            <ChartArea background="transparent" height={this.props.chartHeight}/* gridLines='{visible: false}' */></ChartArea>
             <ChartTitle text="" />
             <ChartCategoryAxis major>
                 <ChartCategoryAxisItem categories={categories}>

@@ -112,7 +112,7 @@ class App extends Component {
       const bottomSummary = !this.props.switchFilter ? 
       
         <div className='bottomSummaryContainer'>
-          <ButtomSummaryBox rerender={this.state.renderFooter}/>
+          <ButtomSummaryBox chartHeight="180px" rerender={this.state.renderFooter}/>
         </div> : null;
 
     return (
