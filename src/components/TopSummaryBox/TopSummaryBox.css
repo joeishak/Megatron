@@ -482,13 +482,9 @@ input:checked + .slider:before  {
 
 
 /* Journey Card Selected Dynamic */
-.journeyBoxAlert {
-	border: 2px solid #FF0000;
-}
+.journeyBoxAlert { border: 2px solid #FF0000;}
 
-.journeyHeaderAlert {
-	background-color: #FF0000;
-}
+.journeyHeaderAlert { background-color: #FF0000;}
 
 
 .journeyBoxAlert:after, .journeyBoxAlert:before {
@@ -514,7 +510,38 @@ input:checked + .slider:before  {
 	border-width: 18px;
 	margin-top: -18px;
 }
+/* END DYNAMIC RED */
 
+/* Journey Card Selected Dynamic - GREEN */
+.journeyBoxAlertGreen { border: 2px solid green;}
+
+.journeyHeaderAlertGreen { background-color:green;}
+
+
+.journeyBoxAlertGreen:after, .journeyBoxAlertGreen:before {
+	left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.journeyBoxAlertGreen:after {
+	border-color: rgba(213, 213, 213, 0);
+	border-left-color:green;
+	border-width: 15px;
+	margin-top: -15px;
+}
+.journeyBoxAlertGreen:before {
+	border-color: rgba(245, 0, 0, 0);
+	border-left-color: green;
+	border-width: 18px;
+	margin-top: -18px;
+}
+/* END DYNAMIC RED */
 
 .journeyContent {
 	font-family: Ubuntu;
@@ -542,15 +569,7 @@ input:checked + .slider:before  {
 	color: green;
 }
 
-.journeyBoxGreen {
-	/* DYNAMIC WHEN SELECTED */
-	border: 2px solid green;
-}
 
-.journeyHeaderGreen {
-	/* DYNAMIC WHEN SELECTED */
-	background-color: green;
-}
 
 
 
