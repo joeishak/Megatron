@@ -66,7 +66,7 @@ export const JourneyData = {
             value: 146.7,
             target: 242.3,
             title: 'Discover',
-            css: ['journeyCard1', 'vertSpinMeFirst']
+            css: ['journeyCard1', 'vertSpinMeFirst', 'verticalText1']
         },
         {
             index:2,
@@ -74,7 +74,7 @@ export const JourneyData = {
             value: 3.9,
             target: 4.7,
             title: 'Buy',
-            css: ['journeyCard2', 'vertSpinMeSecond']
+            css: ['journeyCard2', 'vertSpinMeSecond', 'verticalText2']
         },
         {
             index:3,
@@ -82,7 +82,7 @@ export const JourneyData = {
             value: .85,
             target: .80,
             title: 'Try',
-            css: ['journeyCard3', 'vertSpinMeThird']
+            css: ['journeyCard3', 'vertSpinMeThird', 'verticalText3']
         },
         {
             index:4,
@@ -90,7 +90,7 @@ export const JourneyData = {
             value: 95.78,
             target: 95.06,
             title: 'Use',
-            css: ['journeyCard4', 'vertSpinMeFourth']
+            css: ['journeyCard4', 'vertSpinMeFourth', 'verticalText4']
         },
         {
             index:5,
@@ -98,7 +98,7 @@ export const JourneyData = {
             value: 149.9,
             target: 277.9,
             title: 'Renew',
-            css: ['journeyCard5', 'vertSpinMeFifth']
+            css: ['journeyCard5', 'vertSpinMeFifth', 'verticalText5']
         }
     ],
     multiChart:[

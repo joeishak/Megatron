@@ -25,7 +25,7 @@ class TopSummaryBox extends Component {
             summaryTitle: 'Financials Summary',
             activeJourneyCard: '',
             activeCard:'',
-            data: (this.props.switchFilter)? this.props.appData.journey: this.props.appData.financial,
+            data: (this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial,
             components:{
                 squares: undefined,
                 stats: undefined,
@@ -33,6 +33,7 @@ class TopSummaryBox extends Component {
             }
 
         };
+        
         //Binding functions to this
         this.enableChart1Arrow = this.enableChart1Arrow.bind(this);
         this.enableChart2Arrow = this.enableChart2Arrow.bind(this);
@@ -135,7 +136,7 @@ class TopSummaryBox extends Component {
         const { activeCard } = this.state;
         const { activeJourneyCard } = this.state;
 
-         if(this.props.switchFilter===false){
+         if(!this.props.switchFilter){
             return (
              <div className="chartRow">
               { this.state.data.squares.map(item=>{
@@ -181,122 +182,35 @@ class TopSummaryBox extends Component {
             return(
                 <div className="row">
                 <div className="col-lg-3 col-md-3">
-           
-                    {/* Journey Card */}
-                    <div className={`vertSpinMeFirst journeyBox  ${activeJourneyCard === 'journeyCard1' ? 'journeyBoxAlert ' : ''}`} onClick={e => this.onJourneyCardClicked(e, 'journeyCard1')}>
-                        {/* Journey Header */}
-                        <div  className={`journeyHeader k-float-left ${activeJourneyCard === 'journeyCard1' ? 'journeyHeaderAlert ' : ''}`} >
-                            <div className="verticalText1"><p className="journeyHeaderTitle ">Discover</p></div>
-                        </div>
-                        {/* Box Content */}
+
+                {this.props.appData.journey.squares.map(item => {
+                    return (
+                                        
+                    <div className={ `journeyBox ${item.css[1]} ${activeJourneyCard === item.css[0] ? 'journeyBoxAlert ' : ''}`} onClick={e => this.onJourneyCardClicked(e, item.css[0])}>
+                
+                    <div  className={`journeyHeader k-float-left ${activeJourneyCard === item.css[0] ? 'journeyHeaderAlert ' : ''}`} >
+                        <div className={item.css[2]}><p className="journeyHeaderTitle ">{item.title}</p></div>
+                    </div>
+                  
                         <div className="journeyBoxHover">
                             <div className="journeyContent">
-                                <p>Traffic</p>
+                                <p>{item.header}</p>
                                 <div className="row">
-                                    <div className="col journeysAmount k-float-left">$146.7M</div>
-                                    <div className="col journeysTarget k-float-right">TARGET $242.3M</div>
+                                    <div className="col journeysAmount k-float-left">${item.value}M</div>
+                                    <div className="col journeysTarget k-float-right">TARGET ${item.target}M</div>
                                     
                                 </div>
                                 <div className="row k-float-left">
                                     <div className="journeyKendoGraph">
-                                        <KendoBulletChart values={[146.7, 242.3]} ></KendoBulletChart>
+                                        <KendoBulletChart values={[item.value, item.target]} ></KendoBulletChart>
                                     </div>
                                 </div>  
                             </div>
                         </div>
                     </div>  
-                    
-                    <div className={`vertSpinMeSecond journeyBox ${activeJourneyCard === 'journeyCard2' ? 'journeyBoxAlert ' : ''}`} onClick={e => this.onJourneyCardClicked(e, 'journeyCard2')}>
-                    
-                        <div  className={`journeyHeader k-float-left ${activeJourneyCard === 'journeyCard2' ? 'journeyHeaderAlert ' : ''}`}>
-                            <div className="verticalText3"><p className="journeyHeaderTitle ">Buy</p></div>
-                        </div>
-                        <div className="journeyBoxHover">
-                        <div className="journeyContent">
-                            <p>New QFMs</p>
-                            <div className="row">
-                                <div className="col journeysAmount k-float-left journeyAmountGreen">$3.0M</div>
-                                <div className="col journeysTarget k-float-right">TARGET $2.7M</div>
-                                
-                            </div>
-                            <div className="row k-float-left">
-                                <div className="journeyKendoGraph">
-                                    <KendoBulletChart values={[3.0, 2.7]}></KendoBulletChart>
-                                </div>
-                            </div>  
-                        </div>
-                        </div>
-                    </div>   
-
-                 
-                    <div className="vertSpinMeThird journeyBox">
-
-                        <div className="journeyHeader k-float-left">
-                            <div className="verticalText2"><p className="journeyHeaderTitle ">Try</p></div>
-                        </div>
-                        <div className="journeyBoxHover">
-                        <div className="journeyContent">
-                            <p>Conversion</p>
-                            <div className="row">
-                                <div className="col journeysAmount k-float-left x">0.85%</div>
-                                <div className="col journeysTarget k-float-right">TARGET 0.88%</div>
-                                
-                            </div>
-                            <div className="row k-float-left">
-                                <div className="journeyKendoGraph">
-                                    <KendoBulletChart values={[.88, 0.84]}></KendoBulletChart>
-                                </div>
-                            </div>  
-                        </div>
-                    </div>
-                    </div>   
-
-                    
-                    <div className="vertSpinMeFourth journeyBox ">
-                    
-                            <div className="journeyHeader k-float-left">
-                                    <div className="verticalText4"><p className="journeyHeaderTitle ">Try</p></div>
-                                </div>
-
-                                <div className="journeyBoxHover">
-                                <div className="journeyContent">
-                                    <p>Repeat User MAU</p>
-                                    <div className="row">
-                                        <div className="col journeysAmount k-float-left">59.24%</div>
-                                        <div className="col journeysTarget k-float-right">TARGET 62.26%</div>
-                                        
-                                    </div>
-                                    <div className="row k-float-left">
-                                        <div className="journeyKendoGraph">
-                                            <KendoBulletChart values={[59.24, 62.26]}></KendoBulletChart>
-                                        </div>
-                                    </div>  
-                            </div>
-                    </div>  
-                    </div>
-
-                   
-                    <div className="vertSpinMeFifth journeyBox">
-                    <div className="journeyHeader k-float-left">
-                                    <div className="verticalText5"><p className="journeyHeaderTitle ">Renew</p></div>
-                                </div>
-
-                                 <div className="journeyBoxHover">
-                                <div className="journeyContent">
-                                    <p>QTR Fin. Retention Rate</p>
-                                    <div className="row">
-                                        <div className="col journeysAmount k-float-left journeyAmountGreen">95.78%</div>
-                                        <div className="col journeysTarget k-float-right">TARGET 95.06%</div>
-                                        
-                                    </div>
-                                    <div className="row k-float-left">
-                                        <div className="journeyKendoGraph">
-                                            <KendoBulletChart values={[95.78, 95.06]}></KendoBulletChart>
-                                        </div>
-                                    </div>  
-                            </div>
-                    </div>                   
-                </div>
+                    );
+                })}
+                
                 </div>
                 <div className="col-lg-9 col-md-9">
                     <ButtomSummaryBox />
