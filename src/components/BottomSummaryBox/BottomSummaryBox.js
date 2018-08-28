@@ -69,9 +69,9 @@ class ButtomSummaryBox extends Component {
                                         transitionAppearTimeout={800}
                                         transitionEnter={false} 
                                         transitionLeave={false} >
-                                        <div className="statsHeader"> 
-                                            <span className="green"> -2.9%</span><br/>
-                                            <span> Y/Y </span>
+                                        <div className=" statsHeader"> 
+                                            <div className="percentage green"> -2.9%</div>
+                                            <div className="footer"> Y/Y </div>
                                         </div>
                                     </CSSTransitionGroup>
                                     <CSSTransitionGroup
@@ -80,9 +80,9 @@ class ButtomSummaryBox extends Component {
                                         transitionAppearTimeout={600}
                                         transitionEnter={false} 
                                         transitionLeave={false} >
-                                        <div className="statsHeader"> 
-                                            <span className="red"> -17.0%</span><br/>
-                                            <span> Q/Q LY </span>
+                                        <div className=" statsHeader"> 
+                                            <div className="percentage red"> -17.0%</div>
+                                            <div className="footer"> Q/Q LY </div>
                                         </div>
                                     </CSSTransitionGroup>
                                     <CSSTransitionGroup
@@ -91,9 +91,9 @@ class ButtomSummaryBox extends Component {
                                         transitionAppearTimeout={400}
                                         transitionEnter={false} 
                                         transitionLeave={false} >
-                                        <div className="statsHeader"> 
-                                            <span className="red"> -20.4%</span><br/>
-                                            <span> Q/Q TY </span>
+                                        <div className=" statsHeader"> 
+                                            <div className="percentage red"> -20.4%</div>
+                                            <div className="footer"> Q/Q TY </div>
                                         </div>
                                     </CSSTransitionGroup>
                                     <CSSTransitionGroup
@@ -102,9 +102,9 @@ class ButtomSummaryBox extends Component {
                                         transitionAppearTimeout={200}
                                         transitionEnter={false} 
                                         transitionLeave={false} >
-                                        <div className="statsHeader"> 
-                                            <span className="red"> -2.8%</span><br/>
-                                            <span> vs QRF </span>
+                                        <div className=" statsHeader"> 
+                                            <div className="percentage red"> -2.8%</div>
+                                            <div className="footer"> vs QRF </div>
                                         </div>
                                     </CSSTransitionGroup> 
                                     </span>
@@ -125,8 +125,8 @@ class ButtomSummaryBox extends Component {
                                         transitionEnter={false} 
                                         transitionLeave={false} >
                                         <div className="statsHeader"> 
-                                            <span className="green"> -2.9%</span><br/>
-                                            <span> Y/Y </span>
+                                            <div className="percentage green"> -2.9%</div>
+                                            <div className="footer"> Y/Y </div>
                                         </div>
                                     </CSSTransitionGroup>
                                     <CSSTransitionGroup
@@ -136,8 +136,8 @@ class ButtomSummaryBox extends Component {
                                         transitionEnter={false} 
                                         transitionLeave={false} >
                                         <div className="statsHeader"> 
-                                            <span className="red"> -17.0%</span><br/>
-                                            <span> Q/Q LY </span>
+                                            <div className="percentage red"> -17.0%</div>
+                                            <div className="footer"> Q/Q LY </div>
                                         </div>
                                     </CSSTransitionGroup>
                                     <CSSTransitionGroup
@@ -147,8 +147,8 @@ class ButtomSummaryBox extends Component {
                                         transitionEnter={false} 
                                         transitionLeave={false} >
                                         <div className="statsHeader"> 
-                                            <span className="red"> -20.4%</span><br/>
-                                            <span> Q/Q TY </span>
+                                            <div className="percentage red"> -20.4%</div>
+                                            <div className="footer"> Q/Q TY </div>
                                         </div>
                                     </CSSTransitionGroup>
                                     <CSSTransitionGroup
@@ -158,8 +158,8 @@ class ButtomSummaryBox extends Component {
                                         transitionEnter={false} 
                                         transitionLeave={false} >
                                         <div className="statsHeader"> 
-                                            <span className="red"> -2.8%</span><br/>
-                                            <span> vs QRF </span>
+                                            <div className="percentage red"> -2.8%</div>
+                                            <div className="footer"> vs QRF </div>
                                         </div>
                                     </CSSTransitionGroup> 
                     </div> 

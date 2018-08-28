@@ -3,11 +3,13 @@
 .filterText{
     border: 1px solid #ffffffd8;
     border-radius: 20px;
-    padding: 10px;
+    padding: 5px;
     margin-bottom: 20px;
     margin-top:40px;
     width: inherit;
     margin-right: 10px;
+    font-size: 14px;
+    font-style: light;
 
 }
 .filterText, .xButton{
@@ -18,7 +20,7 @@
 
 .xButton{
     padding-left: 15px;
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 
