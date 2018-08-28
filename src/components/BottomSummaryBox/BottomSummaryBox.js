@@ -21,6 +21,7 @@ const inStyles = {
 class ButtomSummaryBox extends Component {
     //When the component is constructed
     constructor(props){
+
         super(props);
 
         // Initialize state
