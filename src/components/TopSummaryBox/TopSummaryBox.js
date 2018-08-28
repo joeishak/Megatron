@@ -9,7 +9,7 @@ import classNames from 'classnames';
 // Custom Components and Styles
 import  * as actions from 'actions';
 import styles from './TopSummaryBox.css'
-import  KendoSwitch  from '../KendoSwitch/KendoSwitch';
+import KendoSwitch  from '../KendoSwitch/KendoSwitch';
 import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 import KendoBulletChart from '../KendoBullet/KendoBullet';
@@ -23,19 +23,28 @@ class TopSummaryBox extends Component {
             show: true,
             isToggleButtonChecked: false,
             summaryTitle: 'Financials Summary',
-            activeJourneyCard: ''
+            activeJourneyCard: '',
+            activeCard:'',
+            data: (this.props.switchFilter)? this.props.appData.journey: this.props.appData.financial,
+            components:{
+                squares: undefined,
+                stats: undefined,
+                multichart: undefined
+            }
+
         };
         //Binding functions to this
         this.enableChart1Arrow = this.enableChart1Arrow.bind(this);
         this.enableChart2Arrow = this.enableChart2Arrow.bind(this);
         this.enableChart3Arrow = this.enableChart3Arrow.bind(this);
         this.enableChart4Arrow = this.enableChart4Arrow.bind(this);
+        this.getSummaryContent = this.getSummaryContent.bind(this);
+        this.getFinancialSquares = this.getFinancialSquares.bind(this);
 
-
+        // console.log(this.state);
     }
     componentDidUpdate(){
-        console.log(this.props.switchFilter);
-
+        // console.log(this.props.switchFilter);
     }
    //Event handlers for each chart square to render the arrow
     enableChart1Arrow(event){
@@ -68,9 +77,9 @@ class TopSummaryBox extends Component {
             this.setState({activeCard: 'card4'});
             break;
         }
-      }
+    }
 
-      onJourneyCardClicked (e, card) {
+    onJourneyCardClicked (e, card) {
           e.preventDefault();
           switch(card) {
             case 'journeyCard1':
@@ -89,7 +98,7 @@ class TopSummaryBox extends Component {
               this.setState({activeJourneyCard: 'journeyCard4'});
               break;
           }
-      }
+    }
 
     //   Event handler for toggle change 'Financials' and 'Joruneys'
     onToggleButtonChanged = (e) => {
@@ -111,180 +120,55 @@ class TopSummaryBox extends Component {
         }
     }
    
-    render(){
-        var SummaryBoxStyles = classNames({
-            summaryBox: true,
-            summaryBox_financial: !this.props.switchFilter ? false: true
-        });
-
-        var JourneysSquareStyles = classNames({
-            journeySquareStyle:true
-        });
-
-        var JourneysSquareHeader = classNames({
-            journeySquareHeader: true
-        });
-        var JourneySquareContent = classNames({
-            journeySquareContent: true
-        });
-
+    getSummaryContent(){
         const { activeCard } = this.state;
         const { activeJourneyCard } = this.state;
 
-        
-        const chart1 = this.state.show ? ( 
-        <div className={`sumChartSquare ${activeCard === 'card1' ? 'selectedCard ' : ''}`} onClick={e => this.selectedCard(e, 'card1')}>
-            <div className="spinMeFirst sumChartContent">
-                <div className={`sumChartHeader ${activeCard === 'card1' ? 'selectedCardHeaderRed' : ''}`}>
-                <p className={`sumChartHeaderText ${activeCard === 'card1' ? 'selectedCardText' : ''}`}
-                >Net New ARR</p>
-                </div>
-                    <div className={`donutChart ${activeCard === 'card1' ? 'arrow_box' : ''}`}>
-                        <div className="zoom">
-                        <KendoDonutChart donutColor="red" donutCenterRender= {()=> 
-                        <div><h2>$149.9M</h2><h6>Target</h6><h4>$277.9M</h4></div>}/> 
-                        </div>
-                    </div>
-                </div>
-        </div>) : null;
-
-        const chart2 = this.state.show ? ( 
-        <div className={`sumChartSquare ${activeCard === 'card2' ? 'selectedCard' : ''}`} onClick={e => this.selectedCard(e, 'card2')}>
-            <div className="spinMeSecond sumChartContent">
-                <div className={`sumChartHeader ${activeCard === 'card2' ? 'selectedCardHeaderRed' : ''}`} >
-                    <p className={`sumChartHeaderTest ${activeCard === 'card2' ? 'selectedCardText' : ''}`}>Gross New ARR</p>
-                    </div>
-                    <div className={`donutChart ${activeCard === 'card2' ? 'arrow_box' : ''}`}>
-                        <div className="zoom">
-                            <KendoDonutChart donutColor="red" donutCenterRender= {()=> 
-                                <div><h2>$159.9M</h2><h6>Target</h6><h4>$277.9M</h4></div>}/> 
-                        </div>
-                    </div>
-                </div>
-                
-            </div>) : null;
-
-        // Front of Chart 3
-        const chart3 = this.state.show ? (
-        <div className={`sumChartSquare ${activeCard === 'card3' ? 'selectedCard' : ''}`} onClick={e => this.selectedCard(e, 'card3')} >
-            <div className="spinMeThird sumChartContent">
-            
-                    <div className={`sumChartHeader ${activeCard === 'card3' ? 'selectedCardHeaderRed' : ''}`} >
-                    <p className={`sumChartHeaderText ${activeCard === 'card3' ? 'selectedCardText' : ''}`}>Cancellations ARR</p>
-                    </div>
-                    <div className={`donutChart ${activeCard === 'card3' ? 'arrow_box' : ''}`}>
-                        <div  className="zoom">
-                        <KendoDonutChart donutColor="red" donutCenterRender= {()=> 
-                        <div><h2>$217.5M</h2><h6>Target</h6><h4>$277.9M</h4></div>} />
-                        </div>
-                    </div>
-                </div>
-                
-            </div>) : null;
-
-        // Front of Chart 4
-        const chart4 = this.state.show ? (                      
-        <div className={`sumChartSquare ${activeCard === 'card4' ? 'selectedCard' : ''}`} onClick={e => this.selectedCard(e, 'card4')} >
-            <div className="spinMeFourth sumChartContent">
-                    <div className={`sumChartHeader ${activeCard === 'card4' ? 'selectedCardHeaderGreen' : ''}`} >
-                    <p className={`sumChartHeaderText ${activeCard === 'card4' ? 'selectedCardText' : ''}`}
-                >Renewel@FP ARR</p>
-                    </div>
-                    <div className={`donutChart ${activeCard === 'card4' ? 'arrow_box' : ''}`}>
-                        <div className="zoom">
-                        <KendoDonutChart donutColor="green" donutCenterRender= {()=> 
-                        <div><h2>$278.0M</h2><h6>Target</h6><h4>$277.9M</h4></div>} />
-                        </div>
-                    </div>
-                </div>
-  
-            </div>) : null;
-            
-        const summaryViewIsFinancial= (!this.props.switchFilter) ? (
+         if(this.props.switchFilter===false){
+            return (
              <div className="chartRow">
-
-                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.enableChart1Arrow}>
-                    <div >
-                        <div className="flipper">
-                            <div className="front ">
-                                {/* <!-- front content --> */}
-                                <CSSTransitionGroup
-                                    transitionName="example"
-                                    transitionAppear={true}
-                                    transitionAppearTimeout={1000}
-                                    transitionEnter={false} 
-                                    transitionLeave={false}>
-                                     {chart1}
-                                </CSSTransitionGroup>
+              { this.state.data.squares.map(item=>{
+                return (
+                    <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.enableChart1Arrow}>
+                            <div >
+                                <div className="flipper">
+                                    <div className="front ">
+                                        {/* <!-- front content --> */}
+                                        <CSSTransitionGroup
+                                            transitionName="example"
+                                            transitionAppear={true}
+                                            transitionAppearTimeout={1000}
+                                            transitionEnter={false} 
+                                            transitionLeave={false}>
+                                            {this.state.show ? (
+                                            // {/* Financial Summary  */}
+                                            <div className={`sumChartSquare ${activeCard === 'card1' ? 'selectedCard ' : ''}`} onClick={e => this.selectedCard(e, 'card1')}>
+                                                <div className="spinMeFirst sumChartContent">
+                                                    <div className={`sumChartHeader ${activeCard === 'card1' ? 'selectedCardHeaderRed' : ''}`}>
+                                                    <p className={`sumChartHeaderText ${activeCard === 'card1' ? 'selectedCardText' : ''}`}
+                                                    >item.header</p>
+                                                    </div>
+                                                        <div className={`donutChart ${activeCard === 'card1' ? 'arrow_box' : ''}`}>
+                                                            <div className="zoom">
+                                                            <KendoDonutChart donutColor="red" donutCenterRender= {()=> 
+                                                            <div><h2>${item.value}M</h2><h6>Target</h6><h4>${item.target}M</h4></div>}/> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        ): null}
+                                        </CSSTransitionGroup>
+                                    </div>
+                                </div>
                             </div>
-                            
                         </div>
-                    </div>
-                </div>
-                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" onClick = {this.enableChart2Arrow}>
-                <div >
-                        <div className="flipper">
-                            <div className="front">
-                                {/* <!-- front content --> */}
-                                <CSSTransitionGroup
-                                    className="chart1"
-                                    transitionName="example"
-                                    transitionAppear={true}
-                                    transitionAppearTimeout={1000}
-                                    transitionEnter={false} 
-                                    transitionLeave={false} >
-                                      {chart2} 
-                                </CSSTransitionGroup>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" onClick = {this.enableChart3Arrow}>
-                <div >
-                        <div className="flipper">
-                            <div className="front">
-                                {/* <!-- front content --> */}
-                                <CSSTransitionGroup
-                                    className="chart1"
-                                    transitionName="example"
-                                    transitionAppear={true}
-                                    transitionAppearTimeout={1000}
-                                    transitionEnter={false} 
-                                    transitionLeave={false} >
-                                        {chart3} 
-                                </CSSTransitionGroup>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3" onClick = {this.enableChart4Arrow}>
-                <div >
-                        <div className="flipper">
-                            <div className="front">
-                                {/* <!-- front content --> */}
-                                <CSSTransitionGroup
-                                    className="chart1"
-                                    transitionName="example"
-                                    transitionAppear={true}
-                                    transitionAppearTimeout={1000}
-                                    transitionEnter={false} 
-                                    transitionLeave={false} >
-                                        {chart4} 
-                                </CSSTransitionGroup>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-               
-
-            </div>):
-            null;
-
-        const journeysView = this.state.isToggleButtonChecked ? (
-            <div className="row">
+                )
+            })}
+            </div>
+            )
+        } else {
+            return(
+                <div className="row">
                 <div className="col-lg-3 col-md-3">
                     <div className={`vertSpinMeFirst journeyBox ${activeJourneyCard === 'journeyCard1' ? 'journeyBoxAlert ' : ''}`} onClick={e => this.onJourneyCardClicked(e, 'journeyCard1')}>
 
@@ -387,15 +271,35 @@ class TopSummaryBox extends Component {
                 <div className="col-lg-9 col-md-9">
                     <ButtomSummaryBox />
                 </div>
-            </div> ) : null;
+            </div>
+            )
+        }
+    }
+ 
+
+    render(){
+        var SummaryBoxStyles = classNames({
+            summaryBox: true,
+            summaryBox_financial: !this.props.switchFilter ? false: true
+        });
+
+        var JourneysSquareStyles = classNames({
+            journeySquareStyle:true
+        });
+
+        var JourneysSquareHeader = classNames({
+            journeySquareHeader: true
+        });
+        var JourneySquareContent = classNames({
+            journeySquareContent: true
+        });
+
         return(
 
             <Grid className={SummaryBoxStyles} fluid>
-
                 <CSSTransitionGroup transitionName="example"
                     transitionAppear={true} transitionAppearTimeout={1000}
                     transitionEnter={false} transitionLeave={false} >
-
                 {/* Toggle Button */}
                 <div className="container-fluid row">
                     <div className="col summaryTitleCol k-float-left">{this.getSummaryTitle()}</div>
@@ -411,21 +315,14 @@ class TopSummaryBox extends Component {
        
                     
                 </CSSTransitionGroup>
-
-              {summaryViewIsFinancial}
-              
-              {journeysView}
-
-            
-
+                {this.getSummaryContent()}
             </Grid>
         )
     }
 }
 
 function mapStateToProps(state) {
-    console.log('Switch Filter'+ state.switchFilter);
-    return { filters: state.filters, switchFilter:state.switchFilter };
+    return { filters: state.filters, switchFilter:state.switchFilter, appData: state.adobeData };
 }
 
 export default connect(mapStateToProps,actions)(TopSummaryBox)

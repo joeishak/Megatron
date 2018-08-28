@@ -1,6 +1,9 @@
 // Npm Modules
 import React, {Component } from 'react';
 import ReactDOM from 'react-dom';
+import {connect } from 'react-redux';
+import classNames from 'classnames';
+import * as actions from 'actions';
 import {
     Chart,
     ChartTitle,
@@ -41,7 +44,7 @@ class KendoMultiChart extends Component {
                 </ChartCategoryAxisItem>
             </ChartCategoryAxis>
             <ChartSeries>
-                <ChartSeriesItem type="column" gap={2} spacing={0.25} data={firstSeries} color="black">
+                <ChartSeriesItem type="column" gap={2} spacing={0.25} data={firstSeries} color={(this.props.switchFilter)?'white':'black'}>
                 <ChartSeriesItemTooltip background="#3c3c3c" />
                 </ChartSeriesItem>
                 <ChartSeriesItem type="line" data={secondSeries} >
@@ -61,4 +64,7 @@ class KendoMultiChart extends Component {
 }
 
 }
-export default KendoMultiChart;
+function mapStateToProps(state){
+    return { switchFilter: state.switchFilter }
+}
+export default connect(mapStateToProps,actions)( KendoMultiChart);
