@@ -123,8 +123,10 @@ class Navigation extends Component {
             <div className="dropDownContainerBox">
               <div className=" k-float-left">
                   <NavDropdown eventKey={3} className="dropDownContainer" title={this.state.loggedUser} id="nav-dropdown" noCaret>
-                      <MenuItem eventKey={3.1}>Log Out</MenuItem>
-                      <MenuItem eventKey={3.2}>Settings</MenuItem>
+                      <MenuItem eventKey={3.1}>Account Settings</MenuItem>
+                      <MenuItem eventKey={3.2}>Data Preferences</MenuItem>
+                      <MenuItem eventKey={3.3}>Log Out</MenuItem>
+
                   </NavDropdown>
                 </div>
                 <div className=" k-float-right"><img className="userIcon" src={userIcon}/></div>
