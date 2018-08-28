@@ -34,7 +34,7 @@ class KendoDonutChart extends Component {
             field="Share"
             categoryField="kind"
             colorField="color"
-            holeSize={70}
+            holeSize={67}
             dynamicHeight='true'
             
             >
