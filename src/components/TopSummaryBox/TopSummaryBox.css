@@ -568,10 +568,6 @@ input:checked + .slider:before  {
 	color: #FF0000;
 }
 
-<<<<<<< HEAD
-.journeyAmountGreen {
-	color: #0DB16E;
-=======
 .journeysAmountGreen {
 	color: green;
 	font-family: Ubuntu;
@@ -580,7 +576,6 @@ input:checked + .slider:before  {
 	font-weight: 300;
 	line-height: normal;
 	font-size: 32px;
->>>>>>> 9376288a5d38cb17eeb68026f37b790850106fba
 }
 
 .journeysTarget {
