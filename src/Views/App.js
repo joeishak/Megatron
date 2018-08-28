@@ -54,7 +54,6 @@ class App extends Component {
       this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
       this.getFilters  =this.getFilters.bind(this);
 
-      console.log(this.props);
       this.getFilters();
   }
   
@@ -91,80 +90,46 @@ class App extends Component {
     
   }
 
-
-
-
- /***
-  * Use these functions to open and close the dialog box
- 
-  openDialog = () => {
-    this.props.updateDialogVisibility(true);
-  } 
-  */
-  // closeDialog = () => {
-  //   this.props.updateDialogVisibility(false);
-
-  //   this.setState({dialogIsOpen: false})
-  // } 
-  
- 
-
-  
  
   render(){
-
-    // const summary = !this.props.switchFilter ? 
-    //     <div><TopSummaryBox handleSummaryClick={this.renderBarGraph} />
-    //         <div className='bottomSummaryContainer'>
-    //           <ButtomSummaryBox rerender={this.state.renderFooter}/>
-    //         </div>
-    //     </div> : null;
 
  
     const show = this.props.dialogIsOpen
     const kendoDialog = show ? ( 
 
       <Animation 
-      // style={{width:'70%',height:'700px'}}
         appear={false}
         enter={true}
         exit={true}
         transitionName="custom-animation"
         className="custom-animation"
         transitionEnterDuration={300}
-        transitionExitDuration={300}
-
-        >
-        <KendoDialog title="Detail ARR"  appContent={[]}></KendoDialog>
-        </Animation>
+        transitionExitDuration={300}>
+          <KendoDialog title="Detail ARR"  appContent={[]}></KendoDialog>
+      </Animation>
       ) : null;
 
       const bottomSummary = !this.props.switchFilter ? 
-      <div className='bottomSummaryContainer'>
-      <ButtomSummaryBox rerender={this.state.renderFooter}/>
-      </div>:
-      null;
-     return (
-      <div style={{width:'100%',height:'100%'}}>
-        <div style={{width:'100%',height:'inherit'}}>
+      
+        <div className='bottomSummaryContainer'>
+          <ButtomSummaryBox rerender={this.state.renderFooter}/>
+        </div> : null;
 
+    return (
+
+      <div style={{width:'100%',height:'100%'}}>
         <KendoDialog />
-        </div>
         <Navigation />
         <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
         <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
-
         <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
-       {bottomSummary}
-          {/* {summary} */}
-        
+        {bottomSummary}
       </div>
   )
 }
 }
 
 function mapStateToProps(state) {
-    console.log(state);
   return {
     dialogIsOpen:state.isDialogOpen,
     activeFilters: state.activeFilters,
