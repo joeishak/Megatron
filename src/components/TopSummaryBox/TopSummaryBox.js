@@ -169,14 +169,14 @@ class TopSummaryBox extends Component {
                                             transitionLeave={false}>
                                             {this.state.show ? (
                                             // {/* Financial Summary  */}
-                                            <div className={`sumChartSquare ${activeCard === item.css[0] ? 'selectedCard ' : ''}`} onClick={e => this.selectedCard(e, item.css[0])}>
+                                            <div className={`sumChartSquare zoom ${activeCard === item.css[0] ? 'selectedCard ' : ''}`} onClick={e => this.selectedCard(e, item.css[0])}>
                                                 <div className={`sumChartContent ${item.css[1]}`}>
                                                     <div className={`sumChartHeader ${activeCard === item.css[0] ? this.getColor(item.value, item.target, 'financial') : ''}`}>
                                                     <p className={`sumChartHeaderText ${activeCard === item.css[0] ? 'selectedCardText' : ''}`}
                                                     >{item.header}</p>
                                                     </div>
                                                         <div className={`donutChart ${activeCard === item.css[0] ? 'arrow_box' : ''}`}>
-                                                            <div className="zoom">
+                                                            <div >
                                                             <KendoDonutChart donutColor={item.css[2]} key={item.index} donutCenterRender= {()=> 
                                                             <div><h2>${item.value}M</h2><h6>Target</h6><h4>${item.target}M</h4></div>}/> 
                                                             </div>
