@@ -96,7 +96,7 @@ class TopSummaryBox extends Component {
               this.setState({activeJourneyCard: 'journeyCard4'});
               break;
             case 'journeyCard5':
-              this.setState({activeJourneyCard: 'journeyCard4'});
+              this.setState({activeJourneyCard: 'journeyCard5'});
               break;
           }
     }
@@ -121,12 +121,27 @@ class TopSummaryBox extends Component {
         }
     }
 
-    getColor(value, target) {
+    getColor(value, target, type, header) {
+
         let retColor = '';
-        if (value > target) {
-            retColor = 'selectedCardHeaderGreen';
-        } else {
-            retColor = 'selectedCardHeaderRed';
+        if(type === 'financial' ) {
+            if (value > target) {
+                retColor = 'selectedCardHeaderGreen';
+            } else {
+                retColor = 'selectedCardHeaderRed';
+            }
+        } else if (type === 'journey' && header === false) {
+            if (value > target) {
+                retColor = 'journeyBoxAlertGreen';
+            } else {
+                retColor = 'journeyBoxAlert';
+            }
+        } else if (type === 'journey' && header !== false) {
+            if (value > target) {
+                retColor = 'journeyHeaderAlertGreen';
+            } else {
+                retColor = 'journeyHeaderAlert';
+            }
         }
 
         return retColor;
@@ -156,7 +171,7 @@ class TopSummaryBox extends Component {
                                             // {/* Financial Summary  */}
                                             <div className={`sumChartSquare ${activeCard === item.css[0] ? 'selectedCard ' : ''}`} onClick={e => this.selectedCard(e, item.css[0])}>
                                                 <div className={`sumChartContent ${item.css[1]}`}>
-                                                    <div className={`sumChartHeader ${activeCard === item.css[0] ? this.getColor(item.value, item.target) : ''}`}>
+                                                    <div className={`sumChartHeader ${activeCard === item.css[0] ? this.getColor(item.value, item.target, 'financial') : ''}`}>
                                                     <p className={`sumChartHeaderText ${activeCard === item.css[0] ? 'selectedCardText' : ''}`}
                                                     >{item.header}</p>
                                                     </div>
@@ -186,9 +201,9 @@ class TopSummaryBox extends Component {
                 {this.props.appData.journey.squares.map(item => {
                     return (
                                         
-                    <div className={ `journeyBox ${item.css[1]} ${activeJourneyCard === item.css[0] ? 'journeyBoxAlert ' : ''}`} onClick={e => this.onJourneyCardClicked(e, item.css[0])}>
+                    <div className={ `journeyBox ${item.css[1]} ${activeJourneyCard === item.css[0] ? this.getColor(item.value, item.target, 'journey', false) : ''}`} onClick={e => this.onJourneyCardClicked(e, item.css[0])}>
                 
-                    <div  className={`journeyHeader k-float-left ${activeJourneyCard === item.css[0] ? 'journeyHeaderAlert ' : ''}`} >
+                    <div  className={`journeyHeader k-float-left ${activeJourneyCard === item.css[0] ? this.getColor(item.value, item.target, 'journey', true) : ''}`} >
                         <div className={item.css[2]}><p className="journeyHeaderTitle ">{item.title}</p></div>
                     </div>
                   
