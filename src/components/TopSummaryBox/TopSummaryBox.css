@@ -304,11 +304,11 @@ input:checked + .slider:before  {
 @-webkit-keyframes spin {
 	from {-webkit-transform: rotateY(0deg);}
 	to {-webkit-transform: rotateY(360deg);}
-  } 
-  @keyframes spin {
+} 
+@keyframes spin {
 	from {transform: rotateY(0deg);}
 	to {transform: rotateY(360deg);}
-  } 
+} 
 
   /**Vertical Spins**/
 .vertSpinMeFirst{
@@ -331,18 +331,18 @@ input:checked + .slider:before  {
 	animation: vertspin 5s  forwards; 
 
 }
-  @-moz-keyframes vertspin {
+@-moz-keyframes vertspin {
 	from {-moz-transform: rotateX(0deg);}
 	to {-moz-transform: rotateX(720deg);}
-  } 
-  @-webkit-keyframes vertspin {
-	  from {-webkit-transform: rotateX(0deg);}
-	  to {-webkit-transform: rotateX(720deg);}
-	} 
-	@keyframes vertspin {
-	  from {transform: rotateX(0deg);}
-	  to {transform: rotateX(720deg);}
-	} 
+} 
+@-webkit-keyframes vertspin {
+	from {-webkit-transform: rotateX(0deg);}
+	to {-webkit-transform: rotateX(720deg);}
+} 
+@keyframes vertspin {
+	from {transform: rotateX(0deg);}
+	to {transform: rotateX(720deg);}
+} 
 
 .sumChartHeader{
 	height: 18%;

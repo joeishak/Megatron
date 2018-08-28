@@ -15,6 +15,7 @@ import {
 
 const KendoBulletChart = (props) => {
   const hidden = { visible: false };
+  const targetColor = { color: 'white'};
 
   const tooltipRender = ({ point }) => {
     const { value } = point;
@@ -43,7 +44,8 @@ const KendoBulletChart = (props) => {
       <Chart style={{ height: 36, width: 240 }}>
         <ChartArea background="transparent"/>
           <ChartSeries>
-              <ChartSeriesItem type="bullet" color={colorRender} data={props.values} />
+            
+              <ChartSeriesItem type="bullet" color={colorRender} data={props.values} target={targetColor} />
           </ChartSeries>
           <ChartCategoryAxis>
             <ChartCategoryAxisItem majorGridLines={hidden} minorGridLines={hidden} />

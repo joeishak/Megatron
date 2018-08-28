@@ -23,8 +23,8 @@ class TopSummaryBox extends Component {
             show: true,
             isToggleButtonChecked: false,
             summaryTitle: 'Financials Summary',
-            activeJourneyCard: '',
-            activeCard:'',
+            activeJourneyCard: 'journeyCard1',
+            activeCard:'card1',
             data: (this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial,
             components:{
                 squares: undefined,
@@ -88,7 +88,7 @@ class TopSummaryBox extends Component {
 
               // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
         console.log(selectedTitle);
-        console.log(selectedSubtitle);    
+        console.log(selectedSubtitle); 
           
     }
 
@@ -138,6 +138,26 @@ class TopSummaryBox extends Component {
 
         return retColor;
     }
+
+    renderDollar(index) {
+        let renderDollar = '';
+
+        if (index === 1 || index === 2 || index === 5) { renderDollar = '$' }
+
+        return renderDollar;
+    }
+
+    renderM(index) {
+        let renderM = '';
+
+        if (index === 1 || index === 2 || index === 5) { renderM = 'M' } else {
+            renderM = '%'
+        }
+
+        return renderM;
+    }
+
+
    
     getSummaryContent(){
         const { activeCard } = this.state;
@@ -204,9 +224,9 @@ class TopSummaryBox extends Component {
                             <div className="journeyContent">
                                 <p>{item.header}</p>
                                 <div className="row">
-                                
-                                    <div className={`col journeysAmount k-float-left ${item.value > item.target ? 'journeysAmountGreen' : ''}`}>${item.value}M</div>
-                                    <div className="col journeysTarget ">TARGET ${item.target}M</div>
+
+                                    <div className={`col journeysAmount k-float-left ${item.value > item.target ? 'journeysAmountGreen' : ''}`}>{this.renderDollar(item.index)}{item.value}{this.renderM(item.index)}</div>
+                                    <div className="col journeysTarget ">TARGET {this.renderDollar(item.index)}{item.target}{this.renderM(item.index)}</div>
  
                                 </div>
                                 <div className="row k-float-left">
@@ -222,7 +242,7 @@ class TopSummaryBox extends Component {
                 
                 </div>
                 <div className="col-lg-9 col-md-8">
-                    <ButtomSummaryBox chartHeight="350px" selectedTitleAndSubtitle={this.state.bottomSummaryComp}/>
+                    <ButtomSummaryBox chartHeight="350px"/>
                 </div>
             </div>
             )
