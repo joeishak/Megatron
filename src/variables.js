@@ -64,31 +64,41 @@ export const JourneyData = {
             index:1,
             header: 'Traffic',
             value: 146.7,
-            target: 242.3
+            target: 242.3,
+            title: 'Discover',
+            css: ['journeyCard1', 'vertSpinMeFirst']
         },
         {
             index:2,
             header: `New QFM's`,
             value: 3.9,
-            target: 4.7
+            target: 4.7,
+            title: 'Buy',
+            css: ['journeyCard2', 'vertSpinMeSecond']
         },
         {
             index:3,
             header: 'Conversion',
             value: .85,
-            target: .80
+            target: .80,
+            title: 'Try',
+            css: ['journeyCard3', 'vertSpinMeThird']
         },
         {
             index:4,
             header: 'Repeat User MAU',
             value: 95.78,
-            target: 95.06
+            target: 95.06,
+            title: 'Use',
+            css: ['journeyCard4', 'vertSpinMeFourth']
         },
         {
             index:5,
             header: 'Net New ARR',
             value: 149.9,
-            target: 277.9
+            target: 277.9,
+            title: 'Renew',
+            css: ['journeyCard5', 'vertSpinMeFifth']
         }
     ],
     multiChart:[

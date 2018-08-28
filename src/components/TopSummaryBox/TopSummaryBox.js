@@ -181,34 +181,37 @@ class TopSummaryBox extends Component {
             return(
                 <div className="row">
                 <div className="col-lg-3 col-md-3">
-                    <div className="journeyBoxHover">
+           
+                    {/* Journey Card */}
                     <div className={`vertSpinMeFirst journeyBox  ${activeJourneyCard === 'journeyCard1' ? 'journeyBoxAlert ' : ''}`} onClick={e => this.onJourneyCardClicked(e, 'journeyCard1')}>
-                     
+                        {/* Journey Header */}
                         <div  className={`journeyHeader k-float-left ${activeJourneyCard === 'journeyCard1' ? 'journeyHeaderAlert ' : ''}`} >
                             <div className="verticalText1"><p className="journeyHeaderTitle ">Discover</p></div>
                         </div>
-                        <div className="journeyContent">
-                            <p>Traffic</p>
-                            <div className="row">
-                                <div className="col journeysAmount k-float-left">$146.7M</div>
-                                <div className="col journeysTarget k-float-right">TARGET $242.3M</div>
-                                
-                            </div>
-                            <div className="row k-float-left">
-                                <div className="journeyKendoGraph">
-                                    <KendoBulletChart values={[146.7, 242.3]} ></KendoBulletChart>
+                        {/* Box Content */}
+                        <div className="journeyBoxHover">
+                            <div className="journeyContent">
+                                <p>Traffic</p>
+                                <div className="row">
+                                    <div className="col journeysAmount k-float-left">$146.7M</div>
+                                    <div className="col journeysTarget k-float-right">TARGET $242.3M</div>
+                                    
                                 </div>
-                            </div>  
+                                <div className="row k-float-left">
+                                    <div className="journeyKendoGraph">
+                                        <KendoBulletChart values={[146.7, 242.3]} ></KendoBulletChart>
+                                    </div>
+                                </div>  
+                            </div>
                         </div>
-                    </div>
                     </div>  
-
-                    <div className="journeyBoxHover">
+                    
                     <div className={`vertSpinMeSecond journeyBox ${activeJourneyCard === 'journeyCard2' ? 'journeyBoxAlert ' : ''}`} onClick={e => this.onJourneyCardClicked(e, 'journeyCard2')}>
                     
                         <div  className={`journeyHeader k-float-left ${activeJourneyCard === 'journeyCard2' ? 'journeyHeaderAlert ' : ''}`}>
                             <div className="verticalText3"><p className="journeyHeaderTitle ">Buy</p></div>
                         </div>
+                        <div className="journeyBoxHover">
                         <div className="journeyContent">
                             <p>New QFMs</p>
                             <div className="row">
@@ -225,12 +228,13 @@ class TopSummaryBox extends Component {
                         </div>
                     </div>   
 
-                    <div className="journeyBoxHover">
+                 
                     <div className="vertSpinMeThird journeyBox">
 
                         <div className="journeyHeader k-float-left">
                             <div className="verticalText2"><p className="journeyHeaderTitle ">Try</p></div>
                         </div>
+                        <div className="journeyBoxHover">
                         <div className="journeyContent">
                             <p>Conversion</p>
                             <div className="row">
@@ -247,12 +251,14 @@ class TopSummaryBox extends Component {
                     </div>
                     </div>   
 
-                    <div className="journeyBoxHover">
-                    <div className="vertSpinMeFourth journeyBox">
+                    
+                    <div className="vertSpinMeFourth journeyBox ">
                     
                             <div className="journeyHeader k-float-left">
                                     <div className="verticalText4"><p className="journeyHeaderTitle ">Try</p></div>
                                 </div>
+
+                                <div className="journeyBoxHover">
                                 <div className="journeyContent">
                                     <p>Repeat User MAU</p>
                                     <div className="row">
@@ -269,11 +275,13 @@ class TopSummaryBox extends Component {
                     </div>  
                     </div>
 
-                    <div className="journeyBoxHover">
+                   
                     <div className="vertSpinMeFifth journeyBox">
                     <div className="journeyHeader k-float-left">
                                     <div className="verticalText5"><p className="journeyHeaderTitle ">Renew</p></div>
                                 </div>
+
+                                 <div className="journeyBoxHover">
                                 <div className="journeyContent">
                                     <p>QTR Fin. Retention Rate</p>
                                     <div className="row">
