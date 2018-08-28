@@ -6,7 +6,11 @@ import {
     GET_ALL_DATA,
     GENERATE_FILTER_DATA,
     ADD_MULTI_FILTER,
-    REMOVE_MULTI_FILTER
+    REMOVE_MULTI_FILTER,
+    SHOW_SUMMARY_VIEW_DETAILS,    
+    HIDE_SUMMARY_VIEW_DETAILS,    
+    SHOW_DATA_PREFERENCES,
+    HIDE_DATA_PREFERENCES
 
 } from 'actions/types';
 import axios from 'axios';
@@ -110,9 +114,58 @@ export function generateFilterData() {
     }
  }
 
+ /**
+ * Remove a value to the active filters for the multi filter
+ * 
+ * @param {object} filter
+ */
  export function removeMultiFilter(filter){
      return {
          type: REMOVE_MULTI_FILTER,
          payload: filter
      }
  }
+
+/**
+ * Set the visibility of the Summary View Details to True
+ */
+export function showSummaryDetails(filter){
+    return {
+        type: SHOW_SUMMARY_VIEW_DETAILS,
+        payload: true
+    }
+}
+
+/**
+ * Set the visibility of the Summary View Details to False
+ */
+export function hideSummaryDetails(filter){
+    return {
+        type: HIDE_SUMMARY_VIEW_DETAILS,
+        payload: false
+    }
+}
+
+
+/**
+ * Set the visibility of the Data Preferences to True
+ */
+export function showDataPreferences(filter){
+    return {
+        type: SHOW_DATA_PREFERENCES,
+        payload: true
+    }
+}
+
+/**
+ * Set the visibility of the Data Preferences to False
+ */
+export function hideDataPreferences(filter){
+    return {
+        type: HIDE_DATA_PREFERENCES,
+        payload: false
+    }
+}
+
+
+

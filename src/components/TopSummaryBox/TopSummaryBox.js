@@ -268,7 +268,6 @@ class TopSummaryBox extends Component {
         });
 
         return(
-
             <Grid className={SummaryBoxStyles} fluid>
                 <CSSTransitionGroup transitionName="example"
                     transitionAppear={true} transitionAppearTimeout={1000}
@@ -285,8 +284,6 @@ class TopSummaryBox extends Component {
                         </label>
                         </div>
                     </div>
-       
-                    
                 </CSSTransitionGroup>
                 {this.getSummaryContent()}
             </Grid>
