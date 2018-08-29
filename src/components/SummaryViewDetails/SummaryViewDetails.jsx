@@ -113,6 +113,7 @@ class SummaryViewDetails extends Component {
               </div>
           </div>
         </div>
+        
         <KendoPanelBar />
       </div>
   )
