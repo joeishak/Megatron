@@ -144,12 +144,13 @@ getSummaryDetails(){
 }
 
 function mapStateToProps(state) {
-  console.log(`App.js state to props: `, state.detailsIsOpen);
+  console.log(`App.js state to props: `, state);
   return {
     dialogIsOpen:state.isDialogOpen,
     activeFilters: state.activeFilters,
     switchFilter: state.switchFilter,
-    detailIsOpen: state.detailsIsOpen
+    detailIsOpen: state.detailsIsOpen,
+
   };
 }
 

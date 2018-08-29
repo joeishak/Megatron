@@ -21,7 +21,7 @@ class TopSummaryBox extends Component {
         // Initialize state
         this.state = { 
             show: true,
-            isToggleButtonChecked: false,
+            isToggleButtonChecked: this.props.switchFilter,
             summaryTitle: 'Financials Summary',
             activeJourneyCard: 'journeyCard1',
             activeCard:'card1',
@@ -105,7 +105,7 @@ class TopSummaryBox extends Component {
 
     //Function to check state and return either Financials summary or Journeys Summary
     getSummaryTitle() {
-        if (this.state.isToggleButtonChecked) {
+        if (this.props.switchFilter) {
             return 'Journeys Summary'
         } else {
             return 'Financials Summary'
@@ -163,7 +163,7 @@ class TopSummaryBox extends Component {
         const { activeCard } = this.state;
         const { activeJourneyCard } = this.state;
 
-         if(!this.props.switchFilter){
+         if(this.props.switchFilter===false){
             return (
              <div className="chartRow">
               { this.state.data.squares.map(item=>{
@@ -276,7 +276,7 @@ class TopSummaryBox extends Component {
                 <div className="container-fluid row">
                     <div className="col summaryTitleCol k-float-left">{this.getSummaryTitle()}</div>
                         <div className="col summaryTitleCol k-float-right"><label className="switch">
-                            <input type="checkbox" id="togBtn" onChange={(e) => this.onToggleButtonChanged(e)}></input>
+                            <input type="checkbox" id="togBtn" checked={this.state.isToggleButtonChecked} onChange={(e) => this.onToggleButtonChanged(e)}></input>
                             <div className="slider round">
                             <div className="on">Financials</div>
                             <div className="off">Journeys</div>

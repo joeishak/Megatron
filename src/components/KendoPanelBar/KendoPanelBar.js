@@ -39,13 +39,15 @@ class KendoPanelBar extends Component {
      return(
         <div className={'panel-wrapper'}>
                    <PanelBar >
-                       <PanelBarItem expanded={true} title="Summary">
+                       <PanelBarItem expanded={true} title="Geo">
                            <div>
-                              
+                              Geo
                            </div>
                        </PanelBarItem>
-                       <PanelBarItem expanded={true} title={'Net New ARR'} />
-                         
+                       <PanelBarItem expanded={true} title='Market Area' />
+                       <PanelBarItem expanded={true} title='Route To Market' />
+                       <PanelBarItem expanded={true} title='Segments' />
+                       <PanelBarItem expanded={true} title='Product Name' />
                    </PanelBar>
                </div>
      )
