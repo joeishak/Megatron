@@ -167,7 +167,7 @@ class ButtomSummaryBox extends Component {
                     </div> 
                     : null}
                     <div className="row gridRow2 chartBig container-fluid">
-                        <KendoMultiChart chartHeight={this.props.chartHeight} style={inStyles.multichart} />
+                        <KendoMultiChart color={(this.props.switchFilter===true)? 'white':'black'} chartHeight={this.props.chartHeight} style={inStyles.multichart} />
                     </div> 
                     <div className={over}></div>
                 </div>

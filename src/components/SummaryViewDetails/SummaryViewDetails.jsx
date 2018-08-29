@@ -36,6 +36,8 @@ class SummaryViewDetails extends Component {
       /*Bindings  */
     this.updateMultiChartMetricFilter = this.updateMultiChartMetricFilter.bind(this);
     this.updateQtdMetricFilter = this.updateQtdMetricFilter.bind(this);
+    this.renderQuarterlyToDate = this.renderQuarterlyToDate.bind(this);
+    this.renderQuarterlyToDateTableHeader = this.renderQuarterlyToDateTableHeader.bind(this);
   }
   
   componentDidMount(){
@@ -50,7 +52,180 @@ class SummaryViewDetails extends Component {
    //Either be 'qtd', 'week' or 'all'
  this.setState({activeTimeMetric: e.target.innerHTML.toLowerCase()})
 }
+renderQuarterlyToDateTableHeader(){
+  switch(this.state.activeTimeMetric){
+    case 'qtd':
+    return(
+      <div className=" qtdDetailTitle col-md-12">Quarterly To Date</div>
+    );
+    case 'week': 
+    return(
+      <div className=" weekDetailTitle col-md-12">Week</div>
+    );
+    case 'all': 
+    return(
 
+      <div className="  col-md-12">
+      <div className=" allDetailTitle col-md-6">Week</div>
+      <div className=" allDetailTitle col-md-6">Quartely To Date</div>
+      </div>
+    );
+
+  }
+}
+ renderQuarterlyToDate(qtdwColSizes){ 
+   console.log(this.state.activeTimeMetric);
+   switch(this.state.activeTimeMetric){
+     case 'qtd':
+     return (
+     <div className="qtdTotalTable col-md-11">
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     </div>);
+     case 'week':
+     return (
+      <div className="qtdTotalTable col-md-11">
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     </div>);
+     case 'all': 
+     return (
+     <div className="qtdTotalTable col-md-11">
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     <div className={qtdwColSizes}>
+
+        <span className="contHeader"> Header </span>
+        <span className="valHeader"> Value</span>
+     </div>
+     </div>
+     );
+   }
+ }
  
   render(){
 
@@ -76,6 +251,11 @@ class SummaryViewDetails extends Component {
       activeTimeMetric: (this.state.activeTimeMetric === 'all') ? true: false
     });
  
+    var qtdwColSizes = classNames({
+      colContainer:true,
+      normalSize: (this.state.activeTimeMetric === 'week' || this.state.activeTimeMetric === 'qtd') ? true : false,
+      halfSize: (this.state.activeTimeMetric === 'all') ? true: false
+    })
     return (
 
       <div className="sumViewContainer container-fluid">
@@ -95,10 +275,11 @@ class SummaryViewDetails extends Component {
                   ARR
               </div>
           </div>
-          <div className="col-md-12">
-            <KendoMultiChart />
+          <div className="chartContainer col-md-12">
+            <KendoMultiChart color='black' />
           </div> 
         </div>
+        {/* Second Row for Quarterly to Date title header */}
         <div className=" qtdTitleBarHeader container-fluid row">
         <span className="col-md- 3 detailTitle">Quarterly To Date</span>
           <div className=" col-md-9 totalTimeMetricContainer">
@@ -112,9 +293,17 @@ class SummaryViewDetails extends Component {
                   ALL
               </div>
           </div>
-        </div>
+        </div> 
         
-        <KendoPanelBar />
+        <div className="  qtdTopDetails container-fluid row white">
+          {this.renderQuarterlyToDateTableHeader()}
+          <div className=" qtdTotalTitle col-md-12">
+            <div className=" qtdTotalTitle col-md-1">Total</div>
+              {this.renderQuarterlyToDate(qtdwColSizes)}
+          </div>
+          
+        </div>
+        <KendoPanelBar background='white'/>
       </div>
   )
 }

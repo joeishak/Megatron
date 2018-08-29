@@ -47,7 +47,7 @@ class KendoMultiChart extends Component {
                 </ChartCategoryAxisItem>
             </ChartCategoryAxis>
             <ChartSeries>
-                <ChartSeriesItem type="column" gap={2} spacing={0.25} data={firstSeries} color={(this.props.switchFilter)?'white':'black'}>
+                <ChartSeriesItem type="column" gap={2} spacing={0.25} data={firstSeries} color={this.props.color}>
                 <ChartSeriesItemTooltip background="#3c3c3c" />
                 </ChartSeriesItem>
                 <ChartSeriesItem type="line" data={secondSeries} >

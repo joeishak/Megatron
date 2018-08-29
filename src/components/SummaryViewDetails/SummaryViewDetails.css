@@ -2,7 +2,9 @@
 .sumViewContainer{
     width: 100%;
     height: 100%;
-    margin-top:15px;
+    padding-top:15px;
+    background-color: #f4f4f4;
+
 }
 
 /* Summary Breadcrumb */
@@ -26,6 +28,9 @@
     float:left;
 }
 
+.chartContainer{
+    background-color: #f4f4f4;
+}
 /* Multi Chart Metric Container */
 .multiChartMetricContainer{
     /* border-radius:100px; */
@@ -45,6 +50,7 @@
     border-bottom-left-radius: 100px;
     border: 1px solid #3C3C3C;
 }
+/* ARR Metric Right Side of Selector */
 
 .arrMetric{
     float:left;
@@ -69,6 +75,9 @@
 /* QTD Title Row */
 .qtdTitleBarHeader{
     margin-top:33px;
+    background-color:white;
+    padding-top: 15px;
+    padding-bottom:15px;
 }
 
 /* QTD Title Header Text */
@@ -81,6 +90,9 @@
     float:right;
     width:300px;
     height:30px;
+    background-color:white;
+    
+
 }
 
 /* QTD Metric */
@@ -95,7 +107,7 @@
     border-bottom-left-radius: 100px;
     border: 1px solid #3C3C3C;
 }
-
+/* Week  Metric */
 .weekMetric{
     padding-top: 5px;
     height:30px;
@@ -106,6 +118,7 @@
 
 }
 
+/* All Metric */
 .allMetric{
     float:left;
     width:80px;
@@ -116,10 +129,90 @@
     border-bottom-right-radius: 100px;
     border: 1px solid #3C3C3C;
 }
+
 /* Active Time Metric Chosen */
 .activeTimeMetric{
     width: 80px;
     color:white;
     background-color: #3C3C3C;
+
+}
+
+/* Quaretrly to date Top Details */
+.qtdTopDetails{
+    background-color: white;
+}
+
+.qtdDetailTitle{
+    float:right;
+    width: 750px;
+    height:30px;
+    clear:right;
+    text-align:center;
+    border-top: 1px solid #D8D8D8;
+    border-left: 1px solid #D8D8D8;
+    border-right: 1px solid #D8D8D8;
+    font-size: 12px;
+}
+.weekDetailTitle{
+    float:right;
+    width: 750px;
+    height:30px;
+    clear:right;
+    text-align:center;
+    border-top: 1px solid #D8D8D8;
+    border-left: 1px solid #D8D8D8;
+    border-right: 1px solid #D8D8D8;
+    font-size: 12px;
+}
+.allDetailTitle{
+    float:right;
+    text-align:center;
+    padding:0px;
+
+    border-top: 1px solid #D8D8D8;
+    border-left: 1px solid #D8D8D8;
+    border-right: 1px solid #D8D8D8;
+    width: 430px;
+}
+.qtdTotalTitle{
+    float: left;
+    font-size: 24px;
+    padding: 0px !important;
+}
+
+.qtdTotalTable{
+    padding: 0px !important;
+    width:850px;
+    float: right;
+    margin:auto;
+}
+.colContainer{
+    /* width:105px; */
+    height:80px;
+    background-color:#F4F4F4;
+    float:left;
+    margin:1px;
+}
+.normalSize{
+    width:105px;
+}
+.halfSize{
+    width:61px;
+    
+}
+
+.contHeader{
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-top:10px;
+    float:left;
+    clear:right;
+}
+.valHeader{
+    font-size:15px;
+    float:left;
+    padding-left: 10px;
 
 }

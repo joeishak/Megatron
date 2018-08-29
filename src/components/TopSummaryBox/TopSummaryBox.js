@@ -234,7 +234,7 @@ class TopSummaryBox extends Component {
                                 </div>
                                 <div className="row k-float-left">
                                     <div className="journeyKendoGraph">
-                                        <KendoBulletChart values={[item.value, item.target]} key={item.index} ></KendoBulletChart>
+                                        <KendoBulletChart values={[item.value, item.target]} color="white" key={item.index} ></KendoBulletChart>
                                     </div>
                                 </div>  
                             </div>
