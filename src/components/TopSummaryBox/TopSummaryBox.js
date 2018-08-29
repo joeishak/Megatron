@@ -44,6 +44,9 @@ class TopSummaryBox extends Component {
 
         // console.log(this.state);
     }
+    componentDidMount(){
+        // this.setState({data:(this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial})
+    }
     componentDidUpdate(){
         // console.log(this.props.switchFilter);
     }
@@ -162,11 +165,11 @@ class TopSummaryBox extends Component {
     getSummaryContent(){
         const { activeCard } = this.state;
         const { activeJourneyCard } = this.state;
-
+        // this.setState({data:(this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial});
          if(this.props.switchFilter===false){
             return (
              <div className="chartRow">
-              { this.state.data.squares.map(item=>{
+              { this.props.appData.financial.squares.map(item=>{
                 return (
                     <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.enableChart1Arrow} key={item.index}>
                             <div >
@@ -204,8 +207,8 @@ class TopSummaryBox extends Component {
                 )
             })}
             </div>
-            )
-        } else {
+            )  
+        } else if(this.props.switchFilter === true) {
             return(
                 <div className="row">
                 <div className="col-lg-3 col-md-4">

@@ -12,6 +12,8 @@ class KendoPanelBar extends Component {
         this.state = {
             logs: []
         }
+
+        this.getPanelContents = this.getPanelContents.bind(this);
     }
     imageUrl(imageName) {
         let baseImageUrl = 'https://demos.telerik.com/kendo-ui/content/web/panelbar/';
@@ -31,7 +33,22 @@ class KendoPanelBar extends Component {
             logs: calls
         });
     }
-
+    /* Return Contents for  */
+    getPanelContents(type){
+        let content = undefined;
+        switch (type){
+            case 'geo':
+            return (<div> {type}</div>);
+            case 'marketarea':
+            return (<div> {type}</div>);
+            case 'routetomarket':
+            return (<div> {type}</div>);
+            case 'segments':
+            return (<div> {type}</div>);
+            case 'productname':
+            return (<div> {type}</div>);
+        }
+    }
  render(){
     var red = classNames({
         'red': true
@@ -40,14 +57,21 @@ class KendoPanelBar extends Component {
         <div className={'panel-wrapper'}>
                    <PanelBar >
                        <PanelBarItem expanded={true} title="Geo">
-                           <div>
-                              Geo
-                           </div>
+                           {this.getPanelContents('geo')}
+                       </ PanelBarItem>
+                       <PanelBarItem expanded={false} title='Market Area' >  
+                           {this.getPanelContents('marketarea')}
+                       </ PanelBarItem>
+                       <PanelBarItem expanded={false} title='Route To Market'>
+                            {this.getPanelContents('routetomarket')}
                        </PanelBarItem>
-                       <PanelBarItem expanded={true} title='Market Area' />
-                       <PanelBarItem expanded={true} title='Route To Market' />
-                       <PanelBarItem expanded={true} title='Segments' />
-                       <PanelBarItem expanded={true} title='Product Name' />
+                       <PanelBarItem expanded={false} title='Segments' >
+                            {this.getPanelContents('segments')}
+                       </ PanelBarItem>
+                       <PanelBarItem expanded={false} title='Product Name' >
+                            {this.getPanelContents('productname')}
+                       </PanelBarItem>
+
                    </PanelBar>
                </div>
      )
