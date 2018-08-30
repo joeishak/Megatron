@@ -1,6 +1,6 @@
 // Npm Modules
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 // Custom Components and Styles
 import * as actions from 'actions';

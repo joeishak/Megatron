@@ -1,12 +1,10 @@
 // Npm Modules
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import {connect } from 'react-redux';
 import {CSSTransitionGroup} from 'react-transition-group';
 // Custom Components and Styles
 import styles from './FilterPillBox.css';
 import * as actions from 'actions';
-import KendoMultiSelect  from '../KendoMultiSelect/KendoMultiSelect';
 
 class FilterPillBox extends  Component {
     //When the component is constructed

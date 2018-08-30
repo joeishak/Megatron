@@ -1,6 +1,5 @@
 import {
-    UPDATE_MULTI_FILTER_VALUES,
-    UPDATE_MULTI_FILTER_STATUS
+    UPDATE_MULTI_FILTER_VALUES
 } from 'actions/types';
 
 export default function(state = [], action) {

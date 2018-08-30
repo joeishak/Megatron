@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
 import Navigation from 'components/Navigation/Navigation';
-import { Route,Link } from 'react-router-dom';
 import {connect } from 'react-redux';
 import * as actions from 'actions';
-import {Slide, Animation } from '@progress/kendo-react-animation';
 import styles from './App.css';
-import _ from 'lodash';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { CSSTransitionGroup } from 'react-transition-group';
 
 import '@progress/kendo-theme-default/dist/all.css';
 // Kendo Components
-import KendoPanelBar from 'components/KendoPanelBar/KendoPanelBar';
-import KendoGrid from 'components/KendoGrid/KendoGrid';
-import KendoButton from 'components/KendoButton/KendoButton';
-import KendoSwitch from 'components/KendoSwitch/KendoSwitch';
-import KendoNumericTextBox from 'components/KendoNumericTextBox/KendoNumericTextBox';
-import KendoInput from 'components/KendoInput/KendoInput';
-import KendoDropDownList from 'components/KendoDropDownList/KendoDropDownList';
-import KendoDialog from 'components/KendoDialog/KendoDialog';
 
 // Custom Components
 import FilterBox from 'components/FilterBox/FilterBox';
@@ -30,12 +18,7 @@ import SummaryViewDetails from 'components/SummaryViewDetails/SummaryViewDetails
 // Custom Nivo Components
 // import { changeAuth } from '../actions';
 
-const inStyles = {
-  nivoContainer:{
-    height:'1000px',
-    width: '1000px'
-  }
-}
+
 class App extends Component {
   constructor(props) {
     super(props);

@@ -173,7 +173,7 @@
     border-top: 1px solid #D8D8D8;
     border-left: 1px solid #D8D8D8;
     border-right: 1px solid #D8D8D8;
-    width: 430px;
+    width: 422px;
 }
 .qtdTotalTitle{
     float: left;
@@ -183,7 +183,6 @@
 
 .qtdTotalTable{
     padding: 0px !important;
-    width:850px;
     float: right;
     margin:auto;
 }
@@ -198,7 +197,7 @@
     width:105px;
 }
 .halfSize{
-    width:61px;
+    width:63px;
     
 }
 
@@ -214,5 +213,13 @@
     font-size:15px;
     float:left;
     padding-left: 10px;
+
+}
+
+.normalTableSize{
+    width: 750px;
+}
+.halfTableSize{
+    width:860px;
 
 }

@@ -1,26 +1,21 @@
 // Npm Modules
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import {connect } from 'react-redux';
-import { Slide } from '@progress/kendo-react-animation';
 import  classNames from 'classnames';
-import { CSSTransitionGroup } from 'react-transition-group';
 
 // Custom Components and Styles
 import addIcon from './add-icon.svg';
 import * as actions from 'actions';
-import KendoMultiSelect  from '../KendoMultiSelect/KendoMultiSelect';
-import KendoDropDownList from '../KendoDropDownList/KendoDropDownList'
 import FilterPillBox from '../FilterPillBox/FilterPillBox';
 import styles from './FilterBox.css';
 
-// In Line Styles
-const inStyles={
-    expansionBox: {
-        height: '100%',
-        width: '100%'
-    }
-}
+// // In Line Styles
+// const inStyles={
+//     expansionBox: {
+//         height: '100%',
+//         width: '100%'
+//     }
+// }
 class FilterBox extends Component {
     //When the component is constructed
     constructor(props){
@@ -92,7 +87,7 @@ class FilterBox extends Component {
                 </div>
                 <div className="newFilterDiv col-2"> 
                     <span className="newFilterText" >{this.state.filterButtonTitle}</span> 
-                        <img src={addIcon} className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img>
+                        <img src={addIcon} alt="" className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img>
                 </div>
             </div>
         )

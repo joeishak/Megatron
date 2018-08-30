@@ -1,15 +1,12 @@
 // Npm Modules
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
-import {Grid, Row, Col} from 'react-bootstrap';
-import {Fade, Expand, Animation, Slide } from '@progress/kendo-react-animation';
+import {Grid} from 'react-bootstrap';
 import { CSSTransitionGroup } from 'react-transition-group';
 import classNames from 'classnames';
 // Custom Components and Styles
 import  * as actions from 'actions';
 import styles from './TopSummaryBox.css'
-import KendoSwitch  from '../KendoSwitch/KendoSwitch';
 import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 import KendoBulletChart from '../KendoBullet/KendoBullet';

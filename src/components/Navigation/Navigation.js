@@ -1,10 +1,8 @@
 // Npm Modules
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import  classNames  from 'classnames';
 import { Route,Link } from 'react-router-dom';
-import {Nav, NavItem, Navbar, NavDropdown, MenuItem} from 'react-bootstrap';
-import { Animation, Expand, Fade, Push, Slide, Zoom, Reveal } from '@progress/kendo-react-animation';
+import {Nav,  Navbar, NavDropdown, MenuItem} from 'react-bootstrap';
+import {  Expand, } from '@progress/kendo-react-animation';
 // Custom Components and Styles
 import App from '../../Views/App.js';
 import userIcon from './user-icon.svg';

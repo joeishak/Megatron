@@ -1,11 +1,7 @@
 // Npm Modules
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import {connect } from 'react-redux';
 import  classNames from 'classnames';
-import { Slide } from '@progress/kendo-react-animation';
-import { CSSTransitionGroup } from 'react-transition-group';
-
 // Custom Components and Styles
 import * as actions from 'actions';
 import styles from './CustomDropDownPanel.css';

@@ -65,7 +65,7 @@ renderQuarterlyToDateTableHeader(){
     case 'all': 
     return(
 
-      <div className="  col-md-12">
+      <div className=" container-fluid col-md-12">
       <div className=" allDetailTitle col-md-6">Week</div>
       <div className=" allDetailTitle col-md-6">Quartely To Date</div>
       </div>
@@ -73,12 +73,12 @@ renderQuarterlyToDateTableHeader(){
 
   }
 }
- renderQuarterlyToDate(qtdwColSizes){ 
+ renderQuarterlyToDate(qtdwColSizes ,qtdTotalTable){ 
    console.log(this.state.activeTimeMetric);
    switch(this.state.activeTimeMetric){
      case 'qtd':
      return (
-     <div className="qtdTotalTable col-md-11">
+     <div className={qtdTotalTable + ' col-md-11'}>
      <div className={qtdwColSizes}>
 
         <span className="contHeader"> Header </span>
@@ -117,7 +117,7 @@ renderQuarterlyToDateTableHeader(){
      </div>);
      case 'week':
      return (
-      <div className="qtdTotalTable col-md-11">
+      <div className={qtdTotalTable + ' col-md-11'}>
      <div className={qtdwColSizes}>
 
         <span className="contHeader"> Header </span>
@@ -156,7 +156,7 @@ renderQuarterlyToDateTableHeader(){
      </div>);
      case 'all': 
      return (
-     <div className="qtdTotalTable col-md-11">
+     <div className={qtdTotalTable + ' col-md-11'}>
      <div className={qtdwColSizes}>
 
         <span className="contHeader"> Header </span>
@@ -255,6 +255,12 @@ renderQuarterlyToDateTableHeader(){
       colContainer:true,
       normalSize: (this.state.activeTimeMetric === 'week' || this.state.activeTimeMetric === 'qtd') ? true : false,
       halfSize: (this.state.activeTimeMetric === 'all') ? true: false
+    });
+
+    var qtdTotalTable = classNames({
+      qtdTotalTable: true,
+      normalTableSize: (this.state.activeTimeMetric === 'week' || this.state.activeTimeMetric === 'qtd') ? true : false,
+      halfTableSize: (this.state.activeTimeMetric === 'all') ? true: false
     })
     return (
 
@@ -299,7 +305,7 @@ renderQuarterlyToDateTableHeader(){
           {this.renderQuarterlyToDateTableHeader()}
           <div className=" qtdTotalTitle col-md-12">
             <div className=" qtdTotalTitle col-md-1">Total</div>
-              {this.renderQuarterlyToDate(qtdwColSizes)}
+              {this.renderQuarterlyToDate(qtdwColSizes,qtdTotalTable)}
           </div>
           
         </div>

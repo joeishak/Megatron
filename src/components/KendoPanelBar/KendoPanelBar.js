@@ -1,6 +1,6 @@
 import {  PanelBar, PanelBarItem  } from '@progress/kendo-react-layout';
 import React, { Component } from 'react';
-import classNames from 'classnames'
+// import classNames from 'classnames'
 import styles from './KendoPanelBar.css';
 import '@progress/kendo-theme-default/dist/all.css'
 
@@ -35,7 +35,6 @@ class KendoPanelBar extends Component {
     }
     /* Return Contents for  */
     getPanelContents(type){
-        let content = undefined;
         switch (type){
             case 'geo':
             return (<div> {type}</div>);
@@ -47,12 +46,14 @@ class KendoPanelBar extends Component {
             return (<div> {type}</div>);
             case 'productname':
             return (<div> {type}</div>);
+            default:
+            return;
         }
     }
  render(){
-    var red = classNames({
-        'red': true
-    });
+    // var red = classNames({
+    //     'red': true
+    // });
      return(
         <div className={'panel-wrapper'}>
                    <PanelBar >
