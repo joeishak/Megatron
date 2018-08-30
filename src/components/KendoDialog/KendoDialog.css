@@ -35,8 +35,8 @@
 .k-icon .k-i-close .k-window-actions {
     background-color: #f00;
     background-image: url('./data-pref-close-icon.svg');
-    width: 30px;
-    height: 30px;
+    /* width: 30px; */
+    /* height: 30px; */
 }
 
 /* Dialog Titles */

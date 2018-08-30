@@ -36,7 +36,7 @@ class ButtomSummaryBox extends Component {
     //Event Handler for the View Details Button
     openDialog = ()=>{
         // Call an action for mapped props to update the dialog/windows visibility to True
-        this.props.updateDialogVisibility(true)
+        // this.props.updateDialogVisibility(true)
         this.props.showSummaryDetails();
     }
     render(){
@@ -177,6 +177,6 @@ class ButtomSummaryBox extends Component {
     }
 }
 function mapStateToProps(state){
-    return { switchFilter: state.switchFilter }
+    return { switchFilter: state.switchFilter, activeSummary: state.activeSummarySquare }
 }
 export default connect(mapStateToProps,actions)(ButtomSummaryBox)

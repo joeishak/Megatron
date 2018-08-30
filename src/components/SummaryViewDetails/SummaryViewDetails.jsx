@@ -11,7 +11,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import classNames from 'classnames';
 import '@progress/kendo-theme-default/dist/all.css';
 // Kendo Components
-import KendoPanelBar from 'components/KendoPanelBar/KendoPanelBar';
+import KendoPanelBar from 'components/KendoPanelBar/KendoPanelBar.jsx';
 
 import KendoMultiChart from '../KendoMultiChart/KendoMultiChart';
 // Custom Components
@@ -77,13 +77,12 @@ renderQuarterlyToDateTableHeader(){
   }
 }
  renderQuarterlyToDate(qtdwColSizes ,qtdTotalTable){ 
-   console.log(this.props.activeItem);
    switch(this.state.activeTimeMetric){
      case 'qtd':
      return (
      <div className={qtdTotalTable + ' col-md-11'}>
      {
-       this.props.activeItem.details.qtdw.qtd.map(item=>{
+      this.props.activeItem.details.qtdw.qtd.map(item=>{
          return(
           <div key={item.index} className={qtdwColSizes}>
 
@@ -91,43 +90,8 @@ renderQuarterlyToDateTableHeader(){
           <span className="valHeader"> {item.value}</span>
        </div>
          )
-       })
+       }).reverse()
      }
-     {/* <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div> */}
      </div>);
      case 'week':
      return (
@@ -141,51 +105,14 @@ renderQuarterlyToDateTableHeader(){
           <span className="valHeader"> {item.value}</span>
        </div>
          )
-       })
+       }).reverse()
      }
-     {/* <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header</span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div> */}
      </div>);
      case 'all': 
      return (
      <div className={qtdTotalTable + ' col-md-11'}>
-    
-     
       {
-       this.props.activeItem.index.details.qtdw.week.map(item=>{
+       this.props.activeItem.details.qtdw.week.map(item=>{
          return(
           <div key={item.index} className={qtdwColSizes}>
 
@@ -193,10 +120,10 @@ renderQuarterlyToDateTableHeader(){
           <span className="valHeader"> {item.value}</span>
        </div>
          )
-       })
+       }).reverse()
      }
      {
-       this.props.activeItem.index.details.qtdw.qtd.map(item=>{
+       this.props.activeItem.details.qtdw.qtd.map(item=>{
          return(
           <div key={item.index} className={qtdwColSizes}>
 
@@ -204,73 +131,8 @@ renderQuarterlyToDateTableHeader(){
           <span className="valHeader"> {item.value}</span>
        </div>
          )
-       })
+       }).reverse()
      }
-     {/* <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div>
-     <div className={qtdwColSizes}>
-
-        <span className="contHeader"> Header </span>
-        <span className="valHeader"> Value</span>
-     </div> */}
      </div>
      );
    }
@@ -316,14 +178,14 @@ renderQuarterlyToDateTableHeader(){
       <div className="sumViewContainer container-fluid">
       {/* Bread Crumbs */}
         <span onClick={this.props.hideSummaryDetails}>
-          {this.state.summaryType} </span> <span> Summary > {this.state.header}
+          {this.state.summaryType} </span> <span> Summary > {this.props.activeItem.header}
         </span>
         <br/>
 
         {/* First Row for Ttle Bar and Metric Filter */}
         <div className="row container-fluid titleBarHeader">
 
-          <span className="col-md- 3 detailTitle">Net New ARR</span>
+          <span className="col-md- 3 detailTitle">{this.props.activeItem.header}</span>
           <div className=" col-md-9 multiChartMetricContainer">
               <div onClick={this.updateMultiChartMetricFilter} className={UnitStyles}>
                   UNITS
@@ -360,7 +222,7 @@ renderQuarterlyToDateTableHeader(){
           </div>
           
         </div>
-        <KendoPanelBar background='white'/>
+        <KendoPanelBar timeMetric={this.state.activeTimeMetric} background='white'/>
       </div>
   )
 }
