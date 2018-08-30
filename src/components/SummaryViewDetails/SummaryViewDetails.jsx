@@ -83,7 +83,7 @@ renderQuarterlyToDateTableHeader(){
      return (
      <div className={qtdTotalTable + ' col-md-11'}>
      {
-       this.props.activeItem.index.details.qtdw.qtd.map(item=>{
+       this.props.activeItem.details.qtdw.qtd.map(item=>{
          return(
           <div key={item.index} className={qtdwColSizes}>
 
@@ -133,7 +133,7 @@ renderQuarterlyToDateTableHeader(){
      return (
       <div className={qtdTotalTable + ' col-md-11'}>
       {
-       this.props.activeItem.index.details.qtdw.week.map(item=>{
+       this.props.activeItem.details.qtdw.week.map(item=>{
          return(
           <div key={item.index} className={qtdwColSizes}>
 
