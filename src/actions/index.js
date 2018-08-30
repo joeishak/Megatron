@@ -10,7 +10,9 @@ import {
     SHOW_SUMMARY_VIEW_DETAILS,    
     HIDE_SUMMARY_VIEW_DETAILS,    
     SHOW_DATA_PREFERENCES,
-    HIDE_DATA_PREFERENCES
+    HIDE_DATA_PREFERENCES,
+    UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD,
+    UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD
 
 } from 'actions/types';
 import axios from 'axios';
@@ -169,3 +171,24 @@ export function hideDataPreferences(filter){
 
 
 
+/***
+ * Update the Financial Summary Active Card
+ * @param {squareItem}
+ */
+export function updateFinancialSummaryActiveCard(squareItem){
+    return {
+        type: UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD,
+        payload: squareItem
+    }
+}
+
+/***
+ * Update the Journey Summary Active Card
+ * @param {squareItem}
+ */
+export function updateJourneySummaryActiveCard(squareItem){
+    return {
+        type: UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD,
+        payload: squareItem
+    }
+}

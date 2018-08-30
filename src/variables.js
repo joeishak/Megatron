@@ -102,6 +102,96 @@ export const FinancialData = {
             header: 'Gross New ARR',
             value: 335.3,
             target: 277.9,
+            details:{
+                multichart:[
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
+                    [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
+                ],
+                qtdw:{
+                    qtd:[
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'Q/Q',
+                            value: 66.7
+                        },
+                        {
+                            index: 7,
+                            header:'Y/Y',
+                            value: 66.7
+                        }
+                    ],
+                    week:[ 
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'W/W',
+                            value: 66.7
+                        }
+                    ]
+                },
+             
+                // geo:[
+                //                 index: 0,
+                //                 marketArea: 'US',
+                //                 actuals: 66.7,
+                //                 units: ,
+                //                 qrf: ,
+                //                 qrfDiff: ,
+                //                 vsQrf: ,
+                //                 Q
+                //                 type: 'amer'
+                //     ],
+            },
             css: ['card2', 'spinMeSecond', '#0DB16E']
         },
         {
@@ -109,6 +199,96 @@ export const FinancialData = {
             header: 'Cancellations ARR',
             value: 217.5,
             target: 277.9,
+            details:{
+                multichart:[
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
+                    [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
+                ],
+                qtdw:{
+                    qtd:[
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'Q/Q',
+                            value: 66.7
+                        },
+                        {
+                            index: 7,
+                            header:'Y/Y',
+                            value: 66.7
+                        }
+                    ],
+                    week:[ 
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'W/W',
+                            value: 66.7
+                        }
+                    ]
+                },
+             
+                // geo:[
+                //                 index: 0,
+                //                 marketArea: 'US',
+                //                 actuals: 66.7,
+                //                 units: ,
+                //                 qrf: ,
+                //                 qrfDiff: ,
+                //                 vsQrf: ,
+                //                 Q
+                //                 type: 'amer'
+                //     ],
+            },
             css: ['card3', 'spinMeThird', '#FF0000']
         },
         {
@@ -116,6 +296,96 @@ export const FinancialData = {
             header: 'Renewal@FP ARR',
             value: 80.1,
             target: 57.9,
+            details:{
+                multichart:[
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
+                    [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
+                ],
+                qtdw:{
+                    qtd:[
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'Q/Q',
+                            value: 66.7
+                        },
+                        {
+                            index: 7,
+                            header:'Y/Y',
+                            value: 66.7
+                        }
+                    ],
+                    week:[ 
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'W/W',
+                            value: 66.7
+                        }
+                    ]
+                },
+             
+                // geo:[
+                //                 index: 0,
+                //                 marketArea: 'US',
+                //                 actuals: 66.7,
+                //                 units: ,
+                //                 qrf: ,
+                //                 qrfDiff: ,
+                //                 vsQrf: ,
+                //                 Q
+                //                 type: 'amer'
+                //     ],
+            },
             css: ['card4', 'spinMeFourth', '#0DB16E']
         }
     ],
@@ -156,6 +426,96 @@ export const JourneyData = {
             value: 146.7,
             target: 242.3,
             title: 'Discover',
+            details:{
+                multichart:[
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
+                    [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
+                ],
+                qtdw:{
+                    qtd:[
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'Q/Q',
+                            value: 66.7
+                        },
+                        {
+                            index: 7,
+                            header:'Y/Y',
+                            value: 66.7
+                        }
+                    ],
+                    week:[ 
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'W/W',
+                            value: 66.7
+                        }
+                    ]
+                },
+             
+                // geo:[
+                //                 index: 0,
+                //                 marketArea: 'US',
+                //                 actuals: 66.7,
+                //                 units: ,
+                //                 qrf: ,
+                //                 qrfDiff: ,
+                //                 vsQrf: ,
+                //                 Q
+                //                 type: 'amer'
+                //     ],
+            },
             css: ['journeyCard1', 'vertSpinMeFirst', 'verticalText1']
         },
         {
@@ -164,6 +524,96 @@ export const JourneyData = {
             value: 3.9,
             target: 4.7,
             title: 'Buy',
+            details:{
+                multichart:[
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
+                    [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
+                ],
+                qtdw:{
+                    qtd:[
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'Q/Q',
+                            value: 66.7
+                        },
+                        {
+                            index: 7,
+                            header:'Y/Y',
+                            value: 66.7
+                        }
+                    ],
+                    week:[ 
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'W/W',
+                            value: 66.7
+                        }
+                    ]
+                },
+             
+                // geo:[
+                //                 index: 0,
+                //                 marketArea: 'US',
+                //                 actuals: 66.7,
+                //                 units: ,
+                //                 qrf: ,
+                //                 qrfDiff: ,
+                //                 vsQrf: ,
+                //                 Q
+                //                 type: 'amer'
+                //     ],
+            },
             css: ['journeyCard2', 'vertSpinMeSecond', 'verticalText2']
         },
         {
@@ -172,6 +622,96 @@ export const JourneyData = {
             value: .85,
             target: .80,
             title: 'Try',
+            details:{
+                multichart:[
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
+                    [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
+                ],
+                qtdw:{
+                    qtd:[
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'Q/Q',
+                            value: 66.7
+                        },
+                        {
+                            index: 7,
+                            header:'Y/Y',
+                            value: 66.7
+                        }
+                    ],
+                    week:[ 
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'W/W',
+                            value: 66.7
+                        }
+                    ]
+                },
+             
+                // geo:[
+                //                 index: 0,
+                //                 marketArea: 'US',
+                //                 actuals: 66.7,
+                //                 units: ,
+                //                 qrf: ,
+                //                 qrfDiff: ,
+                //                 vsQrf: ,
+                //                 Q
+                //                 type: 'amer'
+                //     ],
+            },
             css: ['journeyCard3', 'vertSpinMeThird', 'verticalText3']
         },
         {
@@ -180,6 +720,96 @@ export const JourneyData = {
             value: 95.78,
             target: 95.06,
             title: 'Use',
+            details:{
+                multichart:[
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
+                    [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
+                ],
+                qtdw:{
+                    qtd:[
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'Q/Q',
+                            value: 66.7
+                        },
+                        {
+                            index: 7,
+                            header:'Y/Y',
+                            value: 66.7
+                        }
+                    ],
+                    week:[ 
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'W/W',
+                            value: 66.7
+                        }
+                    ]
+                },
+             
+                // geo:[
+                //                 index: 0,
+                //                 marketArea: 'US',
+                //                 actuals: 66.7,
+                //                 units: ,
+                //                 qrf: ,
+                //                 qrfDiff: ,
+                //                 vsQrf: ,
+                //                 Q
+                //                 type: 'amer'
+                //     ],
+            },
             css: ['journeyCard4', 'vertSpinMeFourth', 'verticalText4']
         },
         {
@@ -188,6 +818,96 @@ export const JourneyData = {
             value: 149.9,
             target: 277.9,
             title: 'Renew',
+            details:{
+                multichart:[
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
+                    [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
+                ],
+                qtdw:{
+                    qtd:[
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'Q/Q',
+                            value: 66.7
+                        },
+                        {
+                            index: 7,
+                            header:'Y/Y',
+                            value: 66.7
+                        }
+                    ],
+                    week:[ 
+                        {
+                            index: 1,
+                            header:'Actuals',
+                            value: 66.7
+                        },
+                        {
+                            index: 2,
+                            header:'Units',
+                            value: 66.7
+                        },
+                        {
+                            index: 3,
+                            header:'QRF',
+                            value: 66.7
+                        },
+                        {
+                            index: 4,
+                            header:'QRF Diff',
+                            value: 66.7
+                        },
+                        {
+                            index: 5,
+                            header:'Vs Qrf',
+                            value: 66.7
+                        },
+                        {
+                            index: 6,
+                            header:'W/W',
+                            value: 66.7
+                        }
+                    ]
+                },
+             
+                // geo:[
+                //                 index: 0,
+                //                 marketArea: 'US',
+                //                 actuals: 66.7,
+                //                 units: ,
+                //                 qrf: ,
+                //                 qrfDiff: ,
+                //                 vsQrf: ,
+                //                 Q
+                //                 type: 'amer'
+                //     ],
+            },
             css: ['journeyCard5', 'vertSpinMeFifth', 'verticalText5']
         }
     ],

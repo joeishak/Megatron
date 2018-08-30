@@ -31,6 +31,8 @@ class SummaryViewDetails extends Component {
         header: "Net New ARR",
         activeMetric: 'arr',
         activeTimeMetric: 'qtd'
+
+
     };
 
       /*Bindings  */
@@ -65,21 +67,33 @@ renderQuarterlyToDateTableHeader(){
     case 'all': 
     return(
 
-      <div className=" container-fluid col-md-12">
-      <div className=" allDetailTitle col-md-6">Week</div>
-      <div className=" allDetailTitle col-md-6">Quartely To Date</div>
+      <div className=" allContainer col-md-12">
+      <div className=" allWeekDetailTitle col-md-6">Week</div> 
+      <div className=" allQtdDetailTitle col-md-6">Quartely To Date</div>
       </div>
+      
     );
 
   }
 }
  renderQuarterlyToDate(qtdwColSizes ,qtdTotalTable){ 
-   console.log(this.state.activeTimeMetric);
+   console.log(this.props.activeItem);
    switch(this.state.activeTimeMetric){
      case 'qtd':
      return (
      <div className={qtdTotalTable + ' col-md-11'}>
-     <div className={qtdwColSizes}>
+     {
+       this.props.activeItem.index.details.qtdw.qtd.map(item=>{
+         return(
+          <div key={item.index} className={qtdwColSizes}>
+
+          <span className="contHeader"> {item.header} </span>
+          <span className="valHeader"> {item.value}</span>
+       </div>
+         )
+       })
+     }
+     {/* <div className={qtdwColSizes}>
 
         <span className="contHeader"> Header </span>
         <span className="valHeader"> Value</span>
@@ -113,12 +127,23 @@ renderQuarterlyToDateTableHeader(){
 
         <span className="contHeader"> Header </span>
         <span className="valHeader"> Value</span>
-     </div>
+     </div> */}
      </div>);
      case 'week':
      return (
       <div className={qtdTotalTable + ' col-md-11'}>
-     <div className={qtdwColSizes}>
+      {
+       this.props.activeItem.index.details.qtdw.week.map(item=>{
+         return(
+          <div key={item.index} className={qtdwColSizes}>
+
+          <span className="contHeader"> {item.header} </span>
+          <span className="valHeader"> {item.value}</span>
+       </div>
+         )
+       })
+     }
+     {/* <div className={qtdwColSizes}>
 
         <span className="contHeader"> Header </span>
         <span className="valHeader"> Value</span>
@@ -140,7 +165,7 @@ renderQuarterlyToDateTableHeader(){
      </div>
      <div className={qtdwColSizes}>
 
-        <span className="contHeader"> Header </span>
+        <span className="contHeader"> Header</span>
         <span className="valHeader"> Value</span>
      </div>
      <div className={qtdwColSizes}>
@@ -152,12 +177,36 @@ renderQuarterlyToDateTableHeader(){
 
         <span className="contHeader"> Header </span>
         <span className="valHeader"> Value</span>
-     </div>
+     </div> */}
      </div>);
      case 'all': 
      return (
      <div className={qtdTotalTable + ' col-md-11'}>
-     <div className={qtdwColSizes}>
+    
+     
+      {
+       this.props.activeItem.index.details.qtdw.week.map(item=>{
+         return(
+          <div key={item.index} className={qtdwColSizes}>
+
+          <span className="contHeader"> {item.header} </span>
+          <span className="valHeader"> {item.value}</span>
+       </div>
+         )
+       })
+     }
+     {
+       this.props.activeItem.index.details.qtdw.qtd.map(item=>{
+         return(
+          <div key={item.index} className={qtdwColSizes}>
+
+          <span className="contHeader"> {item.header} </span>
+          <span className="valHeader"> {item.value}</span>
+       </div>
+         )
+       })
+     }
+     {/* <div className={qtdwColSizes}>
 
         <span className="contHeader"> Header </span>
         <span className="valHeader"> Value</span>
@@ -221,7 +270,7 @@ renderQuarterlyToDateTableHeader(){
 
         <span className="contHeader"> Header </span>
         <span className="valHeader"> Value</span>
-     </div>
+     </div> */}
      </div>
      );
    }
@@ -266,7 +315,9 @@ renderQuarterlyToDateTableHeader(){
 
       <div className="sumViewContainer container-fluid">
       {/* Bread Crumbs */}
-        <span onClick={this.props.hideSummaryDetails}> {this.state.summaryType} </span> <span> Summary > {this.state.header}</span>
+        <span onClick={this.props.hideSummaryDetails}>
+          {this.state.summaryType} </span> <span> Summary > {this.state.header}
+        </span>
         <br/>
 
         {/* First Row for Ttle Bar and Metric Filter */}
@@ -318,7 +369,9 @@ renderQuarterlyToDateTableHeader(){
 function mapStateToProps(state) {
   return {
    
-    previousViewWasJourneys: state.switchFilter
+    previousViewWasJourneys: state.switchFilter,
+    activeItem: state.activeSummarySquare,
+    summaryData: state.adobeData
   };
 }
 

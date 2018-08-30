@@ -8,6 +8,8 @@ import multiFilterReducer from 'reducers/multiFilter';
 import activeFiltersReducer from 'reducers/activeFilters';
 import switchFilterReducer from 'reducers/switchFilter';
 import detailsReducer from 'reducers/summaryDetails';
+import activeSummaryReducer from 'reducers/activeSummary.js';
+
 export default combineReducers({
     // auth: authReducer,
     filters: filterReducer,
@@ -17,5 +19,6 @@ export default combineReducers({
     availableFilters: multiFilterReducer,
     activeFilters: activeFiltersReducer,
     switchFilter: switchFilterReducer,
-    detailsIsOpen: detailsReducer
+    detailsIsOpen: detailsReducer,
+    activeSummarySquare: activeSummaryReducer
 });
