@@ -45,62 +45,9 @@ class KendoDialog extends Component {
         {console.log('KendoDialog.js Available Filters',this.props.availableFilters)}
 
             <Dialog width={939} height={626}  title={"Data Preferences"} onClose={this.closeDialog} >
-                <div className="container-fluid">
-                    <div className="col-lg-6">
-                    {/* Filters */}
-                        <p className="dialogTitles">Filters</p>
-                        <p>Select which filters (if any) you would like applied:</p>
-                            <div className="dropdowns">
-                                {/* first row */}
-                                <div className="row dropRow">
-                                    <div className="col-lg-6">
-                                        <p>Quarter</p>
-                                        <KendoDropDownList  data={this.props.availableFilters.quarters}/>
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <p>Geo</p>
-                                        <KendoDropDownList  data={this.props.availableFilters.geos}/>
-                                    </div>
-                                </div>
-                                {/* second row */}
-                                <div className="row dropRow">
-                                    <div className="col-lg-6">
-                                        <p>Product name</p>
-                                        <KendoDropDownList  data={this.props.availableFilters.products}/>
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <p>Subscription Offering</p>
-                                        <KendoDropDownList  data={this.props.availableFilters.subscriptionOfferings} />
-                                    </div>
-                                </div>
-                                {/* third row */}
-                                <div className="row dropRow">
-                                    <div className="col-lg-6">
-                                        <p>Market Area</p>
-                                        <KendoDropDownList  data={this.props.availableFilters.marketAreas} />
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <p>Route to Market</p>
-                                        <KendoDropDownList  data={this.props.availableFilters.routeToMarkets}/>
-                                    </div>
-                                </div>
-                                {/* fourth row */}
-                                <div className="row dropRow">
-                                    <div className="col-lg-6">
-                                        <p>Segment</p>
-                                        <KendoDropDownList  data={this.props.availableFilters.segments}/>
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <p id="filter-reset">Re-set all filters</p>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div className="col-lg-6">
-                    {/* Views */}
-                        <p className="dialogTitles">Summary view</p>
-                    </div>
-                </div>
+                     <KendoDropDownList  data={this.props.availableFilters.subscriptionOfferings} />
+                    
+               
             </Dialog>
 
          </div>

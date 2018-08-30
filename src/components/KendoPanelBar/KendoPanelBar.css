@@ -1,3 +1,50 @@
-.red{
-    color: red;
+.panelItemTitle{
+    font-size:24px;
+    background-color:white;
+}
+
+.topHeaderBar{
+    float:right;
+    width:751px;
+    text-align: center;
+    height: 30px;
+    margin-top: 5px;
+    border-left: 1px solid #D8D8D8;
+    border-top: 1px solid #D8D8D8;
+    border-right: 1px solid #D8D8D8;
+    font-size: 12px;
+}
+.lowerHeaderBar{
+    width:100%;
+    height: 30px;
+    background-color: #F4F4F4;
+}
+.qtdColumn{
+    /* Market Area US ROW T */
+    display: block;
+    /* position: absolute; */
+    /* left: 9.96%;
+    right: 80.18%;
+    top: 52.69%;
+    bottom: 32.96%; */
+    float:left;
+    font-family: Ubuntu;
+    font-style: normal;
+    line-height: 30px;
+    font-size: 12px;
+    text-align: center;
+    width: 11.11%;
+    color: #000000;
+    background-color: white;
+}
+.header{
+    font-weight: bold;
+    background-color: #F4F4F4;
+    
+}
+.qtdGeoHeader{
+    text-align:  left !important;
+}
+.qtdMaHeader{
+    text-align:  right !important;
 }

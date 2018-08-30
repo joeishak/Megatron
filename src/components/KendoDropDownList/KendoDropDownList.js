@@ -27,6 +27,9 @@ class KendoDropDownList extends Component {
         this.handleFilterChange = this.handleFilterChange.bind(this);
     }
      
+    componentDidMount(){
+        console.log(this.props);
+    }
     //Event handler for when a drop down list item is selected
     handleFilterChange(event){
         this.setState({value: event.target.value});
