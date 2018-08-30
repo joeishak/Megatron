@@ -21,7 +21,6 @@ class KendoDropDownList extends Component {
         this.state = {
             data: props.data,
             value: props.data[0]
-            
         }
 
         //Binding functions to this

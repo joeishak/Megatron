@@ -14,6 +14,7 @@ import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 import CustomDropDownPanel from 'components/CustomDropDownPanel/CustomDropDownPanel';
 import SummaryViewDetails from 'components/SummaryViewDetails/SummaryViewDetails';
+import KendoDialog from '../components/KendoDialog/KendoDialog';
 
 // Custom Nivo Components
 // import { changeAuth } from '../actions';
@@ -116,7 +117,8 @@ getSummaryDetails(){
     return (
 
       <div style={{width:'100%',height:'100%'}}>
-        {/* <KendoDialog /> */}
+      {/* Data Preferences */}
+        <KendoDialog /> 
          <Navigation />
           <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>

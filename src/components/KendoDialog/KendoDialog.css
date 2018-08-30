@@ -7,15 +7,7 @@
 
     transform: scale(1);
 }
-/* .k-animation-container {
-    width:100%;
-    height:100%;
 
-} */
-/* .k-child-animation-container{
-    height:100%;
-    width:100%;
-} */
 .content {
     /* margin-left:50%; */
     width: 100%;
@@ -27,3 +19,66 @@
     width:100%;
     height:100%;
 }
+
+/* Dialog Window Title Bar */
+.k-window-titlebar {
+    background-color:#F4F4F4;
+    height: 85px;
+    color: #000000;
+}
+
+/* Dialog Window Close Icon */
+.k-window-actions {
+   color: black;
+}
+
+.k-icon .k-i-close .k-window-actions {
+    background-color: #f00;
+    background-image: url('./data-pref-close-icon.svg');
+    width: 30px;
+    height: 30px;
+}
+
+/* Dialog Titles */
+
+.dialogTitles {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 30px;
+    font-size: 24px;
+
+    color: #000000;
+}
+
+.dialogSubtitle {
+
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 22px;
+    font-size: 15px;
+
+    color: #000000;
+}
+
+.dropRow {
+    padding-top: 8px;
+}
+
+.dialogDropDownTitles {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    font-size: 14px;
+
+    color: #000000;
+}
+
+#filter-reset {
+    padding-top: 34px;
+    font-size: 15px;
+    color: #1573E6;
+}
+

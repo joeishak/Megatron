@@ -8,6 +8,11 @@ import App from '../../Views/App.js';
 import userIcon from './user-icon.svg';
 import styles from './Navigation.css';
 import logo from "../../assets/images/adobe-logo-nav-1.svg";
+import { DataPreferenceDialog } from './Components/DataPreferences/DataPreferenceDialog';
+
+// Redux
+import {connect } from 'react-redux';
+import * as actions from 'actions';
 
 class Navigation extends Component {
       
@@ -19,7 +24,8 @@ class Navigation extends Component {
         this.state = {
           loggedUser: 'J. Summerson',
           show: false,
-          activeTab: 'tab1'
+          activeTab: 'tab1',
+          dataPrefDialogVisible: this.props.dialogIsOpen
         }
         //Binding functions to this
         this.showLogo = this.showLogo.bind(this);
@@ -61,6 +67,14 @@ class Navigation extends Component {
           this.setState({activeTab: ''});
           break;
       }
+    }
+
+    onDataPreferencesSelcted () {
+      let dialogState = this.state.dataPrefDialogVisible;
+
+      this.setState({dataPrefDialogVisible: !dialogState}, () => {
+        this.props.updateDialogVisibility(this.state.dataPrefDialogVisible);
+      });
     }
 
     
@@ -122,7 +136,7 @@ class Navigation extends Component {
               <div className=" k-float-left">
                   <NavDropdown eventKey={3} className="dropDownContainer" title={this.state.loggedUser} id="nav-dropdown" noCaret>
                       <MenuItem eventKey={3.1}>Account Settings</MenuItem>
-                      <MenuItem eventKey={3.2}>Data Preferences</MenuItem>
+                      <MenuItem eventKey={3.2} onClick={e => this.onDataPreferencesSelcted(e)}>Data Preferences</MenuItem>
                       <MenuItem eventKey={3.3}>Log Out</MenuItem>
 
                   </NavDropdown>
@@ -138,4 +152,11 @@ class Navigation extends Component {
     }
 }
 
-export default (Navigation);
+function maptStateToProps(state) {
+  console.log(state);
+  return {
+    dialogIsOpen: state.dialogIsOpen
+  }
+}
+
+export default connect(maptStateToProps, actions) (Navigation);

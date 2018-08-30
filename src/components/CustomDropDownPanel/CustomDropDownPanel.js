@@ -26,7 +26,6 @@ class CustomDropDownPanel extends Component {
        const DropDownChildren = show ? (
        
             <div>
-             
                         <div className="quarterFilterContainer" >
                             <p> Quarter</p>
                             <KendoDropDownList  data={this.props.availableFilters.quarters}/>
