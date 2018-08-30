@@ -64,12 +64,12 @@ class TopSummaryBox extends Component {
     //Event handler that sets the active card
     selectedCard (e, index) {
         e.preventDefault();
-
+        let squareItem = this.props.appData.financial.squares[index -1]
         // Finds the passed props for the right card to set as active
-        this.setState({activeCard: this.props.appData.financial.squares[index -1].css[0]});
-
+        this.setState({activeCard: squareItem.css[0]});
+        this.props.updateFinancialSummaryActiveCard(squareItem);
         // title 'Net New ARR'
-        const selectedHeader = this.props.appData.financial.squares[index -1].header;
+        const selectedHeader = squareItem.header;
 
         // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
         console.log(selectedHeader);
@@ -78,13 +78,13 @@ class TopSummaryBox extends Component {
     // Event handler when the Journey Card is active and clicked
     onJourneyCardClicked (e, index) {
         e.preventDefault();
-
+        let squareItem = this.props.appData.journey.squares[index -1];
         // Finds the passed props for the right card to set as active
-        this.setState({activeJourneyCard: this.props.appData.journey.squares[index -1].css[0]})
-
+        this.setState({activeJourneyCard: squareItem.css[0]})
+        this.props.updateJourneySummaryActiveCard(squareItem);
         // title 'Net New ARR'
-        const selectedTitle = this.props.appData.journey.squares[index -1].title;
-        const selectedSubtitle = this.props.appData.journey.squares[index -1].header;
+        const selectedTitle = squareItem.title;
+        const selectedSubtitle = squareItem.header;
 
               // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
         console.log(selectedTitle);
@@ -292,7 +292,7 @@ class TopSummaryBox extends Component {
 }
 
 function mapStateToProps(state) {
-    return { filters: state.filters, switchFilter:state.switchFilter, appData: state.adobeData };
+    return { filters: state.filters, switchFilter:state.switchFilter, appData: state.adobeData, activeCard: state.activeSummarySquare };
 }
 
 export default connect(mapStateToProps,actions)(TopSummaryBox)

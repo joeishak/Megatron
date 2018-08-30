@@ -29,3 +29,9 @@ export const HIDE_SUMMARY_VIEW_DETAILS               = "hide_summary_view_detail
 // Data Preferences
 export const SHOW_DATA_PREFERENCES               = "show_data_preferences";
 export const HIDE_DATA_PREFERENCES               = "hide_data_preferences";
+
+// Active Financial Card
+export const UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD= "update_financial_summary_active_card";
+
+// Active Journey Summary Cards
+export const UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD  = "update_journey_summary_active_card";
