@@ -61,7 +61,7 @@ class ButtomSummaryBox extends Component {
                             transitionLeave={false} >
                                 <div>
                                     Net New ARR
-                                    <button className="detailButton" onClick={this.openDialog} >View Details </button>
+                                    <button className="detailButton"  >View Details </button>
                                   
                                     {(this.props.switchFilter==false) ? 
                                     <span>
