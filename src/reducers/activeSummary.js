@@ -11,13 +11,13 @@ export default function(state = [],action) {
                 type: 'financial',
                 index: action.payload
             }
-            return sumObj;
+            return action.payload;
         case UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD:
             let jourObj = {
                 type: 'journey',
                 index: action.payload
             }
-            return jourObj;
+            return action.payload;
         default: 
             return state;
     }
