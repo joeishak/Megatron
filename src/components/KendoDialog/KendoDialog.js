@@ -101,24 +101,24 @@ class KendoDialog extends Component {
                         <p className="dialogTitles">Summary view</p>
                         <p>Select which filters (if any) you would like applied:</p>
 
-                        <div className="contentpad">
+                        <fieldset className="contentpad" id="group1">
                             <div className="col-lg-6 col-md-6">
                                 <div className="row">
                                     <div class="radio radio-checked">
-                                        <input id="radio-1" name="radio" type="radio" checked/>
+                                        <input id="radio-1" name="group1" type="radio" checked/>
                                         <label for="radio-1" class="radio-label"><b>Financials</b></label>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-lg-6 col-md-6">
                             <div className="row">
-                                    <div class="radio radio-checked">
-                                        <input id="radio-2" name="radio" type="radio"  />
+                                    <div class="radio ">
+                                        <input id="radio-2" name="group1" type="radio"  />
                                         <label for="radio-2" class="radio-label"><b>Journeys</b></label>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </fieldset>
 
                         <div className="contentpad">
                             <p className="dialogTitles">Default KPIs</p>
@@ -127,11 +127,67 @@ class KendoDialog extends Component {
 
                         <div className="col-lg-6 col-md-6">
                             <div className="row default-kpi-labels">Financials Summary</div>
+                            <div className="row">
+                                    <div class="radio ">
+                                        <input id="radio-3" name="group2" type="radio" />
+                                        <label for="radio-3" class="radio-label"><b>Net New ARR</b></label>
+                                    </div>
+                            </div>
+                            <div className="row pullUp">
+                                    <div class="radio ">
+                                        <input id="radio-4" name="group2" type="radio" />
+                                        <label for="radio-4" class="radio-label"><b>Gross New ARR</b></label>
+                                    </div>
+                            </div>
+                            <div className="row pullUp">
+                                    <div class="radio radio-checked">
+                                        <input id="radio-5" name="group2" type="radio" checked/>
+                                        <label for="radio-5" class="radio-label"><b>Cancellations ARR</b></label>
+                                    </div>
+                            </div>
+                            <div className="row pullUp">
+                                    <div class="radio ">
+                                        <input id="radio-6" name="group2" type="radio" />
+                                        <label for="radio-6" class="radio-label"><b>Renewal@FP ARR</b></label>
+                                    </div>
+                            </div>
                         </div>
 
                         <div className="col-lg-6 col-md-6">
                             <div className="row default-kpi-labels">Journeys Summary</div>
+                            <div className="row ">
+                                    <div class="radio radio-checked">
+                                        <input id="radio-7" name="group3" type="radio" checked/>
+                                        <label for="radio-7" class="radio-label"><b>Discover</b></label>
+                                    </div>
+                            </div>
+                            <div className="row pullUp">
+                                    <div class="radio ">
+                                        <input id="radio-8" name="group3" type="radio" />
+                                        <label for="radio-8" class="radio-label"><b>Try</b></label>
+                                    </div>
+                            </div>
+                            <div className="row pullUp">
+                                    <div class="radio ">
+                                        <input id="radio-9" name="group3" type="radio" />
+                                        <label for="radio-9" class="radio-label"><b>Buy</b></label>
+                                    </div>
+                            </div>
+                            <div className="row pullUp">
+                                    <div class="radio ">
+                                        <input id="radio-10" name="group3" type="radio" />
+                                        <label for="radio-10" class="radio-label"><b>Use</b></label>
+                                    </div>
+                            </div>
+                            <div className="row pullUp">
+                                    <div class="radio ">
+                                        <input id="radio-11" name="group3" type="radio" />
+                                        <label for="radio-11" class="radio-label"><b>Renew</b></label>
+                                    </div>
+                            </div>
                         </div>
+
+                        
 
                         
 
