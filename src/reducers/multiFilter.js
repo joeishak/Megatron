@@ -2,7 +2,7 @@ import {
     GENERATE_FILTER_DATA
 } from 'actions/types';
 import _ from 'lodash';
-// import data from '../data.json';
+import data from '../data.json';
 export default function(state = [], action) {
     switch(action.type) {
         case  GENERATE_FILTER_DATA:
