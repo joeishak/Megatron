@@ -1147,6 +1147,203 @@ export const JourneyData = {
                         }
                     ]
                 },
+                geo:{
+                    qtd: [
+                        {
+                            index: 0,
+                            marketArea: 'US',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ASIA'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'ANZ',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ASIA'
+                        }
+                    ],
+                    week:[
+                        {
+                            index: 0,
+                            marketArea: 'US',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ASIA'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'ANZ',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ASIA'
+                        }
+                    ],
+                    all:[
+                        {
+                            index: 0,
+                            qtd: {
+                                marketArea: 'US',
+                                actuals:    66.74,
+                                units:     751.14,
+                                qrf:        70.21,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'AMER'
+                            },
+                            week: {
+                                    marketArea: 'US',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 1,
+                            qtd: {
+                                marketArea: 'ROW',
+                                actuals:    66.74,
+                                units:     751.14,
+                                qrf:        70.21,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'AMER'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 2,
+                            qtd: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ASIA'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        },
+                        {
+                            index: 3,
+                            qtd: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ASIA'
+                            },
+                            week: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        }
+
+                    ]
+                }
             },
             css: ['journeyCard1', 'vertSpinMeFirst', 'verticalText1']
         },
@@ -1233,7 +1430,203 @@ export const JourneyData = {
                         }
                     ]
                 },
-             
+                geo:{
+                    qtd: [
+                        {
+                            index: 0,
+                            marketArea: 'US',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ASIA'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'ANZ',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ASIA'
+                        }
+                    ],
+                    week:[
+                        {
+                            index: 0,
+                            marketArea: 'US',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ASIA'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'ANZ',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ASIA'
+                        }
+                    ],
+                    all:[
+                        {
+                            index: 0,
+                            qtd: {
+                                marketArea: 'US',
+                                actuals:    66.74,
+                                units:     751.14,
+                                qrf:        70.21,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'AMER'
+                            },
+                            week: {
+                                    marketArea: 'US',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 1,
+                            qtd: {
+                                marketArea: 'ROW',
+                                actuals:    66.74,
+                                units:     751.14,
+                                qrf:        70.21,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'AMER'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 2,
+                            qtd: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ASIA'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        },
+                        {
+                            index: 3,
+                            qtd: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ASIA'
+                            },
+                            week: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        }
+
+                    ]
+                }
 
 
             },
@@ -1322,6 +1715,203 @@ export const JourneyData = {
                         }
                     ]
                 },
+                geo:{
+                    qtd: [
+                        {
+                            index: 0,
+                            marketArea: 'US',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ASIA'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'ANZ',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ASIA'
+                        }
+                    ],
+                    week:[
+                        {
+                            index: 0,
+                            marketArea: 'US',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ASIA'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'ANZ',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ASIA'
+                        }
+                    ],
+                    all:[
+                        {
+                            index: 0,
+                            qtd: {
+                                marketArea: 'US',
+                                actuals:    66.74,
+                                units:     751.14,
+                                qrf:        70.21,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'AMER'
+                            },
+                            week: {
+                                    marketArea: 'US',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 1,
+                            qtd: {
+                                marketArea: 'ROW',
+                                actuals:    66.74,
+                                units:     751.14,
+                                qrf:        70.21,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'AMER'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 2,
+                            qtd: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ASIA'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        },
+                        {
+                            index: 3,
+                            qtd: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ASIA'
+                            },
+                            week: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        }
+
+                    ]
+                }
              
                 // geo:[
                 //                 index: 0,
@@ -1420,7 +2010,203 @@ export const JourneyData = {
                         }
                     ]
                 },
-             
+                geo:{
+                    qtd: [
+                        {
+                            index: 0,
+                            marketArea: 'US',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ASIA'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'ANZ',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ASIA'
+                        }
+                    ],
+                    week:[
+                        {
+                            index: 0,
+                            marketArea: 'US',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ASIA'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'ANZ',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ASIA'
+                        }
+                    ],
+                    all:[
+                        {
+                            index: 0,
+                            qtd: {
+                                marketArea: 'US',
+                                actuals:    66.74,
+                                units:     751.14,
+                                qrf:        70.21,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'AMER'
+                            },
+                            week: {
+                                    marketArea: 'US',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 1,
+                            qtd: {
+                                marketArea: 'ROW',
+                                actuals:    66.74,
+                                units:     751.14,
+                                qrf:        70.21,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'AMER'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 2,
+                            qtd: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ASIA'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        },
+                        {
+                            index: 3,
+                            qtd: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ASIA'
+                            },
+                            week: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        }
+
+                    ]
+                }
                 // geo:[
                 //                 index: 0,
                 //                 marketArea: 'US',
