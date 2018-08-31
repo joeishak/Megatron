@@ -19,6 +19,12 @@
     height: 30px;
     background-color: #F4F4F4;
 }
+.allLowerHeaderBar{
+    width:100%;
+    height: 30px;
+    background-color: #F4F4F4;
+    padding:0px;
+}
 .qtdColumn{
     /* Market Area US ROW T */
     display: block;
@@ -47,4 +53,90 @@
 }
 .qtdMaHeader{
     text-align:  right !important;
+}
+
+.weekColumn{
+       /* Market Area US ROW T */
+       display: block;
+       /* position: absolute; */
+       /* left: 9.96%;
+       right: 80.18%;
+       top: 52.69%;
+       bottom: 32.96%; */
+       float:left;
+       font-family: Ubuntu;
+       font-style: normal;
+       line-height: 30px;
+       font-size: 12px;
+       text-align: center;
+       width: 12.5%;
+       color: #000000;
+       background-color: white;
+}
+
+.weekGeoHeader{
+    text-align:  left !important;
+
+}
+
+.weekMaHeader{
+    text-align:  right !important;
+
+}
+
+.leftTopHeaderBar{
+    float:left;
+    width:390px;
+    text-align: center;
+    height: 30px;
+    margin-top: 5px;
+    border-left: 1px solid #D8D8D8;
+    border-top: 1px solid #D8D8D8;
+    border-right: 1px solid #D8D8D8;
+    font-size: 12px;
+}
+.rightTopHeaderBar{
+    float:left;
+    width:380px;
+    text-align: center;
+    height: 30px;
+    margin-top: 5px;
+    border-left: 1px solid #D8D8D8;
+    border-top: 1px solid #D8D8D8;
+    border-right: 1px solid #D8D8D8;
+    font-size: 12px;
+}
+.allTopHeaderContainer{
+    float:right;
+}
+.allColumn{
+ /* Market Area US ROW T */
+ display: block;
+ /* position: absolute; */
+ /* left: 9.96%;
+ right: 80.18%;
+ top: 52.69%;
+ bottom: 32.96%; */
+ float:left;
+ font-family: Ubuntu;
+ font-style: normal;
+ line-height: 30px;
+ font-size: 12px;
+ text-align: center;
+ width: 6.63%;
+ color: #000000;
+ background-color: white;
+}
+.allGeoHeader{
+    text-align:  left !important;
+
+}
+.allMaHeader{
+ width: 7%;
+ text-align:  right !important;
+
+}
+
+.allColumn{
+
 }

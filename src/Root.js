@@ -97,6 +97,104 @@ export default ({children, initialState ={
                     }
                 ]
             },
+            geo:{
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'US',
+                        actuals:    66.74,
+                        units:     751.14,
+                        qrf:        70.21,
+                        qrfDiff:    -3.48,
+                        vsQrf:      -.0495,
+                        qq :        -20.00,
+                        yy :        -.0733,
+                        geo: 'AMER'
+                    },
+                    {
+                        index: 1,
+                        marketArea: 'ROW',
+                        actuals:    66.74,
+                        units:     751.14,
+                        qrf:        70.21,
+                        qrfDiff:    -3.48,
+                        vsQrf:      -.0495,
+                        qq :        -20.00,
+                        yy :        -.0733,
+                        geo: 'AMER'
+                    },
+                    {
+                        index: 2,
+                        marketArea: 'ROW',
+                        actuals:    66.74,
+                        units:     751.14,
+                        qrf:        70.21,
+                        qrfDiff:    -3.48,
+                        vsQrf:      -.0495,
+                        qq :        -20.00,
+                        yy :        -.0733,
+                        geo: 'ASIA'
+                    },
+                    {
+                        index: 3,
+                        marketArea: 'ANZ',
+                        actuals:    66.74,
+                        units:     751.14,
+                        qrf:        70.21,
+                        qrfDiff:    -3.48,
+                        vsQrf:      -.0495,
+                        qq :        -20.00,
+                        yy :        -.0733,
+                        geo: 'ASIA'
+                    }
+                ],
+                week:[
+                    {
+                        index: 0,
+                        marketArea: 'US',
+                        actuals:    66.74,
+                        units:     751.14,
+                        qrf:        70.21,
+                        qrfDiff:    -3.48,
+                        vsQrf:      -.0495,
+                        ww :        -20.00,
+                        geo: 'AMER'
+                    },
+                    {
+                        index: 1,
+                        marketArea: 'ROW',
+                        actuals:    66.74,
+                        units:     751.14,
+                        qrf:        70.21,
+                        qrfDiff:    -3.48,
+                        vsQrf:      -.0495,
+                        ww :        -20.00,
+                        geo: 'AMER'
+                    },
+                    {
+                        index: 2,
+                        marketArea: 'ROW',
+                        actuals:    66.74,
+                        units:     751.14,
+                        qrf:        70.21,
+                        qrfDiff:    -3.48,
+                        vsQrf:      -.0495,
+                        ww :        -20.00,
+                        geo: 'ASIA'
+                    },
+                    {
+                        index: 3,
+                        marketArea: 'ANZ',
+                        actuals:    66.74,
+                        units:     751.14,
+                        qrf:        70.21,
+                        qrfDiff:    -3.48,
+                        vsQrf:      -.0495,
+                        ww :        -20.00,
+                        geo: 'ASIA'
+                    }
+                ]
+            }
         },
         css: ['card1', 'spinMeFirst', '#FF0000']
     }
