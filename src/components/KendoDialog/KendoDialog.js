@@ -113,7 +113,7 @@ class KendoDialog extends Component {
                             <div className="col-lg-6 col-md-6">
                             <div className="row">
                                     <div class="radio ">
-                                        <input id="radio-2" name="group1" type="radio"  />
+                                        <input id="radio-2" name="group1" type="radio" />
                                         <label for="radio-2" class="radio-label"><b>Journeys</b></label>
                                     </div>
                                 </div>

@@ -15,12 +15,21 @@ import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 import CustomDropDownPanel from 'components/CustomDropDownPanel/CustomDropDownPanel';
 import SummaryViewDetails from 'components/SummaryViewDetails/SummaryViewDetails';
 import KendoDialog from '../components/KendoDialog/KendoDialog';
+import axios from 'axios';
+
+//InfoBurst
 
 // Custom Nivo Components
 // import { changeAuth } from '../actions';
 
 
+
+
 class App extends Component {
+
+  prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
+  environment = { infosolApi: 'http://vm1.infosol.com:8551' };
+
   constructor(props) {
     super(props);
     /* Initializing local state */
@@ -42,9 +51,38 @@ class App extends Component {
       this.getFilters();
   }
   
-  componentDidMount(){
- 
+  componentDidMount() {
+    const prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
+    const environment = { infosolApi: 'http://vm1.infosol.com:8551' };
+    const query = 'FinCardsValue';
+    const xdc = '447';
+    const parameters = [];
+    // IF the IBE cache has parameters: push prompt and value to parameters
+    // parameters.push({prompt: 'parameter1', value: 'GEO'});
+    // parameters.push({prompt: 'parameter2', value: 'MARKET'});
+
+    let params = parameters.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+      }, '');
+
+    const token = 'Basic ' + btoa(prod_connection['user'] + ':' + prod_connection['pass']);
+    let headers = {'Authorization': token , 'Accept': '*/*'};
+      
+    axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + query + params + '&json=1', 
+      {headers: headers, responseType: 'text'}).then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+      
   }
+
+
+
 
   getFilters(){
     /* Action Calls */
@@ -111,8 +149,7 @@ getSummaryDetails(){
     //   </Animation>
     //   ) : null;
 
-      
-     
+
 
     return (
 
@@ -129,7 +166,6 @@ getSummaryDetails(){
 }
 
 function mapStateToProps(state) {
-  console.log(`App.js state to props: `, state);
   return {
     dialogIsOpen:state.isDialogOpen,
     activeFilters: state.activeFilters,
