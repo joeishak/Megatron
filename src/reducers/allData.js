@@ -1,5 +1,5 @@
 import {GET_ALL_DATA} from 'actions/types'
-import data from '../data.json';
+// import data from '../data.json';
 import * as localdata from '../variables';
 
 export default function(state = [],action) {
