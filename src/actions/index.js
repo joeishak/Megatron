@@ -1,3 +1,5 @@
+
+
 import {  
     CHANGE_AUTH, 
     UPDATE_SWITCH_FILTER_VALUE,
@@ -12,7 +14,8 @@ import {
     SHOW_DATA_PREFERENCES,
     HIDE_DATA_PREFERENCES,
     UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD,
-    UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD
+    UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD,
+    GET_IBE_DATA
 
 } from 'actions/types';
 import axios from 'axios';
@@ -192,3 +195,32 @@ export function updateJourneySummaryActiveCard(squareItem){
         payload: squareItem
     }
 }
+
+export function getIbeData() {
+
+    const prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
+    const environment = { infosolApi: 'http://vm1.infosol.com:8551' };
+
+    const endpoint = 'FinCardsValue';
+    const xdc = '447';
+    const parameters = [];
+
+    let params = parameters.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+      }, '');
+
+    const token = 'Basic ' + btoa(prod_connection['user'] + ':' + prod_connection['pass']);
+    let headers = {'Authorization': token , 'Accept': '*/*'};
+      
+    const request = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + endpoint + params + '&json=1', 
+      {headers: headers, responseType: 'text'});
+
+    return {
+        type: GET_IBE_DATA,
+        payload: request
+    }
+    
+}
+ 
