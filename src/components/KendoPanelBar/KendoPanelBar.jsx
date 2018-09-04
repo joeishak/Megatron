@@ -181,7 +181,7 @@ class KendoPanelBar extends Component {
                         <div className="qtdColumn col">
                             {item.qrfDiff}
                         </div>
-                        <div className="qtdColumn col">
+                        <div className={ (item.vsQrf < 0)? 'qtdColumn col redBG': ' qtdColumn col greenBG'}>
                             {item.vsQrf}
                         </div>
                         <div className="qtdColumn col">
@@ -219,7 +219,7 @@ class KendoPanelBar extends Component {
                         <div className="weekColumn col">
                             {item.qrfDiff}
                         </div>
-                        <div className="weekColumn col">
+                        <div className={ (item.vsQrf < 0)? 'weekColumn col redBG': 'weekColumn col greenBG'}>
                             {item.vsQrf}
                         </div>
                         <div className="weekColumn col">
@@ -255,7 +255,7 @@ class KendoPanelBar extends Component {
                                 <div className="allColumn col">
                                     {item.qtd.qrfDiff}
                                 </div>
-                                <div className="allColumn col">
+                                <div className={ (item.vsQrf < 0)? 'allColumn col redBG': 'allColumn col greenBG'}>
                                     {item.qtd.vsQrf}
                                 </div>
                                 <div className="allColumn col">
@@ -276,7 +276,7 @@ class KendoPanelBar extends Component {
                                 <div className="allColumn col">
                                     {item.week.qrfDiff}
                                 </div>
-                                <div className="allColumn col">
+                                <div className={ (item.vsQrf < 0)? 'allColumn col redBG': 'allColumn col greenBG'}>
                                     {item.week.vsQrf}
                                 </div>
                                 <div className="allColumn col">

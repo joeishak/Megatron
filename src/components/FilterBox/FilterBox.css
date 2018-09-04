@@ -1,7 +1,7 @@
 
 .filterContainer {
     background-color: #3c3c3c;
-    height: 70px;
+    height: 45px;
     font-size: 14px;
   
 }
@@ -9,14 +9,15 @@
 .pillsContainer{
     overflow: wrap;
     float:left;
-    padding-top:20px;
+    padding-top:10px;
     padding-left: 20px;
 }
 
 .newFilterDiv{
     float: right;
     color: #ffffff;
-    padding:20px;
+    padding:10px;
+    padding-right:20px;
 }
 
 .newFilterText{

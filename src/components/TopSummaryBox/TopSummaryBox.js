@@ -190,7 +190,7 @@ class TopSummaryBox extends Component {
                                                         <div className={`donutChart ${activeCard === item.css[0] ? 'arrow_box' : ''}`}>
                                                             <div >
                                                             <KendoDonutChart donutColor={item.css[2]} key={item.index} donutCenterRender= {()=> 
-                                                            <div className="insideDonut"><h2 className={`${item.value > item.target ? 'selectedCardFontColorGreen' : 'selectedCardFontColorRed'}`}>${item.value}M</h2><h6>Target</h6><h4>${item.target}M</h4></div>}/> 
+                                                            <div className="insideDonut"><span className={'actual ' + `${item.value > item.target ? 'selectedCardFontColorGreen' : 'selectedCardFontColorRed'}`}>${item.value}M</span><span className='donutTargetText'>Target</span><span className='donutTargetValue'>${item.target}M</span></div>}/> 
                                                             </div>
                                                         </div>
                                                     </div>
@@ -213,6 +213,9 @@ class TopSummaryBox extends Component {
                 {this.props.appData.journey.squares.map(item => {
                     return (
                     <div className="journeyBoxHover" key={item.index}>    
+                     <CSSTransitionGroup transitionName="example"
+                    transitionAppear={true} transitionAppearTimeout={5000}
+                    transitionEnter={false} transitionLeave={false} >
                     <div className={ `journeyBox ${item.css[1]} ${activeJourneyCard === item.css[0] ? this.getColor(item.value, item.target, 'journey', false) : ''}`} 
                     onClick={e => this.onJourneyCardClicked(e, item.index)}>
                 
@@ -236,6 +239,8 @@ class TopSummaryBox extends Component {
                                 </div>  
                             </div>
                         </div>
+                </CSSTransitionGroup>
+
                     </div>  
                     );
                 })}
@@ -274,14 +279,15 @@ class TopSummaryBox extends Component {
                     transitionEnter={false} transitionLeave={false} >
                 {/* Toggle Button */}
                 <div className="container-fluid row">
-                    <div className="col summaryTitleCol k-float-left">{this.getSummaryTitle()}</div>
-                        <div className="col summaryTitleCol k-float-right"><label className="switch">
-                            <input type="checkbox" id="togBtn" checked={this.state.isToggleButtonChecked} onChange={(e) => this.onToggleButtonChanged(e)}></input>
-                            <div className="slider round">
-                            <div className="on">Financials</div>
-                            <div className="off">Journeys</div>
-                            </div>
-                        </label>
+                    <div className="col-md-6 summaryTitleCol k-float-left">{this.getSummaryTitle()}</div>
+                        <div className="col-md-6 summaryTitleCol switchContainer ">
+                            <label className="switch k-float-right">
+                                <input type="checkbox" id="togBtn" checked={this.state.isToggleButtonChecked} onChange={(e) => this.onToggleButtonChanged(e)}></input>
+                                <div className="slider round">
+                                    <div className="on">Financials</div>
+                                    <div className="off">Journeys</div>
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </CSSTransitionGroup>

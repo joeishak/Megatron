@@ -24,20 +24,20 @@
 .panelBarContainer-open{
     color: white;
     background-color: #3c3c3c;
-    height: 170px !important;
+    height: 150px !important;
     padding-left: 20px;
 }
 
 .panelBarContainer-closed{
     height: 0px;
-    display: none;
+    /* display: none; */
 }
 
 .quarterFilterContainer{
     float:left;
     font-size:14px !important;
     margin-right: 20px;
-    padding-top: 20px;
+    padding-top: 5px;
     -webkit-animation: fader 2s; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fader 2s; /* Firefox < 16 */
      -ms-animation: fader 2s; /* Internet Explorer */
@@ -123,4 +123,8 @@
 .k-dropdown{
     background-color: rgb(34, 34, 34) !important;
     color: white !important;
+}
+
+.default{
+    margin-top: 35px;
 }

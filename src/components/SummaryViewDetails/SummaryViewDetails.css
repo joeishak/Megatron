@@ -88,13 +88,17 @@
 /* QTD Total Metric Filter Container */
 .totalTimeMetricContainer{
     float:right;
-    width:300px;
+    /* width:100%; */
+    padding: 0px;
     height:30px;
     background-color:white;
     
-
+    align-content: right;
 }
 
+.totalFilterContainer{
+    float:right;
+}
 /* QTD Metric */
 .qtdMetric{
     float:left;
@@ -117,7 +121,15 @@
     border: 1px solid #3C3C3C;
 
 }
+.redBG{
+    background-color:#ff0000 !important;
+    color:white !important;
+}
+.greenBG{
+    background-color:#0DB16E !important;
+    color:white !important;
 
+}
 /* All Metric */
 .allMetric{
     float:left;
@@ -215,9 +227,11 @@
 }
 
 .contHeader{
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
-    padding-left: 10px;
+    width: 100%;
+    text-align:center;
+    /* padding-left: 5px; */
     padding-top:10px;
     float:left;
     clear:right;
@@ -225,7 +239,9 @@
 .valHeader{
     font-size:15px;
     float:left;
-    padding-left: 10px;
+    width: 100%;
+    text-align:center;
+    /* padding-left: 10px; */
 
 }
 
