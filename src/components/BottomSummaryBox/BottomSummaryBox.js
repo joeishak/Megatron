@@ -26,13 +26,16 @@ class ButtomSummaryBox extends Component {
 
         // Initialize state
         this.state = {
-            rerender: this.props.rerender
+            rerender: this.props.activeSummary
 
         }
         //Binding functions to this
         this.openDialog= this.openDialog.bind(this);
     }
 
+    componentDidMount(){
+
+    }
     //Event Handler for the View Details Button
     openDialog = ()=>{
         // Call an action for mapped props to update the dialog/windows visibility to True
@@ -48,8 +51,10 @@ class ButtomSummaryBox extends Component {
             over: true,
             summaryOver: (this.props.switchFilter)? false:true,
             journeyOver: (this.props.switchFilter)? true: false
-        })
+        });
+     
         return(
+           
             <div className="" >
                 <div className="row gridRow1">
                     <div className = {titleHeader + " col-xs-12 col-sm-12 col-md-12 col-lg-12"} >
@@ -60,57 +65,30 @@ class ButtomSummaryBox extends Component {
                             transitionEnter={false} 
                             transitionLeave={false} >
                                 <div>
-                                    Net New ARR
+                                    {(this.props.switchFilter === false) ? this.props.activeSummary.header:this.props.activeSummary.title }
                                     <button className="detailButton" onClick={this.openDialog} >View Details </button>
                                   
                                     {(this.props.switchFilter==false) ? 
                                     <span>
-                                    <CSSTransitionGroup
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={800}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
-                                        <div className=" statsHeader"> 
-                                            <div className="percentage green"> -2.9%</div>
-                                            <div className="footer"> Y/Y </div>
-                                        </div>
-                                    </CSSTransitionGroup>
-                                    <CSSTransitionGroup
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={600}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
-                                        <div className=" statsHeader"> 
-                                            <div className="percentage red"> -17.0%</div>
-                                            <div className="footer"> Q/Q LY </div>
-                                        </div>
-                                    </CSSTransitionGroup>
-                                    <CSSTransitionGroup
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={400}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
-                                        <div className=" statsHeader"> 
-                                            <div className="percentage red"> -20.4%</div>
-                                            <div className="footer"> Q/Q TY </div>
-                                        </div>
-                                    </CSSTransitionGroup>
-                                    <CSSTransitionGroup
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={200}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
-                                        <div className=" statsHeader"> 
-                                            <div className="percentage red"> -2.8%</div>
-                                            <div className="footer"> vs QRF </div>
-                                        </div>
-                                    </CSSTransitionGroup> 
+                                        {
+                                            this.props.activeSummary.details.stats.reverse().map(item=>{
+                                                return(
+                                                    <CSSTransitionGroup
+                                                        transitionName="example"
+                                                        transitionAppear={true}
+                                                        transitionAppearTimeout={800}
+                                                        transitionEnter={false} 
+                                                        transitionLeave={false} >
+                                                        <div className=" statsHeader"> 
+                                                            <div className={ (item.color==='green') ? ' green' :'red ' }> {item.value}%</div>
+                                                            <div className="footer"> {item.text}</div>
+                                                        </div>
+                                                    </CSSTransitionGroup>
+                                                )
+                                            })
+                                        }
                                     </span>
-                                    : null}
+                                     : null} 
                         
                                 </div>
                         </CSSTransitionGroup>
@@ -119,51 +97,24 @@ class ButtomSummaryBox extends Component {
                     
                     <div className="journeyStatsContainer">
                         <div className="darkGrey horizontalRule"></div>
-                        Traffic
-                        <CSSTransitionGroup
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={800}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
-                                        <div className="statsHeader"> 
-                                            <div className="percentage green"> -2.9%</div>
-                                            <div className="footer"> Y/Y </div>
-                                        </div>
-                                    </CSSTransitionGroup>
-                                    <CSSTransitionGroup
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={600}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
-                                        <div className="statsHeader"> 
-                                            <div className="percentage red"> -17.0%</div>
-                                            <div className="footer"> Q/Q LY </div>
-                                        </div>
-                                    </CSSTransitionGroup>
-                                    <CSSTransitionGroup
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={400}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
-                                        <div className="statsHeader"> 
-                                            <div className="percentage red"> -20.4%</div>
-                                            <div className="footer"> Q/Q TY </div>
-                                        </div>
-                                    </CSSTransitionGroup>
-                                    <CSSTransitionGroup
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={200}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
-                                        <div className="statsHeader"> 
-                                            <div className="percentage red"> -2.8%</div>
-                                            <div className="footer"> vs QRF </div>
-                                        </div>
-                                    </CSSTransitionGroup> 
+                        {this.props.activeSummary.header}
+                        {
+                                            this.props.activeSummary.details.stats.map(item=>{
+                                                return(
+                                                    <CSSTransitionGroup
+                                                        transitionName="example"
+                                                        transitionAppear={true}
+                                                        transitionAppearTimeout={800}
+                                                        transitionEnter={false} 
+                                                        transitionLeave={false} >
+                                                        <div className=" statsHeader"> 
+                                                            <div className={ (item.color==='red')? ' red' :'green '}> {item.value}%</div>
+                                                            <div className="footer"> {item.text}</div>
+                                                        </div>
+                                                    </CSSTransitionGroup>
+                                                )
+                                            })
+                                        }
                     </div> 
                     : null}
                     <div className="row gridRow2 chartBig container-fluid">

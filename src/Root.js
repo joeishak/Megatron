@@ -17,7 +17,7 @@ export default ({children, initialState ={
     activeFilters:[],
     switchFilter: false,
     detailsIsOpen: false,
-    activeSummarySquare:{
+    activeSummarySquare: {
         index:1,
         header: 'Net New ARR',
         value: 149.9,
@@ -295,7 +295,29 @@ export default ({children, initialState ={
                     }
 
                 ]
-            }
+            },
+            stats:[
+                {
+                    value: -2.8,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
         },
         css: ['card1', 'spinMeFirst', '#FF0000']
     }

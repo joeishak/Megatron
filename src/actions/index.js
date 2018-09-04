@@ -99,6 +99,15 @@ export function getAdobeData() {
  * 
  */
 export function generateFilterData() {
+     const token = 'Basic ' + btoa('JR' + ':' + 'ft3t7pgz');
+    let headers = {'Authorization': token , 'Accept': '*/*'};
+    
+    axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=marketAreaList&json=1', {headers: headers, responseType: 'text'}).then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
     return{
         type: GENERATE_FILTER_DATA,
         payload: {}

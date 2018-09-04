@@ -46,11 +46,11 @@ class KendoMultiChart extends Component {
                 <ChartSeriesItem type="column" gap={2} spacing={0.25} data={firstSeries} color={this.props.color}>
                 <ChartSeriesItemTooltip background="#3c3c3c" />
                 </ChartSeriesItem>
-                <ChartSeriesItem type="line" data={secondSeries} >
-                <ChartSeriesItemTooltip background="#3c3c3c" />
+                <ChartSeriesItem type="line" data={secondSeries} color='#0E9CC6' >
+                <ChartSeriesItemTooltip background="#3c3c3c"  />
 
                 </ChartSeriesItem>
-                <ChartSeriesItem type="line" data={thirdSeries} >
+                <ChartSeriesItem type="line" data={thirdSeries} color='#DFDE43'  >
                 <ChartSeriesItemTooltip background="#3c3c3c" />
 
                 </ChartSeriesItem>

@@ -278,7 +278,29 @@ export const FinancialData = {
                         }
 
                     ]
-                }
+                },
+                stats:[
+                    {
+                        value: -2.6,
+                        color: 'red',
+                        text: 'vs QRF'
+                    },
+                    {
+                        value: -20.4,
+                        color: 'red',
+                        text: 'Q/Q TY'
+                    },
+                    {
+                        value: -17.0,
+                        color: 'red',
+                        text: 'Q/Q LY'
+                    },
+                    {
+                        value: -2.9,
+                        color: 'green',
+                        text: 'Y/Y'
+                    }
+                ]
             },
             css: ['card1', 'spinMeFirst', '#FF0000']
         },
@@ -560,7 +582,29 @@ export const FinancialData = {
                         }
 
                     ]
-                }
+                },
+                stats:[
+                    {
+                        value: -3.8,
+                        color: 'red',
+                        text: 'vs QRF'
+                    },
+                    {
+                        value: -25.4,
+                        color: 'red',
+                        text: 'Q/Q TY'
+                    },
+                    {
+                        value: -27.5,
+                        color: 'red',
+                        text: 'Q/Q LY'
+                    },
+                    {
+                        value: -5.8,
+                        color: 'green',
+                        text: 'Y/Y'
+                    }
+                ]
             },
             css: ['card2', 'spinMeSecond', '#0DB16E']
         },
@@ -744,7 +788,29 @@ export const FinancialData = {
                             type: 'ASIA'
                         }
                     ]
-                }
+                },
+                stats:[
+                    {
+                        value: -9.8,
+                        color: 'red',
+                        text: 'vs QRF'
+                    },
+                    {
+                        value: -2.4,
+                        color: 'green',
+                        text: 'Q/Q TY'
+                    },
+                    {
+                        value: 7.0,
+                        color: 'green',
+                        text: 'Q/Q LY'
+                    },
+                    {
+                        value: -8.9,
+                        color: 'red',
+                        text: 'Y/Y'
+                    }
+                ]
              
                
             },
@@ -1028,7 +1094,29 @@ export const FinancialData = {
                         }
 
                     ]
-                }
+                },
+                stats:[
+                    {
+                        value: -2.8,
+                        color: 'red',
+                        text: 'vs QRF'
+                    },
+                    {
+                        value: -20.4,
+                        color: 'red',
+                        text: 'Q/Q TY'
+                    },
+                    {
+                        value: -17.0,
+                        color: 'red',
+                        text: 'Q/Q LY'
+                    },
+                    {
+                        value: -2.9,
+                        color: 'green',
+                        text: 'Y/Y'
+                    }
+                ]
             },
             css: ['card4', 'spinMeFourth', '#0DB16E']
         }
@@ -1069,6 +1157,7 @@ export const JourneyData = {
             header: 'Traffic',
             value: 146.7,
             target: 242.3,
+            timeout: 1000,
             title: 'Discover',
             details:{
                 multichart:[
@@ -1343,7 +1432,30 @@ export const JourneyData = {
                         }
 
                     ]
-                }
+                },
+                stats:[
+                    {
+                        value: -2.8,
+                        color: 'red',
+                        text: 'vs QRF'
+                    },
+                    {
+                        value: -20.4,
+                        color: 'red',
+                        text: 'Q/Q TY'
+                    },
+                    {
+                        value: -17.0,
+                        color: 'red',
+                        text: 'Q/Q LY'
+                    },
+                    {
+                        value: -2.9,
+                        color: 'green',
+                        text: 'Y/Y'
+                    }
+                ]
+             
             },
             css: ['journeyCard1', 'vertSpinMeFirst', 'verticalText1']
         },
@@ -1352,6 +1464,7 @@ export const JourneyData = {
             header: `New QFM's`,
             value: 3.9,
             target: 4.7,
+            timeout: 2000,
             title: 'Buy',
             details:{
                 multichart:[
@@ -1626,8 +1739,30 @@ export const JourneyData = {
                         }
 
                     ]
-                }
-
+                },
+                stats:[
+                    {
+                        value: -2.8,
+                        color: 'red',
+                        text: 'vs QRF'
+                    },
+                    {
+                        value: -20.4,
+                        color: 'red',
+                        text: 'Q/Q TY'
+                    },
+                    {
+                        value: -17.0,
+                        color: 'red',
+                        text: 'Q/Q LY'
+                    },
+                    {
+                        value: -2.9,
+                        color: 'green',
+                        text: 'Y/Y'
+                    }
+                ]
+             
 
             },
             css: ['journeyCard2', 'vertSpinMeSecond', 'verticalText2']
@@ -1637,6 +1772,7 @@ export const JourneyData = {
             header: 'Conversion',
             value: .85,
             target: .80,
+            timeout: 3000,
             title: 'Try',
             details:{
                 multichart:[
@@ -1911,19 +2047,30 @@ export const JourneyData = {
                         }
 
                     ]
-                }
+                },
+                stats:[
+                    {
+                        value: -2.8,
+                        color: 'red',
+                        text: 'vs QRF'
+                    },
+                    {
+                        value: -20.4,
+                        color: 'red',
+                        text: 'Q/Q TY'
+                    },
+                    {
+                        value: -17.0,
+                        color: 'red',
+                        text: 'Q/Q LY'
+                    },
+                    {
+                        value: -2.9,
+                        color: 'green',
+                        text: 'Y/Y'
+                    }
+                ]
              
-                // geo:[
-                //                 index: 0,
-                //                 marketArea: 'US',
-                //                 actuals: 66.7,
-                //                 units: ,
-                //                 qrf: ,
-                //                 qrfDiff: ,
-                //                 vsQrf: ,
-                //                 Q
-                //                 type: 'amer'
-                //     ],
             },
             css: ['journeyCard3', 'vertSpinMeThird', 'verticalText3']
         },
@@ -1932,6 +2079,7 @@ export const JourneyData = {
             header: 'Repeat User MAU',
             value: 95.78,
             target: 95.06,
+            timeout: 4000,
             title: 'Use',
             details:{
                 multichart:[
@@ -2206,18 +2354,30 @@ export const JourneyData = {
                         }
 
                     ]
-                }
-                // geo:[
-                //                 index: 0,
-                //                 marketArea: 'US',
-                //                 actuals: 66.7,
-                //                 units: ,
-                //                 qrf: ,
-                //                 qrfDiff: ,
-                //                 vsQrf: ,
-                //                 Q
-                //                 type: 'amer'
-                //     ],
+                },
+                stats:[
+                    {
+                        value: -2.8,
+                        color: 'red',
+                        text: 'vs QRF'
+                    },
+                    {
+                        value: -20.4,
+                        color: 'red',
+                        text: 'Q/Q TY'
+                    },
+                    {
+                        value: -17.0,
+                        color: 'red',
+                        text: 'Q/Q LY'
+                    },
+                    {
+                        value: -2.9,
+                        color: 'green',
+                        text: 'Y/Y'
+                    }
+                ]
+             
             },
             css: ['journeyCard4', 'vertSpinMeFourth', 'verticalText4']
         },
@@ -2226,6 +2386,7 @@ export const JourneyData = {
             header: 'Net New ARR',
             value: 149.9,
             target: 277.9,
+            timeout: 5000,
             title: 'Renew',
             details:{
                 multichart: [
@@ -2304,6 +2465,225 @@ export const JourneyData = {
                         }
                     ]
                 },
+                geo:{
+                    qtd: [
+                        {
+                            index: 0,
+                            marketArea: 'US',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ASIA'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'ANZ',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ASIA'
+                        }
+                    ],
+                    week:[
+                        {
+                            index: 0,
+                            marketArea: 'US',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'ROW',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ASIA'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'ANZ',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ASIA'
+                        }
+                    ],
+                    all:[
+                        {
+                            index: 0,
+                            qtd: {
+                                marketArea: 'US',
+                                actuals:    66.74,
+                                units:     751.14,
+                                qrf:        70.21,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'AMER'
+                            },
+                            week: {
+                                    marketArea: 'US',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 1,
+                            qtd: {
+                                marketArea: 'ROW',
+                                actuals:    66.74,
+                                units:     751.14,
+                                qrf:        70.21,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'AMER'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 2,
+                            qtd: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ASIA'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        },
+                        {
+                            index: 3,
+                            qtd: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ASIA'
+                            },
+                            week: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        }
+
+                    ]
+                },
+                stats: [
+                    {
+                        value: -2.6,
+                        color: 'red',
+                        text: 'vs QRF'
+                    },
+                    {
+                        value: -20.4,
+                        color: 'red',
+                        text: 'Q/Q TY'
+                    },
+                    {
+                        value: -17.0,
+                        color: 'red',
+                        text: 'Q/Q LY'
+                    },
+                    {
+                        value: -2.9,
+                        color: 'green',
+                        text: 'Y/Y'
+                    }
+                ]
             },
             css: ['journeyCard5', 'vertSpinMeFifth', 'verticalText5']
         }

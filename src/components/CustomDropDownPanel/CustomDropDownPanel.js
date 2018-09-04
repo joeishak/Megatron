@@ -61,9 +61,9 @@ class CustomDropDownPanel extends Component {
                             <KendoDropDownList  data={this.props.availableFilters.segments}/>
                         </div>
                 
-                        <div className="quarterFilterContainer" >
-                            <p> Make these my default settings</p>
-                            <input type='checkbox' />
+                        <div className="quarterFilterContainer default" >
+                            
+                            <input type='checkbox' /><span> Make these my default settings</span>
                         </div>
             </div>
        ): null;

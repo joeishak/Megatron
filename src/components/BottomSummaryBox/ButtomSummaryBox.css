@@ -25,13 +25,13 @@
 /* Animation */
 .example-appear {
     opacity: 0;
-    transform: translateY(-200px);
+    transform: translateX(-200px);
     animation-duration: 4s;
     animation-delay: 2s;
 }
 .example-appear.example-appear-active {
     opacity: 1;
-    transform: translateY(0px);
+    transform: translateX(0px);
     transition: all 1s ease-out;
     animation-duration: 100s;
     animation-delay: 5s;
@@ -56,20 +56,15 @@
 .statsHeader {
     float: right;
     margin-left: 40px;
-    
-
-    
 }
-
 
 /* Background Indicators */
 .red{
     color: red;
 }
 .green{
-    color: green;
+    color: #0DB16E;
 }
-
 
 /* Animations for the MultiChart on  */
 .summaryOver {

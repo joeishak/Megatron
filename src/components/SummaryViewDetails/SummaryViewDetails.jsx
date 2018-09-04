@@ -84,7 +84,7 @@ renderQuarterlyToDateTableHeader(){
      {
       this.props.activeItem.details.qtdw.qtd.map(item=>{
          return(
-          <div key={item.index} className={qtdwColSizes}>
+          <div key={item.index} className={qtdwColSizes + (item.header==="Vs Qrf"? ' redBG':' ')}>
 
           <span className="contHeader"> {item.header} </span>
           <span className="valHeader"> {item.value}</span>
@@ -99,7 +99,7 @@ renderQuarterlyToDateTableHeader(){
       {
        this.props.activeItem.details.qtdw.week.map(item=>{
          return(
-          <div key={item.index} className={qtdwColSizes}>
+          <div key={item.index} className={qtdwColSizes  + (item.header==="Vs Qrf"? ' redBG':' ')}>
 
           <span className="contHeader"> {item.header} </span>
           <span className="valHeader"> {item.value}</span>
@@ -114,7 +114,7 @@ renderQuarterlyToDateTableHeader(){
       {
        this.props.activeItem.details.qtdw.week.map(item=>{
          return(
-          <div key={item.index} className={qtdwColSizes}>
+          <div key={item.index} className={qtdwColSizes  + (item.header==="Vs Qrf"? ' redBG':' ')}>
 
           <span className="contHeader"> {item.header} </span>
           <span className="valHeader"> {item.value}</span>
@@ -125,7 +125,7 @@ renderQuarterlyToDateTableHeader(){
      {
        this.props.activeItem.details.qtdw.qtd.map(item=>{
          return(
-          <div key={item.index} className={qtdwColSizes}>
+          <div key={item.index} className={qtdwColSizes  + (item.header==="Vs Qrf"? ' redBG':' ')}>
 
           <span className="contHeader"> {item.header} </span>
           <span className="valHeader"> {item.value}</span>
@@ -202,6 +202,7 @@ renderQuarterlyToDateTableHeader(){
         <div className=" qtdTitleBarHeader container-fluid row">
         <span className="col-md- 3 detailTitle">Quarterly To Date</span>
           <div className=" col-md-9 totalTimeMetricContainer">
+            <span className="totalFilterContainer">
               <div onClick={this.updateQtdMetricFilter} className={QTDStyles}>
                   QTD
               </div>
@@ -211,6 +212,7 @@ renderQuarterlyToDateTableHeader(){
               <div onClick={this.updateQtdMetricFilter} className={AllStyles}>
                   ALL
               </div>
+              </span>
           </div>
         </div> 
         
