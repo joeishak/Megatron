@@ -22,9 +22,6 @@ import axios from 'axios';
 // Custom Nivo Components
 // import { changeAuth } from '../actions';
 
-
-
-
 class App extends Component {
 
   prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
@@ -52,24 +49,25 @@ class App extends Component {
   }
   
   componentDidMount() {
-    const prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
-    const environment = { infosolApi: 'http://vm1.infosol.com:8551' };
-    const query = 'FinCardsValue';
-    const xdc = '447';
-    const parameters = [];
-    // IF the IBE cache has parameters: push prompt and value to parameters
-    // parameters.push({prompt: 'parameter1', value: 'GEO'});
-    // parameters.push({prompt: 'parameter2', value: 'MARKET'});
+    // const prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
+    // const environment = { infosolApi: 'http://vm1.infosol.com:8551' };
+    // const query = 'FinCardsValue';
+    // const xdc = '447';
+    // const parameters = [];
+    // // IF the IBE cache has parameters: push prompt and value to parameters
+    // // parameters.push({prompt: 'parameter1', value: 'GEO'});
+    // // parameters.push({prompt: 'parameter2', value: 'MARKET'});
 
-    let params = parameters.reduce((prev, param) => {
-        let p = '';
-        p = prev + '&' + param.prompt + '=' + param.value;
-        return p;
-      }, '');
+    // let params = parameters.reduce((prev, param) => {
+    //     let p = '';
+    //     p = prev + '&' + param.prompt + '=' + param.value;
+    //     return p;
+    //   }, '');
 
-    const token = 'Basic ' + btoa(prod_connection['user'] + ':' + prod_connection['pass']);
-    let headers = {'Authorization': token , 'Accept': '*/*'};
+    // const token = 'Basic ' + btoa(prod_connection['user'] + ':' + prod_connection['pass']);
+    // let headers = {'Authorization': token , 'Accept': '*/*'};
       
+<<<<<<< HEAD
     axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + query + params + '&json=1', 
       {headers: headers, responseType: 'text'}).then((res) => {
         console.log(res.data);
@@ -79,14 +77,22 @@ class App extends Component {
       });
      
       
+=======
+    // axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + query + params + '&json=1', 
+    //   {headers: headers, responseType: 'text'}).then((res) => {
+    //     console.log(res.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+>>>>>>> 768c4c37bd29100e9b70069f881f669b01273858
   }
-
-
-
 
   getFilters(){
     /* Action Calls */
     this.props.getAdobeData();
+<<<<<<< HEAD
     this.props.generateSegmentsFilters();
     this.props.generateSubscriptionOfferingsFilters();
     this.props.generateRouteToMarketFilters();
@@ -97,6 +103,10 @@ class App extends Component {
 
 
     // this.props.generateFilterData();
+=======
+    this.props.generateFilterData();
+    this.props.getIbeData();
+>>>>>>> 768c4c37bd29100e9b70069f881f669b01273858
   }
   /* Sets the state passed to the bottom summary box so that it re renders */
   renderBarGraph(index){
@@ -142,6 +152,7 @@ getSummaryDetails(){
        <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
        {bottomSummary}
       </div>;
+<<<<<<< HEAD
     // const show = this.props.dialogIsOpen
     // const kendoDialog = true ? ( 
 
@@ -158,6 +169,8 @@ getSummaryDetails(){
     //   ) : null;
 
 
+=======
+>>>>>>> 768c4c37bd29100e9b70069f881f669b01273858
 
     return (
 
@@ -180,9 +193,12 @@ function mapStateToProps(state) {
     activeFilters: state.activeFilters,
     switchFilter: state.switchFilter,
     detailIsOpen: state.detailsIsOpen,
+<<<<<<< HEAD
     availableFilters:state.availableFilters
 
+=======
+>>>>>>> 768c4c37bd29100e9b70069f881f669b01273858
   };
 }
 
-export default connect(mapStateToProps,actions)(App);
+export default connect(mapStateToProps, actions)(App);

@@ -30,6 +30,8 @@ class TopSummaryBox extends Component {
             }
 
         };
+
+        console.log(this.props.finData);
         
         //Binding functions to this
         this.enableChart1Arrow = this.enableChart1Arrow.bind(this);
@@ -40,6 +42,8 @@ class TopSummaryBox extends Component {
         // this.getFinancialSquares = this.getFinancialSquares.bind(this);
 
         // console.log(this.state);
+
+        console.log(this.props.finData);
     }
     componentDidMount(){
         // this.setState({data:(this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial})
@@ -157,6 +161,9 @@ class TopSummaryBox extends Component {
         return renderM;
     }
 
+    formatData(log) {
+        console.log(log);
+    }
 
    
     getSummaryContent(){
@@ -256,6 +263,8 @@ class TopSummaryBox extends Component {
  
 
     render(){
+        {this.formatData(this.props.finData)}
+        
         var SummaryBoxStyles = classNames({
             summaryBox: true,
             summaryBox_financial: !this.props.switchFilter ? false: true
@@ -298,7 +307,13 @@ class TopSummaryBox extends Component {
 }
 
 function mapStateToProps(state) {
-    return { filters: state.filters, switchFilter:state.switchFilter, appData: state.adobeData, activeCard: state.activeSummarySquare };
+    return { 
+        filters: state.filters, 
+        switchFilter:state.switchFilter, 
+        appData: state.adobeData, 
+        activeCard: state.activeSummarySquare,
+        finData: state.ibeData
+    }
 }
 
 export default connect(mapStateToProps,actions)(TopSummaryBox)

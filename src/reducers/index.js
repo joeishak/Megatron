@@ -9,6 +9,7 @@ import activeFiltersReducer from 'reducers/activeFilters';
 import switchFilterReducer from 'reducers/switchFilter';
 import detailsReducer from 'reducers/summaryDetails';
 import activeSummaryReducer from 'reducers/activeSummary.js';
+import ibeDataReducer from 'reducers/ibeData.js';
 
 export default combineReducers({
     // auth: authReducer,
@@ -20,5 +21,6 @@ export default combineReducers({
     activeFilters: activeFiltersReducer,
     switchFilter: switchFilterReducer,
     detailsIsOpen: detailsReducer,
-    activeSummarySquare: activeSummaryReducer
+    activeSummarySquare: activeSummaryReducer,
+    ibeData: ibeDataReducer
 });

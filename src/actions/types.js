@@ -44,3 +44,6 @@ export const UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD= "update_financial_summary_act
 
 // Active Journey Summary Cards
 export const UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD  = "update_journey_summary_active_card";
+
+export const GET_IBE_DATA = "get_ibe_data";
+

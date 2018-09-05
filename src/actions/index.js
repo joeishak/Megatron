@@ -1,3 +1,5 @@
+
+
 import {  
     CHANGE_AUTH, 
     UPDATE_SWITCH_FILTER_VALUE,
@@ -13,6 +15,7 @@ import {
     HIDE_DATA_PREFERENCES,
     UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD,
     UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD,
+<<<<<<< HEAD
     GENERATE_GEO_FILTERS,                   
     GENERATE_MARKET_AREA_FILTERS,           
     GENERATE_PRODUCT_NAME_FILTERS,         
@@ -20,6 +23,9 @@ import {
     GENERATE_SEGMENTS_FILTERS,
     GENERATE_SUBSCRIPTION_OFFERINGS_FILTERS,
     GENERATE_QUARTERS_FILTERS
+=======
+    GET_IBE_DATA
+>>>>>>> 768c4c37bd29100e9b70069f881f669b01273858
 
 } from 'actions/types';
 import axios from 'axios';
@@ -105,11 +111,23 @@ export function getAdobeData() {
  * 
  */
 export function generateFilterData() {
+<<<<<<< HEAD
   
 
+=======
+     const token = 'Basic ' + btoa('JR' + ':' + 'ft3t7pgz');
+    let headers = {'Authorization': token , 'Accept': '*/*'};
+    
+    const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=marketAreaList&json=1', {headers: headers, responseType: 'text'}).then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return [];
+    })
+>>>>>>> 768c4c37bd29100e9b70069f881f669b01273858
     return{
         type: GENERATE_FILTER_DATA,
-        payload: {}
+        payload: response
     }
 }
 
@@ -294,3 +312,45 @@ export function updateJourneySummaryActiveCard(squareItem){
         payload: squareItem
     }
 }
+
+export function getIbeData() {
+
+    const prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
+    const environment = { infosolApi: 'http://vm1.infosol.com:8551' };
+
+    const endpoint = 'FinCards_Actual';
+    const endpoint2 = 'FinCards_Target';
+    const xdc = '447';
+    const parameters = [];
+
+    let params = parameters.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+      }, '');
+
+    const token = 'Basic ' + btoa(prod_connection['user'] + ':' + prod_connection['pass']);
+    let headers = {'Authorization': token , 'Accept': '*/*'};
+      
+    // const request = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + endpoint + params + '&json=1', 
+    //   {headers: headers, responseType: 'text'});
+
+    const response = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + endpoint + params + '&json=1', 
+    {headers: headers, responseType: 'text'}).then( (res) => { return res.data; });
+
+    const response2 = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + endpoint2 + params + '&json=1', 
+    {headers: headers, responseType: 'text'}).then( (res) => { return res.data; });
+
+    
+
+    // console.log(response);
+    const responseArr = [];
+    responseArr.push(response, response2);
+
+    return {
+        type: GET_IBE_DATA,
+        payload: responseArr
+    }
+    
+}
+ 
