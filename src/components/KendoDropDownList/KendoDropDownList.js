@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 // Custom Components and Styles
 import * as actions from 'actions';
 import { DropDownList } from '@progress/kendo-react-dropdowns';
+import { spawn } from 'child_process';
 
 // In Line Styles
 const inStyles = {
@@ -19,39 +20,55 @@ class KendoDropDownList extends Component {
         super(props);
         // Initialize state
         this.state = {
-            data: props.data,
-            value: props.data[0]
+            data: this.props.availableFilters.quarters,
+            value: 'All Data',
+            type: props.type
         }
 
         //Binding functions to this
         this.handleFilterChange = this.handleFilterChange.bind(this);
+        this.getData = this.getData.bind(this);
+
     }
-     
+    getData(){
+        switch(this.props.type){
+            case 'quarters':
+            // console.log('Attempting to render data');
+            this.setState({data: this.props.availableFilters.quarters})
+            return{}
+        }
+    }
     componentDidMount(){
-        console.log(this.props);
+        
     }
     //Event handler for when a drop down list item is selected
     handleFilterChange(event){
+        
         this.setState({value: event.target.value});
         //Call action from props to add a new filter to the active filters
         this.props.addValueToActiveMultiFilter(event.target.value);
     }
     render(){
+      
+        
         return(
+            <span>
             <DropDownList 
                 style={inStyles.background} 
                 textField="value"
-                data={this.state.data} 
+                data={this.props.data} 
                 onChange={this.handleFilterChange}
                 value={this.state.value}
-                defaultvalue={this.state.data[0]}
-                />
+                defaultvalue={'All Data'}
+                ></DropDownList>
+            {this.getData}
+                </span>
         )
     }
 }
 
 function mapStateToProps(state) {
-    return {activeFilters:state.activeFilters};
+    return {activeFilters:state.activeFilters, availableFilters: state.availableFilters};
   }
   
 export default connect(mapStateToProps,actions)(KendoDropDownList)

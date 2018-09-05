@@ -77,7 +77,7 @@ class App extends Component {
       .catch((err) => {
         console.log(err);
       });
-
+     
       
   }
 
@@ -87,7 +87,16 @@ class App extends Component {
   getFilters(){
     /* Action Calls */
     this.props.getAdobeData();
-    this.props.generateFilterData();
+    this.props.generateSegmentsFilters();
+    this.props.generateSubscriptionOfferingsFilters();
+    this.props.generateRouteToMarketFilters();
+    this.props.generateQuarterFilters();
+    this.props.generateProductNameFilters();
+    this.props.generateGeoFilters();
+    this.props.generateMarketAreaFilters();
+
+
+    // this.props.generateFilterData();
   }
   /* Sets the state passed to the bottom summary box so that it re renders */
   renderBarGraph(index){
@@ -132,8 +141,7 @@ getSummaryDetails(){
     <div>
        <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
        {bottomSummary}
-      </div>
-    ;
+      </div>;
     // const show = this.props.dialogIsOpen
     // const kendoDialog = true ? ( 
 
@@ -166,11 +174,13 @@ getSummaryDetails(){
 }
 
 function mapStateToProps(state) {
+  // console.log(state);
   return {
     dialogIsOpen:state.isDialogOpen,
     activeFilters: state.activeFilters,
     switchFilter: state.switchFilter,
     detailIsOpen: state.detailsIsOpen,
+    availableFilters:state.availableFilters
 
   };
 }

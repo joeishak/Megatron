@@ -15,11 +15,13 @@
     animation-delay: 5s;
 }
 
-.panelBarContainer{
-    height: 0;
+.panelDropDownContainer{
+    height: 150px;
     width: 100%;
     background-color: #3c3c3c;
     padding-bottom:10px;
+    -webkit-transition: height 1s; /* For Safari 3.1 to 6.0 */
+    transition: height 1s;
 }
 .panelBarContainer-open{
     color: white;
@@ -29,21 +31,34 @@
 }
 
 .panelBarContainer-closed{
-    height: 0px;
+    height: 0px;  
+    /* display:none; */
+    /* display:none; */
+  
     /* display: none; */
 }
 
 .quarterFilterContainer{
     float:left;
     font-size:14px !important;
+    display:none;
+    height: 0px;
     margin-right: 20px;
     padding-top: 5px;
-    -webkit-animation: fader 2s; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fader 2s; /* Firefox < 16 */
-     -ms-animation: fader 2s; /* Internet Explorer */
-      -o-animation: fader 2s; /* Opera < 12.1 */
-         animation: fader 2s;
+    -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
+    transition: height 2s;
+    
 }
+.quarterFilterContainer-open{
+    display:inline-block;
+    height: 60px;
+}
+.quarterFilterContainer-closed{
+    height: 0px;
+    /* display:none; */
+}
+
+
 /* Drop Down Animations */
 
 @keyframes fadein {

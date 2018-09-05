@@ -11,7 +11,43 @@ export default ({children, initialState ={
     },
     isDialogOpen: false,
     adobeData: [],
-    availableFilters: {    },
+    availableFilters: {
+        quarters:[{
+            index: 0,
+            category: 'geos',
+            value: 'All Data'
+        }],
+        geo:[{
+            index: 0,
+            category: 'geos',
+            value: 'All Data'
+        }],
+        segments:[{
+            index: 0,
+            category: 'segments',
+            value: 'All Data'
+        }],
+        subscriptionOfferings:[{
+            index: 0,
+            category: 'subscriptionOfferings',
+            value: 'All Data'
+        }],
+        marketAreas: [{
+            index: 0,
+            category: 'marketAreas',
+            value: 'All Data'
+        }],
+        routeToMarkets: [{
+            index: 0,
+            category: 'routeToMarkets',
+            value: 'All Data'
+        }],
+        products: [{
+            index: 0,
+            category: 'products',
+            value: 'All Data'
+        }]
+    },
     activeFilters:[],
     switchFilter: false,
     detailsIsOpen: false,
