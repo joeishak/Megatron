@@ -469,7 +469,7 @@ class KendoPanelBar extends Component {
             case 'geo':
             return (
                 <div className='row'>
-                    <div className='col-md-12'> 
+                    <div className='col-md-12 topPanelHeader'> 
                         {this.getTopHeader()}
                     </div>
                     <div className='col-md-12'> 
@@ -503,16 +503,16 @@ class KendoPanelBar extends Component {
                        <PanelBarItem className="panelItemTitle" expanded={true} title="Geo">
                            {this.getPanelContents('geo')}
                        </ PanelBarItem>
-                       <PanelBarItem expanded={false} title='Market Area' >  
+                       <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area' >  
                            {this.getPanelContents('marketarea')}
                        </ PanelBarItem>
-                       <PanelBarItem expanded={false} title='Route To Market'>
+                       <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                             {this.getPanelContents('routetomarket')}
                        </PanelBarItem>
-                       <PanelBarItem expanded={false} title='Segments' >
+                       <PanelBarItem className="panelItemTitle" expanded={false} title='Segments' >
                             {this.getPanelContents('segments')}
                        </ PanelBarItem>
-                       <PanelBarItem expanded={false} title='Product Name' >
+                       <PanelBarItem className="panelItemTitle" expanded={false} title='Product Name' >
                             {this.getPanelContents('productname')}
                        </PanelBarItem>
 

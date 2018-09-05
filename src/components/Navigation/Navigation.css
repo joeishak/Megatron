@@ -50,7 +50,7 @@
 }
 
 .selected {
-    border-bottom: 5px solid red;
+    border-bottom: 5px solid #FF0000;
 }
 
 #nav-dropdown {
