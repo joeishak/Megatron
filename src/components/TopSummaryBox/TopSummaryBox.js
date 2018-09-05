@@ -190,10 +190,32 @@ class TopSummaryBox extends Component {
         return renderM;
     }
 
-    // formatData(log) {
-    //     console.log(log);
-    // }
+    renderDollarValue(value) {
+        let thousandsLength = 6;
+        let millionsLength = 7;
+        let billionsLength = 8;
+        let suffix = 'K';
+        console.log(value);
 
+        let returnValue = '';
+
+
+        let length = value.toString().length;
+        console.log(length);
+       
+        if (length <= thousandsLength) {
+            value = (value/1000).toFixed(1);
+            returnValue = value.toString() + 'K';
+        } else if (length >= millionsLength) {
+            value = (value/1000).toFixed(1);
+            returnValue = value.toString() + 'M';
+        } else if (length >= billionsLength) {
+            value = (value/1000).toFixed(1);
+            returnValue = value.toString() + 'B';
+        }
+
+        return returnValue;
+    }
    
     getSummaryContent(){
         console.log(this.props.finData);
@@ -203,7 +225,7 @@ class TopSummaryBox extends Component {
          if(this.props.switchFilter===false){
             return (
              <div className="chartRow">
-              { this.props.appData.financial.squares.map(item=>{
+              { this.props.finData.map(item=>{
                 return (
                     <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.enableChart1Arrow} key={item.index}>
                             <div >
@@ -227,7 +249,7 @@ class TopSummaryBox extends Component {
                                                         <div className={`donutChart ${activeCard === item.css[0] ? 'arrow_box' : ''}`}>
                                                             <div >
                                                             <KendoDonutChart donutColor={this.getColor(item.value, item.target, 'donut')} key={item.index} donutCenterRender= {()=> 
-                                                            <div className="insideDonut"><span className={'actual ' + `${item.value >= item.target ? 'selectedCardFontColorGreen' : 'selectedCardFontColorRed'}`}>${item.value}</span><span className='donutTargetText'>Target</span><span className='donutTargetValue'>${item.target}M</span></div>}/> 
+                                                            <div className="insideDonut"><span className={'actual ' + `${item.value > item.target ? 'selectedCardFontColorGreen' : 'selectedCardFontColorRed'}`}>${this.renderDollarValue(item.value)}</span><span className='donutTargetText'>Target</span><span className='donutTargetValue'>${this.renderDollarValue(item.target)}</span></div>}/> 
                                                             </div>
                                                         </div>
                                                     </div>
