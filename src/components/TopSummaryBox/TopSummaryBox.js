@@ -30,8 +30,8 @@ class TopSummaryBox extends Component {
             }
 
         };
-
-        console.log(this.props.finData);
+        this.finCardsIbeData = this.finCardsIbeData.bind(this);
+        // console.log(this.props.finData);
         
         //Binding functions to this
         this.enableChart1Arrow = this.enableChart1Arrow.bind(this);
@@ -41,10 +41,25 @@ class TopSummaryBox extends Component {
         this.getSummaryContent = this.getSummaryContent.bind(this);
         // this.getFinancialSquares = this.getFinancialSquares.bind(this);
 
-        // console.log(this.state);
+        this.finCardsIbeData();
 
-        console.log(this.props.finData);
+        // console.log(this.state);
     }
+    finCardsIbeData() {
+
+        let res = [];
+        let res2 = [];
+
+        this.props.finData[0].then(val => { res = val; console.log(val);});
+        this.props.finData[1].then(val => { res2 = val; console.log(val);});
+        // const target = this.props.finData[1].then(val => { targets = val });
+
+        const rest = this.props.finData[0];
+
+        console.log(rest);
+    }
+
+
     componentDidMount(){
         // this.setState({data:(this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial})
     }
@@ -161,9 +176,9 @@ class TopSummaryBox extends Component {
         return renderM;
     }
 
-    formatData(log) {
-        console.log(log);
-    }
+    // formatData(log) {
+    //     console.log(log);
+    // }
 
    
     getSummaryContent(){
@@ -263,7 +278,7 @@ class TopSummaryBox extends Component {
  
 
     render(){
-        {this.formatData(this.props.finData)}
+        // {this.formatData(this.props.finData)}
         
         var SummaryBoxStyles = classNames({
             summaryBox: true,
