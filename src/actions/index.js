@@ -27,6 +27,12 @@ import {
 } from 'actions/types';
 import axios from 'axios';
 
+// general use
+
+const prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
+const environment = { infosolApi: 'http://vm1.infosol.com:8551' };
+
+// Multifilter use
 const token = 'Basic ' + btoa('JR' + ':' + 'ft3t7pgz');
 let headers = {'Authorization': token , 'Accept': '*/*'};
 /**
@@ -306,15 +312,15 @@ export function updateJourneySummaryActiveCard(squareItem){
     }
 }
 
-export function getIbeData() {
 
-    const prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
-    const environment = { infosolApi: 'http://vm1.infosol.com:8551' };
+
+export function getIbeData(_parameters) {
 
     const endpoint = 'FinCards_Actual';
     const endpoint2 = 'FinCards_Target';
     const xdc = '447';
-    const parameters = [];
+    const parameters = _parameters;
+    const responseArr = [];
 
     let params = parameters.reduce((prev, param) => {
         let p = '';
@@ -324,25 +330,19 @@ export function getIbeData() {
 
     const token = 'Basic ' + btoa(prod_connection['user'] + ':' + prod_connection['pass']);
     let headers = {'Authorization': token , 'Accept': '*/*'};
-      
-    // const request = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + endpoint + params + '&json=1', 
-    //   {headers: headers, responseType: 'text'});
 
     const response = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + endpoint + params + '&json=1', 
-    {headers: headers, responseType: 'text'}).then( (res) => { return res.data; });
+    {headers: headers, responseType: 'text'});
 
     const response2 = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + endpoint2 + params + '&json=1', 
-    {headers: headers, responseType: 'text'}).then( (res) => { return res.data; });
+    {headers: headers, responseType: 'text'});
 
-    
-
-    // console.log(response);
-    const responseArr = [];
     responseArr.push(response, response2);
+    let promiseArr = Promise.all(responseArr);
 
     return {
         type: GET_IBE_DATA,
-        payload: responseArr
+        payload: promiseArr
     }
     
 }

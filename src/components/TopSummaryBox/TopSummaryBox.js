@@ -10,6 +10,7 @@ import styles from './TopSummaryBox.css'
 import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 import KendoBulletChart from '../KendoBullet/KendoBullet';
+import * as _ from 'lodash';
 class TopSummaryBox extends Component {
 
     //When the component is constructed
@@ -30,7 +31,7 @@ class TopSummaryBox extends Component {
             }
 
         };
-        this.finCardsIbeData = this.finCardsIbeData.bind(this);
+        // this.finCardsIbeData = this.finCardsIbeData.bind(this);
         // console.log(this.props.finData);
         
         //Binding functions to this
@@ -41,23 +42,30 @@ class TopSummaryBox extends Component {
         this.getSummaryContent = this.getSummaryContent.bind(this);
         // this.getFinancialSquares = this.getFinancialSquares.bind(this);
 
-        this.finCardsIbeData();
+        // this.finCardsIbeData();
 
         // console.log(this.state);
     }
-    finCardsIbeData() {
+    // finCardsIbeData() {
 
-        let res = [];
-        let res2 = [];
 
-        this.props.finData[0].then(val => { res = val; console.log(val);});
-        this.props.finData[1].then(val => { res2 = val; console.log(val);});
+        // let processed = this.props.finData.map(ele => {
+        //     console.log(ele);
+        // })
+
+        // console.log(processed);
+        // this.props.finData[0].then(val => { 
+        //     this.setState({
+        //         finIBE: val
+        //     })
+        // });
+        // this.props.finData[1].await(val => { 
+        //     res2 = val; 
+        // });
         // const target = this.props.finData[1].then(val => { targets = val });
 
-        const rest = this.props.finData[0];
 
-        console.log(rest);
-    }
+    // }
 
 
     componentDidMount(){
@@ -153,6 +161,12 @@ class TopSummaryBox extends Component {
             } else {
                 retColor = 'journeyHeaderAlert';
             }
+        } else if (type === 'donut') {
+            if (value < target) {
+                retColor = '#FF0000';
+            } else {
+                retColor = '#0DB16E';
+            }
         }
 
         return retColor;
@@ -182,6 +196,7 @@ class TopSummaryBox extends Component {
 
    
     getSummaryContent(){
+        console.log(this.props.finData);
         const { activeCard } = this.state;
         const { activeJourneyCard } = this.state;
         // this.setState({data:(this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial});
@@ -211,8 +226,8 @@ class TopSummaryBox extends Component {
                                                     </div>
                                                         <div className={`donutChart ${activeCard === item.css[0] ? 'arrow_box' : ''}`}>
                                                             <div >
-                                                            <KendoDonutChart donutColor={item.css[2]} key={item.index} donutCenterRender= {()=> 
-                                                            <div className="insideDonut"><span className={'actual ' + `${item.value > item.target ? 'selectedCardFontColorGreen' : 'selectedCardFontColorRed'}`}>${item.value}M</span><span className='donutTargetText'>Target</span><span className='donutTargetValue'>${item.target}M</span></div>}/> 
+                                                            <KendoDonutChart donutColor={this.getColor(item.value, item.target, 'donut')} key={item.index} donutCenterRender= {()=> 
+                                                            <div className="insideDonut"><span className={'actual ' + `${item.value > item.target ? 'selectedCardFontColorGreen' : 'selectedCardFontColorRed'}`}>${item.value}</span><span className='donutTargetText'>Target</span><span className='donutTargetValue'>${item.target}M</span></div>}/> 
                                                             </div>
                                                         </div>
                                                     </div>

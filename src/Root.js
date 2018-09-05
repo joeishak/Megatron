@@ -5,6 +5,7 @@ import reducers from 'reducers';
 import stateValidator from 'middlewares/stateValidator'
 import async from 'middlewares/async';
 import ReduxPromise from 'redux-promise';
+import thunk from 'redux-thunk';
 
 export default ({children, initialState ={
     filters: {
@@ -361,7 +362,7 @@ export default ({children, initialState ={
     const store = createStore(
         reducers,
         initialState,
-        applyMiddleware(stateValidator,ReduxPromise, async)
+        applyMiddleware(stateValidator, async, thunk)
     );
     return (
         <Provider store={store}>

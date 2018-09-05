@@ -87,7 +87,7 @@ class App extends Component {
     this.props.generateProductNameFilters();
     this.props.generateGeoFilters();
     this.props.generateMarketAreaFilters();
-    this.props.getIbeData();
+    this.props.getIbeData([]);
   }
   /* Sets the state passed to the bottom summary box so that it re renders */
   renderBarGraph(index){
