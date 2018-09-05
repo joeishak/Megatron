@@ -95,6 +95,9 @@
     border-right: 1px solid #D8D8D8;
     font-size: 12px;
 }
+.topPanelHeader{
+    background-color:white;
+}
 .rightTopHeaderBar{
     float:left;
     width:380px;
@@ -139,4 +142,17 @@
 
 .allColumn{
 
+}
+.k-state-selected{
+    background-color: white !important;
+    color: black !important;
+}
+.k-panelbar>.k-item>.k-link {
+    color: black;
+}
+
+.k-panelbar>.k-item.k-state-expanded>.k-link {
+    color: black;
+    background-color: white;
+    border-color: white;
 }
