@@ -144,7 +144,7 @@ class TopSummaryBox extends Component {
 
         let retColor = '';
         if(type === 'financial' ) {
-            if (value > target) {
+            if (value >= target) {
                 retColor = 'selectedCardHeaderGreen';
             } else {
                 retColor = 'selectedCardHeaderRed';
@@ -227,7 +227,7 @@ class TopSummaryBox extends Component {
                                                         <div className={`donutChart ${activeCard === item.css[0] ? 'arrow_box' : ''}`}>
                                                             <div >
                                                             <KendoDonutChart donutColor={this.getColor(item.value, item.target, 'donut')} key={item.index} donutCenterRender= {()=> 
-                                                            <div className="insideDonut"><span className={'actual ' + `${item.value > item.target ? 'selectedCardFontColorGreen' : 'selectedCardFontColorRed'}`}>${item.value}</span><span className='donutTargetText'>Target</span><span className='donutTargetValue'>${item.target}M</span></div>}/> 
+                                                            <div className="insideDonut"><span className={'actual ' + `${item.value >= item.target ? 'selectedCardFontColorGreen' : 'selectedCardFontColorRed'}`}>${item.value}</span><span className='donutTargetText'>Target</span><span className='donutTargetValue'>${item.target}M</span></div>}/> 
                                                             </div>
                                                         </div>
                                                     </div>

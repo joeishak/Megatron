@@ -14,9 +14,10 @@ export default function(state = [], action) {
             let squares = FinancialData.squares;
 
             for (let i = 0; i < squares.length; i++) {
-                squares[i]['value'] = Object.values(actuals[0])[i];
-                squares[i]['target'] = Object.values(targets[0])[i];  
+                squares[i]['value'] = (Object.values(actuals[0])[i] / 1000000).toFixed(1);
+                squares[i]['target'] = Object.values(targets[0])[i] ;  
             }
+            console.log(squares);
 
             return squares;
         default: 

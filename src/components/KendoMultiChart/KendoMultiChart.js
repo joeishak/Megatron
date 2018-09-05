@@ -10,6 +10,8 @@ import {
     ChartCategoryAxis,
     ChartCategoryAxisTitle,
     ChartCategoryAxisItem,
+    ChartValueAxis,
+    ChartValueAxisItem,
     ChartArea,
     ChartAxisDefaults,
     ChartSeriesItemTooltip,
@@ -38,12 +40,15 @@ class KendoMultiChart extends Component {
          <ChartAxisDefaults majorGridLines={false} minorGridLines={false}/>
             <ChartArea background="transparent" height={this.props.chartHeight}/* gridLines='{visible: false}' */></ChartArea>
             <ChartTitle text="" />
-            <ChartCategoryAxis major>
-                <ChartCategoryAxisItem categories={categories}>
+            <ChartValueAxis>
+             <ChartValueAxisItem color={this.props.color} />
+            </ChartValueAxis>
+            <ChartCategoryAxis major >
+                <ChartCategoryAxisItem color={this.props.color} categories={categories}>
                 <ChartCategoryAxisTitle text="Months" />
                 </ChartCategoryAxisItem>
             </ChartCategoryAxis>
-            <ChartSeries>
+            <ChartSeries >
                 <ChartSeriesItem type="column" gap={2} spacing={0.25} data={firstSeries} color={this.props.color}>
                 <ChartSeriesItemTooltip background="#3c3c3c" />
                 </ChartSeriesItem>
