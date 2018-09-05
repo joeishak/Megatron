@@ -6,6 +6,9 @@ import data from '../data.json';
 export default function(state = [], action) {
     switch(action.type) {
         case  GENERATE_FILTER_DATA:
+
+        
+        console.log(action.payload);
     
             let count = 0;
             // Get all property values

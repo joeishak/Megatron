@@ -153,7 +153,6 @@ class Navigation extends Component {
 }
 
 function maptStateToProps(state) {
-  console.log(state);
   return {
     dialogIsOpen: state.dialogIsOpen
   }

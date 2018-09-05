@@ -74,13 +74,14 @@ class App extends Component {
     //   .catch((err) => {
     //     console.log(err);
     //   });
-    this.props.getIbeData();
+
   }
 
   getFilters(){
     /* Action Calls */
     this.props.getAdobeData();
     this.props.generateFilterData();
+    this.props.getIbeData();
   }
   /* Sets the state passed to the bottom summary box so that it re renders */
   renderBarGraph(index){
@@ -125,24 +126,7 @@ getSummaryDetails(){
     <div>
        <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
        {bottomSummary}
-      </div>
-    ;
-    // const show = this.props.dialogIsOpen
-    // const kendoDialog = true ? ( 
-
-    //   <Animation 
-    //     appear={false}
-    //     enter={true}
-    //     exit={true}
-    //     transitionName="custom-animation"
-    //     className="custom-animation"
-    //     transitionEnterDuration={300}
-    //     transitionExitDuration={300}>
-    //       <SummaryViewDetails />
-    //   </Animation>
-    //   ) : null;
-
-
+      </div>;
 
     return (
 

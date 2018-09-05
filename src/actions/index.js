@@ -102,15 +102,15 @@ export function generateFilterData() {
      const token = 'Basic ' + btoa('JR' + ':' + 'ft3t7pgz');
     let headers = {'Authorization': token , 'Accept': '*/*'};
     
-    axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=marketAreaList&json=1', {headers: headers, responseType: 'text'}).then((res) => {
-      console.log(res.data);
+    const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=marketAreaList&json=1', {headers: headers, responseType: 'text'}).then((res) => {
+      return res.data;
     })
     .catch((err) => {
-      console.log(err);
+      return [];
     })
     return{
         type: GENERATE_FILTER_DATA,
-        payload: {}
+        payload: response
     }
 }
 
@@ -210,7 +210,8 @@ export function getIbeData() {
     const prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
     const environment = { infosolApi: 'http://vm1.infosol.com:8551' };
 
-    const endpoint = 'FinCardsValue';
+    const endpoint = 'FinCards_Actual';
+    const endpoint2 = 'FinCards_Target';
     const xdc = '447';
     const parameters = [];
 
@@ -223,12 +224,24 @@ export function getIbeData() {
     const token = 'Basic ' + btoa(prod_connection['user'] + ':' + prod_connection['pass']);
     let headers = {'Authorization': token , 'Accept': '*/*'};
       
-    const request = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + endpoint + params + '&json=1', 
-      {headers: headers, responseType: 'text'});
+    // const request = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + endpoint + params + '&json=1', 
+    //   {headers: headers, responseType: 'text'});
+
+    const response = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + endpoint + params + '&json=1', 
+    {headers: headers, responseType: 'text'}).then( (res) => { return res.data; });
+
+    const response2 = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + endpoint2 + params + '&json=1', 
+    {headers: headers, responseType: 'text'}).then( (res) => { return res.data; });
+
+    
+
+    // console.log(response);
+    const responseArr = [];
+    responseArr.push(response, response2);
 
     return {
         type: GET_IBE_DATA,
-        payload: request
+        payload: responseArr
     }
     
 }
