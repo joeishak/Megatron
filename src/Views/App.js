@@ -67,17 +67,6 @@ class App extends Component {
     // const token = 'Basic ' + btoa(prod_connection['user'] + ':' + prod_connection['pass']);
     // let headers = {'Authorization': token , 'Accept': '*/*'};
       
-<<<<<<< HEAD
-    axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + query + params + '&json=1', 
-      {headers: headers, responseType: 'text'}).then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-     
-      
-=======
     // axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + query + params + '&json=1', 
     //   {headers: headers, responseType: 'text'}).then((res) => {
     //     console.log(res.data);
@@ -86,13 +75,11 @@ class App extends Component {
     //     console.log(err);
     //   });
 
->>>>>>> 768c4c37bd29100e9b70069f881f669b01273858
   }
 
   getFilters(){
     /* Action Calls */
     this.props.getAdobeData();
-<<<<<<< HEAD
     this.props.generateSegmentsFilters();
     this.props.generateSubscriptionOfferingsFilters();
     this.props.generateRouteToMarketFilters();
@@ -100,13 +87,7 @@ class App extends Component {
     this.props.generateProductNameFilters();
     this.props.generateGeoFilters();
     this.props.generateMarketAreaFilters();
-
-
-    // this.props.generateFilterData();
-=======
-    this.props.generateFilterData();
     this.props.getIbeData();
->>>>>>> 768c4c37bd29100e9b70069f881f669b01273858
   }
   /* Sets the state passed to the bottom summary box so that it re renders */
   renderBarGraph(index){
@@ -152,25 +133,6 @@ getSummaryDetails(){
        <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
        {bottomSummary}
       </div>;
-<<<<<<< HEAD
-    // const show = this.props.dialogIsOpen
-    // const kendoDialog = true ? ( 
-
-    //   <Animation 
-    //     appear={false}
-    //     enter={true}
-    //     exit={true}
-    //     transitionName="custom-animation"
-    //     className="custom-animation"
-    //     transitionEnterDuration={300}
-    //     transitionExitDuration={300}>
-    //       <SummaryViewDetails />
-    //   </Animation>
-    //   ) : null;
-
-
-=======
->>>>>>> 768c4c37bd29100e9b70069f881f669b01273858
 
     return (
 
@@ -193,11 +155,6 @@ function mapStateToProps(state) {
     activeFilters: state.activeFilters,
     switchFilter: state.switchFilter,
     detailIsOpen: state.detailsIsOpen,
-<<<<<<< HEAD
-    availableFilters:state.availableFilters
-
-=======
->>>>>>> 768c4c37bd29100e9b70069f881f669b01273858
   };
 }
 

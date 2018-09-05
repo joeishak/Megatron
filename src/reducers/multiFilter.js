@@ -10,25 +10,6 @@ import {
 } from 'actions/types';
 import _ from 'lodash';
 import data from '../data.json';
-<<<<<<< HEAD
-=======
-export default function(state = [], action) {
-    switch(action.type) {
-        case  GENERATE_FILTER_DATA:
-
-        
-        console.log(action.payload);
-    
-            let count = 0;
-            // Get all property values
-            let quarters = _.map(data,function(row) { return row.quarter});
-            let geos = _.map(data,function(row) { return row.geo_code});
-            let products= _.map(data,function(row) { return row.product_name});
-            let subscriptionOfferings= _.map(data,function(row) { return row.subscription_offering});
-            let marketAreas= _.map(data,function(row) { return row.market_area_code});
-            let routeToMarkets= _.map(data,function(row) { return row.route_to_market});
-            let segments= _.map(data,function(row) { return row.web_segment});
->>>>>>> 768c4c37bd29100e9b70069f881f669b01273858
 
 let newState;
 let count = 0;

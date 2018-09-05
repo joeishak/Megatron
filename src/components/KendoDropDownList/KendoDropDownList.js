@@ -27,17 +27,9 @@ class KendoDropDownList extends Component {
 
         //Binding functions to this
         this.handleFilterChange = this.handleFilterChange.bind(this);
-        this.getData = this.getData.bind(this);
 
     }
-    getData(){
-        switch(this.props.type){
-            case 'quarters':
-            // console.log('Attempting to render data');
-            this.setState({data: this.props.availableFilters.quarters})
-            return{}
-        }
-    }
+  
     componentDidMount(){
         
     }
@@ -52,17 +44,14 @@ class KendoDropDownList extends Component {
       
         
         return(
-            <span>
             <DropDownList 
                 style={inStyles.background} 
                 textField="value"
                 data={this.props.data} 
                 onChange={this.handleFilterChange}
                 value={this.state.value}
-                defaultvalue={'All Data'}
-                ></DropDownList>
-            {this.getData}
-                </span>
+                defaultvalue={'All Data'} />
+      
         )
     }
 }
