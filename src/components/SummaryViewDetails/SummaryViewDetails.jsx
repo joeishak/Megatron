@@ -185,7 +185,7 @@ renderQuarterlyToDateTableHeader(){
         {/* First Row for Ttle Bar and Metric Filter */}
         <div className="row container-fluid titleBarHeader">
 
-          <span className="col-md- 3 detailTitle">{this.props.activeItem.header}</span>
+          <span className="col-md- 3 detailTitle">{this.props.activeItem.header}<button className='exportButton'>Export To Excel</button></span>
           <div className=" col-md-9 multiChartMetricContainer">
               <div onClick={this.updateMultiChartMetricFilter} className={UnitStyles}>
                   UNITS

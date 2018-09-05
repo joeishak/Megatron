@@ -252,3 +252,17 @@
     width:860px;
     
 }
+
+.exportButton{
+    margin-left:20px;
+    background-color: #1573E6;
+    border-bottom-left-radius: 100px;
+    border-top-left-radius: 100px;
+    padding-left:24px;
+    border-bottom-right-radius: 100px;
+    border-top-right-radius: 100px;
+    padding-right:24px;
+    color:white;
+    border:none;
+    font-size: 16px;
+}

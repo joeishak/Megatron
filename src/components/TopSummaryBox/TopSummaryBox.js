@@ -144,7 +144,7 @@ class TopSummaryBox extends Component {
 
         let retColor = '';
         if(type === 'financial' ) {
-            if (value > target) {
+            if (value >= target) {
                 retColor = 'selectedCardHeaderGreen';
             } else {
                 retColor = 'selectedCardHeaderRed';
