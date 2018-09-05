@@ -79,6 +79,12 @@ class App extends Component {
 
   getFilters(){
     /* Action Calls */
+
+    // const parameters = [];
+    // parameters.push({prompt: 'Spnumber', value: paramSpNumber});
+    // parameters.push({prompt: 'Filtered', value: filterToUse });
+
+
     this.props.getAdobeData();
     this.props.generateSegmentsFilters();
     this.props.generateSubscriptionOfferingsFilters();
