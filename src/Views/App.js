@@ -80,7 +80,13 @@ class App extends Component {
   getFilters(){
     /* Action Calls */
     this.props.getAdobeData();
-    this.props.generateFilterData();
+    this.props.generateSegmentsFilters();
+    this.props.generateSubscriptionOfferingsFilters();
+    this.props.generateRouteToMarketFilters();
+    this.props.generateQuarterFilters();
+    this.props.generateProductNameFilters();
+    this.props.generateGeoFilters();
+    this.props.generateMarketAreaFilters();
     this.props.getIbeData();
   }
   /* Sets the state passed to the bottom summary box so that it re renders */
@@ -143,6 +149,7 @@ getSummaryDetails(){
 }
 
 function mapStateToProps(state) {
+  // console.log(state);
   return {
     dialogIsOpen:state.isDialogOpen,
     activeFilters: state.activeFilters,

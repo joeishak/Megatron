@@ -15,11 +15,20 @@ import {
     HIDE_DATA_PREFERENCES,
     UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD,
     UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD,
+    GENERATE_GEO_FILTERS,                   
+    GENERATE_MARKET_AREA_FILTERS,           
+    GENERATE_PRODUCT_NAME_FILTERS,         
+    GENERATE_ROUTE_TO_MARKET_FILTERS,
+    GENERATE_SEGMENTS_FILTERS,
+    GENERATE_SUBSCRIPTION_OFFERINGS_FILTERS,
+    GENERATE_QUARTERS_FILTERS,
     GET_IBE_DATA
 
 } from 'actions/types';
 import axios from 'axios';
 
+const token = 'Basic ' + btoa('JR' + ':' + 'ft3t7pgz');
+let headers = {'Authorization': token , 'Accept': '*/*'};
 /**
  * Change the state of Authentication for the user.
  * 
@@ -99,8 +108,9 @@ export function getAdobeData() {
  * 
  */
 export function generateFilterData() {
-     const token = 'Basic ' + btoa('JR' + ':' + 'ft3t7pgz');
-    let headers = {'Authorization': token , 'Accept': '*/*'};
+
+    //  const token = 'Basic ' + btoa('JR' + ':' + 'ft3t7pgz');
+    // let headers = {'Authorization': token , 'Accept': '*/*'};
     
     const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=marketAreaList&json=1', {headers: headers, responseType: 'text'}).then((res) => {
       return res.data;
@@ -114,6 +124,97 @@ export function generateFilterData() {
     }
 }
 
+/**
+ * Generate the data that goes into the Segments filter box
+ * 
+ */
+export function generateSegmentsFilters() {
+
+    const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_Segments&json=1', {headers: headers, responseType: 'text'});
+ 
+    return{
+        type: GENERATE_SEGMENTS_FILTERS,
+        payload: response
+    }
+ }
+/**
+ * Generate the data that goes into the Subscription Offerings filter box
+ * 
+ */
+export function generateSubscriptionOfferingsFilters() {
+
+    const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_Subscriptions&json=1', {headers: headers, responseType: 'text'});
+ 
+    return{
+        type: GENERATE_SUBSCRIPTION_OFFERINGS_FILTERS,
+        payload: response
+    }
+ }
+/**
+ * Generate the data that goes into the Route To Market filter box
+ * 
+ */
+export function generateRouteToMarketFilters() {
+
+    const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_RouteToMarket&json=1', {headers: headers, responseType: 'text'});
+ 
+    return{
+        type: GENERATE_ROUTE_TO_MARKET_FILTERS,
+        payload: response
+    }
+ }
+/**
+ * Generate the data that goes into the Quarters filter box
+ * 
+ */
+export function generateQuarterFilters() {
+
+    const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_Quarters&json=1', {headers: headers, responseType: 'text'});
+ 
+    return{
+        type: GENERATE_QUARTERS_FILTERS,
+        payload: response
+    }
+ }
+/**
+ * Generate the data that goes into the Product Name filter box
+ * 
+ */
+export function generateProductNameFilters() {
+
+    const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_ProductName&json=1', {headers: headers, responseType: 'text'});
+ 
+    return{
+        type: GENERATE_PRODUCT_NAME_FILTERS,
+        payload: response
+    }
+ }
+/**
+ * Generate the data that goes into the Geo Code filter box
+ * 
+ */
+export function generateGeoFilters() {
+
+    const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_GeoCode&json=1', {headers: headers, responseType: 'text'});
+ 
+    return{
+        type: GENERATE_GEO_FILTERS,
+        payload: response
+    }
+ }
+/**
+ * Generate the data that goes into the Market Areafilter box
+ * 
+ */
+export function generateMarketAreaFilters() {
+
+   const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=marketAreaList&json=1', {headers: headers, responseType: 'text'});
+
+   return{
+       type: GENERATE_MARKET_AREA_FILTERS,
+       payload: response
+   }
+}
 
 /**
  * Add a value to the active filters for the multi filter

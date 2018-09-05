@@ -19,7 +19,16 @@ export const UPDATE_DIALOG_VISIBILITY        = "update_dialog_visibility";
 export const GET_ALL_DATA                    = "get_all_data";
  
 // Data for the Filters 
-export const GENERATE_FILTER_DATA            = "generate_filter_data";
+export const GENERATE_FILTER_DATA                       = "generate_filter_data";
+export const GENERATE_GEO_FILTERS                       = "generate_geo_filters";
+export const GENERATE_MARKET_AREA_FILTERS               = "generate_marktet_area_filters";
+export const GENERATE_PRODUCT_NAME_FILTERS              = "generate_product_name_filters";
+export const GENERATE_ROUTE_TO_MARKET_FILTERS           = "generate_route_to_market_filters";
+export const GENERATE_SEGMENTS_FILTERS                  = "generate_segements_filters";
+export const GENERATE_SUBSCRIPTION_OFFERINGS_FILTERS    = "generate_subscription_offerings_filters";
+export const GENERATE_QUARTERS_FILTERS                  = "generate_quarters_filters";
+
+
 
 // Summary View Details
 export const SHOW_SUMMARY_VIEW_DETAILS               = "show_summary_view_details";

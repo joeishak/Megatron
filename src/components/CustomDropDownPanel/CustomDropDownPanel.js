@@ -21,66 +21,70 @@ class CustomDropDownPanel extends Component {
         //Binding functions to this
     }
 
+   
     render(){
+        const {availableFilters} = this.props;
        const show = this.props.showSlide;
-       const DropDownChildren = show ? (
-       
-            <div>
-                        <div className="quarterFilterContainer" >
-                            <p> Quarter</p>
-                            <KendoDropDownList  data={this.props.availableFilters.quarters}/>
-                        </div>
-       
-                        <div className="quarterFilterContainer" >
-                            <p> Geo</p>
-                            <KendoDropDownList  data={this.props.availableFilters.geos}/>
-                        </div>
-             
-                        <div className="quarterFilterContainer" >
-                            <p> Product Name</p>
-                            <KendoDropDownList  data={this.props.availableFilters.products}/>
-                        </div>
-             
-                        <div className="quarterFilterContainer" >
-                            <p> Subscription Offering</p>
-                            <KendoDropDownList  data={this.props.availableFilters.subscriptionOfferings} />
-                        </div>
-                
-                        <div className="quarterFilterContainer" >
-                            <p> Market Area</p>
-                            <KendoDropDownList  data={this.props.availableFilters.marketAreas} />
-                        </div>
-               
-                        <div className="quarterFilterContainer" >
-                            <p>  Route To Market</p>
-                            <KendoDropDownList data={this.props.availableFilters.routeToMarkets}/>
-                        </div>
-            
-                        <div className="quarterFilterContainer" >
-                            <p> Segment</p>
-                            <KendoDropDownList  data={this.props.availableFilters.segments}/>
-                        </div>
-                
-                        <div className="quarterFilterContainer default" >
-                            
-                            <input type='checkbox' /><span> Make these my default settings</span>
-                        </div>
-            </div>
-       ): null;
+   
         var panelDropDownContainer = classNames({
             'panelDropDownContainer': true,
             'panelBarContainer-open': (this.props.showContainer)? true: false,
             'panelBarContainer-closed': (this.props.showContainer)? false: true
 
         });
+        var quarterFilterContainer = classNames({
+            'quarterFilterContainer': true,
+            'quarterFilterContainer-open': (this.props.showContainer)? true: false,
+            'quarterFilterContainer-closed': (this.props.showContainer)? false: true
+
+        });
         return(
             <div className={panelDropDownContainer} >
-                {DropDownChildren}
+                        <div className={quarterFilterContainer} >
+                            <p> Quarter</p>
+                            <KendoDropDownList   data={availableFilters.quarters}/>
+                        </div> 
+       
+                       <div className={quarterFilterContainer} >
+                            <p> Geo</p>
+                            <KendoDropDownList  data={availableFilters.geos}/>
+                        </div>
+             
+                        <div className={quarterFilterContainer} >
+                            <p> Product Name</p>
+                            <KendoDropDownList  data={availableFilters.products}/>
+                        </div>
+             
+                        <div className={quarterFilterContainer} >
+                            <p> Subscription Offering</p>
+                            <KendoDropDownList  data={availableFilters.subscriptionOfferings} />
+                        </div>
+                
+                        <div className={quarterFilterContainer} >
+                            <p> Market Area</p>
+                            <KendoDropDownList  data={availableFilters.marketAreas} />
+                        </div>
+               
+                        <div className={quarterFilterContainer} >
+                            <p>  Route To Market</p>
+                            <KendoDropDownList data={availableFilters.routeToMarkets}/>
+                        </div>
+            
+                        <div className={quarterFilterContainer} >
+                            <p> Segment</p>
+                            <KendoDropDownList  data={availableFilters.segments}/>
+                        </div>
+                
+                        <div className={quarterFilterContainer + ' default'} >
+                            
+                            <input type='checkbox' /><span> Make these my default settings</span>
+                        </div>
             </div>
         )
     }
 }
 function mapStateToProps(state) {
+    // console.log(state.availableFilters)
     return {availableFilters: state.availableFilters};
   }
   
