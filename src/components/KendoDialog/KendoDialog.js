@@ -57,6 +57,21 @@ class KendoDialog extends Component {
  
  
     render(){
+        const dropDowns = (
+            
+            <div className="row dropRow">
+                <div className="col-lg-6 col-md-6">
+                    <p>Quarter</p>
+                    {/* <KendoDropDownList  data={this.props.availableFilters.quarters}/> */}
+                    <ReactSelect options={this.props.availableFilters.quarters} defaultValue={{index: 25, category: "quarters", value: "Default", label: "Default"}}></ReactSelect>
+                </div>
+                <div className="col-lg-6 col-md-6">
+                    <p>Geo</p>
+                    {/* <KendoDropDownList  data={this.props.availableFilters.geos}/> */}
+                    <ReactSelect options={this.props.availableFilters.geos}></ReactSelect>
+                </div>
+            </div>
+        );
         const show = this.props.dialogIsOpen
         const kendoDialog = show ? ( 
         <div className="content">

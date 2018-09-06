@@ -9,80 +9,92 @@ import {
     GENERATE_QUARTERS_FILTERS              
 } from 'actions/types';
 import _ from 'lodash';
-import data from '../data.json';
+// import data from '../data.json';
 
 let newState;
 let count = 0;
+let defaultState = [];
 
-export default function(state = [], action) {
+export default function(state = defaultState, action) {
     switch(action.type) {
-        case GENERATE_GEO_FILTERS:
+        case GENERATE_FILTER_DATA:
+
+        console.log('generating filter data');
+        let quarterFilters = action.payload[0].data;
+        let marketsFilters = action.payload[1].data;
+        let productsFilters = action.payload[2].data;
+        let segmentsFilters = action.payload[3].data;
+        let subscriptionsFilters = action.payload[4].data;
+        let routesFilters = action.payload[5].data;
+        let geosFilters = action.payload[6].data;
+
+
+        let newGeoState = processDropDownListFilterValue('geos',geosFilters);
+        let newMAState = processDropDownListFilterValue('marketAreas',marketsFilters);
+        let newProductState = processDropDownListFilterValue('productNames',productsFilters);
+        let newRouteState = processDropDownListFilterValue('routeToMarkets',routesFilters);
+        let newSegmentsState = processDropDownListFilterValue('segments',segmentsFilters);
+        let newSubscriptionState = processDropDownListFilterValue('subscriptionOfferings',subscriptionsFilters);
+        let newQuartersState = processDropDownListFilterValue('quarters',quarterFilters);
+
         
-            let newGeoState = processDropDownListFilterValue('geos',action.payload.data);
-            newGeoState.unshift({
-                index: count++,
-                category: 'geos',
-                value: 'All Data'
-            });
-            return {...state,geos: newGeoState};
+        newGeoState.unshift({
+            index: count++,
+            category: 'geos',
+            value: 'All Data'
+        });
+        newMAState.unshift({
+            index: count++,
+            category: 'marketAreas',
+            value: 'All Data'
+        });
+        newProductState.unshift({
+            index: count++,
+            category: 'productNames',
+            value: 'All Data'
+        });
+        newRouteState.unshift({
+            index: count++,
+            category: 'routeToMarkets',
+            value: 'All Data'
+        });
+        newSegmentsState.unshift({
+            index: count++,
+            category: 'segments',
+            value: 'All Data'
+        });
+        newSubscriptionState.unshift({
+            index: count++,
+            category: 'subscriptionOfferings',
+            value: 'All Data'
+        });
+        newQuartersState.unshift({
+            index: count++,
+            category: 'quarters',
+            value: 'All Data'
+        });
 
-        case GENERATE_MARKET_AREA_FILTERS:
-            
-            let newMAState = processDropDownListFilterValue('marketAreas',action.payload.data);
-            newMAState.unshift({
-                index: count++,
-                category: 'marketAreas',
-                value: 'All Data'
-            });
-            return {...state,marketAreas: newMAState};
-        case GENERATE_PRODUCT_NAME_FILTERS:
-            
-            let newProductState = processDropDownListFilterValue('productNames',action.payload.data);
-            newProductState.unshift({
-                index: count++,
-                category: 'products',
-                value: 'All Data'
-            });
-            console.log(newProductState);
-            return {...state,products: newProductState};
-
-        case GENERATE_ROUTE_TO_MARKET_FILTERS:
-            
-            let newRouteState = processDropDownListFilterValue('routeToMarkets',action.payload.data);
-            newRouteState.unshift({
-                index: count++,
-                category: 'routeToMarkets',
-                value: 'All Data'
-            });
-            return {...state,routeToMarkets: newRouteState};    
-        case GENERATE_SEGMENTS_FILTERS:
-            let newSegmentsState = processDropDownListFilterValue('segments',action.payload.data);
-            newSegmentsState.unshift({
-                index: count++,
-                category: 'segments',
-                value: 'All Data'
-            });
-            return {...state,segments: newSegmentsState};  
-        case GENERATE_SUBSCRIPTION_OFFERINGS_FILTERS:
-            
-            let newSubscriptionState = processDropDownListFilterValue('subscriptionOfferings',action.payload.data);
-            newSubscriptionState.unshift({
-                index: count++,
-                category: 'subscriptionOfferings',
-                value: 'All Data'
-            });
-            return {...state,subscriptionOfferings: newSubscriptionState};  
-        case GENERATE_QUARTERS_FILTERS:
-            
-         console.log('Getting Quarters');
-            let newQuartersState = processDropDownListFilterValue('quarters',action.payload.data);
-            newQuartersState.unshift({
-                index: count++,
-                category: 'quarters',
-                value: 'All Data'
-            });
-            
-            return {...state,quarters: newQuartersState};  
+        if(defaultState===[]){
+            defaultState = {
+                geos: newGeoState,
+                marketAreas: newMAState,
+                products: newProductState,
+                routeToMarkets: newRouteState,
+                subscriptionOfferings: newSubscriptionState,
+                segments: newSegmentsState,
+                quarters: newQuartersState
+            }
+        }
+       
+        return {
+            geos: newGeoState,
+            marketAreas: newMAState,
+            products: newProductState,
+            routeToMarkets: newRouteState,
+            subscriptionOfferings: newSubscriptionState,
+            segments: newSegmentsState,
+            quarters: newQuartersState
+        }
         default: 
             return state;
     }
@@ -164,125 +176,3 @@ function processDropDownListFilterValue(type, data){
     
     return newArr;
 }
-
-// case  GENERATE_FILTER_DATA:
-    
-//             // Get all property values
-//             let quarters = _.map(data,function(row) { return row.quarter});
-//             // let geos = _.map(data,function(row) { return row.geo_code});
-//             let products= _.map(data,function(row) { return row.product_name});
-//             let subscriptionOfferings= _.map(data,function(row) { return row.subscription_offering});
-//             let marketAreas= _.map(data,function(row) { return row.market_area_code});
-//             let routeToMarkets= _.map(data,function(row) { return row.route_to_market});
-//             let segments= _.map(data,function(row) { return row.web_segment});
-
-//             //Get unique property values
-//             quarters = _.uniq(quarters);
-//             // geos     = _.uniq(geos);
-//             products = _.uniq(products);
-//             subscriptionOfferings = _.uniq(subscriptionOfferings);
-//             marketAreas = _.uniq(marketAreas);
-//             routeToMarkets = _.uniq(routeToMarkets);
-//             segments = _.uniq(segments);
-            
-      
-//             // index the filter data
-//             quarters = quarters.map(quarter =>{
-//                 return {
-//                     index: count++,
-//                     category: 'quarters',
-//                     value: quarter
-//                 }
-//             });
-//             //  geos = geos.map(geo =>{
-//             //     return {
-//             //         index: count++,
-//             //         category: 'geos',
-//             //         value: geo
-//             //     }
-//             // })
-//              products = products.map(product =>{
-//                 return {
-//                     index: count++,
-//                     category: 'products',
-//                     value: product
-//                 }
-//             });
-//              subscriptionOfferings = subscriptionOfferings.map(sub =>{
-//                 return {
-//                     index: count++,
-//                     category: 'subscriptionOfferings',
-//                     value: sub
-//                 }
-//             });
-//              marketAreas = marketAreas.map(ma =>{
-//                 return {
-//                     index: count++,
-//                     category: 'marketAreas',
-//                     value: ma
-//                 }
-//             });
-//              routeToMarkets = routeToMarkets.map(route =>{
-//                 return {
-//                     index: count++,
-//                     category: 'routeToMarkets',
-//                     value: route
-//                 }
-//             });
-//              segments = segments.map(segment =>{
-//                 return {
-//                     index: count++,
-//                     category: 'segments',
-//                     value: segment
-//                 }
-//             });
-
-//             // Add All data to beginning of each
-//             quarters.unshift({
-//                 index: count++,
-//                 category: 'quarters',
-//                 value: 'All Data'
-//             });
-//             // geos.unshift({
-//             //     index: count++,
-//             //     category: 'geos',
-//             //     value: 'All Data'
-//             // });
-//             products.unshift({
-//                 index: count++,
-//                 category: 'products',
-//                 value: 'All Data'
-//             });
-//             subscriptionOfferings.unshift({
-//                 index: count++,
-//                 category: 'subscriptionOfferings',
-//                 value: 'All Data'
-//             });
-//             marketAreas.unshift({
-//                 index: count++,
-//                 category: 'marketAreas',
-//                 value: 'All Data'
-//             });
-//             routeToMarkets.unshift({
-//                 index: count++,
-//                 category: 'routeToMarkets',
-//                 value: 'All Data'
-//             });
-//             segments.unshift({
-//                 index: count++,
-//                 category: 'segments',
-//                 value: 'All Data'
-//             });
-           
-            
-//              newState = {
-//                 quarters: quarters,
-//                 geos: geos,
-//                 products: products,
-//                 subscriptionOfferings:subscriptionOfferings,
-//                 marketAreas:marketAreas,
-//                 routeToMarkets:routeToMarkets,
-//                 segments:segments
-//             }
-
-//             return newState;

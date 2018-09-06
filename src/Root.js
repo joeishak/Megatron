@@ -17,10 +17,10 @@ export default ({children, initialState ={
     availableFilters: {
         quarters:[{
             index: 0,
-            category: 'geos',
+            category: 'quarters',
             value: 'All Data'
         }],
-        geo:[{
+        geos:[{
             index: 0,
             category: 'geos',
             value: 'All Data'
@@ -362,7 +362,7 @@ export default ({children, initialState ={
     const store = createStore(
         reducers,
         initialState,
-        applyMiddleware(stateValidator, async, thunk)
+        applyMiddleware(stateValidator, async)
     );
     return (
         <Provider store={store}>

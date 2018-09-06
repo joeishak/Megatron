@@ -22,7 +22,10 @@ class KendoDropDownList extends Component {
         this.state = {
             data: this.props.availableFilters.quarters,
             value: 'All Data',
-            type: props.type
+            type: props.type,
+            defaultFilters:[
+                {index: 0, category: 'quarters', value:1}
+            ]
         }
 
         //Binding functions to this
@@ -30,15 +33,25 @@ class KendoDropDownList extends Component {
 
     }
   
+    componentDidUpdate(prevProps){
+        // console.log(this.props.availableFilters);
+        if(this.props.activeFilters.length != 0){
+            // console.log(this.props.availableFilters);
+            this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
+        }
+
+        // return false;
+    }
     componentDidMount(){
         
     }
+ 
     //Event handler for when a drop down list item is selected
     handleFilterChange(event){
-        
-        this.setState({value: event.target.value});
-        //Call action from props to add a new filter to the active filters
         this.props.addValueToActiveMultiFilter(event.target.value);
+        this.setState({value: event.target.value});
+      
+
     }
     render(){
       

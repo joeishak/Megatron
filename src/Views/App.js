@@ -40,6 +40,8 @@ class App extends Component {
       dialogIsOpen: this.props.dialogIsOpen
     };
 
+    this.props.generateFilterData();
+
       /*Bindings  */
       this.renderBarGraph = this.renderBarGraph.bind(this);
       this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
@@ -74,6 +76,7 @@ class App extends Component {
     //   .catch((err) => {
     //     console.log(err);
     //   });
+    
 
   }
 
@@ -86,13 +89,6 @@ class App extends Component {
 
 
     this.props.getAdobeData();
-    this.props.generateSegmentsFilters();
-    this.props.generateSubscriptionOfferingsFilters();
-    this.props.generateRouteToMarketFilters();
-    this.props.generateQuarterFilters();
-    this.props.generateProductNameFilters();
-    this.props.generateGeoFilters();
-    this.props.generateMarketAreaFilters();
     this.props.getIbeData([]);
   }
   /* Sets the state passed to the bottom summary box so that it re renders */
@@ -161,6 +157,7 @@ function mapStateToProps(state) {
     activeFilters: state.activeFilters,
     switchFilter: state.switchFilter,
     detailIsOpen: state.detailsIsOpen,
+    availableFilters: state.availableFilters
   };
 }
 

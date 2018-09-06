@@ -25,7 +25,7 @@ class KendoPanelBar extends Component {
         switch(this.props.timeMetric){
             case 'qtd':
                 return (
-                <div className="lowerHeaderBar container-fluid"> 
+                <div className="lowerHeaderBar "> 
                     <div className="qtdColumn header qtdGeoHeader  col">
                     Geo
                     </div>
@@ -58,7 +58,7 @@ class KendoPanelBar extends Component {
                 );
             case 'week':
             return (
-                <div className="lowerHeaderBar container-fluid"> 
+                <div className="lowerHeaderBar "> 
                     <div className="weekColumn header weekGeoHeader  col">
                     Geo
                     </div>
@@ -89,7 +89,7 @@ class KendoPanelBar extends Component {
                 );
             case 'all':
             return(
-                <div className="allLowerHeaderBar container-fluid"> 
+                <div className="allLowerHeaderBar "> 
                     <div className="allColumn header allColumn  col">
                     Geo
                     </div>
@@ -358,10 +358,10 @@ class KendoPanelBar extends Component {
             return (
                 <div className=''>
                    
-                    <div className="container-fluid  col-md-12"> 
+                    <div className="  col-md-12"> 
                         {this.getGeoContent('qtd')}
                     </div>
-                    <div className="container-fluid  col-md-12"> 
+                    <div className="  col-md-12"> 
                             <div className="qtdColumn qtdGeoHeader  col">
                             &nbsp;
                             </div>
@@ -395,10 +395,10 @@ class KendoPanelBar extends Component {
             return (
                 <div className=''>
                    
-                    <div className="container-fluid  col-md-12"> 
+                    <div className=" col-md-12"> 
                         {this.getGeoContent('week')}
                     </div>
-                    <div className="container-fluid  col-md-12"> 
+                    <div className=" col-md-12"> 
                             <div className="weekColumn weekGeoHeader  col">
                             &nbsp;
                             </div>
@@ -430,10 +430,10 @@ class KendoPanelBar extends Component {
             return (
                 <div className=''>
                    
-                    <div className="container-fluid  col-md-12"> 
+                    <div className="  col-md-12"> 
                         {this.getGeoContent('all')}
                     </div>
-                    <div className="container-fluid  col-md-12"> 
+                    <div className=" col-md-12"> 
                             <div className="allColumn allGeoHeader  col">
                             &nbsp;
                             </div>
