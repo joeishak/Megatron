@@ -15,14 +15,8 @@ import {
     HIDE_DATA_PREFERENCES,
     UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD,
     UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD,
-    GENERATE_GEO_FILTERS,                   
-    GENERATE_MARKET_AREA_FILTERS,           
-    GENERATE_PRODUCT_NAME_FILTERS,         
-    GENERATE_ROUTE_TO_MARKET_FILTERS,
-    GENERATE_SEGMENTS_FILTERS,
-    GENERATE_SUBSCRIPTION_OFFERINGS_FILTERS,
-    GENERATE_QUARTERS_FILTERS,
-    GET_IBE_DATA
+    GET_IBE_DATA,
+    GET_FILTERED_IBE_DATA
 
 } from 'actions/types';
 import axios from 'axios';
@@ -47,7 +41,6 @@ export function changeAuth(isLoggedIn) {
     }
 }
 
-
 /**
  * Update the value of the Switch Filter 
  * 
@@ -59,7 +52,6 @@ export function updateSwitchFilterValue(switchFilterValue) {
         payload: switchFilterValue
     }
 }
-
 
 /**
  * Update the visibility of the Modal Dialog Box
@@ -98,128 +90,27 @@ export function updateMultiFilterStatus(status) {
 }
 
 /**
- * Get all the data for adobe
- * 
- * @param {boolean} status
- */
-export function getAdobeData() {
-    return {
-        type: GET_ALL_DATA,
-        payload: {}
-    }
-}
-
-/**
  * Generate the data that goes into the filter box
  * 
  */
 export function generateFilterData() {
 
-    //  const token = 'Basic ' + btoa('JR' + ':' + 'ft3t7pgz');
-    // let headers = {'Authorization': token , 'Accept': '*/*'};
+    let responseArray = [];
+    const maResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=marketAreaList&json=1', {headers: headers, responseType: 'text'})
+    const segementsResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_Segments&json=1', {headers: headers, responseType: 'text'});
+    const subscriptionResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_Subscriptions&json=1', {headers: headers, responseType: 'text'});
+    const routesResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_RouteToMarket&json=1', {headers: headers, responseType: 'text'});
+    const quartersResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_Quarters&json=1', {headers: headers, responseType: 'text'});
+    const productResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_ProductName&json=1', {headers: headers, responseType: 'text'});
+    const geoResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_GeoCode&json=1', {headers: headers, responseType: 'text'});
     
-    const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=marketAreaList&json=1', {headers: headers, responseType: 'text'}).then((res) => {
-      return res.data;
-    })
-    .catch((err) => {
-      return [];
-    })
+
+    responseArray.push(quartersResponse,maResponse,productResponse,segementsResponse,subscriptionResponse,routesResponse,geoResponse);
+    let promiseArr1 = Promise.all(responseArray);
     return{
         type: GENERATE_FILTER_DATA,
-        payload: response
+        payload: promiseArr1
     }
-}
-
-/**
- * Generate the data that goes into the Segments filter box
- * 
- */
-export function generateSegmentsFilters() {
-
-    const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_Segments&json=1', {headers: headers, responseType: 'text'});
- 
-    return{
-        type: GENERATE_SEGMENTS_FILTERS,
-        payload: response
-    }
- }
-/**
- * Generate the data that goes into the Subscription Offerings filter box
- * 
- */
-export function generateSubscriptionOfferingsFilters() {
-
-    const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_Subscriptions&json=1', {headers: headers, responseType: 'text'});
- 
-    return{
-        type: GENERATE_SUBSCRIPTION_OFFERINGS_FILTERS,
-        payload: response
-    }
- }
-/**
- * Generate the data that goes into the Route To Market filter box
- * 
- */
-export function generateRouteToMarketFilters() {
-
-    const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_RouteToMarket&json=1', {headers: headers, responseType: 'text'});
- 
-    return{
-        type: GENERATE_ROUTE_TO_MARKET_FILTERS,
-        payload: response
-    }
- }
-/**
- * Generate the data that goes into the Quarters filter box
- * 
- */
-export function generateQuarterFilters() {
-
-    const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_Quarters&json=1', {headers: headers, responseType: 'text'});
- 
-    return{
-        type: GENERATE_QUARTERS_FILTERS,
-        payload: response
-    }
- }
-/**
- * Generate the data that goes into the Product Name filter box
- * 
- */
-export function generateProductNameFilters() {
-
-    const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_ProductName&json=1', {headers: headers, responseType: 'text'});
- 
-    return{
-        type: GENERATE_PRODUCT_NAME_FILTERS,
-        payload: response
-    }
- }
-/**
- * Generate the data that goes into the Geo Code filter box
- * 
- */
-export function generateGeoFilters() {
-
-    const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_GeoCode&json=1', {headers: headers, responseType: 'text'});
- 
-    return{
-        type: GENERATE_GEO_FILTERS,
-        payload: response
-    }
- }
-/**
- * Generate the data that goes into the Market Areafilter box
- * 
- */
-export function generateMarketAreaFilters() {
-
-   const response = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=marketAreaList&json=1', {headers: headers, responseType: 'text'});
-
-   return{
-       type: GENERATE_MARKET_AREA_FILTERS,
-       payload: response
-   }
 }
 
 /**
@@ -313,13 +204,176 @@ export function updateJourneySummaryActiveCard(squareItem){
 }
 
 
+/**
+ * Get all the data for adobe
+ * 
+ * @param {boolean} status
+ */
+export function getAdobeData() {
+
+
+    return {
+        type: GET_ALL_DATA,
+        payload: {}
+    }
+}
+
+export function getFilteredIBEDAta(_parameters){
+    
+    // Infoburst Variables
+    const xdc = '447';
+    const responseArr = [];
+    const filteredActual = 'FinCards_Actual_Filtered';
+    const filteredTarget = 'FinCards_Target_Filtered';
+    const token = 'Basic ' + btoa(prod_connection['user'] + ':' + prod_connection['pass']);
+    let headers = {'Authorization': token , 'Accept': '*/*'};
+
+    // Action Variables
+    let parameters = [];
+    let p;
+    let filtersApplied = {
+        quarters: false,
+        geos: false,
+        products: false,
+        routes: false,
+        segments: false,
+        subscriptions: false,
+        markets: false
+    }
+    let filtersBeingProcessed = {
+        quarters: [],
+        geos: [],
+        products: [],
+        routes: [],
+        segments: [] ,
+        subscriptions: [],
+        markets: []
+    }
+
+
+    if(_parameters.length !==0 ){
+         p = _parameters.map(item=>{
+            let param = { prompt: '', value: item.value};
+            switch(item.category){
+                case 'quarters':
+                    param.prompt = 'quarterFilters';
+                    filtersApplied.quarters = true;
+                    return param;
+
+                case 'productNames':
+                    param.prompt = 'productFilters';
+                    filtersApplied.products = true;
+                    return param;
+
+                case 'geos':
+                    param.prompt = 'geoFilters';
+                    filtersApplied.geos = true;
+                    return param;
+
+                case 'subscriptionOfferings':
+                    param.prompt = 'subscriptionFilters';
+                    filtersApplied.subscriptions = true;
+                    return param;
+
+                case 'marketAreas':
+                    param.prompt = 'maFilters';
+                    filtersApplied.markets = true;
+                    return param;
+
+                case 'routeToMarkets':
+                    param.prompt = 'routeFilters';
+                    filtersApplied.routes = true;
+                    return param;
+
+                case 'segments':
+                    param.prompt = 'segmentFilters';
+                    filtersApplied.segments = true;
+                    return param;
+
+            }
+        });
+        
+    }
+    console.log('Filters formatted for Params: ', p);
+
+    for (let i = 0; i <=6; i++){
+        switch(i){
+            case 0: //quarters
+            if(filtersApplied.quarters===false){
+                p.push({prompt: 'quarterFilters' , value: '*' })
+            }
+            break;
+            case 1: // geos
+            if(filtersApplied.geos===false){
+
+                p.push({prompt: 'geoFilters' , value: '*' })
+            }
+            break;
+            case 2: // products
+            if(filtersApplied.products===false){
+
+                p.push({prompt: 'productFilters' , value: '*' })
+            }
+            break;
+            case 3: // subscriptions
+            if(filtersApplied.subscriptions===false){
+
+                p.push({prompt: 'subscriptionFilters' , value: '*' })
+            }
+            break;
+            case 4: // markets
+            if(filtersApplied.markets===false){
+
+                p.push({prompt: 'maFilters' , value: '*' })
+            }
+            break;
+            case 5: // routes
+            if(filtersApplied.routes===false){
+
+                p.push({prompt: 'routeFilters' , value: '*' })
+            }
+            break;
+            case 6: // segments
+            if(filtersApplied.segments===false){
+
+                p.push({prompt: 'segmentFilters' , value: '*' })
+            }
+            break;
+
+        }
+    }
+
+    console.log(p);
+    let params1 = p.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+      }, '');
+    console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');
+    const response1 = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1', 
+    {headers: headers, responseType: 'text'});
+    console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');
+    const response2 = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredTarget + params1 + '&json=1', 
+    {headers: headers, responseType: 'text'});
+
+    responseArr.push(response1, response2);
+    let promiseArr = Promise.all(responseArr);
+    console.log(responseArr);
+
+    return {
+        type: GET_FILTERED_IBE_DATA,
+        payload: promiseArr
+    }
+}
 
 export function getIbeData(_parameters) {
 
     const endpoint = 'FinCards_Actual';
     const endpoint2 = 'FinCards_Target';
+ 
+    
     const xdc = '447';
-    const parameters = _parameters;
+    let parameters = _parameters;
     const responseArr = [];
 
     let params = parameters.reduce((prev, param) => {

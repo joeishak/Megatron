@@ -195,13 +195,13 @@ class TopSummaryBox extends Component {
         let millionsLength = 7;
         let billionsLength = 8;
         let suffix = 'K';
-        console.log(value);
+        // console.log(value);
 
         let returnValue = '';
 
 
         let length = value.toString().length;
-        console.log(length);
+        // console.log(length);
        
         if (length <= thousandsLength) {
             value = (value/1000).toFixed(1);
@@ -218,7 +218,7 @@ class TopSummaryBox extends Component {
     }
    
     getSummaryContent(){
-        console.log(this.props.finData);
+        // console.log(this.props.finData);
         const { activeCard } = this.state;
         const { activeJourneyCard } = this.state;
         // this.setState({data:(this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial});
