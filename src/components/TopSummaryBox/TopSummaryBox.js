@@ -23,7 +23,7 @@ class TopSummaryBox extends Component {
             summaryTitle: 'Financials Summary',
             activeJourneyCard: 'journeyCard1',
             activeCard:'card1',
-            data: (this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial,
+            data: (this.props.switchFilter === true) ? this.props.appData.journey: this.props.finData,
             components:{
                 squares: undefined,
                 stats: undefined,
@@ -71,9 +71,15 @@ class TopSummaryBox extends Component {
 
     componentDidMount(){
         // this.setState({data:(this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial})
+
+    }
+    componentDidCatch(e){
+        console.error('Error in Top Summary Box');
     }
     componentDidUpdate(){
         // console.log(this.props.switchFilter);
+        // this.setState({finData: this.props.finData});
+
     }
    //Event handlers for each chart square to render the arrow
     enableChart1Arrow(event){

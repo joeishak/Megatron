@@ -21,6 +21,7 @@ import {
 } from 'actions/types';
 import axios from 'axios';
 import * as utils from '../utilities';
+import _ from 'lodash';
 // general use
 
 const prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
@@ -247,23 +248,20 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
         subscriptions: false,
         markets: false
     }
-    let filtersBeingProcessed = {
-        quarters: [],
-        geos: [],
-        products: [],
-        routes: [],
-        segments: [] ,
-        subscriptions: [],
-        markets: []
-    }
+   
 
-
-    // if(_parameters.length !==0 ){
          p = _parameters.map(item => {
-            let param = { prompt: '', value: `'${item.value}'`};
+            let param;
+            param = { prompt: '', value: ''};
+
+            //  if(item.value !== 'All Data'){
+            //     param  = { prompt: '', value: `'${item.value}'`};
+            //  }
+
             switch(item.category){
                 case 'quarters':
                     param.prompt = 'quarterFilters';
+                    param.value = ''
                     filtersApplied.quarters = true;
                     return param;
 
@@ -300,14 +298,13 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
             }
         });
         
-    // }
     console.log('Filters formatted for Params: ', p);
 
     for (let i = 0; i <=6; i++){
         switch(i){
             case 0: //quarters
             if(filtersApplied.quarters===false){
-                console.log('Available Quarters',availableFilters.quarters);
+                // console.log('Available Quarters',availableFilters.quarters);/
                 let paramValue = []
                 for(let j=0;j<availableFilters.quarters.length;j++){
                     let item = availableFilters.quarters[j];
@@ -315,17 +312,19 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
                         paramValue.push( item.value)
                     }
                 }
-                //  = availableFilters.quarters.map(item=>{
-                //     if(item.value ==='All Data'){
-                //         reuturn ;
-                //     }
-                //             return item.value;
-                // });
-                console.log('quarter param value', paramValue);
+              
+                // console.log('quarter param value', paramValue);
                 paramValue = utils.convertFilterList(paramValue);
-                console.log('quarter param string',paramValue)
+                // console.log('quarter param string',paramValue)
                 p.push({prompt: 'quarterFilters' , value:paramValue })
                 
+            } else{
+                let paramValue = [];
+                let a = _.findIndex(_parameters, function(item) {return item.category ==='quarters'});
+                console.log(a);
+                 p[0].value = _parameters[a].value;
+                // p.{prompt: 'quarterFilters' , value:paramValue })
+
             }
             break;
             case 1: // geos
@@ -337,12 +336,13 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
                         paramValue.push( item.value)
                     }
                 }
-                console.log('geos param value', paramValue);
+                // console.log('geos param value', paramValue);
                 paramValue = utils.convertFilterList(paramValue);
-                console.log('geos param string',paramValue)
+                // console.log('geos param string',paramValue)
                 
                 p.push({prompt: 'geoFilters' , value: paramValue })
             }
+            
             break;
             case 2: // products
             if(filtersApplied.products===false){
@@ -353,9 +353,9 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
                         paramValue.push( item.value)
                     }
                 }
-                console.log('products param value', paramValue);
+                // console.log('products param value', paramValue);
                 paramValue = utils.convertFilterList(paramValue);
-                console.log('products param string',paramValue);
+                // console.log('products param string',paramValue);
                 p.push({prompt: 'productFilters' , value: paramValue })
             }
             break;
@@ -368,10 +368,10 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
                         paramValue.push( item.value)
                     }
                 }
-                console.log('subscriptions param value', paramValue);
+                // console.log('subscriptions param value', paramValue);
                 
                 paramValue = utils.convertFilterList(paramValue);
-                console.log('subscriptions param string',paramValue);
+                // console.log('subscriptions param string',paramValue);
                 p.push({prompt: 'subscriptionFilters' , value: paramValue })
             }
             break;
@@ -384,10 +384,10 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
                         paramValue.push( item.value)
                     }
                 }
-                console.log('markets param value', paramValue);
+                // console.log('markets param value', paramValue);
                 
                 paramValue = utils.convertFilterList(paramValue);
-                console.log('markets param string',paramValue);
+                // console.log('markets param string',paramValue);
                 p.push({prompt: 'maFilters' , value: paramValue })
             }
             break;
@@ -400,10 +400,10 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
                         paramValue.push( item.value)
                     }
                 }
-                console.log('routes param value', paramValue);
+                // console.log('routes param value', paramValue);
                 
                 paramValue = utils.convertFilterList(paramValue);
-                console.log('routes param string',paramValue);
+                // console.log('routes param string',paramValue);
                 p.push({prompt: 'routeFilters' , value: paramValue })
             } else {
 
@@ -418,10 +418,10 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
                         paramValue.push( item.value)
                     }
                 }
-                console.log('segments param value', paramValue);
+                // console.log('segments param value', paramValue);
                 
                 paramValue = utils.convertFilterList(paramValue);
-                console.log('segments param string',paramValue);
+                // console.log('segments param string',paramValue);
                 p.push({prompt: 'segmentFilters' , value: paramValue })
             }
             break;
