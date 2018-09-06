@@ -9,7 +9,7 @@ import {
     GENERATE_QUARTERS_FILTERS              
 } from 'actions/types';
 import _ from 'lodash';
-import data from '../data.json';
+// import data from '../data.json';
 
 let newState;
 let count = 0;

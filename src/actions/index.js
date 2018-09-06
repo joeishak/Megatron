@@ -20,7 +20,7 @@ import {
 
 } from 'actions/types';
 import axios from 'axios';
-
+import * as utils from '../utilities';
 // general use
 
 const prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
@@ -218,8 +218,15 @@ export function getAdobeData() {
     }
 }
 
-export function getFilteredIBEDAta(_parameters){
-    
+export function getFilteredIBEDAta(_parameters,availableFilters){
+    console.log('Available Filters:', availableFilters)
+    availableFilters.quarters.splice(0,1);
+    availableFilters.products.splice(0,1);
+    availableFilters.marketAreas.splice(0,1);
+    availableFilters.segments.splice(0,1);
+    availableFilters.subscriptionOfferings.splice(0,1);
+    availableFilters.routeToMarkets.splice(0,1);
+    availableFilters.geos.splice(0,1);
     // Infoburst Variables
     const xdc = '447';
     const responseArr = [];
@@ -251,8 +258,8 @@ export function getFilteredIBEDAta(_parameters){
     }
 
 
-    if(_parameters.length !==0 ){
-         p = _parameters.map(item=>{
+    // if(_parameters.length !==0 ){
+         p = _parameters.map(item => {
             let param = { prompt: '', value: item.value};
             switch(item.category){
                 case 'quarters':
@@ -293,50 +300,99 @@ export function getFilteredIBEDAta(_parameters){
             }
         });
         
-    }
-    console.log('Filters formatted for Params: ', p);
+    // }
+    // console.log('Filters formatted for Params: ', p);
 
     for (let i = 0; i <=6; i++){
         switch(i){
             case 0: //quarters
             if(filtersApplied.quarters===false){
-                p.push({prompt: 'quarterFilters' , value: '*' })
+                console.log('Available Quarters',availableFilters.quarters);
+                let paramValue = availableFilters.quarters.map(item=>{
+                            return item.value;
+                });
+                console.log('quarter param value', paramValue);
+                paramValue = utils.convertFilterList(paramValue);
+                console.log('quarter param string',paramValue)
+                p.push({prompt: 'quarterFilters' , value:paramValue })
+                
             }
             break;
             case 1: // geos
             if(filtersApplied.geos===false){
-
-                p.push({prompt: 'geoFilters' , value: '*' })
+                let paramValue =
+                availableFilters.geos.map(item=>{
+                        return item.value;
+                });
+                console.log('geos param value', paramValue);
+                paramValue = utils.convertFilterList(paramValue);
+                console.log('geos param string',paramValue)
+                
+                p.push({prompt: 'geoFilters' , value: paramValue })
             }
             break;
             case 2: // products
             if(filtersApplied.products===false){
-
-                p.push({prompt: 'productFilters' , value: '*' })
+                let paramValue =
+                availableFilters.products.map(item=>{
+                        return item.value;
+                });
+                console.log('products param value', paramValue);
+                paramValue = utils.convertFilterList(paramValue);
+                console.log('products param string',paramValue);
+                p.push({prompt: 'productFilters' , value: paramValue })
             }
             break;
             case 3: // subscriptions
             if(filtersApplied.subscriptions===false){
-
-                p.push({prompt: 'subscriptionFilters' , value: '*' })
+                let paramValue =
+                availableFilters.subscriptionOfferings.map(item=>{
+                        return item.value;
+                });
+                console.log('subscriptions param value', paramValue);
+                
+                paramValue = utils.convertFilterList(paramValue);
+                console.log('subscriptions param string',paramValue);
+                p.push({prompt: 'subscriptionFilters' , value: paramValue })
             }
             break;
             case 4: // markets
             if(filtersApplied.markets===false){
-
-                p.push({prompt: 'maFilters' , value: '*' })
+                let paramValue =
+                availableFilters.marketAreas.map(item=>{
+                        return item.value;
+                });
+                console.log('markets param value', paramValue);
+                
+                paramValue = utils.convertFilterList(paramValue);
+                console.log('markets param string',paramValue);
+                p.push({prompt: 'maFilters' , value: paramValue })
             }
             break;
             case 5: // routes
             if(filtersApplied.routes===false){
-
-                p.push({prompt: 'routeFilters' , value: '*' })
+                let paramValue =
+                availableFilters.routeToMarkets.map(item=>{
+                        return item.value;
+                });
+                console.log('routes param value', paramValue);
+                
+                paramValue = utils.convertFilterList(paramValue);
+                console.log('routes param string',paramValue);
+                p.push({prompt: 'routeFilters' , value: paramValue })
             }
             break;
             case 6: // segments
             if(filtersApplied.segments===false){
-
-                p.push({prompt: 'segmentFilters' , value: '*' })
+                let paramValue =
+                availableFilters.segments.map(item=>{
+                        return item.value;
+                });
+                console.log('segments param value', paramValue);
+                
+                paramValue = utils.convertFilterList(paramValue);
+                console.log('segments param string',paramValue);
+                p.push({prompt: 'segmentFilters' , value: paramValue })
             }
             break;
 

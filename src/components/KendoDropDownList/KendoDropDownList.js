@@ -37,7 +37,7 @@ class KendoDropDownList extends Component {
         // console.log(this.props.availableFilters);
         if(this.props.activeFilters.length != 0){
             // console.log(this.props.availableFilters);
-            this.props.getFilteredIBEDAta(this.props.activeFilters)
+            this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
         }
 
         // return false;
