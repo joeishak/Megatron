@@ -61,7 +61,7 @@ class KendoDialog extends Component {
         const kendoDialog = show ? ( 
         <div className="content">
 
-        {console.log('KendoDialog.js Available Filters',this.props.availableFilters)}
+        {/* {console.log('KendoDialog.js Available Filters',this.props.availableFilters)} */}
 
             <Dialog width={939} height={626}  title={"Data Preferences"} onClose={this.closeDialog} >
                 <div className="container-fluid">
@@ -75,7 +75,7 @@ class KendoDialog extends Component {
                                     <div className="col-lg-6 col-md-6">
                                         <p>Quarter</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.quarters}/> */}
-                                        <ReactSelect options={this.props.availableFilters.quarters}></ReactSelect>
+                                        <ReactSelect options={this.props.availableFilters.quarters} defaultValue={{index: 25, category: "quarters", value: "Default", label: "Default"}}></ReactSelect>
                                     </div>
                                     <div className="col-lg-6 col-md-6">
                                         <p>Geo</p>
@@ -236,10 +236,11 @@ class KendoDialog extends Component {
 }
 
 function mapStateToProps(state){
-
+    console.log(state);
     return {
         dialogIsOpen: state.isDialogOpen,
-        availableFilters: state.availableFilters
+        availableFilters: state.availableFilters,
+        activeFilters: state.activeFilters
     }
 }
 export default connect(mapStateToProps,actions)(KendoDialog);

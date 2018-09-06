@@ -19,7 +19,7 @@ let transformList = (objList) => {
             )
         }
     }
-  
+    console.log(newObjList);
     return newObjList;
 };
 
@@ -27,7 +27,7 @@ let transformList = (objList) => {
 const ReactSelect = (props) => {
 
     return (
-        <Select options={transformList(props.options)}/>
+        <Select options={transformList(props.options)} value={props.defaultValue}/>
     );
 };
 
