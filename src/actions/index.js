@@ -321,8 +321,22 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
             } else{
                 let paramValue = [];
                 let a = _.findIndex(_parameters, function(item) {return item.category ==='quarters'});
-                console.log(a);
-                 p[0].value = _parameters[a].value;
+
+                 if(_parameters[a].value === 'All Data') {
+                    for(let j=0;j<availableFilters.quarters.length;j++){
+                        let item = availableFilters.quarters[j];
+                        if(item.value !== 'All Data'){
+                            paramValue.push( item.value)
+                        }
+                    }
+
+                 }
+                 else{
+                     paramValue.push(_parameters[a].value);
+                 }
+                 paramValue = utils.convertFilterList(paramValue);
+
+                 p[0].value = paramValue;
                 // p.{prompt: 'quarterFilters' , value:paramValue })
 
             }
