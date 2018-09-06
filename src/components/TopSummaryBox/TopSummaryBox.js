@@ -28,7 +28,8 @@ class TopSummaryBox extends Component {
                 squares: undefined,
                 stats: undefined,
                 multichart: undefined
-            }
+            },
+            finData: this.props.finData
 
         };
         // this.finCardsIbeData = this.finCardsIbeData.bind(this);
@@ -218,7 +219,7 @@ class TopSummaryBox extends Component {
     }
    
     getSummaryContent(){
-        // console.log(this.props.finData);
+        console.log('Top Summary', this.props.finData);
         const { activeCard } = this.state;
         const { activeJourneyCard } = this.state;
         // this.setState({data:(this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial});

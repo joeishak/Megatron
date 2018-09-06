@@ -220,13 +220,13 @@ export function getAdobeData() {
 
 export function getFilteredIBEDAta(_parameters,availableFilters){
     console.log('Available Filters:', availableFilters)
-    availableFilters.quarters.splice(0,1);
-    availableFilters.products.splice(0,1);
-    availableFilters.marketAreas.splice(0,1);
-    availableFilters.segments.splice(0,1);
-    availableFilters.subscriptionOfferings.splice(0,1);
-    availableFilters.routeToMarkets.splice(0,1);
-    availableFilters.geos.splice(0,1);
+    // availableFilters.quarters.splice(0,1);
+    // availableFilters.products.splice(0,1);
+    // availableFilters.marketAreas.splice(0,1);
+    // availableFilters.segments.splice(0,1);
+    // availableFilters.subscriptionOfferings.splice(0,1);
+    // availableFilters.routeToMarkets.splice(0,1);
+    // availableFilters.geos.splice(0,1);
     // Infoburst Variables
     const xdc = '447';
     const responseArr = [];
@@ -260,7 +260,7 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
 
     // if(_parameters.length !==0 ){
          p = _parameters.map(item => {
-            let param = { prompt: '', value: item.value};
+            let param = { prompt: '', value: `'${item.value}'`};
             switch(item.category){
                 case 'quarters':
                     param.prompt = 'quarterFilters';
@@ -301,16 +301,26 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
         });
         
     // }
-    // console.log('Filters formatted for Params: ', p);
+    console.log('Filters formatted for Params: ', p);
 
     for (let i = 0; i <=6; i++){
         switch(i){
             case 0: //quarters
             if(filtersApplied.quarters===false){
                 console.log('Available Quarters',availableFilters.quarters);
-                let paramValue = availableFilters.quarters.map(item=>{
-                            return item.value;
-                });
+                let paramValue = []
+                for(let j=0;j<availableFilters.quarters.length;j++){
+                    let item = availableFilters.quarters[j];
+                    if(item.value !== 'All Data'){
+                        paramValue.push( item.value)
+                    }
+                }
+                //  = availableFilters.quarters.map(item=>{
+                //     if(item.value ==='All Data'){
+                //         reuturn ;
+                //     }
+                //             return item.value;
+                // });
                 console.log('quarter param value', paramValue);
                 paramValue = utils.convertFilterList(paramValue);
                 console.log('quarter param string',paramValue)
@@ -320,10 +330,13 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
             break;
             case 1: // geos
             if(filtersApplied.geos===false){
-                let paramValue =
-                availableFilters.geos.map(item=>{
-                        return item.value;
-                });
+                let paramValue = []
+                for(let j=0;j<availableFilters.geos.length;j++){
+                    let item = availableFilters.geos[j];
+                    if(item.value !== 'All Data'){
+                        paramValue.push( item.value)
+                    }
+                }
                 console.log('geos param value', paramValue);
                 paramValue = utils.convertFilterList(paramValue);
                 console.log('geos param string',paramValue)
@@ -333,10 +346,13 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
             break;
             case 2: // products
             if(filtersApplied.products===false){
-                let paramValue =
-                availableFilters.products.map(item=>{
-                        return item.value;
-                });
+                let paramValue = []
+                for(let j=0;j<availableFilters.products.length;j++){
+                    let item = availableFilters.products[j];
+                    if(item.value !== 'All Data'){
+                        paramValue.push( item.value)
+                    }
+                }
                 console.log('products param value', paramValue);
                 paramValue = utils.convertFilterList(paramValue);
                 console.log('products param string',paramValue);
@@ -345,10 +361,13 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
             break;
             case 3: // subscriptions
             if(filtersApplied.subscriptions===false){
-                let paramValue =
-                availableFilters.subscriptionOfferings.map(item=>{
-                        return item.value;
-                });
+                let paramValue = []
+                for(let j=0;j<availableFilters.subscriptionOfferings.length;j++){
+                    let item = availableFilters.subscriptionOfferings[j];
+                    if(item.value !== 'All Data'){
+                        paramValue.push( item.value)
+                    }
+                }
                 console.log('subscriptions param value', paramValue);
                 
                 paramValue = utils.convertFilterList(paramValue);
@@ -358,10 +377,13 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
             break;
             case 4: // markets
             if(filtersApplied.markets===false){
-                let paramValue =
-                availableFilters.marketAreas.map(item=>{
-                        return item.value;
-                });
+                let paramValue = []
+                for(let j=0;j<availableFilters.marketAreas.length;j++){
+                    let item = availableFilters.marketAreas[j];
+                    if(item.value !== 'All Data'){
+                        paramValue.push( item.value)
+                    }
+                }
                 console.log('markets param value', paramValue);
                 
                 paramValue = utils.convertFilterList(paramValue);
@@ -371,23 +393,31 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
             break;
             case 5: // routes
             if(filtersApplied.routes===false){
-                let paramValue =
-                availableFilters.routeToMarkets.map(item=>{
-                        return item.value;
-                });
+                let paramValue = []
+                for(let j=0;j<availableFilters.routeToMarkets.length;j++){
+                    let item = availableFilters.routeToMarkets[j];
+                    if(item.value !== 'All Data'){
+                        paramValue.push( item.value)
+                    }
+                }
                 console.log('routes param value', paramValue);
                 
                 paramValue = utils.convertFilterList(paramValue);
                 console.log('routes param string',paramValue);
                 p.push({prompt: 'routeFilters' , value: paramValue })
+            } else {
+
             }
             break;
             case 6: // segments
             if(filtersApplied.segments===false){
-                let paramValue =
-                availableFilters.segments.map(item=>{
-                        return item.value;
-                });
+                let paramValue = []
+                for(let j=0;j<availableFilters.segments.length;j++){
+                    let item = availableFilters.segments[j];
+                    if(item.value !== 'All Data'){
+                        paramValue.push( item.value)
+                    }
+                }
                 console.log('segments param value', paramValue);
                 
                 paramValue = utils.convertFilterList(paramValue);
@@ -399,7 +429,7 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
         }
     }
 
-    console.log(p);
+    console.log('P afeter modifying all dataa filter',p);
     let params1 = p.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
