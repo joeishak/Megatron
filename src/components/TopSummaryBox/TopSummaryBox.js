@@ -28,8 +28,7 @@ class TopSummaryBox extends Component {
                 squares: undefined,
                 stats: undefined,
                 multichart: undefined
-            },
-            finData: this.props.finData
+            }
 
         };
         // this.finCardsIbeData = this.finCardsIbeData.bind(this);
@@ -68,19 +67,6 @@ class TopSummaryBox extends Component {
 
     // }
 
-
-    componentDidMount(){
-        // this.setState({data:(this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial})
-
-    }
-    componentDidCatch(e){
-        console.error('Error in Top Summary Box');
-    }
-    componentDidUpdate(){
-        // console.log(this.props.switchFilter);
-        // this.setState({finData: this.props.finData});
-
-    }
    //Event handlers for each chart square to render the arrow
     enableChart1Arrow(event){
         this.props.handleSummaryClick(1);
@@ -137,6 +123,7 @@ class TopSummaryBox extends Component {
         });
     }
 
+ 
     //Function to check state and return either Financials summary or Journeys Summary
     getSummaryTitle() {
         if (this.props.switchFilter) {
@@ -225,7 +212,7 @@ class TopSummaryBox extends Component {
     }
    
     getSummaryContent(){
-        console.log('Top Summary', this.props.finData);
+        // console.log('Top Summary', this.state.finData);
         const { activeCard } = this.state;
         const { activeJourneyCard } = this.state;
         // this.setState({data:(this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial});
@@ -322,8 +309,7 @@ class TopSummaryBox extends Component {
  
 
     render(){
-        // {this.formatData(this.props.finData)}
-        
+      
         var SummaryBoxStyles = classNames({
             summaryBox: true,
             summaryBox_financial: !this.props.switchFilter ? false: true
@@ -366,6 +352,7 @@ class TopSummaryBox extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log('Top Summary State', state);
     return { 
         filters: state.filters, 
         switchFilter:state.switchFilter, 
