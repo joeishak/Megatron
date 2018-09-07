@@ -352,7 +352,7 @@ class TopSummaryBox extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log('Top Summary State', state);
+    // console.log('Top Summary State', state);
     return { 
         filters: state.filters, 
         switchFilter:state.switchFilter, 

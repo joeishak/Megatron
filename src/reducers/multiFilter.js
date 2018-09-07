@@ -76,24 +76,24 @@ export default function(state = defaultState, action) {
 
         if(defaultState===[]){
             defaultState = {
+                quarters: newQuartersState,
                 geos: newGeoState,
-                marketAreas: newMAState,
                 products: newProductState,
-                routeToMarkets: newRouteState,
                 subscriptionOfferings: newSubscriptionState,
+                marketAreas: newMAState,
+                routeToMarkets: newRouteState,
                 segments: newSegmentsState,
-                quarters: newQuartersState
             }
         }
        
         return {
+            quarters: newQuartersState,
             geos: newGeoState,
-            marketAreas: newMAState,
             products: newProductState,
-            routeToMarkets: newRouteState,
             subscriptionOfferings: newSubscriptionState,
+            marketAreas: newMAState,
+            routeToMarkets: newRouteState,
             segments: newSegmentsState,
-            quarters: newQuartersState
         }
         default: 
             return state;

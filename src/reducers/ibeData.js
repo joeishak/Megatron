@@ -27,9 +27,11 @@ export default function(state = [], action) {
              targets = action.payload[1].data;
              squares = FinancialData.squares;
             
-            for (let i = 0; i < squares.length; i++) {
-                squares[i]['value'] = Object.values(actuals[0])[i];
-                squares[i]['target'] = Object.values(targets[0])[i] ;  
+            if (actuals[0] !== undefined && targets[0] !== undefined) {
+                for (let i = 0; i < squares.length; i++) {
+                    squares[i]['value'] = Object.values(actuals[0])[i];
+                    squares[i]['target'] = Object.values(targets[0])[i] ;  
+                }
             }
             console.log('Squares form IBE: ', squares);
             return squares;
