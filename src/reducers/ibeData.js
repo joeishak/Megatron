@@ -21,7 +21,7 @@ export default function(state = [], action) {
                 squares[i]['target'] = Object.values(targets[0])[i] ;  
             }
 
-            return squares;
+            return [...squares];
         case GET_FILTERED_IBE_DATA:
              actuals = action.payload[0].data;
              targets = action.payload[1].data;
@@ -34,7 +34,7 @@ export default function(state = [], action) {
                 }
             }
             console.log('Squares form IBE: ', squares);
-            return squares;
+            return [...squares];
         default: 
             return state;
     }

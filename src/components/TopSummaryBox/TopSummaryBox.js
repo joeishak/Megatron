@@ -92,7 +92,7 @@ class TopSummaryBox extends Component {
         const selectedHeader = squareItem.header;
 
         // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
-        console.log(selectedHeader);
+        // console.log(selectedHeader);
     }
 
     // Event handler when the Journey Card is active and clicked
@@ -107,15 +107,14 @@ class TopSummaryBox extends Component {
         const selectedSubtitle = squareItem.header;
 
               // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
-        console.log(selectedTitle);
-        console.log(selectedSubtitle); 
+        // console.log(selectedTitle);
+        // console.log(selectedSubtitle); 
           
     }
 
     //   Event handler for toggle change 'Financials' and 'Joruneys'
     onToggleButtonChanged = (e) => {
         let toggleState = this.state.isToggleButtonChecked;
-        
         
         this.setState({isToggleButtonChecked: !toggleState},()=>{
             this.props.updateSwitchFilterValue(this.state.isToggleButtonChecked);
@@ -210,12 +209,14 @@ class TopSummaryBox extends Component {
 
         return returnValue;
     }
+
    
     getSummaryContent(){
         // console.log('Top Summary', this.state.finData);
         const { activeCard } = this.state;
         const { activeJourneyCard } = this.state;
         // this.setState({data:(this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial});
+  
          if(this.props.switchFilter===false){
             return (
              <div className="chartRow">
@@ -309,6 +310,8 @@ class TopSummaryBox extends Component {
  
 
     render(){
+
+        // {console.log('THIS',this.props.finData);}
       
         var SummaryBoxStyles = classNames({
             summaryBox: true,
@@ -327,7 +330,9 @@ class TopSummaryBox extends Component {
         });
 
         return(
+            
             <Grid className={SummaryBoxStyles} fluid>
+            {console.log('THIS', this.props.finData)}
                 <CSSTransitionGroup transitionName="example"
                     transitionAppear={true} transitionAppearTimeout={1000}
                     transitionEnter={false} transitionLeave={false} >
@@ -346,13 +351,13 @@ class TopSummaryBox extends Component {
                     </div>
                 </CSSTransitionGroup>
                 {this.getSummaryContent()}
+                
             </Grid>
         )
     }
 }
 
 function mapStateToProps(state) {
-    // console.log('Top Summary State', state);
     return { 
         filters: state.filters, 
         switchFilter:state.switchFilter, 
