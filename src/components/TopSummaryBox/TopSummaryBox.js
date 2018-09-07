@@ -19,9 +19,11 @@ class TopSummaryBox extends Component {
         // Initialize state
         this.state = { 
             show: true,
+            isToggleButtonChecked: this.props.switchFilter,
             summaryTitle: 'Financials Summary',
             activeJourneyCard: 'journeyCard1',
             activeCard:'card1',
+            data: (this.props.switchFilter === true) ? this.props.appData.journey: this.props.finData,
             components:{
                 squares: undefined,
                 stats: undefined,
@@ -29,6 +31,8 @@ class TopSummaryBox extends Component {
             }
 
         };
+        // this.finCardsIbeData = this.finCardsIbeData.bind(this);
+        // console.log(this.props.finData);
         
         //Binding functions to this
         this.enableChart1Arrow = this.enableChart1Arrow.bind(this);
@@ -36,9 +40,32 @@ class TopSummaryBox extends Component {
         this.enableChart3Arrow = this.enableChart3Arrow.bind(this);
         this.enableChart4Arrow = this.enableChart4Arrow.bind(this);
         this.getSummaryContent = this.getSummaryContent.bind(this);
-   
+        // this.getFinancialSquares = this.getFinancialSquares.bind(this);
+
+        // this.finCardsIbeData();
+
+        // console.log(this.state);
     }
-  
+    // finCardsIbeData() {
+
+
+        // let processed = this.props.finData.map(ele => {
+        //     console.log(ele);
+        // })
+
+        // console.log(processed);
+        // this.props.finData[0].then(val => { 
+        //     this.setState({
+        //         finIBE: val
+        //     })
+        // });
+        // this.props.finData[1].await(val => { 
+        //     res2 = val; 
+        // });
+        // const target = this.props.finData[1].then(val => { targets = val });
+
+
+    // }
 
    //Event handlers for each chart square to render the arrow
     enableChart1Arrow(event){
@@ -67,7 +94,7 @@ class TopSummaryBox extends Component {
         // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
         // console.log(selectedHeader);
     }
-   
+
     // Event handler when the Journey Card is active and clicked
     onJourneyCardClicked (e, index) {
         e.preventDefault();
@@ -80,17 +107,17 @@ class TopSummaryBox extends Component {
         const selectedSubtitle = squareItem.header;
 
               // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
-                // console.log(selectedTitle);
-             // console.log(selectedSubtitle); 
+        // console.log(selectedTitle);
+        // console.log(selectedSubtitle); 
           
     }
 
     //   Event handler for toggle change 'Financials' and 'Joruneys'
     onToggleButtonChanged = (e) => {
-        let toggleState = this.props.switchFilter;
+        let toggleState = this.state.isToggleButtonChecked;
         
         this.setState({isToggleButtonChecked: !toggleState},()=>{
-            this.props.updateSwitchFilterValue(this.props.switchFilter);
+            this.props.updateSwitchFilterValue(this.state.isToggleButtonChecked);
 
         });
     }
@@ -314,7 +341,7 @@ class TopSummaryBox extends Component {
                     <div className="col-md-6 summaryTitleCol k-float-left">{this.getSummaryTitle()}</div>
                         <div className="col-md-6 summaryTitleCol switchContainer ">
                             <label className="switch k-float-right">
-                                <input type="checkbox" id="togBtn" checked={this.props.switchFilter} onChange={(e) => this.onToggleButtonChanged(e)}></input>
+                                <input type="checkbox" id="togBtn" checked={this.state.isToggleButtonChecked} onChange={(e) => this.onToggleButtonChanged(e)}></input>
                                 <div className="slider round">
                                     <div className="on">Financials</div>
                                     <div className="off">Journeys</div>
