@@ -19,11 +19,9 @@ class TopSummaryBox extends Component {
         // Initialize state
         this.state = { 
             show: true,
-            isToggleButtonChecked: this.props.switchFilter,
             summaryTitle: 'Financials Summary',
             activeJourneyCard: 'journeyCard1',
             activeCard:'card1',
-            data: (this.props.switchFilter === true) ? this.props.appData.journey: this.props.finData,
             components:{
                 squares: undefined,
                 stats: undefined,
@@ -31,8 +29,6 @@ class TopSummaryBox extends Component {
             }
 
         };
-        // this.finCardsIbeData = this.finCardsIbeData.bind(this);
-        // console.log(this.props.finData);
         
         //Binding functions to this
         this.enableChart1Arrow = this.enableChart1Arrow.bind(this);
@@ -40,32 +36,9 @@ class TopSummaryBox extends Component {
         this.enableChart3Arrow = this.enableChart3Arrow.bind(this);
         this.enableChart4Arrow = this.enableChart4Arrow.bind(this);
         this.getSummaryContent = this.getSummaryContent.bind(this);
-        // this.getFinancialSquares = this.getFinancialSquares.bind(this);
-
-        // this.finCardsIbeData();
-
-        // console.log(this.state);
+   
     }
-    // finCardsIbeData() {
-
-
-        // let processed = this.props.finData.map(ele => {
-        //     console.log(ele);
-        // })
-
-        // console.log(processed);
-        // this.props.finData[0].then(val => { 
-        //     this.setState({
-        //         finIBE: val
-        //     })
-        // });
-        // this.props.finData[1].await(val => { 
-        //     res2 = val; 
-        // });
-        // const target = this.props.finData[1].then(val => { targets = val });
-
-
-    // }
+  
 
    //Event handlers for each chart square to render the arrow
     enableChart1Arrow(event){
@@ -94,7 +67,7 @@ class TopSummaryBox extends Component {
         // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
         // console.log(selectedHeader);
     }
-
+   
     // Event handler when the Journey Card is active and clicked
     onJourneyCardClicked (e, index) {
         e.preventDefault();
@@ -107,17 +80,17 @@ class TopSummaryBox extends Component {
         const selectedSubtitle = squareItem.header;
 
               // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
-        // console.log(selectedTitle);
-        // console.log(selectedSubtitle); 
+                // console.log(selectedTitle);
+             // console.log(selectedSubtitle); 
           
     }
 
     //   Event handler for toggle change 'Financials' and 'Joruneys'
     onToggleButtonChanged = (e) => {
-        let toggleState = this.state.isToggleButtonChecked;
+        let toggleState = this.props.switchFilter;
         
         this.setState({isToggleButtonChecked: !toggleState},()=>{
-            this.props.updateSwitchFilterValue(this.state.isToggleButtonChecked);
+            this.props.updateSwitchFilterValue(this.props.switchFilter);
 
         });
     }
@@ -244,7 +217,7 @@ class TopSummaryBox extends Component {
                                                         <div className={`donutChart ${activeCard === item.css[0] ? 'arrow_box' : ''}`}>
                                                             <div >
                                                             <KendoDonutChart donutColor={this.getColor(item.value, item.target, 'donut')} key={item.index} donutCenterRender= {()=> 
-                                                            <div className="insideDonut"><span className={'actual ' + `${item.value > item.target ? 'selectedCardFontColorGreen' : 'selectedCardFontColorRed'}`}>${this.renderDollarValue(item.value)}</span><span className='donutTargetText'>Target</span><span className='donutTargetValue'>${this.renderDollarValue(item.target)}</span></div>}/> 
+                                                            <div className="insideDonut"><span className={'actual ' + `${item.value >= item.target ? 'selectedCardFontColorGreen' : 'selectedCardFontColorRed'}`}>${this.renderDollarValue(item.value)}</span><span className='donutTargetText'>Target</span><span className='donutTargetValue'>${this.renderDollarValue(item.target)}</span></div>}/> 
                                                             </div>
                                                         </div>
                                                     </div>
@@ -282,7 +255,7 @@ class TopSummaryBox extends Component {
                                 <p>{item.header}</p>
                                 <div className="row">
 
-                                    <div className={`col journeysAmount k-float-left ${item.value > item.target ? 'journeysAmountGreen' : ''}`}>{this.renderDollar(item.index)}{item.value}{this.renderM(item.index)}</div>
+                                    <div className={`col journeysAmount k-float-left ${item.value >= item.target ? 'journeysAmountGreen' : ''}`}>{this.renderDollar(item.index)}{item.value}{this.renderM(item.index)}</div>
                                     <div className="col journeysTarget ">TARGET {this.renderDollar(item.index)}{item.target}{this.renderM(item.index)}</div>
  
                                 </div>
@@ -341,7 +314,7 @@ class TopSummaryBox extends Component {
                     <div className="col-md-6 summaryTitleCol k-float-left">{this.getSummaryTitle()}</div>
                         <div className="col-md-6 summaryTitleCol switchContainer ">
                             <label className="switch k-float-right">
-                                <input type="checkbox" id="togBtn" checked={this.state.isToggleButtonChecked} onChange={(e) => this.onToggleButtonChanged(e)}></input>
+                                <input type="checkbox" id="togBtn" checked={this.props.switchFilter} onChange={(e) => this.onToggleButtonChanged(e)}></input>
                                 <div className="slider round">
                                     <div className="on">Financials</div>
                                     <div className="off">Journeys</div>

@@ -33,29 +33,15 @@ class KendoDropDownList extends Component {
 
     }
   
-    componentDidUpdate(prevProps){
-        // console.log(this.props.availableFilters);
-        if(this.props.activeFilters.length != 0){
-            // console.log(this.props.availableFilters);
-            this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
-        }
-
-        // return false;
-    }
-    componentDidMount(){
-        
-    }
- 
     //Event handler for when a drop down list item is selected
     handleFilterChange(event){
         this.props.addValueToActiveMultiFilter(event.target.value);
         this.setState({value: event.target.value});
+        this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
       
 
     }
     render(){
-      
-        
         return(
             <DropDownList 
                 style={inStyles.background} 
