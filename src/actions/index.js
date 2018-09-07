@@ -220,14 +220,6 @@ export function getAdobeData() {
 }
 
 export function getFilteredIBEDAta(_parameters,availableFilters){
-    console.log('Available Filters:', availableFilters)
-    // availableFilters.quarters.splice(0,1);
-    // availableFilters.products.splice(0,1);
-    // availableFilters.marketAreas.splice(0,1);
-    // availableFilters.segments.splice(0,1);
-    // availableFilters.subscriptionOfferings.splice(0,1);
-    // availableFilters.routeToMarkets.splice(0,1);
-    // availableFilters.geos.splice(0,1);
     // Infoburst Variables
     const xdc = '447';
     const responseArr = [];
@@ -237,352 +229,335 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
     let headers = {'Authorization': token , 'Accept': '*/*'};
 
     // Action Variables
-    let parameters = [];
-    let p;
-    let filtersApplied = {
-        quarters: false,
-        geos: false,
-        products: false,
-        routes: false,
-        segments: false,
-        subscriptions: false,
-        markets: false
+    let allFilters = 
+    {
+        quarters: Object.values(availableFilters.quarters),
+        geos: Object.values(availableFilters.geos),
+        marketAreas: Object.values(availableFilters.marketAreas),
+        products: Object.values(availableFilters.products),
+        segments: Object.values(availableFilters.segments),
+        subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
+        routeToMarkets: Object.values(availableFilters.routeToMarkets)
     }
+    let paramValue = [];
+    let filterParams = [
+        {prompt: 'quarterFilters', value: ''},
+        {prompt: 'productFilters', value: ''},
+        {prompt: 'geoFilters', value: ''},
+        {prompt: 'subscriptionFilters', value: ''},
+        {prompt: 'maFilters', value: ''},
+        {prompt: 'routeFilters', value: ''},
+        {prompt: 'segmentFilters', value: ''}
+    ];
+
+    
+    allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
    
+        let filtersApplied = utils.findIfFilterIsApplied(_parameters);
+       
+        console.log('Filters Applied: ', filtersApplied);
+        console.log('All Filters: ',allFilters);
+        console.log('Active Filters: ', _parameters);
+        utils.generateFilterParams(filterParams,filtersApplied, allFilters, _parameters)
+        console.log('Filter Params :', filterParams);
+        // if(filtersApplied.quarters){
+        //     paramValue = []
+        //     // If its all data
 
-         p = _parameters.map(item => {
-            let param;
-            param = { prompt: '', value: ''};
+        //         //Add all the values from allFilters to param value
 
-            //  if(item.value !== 'All Data'){
-            //     param  = { prompt: '', value: `'${item.value}'`};
-            //  }
+        // } else {
+        //     paramValue = []
+        //     for(let j=0;j<allFilters.quarters.length;j++){
+        //         let item = allFilters.quarters[j];
+        //             paramValue.push( item.value)
+        //     }
+        // }
+        // paramValue = utils.convertFilterList(paramValue);
+        // filterParams[0].value = paramValue;
 
-            switch(item.category){
-                case 'quarters':
-                    param.prompt = 'quarterFilters';
-                    param.value = ''
-                    filtersApplied.quarters = true;
-                    return param;
-
-                case 'productNames':
-                    param.prompt = 'productFilters';
-                    filtersApplied.products = true;
-                    return param;
-
-                case 'geos':
-                    param.prompt = 'geoFilters';
-                    filtersApplied.geos = true;
-                    return param;
-
-                case 'subscriptionOfferings':
-                    param.prompt = 'subscriptionFilters';
-                    filtersApplied.subscriptions = true;
-                    return param;
-
-                case 'marketAreas':
-                    param.prompt = 'maFilters';
-                    filtersApplied.markets = true;
-                    return param;
-
-                case 'routeToMarkets':
-                    param.prompt = 'routeFilters';
-                    filtersApplied.routes = true;
-                    return param;
-
-                case 'segments':
-                    param.prompt = 'segmentFilters';
-                    filtersApplied.segments = true;
-                    return param;
-
-            }
-        });
-        
-    console.log('Filters formatted for Params: ', p);
-
-    for (let i = 0; i <=6; i++){
-        switch(i){
-            case 0: //quarters
-            if(filtersApplied.quarters===false){
-                // console.log('Available Quarters',availableFilters.quarters);/
-                let paramValue = []
-                for(let j=0;j<availableFilters.quarters.length;j++){
-                    let item = availableFilters.quarters[j];
-                    if(item.value !== 'All Data'){
-                        paramValue.push( item.value)
-                    }
-                }
+    // for (let i = 0; i <=6; i++){
+    //     switch(i){
+    //         case 0: //quarters
+    //         if(filtersApplied.quarters===false){
+    //             let paramValue = []
+    //             for(let j=0;j<availableFilters.quarters.length;j++){
+    //                 let item = availableFilters.quarters[j];
+    //                 if(item.value !== 'All Data'){
+    //                     paramValue.push( item.value)
+    //                 }
+    //             }
               
-                // console.log('quarter param value', paramValue);
-                paramValue = utils.convertFilterList(paramValue);
-                // console.log('quarter param string',paramValue)
-                p.push({prompt: 'quarterFilters' , value:paramValue })
+    //             // console.log('quarter param value', paramValue);
+    //             paramValue = utils.convertFilterList(paramValue);
+    //             // console.log('quarter param string',paramValue)
+    //             p.push({prompt: 'quarterFilters' , value:paramValue })
                 
-            } else{
-                let paramValue = [];
-                let a = _.findIndex(_parameters, function(item) {return item.category ==='quarters'});
+    //         } else{
+    //             let paramValue = [];
+    //             let a = _.findIndex(_parameters, function(item) {return item.category ==='quarters'});
 
-                 if(_parameters[a].value === 'All Data') {
-                    for(let j=0;j<availableFilters.quarters.length;j++){
-                        let item = availableFilters.quarters[j];
-                        if(item.value !== 'All Data'){
-                            paramValue.push( item.value)
-                        }
-                    }
+    //              if(_parameters[a].value === 'All Data') {
+    //                 for(let j=0;j<availableFilters.quarters.length;j++){
+    //                     let item = availableFilters.quarters[j];
+    //                     if(item.value !== 'All Data'){
+    //                         paramValue.push( item.value)
+    //                     }
+    //                 }
 
-                 }
-                 else{
-                     paramValue.push(_parameters[a].value);
-                 }
-                 paramValue = utils.convertFilterList(paramValue);
+    //              }
+    //              else{
+    //                  paramValue.push(_parameters[a].value);
+    //              }
+    //              paramValue = utils.convertFilterList(paramValue);
 
-                 p[0].value = paramValue;
-                // p.{prompt: 'quarterFilters' , value:paramValue })
+    //              p[0].value = paramValue;
+    //             // p.{prompt: 'quarterFilters' , value:paramValue })
 
-            }
-            break;
-            case 1: // geos
-            if(filtersApplied.geos===false){
-                let paramValue = []
-                for(let j=0;j<availableFilters.geos.length;j++){
-                    let item = availableFilters.geos[j];
-                    if(item.value !== 'All Data'){
-                        paramValue.push( item.value)
-                    }
-                }
-                // console.log('geos param value', paramValue);
-                paramValue = utils.convertFilterList(paramValue);
-                // console.log('geos param string',paramValue)
+    //         }
+    //         break;
+    //         case 1: // geos
+    //         if(filtersApplied.geos===false){
+    //             let paramValue = []
+    //             for(let j=0;j<availableFilters.geos.length;j++){
+    //                 let item = availableFilters.geos[j];
+    //                 if(item.value !== 'All Data'){
+    //                     paramValue.push( item.value)
+    //                 }
+    //             }
+    //             // console.log('geos param value', paramValue);
+    //             paramValue = utils.convertFilterList(paramValue);
+    //             // console.log('geos param string',paramValue)
                 
-                p.push({prompt: 'geoFilters' , value: paramValue })
-            } else{
-                let paramValue = [];
-                let a = _.findIndex(_parameters, function(item) {return item.category ==='geos'});
+    //             p.push({prompt: 'geoFilters' , value: paramValue })
+    //         } else{
+    //             let paramValue = [];
+    //             let a = _.findIndex(_parameters, function(item) {return item.category ==='geos'});
 
-                 if(_parameters[a].value === 'All Data') {
-                    for(let j=0;j<availableFilters.geos.length;j++){
-                        let item = availableFilters.geos[j];
-                        if(item.value !== 'All Data'){
-                            paramValue.push( item.value)
-                        }
-                    }
+    //              if(_parameters[a].value === 'All Data') {
+    //                 for(let j=0;j<availableFilters.geos.length;j++){
+    //                     let item = availableFilters.geos[j];
+    //                     if(item.value !== 'All Data'){
+    //                         paramValue.push( item.value)
+    //                     }
+    //                 }
 
-                 }
-                 else{
-                     paramValue.push(_parameters[a].value);
-                 }
-                 paramValue = utils.convertFilterList(paramValue);
+    //              }
+    //              else{
+    //                  paramValue.push(_parameters[a].value);
+    //              }
+    //              paramValue = utils.convertFilterList(paramValue);
 
-                 p[1].value = paramValue;
-                // p.{prompt: 'quarterFilters' , value:paramValue })
+    //              p[1].value = paramValue;
+    //             // p.{prompt: 'quarterFilters' , value:paramValue })
 
-            }
+    //         }
             
-            break;
-            case 2: // products
-            if(filtersApplied.products===false){
-                let paramValue = []
-                for(let j=0;j<availableFilters.products.length;j++){
-                    let item = availableFilters.products[j];
-                    if(item.value !== 'All Data'){
-                        paramValue.push( item.value)
-                    }
-                }
-                // console.log('products param value', paramValue);
-                paramValue = utils.convertFilterList(paramValue);
-                // console.log('products param string',paramValue);
-                p.push({prompt: 'productFilters' , value: paramValue })
-            } else{
-                let paramValue = [];
-                let a = _.findIndex(_parameters, function(item) {return item.category ==='productNames'});
+    //         break;
+    //         case 2: // products
+    //         if(filtersApplied.products===false){
+    //             let paramValue = []
+    //             for(let j=0;j<availableFilters.products.length;j++){
+    //                 let item = availableFilters.products[j];
+    //                 if(item.value !== 'All Data'){
+    //                     paramValue.push( item.value)
+    //                 }
+    //             }
+    //             // console.log('products param value', paramValue);
+    //             paramValue = utils.convertFilterList(paramValue);
+    //             // console.log('products param string',paramValue);
+    //             p.push({prompt: 'productFilters' , value: paramValue })
+    //         } else{
+    //             let paramValue = [];
+    //             let a = _.findIndex(_parameters, function(item) {return item.category ==='productNames'});
 
-                 if(_parameters[a].value === 'All Data') {
-                    for(let j=0;j<availableFilters.products.length;j++){
-                        let item = availableFilters.products[j];
-                        if(item.value !== 'All Data'){
-                            paramValue.push( item.value)
-                        }
-                    }
+    //              if(_parameters[a].value === 'All Data') {
+    //                 for(let j=0;j<availableFilters.products.length;j++){
+    //                     let item = availableFilters.products[j];
+    //                     if(item.value !== 'All Data'){
+    //                         paramValue.push( item.value)
+    //                     }
+    //                 }
 
-                 }
-                 else{
-                     paramValue.push(_parameters[a].value);
-                 }
-                 paramValue = utils.convertFilterList(paramValue);
+    //              }
+    //              else{
+    //                  paramValue.push(_parameters[a].value);
+    //              }
+    //              paramValue = utils.convertFilterList(paramValue);
 
-                 p[2].value = paramValue;
-                // p.{prompt: 'quarterFilters' , value:paramValue })
+    //              p[2].value = paramValue;
+    //             // p.{prompt: 'quarterFilters' , value:paramValue })
 
-            }
-            break;
-            case 3: // subscriptions
-            if(filtersApplied.subscriptions===false){
-                let paramValue = []
-                for(let j=0;j<availableFilters.subscriptionOfferings.length;j++){
-                    let item = availableFilters.subscriptionOfferings[j];
-                    if(item.value !== 'All Data'){
-                        paramValue.push( item.value)
-                    }
-                }
-                // console.log('subscriptions param value', paramValue);
+    //         }
+    //         break;
+    //         case 3: // subscriptions
+    //         if(filtersApplied.subscriptions===false){
+    //             let paramValue = []
+    //             for(let j=0;j<availableFilters.subscriptionOfferings.length;j++){
+    //                 let item = availableFilters.subscriptionOfferings[j];
+    //                 if(item.value !== 'All Data'){
+    //                     paramValue.push( item.value)
+    //                 }
+    //             }
+    //             // console.log('subscriptions param value', paramValue);
                 
-                paramValue = utils.convertFilterList(paramValue);
-                // console.log('subscriptions param string',paramValue);
-                p.push({prompt: 'subscriptionFilters' , value: paramValue })
-            }else{
-                let paramValue = [];
-                let a = _.findIndex(_parameters, function(item) {return item.category ==='subscriptionOfferings'});
+    //             paramValue = utils.convertFilterList(paramValue);
+    //             // console.log('subscriptions param string',paramValue);
+    //             p.push({prompt: 'subscriptionFilters' , value: paramValue })
+    //         }else{
+    //             let paramValue = [];
+    //             let a = _.findIndex(_parameters, function(item) {return item.category ==='subscriptionOfferings'});
 
-                 if(_parameters[a].value === 'All Data') {
-                    for(let j=0;j<availableFilters.subscriptionOfferings.length;j++){
-                        let item = availableFilters.subscriptionOfferings[j];
-                        if(item.value !== 'All Data'){
-                            paramValue.push( item.value)
-                        }
-                    }
+    //              if(_parameters[a].value === 'All Data') {
+    //                 for(let j=0;j<availableFilters.subscriptionOfferings.length;j++){
+    //                     let item = availableFilters.subscriptionOfferings[j];
+    //                     if(item.value !== 'All Data'){
+    //                         paramValue.push( item.value)
+    //                     }
+    //                 }
 
-                 }
-                 else{
-                     paramValue.push(_parameters[a].value);
-                 }
-                 paramValue = utils.convertFilterList(paramValue);
+    //              }
+    //              else{
+    //                  paramValue.push(_parameters[a].value);
+    //              }
+    //              paramValue = utils.convertFilterList(paramValue);
 
-                 p[3].value = paramValue;
-                // p.{prompt: 'quarterFilters' , value:paramValue })
+    //              p[3].value = paramValue;
+    //             // p.{prompt: 'quarterFilters' , value:paramValue })
 
-            }
-            break;
-            case 4: // markets
-            if(filtersApplied.markets===false){
-                let paramValue = []
-                for(let j=0;j<availableFilters.marketAreas.length;j++){
-                    let item = availableFilters.marketAreas[j];
-                    if(item.value !== 'All Data'){
-                        paramValue.push( item.value)
-                    }
-                }
-                // console.log('markets param value', paramValue);
+    //         }
+    //         break;
+    //         case 4: // markets
+    //         if(filtersApplied.markets===false){
+    //             let paramValue = []
+    //             for(let j=0;j<availableFilters.marketAreas.length;j++){
+    //                 let item = availableFilters.marketAreas[j];
+    //                 if(item.value !== 'All Data'){
+    //                     paramValue.push( item.value)
+    //                 }
+    //             }
+    //             // console.log('markets param value', paramValue);
                 
-                paramValue = utils.convertFilterList(paramValue);
-                // console.log('markets param string',paramValue);
-                p.push({prompt: 'maFilters' , value: paramValue })
-            }else{
-                let paramValue = [];
-                let a = _.findIndex(_parameters, function(item) {return item.category ==='marketAreas'});
+    //             paramValue = utils.convertFilterList(paramValue);
+    //             // console.log('markets param string',paramValue);
+    //             p.push({prompt: 'maFilters' , value: paramValue })
+    //         }else{
+    //             let paramValue = [];
+    //             let a = _.findIndex(_parameters, function(item) {return item.category ==='marketAreas'});
 
-                 if(_parameters[a].value === 'All Data') {
-                    for(let j=0;j<availableFilters.marketAreas.length;j++){
-                        let item = availableFilters.marketAreas[j];
-                        if(item.value !== 'All Data'){
-                            paramValue.push( item.value)
-                        }
-                    }
+    //              if(_parameters[a].value === 'All Data') {
+    //                 for(let j=0;j<availableFilters.marketAreas.length;j++){
+    //                     let item = availableFilters.marketAreas[j];
+    //                     if(item.value !== 'All Data'){
+    //                         paramValue.push( item.value)
+    //                     }
+    //                 }
 
-                 }
-                 else{
-                     paramValue.push(_parameters[a].value);
-                 }
-                 paramValue = utils.convertFilterList(paramValue);
+    //              }
+    //              else{
+    //                  paramValue.push(_parameters[a].value);
+    //              }
+    //              paramValue = utils.convertFilterList(paramValue);
 
-                 p[4].value = paramValue;
-                // p.{prompt: 'quarterFilters' , value:paramValue })
+    //              p[4].value = paramValue;
+    //             // p.{prompt: 'quarterFilters' , value:paramValue })
 
-            }
-            break;
-            case 5: // routes
-            if(filtersApplied.routes===false){
-                let paramValue = []
-                for(let j=0;j<availableFilters.routeToMarkets.length;j++){
-                    let item = availableFilters.routeToMarkets[j];
-                    if(item.value !== 'All Data'){
-                        paramValue.push( item.value)
-                    }
-                }
-                // console.log('routes param value', paramValue);
+    //         }
+    //         break;
+    //         case 5: // routes
+    //         if(filtersApplied.routes===false){
+    //             let paramValue = []
+    //             for(let j=0;j<availableFilters.routeToMarkets.length;j++){
+    //                 let item = availableFilters.routeToMarkets[j];
+    //                 if(item.value !== 'All Data'){
+    //                     paramValue.push( item.value)
+    //                 }
+    //             }
+    //             // console.log('routes param value', paramValue);
                 
-                paramValue = utils.convertFilterList(paramValue);
-                // console.log('routes param string',paramValue);
-                p.push({prompt: 'routeFilters' , value: paramValue })
-            } else{
-                let paramValue = [];
-                let a = _.findIndex(_parameters, function(item) {return item.category ==='routeToMarkets'});
+    //             paramValue = utils.convertFilterList(paramValue);
+    //             // console.log('routes param string',paramValue);
+    //             p.push({prompt: 'routeFilters' , value: paramValue })
+    //         } else{
+    //             let paramValue = [];
+    //             let a = _.findIndex(_parameters, function(item) {return item.category ==='routeToMarkets'});
 
-                 if(_parameters[a].value === 'All Data') {
-                    for(let j=0;j<availableFilters.routeToMarkets.length;j++){
-                        let item = availableFilters.routeToMarkets[j];
-                        if(item.value !== 'All Data'){
-                            paramValue.push( item.value)
-                        }
-                    }
+    //              if(_parameters[a].value === 'All Data') {
+    //                 for(let j=0;j<availableFilters.routeToMarkets.length;j++){
+    //                     let item = availableFilters.routeToMarkets[j];
+    //                     if(item.value !== 'All Data'){
+    //                         paramValue.push( item.value)
+    //                     }
+    //                 }
 
-                 }
-                 else{
-                     paramValue.push(_parameters[a].value);
-                 }
-                 paramValue = utils.convertFilterList(paramValue);
+    //              }
+    //              else{
+    //                  paramValue.push(_parameters[a].value);
+    //              }
+    //              paramValue = utils.convertFilterList(paramValue);
 
-                 p[5].value = paramValue;
-                // p.{prompt: 'quarterFilters' , value:paramValue })
+    //              p[5].value = paramValue;
+    //             // p.{prompt: 'quarterFilters' , value:paramValue })
 
-            }
-            break;
-            case 6: // segments
-            if(filtersApplied.segments===false){
-                let paramValue = []
-                for(let j=0;j<availableFilters.segments.length;j++){
-                    let item = availableFilters.segments[j];
-                    if(item.value !== 'All Data'){
-                        paramValue.push( item.value)
-                    }
-                }
-                // console.log('segments param value', paramValue);
+    //         }
+    //         break;
+    //         case 6: // segments
+    //         if(filtersApplied.segments===false){
+    //             let paramValue = []
+    //             for(let j=0;j<availableFilters.segments.length;j++){
+    //                 let item = availableFilters.segments[j];
+    //                 if(item.value !== 'All Data'){
+    //                     paramValue.push( item.value)
+    //                 }
+    //             }
+    //             // console.log('segments param value', paramValue);
                 
-                paramValue = utils.convertFilterList(paramValue);
-                // console.log('segments param string',paramValue);
-                p.push({prompt: 'segmentFilters' , value: paramValue })
-            } else{
-                let paramValue = [];
-                let a = _.findIndex(_parameters, function(item) {return item.category ==='segments'});
+    //             paramValue = utils.convertFilterList(paramValue);
+    //             // console.log('segments param string',paramValue);
+    //             p.push({prompt: 'segmentFilters' , value: paramValue })
+    //         } else{
+    //             let paramValue = [];
+    //             let a = _.findIndex(_parameters, function(item) {return item.category ==='segments'});
 
-                 if(_parameters[a].value === 'All Data') {
-                    for(let j=0;j<availableFilters.segments.length;j++){
-                        let item = availableFilters.segments[j];
-                        if(item.value !== 'All Data'){
-                            paramValue.push( item.value)
-                        }
-                    }
+    //              if(_parameters[a].value === 'All Data') {
+    //                 for(let j=0;j<availableFilters.segments.length;j++){
+    //                     let item = availableFilters.segments[j];
+    //                     if(item.value !== 'All Data'){
+    //                         paramValue.push( item.value)
+    //                     }
+    //                 }
 
-                 }
-                 else{
-                     paramValue.push(_parameters[a].value);
-                 }
-                 paramValue = utils.convertFilterList(paramValue);
+    //              }
+    //              else{
+    //                  paramValue.push(_parameters[a].value);
+    //              }
+    //              paramValue = utils.convertFilterList(paramValue);
 
-                 p[6].value = paramValue;
-                // p.{prompt: 'quarterFilters' , value:paramValue })
+    //              p[6].value = paramValue;
+    //             // p.{prompt: 'quarterFilters' , value:paramValue })
 
-            }
-            break;
+    //         }
+    //         break;
 
-        }
-    }
+    //     }
+    // }
 
-    console.log('P afeter modifying all dataa filter',p);
-    let params1 = p.reduce((prev, param) => {
+    // console.log('P afeter modifying all dataa filter',p);
+    let params1 = filterParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
       }, '');
-    console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');
+    // console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');
     const response1 = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1', 
     {headers: headers, responseType: 'text'});
-    console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');
+    // console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');
     const response2 = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredTarget + params1 + '&json=1', 
     {headers: headers, responseType: 'text'});
 
     responseArr.push(response1, response2);
     let promiseArr = Promise.all(responseArr);
-    console.log(responseArr);
+    // console.log(responseArr);
 
     return {
         type: GET_FILTERED_IBE_DATA,

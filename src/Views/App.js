@@ -89,6 +89,7 @@ class App extends Component {
 
 
     this.props.getAdobeData();
+    this.props.generateFilterData();
     this.props.getIbeData([]);
   }
   /* Sets the state passed to the bottom summary box so that it re renders */
