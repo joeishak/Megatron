@@ -25,14 +25,13 @@ export default function(state = [], action) {
         case GET_FILTERED_IBE_DATA:
              actuals = action.payload[0].data;
              targets = action.payload[1].data;
-             console.log(actuals,targets);
              squares = FinancialData.squares;
             
             for (let i = 0; i < squares.length; i++) {
                 squares[i]['value'] = Object.values(actuals[0])[i];
                 squares[i]['target'] = Object.values(targets[0])[i] ;  
             }
-
+            console.log('Squares form IBE: ', squares);
             return squares;
         default: 
             return state;

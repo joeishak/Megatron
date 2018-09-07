@@ -70,7 +70,7 @@ class KendoDropDownList extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state.availableFilters);
+    // console.log(state.availableFilters);
     return {activeFilters:state.activeFilters, availableFilters: state.availableFilters};
   }
   

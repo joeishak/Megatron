@@ -157,7 +157,8 @@ function mapStateToProps(state) {
     activeFilters: state.activeFilters,
     switchFilter: state.switchFilter,
     detailIsOpen: state.detailsIsOpen,
-    availableFilters: state.availableFilters
+    availableFilters: state.availableFilters,
+    finData: state.finData
   };
 }
 

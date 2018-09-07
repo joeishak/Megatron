@@ -321,8 +321,22 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
             } else{
                 let paramValue = [];
                 let a = _.findIndex(_parameters, function(item) {return item.category ==='quarters'});
-                console.log(a);
-                 p[0].value = _parameters[a].value;
+
+                 if(_parameters[a].value === 'All Data') {
+                    for(let j=0;j<availableFilters.quarters.length;j++){
+                        let item = availableFilters.quarters[j];
+                        if(item.value !== 'All Data'){
+                            paramValue.push( item.value)
+                        }
+                    }
+
+                 }
+                 else{
+                     paramValue.push(_parameters[a].value);
+                 }
+                 paramValue = utils.convertFilterList(paramValue);
+
+                 p[0].value = paramValue;
                 // p.{prompt: 'quarterFilters' , value:paramValue })
 
             }
@@ -341,6 +355,27 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
                 // console.log('geos param string',paramValue)
                 
                 p.push({prompt: 'geoFilters' , value: paramValue })
+            } else{
+                let paramValue = [];
+                let a = _.findIndex(_parameters, function(item) {return item.category ==='geos'});
+
+                 if(_parameters[a].value === 'All Data') {
+                    for(let j=0;j<availableFilters.geos.length;j++){
+                        let item = availableFilters.geos[j];
+                        if(item.value !== 'All Data'){
+                            paramValue.push( item.value)
+                        }
+                    }
+
+                 }
+                 else{
+                     paramValue.push(_parameters[a].value);
+                 }
+                 paramValue = utils.convertFilterList(paramValue);
+
+                 p[1].value = paramValue;
+                // p.{prompt: 'quarterFilters' , value:paramValue })
+
             }
             
             break;
@@ -357,6 +392,27 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
                 paramValue = utils.convertFilterList(paramValue);
                 // console.log('products param string',paramValue);
                 p.push({prompt: 'productFilters' , value: paramValue })
+            } else{
+                let paramValue = [];
+                let a = _.findIndex(_parameters, function(item) {return item.category ==='productNames'});
+
+                 if(_parameters[a].value === 'All Data') {
+                    for(let j=0;j<availableFilters.products.length;j++){
+                        let item = availableFilters.products[j];
+                        if(item.value !== 'All Data'){
+                            paramValue.push( item.value)
+                        }
+                    }
+
+                 }
+                 else{
+                     paramValue.push(_parameters[a].value);
+                 }
+                 paramValue = utils.convertFilterList(paramValue);
+
+                 p[2].value = paramValue;
+                // p.{prompt: 'quarterFilters' , value:paramValue })
+
             }
             break;
             case 3: // subscriptions
@@ -373,6 +429,27 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
                 paramValue = utils.convertFilterList(paramValue);
                 // console.log('subscriptions param string',paramValue);
                 p.push({prompt: 'subscriptionFilters' , value: paramValue })
+            }else{
+                let paramValue = [];
+                let a = _.findIndex(_parameters, function(item) {return item.category ==='subscriptionOfferings'});
+
+                 if(_parameters[a].value === 'All Data') {
+                    for(let j=0;j<availableFilters.subscriptionOfferings.length;j++){
+                        let item = availableFilters.subscriptionOfferings[j];
+                        if(item.value !== 'All Data'){
+                            paramValue.push( item.value)
+                        }
+                    }
+
+                 }
+                 else{
+                     paramValue.push(_parameters[a].value);
+                 }
+                 paramValue = utils.convertFilterList(paramValue);
+
+                 p[3].value = paramValue;
+                // p.{prompt: 'quarterFilters' , value:paramValue })
+
             }
             break;
             case 4: // markets
@@ -389,6 +466,27 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
                 paramValue = utils.convertFilterList(paramValue);
                 // console.log('markets param string',paramValue);
                 p.push({prompt: 'maFilters' , value: paramValue })
+            }else{
+                let paramValue = [];
+                let a = _.findIndex(_parameters, function(item) {return item.category ==='marketAreas'});
+
+                 if(_parameters[a].value === 'All Data') {
+                    for(let j=0;j<availableFilters.marketAreas.length;j++){
+                        let item = availableFilters.marketAreas[j];
+                        if(item.value !== 'All Data'){
+                            paramValue.push( item.value)
+                        }
+                    }
+
+                 }
+                 else{
+                     paramValue.push(_parameters[a].value);
+                 }
+                 paramValue = utils.convertFilterList(paramValue);
+
+                 p[4].value = paramValue;
+                // p.{prompt: 'quarterFilters' , value:paramValue })
+
             }
             break;
             case 5: // routes
@@ -405,7 +503,26 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
                 paramValue = utils.convertFilterList(paramValue);
                 // console.log('routes param string',paramValue);
                 p.push({prompt: 'routeFilters' , value: paramValue })
-            } else {
+            } else{
+                let paramValue = [];
+                let a = _.findIndex(_parameters, function(item) {return item.category ==='routeToMarkets'});
+
+                 if(_parameters[a].value === 'All Data') {
+                    for(let j=0;j<availableFilters.routeToMarkets.length;j++){
+                        let item = availableFilters.routeToMarkets[j];
+                        if(item.value !== 'All Data'){
+                            paramValue.push( item.value)
+                        }
+                    }
+
+                 }
+                 else{
+                     paramValue.push(_parameters[a].value);
+                 }
+                 paramValue = utils.convertFilterList(paramValue);
+
+                 p[5].value = paramValue;
+                // p.{prompt: 'quarterFilters' , value:paramValue })
 
             }
             break;
@@ -423,6 +540,27 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
                 paramValue = utils.convertFilterList(paramValue);
                 // console.log('segments param string',paramValue);
                 p.push({prompt: 'segmentFilters' , value: paramValue })
+            } else{
+                let paramValue = [];
+                let a = _.findIndex(_parameters, function(item) {return item.category ==='segments'});
+
+                 if(_parameters[a].value === 'All Data') {
+                    for(let j=0;j<availableFilters.segments.length;j++){
+                        let item = availableFilters.segments[j];
+                        if(item.value !== 'All Data'){
+                            paramValue.push( item.value)
+                        }
+                    }
+
+                 }
+                 else{
+                     paramValue.push(_parameters[a].value);
+                 }
+                 paramValue = utils.convertFilterList(paramValue);
+
+                 p[6].value = paramValue;
+                // p.{prompt: 'quarterFilters' , value:paramValue })
+
             }
             break;
 
