@@ -19,7 +19,7 @@ let transformList = (objList) => {
             )
         }
     }
-    console.log(newObjList);
+    // console.log(newObjList);
     return newObjList;
 };
 

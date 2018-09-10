@@ -2716,3 +2716,31 @@ export const JourneyData = {
         }
     ]
 }
+
+
+export const InfoburstAzure = {
+     user: 'admin',
+     pass: 'admin',
+     xdcCacheURL: 'http://localhost:8551/infoburst/rest/get/xdc',
+     xdcCacheQueryURL: 'http://localhost:8551/infoburst/rest/exec/xdcqry',
+     filterXdcID : '/45',
+     dataXdcID:  '/54',
+     filterQueries: [
+         {key: 'Geos', value: 'GeoFilters'},
+         {key: 'Quarter', value: 'QuarterFilters'},
+         {key: 'Products', value: 'ProductFilters'},
+         {key: 'Segments', value: 'SegmentFilters'},
+         {key: 'Subscriptions', value: 'SubscriptionFilters'},
+         {key: 'Routes', value: 'RouteFilters'},
+         {key: 'Markets', value: 'MarketFilters'}
+     ],
+     dataQueries: [
+        {key: '2017Q1', value: '2017q1'},
+        {key: '2017Q2', value: '2017q2'},
+        {key: '2017Q3', value: '2017q3'},
+        {key: '2017Q4', value: '2017q4'},
+        {key: '2018Q1', value: '2018q1'},
+        {key: '2018Q2', value: '2018q2'},
+        {key: '2018Q3', value: '2018q3'}
+    ]
+}

@@ -25,6 +25,8 @@ import _ from 'lodash';
 // general use
 
 const prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
+const dev_connection = { 'user': 'admin', 'pass': 'admin' };
+
 const environment = { infosolApi: 'http://vm1.infosol.com:8551' };
 
 // Multifilter use
@@ -228,6 +230,9 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
     const token = 'Basic ' + btoa(prod_connection['user'] + ':' + prod_connection['pass']);
     let headers = {'Authorization': token , 'Accept': '*/*'};
 
+    let newTok = 'Basic ' + btoa(dev_connection['user'] + ':' + dev_connection['pass']);
+    let newheaders = {'Authorization': newTok , 'Accept': '*/*'};
+    console.log(newheaders);
     // Action Variables
     let allFilters = 
     {
@@ -548,7 +553,7 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
       }, '');
-    // console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');
+    console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');
     const response1 = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1', 
     {headers: headers, responseType: 'text'});
     // console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');

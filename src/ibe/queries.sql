@@ -64,3 +64,237 @@ SELECT DISTINCT segment_pivot 'Segment' from dbo.rtb;
 -- endpoint: 'MultiFilter_RouteToMarket';
 -- xdc: 447
 -- parameters: none;
+
+/****************************************
+*      Azure Server InfoBurst Queries   *
+****************************************/
+
+    /** DB Connection AdobeDB Queries 
+    **********************************/ 
+
+-- A. Filters Segmented by different filter fields
+    /* 
+    Name: GeoFilters */
+select distinct geo_code from dbo.rtb
+/* 
+    Name: MarketFilters */
+select  distinct market_area_code from dbo.rtb
+/* 
+    Name: QuarterFilters */
+select distinct quarter  from dbo.rtb;
+/* 
+    Name: RouteFilters */
+select distinct route_to_market from dbo.rtb;
+/* 
+    Name: SubscriptionFilters */
+select distinct subscription_offering  from dbo.rtb;
+/* 
+    Name: ProductFilters */
+select distinct product_name from dbo.rtb;
+/* 
+    Name: SegmentFilters */
+select  distinct segment_pivot from dbo.rtb;
+
+--  B. Data  Segment queries by Quarter N segmen
+
+/* 
+    Name: 2017Q1 */
+Select top 500000
+net_new_arr_actual, 
+net_new_arr_target, 
+net_cancellations_arr_actual, 
+net_cancellations_arr_target, 
+gross_new_arr_target, 
+gross_new_arr_actual,
+term_end_renewal_actual,
+term_end_renewal_target,
+geo_code,
+market_area_code,
+segment_pivot,
+subscription_offering,
+route_to_market,
+product_name
+from dbo.rtb
+where quarter like '2017-Q1';
+/* 
+    Name: 2017Q2 */
+Select  top 500000
+net_new_arr_actual, 
+net_new_arr_target, 
+net_cancellations_arr_actual, 
+net_cancellations_arr_target, 
+gross_new_arr_target, 
+gross_new_arr_actual,
+term_end_renewal_actual,
+term_end_renewal_target,
+geo_code,
+market_area_code,
+segment_pivot,
+subscription_offering,
+route_to_market,
+product_name
+from dbo.rtb
+where quarter like '2017-Q2';
+/* 
+    Name: 2017Q3 */
+Select top 500000
+net_new_arr_actual, 
+net_new_arr_target, 
+net_cancellations_arr_actual, 
+net_cancellations_arr_target, 
+gross_new_arr_target, 
+gross_new_arr_actual,
+term_end_renewal_actual,
+term_end_renewal_target,
+geo_code,
+market_area_code,
+segment_pivot,
+subscription_offering,
+route_to_market,
+product_name
+from dbo.rtb
+where quarter like '2017-Q3';
+/* 
+    Name: 2017Q4 */
+Select top 500000
+net_new_arr_actual, 
+net_new_arr_target, 
+net_cancellations_arr_actual, 
+net_cancellations_arr_target, 
+gross_new_arr_target, 
+gross_new_arr_actual,
+term_end_renewal_actual,
+term_end_renewal_target,
+geo_code,
+market_area_code,
+segment_pivot,
+subscription_offering,
+route_to_market,
+product_name
+from dbo.rtb
+where quarter like '2017-Q4';
+/* 
+    Name: 2018Q1 */
+Select top 500000
+net_new_arr_actual, 
+net_new_arr_target, 
+net_cancellations_arr_actual, 
+net_cancellations_arr_target, 
+gross_new_arr_target, 
+gross_new_arr_actual,
+term_end_renewal_actual,
+term_end_renewal_target,
+geo_code,
+market_area_code,
+segment_pivot,
+subscription_offering,
+route_to_market,
+product_name
+from dbo.rtb
+where quarter like '2018-Q1';
+/* 
+    Name: 2018Q2 */
+Select top 500000
+net_new_arr_actual, 
+net_new_arr_target, 
+net_cancellations_arr_actual, 
+net_cancellations_arr_target, 
+gross_new_arr_target, 
+gross_new_arr_actual,
+term_end_renewal_actual,
+term_end_renewal_target,
+geo_code,
+market_area_code,
+segment_pivot,
+subscription_offering,
+route_to_market,
+product_name
+from dbo.rtb
+where quarter like '2018-Q2';
+/* 
+    Name: 2018Q2 */
+Select top 500000
+net_new_arr_actual, 
+net_new_arr_target, 
+net_cancellations_arr_actual, 
+net_cancellations_arr_target, 
+gross_new_arr_target, 
+gross_new_arr_actual,
+term_end_renewal_actual,
+term_end_renewal_target,
+geo_code,
+market_area_code,
+segment_pivot,
+subscription_offering,
+route_to_market,
+product_name
+from dbo.rtb
+where quarter like '2018-Q3';
+
+
+/** XDC for Data **/ 
+/* Cache Queries */
+select sum(net_new_arr_actual), 
+sum(net_new_arr_target), 
+sum(net_cancellations_arr_actual), 
+sum(net_cancellations_arr_target), 
+sum(gross_new_arr_target), 
+sum(gross_new_arr_actual),
+sum(term_end_renewal_actual),
+sum(term_end_renewal_target)
+from  2017Q1;
+select sum(net_new_arr_actual), 
+sum(net_new_arr_target), 
+sum(net_cancellations_arr_actual), 
+sum(net_cancellations_arr_target), 
+sum(gross_new_arr_target), 
+sum(gross_new_arr_actual),
+sum(term_end_renewal_actual),
+sum(term_end_renewal_target)
+from  2017Q2;
+select sum(net_new_arr_actual), 
+sum(net_new_arr_target), 
+sum(net_cancellations_arr_actual), 
+sum(net_cancellations_arr_target), 
+sum(gross_new_arr_target), 
+sum(gross_new_arr_actual),
+sum(term_end_renewal_actual),
+sum(term_end_renewal_target)
+from  2017Q3;
+select sum(net_new_arr_actual), 
+sum(net_new_arr_target), 
+sum(net_cancellations_arr_actual), 
+sum(net_cancellations_arr_target), 
+sum(gross_new_arr_target), 
+sum(gross_new_arr_actual),
+sum(term_end_renewal_actual),
+sum(term_end_renewal_target)
+from  2017Q4;
+select sum(net_new_arr_actual), 
+sum(net_new_arr_target), 
+sum(net_cancellations_arr_actual), 
+sum(net_cancellations_arr_target), 
+sum(gross_new_arr_target), 
+sum(gross_new_arr_actual),
+sum(term_end_renewal_actual),
+sum(term_end_renewal_target)
+from  2018Q1;
+select sum(net_new_arr_actual), 
+sum(net_new_arr_target), 
+sum(net_cancellations_arr_actual), 
+sum(net_cancellations_arr_target), 
+sum(gross_new_arr_target), 
+sum(gross_new_arr_actual),
+sum(term_end_renewal_actual),
+sum(term_end_renewal_target)
+from  2018Q2;
+select sum(net_new_arr_actual), 
+sum(net_new_arr_target), 
+sum(net_cancellations_arr_actual), 
+sum(net_cancellations_arr_target), 
+sum(gross_new_arr_target), 
+sum(gross_new_arr_actual),
+sum(term_end_renewal_actual),
+sum(term_end_renewal_target)
+from  2018Q3
+
