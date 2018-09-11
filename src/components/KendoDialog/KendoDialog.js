@@ -54,24 +54,59 @@ class KendoDialog extends Component {
         }
  
     }
+
+    updateActiveFiltersHandler = (e) => {
+        this.props.addValueToActiveMultiFilter(e);
+    }
+
+
+
+    findFilter = (activeFilters, category) => {
+
+        for (let i = 0; i < activeFilters.length; i++) {
+            switch(category) {
+                case 'geos':
+                    const geoIndex = activeFilters.findIndex(x => x.category === category);
+
+                    return [activeFilters[geoIndex]];
+                    break;
+                case 'marketAreas':
+                    const marketAreasIndex = activeFilters.findIndex(x => x.category === category);
+                    
+                    return [activeFilters[marketAreasIndex]];
+                    break;
+                case 'productNames':
+                    const productNamesIndex = activeFilters.findIndex(x => x.category === category);
+      
+                    return [activeFilters[productNamesIndex]];
+                    break;
+                case 'quarters':
+                    const quartersIndex = activeFilters.findIndex(x => x.category === category);
+      
+                    return [activeFilters[quartersIndex]];
+                    break;
+                case 'routeToMarkets':
+                    const routeToMarketsIndex = activeFilters.findIndex(x => x.category === category);
+ 
+                    return [activeFilters[routeToMarketsIndex]];
+                    break;
+                case 'segments':
+                    const segmentsIndex = activeFilters.findIndex(x => x.category === category);
+     
+                    return [activeFilters[segmentsIndex]];
+                    break;
+                case 'subscriptionOfferings':
+                    const subscriptionOfferingsIndex = activeFilters.findIndex(x => x.category === category);
+
+                    return [activeFilters[subscriptionOfferingsIndex]];
+                    break;
+            }
+        }
+    }
  
  
     render(){
-        const dropDowns = (
-            
-            <div className="row dropRow">
-                <div className="col-lg-6 col-md-6">
-                    <p>Quarter</p>
-                    {/* <KendoDropDownList  data={this.props.availableFilters.quarters}/> */}
-                    <ReactSelect options={this.props.availableFilters.quarters} defaultValue={{index: 25, category: "quarters", value: "Default", label: "Default"}}></ReactSelect>
-                </div>
-                <div className="col-lg-6 col-md-6">
-                    <p>Geo</p>
-                    {/* <KendoDropDownList  data={this.props.availableFilters.geos}/> */}
-                    <ReactSelect options={this.props.availableFilters.geos}></ReactSelect>
-                </div>
-            </div>
-        );
+
         const show = this.props.dialogIsOpen
         const kendoDialog = show ? ( 
         <div className="content">
@@ -90,12 +125,12 @@ class KendoDialog extends Component {
                                     <div className="col-lg-6 col-md-6">
                                         <p>Quarter</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.quarters}/> */}
-                                        <ReactSelect options={this.props.availableFilters.quarters} defaultValue={{index: 25, category: "quarters", value: "Default", label: "Default"}}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler} options={this.props.availableFilters.quarters} defaultValue={this.findFilter(this.props.activeFilters, 'quarters')}></ReactSelect>
                                     </div>
                                     <div className="col-lg-6 col-md-6">
                                         <p>Geo</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.geos}/> */}
-                                        <ReactSelect options={this.props.availableFilters.geos}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.geos} defaultValue={this.findFilter(this.props.activeFilters, 'geos')}></ReactSelect>
                                     </div>
                                 </div>
                                 {/* second row */}
@@ -103,12 +138,12 @@ class KendoDialog extends Component {
                                     <div className="col-lg-6 col-md-6">
                                         <p>Product name</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.products}/> */}
-                                        <ReactSelect options={this.props.availableFilters.products}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.products} defaultValue={this.findFilter(this.props.activeFilters, 'productNames')}></ReactSelect>
                                     </div>
                                     <div className="col-lg-6 col-md-6">
                                         <p>Subscription Offering</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.subscriptionOfferings} /> */}
-                                        <ReactSelect options={this.props.availableFilters.subscriptionOfferings}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler} options={this.props.availableFilters.subscriptionOfferings} defaultValue={this.findFilter(this.props.activeFilters, 'subscriptionOfferings')}></ReactSelect>
                                     </div>
                                 </div>
                                 {/* third row */}
@@ -116,12 +151,12 @@ class KendoDialog extends Component {
                                     <div className="col-lg-6 col-md-6">
                                         <p>Market Area</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.marketAreas} /> */}
-                                        <ReactSelect options={this.props.availableFilters.marketAreas}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.marketAreas} defaultValue={this.findFilter(this.props.activeFilters, 'marketAreas')}></ReactSelect>
                                     </div>
                                     <div className="col-lg-6 col-md-6">
                                         <p>Route to Market</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.routeToMarkets}/> */}
-                                        <ReactSelect options={this.props.availableFilters.routeToMarkets}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.routeToMarkets} defaultValue={this.findFilter(this.props.activeFilters, 'routeToMarkets')}></ReactSelect>
                                     </div>
                                 </div>
                                 {/* fourth row */}
@@ -129,7 +164,7 @@ class KendoDialog extends Component {
                                     <div className="col-lg-6 col-md-6">
                                         <p>Segment</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.segments}/> */}
-                                        <ReactSelect options={this.props.availableFilters.segments}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.segments} defaultValue={this.findFilter(this.props.activeFilters, 'segments')}></ReactSelect>
                                     </div>
                                     <div className="col-lg-6 col-md-6">
                                         <p id="filter-reset">Re-set all filters</p>
