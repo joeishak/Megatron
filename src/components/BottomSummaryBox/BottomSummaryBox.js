@@ -78,7 +78,7 @@ class ButtomSummaryBox extends Component {
                                                         transitionAppear={true}
                                                         transitionAppearTimeout={800}
                                                         transitionEnter={false} 
-                                                        transitionLeave={false} >
+                                                        transitionLeave={false} key={item.index} >
                                                         <div className=" statsHeader"> 
                                                             <div className={ (item.color==='green') ? ' green' :'red ' }> {item.value}%</div>
                                                             <div className="footer"> {item.text}</div>

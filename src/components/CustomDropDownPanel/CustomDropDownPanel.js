@@ -19,6 +19,7 @@ class CustomDropDownPanel extends Component {
             showContainer: this.props.showContainer
         }
         //Binding functions to this
+
     }
 
    
@@ -42,37 +43,55 @@ class CustomDropDownPanel extends Component {
             <div className={panelDropDownContainer} >
                         <div className={quarterFilterContainer} >
                             <p> Quarter</p>
-                            <KendoDropDownList   data={availableFilters.quarters}/>
+                            <KendoDropDownList  type='quarters'
+                            defaultItem={this.props.activeFilters.quarters} data={availableFilters.quarters}/>
                         </div> 
        
                        <div className={quarterFilterContainer} >
                             <p> Geo</p>
-                            <KendoDropDownList  data={availableFilters.geos}/>
+                            <KendoDropDownList type='geos' defaultItem={this.props.activeFilters.geos} 
+                            data={availableFilters.geos}/>
                         </div>
              
                         <div className={quarterFilterContainer} >
                             <p> Product Name</p>
-                            <KendoDropDownList  data={availableFilters.products}/>
+                            <KendoDropDownList  
+                                type='products' 
+                                defaultItem={this.props.activeFilters.products} 
+                                data={availableFilters.products}/>
                         </div>
              
                         <div className={quarterFilterContainer} >
                             <p> Subscription Offering</p>
-                            <KendoDropDownList  data={availableFilters.subscriptionOfferings} />
+                            <KendoDropDownList  
+                                type='subscriptions' 
+                                defaultItem={this.props.activeFilters.subscriptions}
+                                data={availableFilters.subscriptionOfferings} />
                         </div>
                 
                         <div className={quarterFilterContainer} >
                             <p> Market Area</p>
-                            <KendoDropDownList  data={availableFilters.marketAreas} />
+                            <KendoDropDownList 
+                                type='markets' 
+                                defaultItem={this.props.activeFilters.markets} 
+                                data={availableFilters.marketAreas} />
                         </div>
                
                         <div className={quarterFilterContainer} >
                             <p>  Route To Market</p>
-                            <KendoDropDownList data={availableFilters.routeToMarkets}/>
+                            <KendoDropDownList 
+                                type='routes' 
+                                defaultItem={this.props.activeFilters.routes} 
+                                data={availableFilters.routeToMarkets}/>
                         </div>
             
                         <div className={quarterFilterContainer} >
                             <p> Segment</p>
-                            <KendoDropDownList  data={availableFilters.segments}/>
+
+                            <KendoDropDownList  
+                                type='segments' 
+                                defaultItem={this.props.activeFilters.segments}
+                                data={availableFilters.segments}/>
                         </div>
                 
                         <div className={quarterFilterContainer + ' default'} >
@@ -85,7 +104,7 @@ class CustomDropDownPanel extends Component {
 }
 function mapStateToProps(state) {
     // console.log(state.availableFilters)
-    return {availableFilters: state.availableFilters};
+    return {availableFilters: state.availableFilters,activeFilters: state.activeFilters};
   }
   
   export default connect(mapStateToProps,actions) (CustomDropDownPanel)

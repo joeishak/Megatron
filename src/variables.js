@@ -2721,8 +2721,9 @@ export const JourneyData = {
 export const InfoburstAzure = {
      user: 'admin',
      pass: 'admin',
-     xdcCacheURL: 'http://localhost:8551/infoburst/rest/get/xdc',
-     xdcCacheQueryURL: 'http://localhost:8551/infoburst/rest/exec/xdcqry',
+     xdcCacheURL: 'http://localhost:8551/infoburst/rest/get/xdc/',
+     xdcCacheQueryURL: 'http://localhost:8551/infoburst/rest/exec/xdcqry/',
+     jsonFormat: '&json=1',
      filterXdcID : '/45',
      dataXdcID:  '/54',
      filterQueries: [

@@ -51,7 +51,6 @@ export default ({children, initialState ={
             value: 'All Data'
         }]
     },
-    activeFilters:[],
     switchFilter: false,
     detailsIsOpen: false,
     activeSummarySquare: {

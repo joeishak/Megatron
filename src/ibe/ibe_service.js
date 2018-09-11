@@ -23,7 +23,7 @@ export function cacheQuery (query, xdc, parameters) {
       {headers: headers, responseType: 'text'}).then((res) => {
 
         //Response from IBE
-        console.log(res.data);
+        // console.log(res.data);
         return res.data;
       })
       .catch((err) => {

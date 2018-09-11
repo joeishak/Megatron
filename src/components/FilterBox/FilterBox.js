@@ -29,7 +29,8 @@ class FilterBox extends Component {
             addNewFilterActive: false,
             closeNewFilterActive: false,
             showSlide: false,
-            filterButtonTitle: 'Add Filters'
+            filterButtonTitle: 'Add Filters',
+            filterBarArr: []
         }
 
         //Binding functions to this
@@ -39,11 +40,21 @@ class FilterBox extends Component {
    // Function that renders the Filter Pills
     renderFilterPills(){
         // As long as there is an active filter
-        if(this.props.activeFilters.length>0){
+        let filters = this.props.activeFilters
+        
+    let filterBarArr=
+            [
+                filters.quarters[0],filters.products[0],
+                filters.markets[0],filters.segments[0],
+                filters.geos[0],filters.subscriptions[0],
+                filters.routes[0]
+            ]
+        
+        if(filterBarArr.length>0){
             // Return this 
         return(
             //For each active filter, return a Filter Pill Box Component mapped to the filter
-            this.props.activeFilters.map(filter =>{
+            filterBarArr.map(filter =>{
                 if(filter!==undefined){
                     return <FilterPillBox key={filter.index} data={filter} />
                 }
@@ -94,6 +105,7 @@ class FilterBox extends Component {
     }
 }
 function mapStateToProps(state) {
+    console.log('Active Filters: ', state.activeFilters);
     return {filters: state.filters, activeFilters: state.activeFilters};
   }
   

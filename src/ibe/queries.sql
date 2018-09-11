@@ -234,15 +234,21 @@ where quarter like '2018-Q3';
 
 /** XDC for Data **/ 
 /* Cache Queries */
-select sum(net_new_arr_actual), 
-sum(net_new_arr_target), 
-sum(net_cancellations_arr_actual), 
-sum(net_cancellations_arr_target), 
-sum(gross_new_arr_target), 
-sum(gross_new_arr_actual),
-sum(term_end_renewal_actual),
-sum(term_end_renewal_target)
-from  2017Q1;
+select sum(net_new_arr_actual) as 'Net New ARR Actual', 
+sum(net_new_arr_target) as 'Net New ARR Target', 
+sum(net_cancellations_arr_actual) as 'Net Cancellation ARR Actual', 
+sum(net_cancellations_arr_target) as 'Net Cancellation ARR Target', 
+sum(gross_new_arr_target) as 'Gross New ARR Target', 
+sum(gross_new_arr_actual) as 'Gross New ARR Actual',
+sum(term_end_renewal_actual) as 'Renewal @FP Actual',
+sum(term_end_renewal_target) as 'Renewal @FP Target'
+from  2017Q1
+where geo_code in (@geofilters)
+and product_name in (@productFilters)
+and market_area_code in (@maFilters)
+and segment_pivot in (@segmentFilters)
+and subscription_offering in (@subscriptionFilters)
+and route_to_market in (@routeFilters);
 select sum(net_new_arr_actual), 
 sum(net_new_arr_target), 
 sum(net_cancellations_arr_actual), 
@@ -298,3 +304,15 @@ sum(term_end_renewal_actual),
 sum(term_end_renewal_target)
 from  2018Q3
 
+
+/**
+XDC MultiChart 
+**/
+
+SELECT week_no,fiscal_wk_ending_date,quarter,
+sum(net_new_arr_actual)
+
+FROM dbo.rtb
+
+group by week_no, fiscal_wk_ending_date,quarter
+order by 2;

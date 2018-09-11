@@ -21,24 +21,35 @@ class KendoDropDownList extends Component {
         // Initialize state
         this.state = {
             data: this.props.availableFilters.quarters,
-            value: 'All Data',
             type: props.type,
-            defaultFilters:[
-                {index: 0, category: 'quarters', value:1}
-            ]
+            val: this.props.defaultItem
+            
         }
-
+        console.log('LOGGING THE CURRENT FILTER ARRAY: ',this.props.defaultItem);
         //Binding functions to this
         this.handleFilterChange = this.handleFilterChange.bind(this);
-
+        this.getNewValue = this.getNewValue.bind(this);
     }
   
+   shouldComponentUpdate(){
+       return true;
+   }
+  
+   getNewValue(){
+
+
+    switch(this.props.type){
+        case 'quarters':
+            this.setState({val: this.activeFilters.quarters[0]});
+    }
+   }
+
     //Event handler for when a drop down list item is selected
     handleFilterChange(event){
         this.props.addValueToActiveMultiFilter(event.target.value);
-        this.setState({value: event.target.value});
+        // this.setState({value: event.target.value});
         this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
-      
+        // this.getFilterValue();
 
     }
     render(){
@@ -48,15 +59,16 @@ class KendoDropDownList extends Component {
                 textField="value"
                 data={this.props.data} 
                 onChange={this.handleFilterChange}
-                value={this.state.value}
+                defaultItem={ this.state.val}
                 defaultvalue={'All Data'} />
+           
       
         )
     }
 }
 
 function mapStateToProps(state) {
-    // console.log(state.availableFilters);
+    // console.log('Active filters: ',state.activeFilters);
     return {activeFilters:state.activeFilters, availableFilters: state.availableFilters};
   }
   

@@ -22,6 +22,7 @@ import {
 import axios from 'axios';
 import * as utils from '../utilities';
 import _ from 'lodash';
+import {InofoburstAzure, InfoburstAzure} from '../variables';
 // general use
 
 const prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
@@ -99,15 +100,25 @@ export function updateMultiFilterStatus(status) {
 export function generateFilterData() {
 
     let responseArray = [];
-    const maResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=marketAreaList&json=1', {headers: headers, responseType: 'text'})
-    const segementsResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_Segments&json=1', {headers: headers, responseType: 'text'});
-    const subscriptionResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_Subscriptions&json=1', {headers: headers, responseType: 'text'});
-    const routesResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_RouteToMarket&json=1', {headers: headers, responseType: 'text'});
-    const quartersResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_Quarters&json=1', {headers: headers, responseType: 'text'});
-    const productResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_ProductName&json=1', {headers: headers, responseType: 'text'});
-    const geoResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_GeoCode&json=1', {headers: headers, responseType: 'text'});
     
+    // const maResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=marketAreaList&json=1', {headers: headers, responseType: 'text'})
+    // const segementsResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_Segments&json=1', {headers: headers, responseType: 'text'});
+    // const subscriptionResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_Subscriptions&json=1', {headers: headers, responseType: 'text'});
+    // const routesResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_RouteToMarket&json=1', {headers: headers, responseType: 'text'});
+    // const quartersResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_Quarters&json=1', {headers: headers, responseType: 'text'});
+    // const productResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_ProductName&json=1', {headers: headers, responseType: 'text'});
+    // const geoResponse = axios.get('http://vm1.infosol.com:8551/infoburst/rest/exec/xdcqry/447?q=MultiFilter_GeoCode&json=1', {headers: headers, responseType: 'text'});
+    let newTok = 'Basic ' + btoa(InfoburstAzure.user + ':' + InfoburstAzure.pass);
+    let newHeaders = {'Authorization': newTok , 'Accept': '*/*'};
 
+    const maResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=MarketFilters&json=1', {headers: newHeaders, responseType: 'text'})
+    const segementsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=SegmentFilters&json=1', {headers: newHeaders, responseType: 'text'});
+    const subscriptionResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=SubscriptionFilter&json=1', {headers: newHeaders, responseType: 'text'});
+    const routesResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=RouteFilters&json=1', {headers: newHeaders, responseType: 'text'});
+    const quartersResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=QuarterFilter&json=1', {headers: newHeaders, responseType: 'text'});
+    const productResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=ProductFilters&json=1', {headers: newHeaders, responseType: 'text'});
+    const geoResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=GeoFilters&json=1', {headers: newHeaders, responseType: 'text'});
+    
     responseArray.push(quartersResponse,maResponse,productResponse,segementsResponse,subscriptionResponse,routesResponse,geoResponse);
     let promiseArr1 = Promise.all(responseArray);
     return{
@@ -230,9 +241,11 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
     const token = 'Basic ' + btoa(prod_connection['user'] + ':' + prod_connection['pass']);
     let headers = {'Authorization': token , 'Accept': '*/*'};
 
-    let newTok = 'Basic ' + btoa(dev_connection['user'] + ':' + dev_connection['pass']);
+    let newTok = 'Basic ' + btoa(InfoburstAzure.user + ':' + InfoburstAzure.pass);
     let newheaders = {'Authorization': newTok , 'Accept': '*/*'};
-    console.log(newheaders);
+    // console.log(newheaders);
+    // console.log(  InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q1' + '&json=1');
+
     // Action Variables
     let allFilters = 
     {
@@ -260,292 +273,14 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
    
         let filtersApplied = utils.findIfFilterIsApplied(_parameters);
        
-        console.log('Filters Applied: ', filtersApplied);
-        console.log('All Filters: ',allFilters);
-        console.log('Active Filters: ', _parameters);
+        // console.log('Filters Applied: ', filtersApplied);
+        // console.log('All Filters: ',allFilters);
+        // console.log('Active Filters: ', _parameters);
         utils.generateFilterParams(filterParams,filtersApplied, allFilters, _parameters)
-        console.log('Filter Params :', filterParams);
-        // if(filtersApplied.quarters){
-        //     paramValue = []
-        //     // If its all data
+        // console.log('Filter Params :', filterParams);
 
-        //         //Add all the values from allFilters to param value
-
-        // } else {
-        //     paramValue = []
-        //     for(let j=0;j<allFilters.quarters.length;j++){
-        //         let item = allFilters.quarters[j];
-        //             paramValue.push( item.value)
-        //     }
-        // }
-        // paramValue = utils.convertFilterList(paramValue);
-        // filterParams[0].value = paramValue;
-
-    // for (let i = 0; i <=6; i++){
-    //     switch(i){
-    //         case 0: //quarters
-    //         if(filtersApplied.quarters===false){
-    //             let paramValue = []
-    //             for(let j=0;j<availableFilters.quarters.length;j++){
-    //                 let item = availableFilters.quarters[j];
-    //                 if(item.value !== 'All Data'){
-    //                     paramValue.push( item.value)
-    //                 }
-    //             }
-              
-    //             // console.log('quarter param value', paramValue);
-    //             paramValue = utils.convertFilterList(paramValue);
-    //             // console.log('quarter param string',paramValue)
-    //             p.push({prompt: 'quarterFilters' , value:paramValue })
-                
-    //         } else{
-    //             let paramValue = [];
-    //             let a = _.findIndex(_parameters, function(item) {return item.category ==='quarters'});
-
-    //              if(_parameters[a].value === 'All Data') {
-    //                 for(let j=0;j<availableFilters.quarters.length;j++){
-    //                     let item = availableFilters.quarters[j];
-    //                     if(item.value !== 'All Data'){
-    //                         paramValue.push( item.value)
-    //                     }
-    //                 }
-
-    //              }
-    //              else{
-    //                  paramValue.push(_parameters[a].value);
-    //              }
-    //              paramValue = utils.convertFilterList(paramValue);
-
-    //              p[0].value = paramValue;
-    //             // p.{prompt: 'quarterFilters' , value:paramValue })
-
-    //         }
-    //         break;
-    //         case 1: // geos
-    //         if(filtersApplied.geos===false){
-    //             let paramValue = []
-    //             for(let j=0;j<availableFilters.geos.length;j++){
-    //                 let item = availableFilters.geos[j];
-    //                 if(item.value !== 'All Data'){
-    //                     paramValue.push( item.value)
-    //                 }
-    //             }
-    //             // console.log('geos param value', paramValue);
-    //             paramValue = utils.convertFilterList(paramValue);
-    //             // console.log('geos param string',paramValue)
-                
-    //             p.push({prompt: 'geoFilters' , value: paramValue })
-    //         } else{
-    //             let paramValue = [];
-    //             let a = _.findIndex(_parameters, function(item) {return item.category ==='geos'});
-
-    //              if(_parameters[a].value === 'All Data') {
-    //                 for(let j=0;j<availableFilters.geos.length;j++){
-    //                     let item = availableFilters.geos[j];
-    //                     if(item.value !== 'All Data'){
-    //                         paramValue.push( item.value)
-    //                     }
-    //                 }
-
-    //              }
-    //              else{
-    //                  paramValue.push(_parameters[a].value);
-    //              }
-    //              paramValue = utils.convertFilterList(paramValue);
-
-    //              p[1].value = paramValue;
-    //             // p.{prompt: 'quarterFilters' , value:paramValue })
-
-    //         }
-            
-    //         break;
-    //         case 2: // products
-    //         if(filtersApplied.products===false){
-    //             let paramValue = []
-    //             for(let j=0;j<availableFilters.products.length;j++){
-    //                 let item = availableFilters.products[j];
-    //                 if(item.value !== 'All Data'){
-    //                     paramValue.push( item.value)
-    //                 }
-    //             }
-    //             // console.log('products param value', paramValue);
-    //             paramValue = utils.convertFilterList(paramValue);
-    //             // console.log('products param string',paramValue);
-    //             p.push({prompt: 'productFilters' , value: paramValue })
-    //         } else{
-    //             let paramValue = [];
-    //             let a = _.findIndex(_parameters, function(item) {return item.category ==='productNames'});
-
-    //              if(_parameters[a].value === 'All Data') {
-    //                 for(let j=0;j<availableFilters.products.length;j++){
-    //                     let item = availableFilters.products[j];
-    //                     if(item.value !== 'All Data'){
-    //                         paramValue.push( item.value)
-    //                     }
-    //                 }
-
-    //              }
-    //              else{
-    //                  paramValue.push(_parameters[a].value);
-    //              }
-    //              paramValue = utils.convertFilterList(paramValue);
-
-    //              p[2].value = paramValue;
-    //             // p.{prompt: 'quarterFilters' , value:paramValue })
-
-    //         }
-    //         break;
-    //         case 3: // subscriptions
-    //         if(filtersApplied.subscriptions===false){
-    //             let paramValue = []
-    //             for(let j=0;j<availableFilters.subscriptionOfferings.length;j++){
-    //                 let item = availableFilters.subscriptionOfferings[j];
-    //                 if(item.value !== 'All Data'){
-    //                     paramValue.push( item.value)
-    //                 }
-    //             }
-    //             // console.log('subscriptions param value', paramValue);
-                
-    //             paramValue = utils.convertFilterList(paramValue);
-    //             // console.log('subscriptions param string',paramValue);
-    //             p.push({prompt: 'subscriptionFilters' , value: paramValue })
-    //         }else{
-    //             let paramValue = [];
-    //             let a = _.findIndex(_parameters, function(item) {return item.category ==='subscriptionOfferings'});
-
-    //              if(_parameters[a].value === 'All Data') {
-    //                 for(let j=0;j<availableFilters.subscriptionOfferings.length;j++){
-    //                     let item = availableFilters.subscriptionOfferings[j];
-    //                     if(item.value !== 'All Data'){
-    //                         paramValue.push( item.value)
-    //                     }
-    //                 }
-
-    //              }
-    //              else{
-    //                  paramValue.push(_parameters[a].value);
-    //              }
-    //              paramValue = utils.convertFilterList(paramValue);
-
-    //              p[3].value = paramValue;
-    //             // p.{prompt: 'quarterFilters' , value:paramValue })
-
-    //         }
-    //         break;
-    //         case 4: // markets
-    //         if(filtersApplied.markets===false){
-    //             let paramValue = []
-    //             for(let j=0;j<availableFilters.marketAreas.length;j++){
-    //                 let item = availableFilters.marketAreas[j];
-    //                 if(item.value !== 'All Data'){
-    //                     paramValue.push( item.value)
-    //                 }
-    //             }
-    //             // console.log('markets param value', paramValue);
-                
-    //             paramValue = utils.convertFilterList(paramValue);
-    //             // console.log('markets param string',paramValue);
-    //             p.push({prompt: 'maFilters' , value: paramValue })
-    //         }else{
-    //             let paramValue = [];
-    //             let a = _.findIndex(_parameters, function(item) {return item.category ==='marketAreas'});
-
-    //              if(_parameters[a].value === 'All Data') {
-    //                 for(let j=0;j<availableFilters.marketAreas.length;j++){
-    //                     let item = availableFilters.marketAreas[j];
-    //                     if(item.value !== 'All Data'){
-    //                         paramValue.push( item.value)
-    //                     }
-    //                 }
-
-    //              }
-    //              else{
-    //                  paramValue.push(_parameters[a].value);
-    //              }
-    //              paramValue = utils.convertFilterList(paramValue);
-
-    //              p[4].value = paramValue;
-    //             // p.{prompt: 'quarterFilters' , value:paramValue })
-
-    //         }
-    //         break;
-    //         case 5: // routes
-    //         if(filtersApplied.routes===false){
-    //             let paramValue = []
-    //             for(let j=0;j<availableFilters.routeToMarkets.length;j++){
-    //                 let item = availableFilters.routeToMarkets[j];
-    //                 if(item.value !== 'All Data'){
-    //                     paramValue.push( item.value)
-    //                 }
-    //             }
-    //             // console.log('routes param value', paramValue);
-                
-    //             paramValue = utils.convertFilterList(paramValue);
-    //             // console.log('routes param string',paramValue);
-    //             p.push({prompt: 'routeFilters' , value: paramValue })
-    //         } else{
-    //             let paramValue = [];
-    //             let a = _.findIndex(_parameters, function(item) {return item.category ==='routeToMarkets'});
-
-    //              if(_parameters[a].value === 'All Data') {
-    //                 for(let j=0;j<availableFilters.routeToMarkets.length;j++){
-    //                     let item = availableFilters.routeToMarkets[j];
-    //                     if(item.value !== 'All Data'){
-    //                         paramValue.push( item.value)
-    //                     }
-    //                 }
-
-    //              }
-    //              else{
-    //                  paramValue.push(_parameters[a].value);
-    //              }
-    //              paramValue = utils.convertFilterList(paramValue);
-
-    //              p[5].value = paramValue;
-    //             // p.{prompt: 'quarterFilters' , value:paramValue })
-
-    //         }
-    //         break;
-    //         case 6: // segments
-    //         if(filtersApplied.segments===false){
-    //             let paramValue = []
-    //             for(let j=0;j<availableFilters.segments.length;j++){
-    //                 let item = availableFilters.segments[j];
-    //                 if(item.value !== 'All Data'){
-    //                     paramValue.push( item.value)
-    //                 }
-    //             }
-    //             // console.log('segments param value', paramValue);
-                
-    //             paramValue = utils.convertFilterList(paramValue);
-    //             // console.log('segments param string',paramValue);
-    //             p.push({prompt: 'segmentFilters' , value: paramValue })
-    //         } else{
-    //             let paramValue = [];
-    //             let a = _.findIndex(_parameters, function(item) {return item.category ==='segments'});
-
-    //              if(_parameters[a].value === 'All Data') {
-    //                 for(let j=0;j<availableFilters.segments.length;j++){
-    //                     let item = availableFilters.segments[j];
-    //                     if(item.value !== 'All Data'){
-    //                         paramValue.push( item.value)
-    //                     }
-    //                 }
-
-    //              }
-    //              else{
-    //                  paramValue.push(_parameters[a].value);
-    //              }
-    //              paramValue = utils.convertFilterList(paramValue);
-
-    //              p[6].value = paramValue;
-    //             // p.{prompt: 'quarterFilters' , value:paramValue })
-
-    //         }
-    //         break;
-
-    //     }
-    // }
+        // switch(filterParams[0].value)
+      
 
     // console.log('P afeter modifying all dataa filter',p);
     let params1 = filterParams.reduce((prev, param) => {
@@ -553,14 +288,26 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
       }, '');
-    console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');
-    const response1 = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1', 
-    {headers: headers, responseType: 'text'});
     // console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');
-    const response2 = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredTarget + params1 + '&json=1', 
-    {headers: headers, responseType: 'text'});
+    const response1 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q1'  + params1 + '&json=1', 
+    {headers: newheaders, responseType: 'text'});
+    const response2 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q2'  + params1 + '&json=1', 
+    {headers: newheaders, responseType: 'text'});
+    const response3 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q3'  + params1 + '&json=1', 
+    {headers: newheaders, responseType: 'text'});
+    const response4 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q4'  + params1 + '&json=1', 
+    {headers: newheaders, responseType: 'text'});
+    const response5 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2018q1'  + params1 + '&json=1', 
+    {headers: newheaders, responseType: 'text'});
+    const response6 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2018q2'  + params1 + '&json=1', 
+    {headers: newheaders, responseType: 'text'});
+    const response7 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2018q3'  + params1 + '&json=1', 
+    {headers: newheaders, responseType: 'text'});
+    // console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');
+    // const response2 = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredTarget + params1 + '&json=1', 
+    // {headers: headers, responseType: 'text'});
 
-    responseArr.push(response1, response2);
+    responseArr.push(response1, response2,response3,response4,response5,response6,response7);
     let promiseArr = Promise.all(responseArr);
     // console.log(responseArr);
 

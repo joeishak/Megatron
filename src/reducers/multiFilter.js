@@ -110,7 +110,7 @@ function processDropDownListFilterValue(type, data){
             return {
                 index: count++,
                 category: type,
-                value: item.Geo
+                value: item['geo_code']
             }
         });
         return newArr;
@@ -119,7 +119,7 @@ function processDropDownListFilterValue(type, data){
             return {
                 index: count++,
                 category: type,
-                value: item.Quarter
+                value: item['quarter']
             }
         });
         
@@ -129,7 +129,7 @@ function processDropDownListFilterValue(type, data){
             return {
                 index: count++,
                 category: type,
-                value: item.market_area_code
+                value: item['market_area_code']
             }
         });
         return newArr;
@@ -139,7 +139,7 @@ function processDropDownListFilterValue(type, data){
             return {
                 index: count++,
                 category: type,
-                value: item.segment_pivot
+                value: item['segment_pivot']
             }
         });
         return newArr;
@@ -148,7 +148,7 @@ function processDropDownListFilterValue(type, data){
             return {
                 index: count++,
                 category: type,
-                value: item.Subscription
+                value: item['subscription_offering']
             }
         });
         return newArr;
@@ -157,7 +157,7 @@ function processDropDownListFilterValue(type, data){
             return {
                 index: count++,
                 category: type,
-                value: item.ProductName
+                value: item['product_name']
             }
         });
         return newArr;
@@ -166,7 +166,7 @@ function processDropDownListFilterValue(type, data){
             return {
                 index: count++,
                 category: type,
-                value: item.RouteToMarket
+                value: item['route_to_market']
             }
         });
         return newArr;

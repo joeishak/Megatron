@@ -184,27 +184,34 @@ class TopSummaryBox extends Component {
     }
 
     renderDollarValue(value) {
+        // 1,000,000
+        // 1,000,000,000
         let thousandsLength = 6;
-        let millionsLength = 7;
-        let billionsLength = 8;
+        let millionsLength =  7;
+        let billionsLength =  10;
+        let trillionsLength = 13;
         let suffix = 'K';
-        // console.log(value);
 
         let returnValue = '';
 
 
-        let length = value.toString().length;
-        // console.log(length);
+        value = parseInt(value)
+        // TODO ** Count only the left side of the decimal
+        let length = parseInt(value).toString().length;
+        // console.log(value);
        
         if (length <= thousandsLength) {
-            value = (value/1000).toFixed(1);
+            value = parseInt(value/1000).toFixed(1);
             returnValue = value.toString() + 'K';
-        } else if (length >= millionsLength) {
-            value = (value/1000).toFixed(1);
+        } else if (length <= millionsLength) {
+            value = parseInt(value/1000000).toFixed(1);
             returnValue = value.toString() + 'M';
-        } else if (length >= billionsLength) {
-            value = (value/1000).toFixed(1);
+        } else if (length <= billionsLength) {
+            value = parseInt(value/10000000).toFixed(1);
             returnValue = value.toString() + 'B';
+        } else if (length <= trillionsLength) {
+            value = (parseInt(value)/1000).toFixed(1);
+            returnValue = value.toString() + 'T';
         }
 
         return returnValue;
@@ -332,7 +339,7 @@ class TopSummaryBox extends Component {
         return(
             
             <Grid className={SummaryBoxStyles} fluid>
-            {console.log('THIS', this.props.finData)}
+            {/* {console.log('THIS', this.props.finData)} */}
                 <CSSTransitionGroup transitionName="example"
                     transitionAppear={true} transitionAppearTimeout={1000}
                     transitionEnter={false} transitionLeave={false} >

@@ -21,7 +21,9 @@ class FilterPillBox extends  Component {
     
     //Function that calls the action which removes the specified multifilter according to the index
     removeFilter(){
-        this.props.removeMultiFilter(this.props.data.index);
+        console.log(this.props.data);
+        this.props.removeMultiFilter(this.props.data);
+        this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
     }
     render(){
         return(
@@ -39,6 +41,9 @@ class FilterPillBox extends  Component {
     }
 }
 function mapStateToProps(state){
-    return {}
+    return {
+        activeFilters: state.activeFilters,
+        availableFilters: state.availableFilters
+    }
 }
 export default connect(mapStateToProps,actions)(FilterPillBox)
