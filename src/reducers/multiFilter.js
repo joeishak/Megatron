@@ -19,7 +19,6 @@ export default function(state = defaultState, action) {
     switch(action.type) {
         case GENERATE_FILTER_DATA:
 
-        console.log('generating filter data');
         let quarterFilters = action.payload[0].data;
         let marketsFilters = action.payload[1].data;
         let productsFilters = action.payload[2].data;
@@ -85,7 +84,16 @@ export default function(state = defaultState, action) {
                 segments: newSegmentsState,
             }
         }
-       
+        console.log('generating filter data',{
+        quarters: newQuartersState,
+        geos: newGeoState,
+        products: newProductState,
+        subscriptionOfferings: newSubscriptionState,
+        marketAreas: newMAState,
+        routeToMarkets: newRouteState,
+        segments: newSegmentsState,
+    });
+
         return {
             quarters: newQuartersState,
             geos: newGeoState,

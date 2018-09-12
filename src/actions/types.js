@@ -42,4 +42,4 @@ export const UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD  = "update_journey_summary_activ
 
 export const GET_IBE_DATA = "get_ibe_data";
 export const GET_FILTERED_IBE_DATA = 'get_filtered_ibe_data';
-
+export const GET_QUERY_FILTERED_IBE_DATA = 'get_query_filtered_ibe_data';

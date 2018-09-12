@@ -25,42 +25,34 @@ class KendoDropDownList extends Component {
             val: this.props.defaultItem
             
         }
-        console.log('LOGGING THE CURRENT FILTER ARRAY: ',this.props.defaultItem);
+        // console.log('LOGGING THE CURRENT FILTER ARRAY: ',this.props.defaultItem);
         //Binding functions to this
         this.handleFilterChange = this.handleFilterChange.bind(this);
-        this.getNewValue = this.getNewValue.bind(this);
+        // this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
+        
     }
   
-   shouldComponentUpdate(){
-       return true;
-   }
-  
-   getNewValue(){
-
-
-    switch(this.props.type){
-        case 'quarters':
-            this.setState({val: this.activeFilters.quarters[0]});
-    }
-   }
-
     //Event handler for when a drop down list item is selected
     handleFilterChange(event){
         this.props.addValueToActiveMultiFilter(event.target.value);
         // this.setState({value: event.target.value});
-        this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
+        // this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
         // this.getFilterValue();
 
     }
     render(){
+        
+        // console.log('Default Item',this.props.defaultItem);
+
         return(
             <DropDownList 
                 style={inStyles.background} 
                 textField="value"
                 data={this.props.data} 
                 onChange={this.handleFilterChange}
-                defaultItem={ this.state.val}
-                defaultvalue={'All Data'} />
+                defaultItem={ this.props.defaultItem[0]}
+                value = {this.props.defaultItem[0]}
+                 />
            
       
         )

@@ -18,7 +18,7 @@ export default function(state = {
     switch(action.type) {
 
         case  ADD_MULTI_FILTER:
-           copyOfState = {...state};
+        copyOfState = JSON.parse(JSON.stringify(state))  
             console.log(action.payload);
             // console.log(action.payload);
              cat = action.payload.category;
@@ -59,11 +59,12 @@ export default function(state = {
             return state;
         case REMOVE_MULTI_FILTER:
             let filterToBeRemoved = action.payload;
-             copyOfState = {...state};    
+             copyOfState = JSON.parse(JSON.stringify(state))  
             // console.log('The filter you want to remove', filterToBeRemoved);
             // console.log('The new copy of state',newFilters); 
              cat= action.payload.category;
             // console.log('copy of state',copyOfState);
+            // console.log(copyOfState === state);
           
             switch(cat){
                 case 'geos':
@@ -94,11 +95,8 @@ export default function(state = {
                 break;
 
             }
-            // _.remove(newFilters,(n)=>{
-            //     return n.index===filterToBeRemoved;
-            // });
-            // console.log('New filters after removing the match',copyOfState);
-            return {...copyOfState};
+           
+            return copyOfState;
         default: 
             return state;
     }

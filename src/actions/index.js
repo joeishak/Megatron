@@ -16,7 +16,8 @@ import {
     UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD,
     UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD,
     GET_IBE_DATA,
-    GET_FILTERED_IBE_DATA
+    GET_FILTERED_IBE_DATA,
+    GET_QUERY_FILTERED_IBE_DATA
 
 } from 'actions/types';
 import axios from 'axios';
@@ -31,8 +32,16 @@ const dev_connection = { 'user': 'admin', 'pass': 'admin' };
 const environment = { infosolApi: 'http://vm1.infosol.com:8551' };
 
 // Multifilter use
-const token = 'Basic ' + btoa('JR' + ':' + 'ft3t7pgz');
+// const token = 'Basic ' + btoa('JR' + ':' + 'ft3t7pgz');
 let headers = {'Authorization': token , 'Accept': '*/*'};
+const xdc = '447';
+const responseArr = [];
+const filteredActual = 'FinCards_Actual_Filtered';
+const filteredTarget = 'FinCards_Target_Filtered';
+const token = 'Basic ' + btoa(prod_connection['user'] + ':' + prod_connection['pass']);
+
+let newTok = 'Basic ' + btoa(InfoburstAzure.user + ':' + InfoburstAzure.pass);
+let newheaders = {'Authorization': newTok , 'Accept': '*/*'};
 /**
  * Change the state of Authentication for the user.
  * 
@@ -231,22 +240,10 @@ export function getAdobeData() {
         payload: {}
     }
 }
+export function getQueryFilteredIBEData(_parameters,availableFilters){
 
-export function getFilteredIBEDAta(_parameters,availableFilters){
-    // Infoburst Variables
-    const xdc = '447';
-    const responseArr = [];
-    const filteredActual = 'FinCards_Actual_Filtered';
-    const filteredTarget = 'FinCards_Target_Filtered';
-    const token = 'Basic ' + btoa(prod_connection['user'] + ':' + prod_connection['pass']);
-    let headers = {'Authorization': token , 'Accept': '*/*'};
-
-    let newTok = 'Basic ' + btoa(InfoburstAzure.user + ':' + InfoburstAzure.pass);
-    let newheaders = {'Authorization': newTok , 'Accept': '*/*'};
-    // console.log(newheaders);
-    // console.log(  InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q1' + '&json=1');
-
-    // Action Variables
+    console.log("Getting Square Data for", _parameters, 'from', availableFilters);
+    let quarterQuery;
     let allFilters = 
     {
         quarters: Object.values(availableFilters.quarters),
@@ -257,7 +254,6 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
         subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
         routeToMarkets: Object.values(availableFilters.routeToMarkets)
     }
-    let paramValue = [];
     let filterParams = [
         {prompt: 'quarterFilters', value: ''},
         {prompt: 'productFilters', value: ''},
@@ -268,52 +264,202 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
         {prompt: 'segmentFilters', value: ''}
     ];
 
-    
+    filterParams[1].value = _parameters.products[0].value;
+    filterParams[2].value = _parameters.geos[0].value;
+    filterParams[3].value = _parameters.subscriptions[0].value;
+    filterParams[4].value = _parameters.markets[0].value;
+    filterParams[5].value = _parameters.routes[0].value;
+    filterParams[6].value = _parameters.segments[0].value;
+
+    quarterQuery = Object.assign({},_parameters.quarters[0]);
+
+
+    console.log(quarterQuery);
+
+    //Remove First Row from all the filters 
+    //Contains All Data
     allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
    
-        let filtersApplied = utils.findIfFilterIsApplied(_parameters);
-       
-        // console.log('Filters Applied: ', filtersApplied);
-        // console.log('All Filters: ',allFilters);
-        // console.log('Active Filters: ', _parameters);
-        utils.generateFilterParams(filterParams,filtersApplied, allFilters, _parameters)
-        // console.log('Filter Params :', filterParams);
+    console.log(allFilters);
+    console.log(_parameters);
+    //Determines if a filter is applied
+    // Remove because a filter is always active
+    // let filtersApplied = utils.findIfFilterIsApplied(_parameters);
 
-        // switch(filterParams[0].value)
-      
 
-    // console.log('P afeter modifying all dataa filter',p);
+    utils.generateFilterParams(filterParams,allFilters,_parameters);
+     
     let params1 = filterParams.reduce((prev, param) => {
-        let p = '';
-        p = prev + '&' + param.prompt + '=' + param.value;
-        return p;
+            let p = '';
+            p = prev + '&' + param.prompt + '=' + param.value;
+            return p;
+        
       }, '');
-    // console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');
-    const response1 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q1'  + params1 + '&json=1', 
-    {headers: newheaders, responseType: 'text'});
-    const response2 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q2'  + params1 + '&json=1', 
-    {headers: newheaders, responseType: 'text'});
-    const response3 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q3'  + params1 + '&json=1', 
-    {headers: newheaders, responseType: 'text'});
-    const response4 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q4'  + params1 + '&json=1', 
-    {headers: newheaders, responseType: 'text'});
-    const response5 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2018q1'  + params1 + '&json=1', 
-    {headers: newheaders, responseType: 'text'});
-    const response6 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2018q2'  + params1 + '&json=1', 
-    {headers: newheaders, responseType: 'text'});
-    const response7 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2018q3'  + params1 + '&json=1', 
-    {headers: newheaders, responseType: 'text'});
-    // console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');
-    // const response2 = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredTarget + params1 + '&json=1', 
-    // {headers: headers, responseType: 'text'});
 
+
+      const response1 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q1'  + params1 + '&json=1', 
+      {headers: newheaders, responseType: 'text'});
+      const response2 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q2'  + params1 + '&json=1', 
+      {headers: newheaders, responseType: 'text'});
+      const response3 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q3'  + params1 + '&json=1', 
+      {headers: newheaders, responseType: 'text'});
+      const response4 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q4'  + params1 + '&json=1', 
+      {headers: newheaders, responseType: 'text'});
+      const response5 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2018q1'  + params1 + '&json=1', 
+      {headers: newheaders, responseType: 'text'});
+      const response6 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2018q2'  + params1 + '&json=1', 
+      {headers: newheaders, responseType: 'text'});
+      const response7 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2018q3'  + params1 + '&json=1', 
+      {headers: newheaders, responseType: 'text'});
+      console.log(params1);
+      let responseArr= [];
+      switch(quarterQuery.value){
+          case '2017-Q1':
+          
+      responseArr.push(response1);
+
+          break;
+          case '2017-Q2':
+          
+      responseArr.push( response2);
+
+          break;
+          case '2017-Q3':
+        
+      responseArr.push(response3);
+
+          break;
+          case '2017-Q4':
+         
+      responseArr.push(response4);
+
+          break;
+          case '2018-Q1':
+         
+      responseArr.push(response5);
+
+          break;
+          case '2018-Q2':
+       
+      responseArr.push(response6);
+
+          break;
+          case '2018-Q3':
+       
+      responseArr.push(response7);
+
+          break;
+          default:
+  
     responseArr.push(response1, response2,response3,response4,response5,response6,response7);
-    let promiseArr = Promise.all(responseArr);
-    // console.log(responseArr);
+
+          break;
+
+      }
+
+    //   responseArr.push(response1, response2,response3,response4,response5,response6,response7);
+      let promiseArr = Promise.all(responseArr);
+      console.log(promiseArr);
+  
+      return {
+          type: GET_QUERY_FILTERED_IBE_DATA,
+          payload: promiseArr
+      }
+   
+
+}
+
+export function getFilteredIBEDAta(_parameters,availableFilters){
+    // Infoburst Variables
+   
+    // console.log(newheaders);
+    // console.log(  InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q1' + '&json=1');
+
+    // let queryQuarter ;
+    // // Action Variables
+    // let allFilters = 
+    // {
+    //     quarters: Object.values(availableFilters.quarters),
+    //     geos: Object.values(availableFilters.geos),
+    //     marketAreas: Object.values(availableFilters.marketAreas),
+    //     products: Object.values(availableFilters.products),
+    //     segments: Object.values(availableFilters.segments),
+    //     subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
+    //     routeToMarkets: Object.values(availableFilters.routeToMarkets)
+    // }
+    // let paramValue = [];
+    // let filterParams = [
+    //     {prompt: 'quarterFilters', value: ''},
+    //     {prompt: 'productFilters', value: ''},
+    //     {prompt: 'geoFilters', value: ''},
+    //     {prompt: 'subscriptionFilters', value: ''},
+    //     {prompt: 'maFilters', value: ''},
+    //     {prompt: 'routeFilters', value: ''},
+    //     {prompt: 'segmentFilters', value: ''}
+    // ];
+
+
+
+
+    // //Remove First Row from all the filters 
+    // //Contains All Data
+    // allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
+   
+    // //Determines if a filter is applied
+    // // Remove because a filter is always active
+    // let filtersApplied = utils.findIfFilterIsApplied(_parameters);
+       
+    //     // console.log('Filters Applied: ', filtersApplied);
+    //     // console.log('All Filters: ',allFilters);
+    //     // console.log('Active Filters: ', _parameters);
+
+       
+    //     // console.log('Filtered Params', filterParams)
+    //     // console.log('Filter Params :', filterParams);
+    // utils.generateFilterParams(filterParams,filtersApplied,allFilters,_parameters);
+    //     // console.log(filterParams);
+    //     //Check Active Quarters filter to determine what XDC to call
+    //     // switch(filterParams[0].value){
+    //     //     case 'All Data':
+    //     //         queryQuarter='All Data'
+    //     //     break;
+    //     //     default:
+    //     //         queryQuarter=filterParams[0].value
+    //     // }
+
+    // // console.log('P afeter modifying all dataa filter',p);
+    // let params1 = filterParams.reduce((prev, param) => {
+    //     let p = '';
+    //         p = prev + '&' + param.prompt + '=' + param.value;
+    //         return p;
+    //   }, '');
+
+    // // console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');
+    // const response1 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q1'  + params1 + '&json=1', 
+    // {headers: newheaders, responseType: 'text'});
+    // const response2 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q2'  + params1 + '&json=1', 
+    // {headers: newheaders, responseType: 'text'});
+    // const response3 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q3'  + params1 + '&json=1', 
+    // {headers: newheaders, responseType: 'text'});
+    // const response4 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q4'  + params1 + '&json=1', 
+    // {headers: newheaders, responseType: 'text'});
+    // const response5 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2018q1'  + params1 + '&json=1', 
+    // {headers: newheaders, responseType: 'text'});
+    // const response6 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2018q2'  + params1 + '&json=1', 
+    // {headers: newheaders, responseType: 'text'});
+    // const response7 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2018q3'  + params1 + '&json=1', 
+    // {headers: newheaders, responseType: 'text'});
+    // // console.log(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredActual + params1 + '&json=1');
+    // // const response2 = axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + filteredTarget + params1 + '&json=1', 
+    // // {headers: headers, responseType: 'text'});
+
+    // responseArr.push(response1, response2,response3,response4,response5,response6,response7);
+    // let promiseArr = Promise.all(responseArr);
+    // // console.log(responseArr);
 
     return {
         type: GET_FILTERED_IBE_DATA,
-        payload: promiseArr
+        payload: []
     }
 }
 

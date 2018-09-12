@@ -40,61 +40,25 @@ class App extends Component {
       dialogIsOpen: this.props.dialogIsOpen
     };
 
-    this.props.generateFilterData();
 
       /*Bindings  */
       this.renderBarGraph = this.renderBarGraph.bind(this);
       this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
       this.getFilters  =this.getFilters.bind(this);
 
-      this.getFilters();
-  }
-  
-  componentDidMount() {
-    // const prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
-    // const environment = { infosolApi: 'http://vm1.infosol.com:8551' };
-    // const query = 'FinCardsValue';
-    // const xdc = '447';
-    // const parameters = [];
-    // // IF the IBE cache has parameters: push prompt and value to parameters
-    // // parameters.push({prompt: 'parameter1', value: 'GEO'});
-    // // parameters.push({prompt: 'parameter2', value: 'MARKET'});
+      this.props.getAdobeData();
 
-    // let params = parameters.reduce((prev, param) => {
-    //     let p = '';
-    //     p = prev + '&' + param.prompt + '=' + param.value;
-    //     return p;
-    //   }, '');
-
-    // const token = 'Basic ' + btoa(prod_connection['user'] + ':' + prod_connection['pass']);
-    // let headers = {'Authorization': token , 'Accept': '*/*'};
-      
-    // axios.get(environment.infosolApi + '/infoburst/rest/exec/xdcqry/' + xdc + '?q=' + query + params + '&json=1', 
-    //   {headers: headers, responseType: 'text'}).then((res) => {
-    //     console.log(res.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    // this.props.generateFilterData();
     
+    this.getFilters();
 
   }
+  componentWillReceiveProps(nextProps){
+    this.props.getQueryFilteredIBEData(nextProps.activeFilters,nextProps.availableFilters)
 
+  }
   getFilters(){
-    /* Action Calls */
-
-    // const parameters = [];
-    // parameters.push({prompt: 'Spnumber', value: paramSpNumber});
-    // parameters.push({prompt: 'Filtered', value: filterToUse });
-
-
-    this.props.getAdobeData();
     this.props.generateFilterData();
-  }
-  
-  componentWillReceiveProps(){
-    this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
-
   }
   /* Sets the state passed to the bottom summary box so that it re renders */
   renderBarGraph(index){
@@ -156,7 +120,7 @@ getSummaryDetails(){
 }
 
 function mapStateToProps(state) {
-  // console.log(state);
+  console.log(state);
   return {
     dialogIsOpen:state.isDialogOpen,
     activeFilters: state.activeFilters,

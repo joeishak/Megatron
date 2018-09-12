@@ -23,7 +23,7 @@ class FilterPillBox extends  Component {
     removeFilter(){
         console.log(this.props.data);
         this.props.removeMultiFilter(this.props.data);
-        this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
+        // this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
     }
     render(){
         return(

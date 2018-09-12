@@ -105,7 +105,7 @@ class FilterBox extends Component {
     }
 }
 function mapStateToProps(state) {
-    console.log('Active Filters: ', state.activeFilters);
+    // console.log('Active Filters: ', state.activeFilters);
     return {filters: state.filters, activeFilters: state.activeFilters};
   }
   

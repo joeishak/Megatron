@@ -1,6 +1,7 @@
 import {
     GET_IBE_DATA,
-    GET_FILTERED_IBE_DATA
+    GET_FILTERED_IBE_DATA,
+    GET_QUERY_FILTERED_IBE_DATA
 } from 'actions/types';
 import { from } from 'rxjs';
 import { FinancialData } from '../variables.js';
@@ -10,6 +11,17 @@ export default function(state = [], action) {
     let actuals;
     let targets;
     let squares;
+    let totalNetNewARRActual     = 0;
+    let totalNetNewARRTarget     = 0;
+    let totalCancellationsActual = 0;
+    let totalCancellationsTarget = 0;
+    let totalGrossActual         = 0;
+    let totalGrossTarget         = 0;
+    let totalRenewalActual       = 0;
+    let totalRenewalTarget       = 0;
+    
+    let currentActual;
+    let currentTarget;
     switch(action.type) {
         case  GET_IBE_DATA:
 
@@ -24,6 +36,49 @@ export default function(state = [], action) {
             }
 
             return [...squares];
+        case GET_QUERY_FILTERED_IBE_DATA:
+            squares = FinancialData.squares;
+
+            console.log('GET QUERY IBE DATA',action.payload);
+
+            for(let i = 0; i< action.payload.length; i++) {
+                let item = action.payload[i].data[0];
+
+              totalNetNewARRActual +=  item.NetNewARRTarget;
+              totalNetNewARRTarget += item.NetNewARRTarget
+              totalCancellationsActual +=  item.NetCancellationARRActual;
+              totalCancellationsTarget +=  item.NetCancellationARRTarget;
+              totalGrossActual +=          item.GrossNewARRActual;
+              totalGrossTarget +=          item.GrossNewARRTarget;
+              totalRenewalActual +=        item.RenewalAtFPActual;
+              totalRenewalTarget+=        item.RenewalAtFPTarget;
+            }
+
+           // if (actuals[0] !== undefined && targets[0] !== undefined) {
+               for (let i = 0; i < squares.length; i++) {
+                   switch(i){
+                       case 0:
+                       currentActual = totalNetNewARRActual;
+                       currentTarget = totalNetNewARRTarget;
+                       break;
+                       case 1:
+                       currentActual = totalGrossActual;
+                       currentTarget = totalGrossTarget;
+                       break;
+                       case 2: 
+                       currentActual = totalCancellationsActual;
+                       currentTarget = totalCancellationsTarget;
+                       break;
+                       case 3: 
+                       currentActual = totalRenewalActual;
+                       currentTarget =  totalRenewalTarget;
+                       break;
+                   }
+                   squares[i]['value'] = currentActual;
+                   squares[i]['target'] = currentTarget ;  
+                
+               }
+        return [...squares];
         case GET_FILTERED_IBE_DATA:
             //  actuals = action.payload[0].data;
             //  targets = action.payload[1].data;
@@ -49,14 +104,14 @@ export default function(state = [], action) {
                 'RenewalAtFPActual',
                 'RenewalAtFPTarget'
             ]
-             var totalNetNewARRActual = _.sumBy(arrData,(item)=>{ return item.NetNewARRTarget});
-             var totalNetNewARRTarget= _.sumBy(arrData,(item)=>{ return item.NetNewARRTarget});
-             var totalCancellationsActual= _.sumBy(arrData,(item)=>{ return item.NetCancellationARRActual});
-             var totalCancellationsTarget= _.sumBy(arrData,(item)=>{ return item.NetCancellationARRTarget});
-             var totalGrossActual= _.sumBy(arrData,(item)=>{ return item.GrossNewARRActual});
-             var totalGrossTarget= _.sumBy(arrData,(item)=>{ return item.GrossNewARRTarget});
-             var totalRenewalActual= _.sumBy(arrData,(item)=>{ return item.RenewalAtFPActual});
-             var totalRenewalTarget=_.sumBy(arrData,(item)=>{ return item.RenewalAtFPTarget});
+              totalNetNewARRActual = _.sumBy(arrData,(item)=>{ return item.NetNewARRTarget});
+              totalNetNewARRTarget= _.sumBy(arrData,(item)=>{ return item.NetNewARRTarget});
+              totalCancellationsActual= _.sumBy(arrData,(item)=>{ return item.NetCancellationARRActual});
+              totalCancellationsTarget= _.sumBy(arrData,(item)=>{ return item.NetCancellationARRTarget});
+              totalGrossActual= _.sumBy(arrData,(item)=>{ return item.GrossNewARRActual});
+              totalGrossTarget= _.sumBy(arrData,(item)=>{ return item.GrossNewARRTarget});
+              totalRenewalActual= _.sumBy(arrData,(item)=>{ return item.RenewalAtFPActual});
+              totalRenewalTarget=_.sumBy(arrData,(item)=>{ return item.RenewalAtFPTarget});
 
 
 
@@ -77,8 +132,7 @@ export default function(state = [], action) {
                     // sums.renewalAtFPTarget+=parseFloat(currentQuarter.RenewalAtFPTarget);
    
             //  console.log('Sums: ',sums);
-             let currentActual;
-             let currentTarget;
+     
             // if (actuals[0] !== undefined && targets[0] !== undefined) {
                 for (let i = 0; i < squares.length; i++) {
                     switch(i){

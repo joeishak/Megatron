@@ -30,7 +30,7 @@ class KendoMultiChart extends Component {
 
     render(){
         const [ firstSeries, secondSeries, thirdSeries ] = this.props.activeSummary.details.multichart;
-        const categories = ['Q3Y18', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
+        const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
         const ChartContainer = () => (
         <Chart pannable={false} zoomable={false} >
         <ChartLegend  />

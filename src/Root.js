@@ -51,6 +51,15 @@ export default ({children, initialState ={
             value: 'All Data'
         }]
     },
+    activeFilters:{
+        geos:[{index: 205, category: "geos", value: "All Data"}],
+        quarters:[{index: 211, category: "quarters", value: "All Data"}],
+        segments:[{index: 209, category: "segments", value: "All Data"}],
+        subscriptions:[{index: 210, category: "subscriptionOfferings", value: "All Data"}],
+        markets: [{index: 206, category: "marketAreas", value: "All Data"}],
+        routes:[{index: 208, category: "routeToMarkets", value: "All Data"}],
+        products:[{index: 207, category: "productNames", value: "All Data"}]
+    },
     switchFilter: false,
     detailsIsOpen: false,
     activeSummarySquare: {

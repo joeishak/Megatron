@@ -16,13 +16,14 @@ class CustomDropDownPanel extends Component {
             isOpen: false,
             isClosed: true,
             showSlide: this.props.showSlide,
-            showContainer: this.props.showContainer
+            showContainer: this.props.showContainer,
+            activeFil: this.props.activeFilters
         }
         //Binding functions to this
 
     }
 
-   
+  
     render(){
         const {availableFilters} = this.props;
        const show = this.props.showSlide;
@@ -103,7 +104,7 @@ class CustomDropDownPanel extends Component {
     }
 }
 function mapStateToProps(state) {
-    // console.log(state.availableFilters)
+    // console.log(state.activeFilters)
     return {availableFilters: state.availableFilters,activeFilters: state.activeFilters};
   }
   

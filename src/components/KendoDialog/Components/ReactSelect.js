@@ -21,10 +21,6 @@ let transformList = (objList) => {
         }
 
     }
-<<<<<<< HEAD
-    // console.log(newObjList);
-=======
->>>>>>> 76068f87b78544db00e0f1ea6a118ab57ffc69b7
     return newObjList;
 };
 
