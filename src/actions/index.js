@@ -250,10 +250,89 @@ export function getFilteredIBEDAta(_parameters,availableFilters){
         {prompt: 'segmentFilters', value: ''}
     ];
 
-    
+    // filterParams[0].value = _parameters.quarters[0].value;
+    filterParams[1].value = _parameters.products[0].value;
+    filterParams[2].value = _parameters.geos[0].value;
+    filterParams[3].value = _parameters.subscriptions[0].value;
+    filterParams[4].value = _parameters.markets[0].value;
+    filterParams[5].value = _parameters.routes[0].value;
+    filterParams[6].value = _parameters.segments[0].value;
+
+    quarterQuery = Object.assign({},_parameters.quarters[0]);
+
+
+    console.log(quarterQuery);
+
+    //Remove First Row from all the filters 
+    //Contains All Data
     allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
    
-        let filtersApplied = utils.findIfFilterIsApplied(_parameters);
+    console.log(allFilters);
+    console.log(_parameters);
+    //Determines if a filter is applied
+    // Remove because a filter is always active
+    // let filtersApplied = utils.findIfFilterIsApplied(_parameters);
+
+
+    utils.generateFilterParams(filterParams,allFilters,_parameters);
+     
+    let params1 = filterParams.reduce((prev, param) => {
+            let p = '';
+            p = prev + '&' + param.prompt + '=' + param.value;
+            return p;
+        
+      }, '');
+
+
+      console.log(params1);
+      const response1 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q1'  + params1 + '&json=1', 
+      {headers: newheaders, responseType: 'text'});
+      const response2 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q2'  + params1 + '&json=1', 
+      {headers: newheaders, responseType: 'text'});
+      const response3 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q3'  + params1 + '&json=1', 
+      {headers: newheaders, responseType: 'text'});
+      const response4 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q4'  + params1 + '&json=1', 
+      {headers: newheaders, responseType: 'text'});
+      const response5 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2018q1'  + params1 + '&json=1', 
+      {headers: newheaders, responseType: 'text'});
+      const response6 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2018q2'  + params1 + '&json=1', 
+      {headers: newheaders, responseType: 'text'});
+      const response7 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2018q3'  + params1 + '&json=1', 
+      {headers: newheaders, responseType: 'text'});
+      console.log(params1);
+      let responseArr= [];
+      switch(quarterQuery.value){
+          case '2017-Q1':
+          
+      responseArr.push(response1);
+
+          break;
+          case '2017-Q2':
+          
+      responseArr.push( response2);
+
+          break;
+          case '2017-Q3':
+        
+      responseArr.push(response3);
+
+          break;
+          case '2017-Q4':
+         
+      responseArr.push(response4);
+
+          break;
+          case '2018-Q1':
+         
+      responseArr.push(response5);
+
+          break;
+          case '2018-Q2':
+       
+      responseArr.push(response6);
+
+          break;
+          case '2018-Q3':
        
         console.log('Filters Applied: ', filtersApplied);
         console.log('All Filters: ',allFilters);
