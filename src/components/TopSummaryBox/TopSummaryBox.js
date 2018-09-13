@@ -186,28 +186,34 @@ class TopSummaryBox extends Component {
     renderDollarValue(value) {
         // 1,000,000
         // 1,000,000,000
+        let hundredLength = 3;
         let thousandsLength = 6;
-        let millionsLength =  7;
-        let billionsLength =  10;
+        let millionsLength =  10;
+        let billionsLength =  13;
         let trillionsLength = 13;
         let suffix = 'K';
 
         let returnValue = '';
 
 
+        
+
         value = parseInt(value)
         // TODO ** Count only the left side of the decimal
-        let length = parseInt(value).toString().length;
-        // console.log(value);
+        let length = value.toString().length;
+        console.log(value);
        
-        if (length <= thousandsLength) {
-            value = parseInt(value/1000).toFixed(1);
+        if (length > hundredLength && length <= thousandsLength) {
+            value = (value/1000).toFixed(1);
             returnValue = value.toString() + 'K';
-        } else if (length <= millionsLength) {
-            value = parseInt(value/1000000).toFixed(1);
+        } else if (length > thousandsLength && length <= millionsLength) {
+            value = (value/1000000).toFixed(1);
             returnValue = value.toString() + 'M';
-        } else if (length <= billionsLength) {
-            value = parseInt(value/10000000).toFixed(1);
+            
+            // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
+        } else if (length > millionsLength && length <= billionsLength) {
+            value = (value/10000000000).toFixed(1);
+           
             returnValue = value.toString() + 'B';
         } else if (length <= trillionsLength) {
             value = (parseInt(value)/1000).toFixed(1);
@@ -228,6 +234,7 @@ class TopSummaryBox extends Component {
             return (
              <div className="chartRow">
               { this.props.finData.map(item=>{
+                  console.log(item);
                 return (
                     <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.enableChart1Arrow} key={item.index}>
                             <div >

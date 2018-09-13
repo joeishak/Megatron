@@ -44,7 +44,7 @@ export default function(state = [], action) {
             for(let i = 0; i< action.payload.length; i++) {
                 let item = action.payload[i].data[0];
 
-              totalNetNewARRActual +=  item.NetNewARRTarget;
+              totalNetNewARRActual +=  item.NetNewARRActual;
               totalNetNewARRTarget += item.NetNewARRTarget
               totalCancellationsActual +=  item.NetCancellationARRActual;
               totalCancellationsTarget +=  item.NetCancellationARRTarget;
@@ -78,6 +78,7 @@ export default function(state = [], action) {
                    squares[i]['target'] = currentTarget ;  
                 
                }
+               console.log([...squares])
         return [...squares];
         case GET_FILTERED_IBE_DATA:
             //  actuals = action.payload[0].data;
@@ -104,7 +105,7 @@ export default function(state = [], action) {
                 'RenewalAtFPActual',
                 'RenewalAtFPTarget'
             ]
-              totalNetNewARRActual = _.sumBy(arrData,(item)=>{ return item.NetNewARRTarget});
+              totalNetNewARRActual = _.sumBy(arrData,(item)=>{ return item.NetNewARRActual});
               totalNetNewARRTarget= _.sumBy(arrData,(item)=>{ return item.NetNewARRTarget});
               totalCancellationsActual= _.sumBy(arrData,(item)=>{ return item.NetCancellationARRActual});
               totalCancellationsTarget= _.sumBy(arrData,(item)=>{ return item.NetCancellationARRTarget});
@@ -160,7 +161,7 @@ export default function(state = [], action) {
                 // console.log(squares);
             // }
             // console.log('Squares form IBE: ', squares);
-            return [...squares];
+            return [squares];
         default: 
             return state;
     }

@@ -62,10 +62,12 @@ export function findIfFilterIsApplied(arr){
  * @param {Array} _activeParams 
  */
 export function generateFilterParams(filterParams, allFilters, _activeParams){
-  let paramValue = [];
+  let paramValue;
 
     //Quarters
-    // If its all data
+    paramValue = [];
+
+    // // If its all data
     // if(isAllData(_activeParams.quarters[0].value)){
     //   //Add all the values from allFilters to param value
     //   addAllValues(allFilters.quarters,paramValue);

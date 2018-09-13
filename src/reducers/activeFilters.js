@@ -18,7 +18,7 @@ export default function(state = {
     switch(action.type) {
 
         case  ADD_MULTI_FILTER:
-        copyOfState = JSON.parse(JSON.stringify(state))  
+            copyOfState = JSON.parse(JSON.stringify(state))  
             console.log(action.payload);
             // console.log(action.payload);
              cat = action.payload.category;
@@ -54,7 +54,7 @@ export default function(state = {
             }
             
             // console.log({...copyOfState})
-            return {...copyOfState};
+            return copyOfState;
         case UPDATE_MULTI_FILTER_VALUES:
             return state;
         case REMOVE_MULTI_FILTER:

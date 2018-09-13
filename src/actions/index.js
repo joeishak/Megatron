@@ -264,6 +264,7 @@ export function getQueryFilteredIBEData(_parameters,availableFilters){
         {prompt: 'segmentFilters', value: ''}
     ];
 
+    // filterParams[0].value = _parameters.quarters[0].value;
     filterParams[1].value = _parameters.products[0].value;
     filterParams[2].value = _parameters.geos[0].value;
     filterParams[3].value = _parameters.subscriptions[0].value;
@@ -297,6 +298,7 @@ export function getQueryFilteredIBEData(_parameters,availableFilters){
       }, '');
 
 
+      console.log(params1);
       const response1 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q1'  + params1 + '&json=1', 
       {headers: newheaders, responseType: 'text'});
       const response2 = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\54?q=' + '2017q2'  + params1 + '&json=1', 
