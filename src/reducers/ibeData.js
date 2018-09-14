@@ -1,16 +1,19 @@
 import {
     GET_IBE_DATA,
     GET_FILTERED_IBE_DATA,
-    GET_QUERY_FILTERED_IBE_DATA
+    GET_QUERY_FILTERED_IBE_DATA,
+    GET_QUERY_FILTERED_IBE_MULTICHART_DATA
+    
 } from 'actions/types';
 import { from } from 'rxjs';
 import { FinancialData } from '../variables.js';
 import _ from 'lodash';
+// import { GET_QUERY_FILTERED_IBE_MULTICHART_DATA } from '../actions/types.js';
 
 export default function(state = [], action) {
     let actuals;
     let targets;
-    let squares;
+    let squares = FinancialData.squares;
     let totalNetNewARRActual     = 0;
     let totalNetNewARRTarget     = 0;
     let totalCancellationsActual = 0;
@@ -22,22 +25,10 @@ export default function(state = [], action) {
     
     let currentActual;
     let currentTarget;
+    let filteredData;
     switch(action.type) {
-        case  GET_IBE_DATA:
-
-            actuals = action.payload[0].data;
-            targets = action.payload[1].data;
-            squares = FinancialData.squares;
-            
         
-            for (let i = 0; i < squares.length; i++) {
-                squares[i]['value'] = Object.values(actuals[0])[i];
-                squares[i]['target'] = Object.values(targets[0])[i] ;  
-            }
-
-            return [...squares];
         case GET_QUERY_FILTERED_IBE_DATA:
-            squares = FinancialData.squares;
 
             console.log('GET QUERY IBE DATA',action.payload);
 
@@ -80,88 +71,78 @@ export default function(state = [], action) {
                }
                console.log([...squares])
         return [...squares];
-        case GET_FILTERED_IBE_DATA:
-            //  actuals = action.payload[0].data;
-            //  targets = action.payload[1].data;
-             squares = FinancialData.squares;
-            //  console.log(action.payload);
+      
+            case GET_QUERY_FILTERED_IBE_MULTICHART_DATA:
+
+            let netArr = {
+               actual: [],
+               target: [],
+               ly: []
+            }
+            let netCancellations = {
+                actual: [],
+                target: [],
+                ly: []
+            };
+            let grossArr = {
+                actual: [],
+                target: [],
+                ly: []
+            };
+            let termRenewal = {
+                actual: [],
+                target: [],
+                ly: []
+            };
+
+
             
-             let filteredData = action.payload[0].data[0];
+            console.log('Fetched MultiChart DAta: ',action.payload);
+            for(let i = 0; i< action.payload[0].data.length; i++) {
+                let item = action.payload[0].data[i];
+                
 
-             let arrData = [];
-             let sums  = {
+                netArr.actual.push(item.NetNewARRActual);
+                netArr.target.push(item.NetNewARRTarget);
+                netArr.ly.push(item.NetNewARRLY);
+                
+                netCancellations.actual.push(item.NetCancellationARRActual);
+                netCancellations.target.push(item.NetCancellationARRTarget);
+                netCancellations.ly.push(item.NetCancellationARRLY);
 
-             };
-
-             for(let i =  0 ; i<action.payload.length;i++){
-                 let currentQuarter = action.payload[i].data[0];
-                //  console.log(currentQuarter);
-                arrData.push(currentQuarter);
-
-                }   
-
-            let Values = [
-                'NetNewARRActual', 'NetNewARRTarget', 'NetCancellationARRActual', 'NetCancellationARRTarget', 'GrossNewARRActual', 'GrossNewARRTarget',
-                'RenewalAtFPActual',
-                'RenewalAtFPTarget'
-            ]
-              totalNetNewARRActual = _.sumBy(arrData,(item)=>{ return item.NetNewARRActual});
-              totalNetNewARRTarget= _.sumBy(arrData,(item)=>{ return item.NetNewARRTarget});
-              totalCancellationsActual= _.sumBy(arrData,(item)=>{ return item.NetCancellationARRActual});
-              totalCancellationsTarget= _.sumBy(arrData,(item)=>{ return item.NetCancellationARRTarget});
-              totalGrossActual= _.sumBy(arrData,(item)=>{ return item.GrossNewARRActual});
-              totalGrossTarget= _.sumBy(arrData,(item)=>{ return item.GrossNewARRTarget});
-              totalRenewalActual= _.sumBy(arrData,(item)=>{ return item.RenewalAtFPActual});
-              totalRenewalTarget=_.sumBy(arrData,(item)=>{ return item.RenewalAtFPTarget});
+                grossArr.actual.push(item.GrossNewARRActual);
+                grossArr.target.push(item.GrossNewARRTarget);
+                grossArr.ly.push(item.GrossNewARRLY);
+                
+                termRenewal.actual.push(item.RenewalAtFPActual);
+                termRenewal.target.push(item.RenewalAtFPTarget);
+                termRenewal.ly.push(item.RenewalAtFPLY);
+            
+            }
 
 
-
-            // console.log('Total Net New Arr:',totalNetNewARRActual,'\nTotal Net NEW Arr Target: ',totalNetNewARRTarget);
-            // console.log('Total Gross New Arr:',totalRenewalActual,'\nTotal Gross new Arr Target: ',totalRenewalTarget);
-            // console.log('Total Net New Arr:',totalGrossActual,'\nTotal Net NEW Arr Target: ',totalGrossTarget);
-            // console.log('Total Net New Arr:',totalCancellationsTarget,'\nTotal Net NEW Arr Target: ',totalCancellationsTarget);
-
-           
-
-                    // sums.netNewArrActual= sums.netNewArrActual + parseFloat(currentQuarter.NetNewARRActual);
-                    // sums.netNewArrTarget= sums.netNewArrTarget + currentQuarter.NetNewARRTarget;
-                    // sums.netCancellationActual+=parseFloat(currentQuarter.NetCancellationARRActual);
-                    // sums.netCancellationTarget+=parseFloat(currentQuarter.NetCancellationARRTarget);
-                    // sums.grossNewArrActual+=parseFloat(currentQuarter.GrossNewARRActual);
-                    // sums.grossNewArrTarget+=parseFloat(currentQuarter.GrossNewARRTarget);
-                    // sums.renewalAtFPActual+=parseFloat(currentQuarter.RenewalAtFPActual);
-                    // sums.renewalAtFPTarget+=parseFloat(currentQuarter.RenewalAtFPTarget);
-   
-            //  console.log('Sums: ',sums);
-     
-            // if (actuals[0] !== undefined && targets[0] !== undefined) {
-                for (let i = 0; i < squares.length; i++) {
-                    switch(i){
-                        case 0:
-                        currentActual = totalNetNewARRActual;
-                        currentTarget = totalNetNewARRTarget;
-                        break;
-                        case 1:
-                        currentActual = totalGrossActual;
-                        currentTarget = totalGrossTarget;
-                        break;
-                        case 2: 
-                        currentActual = totalCancellationsActual;
-                        currentTarget = totalCancellationsTarget;
-                        break;
-                        case 3: 
-                        currentActual = totalRenewalActual;
-                        currentTarget =  totalRenewalTarget;
-                        break;
-                    }
-                    squares[i]['value'] = currentActual;
-                    squares[i]['target'] = currentTarget ;  
-                 
+            for (let i = 0; i < squares.length; i++) {
+                switch(i){
+                    case 0:
+                    squares[i].details.multichart = [netArr.actual,netArr.target,netArr.ly]
+                    break;
+                    case 1:
+                    squares[i].details.multichart = [grossArr.actual,grossArr.target,grossArr.ly]
+                    break;
+                    case 2: 
+                    squares[i].details.multichart = [netCancellations.actual,netCancellations.target,netCancellations.ly]
+                    break;
+                    case 3: 
+                    squares[i].details.multichart = [termRenewal.actual,termRenewal.target,termRenewal.ly]
+                    break;
                 }
-                // console.log(squares);
-            // }
-            // console.log('Squares form IBE: ', squares);
-            return [squares];
+               
+             
+            }
+            console.log(netArr,netCancellations,grossArr,termRenewal);
+
+            
+            return [...squares]
         default: 
             return state;
     }

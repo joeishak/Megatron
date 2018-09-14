@@ -29,7 +29,14 @@ class KendoMultiChart extends Component {
     }
 
     render(){
-        const [ firstSeries, secondSeries, thirdSeries ] = this.props.activeSummary.details.multichart;
+        const  firstSeries = this.props.activeSummary.details.multichart[0];
+        const  secondSeries = this.props.activeSummary.details.multichart[1];
+        const  thirdSeries = this.props.activeSummary.details.multichart[2];
+
+        console.log(this.props.activeSummary.details.multichart[0]);
+        console.log(this.props.activeSummary.details.multichart[1]);
+        console.log(this.props.activeSummary.details.multichart[2]);
+
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
         const ChartContainer = () => (
         <Chart pannable={false} zoomable={false} >
@@ -54,7 +61,6 @@ class KendoMultiChart extends Component {
                 </ChartSeriesItem>
                 <ChartSeriesItem type="line" data={secondSeries} color='#0E9CC6' >
                 <ChartSeriesItemTooltip background="#3c3c3c"  />
-
                 </ChartSeriesItem>
                 <ChartSeriesItem type="line" data={thirdSeries} color='#DFDE43'  >
                 <ChartSeriesItemTooltip background="#3c3c3c" />

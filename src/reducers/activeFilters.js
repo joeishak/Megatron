@@ -19,7 +19,7 @@ export default function(state = {
 
         case  ADD_MULTI_FILTER:
             copyOfState = JSON.parse(JSON.stringify(state))  
-            console.log(action.payload);
+            // console.log(action.payload);
             // console.log(action.payload);
              cat = action.payload.category;
             // console.log('copy of state',copyOfState);
@@ -73,29 +73,22 @@ export default function(state = {
                 case 'quarters':
                 copyOfState.quarters =[{index: 211, category: "quarters", value: "All Data"}];
                 break;
-
                 case 'subscriptionOfferings':
                 copyOfState.subscriptions =[{index: 210, category: "subscriptionOfferings", value: "All Data"}];
                 break;
-
-                case 'segmentPivots':
+                case 'segments':
                 copyOfState.segments =[{index: 209, category: "segments", value: "All Data"}];
                 break;
-
                 case 'marketAreas':
                 copyOfState.markets =[{index: 206, category: "marketAreas", value: "All Data"}];
                 break;
-                
                 case 'productNames':
                 copyOfState.products =[{index: 207, category: "productNames", value: "All Data"}];
                 break;
-
                 case 'routeToMarkets':
                 copyOfState.routes =[{index: 208, category: "routeToMarkets", value: "All Data"}];
                 break;
-
             }
-           
             return copyOfState;
         default: 
             return state;

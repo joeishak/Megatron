@@ -67,16 +67,19 @@ export function generateFilterParams(filterParams, allFilters, _activeParams){
     //Quarters
     paramValue = [];
 
-    // // If its all data
-    // if(isAllData(_activeParams.quarters[0].value)){
-    //   //Add all the values from allFilters to param value
-    //   addAllValues(allFilters.quarters,paramValue);
-    // } else {
-    //   addValue(_activeParams.quarters[0].value, paramValue);
-    // }
-    // paramValue = convertFilterList(paramValue);
-    // filterParams[0].value = paramValue;
+    // If its all data
+    if(isAllData(_activeParams.quarters[0].value)){
+      //Add all the values from allFilters to param value
+      addAllValues(allFilters.quarters,paramValue);
+    } else {
+      addValue(_activeParams.quarters[0].value, paramValue);
+    }
+    paramValue = convertFilterList(paramValue);
+    filterParams[0].value = paramValue;
 
+
+
+    paramValue = [];
     //Products
     // If its all data
     if(isAllData(_activeParams.products[0].value)){

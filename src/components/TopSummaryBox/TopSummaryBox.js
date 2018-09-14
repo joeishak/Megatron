@@ -184,13 +184,13 @@ class TopSummaryBox extends Component {
     }
 
     renderDollarValue(value) {
-        // 1,000,000
-        // 1,000,000,000
+        // 1000 - 100000
+        // 1000000 - 1000000000
         let hundredLength = 3;
         let thousandsLength = 6;
-        let millionsLength =  10;
-        let billionsLength =  13;
-        let trillionsLength = 13;
+        let millionsLength =  9;
+        let billionsLength =  12;
+        let trillionsLength = 15;
         let suffix = 'K';
 
         let returnValue = '';
@@ -212,11 +212,11 @@ class TopSummaryBox extends Component {
             
             // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
         } else if (length > millionsLength && length <= billionsLength) {
-            value = (value/10000000000).toFixed(1);
+            value = (value/1000000000).toFixed(1);
            
             returnValue = value.toString() + 'B';
-        } else if (length <= trillionsLength) {
-            value = (parseInt(value)/1000).toFixed(1);
+        } else if (length > billionsLength <= trillionsLength) {
+            value = (parseInt(value)/1000000000000).toFixed(1);
             returnValue = value.toString() + 'T';
         }
 

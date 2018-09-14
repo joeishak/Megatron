@@ -5,8 +5,8 @@ import * as actions from 'actions';
 import styles from './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import '@progress/kendo-theme-default/dist/all.css';
 // Kendo Components
+import '@progress/kendo-theme-default/dist/all.css';
 
 // Custom Components
 import FilterBox from 'components/FilterBox/FilterBox';
@@ -16,11 +16,6 @@ import CustomDropDownPanel from 'components/CustomDropDownPanel/CustomDropDownPa
 import SummaryViewDetails from 'components/SummaryViewDetails/SummaryViewDetails';
 import KendoDialog from '../components/KendoDialog/KendoDialog';
 import axios from 'axios';
-
-//InfoBurst
-
-// Custom Nivo Components
-// import { changeAuth } from '../actions';
 
 class App extends Component {
 
@@ -54,7 +49,9 @@ class App extends Component {
 
   }
   componentWillReceiveProps(nextProps){
-    this.props.getQueryFilteredIBEData(nextProps.activeFilters,nextProps.availableFilters)
+    this.props.getQueryFilteredIBEData(nextProps.activeFilters,nextProps.availableFilters);
+    this.props.getQueryFilteredIBEMultiChartData(nextProps.activeFilters,nextProps.availableFilters);
+    
 
   }
   getFilters(){
@@ -72,35 +69,26 @@ class App extends Component {
       this.setState({showDropDowns: true});
       this.setState({filterPanelIsOpen: true})
     } else { /* Closing the Panel */
-
       this.setState({showDropDowns: false});
       // this.setState({filterPanelIsOpen: false});
-      
       this.time = setTimeout(()=>{
       this.setState({filterPanelIsOpen: false});
-
         },300);
     }
-    
   }
-getSummaryDetails(){
 
-}
- 
-  render(){
+  render() {
 
     const bottomSummary = !this.props.switchFilter ? 
-      
-    <div className='bottomSummaryContainer'>
-      <ButtomSummaryBox chartHeight="180px" rerender={this.state.renderFooter}/>
-    </div> : null;
+      <div className='bottomSummaryContainer'>
+        <ButtomSummaryBox chartHeight="180px" rerender={this.state.renderFooter}/>
+      </div> : null;
     /**Summary View Details */
     const Summary = this.props.detailIsOpen ? 
       <div >
-      <SummaryViewDetails />
-     </div>
-     : 
-    <div>
+        <SummaryViewDetails />
+      </div> : 
+      <div>
        <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
        {bottomSummary}
       </div>;
@@ -120,7 +108,7 @@ getSummaryDetails(){
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+  // console.log(state);
   return {
     dialogIsOpen:state.isDialogOpen,
     activeFilters: state.activeFilters,
