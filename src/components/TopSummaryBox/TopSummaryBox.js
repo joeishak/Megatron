@@ -46,6 +46,7 @@ class TopSummaryBox extends Component {
 
         // console.log(this.state);
     }
+
     // finCardsIbeData() {
 
 
@@ -84,7 +85,7 @@ class TopSummaryBox extends Component {
     //Event handler that sets the active card
     selectedCard (e, index) {
         e.preventDefault();
-        let squareItem = this.props.appData.financial.squares[index -1]
+        let squareItem = this.props.finData[index -1]
         // Finds the passed props for the right card to set as active
         this.setState({activeCard: squareItem.css[0]});
         this.props.updateFinancialSummaryActiveCard(squareItem);

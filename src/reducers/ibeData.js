@@ -96,6 +96,9 @@ export default function(state = [], action) {
             };
 
 
+            let grouped = _.groupBy(action.payload[0].data,(item)=>{ return item.quarter});
+           
+            console.log('Grouped: ', grouped);
             
             console.log('Fetched MultiChart DAta: ',action.payload);
             for(let i = 0; i< action.payload[0].data.length; i++) {
