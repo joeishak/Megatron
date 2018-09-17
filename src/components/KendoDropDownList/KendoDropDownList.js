@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import * as actions from 'actions';
 import { DropDownList } from '@progress/kendo-react-dropdowns';
 import { spawn } from 'child_process';
-
+import Select from 'react-select'
 // In Line Styles
 const inStyles = {
     background :{
@@ -40,6 +40,7 @@ class KendoDropDownList extends Component {
         // this.getFilterValue();
 
     }
+    
     render(){
         
         // console.log('Default Item',this.props.defaultItem);
@@ -50,9 +51,10 @@ class KendoDropDownList extends Component {
                 textField="value"
                 data={this.props.data} 
                 onChange={this.handleFilterChange}
-                defaultItem={ this.props.defaultItem[0]}
-                value = {this.props.defaultItem[0]}
+                // defaultItem={ this.props.defaultItem[0]}
+                value = {this.props.defaultItem[0].value}
                  />
+
            
       
         )

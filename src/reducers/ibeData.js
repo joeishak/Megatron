@@ -127,16 +127,16 @@ export default function(state = [], action) {
             for (let i = 0; i < squares.length; i++) {
                 switch(i){
                     case 0:
-                    squares[i].details.multichart = [netArr.actual,netArr.target,netArr.ly]
+                    state[i].details.multichart = [netArr.actual,netArr.target,netArr.ly]
                     break;
                     case 1:
-                    squares[i].details.multichart = [grossArr.actual,grossArr.target,grossArr.ly]
+                    state[i].details.multichart = [grossArr.actual,grossArr.target,grossArr.ly]
                     break;
                     case 2: 
-                    squares[i].details.multichart = [netCancellations.actual,netCancellations.target,netCancellations.ly]
+                    state[i].details.multichart = [netCancellations.actual,netCancellations.target,netCancellations.ly]
                     break;
                     case 3: 
-                    squares[i].details.multichart = [termRenewal.actual,termRenewal.target,termRenewal.ly]
+                    state[i].details.multichart = [termRenewal.actual,termRenewal.target,termRenewal.ly]
                     break;
                 }
                
@@ -145,7 +145,7 @@ export default function(state = [], action) {
             console.log(netArr,netCancellations,grossArr,termRenewal);
 
             
-            return [...squares]
+            return [...state]
         default: 
             return state;
     }

@@ -297,6 +297,7 @@ export function getQueryFilteredIBEMultiChartData(_parameters,availableFilters){
     let quarterQuery;
     let responseArr = [];
     let promiseArr;
+    let response;
     let allFilters = {
         quarters: Object.values(availableFilters.quarters),
         geos: Object.values(availableFilters.geos),
@@ -326,6 +327,7 @@ export function getQueryFilteredIBEMultiChartData(_parameters,availableFilters){
 
     quarterQuery = Object.assign({},_parameters.quarters[0]);
 
+    
     // Remove First Row from all the filters 
     // Contains All Data Filters
     // allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
@@ -337,9 +339,14 @@ export function getQueryFilteredIBEMultiChartData(_parameters,availableFilters){
         
       }, '');
 
-      const response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\117?q=' + 'FinancialMultichartQuery'  + params1 + '&json=1', 
-      {headers: newheaders, responseType: 'text'});
-
+       
+      if(_parameters.quarters[0].value === 'All Data'){
+        response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\117?q=' + 'FinancialMultichartAllQuarterQuery'  + params1 + '&json=1', 
+        {headers: newheaders, responseType: 'text'});
+    } else {
+        response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\117?q=' + 'FinancialMultichartQuery'  + params1 + '&json=1', 
+        {headers: newheaders, responseType: 'text'});
+    }
       responseArr.push(response);
       promiseArr = Promise.all(responseArr);
     return {

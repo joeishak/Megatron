@@ -16,11 +16,43 @@ import KendoPanelBar from 'components/KendoPanelBar/KendoPanelBar.jsx';
 import KendoMultiChart from '../KendoMultiChart/KendoMultiChart';
 // Custom Components
 import FilterBox from 'components/FilterBox/FilterBox';
+import Workbook from 'react-excel-workbook'
 
 
+// Services
+import ExcelFormatter from './ExcelFormatter';
 // Custom Nivo Components
 // import { changeAuth } from '../actions';
+const data1 = [
+  {
+    foo: '123',
+    bar: '456',
+    baz: '789'
+  },
+  {
+    foo: 'abc',
+    bar: 'dfg',
+    baz: 'hij'
+  },
+  {
+    foo: 'aaa',
+    bar: 'bbb',
+    baz: 'ccc'
+  }
+]
 
+const data2 = [
+  {
+    aaa: 1,
+    bbb: 2,
+    ccc: 3
+  },
+  {
+    aaa: 4,
+    bbb: 5,
+    ccc: 6
+  }
+]
 
 class SummaryViewDetails extends Component {
   constructor(props) {
@@ -42,10 +74,7 @@ class SummaryViewDetails extends Component {
     this.renderQuarterlyToDateTableHeader = this.renderQuarterlyToDateTableHeader.bind(this);
   }
   
-  componentDidMount(){
  
-  }
-
  updateMultiChartMetricFilter(e){
    // Either be 'units' or 'arr'
   this.setState({activeMetric: e.target.innerHTML.toLowerCase()})
@@ -94,6 +123,8 @@ renderQuarterlyToDateTableHeader(){
      }
      </div>);
      case 'week':
+     let formatter = new ExcelFormatter(this.props.activeItem.details.qtdw.week);
+     formatter.formatDataForExcel();
      return (
       <div className={qtdTotalTable + ' col-md-11'}>
       {
@@ -185,7 +216,29 @@ renderQuarterlyToDateTableHeader(){
         {/* First Row for Ttle Bar and Metric Filter */}
         <div className="row container-fluid titleBarHeader">
 
-          <span className="col-md- 3 detailTitle">{this.props.activeItem.header}<button className='exportButton'>Export To Excel</button></span>
+          {/* <span className="col-md- 3 detailTitle">{this.props.activeItem.header}<button className='exportButton'>Export To Excel</button></span> */}
+          <span className="col-md- 3 detailTitle" >
+          {console.log(this.props.activeItem.details.qtdw.qtd)}
+    <Workbook filename="example.xlsx" element={<button className="btn btn-lg btn-primary">Try me!</button>}>
+      <Workbook.Sheet data={this.props.activeItem.details.qtdw.qtd} name="QTD">
+        <Workbook.Column label="Geo" value="Geo"/>
+        <Workbook.Column label="Market Area" value="Market Area"/>
+        <Workbook.Column label="Actuals" value="Actuals"/>
+        <Workbook.Column label="Units" value="Units"/>
+        <Workbook.Column label="QRF" value="QRF"/>
+        <Workbook.Column label="QRF DIFF" value="QRF DIFF"/>
+        <Workbook.Column label="vs QRF" value="vs QRF"/>
+        <Workbook.Column label="Q/Q" value="Q/Q"/>
+        <Workbook.Column label="Y/Y" value="Y/Y"/>
+
+
+      </Workbook.Sheet>
+      <Workbook.Sheet data={data2} name="Another sheet">
+        <Workbook.Column label="Double aaa" value={row => row.aaa * 2}/>
+        <Workbook.Column label="Cubed ccc " value={row => Math.pow(row.ccc, 3)}/>
+      </Workbook.Sheet>
+    </Workbook>
+  </span>
           <div className=" col-md-9 multiChartMetricContainer">
               <div onClick={this.updateMultiChartMetricFilter} className={UnitStyles}>
                   UNITS
@@ -235,6 +288,7 @@ function mapStateToProps(state) {
    
     previousViewWasJourneys: state.switchFilter,
     activeItem: state.activeSummarySquare,
+    qtdwData: state.activeSummarySquare.details.qtdw,
     summaryData: state.adobeData
   };
 }

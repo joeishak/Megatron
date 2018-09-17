@@ -56,13 +56,13 @@ class KendoMultiChart extends Component {
                 </ChartCategoryAxisItem>
             </ChartCategoryAxis>
             <ChartSeries >
-                <ChartSeriesItem type="column" gap={2} spacing={0.25} data={firstSeries} color={this.props.color}>
+                <ChartSeriesItem type="column" gap={2} spacing={0.25} data={this.props.activeMultichart[0]} color={this.props.color}>
                 <ChartSeriesItemTooltip background="#3c3c3c" />
                 </ChartSeriesItem>
-                <ChartSeriesItem type="line" data={secondSeries} color='#0E9CC6' >
+                <ChartSeriesItem type="line" data={this.props.activeMultichart[1]} color='#0E9CC6' >
                 <ChartSeriesItemTooltip background="#3c3c3c"  />
                 </ChartSeriesItem>
-                <ChartSeriesItem type="line" data={thirdSeries} color='#DFDE43'  >
+                <ChartSeriesItem type="line" data={this.props.activeMultichart[2]} color='#DFDE43'  >
                 <ChartSeriesItemTooltip background="#3c3c3c" />
 
                 </ChartSeriesItem>
@@ -76,6 +76,6 @@ class KendoMultiChart extends Component {
 
 }
 function mapStateToProps(state){
-    return { switchFilter: state.switchFilter, activeSummary: state.activeSummarySquare }
+    return { switchFilter: state.switchFilter, activeSummary: state.activeSummarySquare, activeMultichart: state.activeSummarySquare.details.multichart }
 }
 export default connect(mapStateToProps,actions)( KendoMultiChart);

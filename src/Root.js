@@ -365,7 +365,8 @@ export default ({children, initialState ={
             ]
         },
         css: ['card1', 'spinMeFirst', '#FF0000']
-    }
+    },
+    ibeData: []
 }}) => {
     const store = createStore(
         reducers,
