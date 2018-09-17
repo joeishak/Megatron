@@ -25,7 +25,7 @@ class KendoDropDownList extends Component {
             val: this.props.defaultItem
             
         }
-        // console.log('LOGGING THE CURRENT FILTER ARRAY: ',this.props.defaultItem);
+        console.log('LOGGING THE CURRENT FILTER ARRAY: ',this.props.defaultItem);
         //Binding functions to this
         this.handleFilterChange = this.handleFilterChange.bind(this);
         // this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
@@ -52,7 +52,11 @@ class KendoDropDownList extends Component {
                 data={this.props.data} 
                 onChange={this.handleFilterChange}
                 // defaultItem={ this.props.defaultItem[0]}
+<<<<<<< HEAD
                 value = {this.props.defaultItem[0].value}
+=======
+                value = {this.props.defaultItem[0]}
+>>>>>>> 0b272caaf3ff49344157ccab93088e9e40bf5058
                  />
 
            
