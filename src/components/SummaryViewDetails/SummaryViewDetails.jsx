@@ -288,6 +288,7 @@ function mapStateToProps(state) {
    
     previousViewWasJourneys: state.switchFilter,
     activeItem: state.activeSummarySquare,
+    activeSummar: state.activeSummarySquare,
     qtdwData: state.activeSummarySquare.details.qtdw,
     summaryData: state.adobeData
   };

@@ -52,11 +52,7 @@ class KendoDropDownList extends Component {
                 data={this.props.data} 
                 onChange={this.handleFilterChange}
                 // defaultItem={ this.props.defaultItem[0]}
-<<<<<<< HEAD
-                value = {this.props.defaultItem[0].value}
-=======
                 value = {this.props.defaultItem[0]}
->>>>>>> 0b272caaf3ff49344157ccab93088e9e40bf5058
                  />
 
            

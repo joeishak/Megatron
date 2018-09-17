@@ -197,27 +197,40 @@ class TopSummaryBox extends Component {
     }
 
     renderDollarValue(value) {
+        // 1000 - 100000
+        // 1000000 - 1000000000
+        let hundredLength = 3;
         let thousandsLength = 6;
-        let millionsLength = 7;
-        let billionsLength = 8;
+        let millionsLength =  9;
+        let billionsLength =  12;
+        let trillionsLength = 15;
         let suffix = 'K';
-        // console.log(value);
 
         let returnValue = '';
 
 
+        
+
+        value = parseInt(value)
+        // TODO ** Count only the left side of the decimal
         let length = value.toString().length;
-        // console.log(length);
+        console.log(value);
        
-        if (length <= thousandsLength) {
+        if (length > hundredLength && length <= thousandsLength) {
             value = (value/1000).toFixed(1);
             returnValue = value.toString() + 'K';
-        } else if (length >= millionsLength) {
-            value = (value/1000).toFixed(1);
+        } else if (length > thousandsLength && length <= millionsLength) {
+            value = (value/1000000).toFixed(1);
             returnValue = value.toString() + 'M';
-        } else if (length >= billionsLength) {
-            value = (value/1000).toFixed(1);
+            
+            // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
+        } else if (length > millionsLength && length <= billionsLength) {
+            value = (value/1000000000).toFixed(1);
+           
             returnValue = value.toString() + 'B';
+        } else if (length > billionsLength <= trillionsLength) {
+            value = (parseInt(value)/1000000000000).toFixed(1);
+            returnValue = value.toString() + 'T';
         }
 
         return returnValue;
@@ -248,7 +261,6 @@ class TopSummaryBox extends Component {
                         
                     </div>
                   
-                        
                             <div className="journeyContent">
                                 <p>{item.header}</p>
                                 <div className="row">
