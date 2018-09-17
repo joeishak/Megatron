@@ -22,7 +22,7 @@ export default function(state = [
                 // console.log('found index',index);
                 copyOfState.splice(index,1,action.payload);
             }
-            return copyOfState;
+            return [...copyOfState];
         case UPDATE_MULTI_FILTER_VALUES:
             return state;
         case REMOVE_MULTI_FILTER:
@@ -34,8 +34,8 @@ export default function(state = [
                 return n.index===filterToBeRemoved;
             });
             console.log('New filters after removing the match',newFilters);
-            return newFilters;
+            return [...newFilters];
         default: 
-            return state;
+            return [...state];
     }
 }

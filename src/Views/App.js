@@ -121,11 +121,11 @@ getSummaryDetails(){
  
   render(){
 
-    const bottomSummary = !this.props.switchFilter ? 
+    // const bottomSummary = !this.props.switchFilter ? 
       
-    <div className='bottomSummaryContainer'>
-      <ButtomSummaryBox chartHeight="180px" rerender={this.state.renderFooter}/>
-    </div> : null;
+    // <div className='bottomSummaryContainer'>
+    //   {/* <ButtomSummaryBox chartHeight="180px" rerender={this.state.renderFooter}/> */}
+    // </div> : null;
     /**Summary View Details */
     const Summary = this.props.detailIsOpen ? 
       <div >
@@ -134,7 +134,7 @@ getSummaryDetails(){
      : 
     <div>
        <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
-       {bottomSummary}
+       {/* {bottomSummary} */}
       </div>;
 
     return (
