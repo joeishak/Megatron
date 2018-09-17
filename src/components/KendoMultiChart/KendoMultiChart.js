@@ -25,7 +25,7 @@ class KendoMultiChart extends Component {
     constructor(props){
         super(props);
         // Initialize state
-        this.state = { data: [] };
+        this.state = { data: [], overIsVisible: true };
     }
 
     render(){

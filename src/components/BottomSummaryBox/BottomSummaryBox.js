@@ -44,12 +44,12 @@ class ButtomSummaryBox extends Component {
     }
     render(){
         var titleHeader= classNames({
-            summaryTitleHeader: (this.props.switchFilter)? false:true,
-            journeyTitleHeader: (this.props.switchFilter)? true: false
+            // summaryTitleHeader: (this.props.switchFilter)? false : true,
+            journeyTitleHeader: (this.props.switchFilter)? true : true
         });
         var over = classNames({
             over: true,
-            summaryOver: (this.props.switchFilter)? false:true,
+            summaryOver: (this.props.switchFilter)? false : true,
             journeyOver: (this.props.switchFilter)? true: false
         });
      
@@ -65,10 +65,10 @@ class ButtomSummaryBox extends Component {
                             transitionEnter={false} 
                             transitionLeave={false} >
                                 <div>
-                                    {(this.props.switchFilter === false) ? this.props.activeSummary.header:this.props.activeSummary.title }
+                                    {(this.props.switchFilter === false) ? this.props.activeSummary.header: this.props.activeSummary.title }
                                     <button className="detailButton" onClick={this.openDialog} >View Details </button>
                                   
-                                    {(this.props.switchFilter==false) ? 
+                                    {/* {(this.props.switchFilter==false) ? 
                                     <span>
                                         {
                                             this.props.activeSummary.details.stats.reverse().map(item=>{
@@ -78,7 +78,7 @@ class ButtomSummaryBox extends Component {
                                                         transitionAppear={true}
                                                         transitionAppearTimeout={800}
                                                         transitionEnter={false} 
-                                                        transitionLeave={false} key={item.index} >
+                                                        transitionLeave={false} >
                                                         <div className=" statsHeader"> 
                                                             <div className={ (item.color==='green') ? ' green' :'red ' }> {item.value}%</div>
                                                             <div className="footer"> {item.text}</div>
@@ -88,12 +88,12 @@ class ButtomSummaryBox extends Component {
                                             })
                                         }
                                     </span>
-                                     : null} 
+                                     : null}  */}
                         
                                 </div>
                         </CSSTransitionGroup>
                     </div> 
-                    {(this.props.switchFilter==true)? 
+                    {/* {(this.props.switchFilter==true)?  */}
                     
                     <div className="journeyStatsContainer">
                         <div className="darkGrey horizontalRule"></div>
@@ -116,9 +116,9 @@ class ButtomSummaryBox extends Component {
                                             })
                                         }
                     </div> 
-                    : null}
+                    {/* : null} */}
                     <div className="row gridRow2 chartBig container-fluid">
-                        <KendoMultiChart color={(this.props.switchFilter===true)? 'white':'black'} chartHeight={this.props.chartHeight} style={inStyles.multichart} />
+                        <KendoMultiChart color={(this.props.switchFilter===true)? 'white':'white'} chartHeight={this.props.chartHeight} style={inStyles.multichart} />
                     </div> 
                     <div className={over}></div>
                 </div>

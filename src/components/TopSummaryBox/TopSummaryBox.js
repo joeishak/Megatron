@@ -46,7 +46,6 @@ class TopSummaryBox extends Component {
 
         // console.log(this.state);
     }
-
     // finCardsIbeData() {
 
 
@@ -83,14 +82,14 @@ class TopSummaryBox extends Component {
     }
 
     //Event handler that sets the active card
-    selectedCard (e, index) {
+    onFinancialCardClicked (e, index) {
         e.preventDefault();
-        let squareItem = this.props.finData[index -1]
+        let squareItem = this.props.appData.financial.squares[index -1]
         // Finds the passed props for the right card to set as active
         this.setState({activeCard: squareItem.css[0]});
         this.props.updateFinancialSummaryActiveCard(squareItem);
         // title 'Net New ARR'
-        const selectedHeader = squareItem.header;
+        // const selectedHeader = squareItem.header;
 
         // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
         // console.log(selectedHeader);
@@ -104,12 +103,8 @@ class TopSummaryBox extends Component {
         this.setState({activeJourneyCard: squareItem.css[0]})
         this.props.updateJourneySummaryActiveCard(squareItem);
         // title 'Net New ARR'
-        const selectedTitle = squareItem.title;
-        const selectedSubtitle = squareItem.header;
-
-              // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
-        // console.log(selectedTitle);
-        // console.log(selectedSubtitle); 
+        // const selectedTitle = squareItem.title;
+        // const selectedSubtitle = squareItem.header;
           
     }
 
@@ -134,37 +129,54 @@ class TopSummaryBox extends Component {
     }
 
     // Need to Refactor
-    getColor(value, target, type, header) {
+    getColor(value, target, type, isHeader) {
 
         let retColor = '';
-        if(type === 'financial' ) {
-            if (value >= target) {
-                retColor = 'selectedCardHeaderGreen';
-            } else {
-                retColor = 'selectedCardHeaderRed';
-            }
-        } else if (type === 'journey' && header === false) {
-            if (value > target) {
-                retColor = 'journeyBoxAlertGreen';
-            } else {
-                retColor = 'journeyBoxAlert';
-            }
-        } else if (type === 'journey' && header !== false) {
-            if (value > target) {
-                retColor = 'journeyHeaderAlertGreen';
-            } else {
-                retColor = 'journeyHeaderAlert';
-            }
-        } else if (type === 'donut') {
-            if (value < target) {
-                retColor = '#FF0000';
-            } else {
-                retColor = '#0DB16E';
-            }
+
+        switch(type) {
+            case 'financial':
+                if (!isHeader) {
+                    if (value > target) { retColor = 'journeyBoxAlertGreen' } else { retColor = 'journeyBoxAlert' };
+                } else {
+                    if (value > target) { retColor = 'journeyHeaderAlertGreen'} else { retColor = 'journeyHeaderAlert' };
+                }
+
+            break;
+            case 'journey':
+                if (!isHeader) {
+                    if (value > target) { retColor = 'journeyBoxAlertGreen' } else { retColor = 'journeyBoxAlert' };
+                } else {
+                    if (value > target) { retColor = 'journeyHeaderAlertGreen'} else { retColor = 'journeyHeaderAlert' };
+                }
+            break;
         }
 
         return retColor;
+
+        // let retColor = '';
+        // if(type === 'financial' ) {
+        //     if (value >= target) {
+        //         retColor = 'journeyBoxAlertGreen';
+        //     } else {
+        //         retColor = 'journeyBoxAlert';
+        //     }
+        // } else if (type === 'journey' && header === false) {
+        //     if (value > target) {
+        //         retColor = 'journeyBoxAlertGreen';
+        //     } else {
+        //         retColor = 'journeyBoxAlert';
+        //     }
+        // } else if (type === 'journey'  && header !== false) {
+        //     if (value > target) {
+        //         retColor = 'journeyHeaderAlertGreen';
+        //     } else {
+        //         retColor = 'journeyHeaderAlert';
+        //     }
+        // } 
+
+        // return retColor;
     }
+
 
     renderDollar(index) {
         let renderDollar = '';
@@ -185,40 +197,27 @@ class TopSummaryBox extends Component {
     }
 
     renderDollarValue(value) {
-        // 1000 - 100000
-        // 1000000 - 1000000000
-        let hundredLength = 3;
         let thousandsLength = 6;
-        let millionsLength =  9;
-        let billionsLength =  12;
-        let trillionsLength = 15;
+        let millionsLength = 7;
+        let billionsLength = 8;
         let suffix = 'K';
+        // console.log(value);
 
         let returnValue = '';
 
 
-        
-
-        value = parseInt(value)
-        // TODO ** Count only the left side of the decimal
         let length = value.toString().length;
-        console.log(value);
+        // console.log(length);
        
-        if (length > hundredLength && length <= thousandsLength) {
+        if (length <= thousandsLength) {
             value = (value/1000).toFixed(1);
             returnValue = value.toString() + 'K';
-        } else if (length > thousandsLength && length <= millionsLength) {
-            value = (value/1000000).toFixed(1);
+        } else if (length >= millionsLength) {
+            value = (value/1000).toFixed(1);
             returnValue = value.toString() + 'M';
-            
-            // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
-        } else if (length > millionsLength && length <= billionsLength) {
-            value = (value/1000000000).toFixed(1);
-           
+        } else if (length >= billionsLength) {
+            value = (value/1000).toFixed(1);
             returnValue = value.toString() + 'B';
-        } else if (length > billionsLength <= trillionsLength) {
-            value = (parseInt(value)/1000000000000).toFixed(1);
-            returnValue = value.toString() + 'T';
         }
 
         return returnValue;
@@ -232,48 +231,55 @@ class TopSummaryBox extends Component {
         // this.setState({data:(this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial});
   
          if(this.props.switchFilter===false){
-            return (
-             <div className="chartRow">
-              { this.props.finData.map(item=>{
-                  console.log(item);
-                return (
-                    <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.enableChart1Arrow} key={item.index}>
-                            <div >
-                                <div className="flipper">
-                                    <div className="front ">
-                                        {/* <!-- front content --> */}
-                                        <CSSTransitionGroup
-                                            transitionName="example"
-                                            transitionAppear={true}
-                                            transitionAppearTimeout={1000}
-                                            transitionEnter={false} 
-                                            transitionLeave={false}>
-                                            {this.state.show ? (
-                                            // {/* Financial Summary  */}
-                                            <div className={`sumChartSquare zoom ${activeCard === item.css[0] ? 'selectedCard ' : ''}`} onClick={e => this.selectedCard(e, item.index)}>
-                                                <div className={`sumChartContent ${item.css[1]}`}>
-                                                    <div className={`sumChartHeader ${activeCard === item.css[0] ? this.getColor(item.value, item.target, 'financial') : ''}`}>
-                                                    <p className={`sumChartHeaderText ${activeCard === item.css[0] ? 'selectedCardText' : ''}`}
-                                                    >{item.header}</p>
-                                                    </div>
-                                                        <div className={`donutChart ${activeCard === item.css[0] ? 'arrow_box' : ''}`}>
-                                                            <div >
-                                                            <KendoDonutChart donutColor={this.getColor(item.value, item.target, 'donut')} key={item.index} donutCenterRender= {()=> 
-                                                            <div className="insideDonut"><span className={'actual ' + `${item.value >= item.target ? 'selectedCardFontColorGreen' : 'selectedCardFontColorRed'}`}>${this.renderDollarValue(item.value)}</span><span className='donutTargetText'>Target</span><span className='donutTargetValue'>${this.renderDollarValue(item.target)}</span></div>}/> 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                        ): null}
-                                        </CSSTransitionGroup>
-                                    </div>
+            return(
+                <div className="row">
+                <div className="col-lg-3 col-md-4">
+
+                {this.props.appData.financial.squares.map(item => {
+                    return (
+                    <div className="financialBoxHover" key={item.index}>    
+                     <CSSTransitionGroup transitionName="example"
+                    transitionAppear={true} transitionAppearTimeout={5000}
+                    transitionEnter={false} transitionLeave={false} >
+                    <div className={ `financialBox ${item.css[1]} ${activeCard === item.css[0] ? this.getColor(item.value, item.target, 'financial', false) : ''}`} 
+                    onClick={e => this.onFinancialCardClicked(e, item.index)}>
+                
+                    <div  className={`financialHeader k-float-left ${activeCard === item.css[0] ? this.getColor(item.value,  item.target, 'financial', true) : ''}`} >
+                        
+                    </div>
+                  
+                        
+                            <div className="journeyContent">
+                                <p>{item.header}</p>
+                                <div className="row">
+
+                                    <div className={`col journeysAmount k-float-left ${item.value >=  item.target ? 'journeysAmountGreen' : ''}`}>
+                                    {this.renderDollarValue(item.value)} </div>
+                                    <div className="col journeysTarget ">TARGET {this.renderDollarValue( item.target)}</div>
+ 
                                 </div>
+                                <div className="row k-float-left">
+                                    <div className="journeyKendoGraph">
+                                        <KendoBulletChart values={[item.value,  item.target]} color="white" key={item.index} ></KendoBulletChart>
+                                    </div>
+                                </div>  
                             </div>
                         </div>
-                )
-            })}
+                    </CSSTransitionGroup>
+
+                    </div>  
+                    );
+                })}
+                
+                </div>
+                <div className="col-lg-9 col-md-8">
+                    <ButtomSummaryBox chartHeight="350px"/>
+                </div>
             </div>
-            )  
+            )
+        
+           
+            
         } else if(this.props.switchFilter === true) {
             return(
                 <div className="row">

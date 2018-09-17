@@ -79,10 +79,10 @@ class App extends Component {
 
   render() {
 
-    const bottomSummary = !this.props.switchFilter ? 
-      <div className='bottomSummaryContainer'>
-        <ButtomSummaryBox chartHeight="180px" rerender={this.state.renderFooter}/>
-      </div> : null;
+    // const bottomSummary = !this.props.switchFilter ? 
+    //   <div className='bottomSummaryContainer'>
+    //     <ButtomSummaryBox chartHeight="180px" rerender={this.state.renderFooter}/>
+    //   </div> : null;
     /**Summary View Details */
     const Summary = this.props.detailIsOpen ? 
       <div >
@@ -90,7 +90,7 @@ class App extends Component {
       </div> : 
       <div>
        <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
-       {bottomSummary}
+       {/* {bottomSummary} */}
       </div>;
 
     return (
