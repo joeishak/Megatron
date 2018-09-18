@@ -97,11 +97,11 @@ export function generateFilterParams(filterParams, allFilters, _activeParams){
     //Geos
     // If its all data
     if(isAllData(_activeParams.geos[0].value)){
-      console.log('Value is All Data, Getting All Filters',allFilters.geos);
+      // console.log('Value is All Data, Getting All Filters',allFilters.geos);
       //Add all the values from allFilters to param value
       addAllValues(allFilters.geos,paramValue);
     } else {
-      console.log('Value is Not All Data, Getting specific Filter',_activeParams.geos[0].value);
+      // console.log('Value is Not All Data, Getting specific Filter',_activeParams.geos[0].value);
       addValue(_activeParams.geos[0].value, paramValue);
     }
     paramValue = convertFilterList(paramValue);
@@ -113,11 +113,11 @@ export function generateFilterParams(filterParams, allFilters, _activeParams){
     //Subscriptions
     // If its all data
     if(isAllData(_activeParams.subscriptions[0].value)){
-      console.log('Value is All Data, Getting All Filters',allFilters.subscriptionOfferings);
+      // console.log('Value is All Data, Getting All Filters',allFilters.subscriptionOfferings);
       //Add all the values from allFilters to param value
       addAllValues(allFilters.subscriptionOfferings,paramValue);
     } else {
-      console.log('Value is Not All Data, Getting specific Filter',_activeParams.subscriptions[0].value);
+      // console.log('Value is Not All Data, Getting specific Filter',_activeParams.subscriptions[0].value);
       addValue(_activeParams.subscriptions[0].value, paramValue);
     }
     paramValue = convertFilterList(paramValue);

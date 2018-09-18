@@ -30,7 +30,7 @@ export default function(state = [], action) {
         
         case GET_QUERY_FILTERED_IBE_DATA:
 
-            console.log('GET QUERY IBE DATA',action.payload);
+            // console.log('GET QUERY IBE DATA',action.payload);
 
             for(let i = 0; i< action.payload.length; i++) {
                 let item = action.payload[i].data[0];
@@ -69,7 +69,7 @@ export default function(state = [], action) {
                    squares[i]['target'] = currentTarget ;  
                 
                }
-               console.log([...squares])
+            //    console.log([...squares])
         return [...squares];
       
             case GET_QUERY_FILTERED_IBE_MULTICHART_DATA:
@@ -98,9 +98,9 @@ export default function(state = [], action) {
 
             let grouped = _.groupBy(action.payload[0].data,(item)=>{ return item.quarter});
            
-            console.log('Grouped: ', grouped);
+            // console.log('Grouped: ', grouped);
             
-            console.log('Fetched MultiChart DAta: ',action.payload);
+            // console.log('Fetched MultiChart DAta: ',action.payload);
             for(let i = 0; i< action.payload[0].data.length; i++) {
                 let item = action.payload[0].data[i];
                 
@@ -142,7 +142,7 @@ export default function(state = [], action) {
                
              
             }
-            console.log(netArr,netCancellations,grossArr,termRenewal);
+            // console.log(netArr,netCancellations,grossArr,termRenewal);
 
             
             return [...state]

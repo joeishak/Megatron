@@ -44,15 +44,10 @@ class CustomDropDownPanel extends Component {
             <div className={panelDropDownContainer} >
                         <div className={quarterFilterContainer} >
                             <p> Quarter</p>
-                            {/* <KendoDropDownList  type='quarters'
-                            defaultItem={this.props.activeFilters.quarters} data={this.props.availableFilters.quarters}/> */}
+                            <KendoDropDownList  type='quarters'
+                            defaultItem={this.props.activeFilters.quarters} data={this.props.availableFilters.quarters}/>
 
-                            <select>
-                                {this.props.availableFilters.quarters.map(item=>{
-                                    if(this.props.activeFilters.quarters[0] === item){
-                                        return ( <option selected value={item.value}>{item.value}</option>)
-                                    }
-                                }) }</select>
+                           
                         </div> 
        
                        <div className={quarterFilterContainer} >

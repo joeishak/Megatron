@@ -33,9 +33,9 @@ class KendoMultiChart extends Component {
         const  secondSeries = this.props.activeSummary.details.multichart[1];
         const  thirdSeries = this.props.activeSummary.details.multichart[2];
 
-        console.log(this.props.activeSummary.details.multichart[0]);
-        console.log(this.props.activeSummary.details.multichart[1]);
-        console.log(this.props.activeSummary.details.multichart[2]);
+        // console.log(this.props.activeSummary.details.multichart[0]);
+        // console.log(this.props.activeSummary.details.multichart[1]);
+        // console.log(this.props.activeSummary.details.multichart[2]);
 
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
         const ChartContainer = () => (

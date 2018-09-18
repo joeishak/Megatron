@@ -37,41 +37,41 @@ export default function(state = defaultState, action) {
         let newQuartersState = processDropDownListFilterValue('quarters',quarterFilters);
 
         
-        // newGeoState.unshift({
-        //     index: count++,
-        //     category: 'geos',
-        //     value: 'All Data'
-        // });
-        // newMAState.unshift({
-        //     index: count++,
-        //     category: 'marketAreas',
-        //     value: 'All Data'
-        // });
-        // newProductState.unshift({
-        //     index: count++,
-        //     category: 'productNames',
-        //     value: 'All Data'
-        // });
-        // newRouteState.unshift({
-        //     index: count++,
-        //     category: 'routeToMarkets',
-        //     value: 'All Data'
-        // });
-        // newSegmentsState.unshift({
-        //     index: count++,
-        //     category: 'segments',
-        //     value: 'All Data'
-        // });
-        // newSubscriptionState.unshift({
-        //     index: count++,
-        //     category: 'subscriptionOfferings',
-        //     value: 'All Data'
-        // });
-        // newQuartersState.unshift({
-        //     index: count++,
-        //     category: 'quarters',
-        //     value: 'All Data'
-        // });
+        newGeoState.unshift({
+            index: count++,
+            category: 'geos',
+            value: 'All Data'
+        });
+        newMAState.unshift({
+            index: count++,
+            category: 'marketAreas',
+            value: 'All Data'
+        });
+        newProductState.unshift({
+            index: count++,
+            category: 'productNames',
+            value: 'All Data'
+        });
+        newRouteState.unshift({
+            index: count++,
+            category: 'routeToMarkets',
+            value: 'All Data'
+        });
+        newSegmentsState.unshift({
+            index: count++,
+            category: 'segments',
+            value: 'All Data'
+        });
+        newSubscriptionState.unshift({
+            index: count++,
+            category: 'subscriptionOfferings',
+            value: 'All Data'
+        });
+        newQuartersState.unshift({
+            index: count++,
+            category: 'quarters',
+            value: 'All Data'
+        });
 
         if(defaultState===[]){
             defaultState = {
@@ -84,15 +84,15 @@ export default function(state = defaultState, action) {
                 segments: newSegmentsState,
             }
         }
-        console.log('generating filter data',{
-        quarters: newQuartersState,
-        geos: newGeoState,
-        products: newProductState,
-        subscriptionOfferings: newSubscriptionState,
-        marketAreas: newMAState,
-        routeToMarkets: newRouteState,
-        segments: newSegmentsState,
-    });
+    //     console.log('generating filter data',{
+    //     quarters: newQuartersState,
+    //     geos: newGeoState,
+    //     products: newProductState,
+    //     subscriptionOfferings: newSubscriptionState,
+    //     marketAreas: newMAState,
+    //     routeToMarkets: newRouteState,
+    //     segments: newSegmentsState,
+    // });
 
         return {
             quarters: newQuartersState,

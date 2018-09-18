@@ -214,7 +214,7 @@ class TopSummaryBox extends Component {
         value = parseInt(value)
         // TODO ** Count only the left side of the decimal
         let length = value.toString().length;
-        console.log(value);
+        // console.log(value);
        
         if (length > hundredLength && length <= thousandsLength) {
             value = (value/1000).toFixed(1);
