@@ -9,6 +9,8 @@ import '@progress/kendo-theme-default/dist/all.css';
 // Kendo Components
 
 // Custom Components
+import Footer from '../components/Footer/footerBar';
+import ChatDrawer from '../components/Footer/components/ChatDrawerContainer/ChatDrawer';
 import FilterBox from 'components/FilterBox/FilterBox';
 import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
@@ -16,6 +18,7 @@ import CustomDropDownPanel from 'components/CustomDropDownPanel/CustomDropDownPa
 import SummaryViewDetails from 'components/SummaryViewDetails/SummaryViewDetails';
 import KendoDialog from '../components/KendoDialog/KendoDialog';
 import axios from 'axios';
+
 
 //InfoBurst
 
@@ -37,7 +40,8 @@ class App extends Component {
       marketAreaFilters: this.props.activeFilters,
       filterPanelIsOpen: false,
       showDropDowns: false,
-      dialogIsOpen: this.props.dialogIsOpen
+      dialogIsOpen: this.props.dialogIsOpen,
+      chatWindowIsOpen: false
     };
 
     this.props.generateFilterData();
@@ -118,14 +122,21 @@ class App extends Component {
 getSummaryDetails(){
 
 }
+
+openChatDialogPanel = () => {
+  const panelState = this.state.chatWindowIsOpen;
+  this.setState({chatWindowIsOpen: !panelState});
+}
  
   render(){
 
+    const chatWindowContainer = this.state.chatWindowIsOpen ? <ChatDrawer></ChatDrawer> : null;
     // const bottomSummary = !this.props.switchFilter ? 
       
     // <div className='bottomSummaryContainer'>
     //   {/* <ButtomSummaryBox chartHeight="180px" rerender={this.state.renderFooter}/> */}
     // </div> : null;
+
     /**Summary View Details */
     const Summary = this.props.detailIsOpen ? 
       <div >
@@ -138,15 +149,19 @@ getSummaryDetails(){
       </div>;
 
     return (
+      
 
-      <div style={{width:'100%',height:'100%'}}>
+      <div style={{height:'100%'}}>
       {/* Data Preferences */}
         <KendoDialog /> 
          <Navigation />
           <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
           {Summary}
+          {chatWindowContainer}
+        <Footer onSelected={this.openChatDialogPanel} selectedSquare={this.props.activeSquare}/>      
       </div>
+
   )
 }
 }
@@ -159,7 +174,8 @@ function mapStateToProps(state) {
     switchFilter: state.switchFilter,
     detailIsOpen: state.detailsIsOpen,
     availableFilters: state.availableFilters,
-    finData: state.finData
+    finData: state.finData,
+    activeSquare: state.activeSummarySquare
   };
 }
 
