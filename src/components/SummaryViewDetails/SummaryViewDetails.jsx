@@ -17,6 +17,7 @@ import KendoMultiChart from '../KendoMultiChart/KendoMultiChart';
 // Custom Components
 import FilterBox from 'components/FilterBox/FilterBox';
 import Workbook from 'react-excel-workbook'
+import excelLogo from '../../assets/images/excel-logo.png';
 
 
 // Services
@@ -62,8 +63,213 @@ class SummaryViewDetails extends Component {
         summaryType: (this.props.previousViewWasJourneys) ? "Journeys": "Financials",
         header: "Net New ARR",
         activeMetric: 'arr',
-        activeTimeMetric: 'qtd'
-
+        activeTimeMetric: 'qtd',
+        excelTestData: [
+          {
+            Actuals: 66.7,
+            Units: 55,
+            QRF: 66.7,
+            QRFDiff: 43434.2,
+            QQ: 23.5,
+            YY: 84.22
+          },
+          {
+            Actuals: 66.7,
+            Units: 55,
+            QRF: 66.7,
+            QRFDiff: 43434.2,
+            QQ: 23.5,
+            YY: 84.22
+          },
+          {
+            Actuals: 66.7,
+            Units: 55,
+            QRF: 66.7,
+            QRFDiff: 43434.2,
+            QQ: 23.5,
+            YY: 84.22
+          },
+          {
+            Actuals: 66.7,
+            Units: 55,
+            QRF: 66.7,
+            QRFDiff: 43434.2,
+            QQ: 23.5,
+            YY: 84.22
+          },
+          {
+            Actuals: 66.7,
+            Units: 55,
+            QRF: 66.7,
+            QRFDiff: 43434.2,
+            QQ: 23.5,
+            YY: 84.22
+          },
+          {
+            Actuals: 66.7,
+            Units: 55,
+            QRF: 66.7,
+            QRFDiff: 43434.2,
+            QQ: 23.5,
+            YY: 84.22
+          }
+        ],
+        excelTestGeo: [
+          {
+            geo: 'Amer',
+            marketArea:'US',
+            actuals: 66.5,
+            units: 55.3,
+            Qrf:22.3,
+            QRFDiff:44.5,
+            vsQrf:666.5,
+            QQ:233,
+            YY:94.2,
+          },
+          {
+            geo: 'Amer',
+            marketArea:'US',
+            actuals: 66.5,
+            units: 55.3,
+            Qrf:22.3,
+            QRFDiff:44.5,
+            vsQrf:666.5,
+            QQ:233,
+            YY:94.2,
+          },
+          {
+            geo: 'Amer',
+            marketArea:'US',
+            actuals: 66.5,
+            units: 55.3,
+            Qrf:22.3,
+            QRFDiff:44.5,
+            vsQrf:666.5,
+            QQ:233,
+            YY:94.2,
+          },
+          {
+            geo: 'Amer',
+            marketArea:'US',
+            actuals: 66.5,
+            units: 55.3,
+            Qrf:22.3,
+            QRFDiff:44.5,
+            vsQrf:666.5,
+            QQ:233,
+            YY:94.2,
+          },
+          {
+            geo: 'Amer',
+            marketArea:'US',
+            actuals: 66.5,
+            units: 55.3,
+            Qrf:22.3,
+            QRFDiff:44.5,
+            vsQrf:666.5,
+            QQ:233,
+            YY:94.2,
+          },
+          {
+            geo: 'Amer',
+            marketArea:'US',
+            actuals: 66.5,
+            units: 55.3,
+            Qrf:22.3,
+            QRFDiff:44.5,
+            vsQrf:666.5,
+            QQ:233,
+            YY:94.2,
+          },
+          {
+            geo: 'Amer',
+            marketArea:'US',
+            actuals: 66.5,
+            units: 55.3,
+            Qrf:22.3,
+            QRFDiff:44.5,
+            vsQrf:666.5,
+            QQ:233,
+            YY:94.2,
+          },
+          {
+            geo: 'Amer',
+            marketArea:'US',
+            actuals: 66.5,
+            units: 55.3,
+            Qrf:22.3,
+            QRFDiff:44.5,
+            vsQrf:666.5,
+            QQ:233,
+            YY:94.2,
+          },
+          {
+            geo: 'Amer',
+            marketArea:'US',
+            actuals: 66.5,
+            units: 55.3,
+            Qrf:22.3,
+            QRFDiff:44.5,
+            vsQrf:666.5,
+            QQ:233,
+            YY:94.2,
+          },
+          {
+            geo: 'Amer',
+            marketArea:'US',
+            actuals: 66.5,
+            units: 55.3,
+            Qrf:22.3,
+            QRFDiff:44.5,
+            vsQrf:666.5,
+            QQ:233,
+            YY:94.2,
+          },
+          {
+            geo: 'Amer',
+            marketArea:'US',
+            actuals: 66.5,
+            units: 55.3,
+            Qrf:22.3,
+            QRFDiff:44.5,
+            vsQrf:666.5,
+            QQ:233,
+            YY:94.2,
+          },
+          {
+            geo: 'Amer',
+            marketArea:'US',
+            actuals: 66.5,
+            units: 55.3,
+            Qrf:22.3,
+            QRFDiff:44.5,
+            vsQrf:666.5,
+            QQ:233,
+            YY:94.2,
+          },
+          {
+            geo: 'Asia',
+            marketArea:'US',
+            actuals: 66.5,
+            units: 55.3,
+            Qrf:22.3,
+            QRFDiff:44.5,
+            vsQrf:666.5,
+            QQ:233,
+            YY:94.2,
+          },
+          {
+            geo: 'Asia',
+            marketArea:'US',
+            actuals: 66.5,
+            units: 55.3,
+            Qrf:22.3,
+            QRFDiff:44.5,
+            vsQrf:666.5,
+            QQ:233,
+            YY:94.2,
+          }
+        ]
 
     };
 
@@ -216,28 +422,9 @@ renderQuarterlyToDateTableHeader(){
         {/* First Row for Ttle Bar and Metric Filter */}
         <div className="row container-fluid titleBarHeader">
 
-          {/* <span className="col-md- 3 detailTitle">{this.props.activeItem.header}<button className='exportButton'>Export To Excel</button></span> */}
-          <span className="col-md- 3 detailTitle" >
-          {console.log(this.props.activeItem.details.qtdw.qtd)}
-    <Workbook filename="example.xlsx" element={<button className="btn btn-lg btn-primary">Try me!</button>}>
-      <Workbook.Sheet data={this.props.activeItem.details.qtdw.qtd} name="QTD">
-        <Workbook.Column label="Geo" value="Geo"/>
-        <Workbook.Column label="Market Area" value="Market Area"/>
-        <Workbook.Column label="Actuals" value="Actuals"/>
-        <Workbook.Column label="Units" value="Units"/>
-        <Workbook.Column label="QRF" value="QRF"/>
-        <Workbook.Column label="QRF DIFF" value="QRF DIFF"/>
-        <Workbook.Column label="vs QRF" value="vs QRF"/>
-        <Workbook.Column label="Q/Q" value="Q/Q"/>
-        <Workbook.Column label="Y/Y" value="Y/Y"/>
-
-
-      </Workbook.Sheet>
-      <Workbook.Sheet data={data2} name="Another sheet">
-        <Workbook.Column label="Double aaa" value={row => row.aaa * 2}/>
-        <Workbook.Column label="Cubed ccc " value={row => Math.pow(row.ccc, 3)}/>
-      </Workbook.Sheet>
-    </Workbook>
+          <span className="col-md- 3 detailTitle">{this.props.activeItem.header}
+          {/* <button className='exportButton'>Export To Excel</button> */}
+         
   </span>
           <div className=" col-md-9 multiChartMetricContainer">
               <div onClick={this.updateMultiChartMetricFilter} className={UnitStyles}>
@@ -253,8 +440,33 @@ renderQuarterlyToDateTableHeader(){
         </div>
         {/* Second Row for Quarterly to Date title header */}
         <div className=" qtdTitleBarHeader container-fluid row">
-        <span className="col-md- 3 detailTitle">Quarterly To Date</span>
-          <div className=" col-md-9 totalTimeMetricContainer">
+        <span className="col-md-3 detailTitle">Quarterly To Date</span>
+        <span className="col-md-6 excelSpan" >
+              <Workbook filename="example.xlsx" element={<button className='exportButton'><span>Export To Excel </span>    
+                      <img className="excelLogo" style={{height: '20px',width:'20px'}} src={excelLogo} /></button>}>
+                <Workbook.Sheet data={this.state.excelTestData} name="QTD">
+                  <Workbook.Column label="Actuals" value="Actuals"/>
+                  <Workbook.Column label="Units" value="Units"/>
+                  <Workbook.Column label="QRF" value="QRF"/>
+                  <Workbook.Column label="QRFDiff" value="QRFDiff"/>
+                  <Workbook.Column label="vsQRF" value="vsQRF"/>
+                  <Workbook.Column label="Q/Q" value="QQ"/>
+                  <Workbook.Column label="Y/Y" value="YY"/>
+                </Workbook.Sheet>
+            
+                <Workbook.Sheet data={this.state.excelTestGeo} name="Geo">
+                  <Workbook.Column label="Actuals" value="actuals"/>
+                  <Workbook.Column label="Units" value="units"/>
+                  <Workbook.Column label="Geo" value="geo"/>
+                  <Workbook.Column label="MarketArea" value="marketArea"/>
+                  <Workbook.Column label="vsQRF" value="vsQrf"/>
+                  <Workbook.Column label="Q/Q" value="QQ"/>
+                  <Workbook.Column label="Y/Y" value="YY"/>
+                </Workbook.Sheet>
+              </Workbook>
+            </span>
+          <div className=" col-md-3 totalTimeMetricContainer">
+         
             <span className="totalFilterContainer">
               <div onClick={this.updateQtdMetricFilter} className={QTDStyles}>
                   QTD

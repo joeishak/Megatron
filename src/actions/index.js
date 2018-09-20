@@ -17,31 +17,32 @@ import {
     UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD,
     GET_IBE_DATA,
     GET_QUERY_FILTERED_IBE_DATA,
-    GET_QUERY_FILTERED_IBE_MULTICHART_DATA
+    GET_QUERY_FILTERED_IBE_MULTICHART_DATA,
+    GET_EXCEL_MULTICHART
 
 } from 'actions/types';
 import axios from 'axios';
 import * as utils from '../utilities';
 import _ from 'lodash';
-import {InofoburstAzure, InfoburstAzure} from '../variables';
-// general use
+import { InfoburstAzure} from '../variables';
 
-const prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
-const dev_connection = { 'user': 'admin', 'pass': 'admin' };
-
-const environment = { infosolApi: 'http://vm1.infosol.com:8551' };
-
-// Multifilter use
-// const token = 'Basic ' + btoa('JR' + ':' + 'ft3t7pgz');
-let headers = {'Authorization': token , 'Accept': '*/*'};
-const xdc = '447';
-const responseArr = [];
-const filteredActual = 'FinCards_Actual_Filtered';
-const filteredTarget = 'FinCards_Target_Filtered';
-const token = 'Basic ' + btoa(prod_connection['user'] + ':' + prod_connection['pass']);
-
-let newTok = 'Basic ' + btoa(InfoburstAzure.user + ':' + InfoburstAzure.pass);
-let newheaders = {'Authorization': newTok , 'Accept': '*/*'};
+// HTTP Variables 
+const token = 'Basic ' + btoa(InfoburstAzure.user + ':' + InfoburstAzure.pass);
+const headers = {'Authorization': token , 'Accept': '*/*'};
+let quarterQuery;
+let responseArray = [];
+let promiseArr =[];
+let allFilters;
+let filterParams = [
+    {prompt: 'quarterFilters', value: ''},
+    {prompt: 'productFilters', value: ''},
+    {prompt: 'geoFilters', value: ''},
+    {prompt: 'subscriptionFilters', value: ''},
+    {prompt: 'maFilters', value: ''},
+    {prompt: 'routeFilters', value: ''},
+    {prompt: 'segmentFilters', value: ''}
+];
+let response;
 /**
  * Change the state of Authentication for the user.
  * 
@@ -108,17 +109,13 @@ export function updateMultiFilterStatus(status) {
  */
 export function generateFilterData() {
 
-    let responseArray = [];
-    let newTok = 'Basic ' + btoa(InfoburstAzure.user + ':' + InfoburstAzure.pass);
-    let newHeaders = {'Authorization': newTok , 'Accept': '*/*'};
-
-    const maResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=MarketFilters&json=1', {headers: newHeaders, responseType: 'text'})
-    const segementsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=SegmentFilters&json=1', {headers: newHeaders, responseType: 'text'});
-    const subscriptionResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=SubscriptionFilter&json=1', {headers: newHeaders, responseType: 'text'});
-    const routesResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=RouteFilters&json=1', {headers: newHeaders, responseType: 'text'});
-    const quartersResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=QuarterFilter&json=1', {headers: newHeaders, responseType: 'text'});
-    const productResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=ProductFilters&json=1', {headers: newHeaders, responseType: 'text'});
-    const geoResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=GeoFilters&json=1', {headers: newHeaders, responseType: 'text'});
+    const maResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=MarketFilters&json=1', {headers: headers, responseType: 'text'})
+    const segementsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=SegmentFilters&json=1', {headers: headers, responseType: 'text'});
+    const subscriptionResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=SubscriptionFilter&json=1', {headers: headers, responseType: 'text'});
+    const routesResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=RouteFilters&json=1', {headers: headers, responseType: 'text'});
+    const quartersResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=QuarterFilter&json=1', {headers: headers, responseType: 'text'});
+    const productResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=ProductFilters&json=1', {headers: headers, responseType: 'text'});
+    const geoResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=GeoFilters&json=1', {headers: headers, responseType: 'text'});
     
     responseArray.push(quartersResponse,maResponse,productResponse,segementsResponse,subscriptionResponse,routesResponse,geoResponse);
     let promiseArr1 = Promise.all(responseArray);
@@ -220,7 +217,7 @@ export function updateJourneySummaryActiveCard(squareItem){
 
 
 /**
- * Get all the data for adobe
+ * Get all the local data for adobe
  * 
  * @param {boolean} status
  */
@@ -232,11 +229,14 @@ export function getAdobeData() {
         payload: {}
     }
 }
+/**
+ * 
+ * @param {*} _parameters 
+ * @param {*} availableFilters 
+ */
 export function getQueryFilteredIBEData(_parameters,availableFilters){
 
-    let quarterQuery;
-    let responseArr = [];
-    let promiseArr;
+    responseArray= [];
     let allFilters = {
         quarters: Object.values(availableFilters.quarters),
         geos: Object.values(availableFilters.geos),
@@ -278,10 +278,10 @@ export function getQueryFilteredIBEData(_parameters,availableFilters){
       }, '');
 
       const response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\117?q=' + 'FinancialActualTargetQuery'  + params1 + '&json=1', 
-      {headers: newheaders, responseType: 'text'});
+      {headers: headers, responseType: 'text'});
 
-      responseArr.push(response);
-      promiseArr = Promise.all(responseArr);
+      responseArray.push(response);
+      promiseArr = Promise.all(responseArray);
   
       return {
           type: GET_QUERY_FILTERED_IBE_DATA,
@@ -294,11 +294,10 @@ export function getQueryFilteredIBEData(_parameters,availableFilters){
 
 
 export function getQueryFilteredIBEMultiChartData(_parameters,availableFilters){
-    let quarterQuery;
-    let responseArr = [];
-    let promiseArr;
-    let response;
-    let allFilters = {
+   
+   
+    let allFilters
+     = {
         quarters: Object.values(availableFilters.quarters),
         geos: Object.values(availableFilters.geos),
         marketAreas: Object.values(availableFilters.marketAreas),
@@ -307,15 +306,8 @@ export function getQueryFilteredIBEMultiChartData(_parameters,availableFilters){
         subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
         routeToMarkets: Object.values(availableFilters.routeToMarkets)
     }
-    let filterParams = [
-        {prompt: 'quarterFilters', value: ''},
-        {prompt: 'productFilters', value: ''},
-        {prompt: 'geoFilters', value: ''},
-        {prompt: 'subscriptionFilters', value: ''},
-        {prompt: 'maFilters', value: ''},
-        {prompt: 'routeFilters', value: ''},
-        {prompt: 'segmentFilters', value: ''}
-    ];
+    // utils.getAllFilters(allFilters,availableFilters);
+    
 
     filterParams[0].value = _parameters.quarters[0].value;
     filterParams[1].value = _parameters.products[0].value;
@@ -342,15 +334,22 @@ export function getQueryFilteredIBEMultiChartData(_parameters,availableFilters){
        
       if(_parameters.quarters[0].value === 'All Data'){
         response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\117?q=' + 'FinancialMultichartAllQuarterQuery'  + params1 + '&json=1', 
-        {headers: newheaders, responseType: 'text'});
+        {headers: headers, responseType: 'text'});
     } else {
         response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\117?q=' + 'FinancialMultichartQuery'  + params1 + '&json=1', 
-        {headers: newheaders, responseType: 'text'});
+        {headers: headers, responseType: 'text'});
     }
-      responseArr.push(response);
-      promiseArr = Promise.all(responseArr);
+      responseArray.push(response);
+      promiseArr = Promise.all(responseArray);
     return {
         type: GET_QUERY_FILTERED_IBE_MULTICHART_DATA,
         payload: promiseArr
+    }
+}
+
+function getExcelMultichartData(_parameters,availableFilters){
+    return {
+        type: GET_EXCEL_MULTICHART,
+        payload: {}
     }
 }

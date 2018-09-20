@@ -10,6 +10,7 @@
     "@progress/kendo-react-animation": "^1.2.0",
     "@progress/kendo-react-buttons": "^1.2.0",
     "@progress/kendo-react-charts": "^1.2.0",
+    "@progress/kendo-react-conversational-ui": "^2.0.0",
     "@progress/kendo-react-dateinputs": "^1.2.0",
     "@progress/kendo-react-dialogs": "^1.2.0",
     "@progress/kendo-react-dropdowns": "^1.2.0",

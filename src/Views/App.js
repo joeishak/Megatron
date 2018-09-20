@@ -5,10 +5,12 @@ import * as actions from 'actions';
 import styles from './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// Kendo Components
 import '@progress/kendo-theme-default/dist/all.css';
+// Kendo Components
 
 // Custom Components
+import Footer from '../components/Footer/footerBar';
+import ChatDrawer from '../components/Footer/components/ChatDrawerContainer/ChatDrawer';
 import FilterBox from 'components/FilterBox/FilterBox';
 import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
@@ -16,6 +18,12 @@ import CustomDropDownPanel from 'components/CustomDropDownPanel/CustomDropDownPa
 import SummaryViewDetails from 'components/SummaryViewDetails/SummaryViewDetails';
 import KendoDialog from '../components/KendoDialog/KendoDialog';
 import axios from 'axios';
+
+
+//InfoBurst
+
+// Custom Nivo Components
+// import { changeAuth } from '../actions';
 
 class App extends Component {
 
@@ -61,6 +69,10 @@ class App extends Component {
   renderBarGraph(index){
     this.setState({renderFooter: !this.state.render});
   }
+  /* Sets the state passed to the bottom summary box so that it re renders */
+  renderBarGraph(index){
+    this.setState({renderFooter: !this.state.render});
+  }
 
   /* Event Handler for the Filter Box to open the filter panel with the drop downs */
   openDialogFilterPanel(){
@@ -69,40 +81,60 @@ class App extends Component {
       this.setState({showDropDowns: true});
       this.setState({filterPanelIsOpen: true})
     } else { /* Closing the Panel */
+
       this.setState({showDropDowns: false});
       // this.setState({filterPanelIsOpen: false});
+      
       this.time = setTimeout(()=>{
       this.setState({filterPanelIsOpen: false});
+
         },300);
     }
+    
   }
+getSummaryDetails(){
 
-  render() {
+}
 
+openChatDialogPanel = () => {
+  const panelState = this.state.chatWindowIsOpen;
+  this.setState({chatWindowIsOpen: !panelState});
+}
+ 
+  render(){
+
+    const chatWindowContainer = this.state.chatWindowIsOpen ? <ChatDrawer></ChatDrawer> : null;
     // const bottomSummary = !this.props.switchFilter ? 
-    //   <div className='bottomSummaryContainer'>
-    //     <ButtomSummaryBox chartHeight="180px" rerender={this.state.renderFooter}/>
-    //   </div> : null;
+      
+    // <div className='bottomSummaryContainer'>
+    //   {/* <ButtomSummaryBox chartHeight="180px" rerender={this.state.renderFooter}/> */}
+    // </div> : null;
+
     /**Summary View Details */
     const Summary = this.props.detailIsOpen ? 
       <div >
-        <SummaryViewDetails />
-      </div> : 
-      <div>
+      <SummaryViewDetails />
+     </div>
+     : 
+    <div>
        <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
        {/* {bottomSummary} */}
       </div>;
 
     return (
+      
 
-      <div style={{width:'100%',height:'100%'}}>
+      <div style={{height:'100%'}}>
       {/* Data Preferences */}
         <KendoDialog /> 
          <Navigation />
           <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
           {Summary}
+          {chatWindowContainer}
+        <Footer onSelected={this.openChatDialogPanel} selectedSquare={this.props.activeSquare}/>      
       </div>
+
   )
 }
 }
@@ -115,7 +147,8 @@ function mapStateToProps(state) {
     switchFilter: state.switchFilter,
     detailIsOpen: state.detailsIsOpen,
     availableFilters: state.availableFilters,
-    finData: state.finData
+    finData: state.finData,
+    activeSquare: state.activeSummarySquare
   };
 }
 

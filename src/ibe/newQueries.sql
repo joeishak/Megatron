@@ -4,14 +4,14 @@
 
         select quarter, geo_code, product_name, market_area_code,
             route_to_market,subscription_offering,segment_pivot, 
-            sum(cast (net_new_arr_actual as decimal))            as 'NetNewARRActual',
-            sum(cast (net_new_arr_target as decimal))            as 'NetNewARRTarget', 
-            sum(cast (net_cancellations_arr_actual as decimal))  as 'NetCancellationARRActual',  
-            sum(cast (net_cancellations_arr_target as decimal))  as 'NetCancellationARRTarget', 
-            sum(cast (gross_new_arr_actual as decimal))          as 'GrossNewARRActual',
-            sum(cast (gross_new_arr_target as decimal))          as 'GrossNewARRTarget',
-            sum(cast (term_end_renewal_actual as decimal))       as 'RenewalAtFPActual',
-            sum(cast (term_end_renewal_target as decimal))       as 'RenewalAtFPTarget'
+            sum(cast (net_new_arr_actual as real))            as 'NetNewARRActual',
+            sum(cast (net_new_arr_target as real))            as 'NetNewARRTarget', 
+            sum(cast (net_cancellations_arr_actual as real))  as 'NetCancellationARRActual',  
+            sum(cast (net_cancellations_arr_target as real))  as 'NetCancellationARRTarget', 
+            sum(cast (gross_new_arr_actual as real))          as 'GrossNewARRActual',
+            sum(cast (gross_new_arr_target as real))          as 'GrossNewARRTarget',
+            sum(cast (term_end_renewal_actual as real))       as 'RenewalAtFPActual',
+            sum(cast (term_end_renewal_target as real))       as 'RenewalAtFPTarget'
         from  dbo.rtb
         group by quarter,geo_code, product_name, market_area_code,
             route_to_market,subscription_offering,segment_pivot
@@ -29,23 +29,23 @@
                 route_to_market,
                 subscription_offering,
                 segment_pivot,
-                sum(cast (net_new_arr_actual as decimal))               as 'NetNewARRActual',
-                sum(cast (net_new_arr_target as decimal))               as 'NetNewARRTarget', 
-                sum(cast (net_cancellations_arr_actual as decimal))     as 'NetCancellationARRActual',  
-                sum(cast (net_cancellations_arr_target as decimal))     as 'NetCancellationARRTarget', 
-                sum(cast (gross_new_arr_actual as decimal))             as 'GrossNewARRActual',
-                sum(cast (gross_new_arr_target as decimal))             as 'GrossNewARRTarget',
-                sum(cast (term_end_renewal_actual as decimal))          as 'RenewalAtFPActual',
-                sum(cast (term_end_renewal_target as decimal))          as 'RenewalAtFPTarget',
-                sum(cast (net_new_arr_ly as decimal))                   as 'NetNewARRLY',
-                sum(cast (gross_new_arr_ly as decimal))                 as 'GrossNewARRLY', 
-                sum(cast (net_cancellations_arr_ly as decimal))         as 'NetCancellationsARRLY',
-                sum(cast (term_end_renewal_ly as decimal ))             as 'TermEndRenewalLY'		
+                sum(cast (net_new_arr_actual as real))               as 'NetNewARRActual',
+                sum(cast (net_new_arr_target as real))               as 'NetNewARRTarget', 
+                sum(cast (net_cancellations_arr_actual as real))     as 'NetCancellationARRActual',  
+                sum(cast (net_cancellations_arr_target as real))     as 'NetCancellationARRTarget', 
+                sum(cast (gross_new_arr_actual as real))             as 'GrossNewARRActual',
+                sum(cast (gross_new_arr_target as real))             as 'GrossNewARRTarget',
+                sum(cast (term_end_renewal_actual as real))          as 'RenewalAtFPActual',
+                sum(cast (term_end_renewal_target as real))          as 'RenewalAtFPTarget',
+                sum(cast (net_new_arr_ly as real))                   as 'NetNewARRLY',
+                sum(cast (gross_new_arr_ly as real))                 as 'GrossNewARRLY', 
+                sum(cast (net_cancellations_arr_ly as real))         as 'NetCancellationsARRLY',
+                sum(cast (term_end_renewal_ly as real ))             as 'TermEndRenewalLY'		
             from dbo.rtb
-                where try_cast(gross_new_arr_ly as decimal) is not null
-                and try_cast(net_new_arr_ly as decimal) is not null
-                and try_cast(net_cancellations_arr_ly as decimal) is not null
-                and try_cast(term_end_renewal_ly as decimal) is not null
+                where try_cast(gross_new_arr_ly as real) is not null
+                and try_cast(net_new_arr_ly as real) is not null
+                and try_cast(net_cancellations_arr_ly as real) is not null
+                and try_cast(term_end_renewal_ly as real) is not null
             group by quarter,Month(fiscal_wk_ending_date),DatePArt(wk, fiscal_wk_ending_date) ,geo_code, product_name, market_area_code,
                 route_to_market,subscription_offering,segment_pivot    
             order by quarter;
