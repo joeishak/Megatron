@@ -10,7 +10,7 @@
     position: absolute;
 }
 .commentBoxHeaderContainer{
-    margin:5%;
+    margin:2.5%;
     font-size: 24px;
     font-weight: bold;
 }
@@ -33,7 +33,7 @@
     width:100%;
     height: 60px;
     background-color:white;
-    padding: 5%;
+    padding: 2.5%;
     font-size: 16px;
     color: grey;
 }
@@ -50,7 +50,8 @@ hr{
     scroll-behavior: smooth;
     overflow: scroll;
     overflow-x: hidden;
-    padding: 5%;
+    padding: 2.5%;
+
 }
 .commentResponseFooter{
     margin:5%;
@@ -79,11 +80,13 @@ hr{
     height: auto;
     width: 100%;
     float:left;
-    margin-bottom: 5%;
-    /* background-color: grey; */
+    margin-bottom: 15px;
+    background-color: white;
+    /* border: 1px solid grey;
+    border-radius: 5px; */
 }
 .commentUserHeader{
-    height: 30px;
+    height: 20px;
 }
 .commentUserIcon{
     background-image:url("../../assets/images/user.png");
@@ -102,12 +105,14 @@ hr{
     height: 40px;
     vertical-align: top;
     padding-left: 2.5%;
+    font-weight:bold;
 
 }
 .commentTime{
     display:inline-block;
     vertical-align: top;
     padding-left: 2.5%;
+    color: lightgrey;
 }
 .mainCommentContent{
     padding-left:10%;
@@ -125,5 +130,42 @@ hr{
 }
 
 .repliesContainer{
+    width: 100%;
+    height: auto;
+}
 
+.repliesArrowContainer{
+    width: 50px;
+    height: 30px;
+    float:left;
+}
+.repliesArrow{
+    float: right;
+    width: 30px;
+    height:30px;
+    display:inline-block;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    background-image: url("../../assets/images/replies-arrow.png");
+}
+.repliesList{
+    height: 100%;
+    width: 85%;
+    float:left;
+}
+.userReplyingHeader{
+    width:100%;
+    height: 20px;
+}
+.reply{
+    width:100%;
+    display:inline-block;
+}
+.replyContent{
+    padding-left: 11%;
+}
+.fileContainer{
+    margin: 0px !important;
+    padding: 0px !important;
 }

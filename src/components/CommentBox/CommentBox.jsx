@@ -10,19 +10,80 @@ class CommentBox extends Component {
         super(props);
         this.state = {
             replyMessage: '',
-            comments: [ ],
-            pictures: []
+            comments: [
+                {
+                    id: 0,
+                    userName: 'Erin Smith',
+                    time: '8:34am',
+                    comment: 'Check out the increased sales in this sector. This will make a huge difference.',
+                    replies: [
+                        {
+                            id: 0,
+                            userName: 'Bob Smith',
+                            time: '9:04am',
+                            comment: 'Wow! Great job team!'
+                            
+                        },
+                        {
+                            id: 1,
+                            userName: 'Samantha Smith',
+                            time: '9:34am',
+                            comment: 'Was this for last month?'
+                            
+                        },
+                        {
+                            id: 2,
+                            userName: 'Steve Smith',
+                            time: '9:54am',
+                            comment: 'Yes.'
+                            
+                        }
+                    ]
+                },
+                {
+                    id: 1,
+                    userName: 'Shaun White',
+                    time: '12:33pm',
+                    comment: 'What happened in Quarter 3? ',
+                    replies: [
+                        {
+                            id: 0,
+                            userName: 'Bob Smith',
+                            time: '8:34am',
+                            comment: 'Our customers in Japan did not take to our marketing strategy. '
+                            
+                        }
+                    ]
+                }
+             ],
+            pictures: [],
+            commentToBeRepliedTo: null,
+
+            
+            
         }
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.updateValue = this.updateValue.bind(this);
         this.onDrop = this.onDrop.bind(this);
+        this.setAddCommentFocus = this.setAddCommentFocus.bind(this)
     }
 
-    
+    setAddCommentFocus(e){
+        console.log(e.target.id)
+        this.setState({commentToBeRepliedTo: e.target.id});
+        this.commentInput.focus();
+    }
     handleKeyPress(e){
+       let comment= {
+            id: this.state.comments.length,
+            userName: 'Johnn Summerson',
+            time: new Date().toLocaleTimeString(),
+            comment: e.target.value,
+            replies: []
+        }
         if(e.key==='Enter'){
             // Post the Comment
-            this.setState({comments: [...this.state.comments,e.target.value],
+            this.setState({comments: [...this.state.comments,comment],
                         replyMessage: ''})
         } 
     }
@@ -56,100 +117,66 @@ class CommentBox extends Component {
             {/* Comments */}
                 <div className='commentsContainer'>
                 {
-                        // this.state.comments.map(comment=>{
-                        //     return <div> {comment} </div>
-                        // })
+                        this.state.comments.map(comment=>{
+                            return (
+                                <div key = {comment.id} className='comment'>
+                                <div className='commentUserHeader'>
+                                    {/* Comment User Icon */}
+                                    <div className='commentUserIcon' />
+                                    {/* Comment User Name */}
+                                    <span className='commentUserName'>
+                                    {comment.userName}
+                                    </span>
+                                    {/* Comment User Date */}
+                                    <div className='commentTime'>
+                                    {comment.time}</div>
+                                </div>
+                                <div className='mainCommentContent'>
+                               {comment.comment}
+                                <a id={comment.id} className='replyArrow' onClick={this.setAddCommentFocus}></a>
+                                </div>
+                                <div className='repliesContainer'>
+                                    <div className='repliesArrowContainer'>
+                                        <span className='repliesArrow'>
+                                        </span>
+                                    </div>
+                                    <div className='repliesList'>
+                                        {comment.replies.map(reply=>{
+                                            return(
+                                                <div key={reply.id} className='reply'>
+                                                {/* Reply Header */}
+                                                    <div className='userReplyingHeader'>
+                                                    {/* Reply Comment User Icon */}
+                                                        <div className='commentUserIcon' />
+                                                        {/* Reply Comment User Name */}
+                                                        <span className='commentUserName'>
+                                                        {reply.userName}
+                                                        </span>
+                                                        {/* Reply Comment User Date */}
+                                                        <span className='commentTime'>
+                                                        {reply.time}</span>
+                                                    </div>
+                                                {/* Reply Content */}
+                                                <div className='replyContent'>
+                                                {reply.comment}
+                                                </div>
+                                            </div>
+                                            )
+                                        })}
+                                       
+                                    </div>
+                                </div>
+                            </div>)
+                        })
 
-                    }
-                <div className='comment'>
-                    <div className='commentUserHeader'>
-                        {/* Comment User Icon */}
-                        <div className='commentUserIcon' />
-                        {/* Comment User Name */}
-                        <span className='commentUserName'>
-                        Erin Smith
-                        </span>
-                        {/* Comment User Date */}
-                        <div className='commentTime'>
-                        8:34am</div>
-                    </div>
-                    <div className='mainCommentContent'>
-                    Check out the increased sales in this sector. This will make a huge difference this qtr. <a className='replyArrow'></a>
-                    <div className='repliesContainer'>
-
-                    </div>
-                    </div>
-                    
-                </div>
-                <div className='comment'>
-                    <div className='commentUserHeader'>
-                        {/* Comment User Icon */}
-                        <div className='commentUserIcon' />
-                        {/* Comment User Name */}
-                        <span className='commentUserName'>
-                        Erin Smith
-                        </span>
-                        {/* Comment User Date */}
-                        <div className='commentTime'>
-                        8:34am</div>
-                    </div>
-                    <div className='mainCommentContent'>
-                    Check out the increased sales in this sector. This will make a huge difference this qtr. <a className='replyArrow'></a>
-                    <div className='repliesContainer'>
-
-                    </div>
-                    </div>
-                    
-                </div>
-                <div className='comment'>
-                    <div className='commentUserHeader'>
-                        {/* Comment User Icon */}
-                        <div className='commentUserIcon' />
-                        {/* Comment User Name */}
-                        <span className='commentUserName'>
-                        Erin Smith
-                        </span>
-                        {/* Comment User Date */}
-                        <div className='commentTime'>
-                        8:34am</div>
-                    </div>
-                    <div className='mainCommentContent'>
-                    Check out the increased sales in this sector. This will make a huge difference this qtr. <a className='replyArrow'></a>
-                    <div className='repliesContainer'>
-
-                    </div>
-                    </div>
-                    
-                </div>
-                <div className='comment'>
-                    <div className='commentUserHeader'>
-                        {/* Comment User Icon */}
-                        <div className='commentUserIcon' />
-                        {/* Comment User Name */}
-                        <span className='commentUserName'>
-                        Erin Smith
-                        </span>
-                        {/* Comment User Date */}
-                        <div className='commentTime'>
-                        8:34am</div>
-                    </div>
-                    <div className='mainCommentContent'>
-                    Check out the increased sales in this sector. This will make a huge difference this qtr. <a className='replyArrow'></a>
-                    <div className='repliesContainer'>
-                        <div className='replyContainer'>
-                        </div>
-                    </div>
-                    </div>
-                    
-                </div>
+                }
+                
 
                 </div>
             {/* Reply / Attachment Footer */}
                 <div className='commentResponseFooter'>
                   
-                    <input className='replyTextInput' type="text" onChange={this.updateValue} value={this.state.replyMessage} onKeyPress={this.handleKeyPress}placeholder='Add A Comment . . . '/>
-                    {/* <input type="file" value="" className='newPhotoUploadIcon'/>
-                    <a className='newPhotoUploadIcon'></a> */}
+                    <input ref={(input) => {this.commentInput=input;}} className='replyTextInput' type="text" onChange={this.updateValue} value={this.state.replyMessage} onKeyPress={this.handleKeyPress}placeholder='Add A Comment . . . '/>
                      <ImageUploader
                         withIcon={false}
                         buttonText='Choose images'
