@@ -251,9 +251,9 @@ class TopSummaryBox extends Component {
                 {this.props.appData.financial.squares.map(item => {
                     return (
                     <div className="financialBoxHover" key={item.index}>    
-                     <CSSTransitionGroup transitionName="example"
+                     {/* <CSSTransitionGroup transitionName="example"
                     transitionAppear={true} transitionAppearTimeout={5000}
-                    transitionEnter={false} transitionLeave={false} >
+                    transitionEnter={false} transitionLeave={false} > */}
                     <div className={ `financialBox ${item.css[1]} ${activeCard === item.css[0] ? this.getColor(item.value, item.target, 'financial', false) : ''}`} 
                     onClick={e => this.onFinancialCardClicked(e, item.index)}>
                 
@@ -277,7 +277,7 @@ class TopSummaryBox extends Component {
                                 </div>  
                             </div>
                         </div>
-                    </CSSTransitionGroup>
+                    {/* </CSSTransitionGroup> */}
 
                     </div>  
                     );
@@ -300,9 +300,9 @@ class TopSummaryBox extends Component {
                 {this.props.appData.journey.squares.map(item => {
                     return (
                     <div className="journeyBoxHover" key={item.index}>    
-                     <CSSTransitionGroup transitionName="example"
+                     {/* <CSSTransitionGroup transitionName="example"
                     transitionAppear={true} transitionAppearTimeout={5000}
-                    transitionEnter={false} transitionLeave={false} >
+                    transitionEnter={false} transitionLeave={false} > */}
                     <div className={ `journeyBox ${item.css[1]} ${activeJourneyCard === item.css[0] ? this.getColor(item.value, item.target, 'journey', false) : ''}`} 
                     onClick={e => this.onJourneyCardClicked(e, item.index)}>
                 
@@ -326,7 +326,7 @@ class TopSummaryBox extends Component {
                                 </div>  
                             </div>
                         </div>
-                </CSSTransitionGroup>
+                {/* </CSSTransitionGroup> */}
 
                     </div>  
                     );
