@@ -395,7 +395,6 @@ function mapStateToProps(state) {
         filters: state.filters, 
         switchFilter:state.switchFilter, 
         appData: state.adobeData, 
-        activeCard: state.activeSummarySquare,
         finData: state.ibeData
     }
 }

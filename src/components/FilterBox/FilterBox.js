@@ -4,7 +4,7 @@ import {connect } from 'react-redux';
 import  classNames from 'classnames';
 
 // Custom Components and Styles
-import addIcon from './add-icon.svg';
+import addIcon from '../../assets/images/add-icon-white.svg';
 import * as actions from 'actions';
 import FilterPillBox from '../FilterPillBox/FilterPillBox';
 import styles from './FilterBox.css';

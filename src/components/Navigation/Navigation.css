@@ -10,6 +10,10 @@
     padding-top: 17px;
     width: 25px;
 }
+.userIcon{
+    width:57px;
+    height:57px;
+}
 .navText:hover {
     color: gray !important;
 }
@@ -38,7 +42,7 @@
 
 .dropDownContainer {
     padding-right: 10px;
-    margin-top: 18px;
+    margin-top: 20px;
     padding-bottom: 20px;
     font-size: 16px; 
 
@@ -66,4 +70,73 @@
 
 #nav-dropdown::after {
     display:none;
+}
+
+.commentNotificationCircle{
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 15px;
+    border:  1px solid red;
+
+}
+.commentNotificationCircleRed{
+    border: red;
+}
+.commentsIcon{
+    width:40px;
+    height:40px;
+    margin-left:10%;
+    margin-top:10%;
+
+}
+
+
+.center{
+    margin: 0 auto;
+  }
+.roundButton{
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  display:block;
+  background-size: contain;
+  float:left;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+}
+  
+.commentsOff{
+  background-image: url("../../assets/images/comments-off.png");
+  background-color: #fff;
+  border-radius: 100%;
+}
+
+.commentsOn{
+    background-image: url("../../assets/images/comments-on.png");
+    background-color: #fff;
+    border-radius: 100%;
+  }
+  
+.redicon{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background: red;
+  padding:6px;
+  /* box-sizing: border-box; */
+  border-radius: 100%;
+}
+
+.redicontext{
+  position: absolute;
+  top: 10px;
+  right: 3%;
+  padding:10px;
+  box-sizing: border-box;
+  border-radius: 100%;
 }

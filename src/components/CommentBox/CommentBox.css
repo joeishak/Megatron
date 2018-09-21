@@ -1,0 +1,43 @@
+.commentBoxContainer{
+    height: 750px;
+    width:500px;
+    background-color:#D8D8D8;
+    display:inline;
+    float:right;
+    z-index: 3;
+    top: 132px;
+    right: 0px;
+    position: absolute;
+}
+.commentBoxHeaderContainer{
+    margin:5%;
+    font-size: 24px;
+    font-weight: bold;
+}
+.exitContainer{
+    float:right;
+}
+.exitCommentsButton{
+    width:30px;
+    height:30px;
+
+    -webkit-transform: rotate(135deg);
+    -webkit-transition-duration: .5s;
+    display: inline-block;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    text-align: center;
+}
+.commentsContainer{
+    width:100%;
+    height: 60%;
+    background-color:white;
+}
+.commentResponseFooter{
+    margin:5%;
+}
+.replyTextInput{
+    width: 100%;
+    height: 40px;
+    padding:5px;
+}

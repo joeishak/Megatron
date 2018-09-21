@@ -38,6 +38,8 @@ SELECT DISTINCT route_to_market 'RouteToMarket' from dbo.rtb;
 /* Select all the unique values for Segment */
 SELECT DISTINCT segment_pivot 'Segment' from dbo.rtb;
 
+SELECT DISTINCT market_area 'MarketAreas' from dbo.rtb;
+
 /** IBE **/
 
 /** QUARTERS **/
@@ -93,6 +95,7 @@ SELECT DISTINCT segment_pivot 'Segment' from dbo.rtb;
     select distinct product_name from dbo.rtb;
     /* 
         Name: SegmentFilters */
+    select distinct subscription_offering  from dbo.rtb;
     select  distinct segment_pivot from dbo.rtb;
 
 --  B. Data  Segment queries by Quarter N 
@@ -372,3 +375,18 @@ Journey Background - dark grey
 - solves the performance /target better
 
 Suggestions - same brightness from the 4 stats for colors
+
+
+COMMENTS IS Very INTERESTED!
+
+Y Axis of Multi Chart 
+1.2 M$
+1.1M$ clean up the Y axis from 10000000 to 1.0M$
+
+quarter: 1 at a time
+Geo: multi
+market multi
+route multi
+segment select 1
+subscription Multi
+product multi

@@ -3,12 +3,15 @@ import React, { Component } from 'react';
 import { Route,Link } from 'react-router-dom';
 import {Nav,  Navbar, NavDropdown, MenuItem} from 'react-bootstrap';
 import {  Expand, } from '@progress/kendo-react-animation';
+import classNames from 'classnames';
 // Custom Components and Styles
 import App from '../../Views/App.js';
 import userIcon from './user-icon.svg';
 import styles from './Navigation.css';
 import logo from "../../assets/images/adobe-logo-nav-1.svg";
-import { DataPreferenceDialog } from './Components/DataPreferences/DataPreferenceDialog';
+import commentsOn from "../../assets/images/comments-on.png";
+
+import { DataPreferenceDialog } from './Components/DataPreferences/DataPreferenceDialog.js';
 
 // Redux
 import {connect } from 'react-redux';
@@ -25,10 +28,12 @@ class Navigation extends Component {
           loggedUser: 'J. Summerson',
           show: false,
           activeTab: 'tab1',
-          dataPrefDialogVisible: this.props.dialogIsOpen
+          dataPrefDialogVisible: this.props.dialogIsOpen,
+          commentsAreActive: false
         }
         //Binding functions to this
         this.showLogo = this.showLogo.bind(this);
+        this.updateCommentsNav  = this.updateCommentsNav.bind(this);
         this.showLogo();
     }
 
@@ -76,7 +81,17 @@ class Navigation extends Component {
         this.props.updateDialogVisibility(this.state.dataPrefDialogVisible);
       });
     }
+    updateCommentsNav(){
+      switch(this.props.commentBoxIsOpen){
+        case true:
+        this.props.hideCommentBox();
+        break;
+        case false:
+        this.props.showCommentBox();
+        break;
 
+      }
+    }
     
     render() {
 
@@ -86,6 +101,13 @@ class Navigation extends Component {
       
       const { activeTab } = this.state;
     
+      let commentsNavigationItem = classNames({
+        roundButton: true,
+        commentsOff: (this.props.commentBoxIsOpen) ? false : true,
+        commentsOn: (this.props.commentBoxIsOpen) ? true : false,
+
+        
+      }) 
         return(
 
         <Navbar  fluid className="navContainer">
@@ -140,9 +162,15 @@ class Navigation extends Component {
                       <MenuItem eventKey={3.3}>Log Out</MenuItem>
 
                   </NavDropdown>
-                </div>
-                <div className=" k-float-right"><img className="userIcon" src={userIcon}/></div>
-
+              </div>
+              <div className=" k-float-left"><img className="userIcon" src={userIcon}/></div>
+              <div className='k-float-right'> 
+                <a className={commentsNavigationItem} onClick={this.updateCommentsNav}>
+                  <div class="redicon"></div>
+                  <div class="redicontext">
+                  </div>
+                </a>
+              </div>
               </div>
 
             </Nav>
@@ -154,7 +182,8 @@ class Navigation extends Component {
 
 function maptStateToProps(state) {
   return {
-    dialogIsOpen: state.dialogIsOpen
+    dialogIsOpen: state.dialogIsOpen,
+    commentBoxIsOpen: state.commentBoxIsOpen
   }
 }
 

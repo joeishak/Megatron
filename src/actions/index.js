@@ -18,7 +18,8 @@ import {
     GET_IBE_DATA,
     GET_QUERY_FILTERED_IBE_DATA,
     GET_QUERY_FILTERED_IBE_MULTICHART_DATA,
-    GET_EXCEL_MULTICHART
+    GET_EXCEL_MULTICHART,
+    UPDATE_COMMENT_BOX_VISIBILITY
 
 } from 'actions/types';
 import axios from 'axios';
@@ -108,7 +109,7 @@ export function updateMultiFilterStatus(status) {
  * 
  */
 export function generateFilterData() {
-
+ 
     const maResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=MarketFilters&json=1', {headers: headers, responseType: 'text'})
     const segementsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=SegmentFilters&json=1', {headers: headers, responseType: 'text'});
     const subscriptionResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '45?q=SubscriptionFilter&json=1', {headers: headers, responseType: 'text'});
@@ -277,7 +278,7 @@ export function getQueryFilteredIBEData(_parameters,availableFilters){
         
       }, '');
 
-      const response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\117?q=' + 'FinancialActualTargetQuery'  + params1 + '&json=1', 
+      const response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\138?q=' + 'FinancialActualTargetQuery'  + params1 + '&json=1', 
       {headers: headers, responseType: 'text'});
 
       responseArray.push(response);
@@ -295,6 +296,7 @@ export function getQueryFilteredIBEData(_parameters,availableFilters){
 
 export function getQueryFilteredIBEMultiChartData(_parameters,availableFilters){
    
+    responseArray = [];
    
     let allFilters
      = {
@@ -333,10 +335,10 @@ export function getQueryFilteredIBEMultiChartData(_parameters,availableFilters){
 
        
       if(_parameters.quarters[0].value === 'All Data'){
-        response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\117?q=' + 'FinancialMultichartAllQuarterQuery'  + params1 + '&json=1', 
+        response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\138?q=' + 'FinancialMultichartAllQuarterQuery'  + params1 + '&json=1', 
         {headers: headers, responseType: 'text'});
     } else {
-        response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\117?q=' + 'FinancialMultichartQuery'  + params1 + '&json=1', 
+        response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\138?q=' + 'FinancialMultichartQuery'  + params1 + '&json=1', 
         {headers: headers, responseType: 'text'});
     }
       responseArray.push(response);
@@ -347,9 +349,23 @@ export function getQueryFilteredIBEMultiChartData(_parameters,availableFilters){
     }
 }
 
-function getExcelMultichartData(_parameters,availableFilters){
+export function getExcelMultichartData(_parameters,availableFilters){
     return {
         type: GET_EXCEL_MULTICHART,
         payload: {}
+    }
+}
+
+export function showCommentBox(){
+    return {
+        type: UPDATE_COMMENT_BOX_VISIBILITY,
+        payload: true
+    }
+}
+
+export function hideCommentBox(){
+    return{
+        type: UPDATE_COMMENT_BOX_VISIBILITY,
+        payload: false
     }
 }

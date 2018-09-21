@@ -29,9 +29,9 @@ class KendoMultiChart extends Component {
     }
 
     render(){
-        const  firstSeries = this.props.activeSummary.details.multichart[0];
-        const  secondSeries = this.props.activeSummary.details.multichart[1];
-        const  thirdSeries = this.props.activeSummary.details.multichart[2];
+        const  firstSeries = this.props.activeMultichart[0];
+        const  secondSeries = this.props.activeMultichart[1];
+        const  thirdSeries = this.props.activeMultichart[2];
 
         // console.log(this.props.activeSummary.details.multichart[0]);
         // console.log(this.props.activeSummary.details.multichart[1]);
@@ -76,6 +76,6 @@ class KendoMultiChart extends Component {
 
 }
 function mapStateToProps(state){
-    return { switchFilter: state.switchFilter, activeSummary: state.activeSummarySquare, activeMultichart: state.activeSummarySquare.details.multichart }
+    return { switchFilter: state.switchFilter,  activeMultichart: state.activeSummarySquare.details.multichart }
 }
 export default connect(mapStateToProps,actions)( KendoMultiChart);

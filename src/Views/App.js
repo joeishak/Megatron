@@ -17,6 +17,7 @@ import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 import CustomDropDownPanel from 'components/CustomDropDownPanel/CustomDropDownPanel';
 import SummaryViewDetails from 'components/SummaryViewDetails/SummaryViewDetails';
 import KendoDialog from '../components/KendoDialog/KendoDialog';
+import CommentBox from '../components/CommentBox/CommentBox.jsx';
 import axios from 'axios';
 
 
@@ -54,12 +55,13 @@ class App extends Component {
     // this.props.generateFilterData();
     
     this.getFilters();
-
+   
   }
+ 
   componentWillReceiveProps(nextProps){
+   
     this.props.getQueryFilteredIBEData(nextProps.activeFilters,nextProps.availableFilters);
     this.props.getQueryFilteredIBEMultiChartData(nextProps.activeFilters,nextProps.availableFilters);
-    
 
   }
   getFilters(){
@@ -104,12 +106,7 @@ openChatDialogPanel = () => {
   render(){
 
     const chatWindowContainer = this.state.chatWindowIsOpen ? <ChatDrawer></ChatDrawer> : null;
-    // const bottomSummary = !this.props.switchFilter ? 
       
-    // <div className='bottomSummaryContainer'>
-    //   {/* <ButtomSummaryBox chartHeight="180px" rerender={this.state.renderFooter}/> */}
-    // </div> : null;
-
     /**Summary View Details */
     const Summary = this.props.detailIsOpen ? 
       <div >
@@ -129,10 +126,11 @@ openChatDialogPanel = () => {
         <KendoDialog /> 
          <Navigation />
           <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
+          {(this.props.commentBoxIsOpen) ? <CommentBox /> : null}
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
           {Summary}
-          {chatWindowContainer}
-        <Footer onSelected={this.openChatDialogPanel} selectedSquare={this.props.activeSquare}/>      
+          {/* {chatWindowContainer} */}
+        {/* <Footer onSelected={this.openChatDialogPanel} selectedSquare={this.props.activeSquare}/>       */}
       </div>
 
   )
@@ -144,11 +142,10 @@ function mapStateToProps(state) {
   return {
     dialogIsOpen:state.isDialogOpen,
     activeFilters: state.activeFilters,
-    switchFilter: state.switchFilter,
     detailIsOpen: state.detailsIsOpen,
     availableFilters: state.availableFilters,
-    finData: state.finData,
-    activeSquare: state.activeSummarySquare
+    activeSquare: state.activeSummarySquare,
+    commentBoxIsOpen: state.commentBoxIsOpen
   };
 }
 
