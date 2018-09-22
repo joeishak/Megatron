@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import {connect } from 'react-redux';
+
+import * as actions from 'actions';
 import classNames from 'classnames';
 import ImageUploader from 'react-images-upload';
 import styles from './CommentBox.css';
@@ -117,7 +120,7 @@ class CommentBox extends Component {
             {/* Comments */}
                 <div className='commentsContainer'>
                 {
-                        this.state.comments.map(comment=>{
+                        this.props.comments.map(comment=>{
                             return (
                                 <div key = {comment.id} className='comment'>
                                 <div className='commentUserHeader'>
@@ -191,4 +194,10 @@ class CommentBox extends Component {
     }
 }
 
-export default (CommentBox)
+function mapStateToProps(state){
+    console.log(state);
+    return {
+        comments: state.activeSummarySquare.comments
+    }
+}
+export default connect(mapStateToProps,actions) (CommentBox)
