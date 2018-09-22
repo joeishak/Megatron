@@ -8,6 +8,8 @@ import ImageUploader from 'react-images-upload';
 import styles from './CommentBox.css';
 import addIcon from '../../assets/images/add-icon-black.svg';
 import cameraIcon from '../../assets/images/camera.png';
+import { connect } from 'react-redux';
+import * as actions from 'actions';
 class CommentBox extends Component {
     constructor(props){
         super(props);
@@ -99,6 +101,10 @@ class CommentBox extends Component {
             pictures: this.state.pictures.concat(picture),
         });
     }
+
+    onClose(e) {
+        this.props.hideCommentBox();
+    }
     render(){
         
         return(
@@ -107,7 +113,7 @@ class CommentBox extends Component {
                 <div className='commentBoxHeaderContainer'>
                     Net New ARR
                     <span className='exitContainer'>
-                    <img src={addIcon} alt="" className='exitCommentsButton' ></img>
+                    <img src={addIcon} alt="" className='exitCommentsButton' onClick={e => this.onClose(e)} ></img>
                     </span>
                 </div>
                 {/* Date Text */}
@@ -194,6 +200,7 @@ class CommentBox extends Component {
     }
 }
 
+<<<<<<< HEAD
 function mapStateToProps(state){
     console.log(state);
     return {
@@ -201,3 +208,10 @@ function mapStateToProps(state){
     }
 }
 export default connect(mapStateToProps,actions) (CommentBox)
+=======
+function mapStateToProps(state) {
+    return {  }
+}
+
+export default connect(mapStateToProps, actions)(CommentBox);
+>>>>>>> 62031849992ac815280a1c4e2033027c66be9c6a

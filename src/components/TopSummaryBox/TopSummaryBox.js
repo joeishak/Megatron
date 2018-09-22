@@ -11,6 +11,10 @@ import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 import KendoBulletChart from '../KendoBullet/KendoBullet';
 import * as _ from 'lodash';
+
+import commentIconOn from '../../assets/images/comments-on.svg';
+import commentIconOff from '../../assets/images/comments-off.svg';
+
 class TopSummaryBox extends Component {
 
     //When the component is constructed
@@ -236,6 +240,12 @@ class TopSummaryBox extends Component {
         return returnValue;
     }
 
+    onCommentIconClick = (e, commentArrayLength) => {
+        // before opening, check if the card comments[] is not empty
+        if (commentArrayLength !== 0) {
+            this.props.showCommentBox();
+        } 
+    }
    
     getSummaryContent(){
         // console.log('Top Summary', this.state.finData);
@@ -251,15 +261,18 @@ class TopSummaryBox extends Component {
                 {this.props.appData.financial.squares.map(item => {
                     return (
                     <div className="financialBoxHover" key={item.index}>    
-                     <CSSTransitionGroup transitionName="example"
+                     {/* <CSSTransitionGroup transitionName="example"
                     transitionAppear={true} transitionAppearTimeout={5000}
-                    transitionEnter={false} transitionLeave={false} >
+                    transitionEnter={false} transitionLeave={false} > */}
                     <div className={ `financialBox ${item.css[1]} ${activeCard === item.css[0] ? this.getColor(item.value, item.target, 'financial', false) : ''}`} 
                     onClick={e => this.onFinancialCardClicked(e, item.index)}>
                 
                     <div  className={`financialHeader k-float-left ${activeCard === item.css[0] ? this.getColor(item.value,  item.target, 'financial', true) : ''}`} >
                         
                     </div>
+
+                    {/* Image Icon For Comments */}
+                    <div className="k-float-right cardCommentIcon"><img src={item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.onCommentIconClick(e, item.comments.length)}></img></div>
                   
                             <div className="journeyContent">
                                 <p>{item.header}</p>
@@ -277,7 +290,7 @@ class TopSummaryBox extends Component {
                                 </div>  
                             </div>
                         </div>
-                    </CSSTransitionGroup>
+                    {/* </CSSTransitionGroup> */}
 
                     </div>  
                     );
@@ -300,9 +313,9 @@ class TopSummaryBox extends Component {
                 {this.props.appData.journey.squares.map(item => {
                     return (
                     <div className="journeyBoxHover" key={item.index}>    
-                     <CSSTransitionGroup transitionName="example"
+                     {/* <CSSTransitionGroup transitionName="example"
                     transitionAppear={true} transitionAppearTimeout={5000}
-                    transitionEnter={false} transitionLeave={false} >
+                    transitionEnter={false} transitionLeave={false} > */}
                     <div className={ `journeyBox ${item.css[1]} ${activeJourneyCard === item.css[0] ? this.getColor(item.value, item.target, 'journey', false) : ''}`} 
                     onClick={e => this.onJourneyCardClicked(e, item.index)}>
                 
@@ -326,7 +339,7 @@ class TopSummaryBox extends Component {
                                 </div>  
                             </div>
                         </div>
-                </CSSTransitionGroup>
+                {/* </CSSTransitionGroup> */}
 
                     </div>  
                     );

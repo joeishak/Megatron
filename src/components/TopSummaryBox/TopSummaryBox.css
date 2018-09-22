@@ -10,8 +10,6 @@
 
 
 .summaryTitleCol{
-    /* float: left; */
-    /* padding: 15px; */
     margin-top: 10px;
     font-size: 30px !important;
 	color: white;
@@ -20,50 +18,24 @@
 }
 
 .switchContainer{
-
 	float: right;
 }
-/* .financialsLabel {
-    padding: 5px, 5px, 5px, 5px;
-    margin-right: 5px;
-    color: white;
-}
-.journeysLabel{
-    padding: 5px, 5px, 5px, 5px;
-    margin-left: 5px;
-    color: white;	
-} */
 
 .donutChart {
     padding-top: 4px;
 }
 
-/* .gridContainer{
-    background-color: #ff0000;
-	padding-bottom: 100px;
-    height: 285px;
-} */
 
 .summaryBox{
 	background-color: #1f1f1f;
-    /* background-image: linear-gradient(rgb(68, 68, 68),rgb(62, 62, 62),rgb(16, 16, 16)); */
-	/* padding-top: 30px; */
 	padding-bottom: 250px;
-	/* height: 285px; */
 	height: 100%;
-	
 } 
 
 
 .summaryBox_financial{
 	height: 100%;
 }
-/* .sumChartSquare{
-    height: 200px !important;
-    width: 175px !important;
-    border: 2px solid red !important;
-} */
-
 
 
 /* Arrow */
@@ -120,7 +92,7 @@
 .flip-container {
 	perspective: 1000px;
 }
-	/* flip the pane when hovered */
+
 	.flip-container:hover .flipper, .flip-container.hover .flipper {
 		transform: rotateY(180deg);
 	}
@@ -289,68 +261,68 @@ input:checked + .slider:before  {
 	background-color: white;
 }
 
-/**Horizontal Spins**/
+/**Horizontal Slides**/
 .spinMeFirst{
-	animation: spin 1s ease-in-out forwards; 
-
+	animation: slide 1s ease-in-out forwards; 
 }
 .spinMeSecond{
-	animation: spin 2s ease-in-out forwards; 
-
+	animation: slide 2s ease-in-out forwards; 
 }
 .spinMeThird{
-	animation: spin 3s ease-in-out forwards; 
+	animation: slide 3s ease-in-out forwards; 
 
 }
 .spinMeFourth{
-	animation: spin 4s ease-in-out forwards; 
-
+	animation: slide 4s ease-in-out forwards; 
 }
-@-moz-keyframes spin {
-  from {-moz-transform: rotateY(0deg);}
-  to {-moz-transform: rotateY(360deg);}
+
+
+@-moz-keyframes slide {
+	0% { transform: translateX(-100%); }
+	100% { transform: translateX(0%); }
 } 
-@-webkit-keyframes spin {
-	from {-webkit-transform: rotateY(0deg);}
-	to {-webkit-transform: rotateY(360deg);}
+@-webkit-keyframes slide {
+	0% { transform: translateX(-100%); }
+	100% { transform: translateX(0%); }
 } 
-@keyframes spin {
-	from {transform: rotateY(0deg);}
-	to {transform: rotateY(360deg);}
+@keyframes slide {
+	0% { transform: translateX(-100%); }
+	100% { transform: translateX(0%); }
 } 
 
   /**Vertical Spins**/
 .vertSpinMeFirst{
-	animation: vertspin 1s  forwards; 
+	animation: vertspin 0.5s  forwards; 
 
 }
 .vertSpinMeSecond{
-	animation: vertspin 2s  forwards; 
+	animation: vertspin 1s  forwards; 
 
 }
 .vertSpinMeThird{
-	animation: vertspin 3s  forwards; 
+	animation: vertspin 2s  forwards; 
 
 }
 .vertSpinMeFourth{
-	animation: vertspin 4s  forwards; 
+	animation: vertspin 3s  forwards; 
 
 }
 .vertSpinMeFifth{
-	animation: vertspin 5s  forwards; 
-
+	animation: vertspin 4s  forwards;
 }
+
+
 @-moz-keyframes vertspin {
-	from {-moz-transform: rotateX(0deg);}
-	to {-moz-transform: rotateX(720deg);}
+	0% { transform: translateX(-100%); }
+	100% { transform: translateX(0%); }
 } 
 @-webkit-keyframes vertspin {
-	from {-webkit-transform: rotateX(0deg);}
-	to {-webkit-transform: rotateX(720deg);}
+	0% { transform: translateX(-100%); }
+	100% { transform: translateX(0%); }
 } 
 @keyframes vertspin {
-	from {transform: rotateX(0deg);}
-	to {transform: rotateX(720deg);}
+	0% { transform: translateX(-100%); }
+	100% { transform: translateX(0%); }
 } 
 
 .sumChartHeader{
@@ -784,4 +756,11 @@ input:checked + .slider:before  {
 	
 @keyframes grow {
 	100% {transform: scale(1.02); }
+}
+
+/* comment icon */
+
+.cardCommentIcon {
+	margin-top: 4px;
+	margin-right: 4px;
 }
