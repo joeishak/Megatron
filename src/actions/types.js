@@ -33,6 +33,10 @@ export const GET_FILTERED_IBE_DATA = 'get_filtered_ibe_data';
 export const GET_QUERY_FILTERED_IBE_DATA = 'get_query_filtered_ibe_data';
 export const GET_QUERY_FILTERED_IBE_MULTICHART_DATA = 'get_query_filtered_ibe_multichart_data';
 
+// Not an infoburst action now, but will be
+export const ADD_NEW_COMMENT = 'add_new_comment';
+export const ADD_NEW_REPLY   = 'add_new_reply';
+
 export const GET_EXCEL_MULTICHART = 'get_excel_multichart';
 
 // Comment Box

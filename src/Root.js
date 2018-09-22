@@ -67,6 +67,52 @@ export default ({children, initialState ={
         header: 'Net New ARR',
         value: 149.9,
         target: 277.9,
+        comments: [
+            {
+                id: 0,
+                userName: 'Erin Smith',
+                time: '8:34am',
+                comment: 'Check out the increased sales in this sector. This will make a huge difference.',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Bob Smith',
+                        time: '9:04am',
+                        comment: 'Wow! Great job team!'
+                        
+                    },
+                    {
+                        id: 1,
+                        userName: 'Samantha Smith',
+                        time: '9:34am',
+                        comment: 'Was this for last month?'
+                        
+                    },
+                    {
+                        id: 2,
+                        userName: 'Steve Smith',
+                        time: '9:54am',
+                        comment: 'Yes.'
+                        
+                    }
+                ]
+            },
+            {
+                id: 1,
+                userName: 'Shaun White',
+                time: '12:33pm',
+                comment: 'What happened in Quarter 3? ',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Bob Smith',
+                        time: '8:34am',
+                        comment: 'Our customers in Japan did not take to our marketing strategy. '
+                        
+                    }
+                ]
+            }
+         ],
         details:{
             multichart:[
                 [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
@@ -343,7 +389,7 @@ export default ({children, initialState ={
             },
             stats:[
                 {
-                    value: -2.8,
+                    value: -2.6,
                     color: 'red',
                     text: 'vs QRF'
                 },
@@ -364,7 +410,7 @@ export default ({children, initialState ={
                 }
             ]
         },
-        css: ['card1', 'spinMeFirst', '#FF0000']
+        css: ['card1', 'spinMeFirst', '#FF0000'],
     },
     ibeData: []
 }}) => {

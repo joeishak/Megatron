@@ -8,8 +8,6 @@ import ImageUploader from 'react-images-upload';
 import styles from './CommentBox.css';
 import addIcon from '../../assets/images/add-icon-black.svg';
 import cameraIcon from '../../assets/images/camera.png';
-import { connect } from 'react-redux';
-import * as actions from 'actions';
 class CommentBox extends Component {
     constructor(props){
         super(props);
@@ -63,9 +61,7 @@ class CommentBox extends Component {
              ],
             pictures: [],
             commentToBeRepliedTo: null,
-
-            
-            
+            rerender: false
         }
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.updateValue = this.updateValue.bind(this);
@@ -73,24 +69,60 @@ class CommentBox extends Component {
         this.setAddCommentFocus = this.setAddCommentFocus.bind(this)
     }
 
+    componentDidMount(){
+        this.commentInput.focus();
+    }
+    shouldComponentUpdate(nextProps,nextState){
+        if( nextProps.ibeData !== this.props.ibeData){
+            this.props.updateFinancialSummaryActiveCard(nextProps.ibeData[this.props.currentMetric-1])
+        return true;
+
+        } else if(nextState.replyMessage !== this.state.replyMessage) {
+        return true;
+
+        } else {
+            return false;
+        }
+    }
     setAddCommentFocus(e){
-        console.log(e.target.id)
-        this.setState({commentToBeRepliedTo: e.target.id});
+        this.setState({commentToBeRepliedTo: e.target.id,replyMessage: ''});
         this.commentInput.focus();
     }
     handleKeyPress(e){
-       let comment= {
-            id: this.state.comments.length,
-            userName: 'Johnn Summerson',
-            time: new Date().toLocaleTimeString(),
-            comment: e.target.value,
-            replies: []
-        }
-        if(e.key==='Enter'){
+       
+        if(e.key==='Enter' && this.state.commentToBeRepliedTo === null){
+
+            let comment= {
+                id: this.props.comments.length,
+                userName: 'Johnn Summerson',
+                time: new Date().toLocaleTimeString(),
+                comment: e.target.value,
+                replies: [],
+            }
+
             // Post the Comment
-            this.setState({comments: [...this.state.comments,comment],
-                        replyMessage: ''})
-        } 
+            this.props.addNewCommentToMetric(this.props.currentMetric,comment);
+            
+            this.setState({replyMessage: ''})
+        } else if (e.key==='Enter' && this.state.commentToBeRepliedTo !== null){
+            // console.log('The comment:',this.props.comments[this.state.commentToBeRepliedTo]);
+            let comment= {
+                id: this.props.comments[this.state.commentToBeRepliedTo].replies.length,
+                userName: 'Johnn Summerson',
+                time: new Date().toLocaleTimeString(),
+                comment: e.target.value
+                
+            }
+            console.log(
+                'Current metric:',this.props.currentMetric, 'Comment To Be Replied To:',this.state.commentToBeRepliedTo,
+                'Reply: ',comment
+            )
+            this.props.addNewReplyToMetricComment(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);
+            this.setState({
+                commentToBeRepliedTo:null,
+                replyMessage:''
+            });
+        }
     }
     updateValue(e){
             // Set the state for the comment box
@@ -111,7 +143,7 @@ class CommentBox extends Component {
             <div className = 'commentBoxContainer' >
             {/* Header */}
                 <div className='commentBoxHeaderContainer'>
-                    Net New ARR
+                    {this.props.commentBoxHeader}
                     <span className='exitContainer'>
                     <img src={addIcon} alt="" className='exitCommentsButton' onClick={e => this.onClose(e)} ></img>
                     </span>
@@ -184,7 +216,6 @@ class CommentBox extends Component {
                 </div>
             {/* Reply / Attachment Footer */}
                 <div className='commentResponseFooter'>
-                  
                     <input ref={(input) => {this.commentInput=input;}} className='replyTextInput' type="text" onChange={this.updateValue} value={this.state.replyMessage} onKeyPress={this.handleKeyPress}placeholder='Add A Comment . . . '/>
                      <ImageUploader
                         withIcon={false}
@@ -200,18 +231,11 @@ class CommentBox extends Component {
     }
 }
 
-<<<<<<< HEAD
 function mapStateToProps(state){
-    console.log(state);
     return {
-        comments: state.activeSummarySquare.comments
-    }
+        currentMetric: state.activeSummarySquare.index,
+        comments: state.activeSummarySquare.comments,
+        commentBoxHeader: state.activeSummarySquare.header,
+        ibeData: state.ibeData    }
 }
 export default connect(mapStateToProps,actions) (CommentBox)
-=======
-function mapStateToProps(state) {
-    return {  }
-}
-
-export default connect(mapStateToProps, actions)(CommentBox);
->>>>>>> 62031849992ac815280a1c4e2033027c66be9c6a

@@ -19,7 +19,9 @@ import {
     GET_QUERY_FILTERED_IBE_DATA,
     GET_QUERY_FILTERED_IBE_MULTICHART_DATA,
     GET_EXCEL_MULTICHART,
-    UPDATE_COMMENT_BOX_VISIBILITY
+    UPDATE_COMMENT_BOX_VISIBILITY,
+    ADD_NEW_COMMENT,
+    ADD_NEW_REPLY  
 
 } from 'actions/types';
 import axios from 'axios';
@@ -367,5 +369,26 @@ export function hideCommentBox(){
     return{
         type: UPDATE_COMMENT_BOX_VISIBILITY,
         payload: false
+    }
+}
+
+export function addNewCommentToMetric(activeSquareID, comment, ){
+    return {
+        type: ADD_NEW_COMMENT,
+        payload: {
+            square: activeSquareID,
+            comment: comment
+        }
+    }
+}
+
+export function addNewReplyToMetricComment(activeSquareID, commentId,reply ){
+    return {
+        type: ADD_NEW_REPLY,
+        payload: {
+            square: activeSquareID,
+            comment: commentId,
+            reply: reply
+        }
     }
 }

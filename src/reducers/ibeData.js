@@ -1,14 +1,14 @@
 import {
-    GET_IBE_DATA,
-    GET_FILTERED_IBE_DATA,
     GET_QUERY_FILTERED_IBE_DATA,
-    GET_QUERY_FILTERED_IBE_MULTICHART_DATA
+    GET_QUERY_FILTERED_IBE_MULTICHART_DATA,
+    ADD_NEW_COMMENT,
+    ADD_NEW_REPLY
     
 } from 'actions/types';
 import { from } from 'rxjs';
 import { FinancialData } from '../variables.js';
 import _ from 'lodash';
-// import { GET_QUERY_FILTERED_IBE_MULTICHART_DATA } from '../actions/types.js';
+import { parse } from 'path';
 
 export default function(state = [], action) {
     let actuals;
@@ -22,7 +22,8 @@ export default function(state = [], action) {
     let totalGrossTarget         = 0;
     let totalRenewalActual       = 0;
     let totalRenewalTarget       = 0;
-    
+    let copyOfSquare;
+    let index = 0;
     let currentActual;
     let currentTarget;
     let filteredData;
@@ -94,13 +95,8 @@ export default function(state = [], action) {
                 target: [],
                 ly: []
             };
-
-
             let grouped = _.groupBy(action.payload[0].data,(item)=>{ return item.quarter});
            
-            // console.log('Grouped: ', grouped);
-            
-            // console.log('Fetched MultiChart DAta: ',action.payload);
             for(let i = 0; i< action.payload[0].data.length; i++) {
                 let item = action.payload[0].data[i];
                 
@@ -121,8 +117,7 @@ export default function(state = [], action) {
                 termRenewal.target.push(item.RenewalAtFPTarget);
                 termRenewal.ly.push(item.RenewalAtFPLY);
             
-            }
-
+            };
 
             for (let i = 0; i < squares.length; i++) {
                 switch(i){
@@ -141,11 +136,24 @@ export default function(state = [], action) {
                 }
                
              
-            }
-            // console.log(netArr,netCancellations,grossArr,termRenewal);
+            };
+            return [...state];
+        //Case for adding a new comment
+            case ADD_NEW_COMMENT: 
+                 index = action.payload.square-1;
+                 copyOfSquare = Object.assign({},state[index]);
+                copyOfSquare.comments.push(action.payload.comment);
+                state[index] = copyOfSquare;
+            return [...state];
+        // CAse for adding a reply to a previous comment
+        case ADD_NEW_REPLY:
 
-            
-            return [...state]
+        index = action.payload.square-1;
+        copyOfSquare = Object.assign({},state[index]);
+        let commentIndex = Number(action.payload.comment)
+        copyOfSquare.comments[commentIndex].replies.push(action.payload.reply);
+        state[index] = copyOfSquare;
+        return [...state]
         default: 
             return state;
     }
