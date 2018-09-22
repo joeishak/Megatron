@@ -11,6 +11,10 @@ import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 import KendoBulletChart from '../KendoBullet/KendoBullet';
 import * as _ from 'lodash';
+
+import commentIconOn from '../../assets/images/comments-on.svg';
+import commentIconOff from '../../assets/images/comments-off.svg';
+
 class TopSummaryBox extends Component {
 
     //When the component is constructed
@@ -236,6 +240,12 @@ class TopSummaryBox extends Component {
         return returnValue;
     }
 
+    onCommentIconClick = (e, commentArrayLength) => {
+        // before opening, check if the card comments[] is not empty
+        if (commentArrayLength !== 0) {
+            this.props.showCommentBox();
+        } 
+    }
    
     getSummaryContent(){
         // console.log('Top Summary', this.state.finData);
@@ -260,6 +270,9 @@ class TopSummaryBox extends Component {
                     <div  className={`financialHeader k-float-left ${activeCard === item.css[0] ? this.getColor(item.value,  item.target, 'financial', true) : ''}`} >
                         
                     </div>
+
+                    {/* Image Icon For Comments */}
+                    <div className="k-float-right cardCommentIcon"><img src={item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.onCommentIconClick(e, item.comments.length)}></img></div>
                   
                             <div className="journeyContent">
                                 <p>{item.header}</p>

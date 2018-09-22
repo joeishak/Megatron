@@ -757,3 +757,10 @@ input:checked + .slider:before  {
 @keyframes grow {
 	100% {transform: scale(1.02); }
 }
+
+/* comment icon */
+
+.cardCommentIcon {
+	margin-top: 4px;
+	margin-right: 4px;
+}

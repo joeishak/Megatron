@@ -302,7 +302,8 @@ export const FinancialData = {
                     }
                 ]
             },
-            css: ['card1', 'spinMeFirst', '#FF0000']
+            css: ['card1', 'spinMeFirst', '#FF0000'],
+            comments: ['Change ME']
         },
         {
             index:2,
@@ -606,7 +607,8 @@ export const FinancialData = {
                     }
                 ]
             },
-            css: ['card2', 'spinMeSecond', '#0DB16E']
+            css: ['card2', 'spinMeSecond', '#0DB16E'],
+            comments: []
         },
         {
             index:3,
@@ -814,7 +816,8 @@ export const FinancialData = {
              
                
             },
-            css: ['card3', 'spinMeThird', '#FF0000']
+            css: ['card3', 'spinMeThird', '#FF0000'],
+            comments: []
         },
         {
             index:4,
@@ -1118,7 +1121,8 @@ export const FinancialData = {
                     }
                 ]
             },
-            css: ['card4', 'spinMeFourth', '#0DB16E']
+            css: ['card4', 'spinMeFourth', '#0DB16E'],
+            comments: []
         }
     ],
     multiChart:[
