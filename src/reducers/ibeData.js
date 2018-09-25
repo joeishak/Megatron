@@ -74,7 +74,7 @@ export default function(state = [], action) {
         return [...squares];
       
             case GET_QUERY_FILTERED_IBE_MULTICHART_DATA:
-               console.log(action.payload);
+            //    console.log(action.payload);
             let netArr = {
                actual: [],
                target: [],

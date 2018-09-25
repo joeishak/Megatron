@@ -9,14 +9,14 @@
 
         -- Cache query 1: FinancialActualTargetQuery
         select 
-            sum(NetNewARRActual          )      as 'NetNewARRActual',
-            sum(NetNewARRTarget          )      as 'NetNewARRTarget', 
-            sum(NetCancellationARRActual )      as 'NetCancellationARRActual',  
-            sum(NetCancellationARRTarget )      as 'NetCancellationARRTarget', 
-            sum(GrossNewARRActual        )      as 'GrossNewARRActual',
-            sum(GrossNewARRTarget        )      as 'GrossNewARRTarget',
-            sum(RenewalAtFPActual        )      as 'RenewalAtFPActual',
-            sum(RenewalAtFPTarget        )      as 'RenewalAtFPTarget'
+            sum(NetNewARRActual          )      as NetNewARRActual,
+            sum(NetNewARRTarget          )      as NetNewARRTarget, 
+            sum(NetCancellationARRActual )      as NetCancellationARRActual,  
+            sum(NetCancellationARRTarget )      as NetCancellationARRTarget, 
+            sum(GrossNewARRActual        )      as GrossNewARRActual,
+            sum(GrossNewARRTarget        )      as GrossNewARRTarget,
+            sum(RenewalAtFPActual        )      as RenewalAtFPActual,
+            sum(RenewalAtFPTarget        )      as RenewalAtFPTarget
             from financialactualtargetquery
                 where geo_code in (@geofilters)
                     and quarter in (@quarterFilters)
@@ -32,18 +32,18 @@
             -- Source: FinancialMultiChartQuery
           select 
             Week,
-            sum(NetNewARRActual          )      as 'NetNewARRActual',
-            sum(NetNewARRTarget          )      as 'NetNewARRTarget', 
-            sum(NetCancellationARRActual )      as 'NetCancellationARRActual',  
-            sum(NetCancellationARRTarget )      as 'NetCancellationARRTarget', 
-            sum(GrossNewARRActual        )      as 'GrossNewARRActual',
-            sum(GrossNewARRTarget        )      as 'GrossNewARRTarget',
-            sum(RenewalAtFPActual        )      as 'RenewalAtFPActual',
-            sum(RenewalAtFPTarget        )      as 'RenewalAtFPTarget',
-		    sum(NetNewARRLY             )       as 'NetNewARRLY',
-            sum(GrossNewARRLY           )       as 'GrossNewARRLY', 
-            sum(NetCancellationsARRLY   )       as 'NetCancellationsARRLY',
-            sum(TermEndRenewalLY        )       as 'TermEndRenewalLY'		
+            sum(NetNewARRActual          )      as NetNewARRActual,
+            sum(NetNewARRTarget          )      as NetNewARRTarget, 
+            sum(NetCancellationARRActual )      as NetCancellationARRActual,  
+            sum(NetCancellationARRTarget )      as NetCancellationARRTarget, 
+            sum(GrossNewARRActual        )      as GrossNewARRActual,
+            sum(GrossNewARRTarget        )      as GrossNewARRTarget,
+            sum(RenewalAtFPActual        )      as RenewalAtFPActual,
+            sum(RenewalAtFPTarget        )      as RenewalAtFPTarget,
+		    sum(NetNewARRLY             )       as NetNewARRLY,
+            sum(GrossNewARRLY           )       as GrossNewARRLY, 
+            sum(NetCancellationsARRLY   )       as NetCancellationsARRLY,
+            sum(TermEndRenewalLY        )       as TermEndRenewalLY		
 		    from FinancialMultichartQuery
                  where geo_code in (@geofilters)
                     and quarter in (@quarterFilters)
@@ -57,18 +57,18 @@
             -- Source: FinancialMultiChartQuery
             select 
             Month,
-            sum(NetNewARRActual          )      as 'NetNewARRActual',
-            sum(NetNewARRTarget          )      as 'NetNewARRTarget', 
-            sum(NetCancellationARRActual )      as 'NetCancellationARRActual',  
-            sum(NetCancellationARRTarget )      as 'NetCancellationARRTarget', 
-            sum(GrossNewARRActual        )      as 'GrossNewARRActual',
-            sum(GrossNewARRTarget        )      as 'GrossNewARRTarget',
-            sum(RenewalAtFPActual        )      as 'RenewalAtFPActual',
-            sum(RenewalAtFPTarget        )      as 'RenewalAtFPTarget',
-		    sum(NetNewARRLY             )       as 'NetNewARRLY',
-            sum(GrossNewARRLY           )       as 'GrossNewARRLY', 
-            sum(NetCancellationsARRLY   )       as 'NetCancellationsARRLY',
-            sum(TermEndRenewalLY        )       as 'TermEndRenewalLY'		
+            sum(NetNewARRActual          )      as NetNewARRActual,
+            sum(NetNewARRTarget          )      as NetNewARRTarget, 
+            sum(NetCancellationARRActual )      as NetCancellationARRActual,  
+            sum(NetCancellationARRTarget )      as NetCancellationARRTarget, 
+            sum(GrossNewARRActual        )      as GrossNewARRActual,
+            sum(GrossNewARRTarget        )      as GrossNewARRTarget,
+            sum(RenewalAtFPActual        )      as RenewalAtFPActual,
+            sum(RenewalAtFPTarget        )      as RenewalAtFPTarget,
+		    sum(NetNewARRLY             )       as NetNewARRLY,
+            sum(GrossNewARRLY           )       as GrossNewARRLY, 
+            sum(NetCancellationsARRLY   )       as NetCancellationsARRLY,
+            sum(TermEndRenewalLY        )       as TermEndRenewalLY		
 		    from FinancialMultichartQuery
                  where geo_code in (@geofilters)
                     and quarter in (@quarterFilters)

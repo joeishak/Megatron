@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { listenerCount } from 'events';
 
 export function convertFilterList(arrayList) {
   return "'" + arrayList.join("\', \'") + "' ";
@@ -62,126 +63,16 @@ export function findIfFilterIsApplied(arr){
  * @param {Array} _activeParams 
  */
 export function generateFilterParams(filterParams, allFilters, _activeParams){
-  let paramValue;
 
-    //Quarters
-    paramValue = [];
-
-    // If its all data
-    if(isAllData(_activeParams.quarters[0].value)){
-      //Add all the values from allFilters to param value
-      addAllValues(allFilters.quarters,paramValue);
-    } else {
-      addValue(_activeParams.quarters[0].value, paramValue);
-    }
-    paramValue = convertFilterList(paramValue);
-    filterParams[0].value = paramValue;
-
-
-
-    paramValue = [];
-    //Products
-    // If its all data
-    if(isAllData(_activeParams.products[0].value)){
-      // console.log('Value is All Data, Getting All Filters',allFilters.products);
-      //Add all the values from allFilters to param value
-      addAllValues(allFilters.products,paramValue);
-    } else {
-      // console.log('Value is Not All Data, Getting specific Filter',_activeParams.products[0].value);
-      addValue(_activeParams.products[0].value, paramValue);
-    }
-    paramValue = convertFilterList(paramValue);
-    filterParams[1].value = paramValue;
-
-    paramValue = [];
-    //Geos
-    // If its all data
-    if(isAllData(_activeParams.geos[0].value)){
-      // console.log('Value is All Data, Getting All Filters',allFilters.geos);
-      //Add all the values from allFilters to param value
-      addAllValues(allFilters.geos,paramValue);
-    } else {
-      // console.log('Value is Not All Data, Getting specific Filter',_activeParams.geos[0].value);
-      addValue(_activeParams.geos[0].value, paramValue);
-    }
-    paramValue = convertFilterList(paramValue);
-    filterParams[2].value = paramValue;
-
-
-    paramValue = [];
-
-    //Subscriptions
-    // If its all data
-    if(isAllData(_activeParams.subscriptions[0].value)){
-      // console.log('Value is All Data, Getting All Filters',allFilters.subscriptionOfferings);
-      //Add all the values from allFilters to param value
-      addAllValues(allFilters.subscriptionOfferings,paramValue);
-    } else {
-      // console.log('Value is Not All Data, Getting specific Filter',_activeParams.subscriptions[0].value);
-      addValue(_activeParams.subscriptions[0].value, paramValue);
-    }
-    paramValue = convertFilterList(paramValue);
-    filterParams[3].value = paramValue;
-
-    paramValue = [];
-
-   //Market Areas
-    // If its all data
-    if(isAllData(_activeParams.markets[0].value)){
-      // console.log('Value is All Data, Getting All Filters',allFilters.marketAreas);
-      //Add all the values from allFilters to param value
-      addAllValues(allFilters.marketAreas,paramValue);
-    } else {
-      // console.log('Value is Not All Data, Getting specific Filter',_activeParams.markets[0].value);
-      addValue(_activeParams.markets[0].value, paramValue);
-    }
-  paramValue = convertFilterList(paramValue);
-  filterParams[4].value = paramValue;
-
-
-  paramValue = [];
-
-  // Route To Markets
-    // If its all data
-    if(isAllData(_activeParams.routes[0].value)){
-      // console.log('Value is All Data, Getting All Filters',allFilters.routeToMarkets);
-      //Add all the values from allFilters to param value
-      addAllValues(allFilters.routeToMarkets,paramValue);
-    } else {
-      // console.log('Value is Not All Data, Getting specific Filter',_activeParams[index].value);
-      addValue(_activeParams.routes[0].value, paramValue);
-    }
-  paramValue = convertFilterList(paramValue);
-  filterParams[5].value = paramValue;
-
-
-  paramValue = [];  
-  // Sgements
-    // If its all data
-      if(isAllData(_activeParams.segments[0].value)){
-        // console.log('Value is All Data, Getting All Filters',allFilters.segments);
-        //Add all the values from allFilters to param value
-        addAllValues(allFilters.segments,paramValue);
-      } else {
-        // console.log('Value is Not All Data, Getting specific Filter',_activeParams[index].value);
-        addValue(_activeParams.segments[0].value, paramValue);
-      }
-  paramValue = convertFilterList(paramValue);
-  filterParams[6].value = paramValue;
-
-}
-export function isAllData(val){
-  return val === 'All Data'
-}
-export function addAllValues(arr,paramValue){
-  for(let j=0;j<arr.length;j++){
-    let item = arr[j];
-        paramValue.push( item.value)
-  } 
-}
-
-export function addValue(value, paramValue){
-  paramValue.push(value);
+    filterParams[0].value = getParamValues(_activeParams.quarters,allFilters.quarters);
+    filterParams[1].value = getParamValues(_activeParams.products,allFilters.products);
+    filterParams[2].value = getParamValues(_activeParams.geos,allFilters.geos);
+    filterParams[3].value = getParamValues(_activeParams.subscriptions,allFilters.subscriptionOfferings);
+    filterParams[4].value = getParamValues(_activeParams.markets,allFilters.marketAreas);
+    filterParams[5].value = getParamValues(_activeParams.routes,allFilters.routeToMarkets);
+    filterParams[6].value = getParamValues(_activeParams.segments,allFilters.segments);
+   
+    
 }
 
 export function getAllFilters(allFilters, availableFilters){
@@ -193,5 +84,35 @@ export function getAllFilters(allFilters, availableFilters){
       segments: Object.values(availableFilters.segments),
       subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
       routeToMarkets: Object.values(availableFilters.routeToMarkets)
+  }
+}
+
+export function getParamValues(activeParams,allFilters){
+  // debugger;
+  let paramValue;
+  
+  if(activeParams[0].value ==='All Data'){
+    // Add all the values from allFilters except for All Data to the Param Value
+    _.remove(allFilters,item=>{
+      return  item.value ==='All Data';
+  
+    })
+    paramValue =[];
+   
+    allFilters.forEach(item=>{
+      paramValue.push(item.value);
+    })
+    // addValue(allFilters,paramValue);
+
+     paramValue = convertFilterList(paramValue);
+      return paramValue;
+  } else {
+    paramValue =[];
+    activeParams.forEach(item=>{
+      paramValue.push(item.value);
+    })
+    // addAllValues(activeParams.quarters,paramValue);
+     paramValue = convertFilterList(paramValue);
+    return paramValue;
   }
 }

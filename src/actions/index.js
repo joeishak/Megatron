@@ -258,8 +258,9 @@ export function getQueryFilteredIBEData(_parameters,availableFilters){
         {prompt: 'routeFilters', value: ''},
         {prompt: 'segmentFilters', value: ''}
     ];
-
-    filterParams[0].value = _parameters.quarters[0].value;
+    // console.log(_parameters);
+    
+    // filterParams[0].value = _parameters.quarters[0].value;
     filterParams[1].value = _parameters.products[0].value;
     filterParams[2].value = _parameters.geos[0].value;
     filterParams[3].value = _parameters.subscriptions[0].value;
@@ -267,6 +268,7 @@ export function getQueryFilteredIBEData(_parameters,availableFilters){
     filterParams[5].value = _parameters.routes[0].value;
     filterParams[6].value = _parameters.segments[0].value;
 
+    // console.log('Filter Params: ', filterParams);
     quarterQuery = Object.assign({},_parameters.quarters[0]);
 
     // Remove First Row from all the filters 
