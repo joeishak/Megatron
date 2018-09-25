@@ -25,7 +25,59 @@ class KendoMultiChart extends Component {
     constructor(props){
         super(props);
         // Initialize state
-        this.state = { data: [], overIsVisible: true };
+        this.state = {
+             data: [],
+             overIsVisible: true,
+             yAxisLabel: 'Million $'
+            
+        };
+    }
+
+    formatYAxisValues = (valuesArr) => {
+        console.log(valuesArr);
+        const returnValuesArr = valuesArr.map(ele => {
+            return this.renderDollarValue(ele);
+        });
+
+        return returnValuesArr;
+    }
+
+    renderDollarValue(value) {
+        // 1000 - 100000
+        // 1000000 - 1000000000
+        let hundredLength = 3;
+        let thousandsLength = 6;
+        let millionsLength =  9;
+        let billionsLength =  12;
+        let trillionsLength = 15;
+        let suffix = 'K';
+
+        let returnValue = '';
+
+
+        value = parseInt(value)
+        // TODO ** Count only the left side of the decimal
+        let length = value.toString().length;
+        // console.log(value);
+       
+        if (length > hundredLength && length <= thousandsLength) {
+            value = (value/1000).toFixed(2);
+            returnValue = value ;
+        } else if (length > thousandsLength && length <= millionsLength) {
+            value = (value/1000000).toFixed(2);
+            returnValue = value ;
+            
+            // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
+        } else if (length > millionsLength && length <= billionsLength) {
+            value = (value/1000000).toFixed(2);
+            returnValue = value ;
+
+        } else if (length > billionsLength <= trillionsLength) {
+            value = (parseInt(value)/100000000).toFixed(2);
+            returnValue = value ;
+        }
+
+        return parseFloat(returnValue);
     }
 
     render(){
@@ -33,22 +85,24 @@ class KendoMultiChart extends Component {
         const  secondSeries = this.props.activeMultichart[1];
         const  thirdSeries = this.props.activeMultichart[2];
 
-        // console.log(this.props.activeSummary.details.multichart[0]);
-        // console.log(this.props.activeSummary.details.multichart[1]);
-        // console.log(this.props.activeSummary.details.multichart[2]);
+
+        console.log(this.formatYAxisValues(this.props.activeMultichart[0]));
+
+
+        //842141171.979064
+
 
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
         const ChartContainer = () => (
         <Chart pannable={false} zoomable={false} >
         <ChartLegend  />
-
         <ChartTooltip />
 
-         <ChartAxisDefaults majorGridLines={false} minorGridLines={false}/>
+         <ChartAxisDefaults majorGridLines={false} minorGridLines={false} labels={{format: 'c0'}}/>
             <ChartArea background="transparent" height={this.props.chartHeight}/* gridLines='{visible: false}' */></ChartArea>
             <ChartTitle text="" />
             <ChartValueAxis>
-             <ChartValueAxisItem color={this.props.color} />
+             <ChartValueAxisItem color={this.props.color} title={{text: "Million $"}}/>
             </ChartValueAxis>
             <ChartCategoryAxis major >
                 <ChartCategoryAxisItem color={this.props.color} categories={categories}>
@@ -56,13 +110,13 @@ class KendoMultiChart extends Component {
                 </ChartCategoryAxisItem>
             </ChartCategoryAxis>
             <ChartSeries >
-                <ChartSeriesItem type="column" gap={2} spacing={0.25} data={this.props.activeMultichart[0]} color={this.props.color}>
+                <ChartSeriesItem type="column" gap={2} spacing={0.25} data={this.formatYAxisValues(this.props.activeMultichart[0])} color={this.props.color} >
                 <ChartSeriesItemTooltip background="#3c3c3c" />
                 </ChartSeriesItem>
-                <ChartSeriesItem type="line" data={this.props.activeMultichart[1]} color='#0E9CC6' >
+                <ChartSeriesItem type="line" data={this.formatYAxisValues(this.props.activeMultichart[1])} color='#0E9CC6'>
                 <ChartSeriesItemTooltip background="#3c3c3c"  />
                 </ChartSeriesItem>
-                <ChartSeriesItem type="line" data={this.props.activeMultichart[2]} color='#DFDE43'  >
+                <ChartSeriesItem type="line" data={this.formatYAxisValues(this.props.activeMultichart[2])} color='#DFDE43'  >
                 <ChartSeriesItemTooltip background="#3c3c3c" />
 
                 </ChartSeriesItem>
