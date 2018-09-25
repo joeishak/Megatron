@@ -1,61 +1,13 @@
--- Database Queries
-    -- Financial Card Database Query
-        /** NAME: FinancialActualTargetQuery **/
 
-        select quarter, geo_code, product_name, market_area_code,
-            route_to_market,subscription_offering,segment_pivot, 
-            sum(cast (net_new_arr_actual as real))            as 'NetNewARRActual',
-            sum(cast (net_new_arr_target as real))            as 'NetNewARRTarget', 
-            sum(cast (net_cancellations_arr_actual as real))  as 'NetCancellationARRActual',  
-            sum(cast (net_cancellations_arr_target as real))  as 'NetCancellationARRTarget', 
-            sum(cast (gross_new_arr_actual as real))          as 'GrossNewARRActual',
-            sum(cast (gross_new_arr_target as real))          as 'GrossNewARRTarget',
-            sum(cast (term_end_renewal_actual as real))       as 'RenewalAtFPActual',
-            sum(cast (term_end_renewal_target as real))       as 'RenewalAtFPTarget'
-        from  dbo.rtb
-        group by quarter,geo_code, product_name, market_area_code,
-            route_to_market,subscription_offering,segment_pivot
-		order by quarter;
-
-    -- Financial Card Multichart Details
-        /** NAME: FinancialMultichartQuery **/
-         select 
-                quarter,
-                Month(fiscal_wk_ending_date) as 'Month',
-                DatePArt(wk, fiscal_wk_ending_date) as 'Week',
-                geo_code, 
-                product_name, 
-                market_area_code,
-                route_to_market,
-                subscription_offering,
-                segment_pivot,
-                sum(cast (net_new_arr_actual as real))               as 'NetNewARRActual',
-                sum(cast (net_new_arr_target as real))               as 'NetNewARRTarget', 
-                sum(cast (net_cancellations_arr_actual as real))     as 'NetCancellationARRActual',  
-                sum(cast (net_cancellations_arr_target as real))     as 'NetCancellationARRTarget', 
-                sum(cast (gross_new_arr_actual as real))             as 'GrossNewARRActual',
-                sum(cast (gross_new_arr_target as real))             as 'GrossNewARRTarget',
-                sum(cast (term_end_renewal_actual as real))          as 'RenewalAtFPActual',
-                sum(cast (term_end_renewal_target as real))          as 'RenewalAtFPTarget',
-                sum(cast (net_new_arr_ly as real))                   as 'NetNewARRLY',
-                sum(cast (gross_new_arr_ly as real))                 as 'GrossNewARRLY', 
-                sum(cast (net_cancellations_arr_ly as real))         as 'NetCancellationsARRLY',
-                sum(cast (term_end_renewal_ly as real ))             as 'TermEndRenewalLY'		
-            from dbo.rtb
-                where try_cast(gross_new_arr_ly as real) is not null
-                and try_cast(net_new_arr_ly as real) is not null
-                and try_cast(net_cancellations_arr_ly as real) is not null
-                and try_cast(term_end_renewal_ly as real) is not null
-            group by quarter,Month(fiscal_wk_ending_date),DatePArt(wk, fiscal_wk_ending_date) ,geo_code, product_name, market_area_code,
-                route_to_market,subscription_offering,segment_pivot    
-            order by quarter;
-    -- Financial Card Stat Defails
+-- Financial Card XDC
+    -- ID: {/* Adobe Fill In Here */}
+    -- XDC #1 NAME: Summary
+    -- Data Sources: 
+    --     1. FinancialActualTargetQuery
+    --     2. FinancialMultichartQuery
 
 
-
--- Financial Card XDC Cache Query
-
-        -- Financial Squares Actual Vs Total
+        -- Cache query 1: FinancialActualTargetQuery
         select 
             sum(NetNewARRActual          )      as 'NetNewARRActual',
             sum(NetNewARRTarget          )      as 'NetNewARRTarget', 
@@ -76,7 +28,8 @@
             
 
 
-            -- Financial Squares Multi Chart Details for a  Specific Quarter
+        -- Cache Query 2: FinancialMultiChartQuery
+            -- Source: FinancialMultiChartQuery
           select 
             Week,
             sum(NetNewARRActual          )      as 'NetNewARRActual',
@@ -100,7 +53,8 @@
                     and subscription_offering in (@subscriptionFilters)
                     and route_to_market in (@routeFilters)
             group by Week;
-            -- Financial Squares Multi Chart Details for All Quarterslocal
+        -- Cache Query 3: FinancialMultichartAllQuarterQuery
+            -- Source: FinancialMultiChartQuery
             select 
             Month,
             sum(NetNewARRActual          )      as 'NetNewARRActual',
@@ -124,10 +78,39 @@
                     and subscription_offering in (@subscriptionFilters)
                     and route_to_market in (@routeFilters)
             group by Month;
-            -- Financial Squares Quarterly To Date Details
-                -- All Data, Week Data, Quarterly Data
-
-            -- Financial Squares Geo, Market ARea, Route, Segments, Subscriptions and Products
 
 
-      
+-- Filter Values XDC
+    -- ID: {/* Adobe Fill In Here */}
+    -- XDC #1 Name: Filters
+    -- Data Sources:
+    --  1. GeoFilters
+    --  2. QuarterFilters
+    --  3. ProductFilters
+    --  4. SubscriptionFilters
+    --  5. SegmentFilters
+    --  6. RouteFilters
+    --  7. MarketFilters
+
+        -- Cache Query 1: GeoFilters
+            /* Source: GeoFilters */
+        SELECT * FROM GeoFilters;
+        -- Cache Query 2: QuarterFilters
+            /* Source: QuarterFilters */
+        SELECT * FROM QuarterFilters;
+        -- Cache Query 3: ProductFilters
+            /* Source: ProductFilters */
+        SELECT * FROM ProductFilters;
+        -- Cache Query 4: SubscriptionFilters
+            /* Source: SubscriptionFilters */
+        SELECT * FROM SubscriptionFilters;
+        -- Cache Query 5: SegmentFilters
+            /* Source: SegmentFilters */
+        SELECT * FROM SegmentFilters;
+        -- Cache Query 6: RouteFilters
+            /* Source: RouteFilters */
+        SELECT * FROM RouteFilters;
+        -- Cache Query 7: MarketFilters
+            /* Source: MarketFilters */
+        SELECT * FROM MarketFilters;
+

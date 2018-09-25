@@ -74,7 +74,7 @@ export default function(state = [], action) {
         return [...squares];
       
             case GET_QUERY_FILTERED_IBE_MULTICHART_DATA:
-
+               console.log(action.payload);
             let netArr = {
                actual: [],
                target: [],
@@ -107,7 +107,7 @@ export default function(state = [], action) {
                 
                 netCancellations.actual.push(item.NetCancellationARRActual);
                 netCancellations.target.push(item.NetCancellationARRTarget);
-                netCancellations.ly.push(item.NetCancellationARRLY);
+                netCancellations.ly.push(item.NetCancellationsARRLY);
 
                 grossArr.actual.push(item.GrossNewARRActual);
                 grossArr.target.push(item.GrossNewARRTarget);
@@ -115,7 +115,7 @@ export default function(state = [], action) {
                 
                 termRenewal.actual.push(item.RenewalAtFPActual);
                 termRenewal.target.push(item.RenewalAtFPTarget);
-                termRenewal.ly.push(item.RenewalAtFPLY);
+                termRenewal.ly.push(item.TermEndRenewalLY);
             
             };
 

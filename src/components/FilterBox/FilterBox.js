@@ -9,13 +9,6 @@ import * as actions from 'actions';
 import FilterPillBox from '../FilterPillBox/FilterPillBox';
 import styles from './FilterBox.css';
 
-// // In Line Styles
-// const inStyles={
-//     expansionBox: {
-//         height: '100%',
-//         width: '100%'
-//     }
-// }
 class FilterBox extends Component {
     //When the component is constructed
     constructor(props){
@@ -41,16 +34,29 @@ class FilterBox extends Component {
     renderFilterPills(){
         // As long as there is an active filter
         let filters = this.props.activeFilters
-        
-    let filterBarArr=
-            [
-                filters.quarters[0],filters.products[0],
-                filters.markets[0],filters.segments[0],
-                filters.geos[0],filters.subscriptions[0],
-                filters.routes[0]
-            ]
-        
-        if(filterBarArr.length>0){
+        let filterBarArr= [];
+        filters.quarters.forEach(item=>{
+            filterBarArr.push(item);
+        });
+        filters.geos.forEach(item=>{
+            filterBarArr.push(item);
+        });
+        filters.products.forEach(item=>{
+            filterBarArr.push(item);
+        });
+        filters.subscriptions.forEach(item=>{
+            filterBarArr.push(item);
+        });
+        filters.markets.forEach(item=>{
+            filterBarArr.push(item);
+        });
+        filters.routes.forEach(item=>{
+            filterBarArr.push(item);
+        });
+        filters.segments.forEach(item=>{
+            filterBarArr.push(item);
+        });
+        if(filterBarArr.length>0) {
             // Return this 
         return(
             //For each active filter, return a Filter Pill Box Component mapped to the filter

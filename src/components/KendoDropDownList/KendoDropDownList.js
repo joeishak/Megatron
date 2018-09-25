@@ -34,7 +34,7 @@ class KendoDropDownList extends Component {
   
     //Event handler for when a drop down list item is selected
     handleFilterChange(event){
-        console.log(event.target)
+        // console.log(event.target)
         this.props.addValueToActiveMultiFilter(event.target.value);
         // this.setState({value: event.target.value});
         // this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
