@@ -57,7 +57,8 @@ class App extends Component {
     this.getFilters();
    
   }
- 
+  
+  
   componentWillReceiveProps(nextProps){
    
     this.props.getQueryFilteredIBEData(nextProps.activeFilters,nextProps.availableFilters);

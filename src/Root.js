@@ -53,8 +53,8 @@ export default ({children, initialState ={
     },
     activeFilters:{
         geos:[{index: 205, category: "geos", value: "All Data"}],
-        quarters:[{index: 211, category: "quarters", value: "All Data"}],
-        segments:[{index: 209, category: "segments", value: "All Data"}],
+        quarters:[{index: 211, category: "quarters", value: "2017-Q1"}],
+        segments:[{index: 209, category: "segments", value: "Digital Media"}],
         subscriptions:[{index: 210, category: "subscriptionOfferings", value: "All Data"}],
         markets: [{index: 206, category: "marketAreas", value: "All Data"}],
         routes:[{index: 208, category: "routeToMarkets", value: "All Data"}],
@@ -115,9 +115,9 @@ export default ({children, initialState ={
          ],
         details:{
             multichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
-                [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
-                [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
+                // [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                // [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
+                // [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
             qtdw:{
                 qtd:[

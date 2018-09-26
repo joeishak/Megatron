@@ -19,6 +19,7 @@ export default function(state = defaultState, action) {
     switch(action.type) {
         case GENERATE_FILTER_DATA:
 
+        console.log(action.payload);
         let quarterFilters = action.payload[0].data;
         let marketsFilters = action.payload[1].data;
         let productsFilters = action.payload[2].data;
@@ -57,21 +58,21 @@ export default function(state = defaultState, action) {
             category: 'routeToMarkets',
             value: 'All Data'
         });
-        newSegmentsState.unshift({
-            index: count++,
-            category: 'segments',
-            value: 'All Data'
-        });
+        // newSegmentsState.unshift({
+        //     index: count++,
+        //     category: 'segments',
+        //     value: 'All Data'
+        // });
         newSubscriptionState.unshift({
             index: count++,
             category: 'subscriptionOfferings',
             value: 'All Data'
         });
-        newQuartersState.unshift({
-            index: count++,
-            category: 'quarters',
-            value: 'All Data'
-        });
+        // newQuartersState.unshift({
+        //     index: count++,
+        //     category: 'quarters',
+        //     value: 'All Data'
+        // });
 
         if(defaultState===[]){
             defaultState = {

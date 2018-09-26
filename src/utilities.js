@@ -71,7 +71,7 @@ export function generateFilterParams(filterParams, allFilters, _activeParams){
     filterParams[4].value = getParamValues(_activeParams.markets,allFilters.marketAreas);
     filterParams[5].value = getParamValues(_activeParams.routes,allFilters.routeToMarkets);
     filterParams[6].value = getParamValues(_activeParams.segments,allFilters.segments);
-   
+
     
 }
 
@@ -86,7 +86,9 @@ export function getAllFilters(allFilters, availableFilters){
       routeToMarkets: Object.values(availableFilters.routeToMarkets)
   }
 }
-
+export function getSingleValueParamValues(activeParams){
+  let paramValue;
+}
 export function getParamValues(activeParams,allFilters){
   // debugger;
   let paramValue;

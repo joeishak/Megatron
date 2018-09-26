@@ -35,27 +35,42 @@ class FilterBox extends Component {
         // As long as there is an active filter
         let filters = this.props.activeFilters
         let filterBarArr= [];
+        if(filters.quarters[0].value!=='All Data'){
         filters.quarters.forEach(item=>{
             filterBarArr.push(item);
         });
+        }
+        if(filters.geos[0].value!=='All Data'){
         filters.geos.forEach(item=>{
             filterBarArr.push(item);
         });
+        }
+        if(filters.products[0].value!=='All Data'){
+
         filters.products.forEach(item=>{
             filterBarArr.push(item);
         });
+        }
+        if(filters.subscriptions[0].value!=='All Data'){
         filters.subscriptions.forEach(item=>{
             filterBarArr.push(item);
         });
+        }
+        if(filters.markets[0].value!=='All Data'){
         filters.markets.forEach(item=>{
             filterBarArr.push(item);
         });
+        }
+        if(filters.routes[0].value!=='All Data'){
         filters.routes.forEach(item=>{
             filterBarArr.push(item);
         });
+        }
+        if(filters.segments[0].value!=='All Data'){
         filters.segments.forEach(item=>{
             filterBarArr.push(item);
         });
+        }
         if(filterBarArr.length>0) {
             // Return this 
         return(
@@ -66,7 +81,9 @@ class FilterBox extends Component {
                 }
             })
         )
-    }
+    } 
+    else return null;
+       
     }
     changeFilterPanelStatus = () => {
         
