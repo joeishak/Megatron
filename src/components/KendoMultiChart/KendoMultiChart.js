@@ -52,49 +52,49 @@ class KendoMultiChart extends Component {
         return returnValuesArr;
     }
 
-    renderDollarValue(value) {
-        // 1000 - 100000
-        // 1000000 - 1000000000
-        let hundredLength = 3;
-        let thousandsLength = 6;
-        let millionsLength =  9;
-        let billionsLength =  12;
-        let trillionsLength = 15;
-        let suffix = 'K';
+    // renderDollarValue(value) {
+    //     // 1000 - 100000
+    //     // 1000000 - 1000000000
+    //     let hundredLength = 3;
+    //     let thousandsLength = 6;
+    //     let millionsLength =  9;
+    //     let billionsLength =  12;
+    //     let trillionsLength = 15;
+    //     let suffix = 'K';
 
-        let returnValue = '';
+    //     let returnValue = '';
 
 
-        value = parseInt(value)
-        // TODO ** Count only the left side of the decimal
-        let length = value.toString().length;
-        // console.log(value);
-        if (value > 0 && value <=999){
-            this.setState({yAxisText: 'Hundreds'});
-            return value;
+    //     value = parseInt(value)
+    //     // TODO ** Count only the left side of the decimal
+    //     let length = value.toString().length;
+    //     // console.log(value);
+    //     if (value > 0 && value <=999){
+    //         this.setState({yAxisText: 'Hundreds'});
+    //         return value;
             
-        }
-        else if (value >= 1000 && length <= 999999) {
-            this.setState({yAxisText: 'Thousands'});
+    //     }
+    //     else if (value >= 1000 && length <= 999999) {
+    //         this.setState({yAxisText: 'Thousands'});
 
-            value = (value/1000).toFixed(2);
-            returnValue = value ;
-        } else if (value >= 1000000 && length <= 999999999) {
-            value = (value/1000000).toFixed(2);
-            returnValue = value ;
+    //         value = (value/1000).toFixed(2);
+    //         returnValue = value ;
+    //     } else if (value >= 1000000 && length <= 999999999) {
+    //         value = (value/1000000).toFixed(2);
+    //         returnValue = value ;
             
-            // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
-        } else if (length >= 1000000000 && length <= 999999999999) {
-            value = (value/1000000).toFixed(2);
-            returnValue = value ;
+    //         // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
+    //     } else if (length >= 1000000000 && length <= 999999999999) {
+    //         value = (value/1000000).toFixed(2);
+    //         returnValue = value ;
 
-        } else if (length > 1000000000000 <= 999999999999999) {
-            value = (parseInt(value)/100000000).toFixed(2);
-            returnValue = value ;
-        }
+    //     } else if (length > 1000000000000 <= 999999999999999) {
+    //         value = (parseInt(value)/100000000).toFixed(2);
+    //         returnValue = value ;
+    //     }
 
-        return parseFloat(returnValue);
-    }
+    //     return parseFloat(returnValue);
+    // }
 
     labelContent(e){
         // console.log(e.value);
@@ -109,10 +109,8 @@ class KendoMultiChart extends Component {
        
 
 
-        // console.log(this.formatYAxisValues(this.props.activeMultichart[0]));
+        console.log(this.formatYAxisValues(this.props.activeMultichart[0]));
 
-
-        //842141171.979064
 
 
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
@@ -129,7 +127,8 @@ class KendoMultiChart extends Component {
             </ChartValueAxis>
             <ChartCategoryAxis major >
                 <ChartCategoryAxisItem color={this.props.color} categories={categories}>
-                <ChartCategoryAxisTitle text="Months" />
+                {/* Text title to months */}
+                <ChartCategoryAxisTitle text="" />
                 </ChartCategoryAxisItem>
             </ChartCategoryAxis>
             <ChartLegend  position='bottom'/>

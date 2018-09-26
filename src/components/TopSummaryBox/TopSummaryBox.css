@@ -263,30 +263,33 @@ input:checked + .slider:before  {
 
 /**Horizontal Slides**/
 .spinMeFirst{
-	animation: slide 1s ease-in-out forwards; 
+	animation: slide 0.5s  forwards; 
 }
 .spinMeSecond{
-	animation: slide 2s ease-in-out forwards; 
+	animation: slide 0.7s  forwards; 
 }
 .spinMeThird{
-	animation: slide 3s ease-in-out forwards; 
+	animation: slide 0.9s  forwards; 
 
 }
 .spinMeFourth{
-	animation: slide 4s ease-in-out forwards; 
+	animation: slide 1.1s  forwards; 
 }
 
 
 @-moz-keyframes slide {
 	0% { transform: translateX(-100%); }
+	50% { transform: translateX(-95%); }
 	100% { transform: translateX(0%); }
 } 
 @-webkit-keyframes slide {
 	0% { transform: translateX(-100%); }
+	50% { transform: translateX(-95%); }
 	100% { transform: translateX(0%); }
 } 
 @keyframes slide {
 	0% { transform: translateX(-100%); }
+	50% { transform: translateX(-95%); }
 	100% { transform: translateX(0%); }
 } 
 
@@ -296,32 +299,35 @@ input:checked + .slider:before  {
 
 }
 .vertSpinMeSecond{
-	animation: vertspin 1s  forwards; 
+	animation: vertspin 0.7s  forwards; 
 
 }
 .vertSpinMeThird{
-	animation: vertspin 2s  forwards; 
+	animation: vertspin 0.9s  forwards; 
 
 }
 .vertSpinMeFourth{
-	animation: vertspin 3s  forwards; 
+	animation: vertspin 1.1s  forwards; 
 
 }
 .vertSpinMeFifth{
-	animation: vertspin 4s  forwards;
+	animation: vertspin 1.4s  forwards;
 }
 
 
 @-moz-keyframes vertspin {
 	0% { transform: translateX(-100%); }
+	50% { transform: translateX(-95%); }
 	100% { transform: translateX(0%); }
 } 
 @-webkit-keyframes vertspin {
 	0% { transform: translateX(-100%); }
+	50% { transform: translateX(-95%); }
 	100% { transform: translateX(0%); }
 } 
 @keyframes vertspin {
 	0% { transform: translateX(-100%); }
+	50% { transform: translateX(-95%); }
 	100% { transform: translateX(0%); }
 } 
 
