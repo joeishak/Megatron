@@ -34,12 +34,8 @@ class KendoDropDownList extends Component {
   
     //Event handler for when a drop down list item is selected
     handleFilterChange(event){
-        // console.log(event.target)
         this.props.addValueToActiveMultiFilter(event.target.value);
-        // this.setState({value: event.target.value});
-        // this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
-        // this.getFilterValue();
-
+        
     }
     
     render(){
@@ -52,8 +48,6 @@ class KendoDropDownList extends Component {
                 textField="value"
                 data={this.props.data} 
                 onChange={this.handleFilterChange} 
-                // defaultItem={ this.props.defaultItem[0]}
-                value = {this.props.defaultItem[0]}
                  />
 
             // <select style={{color:'black'}} onChange = {this.handleFilterChange} value={this.props.defaultItem[0]}>

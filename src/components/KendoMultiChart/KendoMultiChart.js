@@ -32,8 +32,8 @@ class KendoMultiChart extends Component {
              yAxisText: 'Million'
             
         };
+        
     }
-
     shouldComponentUpdate(nextProps){
         if(nextProps.activeMultichart !== this.props.activeMultichart){
             return true;
@@ -96,13 +96,20 @@ class KendoMultiChart extends Component {
         return parseFloat(returnValue);
     }
 
+    labelContent(e){
+        // console.log(e.value);
+        const suffix = ' M';
+        const prefix = '$';
+        return ( prefix + (e.value/ 1000000) + suffix);
+    }
     render(){
         const  firstSeries = this.props.activeMultichart[0];
         const  secondSeries = this.props.activeMultichart[1];
         const  thirdSeries = this.props.activeMultichart[2];
+       
 
 
-        console.log(this.formatYAxisValues(this.props.activeMultichart[0]));
+        // console.log(this.formatYAxisValues(this.props.activeMultichart[0]));
 
 
         //842141171.979064
@@ -118,7 +125,7 @@ class KendoMultiChart extends Component {
             <ChartArea background="transparent" height={this.props.chartHeight}/* gridLines='{visible: false}' */></ChartArea>
             <ChartTitle text="" />
             <ChartValueAxis>
-             <ChartValueAxisItem color={this.props.color} title={{text:  this.state.yAxisText + " $"}}/>
+             <ChartValueAxisItem color={this.props.color}  labels={{content: this.labelContent}} />
             </ChartValueAxis>
             <ChartCategoryAxis major >
                 <ChartCategoryAxisItem color={this.props.color} categories={categories}>
@@ -127,13 +134,13 @@ class KendoMultiChart extends Component {
             </ChartCategoryAxis>
             <ChartLegend  position='bottom'/>
             <ChartSeries >
-                <ChartSeriesItem name='Actual' type="column" gap={2} spacing={0.25} data={this.formatYAxisValues(this.props.activeMultichart[0])} color={this.props.color} >
+                <ChartSeriesItem name='Actual' type="column" gap={2} spacing={0.25} data={this.props.activeMultichart[0]} color={this.props.color} >
                 <ChartSeriesItemTooltip background="#3c3c3c" />
                 </ChartSeriesItem>
-                <ChartSeriesItem name='Target' type="line" data={this.formatYAxisValues(this.props.activeMultichart[1])} color='#0E9CC6'>
+                <ChartSeriesItem name='Target' type="line" data={this.props.activeMultichart[1]} color='#0E9CC6'>
                 <ChartSeriesItemTooltip background="#3c3c3c"  />
                 </ChartSeriesItem>
-                <ChartSeriesItem name='Last Year' type="line" data={this.formatYAxisValues(this.props.activeMultichart[2])} color='#DFDE43'  >
+                <ChartSeriesItem name='Last Year' type="line" data={this.props.activeMultichart[2]} color='#DFDE43'  >
                 <ChartSeriesItemTooltip background="#3c3c3c" />
                 </ChartSeriesItem>
             </ChartSeries>
