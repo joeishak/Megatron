@@ -21,7 +21,8 @@ import {
     GET_EXCEL_MULTICHART,
     UPDATE_COMMENT_BOX_VISIBILITY,
     ADD_NEW_COMMENT,
-    ADD_NEW_REPLY  
+    ADD_NEW_REPLY  ,
+    TOGGLE_COMMENT_CARD_VISIBILITY
 
 } from 'actions/types';
 import axios from 'axios';
@@ -371,6 +372,13 @@ export function hideCommentBox(){
     return{
         type: UPDATE_COMMENT_BOX_VISIBILITY,
         payload: false
+    }
+}
+
+export function toggleCommentBox(_toggleStatus) {
+    return {
+        type: TOGGLE_COMMENT_CARD_VISIBILITY,
+        payload: _toggleStatus
     }
 }
 

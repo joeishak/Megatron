@@ -242,9 +242,9 @@ class TopSummaryBox extends Component {
 
     onCommentIconClick = (e, commentArrayLength) => {
         // before opening, check if the card comments[] is not empty
-        if (commentArrayLength !== 0) {
+        // if (commentArrayLength !== 0) {
             this.props.showCommentBox();
-        } 
+        // } 
     }
    
     getSummaryContent(){
@@ -272,7 +272,7 @@ class TopSummaryBox extends Component {
                     </div>
 
                     {/* Image Icon For Comments */}
-                    <div className="k-float-right cardCommentIcon"><img src={item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.onCommentIconClick(e, item.comments.length)}></img></div>
+                    {this.props.toggleCommentary ? (<div className="k-float-right cardCommentIcon"><img src={item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.onCommentIconClick(e, item.comments.length)}/></div>) : null}
                   
                             <div className="journeyContent">
                                 <p>{item.header}</p>
@@ -322,6 +322,9 @@ class TopSummaryBox extends Component {
                     <div  className={`journeyHeader k-float-left ${activeJourneyCard === item.css[0] ? this.getColor(item.value, item.target, 'journey', true) : ''}`} >
                         <div className={item.css[2]}><p className="journeyHeaderTitle ">{item.title}</p></div>
                     </div>
+
+                        {/* Image Icon For Comments */}
+                        {this.props.toggleCommentary ? (<div className="k-float-right cardCommentIcon"><img src={item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.onCommentIconClick(e, item.comments.length)}/></div>) : null}
                   
                         
                             <div className="journeyContent">
@@ -357,7 +360,6 @@ class TopSummaryBox extends Component {
 
     render(){
 
-        // {console.log('THIS',this.props.finData);}
       
         var SummaryBoxStyles = classNames({
             summaryBox: true,
@@ -404,12 +406,13 @@ class TopSummaryBox extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log(state);
     return { 
         filters: state.filters, 
         switchFilter:state.switchFilter, 
         appData: state.adobeData, 
         finData: state.ibeData,
-        activeMultichart: state.activeSummarySquare.details.multichart
+        toggleCommentary: state.toggleCommentaryBox
     }
 }
 

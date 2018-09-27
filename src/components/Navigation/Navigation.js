@@ -82,15 +82,18 @@ class Navigation extends Component {
       });
     }
     updateCommentsNav(){
-      switch(this.props.commentBoxIsOpen){
-        case true:
-        this.props.hideCommentBox();
-        break;
-        case false:
-        this.props.showCommentBox();
-        break;
-
-      }
+      // switch(this.props.commentBoxIsOpen){
+      //   case true:
+      //   // this.props.hideCommentBox();
+      //   this.props.toggleCommentBox(false);
+      //   break;
+      //   case false:
+      //   // this.props.showCommentBox();
+      //   this.props.toggleCommentBox(true);
+      //   break;
+      // }
+      let toggle = this.props.toggleCommentaryOn;
+      this.props.toggleCommentBox(!toggle);
     }
     
     render() {
@@ -103,8 +106,8 @@ class Navigation extends Component {
     
       let commentsNavigationItem = classNames({
         roundButton: true,
-        commentsOff: (this.props.commentBoxIsOpen) ? false : true,
-        commentsOn: (this.props.commentBoxIsOpen) ? true : false,
+        commentsOff: (this.props.toggleCommentaryOn) ? true : false,
+        commentsOn: (this.props.toggleCommentaryOn) ? false : true,
 
         
       }) 
@@ -183,7 +186,8 @@ class Navigation extends Component {
 function maptStateToProps(state) {
   return {
     dialogIsOpen: state.dialogIsOpen,
-    commentBoxIsOpen: state.commentBoxIsOpen
+    commentBoxIsOpen: state.commentBoxIsOpen,
+    toggleCommentaryOn: state.toggleCommentaryBox
   }
 }
 

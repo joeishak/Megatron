@@ -355,52 +355,7 @@ export const FinancialData = {
             header: 'Gross New ARR',
             value: 335.3,
             target: 277.9,
-            comments: [
-                {
-                    id: 0,
-                    userName: 'Erin Smith',
-                    time: '8:34am',
-                    comment: 'Check out the increased sales in this sector. This will make a huge difference.',
-                    replies: [
-                        {
-                            id: 0,
-                            userName: 'Bob Smith',
-                            time: '9:04am',
-                            comment: 'Wow! Great job team!'
-                            
-                        },
-                        {
-                            id: 1,
-                            userName: 'Samantha Smith',
-                            time: '9:34am',
-                            comment: 'Was this for last month?'
-                            
-                        },
-                        {
-                            id: 2,
-                            userName: 'Steve Smith',
-                            time: '9:54am',
-                            comment: 'Yes.'
-                            
-                        }
-                    ]
-                },
-                {
-                    id: 1,
-                    userName: 'Shaun White',
-                    time: '12:33pm',
-                    comment: 'What happened in Quarter 3? ',
-                    replies: [
-                        {
-                            id: 0,
-                            userName: 'Bob Smith',
-                            time: '8:34am',
-                            comment: 'Our customers in Japan did not take to our marketing strategy. '
-                            
-                        }
-                    ]
-                }
-             ],
+            comments: [],
             details:{
                 multichart:[
                     [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
@@ -705,52 +660,7 @@ export const FinancialData = {
             header: 'Cancellations ARR',
             value: 217.5,
             target: 277.9,
-            comments: [
-                {
-                    id: 0,
-                    userName: 'Erin Smith',
-                    time: '8:34am',
-                    comment: 'Check out the increased sales in this sector. This will make a huge difference.',
-                    replies: [
-                        {
-                            id: 0,
-                            userName: 'Bob Smith',
-                            time: '9:04am',
-                            comment: 'Wow! Great job team!'
-                            
-                        },
-                        {
-                            id: 1,
-                            userName: 'Samantha Smith',
-                            time: '9:34am',
-                            comment: 'Was this for last month?'
-                            
-                        },
-                        {
-                            id: 2,
-                            userName: 'Steve Smith',
-                            time: '9:54am',
-                            comment: 'Yes.'
-                            
-                        }
-                    ]
-                },
-                {
-                    id: 1,
-                    userName: 'Shaun White',
-                    time: '12:33pm',
-                    comment: 'What happened in Quarter 3? ',
-                    replies: [
-                        {
-                            id: 0,
-                            userName: 'Bob Smith',
-                            time: '8:34am',
-                            comment: 'Our customers in Japan did not take to our marketing strategy. '
-                            
-                        }
-                    ]
-                }
-             ],
+            comments: [],
             details:{
                 multichart:[
                     [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
@@ -962,29 +872,15 @@ export const FinancialData = {
             comments: [
                 {
                     id: 0,
-                    userName: 'Erin Smith',
+                    userName: 'Rick Sanchez',
                     time: '8:34am',
-                    comment: 'Check out the increased sales in this sector. This will make a huge difference.',
+                    comment: 'Are these Renewal values accurate?',
                     replies: [
                         {
                             id: 0,
-                            userName: 'Bob Smith',
+                            userName: 'Morty Smith',
                             time: '9:04am',
-                            comment: 'Wow! Great job team!'
-                            
-                        },
-                        {
-                            id: 1,
-                            userName: 'Samantha Smith',
-                            time: '9:34am',
-                            comment: 'Was this for last month?'
-                            
-                        },
-                        {
-                            id: 2,
-                            userName: 'Steve Smith',
-                            time: '9:54am',
-                            comment: 'Yes.'
+                            comment: 'Let me double check with the InfoBurst admin'
                             
                         }
                     ]
@@ -993,13 +889,13 @@ export const FinancialData = {
                     id: 1,
                     userName: 'Shaun White',
                     time: '12:33pm',
-                    comment: 'What happened in Quarter 3? ',
+                    comment: 'Hey guys, looks the the XDC caches were refreshed this morning at 3:00 am as scheduled, would you guys like me to change the refresh frequency? ',
                     replies: [
                         {
                             id: 0,
-                            userName: 'Bob Smith',
-                            time: '8:34am',
-                            comment: 'Our customers in Japan did not take to our marketing strategy. '
+                            userName: 'Morty Smith',
+                            time: '1:00pm',
+                            comment: 'Thanks Shaun! No I think we are fine with the refresh schedule for now. '
                             
                         }
                     ]
@@ -1343,6 +1239,38 @@ export const JourneyData = {
             target: 242.3,
             timeout: 1000,
             title: 'Discover',
+            comments: [
+                {
+                    id: 0,
+                    userName: 'Rick Sanchez',
+                    time: '8:34am',
+                    comment: 'Are these Renewal values accurate?',
+                    replies: [
+                        {
+                            id: 0,
+                            userName: 'Morty Smith',
+                            time: '9:04am',
+                            comment: 'Let me double check with the InfoBurst admin'
+                            
+                        }
+                    ]
+                },
+                {
+                    id: 1,
+                    userName: 'Shaun White',
+                    time: '12:33pm',
+                    comment: 'Hey guys, looks the the XDC caches were refreshed this morning at 3:00 am as scheduled, would you guys like me to change the refresh frequency? ',
+                    replies: [
+                        {
+                            id: 0,
+                            userName: 'Morty Smith',
+                            time: '1:00pm',
+                            comment: 'Thanks Shaun! No I think we are fine with the refresh schedule for now. '
+                            
+                        }
+                    ]
+                }
+             ],
             details:{
                 multichart:[
                     [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
@@ -1650,6 +1578,7 @@ export const JourneyData = {
             target: 4.7,
             timeout: 2000,
             title: 'Buy',
+            comments: [],
             details:{
                 multichart:[
                     [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
@@ -1958,6 +1887,7 @@ export const JourneyData = {
             target: .80,
             timeout: 3000,
             title: 'Try',
+            comments: [],
             details:{
                 multichart:[
                     [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
@@ -2265,6 +2195,7 @@ export const JourneyData = {
             target: 95.06,
             timeout: 4000,
             title: 'Use',
+            comments: [],
             details:{
                 multichart:[
                     [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
@@ -2572,6 +2503,7 @@ export const JourneyData = {
             target: 277.9,
             timeout: 5000,
             title: 'Renew',
+            comments: [],
             details:{
                 multichart: [
                     [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 

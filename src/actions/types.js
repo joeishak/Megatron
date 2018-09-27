@@ -41,3 +41,4 @@ export const GET_EXCEL_MULTICHART = 'get_excel_multichart';
 
 // Comment Box
 export const UPDATE_COMMENT_BOX_VISIBILITY = 'update_comment_box_visibility';
+export const TOGGLE_COMMENT_CARD_VISIBILITY = 'toggle_comment_card_visibility';

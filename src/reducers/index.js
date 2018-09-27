@@ -12,6 +12,7 @@ import activeSummaryReducer from 'reducers/activeSummary.js';
 import ibeDataReducer from 'reducers/ibeData.js';
 import excelDataReducer from 'reducers/excelData.js';
 import commentBoxVisibilityReducer from 'reducers/commentBoxVisible.js';
+import toggleCommentaryReducer from 'reducers/toggleCommentary.js';
 export default combineReducers({
     // auth: authReducer,
     filters: filterReducer,
@@ -25,5 +26,6 @@ export default combineReducers({
     activeSummarySquare: activeSummaryReducer,
     ibeData: ibeDataReducer,
     excelData: excelDataReducer,
-    commentBoxIsOpen: commentBoxVisibilityReducer
+    commentBoxIsOpen: commentBoxVisibilityReducer,
+    toggleCommentaryBox: toggleCommentaryReducer
 });

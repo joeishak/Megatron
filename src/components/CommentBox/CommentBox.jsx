@@ -232,6 +232,7 @@ class CommentBox extends Component {
 }
 
 function mapStateToProps(state){
+    console.log('comment box', state);
     return {
         currentMetric: state.activeSummarySquare.index,
         comments: state.activeSummarySquare.comments,
