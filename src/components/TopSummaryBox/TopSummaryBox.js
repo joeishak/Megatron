@@ -220,21 +220,21 @@ class TopSummaryBox extends Component {
         let length = value.toString().length;
         // console.log(value);
        
-        if (length > hundredLength && length <= thousandsLength) {
+        if (value > 1000 && value <= 999999) {
             value = (value/1000).toFixed(1);
             returnValue = value.toString() + 'K';
-        } else if (length > thousandsLength && length <= millionsLength) {
+        } else if (value > 1000000 && value <= 999999999) {
             value = (value/1000000).toFixed(1);
             returnValue = value.toString() + 'M';
-            
             // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
-        } else if (length > millionsLength && length <= billionsLength) {
+        } else if (value > 1000000000 && value <= 999999999999) {
             value = (value/1000000000).toFixed(1);
-           
             returnValue = value.toString() + 'B';
-        } else if (length > billionsLength <= trillionsLength) {
+        } else if (value > 1000000000 && value <= 999999999999999) {
             value = (parseInt(value)/1000000000000).toFixed(1);
             returnValue = value.toString() + 'T';
+        } else {
+            return value.toString();
         }
 
         return returnValue;

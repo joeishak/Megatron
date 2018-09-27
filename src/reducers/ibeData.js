@@ -101,6 +101,7 @@ export default function(state = [], action) {
                 let item = action.payload[0].data[i];
                 
 
+                // console.log(item.NetNewARRActual);
                 netArr.actual.push(item.NetNewARRActual);
                 netArr.target.push(item.NetNewARRTarget);
                 netArr.ly.push(item.NetNewARRLY);
