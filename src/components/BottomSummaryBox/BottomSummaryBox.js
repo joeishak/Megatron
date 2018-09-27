@@ -32,10 +32,9 @@ class ButtomSummaryBox extends Component {
         //Binding functions to this
         this.openDialog= this.openDialog.bind(this);
     }
-
-    componentDidMount(){
-
-    }
+   
+   
+ 
     //Event Handler for the View Details Button
     openDialog = ()=>{
         // Call an action for mapped props to update the dialog/windows visibility to True
@@ -118,7 +117,7 @@ class ButtomSummaryBox extends Component {
                     </div> 
                     {/* : null} */}
                     <div className="row gridRow2 chartBig container-fluid">
-                        <KendoMultiChart color={(this.props.switchFilter===true)? 'white':'white'} chartHeight={this.props.chartHeight} style={inStyles.multichart} />
+                        <KendoMultiChart color={(this.props.switchFilter===true) ? 'white':'white'} chartHeight={this.props.chartHeight} style={inStyles.multichart} />
                     </div> 
                     <div className={over}></div>
                 </div>
@@ -128,6 +127,6 @@ class ButtomSummaryBox extends Component {
     }
 }
 function mapStateToProps(state){
-    return { switchFilter: state.switchFilter, activeSummary: state.activeSummarySquare }
+    return { switchFilter: state.switchFilter, activeSummary: state.activeSummarySquare, activeMultichart: state.activeSummarySquare.details.multichart }
 }
 export default connect(mapStateToProps,actions)(ButtomSummaryBox)

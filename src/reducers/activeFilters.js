@@ -59,7 +59,7 @@ export default function(state = {
                         case 'quarters':
                         _.remove(copyOfState.quarters, item => {return item.value==='All Data'});
 
-                        copyOfState.quarters.push(action.payload);
+                        copyOfState.quarters = [action.payload];
 
                         break;
                         case 'subscriptionOfferings':
@@ -70,7 +70,7 @@ export default function(state = {
                         case 'segments':
                         _.remove(copyOfState.segments, item => {return item.value==='All Data'});
 
-                        copyOfState.segments.push(action.payload);
+                        copyOfState.segments=[action.payload];
                         break;
                         case 'marketAreas':
                         _.remove(copyOfState.markets, item => {return item.value==='All Data'});
@@ -119,7 +119,7 @@ export default function(state = {
                 _.remove(copyOfState.quarters, item => {return item.index===action.payload.index});
                 if(copyOfState.quarters.length=== 0){
 
-                copyOfState.quarters =[{index: 211, category: "quarters", value: "All Data"}];
+                copyOfState.quarters =[{index: 211, category: "quarters", value: "2017-Q1"}];
                 }
                 break;
                 case 'subscriptionOfferings':
@@ -133,7 +133,7 @@ export default function(state = {
                 _.remove(copyOfState.segments, item => {return item.index===action.payload.index});
                 if(copyOfState.segments.length=== 0){
 
-                copyOfState.segments =[{index: 209, category: "segments", value: "All Data"}];
+                copyOfState.segments =[{index: 209, category: "segments", value: "Digital Media"}];
                 }
                 break;
                 case 'marketAreas':

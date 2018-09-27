@@ -34,13 +34,7 @@ class KendoMultiChart extends Component {
         };
         
     }
-    shouldComponentUpdate(nextProps){
-        if(nextProps.activeMultichart !== this.props.activeMultichart){
-            return true;
-        } else{
-            return false;
-        }
-    }
+    
     formatYAxisValues = (valuesArr) => {
         console.log(valuesArr);
         const returnValuesArr = valuesArr.map(ele => {
@@ -109,7 +103,7 @@ class KendoMultiChart extends Component {
        
 
 
-        console.log(this.formatYAxisValues(this.props.activeMultichart[0]));
+        // console.log(this.formatYAxisValues(this.props.activeMultichart[0]));
 
 
 
