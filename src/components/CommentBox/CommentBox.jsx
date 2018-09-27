@@ -74,8 +74,14 @@ class CommentBox extends Component {
     }
     shouldComponentUpdate(nextProps,nextState){
         if( nextProps.ibeData !== this.props.ibeData){
-            this.props.updateFinancialSummaryActiveCard(nextProps.ibeData[this.props.currentMetric-1])
-        return true;
+            if(!this.props.switchFilter){
+            this.props.updateFinancialSummaryActiveCard(nextProps.ibeData[this.props.currentMetric-1]);
+            } else
+            {
+                console.log(this.props.appData);
+                this.props.updateJourneySummaryActiveCard(this.props.appData.journey.squares[this.props.currentMetric-1]);
+            }
+            return true;
 
         } else if(nextState.replyMessage !== this.state.replyMessage) {
         return true;
@@ -237,6 +243,8 @@ function mapStateToProps(state){
         currentMetric: state.activeSummarySquare.index,
         comments: state.activeSummarySquare.comments,
         commentBoxHeader: state.activeSummarySquare.header,
-        ibeData: state.ibeData    }
+        ibeData: state.ibeData,
+        appData: state.adobeData,
+        switchFilter: state.switchFilter   }
 }
 export default connect(mapStateToProps,actions) (CommentBox)

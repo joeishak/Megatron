@@ -138,6 +138,7 @@ export default function(state = [], action) {
                
              
             };
+            console.log([...state]);
             return [...state];
         //Case for adding a new comment
             case ADD_NEW_COMMENT: 
@@ -154,6 +155,7 @@ export default function(state = [], action) {
         let commentIndex = Number(action.payload.comment)
         copyOfSquare.comments[commentIndex].replies.push(action.payload.reply);
         state[index] = copyOfSquare;
+
         return [...state]
         default: 
             return state;

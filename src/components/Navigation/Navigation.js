@@ -106,8 +106,8 @@ class Navigation extends Component {
     
       let commentsNavigationItem = classNames({
         roundButton: true,
-        commentsOff: (this.props.toggleCommentaryOn) ? true : false,
-        commentsOn: (this.props.toggleCommentaryOn) ? false : true,
+        commentsOff: (this.props.toggleCommentaryOn) ? false : true,
+        commentsOn: (this.props.toggleCommentaryOn) ? true : false,
 
         
       }) 

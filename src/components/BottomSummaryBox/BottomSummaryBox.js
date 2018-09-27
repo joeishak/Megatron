@@ -48,8 +48,8 @@ class ButtomSummaryBox extends Component {
         });
         var over = classNames({
             over: true,
-            summaryOver: (this.props.switchFilter)? false : true,
-            journeyOver: (this.props.switchFilter)? true: false
+            summaryOver: (this.props.switchFilter) ? false : true,
+            journeyOver: (this.props.switchFilter) ? true: false
         });
      
         return(
@@ -96,7 +96,7 @@ class ButtomSummaryBox extends Component {
                     
                     <div className="journeyStatsContainer">
                         <div className="darkGrey horizontalRule"></div>
-                        {this.props.activeSummary.header}
+                        {(this.props.switchFilter)? this.props.activeSummary.header: null}
                         {
                                             this.props.activeSummary.details.stats.map(item=>{
                                                 return(

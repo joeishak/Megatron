@@ -12,6 +12,7 @@ import {
     ChartCategoryAxisItem,
     ChartValueAxis,
     ChartValueAxisItem,
+    ChartValueAxisLabelsProps,
     ChartArea,
     ChartAxisDefaults,
     ChartSeriesItemTooltip,
@@ -114,10 +115,11 @@ class KendoMultiChart extends Component {
         <ChartTooltip />
 
          <ChartAxisDefaults majorGridLines={false} minorGridLines={false} labels={{format: 'c0'}}/>
+
             <ChartArea background="transparent" height={this.props.chartHeight}/* gridLines='{visible: false}' */></ChartArea>
             <ChartTitle text="" />
             <ChartValueAxis>
-             <ChartValueAxisItem color={this.props.color}  labels={{content: this.labelContent}} />
+             <ChartValueAxisItem color={this.props.color}   labels={{content: this.labelContent, skip: 1, step: 2}} />
             </ChartValueAxis>
             <ChartCategoryAxis major >
                 <ChartCategoryAxisItem color={this.props.color} categories={categories}>
