@@ -1,3 +1,9 @@
+.flRight{
+    float: right;
+}
+.flLeft{
+    float:left;
+}
 .navContainer{
     margin-bottom: 0px !important;
 }

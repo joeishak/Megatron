@@ -158,7 +158,7 @@ class Navigation extends Component {
           
             <Nav pullRight>
             <div className="dropDownContainerBox">
-              <div className=" k-float-left">
+              <div className="flLeft">
                   <NavDropdown eventKey={3} className="dropDownContainer" title={this.state.loggedUser} id="nav-dropdown" noCaret>
                       <MenuItem eventKey={3.1}>Account Settings</MenuItem>
                       <MenuItem eventKey={3.2} onClick={e => this.onDataPreferencesSelcted(e)}>Data Preferences</MenuItem>
@@ -166,11 +166,11 @@ class Navigation extends Component {
 
                   </NavDropdown>
               </div>
-              <div className=" k-float-left"><img className="userIcon" src={userIcon}/></div>
-              <div className='k-float-right'> 
+              <div className="flLeft"><img className="userIcon" src={userIcon}/></div>
+              <div className='flRight'> 
                 <a className={commentsNavigationItem} onClick={this.updateCommentsNav}>
-                  <div class="redicon"></div>
-                  <div class="redicontext">
+                  <div className="redicon"></div>
+                  <div className="redicontext">
                   </div>
                 </a>
               </div>

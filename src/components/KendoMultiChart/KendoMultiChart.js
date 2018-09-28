@@ -110,10 +110,12 @@ class KendoMultiChart extends Component {
 
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
         const ChartContainer = () => (
-        <Chart pannable={false} zoomable={false} >
+        <Chart pannable={true} zoomable={true} >
         <ChartLegend  />
         <ChartTooltip />
-
+        <ChartCategoryAxis>
+                    <ChartCategoryAxisItem max='13' maxDivisions={13} />
+        </ChartCategoryAxis>
          <ChartAxisDefaults majorGridLines={false} minorGridLines={false} labels={{format: 'c0'}}/>
 
             <ChartArea background="transparent" height={this.props.chartHeight}/* gridLines='{visible: false}' */></ChartArea>
