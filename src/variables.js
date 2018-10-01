@@ -2846,7 +2846,7 @@ export const InfoburstAzure = {
          SubscriptionFilters:'?q=SubscriptionFilters&json=1',
          RouteFilters: '?q=RouteFilters&json=1',
          QuarterFilters: '?q=QuarterFilters&json=1',
-         ProductFilters:'?q=ProductFilters&json=1',
+         ProductFilters:'?q=ProductFilters&json=1', 
          GeoFilters: '?q=GeoFilters&json=1'
      },
      summaryQueryNames: {
