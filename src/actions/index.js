@@ -113,13 +113,13 @@ export function updateMultiFilterStatus(status) {
  */
 export function generateFilterData() {
  
-    const maResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '16?q=MarketFilters&json=1', {headers: headers, responseType: 'text'})
-    const segementsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '16?q=SegmentFilters&json=1', {headers: headers, responseType: 'text'});
-    const subscriptionResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '16?q=SubscriptionFilters&json=1', {headers: headers, responseType: 'text'});
-    const routesResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '16?q=RouteFilters&json=1', {headers: headers, responseType: 'text'});
-    const quartersResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '16?q=QuarterFilters&json=1', {headers: headers, responseType: 'text'});
-    const productResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '16?q=ProductFilters&json=1', {headers: headers, responseType: 'text'});
-    const geoResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + '16?q=GeoFilters&json=1', {headers: headers, responseType: 'text'});
+    const maResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.filterXdcID+ InfoburstAzure.filterQueryNames.MarketFilters, {headers: headers, responseType: 'text'})
+    const segementsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.filterXdcID+ InfoburstAzure.filterQueryNames.SegmentFilters, {headers: headers, responseType: 'text'});
+    const subscriptionResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.filterXdcID+ InfoburstAzure.filterQueryNames.SubscriptionFilters, {headers: headers, responseType: 'text'});
+    const routesResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.filterXdcID+ InfoburstAzure.filterQueryNames.RouteFilters, {headers: headers, responseType: 'text'});
+    const quartersResponse = axios.get(InfoburstAzure.xdcCacheQueryURL +  InfoburstAzure.filterXdcID+ InfoburstAzure.filterQueryNames.QuarterFilters, {headers: headers, responseType: 'text'});
+    const productResponse = axios.get(InfoburstAzure.xdcCacheQueryURL +  InfoburstAzure.filterXdcID+ InfoburstAzure.filterQueryNames.ProductFilters, {headers: headers, responseType: 'text'});
+    const geoResponse = axios.get(InfoburstAzure.xdcCacheQueryURL +  InfoburstAzure.filterXdcID+ InfoburstAzure.filterQueryNames.GeoFilters, {headers: headers, responseType: 'text'});
     
     responseArray.push(quartersResponse,maResponse,productResponse,segementsResponse,subscriptionResponse,routesResponse,geoResponse);
     let promiseArr1 = Promise.all(responseArray);
@@ -283,7 +283,7 @@ export function getQueryFilteredIBEData(_parameters,availableFilters){
         
       }, '');
 
-      const response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\17?q=' + 'FinancialActualTargetQuery'  + params1 + '&json=1', 
+      const response = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialActualTarget  + params1 + '&json=1', 
       {headers: headers, responseType: 'text'});
 
       responseArray.push(response);
@@ -343,7 +343,7 @@ export function getQueryFilteredIBEMultiChartData(_parameters,availableFilters){
         response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\17?q=' + 'FinancialMultichartAllQuarterQuery'  + params1 + '&json=1', 
         {headers: headers, responseType: 'text'});
     } else {
-        response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\17?q=' + 'FinancialMultichartQuery'  + params1 + '&json=1', 
+        response = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID+ InfoburstAzure.summaryQueryNames.FinancialMultiChart  + params1 + '&json=1', 
         {headers: headers, responseType: 'text'});
     }
       responseArray.push(response);

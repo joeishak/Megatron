@@ -2840,24 +2840,20 @@ export const InfoburstAzure = {
      xdcCacheURL: 'http://localhost:8551/infoburst/rest/get/xdc/',
      xdcCacheQueryURL: 'http://localhost:8551/infoburst/rest/exec/xdcqry/',
      jsonFormat: '&json=1',
-     filterXdcID : '/45',
-     dataXdcID:  '/54',
-     filterQueries: [
-         {key: 'Geos', value: 'GeoFilters'},
-         {key: 'Quarter', value: 'QuarterFilters'},
-         {key: 'Products', value: 'ProductFilters'},
-         {key: 'Segments', value: 'SegmentFilters'},
-         {key: 'Subscriptions', value: 'SubscriptionFilters'},
-         {key: 'Routes', value: 'RouteFilters'},
-         {key: 'Markets', value: 'MarketFilters'}
-     ],
-     dataQueries: [
-        {key: '2017Q1', value: '2017q1'},
-        {key: '2017Q2', value: '2017q2'},
-        {key: '2017Q3', value: '2017q3'},
-        {key: '2017Q4', value: '2017q4'},
-        {key: '2018Q1', value: '2018q1'},
-        {key: '2018Q2', value: '2018q2'},
-        {key: '2018Q3', value: '2018q3'}
-    ]
+     filterQueryNames:{
+         MarketFilters: '?q=MarketFilters&json=1',
+         SegmentFilters:'?q=SegmentFilters&json=1',
+         SubscriptionFilters:'?q=SubscriptionFilters&json=1',
+         RouteFilters: '?q=RouteFilters&json=1',
+         QuarterFilters: '?q=QuarterFilters&json=1',
+         ProductFilters:'?q=ProductFilters&json=1',
+         GeoFilters: '?q=GeoFilters&json=1'
+     },
+     summaryQueryNames: {
+        FinancialActualTarget: '?q=FinancialActualTargetQuery',
+        FinancialMultiChart: '?q=FinancialMultichartQuery'
+     },
+     filterXdcID : '\\16',
+     dataXdcID:  '\\17',
+     
 }
