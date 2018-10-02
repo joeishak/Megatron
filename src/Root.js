@@ -4,8 +4,6 @@ import {createStore, applyMiddleware} from 'redux';
 import reducers from 'reducers';
 import stateValidator from 'middlewares/stateValidator'
 import async from 'middlewares/async';
-import ReduxPromise from 'redux-promise';
-import thunk from 'redux-thunk';
 
 export default ({children, initialState ={
     filters: {

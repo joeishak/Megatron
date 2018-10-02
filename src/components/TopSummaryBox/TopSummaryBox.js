@@ -7,10 +7,8 @@ import classNames from 'classnames';
 // Custom Components and Styles
 import  * as actions from 'actions';
 import styles from './TopSummaryBox.css'
-import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 import KendoBulletChart from '../KendoBullet/KendoBullet';
-import * as _ from 'lodash';
 
 import commentIconOn from '../../assets/images/comments-on.svg';
 import commentIconOff from '../../assets/images/comments-off.svg';
@@ -50,27 +48,46 @@ class TopSummaryBox extends Component {
 
         // console.log(this.state);
     }
-    // finCardsIbeData() {
 
+    componentDidUpdate(prevProps){
+        if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
+            // console.log('Getting new data');
+            this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
+        }
+        
+        if(prevProps.switchFilter !== this.props.switchFilter){
+            if(!this.props.switchFilter){
+                this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
+            } else{
+                this.props.updateJourneySummaryActiveCard(this.props.appData.journey.squares[0]);
+            }
+        }
 
-        // let processed = this.props.finData.map(ele => {
-        //     console.log(ele);
-        // })
+        if(this.props.finData !== prevProps.finData){
+            this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
+        }
+        // this.props.updateFinancialSummaryActiveCard(this.props.finData[0]);
+    }
 
-        // console.log(processed);
-        // this.props.finData[0].then(val => { 
-        //     this.setState({
-        //         finIBE: val
-        //     })
-        // });
-        // this.props.finData[1].await(val => { 
-        //     res2 = val; 
-        // });
-        // const target = this.props.finData[1].then(val => { targets = val });
+    shouldComponentUpdate(nextProps){
+       
+        if(this.props.appData !== nextProps.appData){
+            return true;
+        }
+        
+        else if(this.props.finData !== nextProps.finData){
 
+            return true;
+        } else if(this.props.activeFilters != nextProps.activeFilters){
+            this.props.getQueryFilteredIBEData(nextProps.activeFilters,this.props.availableFilters);
+            return false;
+        }
+        else if(this.toggleCommentary !== nextProps.toggleCommentary){
+            return true;
+        } else return false;
 
-    // }
-
+        return false;
+    }
    //Event handlers for each chart square to render the arrow
     enableChart1Arrow(event){
         this.props.handleSummaryClick(1);
@@ -92,24 +109,18 @@ class TopSummaryBox extends Component {
         // Finds the passed props for the right card to set as active
         this.setState({activeCard: squareItem.css[0]});
         this.props.updateFinancialSummaryActiveCard(squareItem);
-        // title 'Net New ARR'
-        // const selectedHeader = squareItem.header;
-
-        // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
-        // console.log(selectedHeader);
+     
     }
 
     // Event handler when the Journey Card is active and clicked
     onJourneyCardClicked (e, index) {
         e.preventDefault();
         let squareItem = this.props.appData.journey.squares[index -1];
+        console.log(squareItem);
         // Finds the passed props for the right card to set as active
         this.setState({activeJourneyCard: squareItem.css[0]})
-        this.props.updateJourneySummaryActiveCard(squareItem);
-        // title 'Net New ARR'
-        // const selectedTitle = squareItem.title;
-        // const selectedSubtitle = squareItem.header;
-          
+        this.props.updateJourneySummaryActiveCard(squareItem);      
+
     }
 
     //   Event handler for toggle change 'Financials' and 'Joruneys'
@@ -118,7 +129,6 @@ class TopSummaryBox extends Component {
         
         this.setState({isToggleButtonChecked: !toggleState},()=>{
             this.props.updateSwitchFilterValue(this.state.isToggleButtonChecked);
-
         });
     }
 
@@ -153,39 +163,20 @@ class TopSummaryBox extends Component {
                     if (value > target) { retColor = 'journeyHeaderAlertGreen'} else { retColor = 'journeyHeaderAlert' };
                 }
             break;
+            default:
+            break;
         }
 
         return retColor;
 
-        // let retColor = '';
-        // if(type === 'financial' ) {
-        //     if (value >= target) {
-        //         retColor = 'journeyBoxAlertGreen';
-        //     } else {
-        //         retColor = 'journeyBoxAlert';
-        //     }
-        // } else if (type === 'journey' && header === false) {
-        //     if (value > target) {
-        //         retColor = 'journeyBoxAlertGreen';
-        //     } else {
-        //         retColor = 'journeyBoxAlert';
-        //     }
-        // } else if (type === 'journey'  && header !== false) {
-        //     if (value > target) {
-        //         retColor = 'journeyHeaderAlertGreen';
-        //     } else {
-        //         retColor = 'journeyHeaderAlert';
-        //     }
-        // } 
-
-        // return retColor;
+   
     }
 
 
     renderDollar(index) {
         let renderDollar = '';
 
-        if (index === 1 || index === 2 || index === 5) { renderDollar = '$' }
+        if (index === 1 || index === 2 ) { renderDollar = '$' }
 
         return renderDollar;
     }
@@ -193,7 +184,7 @@ class TopSummaryBox extends Component {
     renderM(index) {
         let renderM = '';
 
-        if (index === 1 || index === 2 || index === 5) { renderM = 'M' } else {
+        if (index === 1 || index === 2 ) { renderM = 'M' } else {
             renderM = '%'
         }
 
@@ -201,40 +192,25 @@ class TopSummaryBox extends Component {
     }
 
     renderDollarValue(value) {
-        // 1000 - 100000
-        // 1000000 - 1000000000
-        let hundredLength = 3;
-        let thousandsLength = 6;
-        let millionsLength =  9;
-        let billionsLength =  12;
-        let trillionsLength = 15;
-        let suffix = 'K';
-
+      
         let returnValue = '';
-
-
-        
-
         value = parseInt(value)
-        // TODO ** Count only the left side of the decimal
-        let length = value.toString().length;
-        // console.log(value);
        
         if (value > 1000 && value <= 999999) {
             value = (value/1000).toFixed(1);
-            returnValue = value.toString() + 'K';
+            returnValue = '$' + value.toString() + 'K';
         } else if (value > 1000000 && value <= 999999999) {
             value = (value/1000000).toFixed(1);
-            returnValue = value.toString() + 'M';
+            returnValue = '$' +  value.toString() + 'M';
             // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
         } else if (value > 1000000000 && value <= 999999999999) {
             value = (value/1000000000).toFixed(1);
-            returnValue = value.toString() + 'B';
+            returnValue ='$' +  value.toString() + 'B';
         } else if (value > 1000000000 && value <= 999999999999999) {
             value = (parseInt(value)/1000000000000).toFixed(1);
-            returnValue = value.toString() + 'T';
+            returnValue ='$' +  value.toString() + 'T';
         } else {
-            return value.toString();
+            return '$' + value.toString();
         }
 
         return returnValue;
@@ -272,7 +248,7 @@ class TopSummaryBox extends Component {
                     </div>
 
                     {/* Image Icon For Comments */}
-                    {this.props.toggleCommentary ? (<div className="k-float-right cardCommentIcon"><img src={item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.onCommentIconClick(e, item.comments.length)}/></div>) : null}
+                    {this.props.toggleCommentary ? (<div className="k-float-right cardCommentIcon"><img alt="" src={item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.onCommentIconClick(e, item.comments.length)}/></div>) : null}
                   
                             <div className="journeyContent">
                                 <p>{item.header}</p>
@@ -324,7 +300,7 @@ class TopSummaryBox extends Component {
                     </div>
 
                         {/* Image Icon For Comments */}
-                        {this.props.toggleCommentary ? (<div className="k-float-right cardCommentIcon"><img src={item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.onCommentIconClick(e, item.comments.length)}/></div>) : null}
+                        {this.props.toggleCommentary ? (<div className="k-float-right cardCommentIcon"><img  alt="" src={item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.onCommentIconClick(e, item.comments.length)}/></div>) : null}
                   
                         
                             <div className="journeyContent">
@@ -366,16 +342,16 @@ class TopSummaryBox extends Component {
             summaryBox_financial: !this.props.switchFilter ? false: true
         });
 
-        var JourneysSquareStyles = classNames({
-            journeySquareStyle:true
-        });
+        // var JourneysSquareStyles = classNames({
+        //     journeySquareStyle:true
+        // });
 
-        var JourneysSquareHeader = classNames({
-            journeySquareHeader: true
-        });
-        var JourneySquareContent = classNames({
-            journeySquareContent: true
-        });
+        // var JourneysSquareHeader = classNames({
+        //     journeySquareHeader: true
+        // });
+        // var JourneySquareContent = classNames({
+        //     journeySquareContent: true
+        // });
 
         return(
             
@@ -406,13 +382,15 @@ class TopSummaryBox extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
+    // console.log(state);
     return { 
         filters: state.filters, 
         switchFilter:state.switchFilter, 
         appData: state.adobeData, 
         finData: state.ibeData,
-        toggleCommentary: state.toggleCommentaryBox
+        toggleCommentary: state.toggleCommentaryBox,
+        activeFilters: state.activeFilters,
+        availableFilters: state.availableFilters,
     }
 }
 

@@ -2191,7 +2191,7 @@ export const JourneyData = {
         {
             index:4,
             header: 'Repeat User MAU',
-            value: 95.78,
+            value: 59.74,
             target: 95.06,
             timeout: 4000,
             title: 'Use',
@@ -2498,9 +2498,9 @@ export const JourneyData = {
         },
         {
             index:5,
-            header: 'Net New ARR',
-            value: 149.9,
-            target: 277.9,
+            header: 'QTR Fin Retention Rate',
+            value: 95.78,
+            target: 95.06,
             timeout: 5000,
             title: 'Renew',
             comments: [],

@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import {
     Chart,
-    ChartTitle,
     ChartLegend,
     ChartArea,
-    ChartTooltip,
     ChartSeries,
     ChartSeriesItem,
-    ChartSeriesLabels
   } from '@progress/kendo-react-charts';
 
   

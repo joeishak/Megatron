@@ -15,7 +15,6 @@ import {
     HIDE_DATA_PREFERENCES,
     UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD,
     UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD,
-    GET_IBE_DATA,
     GET_QUERY_FILTERED_IBE_DATA,
     GET_QUERY_FILTERED_IBE_MULTICHART_DATA,
     GET_EXCEL_MULTICHART,
@@ -27,16 +26,14 @@ import {
 } from 'actions/types';
 import axios from 'axios';
 import * as utils from '../utilities';
-import _ from 'lodash';
 import { InfoburstAzure} from '../variables';
 
 // HTTP Variables 
 const token = 'Basic ' + btoa(InfoburstAzure.user + ':' + InfoburstAzure.pass);
 const headers = {'Authorization': token , 'Accept': '*/*'};
-let quarterQuery;
 let responseArray = [];
 let promiseArr =[];
-let allFilters;
+let quarterQuery;
 let filterParams = [
     {prompt: 'quarterFilters', value: ''},
     {prompt: 'productFilters', value: ''},
@@ -286,7 +283,9 @@ export function getQueryFilteredIBEData(_parameters,availableFilters){
       const response = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialActualTarget  + params1 + '&json=1', 
       {headers: headers, responseType: 'text'});
 
-      responseArray.push(response);
+      const multiChartResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialMultiChart  + params1 + '&json=1', 
+      {headers: headers, responseType: 'text'});
+      responseArray.push(response,multiChartResponse);
       promiseArr = Promise.all(responseArray);
   
       return {
@@ -343,7 +342,7 @@ export function getQueryFilteredIBEMultiChartData(_parameters,availableFilters){
         response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\17?q=' + 'FinancialMultichartAllQuarterQuery'  + params1 + '&json=1', 
         {headers: headers, responseType: 'text'});
     } else {
-        response = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID+ InfoburstAzure.summaryQueryNames.FinancialMultiChart  + params1 + '&json=1', 
+        response = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialMultiChart  + params1 + '&json=1', 
         {headers: headers, responseType: 'text'});
     }
       responseArray.push(response);

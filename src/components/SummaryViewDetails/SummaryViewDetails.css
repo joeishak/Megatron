@@ -8,7 +8,14 @@
 }
 
 /* Summary Breadcrumb */
-
+.breadCrumb{
+    color: #1573E6;
+    cursor: pointer;
+    font-weight: 700;
+}
+.breadCrumb:hover{
+    color: purple;
+}
 /*Detail Breadcrump */
 
 

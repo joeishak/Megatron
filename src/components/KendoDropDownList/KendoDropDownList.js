@@ -1,12 +1,9 @@
 // Npm Modules
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 // Custom Components and Styles
 import * as actions from 'actions';
 import { DropDownList } from '@progress/kendo-react-dropdowns';
-import { spawn } from 'child_process';
-import Select from 'react-select'
 // In Line Styles
 const inStyles = {
     background :{
@@ -35,7 +32,6 @@ class KendoDropDownList extends Component {
     //Event handler for when a drop down list item is selected
     handleFilterChange(event){
         this.props.addValueToActiveMultiFilter(event.target.value);
-        
     }
     
     render(){

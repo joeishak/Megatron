@@ -42,8 +42,7 @@ class FilterPillBox extends  Component {
 }
 function mapStateToProps(state){
     return {
-        activeFilters: state.activeFilters,
-        availableFilters: state.availableFilters
+    
     }
 }
 export default connect(mapStateToProps,actions)(FilterPillBox)

@@ -26,7 +26,6 @@ class CustomDropDownPanel extends Component {
   
     render(){
         const {availableFilters} = this.props;
-       const show = this.props.showSlide;
    
         var panelDropDownContainer = classNames({
             'panelDropDownContainer': true,

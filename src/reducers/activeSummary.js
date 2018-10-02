@@ -7,16 +7,10 @@ import {
 export default function(state = [],action) {
     switch(action.type) {
         case UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD:
-            let sumObj = {
-                type: 'financial',
-                index: action.payload
-            }
+            
             return action.payload;
         case UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD:
-            let jourObj = {
-                type: 'journey',
-                index: action.payload
-            }
+            
             return action.payload;
         default: 
             return state;

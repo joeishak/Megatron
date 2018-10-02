@@ -1,10 +1,16 @@
 import _ from 'lodash';
-import { listenerCount } from 'events';
 
+/**
+ * 
+ * @param {*} arrayList 
+ */
 export function convertFilterList(arrayList) {
-  return "'" + arrayList.join("\', \'") + "' ";
+  return "'" + arrayList.join("', '") + "' ";
 }
-
+/**
+ * 
+ * @param {*} obj 
+ */
 export function removeAllDataValueFromFilterArray(obj){
   _.remove(obj.quarters,(item)=>{ return item.value === "All Data"})
   _.remove(obj.products,(item)=>{ return item.value === "All Data"})
@@ -16,7 +22,10 @@ export function removeAllDataValueFromFilterArray(obj){
 
   return obj;
 }
-
+/**
+ * 
+ * @param {*} arr 
+ */
 export function findIfFilterIsApplied(arr){
   let filtersApplied = {
     quarters: false,
@@ -51,6 +60,8 @@ export function findIfFilterIsApplied(arr){
         case 'segments':
             filtersApplied.segments = true;
             break;
+        default: 
+        break;
       }
     }
   return filtersApplied;
@@ -74,7 +85,11 @@ export function generateFilterParams(filterParams, allFilters, _activeParams){
 
     
 }
-
+/**
+ * 
+ * @param {*} allFilters 
+ * @param {*} availableFilters 
+ */
 export function getAllFilters(allFilters, availableFilters){
   allFilters = {
       quarters: Object.values(availableFilters.quarters),
@@ -86,9 +101,12 @@ export function getAllFilters(allFilters, availableFilters){
       routeToMarkets: Object.values(availableFilters.routeToMarkets)
   }
 }
-export function getSingleValueParamValues(activeParams){
-  let paramValue;
-}
+
+/**
+ * 
+ * @param {*} activeParams 
+ * @param {*} allFilters 
+ */
 export function getParamValues(activeParams,allFilters){
   // debugger;
   let paramValue;

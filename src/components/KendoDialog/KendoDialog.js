@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Dialog, DialogActionsBar } from '@progress/kendo-react-dialogs';
-import KendoMultiChart from '../KendoMultiChart/KendoMultiChart';
+import { Dialog } from '@progress/kendo-react-dialogs';
 import {connect } from 'react-redux';
 import * as actions from 'actions';
 import '@progress/kendo-ui';
-import {Slide,Animation } from '@progress/kendo-react-animation';
-import {Grid, Row, Col } from 'react-bootstrap';
 import styles from './KendoDialog.css';
-import { Window } from '@progress/kendo-window-react-wrapper';
 import $ from 'jquery';
-import KendoDropDownList from '../KendoDropDownList/KendoDropDownList';
 import ReactSelect from './Components/ReactSelect';
 
 
@@ -69,37 +63,31 @@ class KendoDialog extends Component {
                     const geoIndex = activeFilters.findIndex(x => x.category === category);
 
                     return [activeFilters[geoIndex]];
-                    break;
                 case 'marketAreas':
                     const marketAreasIndex = activeFilters.findIndex(x => x.category === category);
                     
                     return [activeFilters[marketAreasIndex]];
-                    break;
                 case 'productNames':
                     const productNamesIndex = activeFilters.findIndex(x => x.category === category);
       
                     return [activeFilters[productNamesIndex]];
-                    break;
                 case 'quarters':
                     const quartersIndex = activeFilters.findIndex(x => x.category === category);
       
                     return [activeFilters[quartersIndex]];
-                    break;
                 case 'routeToMarkets':
                     const routeToMarketsIndex = activeFilters.findIndex(x => x.category === category);
  
                     return [activeFilters[routeToMarketsIndex]];
-                    break;
                 case 'segments':
                     const segmentsIndex = activeFilters.findIndex(x => x.category === category);
      
                     return [activeFilters[segmentsIndex]];
-                    break;
                 case 'subscriptionOfferings':
                     const subscriptionOfferingsIndex = activeFilters.findIndex(x => x.category === category);
 
                     return [activeFilters[subscriptionOfferingsIndex]];
-                    break;
+                    default: break;
             }
         }
     }

@@ -9,9 +9,7 @@ import App from '../../Views/App.js';
 import userIcon from './user-icon.svg';
 import styles from './Navigation.css';
 import logo from "../../assets/images/adobe-logo-nav-1.svg";
-import commentsOn from "../../assets/images/comments-on.png";
 
-import { DataPreferenceDialog } from './Components/DataPreferences/DataPreferenceDialog.js';
 
 // Redux
 import {connect } from 'react-redux';
@@ -100,7 +98,7 @@ class Navigation extends Component {
 
       //local constants for showing the logo with an animation 
       const { show } = this.state;
-      const logos = show ? (<img src={logo} className="imgLogo"/>) : null;
+      const logos = show ? (<img alt="" src={logo} className="imgLogo"/>) : null;
       
       const { activeTab } = this.state;
     
@@ -166,7 +164,7 @@ class Navigation extends Component {
 
                   </NavDropdown>
               </div>
-              <div className="flLeft"><img className="userIcon" src={userIcon}/></div>
+              <div className="flLeft"><img alt="" className="userIcon" src={userIcon}/></div>
               <div className='flRight'> 
                 <a className={commentsNavigationItem} onClick={this.updateCommentsNav}>
                   <div className="redicon"></div>

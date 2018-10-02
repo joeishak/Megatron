@@ -12,7 +12,6 @@ import {
     ChartCategoryAxisItem,
     ChartValueAxis,
     ChartValueAxisItem,
-    ChartValueAxisLabelsProps,
     ChartArea,
     ChartAxisDefaults,
     ChartSeriesItemTooltip,
@@ -33,9 +32,11 @@ class KendoMultiChart extends Component {
              yAxisText: 'Million'
             
         };
+        this.formatDataValues = this.formatDataValues.bind(this);
+    }
+    componentDidUpdate(prevProps){
         
     }
-    
     formatYAxisValues = (valuesArr) => {
         console.log(valuesArr);
         const returnValuesArr = valuesArr.map(ele => {
@@ -95,22 +96,24 @@ class KendoMultiChart extends Component {
         // console.log(e.value);
         const suffix = ' M';
         const prefix = '$';
-        return ( prefix + (e.value/ 1000000) + suffix);
+        return ( prefix + (parseInt(e.value)/ 1000000) + suffix);
     }
+ 
+   formatDataValues(arr){
+
+    let newArr;
+
+    newArr = arr.map(item=>{
+        return item.toFixed(1);
+    });
+    
+    return newArr;
+   }
     render(){
-        const  firstSeries = this.props.activeMultichart[0];
-        const  secondSeries = this.props.activeMultichart[1];
-        const  thirdSeries = this.props.activeMultichart[2];
-       
-
-
-        // console.log(this.formatYAxisValues(this.props.activeMultichart[0]));
-
-
 
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
         const ChartContainer = () => (
-        <Chart pannable={true} zoomable={true} >
+        <Chart pannable={false} zoomable={false} >
         <ChartLegend  />
         <ChartTooltip />
         <ChartCategoryAxis>
@@ -131,14 +134,14 @@ class KendoMultiChart extends Component {
             </ChartCategoryAxis>
             <ChartLegend  position='bottom'/>
             <ChartSeries >
-                <ChartSeriesItem name='Actual' type="column" gap={2} spacing={0.25} data={this.props.activeMultichart[0]} color={this.props.color} >
-                <ChartSeriesItemTooltip background="#3c3c3c" />
+                <ChartSeriesItem name='Actual' type="column" gap={2} spacing={0.25} data={this.formatDataValues(this.props.activeMultichart[0])} color={this.props.color} >
+                <ChartSeriesItemTooltip format='${0}' background="#3c3c3c" />
                 </ChartSeriesItem>
-                <ChartSeriesItem name='Target' type="line" data={this.props.activeMultichart[1]} color='#0E9CC6'>
-                <ChartSeriesItemTooltip background="#3c3c3c"  />
+                <ChartSeriesItem name='Target' type="line" data={this.formatDataValues(this.props.activeMultichart[1])} color='#0E9CC6'>
+                <ChartSeriesItemTooltip format='${0}' background="#3c3c3c"  />
                 </ChartSeriesItem>
-                <ChartSeriesItem name='Last Year' type="line" data={this.props.activeMultichart[2]} color='#DFDE43'  >
-                <ChartSeriesItemTooltip background="#3c3c3c" />
+                <ChartSeriesItem name='Last Year' type="line" data={this.formatDataValues(this.props.activeMultichart[2])} color='#DFDE43'  >
+                <ChartSeriesItemTooltip format='${0}' background="#3c3c3c" />
                 </ChartSeriesItem>
             </ChartSeries>
         </Chart>

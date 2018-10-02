@@ -1,12 +1,9 @@
 // Npm Modules
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import {connect } from 'react-redux';
 import classNames from 'classnames';
 import * as actions from 'actions';
-import {Grid, Row, Col} from 'react-bootstrap';
 import { CSSTransitionGroup } from 'react-transition-group';
-import { open } from 'fs';
 
 // Custom Components and Styles
 import styles from './ButtomSummaryBox.css';
@@ -33,7 +30,9 @@ class ButtomSummaryBox extends Component {
         this.openDialog= this.openDialog.bind(this);
     }
    
-   
+//    componentDidUpdate(){
+//        console.log(this.props.activeSummary);
+//        }
  
     //Event Handler for the View Details Button
     openDialog = ()=>{
@@ -53,7 +52,6 @@ class ButtomSummaryBox extends Component {
         });
      
         return(
-           
             <div className="" >
                 <div className="row gridRow1">
                     <div className = {titleHeader + " col-xs-12 col-sm-12 col-md-12 col-lg-12"} >
@@ -127,6 +125,6 @@ class ButtomSummaryBox extends Component {
     }
 }
 function mapStateToProps(state){
-    return { switchFilter: state.switchFilter, activeSummary: state.activeSummarySquare, activeMultichart: state.activeSummarySquare.details.multichart }
+    return { switchFilter: state.switchFilter, activeSummary: state.activeSummarySquare }
 }
 export default connect(mapStateToProps,actions)(ButtomSummaryBox)

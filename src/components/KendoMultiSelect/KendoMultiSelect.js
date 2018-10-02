@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { MultiSelect } from '@progress/kendo-react-dropdowns';
 import { connect } from 'react-redux';
 import  * as actions from 'actions';

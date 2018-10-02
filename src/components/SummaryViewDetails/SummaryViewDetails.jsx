@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import Navigation from 'components/Navigation/Navigation';
-import { Route,Link } from 'react-router-dom';
 import {connect } from 'react-redux';
 import * as actions from 'actions';
-import {Slide, Animation } from '@progress/kendo-react-animation';
 import styles from './SummaryViewDetails.css';
-import _ from 'lodash';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { CSSTransitionGroup } from 'react-transition-group';
 import classNames from 'classnames';
 import '@progress/kendo-theme-default/dist/all.css';
 // Kendo Components
@@ -15,7 +10,6 @@ import KendoPanelBar from 'components/KendoPanelBar/KendoPanelBar.jsx';
 
 import KendoMultiChart from '../KendoMultiChart/KendoMultiChart';
 // Custom Components
-import FilterBox from 'components/FilterBox/FilterBox';
 import Workbook from 'react-excel-workbook'
 import excelLogo from '../../assets/images/excel-logo.png';
 
@@ -24,36 +18,7 @@ import excelLogo from '../../assets/images/excel-logo.png';
 import ExcelFormatter from './ExcelFormatter';
 // Custom Nivo Components
 // import { changeAuth } from '../actions';
-const data1 = [
-  {
-    foo: '123',
-    bar: '456',
-    baz: '789'
-  },
-  {
-    foo: 'abc',
-    bar: 'dfg',
-    baz: 'hij'
-  },
-  {
-    foo: 'aaa',
-    bar: 'bbb',
-    baz: 'ccc'
-  }
-]
 
-const data2 = [
-  {
-    aaa: 1,
-    bbb: 2,
-    ccc: 3
-  },
-  {
-    aaa: 4,
-    bbb: 5,
-    ccc: 6
-  }
-]
 
 class SummaryViewDetails extends Component {
   constructor(props) {
@@ -279,8 +244,18 @@ class SummaryViewDetails extends Component {
     this.renderQuarterlyToDate = this.renderQuarterlyToDate.bind(this);
     this.renderQuarterlyToDateTableHeader = this.renderQuarterlyToDateTableHeader.bind(this);
   }
-  
  
+  componentDidUpdate(prevProps){
+    if( prevProps.activeFilters !== this.props.activeFilters ){
+      console.log('Getting new data');
+      this.props.getQueryFilteredIBEData(this.props.activeFilters,prevProps.availableFilters);
+  }
+  }
+  // shouldComponentUpdate(prevProps){
+  //   if(prevProps.activeItem !== this.props.activeItem){
+  //     return true;
+  //   }
+  // }
  updateMultiChartMetricFilter(e){
    // Either be 'units' or 'arr'
   this.setState({activeMetric: e.target.innerHTML.toLowerCase()})
@@ -308,6 +283,8 @@ renderQuarterlyToDateTableHeader(){
       </div>
       
     );
+    default: 
+    break;
 
   }
 }
@@ -372,6 +349,8 @@ renderQuarterlyToDateTableHeader(){
      }
      </div>
      );
+     default: 
+     break;
    }
  }
  
@@ -414,8 +393,9 @@ renderQuarterlyToDateTableHeader(){
 
       <div className="sumViewContainer container-fluid">
       {/* Bread Crumbs */}
-        <span onClick={this.props.hideSummaryDetails}>
-          {this.state.summaryType} </span> <span> Summary > {this.props.activeItem.header}
+        <span className='breadCrumb' onClick={this.props.hideSummaryDetails}>
+          {this.state.summaryType} Summary > </span> 
+          <span>  {this.props.activeItem.header}
         </span>
         <br/>
 
@@ -443,7 +423,7 @@ renderQuarterlyToDateTableHeader(){
         <span className="col-md-3 detailTitle">Quarterly To Date</span>
         <span className="col-md-6 excelSpan" >
               <Workbook filename="example.xlsx" element={<button className='exportButton'><span>Export To Excel </span>    
-                      <img className="excelLogo" style={{height: '20px',width:'20px'}} src={excelLogo} /></button>}>
+                      <img alt="" className="excelLogo" style={{height: '20px',width:'20px'}} src={excelLogo} /></button>}>
                 <Workbook.Sheet data={this.state.excelTestData} name="QTD">
                   <Workbook.Column label="Actuals" value="Actuals"/>
                   <Workbook.Column label="Units" value="Units"/>
@@ -500,7 +480,9 @@ function mapStateToProps(state) {
    
     previousViewWasJourneys: state.switchFilter,
     activeItem: state.activeSummarySquare,
-    activeSummar: state.activeSummarySquare,
+    activeFilters: state.activeFilters,
+    availableFilters: state.availableFilters,
+    // finData: state.ibeData,
     qtdwData: state.activeSummarySquare.details.qtdw,
     summaryData: state.adobeData
   };

@@ -5,14 +5,11 @@ import {
     ADD_NEW_REPLY
     
 } from 'actions/types';
-import { from } from 'rxjs';
 import { FinancialData } from '../variables.js';
-import _ from 'lodash';
-import { parse } from 'path';
+import * as _ from 'lodash';
 
 export default function(state = [], action) {
-    let actuals;
-    let targets;
+ 
     let squares = FinancialData.squares;
     let totalNetNewARRActual     = 0;
     let totalNetNewARRTarget     = 0;
@@ -26,15 +23,15 @@ export default function(state = [], action) {
     let index = 0;
     let currentActual;
     let currentTarget;
-    let filteredData;
+    let currentMulti;
     switch(action.type) {
         
         case GET_QUERY_FILTERED_IBE_DATA:
 
-            // console.log('GET QUERY IBE DATA',action.payload);
 
-            for(let i = 0; i< action.payload.length; i++) {
-                let item = action.payload[i].data[0];
+            console.log('GET QUERY IBE DATA',action.payload);
+
+                let item = action.payload[0].data[0];
 
               totalNetNewARRActual +=  item.NetNewARRActual;
               totalNetNewARRTarget += item.NetNewARRTarget
@@ -44,101 +41,155 @@ export default function(state = [], action) {
               totalGrossTarget +=          item.GrossNewARRTarget;
               totalRenewalActual +=        item.RenewalAtFPActual;
               totalRenewalTarget+=        item.RenewalAtFPTarget;
-            }
 
+
+              let netArr = {
+                actual: [],
+                target: [],
+                ly: []
+             }
+             let netCancellations = {
+                 actual: [],
+                 target: [],
+                 ly: []
+             };
+             let grossArr = {
+                 actual: [],
+                 target: [],
+                 ly: []
+             };
+             let termRenewal = {
+                 actual: [],
+                 target: [],
+                 ly: []
+             };
+            
+             for(let i = 0; i< action.payload[1].data.length; i++) {
+                 let item = action.payload[1].data[i];
+ 
+                 // console.log(item.NetNewARRActual);
+                 netArr.actual.push(item.NetNewARRActual);
+                 netArr.target.push(item.NetNewARRTarget);
+                 netArr.ly.push(item.NetNewARRLY);
+                 
+                 netCancellations.actual.push(item.NetCancellationARRActual);
+                 netCancellations.target.push(item.NetCancellationARRTarget);
+                 netCancellations.ly.push(item.NetCancellationsARRLY);
+ 
+                 grossArr.actual.push(item.GrossNewARRActual);
+                 grossArr.target.push(item.GrossNewARRTarget);
+                 grossArr.ly.push(item.GrossNewARRLY);
+                 
+                 termRenewal.actual.push(item.RenewalAtFPActual);
+                 termRenewal.target.push(item.RenewalAtFPTarget);
+                 termRenewal.ly.push(item.TermEndRenewalLY);
+             
+             };
+       
            // if (actuals[0] !== undefined && targets[0] !== undefined) {
                for (let i = 0; i < squares.length; i++) {
                    switch(i){
                        case 0:
                        currentActual = totalNetNewARRActual;
                        currentTarget = totalNetNewARRTarget;
+                       currentMulti  = [netArr.actual,netArr.target,netArr.ly];
                        break;
                        case 1:
                        currentActual = totalGrossActual;
                        currentTarget = totalGrossTarget;
+                       currentMulti  = [grossArr.actual,grossArr.target,grossArr.ly];
                        break;
                        case 2: 
                        currentActual = totalCancellationsActual;
                        currentTarget = totalCancellationsTarget;
+                       currentMulti  =  [netCancellations.actual,netCancellations.target,netCancellations.ly];
+
                        break;
                        case 3: 
                        currentActual = totalRenewalActual;
                        currentTarget =  totalRenewalTarget;
+                       currentMulti  = [termRenewal.actual,termRenewal.target,termRenewal.ly];
+
+                       break;
+                       default:
                        break;
                    }
                    squares[i]['value'] = currentActual;
                    squares[i]['target'] = currentTarget ;  
+                   squares[i]['details'].multichart = currentMulti;
                 
                }
+               
             //    console.log([...squares])
         return [...squares];
       
             case GET_QUERY_FILTERED_IBE_MULTICHART_DATA:
             //    console.log(action.payload);
-            let netArr = {
-               actual: [],
-               target: [],
-               ly: []
-            }
-            let netCancellations = {
-                actual: [],
-                target: [],
-                ly: []
-            };
-            let grossArr = {
-                actual: [],
-                target: [],
-                ly: []
-            };
-            let termRenewal = {
-                actual: [],
-                target: [],
-                ly: []
-            };
-            let grouped = _.groupBy(action.payload[0].data,(item)=>{ return item.quarter});
+            // let netArr = {
+            //    actual: [],
+            //    target: [],
+            //    ly: []
+            // }
+            // let netCancellations = {
+            //     actual: [],
+            //     target: [],
+            //     ly: []
+            // };
+            // let grossArr = {
+            //     actual: [],
+            //     target: [],
+            //     ly: []
+            // };
+            // let termRenewal = {
+            //     actual: [],
+            //     target: [],
+            //     ly: []
+            // };
            
-            for(let i = 0; i< action.payload[0].data.length; i++) {
-                let item = action.payload[0].data[i];
+            // for(let i = 0; i< action.payload[0].data.length; i++) {
+            //     let item = action.payload[0].data[i];
                 
 
-                // console.log(item.NetNewARRActual);
-                netArr.actual.push(item.NetNewARRActual);
-                netArr.target.push(item.NetNewARRTarget);
-                netArr.ly.push(item.NetNewARRLY);
+            //     // console.log(item.NetNewARRActual);
+            //     netArr.actual.push(item.NetNewARRActual);
+            //     netArr.target.push(item.NetNewARRTarget);
+            //     netArr.ly.push(item.NetNewARRLY);
                 
-                netCancellations.actual.push(item.NetCancellationARRActual);
-                netCancellations.target.push(item.NetCancellationARRTarget);
-                netCancellations.ly.push(item.NetCancellationsARRLY);
+            //     netCancellations.actual.push(item.NetCancellationARRActual);
+            //     netCancellations.target.push(item.NetCancellationARRTarget);
+            //     netCancellations.ly.push(item.NetCancellationsARRLY);
 
-                grossArr.actual.push(item.GrossNewARRActual);
-                grossArr.target.push(item.GrossNewARRTarget);
-                grossArr.ly.push(item.GrossNewARRLY);
+            //     grossArr.actual.push(item.GrossNewARRActual);
+            //     grossArr.target.push(item.GrossNewARRTarget);
+            //     grossArr.ly.push(item.GrossNewARRLY);
                 
-                termRenewal.actual.push(item.RenewalAtFPActual);
-                termRenewal.target.push(item.RenewalAtFPTarget);
-                termRenewal.ly.push(item.TermEndRenewalLY);
+            //     termRenewal.actual.push(item.RenewalAtFPActual);
+            //     termRenewal.target.push(item.RenewalAtFPTarget);
+            //     termRenewal.ly.push(item.TermEndRenewalLY);
             
-            };
+            // };
 
-            for (let i = 0; i < squares.length; i++) {
-                switch(i){
-                    case 0:
-                    state[i].details.multichart = [netArr.actual,netArr.target,netArr.ly]
-                    break;
-                    case 1:
-                    state[i].details.multichart = [grossArr.actual,grossArr.target,grossArr.ly]
-                    break;
-                    case 2: 
-                    state[i].details.multichart = [netCancellations.actual,netCancellations.target,netCancellations.ly]
-                    break;
-                    case 3: 
-                    state[i].details.multichart = [termRenewal.actual,termRenewal.target,termRenewal.ly]
-                    break;
-                }
+            // for (let i = 0; i < squares.length; i++) {
+            //     switch(i){
+            //         case 0:
+            //         state[i].details.multichart = [netArr.actual,netArr.target,netArr.ly]
+            //         break;
+            //         case 1:
+            //         state[i].details.multichart = [grossArr.actual,grossArr.target,grossArr.ly]
+            //         break;
+            //         case 2: 
+            //         state[i].details.multichart = [netCancellations.actual,netCancellations.target,netCancellations.ly]
+            //         break;
+            //         case 3: 
+            //         state[i].details.multichart = [termRenewal.actual,termRenewal.target,termRenewal.ly]
+            //         break;
+            //         default:
+            //            break;
+            //     }
                
              
-            };
-            console.log([...state]);
+            // };
+            // console.log([...state]);
             return [...state];
         //Case for adding a new comment
             case ADD_NEW_COMMENT: 
@@ -162,3 +213,71 @@ export default function(state = [], action) {
     }
 }
 
+function processMultiChartData(action,state){
+    let netArr = {
+        actual: [],
+        target: [],
+        ly: []
+     }
+     let netCancellations = {
+         actual: [],
+         target: [],
+         ly: []
+     };
+     let grossArr = {
+         actual: [],
+         target: [],
+         ly: []
+     };
+     let termRenewal = {
+         actual: [],
+         target: [],
+         ly: []
+     };
+    
+     for(let i = 0; i< action.payload[0].data.length; i++) {
+         let item = action.payload[0].data[i];
+         
+
+         // console.log(item.NetNewARRActual);
+         netArr.actual.push(item.NetNewARRActual);
+         netArr.target.push(item.NetNewARRTarget);
+         netArr.ly.push(item.NetNewARRLY);
+         
+         netCancellations.actual.push(item.NetCancellationARRActual);
+         netCancellations.target.push(item.NetCancellationARRTarget);
+         netCancellations.ly.push(item.NetCancellationsARRLY);
+
+         grossArr.actual.push(item.GrossNewARRActual);
+         grossArr.target.push(item.GrossNewARRTarget);
+         grossArr.ly.push(item.GrossNewARRLY);
+         
+         termRenewal.actual.push(item.RenewalAtFPActual);
+         termRenewal.target.push(item.RenewalAtFPTarget);
+         termRenewal.ly.push(item.TermEndRenewalLY);
+     
+     };
+
+     for (let i = 0; i < 4; i++) {
+         switch(i){
+             case 0:
+             state[i].details.multichart = [netArr.actual,netArr.target,netArr.ly]
+             break;
+             case 1:
+             state[i].details.multichart = [grossArr.actual,grossArr.target,grossArr.ly]
+             break;
+             case 2: 
+             state[i].details.multichart = [netCancellations.actual,netCancellations.target,netCancellations.ly]
+             break;
+             case 3: 
+             state[i].details.multichart = [termRenewal.actual,termRenewal.target,termRenewal.ly]
+             break;
+             default:
+                break;
+         }
+        
+      
+     };
+     // console.log([...state]);
+     return [...state];
+}

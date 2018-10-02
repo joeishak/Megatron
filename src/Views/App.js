@@ -9,16 +9,12 @@ import '@progress/kendo-theme-default/dist/all.css';
 // Kendo Components
 
 // Custom Components
-import Footer from '../components/Footer/footerBar';
-import ChatDrawer from '../components/Footer/components/ChatDrawerContainer/ChatDrawer';
 import FilterBox from 'components/FilterBox/FilterBox';
 import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
-import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 import CustomDropDownPanel from 'components/CustomDropDownPanel/CustomDropDownPanel';
 import SummaryViewDetails from 'components/SummaryViewDetails/SummaryViewDetails';
 import KendoDialog from '../components/KendoDialog/KendoDialog';
 import CommentBox from '../components/CommentBox/CommentBox.jsx';
-import axios from 'axios';
 
 
 //InfoBurst
@@ -28,8 +24,6 @@ import axios from 'axios';
 
 class App extends Component {
 
-  prod_connection = { 'user': 'JR', 'pass': 'ft3t7pgz' };
-  environment = { infosolApi: 'http://vm1.infosol.com:8551' };
 
   constructor(props) {
     super(props);
@@ -42,6 +36,7 @@ class App extends Component {
       filterPanelIsOpen: false,
       showDropDowns: false,
       dialogIsOpen: this.props.dialogIsOpen
+      
     };
 
 
@@ -53,16 +48,23 @@ class App extends Component {
       this.props.getAdobeData();
 
     // this.props.generateFilterData();
-    
     this.getFilters();
+    
    
   }
+ 
+  componentDidUpdate(prevProps){
+   
+    // if(prevProps)
+      // this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
+
   
+
+  }
   
   componentWillReceiveProps(nextProps){
    
-    this.props.getQueryFilteredIBEData(nextProps.activeFilters,nextProps.availableFilters);
-    this.props.getQueryFilteredIBEMultiChartData(nextProps.activeFilters,nextProps.availableFilters);
+    // this.props.getQueryFilteredIBEMultiChartData(nextProps.activeFilters,nextProps.availableFilters);
 
   }
   getFilters(){
@@ -72,11 +74,6 @@ class App extends Component {
   renderBarGraph(index){
     this.setState({renderFooter: !this.state.render});
   }
-  /* Sets the state passed to the bottom summary box so that it re renders */
-  renderBarGraph(index){
-    this.setState({renderFooter: !this.state.render});
-  }
-
   /* Event Handler for the Filter Box to open the filter panel with the drop downs */
   openDialogFilterPanel(){
     // Opening the panel
@@ -106,8 +103,6 @@ openChatDialogPanel = () => {
  
   render(){
 
-    const chatWindowContainer = this.state.chatWindowIsOpen ? <ChatDrawer></ChatDrawer> : null;
-      
     /**Summary View Details */
     const Summary = this.props.detailIsOpen ? 
       <div >
@@ -141,11 +136,10 @@ openChatDialogPanel = () => {
 function mapStateToProps(state) {
   // console.log(state);
   return {
-    dialogIsOpen:state.isDialogOpen,
-    activeFilters: state.activeFilters,
+    dialogIsOpen: state.isDialogOpen,
+    // activeFilters: state.activeFilters,
+    //   availableFilters: state.availableFilters,
     detailIsOpen: state.detailsIsOpen,
-    availableFilters: state.availableFilters,
-    activeSquare: state.activeSummarySquare,
     commentBoxIsOpen: state.commentBoxIsOpen
   };
 }

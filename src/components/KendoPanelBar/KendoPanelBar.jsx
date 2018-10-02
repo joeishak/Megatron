@@ -2,7 +2,6 @@ import {  PanelBar, PanelBarItem  } from '@progress/kendo-react-layout';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 import React, { Component } from 'react';
-import _ from 'lodash';
 // import classNames from 'classnames'
 import styles from './KendoPanelBar.css';
 import '@progress/kendo-theme-default/dist/all.css'
@@ -138,6 +137,8 @@ class KendoPanelBar extends Component {
                     
                 </div>
             );
+            default: 
+            break;
         }
     }
     getTopHeader(){
@@ -153,6 +154,8 @@ class KendoPanelBar extends Component {
                     <div className="rightTopHeaderBar"> Week  </div>
                 </span>
             );
+            default: 
+            break;
         }
     }
     getGeoContent(){
@@ -284,72 +287,14 @@ class KendoPanelBar extends Component {
                                  </div>
                                   </span>
                 )
+               
 
             }).reverse()
 
             return allComponent;
-            //   let a=  this.props.activeSummary.details.geo.qtd.map(item =>{
-               
-            //         return(
-            //             <span key={item.index}>
-            //                   <div className="allColumn qtdGeoHeader  col">
-            //                         {item.geo}
-            //                     </div>
-            //                 <div className="allColumn qtdMaHeader col">
-            //                         {item.marketArea}
-            //                     </div>
-            //             <div className="allColumn col">
-            //                 {item.actuals}
-            //             </div>
-            //             <div className="allColumn col">
-            //                 {item.units}
-            //             </div>
-            //             <div className="allColumn col">
-            //                 {item.qrf}
-            //             </div>
-            //             <div className="allColumn col">
-            //                 {item.qrfDiff}
-            //             </div>
-            //             <div className="allColumn col">
-            //                 {item.vsQrf}
-            //             </div>
-            //             <div className="allColumn col">
-            //                 {item.qq}
-            //             </div>
-            //             <div className="allColumn col">
-            //                 {item.yy}
-            //             </div>
-            //             </span>
-            //         )
-            //     })
-            //    let b= this.props.activeSummary.details.geo.week.map(item =>{
-               
-            //         return(
-            //             <span key={item.index}>
-                          
-            //             <div className="allColumn col">
-            //                 {item.actuals}
-            //             </div>
-            //             <div className="allColumn col">
-            //                 {item.units}
-            //             </div>
-            //             <div className="allColumn col">
-            //                 {item.qrf}
-            //             </div>
-            //             <div className="allColumn col">
-            //                 {item.qrfDiff}
-            //             </div>
-            //             <div className="allColumn col">
-            //                 {item.vsQrf}
-            //             </div>
-            //             <div className="allColumn col">
-            //                 {item.ww}
-            //             </div>
-                       
-            //             </span>
-            //         )
-            //     })
-            //     console.log(a,b);
+            
+            default: 
+            break;
         }
     }
     getTable(){ 
@@ -461,6 +406,7 @@ class KendoPanelBar extends Component {
                          
                     </div>
                 </div>);
+                default: break;
         }
     }
     /* Return Contents for  */

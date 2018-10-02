@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import {connect } from 'react-redux';
 
 import * as actions from 'actions';
-import classNames from 'classnames';
 import ImageUploader from 'react-images-upload';
 import styles from './CommentBox.css';
 import addIcon from '../../assets/images/add-icon-black.svg';
-import cameraIcon from '../../assets/images/camera.png';
 class CommentBox extends Component {
     constructor(props){
         super(props);

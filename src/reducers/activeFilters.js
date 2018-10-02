@@ -47,6 +47,8 @@ export default function(state = {
                         case 'routeToMarkets':
                         copyOfState.routes =[action.payload];
                         break;
+                        default: 
+                        break;
 
                     }
                 } else {
@@ -87,6 +89,8 @@ export default function(state = {
 
                         copyOfState.routes.push(action.payload);
                         break;
+                        default: 
+                        break;
 
                     }
                 }
@@ -98,7 +102,6 @@ export default function(state = {
         case UPDATE_MULTI_FILTER_VALUES:
             return state;
         case REMOVE_MULTI_FILTER:
-            let filterToBeRemoved = action.payload;
              copyOfState = JSON.parse(JSON.stringify(state))  
             // console.log('The filter you want to remove', filterToBeRemoved);
             // console.log('The new copy of state',newFilters); 
@@ -157,6 +160,8 @@ export default function(state = {
                 copyOfState.routes =[{index: 208, category: "routeToMarkets", value: "All Data"}];
                 }
                 break;
+                default: 
+                return state;
             }
             return copyOfState;
         default: 

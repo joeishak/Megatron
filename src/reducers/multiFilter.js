@@ -1,17 +1,10 @@
 import {
-    GENERATE_FILTER_DATA,
-    GENERATE_GEO_FILTERS,                   
-    GENERATE_MARKET_AREA_FILTERS,           
-    GENERATE_PRODUCT_NAME_FILTERS,          
-    GENERATE_ROUTE_TO_MARKET_FILTERS,       
-    GENERATE_SEGMENTS_FILTERS,              
-    GENERATE_SUBSCRIPTION_OFFERINGS_FILTERS,
-    GENERATE_QUARTERS_FILTERS              
+    GENERATE_FILTER_DATA
+  
 } from 'actions/types';
 import _ from 'lodash';
 // import data from '../data.json';
 
-let newState;
 let count = 0;
 let defaultState = [];
 
@@ -19,7 +12,7 @@ export default function(state = defaultState, action) {
     switch(action.type) {
         case GENERATE_FILTER_DATA:
 
-        console.log(action.payload);
+        // console.log(action.payload);
         let quarterFilters = action.payload[0].data;
         let marketsFilters = action.payload[1].data;
         let productsFilters = action.payload[2].data;
@@ -58,21 +51,13 @@ export default function(state = defaultState, action) {
             category: 'routeToMarkets',
             value: 'All Data'
         });
-        // newSegmentsState.unshift({
-        //     index: count++,
-        //     category: 'segments',
-        //     value: 'All Data'
-        // });
+        
         newSubscriptionState.unshift({
             index: count++,
             category: 'subscriptionOfferings',
             value: 'All Data'
         });
-        // newQuartersState.unshift({
-        //     index: count++,
-        //     category: 'quarters',
-        //     value: 'All Data'
-        // });
+    
 
         if(defaultState===[]){
             defaultState = {
@@ -85,15 +70,7 @@ export default function(state = defaultState, action) {
                 segments: newSegmentsState,
             }
         }
-    //     console.log('generating filter data',{
-    //     quarters: newQuartersState,
-    //     geos: newGeoState,
-    //     products: newProductState,
-    //     subscriptionOfferings: newSubscriptionState,
-    //     marketAreas: newMAState,
-    //     routeToMarkets: newRouteState,
-    //     segments: newSegmentsState,
-    // });
+    
 
         return {
             quarters: newQuartersState,
@@ -142,7 +119,6 @@ function processDropDownListFilterValue(type, data){
             }
         });
         return newArr;
-        return;
         case 'segments':
         newArr = newArr.map(item =>{
             return {
@@ -179,9 +155,10 @@ function processDropDownListFilterValue(type, data){
             }
         });
         return newArr;
+        default: 
+        return null;
     }
     
 
     
-    return newArr;
 }

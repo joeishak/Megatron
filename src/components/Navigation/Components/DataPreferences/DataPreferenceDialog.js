@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Dialog, DialogActionsBar } from '@progress/kendo-react-dialogs';
 
 class DataPreferenceDialog extends React.Component {
