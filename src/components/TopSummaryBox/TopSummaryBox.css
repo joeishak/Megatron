@@ -8,7 +8,6 @@
     color: #383838;
 }
 
-
 .summaryTitleCol{
     margin-top: 10px;
     font-size: 30px !important;
@@ -199,7 +198,7 @@
   }
   
   .toggleOn .toggleOff {
-	  color: white;
+	  color: rgb(230, 228, 228);
 	  position: absolute;
 	  top: 50%;
 	  bottom: 50%;
@@ -207,7 +206,7 @@
   
   .on, .off
   {
-	color: rgb(73, 73, 73);
+	color: rgb(255, 255, 255);
 	font-size:16px;
 	padding-top: 2px;
   }
@@ -312,6 +311,9 @@ input:checked + .slider:before  {
 }
 .vertSpinMeFifth{
 	animation: vertspin 1.4s  forwards;
+}
+.vertSpinMeSixth{
+	animation: vertspin 1.6s  forwards;
 }
 
 
@@ -519,6 +521,9 @@ input:checked + .slider:before  {
 	padding-top: 40px;
 }
 .verticalText5 {
+	padding-top: 50px;
+}
+.verticalText6 {
 	padding-top: 50px;
 }
 

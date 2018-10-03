@@ -23,7 +23,7 @@ class Navigation extends Component {
         super(props);
         // Initialize state
         this.state = {
-          loggedUser: 'J. Summerson',
+          loggedUser: 'Cynthia Stoddard',
           show: false,
           activeTab: 'tab1',
           dataPrefDialogVisible: this.props.dialogIsOpen,
@@ -128,7 +128,7 @@ class Navigation extends Component {
                 </Link>
                 <Route path = "/post" component ={App} />
               </li>
-              <li className={`navItem ${activeTab === 'tab2' ? 'selected' : ''}`} 
+              {/* <li className={`navItem ${activeTab === 'tab2' ? 'selected' : ''}`} 
                 onClick={e => this.selectedNavItem(e, 'tab2' )} >
                 <Link  to="/journeys" className="navText">
                 <div  >
@@ -150,7 +150,7 @@ class Navigation extends Component {
                 Quarterly</div>
                 </Link>
                 <Route path = "/post" component ={App} />
-              </li>
+              </li> */}
 
             </ul>
           

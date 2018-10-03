@@ -15,7 +15,7 @@ class KendoChat extends Component {
         super(props);
         this.user = {
             id: 1,
-            name: "J.Summerson",
+            name: "Cynthia Stoddard",
             avatarUrl: "https://via.placeholder.com/24/008000/008000.png"
         };
         this.state = {
@@ -24,7 +24,7 @@ class KendoChat extends Component {
                 text: "Are the metrics on this correct?", 
                 timestamp: new Date(), selectionIndex: 0},
                 {author: {id: 3, name: "J.Lennon", avatarUrl: "https://via.placeholder.com/24/008000/008000.png"}, 
-                text: "Hi, Mike. let me double check, J. Summerson can answer", 
+                text: "Hi, Mike. let me double check, who can answer", 
                 timestamp: new Date(), selectionIndex: 0}
             ]
         };

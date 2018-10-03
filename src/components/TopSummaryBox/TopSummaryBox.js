@@ -176,7 +176,7 @@ class TopSummaryBox extends Component {
     renderDollar(index) {
         let renderDollar = '';
 
-        if (index === 1 || index === 2 ) { renderDollar = '$' }
+        if (index === 1 || index === 2 ) { renderDollar = '' }
 
         return renderDollar;
     }
