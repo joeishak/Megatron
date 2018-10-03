@@ -325,6 +325,203 @@ export const FinancialData = {
 
                     ]
                 },
+                marketArea:{
+                    qtd: [
+                        {
+                            index: 0,
+                            routeToMarket: 'Reseller',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 1,
+                            routeToMarket: 'Reseller',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 2,
+                            routeToMarket: 'Reseller',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ASIA'
+                        },
+                        {
+                            index: 3,
+                            routeToMarket: 'Reseller',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ASIA'
+                        }
+                    ],
+                    week:[
+                        {
+                            index: 0,
+                            routeToMarket: 'Reseller',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 1,
+                            routeToMarket: 'Reseller',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'AMER'
+                        },
+                        {
+                            index: 2,
+                            routeToMarket: 'Reseller',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ASIA'
+                        },
+                        {
+                            index: 3,
+                            routeToMarket: 'Reseller',
+                            actuals:    66.74,
+                            units:     751.14,
+                            qrf:        70.21,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ASIA'
+                        }
+                    ],
+                    all:[
+                        {
+                            index: 0,
+                            qtd: {
+                                routeToMarket: 'Reseller',
+                                actuals:    66.74,
+                                units:     751.14,
+                                qrf:        70.21,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'AMER'
+                            },
+                            week: {
+                                routeToMarket: 'Reseller',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 1,
+                            qtd: {
+                                routeToMarket: 'Reseller',
+                                actuals:    66.74,
+                                units:     751.14,
+                                qrf:        70.21,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'AMER'
+                            },
+                            week: {
+                                routeToMarket: 'Reseller',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 2,
+                            qtd: {
+                                routeToMarket: 'Reseller',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ASIA'
+                            },
+                            week: {
+                                routeToMarket: 'Reseller',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        },
+                        {
+                            index: 3,
+                            qtd: {
+                                routeToMarket: 'Reseller',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ASIA'
+                            },
+                            week: {
+                                routeToMarket: 'Reseller',
+                                    actuals:    66.74,
+                                    units:     751.14,
+                                    qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        }
+
+                    ]
+                },
                 stats:[
                     {
                         value: -2.6,
@@ -1237,7 +1434,6 @@ export const JourneyData = {
             header: 'Traffic',
             value: 146.7,
             target: 242.3,
-            timeout: 1000,
             title: 'Discover',
             comments: [
                 {
@@ -1576,7 +1772,6 @@ export const JourneyData = {
             header: `New QFM's`,
             value: 3.9,
             target: 4.7,
-            timeout: 2000,
             title: 'Buy',
             comments: [],
             details:{

@@ -235,7 +235,6 @@ class SummaryViewDetails extends Component {
             YY:94.2,
           }
         ]
-
     };
 
       /*Bindings  */
@@ -243,6 +242,8 @@ class SummaryViewDetails extends Component {
     this.updateQtdMetricFilter = this.updateQtdMetricFilter.bind(this);
     this.renderQuarterlyToDate = this.renderQuarterlyToDate.bind(this);
     this.renderQuarterlyToDateTableHeader = this.renderQuarterlyToDateTableHeader.bind(this);
+    this.renderDollarValue = this.renderDollarValue.bind(this);
+    this.renderM = this.renderM.bind(this);
   }
  
   componentDidUpdate(prevProps){
@@ -288,6 +289,39 @@ renderQuarterlyToDateTableHeader(){
 
   }
 }
+renderM(index) {
+  let renderM = '';
+
+  if (index === 1 || index === 2 ) { renderM = 'M' } else {
+      renderM = '%'
+  }
+
+  return renderM;
+}
+renderDollarValue(value) {
+      
+  let returnValue = '';
+  value = parseInt(value)
+ 
+  if (value > 1000 && value <= 999999) {
+      value = (value/1000).toFixed(1);
+      returnValue = '$' + value.toString() + 'K';
+  } else if (value > 1000000 && value <= 999999999) {
+      value = (value/1000000).toFixed(1);
+      returnValue = '$' +  value.toString() + 'M';
+      // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
+  } else if (value > 1000000000 && value <= 999999999999) {
+      value = (value/1000000000).toFixed(1);
+      returnValue ='$' +  value.toString() + 'B';
+  } else if (value > 1000000000 && value <= 999999999999999) {
+      value = (parseInt(value)/1000000000000).toFixed(1);
+      returnValue ='$' +  value.toString() + 'T';
+  } else {
+      return '$' + value.toString();
+  }
+
+  return returnValue;
+}
  renderQuarterlyToDate(qtdwColSizes ,qtdTotalTable){ 
    switch(this.state.activeTimeMetric){
      case 'qtd':
@@ -297,7 +331,6 @@ renderQuarterlyToDateTableHeader(){
       this.props.activeItem.details.qtdw.qtd.map(item=>{
          return(
           <div key={item.index} className={qtdwColSizes + (item.header==="Vs Qrf"? ' redBG':' ')}>
-
           <span className="contHeader"> {item.header} </span>
           <span className="valHeader"> {item.value}</span>
        </div>
