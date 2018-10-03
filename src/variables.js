@@ -3,8 +3,8 @@ export const FinancialData = {
         {
             index:1,
             header: 'Net New ARR',
-            value: 149.9,
-            target: 277.9,
+            value: 0,
+            target: 0,
             comments: [
                 {
                     id: 0,
@@ -353,8 +353,8 @@ export const FinancialData = {
         {
             index:2,
             header: 'Gross New ARR',
-            value: 335.3,
-            target: 277.9,
+            value: 0,
+            target: 0,
             comments: [],
             details:{
                 multichart:[
@@ -658,8 +658,8 @@ export const FinancialData = {
         {
             index:3,
             header: 'Cancellations ARR',
-            value: 217.5,
-            target: 277.9,
+            value: 0,
+            target: 0,
             comments: [],
             details:{
                 multichart:[
@@ -867,8 +867,8 @@ export const FinancialData = {
         {
             index:4,
             header: 'Renewal@FP ARR',
-            value: 80.1,
-            target: 57.9,
+            value: 0,
+            target: 0,
             comments: [
                 {
                     id: 0,

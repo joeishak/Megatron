@@ -72,7 +72,7 @@ class TopSummaryBox extends Component {
     shouldComponentUpdate(nextProps){
        
         if(this.props.appData !== nextProps.appData){
-            return true;
+            return false;
         }
         
         else if(this.props.finData !== nextProps.finData){
