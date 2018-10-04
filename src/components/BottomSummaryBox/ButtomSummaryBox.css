@@ -3,6 +3,7 @@
     margin-right: 20px;
     margin-left: 20px;
     padding-bottom: 50px;
+    color:white;
 }
 
 .gridRow2{
@@ -52,10 +53,15 @@
     font-size: 16px;
     line-height: 16px;
 }
-
+.finHeader{
+    font-size:24px;
+}
 .statsHeader {
     float: right;
     margin-left: 40px;
+}
+.stats{
+    font-size:20px;
 }
 
 /* Background Indicators */

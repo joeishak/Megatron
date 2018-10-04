@@ -9,6 +9,8 @@ class CommentBox extends Component {
     constructor(props){
         super(props);
         this.state = {
+            commentCommand: 'Add Comment . . .',
+            commentingUser: false,
             replyMessage: '',
             comments: [
                 {
@@ -58,16 +60,21 @@ class CommentBox extends Component {
              ],
             pictures: [],
             commentToBeRepliedTo: null,
-            rerender: false
+            rerender: false,
+            todaysDate: ''
         }
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.updateValue = this.updateValue.bind(this);
         this.onDrop = this.onDrop.bind(this);
-        this.setAddCommentFocus = this.setAddCommentFocus.bind(this)
+        this.setAddCommentFocus = this.setAddCommentFocus.bind(this);
     }
 
     componentDidMount(){
+        let dateTime  = new Date().toDateString();
+        this.setState({todaysDate: dateTime});
+        this.forceUpdate();
         this.commentInput.focus();
+     
     }
     shouldComponentUpdate(nextProps,nextState){
         if( nextProps.ibeData !== this.props.ibeData){
@@ -75,7 +82,7 @@ class CommentBox extends Component {
             this.props.updateFinancialSummaryActiveCard(nextProps.ibeData[this.props.currentMetric-1]);
             } else
             {
-                console.log(this.props.appData);
+                // console.log(this.props.appData);
                 this.props.updateJourneySummaryActiveCard(this.props.appData.journey.squares[this.props.currentMetric-1]);
             }
             return true;
@@ -87,8 +94,10 @@ class CommentBox extends Component {
             return false;
         }
     }
-    setAddCommentFocus(e){
-        this.setState({commentToBeRepliedTo: e.target.id,replyMessage: ''});
+    setAddCommentFocus = (e, userName) => {
+       
+        this.setState({commentToBeRepliedTo: e.target.id,replyMessage: '', commentCommand: `Responding to ${userName}...`, commentingUser: true});
+        // this.forceUpdate();
         this.commentInput.focus();
     }
     handleKeyPress(e){
@@ -97,7 +106,7 @@ class CommentBox extends Component {
 
             let comment= {
                 id: this.props.comments.length,
-                userName: 'Johnn Summerson',
+                userName: 'Cynthia Stoddard',
                 time: new Date().toLocaleTimeString(),
                 comment: e.target.value,
                 replies: [],
@@ -111,7 +120,7 @@ class CommentBox extends Component {
             // console.log('The comment:',this.props.comments[this.state.commentToBeRepliedTo]);
             let comment= {
                 id: this.props.comments[this.state.commentToBeRepliedTo].replies.length,
-                userName: 'Johnn Summerson',
+                userName: 'Cynthia Stoddard',
                 time: new Date().toLocaleTimeString(),
                 comment: e.target.value
                 
@@ -122,9 +131,12 @@ class CommentBox extends Component {
             )
             this.props.addNewReplyToMetricComment(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);
             this.setState({
-                commentToBeRepliedTo:null,
-                replyMessage:''
+                commentToBeRepliedTo :null,
+                replyMessage:'',
+                commentCommand: 'Add Comment . . .',
+                commentingUser: false
             });
+
         }
     }
     updateValue(e){
@@ -140,6 +152,23 @@ class CommentBox extends Component {
     onClose(e) {
         this.props.hideCommentBox();
     }
+
+    mouseEnter = (e, userName) => {
+        this.setState({commentCommand: `Respond to ${userName} . . .` });
+        this.forceUpdate();
+    }
+
+    mouseLeave = (e, userName) => {
+        if (this.state.commentingUser) {
+            this.setState({commentCommand: `Responding to ${userName} . . .`});
+        } else {
+            this.setState({commentCommand: 'Add A Comment . . .'});
+        }
+
+        
+        this.forceUpdate();
+    }
+
     render(){
         
         return(
@@ -153,7 +182,8 @@ class CommentBox extends Component {
                 </div>
                 {/* Date Text */}
                 <div className='commentDate'>
-                10th September 2018
+                {/* 10th September 2018 */}
+                {this.state.todaysDate}
                 <hr></hr>
                 </div>
               
@@ -177,7 +207,7 @@ class CommentBox extends Component {
                                 </div>
                                 <div className='mainCommentContent'>
                                {comment.comment}
-                                <a id={comment.id} className='replyArrow' onClick={this.setAddCommentFocus}></a>
+                                <a id={comment.id} className='replyArrow' onMouseEnter={e => this.mouseEnter(e, comment.userName)}  onMouseLeave={e => this.mouseLeave(e, comment.userName)} onClick={ e => this.setAddCommentFocus(e, comment.userName)}></a>
                                 </div>
                                 <div className='repliesContainer'>
                                     <div className='repliesArrowContainer'>
@@ -219,7 +249,7 @@ class CommentBox extends Component {
                 </div>
             {/* Reply / Attachment Footer */}
                 <div className='commentResponseFooter'>
-                    <input ref={(input) => {this.commentInput=input;}} className='replyTextInput' type="text" onChange={this.updateValue} value={this.state.replyMessage} onKeyPress={this.handleKeyPress}placeholder='Add A Comment . . . '/>
+                    <input ref={(input) => {this.commentInput=input;}} className='replyTextInput' type="text" onChange={this.updateValue} value={this.state.replyMessage} onKeyPress={this.handleKeyPress}placeholder={this.state.commentCommand}/>
                      <ImageUploader
                         withIcon={false}
                         buttonText='Choose images'
@@ -235,7 +265,7 @@ class CommentBox extends Component {
 }
 
 function mapStateToProps(state){
-    console.log('comment box', state);
+    // console.log('comment box', state);
     return {
         currentMetric: state.activeSummarySquare.index,
         comments: state.activeSummarySquare.comments,

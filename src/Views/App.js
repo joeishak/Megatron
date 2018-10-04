@@ -15,7 +15,7 @@ import CustomDropDownPanel from 'components/CustomDropDownPanel/CustomDropDownPa
 import SummaryViewDetails from 'components/SummaryViewDetails/SummaryViewDetails';
 import KendoDialog from '../components/KendoDialog/KendoDialog';
 import CommentBox from '../components/CommentBox/CommentBox.jsx';
-
+import ButtomSummaryBox from '../components/BottomSummaryBox/BottomSummaryBox';
 
 //InfoBurst
 
@@ -102,7 +102,11 @@ openChatDialogPanel = () => {
 }
  
   render(){
-
+    const bottomSummary = !this.props.switchFilter ? 
+      
+    <div className='bottomSummaryContainer'>
+      <ButtomSummaryBox chartHeight="180px" rerender={this.state.renderFooter}/>
+    </div> : null;
     /**Summary View Details */
     const Summary = this.props.detailIsOpen ? 
       <div >
@@ -111,9 +115,11 @@ openChatDialogPanel = () => {
      : 
     <div>
        <TopSummaryBox handleSummaryClick={this.renderBarGraph} />
-       {/* {bottomSummary} */}
+       {bottomSummary}
       </div>;
 
+
+   
     return (
       
 

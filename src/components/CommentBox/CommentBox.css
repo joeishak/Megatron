@@ -119,14 +119,18 @@ hr{
     vertical-align: top;
 }
 .replyArrow{
-    background-image: url("../../assets/images/reply-arrow.png");
+    background-image: url("../../assets/images/reply.svg");
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
-    height:20px;
-    width:20px;
+    height:22px;
+    width:22px;
     display:inline-block;
     vertical-align: middle;
+}
+.replyArrow:hover {
+    background-image: url("../../assets/images/reply-active.svg");
+    cursor: pointer;
 }
 
 .repliesContainer{

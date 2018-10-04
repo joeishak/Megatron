@@ -10,6 +10,8 @@
 
 
 .summaryTitleCol{
+    /* float: left; */
+    /* padding: 15px; */
     margin-top: 10px;
     font-size: 30px !important;
 	color: white;
@@ -18,24 +20,48 @@
 }
 
 .switchContainer{
+
 	float: right;
 }
+/* .financialsLabel {
+    padding: 5px, 5px, 5px, 5px;
+    margin-right: 5px;
+    color: white;
+}
+.journeysLabel{
+    padding: 5px, 5px, 5px, 5px;
+    margin-left: 5px;
+    color: white;	
+} */
 
 .donutChart {
     padding-top: 4px;
 }
 
+/* .gridContainer{
+    background-color: #ff0000;
+	padding-bottom: 100px;
+    height: 285px;
+} */
 
 .summaryBox{
 	background-color: #1f1f1f;
+    /* background-image: linear-gradient(rgb(68, 68, 68),rgb(62, 62, 62),rgb(16, 16, 16)); */
+	/* padding-top: 30px; */
 	padding-bottom: 250px;
-	height: 100%;
+    height: 285px;
 } 
 
 
 .summaryBox_financial{
 	height: 100%;
 }
+/* .sumChartSquare{
+    height: 200px !important;
+    width: 175px !important;
+    border: 2px solid red !important;
+} */
+
 
 
 /* Arrow */
@@ -59,13 +85,13 @@
 
 .arrow_box:after {
 	border-color: rgba(136, 183, 213, 0);
-	border-top-color:rgb(58, 58, 58);
+	border-top-color:white;
 	border-width: 15px;
 	margin-left: -15px;
 }
 .arrow_box:before {
 	border-color: rgba(194, 225, 245, 0);
-	border-top-color:#3a3a3a;
+	border-top-color:white;
 	border-width: 21px;
 	margin-left: -21px;
 }
@@ -92,7 +118,7 @@
 .flip-container {
 	perspective: 1000px;
 }
-
+	/* flip the pane when hovered */
 	.flip-container:hover .flipper, .flip-container.hover .flipper {
 		transform: rotateY(180deg);
 	}
@@ -261,74 +287,68 @@ input:checked + .slider:before  {
 	background-color: white;
 }
 
-/**Horizontal Slides**/
+/**Horizontal Spins**/
 .spinMeFirst{
-	animation: slide 0.5s  forwards; 
+	animation: spin 1s ease-in-out forwards; 
+
 }
 .spinMeSecond{
-	animation: slide 0.7s  forwards; 
+	animation: spin 2s ease-in-out forwards; 
+
 }
 .spinMeThird{
-	animation: slide 0.9s  forwards; 
+	animation: spin 3s ease-in-out forwards; 
 
 }
 .spinMeFourth{
-	animation: slide 1.1s  forwards; 
+	animation: spin 4s ease-in-out forwards; 
+
 }
-
-
-@-moz-keyframes slide {
-	0% { transform: translateX(-100%); }
-	50% { transform: translateX(-95%); }
-	100% { transform: translateX(0%); }
+@-moz-keyframes spin {
+  from {-moz-transform: rotateY(0deg);}
+  to {-moz-transform: rotateY(360deg);}
 } 
-@-webkit-keyframes slide {
-	0% { transform: translateX(-100%); }
-	50% { transform: translateX(-95%); }
-	100% { transform: translateX(0%); }
+@-webkit-keyframes spin {
+	from {-webkit-transform: rotateY(0deg);}
+	to {-webkit-transform: rotateY(360deg);}
 } 
-@keyframes slide {
-	0% { transform: translateX(-100%); }
-	50% { transform: translateX(-95%); }
-	100% { transform: translateX(0%); }
+@keyframes spin {
+	from {transform: rotateY(0deg);}
+	to {transform: rotateY(360deg);}
 } 
 
   /**Vertical Spins**/
 .vertSpinMeFirst{
-	animation: vertspin 0.5s  forwards; 
+	animation: vertspin 1s  forwards; 
 
 }
 .vertSpinMeSecond{
-	animation: vertspin 0.7s  forwards; 
+	animation: vertspin 2s  forwards; 
 
 }
 .vertSpinMeThird{
-	animation: vertspin 0.9s  forwards; 
+	animation: vertspin 3s  forwards; 
 
 }
 .vertSpinMeFourth{
-	animation: vertspin 1.1s  forwards; 
+	animation: vertspin 4s  forwards; 
 
 }
 .vertSpinMeFifth{
-	animation: vertspin 1.4s  forwards;
+	animation: vertspin 5s  forwards; 
+
 }
-
-
 @-moz-keyframes vertspin {
-	0% { transform: translateX(-100%); }
-	50% { transform: translateX(-95%); }
-	100% { transform: translateX(0%); }
+	from {-moz-transform: rotateX(0deg);}
+	to {-moz-transform: rotateX(720deg);}
 } 
 @-webkit-keyframes vertspin {
-	0% { transform: translateX(-100%); }
-	50% { transform: translateX(-95%); }
-	100% { transform: translateX(0%); }
+	from {-webkit-transform: rotateX(0deg);}
+	to {-webkit-transform: rotateX(720deg);}
 } 
 @keyframes vertspin {
-	0% { transform: translateX(-100%); }
-	50% { transform: translateX(-95%); }
-	100% { transform: translateX(0%); }
+	from {transform: rotateX(0deg);}
+	to {transform: rotateX(720deg);}
 } 
 
 .sumChartHeader{
@@ -402,11 +422,7 @@ input:checked + .slider:before  {
 	align-content: center;
 }
 
-.bottomSummaryContainer{
-    padding-top: 80px;
-    background-color: #e8e8e8;
-    height: 100%;
-}
+
 /**Journeys*/
 .journeySquareStyle{
 	height:109px;
@@ -454,30 +470,9 @@ input:checked + .slider:before  {
 	box-sizing: border-box;
 }
 
-.financialBox {
-	width: auto;
-	height: 135px;
-	background: #000000;
-	/* Dynamic */
-	border: 2px solid #3c3c3c;
-	box-sizing: border-box;
-}
-
 .journeyHeader {
 	height: 109px;
 	width: 40px;
-	left: 0%;
-	right: 96.09%;
-	top: 27.86%;
-	bottom: 57.94%;
-	font-size: 14px;
-	/* dynamic */
-	background: #3c3c3c;
-}
-
-.financialHeader {
-	height: 135px;
-	width: 20px;
 	left: 0%;
 	right: 96.09%;
 	top: 27.86%;
@@ -594,17 +589,7 @@ input:checked + .slider:before  {
 	padding-left: 60px;
 	padding-top: 14px;
 	color: #FFFFFF;
-}
 
-.financialContent {
-	font-family: Ubuntu;
-	font-style: normal;
-	font-weight: 200;
-	line-height: normal;
-	font-size: 15px;
-	padding-left: 60px;
-	padding-top: 14px;
-	color: #FFFFFF;
 }
 
 .journeysAmount {
@@ -755,7 +740,10 @@ input:checked + .slider:before  {
 .journeyBoxHover:hover {
 	animation: grow .20s ease-in-out forwards;
 	}
-
+	
+@keyframes grow {
+	100% {transform: scale(1.02); }
+}
 .financialBoxHover:hover {
 	animation: grow .20s ease-in-out forwards;
 	}
@@ -769,4 +757,18 @@ input:checked + .slider:before  {
 .cardCommentIcon {
 	margin-top: 4px;
 	margin-right: 4px;
+}
+.valueText{
+	font-size:30px;
+	display:block;
+}
+.targetText{
+	font-size:11px;
+	display:block;
+	padding:0px;
+}
+.targetValueText{
+	font-size:16px;
+	display:block;
+	padding:0px;
 }

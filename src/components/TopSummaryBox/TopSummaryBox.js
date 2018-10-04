@@ -7,12 +7,12 @@ import classNames from 'classnames';
 // Custom Components and Styles
 import  * as actions from 'actions';
 import styles from './TopSummaryBox.css'
+import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 import KendoBulletChart from '../KendoBullet/KendoBullet';
-
+import * as _ from 'lodash';
 import commentIconOn from '../../assets/images/comments-on.svg';
 import commentIconOff from '../../assets/images/comments-off.svg';
-
 class TopSummaryBox extends Component {
 
     //When the component is constructed
@@ -88,6 +88,27 @@ class TopSummaryBox extends Component {
 
         return false;
     }
+    // finCardsIbeData() {
+
+
+        // let processed = this.props.finData.map(ele => {
+        //     console.log(ele);
+        // })
+
+        // console.log(processed);
+        // this.props.finData[0].then(val => { 
+        //     this.setState({
+        //         finIBE: val
+        //     })
+        // });
+        // this.props.finData[1].await(val => { 
+        //     res2 = val; 
+        // });
+        // const target = this.props.finData[1].then(val => { targets = val });
+
+
+    // }
+
    //Event handlers for each chart square to render the arrow
     enableChart1Arrow(event){
         this.props.handleSummaryClick(1);
@@ -103,24 +124,34 @@ class TopSummaryBox extends Component {
     }
 
     //Event handler that sets the active card
-    onFinancialCardClicked (e, index) {
+    selectedCard (e, index) {
         e.preventDefault();
         let squareItem = this.props.appData.financial.squares[index -1]
         // Finds the passed props for the right card to set as active
         this.setState({activeCard: squareItem.css[0]});
         this.props.updateFinancialSummaryActiveCard(squareItem);
-     
+        // title 'Net New ARR'
+        const selectedHeader = squareItem.header;
+
+        // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
+        // console.log(selectedHeader);
     }
 
     // Event handler when the Journey Card is active and clicked
     onJourneyCardClicked (e, index) {
         e.preventDefault();
         let squareItem = this.props.appData.journey.squares[index -1];
-        console.log(squareItem);
         // Finds the passed props for the right card to set as active
         this.setState({activeJourneyCard: squareItem.css[0]})
-        this.props.updateJourneySummaryActiveCard(squareItem);      
+        this.props.updateJourneySummaryActiveCard(squareItem);
+        // title 'Net New ARR'
+        const selectedTitle = squareItem.title;
+        const selectedSubtitle = squareItem.header;
 
+              // TO DO: pass on to the Bottom Summary Box and Render the view, or pass the index on the bottom summary box
+        // console.log(selectedTitle);
+        // console.log(selectedSubtitle); 
+          
     }
 
     //   Event handler for toggle change 'Financials' and 'Joruneys'
@@ -129,6 +160,7 @@ class TopSummaryBox extends Component {
         
         this.setState({isToggleButtonChecked: !toggleState},()=>{
             this.props.updateSwitchFilterValue(this.state.isToggleButtonChecked);
+
         });
     }
 
@@ -143,40 +175,42 @@ class TopSummaryBox extends Component {
     }
 
     // Need to Refactor
-    getColor(value, target, type, isHeader) {
+    getColor(value, target, type, header) {
 
         let retColor = '';
-
-        switch(type) {
-            case 'financial':
-                if (!isHeader) {
-                    if (value > target) { retColor = 'journeyBoxAlertGreen' } else { retColor = 'journeyBoxAlert' };
-                } else {
-                    if (value > target) { retColor = 'journeyHeaderAlertGreen'} else { retColor = 'journeyHeaderAlert' };
-                }
-
-            break;
-            case 'journey':
-                if (!isHeader) {
-                    if (value > target) { retColor = 'journeyBoxAlertGreen' } else { retColor = 'journeyBoxAlert' };
-                } else {
-                    if (value > target) { retColor = 'journeyHeaderAlertGreen'} else { retColor = 'journeyHeaderAlert' };
-                }
-            break;
-            default:
-            break;
+        if(type === 'financial' ) {
+            if (value >= target) {
+                retColor = 'selectedCardHeaderGreen';
+            } else {
+                retColor = 'selectedCardHeaderRed';
+            }
+        } else if (type === 'journey' && header === false) {
+            if (value > target) {
+                retColor = 'journeyBoxAlertGreen';
+            } else {
+                retColor = 'journeyBoxAlert';
+            }
+        } else if (type === 'journey' && header !== false) {
+            if (value > target) {
+                retColor = 'journeyHeaderAlertGreen';
+            } else {
+                retColor = 'journeyHeaderAlert';
+            }
+        } else if (type === 'donut') {
+            if (value < target) {
+                retColor = '#FF0000';
+            } else {
+                retColor = '#0DB16E';
+            }
         }
 
         return retColor;
-
-   
     }
-
 
     renderDollar(index) {
         let renderDollar = '';
 
-        if (index === 1 || index === 2 ) { renderDollar = '$' }
+        if (index === 1 || index === 2 ) { renderDollar = '' }
 
         return renderDollar;
     }
@@ -222,6 +256,7 @@ class TopSummaryBox extends Component {
             this.props.showCommentBox();
         // } 
     }
+
    
     getSummaryContent(){
         // console.log('Top Summary', this.state.finData);
@@ -229,58 +264,49 @@ class TopSummaryBox extends Component {
         const { activeJourneyCard } = this.state;
         // this.setState({data:(this.props.switchFilter === true) ? this.props.appData.journey: this.props.appData.financial});
   
-         if(this.props.switchFilter===false){
-            return(
-                <div className="row">
-                <div className="col-lg-3 col-md-4">
-
-                {this.props.appData.financial.squares.map(item => {
-                    return (
-                    <div className="financialBoxHover" key={item.index}>    
-                     {/* <CSSTransitionGroup transitionName="example"
-                    transitionAppear={true} transitionAppearTimeout={5000}
-                    transitionEnter={false} transitionLeave={false} > */}
-                    <div className={ `financialBox ${item.css[1]} ${activeCard === item.css[0] ? this.getColor(item.value, item.target, 'financial', false) : ''}`} 
-                    onClick={e => this.onFinancialCardClicked(e, item.index)}>
-                
-                    <div  className={`financialHeader k-float-left ${activeCard === item.css[0] ? this.getColor(item.value,  item.target, 'financial', true) : ''}`} >
-                        
-                    </div>
-
-                    {/* Image Icon For Comments */}
-                    {this.props.toggleCommentary ? (<div className="k-float-right cardCommentIcon"><img alt="" src={item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.onCommentIconClick(e, item.comments.length)}/></div>) : null}
-                  
-                            <div className="journeyContent">
-                                <p>{item.header}</p>
-                                <div className="row">
-
-                                    <div className={`col journeysAmount k-float-left ${item.value >=  item.target ? 'journeysAmountGreen' : ''}`}>
-                                    {this.renderDollarValue(item.value)} </div>
-                                    <div className="col journeysTarget ">TARGET {this.renderDollarValue( item.target)}</div>
- 
-                                </div>
-                                <div className="row k-float-left">
-                                    <div className="journeyKendoGraph">
-                                        <KendoBulletChart values={[item.value,  item.target]} color="white" key={item.index} ></KendoBulletChart>
+         if(!this.props.switchFilter){
+            return (
+                <div className="chartRow">
+              { this.props.finData.map(item=>{
+                return (
+                    <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.enableChart1Arrow} key={item.index}>
+                            <div >
+                                <div className="flipper">
+                                    <div className="front ">
+                                        {/* <!-- front content --> */}
+                                        <CSSTransitionGroup
+                                            transitionName="example"
+                                            transitionAppear={true}
+                                            transitionAppearTimeout={1000}
+                                            transitionEnter={false} 
+                                            transitionLeave={false}>
+                                            {this.state.show ? (
+                                            // {/* Financial Summary  */}
+                                            <div className={`sumChartSquare zoom ${activeCard === item.css[0] ? 'selectedCard ' : ''}`} onClick={e => this.selectedCard(e, item.index)}>
+                                                <div className={`sumChartContent ${item.css[1]}`}>
+                                                    <div className={`sumChartHeader ${activeCard === item.css[0] ? this.getColor(item.value, item.target, 'financial') : ''}`}>
+                                                    <p className={`sumChartHeaderText ${activeCard === item.css[0] ? 'selectedCardText' : ''}`}
+                                                    >{item.header}</p>
+                                                    </div>
+                                                        <div className={`donutChart ${activeCard === item.css[0] ? 'arrow_box' : ''}`}>
+                                                            <div >
+                                                            <KendoDonutChart donutColor={item.value >= item.target ? '#0DB16E': '#FF0000'} key={item.index} donutCenterRender= {()=> 
+                                                            <div className="insideDonut"><span className={'valueText ' + item.value >= item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>{this.renderDollarValue(item.value)}</span><span className='targetText'>Target</span><span className='targetValueText'>{this.renderDollarValue(item.target)}</span></div>}/> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        ): null}
+                                        </CSSTransitionGroup>
                                     </div>
-                                </div>  
+                                </div>
                             </div>
                         </div>
-                    {/* </CSSTransitionGroup> */}
-
-                    </div>  
-                    );
-                })}
-                
-                </div>
-                <div className="col-lg-9 col-md-8">
-                    <ButtomSummaryBox chartHeight="350px"/>
-                </div>
-            </div>
-            )
-        
+                )
+            })}
            
-            
+            </div>
+            )  
         } else if(this.props.switchFilter === true) {
             return(
                 <div className="row">
@@ -336,27 +362,28 @@ class TopSummaryBox extends Component {
 
     render(){
 
+        // {console.log('THIS',this.props.finData);}
       
         var SummaryBoxStyles = classNames({
             summaryBox: true,
             summaryBox_financial: !this.props.switchFilter ? false: true
         });
 
-        // var JourneysSquareStyles = classNames({
-        //     journeySquareStyle:true
-        // });
+        var JourneysSquareStyles = classNames({
+            journeySquareStyle:true
+        });
 
-        // var JourneysSquareHeader = classNames({
-        //     journeySquareHeader: true
-        // });
-        // var JourneySquareContent = classNames({
-        //     journeySquareContent: true
-        // });
+        var JourneysSquareHeader = classNames({
+            journeySquareHeader: true
+        });
+        var JourneySquareContent = classNames({
+            journeySquareContent: true
+        });
 
         return(
             
             <Grid className={SummaryBoxStyles} fluid>
-            {/* {console.log('THIS', this.props.finData)} */}
+            {console.log('THIS', this.props.finData)}
                 <CSSTransitionGroup transitionName="example"
                     transitionAppear={true} transitionAppearTimeout={1000}
                     transitionEnter={false} transitionLeave={false} >
@@ -393,5 +420,4 @@ function mapStateToProps(state) {
         availableFilters: state.availableFilters,
     }
 }
-
 export default connect(mapStateToProps,actions)(TopSummaryBox)
