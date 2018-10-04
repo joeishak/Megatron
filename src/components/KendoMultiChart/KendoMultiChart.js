@@ -114,8 +114,9 @@ class KendoMultiChart extends Component {
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
         const ChartContainer = () => (
         <Chart pannable={false} zoomable={false} >
-        <ChartLegend labels={{legendlabels:{
-            color:'white'}}} />
+        {/* <ChartLegend labels={{legendlabels:{
+            color:'white'}}} /> */}
+            <ChartLegend  position='bottom' labels={{color: "white"}} />
         <ChartTooltip />
         <ChartCategoryAxis>
                     <ChartCategoryAxisItem max='13' maxDivisions={13} />
@@ -133,7 +134,7 @@ class KendoMultiChart extends Component {
                 <ChartCategoryAxisTitle text="" />
                 </ChartCategoryAxisItem>
             </ChartCategoryAxis>
-            <ChartLegend  position='bottom'/>
+
             <ChartSeries >
                 <ChartSeriesItem name='Actual' type="column" gap={2} spacing={0.25} data={this.formatDataValues(this.props.activeMultichart[0])} color={this.props.color} >
                 <ChartSeriesItemTooltip format='${0}' background="#3c3c3c" />
