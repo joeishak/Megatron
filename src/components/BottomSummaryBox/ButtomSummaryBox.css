@@ -59,9 +59,12 @@
 .statsHeader {
     float: right;
     margin-left: 40px;
+    font-weight: 600;
+
 }
 .stats{
     font-size:20px;
+    font-weight: 600;
 }
 
 /* Background Indicators */

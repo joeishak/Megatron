@@ -424,7 +424,7 @@ renderDollarValue(value) {
     })
     return (
 
-      <div className="sumViewContainer container-fluid">
+      <div className="sumViewContainer">
       {/* Bread Crumbs */}
         <span className='breadCrumb' onClick={this.props.hideSummaryDetails}>
           {this.state.summaryType} Summary > </span> 

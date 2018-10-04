@@ -126,7 +126,7 @@ class TopSummaryBox extends Component {
     //Event handler that sets the active card
     selectedCard (e, index) {
         e.preventDefault();
-        let squareItem = this.props.appData.financial.squares[index -1]
+        let squareItem = this.props.finData[index -1]
         // Finds the passed props for the right card to set as active
         this.setState({activeCard: squareItem.css[0]});
         this.props.updateFinancialSummaryActiveCard(squareItem);
@@ -288,10 +288,13 @@ class TopSummaryBox extends Component {
                                                     <p className={`sumChartHeaderText ${activeCard === item.css[0] ? 'selectedCardText' : ''}`}
                                                     >{item.header}</p>
                                                     </div>
+                                                     {/* Image Icon For Comments */}
+                        {this.props.toggleCommentary ? (<span className="k-float-right finCommentIcon"><img  alt="" src={item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.onCommentIconClick(e, item.comments.length)}/></span>) : null}
+                  
                                                         <div className={`donutChart ${activeCard === item.css[0] ? 'arrow_box' : ''}`}>
                                                             <div >
                                                             <KendoDonutChart donutColor={item.value >= item.target ? '#0DB16E': '#FF0000'} key={item.index} donutCenterRender= {()=> 
-                                                            <div className="insideDonut"><span className={'valueText ' + item.value >= item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>{this.renderDollarValue(item.value)}</span><span className='targetText'>Target</span><span className='targetValueText'>{this.renderDollarValue(item.target)}</span></div>}/> 
+                                                            <div className="insideDonut"><span className={  item.value >= item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>{this.renderDollarValue(item.value)}</span><span className='targetText'>Target</span><span className='targetValueText'>{this.renderDollarValue(item.target)}</span></div>}/> 
                                                             </div>
                                                         </div>
                                                     </div>

@@ -76,24 +76,24 @@ class CommentBox extends Component {
         this.commentInput.focus();
      
     }
-    shouldComponentUpdate(nextProps,nextState){
-        if( nextProps.ibeData !== this.props.ibeData){
-            if(!this.props.switchFilter){
-            this.props.updateFinancialSummaryActiveCard(nextProps.ibeData[this.props.currentMetric-1]);
-            } else
-            {
-                // console.log(this.props.appData);
-                this.props.updateJourneySummaryActiveCard(this.props.appData.journey.squares[this.props.currentMetric-1]);
-            }
-            return true;
+    // shouldComponentUpdate(nextProps,nextState){
+    //     if( nextProps.ibeData !== this.props.ibeData){
+    //         if(!this.props.switchFilter){
+    //         this.props.updateFinancialSummaryActiveCard(nextProps.ibeData[this.props.currentMetric-1]);
+    //         } else
+    //         {
+    //             // console.log(this.props.appData);
+    //             this.props.updateJourneySummaryActiveCard(this.props.appData.journey.squares[this.props.currentMetric-1]);
+    //         }
+    //         return true;
 
-        } else if(nextState.replyMessage !== this.state.replyMessage) {
-        return true;
+    //     } else if(nextState.replyMessage !== this.state.replyMessage) {
+    //     return true;
 
-        } else {
-            return false;
-        }
-    }
+    //     } else {
+    //         return false;
+    //     }
+    // }
     setAddCommentFocus = (e, userName) => {
        
         this.setState({commentToBeRepliedTo: e.target.id,replyMessage: '', commentCommand: `Responding to ${userName}...`, commentingUser: true});

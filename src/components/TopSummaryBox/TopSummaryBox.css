@@ -35,7 +35,8 @@
 } */
 
 .donutChart {
-    padding-top: 4px;
+	padding-top: 4px;
+	position: absolute;
 }
 
 /* .gridContainer{
@@ -67,7 +68,7 @@
 /* Arrow */
 
 .arrow_box {
-	position: relative;
+	position: absolute;
 	background: transparent;
     border-bottom: 4px solid #3a3a3a;
     height: 175px;
@@ -757,6 +758,14 @@ input:checked + .slider:before  {
 .cardCommentIcon {
 	margin-top: 4px;
 	margin-right: 4px;
+	z-index: 3;
+}
+.finCommentIcon{
+	margin-top: 4px;
+	margin-right: 4px;
+	z-index: 3;
+	position: relative;
+	float:right;
 }
 .valueText{
 	font-size:30px;
