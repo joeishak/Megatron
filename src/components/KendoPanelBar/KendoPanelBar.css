@@ -4,15 +4,7 @@
 }
 
 .topHeaderBar{
-    float:right;
-    width:751px;
-    text-align: center;
-    height: 30px;
-    margin-top: 5px;
-    border-left: 1px solid #D8D8D8;
-    border-top: 1px solid #D8D8D8;
-    border-right: 1px solid #D8D8D8;
-    font-size: 12px;
+  font-size: 12px;
 }
 .lowerHeaderBar{
     width:100%;
@@ -155,4 +147,7 @@
     color: black;
     background-color: white;
     border-color: white;
+}
+.geoTableContainer{
+    padding:0px;
 }

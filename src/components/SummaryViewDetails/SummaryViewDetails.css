@@ -37,17 +37,28 @@
     align-content: Left;
     float:left;
     background-color: #F4F4F4;
+    padding: 0px;
     
 }
-
+.detailTitle2{
+    color: #000000;
+    
+    font-style: Light;
+    font-size: 30px;
+    line-height: 34px;
+    align-content: Left;
+    float:left;
+    background-color:white;
+    padding: 0px;
+    
+}
 .chartContainer{
     background-color: #F4F4F4;
 }
 /* Multi Chart Metric Container */
 .multiChartMetricContainer{
-    /* border-radius:100px; */
     float: right;
-    width: 200px;
+    padding: 0px;
     height:30px;
 }
 /* Units Metric Left Side of Selector */
@@ -56,17 +67,15 @@
     text-align: center;
     padding-top: 5px;
     height:30px;
-
-    width:80px;
+    width:50%;
     border-top-left-radius: 100px;
     border-bottom-left-radius: 100px;
     border: 1px solid #3C3C3C;
 }
 /* ARR Metric Right Side of Selector */
-
 .arrMetric{
     float:left;
-    width:80px;
+    width:50%;
     height:30px;
     text-align: center;
     padding-top:5px;
@@ -77,9 +86,7 @@
 
 /* Active Metric Chosen */
 .activeMetric{
-    width: 80px;
     color:white;
-    width:80px;
     background-color: #3C3C3C;
 
 }
@@ -180,7 +187,7 @@
 }
 .weekDetailTitle{
     float:right;
-    width: 636px;
+    width: 75%;
     height:30px;
     clear:right;
     text-align:center;
@@ -217,21 +224,25 @@
     font-size: 24px;
     padding: 0px !important;
 }
-
+.k-header{
+    padding-left:0px !important;
+}
 .qtdTotalTable{
     padding: 0px !important;
     float: right;
     margin:auto;
 }
 .colContainer{
-    /* width:105px; */
     height:80px;
     background-color:#F4F4F4;
     float:right;
     margin:1px;
 }
-.normalSize{
-    width:105px;
+.weekSize{
+    width:16.4%;
+}
+.qtdSize{
+    width: 14%;
 }
 .halfSize{
     width:63px;

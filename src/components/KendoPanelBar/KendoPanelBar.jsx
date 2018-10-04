@@ -20,6 +20,7 @@ class KendoPanelBar extends Component {
         this.getTable = this.getTable.bind(this);
         this.getGeoContent = this.getGeoContent.bind(this);
     }
+ 
     getLowerHeader(){
         switch(this.props.timeMetric){
             case 'qtd':
@@ -144,18 +145,25 @@ class KendoPanelBar extends Component {
     getTopHeader(){
         switch(this.props.timeMetric){
             case 'qtd':
-            return <div className="topHeaderBar"> Quarterly To Date  </div>
-            case 'week':
-            return <div className="topHeaderBar"> Week  </div>
-            case 'all':
-            return(
-                <span className='allTopHeaderContainer'>
-                    <div className="leftTopHeaderBar"> Quarterly To Date  </div>
-                    <div className="rightTopHeaderBar"> Week  </div>
-                </span>
-            );
-            default: 
-            break;
+          return(
+            <div className=" topHeaderBar qtdDetailTitle col-md-11">Quarterly To Date</div>
+          );
+          case 'week': 
+          return(
+            <div className="topHeaderBar weekDetailTitle col-md-11">Week</div>
+          );
+          case 'all': 
+          return(
+      
+            <div className="topHeaderBar allContainer col-md-12">
+            <div className="topHeaderBar allWeekDetailTitle col-md-6">Week</div> 
+            <div className="topHeaderBar allQtdDetailTitle col-md-6">Quartely To Date</div>
+            </div>
+            
+          );
+          default: 
+          break;
+      
         }
     }
     getGeoContent(){
@@ -421,7 +429,7 @@ class KendoPanelBar extends Component {
                     <div className='col-md-12'> 
                         {this.getLowerHeader()}
                     </div>
-                    <div className='col-md-12'> 
+                    <div className='col-md-12 geoTableContainer'> 
                         {this.getTable()}
                     </div>
                 </div>

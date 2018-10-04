@@ -269,11 +269,11 @@ renderQuarterlyToDateTableHeader(){
   switch(this.state.activeTimeMetric){
     case 'qtd':
     return(
-      <div className=" qtdDetailTitle col-md-12">Quarterly To Date</div>
+      <div className=" qtdDetailTitle col-md-11">Quarterly To Date</div>
     );
     case 'week': 
     return(
-      <div className=" weekDetailTitle col-md-12">Week</div>
+      <div className=" qtdDetailTitle col-md-11">Week</div>
     );
     case 'all': 
     return(
@@ -323,6 +323,7 @@ renderDollarValue(value) {
   return returnValue;
 }
  renderQuarterlyToDate(qtdwColSizes ,qtdTotalTable){ 
+   console.log(qtdwColSizes);
    switch(this.state.activeTimeMetric){
      case 'qtd':
      return (
@@ -413,7 +414,8 @@ renderDollarValue(value) {
  
     var qtdwColSizes = classNames({
       colContainer:true,
-      normalSize: (this.state.activeTimeMetric === 'week' || this.state.activeTimeMetric === 'qtd') ? true : false,
+      qtdSize: (this.state.activeTimeMetric === 'qtd') ? true : false,
+      weekSize: ( this.state.activeTimeMetric === 'week' ) ? true : false,
       halfSize: (this.state.activeTimeMetric === 'all') ? true: false
     });
 
@@ -435,11 +437,11 @@ renderDollarValue(value) {
         {/* First Row for Ttle Bar and Metric Filter */}
         <div className="row container-fluid titleBarHeader">
 
-          <span className="col-md- 3 detailTitle">{this.props.activeItem.header}
+          <span className="col-md-3 detailTitle">{this.props.activeItem.header}
           {/* <button className='exportButton'>Export To Excel</button> */}
          
   </span>
-          <div className=" col-md-9 multiChartMetricContainer">
+          <div className=" col-md-2 multiChartMetricContainer ">
               <div onClick={this.updateMultiChartMetricFilter} className={UnitStyles}>
                   UNITS
               </div>
@@ -453,7 +455,7 @@ renderDollarValue(value) {
         </div>
         {/* Second Row for Quarterly to Date title header */}
         <div className=" qtdTitleBarHeader container-fluid row">
-        <span className="col-md-3 detailTitle">Quarterly To Date</span>
+        <span className="col-md-3 detailTitle2">Quarterly To Date</span>
         <span className="col-md-6 excelSpan" >
               <Workbook filename="example.xlsx" element={<button className='exportButton'><span>Export To Excel </span>    
                       <img alt="" className="excelLogo" style={{height: '20px',width:'20px'}} src={excelLogo} /></button>}>
@@ -495,14 +497,17 @@ renderDollarValue(value) {
         </div> 
         
         <div className="  qtdTopDetails container-fluid row white">
+          <div className=" qtdTotalTitle col-md-2">&nbsp;</div>
           {this.renderQuarterlyToDateTableHeader()}
           <div className=" qtdTotalTitle col-md-12">
-            <div className=" qtdTotalTitle col-md-1">Total</div>
+            <div className=" qtdTotalTitle col-md-2">Total</div>
               {this.renderQuarterlyToDate(qtdwColSizes,qtdTotalTable)}
           </div>
           
         </div>
-        <KendoPanelBar timeMetric={this.state.activeTimeMetric} background='white'/>
+        <div className="  qtdTopDetails container-fluid row white">
+          <KendoPanelBar renderTableHeaders={this.renderQuarterlyToDateTableHeader} timeMetric={this.state.activeTimeMetric} background='white'/>
+        </div>
       </div>
   )
 }
@@ -510,12 +515,10 @@ renderDollarValue(value) {
 
 function mapStateToProps(state) {
   return {
-   
     previousViewWasJourneys: state.switchFilter,
     activeItem: state.activeSummarySquare,
     activeFilters: state.activeFilters,
     availableFilters: state.availableFilters,
-    // finData: state.ibeData,
     qtdwData: state.activeSummarySquare.details.qtdw,
     summaryData: state.adobeData
   };
