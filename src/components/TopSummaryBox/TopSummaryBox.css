@@ -7,7 +7,7 @@
     float: right;
     color: #383838;
 }
-
+/* journeyCard6', 'vertSpinMeSixth', 'verticalText6' */
 
 .summaryTitleCol{
     /* float: left; */
@@ -234,7 +234,7 @@
   
   .on, .off
   {
-	color: rgb(73, 73, 73);
+	color: rgb(247, 247, 247);
 	font-size:16px;
 	padding-top: 2px;
   }
@@ -337,7 +337,9 @@ input:checked + .slider:before  {
 }
 .vertSpinMeFifth{
 	animation: vertspin 5s  forwards; 
-
+}
+.vertSpinMeSixth{
+	animation: vertspin 6s forwards;
 }
 @-moz-keyframes vertspin {
 	from {-moz-transform: rotateX(0deg);}
@@ -515,6 +517,10 @@ input:checked + .slider:before  {
 	padding-top: 40px;
 }
 .verticalText5 {
+	padding-top: 50px;
+}
+
+.verticalText6 {
 	padding-top: 50px;
 }
 

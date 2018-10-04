@@ -13,13 +13,24 @@
 }
 
 .userIcon {
-    padding-top: 17px;
-    width: 25px;
+    padding-top: 12px;
+    width:54px;
+    height:54px;
+ 
 }
-.userIcon{
-    width:57px;
-    height:57px;
+
+.profilePic{
+    padding-top: 12px;
+    width: 45px;
+    clip-path: circle(60px at center);
 }
+
+.commentIcon {
+    margin-top: 7px;
+    height: 46px;
+    margin-left: 14px;
+}
+
 .navText:hover {
     color: gray !important;
 }
@@ -43,7 +54,6 @@
     margin-right: 5px;
     margin-top:15px;
     padding-bottom: 15px;
-    /* border: 4px solid red; */
 }
 
 .dropDownContainer {
@@ -51,7 +61,6 @@
     margin-top: 20px;
     padding-bottom: 20px;
     font-size: 16px; 
-
 }
 
 .dropDownContainerBox {
@@ -78,7 +87,7 @@
     display:none;
 }
 
-.commentNotificationCircle{
+/* .commentNotificationCircle{
     height: 5px;
     width: 5px;
     border-radius: 50%;
@@ -86,23 +95,24 @@
     margin-top: 15px;
     border:  1px solid red;
 
-}
-.commentNotificationCircleRed{
+} */
+/* .commentNotificationCircleRed{
     border: red;
-}
-.commentsIcon{
+} */
+
+/* .commentsIcon{
     width:40px;
     height:40px;
     margin-left:10%;
     margin-top:10%;
 
-}
+} */
 
 
-.center{
+/* .center{
     margin: 0 auto;
-  }
-.roundButton{
+  } */
+/* .roundButton{
   width: 40px;
   height: 40px;
   margin: 10px;
@@ -114,9 +124,9 @@
   background-repeat: no-repeat;
   background-position: center center;
   position: relative;
-}
+} */
   
-.commentsOff{
+/* .commentsOff{
   background-image: url("../../assets/images/comments-off.png");
   background-color: #fff;
   border-radius: 100%;
@@ -126,23 +136,23 @@
     background-image: url("../../assets/images/comments-on.png");
     background-color: #fff;
     border-radius: 100%;
-  }
+  } */
   
-.redicon{
+/* .redicon{
   position: absolute;
   top: 0px;
   right: 0px;
   background: red;
   padding:6px;
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
   border-radius: 100%;
-}
+} */
 
-.redicontext{
+/* .redicontext{
   position: absolute;
   top: 10px;
   right: 3%;
   padding:10px;
   box-sizing: border-box;
   border-radius: 100%;
-}
+} */

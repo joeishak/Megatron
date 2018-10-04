@@ -4,11 +4,19 @@ import { Route,Link } from 'react-router-dom';
 import {Nav,  Navbar, NavDropdown, MenuItem} from 'react-bootstrap';
 import {  Expand, } from '@progress/kendo-react-animation';
 import classNames from 'classnames';
-// Custom Components and Styles
+
 import App from '../../Views/App.js';
-import userIcon from './user-icon.svg';
 import styles from './Navigation.css';
+
+// Images Imports, Adobe Logo, User Icon, CommentIcon ON, CommentsIcon Off
+
 import logo from "../../assets/images/adobe-logo-nav-1.svg";
+import userIcon from './user-icon.svg';
+import commentIconOff from './assets/images/comment-icon-off.svg';
+import commentIconOn from './assets/images/comment-icon-on.svg';
+
+import profilePic from "./assets/images/cynthia-profile.png";
+
 
 
 // Redux
@@ -99,16 +107,14 @@ class Navigation extends Component {
       //local constants for showing the logo with an animation 
       const { show } = this.state;
       const logos = show ? (<img alt="" src={logo} className="imgLogo"/>) : null;
-      
       const { activeTab } = this.state;
     
-      let commentsNavigationItem = classNames({
-        roundButton: true,
-        commentsOff: (this.props.toggleCommentaryOn) ? false : true,
-        commentsOn: (this.props.toggleCommentaryOn) ? true : false,
+      // let commentsNavigationItem = classNames({
+      //   roundButton: true,
+      //   commentsOff: (this.props.toggleCommentaryOn) ? false : true,
+      //   commentsOn: (this.props.toggleCommentaryOn) ? true : false, 
+      // }) 
 
-        
-      }) 
         return(
 
         <Navbar  fluid className="navContainer">
@@ -164,13 +170,14 @@ class Navigation extends Component {
 
                   </NavDropdown>
               </div>
-              <div className="flLeft"><img alt="" className="userIcon" src={userIcon}/></div>
+              {/* <div className="flLeft"><img alt="" className="userIcon" src={userIcon}/></div> */}
+              <div className="flLeft"><img alt="" className="profilePic" src={profilePic}/></div>
               <div className='flRight'> 
-                <a className={commentsNavigationItem} onClick={this.updateCommentsNav}>
+                {/* <a className={commentsNavigationItem} onClick={this.updateCommentsNav}>
                   <div className="redicon"></div>
-                  <div className="redicontext">
-                  </div>
-                </a>
+                  <div className="redicontext"></div>
+                </a> */}
+                <img alt="" className="commentIcon" onClick={this.updateCommentsNav} src={!this.props.toggleCommentaryOn ? commentIconOff : commentIconOn}/>
               </div>
               </div>
 
