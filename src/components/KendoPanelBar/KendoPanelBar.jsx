@@ -244,7 +244,7 @@ class KendoPanelBar extends Component {
             );
             case 'all':
             let sumData = this.props.activeSummary.details.geo.all;
-            console.log(sumData);
+            console.log(this.props.activeSummary);
            let allComponent = this.props.activeSummary.details.geo.all.map(item =>{
                 return(
                                 <span key={item.index}>
