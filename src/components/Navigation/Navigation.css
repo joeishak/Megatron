@@ -19,6 +19,12 @@
  
 }
 
+.profilePic{
+    padding-top: 12px;
+    width: 45px;
+    clip-path: circle(60px at center);
+}
+
 .commentIcon {
     margin-top: 7px;
     height: 46px;

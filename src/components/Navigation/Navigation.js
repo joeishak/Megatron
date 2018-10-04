@@ -15,6 +15,8 @@ import userIcon from './user-icon.svg';
 import commentIconOff from './assets/images/comment-icon-off.svg';
 import commentIconOn from './assets/images/comment-icon-on.svg';
 
+import profilePic from "./assets/images/cynthia-profile.png";
+
 
 
 // Redux
@@ -168,7 +170,8 @@ class Navigation extends Component {
 
                   </NavDropdown>
               </div>
-              <div className="flLeft"><img alt="" className="userIcon" src={userIcon}/></div>
+              {/* <div className="flLeft"><img alt="" className="userIcon" src={userIcon}/></div> */}
+              <div className="flLeft"><img alt="" className="profilePic" src={profilePic}/></div>
               <div className='flRight'> 
                 {/* <a className={commentsNavigationItem} onClick={this.updateCommentsNav}>
                   <div className="redicon"></div>
