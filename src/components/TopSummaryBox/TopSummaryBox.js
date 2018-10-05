@@ -25,7 +25,7 @@ class TopSummaryBox extends Component {
             summaryTitle: 'Financials Summary',
             activeJourneyCard: 'journeyCard1',
             activeCard:'card1',
-            data: (this.props.switchFilter === true) ? this.props.appData.journey: this.props.finData,
+            // data: (this.props.switchFilter === true) ? this.props.appData.journey: this.props.finData,
             components:{
                 squares: undefined,
                 stats: undefined,
@@ -63,9 +63,9 @@ class TopSummaryBox extends Component {
             }
         }
 
-        if(this.props.finData !== prevProps.finData){
-            this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
-        }
+        // if(this.props.finData !== prevProps.finData){
+        //     this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
+        // }
         // this.props.updateFinancialSummaryActiveCard(this.props.finData[0]);
     }
 
@@ -412,7 +412,7 @@ class TopSummaryBox extends Component {
 }
 
 function mapStateToProps(state) {
-    // console.log(state);
+    console.log(state);
     return { 
         filters: state.filters, 
         switchFilter:state.switchFilter, 
@@ -421,6 +421,7 @@ function mapStateToProps(state) {
         toggleCommentary: state.toggleCommentaryBox,
         activeFilters: state.activeFilters,
         availableFilters: state.availableFilters,
+        journeyData: state.journeyData
     }
 }
 export default connect(mapStateToProps,actions)(TopSummaryBox)

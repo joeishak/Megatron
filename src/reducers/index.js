@@ -12,6 +12,7 @@ import ibeDataReducer from 'reducers/ibeData.js';
 import excelDataReducer from 'reducers/excelData.js';
 import commentBoxVisibilityReducer from 'reducers/commentBoxVisible.js';
 import toggleCommentaryReducer from 'reducers/toggleCommentary.js';
+import journeyReducer from 'reducers/journeyIbe.js'
 export default combineReducers({
     // auth: authReducer,
     filters: filterReducer,
@@ -25,5 +26,7 @@ export default combineReducers({
     ibeData: ibeDataReducer,
     excelData: excelDataReducer,
     commentBoxIsOpen: commentBoxVisibilityReducer,
-    toggleCommentaryBox: toggleCommentaryReducer
+    toggleCommentaryBox: toggleCommentaryReducer,
+    journeyData: journeyReducer
+
 });

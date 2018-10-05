@@ -116,7 +116,7 @@ class KendoMultiChart extends Component {
         <Chart pannable={false} zoomable={false} >
         {/* <ChartLegend labels={{legendlabels:{
             color:'white'}}} /> */}
-            <ChartLegend  position='bottom' labels={{color: "white"}} />
+            <ChartLegend  position='bottom' labels={{color: this.props.color}} />
         <ChartTooltip />
         <ChartCategoryAxis>
                     <ChartCategoryAxisItem max='13' maxDivisions={13} />

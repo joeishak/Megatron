@@ -113,7 +113,11 @@ class CommentBox extends Component {
             }
 
             // Post the Comment
-            this.props.addNewCommentToMetric(this.props.currentMetric,comment);
+            if(this.props.switchFilter){
+                this.props.addNewJourneyComment(this.props.currentMetric,comment);
+            }else{
+                this.props.addNewCommentToMetric(this.props.currentMetric,comment);
+            }
             
             this.setState({replyMessage: ''})
         } else if (e.key==='Enter' && this.state.commentToBeRepliedTo !== null){
@@ -129,7 +133,13 @@ class CommentBox extends Component {
                 'Current metric:',this.props.currentMetric, 'Comment To Be Replied To:',this.state.commentToBeRepliedTo,
                 'Reply: ',comment
             )
-            this.props.addNewReplyToMetricComment(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);
+             // Post the Comment
+             if(this.props.switchFilter){
+                this.props.addNewJourneyReply(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);
+            }else{
+                this.props.addNewReplyToMetricComment(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);
+            }
+           
             this.setState({
                 commentToBeRepliedTo :null,
                 replyMessage:'',

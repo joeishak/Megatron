@@ -21,7 +21,9 @@ import {
     UPDATE_COMMENT_BOX_VISIBILITY,
     ADD_NEW_COMMENT,
     ADD_NEW_REPLY  ,
-    TOGGLE_COMMENT_CARD_VISIBILITY
+    TOGGLE_COMMENT_CARD_VISIBILITY,
+    ADD_NEW_JOURNEY_COMMENT,
+    ADD_NEW_JOURNEY_REPLY
 
 } from 'actions/types';
 import axios from 'axios';
@@ -400,4 +402,26 @@ export function addNewReplyToMetricComment(activeSquareID, commentId,reply ){
             reply: reply
         }
     }
+}
+
+export function addNewJourneyComment(activeSquareID, comment){
+    return {
+        type: ADD_NEW_JOURNEY_COMMENT,
+        payload: {
+            square: activeSquareID,
+            comment: comment
+        }
+    }
+}
+
+export function addNewJourneyReply(activeSquareID,commentId,reply){
+    return {
+        type: ADD_NEW_JOURNEY_REPLY,
+        payload: {
+            square: activeSquareID,
+            comment: commentId,
+            reply: reply
+        }
+    }
+
 }
