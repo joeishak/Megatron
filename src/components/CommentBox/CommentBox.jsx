@@ -5,6 +5,13 @@ import * as actions from 'actions';
 import ImageUploader from 'react-images-upload';
 import styles from './CommentBox.css';
 import addIcon from '../../assets/images/add-icon-black.svg';
+// profile pictures
+import rick from '../../assets/images/rick.png';
+import shaun from '../../assets/images/shaun.png';
+import morty from '../../assets/images/morty.png';
+import cynthia from '../Navigation/assets/images/cynthia-profile.png';
+
+
 class CommentBox extends Component {
     constructor(props){
         super(props);
@@ -67,6 +74,7 @@ class CommentBox extends Component {
         this.updateValue = this.updateValue.bind(this);
         this.onDrop = this.onDrop.bind(this);
         this.setAddCommentFocus = this.setAddCommentFocus.bind(this);
+        this.grabProfilePic = this.grabProfilePic.bind(this);
     }
 
     componentDidMount(){
@@ -97,7 +105,6 @@ class CommentBox extends Component {
     setAddCommentFocus = (e, userName) => {
        
         this.setState({commentToBeRepliedTo: e.target.id,replyMessage: '', commentCommand: `Responding to ${userName}...`, commentingUser: true});
-        // this.forceUpdate();
         this.commentInput.focus();
     }
     handleKeyPress(e){
@@ -151,12 +158,10 @@ class CommentBox extends Component {
     }
     updateValue(e){
             // Set the state for the comment box
-            this.setState({replyMessage: e.target.value})
+        this.setState({replyMessage: e.target.value})
     }
     onDrop(picture) {
-        this.setState({
-            pictures: this.state.pictures.concat(picture),
-        });
+        this.setState({ pictures: this.state.pictures.concat(picture)});
     }
 
     onClose(e) {
@@ -169,14 +174,33 @@ class CommentBox extends Component {
     }
 
     mouseLeave = (e, userName) => {
-        if (this.state.commentingUser) {
-            this.setState({commentCommand: `Responding to ${userName} . . .`});
-        } else {
+        this.state.commentingUser ? 
+            this.setState({commentCommand: `Responding to ${userName} . . .`}) : 
             this.setState({commentCommand: 'Add A Comment . . .'});
+        this.forceUpdate();
+    }
+
+    grabProfilePic (userName) {
+
+
+        switch(userName) {
+            case 'Rick Sanchez':
+                return rick;
+                break;
+            case 'Morty Smith':
+                return morty
+                break;
+            case 'Shaun White':
+                return shaun
+                break;
+            case 'Cynthia Stoddard':
+                return cynthia
+                break;
+            default:
+                return null;
+                break;
         }
 
-        
-        this.forceUpdate();
     }
 
     render(){
@@ -206,7 +230,8 @@ class CommentBox extends Component {
                                 <div key = {comment.id} className='comment'>
                                 <div className='commentUserHeader'>
                                     {/* Comment User Icon */}
-                                    <div className='commentUserIcon' />
+                                    {/* <div className='commentUserIcon'/> */}
+                                        <img src={this.grabProfilePic(comment.userName)} className="profilePictures"/>
                                     {/* Comment User Name */}
                                     <span className='commentUserName'>
                                     {comment.userName}
@@ -231,7 +256,8 @@ class CommentBox extends Component {
                                                 {/* Reply Header */}
                                                     <div className='userReplyingHeader'>
                                                     {/* Reply Comment User Icon */}
-                                                        <div className='commentUserIcon' />
+                                                        {/* <div className='commentUserIcon' /> */}
+                                                        <img src={this.grabProfilePic(reply.userName)} className="profilePictures"/>
                                                         {/* Reply Comment User Name */}
                                                         <span className='commentUserName'>
                                                         {reply.userName}
@@ -275,7 +301,6 @@ class CommentBox extends Component {
 }
 
 function mapStateToProps(state){
-    // console.log('comment box', state);
     return {
         currentMetric: state.activeSummarySquare.index,
         comments: state.activeSummarySquare.comments,

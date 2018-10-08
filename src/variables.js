@@ -8,27 +8,27 @@ export const FinancialData = {
             comments: [
                 {
                     id: 0,
-                    userName: 'Erin Smith',
+                    userName: 'Morty Smith',
                     time: '8:34am',
                     comment: 'Check out the increased sales in this sector. This will make a huge difference.',
                     replies: [
                         {
                             id: 0,
-                            userName: 'Bob Smith',
+                            userName: 'Rick Sanchez',
                             time: '9:04am',
                             comment: 'Wow! Great job team!'
                             
                         },
                         {
                             id: 1,
-                            userName: 'Samantha Smith',
+                            userName: 'Shaun White',
                             time: '9:34am',
                             comment: 'Was this for last month?'
                             
                         },
                         {
                             id: 2,
-                            userName: 'Steve Smith',
+                            userName: 'Morty Smith',
                             time: '9:54am',
                             comment: 'Yes.'
                             
@@ -43,7 +43,7 @@ export const FinancialData = {
                     replies: [
                         {
                             id: 0,
-                            userName: 'Bob Smith',
+                            userName: 'Cynthia Stoddard',
                             time: '8:34am',
                             comment: 'Our customers in Japan did not take to our marketing strategy. '
                             
