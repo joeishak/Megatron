@@ -8,7 +8,7 @@ import {
 import { FinancialData } from '../variables.js';
 import * as _ from 'lodash';
 
-export default function(state = [], action) {
+export default function(state = FinancialData.squares, action) {
  
     let squares = FinancialData.squares;
     let totalNetNewARRActual     = 0;

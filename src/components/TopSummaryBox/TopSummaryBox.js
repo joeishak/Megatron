@@ -54,6 +54,7 @@ class TopSummaryBox extends Component {
             // console.log('Getting new data');
             this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
             this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
+
         }
         
         if(prevProps.switchFilter !== this.props.switchFilter){
@@ -64,9 +65,9 @@ class TopSummaryBox extends Component {
             }
         }
 
-        // if(this.props.finData !== prevProps.finData){
-        //     this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
-        // }
+        if(this.props.finData !== prevProps.finData){
+            this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
+        }
         // this.props.updateFinancialSummaryActiveCard(this.props.finData[0]);
     }
 
