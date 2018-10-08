@@ -73,15 +73,27 @@ export function findIfFilterIsApplied(arr){
  * @param {Object} allFilters 
  * @param {Array} _activeParams 
  */
-export function generateFilterParams(filterParams, allFilters, _activeParams){
+export function generateFilterParams(type,filterParams, allFilters, _activeParams){
 
-    filterParams[0].value = getParamValues(_activeParams.quarters,allFilters.quarters);
-    filterParams[1].value = getParamValues(_activeParams.products,allFilters.products);
-    filterParams[2].value = getParamValues(_activeParams.geos,allFilters.geos);
-    filterParams[3].value = getParamValues(_activeParams.subscriptions,allFilters.subscriptionOfferings);
-    filterParams[4].value = getParamValues(_activeParams.markets,allFilters.marketAreas);
-    filterParams[5].value = getParamValues(_activeParams.routes,allFilters.routeToMarkets);
-    filterParams[6].value = getParamValues(_activeParams.segments,allFilters.segments);
+    switch(type){
+      case 'fin':
+      filterParams[0].value = getParamValues(_activeParams.quarters,allFilters.quarters);
+      filterParams[1].value = getParamValues(_activeParams.products,allFilters.products);
+      filterParams[2].value = getParamValues(_activeParams.geos,allFilters.geos);
+      filterParams[3].value = getParamValues(_activeParams.subscriptions,allFilters.subscriptionOfferings);
+      filterParams[4].value = getParamValues(_activeParams.markets,allFilters.marketAreas);
+      filterParams[5].value = getParamValues(_activeParams.routes,allFilters.routeToMarkets);
+      filterParams[6].value = getParamValues(_activeParams.segments,allFilters.segments);
+      break;
+      case 'journ':
+      filterParams[0].value = getParamValues(_activeParams.quarters,allFilters.quarters);
+      filterParams[1].value = getParamValues(_activeParams.products,allFilters.products);
+      filterParams[2].value = getParamValues(_activeParams.geos,allFilters.geos);
+      filterParams[4].value = getParamValues(_activeParams.markets,allFilters.marketAreas);
+      filterParams[5].value = getParamValues(_activeParams.routes,allFilters.routeToMarkets);
+      break;
+    }
+   
 
     
 }

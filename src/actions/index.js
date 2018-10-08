@@ -23,7 +23,9 @@ import {
     ADD_NEW_REPLY  ,
     TOGGLE_COMMENT_CARD_VISIBILITY,
     ADD_NEW_JOURNEY_COMMENT,
-    ADD_NEW_JOURNEY_REPLY
+    ADD_NEW_JOURNEY_REPLY,
+    GET_FILTERED_JOURNEY_IBE_DATA,
+    GET_FILTERED_JOURNEY_IBE_MULTICHART_DATA 
 
 } from 'actions/types';
 import axios from 'axios';
@@ -274,7 +276,7 @@ export function getQueryFilteredIBEData(_parameters,availableFilters){
     // Remove First Row from all the filters 
     // Contains All Data Filters
     // allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
-    utils.generateFilterParams(filterParams,allFilters,_parameters);
+    utils.generateFilterParams('fin',filterParams,allFilters,_parameters);
     let params1 = filterParams.reduce((prev, param) => {
             let p = '';
             p = prev + '&' + param.prompt + '=' + param.value;
@@ -297,7 +299,64 @@ export function getQueryFilteredIBEData(_parameters,availableFilters){
    
 
 }
+export function getQueryFilteredJourneyIBEData(_parameters,availableFilters){
 
+    responseArray= [];
+    let allFilters = {
+        quarters: Object.values(availableFilters.quarters),
+        geos: Object.values(availableFilters.geos),
+        marketAreas: Object.values(availableFilters.marketAreas),
+        products: Object.values(availableFilters.products),
+        segments: Object.values(availableFilters.segments),
+        subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
+        routeToMarkets: Object.values(availableFilters.routeToMarkets)
+    }
+    let filterParams = [
+        {prompt: 'quarterFilters', value: ''},
+        {prompt: 'productFilters', value: ''},
+        {prompt: 'geoFilters', value: ''},
+        {prompt: 'subscriptionFilters', value: ''},
+        {prompt: 'maFilters', value: ''},
+        {prompt: 'routeFilters', value: ''},
+        {prompt: 'segmentFilters', value: ''}
+    ];
+    // console.log(_parameters);
+    
+    // filterParams[0].value = _parameters.quarters[0].value;
+    filterParams[0].value = _parameters.products[0].value;
+    filterParams[1].value = _parameters.geos[0].value;
+    filterParams[2].value = _parameters.markets[0].value;
+    filterParams[3].value = _parameters.routes[0].value;
+
+    // console.log('Filter Params: ', filterParams);
+    quarterQuery = Object.assign({},_parameters.quarters[0]);
+
+    // Remove First Row from all the filters 
+    // Contains All Data Filters
+    // allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
+    utils.generateFilterParams('journ',filterParams,allFilters,_parameters);
+    let params1 = filterParams.reduce((prev, param) => {
+            let p = '';
+            p = prev + '&' + param.prompt + '=' + param.value;
+            return p;
+        
+      }, '');
+
+      const response = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyActualTarget  + params1 + '&json=1', 
+      {headers: headers, responseType: 'text'});
+
+      const multiChartResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyMultiChart  + params1 + '&json=1', 
+      {headers: headers, responseType: 'text'});
+      responseArray.push(response,multiChartResponse);
+      promiseArr = Promise.all(responseArray);
+  
+      return{
+          type: GET_FILTERED_JOURNEY_IBE_DATA,
+          payload: promiseArr
+      }
+   
+
+}
 
 
 export function getQueryFilteredIBEMultiChartData(_parameters,availableFilters){
