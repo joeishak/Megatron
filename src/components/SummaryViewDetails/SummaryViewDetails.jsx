@@ -250,6 +250,9 @@ class SummaryViewDetails extends Component {
     if( prevProps.activeFilters !== this.props.activeFilters ){
       console.log('Getting new data');
       this.props.getQueryFilteredIBEData(this.props.activeFilters,prevProps.availableFilters);
+      this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,prevProps.availableFilters);
+
+      
   }
   }
   // shouldComponentUpdate(prevProps){

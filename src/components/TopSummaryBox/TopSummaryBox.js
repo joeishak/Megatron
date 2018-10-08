@@ -72,8 +72,8 @@ class TopSummaryBox extends Component {
 
     shouldComponentUpdate(nextProps){
        
-        if(this.props.appData !== nextProps.appData){
-            return false;
+        if(this.props.journeyData !== nextProps.journeyData){
+            return true;
         }
         
         else if(this.props.finData !== nextProps.finData){
@@ -81,7 +81,7 @@ class TopSummaryBox extends Component {
             return true;
         } else if(this.props.activeFilters != nextProps.activeFilters){
             this.props.getQueryFilteredIBEData(nextProps.activeFilters,this.props.availableFilters);
-            // this.props.getQueryFilteredJourneyIBEData(nextProps.activeFilters,this.props.availableFilters);
+            this.props.getQueryFilteredJourneyIBEData(nextProps.activeFilters,this.props.availableFilters);
 
             return false;
         }
