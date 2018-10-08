@@ -220,6 +220,7 @@ class TopSummaryBox extends Component {
 
     renderUnits(value){
         let returnValue = '';
+        console.log(value);
         value = parseInt(value)
         if (value > 1000 && value <= 999999) {
             value = (value/1000).toFixed(1);
@@ -361,11 +362,15 @@ class TopSummaryBox extends Component {
                                 <p>{item.header}</p>
                                 <div className="row">
 
-                                    {(item.index === 0 || item.index === 1) ?
+                                    {(item.index === 1 || item.index === 2) ?
                                      <div className={`col journeysAmount k-float-left ${item.value >= item.target ? 'journeysAmountGreen' : ''}`}>{this.renderUnits(item.value)}</div>:
-                                     <div className={`col journeysAmount k-float-left ${item.value >= item.target ? 'journeysAmountGreen' : ''}`}>{this.renderDollar(item.index)}{item.value}{this.renderM(item.index)}</div> }
+                                     <div className={`col journeysAmount k-float-left ${item.value >= item.target ? 'journeysAmountGreen' : ''}`}>{item.value.toFixed(1)} %</div> }
                                     
-                                    <div className="col journeysTarget ">TARGET {this.renderDollar(item.index)}{item.target}{this.renderM(item.index)}</div>
+
+                                    {(item.index === 1 || item.index === 2) ?
+                                     <div className="col journeysTarget ">TARGET {this.renderUnits(item.value)}</div>:
+                                     <div className="col journeysTarget ">TARGET {item.value.toFixed(1)}%</div> }
+                                    
  
                                 </div>
                                 <div className="row k-float-left">
