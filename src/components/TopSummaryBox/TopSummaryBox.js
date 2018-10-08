@@ -53,13 +53,14 @@ class TopSummaryBox extends Component {
         if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
             // console.log('Getting new data');
             this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
+            this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
         }
         
         if(prevProps.switchFilter !== this.props.switchFilter){
             if(!this.props.switchFilter){
                 this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
             } else{
-                this.props.updateJourneySummaryActiveCard(this.props.appData.journey.squares[0]);
+                this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
             }
         }
 
@@ -71,8 +72,8 @@ class TopSummaryBox extends Component {
 
     shouldComponentUpdate(nextProps){
        
-        if(this.props.appData !== nextProps.appData){
-            return false;
+        if(this.props.journeyData !== nextProps.journeyData){
+            return true;
         }
         
         else if(this.props.finData !== nextProps.finData){
@@ -80,6 +81,8 @@ class TopSummaryBox extends Component {
             return true;
         } else if(this.props.activeFilters != nextProps.activeFilters){
             this.props.getQueryFilteredIBEData(nextProps.activeFilters,this.props.availableFilters);
+            this.props.getQueryFilteredJourneyIBEData(nextProps.activeFilters,this.props.availableFilters);
+
             return false;
         }
         else if(this.toggleCommentary !== nextProps.toggleCommentary){
@@ -140,7 +143,7 @@ class TopSummaryBox extends Component {
     // Event handler when the Journey Card is active and clicked
     onJourneyCardClicked (e, index) {
         e.preventDefault();
-        let squareItem = this.props.appData.journey.squares[index -1];
+        let squareItem = this.props.journeyData[index -1];
         // Finds the passed props for the right card to set as active
         this.setState({activeJourneyCard: squareItem.css[0]})
         this.props.updateJourneySummaryActiveCard(squareItem);
@@ -185,13 +188,13 @@ class TopSummaryBox extends Component {
                 retColor = 'selectedCardHeaderRed';
             }
         } else if (type === 'journey' && header === false) {
-            if (value > target) {
+            if (value >= target) {
                 retColor = 'journeyBoxAlertGreen';
             } else {
                 retColor = 'journeyBoxAlert';
             }
         } else if (type === 'journey' && header !== false) {
-            if (value > target) {
+            if (value >= target) {
                 retColor = 'journeyHeaderAlertGreen';
             } else {
                 retColor = 'journeyHeaderAlert';
@@ -215,6 +218,29 @@ class TopSummaryBox extends Component {
         return renderDollar;
     }
 
+    renderUnits(value){
+        let returnValue = '';
+        console.log(value);
+        value = parseInt(value)
+        if (value > 1000 && value <= 999999) {
+            value = (value/1000).toFixed(1);
+            returnValue =  value.toString() + 'K';
+        } else if (value > 1000000 && value <= 999999999) {
+            value = (value/1000000).toFixed(1);
+            returnValue =  value.toString() + 'M';
+            // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
+        } else if (value > 1000000000 && value <= 999999999999) {
+            value = (value/1000000000).toFixed(1);
+            returnValue =  value.toString() + 'B';
+        } else if (value > 1000000000 && value <= 999999999999999) {
+            value = (parseInt(value)/1000000000000).toFixed(1);
+            returnValue = value.toString() + 'T';
+        } else {
+            return  value.toString();
+        }
+
+        return returnValue;
+    }
     renderM(index) {
         let renderM = '';
 
@@ -315,7 +341,7 @@ class TopSummaryBox extends Component {
                 <div className="row">
                 <div className="col-lg-3 col-md-4">
 
-                {this.props.appData.journey.squares.map(item => {
+                {this.props.journeyData.map(item => {
                     return (
                     <div className="journeyBoxHover" key={item.index}>    
                      {/* <CSSTransitionGroup transitionName="example"
@@ -336,8 +362,15 @@ class TopSummaryBox extends Component {
                                 <p>{item.header}</p>
                                 <div className="row">
 
-                                    <div className={`col journeysAmount k-float-left ${item.value >= item.target ? 'journeysAmountGreen' : ''}`}>{this.renderDollar(item.index)}{item.value}{this.renderM(item.index)}</div>
-                                    <div className="col journeysTarget ">TARGET {this.renderDollar(item.index)}{item.target}{this.renderM(item.index)}</div>
+                                    {(item.index === 1 || item.index === 2) ?
+                                     <div className={`col journeysAmount k-float-left ${item.value >= item.target ? 'journeysAmountGreen' : ''}`}>{this.renderUnits(item.value)}</div>:
+                                     <div className={`col journeysAmount k-float-left ${item.value >= item.target ? 'journeysAmountGreen' : ''}`}>{item.value.toFixed(1)} %</div> }
+                                    
+
+                                    {(item.index === 1 || item.index === 2) ?
+                                     <div className="col journeysTarget ">TARGET {this.renderUnits(item.value)}</div>:
+                                     <div className="col journeysTarget ">TARGET {item.value.toFixed(1)}%</div> }
+                                    
  
                                 </div>
                                 <div className="row k-float-left">
@@ -412,7 +445,7 @@ class TopSummaryBox extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
+    // console.log(state);
     return { 
         filters: state.filters, 
         switchFilter:state.switchFilter, 
@@ -422,6 +455,7 @@ function mapStateToProps(state) {
         activeFilters: state.activeFilters,
         availableFilters: state.availableFilters,
         journeyData: state.journeyData
+
     }
 }
 export default connect(mapStateToProps,actions)(TopSummaryBox)

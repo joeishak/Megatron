@@ -3353,9 +3353,12 @@ export const InfoburstAzure = {
      },
      summaryQueryNames: {
         FinancialActualTarget: '?q=FinancialActualTargetQuery',
-        FinancialMultiChart: '?q=FinancialMultichartQuery'
+        FinancialMultiChart: '?q=FinancialMultichartQuery',
+        JourneyActualTarget:'?q=JourneyActualTargetQuery',
+        JourneyMultiChart: '?q=JourneyMultichartQuery'
      },
      filterXdcID : '\\16',
      dataXdcID:  '\\17',
+     journeyXdcID: '\\19'
      
 }

@@ -29,7 +29,7 @@ const KendoBulletChart = (props) => {
 
   const colorRender = () => {
     let color = '';
-    if (props.values[0] > props.values[1]) {
+    if (props.values[0] >= props.values[1]) {
       color = '#0DB16E';
     } else {
       color = '#FF0000';
