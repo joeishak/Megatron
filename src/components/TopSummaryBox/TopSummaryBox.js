@@ -188,13 +188,13 @@ class TopSummaryBox extends Component {
                 retColor = 'selectedCardHeaderRed';
             }
         } else if (type === 'journey' && header === false) {
-            if (value > target) {
+            if (value >= target) {
                 retColor = 'journeyBoxAlertGreen';
             } else {
                 retColor = 'journeyBoxAlert';
             }
         } else if (type === 'journey' && header !== false) {
-            if (value > target) {
+            if (value >= target) {
                 retColor = 'journeyHeaderAlertGreen';
             } else {
                 retColor = 'journeyHeaderAlert';
