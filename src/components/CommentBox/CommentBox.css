@@ -88,6 +88,11 @@ hr{
 .commentUserHeader{
     height: 20px;
 }
+
+.profilePictures {
+    width: 30px;
+    height: 30px;
+}
 .commentUserIcon{
     background-image:url("../../assets/images/user.png");
     width:35px;

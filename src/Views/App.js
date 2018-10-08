@@ -140,12 +140,13 @@ openChatDialogPanel = () => {
 }
 
 function mapStateToProps(state) {
-  // console.log(state);
+  console.log(state);
   return {
     dialogIsOpen: state.isDialogOpen, 
     // activeFilters: state.activeFilters,
     //   availableFilters: state.availableFilters,
     detailIsOpen: state.detailsIsOpen,
+    switchFilter: state.switchFilter,
     commentBoxIsOpen: state.commentBoxIsOpen
   };
 }
