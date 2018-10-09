@@ -290,19 +290,19 @@ input:checked + .slider:before  {
 
 /**Horizontal Spins**/
 .spinMeFirst{
-	animation: spin 1s ease-in-out forwards; 
+	animation: spin 0.6s ease-in-out forwards; 
 
 }
 .spinMeSecond{
-	animation: spin 2s ease-in-out forwards; 
+	animation: spin 0.8s ease-in-out forwards; 
 
 }
 .spinMeThird{
-	animation: spin 3s ease-in-out forwards; 
+	animation: spin 1.0s ease-in-out forwards; 
 
 }
 .spinMeFourth{
-	animation: spin 4s ease-in-out forwards; 
+	animation: spin 1.2s ease-in-out forwards; 
 
 }
 @-moz-keyframes spin {
@@ -320,26 +320,26 @@ input:checked + .slider:before  {
 
   /**Vertical Spins**/
 .vertSpinMeFirst{
-	animation: vertspin 1s  forwards; 
+	animation: slideIn 0.4s  forwards; 
 
 }
 .vertSpinMeSecond{
-	animation: vertspin 2s  forwards; 
+	animation: slideIn 0.6s  forwards; 
 
 }
 .vertSpinMeThird{
-	animation: vertspin 3s  forwards; 
+	animation: slideIn 0.8s  forwards; 
 
 }
 .vertSpinMeFourth{
-	animation: vertspin 4s  forwards; 
+	animation: slideIn 1s  forwards; 
 
 }
 .vertSpinMeFifth{
-	animation: vertspin 5s  forwards; 
+	animation: slideIn 1.2s  forwards; 
 }
 .vertSpinMeSixth{
-	animation: vertspin 6s forwards;
+	animation: slideIn 1.4s forwards;
 }
 @-moz-keyframes vertspin {
 	from {-moz-transform: rotateX(0deg);}
@@ -353,6 +353,23 @@ input:checked + .slider:before  {
 	from {transform: rotateX(0deg);}
 	to {transform: rotateX(720deg);}
 } 
+
+@-moz-keyframes slideIn {
+	0% { -webkit-transform: translateX(-600px); }
+	50% { -webkit-transform: translateX(-240px); }
+    100% { -webkit-transform: translateX(0); }
+} 
+@-webkit-keyframes slideIn {
+	0% { -webkit-transform: translateX(-600px); }
+	50% { -webkit-transform: translateX(-240px); }
+    100% { -webkit-transform: translateX(0); }
+} 
+@keyframes slideIn {
+	0% { -webkit-transform: translateX(-600px); }
+	50% { -webkit-transform: translateX(-240px); }
+    100% { -webkit-transform: translateX(0); }
+} 
+
 
 .sumChartHeader{
 	height: 18%;
