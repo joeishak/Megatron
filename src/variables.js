@@ -5128,7 +5128,9 @@ export const InfoburstAzure = {
         FinancialActualTarget: '?q=FinancialActualTargetQuery',
         FinancialMultiChart: '?q=FinancialMultichartQuery',
         JourneyActualTarget:'?q=JourneyActualTargetQuery',
-        JourneyMultiChart: '?q=JourneyMultichartQuery'
+        JourneyMultiChart: '?q=JourneyMultichartQuery',
+        JourneyQtd: '?q=JourneyQtdTotal',
+        JourneyGeoQtd: '?q=JourneyGeoQTd'
      },
      filterXdcID : '\\16',
      dataXdcID:  '\\17',

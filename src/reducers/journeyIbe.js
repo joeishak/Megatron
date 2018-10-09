@@ -2,7 +2,8 @@ import {
 
     ADD_NEW_JOURNEY_COMMENT,
     ADD_NEW_JOURNEY_REPLY,
-    GET_FILTERED_JOURNEY_IBE_DATA
+    GET_FILTERED_JOURNEY_IBE_DATA,
+    GET_FILTERED_JOURNEY_QTD_DATA
     
 } from 'actions/types';
 import { JourneyData } from '../variables.js';
@@ -161,7 +162,64 @@ export default function(state = JourneyData.squares, action) {
          }
          
          console.log([...squares])
-  return [...squares];
+        return [...squares];
+        case GET_FILTERED_JOURNEY_QTD_DATA:
+
+        //Get QTD QTD Data
+         let data = action.payload[0].data[0];
+         console.log(data);
+
+        let trafficSquare = state[0].details.qtdw.qtd;
+        let newQfmSquare = state[1].details.qtdw.qtd;
+        let conversionSquare = state[2].details.qtdw.qtd;
+        let repeatSquare = state[3].details.qtdw.qtd;
+        let qtrUiSquare = state[4].details.qtdw.qtd;
+        let qtrFailureSquare = state[5].details.qtdw.qtd;
+        
+       trafficSquare[0].value = data.TrafficActual;
+       trafficSquare[5].value = data.TrafficQQ;
+       trafficSquare[2].value = data.TrafficTarget;
+       trafficSquare[6].value = data.TraficYY;
+       trafficSquare[4].value = data.TrafficVSQrf;
+
+       newQfmSquare[0].value = data.NewQfmActual;
+       newQfmSquare[5].value = data.NewQfmQQ;
+       newQfmSquare[2].value = data.NewQfmTarget;
+       newQfmSquare[6].value = data.NewQfmYY;
+       newQfmSquare[4].value = data.NewQfmVSQrf;
+
+
+       conversionSquare[0].value = data.ConversionActual
+       conversionSquare[5].value = data.ConversionQQ
+       conversionSquare[2].value = data.ConversionTarget
+       conversionSquare[6].value = data.ConversionYY
+       conversionSquare[4].value = data.ConversionVSQrf
+
+
+       repeatSquare[0].value = data.RepeatUserMauActual
+       repeatSquare[5].value = data.RepeatUserMauQfmQQ
+       repeatSquare[2].value = data.RepeatUserMauTarget
+       repeatSquare[6].value = data.RepeatUserMauQfmYY
+       repeatSquare[4].value = data.RepeatUserMautQfmVSQrf
+
+      qtrUiSquare[0].value = data.UiCancelRateActual
+      qtrUiSquare[5].value = data.UiCancelRateQQ
+      qtrUiSquare[2].value = data.UiCancelRateTarget
+      qtrUiSquare[6].value = data.UiCancelRateYY
+      qtrUiSquare[4].value = data.UiCancelRateVSQrf
+
+       qtrFailureSquare[0].value = data.PaymentFailureRateActual
+       qtrFailureSquare[5].value = data.PaymentFailureRateQQ
+       qtrFailureSquare[2].value = data.PaymentFailureRateTarget
+       qtrFailureSquare[6].value = data.PaymentFailureRateYY
+       qtrFailureSquare[4].value = data.PaymentFailureRateVSQrf
+
+         console.log(state);
+        
+
+
+
+        return state;
         //Case for adding a new comment
         case ADD_NEW_JOURNEY_COMMENT: 
                  index = action.payload.square-1;
@@ -174,7 +232,7 @@ export default function(state = JourneyData.squares, action) {
 
         index = action.payload.square-1;
         copyOfSquare = Object.assign({},state[index]);
-        let commentIndex = Number(action.payload.comment)
+        let commentIndex = Number(action.payload.comment);
         copyOfSquare.comments[commentIndex].replies.push(action.payload.reply);
         state[index] = copyOfSquare;
 
