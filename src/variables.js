@@ -133,9 +133,9 @@ export const FinancialData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -145,9 +145,9 @@ export const FinancialData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -157,9 +157,9 @@ export const FinancialData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -169,9 +169,9 @@ export const FinancialData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -183,9 +183,9 @@ export const FinancialData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -194,9 +194,9 @@ export const FinancialData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -205,9 +205,9 @@ export const FinancialData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -216,9 +216,9 @@ export const FinancialData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -230,9 +230,9 @@ export const FinancialData = {
                             index: 0,
                             qtd: {
                                 marketArea: 'US',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -241,9 +241,9 @@ export const FinancialData = {
                             },
                             week: {
                                     marketArea: 'US',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -254,9 +254,9 @@ export const FinancialData = {
                             index: 1,
                             qtd: {
                                 marketArea: 'ROW',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -265,9 +265,9 @@ export const FinancialData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -278,9 +278,9 @@ export const FinancialData = {
                             index: 2,
                             qtd: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -289,9 +289,9 @@ export const FinancialData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -302,9 +302,9 @@ export const FinancialData = {
                             index: 3,
                             qtd: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -313,9 +313,9 @@ export const FinancialData = {
                             },
                             week: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -329,118 +329,118 @@ export const FinancialData = {
                     qtd: [
                         {
                             index: 0,
-                            routeToMarket: 'Reseller',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
                             yy :        -.0733,
-                            type: 'AMER'
+                            type: 'US'
                         },
                         {
                             index: 1,
-                            routeToMarket: 'Reseller',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
                             yy :        -.0733,
-                            type: 'AMER'
+                            type: 'ROW'
                         },
                         {
                             index: 2,
-                            routeToMarket: 'Reseller',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
                             yy :        -.0733,
-                            type: 'ASIA'
+                            type: 'ROW'
                         },
                         {
                             index: 3,
-                            routeToMarket: 'Reseller',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
                             yy :        -.0733,
-                            type: 'ASIA'
+                            type: 'ANZ'
                         }
                     ],
                     week:[
                         {
                             index: 0,
-                            routeToMarket: 'Reseller',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
-                            type: 'AMER'
+                            type: 'US'
                         },
                         {
                             index: 1,
-                            routeToMarket: 'Reseller',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
-                            type: 'AMER'
+                            type: 'ROW'
                         },
                         {
                             index: 2,
-                            routeToMarket: 'Reseller',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
-                            type: 'ASIA'
+                            type: 'ROW'
                         },
                         {
                             index: 3,
-                            routeToMarket: 'Reseller',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
-                            type: 'ASIA'
+                            type: 'ANZ'
                         }
                     ],
                     all:[
                         {
                             index: 0,
                             qtd: {
-                                routeToMarket: 'Reseller',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                marketArea: 'RESELLER',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
                                 yy :        -.0733,
-                                type: 'AMER'
+                                type: 'ANZ'
                             },
                             week: {
-                                routeToMarket: 'Reseller',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    marketArea: 'US',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -450,21 +450,21 @@ export const FinancialData = {
                         {
                             index: 1,
                             qtd: {
-                                routeToMarket: 'Reseller',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                marketArea: 'E-TAIL/RETAIL',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
                                 yy :        -.0733,
-                                type: 'AMER'
+                                type: 'ROW'
                             },
                             week: {
-                                routeToMarket: 'Reseller',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -474,21 +474,21 @@ export const FinancialData = {
                         {
                             index: 2,
                             qtd: {
-                                routeToMarket: 'Reseller',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    marketArea: 'E-TAIL/RETAIL',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
                                     yy :        -.0733,
-                                    type: 'ASIA'
+                                    type: 'ROW'
                             },
                             week: {
-                                routeToMarket: 'Reseller',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -498,21 +498,21 @@ export const FinancialData = {
                         {
                             index: 3,
                             qtd: {
-                                routeToMarket: 'Reseller',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    marketArea: 'ADOBE.COM/CC.COM',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
                                     yy :        -.0733,
-                                    type: 'ASIA'
+                                    type: 'US'
                             },
                             week: {
-                                routeToMarket: 'Reseller',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    marketArea: 'ANZ',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -564,7 +564,7 @@ export const FinancialData = {
                         {
                             index: 1,
                             header:'Actuals',
-                            value: 66.7
+                            value: 68.7
                         },
                         {
                             index: 2,
@@ -635,9 +635,9 @@ export const FinancialData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -647,9 +647,9 @@ export const FinancialData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -659,9 +659,9 @@ export const FinancialData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -671,9 +671,9 @@ export const FinancialData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -685,9 +685,9 @@ export const FinancialData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -696,9 +696,9 @@ export const FinancialData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -707,9 +707,9 @@ export const FinancialData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -718,9 +718,9 @@ export const FinancialData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -732,9 +732,9 @@ export const FinancialData = {
                             index: 0,
                             qtd: {
                                 marketArea: 'US',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -743,9 +743,9 @@ export const FinancialData = {
                             },
                             week: {
                                     marketArea: 'US',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -756,9 +756,9 @@ export const FinancialData = {
                             index: 1,
                             qtd: {
                                 marketArea: 'ROW',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -767,9 +767,9 @@ export const FinancialData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -780,9 +780,9 @@ export const FinancialData = {
                             index: 2,
                             qtd: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -791,9 +791,9 @@ export const FinancialData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -804,9 +804,9 @@ export const FinancialData = {
                             index: 3,
                             qtd: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -815,9 +815,206 @@ export const FinancialData = {
                             },
                             week: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        }
+
+                    ]
+                },
+                marketArea:{
+                    qtd: [
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ANZ'
+                        }
+                    ],
+                    week:[
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ANZ'
+                        }
+                    ],
+                    all:[
+                        {
+                            index: 0,
+                            qtd: {
+                                marketArea: 'RESELLER',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ANZ'
+                            },
+                            week: {
+                                    marketArea: 'US',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 1,
+                            qtd: {
+                                marketArea: 'E-TAIL/RETAIL',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 2,
+                            qtd: {
+                                    marketArea: 'E-TAIL/RETAIL',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        },
+                        {
+                            index: 3,
+                            qtd: {
+                                    marketArea: 'ADOBE.COM/CC.COM',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'US'
+                            },
+                            week: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -941,9 +1138,9 @@ export const FinancialData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -953,9 +1150,9 @@ export const FinancialData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -965,9 +1162,9 @@ export const FinancialData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -977,9 +1174,9 @@ export const FinancialData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -991,9 +1188,9 @@ export const FinancialData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -1002,9 +1199,9 @@ export const FinancialData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -1013,9 +1210,9 @@ export const FinancialData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -1024,14 +1221,211 @@ export const FinancialData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
                             type: 'ASIA'
                         }
+                    ]
+                },
+                marketArea:{
+                    qtd: [
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ANZ'
+                        }
+                    ],
+                    week:[
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ANZ'
+                        }
+                    ],
+                    all:[
+                        {
+                            index: 0,
+                            qtd: {
+                                marketArea: 'RESELLER',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ANZ'
+                            },
+                            week: {
+                                    marketArea: 'US',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 1,
+                            qtd: {
+                                marketArea: 'E-TAIL/RETAIL',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 2,
+                            qtd: {
+                                    marketArea: 'E-TAIL/RETAIL',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        },
+                        {
+                            index: 3,
+                            qtd: {
+                                    marketArea: 'ADOBE.COM/CC.COM',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'US'
+                            },
+                            week: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        }
+
                     ]
                 },
                 stats:[
@@ -1180,9 +1574,9 @@ export const FinancialData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -1192,9 +1586,9 @@ export const FinancialData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -1204,9 +1598,9 @@ export const FinancialData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -1216,9 +1610,9 @@ export const FinancialData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -1230,9 +1624,9 @@ export const FinancialData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -1241,9 +1635,9 @@ export const FinancialData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -1252,9 +1646,9 @@ export const FinancialData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -1263,9 +1657,9 @@ export const FinancialData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -1277,9 +1671,9 @@ export const FinancialData = {
                             index: 0,
                             qtd: {
                                 marketArea: 'US',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -1288,9 +1682,9 @@ export const FinancialData = {
                             },
                             week: {
                                     marketArea: 'US',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -1301,9 +1695,9 @@ export const FinancialData = {
                             index: 1,
                             qtd: {
                                 marketArea: 'ROW',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -1312,9 +1706,9 @@ export const FinancialData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -1325,9 +1719,9 @@ export const FinancialData = {
                             index: 2,
                             qtd: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -1336,9 +1730,9 @@ export const FinancialData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -1349,9 +1743,9 @@ export const FinancialData = {
                             index: 3,
                             qtd: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -1360,9 +1754,206 @@ export const FinancialData = {
                             },
                             week: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        }
+
+                    ]
+                },
+                marketArea:{
+                    qtd: [
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ANZ'
+                        }
+                    ],
+                    week:[
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ANZ'
+                        }
+                    ],
+                    all:[
+                        {
+                            index: 0,
+                            qtd: {
+                                marketArea: 'RESELLER',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ANZ'
+                            },
+                            week: {
+                                    marketArea: 'US',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 1,
+                            qtd: {
+                                marketArea: 'E-TAIL/RETAIL',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 2,
+                            qtd: {
+                                    marketArea: 'E-TAIL/RETAIL',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        },
+                        {
+                            index: 3,
+                            qtd: {
+                                    marketArea: 'ADOBE.COM/CC.COM',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'US'
+                            },
+                            week: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -1549,9 +2140,9 @@ export const JourneyData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -1561,9 +2152,9 @@ export const JourneyData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -1573,9 +2164,9 @@ export const JourneyData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -1585,9 +2176,9 @@ export const JourneyData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -1599,9 +2190,9 @@ export const JourneyData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -1610,9 +2201,9 @@ export const JourneyData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -1621,9 +2212,9 @@ export const JourneyData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -1632,9 +2223,9 @@ export const JourneyData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -1646,9 +2237,9 @@ export const JourneyData = {
                             index: 0,
                             qtd: {
                                 marketArea: 'US',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -1657,9 +2248,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'US',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -1670,9 +2261,9 @@ export const JourneyData = {
                             index: 1,
                             qtd: {
                                 marketArea: 'ROW',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -1681,9 +2272,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -1694,9 +2285,9 @@ export const JourneyData = {
                             index: 2,
                             qtd: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -1705,9 +2296,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -1718,9 +2309,9 @@ export const JourneyData = {
                             index: 3,
                             qtd: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -1729,9 +2320,206 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        }
+
+                    ]
+                },
+                marketArea:{
+                    qtd: [
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ANZ'
+                        }
+                    ],
+                    week:[
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ANZ'
+                        }
+                    ],
+                    all:[
+                        {
+                            index: 0,
+                            qtd: {
+                                marketArea: 'RESELLER',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ANZ'
+                            },
+                            week: {
+                                    marketArea: 'US',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 1,
+                            qtd: {
+                                marketArea: 'E-TAIL/RETAIL',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 2,
+                            qtd: {
+                                    marketArea: 'E-TAIL/RETAIL',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        },
+                        {
+                            index: 3,
+                            qtd: {
+                                    marketArea: 'ADOBE.COM/CC.COM',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'US'
+                            },
+                            week: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -1856,9 +2644,9 @@ export const JourneyData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -1868,9 +2656,9 @@ export const JourneyData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -1880,9 +2668,9 @@ export const JourneyData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -1892,9 +2680,9 @@ export const JourneyData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -1906,9 +2694,9 @@ export const JourneyData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -1917,9 +2705,9 @@ export const JourneyData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -1928,9 +2716,9 @@ export const JourneyData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -1939,9 +2727,9 @@ export const JourneyData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -1953,9 +2741,9 @@ export const JourneyData = {
                             index: 0,
                             qtd: {
                                 marketArea: 'US',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -1964,9 +2752,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'US',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -1977,9 +2765,9 @@ export const JourneyData = {
                             index: 1,
                             qtd: {
                                 marketArea: 'ROW',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -1988,9 +2776,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -2001,9 +2789,9 @@ export const JourneyData = {
                             index: 2,
                             qtd: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -2012,9 +2800,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -2025,9 +2813,9 @@ export const JourneyData = {
                             index: 3,
                             qtd: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -2036,9 +2824,206 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        }
+
+                    ]
+                },
+                marketArea:{
+                    qtd: [
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ANZ'
+                        }
+                    ],
+                    week:[
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ANZ'
+                        }
+                    ],
+                    all:[
+                        {
+                            index: 0,
+                            qtd: {
+                                marketArea: 'RESELLER',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ANZ'
+                            },
+                            week: {
+                                    marketArea: 'US',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 1,
+                            qtd: {
+                                marketArea: 'E-TAIL/RETAIL',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 2,
+                            qtd: {
+                                    marketArea: 'E-TAIL/RETAIL',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        },
+                        {
+                            index: 3,
+                            qtd: {
+                                    marketArea: 'ADOBE.COM/CC.COM',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'US'
+                            },
+                            week: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -2165,9 +3150,9 @@ export const JourneyData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -2177,9 +3162,9 @@ export const JourneyData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -2189,9 +3174,9 @@ export const JourneyData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -2201,9 +3186,9 @@ export const JourneyData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -2215,9 +3200,9 @@ export const JourneyData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -2226,9 +3211,9 @@ export const JourneyData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -2237,9 +3222,9 @@ export const JourneyData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -2248,9 +3233,9 @@ export const JourneyData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -2262,9 +3247,9 @@ export const JourneyData = {
                             index: 0,
                             qtd: {
                                 marketArea: 'US',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -2273,9 +3258,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'US',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -2286,9 +3271,9 @@ export const JourneyData = {
                             index: 1,
                             qtd: {
                                 marketArea: 'ROW',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -2297,9 +3282,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -2310,9 +3295,9 @@ export const JourneyData = {
                             index: 2,
                             qtd: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -2321,9 +3306,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -2334,9 +3319,9 @@ export const JourneyData = {
                             index: 3,
                             qtd: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -2345,9 +3330,206 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        }
+
+                    ]
+                },
+                marketArea:{
+                    qtd: [
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ANZ'
+                        }
+                    ],
+                    week:[
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ANZ'
+                        }
+                    ],
+                    all:[
+                        {
+                            index: 0,
+                            qtd: {
+                                marketArea: 'RESELLER',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ANZ'
+                            },
+                            week: {
+                                    marketArea: 'US',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 1,
+                            qtd: {
+                                marketArea: 'E-TAIL/RETAIL',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 2,
+                            qtd: {
+                                    marketArea: 'E-TAIL/RETAIL',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        },
+                        {
+                            index: 3,
+                            qtd: {
+                                    marketArea: 'ADOBE.COM/CC.COM',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'US'
+                            },
+                            week: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -2473,9 +3655,9 @@ export const JourneyData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -2485,9 +3667,9 @@ export const JourneyData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -2497,9 +3679,9 @@ export const JourneyData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -2509,9 +3691,9 @@ export const JourneyData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -2523,9 +3705,9 @@ export const JourneyData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -2534,9 +3716,9 @@ export const JourneyData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -2545,9 +3727,9 @@ export const JourneyData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -2556,9 +3738,9 @@ export const JourneyData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -2570,9 +3752,9 @@ export const JourneyData = {
                             index: 0,
                             qtd: {
                                 marketArea: 'US',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -2581,9 +3763,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'US',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -2594,9 +3776,9 @@ export const JourneyData = {
                             index: 1,
                             qtd: {
                                 marketArea: 'ROW',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -2605,9 +3787,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -2618,9 +3800,9 @@ export const JourneyData = {
                             index: 2,
                             qtd: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -2629,9 +3811,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -2642,9 +3824,9 @@ export const JourneyData = {
                             index: 3,
                             qtd: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -2653,9 +3835,206 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        }
+
+                    ]
+                },
+                marketArea:{
+                    qtd: [
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ANZ'
+                        }
+                    ],
+                    week:[
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ANZ'
+                        }
+                    ],
+                    all:[
+                        {
+                            index: 0,
+                            qtd: {
+                                marketArea: 'RESELLER',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ANZ'
+                            },
+                            week: {
+                                    marketArea: 'US',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 1,
+                            qtd: {
+                                marketArea: 'E-TAIL/RETAIL',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 2,
+                            qtd: {
+                                    marketArea: 'E-TAIL/RETAIL',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        },
+                        {
+                            index: 3,
+                            qtd: {
+                                    marketArea: 'ADOBE.COM/CC.COM',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'US'
+                            },
+                            week: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -2781,9 +4160,9 @@ export const JourneyData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -2793,9 +4172,9 @@ export const JourneyData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -2805,9 +4184,9 @@ export const JourneyData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -2817,9 +4196,9 @@ export const JourneyData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -2831,9 +4210,9 @@ export const JourneyData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -2842,9 +4221,9 @@ export const JourneyData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -2853,9 +4232,9 @@ export const JourneyData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -2864,9 +4243,9 @@ export const JourneyData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -2878,9 +4257,9 @@ export const JourneyData = {
                             index: 0,
                             qtd: {
                                 marketArea: 'US',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -2889,9 +4268,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'US',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -2902,9 +4281,9 @@ export const JourneyData = {
                             index: 1,
                             qtd: {
                                 marketArea: 'ROW',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -2913,9 +4292,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -2926,9 +4305,9 @@ export const JourneyData = {
                             index: 2,
                             qtd: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -2937,9 +4316,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -2950,9 +4329,9 @@ export const JourneyData = {
                             index: 3,
                             qtd: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -2961,9 +4340,206 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        }
+
+                    ]
+                },
+                marketArea:{
+                    qtd: [
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ANZ'
+                        }
+                    ],
+                    week:[
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ANZ'
+                        }
+                    ],
+                    all:[
+                        {
+                            index: 0,
+                            qtd: {
+                                marketArea: 'RESELLER',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ANZ'
+                            },
+                            week: {
+                                    marketArea: 'US',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 1,
+                            qtd: {
+                                marketArea: 'E-TAIL/RETAIL',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 2,
+                            qtd: {
+                                    marketArea: 'E-TAIL/RETAIL',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        },
+                        {
+                            index: 3,
+                            qtd: {
+                                    marketArea: 'ADOBE.COM/CC.COM',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'US'
+                            },
+                            week: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -3017,7 +4593,7 @@ export const JourneyData = {
                         {
                             index: 1,
                             header:'Actuals',
-                            value: 66.7
+                            value: 69.9
                         },
                         {
                             index: 2,
@@ -3088,9 +4664,9 @@ export const JourneyData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -3100,9 +4676,9 @@ export const JourneyData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -3112,9 +4688,9 @@ export const JourneyData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -3124,9 +4700,9 @@ export const JourneyData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             qq :        -20.00,
@@ -3138,9 +4714,9 @@ export const JourneyData = {
                         {
                             index: 0,
                             marketArea: 'US',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -3149,9 +4725,9 @@ export const JourneyData = {
                         {
                             index: 1,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -3160,9 +4736,9 @@ export const JourneyData = {
                         {
                             index: 2,
                             marketArea: 'ROW',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -3171,9 +4747,9 @@ export const JourneyData = {
                         {
                             index: 3,
                             marketArea: 'ANZ',
-                            actuals:    66.74,
-                            units:     751.14,
-                            qrf:        70.21,
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
                             qrfDiff:    -3.48,
                             vsQrf:      -.0495,
                             ww :        -20.00,
@@ -3185,9 +4761,9 @@ export const JourneyData = {
                             index: 0,
                             qtd: {
                                 marketArea: 'US',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -3196,9 +4772,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'US',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -3209,9 +4785,9 @@ export const JourneyData = {
                             index: 1,
                             qtd: {
                                 marketArea: 'ROW',
-                                actuals:    66.74,
-                                units:     751.14,
-                                qrf:        70.21,
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
                                 qrfDiff:    -3.48,
                                 vsQrf:      -.0495,
                                 qq :        -20.00,
@@ -3220,9 +4796,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -3233,9 +4809,9 @@ export const JourneyData = {
                             index: 2,
                             qtd: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -3244,9 +4820,9 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ROW',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,
@@ -3257,9 +4833,9 @@ export const JourneyData = {
                             index: 3,
                             qtd: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
-                                    qrf:        70.21,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     qq :        -20.00,
@@ -3268,9 +4844,206 @@ export const JourneyData = {
                             },
                             week: {
                                     marketArea: 'ANZ',
-                                    actuals:    66.74,
-                                    units:     751.14,
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        }
+
+                    ]
+                },
+                marketArea:{
+                    qtd: [
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            qq :        -20.00,
+                            yy :        -.0733,
+                            type: 'ANZ'
+                        }
+                    ],
+                    week:[
+                        {
+                            index: 0,
+                            marketArea: 'ADOBE.COM/CC.COM',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'US'
+                        },
+                        {
+                            index: 1,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 2,
+                            marketArea: 'E-TAIL/RETAIL',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ROW'
+                        },
+                        {
+                            index: 3,
+                            marketArea: 'RESELLER',
+                            actuals:    66.7,
+                            units:     751.1,
+                            qrf:        70.2,
+                            qrfDiff:    -3.48,
+                            vsQrf:      -.0495,
+                            ww :        -20.00,
+                            type: 'ANZ'
+                        }
+                    ],
+                    all:[
+                        {
+                            index: 0,
+                            qtd: {
+                                marketArea: 'RESELLER',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ANZ'
+                            },
+                            week: {
+                                    marketArea: 'US',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 1,
+                            qtd: {
+                                marketArea: 'E-TAIL/RETAIL',
+                                actuals:    66.7,
+                                units:     751.1,
+                                qrf:        70.2,
+                                qrfDiff:    -3.48,
+                                vsQrf:      -.0495,
+                                qq :        -20.00,
+                                yy :        -.0733,
+                                type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'AMER'
+                            }
+                        },
+                        {
+                            index: 2,
+                            qtd: {
+                                    marketArea: 'E-TAIL/RETAIL',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'ROW'
+                            },
+                            week: {
+                                    marketArea: 'ROW',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    ww :        -20.00,
+                                    type: 'ASIA'
+                            }
+                        },
+                        {
+                            index: 3,
+                            qtd: {
+                                    marketArea: 'ADOBE.COM/CC.COM',
+                                    actuals:    66.7,
+                                    units:     751.1,
                                     qrf:        70.21,
+                                    qrfDiff:    -3.48,
+                                    vsQrf:      -.0495,
+                                    qq :        -20.00,
+                                    yy :        -.0733,
+                                    type: 'US'
+                            },
+                            week: {
+                                    marketArea: 'ANZ',
+                                    actuals:    66.7,
+                                    units:     751.1,
+                                    qrf:        70.2,
                                     qrfDiff:    -3.48,
                                     vsQrf:      -.0495,
                                     ww :        -20.00,

@@ -244,6 +244,8 @@ class SummaryViewDetails extends Component {
     this.renderQuarterlyToDateTableHeader = this.renderQuarterlyToDateTableHeader.bind(this);
     this.renderDollarValue = this.renderDollarValue.bind(this);
     this.renderM = this.renderM.bind(this);
+    this.detailsRenderM = this.detailsRenderM.bind(this);
+    this.detailsRenderDollar = this.detailsRenderDollar.bind(this);
   }
  
   componentDidUpdate(prevProps){
@@ -325,6 +327,18 @@ renderDollarValue(value) {
 
   return returnValue;
 }
+
+detailsRenderM(item) {
+  if(item.header === 'Actuals' || item.header === 'QRF Diff' || item.header === 'QRF' || item.header === 'Units') {
+    return 'M';
+  } else return '%';
+}
+
+detailsRenderDollar(item) {
+  if(item.header === 'Actuals' || item.header === 'QRF Diff' || item.header === 'QRF' ) {
+    return '$';
+  }  else return '';
+}
  renderQuarterlyToDate(qtdwColSizes ,qtdTotalTable){ 
    console.log(qtdwColSizes);
    switch(this.state.activeTimeMetric){
@@ -335,8 +349,8 @@ renderDollarValue(value) {
       this.props.activeItem.details.qtdw.qtd.map(item=>{
          return(
           <div key={item.index} className={qtdwColSizes + (item.header==="Vs Qrf"? ' redBG':' ')}>
-          <span className="contHeader"> {item.header} </span>
-          <span className="valHeader"> {item.value}</span>
+          <span className="contHeader"> {item.header}</span>
+          <span className="valHeader"> {this.detailsRenderDollar(item)} {item.value} {this.detailsRenderM(item)}</span>
        </div>
          )
        }).reverse()
@@ -353,7 +367,7 @@ renderDollarValue(value) {
           <div key={item.index} className={qtdwColSizes  + (item.header==="Vs Qrf"? ' redBG':' ')}>
 
           <span className="contHeader"> {item.header} </span>
-          <span className="valHeader"> {item.value}</span>
+          <span className="valHeader"> {this.detailsRenderDollar(item)} {item.value} {this.detailsRenderM(item)}</span>
        </div>
          )
        }).reverse()
@@ -368,7 +382,7 @@ renderDollarValue(value) {
           <div key={item.index} className={qtdwColSizes  + (item.header==="Vs Qrf"? ' redBG':' ')}>
 
           <span className="contHeader"> {item.header} </span>
-          <span className="valHeader"> {item.value}</span>
+          <span className="valHeader">  {this.detailsRenderDollar(item)} {item.value} {this.detailsRenderM(item)}</span>
        </div>
          )
        }).reverse()
@@ -379,7 +393,7 @@ renderDollarValue(value) {
           <div key={item.index} className={qtdwColSizes  + (item.header==="Vs Qrf"? ' redBG':' ')}>
 
           <span className="contHeader"> {item.header} </span>
-          <span className="valHeader"> {item.value}</span>
+          <span className="valHeader"> {this.detailsRenderDollar(item)} {item.value} {this.detailsRenderM(item)}</span>
        </div>
          )
        }).reverse()
