@@ -182,7 +182,7 @@ export default function(state = JourneyData.squares, action) {
        conversionSquare[5].value = data.ConversionQQ
        conversionSquare[2].value = data.ConversionTarget
        conversionSquare[6].value = data.ConversionYY
-       conversionSquare[4].value = data.ConversionVSQrf
+       conversionSquare[4].value = data.ConversionQfmVSQrf
 
 
        repeatSquare[0].value = data.RepeatUserMauActual
