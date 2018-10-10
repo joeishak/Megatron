@@ -264,6 +264,7 @@ class SummaryViewDetails extends Component {
   // }
  updateMultiChartMetricFilter(e){
    // Either be 'units' or 'arr'
+   this.props.updateMultichartMetrc();
   this.setState({activeMetric: e.target.innerHTML.toLowerCase()})
  }
  updateQtdMetricFilter(e){
@@ -405,16 +406,20 @@ detailsRenderDollar(item) {
    }
  }
  
+ closeSummary(){
+  this.props.hideSummaryDetails();
+  this.props.updateMultichartMetrc(true);
+ }
   render(){
 
     var UnitStyles = classNames({
       unitMetric: true,
-      activeMetric: (this.state.activeMetric === 'units') ? true: false
+      activeMetric: (this.props.multichartIsArr) ? false: true
     });
 
     var ArrStyles = classNames({
       arrMetric: true,
-      activeMetric: (this.state.activeMetric === 'arr') ? true: false
+      activeMetric: (this.props.multichartIsArr) ? true: false
     });
     var QTDStyles = classNames({
       qtdMetric: true,
@@ -445,7 +450,7 @@ detailsRenderDollar(item) {
 
       <div className="sumViewContainer">
       {/* Bread Crumbs */}
-        <span className='breadCrumb' onClick={this.props.hideSummaryDetails}>
+        <span className='breadCrumb' onClick={this.closeSummary.bind(this)}>
           {this.state.summaryType} Summary > </span> 
           <span>  {this.props.activeItem.header}
         </span>
@@ -531,13 +536,15 @@ detailsRenderDollar(item) {
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     previousViewWasJourneys: state.switchFilter,
     activeItem: state.activeSummarySquare,
     activeFilters: state.activeFilters,
     availableFilters: state.availableFilters,
     qtdwData: state.activeSummarySquare.details.qtdw,
-    summaryData: state.adobeData
+    summaryData: state.adobeData,
+    multichartIsArr: state.multichartIsArr
   };
 }
 

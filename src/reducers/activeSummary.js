@@ -10,7 +10,7 @@ export default function(state = [],action) {
             
             return action.payload;
         case UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD:
-            
+            console.log(action.payload);
             return action.payload;
         default: 
             return state;

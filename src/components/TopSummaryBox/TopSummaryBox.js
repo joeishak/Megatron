@@ -63,23 +63,27 @@ class TopSummaryBox extends Component {
             if(!this.props.switchFilter){
                 this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
             } else{
-                this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
+                if(this.props.journeyData !== prevProps.journeyData){
+                    this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
+        
+                }
             }
         }
 
         if(this.props.finData !== prevProps.finData){
             this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
         }
+      
         // this.props.updateFinancialSummaryActiveCard(this.props.finData[0]);
     }
 
     shouldComponentUpdate(nextProps){
        
-        if(this.props.journeyData !== nextProps.journeyData){
+        if(this.props.journeyData !== nextProps.journeyData && this.props.switchFilter === false){
             return true;
         }
         
-        else if(this.props.finData !== nextProps.finData){
+        else if(this.props.finData !== nextProps.finData && this.props.switchFilter === false){
 
             return true;
         } else if(this.props.activeFilters != nextProps.activeFilters){
@@ -147,6 +151,7 @@ class TopSummaryBox extends Component {
     onJourneyCardClicked (e, index) {
         e.preventDefault();
         let squareItem = this.props.journeyData[index -1];
+        console.log(squareItem);
         // Finds the passed props for the right card to set as active
         this.setState({activeJourneyCard: squareItem.css[0]})
         this.props.updateJourneySummaryActiveCard(squareItem);
@@ -223,7 +228,7 @@ class TopSummaryBox extends Component {
 
     renderUnits(value){
         let returnValue = '';
-        console.log(value);
+        // console.log(value);
         value = parseInt(value)
         if (value > 1000 && value <= 999999) {
             value = (value/1000).toFixed(1);
@@ -422,7 +427,7 @@ class TopSummaryBox extends Component {
         return(
             
             <Grid className={SummaryBoxStyles} fluid>
-            {console.log('THIS', this.props.finData)}
+            {/* {console.log('THIS', this.props.finData)} */}
                 <CSSTransitionGroup transitionName="example"
                     transitionAppear={true} transitionAppearTimeout={1000}
                     transitionEnter={false} transitionLeave={false} >

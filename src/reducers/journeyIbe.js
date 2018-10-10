@@ -155,19 +155,19 @@ export default function(state = JourneyData.squares, action) {
                  default:
                  break;
              }
-             squares[i]['value'] = currentActual;
-             squares[i]['target'] = currentTarget ;  
-             squares[i]['details'].multichart = currentMulti;
+             state[i]['value'] = currentActual;
+             state[i]['target'] = currentTarget ;  
+             state[i]['details'].multichart = currentMulti;
           
          }
          
          console.log([...squares])
-        return [...squares];
+        return [...state];
         case GET_FILTERED_JOURNEY_QTD_DATA:
 
         //Get QTD QTD Data
          let data = action.payload[0].data[0];
-         console.log(data);
+         console.log(action.payload);
 
         let trafficSquare = state[0].details.qtdw.qtd;
         let newQfmSquare = state[1].details.qtdw.qtd;
@@ -216,10 +216,39 @@ export default function(state = JourneyData.squares, action) {
 
          console.log(state);
         
+         data = action.payload[1].data;
 
+         let trafficSquareGeo = state[0].details.geo.qtd;
+         let newQfmSquareGeo = state[1].details.geo.qtd;
+         let conversionSquareGeo = state[2].details.geo.qtd;
+         let repeatSquareGeo = state[3].details.geo.qtd;
+         let qtrUiSquareGeo = state[4].details.geo.qtd;
+         let qtrFailureSquareGeo = state[5].details.geo.qtd;
 
+         console.log(trafficSquareGeo,data);
+         let traffGeoARR=[];
+         for(let i = 0; i <data.length; i ++){
+             let item = data[i];
+             let traffic = {
+                 index: i,
+                 actuals: item.TrafficActual,
+                 units: 0.0,
+                 marketArea: item.market_area_code, 
+                 qq: item.TrafficQQ,
+                 qrf: item.TrafficTarget,
+                 qrfDiff: 0.0,
+                 type: item.geo_code,
+                 units: 0.0,
+                 vsQrf:item.TrafficVSQrf,
+                 yy: item.TraficYY
+             }
+             traffGeoARR.push(traffic);
+            
+         }
 
-        return state;
+         
+         state[0]['details'].geo.qtd = traffGeoARR;
+        return [...state];
         //Case for adding a new comment
         case ADD_NEW_JOURNEY_COMMENT: 
                  index = action.payload.square-1;

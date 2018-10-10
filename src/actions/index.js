@@ -26,7 +26,8 @@ import {
     ADD_NEW_JOURNEY_REPLY,
     GET_FILTERED_JOURNEY_IBE_DATA,
     GET_FILTERED_JOURNEY_IBE_MULTICHART_DATA,
-    GET_FILTERED_JOURNEY_QTD_DATA
+    GET_FILTERED_JOURNEY_QTD_DATA,
+    MULTICHART_IS_ARR
 
 } from 'actions/types';
 import axios from 'axios';
@@ -290,7 +291,10 @@ export function getQueryFilteredIBEData(_parameters,availableFilters){
 
       const multiChartResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialMultiChart  + params1 + '&json=1', 
       {headers: headers, responseType: 'text'});
-      responseArray.push(response,multiChartResponse);
+
+      const unitsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.FinancialUnitsMultichart  + params1 + '&json=1', 
+      {headers: headers, responseType: 'text'});
+      responseArray.push(response,multiChartResponse, unitsResponse);
       promiseArr = Promise.all(responseArray);
   
       return {
@@ -408,7 +412,9 @@ export function getFilteredJourneyQtdData(_parameters,availableFilters){
 
       const geoResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyGeoQtd  + params1 + '&json=1', 
       {headers: headers, responseType: 'text'});
-      responseArray.push(response,geoResponse);
+      const maResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyMarketAreaQtd  + params1 + '&json=1', 
+      {headers: headers, responseType: 'text'});
+      responseArray.push(response,geoResponse,maResponse);
       promiseArr = Promise.all(responseArray);
   
       return{
@@ -458,14 +464,12 @@ export function getQueryFilteredIBEMultiChartData(_parameters,availableFilters){
       }, '');
 
        
-      if(_parameters.quarters[0].value === 'All Data'){
-        response = axios.get(InfoburstAzure.xdcCacheQueryURL + '\\17?q=' + 'FinancialMultichartAllQuarterQuery'  + params1 + '&json=1', 
-        {headers: headers, responseType: 'text'});
-    } else {
+   
         response = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialMultiChart  + params1 + '&json=1', 
         {headers: headers, responseType: 'text'});
-    }
-      responseArray.push(response);
+        let unitsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.FinancialUnitsMultiChart  + params1 + '&json=1', 
+        {headers: headers, responseType: 'text'});
+      responseArray.push(response,unitsResponse);
       promiseArr = Promise.all(responseArray);
     return {
         type: GET_QUERY_FILTERED_IBE_MULTICHART_DATA,
@@ -542,4 +546,11 @@ export function addNewJourneyReply(activeSquareID,commentId,reply){
         }
     }
 
+}
+
+export function updateMultichartMetrc(value={}){
+    return {
+        type: MULTICHART_IS_ARR,
+        paload:value
+    }
 }

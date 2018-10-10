@@ -99,6 +99,16 @@ class KendoMultiChart extends Component {
         return ( prefix + (parseInt(e.value)/ 1000000) + suffix);
     }
  
+    labelPercentageContent(e){
+        const prefix = '% ';
+        return ( prefix +e.value);
+
+    }
+
+    labelUnitsContent(e){
+        const suffix = ' M';
+        return ( parseInt(e.value)/1000000) + suffix
+    }
    formatDataValues(arr){
 
     let newArr;
@@ -111,6 +121,7 @@ class KendoMultiChart extends Component {
    }
     render(){
 
+        const chartData = (this.props.multichartMetric ? this.props.activeMultichart : this.props.activeUnits);
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
         const ChartContainer = () => (
         <Chart pannable={false} zoomable={false} >
@@ -134,18 +145,31 @@ class KendoMultiChart extends Component {
                 <ChartCategoryAxisTitle text="" />
                 </ChartCategoryAxisItem>
             </ChartCategoryAxis>
-
+            {(this.props.multichartMetric) ?
             <ChartSeries >
-                <ChartSeriesItem name='Actual' type="column" gap={2} spacing={0.25} data={this.formatDataValues(this.props.activeMultichart[0])} color={this.props.color} >
-                <ChartSeriesItemTooltip format='${0}' background="#3c3c3c" />
-                </ChartSeriesItem>
-                <ChartSeriesItem name='Target' type="line" data={this.formatDataValues(this.props.activeMultichart[1])} color='#0E9CC6'>
-                <ChartSeriesItemTooltip format='${0}' background="#3c3c3c"  />
-                </ChartSeriesItem>
-                <ChartSeriesItem name='Last Year' type="line" data={this.formatDataValues(this.props.activeMultichart[2])} color='#DFDE43'  >
-                <ChartSeriesItemTooltip format='${0}' background="#3c3c3c" />
-                </ChartSeriesItem>
-            </ChartSeries>
+            <ChartSeriesItem name='Actual' type="column" gap={2} spacing={0.25} data={this.formatDataValues(chartData[0])} color={this.props.color} >
+            <ChartSeriesItemTooltip format='${0}' background="#3c3c3c" />
+            </ChartSeriesItem>
+            <ChartSeriesItem name='Target' type="line" data={this.formatDataValues(chartData[1])} color='#0E9CC6'>
+            <ChartSeriesItemTooltip format='${0}' background="#3c3c3c"  />
+            </ChartSeriesItem>
+            <ChartSeriesItem name='Last Year' type="line" data={this.formatDataValues(chartData[2])} color='#DFDE43'  >
+            <ChartSeriesItemTooltip format='${0}' background="#3c3c3c" />
+            </ChartSeriesItem>
+        </ChartSeries> : 
+        <ChartSeries >
+        <ChartSeriesItem name='Actual' type="column" gap={2} spacing={0.25} data={chartData[0]} color={this.props.color} >
+        <ChartSeriesItemTooltip format='${0}' background="#3c3c3c" />
+        </ChartSeriesItem>
+        <ChartSeriesItem name='Target' type="line" data={chartData[1]} color='#0E9CC6'>
+        <ChartSeriesItemTooltip format='${0}' background="#3c3c3c"  />
+        </ChartSeriesItem>
+        <ChartSeriesItem name='Last Year' type="line" data={chartData[2]} color='#DFDE43'  >
+        <ChartSeriesItemTooltip format='${0}' background="#3c3c3c" />
+        </ChartSeriesItem>
+    </ChartSeries>
+        }
+            
         </Chart>
     );
     return(
@@ -155,6 +179,7 @@ class KendoMultiChart extends Component {
 
 }
 function mapStateToProps(state){
-    return { switchFilter: state.switchFilter,  activeMultichart: state.activeSummarySquare.details.multichart }
+    console.log(state)
+    return { switchFilter: state.switchFilter, multichartMetric: state.multichartIsArr, activeUnits: state.activeSummarySquare.details.unitMultichart, activeMultichart: state.activeSummarySquare.details.multichart,  }
 }
 export default connect(mapStateToProps,actions)( KendoMultiChart);

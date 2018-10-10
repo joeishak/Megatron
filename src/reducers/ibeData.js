@@ -120,6 +120,83 @@ export default function(state = FinancialData.squares, action) {
                 
                }
                
+
+               ///Units Multichart
+           
+
+               let netUnits = {
+                actual: [],
+                target: [],
+                ly: []
+             }
+             let netCancUnits = {
+                 actual: [],
+                 target: [],
+                 ly: []
+             };
+             let grossUnits = {
+                 actual: [],
+                 target: [],
+                 ly: []
+             };
+             let termUnits = {
+                 actual: [],
+                 target: [],
+                 ly: []
+             };
+            
+               for(let i = 0; i< action.payload[2].data.length; i++) {
+                let item = action.payload[2].data[i];
+
+                // console.log(item.NetNewARRActual);
+                netUnits.actual.push(item.NetNewUnitsActual);
+                netUnits.target.push(item.NetNewUnitsTarget);
+                netUnits.ly.push(item.NetNewUnitsLY);
+                
+                netCancUnits.actual.push(item.CancellationUnitsActual);
+                netCancUnits.target.push(item.CancellationUnitsTarget);
+                netCancUnits.ly.push(item.CancellationsUnitsLY);
+
+                grossUnits.actual.push(item.GrossNewUnitsActual);
+                grossUnits.target.push(item.GrossNewUnitsTarget);
+                grossUnits.ly.push(item.GrossNewUnitsLY);
+                
+                termUnits.actual.push(item.TermEndUnitsActual);
+                termUnits.target.push(item.TermEndUnitsTarget);
+                termUnits.ly.push(item.TermEndRenewalUnitsLY);
+            
+            };
+      
+        let newMulti;
+          // if (actuals[0] !== undefined && targets[0] !== undefined) {
+              for (let i = 0; i < squares.length; i++) {
+                  switch(i){
+                      case 0:
+                
+                      newMulti  = [netUnits.actual,netUnits.target,netUnits.ly];
+                      break;
+                      case 1:
+      
+                      newMulti  = [grossUnits.actual,grossUnits.target,grossUnits.ly];
+                      break;
+                      case 2: 
+ 
+                      newMulti  =  [netCancUnits.actual,netCancUnits.target,netCancUnits.ly];
+
+                      break;
+                      case 3: 
+
+                      newMulti  = [termUnits.actual,termUnits.target,termUnits.ly];
+
+                      break;
+                      default:
+                      break;
+                  }
+         
+                  squares[i]['details'].unitMultichart = newMulti;
+               
+              }
+               
             //    console.log([...squares])
         return [...squares];
       

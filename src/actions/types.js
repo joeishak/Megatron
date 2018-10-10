@@ -18,6 +18,7 @@ export const GENERATE_FILTER_DATA                       = "generate_filter_data"
 // Summary View Details
 export const SHOW_SUMMARY_VIEW_DETAILS               = "show_summary_view_details";
 export const HIDE_SUMMARY_VIEW_DETAILS               = "hide_summary_view_details";
+export const MULTICHART_IS_ARR                      = "multichart_is_arr";
 
 // Data Preferences
 export const SHOW_DATA_PREFERENCES               = "show_data_preferences";

@@ -140,7 +140,7 @@ openChatDialogPanel = () => {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+  // console.log(state);
   return {
     dialogIsOpen: state.isDialogOpen, 
     // activeFilters: state.activeFilters,
