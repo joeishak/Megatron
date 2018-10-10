@@ -214,7 +214,7 @@ export default function(state = JourneyData.squares, action) {
          let qtrUiSquareGeo         =  JSON.parse(JSON.stringify(squares[4].details.geo.qtd));
          let qtrFailureSquareGeo    =  JSON.parse(JSON.stringify(squares[5].details.geo.qtd));
 
-         let traffGeoARR=[];
+         let traffArr=[];
          let qfmArr = [];
          let convArr = [];
          let repArr=[];
@@ -248,18 +248,82 @@ export default function(state = JourneyData.squares, action) {
                 vsQrf:item.NewQfmVSQrf,
                 yy: item.NewQfmYY
             }
-             traffGeoARR.push(traffic);
+            let conv = {
+                index: i,
+                actuals: item.ConversionActual,
+                units: 0.0,
+                marketArea: item.market_area_code, 
+                qq: item.ConversionQQ,
+                qrf: item.ConversionTarget,
+                qrfDiff: 0.0,
+                type: item.geo_code,
+                units: 0.0,
+                vsQrf:item.ConversionVSQrf,
+                yy: item.ConversionYY
+            }
+            let rep = {
+                index: i,
+                actuals: item.RepeatUserMauActual,
+                units: 0.0,
+                marketArea: item.market_area_code, 
+                qq: item.RepeatUserMauQfmQQ,
+                qrf: item.RepeatUserMauTarget,
+                qrfDiff: 0.0,
+                type: item.geo_code,
+                units: 0.0,
+                vsQrf:item.RepeatUserMautQfmVSQrf,
+                yy: item.RepeatUserMauQfmYY
+            }
+            let qtru = {
+                index: i,
+                actuals: item.UiCancelRateActual,
+                units: 0.0,
+                marketArea: item.market_area_code, 
+                qq: item.UiCancelRateQQ,
+                qrf: item.UiCancelRateTarget,
+                qrfDiff: 0.0,
+                type: item.geo_code,
+                units: 0.0,
+                vsQrf:item.UiCancelRateVSQrf,
+                yy: item.UiCancelRateYY
+            }
+            let qtrf = {
+                index: i,
+                actuals: item.PaymentFailureRateActual,
+                units: 0.0,
+                marketArea: item.market_area_code, 
+                qq: item.PaymentFailureRateQQ,
+                qrf: item.PaymentFailureRateTarget,
+                qrfDiff: 0.0,
+                type: item.geo_code,
+                units: 0.0,
+                vsQrf:item.PaymentFailureRateVSQrf,
+                yy: item.PaymentFailureRateYY
+            }
+             traffArr.push(traffic);
              qfmArr.push(qfm);
+             convArr.push(conv);
+             repArr.push(rep);
+             qtrUiArr.push(qtru);
+             qtrFailArr.push(qtrf);
             
          }
 
          
-         squares[0]['details'].geo.qtd = traffGeoARR;
-         state[1]['details'].geo.qtd = qfmArr;
-        //  state[2]['details'].geo.qtd = traffGeoARR;
-        //  state[3]['details'].geo.qtd = traffGeoARR;
-        //  state[4]['details'].geo.qtd = traffGeoARR;
-        //  state[5]['details'].geo.qtd = traffGeoARR;
+         squares[0]['details'].qtdw.qtd = trafficSquare;
+         squares[1]['details'].qtdw.qtd = newQfmSquare;
+         squares[2]['details'].qtdw.qtd = conversionSquare;
+         squares[3]['details'].qtdw.qtd = repeatSquare;
+         squares[4]['details'].qtdw.qtd = qtrUiSquare;
+         squares[5]['details'].qtdw.qtd = qtrFailureSquare;
+
+
+         squares[0]['details'].geo.qtd = traffArr;
+         squares[1]['details'].geo.qtd = qfmArr;
+         squares[2]['details'].geo.qtd = convArr;
+         squares[3]['details'].geo.qtd = repArr;
+         squares[4]['details'].geo.qtd = qtrUiArr;
+         squares[5]['details'].geo.qtd = qtrFailArr;
         //  let newState = Object.assign([], state);
          
          
