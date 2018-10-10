@@ -253,15 +253,24 @@ class SummaryViewDetails extends Component {
       console.log('Getting new data');
       this.props.getQueryFilteredIBEData(this.props.activeFilters,prevProps.availableFilters);
       this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,prevProps.availableFilters);
+      // this.props.getFilteredJourneyQtdData(this.props.activeFilters,this.props.availableFilters);
 
-      
+    }
+    console.log(this.props.journeyData, prevProps.journeyData)
+    if(this.props.journeyData !== prevProps.journeyData){
+      console.log(this.props.journeyData[this.props.activeItem.index-1])
+      this.props.updateJourneySummaryActiveCard(this.props.journeyData[this.props.activeItem.index-1]);
+
+    }
   }
-  }
-  // shouldComponentUpdate(prevProps){
-  //   if(prevProps.activeItem !== this.props.activeItem){
+  // shouldComponentUpdate(nextProps){
+  //   if(this.props.journeyData !== nextProps.journeyData){
   //     return true;
   //   }
+
+  //   return true;
   // }
+ 
  updateMultiChartMetricFilter(e){
    let metric = e.target.innerHTML.toLowerCase();
    if(metric==='arr'){
@@ -348,7 +357,7 @@ detailsRenderDollar(item) {
   }  else return '';
 }
  renderQuarterlyToDate(qtdwColSizes ,qtdTotalTable){ 
-   console.log(qtdwColSizes);
+  //  console.log(qtdwColSizes);
    switch(this.state.activeTimeMetric){
      case 'qtd':
      return (
@@ -535,7 +544,7 @@ detailsRenderDollar(item) {
           
         </div>
         <div className="  qtdTopDetails container-fluid row white">
-          <KendoPanelBar renderTableHeaders={this.renderQuarterlyToDateTableHeader} timeMetric={this.state.activeTimeMetric} background='white'/>
+          <KendoPanelBar activeSummary= {this.props.activeItem} renderTableHeaders={this.renderQuarterlyToDateTableHeader} timeMetric={this.state.activeTimeMetric} background='white'/>
         </div>
       </div>
   )
@@ -551,6 +560,7 @@ function mapStateToProps(state) {
     availableFilters: state.availableFilters,
     qtdwData: state.activeSummarySquare.details.qtdw,
     summaryData: state.adobeData,
+    journeyData: state.journeyData,
     multichartIsArr: state.multichartIsArr
   };
 }

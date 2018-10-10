@@ -320,10 +320,8 @@ export function getQueryFilteredJourneyIBEData(_parameters,availableFilters){
         {prompt: 'quarterFilters', value: ''},
         {prompt: 'productFilters', value: ''},
         {prompt: 'geoFilters', value: ''},
-        {prompt: 'subscriptionFilters', value: ''},
         {prompt: 'maFilters', value: ''},
-        {prompt: 'routeFilters', value: ''},
-        {prompt: 'segmentFilters', value: ''}
+        {prompt: 'routeFilters', value: ''}
     ];
     // console.log(_parameters);
     
@@ -340,6 +338,7 @@ export function getQueryFilteredJourneyIBEData(_parameters,availableFilters){
     // Contains All Data Filters
     // allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
     utils.generateFilterParams('journ',filterParams,allFilters,_parameters);
+    console.log(filterParams);
     let params1 = filterParams.reduce((prev, param) => {
             let p = '';
             p = prev + '&' + param.prompt + '=' + param.value;
@@ -352,7 +351,16 @@ export function getQueryFilteredJourneyIBEData(_parameters,availableFilters){
 
       const multiChartResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyMultiChart  + params1 + '&json=1', 
       {headers: headers, responseType: 'text'});
-      responseArray.push(response,multiChartResponse);
+
+      const totalresponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyQtd  + params1 + '&json=1', 
+      {headers: headers, responseType: 'text'});
+
+      const geoResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyGeoQtd  + params1 + '&json=1', 
+      {headers: headers, responseType: 'text'});
+      console.log(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyGeoQtd  + params1 + '&json=1');
+      const maResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyMarketAreaQtd  + params1 + '&json=1', 
+      {headers: headers, responseType: 'text'});
+      responseArray.push(response,multiChartResponse, totalresponse, geoResponse,maResponse);
       promiseArr = Promise.all(responseArray);
   
       return{
@@ -379,10 +387,8 @@ export function getFilteredJourneyQtdData(_parameters,availableFilters){
         {prompt: 'quarterFilters', value: ''},
         {prompt: 'productFilters', value: ''},
         {prompt: 'geoFilters', value: ''},
-        {prompt: 'subscriptionFilters', value: ''},
         {prompt: 'maFilters', value: ''},
-        {prompt: 'routeFilters', value: ''},
-        {prompt: 'segmentFilters', value: ''}
+        {prompt: 'routeFilters', value: ''}
     ];
     // console.log(_parameters);
     
@@ -412,6 +418,7 @@ export function getFilteredJourneyQtdData(_parameters,availableFilters){
 
       const geoResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyGeoQtd  + params1 + '&json=1', 
       {headers: headers, responseType: 'text'});
+      console.log(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyGeoQtd  + params1 + '&json=1');
       const maResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyMarketAreaQtd  + params1 + '&json=1', 
       {headers: headers, responseType: 'text'});
       responseArray.push(response,geoResponse,maResponse);

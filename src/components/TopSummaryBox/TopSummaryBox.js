@@ -54,13 +54,13 @@ class TopSummaryBox extends Component {
             // console.log('Getting new data');
             this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
             this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
-            this.props.getFilteredJourneyQtdData(this.props.activeFilters,this.props.availableFilters);
+            // this.props.getFilteredJourneyQtdData(this.props.activeFilters,this.props.availableFilters);
 
 
         }
         
         if(prevProps.switchFilter !== this.props.switchFilter){
-            if(!this.props.switchFilter){
+            if(this.props.switchFilter=== false){
                 this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
             } else{
                 this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
@@ -76,7 +76,7 @@ class TopSummaryBox extends Component {
 
     shouldComponentUpdate(nextProps){
        
-        if(this.props.journeyData !== nextProps.journeyData && this.props.switchFilter === false){
+        if(this.props.journeyData !== nextProps.journeyData && this.props.switchFilter === true){
             return true;
         }
         
@@ -86,6 +86,8 @@ class TopSummaryBox extends Component {
         } else if(this.props.activeFilters != nextProps.activeFilters){
             this.props.getQueryFilteredIBEData(nextProps.activeFilters,this.props.availableFilters);
             this.props.getQueryFilteredJourneyIBEData(nextProps.activeFilters,this.props.availableFilters);
+            // this.props.getFilteredJourneyQtdData(this.props.activeFilters,this.props.availableFilters);
+
 
             return false;
         }

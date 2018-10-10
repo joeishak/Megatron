@@ -34,11 +34,9 @@ class KendoMultiChart extends Component {
         };
         this.formatDataValues = this.formatDataValues.bind(this);
     }
-    componentDidUpdate(prevProps){
-        
-    }
+ 
     formatYAxisValues = (valuesArr) => {
-        console.log(valuesArr);
+        // console.log(valuesArr);
         const returnValuesArr = valuesArr.map(ele => {
             if(ele> 1000000)
             return (ele/1000000);
@@ -179,7 +177,7 @@ class KendoMultiChart extends Component {
 
 }
 function mapStateToProps(state){
-    console.log(state)
+    // console.log(state)
     return { switchFilter: state.switchFilter, multichartMetric: state.multichartIsArr, activeUnits: state.activeSummarySquare.details.unitMultichart, activeMultichart: state.activeSummarySquare.details.multichart,  }
 }
 export default connect(mapStateToProps,actions)( KendoMultiChart);

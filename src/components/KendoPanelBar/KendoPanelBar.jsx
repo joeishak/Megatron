@@ -21,6 +21,11 @@ class KendoPanelBar extends Component {
         this.getGeoContent = this.getGeoContent.bind(this);
     }
  
+   shouldComponentUpdate(nextProps){
+       console.log('Kendo PBAR' ,this.props.activeSummary,nextProps.activeSummary);
+    return true;
+   }
+   
     getLowerHeader(){
         switch(this.props.timeMetric){
             case 'qtd':
@@ -489,6 +494,6 @@ class KendoPanelBar extends Component {
 }
 
 function mapStateToProps(state){
-    return { activeSummary: state.activeSummarySquare }
+    return { /* activeSummary: state.activeSummarySquare */ }
 }
 export default connect(mapStateToProps,actions)(KendoPanelBar);
