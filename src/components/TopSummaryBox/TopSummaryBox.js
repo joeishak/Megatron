@@ -290,6 +290,10 @@ class TopSummaryBox extends Component {
         // } 
     }
 
+    formatPercentage(value) {
+        return (value.toFixed(1) / 100).toFixed(2);
+    }
+
    
     getSummaryContent(){
         // console.log('Top Summary', this.state.finData);
@@ -371,12 +375,12 @@ class TopSummaryBox extends Component {
 
                                     {(item.index === 1 || item.index === 2) ?
                                      <div className={`col journeysAmount k-float-left ${item.value >= item.target ? 'journeysAmountGreen' : ''}`}>{this.renderUnits(item.value)}</div>:
-                                     <div className={`col journeysAmount k-float-left ${item.value >= item.target ? 'journeysAmountGreen' : ''}`}>{item.value.toFixed(1)} %</div> }
+                                     <div className={`col journeysAmount k-float-left ${item.value >= item.target ? 'journeysAmountGreen' : ''}`}>{this.formatPercentage(item.value)} %</div> }
                                     
 
                                     {(item.index === 1 || item.index === 2) ?
-                                     <div className="col journeysTarget ">TARGET {this.renderUnits(item.value)}</div>:
-                                     <div className="col journeysTarget ">TARGET {item.value.toFixed(1)}%</div> }
+                                     <div className="col journeysTarget ">TARGET {this.renderUnits(item.value)} </div>:
+                                     <div className="col journeysTarget ">TARGET {this.formatPercentage(item.value) }%</div> }
                                     
  
                                 </div>
