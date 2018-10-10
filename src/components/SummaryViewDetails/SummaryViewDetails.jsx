@@ -263,8 +263,14 @@ class SummaryViewDetails extends Component {
   //   }
   // }
  updateMultiChartMetricFilter(e){
+   let metric = e.target.innerHTML.toLowerCase();
+   if(metric==='arr'){
+    this.props.updateMultichartMetric(true);
+
+   } else{
+    this.props.updateMultichartMetric(false);
+   }
    // Either be 'units' or 'arr'
-   this.props.updateMultichartMetrc();
   this.setState({activeMetric: e.target.innerHTML.toLowerCase()})
  }
  updateQtdMetricFilter(e){
@@ -336,6 +342,7 @@ detailsRenderM(item) {
 }
 
 detailsRenderDollar(item) {
+  
   if(item.header === 'Actuals' || item.header === 'QRF Diff' || item.header === 'QRF' ) {
     return '$';
   }  else return '';
@@ -351,7 +358,7 @@ detailsRenderDollar(item) {
          return(
           <div key={item.index} className={qtdwColSizes + (item.header==="Vs Qrf"? ' redBG':' ')}>
           <span className="contHeader"> {item.header}</span>
-          <span className="valHeader"> {this.detailsRenderDollar(item)} {item.value} {this.detailsRenderM(item)}</span>
+          <span className="valHeader"> {this.detailsRenderDollar(item)} {item.value.toFixed(1)} {this.detailsRenderM(item)}</span>
        </div>
          )
        }).reverse()
@@ -368,7 +375,7 @@ detailsRenderDollar(item) {
           <div key={item.index} className={qtdwColSizes  + (item.header==="Vs Qrf"? ' redBG':' ')}>
 
           <span className="contHeader"> {item.header} </span>
-          <span className="valHeader"> {this.detailsRenderDollar(item)} {item.value} {this.detailsRenderM(item)}</span>
+          <span className="valHeader"> {this.detailsRenderDollar(item)} {item.value.toFixed(1)} {this.detailsRenderM(item)}</span>
        </div>
          )
        }).reverse()
@@ -407,8 +414,8 @@ detailsRenderDollar(item) {
  }
  
  closeSummary(){
+  this.props.updateMultichartMetric(true);
   this.props.hideSummaryDetails();
-  this.props.updateMultichartMetrc(true);
  }
   render(){
 

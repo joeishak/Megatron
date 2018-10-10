@@ -548,9 +548,9 @@ export function addNewJourneyReply(activeSquareID,commentId,reply){
 
 }
 
-export function updateMultichartMetrc(value={}){
+export function updateMultichartMetric(value){
     return {
         type: MULTICHART_IS_ARR,
-        paload:value
+        payload:value
     }
 }

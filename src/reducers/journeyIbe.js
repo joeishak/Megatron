@@ -176,6 +176,7 @@ export default function(state = JourneyData.squares, action) {
         let qtrUiSquare = state[4].details.qtdw.qtd;
         let qtrFailureSquare = state[5].details.qtdw.qtd;
         
+        console.log(trafficSquare, data.TrafficActual);
        trafficSquare[0].value = data.TrafficActual;
        trafficSquare[5].value = data.TrafficQQ;
        trafficSquare[2].value = data.TrafficTarget;
@@ -248,6 +249,13 @@ export default function(state = JourneyData.squares, action) {
 
          
          state[0]['details'].geo.qtd = traffGeoARR;
+         state[1]['details'].geo.qtd = traffGeoARR;
+         state[2]['details'].geo.qtd = traffGeoARR;
+         state[3]['details'].geo.qtd = traffGeoARR;
+         state[4]['details'].geo.qtd = traffGeoARR;
+         state[5]['details'].geo.qtd = traffGeoARR;
+
+         
         return [...state];
         //Case for adding a new comment
         case ADD_NEW_JOURNEY_COMMENT: 

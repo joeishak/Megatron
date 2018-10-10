@@ -8,10 +8,7 @@ export default function(state = true, action) {
 
         case  MULTICHART_IS_ARR:
         console.log(action.payload);
-        if(action.payload !== undefined){
             return action.payload;
-        }
-            return !state
         default: 
             return state;
     }}

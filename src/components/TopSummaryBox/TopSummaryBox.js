@@ -63,10 +63,7 @@ class TopSummaryBox extends Component {
             if(!this.props.switchFilter){
                 this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
             } else{
-                if(this.props.journeyData !== prevProps.journeyData){
-                    this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
-        
-                }
+                this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
             }
         }
 
@@ -171,6 +168,7 @@ class TopSummaryBox extends Component {
         
         this.setState({isToggleButtonChecked: !toggleState},()=>{
             this.props.updateSwitchFilterValue(this.state.isToggleButtonChecked);
+            
 
         });
     }
