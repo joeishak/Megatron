@@ -68,10 +68,10 @@ class TopSummaryBox extends Component {
         }
 
         if(this.props.finData !== prevProps.finData && this.props.switchFilter === false){
-            this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
+            this.props.updateFinancialSummaryActiveCard(this.props.finData[this.props.activeSummaryIndex-1])
         }
         if(this.props.journeyData !== prevProps.journeyData && this.props.switchFilter === true){
-            this.props.updateJourneySummaryActiveCard(this.props.journeyData[0])
+            this.props.updateJourneySummaryActiveCard(this.props.journeyData[this.props.activeSummaryIndex-1])
         }
         // this.props.updateFinancialSummaryActiveCard(this.props.finData[0]);
     }
@@ -461,6 +461,7 @@ function mapStateToProps(state) {
         toggleCommentary: state.toggleCommentaryBox,
         activeFilters: state.activeFilters,
         availableFilters: state.availableFilters,
+        activeSummaryIndex: state.activeSummarySquare.index ,
         journeyData: state.journeyData
 
     }

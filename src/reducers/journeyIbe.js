@@ -360,12 +360,12 @@ export default function(state = JourneyData.squares, action) {
          
     //     return newState;
     //     //Case for adding a new comment
-    //     case ADD_NEW_JOURNEY_COMMENT: 
-    //              index = action.payload.square-1;
-    //              copyOfSquare = Object.assign({},state[index]);
-    //             copyOfSquare.comments.push(action.payload.comment);
-    //             state[index] = copyOfSquare;
-    //     return [...state];
+        case ADD_NEW_JOURNEY_COMMENT: 
+                 index = action.payload.square-1;
+                 copyOfSquare = Object.assign({},state[index]);
+                copyOfSquare.comments.push(action.payload.comment);
+                state[index] = copyOfSquare;
+        return [...state];
         // CAse for adding a reply to a previous comment
         case ADD_NEW_JOURNEY_REPLY:
 
