@@ -170,12 +170,42 @@ class KendoPanelBar extends Component {
       
         }
     }
+
+    renderDollarValue(value) {
+      
+        let returnValue = '';
+        value = parseInt(value)
+       
+        if (value > 1000 && value <= 999999) {
+            value = (value/1000).toFixed(1);
+            returnValue = '' + value.toString() + 'K';
+        } else if (value > 1000000 && value <= 999999999) {
+            value = (value/1000000).toFixed(1);
+            returnValue = '' +  value.toString() + 'M';
+            // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
+        } else if (value > 1000000000 && value <= 999999999999) {
+            value = (value/1000000000).toFixed(1);
+            returnValue ='' +  value.toString() + 'B';
+        } else if (value > 1000000000 && value <= 999999999999999) {
+            value = (parseInt(value)/1000000000000).toFixed(1);
+            returnValue ='' +  value.toString() + 'T';
+        } else {
+            return '' + value.toString();
+        }
+      
+        return returnValue;
+    }
+
+    formatPercentage(value) {
+        return Math.round(value * 100) / 100;
+    }
+
     getGeoContent(){
         switch(this.props.timeMetric){
             case 'qtd':
             return(
                 this.props.activeSummary.details.geo.qtd.map(item =>{
-               
+                   
                     return(
                         <span key={item.index}>
                               <div className="qtdColumn qtdGeoHeader  col">
@@ -185,25 +215,33 @@ class KendoPanelBar extends Component {
                                     {item.marketArea}
                                 </div>
                         <div className="qtdColumn col">
-                            {item.actuals}
+                            
+                            $ {this.renderDollarValue(item.actuals)}
                         </div>
                         <div className="qtdColumn col">
-                            {item.units}
+                            
+                            {this.renderDollarValue(item.units)}
                         </div>
                         <div className="qtdColumn col">
-                            {item.qrf}
+                            
+                            $ {this.renderDollarValue(item.qrf)}
                         </div>
                         <div className="qtdColumn col">
-                            {item.qrfDiff}
+                            
+                            $ {this.renderDollarValue(item.qrfDiff)}
                         </div>
-                        <div className={ (item.vsQrf < 0)? 'qtdColumn col redBG': ' qtdColumn col greenBG'}>
-                            {item.vsQrf}
+                        <div className={ (item.vsQrf <= 0)? 'qtdColumn col redBG': ' qtdColumn col greenBG'}>
+                            
+                            {this.formatPercentage(item.vsQrf)} %
+                            
                         </div>
                         <div className="qtdColumn col">
-                            {item.qq}
+                            
+                            {this.formatPercentage(item.qq)} %
                         </div>
                         <div className="qtdColumn col">
-                            {item.yy}
+                            
+                            {this.formatPercentage(item.yy)} %
                         </div>
                         </span>
                     )
@@ -234,7 +272,7 @@ class KendoPanelBar extends Component {
                         <div className="weekColumn col">
                             {item.qrfDiff}
                         </div>
-                        <div className={ (item.vsQrf < 0)? 'weekColumn col redBG': 'weekColumn col greenBG'}>
+                        <div className={ (item.vsQrf <= 0)? 'weekColumn col redBG': 'weekColumn col greenBG'}>
                             {item.vsQrf}
                         </div>
                         <div className="weekColumn col">
@@ -248,7 +286,6 @@ class KendoPanelBar extends Component {
             );
             case 'all':
             let sumData = this.props.activeSummary.details.geo.all;
-            console.log(this.props.activeSummary);
            let allComponent = this.props.activeSummary.details.geo.all.map(item =>{
                 return(
                                 <span key={item.index}>
@@ -270,7 +307,7 @@ class KendoPanelBar extends Component {
                                 <div className="allColumn col">
                                     {item.qtd.qrfDiff}
                                 </div>
-                                <div className={ (item.vsQrf < 0)? 'allColumn col redBG': 'allColumn col greenBG'}>
+                                <div className={ (item.vsQrf <= 0)? 'allColumn col redBG': 'allColumn col greenBG'}>
                                     {item.qtd.vsQrf}
                                 </div>
                                 <div className="allColumn col">
@@ -291,7 +328,7 @@ class KendoPanelBar extends Component {
                                 <div className="allColumn col">
                                     {item.week.qrfDiff}
                                 </div>
-                                <div className={ (item.vsQrf < 0)? 'allColumn col redBG': 'allColumn col greenBG'}>
+                                <div className={ (item.vsQrf <= 0)? 'allColumn col redBG': 'allColumn col greenBG'}>
                                     {item.week.vsQrf}
                                 </div>
                                 <div className="allColumn col">

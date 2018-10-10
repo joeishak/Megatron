@@ -246,6 +246,8 @@ class SummaryViewDetails extends Component {
     this.renderM = this.renderM.bind(this);
     this.detailsRenderM = this.detailsRenderM.bind(this);
     this.detailsRenderDollar = this.detailsRenderDollar.bind(this);
+    this.formatPercentage = this.formatPercentage.bind(this);
+    this.renderDollarValuePanelBarItems = this.renderDollarValuePanelBarItems.bind(this);
   }
  
   componentDidUpdate(prevProps){
@@ -344,6 +346,22 @@ renderDollarValue(value) {
   return returnValue;
 }
 
+formatPercentage(value) {
+  return (Math.round(value * 100) / 100).toString() + '%';
+}
+
+
+renderDollarValuePanelBarItems(value, item) {
+  if (item.header === 'Actuals' || item.header === 'QRF Diff' || item.header === 'QRF' || item.header === 'Units') {
+    // If Units remove the dollar sign
+    let tmpValue = item.header === 'Units' ? this.renderDollarValue(value).substr(1) : this.renderDollarValue(value);
+    return tmpValue;
+  } else {
+    return this.formatPercentage(value);
+  }
+   
+}
+
 detailsRenderM(item) {
   if(item.header === 'Actuals' || item.header === 'QRF Diff' || item.header === 'QRF' || item.header === 'Units') {
     return 'M';
@@ -367,7 +385,7 @@ detailsRenderDollar(item) {
          return(
           <div key={item.index} className={qtdwColSizes + (item.header==="Vs Qrf"? ' redBG':' ')}>
           <span className="contHeader"> {item.header}</span>
-          <span className="valHeader"> {this.detailsRenderDollar(item)} {item.value.toFixed(1)} {this.detailsRenderM(item)}</span>
+          <span className="valHeader"> {this.renderDollarValuePanelBarItems(item.value, item)}</span>
        </div>
          )
        }).reverse()
@@ -381,10 +399,10 @@ detailsRenderDollar(item) {
       {
        this.props.activeItem.details.qtdw.week.map(item=>{
          return(
-          <div key={item.index} className={qtdwColSizes  + (item.header==="Vs Qrf"? ' redBG':' ')}>
+          <div key={item.index} className={qtdwColSizes  + (item.header==="Vs Qrf" ? ' redBG':' ')}>
 
           <span className="contHeader"> {item.header} </span>
-          <span className="valHeader"> {this.detailsRenderDollar(item)} {item.value.toFixed(1)} {this.detailsRenderM(item)}</span>
+          <span className="valHeader">{this.renderDollarValuePanelBarItems(item.value, item)}</span>
        </div>
          )
        }).reverse()
@@ -399,7 +417,7 @@ detailsRenderDollar(item) {
           <div key={item.index} className={qtdwColSizes  + (item.header==="Vs Qrf"? ' redBG':' ')}>
 
           <span className="contHeader"> {item.header} </span>
-          <span className="valHeader">  {this.detailsRenderDollar(item)} {item.value} {this.detailsRenderM(item)}</span>
+          <span className="valHeader">  {this.renderDollarValuePanelBarItems(item.value, item)}</span>
        </div>
          )
        }).reverse()
@@ -410,7 +428,7 @@ detailsRenderDollar(item) {
           <div key={item.index} className={qtdwColSizes  + (item.header==="Vs Qrf"? ' redBG':' ')}>
 
           <span className="contHeader"> {item.header} </span>
-          <span className="valHeader"> {this.detailsRenderDollar(item)} {item.value} {this.detailsRenderM(item)}</span>
+          <span className="valHeader">{this.renderDollarValuePanelBarItems(item.value, item)}</span>
        </div>
          )
        }).reverse()
