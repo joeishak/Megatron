@@ -157,7 +157,7 @@ export default function(state = JourneyData.squares, action) {
         let data = action.payload[2].data[0];
          console.log(action.payload);
 
-        let trafficSquare = Object.assign([],state[0].details.qtdw.qtd);
+        let trafficSquare = Object.assign([],squares[0].details.qtdw.qtd);
         // console.log(trafficSquare === state[0].details.qtdw.qtd)
         // let newQfmSquare = state[1].details.qtdw.qtd;
         // let conversionSquare = state[2].details.qtdw.qtd;
@@ -208,7 +208,7 @@ export default function(state = JourneyData.squares, action) {
         
          data = action.payload[3].data;
 
-         let trafficSquareGeo = Object.assign([],state[0].details.geo.qtd);
+         let trafficSquareGeo = Object.assign([],squares[0].details.geo.qtd);
         //  let newQfmSquareGeo = state[1].details.geo.qtd;
         //  let conversionSquareGeo = state[2].details.geo.qtd;
         //  let repeatSquareGeo = state[3].details.geo.qtd;

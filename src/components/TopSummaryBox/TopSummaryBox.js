@@ -67,28 +67,27 @@ class TopSummaryBox extends Component {
             }
         }
 
-        if(this.props.finData !== prevProps.finData){
+        if(this.props.finData !== prevProps.finData && this.props.switchFilter === false){
             this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
         }
-      
+        if(this.props.journeyData !== prevProps.journeyData && this.props.switchFilter === true){
+            this.props.updateJourneySummaryActiveCard(this.props.journeyData[0])
+        }
         // this.props.updateFinancialSummaryActiveCard(this.props.finData[0]);
     }
 
     shouldComponentUpdate(nextProps){
        
-        if(this.props.journeyData !== nextProps.journeyData && this.props.switchFilter === true){
+        if(this.props.finData !== nextProps.finData && this.props.switchFilter === false){
+
+            return true;
+        }  else if(this.props.journeyData !== nextProps.journeyData && this.props.switchFilter === true){
             return true;
         }
         
-        else if(this.props.finData !== nextProps.finData && this.props.switchFilter === false){
-
-            return true;
-        } else if(this.props.activeFilters != nextProps.activeFilters){
+         else if(this.props.activeFilters != nextProps.activeFilters){
             this.props.getQueryFilteredIBEData(nextProps.activeFilters,this.props.availableFilters);
             this.props.getQueryFilteredJourneyIBEData(nextProps.activeFilters,this.props.availableFilters);
-            // this.props.getFilteredJourneyQtdData(this.props.activeFilters,this.props.availableFilters);
-
-
             return false;
         }
         else if(this.toggleCommentary !== nextProps.toggleCommentary){
