@@ -258,7 +258,7 @@ export default function(state = JourneyData.squares, action) {
                 qrfDiff: 0.0,
                 type: item.geo_code,
                 units: 0.0,
-                vsQrf:item.ConversionVSQrf,
+                vsQrf:item.ConversionQfmVSQrf,
                 yy: item.ConversionYY
             }
             let rep = {
