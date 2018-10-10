@@ -265,13 +265,15 @@ class SummaryViewDetails extends Component {
 
     }
   }
-  // shouldComponentUpdate(nextProps){
-  //   if(this.props.journeyData !== nextProps.journeyData){
-  //     return true;
-  //   }
+  shouldComponentUpdate(nextProps){
+    // if(this.props.journeyData !== nextProps.journeyData){
+    //   return true;
+    // }
 
-  //   return true;
-  // }
+    console.log('Old and New Journey Geo Data: ',nextProps.journeyData[0].details.geo.qtd, this.props.journeyData[0].details.geo.qtd);
+    console.log('Im Here');
+    return true;
+  }
  
  updateMultiChartMetricFilter(e){
    let metric = e.target.innerHTML.toLowerCase();
