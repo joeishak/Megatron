@@ -225,7 +225,7 @@ class KendoPanelBar extends Component {
                             
                             $ {this.renderDollarValue(item.qrfDiff)}
                         </div>
-                        <div className={ (item.vsQrf < 0)? 'qtdColumn col redBG': ' qtdColumn col greenBG'}>
+                        <div className={ (item.vsQrf <= 0)? 'qtdColumn col redBG': ' qtdColumn col greenBG'}>
                             
                             {this.formatPercentage(item.vsQrf)} %
                             
@@ -267,7 +267,7 @@ class KendoPanelBar extends Component {
                         <div className="weekColumn col">
                             {item.qrfDiff}
                         </div>
-                        <div className={ (item.vsQrf < 0)? 'weekColumn col redBG': 'weekColumn col greenBG'}>
+                        <div className={ (item.vsQrf <= 0)? 'weekColumn col redBG': 'weekColumn col greenBG'}>
                             {item.vsQrf}
                         </div>
                         <div className="weekColumn col">
@@ -302,7 +302,7 @@ class KendoPanelBar extends Component {
                                 <div className="allColumn col">
                                     {item.qtd.qrfDiff}
                                 </div>
-                                <div className={ (item.vsQrf < 0)? 'allColumn col redBG': 'allColumn col greenBG'}>
+                                <div className={ (item.vsQrf <= 0)? 'allColumn col redBG': 'allColumn col greenBG'}>
                                     {item.qtd.vsQrf}
                                 </div>
                                 <div className="allColumn col">
@@ -323,7 +323,7 @@ class KendoPanelBar extends Component {
                                 <div className="allColumn col">
                                     {item.week.qrfDiff}
                                 </div>
-                                <div className={ (item.vsQrf < 0)? 'allColumn col redBG': 'allColumn col greenBG'}>
+                                <div className={ (item.vsQrf <= 0)? 'allColumn col redBG': 'allColumn col greenBG'}>
                                     {item.week.vsQrf}
                                 </div>
                                 <div className="allColumn col">

@@ -390,7 +390,7 @@ detailsRenderDollar(item) {
       {
        this.props.activeItem.details.qtdw.week.map(item=>{
          return(
-          <div key={item.index} className={qtdwColSizes  + (item.header==="Vs Qrf"? ' redBG':' ')}>
+          <div key={item.index} className={qtdwColSizes  + (item.header==="Vs Qrf" ? ' redBG':' ')}>
 
           <span className="contHeader"> {item.header} </span>
           <span className="valHeader">{this.renderDollarValuePanelBarItems(item.value, item)}</span>
