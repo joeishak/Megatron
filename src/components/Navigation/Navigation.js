@@ -15,7 +15,7 @@ import userIcon from './user-icon.svg';
 import commentIconOff from './assets/images/comment-icon-off.svg';
 import commentIconOn from './assets/images/comment-icon-on.svg';
 
-import profilePic from "./assets/images/cynthia-profile.png";
+import profilePic from "./assets/images/amit-profile.png";
 
 
 
@@ -31,7 +31,7 @@ class Navigation extends Component {
         super(props);
         // Initialize state
         this.state = {
-          loggedUser: 'Cynthia Stoddard',
+          loggedUser: 'Amit Sethi',
           show: false,
           activeTab: 'tab1',
           dataPrefDialogVisible: this.props.dialogIsOpen,

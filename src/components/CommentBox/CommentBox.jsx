@@ -9,7 +9,7 @@ import addIcon from '../../assets/images/add-icon-black.svg';
 import rick from '../../assets/images/rick.png';
 import shaun from '../../assets/images/shaun.png';
 import morty from '../../assets/images/morty.png';
-import cynthia from '../Navigation/assets/images/cynthia-profile.png';
+import amit from '../Navigation/assets/images/amit-profile.png';
 
 
 class CommentBox extends Component {
@@ -113,7 +113,7 @@ class CommentBox extends Component {
 
             let comment= {
                 id: this.props.comments.length,
-                userName: 'Cynthia Stoddard',
+                userName: 'Amit Sethi',
                 time: new Date().toLocaleTimeString(),
                 comment: e.target.value,
                 replies: [],
@@ -131,7 +131,7 @@ class CommentBox extends Component {
             // console.log('The comment:',this.props.comments[this.state.commentToBeRepliedTo]);
             let comment= {
                 id: this.props.comments[this.state.commentToBeRepliedTo].replies.length,
-                userName: 'Cynthia Stoddard',
+                userName: 'Amit Sethi',
                 time: new Date().toLocaleTimeString(),
                 comment: e.target.value
                 
@@ -193,8 +193,8 @@ class CommentBox extends Component {
             case 'Shaun White':
                 return shaun
                 break;
-            case 'Cynthia Stoddard':
-                return cynthia
+            case 'Amit Sethi':
+                return amit
                 break;
             default:
                 return null;

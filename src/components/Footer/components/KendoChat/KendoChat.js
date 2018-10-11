@@ -15,7 +15,7 @@ class KendoChat extends Component {
         super(props);
         this.user = {
             id: 1,
-            name: "Cynthia Stoddard",
+            name: "Amit Sethi",
             avatarUrl: "https://via.placeholder.com/24/008000/008000.png"
         };
         this.state = {

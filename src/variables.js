@@ -43,7 +43,7 @@ export const FinancialData = {
                     replies: [
                         {
                             id: 0,
-                            userName: 'Cynthia Stoddard',
+                            userName: 'Amit Sethi',
                             time: '8:34am',
                             comment: 'Our customers in Japan did not take to our marketing strategy. '
                             
