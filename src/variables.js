@@ -5184,8 +5184,8 @@ export const InfoburstAzure = {
         JourneyMarketAreaQtd: '?q=JourneyMarketAreaQTD',
         FinancialUnitsMultichart: '?q=FinancialUnitsMultichart'
      },
-     filterXdcID : '\\16',
-     dataXdcID:  '\\17',
-     journeyXdcID: '\\19'
+     dataXdcID:  '\\57',
+     journeyXdcID: '\\58',
+     filtersXdcID: '\\56'
      
 }

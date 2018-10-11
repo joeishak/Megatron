@@ -371,12 +371,12 @@ class TopSummaryBox extends Component {
 
                                     {(item.index === 1 || item.index === 2) ?
                                      <div className={`col journeysAmount k-float-left ${item.value >= item.target ? 'journeysAmountGreen' : ''}`}>{this.renderUnits(item.value)}</div>:
-                                     <div className={`col journeysAmount k-float-left ${item.value >= item.target ? 'journeysAmountGreen' : ''}`}>{item.value.toFixed(1)} %</div> }
+                                     <div className={`col journeysAmount k-float-left ${item.value >= item.target ? 'journeysAmountGreen' : ''}`}>{(item.value/100).toFixed(1)} %</div> }
                                     
 
                                     {(item.index === 1 || item.index === 2) ?
-                                     <div className="col journeysTarget ">TARGET {this.renderUnits(item.value)}</div>:
-                                     <div className="col journeysTarget ">TARGET {item.value.toFixed(1)}%</div> }
+                                     <div className="col journeysTarget ">TARGET {this.renderUnits(item.target)}</div>:
+                                     <div className="col journeysTarget ">TARGET {(item.target/100).toFixed(1)}%</div> }
                                     
  
                                 </div>

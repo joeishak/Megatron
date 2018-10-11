@@ -30,7 +30,7 @@ export default function(state = JourneyData.squares, action) {
     let currentMulti;
     switch(action.type) {
         case GET_FILTERED_JOURNEY_IBE_DATA:
-        // console.log('GET QUERY IBE DATA',action.payload);
+        console.log('GET QUERY IBE DATA',action.payload);
         //Journey Actual Targets / Multichart
         let item = action.payload[0].data[0];
         totalConversionActual    += item.ConversionActual;
@@ -151,6 +151,7 @@ export default function(state = JourneyData.squares, action) {
              squares[i]['target'] = currentTarget ;  
              squares[i]['details'].multichart = currentMulti;
           
+             console.log(squares);
          }
 
          //Journeys QTD Total
@@ -164,7 +165,7 @@ export default function(state = JourneyData.squares, action) {
         let qtrUiSquare         = JSON.parse(JSON.stringify(squares[4].details.qtdw.qtd));
         let qtrFailureSquare    = JSON.parse(JSON.stringify(squares[5].details.qtdw.qtd));
         
-        // console.log(trafficSquare, data.TrafficActual);
+        console.log(trafficSquare, data.TrafficActual);
        trafficSquare[0].value = data.TrafficActual;
        trafficSquare[5].value = data.TrafficQQ;
        trafficSquare[2].value = data.TrafficTarget;

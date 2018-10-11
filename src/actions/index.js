@@ -116,13 +116,14 @@ export function updateMultiFilterStatus(status) {
  */
 export function generateFilterData() {
  
-    const maResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.filterXdcID+ InfoburstAzure.filterQueryNames.MarketFilters, {headers: headers, responseType: 'text'})
-    const segementsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.filterXdcID+ InfoburstAzure.filterQueryNames.SegmentFilters, {headers: headers, responseType: 'text'});
-    const subscriptionResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.filterXdcID+ InfoburstAzure.filterQueryNames.SubscriptionFilters, {headers: headers, responseType: 'text'});
-    const routesResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.filterXdcID+ InfoburstAzure.filterQueryNames.RouteFilters, {headers: headers, responseType: 'text'});
-    const quartersResponse = axios.get(InfoburstAzure.xdcCacheQueryURL +  InfoburstAzure.filterXdcID+ InfoburstAzure.filterQueryNames.QuarterFilters, {headers: headers, responseType: 'text'});
-    const productResponse = axios.get(InfoburstAzure.xdcCacheQueryURL +  InfoburstAzure.filterXdcID+ InfoburstAzure.filterQueryNames.ProductFilters, {headers: headers, responseType: 'text'});
-    const geoResponse = axios.get(InfoburstAzure.xdcCacheQueryURL +  InfoburstAzure.filterXdcID+ InfoburstAzure.filterQueryNames.GeoFilters, {headers: headers, responseType: 'text'});
+    console.log(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.filtersXdcID+ InfoburstAzure.filterQueryNames.MarketFilters)
+    const maResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.filtersXdcID+ InfoburstAzure.filterQueryNames.MarketFilters, {headers: headers, responseType: 'text'})
+    const segementsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.filtersXdcID+ InfoburstAzure.filterQueryNames.SegmentFilters, {headers: headers, responseType: 'text'});
+    const subscriptionResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.filtersXdcID+ InfoburstAzure.filterQueryNames.SubscriptionFilters, {headers: headers, responseType: 'text'});
+    const routesResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.filtersXdcID+ InfoburstAzure.filterQueryNames.RouteFilters, {headers: headers, responseType: 'text'});
+    const quartersResponse = axios.get(InfoburstAzure.xdcCacheQueryURL +  InfoburstAzure.filtersXdcID+ InfoburstAzure.filterQueryNames.QuarterFilters, {headers: headers, responseType: 'text'});
+    const productResponse = axios.get(InfoburstAzure.xdcCacheQueryURL +  InfoburstAzure.filtersXdcID+ InfoburstAzure.filterQueryNames.ProductFilters, {headers: headers, responseType: 'text'});
+    const geoResponse = axios.get(InfoburstAzure.xdcCacheQueryURL +  InfoburstAzure.filtersXdcID+ InfoburstAzure.filterQueryNames.GeoFilters, {headers: headers, responseType: 'text'});
     
     responseArray.push(quartersResponse,maResponse,productResponse,segementsResponse,subscriptionResponse,routesResponse,geoResponse);
     let promiseArr1 = Promise.all(responseArray);
