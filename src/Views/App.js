@@ -105,7 +105,7 @@ openChatDialogPanel = () => {
     const bottomSummary = !this.props.switchFilter ? 
       
     <div className='bottomSummaryContainer'>
-      <ButtomSummaryBox chartHeight="180px" rerender={this.state.renderFooter}/>
+      <ButtomSummaryBox chartHeight="400px" rerender={this.state.renderFooter}/>
     </div> : null;
     /**Summary View Details */
     const Summary = this.props.detailIsOpen ? 

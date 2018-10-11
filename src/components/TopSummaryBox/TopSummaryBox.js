@@ -379,8 +379,8 @@ class TopSummaryBox extends Component {
                                     
 
                                     {(item.index === 1 || item.index === 2) ?
-                                     <div className="col journeysTarget ">TARGET {this.renderUnits(item.value)} </div>:
-                                     <div className="col journeysTarget ">TARGET {this.formatPercentage(item.value) }%</div> }
+                                     <div className="col journeysTarget ">TARGET {this.renderUnits(item.target)} </div>:
+                                     <div className="col journeysTarget ">TARGET {this.formatPercentage(item.target) }%</div> }
                                     
  
                                 </div>

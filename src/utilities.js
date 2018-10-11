@@ -91,6 +91,7 @@ export function generateFilterParams(type,filterParams, allFilters, _activeParam
       filterParams[2].value = getParamValues(_activeParams.geos,allFilters.geos);
       filterParams[3].value = getParamValues(_activeParams.markets,allFilters.marketAreas);
       filterParams[4].value = getParamValues(_activeParams.routes,allFilters.routeToMarkets);
+      filterParams[5].value = getParamValues(_activeParams.segments,allFilters.segments);
       break;
     }
    

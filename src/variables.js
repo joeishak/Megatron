@@ -5185,7 +5185,7 @@ export const InfoburstAzure = {
         FinancialUnitsMultichart: '?q=FinancialUnitsMultichart'
      },
      dataXdcID:  '\\57',
-     journeyXdcID: '\\58',
+     journeyXdcID: '\\19',
      filtersXdcID: '\\56'
      
 }

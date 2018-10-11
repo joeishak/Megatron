@@ -322,15 +322,19 @@ export function getQueryFilteredJourneyIBEData(_parameters,availableFilters){
         {prompt: 'productFilters', value: ''},
         {prompt: 'geoFilters', value: ''},
         {prompt: 'maFilters', value: ''},
-        {prompt: 'routeFilters', value: ''}
+        {prompt: 'routeFilters', value: ''},
+        {prompt: 'segmentFilters', value: ''}
+
     ];
     // console.log(_parameters);
     
     // filterParams[0].value = _parameters.quarters[0].value;
-    filterParams[0].value = _parameters.products[0].value;
-    filterParams[1].value = _parameters.geos[0].value;
-    filterParams[2].value = _parameters.markets[0].value;
-    filterParams[3].value = _parameters.routes[0].value;
+    filterParams[1].value = _parameters.products[0].value;
+    filterParams[2].value = _parameters.geos[0].value;
+    filterParams[3].value = _parameters.markets[0].value;
+    filterParams[4].value = _parameters.routes[0].value;
+    filterParams[5].value = _parameters.segments[0].value;
+
 
     // console.log('Filter Params: ', filterParams);
     quarterQuery = Object.assign({},_parameters.quarters[0]);
@@ -389,16 +393,18 @@ export function getFilteredJourneyQtdData(_parameters,availableFilters){
         {prompt: 'productFilters', value: ''},
         {prompt: 'geoFilters', value: ''},
         {prompt: 'maFilters', value: ''},
-        {prompt: 'routeFilters', value: ''}
+        {prompt: 'routeFilters', value: ''},
+        {prompt: 'segmentFilters', value: ''}
+
     ];
     // console.log(_parameters);
     
     // filterParams[0].value = _parameters.quarters[0].value;
-    filterParams[0].value = _parameters.products[0].value;
-    filterParams[1].value = _parameters.geos[0].value;
-    filterParams[2].value = _parameters.markets[0].value;
-    filterParams[3].value = _parameters.routes[0].value;
-
+    filterParams[1].value = _parameters.products[0].value;
+    filterParams[2].value = _parameters.geos[0].value;
+    filterParams[3].value = _parameters.markets[0].value;
+    filterParams[4].value = _parameters.routes[0].value;
+    filterParams[5].value = _parameters.segments[0].value;
     // console.log('Filter Params: ', filterParams);
     quarterQuery = Object.assign({},_parameters.quarters[0]);
 
