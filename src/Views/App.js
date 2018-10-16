@@ -17,14 +17,9 @@ import KendoDialog from '../components/KendoDialog/KendoDialog';
 import CommentBox from '../components/CommentBox/CommentBox.jsx';
 import ButtomSummaryBox from '../components/BottomSummaryBox/BottomSummaryBox';
 
-//InfoBurst
 
-// Custom Nivo Components
-// import { changeAuth } from '../actions';
 
 class App extends Component {
-
-
   constructor(props) {
     super(props);
     /* Initializing local state */
@@ -46,27 +41,9 @@ class App extends Component {
       this.getFilters  =this.getFilters.bind(this);
 
       this.props.getAdobeData();
-
-    // this.props.generateFilterData();
-    this.getFilters();
-    
-   
+      this.getFilters();
   }
  
-  componentDidUpdate(prevProps){
-   
-    // if(prevProps)
-      // this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
-
-  
-
-  }
-  
-  componentWillReceiveProps(nextProps){
-   
-    // this.props.getQueryFilteredIBEMultiChartData(nextProps.activeFilters,nextProps.availableFilters);
-
-  }
   getFilters(){
     this.props.generateFilterData();
   }
@@ -124,15 +101,13 @@ openChatDialogPanel = () => {
       
 
       <div style={{height:'100%'}}>
-      {/* Data Preferences */}
-        <KendoDialog /> 
-         <Navigation />
+          {/* Data Preferences */}
+          <KendoDialog /> 
+          <Navigation />
           <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
           {(this.props.commentBoxIsOpen) ? <CommentBox /> : null}
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
           {Summary}
-          {/* {chatWindowContainer} */}
-        {/* <Footer onSelected={this.openChatDialogPanel} selectedSquare={this.props.activeSquare}/>       */}
       </div>
 
   )

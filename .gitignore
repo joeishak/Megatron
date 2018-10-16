@@ -82,4 +82,6 @@ typings/
 # next.js build output
 .next
 
-data.json
+#Initial State for Infosol Local Azure Server
+#Used for http requests URL 
+variables.js
