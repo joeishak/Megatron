@@ -443,7 +443,6 @@ detailsRenderDollar(item) {
  }
  
  closeSummary(){
-  this.props.updateMultichartMetric(true);
   this.props.hideSummaryDetails();
  }
   render(){

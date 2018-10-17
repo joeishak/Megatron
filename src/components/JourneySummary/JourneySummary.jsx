@@ -1,0 +1,111 @@
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import JourneySquareList from 'components/JourneySummary/JourneySquareList.jsx';
+import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
+import classNames from 'classnames';
+import {connect} from 'react-redux';
+import  * as actions from 'actions';
+import SummaryHOC from 'components/SummaryHOC.js';
+
+class JourneySummary extends Component {
+
+    constructor(props){
+        super(props);
+        this.state ={
+            activeJourneyCard: 'journeyCard1'
+        }
+        this.onJourneyCardClicked = this.onJourneyCardClicked.bind(this);
+    }
+    formatPercentage(value) {
+        return (value.toFixed(1) / 100).toFixed(2);
+    }
+
+     // Event handler when the Journey Card is active and clicked
+     onJourneyCardClicked (e, square) {
+        e.preventDefault();
+        let squareItem =square;
+        // Finds the passed props for the right card to set as active
+        this.setState({activeJourneyCard: squareItem.css[0]})
+        this.props.updateJourneySummaryActiveCard(squareItem);
+        // title 'Net New ARR'
+        const selectedTitle = squareItem.title;
+        const selectedSubtitle = squareItem.header;
+    }
+
+     // Need to Refactor
+     getColor(value, target, type, header) {
+        let retColor = '';
+        if(type === 'financial' ) {
+            if (value >= target) {
+                retColor = 'selectedCardHeaderGreen';
+            } else {
+                retColor = 'selectedCardHeaderRed';
+            }
+        } else if (type === 'journey' && header === false) {
+            if (value >= target) {
+                retColor = 'journeyBoxAlertGreen';
+            } else {
+                retColor = 'journeyBoxAlert';
+            }
+        } else if (type === 'journey' && header !== false) {
+            if (value >= target) {
+                retColor = 'journeyHeaderAlertGreen';
+            } else {
+                retColor = 'journeyHeaderAlert';
+            }
+        } else if (type === 'donut') {
+            if (value < target) {
+                retColor = '#FF0000';
+            } else {
+                retColor = '#0DB16E';
+            }
+        }
+
+        return retColor;
+    }
+    renderUnits(value){
+        let returnValue = '';
+        // console.log(value);
+        value = parseInt(value)
+        if (value > 1000 && value <= 999999) {
+            value = (value/1000).toFixed(1);
+            returnValue =  value.toString() + 'K';
+        } else if (value > 1000000 && value <= 999999999) {
+            value = (value/1000000).toFixed(1);
+            returnValue =  value.toString() + 'M';
+            // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
+        } else if (value > 1000000000 && value <= 999999999999) {
+            value = (value/1000000000).toFixed(1);
+            returnValue =  value.toString() + 'B';
+        } else if (value > 1000000000 && value <= 999999999999999) {
+            value = (parseInt(value)/1000000000000).toFixed(1);
+            returnValue = value.toString() + 'T';
+        } else {
+            return  value.toString();
+        }
+        return returnValue;
+    }
+    render(){
+        return(
+            <div className="row" style={{height:'1024px'}}>
+            <div className="col-lg-3 col-md-4" style={{height:'100%'}}>
+            <JourneySquareList
+              data={this.props.data}
+              activeJourneyCard = {this.state.activeJourneyCard}
+              getColor={this.getColor}
+              renderUnits={  this.renderUnits}
+              formatPercentage = {this.formatPercentage}
+              onJourneyCardClicked={this.onJourneyCardClicked}
+              toggleCommentary = {this.props.toggleCommentary}
+              onCommentIconClick={this.props.onCommentIconClick}
+            />
+            </div>
+            <div className="col-lg-9 col-md-8">
+                <ButtomSummaryBox chartHeight="550px"/>
+            </div>
+        </div>
+        )
+    }
+}
+
+export default connect(null,actions)(SummaryHOC(JourneySummary))

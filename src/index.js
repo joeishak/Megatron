@@ -6,7 +6,8 @@ import App from 'Views/App.js';
 import registerServiceWorker from './registerServiceWorker';
 const inStyles={
 	root: {
-		height: '100%'
+		height: '100%',
+		width:'100%'
 	}
 }
 ReactDOM.render(

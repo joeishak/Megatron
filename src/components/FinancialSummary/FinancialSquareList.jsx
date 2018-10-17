@@ -10,7 +10,7 @@ class FinancialList extends Component {
             { this.props.data.map(item=>{
                 let isActive = this.props.activeCard === item.css[0] ? true : false;
               return (
-                  <FinancialSquare enableChart={this.props.enableChart1Arrow} selectedCard={(e,index) =>{this.props.selectedCard(e,index)}} key={item.index} activeCard={isActive} item={item}>  </FinancialSquare>
+                  <FinancialSquare onCommentIconClick={this.props.onCommentIconClick} toggleCommentary={this.props.toggleCommentary} enableChart={this.props.enableChart1Arrow} selectedCard={(e,index) =>{this.props.selectedCard(e,index)}} key={item.index} activeCard={isActive} item={item}>  </FinancialSquare>
 
         )
             })}

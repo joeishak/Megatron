@@ -18,21 +18,15 @@ const inStyles = {
 class ButtomSummaryBox extends Component {
     //When the component is constructed
     constructor(props){
-
         super(props);
-
         // Initialize state
         this.state = {
-            rerender: this.props.activeSummary
-
         }
         //Binding functions to this
         this.openDialog= this.openDialog.bind(this);
     }
    
-//    componentDidUpdate(){
-//        console.log(this.props.activeSummary);
-//        }
+
  
     //Event Handler for the View Details Button
     openDialog = ()=>{

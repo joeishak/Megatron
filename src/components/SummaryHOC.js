@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {Grid} from 'react-bootstrap';
+import SummaryHeader from 'components/SummaryHeader/SummaryHeader.jsx'
+import classNames from 'classnames';
+
 import * as actions from '../actions';
 export default ChildComponent => {
     class ComposedComponent extends Component {
@@ -40,15 +44,63 @@ export default ChildComponent => {
     
             return false;
         }
+
+        onCommentIconClick = () => {
+            this.props.showCommentBox();
+        }
+
+         //   Event handler for toggle change 'Financials' and 'Joruneys'
+        onToggleButtonChanged = (e) => {
+            // let toggleState = this.state.isToggleButtonChecked;
+            // this.setState({isToggleButtonChecked: !toggleState},()=>{
+                this.props.updateSwitchFilterValue(!this.props.switchFilter);
+            // });
+        }
+        //Function to check state and return either Financials summary or Journeys Summary
+        getSummaryTitle() {
+            if (this.props.switchFilter) {
+                return 'Journeys Summary'
+            } else {
+                return 'Financials Summary'
+            }
+        }
+        getChild(){
+            if(this.props.switchFilter){
+                 return (
+                    <ChildComponent {...this.props}   
+                    data={this.props.journeyData}
+                    toggleCommentary = {this.toggleCommentary}
+                    onCommentIconClick={this.onCommentIconClick}
+                   />
+                 )
+            } else {
+                return (
+                    <ChildComponent {...this.props}   
+                    onCommentIconClick={this.onCommentIconClick}
+                    toggleCommentary={this.props.toggleCommentary} 
+                    data = {this.props.finData} 
+                   />
+                )
+            }
+        }
         render(){
-            return <ChildComponent {...this.props}/>;
+            var SummaryBoxStyles = classNames({
+                summaryBox: true,
+                summaryBox_financial: !this.props.switchFilter ? false: true
+            });
+            return  <Grid className={SummaryBoxStyles} fluid>
+            <SummaryHeader summaryTitle = {this.getSummaryTitle()} isToggleButtonChecked={this.props.switchFilter} onToggleButtonChanged={this.onToggleButtonChanged} />
+           {this.getChild()}
+            
+        </Grid>
+        
         }
     }
 
     function mapStateToProps(state) {
         return { 
             filters: state.filters, 
-            switchFilter:state.switchFilter, 
+            switchFilter: state.switchFilter, 
             appData: state.adobeData, 
             finData: state.ibeData,
             toggleCommentary: state.toggleCommentaryBox,

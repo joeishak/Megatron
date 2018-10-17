@@ -95,7 +95,7 @@ class FinancialSquare extends Component {
                                     >{this.props.item.header}</p>
                                     </div>
                                      {/* Image Icon For Comments */}
-        {this.props.toggleCommentary ? (<span className="k-float-right finCommentIcon"><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.onCommentIconClick(e, this.props.item.comments.length)}/></span>) : null}
+        {this.props.toggleCommentary ? (<span className="k-float-right finCommentIcon"><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick()}/></span>) : null}
   
                                         <div className={`donutChart ${this.props.activeCard ? 'arrow_box' : ''}`}>
                                             <div >

@@ -13,8 +13,10 @@ import KendoBulletChart from '../KendoBullet/KendoBullet';
 import * as _ from 'lodash';
 import commentIconOn from '../../assets/images/comments-on.svg';
 import commentIconOff from '../../assets/images/comments-off.svg';
-
-import FinancialSquareList from 'components/FinancialSummary/FinancialSquareList.jsx'
+import JourneySquare from 'components/JourneySummary/JourneySquare.jsx';
+import FinancialSquareList from 'components/FinancialSummary/FinancialSquareList.jsx';
+import JourneySummary from 'components/JourneySummary/JourneySummary.jsx';
+import FinancialSummary from 'components/FinancialSummary/FinancialSummary.jsx';
 import SummaryHeader from 'components/SummaryHeader/SummaryHeader.jsx'
 import SummaryHOC from '../SummaryHOC.js';
 import { spawn } from 'child_process';
@@ -42,239 +44,167 @@ class TopSummaryBox extends Component {
         this.getSummaryContent = this.getSummaryContent.bind(this);
     }
 
-   
-    // componentDidUpdate(prevProps){
-    //     if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
-    //         this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
-    //         this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
+ 
+
+    // //Event handler that sets the active card
+    // selectedCard (e, index) {
+    //     e.preventDefault();
+    //     let squareItem = this.props.finData[index -1]
+    //     // Finds the passed props for the right card to set as active
+    //     this.setState({activeCard: squareItem.css[0]});
+    //     this.props.updateFinancialSummaryActiveCard(squareItem);
+    //     // title 'Net New ARR'
+    //     const selectedHeader = squareItem.header;
+    // }
+
+    // // Event handler when the Journey Card is active and clicked
+    // onJourneyCardClicked (e, index) {
+    //     e.preventDefault();
+    //     let squareItem = this.props.journeyData[index -1];
+    //     // Finds the passed props for the right card to set as active
+    //     this.setState({activeJourneyCard: squareItem.css[0]})
+    //     this.props.updateJourneySummaryActiveCard(squareItem);
+    //     // title 'Net New ARR'
+    //     const selectedTitle = squareItem.title;
+    //     const selectedSubtitle = squareItem.header;
+    // }
+    // //   Event handler for toggle change 'Financials' and 'Joruneys'
+    // onToggleButtonChanged = (e) => {
+    //     let toggleState = this.state.isToggleButtonChecked;
+    //     this.setState({isToggleButtonChecked: !toggleState},()=>{
+    //         this.props.updateSwitchFilterValue(this.state.isToggleButtonChecked);
+    //     });
+    // }
+    //Function to check state and return either Financials summary or Journeys Summary
+    // getSummaryTitle() {
+    //     if (this.props.switchFilter) {
+    //         return 'Journeys Summary'
+    //     } else {
+    //         return 'Financials Summary'
     //     }
-    //     if(prevProps.switchFilter !== this.props.switchFilter){
-    //         if(this.props.switchFilter=== false){
-    //             this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
-    //         } else{
-    //             this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
+    // }
+
+    // // Need to Refactor
+    // getColor(value, target, type, header) {
+    //     let retColor = '';
+    //     if(type === 'financial' ) {
+    //         if (value >= target) {
+    //             retColor = 'selectedCardHeaderGreen';
+    //         } else {
+    //             retColor = 'selectedCardHeaderRed';
+    //         }
+    //     } else if (type === 'journey' && header === false) {
+    //         if (value >= target) {
+    //             retColor = 'journeyBoxAlertGreen';
+    //         } else {
+    //             retColor = 'journeyBoxAlert';
+    //         }
+    //     } else if (type === 'journey' && header !== false) {
+    //         if (value >= target) {
+    //             retColor = 'journeyHeaderAlertGreen';
+    //         } else {
+    //             retColor = 'journeyHeaderAlert';
+    //         }
+    //     } else if (type === 'donut') {
+    //         if (value < target) {
+    //             retColor = '#FF0000';
+    //         } else {
+    //             retColor = '#0DB16E';
     //         }
     //     }
-    //     if(this.props.finData !== prevProps.finData && this.props.switchFilter === false){
-    //         this.props.updateFinancialSummaryActiveCard(this.props.finData[this.props.activeSummaryIndex-1])
-    //     }
-    //     if(this.props.journeyData !== prevProps.journeyData && this.props.switchFilter === true){
-    //         this.props.updateJourneySummaryActiveCard(this.props.journeyData[this.props.activeSummaryIndex-1])
-    //     }
+
+    //     return retColor;
     // }
 
-    // shouldComponentUpdate(nextProps){
-    //     if(this.props.finData !== nextProps.finData && this.props.switchFilter === false){
-    //         return true;
-    //     }  else if(this.props.journeyData !== nextProps.journeyData && this.props.switchFilter === true){
-    //         return true;
-    //     }
-    //      else if(this.props.activeFilters != nextProps.activeFilters){
-    //         this.props.getQueryFilteredIBEData(nextProps.activeFilters,this.props.availableFilters);
-    //         this.props.getQueryFilteredJourneyIBEData(nextProps.activeFilters,this.props.availableFilters);
-    //         return false;
-    //     }
-    //     else if(this.toggleCommentary !== nextProps.toggleCommentary){
-    //         return true;
-    //     } else return false;
-
-    //     return false;
+    // renderDollar(index) {
+    //     let renderDollar = '';
+    //     if (index === 1 || index === 2 ) { renderDollar = '' }
+    //     return renderDollar;
     // }
 
-    //Event handler that sets the active card
-    selectedCard (e, index) {
-        e.preventDefault();
-        let squareItem = this.props.finData[index -1]
-        // Finds the passed props for the right card to set as active
-        this.setState({activeCard: squareItem.css[0]});
-        this.props.updateFinancialSummaryActiveCard(squareItem);
-        // title 'Net New ARR'
-        const selectedHeader = squareItem.header;
-    }
+    // renderUnits(value){
+    //     let returnValue = '';
+    //     // console.log(value);
+    //     value = parseInt(value)
+    //     if (value > 1000 && value <= 999999) {
+    //         value = (value/1000).toFixed(1);
+    //         returnValue =  value.toString() + 'K';
+    //     } else if (value > 1000000 && value <= 999999999) {
+    //         value = (value/1000000).toFixed(1);
+    //         returnValue =  value.toString() + 'M';
+    //         // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
+    //     } else if (value > 1000000000 && value <= 999999999999) {
+    //         value = (value/1000000000).toFixed(1);
+    //         returnValue =  value.toString() + 'B';
+    //     } else if (value > 1000000000 && value <= 999999999999999) {
+    //         value = (parseInt(value)/1000000000000).toFixed(1);
+    //         returnValue = value.toString() + 'T';
+    //     } else {
+    //         return  value.toString();
+    //     }
+    //     return returnValue;
+    // }
+    // renderM(index) {
+    //     let renderM = '';
+    //     if (index === 1 || index === 2 ) { renderM = 'M' } else {
+    //         renderM = '%'
+    //     }
+    //     return renderM;
+    // }
 
-    // Event handler when the Journey Card is active and clicked
-    onJourneyCardClicked (e, index) {
-        e.preventDefault();
-        let squareItem = this.props.journeyData[index -1];
-        // Finds the passed props for the right card to set as active
-        this.setState({activeJourneyCard: squareItem.css[0]})
-        this.props.updateJourneySummaryActiveCard(squareItem);
-        // title 'Net New ARR'
-        const selectedTitle = squareItem.title;
-        const selectedSubtitle = squareItem.header;
-    }
-    //   Event handler for toggle change 'Financials' and 'Joruneys'
-    onToggleButtonChanged = (e) => {
-        let toggleState = this.state.isToggleButtonChecked;
-        this.setState({isToggleButtonChecked: !toggleState},()=>{
-            this.props.updateSwitchFilterValue(this.state.isToggleButtonChecked);
-        });
-    }
-    //Function to check state and return either Financials summary or Journeys Summary
-    getSummaryTitle() {
-        if (this.props.switchFilter) {
-            return 'Journeys Summary'
-        } else {
-            return 'Financials Summary'
-        }
-    }
+    // renderDollarValue(value) {
+    //     let returnValue = '';
+    //     value = parseInt(value)
+    //     if (value > 1000 && value <= 999999) {
+    //         value = (value/1000).toFixed(1);
+    //         returnValue = '$' + value.toString() + 'K';
+    //     } else if (value > 1000000 && value <= 999999999) {
+    //         value = (value/1000000).toFixed(1);
+    //         returnValue = '$' +  value.toString() + 'M';
+    //         // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
+    //     } else if (value > 1000000000 && value <= 999999999999) {
+    //         value = (value/1000000000).toFixed(1);
+    //         returnValue ='$' +  value.toString() + 'B';
+    //     } else if (value > 1000000000 && value <= 999999999999999) {
+    //         value = (parseInt(value)/1000000000000).toFixed(1);
+    //         returnValue ='$' +  value.toString() + 'T';
+    //     } else {
+    //         return '$' + value.toString();
+    //     }
+    //     return returnValue;
+    // }
 
-    // Need to Refactor
-    getColor(value, target, type, header) {
-        let retColor = '';
-        if(type === 'financial' ) {
-            if (value >= target) {
-                retColor = 'selectedCardHeaderGreen';
-            } else {
-                retColor = 'selectedCardHeaderRed';
-            }
-        } else if (type === 'journey' && header === false) {
-            if (value >= target) {
-                retColor = 'journeyBoxAlertGreen';
-            } else {
-                retColor = 'journeyBoxAlert';
-            }
-        } else if (type === 'journey' && header !== false) {
-            if (value >= target) {
-                retColor = 'journeyHeaderAlertGreen';
-            } else {
-                retColor = 'journeyHeaderAlert';
-            }
-        } else if (type === 'donut') {
-            if (value < target) {
-                retColor = '#FF0000';
-            } else {
-                retColor = '#0DB16E';
-            }
-        }
+    // onCommentIconClick = () => {
+    //         this.props.showCommentBox();
+    // }
 
-        return retColor;
-    }
-
-    renderDollar(index) {
-        let renderDollar = '';
-        if (index === 1 || index === 2 ) { renderDollar = '' }
-        return renderDollar;
-    }
-
-    renderUnits(value){
-        let returnValue = '';
-        // console.log(value);
-        value = parseInt(value)
-        if (value > 1000 && value <= 999999) {
-            value = (value/1000).toFixed(1);
-            returnValue =  value.toString() + 'K';
-        } else if (value > 1000000 && value <= 999999999) {
-            value = (value/1000000).toFixed(1);
-            returnValue =  value.toString() + 'M';
-            // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
-        } else if (value > 1000000000 && value <= 999999999999) {
-            value = (value/1000000000).toFixed(1);
-            returnValue =  value.toString() + 'B';
-        } else if (value > 1000000000 && value <= 999999999999999) {
-            value = (parseInt(value)/1000000000000).toFixed(1);
-            returnValue = value.toString() + 'T';
-        } else {
-            return  value.toString();
-        }
-        return returnValue;
-    }
-    renderM(index) {
-        let renderM = '';
-        if (index === 1 || index === 2 ) { renderM = 'M' } else {
-            renderM = '%'
-        }
-        return renderM;
-    }
-
-    renderDollarValue(value) {
-        let returnValue = '';
-        value = parseInt(value)
-        if (value > 1000 && value <= 999999) {
-            value = (value/1000).toFixed(1);
-            returnValue = '$' + value.toString() + 'K';
-        } else if (value > 1000000 && value <= 999999999) {
-            value = (value/1000000).toFixed(1);
-            returnValue = '$' +  value.toString() + 'M';
-            // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
-        } else if (value > 1000000000 && value <= 999999999999) {
-            value = (value/1000000000).toFixed(1);
-            returnValue ='$' +  value.toString() + 'B';
-        } else if (value > 1000000000 && value <= 999999999999999) {
-            value = (parseInt(value)/1000000000000).toFixed(1);
-            returnValue ='$' +  value.toString() + 'T';
-        } else {
-            return '$' + value.toString();
-        }
-        return returnValue;
-    }
-
-    onCommentIconClick = (e, commentArrayLength) => {
-            this.props.showCommentBox();
-    }
-
-    formatPercentage(value) {
-        return (value.toFixed(1) / 100).toFixed(2);
-    }
+    // formatPercentage(value) {
+    //     return (value.toFixed(1) / 100).toFixed(2);
+    // }
    
     getSummaryContent(){
         const { activeCard } = this.state;
         const { activeJourneyCard } = this.state;
          if(!this.props.switchFilter){
-            return (
-                <FinancialSquareList activeCard={activeCard} data = {this.props.finData} enableChart={this.enableChart1Arrow} selectedCard={(e,index) =>{this.selectedCard(e,index)}} />
+            return (    
+                <FinancialSummary
+                onCommentIconClick={this.onCommentIconClick}
+                toggleCommentary={this.props.toggleCommentary} 
+                activeCard={activeCard} 
+                data = {this.props.finData} 
+                enableChart1Arrow={this.enableChart1Arrow} 
+                selectedCard={(e,index) =>{this.selectedCard(e,index)}} />
+                   
             )  
         } else if(this.props.switchFilter === true) {
             return(
-                <div className="row">
-                <div className="col-lg-3 col-md-4">
-
-                {this.props.journeyData.map(item => {
-                    return (
-                    <div className="journeyBoxHover" key={item.index}>    
-             
-                    <div className={ `journeyBox ${item.css[1]} ${activeJourneyCard === item.css[0] ? this.getColor(item.value, item.target, 'journey', false) : ''}`} 
-                    onClick={e => this.onJourneyCardClicked(e, item.index)}>
-                
-                    <div  className={`journeyHeader k-float-left ${activeJourneyCard === item.css[0] ? this.getColor(item.value, item.target, 'journey', true) : ''}`} >
-                        <div className={item.css[2]}><p className="journeyHeaderTitle ">{item.title}</p></div>
-                    </div>
-
-                        {/* Image Icon For Comments */}
-                        {this.props.toggleCommentary ? (<div className="k-float-right cardCommentIcon"><img  alt="" src={item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.onCommentIconClick(e, item.comments.length)}/></div>) : null}
-                  
-                        
-                            <div className="journeyContent">
-                                <p>{item.header}</p>
-                                <div className="row">
-
-                                    {(item.index === 1 || item.index === 2) ?
-                                     <div className={`col journeysAmount k-float-left ${item.value >= item.target ? 'journeysAmountGreen' : ''}`}>{this.renderUnits(item.value)}</div>:
-                                     <div className={`col journeysAmount k-float-left ${item.value >= item.target ? 'journeysAmountGreen' : ''}`}>{this.formatPercentage(item.value)} %</div> }
-                                    
-
-                                    {(item.index === 1 || item.index === 2) ?
-                                     <div className="col journeysTarget ">TARGET {this.renderUnits(item.target)} </div>:
-                                     <div className="col journeysTarget ">TARGET {this.formatPercentage(item.target) }%</div> }
-                                </div>
-                                <div className="row k-float-left">
-                                    <div className="journeyKendoGraph">
-                                        <KendoBulletChart values={[item.value, item.target]} color="white" key={item.index} ></KendoBulletChart>
-                                    </div>
-                                </div>  
-                            </div>
-                        </div>
-                {/* </CSSTransitionGroup> */}
-
-                    </div>  
-                    );
-                })}
-                
-                </div>
-                <div className="col-lg-9 col-md-8">
-                    <ButtomSummaryBox chartHeight="550px"/>
-                </div>
-            </div>
+            <JourneySummary
+                    data={this.props.journeyData}
+                  activeJourneyCard = {activeJourneyCard}
+                  getColor={this.getColor}
+                  onJourneyCardClicked={(e,index) => {this.onJourneyCardClicked(e,index)}}
+                  toggleCommentary = {this.props.toggleCommentary}
+                  onCommentIconClick={this.onCommentIconClick} />
             )
         }
     }
@@ -287,38 +217,11 @@ class TopSummaryBox extends Component {
             summaryBox_financial: !this.props.switchFilter ? false: true
         });
 
-        // var JourneysSquareStyles = classNames({
-        //     journeySquareStyle:true
-        // });
-
-        // var JourneysSquareHeader = classNames({
-        //     journeySquareHeader: true
-        // });
-        // var JourneySquareContent = classNames({
-        //     journeySquareContent: true
-        // });
 
         return(
             
             <Grid className={SummaryBoxStyles} fluid>
-            {/* {console.log('THIS', this.props.finData)} */}
-                <CSSTransitionGroup transitionName="example"
-                    transitionAppear={true} transitionAppearTimeout={1000}
-                    transitionEnter={false} transitionLeave={false} >
-                {/* Toggle Button */}
-                <div className="container-fluid row">
-                    <div className="col-md-6 summaryTitleCol k-float-left">{this.getSummaryTitle()}</div>
-                        <div className="col-md-6 summaryTitleCol switchContainer ">
-                            <label className="switch k-float-right">
-                                <input type="checkbox" id="togBtn" checked={this.state.isToggleButtonChecked} onChange={(e) => this.onToggleButtonChanged(e)}></input>
-                                <div className="slider round">
-                                    <div className="on">Financials</div>
-                                    <div className="off">Journeys</div>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                </CSSTransitionGroup>
+                <SummaryHeader summaryTitle = {this.getSummaryTitle()} isToggleButtonChecked={this.props.switchFilter} onToggleButtonChanged={this.onToggleButtonChanged} />
                 {this.getSummaryContent()}
                 
             </Grid>
@@ -326,17 +229,5 @@ class TopSummaryBox extends Component {
     }
 }
 
-// function mapStateToProps(state) {
-//     return { 
-//         filters: state.filters, 
-//         switchFilter:state.switchFilter, 
-//         appData: state.adobeData, 
-//         finData: state.ibeData,
-//         toggleCommentary: state.toggleCommentaryBox,
-//         activeFilters: state.activeFilters,
-//         availableFilters: state.availableFilters,
-//         activeSummaryIndex: state.activeSummarySquare.index ,
-//         journeyData: state.journeyData
-//     }
-// }
+
 export default connect(null,actions)(SummaryHOC(TopSummaryBox))

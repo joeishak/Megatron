@@ -1,11 +1,9 @@
 body {
     overflow-x: hidden;
 }
-
-.bottomSummaryContainer{
-    padding-top: 80px;
-    background-color: #1f1f1f;
-    height: 100%;
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300');
+* {
+    font-family: 'Ubuntu', sans-serif;
 }
 
 /* Animation */
