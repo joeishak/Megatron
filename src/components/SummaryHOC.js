@@ -69,7 +69,7 @@ export default ChildComponent => {
                  return (
                     <ChildComponent {...this.props}   
                     data={this.props.journeyData}
-                    toggleCommentary = {this.toggleCommentary}
+                    toggleCommentary = {this.props.toggleCommentary}
                     onCommentIconClick={this.onCommentIconClick}
                    />
                  )
