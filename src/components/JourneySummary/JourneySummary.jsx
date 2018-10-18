@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import JourneySquareList from 'components/JourneySummary/JourneySquareList.jsx';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
-import classNames from 'classnames';
 import {connect} from 'react-redux';
 import  * as actions from 'actions';
 import SummaryHOC from 'components/SummaryHOC.js';
@@ -16,6 +14,16 @@ class JourneySummary extends Component {
         }
         this.onJourneyCardClicked = this.onJourneyCardClicked.bind(this);
     }
+
+    shouldComponentUpdate(nextProps,nextState){
+        if(nextProps.data !== this.props.data){
+            return true;
+        } else if(nextState.activeJourneyCard !== this.state.activeJourneyCard){
+            return true;
+        }
+
+        return false;
+    }
     formatPercentage(value) {
         return (value.toFixed(1) / 100).toFixed(2);
     }
@@ -28,8 +36,7 @@ class JourneySummary extends Component {
         this.setState({activeJourneyCard: squareItem.css[0]})
         this.props.updateJourneySummaryActiveCard(squareItem);
         // title 'Net New ARR'
-        const selectedTitle = squareItem.title;
-        const selectedSubtitle = squareItem.header;
+ 
     }
 
      // Need to Refactor

@@ -7,7 +7,6 @@ const token = 'Basic ' + btoa(InfoburstAzure.user + ':' + InfoburstAzure.pass);
 const headers = {'Authorization': token , 'Accept': '*/*'};
 let responseArray = [];
 let promiseArr =[];
-let quarterQuery;
 let filterParams = [
     {prompt: 'quarterFilters', value: ''},
     {prompt: 'productFilters', value: ''},
@@ -110,6 +109,8 @@ export function generateFilterParams(type,filterParams, allFilters, _activeParam
       filterParams[4].value = getParamValues(_activeParams.routes,allFilters.routeToMarkets);
       filterParams[5].value = getParamValues(_activeParams.segments,allFilters.segments);
       break;
+      default: 
+      break;
     }
    
 
@@ -187,7 +188,6 @@ export function initiateFilterDataRequests(){
 
 export function getFinancialSummaryData(allFilters, _parameters){
   responseArray = [];
-  promiseArr = [];
 
  // filterParams[0].value = _parameters.quarters[0].value;
  filterParams[1].value = _parameters.products[0].value;
@@ -197,8 +197,6 @@ export function getFinancialSummaryData(allFilters, _parameters){
  filterParams[5].value = _parameters.routes[0].value;
  filterParams[6].value = _parameters.segments[0].value;
 
- // console.log('Filter Params: ', filterParams);
- quarterQuery = Object.assign({},_parameters.quarters[0]);
 
  // Remove First Row from all the filters 
  // Contains All Data Filters
@@ -243,14 +241,11 @@ export function getJourneySummaryData(allFilters,_parameters){
     filterParams[5].value = _parameters.segments[0].value;
 
 
-    // console.log('Filter Params: ', filterParams);
-    quarterQuery = Object.assign({},_parameters.quarters[0]);
 
     // Remove First Row from all the filters 
     // Contains All Data Filters
     // allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
     generateFilterParams('journ',filterParams,allFilters,_parameters);
-    console.log(filterParams);
     let params1 = filterParams.reduce((prev, param) => {
             let p = '';
             p = prev + '&' + param.prompt + '=' + param.value;
@@ -269,7 +264,6 @@ export function getJourneySummaryData(allFilters,_parameters){
 
       const geoResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyGeoQtd  + params1 + '&json=1', 
       {headers: headers, responseType: 'text'});
-      console.log(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyGeoQtd  + params1 + '&json=1');
       const maResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyMarketAreaQtd  + params1 + '&json=1', 
       {headers: headers, responseType: 'text'});
       responseArray.push(response,multiChartResponse, totalresponse, geoResponse,maResponse);
@@ -282,7 +276,6 @@ export function getJourneyQtdData(allFilters,_parameters){
   responseArray = [];
   promiseArr = [];
 
-// console.log(_parameters);
    let filterParams = [
         {prompt: 'quarterFilters', value: ''},
         {prompt: 'productFilters', value: ''},
@@ -297,8 +290,6 @@ filterParams[2].value = _parameters.geos[0].value;
 filterParams[3].value = _parameters.markets[0].value;
 filterParams[4].value = _parameters.routes[0].value;
 filterParams[5].value = _parameters.segments[0].value;
-// console.log('Filter Params: ', filterParams);
-quarterQuery = Object.assign({},_parameters.quarters[0]);
 
 // Remove First Row from all the filters 
 // Contains All Data Filters
@@ -317,7 +308,6 @@ let params1 = filterParams.reduce((prev, param) => {
 
   const geoResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyGeoQtd  + params1 + '&json=1', 
   {headers: headers, responseType: 'text'});
-  console.log(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyGeoQtd  + params1 + '&json=1');
   const maResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyMarketAreaQtd  + params1 + '&json=1', 
   {headers: headers, responseType: 'text'});
   responseArray.push(response,geoResponse,maResponse);

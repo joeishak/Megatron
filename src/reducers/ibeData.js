@@ -29,7 +29,6 @@ export default function(state = FinancialData.squares, action) {
         case GET_QUERY_FILTERED_IBE_DATA:
 
 
-            console.log('GET QUERY IBE DATA',action.payload);
 
                 let item = action.payload[0].data[0];
 
@@ -67,7 +66,6 @@ export default function(state = FinancialData.squares, action) {
              for(let i = 0; i< action.payload[1].data.length; i++) {
                  let item = action.payload[1].data[i];
  
-                 // console.log(item.NetNewARRActual);
                  netArr.actual.push(item.NetNewARRActual);
                  netArr.target.push(item.NetNewARRTarget);
                  netArr.ly.push(item.NetNewARRLY);
@@ -148,7 +146,6 @@ export default function(state = FinancialData.squares, action) {
                for(let i = 0; i< action.payload[2].data.length; i++) {
                 let item = action.payload[2].data[i];
 
-                // console.log(item.NetNewARRActual);
                 netUnits.actual.push(item.NetNewUnitsActual);
                 netUnits.target.push(item.NetNewUnitsTarget);
                 netUnits.ly.push(item.NetNewUnitsLY);
@@ -197,77 +194,7 @@ export default function(state = FinancialData.squares, action) {
                
               }
                
-            //    console.log([...squares])
         return [...squares];
-      
-            case GET_QUERY_FILTERED_IBE_MULTICHART_DATA:
-            //    console.log(action.payload);
-            // let netArr = {
-            //    actual: [],
-            //    target: [],
-            //    ly: []
-            // }
-            // let netCancellations = {
-            //     actual: [],
-            //     target: [],
-            //     ly: []
-            // };
-            // let grossArr = {
-            //     actual: [],
-            //     target: [],
-            //     ly: []
-            // };
-            // let termRenewal = {
-            //     actual: [],
-            //     target: [],
-            //     ly: []
-            // };
-           
-            // for(let i = 0; i< action.payload[0].data.length; i++) {
-            //     let item = action.payload[0].data[i];
-                
-
-            //     // console.log(item.NetNewARRActual);
-            //     netArr.actual.push(item.NetNewARRActual);
-            //     netArr.target.push(item.NetNewARRTarget);
-            //     netArr.ly.push(item.NetNewARRLY);
-                
-            //     netCancellations.actual.push(item.NetCancellationARRActual);
-            //     netCancellations.target.push(item.NetCancellationARRTarget);
-            //     netCancellations.ly.push(item.NetCancellationsARRLY);
-
-            //     grossArr.actual.push(item.GrossNewARRActual);
-            //     grossArr.target.push(item.GrossNewARRTarget);
-            //     grossArr.ly.push(item.GrossNewARRLY);
-                
-            //     termRenewal.actual.push(item.RenewalAtFPActual);
-            //     termRenewal.target.push(item.RenewalAtFPTarget);
-            //     termRenewal.ly.push(item.TermEndRenewalLY);
-            
-            // };
-
-            // for (let i = 0; i < squares.length; i++) {
-            //     switch(i){
-            //         case 0:
-            //         state[i].details.multichart = [netArr.actual,netArr.target,netArr.ly]
-            //         break;
-            //         case 1:
-            //         state[i].details.multichart = [grossArr.actual,grossArr.target,grossArr.ly]
-            //         break;
-            //         case 2: 
-            //         state[i].details.multichart = [netCancellations.actual,netCancellations.target,netCancellations.ly]
-            //         break;
-            //         case 3: 
-            //         state[i].details.multichart = [termRenewal.actual,termRenewal.target,termRenewal.ly]
-            //         break;
-            //         default:
-            //            break;
-            //     }
-               
-             
-            // };
-            // console.log([...state]);
-            return [...state];
         //Case for adding a new comment
             case ADD_NEW_COMMENT: 
                  index = action.payload.square-1;
@@ -316,7 +243,6 @@ function processMultiChartData(action,state){
          let item = action.payload[0].data[i];
          
 
-         // console.log(item.NetNewARRActual);
          netArr.actual.push(item.NetNewARRActual);
          netArr.target.push(item.NetNewARRTarget);
          netArr.ly.push(item.NetNewARRLY);
@@ -355,6 +281,5 @@ function processMultiChartData(action,state){
         
       
      };
-     // console.log([...state]);
      return [...state];
 }

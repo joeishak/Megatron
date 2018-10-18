@@ -82,7 +82,6 @@ class App extends Component {
       )
       case false:
       if(this.props.switchFilter === false){
-    console.log('im here');
         return (
           <div style={{height:'100%'}}>
           <FinancialSummary  />

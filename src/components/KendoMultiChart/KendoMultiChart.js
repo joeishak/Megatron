@@ -13,7 +13,6 @@ import {
     ChartValueAxis,
     ChartValueAxisItem,
     ChartArea,
-    ChartAxisDefaults,
     ChartSeriesItemTooltip,
     ChartTooltip,
     ChartLegend
@@ -37,7 +36,6 @@ class KendoMultiChart extends Component {
     }
  
     formatYAxisValues = (valuesArr) => {
-        // console.log(valuesArr);
         const returnValuesArr = valuesArr.map(ele => {
             if(ele> 1000000)
             return (ele/1000000);
@@ -47,52 +45,7 @@ class KendoMultiChart extends Component {
         return returnValuesArr;
     }
 
-    // renderDollarValue(value) {
-    //     // 1000 - 100000
-    //     // 1000000 - 1000000000
-    //     let hundredLength = 3;
-    //     let thousandsLength = 6;
-    //     let millionsLength =  9;
-    //     let billionsLength =  12;
-    //     let trillionsLength = 15;
-    //     let suffix = 'K';
-
-    //     let returnValue = '';
-
-
-    //     value = parseInt(value)
-    //     // TODO ** Count only the left side of the decimal
-    //     let length = value.toString().length;
-    //     // console.log(value);
-    //     if (value > 0 && value <=999){
-    //         this.setState({yAxisText: 'Hundreds'});
-    //         return value;
-            
-    //     }
-    //     else if (value >= 1000 && length <= 999999) {
-    //         this.setState({yAxisText: 'Thousands'});
-
-    //         value = (value/1000).toFixed(2);
-    //         returnValue = value ;
-    //     } else if (value >= 1000000 && length <= 999999999) {
-    //         value = (value/1000000).toFixed(2);
-    //         returnValue = value ;
-            
-    //         // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
-    //     } else if (length >= 1000000000 && length <= 999999999999) {
-    //         value = (value/1000000).toFixed(2);
-    //         returnValue = value ;
-
-    //     } else if (length > 1000000000000 <= 999999999999999) {
-    //         value = (parseInt(value)/100000000).toFixed(2);
-    //         returnValue = value ;
-    //     }
-
-    //     return parseFloat(returnValue);
-    // }
-
     labelContent(e){
-        // console.log(e.value);
         const suffix = ' M';
         const prefix = '$';
         return ( prefix + (parseInt(e.value)/ 1000000) + suffix);
@@ -120,10 +73,7 @@ class KendoMultiChart extends Component {
     }
     render(){
 
-        // check if the toggle is journeys, check if index is 3, 4, 5, 6
-        let isJourneys = this.props.switchFilter;
-        let isPercentMulti = this.state.multiChartValidIndexes.includes(this.props.activeSummarySquare.index);
-        let isUnitsMulti = this.props.activeSummarySquare === 2;
+
 
         const chartData = (this.props.multichartMetric ? this.props.activeMultichart : this.props.activeUnits);
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
@@ -183,7 +133,6 @@ class KendoMultiChart extends Component {
 
 }
 function mapStateToProps(state){
-    console.log('JR', state)
     return { 
         switchFilter: state.switchFilter, 
         activeSummarySquare: state.activeSummarySquare,

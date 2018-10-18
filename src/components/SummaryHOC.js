@@ -7,15 +7,17 @@ import classNames from 'classnames';
 import * as actions from '../actions';
 export default ChildComponent => {
     class ComposedComponent extends Component {
+     
         componentDidUpdate(prevProps){
-            if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
-                this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
-                this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
-            }
+            // if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
+            //     this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
+            //     this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
+            // }
             if(prevProps.switchFilter !== this.props.switchFilter){
-                if(this.props.switchFilter=== false){
+                if(this.props.switchFilter === false){
                     this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
                 } else{
+                    console.log('Update Active Journey');
                     this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
                 }
             }
@@ -30,17 +32,13 @@ export default ChildComponent => {
         shouldComponentUpdate(nextProps){
             if(this.props.finData !== nextProps.finData && this.props.switchFilter === false){
                 return true;
-            }  else if(this.props.journeyData !== nextProps.journeyData && this.props.switchFilter === true){
+            }  
+            else if(this.props.journeyData !== nextProps.journeyData && this.props.switchFilter === true){
                 return true;
             }
-             else if(this.props.activeFilters != nextProps.activeFilters){
-                this.props.getQueryFilteredIBEData(nextProps.activeFilters,this.props.availableFilters);
-                this.props.getQueryFilteredJourneyIBEData(nextProps.activeFilters,this.props.availableFilters);
-                return false;
-            }
-            else if(this.toggleCommentary !== nextProps.toggleCommentary){
+            else if(this.props.toggleCommentary !== nextProps.toggleCommentary){
                 return true;
-            } else return false;
+            } 
     
             return false;
         }
@@ -51,10 +49,12 @@ export default ChildComponent => {
 
          //   Event handler for toggle change 'Financials' and 'Joruneys'
         onToggleButtonChanged = (e) => {
-            // let toggleState = this.state.isToggleButtonChecked;
-            // this.setState({isToggleButtonChecked: !toggleState},()=>{
                 this.props.updateSwitchFilterValue(!this.props.switchFilter);
-            // });
+                    if(!this.props.switchFilter === true){
+                        this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
+                    } else {
+                        this.props.updateFinancialSummaryActiveCard(this.props.finData[0]);
+                    }
         }
         //Function to check state and return either Financials summary or Journeys Summary
         getSummaryTitle() {

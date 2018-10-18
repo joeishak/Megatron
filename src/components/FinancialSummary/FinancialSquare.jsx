@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
 import { CSSTransitionGroup } from 'react-transition-group';
 import commentIconOn from '../../assets/images/comments-on.svg';
 import commentIconOff from '../../assets/images/comments-off.svg';
 import styles from './FinancialSummary.css';
 class FinancialSquare extends Component {
-    constructor(props){
-        super(props);
-        // this.state = {};
-        
-    }
+  
+    
     renderM(index) {
         let renderM = '';
         if (index === 1 || index === 2 ) { renderM = 'M' } else {

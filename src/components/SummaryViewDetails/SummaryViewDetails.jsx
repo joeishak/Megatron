@@ -12,12 +12,8 @@ import KendoMultiChart from '../KendoMultiChart/KendoMultiChart';
 // Custom Components
 import Workbook from 'react-excel-workbook'
 import excelLogo from '../../assets/images/excel-logo.png';
-
-
 // Services
 import ExcelFormatter from './ExcelFormatter';
-// Custom Nivo Components
-// import { changeAuth } from '../actions';
 
 
 class SummaryViewDetails extends Component {
@@ -255,7 +251,7 @@ class SummaryViewDetails extends Component {
       console.log('Getting new data');
       this.props.getQueryFilteredIBEData(this.props.activeFilters,prevProps.availableFilters);
       this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,prevProps.availableFilters);
-      // this.props.getFilteredJourneyQtdData(this.props.activeFilters,this.props.availableFilters);
+      this.props.getFilteredJourneyQtdData(this.props.activeFilters,this.props.availableFilters);
 
     }
     console.log(this.props.journeyData, prevProps.journeyData)
@@ -265,15 +261,7 @@ class SummaryViewDetails extends Component {
 
     }
   }
-  shouldComponentUpdate(nextProps){
-    // if(this.props.journeyData !== nextProps.journeyData){
-    //   return true;
-    // }
-
-    console.log('Old and New Journey Geo Data: ',nextProps.journeyData[0].details.geo.qtd, this.props.journeyData[0].details.geo.qtd);
-    console.log('Im Here');
-    return true;
-  }
+ 
  
  updateMultiChartMetricFilter(e){
    let metric = e.target.innerHTML.toLowerCase();
@@ -443,6 +431,7 @@ detailsRenderDollar(item) {
  }
  
  closeSummary(){
+  this.props.updateMultichartMetric(true);
   this.props.hideSummaryDetails();
  }
   render(){

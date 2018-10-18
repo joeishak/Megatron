@@ -297,7 +297,20 @@
 }
 
 
-
+.valueText{
+	font-size:30px;
+	display:block;
+}
+.targetText{
+	font-size:11px;
+	display:block;
+	padding:0px;
+}
+.targetValueText{
+	font-size:16px;
+	display:block;
+	padding:0px;
+}
 
 
 .summaryBox{

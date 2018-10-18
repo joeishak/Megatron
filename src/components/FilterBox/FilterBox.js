@@ -78,7 +78,7 @@ class FilterBox extends Component {
             filterBarArr.map(filter =>{
                 if(filter!==undefined){
                     return <FilterPillBox key={filter.index} data={filter} />
-                }
+                } else return <span />
             })
         )
     } 

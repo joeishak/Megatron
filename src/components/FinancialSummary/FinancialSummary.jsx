@@ -21,6 +21,15 @@ class FinancialSummary extends Component {
         this.selectedCard = this.selectedCard.bind(this);
     }
 
+    shouldComponentUpdate(nextProps,nextState){
+        if(nextProps.data !== this.props.data){
+            return true;
+        } else if(nextState.activeCard !== this.state.activeCard){
+            return true;
+        }
+
+        return false;
+    }
     //Event handlers for each chart square to render the arrow
     enableChart1Arrow(event){
         this.props.handleSummaryClick(1);

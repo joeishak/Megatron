@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import JourneySquare from './JourneySquare.jsx';
 class JourneySquareList extends Component {
     render(){
