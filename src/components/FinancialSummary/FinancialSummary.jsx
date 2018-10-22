@@ -27,6 +27,9 @@ class FinancialSummary extends Component {
         } else if(nextState.activeCard !== this.state.activeCard){
             return true;
         }
+        if(this.props.toggleCommentary!== nextProps.toggleCommentary){
+            return true;
+        }
 
         return false;
     }

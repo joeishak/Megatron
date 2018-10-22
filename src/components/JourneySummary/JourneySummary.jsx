@@ -21,7 +21,9 @@ class JourneySummary extends Component {
         } else if(nextState.activeJourneyCard !== this.state.activeJourneyCard){
             return true;
         }
-
+        if(this.props.toggleCommentary!== nextProps.toggleCommentary){
+            return true;
+        }
         return false;
     }
     formatPercentage(value) {

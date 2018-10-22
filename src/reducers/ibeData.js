@@ -27,41 +27,35 @@ export default function(state = FinancialData.squares, action) {
     switch(action.type) {
         
         case GET_QUERY_FILTERED_IBE_DATA:
-
-
-
-                let item = action.payload[0].data[0];
-
-              totalNetNewARRActual +=  item.NetNewARRActual;
-              totalNetNewARRTarget += item.NetNewARRTarget
-              totalCancellationsActual +=  item.NetCancellationARRActual;
-              totalCancellationsTarget +=  item.NetCancellationARRTarget;
-              totalGrossActual +=          item.GrossNewARRActual;
-              totalGrossTarget +=          item.GrossNewARRTarget;
-              totalRenewalActual +=        item.RenewalAtFPActual;
-              totalRenewalTarget+=        item.RenewalAtFPTarget;
-
-
-              let netArr = {
+            let item = action.payload[0].data[0];
+            totalNetNewARRActual +=  item.NetNewARRActual;
+            totalNetNewARRTarget += item.NetNewARRTarget
+            totalCancellationsActual +=  item.NetCancellationARRActual;
+            totalCancellationsTarget +=  item.NetCancellationARRTarget;
+            totalGrossActual +=          item.GrossNewARRActual;
+            totalGrossTarget +=          item.GrossNewARRTarget;
+            totalRenewalActual +=        item.RenewalAtFPActual;
+            totalRenewalTarget+=        item.RenewalAtFPTarget;
+            let netArr = {
                 actual: [],
                 target: [],
                 ly: []
-             }
-             let netCancellations = {
-                 actual: [],
-                 target: [],
-                 ly: []
-             };
-             let grossArr = {
-                 actual: [],
-                 target: [],
-                 ly: []
-             };
-             let termRenewal = {
-                 actual: [],
-                 target: [],
-                 ly: []
-             };
+            }
+            let netCancellations = {
+                actual: [],
+                target: [],
+                ly: []
+            };
+            let grossArr = {
+                actual: [],
+                target: [],
+                ly: []
+            };
+            let termRenewal = {
+                actual: [],
+                target: [],
+                ly: []
+            };
             
              for(let i = 0; i< action.payload[1].data.length; i++) {
                  let item = action.payload[1].data[i];
@@ -84,7 +78,6 @@ export default function(state = FinancialData.squares, action) {
              
              };
        
-           // if (actuals[0] !== undefined && targets[0] !== undefined) {
                for (let i = 0; i < squares.length; i++) {
                    switch(i){
                        case 0:
@@ -101,13 +94,11 @@ export default function(state = FinancialData.squares, action) {
                        currentActual = totalCancellationsActual;
                        currentTarget = totalCancellationsTarget;
                        currentMulti  =  [netCancellations.actual,netCancellations.target,netCancellations.ly];
-
                        break;
                        case 3: 
                        currentActual = totalRenewalActual;
                        currentTarget =  totalRenewalTarget;
                        currentMulti  = [termRenewal.actual,termRenewal.target,termRenewal.ly];
-
                        break;
                        default:
                        break;
@@ -117,35 +108,32 @@ export default function(state = FinancialData.squares, action) {
                    squares[i]['details'].multichart = currentMulti;
                 
                }
-               
 
                ///Units Multichart
-           
 
-               let netUnits = {
+            let netUnits = {
                 actual: [],
                 target: [],
                 ly: []
-             }
-             let netCancUnits = {
-                 actual: [],
-                 target: [],
-                 ly: []
-             };
-             let grossUnits = {
-                 actual: [],
-                 target: [],
-                 ly: []
-             };
-             let termUnits = {
-                 actual: [],
-                 target: [],
-                 ly: []
-             };
+            }
+            let netCancUnits = {
+                actual: [],
+                target: [],
+                ly: []
+            };
+            let grossUnits = {
+                actual: [],
+                target: [],
+                ly: []
+            };
+            let termUnits = {
+                actual: [],
+                target: [],
+                ly: []
+            };
             
-               for(let i = 0; i< action.payload[2].data.length; i++) {
+            for(let i = 0; i< action.payload[2].data.length; i++) {
                 let item = action.payload[2].data[i];
-
                 netUnits.actual.push(item.NetNewUnitsActual);
                 netUnits.target.push(item.NetNewUnitsTarget);
                 netUnits.ly.push(item.NetNewUnitsLY);
@@ -153,7 +141,6 @@ export default function(state = FinancialData.squares, action) {
                 netCancUnits.actual.push(item.CancellationUnitsActual);
                 netCancUnits.target.push(item.CancellationUnitsTarget);
                 netCancUnits.ly.push(item.CancellationsUnitsLY);
-
                 grossUnits.actual.push(item.GrossNewUnitsActual);
                 grossUnits.target.push(item.GrossNewUnitsTarget);
                 grossUnits.ly.push(item.GrossNewUnitsLY);
@@ -161,56 +148,45 @@ export default function(state = FinancialData.squares, action) {
                 termUnits.actual.push(item.TermEndUnitsActual);
                 termUnits.target.push(item.TermEndUnitsTarget);
                 termUnits.ly.push(item.TermEndRenewalUnitsLY);
-            
             };
       
-        let newMulti;
+            let newMulti;
           // if (actuals[0] !== undefined && targets[0] !== undefined) {
               for (let i = 0; i < squares.length; i++) {
                   switch(i){
                       case 0:
-                
                       newMulti  = [netUnits.actual,netUnits.target,netUnits.ly];
                       break;
                       case 1:
-      
                       newMulti  = [grossUnits.actual,grossUnits.target,grossUnits.ly];
                       break;
                       case 2: 
- 
                       newMulti  =  [netCancUnits.actual,netCancUnits.target,netCancUnits.ly];
-
                       break;
                       case 3: 
-
                       newMulti  = [termUnits.actual,termUnits.target,termUnits.ly];
-
                       break;
                       default:
                       break;
                   }
-         
                   squares[i]['details'].unitMultichart = newMulti;
-               
               }
                
-        return [...squares];
+            return [...squares];
         //Case for adding a new comment
-            case ADD_NEW_COMMENT: 
-                 index = action.payload.square-1;
-                 copyOfSquare = Object.assign({},state[index]);
+        case ADD_NEW_COMMENT: 
+                index = action.payload.square-1;
+                copyOfSquare = Object.assign({},state[index]);
                 copyOfSquare.comments.push(action.payload.comment);
                 state[index] = copyOfSquare;
             return [...state];
         // CAse for adding a reply to a previous comment
         case ADD_NEW_REPLY:
-
-        index = action.payload.square-1;
-        copyOfSquare = Object.assign({},state[index]);
-        let commentIndex = Number(action.payload.comment)
-        copyOfSquare.comments[commentIndex].replies.push(action.payload.reply);
-        state[index] = copyOfSquare;
-
+            index = action.payload.square-1;
+            copyOfSquare = Object.assign({},state[index]);
+            let commentIndex = Number(action.payload.comment)
+            copyOfSquare.comments[commentIndex].replies.push(action.payload.reply);
+            state[index] = copyOfSquare;
         return [...state]
         default: 
             return state;

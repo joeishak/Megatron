@@ -3,7 +3,6 @@ import {
   
 } from 'actions/types';
 import _ from 'lodash';
-// import data from '../data.json';
 
 let count = 0;
 let defaultState = [];
@@ -11,8 +10,6 @@ let defaultState = [];
 export default function(state = defaultState, action) {
     switch(action.type) {
         case GENERATE_FILTER_DATA:
-
-        // console.log(action.payload);
         let quarterFilters = action.payload[0].data;
         let marketsFilters = action.payload[1].data;
         let productsFilters = action.payload[2].data;
@@ -20,8 +17,6 @@ export default function(state = defaultState, action) {
         let subscriptionsFilters = action.payload[4].data;
         let routesFilters = action.payload[5].data;
         let geosFilters = action.payload[6].data;
-
-
         let newGeoState = processDropDownListFilterValue('geos',geosFilters);
         let newMAState = processDropDownListFilterValue('marketAreas',marketsFilters);
         let newProductState = processDropDownListFilterValue('productNames',productsFilters);
@@ -30,7 +25,6 @@ export default function(state = defaultState, action) {
         let newSubscriptionState = processDropDownListFilterValue('subscriptionOfferings',subscriptionsFilters);
         let newQuartersState = processDropDownListFilterValue('quarters',quarterFilters);
 
-        
         newGeoState.unshift({
             index: count++,
             category: 'geos',
@@ -51,14 +45,12 @@ export default function(state = defaultState, action) {
             category: 'routeToMarkets',
             value: 'All Data'
         });
-        
         newSubscriptionState.unshift({
             index: count++,
             category: 'subscriptionOfferings',
             value: 'All Data'
         });
     
-
         if(defaultState===[]){
             defaultState = {
                 quarters: newQuartersState,
@@ -70,7 +62,6 @@ export default function(state = defaultState, action) {
                 segments: newSegmentsState,
             }
         }
-    
 
         return {
             quarters: newQuartersState,

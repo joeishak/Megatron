@@ -22,7 +22,6 @@ class KendoPanelBar extends Component {
     }
  
    shouldComponentUpdate(nextProps){
-       console.log('Kendo PBAR' ,this.props.activeSummary,nextProps.activeSummary);
     return true;
    }
    

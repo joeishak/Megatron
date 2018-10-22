@@ -49,32 +49,32 @@ export default function(state = JourneyData.squares, action) {
           actual: [],
           target: [],
           ly: []
-       }
-       let newQfm = {
-           actual: [],
-           target: [],
-           ly: []
-       };
-       let paymentFailures = {
-           actual: [],
-           target: [],
-           ly: []
-       };
-       let repeatUserMau = {
-           actual: [],
-           target: [],
-           ly: []
-       };
-       let uiCancel = {
-        actual: [],
-        target: [],
-        ly: []
-    };
-    let traffic = {
-        actual: [],
-        target: [],
-        ly: []
-    };
+        }
+        let newQfm = {
+            actual: [],
+            target: [],
+            ly: []
+        };
+        let paymentFailures = {
+            actual: [],
+            target: [],
+            ly: []
+        };
+        let repeatUserMau = {
+            actual: [],
+            target: [],
+            ly: []
+        };
+        let uiCancel = {
+            actual: [],
+            target: [],
+            ly: []
+            };
+            let traffic = {
+                actual: [],
+                target: [],
+                ly: []
+            };
       
        for(let i = 0; i< action.payload[1].data.length; i++) {
            let item = action.payload[1].data[i];
@@ -103,9 +103,8 @@ export default function(state = JourneyData.squares, action) {
            traffic.target.push(item.TrafficTarget);
            traffic.ly.push(item.TrafficLy);
        
-       };
+        };
  
-     // if (actuals[0] !== undefined && targets[0] !== undefined) {
          for (let i = 0; i < squares.length; i++) {
              switch(i){
                  case 0:
@@ -139,8 +138,6 @@ export default function(state = JourneyData.squares, action) {
                  currentTarget =  totalPaymentFailureTarget;
                  currentMulti  = [paymentFailures.actual,paymentFailures.target,paymentFailures.ly];
                  break;
-
-
                  break;
                  default:
                  break;
@@ -148,56 +145,54 @@ export default function(state = JourneyData.squares, action) {
              squares[i]['value'] = currentActual;
              squares[i]['target'] = currentTarget ;  
              squares[i]['details'].multichart = currentMulti;
-          
          }
-
          //Journeys QTD Total
-        let data = action.payload[2].data[0];
+            let data = action.payload[2].data[0];
 
-        let trafficSquare       = JSON.parse(JSON.stringify(squares[0].details.qtdw.qtd));
-        let newQfmSquare        = JSON.parse(JSON.stringify(squares[1].details.qtdw.qtd));
-        let conversionSquare    = JSON.parse(JSON.stringify(squares[2].details.qtdw.qtd));
-        let repeatSquare        = JSON.parse(JSON.stringify(squares[3].details.qtdw.qtd));
-        let qtrUiSquare         = JSON.parse(JSON.stringify(squares[4].details.qtdw.qtd));
-        let qtrFailureSquare    = JSON.parse(JSON.stringify(squares[5].details.qtdw.qtd));
+            let trafficSquare       = JSON.parse(JSON.stringify(squares[0].details.qtdw.qtd));
+            let newQfmSquare        = JSON.parse(JSON.stringify(squares[1].details.qtdw.qtd));
+            let conversionSquare    = JSON.parse(JSON.stringify(squares[2].details.qtdw.qtd));
+            let repeatSquare        = JSON.parse(JSON.stringify(squares[3].details.qtdw.qtd));
+            let qtrUiSquare         = JSON.parse(JSON.stringify(squares[4].details.qtdw.qtd));
+            let qtrFailureSquare    = JSON.parse(JSON.stringify(squares[5].details.qtdw.qtd));
         
-       trafficSquare[0].value = data.TrafficActual;
-       trafficSquare[5].value = data.TrafficQQ;
-       trafficSquare[2].value = data.TrafficTarget;
-       trafficSquare[6].value = data.TraficYY;
-       trafficSquare[4].value = data.TrafficVSQrf;
+        trafficSquare[0].value = data.TrafficActual;
+        trafficSquare[5].value = data.TrafficQQ;
+        trafficSquare[2].value = data.TrafficTarget;
+        trafficSquare[6].value = data.TraficYY;
+        trafficSquare[4].value = data.TrafficVSQrf;
 
-       newQfmSquare[0].value = data.NewQfmActual;
-       newQfmSquare[5].value = data.NewQfmQQ;
-       newQfmSquare[2].value = data.NewQfmTarget;
-       newQfmSquare[6].value = data.NewQfmYY;
-       newQfmSquare[4].value = data.NewQfmVSQrf;
-
-
-       conversionSquare[0].value = data.ConversionActual
-       conversionSquare[5].value = data.ConversionQQ
-       conversionSquare[2].value = data.ConversionTarget
-       conversionSquare[6].value = data.ConversionYY
-       conversionSquare[4].value = data.ConversionQfmVSQrf
+        newQfmSquare[0].value = data.NewQfmActual;
+        newQfmSquare[5].value = data.NewQfmQQ;
+        newQfmSquare[2].value = data.NewQfmTarget;
+        newQfmSquare[6].value = data.NewQfmYY;
+        newQfmSquare[4].value = data.NewQfmVSQrf;
 
 
-       repeatSquare[0].value = data.RepeatUserMauActual
-       repeatSquare[5].value = data.RepeatUserMauQfmQQ
-       repeatSquare[2].value = data.RepeatUserMauTarget
-       repeatSquare[6].value = data.RepeatUserMauQfmYY
-       repeatSquare[4].value = data.RepeatUserMautQfmVSQrf
+        conversionSquare[0].value = data.ConversionActual
+        conversionSquare[5].value = data.ConversionQQ
+        conversionSquare[2].value = data.ConversionTarget
+        conversionSquare[6].value = data.ConversionYY
+        conversionSquare[4].value = data.ConversionQfmVSQrf
 
-      qtrUiSquare[0].value = data.UiCancelRateActual
-      qtrUiSquare[5].value = data.UiCancelRateQQ
-      qtrUiSquare[2].value = data.UiCancelRateTarget
-      qtrUiSquare[6].value = data.UiCancelRateYY
-      qtrUiSquare[4].value = data.UiCancelRateVSQrf
 
-       qtrFailureSquare[0].value = data.PaymentFailureRateActual
-       qtrFailureSquare[5].value = data.PaymentFailureRateQQ
-       qtrFailureSquare[2].value = data.PaymentFailureRateTarget
-       qtrFailureSquare[6].value = data.PaymentFailureRateYY
-       qtrFailureSquare[4].value = data.PaymentFailureRateVSQrf
+        repeatSquare[0].value = data.RepeatUserMauActual
+        repeatSquare[5].value = data.RepeatUserMauQfmQQ
+        repeatSquare[2].value = data.RepeatUserMauTarget
+        repeatSquare[6].value = data.RepeatUserMauQfmYY
+        repeatSquare[4].value = data.RepeatUserMautQfmVSQrf
+
+        qtrUiSquare[0].value = data.UiCancelRateActual
+        qtrUiSquare[5].value = data.UiCancelRateQQ
+        qtrUiSquare[2].value = data.UiCancelRateTarget
+        qtrUiSquare[6].value = data.UiCancelRateYY
+        qtrUiSquare[4].value = data.UiCancelRateVSQrf
+
+        qtrFailureSquare[0].value = data.PaymentFailureRateActual
+        qtrFailureSquare[5].value = data.PaymentFailureRateQQ
+        qtrFailureSquare[2].value = data.PaymentFailureRateTarget
+        qtrFailureSquare[6].value = data.PaymentFailureRateYY
+        qtrFailureSquare[4].value = data.PaymentFailureRateVSQrf
 
         
          data = action.payload[3].data;
@@ -303,41 +298,35 @@ export default function(state = JourneyData.squares, action) {
              qtrFailArr.push(qtrf);
             
          }
-
-         
-         squares[0]['details'].qtdw.qtd = trafficSquare;
-         squares[1]['details'].qtdw.qtd = newQfmSquare;
-         squares[2]['details'].qtdw.qtd = conversionSquare;
-         squares[3]['details'].qtdw.qtd = repeatSquare;
-         squares[4]['details'].qtdw.qtd = qtrUiSquare;
-         squares[5]['details'].qtdw.qtd = qtrFailureSquare;
+            squares[0]['details'].qtdw.qtd = trafficSquare;
+            squares[1]['details'].qtdw.qtd = newQfmSquare;
+            squares[2]['details'].qtdw.qtd = conversionSquare;
+            squares[3]['details'].qtdw.qtd = repeatSquare;
+            squares[4]['details'].qtdw.qtd = qtrUiSquare;
+            squares[5]['details'].qtdw.qtd = qtrFailureSquare;
 
 
-         squares[0]['details'].geo.qtd = traffArr;
-         squares[1]['details'].geo.qtd = qfmArr;
-         squares[2]['details'].geo.qtd = convArr;
-         squares[3]['details'].geo.qtd = repArr;
-         squares[4]['details'].geo.qtd = qtrUiArr;
-         squares[5]['details'].geo.qtd = qtrFailArr;
-        //  let newState = Object.assign([], state);
-         
-        return [...squares];
-    //     //Case for adding a new comment
+            squares[0]['details'].geo.qtd = traffArr;
+            squares[1]['details'].geo.qtd = qfmArr;
+            squares[2]['details'].geo.qtd = convArr;
+            squares[3]['details'].geo.qtd = repArr;
+            squares[4]['details'].geo.qtd = qtrUiArr;
+            squares[5]['details'].geo.qtd = qtrFailArr;
+            return [...squares];
+        //Case for adding a new comment
         case ADD_NEW_JOURNEY_COMMENT: 
-                 index = action.payload.square-1;
-                 copyOfSquare = Object.assign({},state[index]);
-                copyOfSquare.comments.push(action.payload.comment);
-                state[index] = copyOfSquare;
+            index = action.payload.square-1;
+            copyOfSquare = Object.assign({},state[index]);
+            copyOfSquare.comments.push(action.payload.comment);
+            state[index] = copyOfSquare;
         return [...state];
         // CAse for adding a reply to a previous comment
         case ADD_NEW_JOURNEY_REPLY:
-
-        index = action.payload.square-1;
-        copyOfSquare = Object.assign({},state[index]);
-        let commentIndex = Number(action.payload.comment);
-        copyOfSquare.comments[commentIndex].replies.push(action.payload.reply);
-        state[index] = copyOfSquare;
-
+            index = action.payload.square-1;
+            copyOfSquare = Object.assign({},state[index]);
+            let commentIndex = Number(action.payload.comment);
+            copyOfSquare.comments[commentIndex].replies.push(action.payload.reply);
+            state[index] = copyOfSquare;
         return [...state]
         default: 
             return state;

@@ -3,6 +3,20 @@ import styles from './FinancialSummary.css';
 import FinancialSquare from './FinancialSquare.jsx'
 
 class FinancialList extends Component {
+
+    shouldComponentUpdate(nextProps){
+        if(this.props.toggleCommentary !== nextProps.toggleCommentary){
+            return true;
+        }
+        else if(this.props.data !== nextProps.data){
+            return true;
+        }
+        else if(this.props.activeCard !== nextProps.activeCard){
+            return true;
+        }
+
+        return false;
+    }
     render(){
         return(
             <div className="chartRow">

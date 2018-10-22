@@ -10,7 +10,6 @@ export default function(state = {
             let appData = {
                 financial: localdata.FinancialData,
                 journey: localdata.JourneyData
-                // allData: data
             };
             return appData;
         default: 

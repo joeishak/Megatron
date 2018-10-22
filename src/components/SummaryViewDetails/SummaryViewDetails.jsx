@@ -248,15 +248,12 @@ class SummaryViewDetails extends Component {
  
   componentDidUpdate(prevProps){
     if( prevProps.activeFilters !== this.props.activeFilters ){
-      console.log('Getting new data');
       this.props.getQueryFilteredIBEData(this.props.activeFilters,prevProps.availableFilters);
       this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,prevProps.availableFilters);
       this.props.getFilteredJourneyQtdData(this.props.activeFilters,this.props.availableFilters);
 
     }
-    console.log(this.props.journeyData, prevProps.journeyData)
     if(this.props.journeyData !== prevProps.journeyData){
-      console.log(this.props.journeyData[this.props.activeItem.index-1])
       this.props.updateJourneySummaryActiveCard(this.props.journeyData[this.props.activeItem.index-1]);
 
     }
@@ -365,7 +362,6 @@ detailsRenderDollar(item) {
   }  else return '';
 }
  renderQuarterlyToDate(qtdwColSizes ,qtdTotalTable){ 
-  //  console.log(qtdwColSizes);
    switch(this.state.activeTimeMetric){
      case 'qtd':
      return (
@@ -560,7 +556,6 @@ detailsRenderDollar(item) {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     previousViewWasJourneys: state.switchFilter,
     activeItem: state.activeSummarySquare,

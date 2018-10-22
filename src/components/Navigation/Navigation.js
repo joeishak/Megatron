@@ -134,32 +134,7 @@ class Navigation extends Component {
                 </Link>
                 <Route path = "/post" component ={App} />
               </li>
-              {/* <li className={`navItem ${activeTab === 'tab2' ? 'selected' : ''}`} 
-                onClick={e => this.selectedNavItem(e, 'tab2' )} >
-                <Link  to="/journeys" className="navText">
-                <div  >
-                Journeys</div></Link>
-                <Route path = "/post" component ={App} />
-              </li>
-              <li className={`navItem ${activeTab === 'tab3' ? 'selected' : ''}`} 
-                onClick={e => this.selectedNavItem(e, 'tab3')}>
-                <Link  to="/products" className="navText">
-                <div >
-                Products</div>
-                </Link>
-                <Route path = "/post" component ={App} />
-              </li>
-              <li className={`navItem ${activeTab === 'tab4' ? 'selected' : ''}`} 
-                onClick={e => this.selectedNavItem(e, 'tab4')}>
-                <Link  to="/quarterly" className="navText">
-                <div >
-                Quarterly</div>
-                </Link>
-                <Route path = "/post" component ={App} />
-              </li> */}
-
             </ul>
-          
             <Nav pullRight>
             <div className="dropDownContainerBox">
               <div className="flLeft">
@@ -167,7 +142,6 @@ class Navigation extends Component {
                       <MenuItem eventKey={3.1}>Account Settings</MenuItem>
                       <MenuItem eventKey={3.2} onClick={e => this.onDataPreferencesSelcted(e)}>Data Preferences</MenuItem>
                       <MenuItem eventKey={3.3}>Log Out</MenuItem>
-
                   </NavDropdown>
               </div>
               {/* <div className="flLeft"><img alt="" className="userIcon" src={userIcon}/></div> */}
@@ -180,7 +154,6 @@ class Navigation extends Component {
                 <img alt="" className="commentIcon" onClick={this.updateCommentsNav} src={!this.props.toggleCommentaryOn ? commentIconOff : commentIconOn}/>
               </div>
               </div>
-
             </Nav>
           </Navbar.Collapse>
         </Navbar>

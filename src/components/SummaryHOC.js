@@ -9,10 +9,10 @@ export default ChildComponent => {
     class ComposedComponent extends Component {
      
         componentDidUpdate(prevProps){
-            // if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
-            //     this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
-            //     this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
-            // }
+            if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
+                this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
+                this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
+            }
             if(prevProps.switchFilter !== this.props.switchFilter){
                 if(this.props.switchFilter === false){
                     this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
@@ -39,7 +39,7 @@ export default ChildComponent => {
             else if(this.props.toggleCommentary !== nextProps.toggleCommentary){
                 return true;
             } 
-    
+        
             return false;
         }
 
@@ -88,12 +88,12 @@ export default ChildComponent => {
                 summaryBox: true,
                 summaryBox_financial: !this.props.switchFilter ? false: true
             });
-            return  <Grid className={SummaryBoxStyles} fluid>
-            <SummaryHeader summaryTitle = {this.getSummaryTitle()} isToggleButtonChecked={this.props.switchFilter} onToggleButtonChanged={this.onToggleButtonChanged} />
-           {this.getChild()}
-            
-        </Grid>
-        
+            return  (
+            <Grid className={SummaryBoxStyles} fluid>
+                <SummaryHeader summaryTitle = {this.getSummaryTitle()} isToggleButtonChecked={this.props.switchFilter} onToggleButtonChanged={this.onToggleButtonChanged} />
+                {this.getChild()}
+            </Grid>
+            )
         }
     }
 
