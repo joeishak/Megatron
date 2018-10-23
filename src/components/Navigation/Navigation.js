@@ -5,7 +5,7 @@ import {Nav,  Navbar, NavDropdown, MenuItem} from 'react-bootstrap';
 import {  Expand, } from '@progress/kendo-react-animation';
 import classNames from 'classnames';
 
-import App from '../../Views/App.js';
+import App from '../../Views/App/App.js';
 import styles from './Navigation.css';
 
 // Images Imports, Adobe Logo, User Icon, CommentIcon ON, CommentsIcon Off

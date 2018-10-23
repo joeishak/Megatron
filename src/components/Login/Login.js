@@ -19,6 +19,7 @@ import config from '../../.samples.config';
 export default class Login extends Component {
   constructor(props) {
     super(props);
+    // this.props.auth.login('/');
     this.signIn = new OktaSignIn({
       /**
        * Note: when using the Sign-In Widget for an OIDC flow, it still
@@ -43,6 +44,7 @@ export default class Login extends Component {
     });
   }
   componentDidMount() {
+
     this.signIn.renderEl(
       { el: '#sign-in-widget' },
       () => {

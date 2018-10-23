@@ -13,12 +13,12 @@ import FilterBox from 'components/FilterBox/FilterBox';
 // import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
 import CustomDropDownPanel from 'components/CustomDropDownPanel/CustomDropDownPanel';
 import SummaryViewDetails from 'components/SummaryViewDetails/SummaryViewDetails';
-import KendoDialog from '../components/KendoDialog/KendoDialog';
-import CommentBox from '../components/CommentBox/CommentBox.jsx';
-import ButtomSummaryBox from '../components/BottomSummaryBox/BottomSummaryBox';
-import FinancialSummary from '../components/FinancialSummary/FinancialSummary.jsx';
-import JourneySummary from '../components/JourneySummary/JourneySummary.jsx';
-import SummaryHOC from '../components/SummaryHOC.js';
+import KendoDialog from '../../components/KendoDialog/KendoDialog';
+import CommentBox from '../../components/CommentBox/CommentBox.jsx';
+import ButtomSummaryBox from '../../components/BottomSummaryBox/BottomSummaryBox';
+import FinancialSummary from '../../components/FinancialSummary/FinancialSummary.jsx';
+import JourneySummary from '../../components/JourneySummary/JourneySummary.jsx';
+import SummaryHOC from '../../components/SummaryHOC.js';
 class App extends Component {
   constructor(props) {
     super(props);
