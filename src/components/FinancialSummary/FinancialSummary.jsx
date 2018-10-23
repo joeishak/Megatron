@@ -68,7 +68,7 @@ class FinancialSummary extends Component {
                         
                     </div>
                     <div style={{width:'100%'}} className='bottomSummaryContainer  '>
-                        <ButtomSummaryBox chartHeight="400px" />
+                        <ButtomSummaryBox chartHeight="320px" />
                     </div>
                 </div>
             

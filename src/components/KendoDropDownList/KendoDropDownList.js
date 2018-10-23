@@ -22,10 +22,8 @@ class KendoDropDownList extends Component {
             val: this.props.defaultItem
             
         }
-        // console.log('LOGGING THE CURRENT FILTER ARRAY: ',this.props.defaultItem);
         //Binding functions to this
         this.handleFilterChange = this.handleFilterChange.bind(this);
-        // this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
         
     }
   
@@ -35,9 +33,6 @@ class KendoDropDownList extends Component {
     }
     
     render(){
-        
-        // console.log('Default Item',this.props.defaultItem);
-
         return(
             <DropDownList 
                 style={inStyles.background} 
@@ -45,24 +40,11 @@ class KendoDropDownList extends Component {
                 data={this.props.data} 
                 onChange={this.handleFilterChange} 
                  />
-
-            // <select style={{color:'black'}} onChange = {this.handleFilterChange} value={this.props.defaultItem[0]}>
-            // {this.props.data.map(item=>{
-            //     if(this.props.defaultItem[0] === item){
-            //         return ( <option onChange = {this.handleFilterChange} selected value={item}>{item.value}</option>)
-            //     } else{
-            //         return(<option onSelect = {this.handleFilterChange}  value={item}>{item.value}</option> )
-            //     }
-            // }) }</select>
-
-           
-      
         )
     }
 }
 
 function mapStateToProps(state) {
-    // console.log('Active filters: ',state.activeFilters);
     return {activeFilters:state.activeFilters, availableFilters: state.availableFilters};
   }
   

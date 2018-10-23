@@ -1,9 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from 'Root';
-import {BrowserRouter,Route} from 'react-router-dom';
+import {BrowserRouter, Router, Route} from 'react-router-dom';
 import App from 'Views/App.js';
+import Login from './components/Login/Login.js';
 import registerServiceWorker from './registerServiceWorker';
+import { Security, ImplicitCallback } from '@okta/okta-react';
+import config from './.samples.config';
+// const config = {
+//   issuer: 'https://dev-575609.oktapreview.com/oauth2/default',
+//   redirect_uri: window.location.origin + '/implicit/callback',
+//   client_id: '0oagvenik1CmjZzhZ0h7'
+// }
 const inStyles={
 	root: {
 		height: '100%',
@@ -13,7 +21,13 @@ const inStyles={
 ReactDOM.render(
 	<Root  style={inStyles.root}>
 		<BrowserRouter>
-			<Route path="/" component={App} />
+		<Security issuer={config.oidc.issuer}
+                  client_id={config.oidc.clientId}
+                  redirect_uri={config.oidc.redirectUri}>
+			<Route path="/login" exact={true} component={Login} />
+			<Route path="/implicit/callback" component={ImplicitCallback} />
+			<Route path="/app" component={App} />
+			</Security>
 		</BrowserRouter>
 	</Root>
 , document.querySelector('#root'));

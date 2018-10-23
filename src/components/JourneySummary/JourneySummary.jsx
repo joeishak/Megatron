@@ -110,7 +110,7 @@ class JourneySummary extends Component {
             />
             </div>
             <div className="col-lg-9 col-md-8">
-                <ButtomSummaryBox chartHeight="550px"/>
+                <ButtomSummaryBox chartHeight="450px"/>
             </div>
         </div>
         )

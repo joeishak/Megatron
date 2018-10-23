@@ -5,6 +5,8 @@
   "dependencies": {
     "@nivo/bar": "^0.42.1",
     "@nivo/calendar": "^0.43.0",
+    "@okta/okta-react": "^1.1.4",
+    "@okta/okta-signin-widget": "^2.13.0",
     "@progress/kendo-data-query": "^1.4.1",
     "@progress/kendo-drawing": "^1.5.7",
     "@progress/kendo-react-animation": "^1.2.0",
