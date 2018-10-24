@@ -10,6 +10,7 @@ import rick from '../../assets/images/rick.png';
 import shaun from '../../assets/images/shaun.png';
 import morty from '../../assets/images/morty.png';
 import amit from '../Navigation/assets/images/amit-profile.png';
+import profilePic from '../../assets/images/user.png';
 
 
 class CommentBox extends Component {
@@ -111,9 +112,10 @@ class CommentBox extends Component {
        
         if(e.key==='Enter' && this.state.commentToBeRepliedTo === null){
 
+            console.log('debug',this.props.user);
             let comment= {
                 id: this.props.comments.length,
-                userName: 'Amit Sethi',
+                userName: this.props.user.name,
                 time: new Date().toLocaleTimeString(),
                 comment: e.target.value,
                 replies: [],
@@ -131,7 +133,7 @@ class CommentBox extends Component {
             // console.log('The comment:',this.props.comments[this.state.commentToBeRepliedTo]);
             let comment= {
                 id: this.props.comments[this.state.commentToBeRepliedTo].replies.length,
-                userName: 'Amit Sethi',
+                userName: this.props.user.name,
                 time: new Date().toLocaleTimeString(),
                 comment: e.target.value
                 
@@ -197,7 +199,7 @@ class CommentBox extends Component {
                 return amit
                 break;
             default:
-                return null;
+                return profilePic;
                 break;
         }
 
@@ -307,6 +309,8 @@ function mapStateToProps(state){
         commentBoxHeader: state.activeSummarySquare.header,
         ibeData: state.ibeData,
         appData: state.adobeData,
-        switchFilter: state.switchFilter   }
+        switchFilter: state.switchFilter,
+        user: state.user
+    }
 }
 export default connect(mapStateToProps,actions) (CommentBox)
