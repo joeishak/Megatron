@@ -53,6 +53,10 @@ class KendoDialog extends Component {
         this.props.addValueToActiveMultiFilter(e);
     }
 
+    // Save the changes
+    saveChanges = () => {
+        alert('CHANGES SAVED');
+    }
 
 
     findFilter = (activeFilters, category) => {
@@ -254,12 +258,14 @@ class KendoDialog extends Component {
                             </div>
                         </div>
 
-                        
-
-                        
-
                     </div>
                 </div>
+                
+            {/* Save Button */}
+            <button className="saveButton" onClick={this.saveChanges}>
+                Save Changes
+            </button>
+             
             </Dialog>
 
          </div>
@@ -274,7 +280,6 @@ class KendoDialog extends Component {
 }
 
 function mapStateToProps(state){
-    // console.log(state);
     return {
         dialogIsOpen: state.isDialogOpen,
         availableFilters: state.availableFilters,

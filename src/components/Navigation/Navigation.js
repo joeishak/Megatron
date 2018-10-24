@@ -33,7 +33,6 @@ class Navigation extends Component {
         super(props);
         // Initialize state
         this.state = {
-          loggedUser: 'Amit Sethi',
           show: false,
           activeTab: 'tab1',
           dataPrefDialogVisible: this.props.dialogIsOpen,
@@ -118,9 +117,16 @@ class Navigation extends Component {
       let toggle = this.props.toggleCommentaryOn;
       this.props.toggleCommentBox(!toggle);
     }
+
+    processLoggedUser = (_user) => {
+      if (Object.keys(_user).length !== 0) {
+        return _user.name;
+      }       
+    }
     
     render() {
 
+      // {  console.log('debug', this.props.user);}
       //local constants for showing the logo with an animation 
       const { show } = this.state;
       const logos = show ? (<img alt="" src={logo} className="imgLogo"/>) : null;
@@ -155,7 +161,7 @@ class Navigation extends Component {
             <Nav pullRight>
             <div className="dropDownContainerBox">
               <div className="flLeft">
-                  <NavDropdown eventKey={3} className="dropDownContainer" title={this.state.loggedUser} id="nav-dropdown" noCaret>
+                  <NavDropdown eventKey={3} className="dropDownContainer" title={this.processLoggedUser(this.props.user)} id="nav-dropdown" noCaret>
                       <MenuItem eventKey={3.1}>Account Settings</MenuItem>
                       <MenuItem eventKey={3.2} onClick={e => this.onDataPreferencesSelcted(e)}>Data Preferences</MenuItem>
                       <MenuItem eventKey={3.3} onClick={this.logout}>Log Out</MenuItem>
@@ -179,11 +185,12 @@ class Navigation extends Component {
 }
 
 function maptStateToProps(state) {
-  console.log('navigation',state);
+
   return {
     dialogIsOpen: state.dialogIsOpen,
     commentBoxIsOpen: state.commentBoxIsOpen,
-    toggleCommentaryOn: state.toggleCommentaryBox
+    toggleCommentaryOn: state.toggleCommentaryBox,
+    user: state.user
   }
 }
 
