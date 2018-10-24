@@ -179,6 +179,7 @@ class Navigation extends Component {
 }
 
 function maptStateToProps(state) {
+  console.log('navigation',state);
   return {
     dialogIsOpen: state.dialogIsOpen,
     commentBoxIsOpen: state.commentBoxIsOpen,

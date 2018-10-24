@@ -126,17 +126,9 @@ class App extends Component {
           {this.getSummary()}
           </span>
         }
-         {!this.state.authenticated &&
-            <div>
-              <p>If you&lsquo;re viewing this page then you have successfully started this React application.</p>
-              <p>
-                Once you have logged in you will be redirected through your authorization server (the issuer defined in config) to create a session for Single-Sign-On (SSO).
-                After this you will be redirected back to the application with an ID token and access token.
-                The tokens will be stored in local storage for future use.
-              </p>
-              <input id="login-button" type="button" value={'Login'}  onClick={this.login}/>
-            </div>
-          }
+         {this.state.authenticated === false &&
+            this.props.auth.login('/')
+         }
       </div>
     )
   }

@@ -82,6 +82,9 @@ typings/
 # next.js build output
 .next
 
+
 #Initial State for Infosol Local Azure Server
 #Used for http requests URL 
 variables.js
+src/.samples.config.js
+.env
