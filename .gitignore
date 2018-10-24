@@ -85,3 +85,9 @@ typings/
 #Initial State for Infosol Local Azure Server
 #Used for http requests URL 
 variables.js
+
+#OKTA
+.samples.config.js
+
+#ENV
+.env

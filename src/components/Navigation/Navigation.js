@@ -179,10 +179,13 @@ class Navigation extends Component {
 }
 
 function maptStateToProps(state) {
+  console.log(state);
   return {
     dialogIsOpen: state.dialogIsOpen,
     commentBoxIsOpen: state.commentBoxIsOpen,
-    toggleCommentaryOn: state.toggleCommentaryBox
+    toggleCommentaryOn: state.toggleCommentaryBox,
+    user: state.user
+    
   }
 }
 

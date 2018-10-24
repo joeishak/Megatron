@@ -101,7 +101,7 @@ class KendoMultiChart extends Component {
                     </ChartCategoryAxis>
                     {(this.props.multichartMetric) ?
                         <ChartSeries >
-                        <ChartSeriesItem name='Actual' type="column"   gap={.20}  width='20px' zIndex={2} spacing={0.5} data={this.formatDataValues(chartData[0])} color={this.props.color} >
+                        <ChartSeriesItem name='Actual' type="column"   gap={2}  width='20px' spacing={0.25} data={this.formatDataValues(chartData[0])} color={this.props.color} >
                         <ChartSeriesItemTooltip format='${0}' background="#3c3c3c" />
                         </ChartSeriesItem>
                         <ChartSeriesItem name='Target' type="bar"   zIndex={0} spacing={0.25} data={this.formatDataValues(chartData[1])} color='#0E9CC6'>
