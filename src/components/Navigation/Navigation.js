@@ -4,6 +4,8 @@ import { Route,Link } from 'react-router-dom';
 import {Nav,  Navbar, NavDropdown, MenuItem} from 'react-bootstrap';
 import {  Expand, } from '@progress/kendo-react-animation';
 import classNames from 'classnames';
+import { withAuth } from '@okta/okta-react';
+import { checkAuthentication } from '../../helper';
 
 import App from '../../Views/App/App.js';
 import styles from './Navigation.css';
@@ -35,14 +37,27 @@ class Navigation extends Component {
           show: false,
           activeTab: 'tab1',
           dataPrefDialogVisible: this.props.dialogIsOpen,
-          commentsAreActive: false
+          commentsAreActive: false,
+          authenticated: null
         }
         //Binding functions to this
+        this.checkAuthentication = checkAuthentication.bind(this);
         this.showLogo = this.showLogo.bind(this);
         this.updateCommentsNav  = this.updateCommentsNav.bind(this);
+        this.logout = this.logout.bind(this);
         this.showLogo();
     }
 
+    async componentDidMount() {
+      this.checkAuthentication();
+    }
+  
+    async componentDidUpdate() {
+      this.checkAuthentication();
+    }
+    async logout() {
+      this.props.auth.logout('/');
+    }
     // Function to show the logo after 1 second
     showLogo = () => {
       this.timeout = setTimeout(() => { 
@@ -51,7 +66,9 @@ class Navigation extends Component {
       });
       }, 1000);
     }
-
+    async logout() {
+      this.props.auth.logout('/');
+    }
     //Event handler for setting the active tab
     // Dictates the style for the chosen tab
     selectedNavItem (e, tab) {
@@ -141,7 +158,7 @@ class Navigation extends Component {
                   <NavDropdown eventKey={3} className="dropDownContainer" title={this.state.loggedUser} id="nav-dropdown" noCaret>
                       <MenuItem eventKey={3.1}>Account Settings</MenuItem>
                       <MenuItem eventKey={3.2} onClick={e => this.onDataPreferencesSelcted(e)}>Data Preferences</MenuItem>
-                      <MenuItem eventKey={3.3}>Log Out</MenuItem>
+                      <MenuItem eventKey={3.3} onClick={this.logout}>Log Out</MenuItem>
                   </NavDropdown>
               </div>
               {/* <div className="flLeft"><img alt="" className="userIcon" src={userIcon}/></div> */}
@@ -169,4 +186,4 @@ function maptStateToProps(state) {
   }
 }
 
-export default connect(maptStateToProps, actions) (Navigation);
+export default connect(maptStateToProps, actions)(withAuth(Navigation));

@@ -4,6 +4,8 @@ import {connect } from 'react-redux';
 import * as actions from 'actions';
 import styles from './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { withAuth } from '@okta/okta-react';
+import { checkAuthentication } from '../../helper';
 
 import '@progress/kendo-theme-default/dist/all.css';
 // Kendo Components
@@ -30,21 +32,34 @@ class App extends Component {
       marketAreaFilters: this.props.activeFilters,
       filterPanelIsOpen: false,
       showDropDowns: false,
-      dialogIsOpen: this.props.dialogIsOpen
+      dialogIsOpen: this.props.dialogIsOpen,
+      authenticated: null
       
     };
 
 
       /*Bindings  */
+      this.checkAuthentication = checkAuthentication.bind(this);
       this.renderBarGraph = this.renderBarGraph.bind(this);
       this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
       this.getFilters  =this.getFilters.bind(this);
       this.getSummary = this.getSummary.bind(this);
-      
+      this.login = this.login.bind(this);
       this.props.getAdobeData();
       this.getFilters();
   }
- 
+  async componentDidMount() {
+    this.checkAuthentication();
+  }
+
+  async componentDidUpdate() {
+    this.checkAuthentication();
+  }
+
+  async login() {
+    this.props.auth.login('/');
+  }
+
   getFilters(){
     this.props.generateFilterData();
   }
@@ -98,7 +113,10 @@ class App extends Component {
   }
   render(){
     return (
+      
       <div style={{height:'100%'}}>
+        {this.state.authenticated &&
+        <span>
           {/* Data Preferences */}
           <KendoDialog /> 
           <Navigation />
@@ -106,6 +124,19 @@ class App extends Component {
           {(this.props.commentBoxIsOpen) ? <CommentBox /> : null}
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
           {this.getSummary()}
+          </span>
+        }
+         {!this.state.authenticated &&
+            <div>
+              <p>If you&lsquo;re viewing this page then you have successfully started this React application.</p>
+              <p>
+                Once you have logged in you will be redirected through your authorization server (the issuer defined in config) to create a session for Single-Sign-On (SSO).
+                After this you will be redirected back to the application with an ID token and access token.
+                The tokens will be stored in local storage for future use.
+              </p>
+              <input id="login-button" type="button" value={'Login'}  onClick={this.login}/>
+            </div>
+          }
       </div>
     )
   }
@@ -121,4 +152,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, actions)(App);
+export default connect(mapStateToProps, actions)(withAuth(App));

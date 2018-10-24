@@ -8,8 +8,13 @@ import * as actions from '../actions';
 export default ChildComponent => {
     class ComposedComponent extends Component {
      
+        componentDidMount(){
+            this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
+            this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
+        }
         componentDidUpdate(prevProps){
             if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
+                console.log('Update Active Journey');
                 this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
                 this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
             }
@@ -17,7 +22,6 @@ export default ChildComponent => {
                 if(this.props.switchFilter === false){
                     this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
                 } else{
-                    console.log('Update Active Journey');
                     this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
                 }
             }
@@ -30,6 +34,7 @@ export default ChildComponent => {
         }
     
         shouldComponentUpdate(nextProps){
+           
             if(this.props.finData !== nextProps.finData && this.props.switchFilter === false){
                 return true;
             }  
@@ -40,6 +45,7 @@ export default ChildComponent => {
                 return true;
             } 
         
+
             return false;
         }
 
