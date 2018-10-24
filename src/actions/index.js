@@ -2,6 +2,7 @@
 
 import {  
     CHANGE_AUTH, 
+    UPDATE_OKTA_USER,
     UPDATE_SWITCH_FILTER_VALUE,
     UPDATE_DIALOG_VISIBILITY , 
     GET_ALL_DATA,
@@ -53,6 +54,12 @@ export function changeAuth(isLoggedIn) {
     }
 }
 
+export function updateOKTAUser(user){
+    return {
+        type: UPDATE_OKTA_USER,
+        payload: user
+    }
+}
 /**
  * Update the value of the Switch Filter 
  * 

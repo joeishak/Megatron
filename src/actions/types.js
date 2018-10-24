@@ -6,6 +6,9 @@ export const REMOVE_MULTI_FILTER             = "remove_multi_filter";
 export const INDEX_FILTER_DATA               = "index_filter_data";
 // Authentication
 export const CHANGE_AUTH                     = 'change_auth';
+
+// User
+export const UPDATE_OKTA_USER                = 'update_okta_user';
 // Switch Filter
 export const UPDATE_SWITCH_FILTER_VALUE      = "update_switch_filter_value";
 // Modal Dialog Box 
