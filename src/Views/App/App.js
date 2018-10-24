@@ -21,6 +21,7 @@ import ButtomSummaryBox from '../../components/BottomSummaryBox/BottomSummaryBox
 import FinancialSummary from '../../components/FinancialSummary/FinancialSummary.jsx';
 import JourneySummary from '../../components/JourneySummary/JourneySummary.jsx';
 import SummaryHOC from '../../components/SummaryHOC.js';
+import Login from '../../components/Login/Login';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +34,8 @@ class App extends Component {
       filterPanelIsOpen: false,
       showDropDowns: false,
       dialogIsOpen: this.props.dialogIsOpen,
-      authenticated: null
+      authenticated: null,
+      userinfo: null
       
     };
 
@@ -48,8 +50,11 @@ class App extends Component {
       this.props.getAdobeData();
       this.getFilters();
   }
+ 
   async componentDidMount() {
     this.checkAuthentication();
+ 
+
   }
 
   async componentDidUpdate() {
@@ -58,6 +63,7 @@ class App extends Component {
 
   async login() {
     this.props.auth.login('/');
+
   }
 
   getFilters(){
@@ -83,11 +89,9 @@ class App extends Component {
 
         },300);
     }
-    
   }
-
- 
   getSummary(){
+      console.log(this.state.userinfo)
     switch(this.props.detailIsOpen){
       case true:
       return(
@@ -112,6 +116,7 @@ class App extends Component {
     }
   }
   render(){
+
     return (
       
       <div style={{height:'100%'}}>
@@ -127,8 +132,9 @@ class App extends Component {
           </span>
         }
          {this.state.authenticated === false &&
-            this.props.auth.login('/')
-         }
+              this.props.auth.login('/')
+     
+          }
       </div>
     )
   }
@@ -140,7 +146,8 @@ function mapStateToProps(state) {
     dialogIsOpen: state.isDialogOpen, 
     detailIsOpen: state.detailsIsOpen,
     switchFilter: state.switchFilter,
-    commentBoxIsOpen: state.commentBoxIsOpen
+    commentBoxIsOpen: state.commentBoxIsOpen,
+    user: state.user
   };
 }
 

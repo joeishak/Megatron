@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-// import authReducer from 'reducers/auth'
+import authReducer from 'reducers/auth';
+import userReducer from 'reducers/user';
 import filterReducer from 'reducers/filters';
 import switchReducer from 'reducers/switchFilter'; 
 import dialogReducer from 'reducers/dialog';
@@ -16,7 +17,8 @@ import journeyReducer from 'reducers/journeyIbe.js'
 import multiChartMetricReducer from 'reducers/multichartIsArr.js'
 
 export default combineReducers({
-    // auth: authReducer,
+    auth: authReducer,
+    user: userReducer,
     filters: filterReducer,
     switchFilter: switchReducer,
     isDialogOpen: dialogReducer,

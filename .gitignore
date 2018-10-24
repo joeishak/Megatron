@@ -88,3 +88,6 @@ typings/
 variables.js
 src/.samples.config.js
 .env
+.gitignore
+.env
+src/.samples.config.js

@@ -14,14 +14,13 @@ export default ChildComponent => {
         }
         componentDidUpdate(prevProps){
             if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
-                console.log('Update Active Journey');
                 this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
                 this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
             }
             if(prevProps.switchFilter !== this.props.switchFilter){
                 if(this.props.switchFilter === false){
                     this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
-                } else{
+                } else {
                     this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
                 }
             }
