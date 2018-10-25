@@ -168,7 +168,7 @@ class Navigation extends Component {
                   </NavDropdown>
               </div>
               {/* <div className="flLeft"><img alt="" className="userIcon" src={userIcon}/></div> */}
-              <div className="flLeft"><img alt="" className="profilePic" src={profilePic}/></div>
+              <div className="flLeft"><img alt="" className="profilePic" src={userIcon}/></div>
               <div className='flRight'> 
                 {/* <a className={commentsNavigationItem} onClick={this.updateCommentsNav}>
                   <div className="redicon"></div>
