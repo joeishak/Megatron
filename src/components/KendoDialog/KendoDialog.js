@@ -105,7 +105,7 @@ class KendoDialog extends Component {
 
         {/* {console.log('KendoDialog.js Available Filters',this.props.availableFilters)} */}
 
-            <Dialog width={939} height={626}  title={"Data Preferences"} onClose={this.closeDialog} >
+            <Dialog width={939} height={626}  title={"Data Preferences"} onClose={this.closeDialog}>
                 <div className="container-fluid">
                     <div className="col-lg-6 col-md-6">
                     {/* Filters */}
