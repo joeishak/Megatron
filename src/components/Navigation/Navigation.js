@@ -151,7 +151,7 @@ class Navigation extends Component {
             <ul className="nav navbar-nav">
               <li className={`navItem ${activeTab === 'tab1' ? 'selected' : ''}`} 
                 onClick={e => this.selectedNavItem(e, 'tab1')}>
-                <Link  to="/summary" className="navText">
+                <Link  to="/" className="navText">
                 <div >
                 Summary</div>
                 </Link>

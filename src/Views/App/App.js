@@ -57,8 +57,11 @@ class App extends Component {
 
   }
 
-  async componentDidUpdate() {
+   componentDidUpdate(prevProps) {
     this.checkAuthentication();
+
+    
+   
   }
 
   async login() {
@@ -91,7 +94,7 @@ class App extends Component {
     }
   }
   getSummary(){
-      console.log(this.state.userinfo)
+      // console.log(this.state.userinfo)
     switch(this.props.detailIsOpen){
       case true:
       return(

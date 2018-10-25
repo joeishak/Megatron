@@ -7,7 +7,11 @@ async function checkAuthentication() {
       if (authenticated && !this.state.userinfo) {
         const userinfo = await this.props.auth.getUser();
         this.setState({ authenticated, userinfo });
-        this.props.updateOKTAUser(userinfo);
+        if(this.props.user.id === undefined){
+
+          this.props.updateOKTAUser(userinfo);
+
+        }
         this.props.changeAuth(authenticated);
       } else {
         this.setState({ authenticated });

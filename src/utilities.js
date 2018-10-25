@@ -314,3 +314,42 @@ let params1 = filterParams.reduce((prev, param) => {
   promiseArr = Promise.all(responseArray);
   return promiseArr;
 }
+
+ export async function addUserToDB(user){
+  responseArray = [];
+  promiseArr = [];
+  let body = {
+    "conn":  '18',
+    "qry": 'NewUser',
+    "columnNames": 'true',
+    "params": {
+      "sub": user.sub,
+      "fName": user.given_name,
+      "lName": user.family_name,
+      "email": user.email
+    }
+  }
+  axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'}).then((res) => {
+    
+  })
+  .catch((err) => {
+
+ 
+  })
+}
+
+
+export function getUser(user){
+  let body = {
+    "conn":  '18',
+    "qry": 'GetUsers',
+    "columnNames": 'true',
+    "params": {
+      "sub": user.sub     
+    }
+  }
+
+  return axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
+ 
+}
+

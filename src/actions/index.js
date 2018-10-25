@@ -3,6 +3,7 @@
 import {  
     CHANGE_AUTH, 
     UPDATE_OKTA_USER,
+    GET_DB_USER,
     UPDATE_SWITCH_FILTER_VALUE,
     UPDATE_DIALOG_VISIBILITY , 
     GET_ALL_DATA,
@@ -54,10 +55,20 @@ export function changeAuth(isLoggedIn) {
     }
 }
 
-export function updateOKTAUser(user){
+export  function updateOKTAUser(user){
+    utils.addUserToDB(user);
+    // let userdb = utils.getUser(user);
     return {
         type: UPDATE_OKTA_USER,
         payload: user
+    }
+}
+
+export const getDbUser = (user) => {
+   let  newuser = utils.getUser(user);
+    return {
+        type: GET_DB_USER,
+        payload: newuser
     }
 }
 /**
@@ -197,7 +208,7 @@ export function getQueryFilteredIBEData(_parameters,availableFilters){
         subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
         routeToMarkets: Object.values(availableFilters.routeToMarkets)
     }
-    promiseArr =  utils.getFinancialSummaryData(allFilters,_parameters);
+    promiseArr =  utils.getFinancialSummaryData(allFilters, _parameters);
 
       return {
           type: GET_QUERY_FILTERED_IBE_DATA,

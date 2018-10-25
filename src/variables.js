@@ -5162,6 +5162,7 @@ export const JourneyData = {
 export const InfoburstAzure = {
      user: 'admin',
      pass: 'admin',
+     dbQuery: 'http://localhost:8551/infoburst/rest/db/query',
      xdcCacheURL: 'http://localhost:8551/infoburst/rest/get/xdc/',
      xdcCacheQueryURL: 'http://localhost:8551/infoburst/rest/exec/xdcqry/',
      jsonFormat: '&json=1',
