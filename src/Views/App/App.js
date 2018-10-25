@@ -144,7 +144,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+  // console.log(state);
   return {
     dialogIsOpen: state.isDialogOpen, 
     detailIsOpen: state.detailsIsOpen,

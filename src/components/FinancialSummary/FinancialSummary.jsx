@@ -21,9 +21,7 @@ class FinancialSummary extends Component {
         this.selectedCard = this.selectedCard.bind(this);
     }
 
-    componentDidMount(){
-        console.log(this.props);
-    }
+ 
     shouldComponentUpdate(nextProps,nextState){
         if(nextProps.data !== this.props.data){
             return true;
