@@ -92,3 +92,7 @@ variables.js
 
 #ENV
 .env
+src/components/KendoDialog/KendoDialog.js
+src/.samples.config.js
+src/components/KendoDialog/KendoDialog.js
+src/.samples.config.js
