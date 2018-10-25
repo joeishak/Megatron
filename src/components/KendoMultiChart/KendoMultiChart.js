@@ -2,6 +2,7 @@
 import React, {Component } from 'react';
 import {connect } from 'react-redux';
 import * as actions from 'actions';
+import styles from './KendoMultiChart.css';
 import {
     Chart,
     ChartTitle,
@@ -82,7 +83,7 @@ class KendoMultiChart extends Component {
         const ChartContainer = () => (
             
                 <Chart pannable={false} zoomable={false} >
-                    <ChartLegend  position='bottom' labels={{color: this.props.color}} />
+                    <ChartLegend  position='bottom' labels={{color: this.props.color}}/>
                     <ChartTooltip shared={true} background="black"/>
                     <ChartCategoryAxis>
                             <ChartCategoryAxisItem max='13' maxDivisions={13} />
@@ -92,7 +93,7 @@ class KendoMultiChart extends Component {
                     <ChartArea background="transparent" height={this.props.chartHeight} />
                     <ChartTitle text="" />
                     <ChartValueAxis>
-                    <ChartValueAxisItem color={this.props.color}   labels={{content: this.labelContent, skip: 1, step: 2}} />
+                    <ChartValueAxisItem color={this.props.color} labels={{content: this.labelContent, skip: 1, step: 2}} />
                     </ChartValueAxis>
                     <ChartCategoryAxis major >
                         <ChartCategoryAxisItem color={this.props.color} categories={categories}>
