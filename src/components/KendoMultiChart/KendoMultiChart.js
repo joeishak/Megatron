@@ -10,6 +10,7 @@ import {
     ChartCategoryAxis,
     ChartCategoryAxisTitle,
     ChartCategoryAxisItem,
+    ChartAxisDefaults,
     ChartValueAxis,
     ChartValueAxisItem,
     ChartArea,
@@ -82,13 +83,13 @@ class KendoMultiChart extends Component {
             
                 <Chart pannable={false} zoomable={false} >
                     <ChartLegend  position='bottom' labels={{color: this.props.color}} />
-                    <ChartTooltip />
+                    <ChartTooltip shared={true} background="black"/>
                     <ChartCategoryAxis>
                             <ChartCategoryAxisItem max='13' maxDivisions={13} />
                     </ChartCategoryAxis>
-                    {/* <ChartAxisDefaults majorGridLines={false} minorGridLines={false} labels={{format: 'c0'}}/> */}
-
-                    <ChartArea background="transparent" height={this.props.chartHeight}/* gridLines='{visible: false}' */></ChartArea>
+                        {/*  labels={{format: 'c0'}} */}
+                    <ChartAxisDefaults majorGridLines={false} minorGridLines={false}/>
+                    <ChartArea background="transparent" height={this.props.chartHeight} />
                     <ChartTitle text="" />
                     <ChartValueAxis>
                     <ChartValueAxisItem color={this.props.color}   labels={{content: this.labelContent, skip: 1, step: 2}} />
