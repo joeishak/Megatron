@@ -104,8 +104,8 @@ class KendoDialog extends Component {
         <div className="content">
 
         {/* {console.log('KendoDialog.js Available Filters',this.props.availableFilters)} */}
-
-            <Dialog width={939} height={626}  title={"Data Preferences"} onClose={this.closeDialog}>
+                {/* `col journeysAmount k-float-left ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : '' */}
+            <Dialog width={939} height={626}  title={`Data Preferences for ${this.props.user.name} `} onClose={this.closeDialog}>
                 <div className="container-fluid">
                     <div className="col-lg-6 col-md-6">
                     {/* Filters */}
@@ -283,7 +283,8 @@ function mapStateToProps(state){
     return {
         dialogIsOpen: state.isDialogOpen,
         availableFilters: state.availableFilters,
-        activeFilters: state.activeFilters
+        activeFilters: state.activeFilters,
+        user: state.user
     }
 }
 export default connect(mapStateToProps,actions)(KendoDialog);
