@@ -56,6 +56,50 @@ class KendoDialog extends Component {
     // Save the changes
     saveChanges = () => {
         console.log('save changes button clicked');
+
+        let view = (this.state.selectedSummary ==='Financials')? 'Financial': 'Journey';
+
+        let fin, journ;
+
+        switch(this.state.financialsSummaryOptions){
+            case 'NetNewArr':
+            fin = 1;
+            break;
+            case 'GrossNewARR':
+            fin = 2;
+            break;
+            case 'CancellationsARR':
+            fin = 3;
+            break;
+            case 'Renewal@FPARR':
+            fin = 4;
+            break;
+            default:
+            fin = 1;
+            break;
+        }
+
+        switch(this.state.journeysSummaryViewOptions){
+            case 'Discover':
+            journ = 1;
+            break;
+            case 'Try':
+            journ = 2;
+            break;
+            case 'Buy':
+            journ = 3;
+            break;
+            case 'Use':
+            journ = 4;
+            break;
+            case 'Renew':
+            journ = 5;
+            break;
+            default: 
+            journ = 1;
+            break;
+        }
+        this.props.updateUserSettings(this.props.activeFilters,this.props.user, view, fin,journ );
         // this.props.saveSettings()
     }
 

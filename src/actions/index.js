@@ -89,6 +89,27 @@ export function getUserSettings(sub){
         payload: res
     }
 }
+
+export function updateUserSettings(activeFilters, user, defaultSummary, defaultFinKpi, defaultJournKpi){
+
+
+    debugger;
+    let params = {
+        quarter: activeFilters.quarters[0].value,
+        segment: activeFilters.segments[0].value,
+        user: user.sub,
+        view: defaultSummary,
+        fin: defaultFinKpi,
+        journ: defaultJournKpi
+    }
+    console.log('Updating User Setting Params: ',params);
+    utils.postUserSettings(params);
+
+    return {
+        type: UPDATE_USER_SETTINGS,
+        payload: {}
+    }
+}
 export function updateSwitchFilterValue(switchFilterValue) {
     return {
         type: UPDATE_SWITCH_FILTER_VALUE,

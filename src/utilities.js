@@ -366,3 +366,21 @@ export function requestUserSettings(sub){
 
   return axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
 }
+
+export function postUserSettings(params){
+  let body = {
+    "conn":  '18',
+    "qry": 'UpdateSettings',
+    "columnNames": 'true',
+    "params": {
+      "quarter":params.quarter,
+      "segment":params.segment,
+      "view":params.view,
+      "fin":params.fin,
+      "journ":params.journ,
+      "user": params.user   
+    }
+  }
+
+  return axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
+}
