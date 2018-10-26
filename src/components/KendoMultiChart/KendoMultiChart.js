@@ -73,18 +73,77 @@ class KendoMultiChart extends Component {
         
         return newArr;
     }
+
+    getTooltipType = (seriesType) => {
+        switch (seriesType) {
+            case 'Actual':
+                return 'tooltipActual';
+            case 'Target':
+                return 'tooltipTarget';
+            case 'Last Year':
+                return 'tooltipLastYear';
+        }
+    }
+
+    renderUnits(value) {
+        let returnValue = '';
+        value = parseInt(value)
+        if (value > 1000 && value <= 999999) {
+            value = (value/1000).toFixed(1);
+            returnValue =  value.toString() + ' K';
+        } else if (value > 1000000 && value <= 999999999) {
+            value = (value/1000000).toFixed(1);
+            returnValue =  value.toString() + ' M';
+        } else if (value > 1000000000 && value <= 999999999999) {
+            value = (value/1000000000).toFixed(1);
+            returnValue =  value.toString() + ' B';
+        } else if (value > 1000000000 && value <= 999999999999999) {
+            value = (parseInt(value)/1000000000000).toFixed(1);
+            returnValue = value.toString() + ' T';
+        } else {
+            return  value.toString();
+        }
+        return returnValue;
+    }
+
+    renderValue = (type, value) => {
+        switch (type) {
+            case 'currency':
+                return  '$ ' + this.renderUnits(value);
+            case 'units':
+                return  this.renderUnits(value);
+            case 'percent':
+                return  (value/ 10).toFixed(2).toString() + ' %';
+        }
+    }
+
     render(){
-
-
 
         const chartData = (this.props.multichartMetric ? this.props.activeMultichart : this.props.activeUnits);
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
 
+        const SharedTooltip = (props) => {
+            const { points } = props;
+            const title = props.categoryText;
+            return (
+                <div className="tooltipContainer">
+                    <div className="tooltipTitle"><b>Week {title}</b></div>
+                    {points.map((point) => ( 
+
+                    <div>
+                        <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div> 
+                        <b>{point.series.name}</b> : <div className="tooltipValue"> {this.renderValue(this.props.valueType, point.value)} </div>
+                    </div>))}
+                </div>
+            );
+        }
+        const sharedTooltipRender = (context) => (<SharedTooltip {...context}/>)
+
         const ChartContainer = () => (
             
-                <Chart pannable={false} zoomable={false} >
-                    <ChartLegend  position='bottom' labels={{color: this.props.color}}/>
-                    <ChartTooltip shared={true} background="black"/>
+                <Chart pannable={false} zoomable={false}>
+                    <ChartLegend  position='bottom' labels={{color: this.props.color}} />
+                    <ChartTooltip shared={true} background="black" render={sharedTooltipRender}/>
                     <ChartCategoryAxis>
                             <ChartCategoryAxisItem max='13' maxDivisions={13} />
                     </ChartCategoryAxis>
@@ -93,7 +152,7 @@ class KendoMultiChart extends Component {
                     <ChartArea background="transparent" height={this.props.chartHeight} />
                     <ChartTitle text="" />
                     <ChartValueAxis>
-                    <ChartValueAxisItem color={this.props.color} labels={{content: this.labelContent, skip: 1, step: 2}} />
+                        <ChartValueAxisItem color={this.props.color} labels={{content: this.labelContent, skip: 1, step: 2}} />
                     </ChartValueAxis>
                     <ChartCategoryAxis major >
                         <ChartCategoryAxisItem color={this.props.color} categories={categories}>
@@ -103,26 +162,26 @@ class KendoMultiChart extends Component {
                     </ChartCategoryAxis>
                     {(this.props.multichartMetric) ?
                         <ChartSeries >
-                        <ChartSeriesItem name='Actual' type="column"   gap={2}  width='20px' spacing={0.25} data={this.formatDataValues(chartData[0])} color={this.props.color} >
-                        <ChartSeriesItemTooltip format='${0}' background="#3c3c3c" />
-                        </ChartSeriesItem>
-                        <ChartSeriesItem name='Target' type="bar"   zIndex={0} spacing={0.25} data={this.formatDataValues(chartData[1])} color='#0E9CC6'>
-                        <ChartSeriesItemTooltip format='${0}' background="#3c3c3c"  />
-                        </ChartSeriesItem>
-                        <ChartSeriesItem name='Last Year' type="line" data={this.formatDataValues(chartData[2])} color='#DFDE43'  >
-                        <ChartSeriesItemTooltip format='${0}' background="#3c3c3c" />
-                        </ChartSeriesItem>
+                            <ChartSeriesItem name='Actual' type="column"   gap={2}  width='20px' spacing={0.25} data={this.formatDataValues(chartData[0])} color={this.props.color} visible={this.state.seriesVisible} >
+                                    <ChartSeriesItemTooltip render={this.tooltipRender} background="#3c3c3c" />
+                            </ChartSeriesItem>
+                            <ChartSeriesItem name='Target' type="bar"   zIndex={0} spacing={0.25} data={this.formatDataValues(chartData[1])} color='#0E9CC6'>
+                                    <ChartSeriesItemTooltip  background="#3c3c3c"   />
+                            </ChartSeriesItem>
+                            <ChartSeriesItem name='Last Year' type="line" data={this.formatDataValues(chartData[2])} color='#DFDE43'  >
+                                    <ChartSeriesItemTooltip  background="#3c3c3c"  />
+                            </ChartSeriesItem>
                         </ChartSeries> : 
                         <ChartSeries >
-                        <ChartSeriesItem name='Actual' type="column" gap={2} spacing={0.25} data={chartData[0]} color={this.props.color} >
-                        <ChartSeriesItemTooltip format='${0}' background="#3c3c3c" />
-                        </ChartSeriesItem>
-                        <ChartSeriesItem name='Target' type="line" data={chartData[1]} color='#0E9CC6'>
-                        <ChartSeriesItemTooltip format='${0}' background="#3c3c3c"  />
-                        </ChartSeriesItem>
-                        <ChartSeriesItem name='Last Year' type="line" data={chartData[2]} color='#DFDE43'  >
-                        <ChartSeriesItemTooltip format='${0}' background="#3c3c3c" />
-                        </ChartSeriesItem>
+                            <ChartSeriesItem name='Actual' type="column" gap={2} spacing={0.25} data={chartData[0]} color={this.props.color} >
+                                <ChartSeriesItemTooltip  background="#3c3c3c"   />
+                            </ChartSeriesItem>
+                            <ChartSeriesItem name='Target' type="line" data={chartData[1]} color='#0E9CC6'>
+                                <ChartSeriesItemTooltip background="#3c3c3c"   />
+                            </ChartSeriesItem>
+                            <ChartSeriesItem name='Last Year' type="line" data={chartData[2]} color='#DFDE43'  >
+                                <ChartSeriesItemTooltip  background="#3c3c3c"  />
+                            </ChartSeriesItem>
                         </ChartSeries>
                     }
                     
@@ -135,12 +194,14 @@ class KendoMultiChart extends Component {
 
 }
 function mapStateToProps(state){
+    // console.log('debug',state.activeSummarySquare.valueType);
     return { 
         switchFilter: state.switchFilter, 
         activeSummarySquare: state.activeSummarySquare,
         multichartMetric: state.multichartIsArr, 
         activeUnits: state.activeSummarySquare.details.unitMultichart, 
-        activeMultichart: state.activeSummarySquare.details.multichart,  
+        activeMultichart: state.activeSummarySquare.details.multichart, 
+        valueType: state.activeSummarySquare.valueType
     }
 }
 export default connect(mapStateToProps,actions)( KendoMultiChart);
