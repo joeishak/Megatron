@@ -9,8 +9,8 @@ export default ChildComponent => {
     class ComposedComponent extends Component {
      
         componentDidMount(){
-            this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
-            this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
+            // this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
+            // this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
         }
         componentDidUpdate(prevProps){
             if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
@@ -19,13 +19,13 @@ export default ChildComponent => {
             }
             if(prevProps.switchFilter !== this.props.switchFilter){
                 if(this.props.switchFilter === false){
-                    this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
+                    this.props.updateFinancialSummaryActiveCard(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1])
                 } else {
                     this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
                 }
             }
             if(this.props.finData !== prevProps.finData && this.props.switchFilter === false){
-                this.props.updateFinancialSummaryActiveCard(this.props.finData[this.props.activeSummaryIndex-1])
+                this.props.updateFinancialSummaryActiveCard(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1])
             }
             if(this.props.journeyData !== prevProps.journeyData && this.props.switchFilter === true){
                 this.props.updateJourneySummaryActiveCard(this.props.journeyData[this.props.activeSummaryIndex-1])
@@ -112,7 +112,8 @@ export default ChildComponent => {
             activeFilters: state.activeFilters,
             availableFilters: state.availableFilters,
             activeSummaryIndex: state.activeSummarySquare.index ,
-            journeyData: state.journeyData
+            journeyData: state.journeyData,
+            preferences: state.preferences
         }
     }
     return connect(mapStateToProps) (ComposedComponent);

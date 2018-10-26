@@ -174,8 +174,8 @@ class KendoDialog extends Component {
 
                             <div className="col-lg-6 col-md-6">
                                 <div className="row">
-                                    <div className={`radio ${this.state.selectedSummary === 'Financials' ? 'radio-checked': ''}`}>
-                                        <input id="Financials" name="summaryViewOptions" type="radio" checked={this.state.selectedSummary ==='Financials'} onChange={ (e) => this.onItemChecked(e) }/>
+                                    <div className={`radio ${this.props.preferences.defaultSummaryView === 'Financial' ? 'radio-checked': ''}`}>
+                                        <input id="Financials" name="summaryViewOptions" type="radio" checked={this.props.preferences.defaultSummaryView ==='Financial'} onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="Financials" className="radio-label"><b>Financials</b></label>
                                     </div>
                                 </div>
@@ -183,8 +183,8 @@ class KendoDialog extends Component {
 
                             <div className="col-lg-6 col-md-6">
                             <div className="row">
-                                    <div className={`radio ${this.state.selectedSummary === 'Journeys' ? 'radio-checked': ''}`}>
-                                        <input id="Journeys" name="summaryViewOptions" type="radio" checked={this.state.selectedSummary ==='Journeys'}  onChange={ (e) => this.onItemChecked(e) }/>
+                                    <div className={`radio ${this.props.preferences.defaultSummaryView === 'Journey' ? 'radio-checked': ''}`}>
+                                        <input id="Journeys" name="summaryViewOptions" type="radio" checked={this.props.preferences.defaultSummaryView ==='Journey'}  onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="Journeys" className="radio-label"><b>Journeys</b></label>
                                     </div>
                                 </div>
@@ -200,26 +200,26 @@ class KendoDialog extends Component {
                         <div className="col-lg-6 col-md-6">
                             <div className="row default-kpi-labels">Financials Summary</div>
                             <div className="row">
-                                    <div className={`radio ${this.state.financialsSummaryOptions === 'NetNewARR' ? 'radio-checked': ''}`}>
-                                        <input id="NetNewARR" name="financialsSummaryOptions" type="radio" checked={this.state.financialsSummaryOptions ==='NetNewARR'} onChange={ (e) => this.onItemChecked(e) }/>
+                                    <div className={`radio ${this.props.preferences.defaultFinKpi === '1' ? 'radio-checked': ''}`}>
+                                        <input id="NetNewARR" name="financialsSummaryOptions" type="radio" checked={this.props.preferences.defaultFinKpi === '1' } onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="NetNewARR" className="radio-label"><b>Net New ARR</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
-                                    <div className={`radio ${this.state.financialsSummaryOptions === 'GrossNewArr' ? 'radio-checked': ''}`}>
-                                        <input id="GrossNewArr" name="financialsSummaryOptions" type="radio" checked={this.state.financialsSummaryOptions ==='GrossNewArr'} onChange={ (e) => this.onItemChecked(e) }/>
+                                    <div className={`radio ${this.props.preferences.defaultFinKpi === '2' ? 'radio-checked': ''}`}>
+                                        <input id="GrossNewArr" name="financialsSummaryOptions" type="radio" checked={this.props.preferences.defaultFinKpi=== '2'} onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="GrossNewArr" className="radio-label"><b>Gross New ARR</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
-                                    <div className={`radio ${this.state.financialsSummaryOptions === 'CancellationsARR' ? 'radio-checked': ''}`}>
-                                        <input id="CancellationsARR" name="financialsSummaryOptions" type="radio" checked={this.state.financialsSummaryOptions ==='CancellationsARR'} onChange={ (e) => this.onItemChecked(e) }/>
+                                    <div className={`radio ${this.props.preferences.defaultFinKpi === '3' ? 'radio-checked': ''}`}>
+                                        <input id="CancellationsARR" name="financialsSummaryOptions" type="radio" checked={this.props.preferences.defaultFinKpi === '3'} onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="CancellationsARR" className="radio-label"><b>Cancellations ARR</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
-                                    <div className={`radio ${this.state.financialsSummaryOptions === 'Renewal@FPARR' ? 'radio-checked': ''}`}>
-                                        <input id="Renewal@FPARR" name="financialsSummaryOptions" type="radio" checked={this.state.financialsSummaryOptions ==='Renewal@FPARR'} onChange={ (e) => this.onItemChecked(e) }/>
+                                    <div className={`radio ${this.props.preferences.defaultFinKpi === '4' ? 'radio-checked': ''}`}>
+                                        <input id="Renewal@FPARR" name="financialsSummaryOptions" type="radio" checked={this.props.preferences.defaultFinKpi === '4'} onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="Renewal@FPARR" className="radio-label"><b>Renewal@FP ARR</b></label>
                                     </div>
                             </div>
@@ -228,32 +228,32 @@ class KendoDialog extends Component {
                         <div className="col-lg-6 col-md-6">
                             <div className="row default-kpi-labels">Journeys Summary</div>
                             <div className="row ">
-                                    <div className={`radio ${this.state.journeysSummaryViewOptions === 'Discover' ? 'radio-checked': ''}`}>
-                                        <input id="Discover" name="journeysSummaryViewOptions" type="radio" checked={this.state.journeysSummaryViewOptions ==='Discover'}   onChange={ (e) => this.onItemChecked(e) }/>
+                                    <div className={`radio ${this.props.preferences.defaultJournKpi === '1' ? 'radio-checked': ''}`}>
+                                        <input id="Discover" name="journeysSummaryViewOptions" type="radio" checked={this.props.preferences.defaultJournKpi === '1'}   onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="Discover" className="radio-label"><b>Discover</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
-                                    <div className={`radio ${this.state.journeysSummaryViewOptions === 'Try' ? 'radio-checked': ''}`}>
-                                        <input id="Try" name="journeysSummaryViewOptions" type="radio"  checked={this.state.journeysSummaryViewOptions ==='Try'} onChange={ (e) => this.onItemChecked(e) }/>
+                                    <div className={`radio ${this.props.preferences.defaultJournKpi === '2' ? 'radio-checked': ''}`}>
+                                        <input id="Try" name="journeysSummaryViewOptions" type="radio"  checked={this.props.preferences.defaultJournKpi === '2'} onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="Try" className="radio-label"><b>Try</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
-                                    <div className={`radio ${this.state.journeysSummaryViewOptions === 'Buy' ? 'radio-checked': ''}`}>
-                                        <input id="Buy" name="journeysSummaryViewOptions" type="radio" checked={this.state.journeysSummaryViewOptions ==='Buy'} onChange={ (e) => this.onItemChecked(e) } />
+                                    <div className={`radio ${this.props.preferences.defaultJournKpi === '3' ? 'radio-checked': ''}`}>
+                                        <input id="Buy" name="journeysSummaryViewOptions" type="radio" checked={this.props.preferences.defaultJournKpi === '3'} onChange={ (e) => this.onItemChecked(e) } />
                                         <label htmlFor="Buy" className="radio-label"><b>Buy</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
-                                    <div className={`radio ${this.state.journeysSummaryViewOptions === 'Use' ? 'radio-checked': ''}`}>
-                                        <input id="Use" name="journeysSummaryViewOptions" type="radio"  checked={this.state.journeysSummaryViewOptions ==='Use'} onChange={ (e) => this.onItemChecked(e) }/>
+                                    <div className={`radio ${this.props.preferences.defaultJournKpi === '4' ? 'radio-checked': ''}`}>
+                                        <input id="Use" name="journeysSummaryViewOptions" type="radio"  checked={this.props.preferences.defaultJournKpi === '4'} onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="Use" className="radio-label"><b>Use</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
-                                    <div className={`radio ${this.state.journeysSummaryViewOptions === 'Renew' ? 'radio-checked': ''}`}>
-                                        <input id="Renew" name="journeysSummaryViewOptions" type="radio" checked={this.state.journeysSummaryViewOptions ==='Renew'} onChange={ (e) => this.onItemChecked(e) }/>
+                                    <div className={`radio ${this.props.preferences.defaultJournKpi === '5' ? 'radio-checked': ''}`}>
+                                        <input id="Renew" name="journeysSummaryViewOptions" type="radio" checked={this.props.preferences.defaultJournKpi === '5'} onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="Renew" className="radio-label"><b>Renew</b></label>
                                     </div>
                             </div>
@@ -285,7 +285,8 @@ function mapStateToProps(state){
         dialogIsOpen: state.isDialogOpen,
         availableFilters: state.availableFilters,
         activeFilters: state.activeFilters,
-        user: state.user
+        user: state.user,
+        preferences: state.preferences
     }
 }
 export default connect(mapStateToProps,actions)(KendoDialog);

@@ -46,7 +46,7 @@ class App extends Component {
       this.getFilters  =this.getFilters.bind(this);
       this.getSummary = this.getSummary.bind(this);
       this.login = this.login.bind(this);
-      this.props.getAdobeData();
+      // this.props.getAdobeData();
       this.getFilters();
   }
  
@@ -58,7 +58,20 @@ class App extends Component {
 
    componentDidUpdate(prevProps) {
     this.checkAuthentication();
+ 
+    if(prevProps.preferences !== this.props.preferences){
+      console.log('First If',this.props.preferences);
+      if(this.props.preferences.defaultSummaryView === 'Financial'){
+        this.props.updateSwitchFilterValue(false);
+      } else{
+        this.props.updateSwitchFilterValue(true);
 
+      }
+      this.props.addValueToActiveMultiFilter({index: 1, category:'quarters', value: this.props.preferences.defaultQuarter});
+      this.props.addValueToActiveMultiFilter({index: 2, category:'segments', value: this.props.preferences.defaultSegment});
+
+
+    }
     
    
   }
@@ -147,7 +160,7 @@ function mapStateToProps(state) {
     switchFilter: state.switchFilter,
     commentBoxIsOpen: state.commentBoxIsOpen,
     user: state.user,
-    userPreferences: state.preferences 
+    preferences: state.preferences 
   };
 }
 
