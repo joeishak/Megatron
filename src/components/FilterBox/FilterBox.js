@@ -9,7 +9,7 @@ import * as actions from 'actions';
 import FilterPillBox from '../FilterPillBox/FilterPillBox';
 import styles from './FilterBox.css';
 
-class FilterBox extends Component {
+class FilterBox extends Component { 
     //When the component is constructed
     constructor(props){
         super(props);
@@ -46,7 +46,6 @@ class FilterBox extends Component {
         });
         }
         if(filters.products[0].value!=='All Data'){
-
         filters.products.forEach(item=>{
             filterBarArr.push(item);
         });

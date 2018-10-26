@@ -42,7 +42,6 @@ class App extends Component {
 
       /*Bindings  */
       this.checkAuthentication = checkAuthentication.bind(this);
-      this.renderBarGraph = this.renderBarGraph.bind(this);
       this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
       this.getFilters  =this.getFilters.bind(this);
       this.getSummary = this.getSummary.bind(this);
@@ -72,10 +71,7 @@ class App extends Component {
   getFilters(){
     this.props.generateFilterData();
   }
-  /* Sets the state passed to the bottom summary box so that it re renders */
-  renderBarGraph(index){
-    this.setState({renderFooter: !this.state.render});
-  }
+  
   /* Event Handler for the Filter Box to open the filter panel with the drop downs */
   openDialogFilterPanel(){
     // Opening the panel
@@ -144,13 +140,14 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log(state);
+  console.log(state);
   return {
     dialogIsOpen: state.isDialogOpen, 
     detailIsOpen: state.detailsIsOpen,
     switchFilter: state.switchFilter,
     commentBoxIsOpen: state.commentBoxIsOpen,
-    user: state.user
+    user: state.user,
+    userPreferences: state.preferences 
   };
 }
 

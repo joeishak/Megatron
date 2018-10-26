@@ -4,6 +4,9 @@ import {
     CHANGE_AUTH, 
     UPDATE_OKTA_USER,
     GET_DB_USER,
+    GET_USER_SETTINGS,
+    UPDATE_USER_SETTINGS,           
+    UPDATE_USER_MULTIVALUE_SETTINGS,
     UPDATE_SWITCH_FILTER_VALUE,
     UPDATE_DIALOG_VISIBILITY , 
     GET_ALL_DATA,
@@ -64,6 +67,7 @@ export  function updateOKTAUser(user){
     }
 }
 
+
 export const getDbUser = (user) => {
    let  newuser = utils.getUser(user);
     return {
@@ -76,6 +80,15 @@ export const getDbUser = (user) => {
  * 
  * @param {boolean} switchFilterValue 
  */
+
+
+export function getUserSettings(sub){
+    let res = utils.requestUserSettings(sub);
+    return {
+        type: GET_USER_SETTINGS,
+        payload: res
+    }
+}
 export function updateSwitchFilterValue(switchFilterValue) {
     return {
         type: UPDATE_SWITCH_FILTER_VALUE,

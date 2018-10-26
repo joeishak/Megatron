@@ -353,3 +353,16 @@ export function getUser(user){
  
 }
 
+
+export function requestUserSettings(sub){
+  let body = {
+    "conn":  '18',
+    "qry": 'GetUserSettings',
+    "columnNames": 'true',
+    "params": {
+      "sub": sub     
+    }
+  }
+
+  return axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
+}

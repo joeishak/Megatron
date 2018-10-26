@@ -170,6 +170,7 @@ export default function(state = FinancialData.squares, action) {
                       break;
                   }
                   squares[i]['details'].unitMultichart = newMulti;
+                  squares[i]['valueType'] = 'currency';
               }
                
             return [...squares];

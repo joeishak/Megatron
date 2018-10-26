@@ -10,6 +10,11 @@ export const CHANGE_AUTH                     = 'change_auth';
 // User
 export const UPDATE_OKTA_USER                = 'update_okta_user';
 export const GET_DB_USER                     = 'get_db_user';
+
+// User SEttings 
+export const GET_USER_SETTINGS               = 'get_user_settings';
+export const UPDATE_USER_SETTINGS            = 'update_user_settings';
+export const UPDATE_USER_MULTIVALUE_SETTINGS = 'update_user_multivalue_settings';
 // Switch Filter
 export const UPDATE_SWITCH_FILTER_VALUE      = "update_switch_filter_value";
 // Modal Dialog Box 

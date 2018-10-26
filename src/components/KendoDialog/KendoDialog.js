@@ -55,7 +55,8 @@ class KendoDialog extends Component {
 
     // Save the changes
     saveChanges = () => {
-        alert('CHANGES SAVED');
+        console.log('save changes button clicked');
+        // this.props.saveSettings()
     }
 
 

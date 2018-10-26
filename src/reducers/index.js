@@ -13,8 +13,9 @@ import ibeDataReducer from 'reducers/ibeData.js';
 import excelDataReducer from 'reducers/excelData.js';
 import commentBoxVisibilityReducer from 'reducers/commentBoxVisible.js';
 import toggleCommentaryReducer from 'reducers/toggleCommentary.js';
-import journeyReducer from 'reducers/journeyIbe.js'
-import multiChartMetricReducer from 'reducers/multichartIsArr.js'
+import journeyReducer from 'reducers/journeyIbe.js';
+import multiChartMetricReducer from 'reducers/multichartIsArr.js';
+import userSettingsReducer from 'reducers/userSettings.js';
 
 export default combineReducers({
     auth: authReducer,
@@ -32,7 +33,8 @@ export default combineReducers({
     commentBoxIsOpen: commentBoxVisibilityReducer,
     toggleCommentaryBox: toggleCommentaryReducer,
     journeyData: journeyReducer,
-    multichartIsArr: multiChartMetricReducer
+    multichartIsArr: multiChartMetricReducer,
+    preferences: userSettingsReducer
 
 
 });
