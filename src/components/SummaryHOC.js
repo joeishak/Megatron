@@ -16,19 +16,31 @@ export default ChildComponent => {
             if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
                 this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
                 this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
+                this.props.getFilteredJourneyQtdData(this.props.activeFilters,this.props.availableFilters);
             }
             if(prevProps.switchFilter !== this.props.switchFilter){
                 if(this.props.switchFilter === false){
-                    this.props.updateFinancialSummaryActiveCard(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1])
+                    this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
                 } else {
                     this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
                 }
             }
+            // if(this.props.preferences.defaultFinKpi !== undefined && this.props.finData[0] !== undefined){
+            //     console.log(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1]);
+
+            //     if(this.props.preferences.defaultSummaryView === 'Financial'){
+            //         this.props.updateFinancialSummaryActiveCard(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1])
+
+            //     } else  if(this.props.preferences.defaultSummaryView === 'Journey'){
+            //         this.props.updateFinancialSummaryActiveCard(this.props.journeyData[parseInt(this.props.preferences.defaultJournKpi)-1])
+
+            //     }
+            // }
             if(this.props.finData !== prevProps.finData && this.props.switchFilter === false){
-                this.props.updateFinancialSummaryActiveCard(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1])
+                this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
             }
             if(this.props.journeyData !== prevProps.journeyData && this.props.switchFilter === true){
-                this.props.updateJourneySummaryActiveCard(this.props.journeyData[this.props.activeSummaryIndex-1])
+                this.props.updateJourneySummaryActiveCard(this.props.journeyData[0])
             }
         }
     
@@ -43,7 +55,7 @@ export default ChildComponent => {
             else if(this.props.toggleCommentary !== nextProps.toggleCommentary){
                 return true;
             } 
-        
+            
 
             return false;
         }
@@ -56,9 +68,9 @@ export default ChildComponent => {
         onToggleButtonChanged = (e) => {
                 this.props.updateSwitchFilterValue(!this.props.switchFilter);
                     if(!this.props.switchFilter === true){
-                        this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
+                        this.props.updateJourneySummaryActiveCard(this.props.finData[0]);
                     } else {
-                        this.props.updateFinancialSummaryActiveCard(this.props.finData[0]);
+                        this.props.updateFinancialSummaryActiveCard(this.props.journeyData[0]);
                     }
         }
         //Function to check state and return either Financials summary or Journeys Summary

@@ -7,7 +7,8 @@ export default   function(state = {},action) {
             console.log(action.payload);
             return action.payload.data[0];
         case UPDATE_USER_SETTINGS:
-        return state;
+
+            return action.payload.data[0];
         default: 
             return state;
     }

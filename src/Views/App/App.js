@@ -63,6 +63,7 @@ class App extends Component {
       console.log('First If',this.props.preferences);
       if(this.props.preferences.defaultSummaryView === 'Financial'){
         this.props.updateSwitchFilterValue(false);
+        // this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
       } else{
         this.props.updateSwitchFilterValue(true);
 

@@ -36,6 +36,9 @@ class FinancialSquare extends Component {
         }
         return returnValue;
     }
+    shouldComponentUpdate(nextProps){
+        return true;
+    }
      // Need to Refactor
      getColor(value, target, type, header) {
         let retColor = '';

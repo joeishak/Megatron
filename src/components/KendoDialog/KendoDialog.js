@@ -39,6 +39,10 @@ class KendoDialog extends Component {
     onItemChecked(e) {
         e.preventDefault()
 
+        console.log(e.target.id);
+
+
+        //TODO:  3 Different Actions for updating the defaultSummary, defaultFinKpi and defaultJournKpi
         if (e.target.name === 'summaryViewOptions') {
             this.setState({selectedSummary: e.target.id});
         } else if (e.target.name === 'financialsSummaryOptions') {

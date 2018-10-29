@@ -306,6 +306,13 @@ export default function(state = JourneyData.squares, action) {
             squares[5]['details'].qtdw.qtd = qtrFailureSquare;
 
 
+            squares[0]['details'].geo.qtd = traffArr;
+            squares[1]['details'].geo.qtd = qfmArr;
+            squares[2]['details'].geo.qtd = convArr;
+            squares[3]['details'].geo.qtd = repArr;
+            squares[4]['details'].geo.qtd = qtrUiArr;
+            squares[5]['details'].geo.qtd = qtrFailArr;
+            
             squares[0]['valueType'] = 'units';
             squares[1]['valueType'] = 'units';
             squares[2]['valueType'] = 'percent';

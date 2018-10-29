@@ -143,7 +143,7 @@ class KendoMultiChart extends Component {
             
                 <Chart pannable={false} zoomable={false}>
                     <ChartLegend  position='bottom' labels={{color: this.props.color}} />
-                    <ChartTooltip shared={true} background="black" render={sharedTooltipRender}/>
+                    <ChartTooltip shared={true} background="black" color="white" render={sharedTooltipRender}/>
                     <ChartCategoryAxis>
                             <ChartCategoryAxisItem max='13' maxDivisions={13} />
                     </ChartCategoryAxis>

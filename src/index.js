@@ -28,7 +28,7 @@ ReactDOM.render(
                   redirect_uri={config.oidc.redirectUri}>
 			<Route path="/" exact={true} component={App} />
 			<Route path="/implicit/callback" component={ImplicitCallback} />
-			<Route path="/login" component={Login} />
+			{/* <Route path="/login" component={Login} /> */}
 			{/* <Route path="/app" component={App} /> */}
 			</Security>
 		</BrowserRouter>

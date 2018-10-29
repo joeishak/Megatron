@@ -91,4 +91,6 @@ src/variables.js
 src/.samples.config.js
 
 #ENV
-./.env
+
+.env
+

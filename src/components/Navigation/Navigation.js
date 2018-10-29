@@ -104,16 +104,6 @@ class Navigation extends Component {
       });
     }
     updateCommentsNav(){
-      // switch(this.props.commentBoxIsOpen){
-      //   case true:
-      //   // this.props.hideCommentBox();
-      //   this.props.toggleCommentBox(false);
-      //   break;
-      //   case false:
-      //   // this.props.showCommentBox();
-      //   this.props.toggleCommentBox(true);
-      //   break;
-      // }
       let toggle = this.props.toggleCommentaryOn;
       this.props.toggleCommentBox(!toggle);
     }
@@ -125,19 +115,11 @@ class Navigation extends Component {
     }
     
     render() {
-
-      // {  console.log('debug', this.props.user);}
       //local constants for showing the logo with an animation 
       const { show } = this.state;
       const logos = show ? (<img alt="" src={logo} className="imgLogo"/>) : null;
       const { activeTab } = this.state;
     
-      // let commentsNavigationItem = classNames({
-      //   roundButton: true,
-      //   commentsOff: (this.props.toggleCommentaryOn) ? false : true,
-      //   commentsOn: (this.props.toggleCommentaryOn) ? true : false, 
-      // }) 
-
         return(
 
         <Navbar  fluid className="navContainer">
@@ -167,8 +149,8 @@ class Navigation extends Component {
                       <MenuItem eventKey={3.3} onClick={this.logout}>Log Out</MenuItem>
                   </NavDropdown>
               </div>
-              {/* <div className="flLeft"><img alt="" className="userIcon" src={userIcon}/></div> */}
-              <div className="flLeft"><img alt="" className="profilePic" src={userIcon}/></div>
+              <div className="flLeft"><img alt="" className="userIcon" src={userIcon}/></div>
+              {/* <div className="flLeft"><img alt="" className="profilePic" src={userIcon}/></div> */}
               <div className='flRight'> 
                 {/* <a className={commentsNavigationItem} onClick={this.updateCommentsNav}>
                   <div className="redicon"></div>
