@@ -14,17 +14,17 @@ export default ChildComponent => {
         }
         componentDidUpdate(prevProps){
             if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
-                this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
-                this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
-                this.props.getFilteredJourneyQtdData(this.props.activeFilters,this.props.availableFilters);
+                this.props.getQueryFilteredIBEData(this.props.activeFilters, this.props.availableFilters);
+                this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters, this.props.availableFilters);
+                this.props.getFilteredJourneyQtdData(this.props.activeFilters, this.props.availableFilters);
             }
-            if(prevProps.switchFilter !== this.props.switchFilter){
-                if(this.props.switchFilter === false){
-                    this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
-                } else {
-                    this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
-                }
-            }
+            // if(prevProps.switchFilter !== this.props.switchFilter){
+            //     if(this.props.switchFilter === false){
+            //         this.props.updateFinancialSummaryActiveCard(this.props.finData[0]);
+            //     } else {
+            //         this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
+            //     }
+            // }
             // if(this.props.preferences.defaultFinKpi !== undefined && this.props.finData[0] !== undefined){
             //     console.log(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1]);
 
@@ -54,7 +54,9 @@ export default ChildComponent => {
             }
             else if(this.props.toggleCommentary !== nextProps.toggleCommentary){
                 return true;
-            } 
+            } else if ( this.props.preferences !== nextProps.preferences){
+                return true;
+            }
             
 
             return false;
@@ -82,12 +84,14 @@ export default ChildComponent => {
             }
         }
         getChild(){
+            console.log('Summary HOC', this.props.preferences);
             if(this.props.switchFilter){
                  return (
                     <ChildComponent {...this.props}   
                     data={this.props.journeyData}
                     toggleCommentary = {this.props.toggleCommentary}
                     onCommentIconClick={this.onCommentIconClick}
+                    defaultKpi = {this.props.preferences.defaultFinKpi}
                    />
                  )
             } else {

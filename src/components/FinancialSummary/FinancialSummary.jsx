@@ -21,6 +21,15 @@ class FinancialSummary extends Component {
         this.selectedCard = this.selectedCard.bind(this);
     }
 
+    componentDidMount(){
+    }
+   componentDidUpdate(prevProps){
+        console.log('Financial Summary',this.props)
+
+       if(prevProps.preferences.defaultFinKpi !== this.props.preferences.defaultFinKpi){
+           this.setState({activeCard: `card ${this.props.preferences.defaultFinKpi}`})
+       }
+   }
  
     shouldComponentUpdate(nextProps,nextState){
         if(nextProps.data !== this.props.data){
@@ -29,6 +38,9 @@ class FinancialSummary extends Component {
             return true;
         }
         if(this.props.toggleCommentary!== nextProps.toggleCommentary){
+            return true;
+        }
+        if(nextProps.defaultKpi !== this.props.defaultKpi ){
             return true;
         }
 

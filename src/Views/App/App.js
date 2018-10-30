@@ -63,15 +63,14 @@ class App extends Component {
       console.log('First If',this.props.preferences);
       if(this.props.preferences.defaultSummaryView === 'Financial'){
         this.props.updateSwitchFilterValue(false);
-        // this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
+       
       } else{
         this.props.updateSwitchFilterValue(true);
+     
 
       }
       this.props.addValueToActiveMultiFilter({index: 1, category:'quarters', value: this.props.preferences.defaultQuarter});
       this.props.addValueToActiveMultiFilter({index: 2, category:'segments', value: this.props.preferences.defaultSegment});
-
-
     }
     
    
@@ -161,7 +160,9 @@ function mapStateToProps(state) {
     switchFilter: state.switchFilter,
     commentBoxIsOpen: state.commentBoxIsOpen,
     user: state.user,
-    preferences: state.preferences 
+    preferences: state.preferences,
+    finData: state.ibeData,
+    journeyData: state.journeyData
   };
 }
 
