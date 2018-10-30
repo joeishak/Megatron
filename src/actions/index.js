@@ -7,6 +7,9 @@ import {
     GET_USER_SETTINGS,
     UPDATE_USER_SETTINGS,           
     UPDATE_USER_MULTIVALUE_SETTINGS,
+    UPDATE_DEFAULT_SUMMARY_PREFERENCE,
+    UPDATE_DEFAULT_FIN_KPI_PREFERENCE ,
+    UPDATE_DEFAULT_JOURN_KPI_PREFERENCE,
     UPDATE_SWITCH_FILTER_VALUE,
     UPDATE_DIALOG_VISIBILITY , 
     GET_ALL_DATA,
@@ -90,6 +93,30 @@ export function getUserSettings(sub){
     }
 }
 
+export function updateDefaultJournKpiPreference(type){
+
+    
+    return {
+        type: UPDATE_DEFAULT_JOURN_KPI_PREFERENCE,
+        payload: type
+    }
+}
+export function updateDefaultFinKpiPreference(type){
+
+    
+    return {
+        type: UPDATE_DEFAULT_FIN_KPI_PREFERENCE,
+        payload: type
+    }
+}
+export function updateDefaultSummaryPreference(type){
+
+    
+    return {
+        type: UPDATE_DEFAULT_SUMMARY_PREFERENCE,
+        payload: type
+    }
+}
 export function updateUserSettings(activeFilters, user, defaultSummary, defaultFinKpi, defaultJournKpi){
 
 

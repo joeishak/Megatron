@@ -11,6 +11,7 @@ export default ChildComponent => {
         componentDidMount(){
             // this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
             // this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
+
         }
         componentDidUpdate(prevProps){
             if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
@@ -18,13 +19,13 @@ export default ChildComponent => {
                 this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters, this.props.availableFilters);
                 this.props.getFilteredJourneyQtdData(this.props.activeFilters, this.props.availableFilters);
             }
-            // if(prevProps.switchFilter !== this.props.switchFilter){
-            //     if(this.props.switchFilter === false){
-            //         this.props.updateFinancialSummaryActiveCard(this.props.finData[0]);
-            //     } else {
-            //         this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
-            //     }
-            // }
+            if(prevProps.switchFilter !== this.props.switchFilter){
+                if(this.props.switchFilter === false){
+                    this.props.updateFinancialSummaryActiveCard(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1]);
+                } else {
+                    this.props.updateJourneySummaryActiveCard(this.props.journeyData[parseInt(this.props.preferences.defaultJournKpi)-1]);
+                }
+            }
             // if(this.props.preferences.defaultFinKpi !== undefined && this.props.finData[0] !== undefined){
             //     console.log(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1]);
 
@@ -37,10 +38,10 @@ export default ChildComponent => {
             //     }
             // }
             if(this.props.finData !== prevProps.finData && this.props.switchFilter === false){
-                this.props.updateFinancialSummaryActiveCard(this.props.finData[0])
+                this.props.updateFinancialSummaryActiveCard(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1]);
             }
             if(this.props.journeyData !== prevProps.journeyData && this.props.switchFilter === true){
-                this.props.updateJourneySummaryActiveCard(this.props.journeyData[0])
+                this.props.updateJourneySummaryActiveCard(this.props.journeyData[parseInt(this.props.preferences.defaultJournKpi)-1]);
             }
         }
     
@@ -69,7 +70,7 @@ export default ChildComponent => {
          //   Event handler for toggle change 'Financials' and 'Joruneys'
         onToggleButtonChanged = (e) => {
                 this.props.updateSwitchFilterValue(!this.props.switchFilter);
-                    if(!this.props.switchFilter === true){
+                    if(this.props.switchFilter === true){
                         this.props.updateJourneySummaryActiveCard(this.props.finData[0]);
                     } else {
                         this.props.updateFinancialSummaryActiveCard(this.props.journeyData[0]);
@@ -84,14 +85,15 @@ export default ChildComponent => {
             }
         }
         getChild(){
-            console.log('Summary HOC', this.props.preferences);
+            // console.log('Default KPI from Sum HOC:',this.props.preferences.defaultFinKpi)
             if(this.props.switchFilter){
                  return (
                     <ChildComponent {...this.props}   
                     data={this.props.journeyData}
                     toggleCommentary = {this.props.toggleCommentary}
                     onCommentIconClick={this.onCommentIconClick}
-                    defaultKpi = {this.props.preferences.defaultFinKpi}
+                    defaultKpi = {this.props.preferences.defaultJournKpi}
+
                    />
                  )
             } else {
@@ -100,6 +102,8 @@ export default ChildComponent => {
                     onCommentIconClick={this.onCommentIconClick}
                     toggleCommentary={this.props.toggleCommentary} 
                     data = {this.props.finData} 
+                    defaultKpi = {this.props.preferences.defaultFinKpi}
+
                    />
                 )
             }
@@ -119,6 +123,7 @@ export default ChildComponent => {
     }
 
     function mapStateToProps(state) {
+        console.log(state);
         return { 
             filters: state.filters, 
             switchFilter: state.switchFilter, 

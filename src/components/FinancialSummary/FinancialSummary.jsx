@@ -15,7 +15,7 @@ class FinancialSummary extends Component {
     constructor(props){
         super(props);
         this.state = {
-            activeCard:'card1'
+            activeCard:undefined
 
         }
         this.selectedCard = this.selectedCard.bind(this);
@@ -24,11 +24,10 @@ class FinancialSummary extends Component {
     componentDidMount(){
     }
    componentDidUpdate(prevProps){
-        console.log('Financial Summary',this.props)
 
-       if(prevProps.preferences.defaultFinKpi !== this.props.preferences.defaultFinKpi){
-           this.setState({activeCard: `card ${this.props.preferences.defaultFinKpi}`})
-       }
+    //    if(prevProps.preferences.defaultFinKpi !== this.props.preferences.defaultFinKpi){
+    //        this.setState({activeCard: `card ${this.props.preferences.defaultFinKpi}`})
+    //    }
    }
  
     shouldComponentUpdate(nextProps,nextState){
@@ -57,6 +56,7 @@ class FinancialSummary extends Component {
         // Finds the passed props for the right card to set as active
         this.setState({activeCard: squareItem.css[0]});
         this.props.updateFinancialSummaryActiveCard(squareItem);
+        
         // title 'Net New ARR'
         const selectedHeader = squareItem.header;
     }
@@ -74,7 +74,7 @@ class FinancialSummary extends Component {
                         <FinancialSquareList 
                             onCommentIconClick={this.props.onCommentIconClick}
                             toggleCommentary={this.props.toggleCommentary} 
-                            activeCard={this.state.activeCard} 
+                            activeCard={this.state.activeCard || this.props.defaultKpi} 
                             data = {this.props.data} 
                             enableChart={this.enableChart1Arrow} 
                             selectedCard={(e,index) =>{this.selectedCard(e,index)}} />

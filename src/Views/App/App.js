@@ -60,9 +60,9 @@ class App extends Component {
     this.checkAuthentication();
  
     if(prevProps.preferences !== this.props.preferences){
-      console.log('First If',this.props.preferences);
       if(this.props.preferences.defaultSummaryView === 'Financial'){
         this.props.updateSwitchFilterValue(false);
+
        
       } else{
         this.props.updateSwitchFilterValue(true);
@@ -103,7 +103,6 @@ class App extends Component {
     }
   }
   getSummary(){
-      // console.log(this.state.userinfo)
     switch(this.props.detailIsOpen){
       case true:
       return(
@@ -153,7 +152,6 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     dialogIsOpen: state.isDialogOpen, 
     detailIsOpen: state.detailsIsOpen,

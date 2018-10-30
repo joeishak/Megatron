@@ -550,7 +550,7 @@ export const FinancialData = {
                     }
                 ]
             },
-            css: ['card1', 'spinMeFirst', '#FF0000'],
+            css: ['1', 'spinMeFirst', '#FF0000'],
         },
         {
             index:2,
@@ -1057,7 +1057,7 @@ export const FinancialData = {
                     }
                 ]
             },
-            css: ['card2', 'spinMeSecond', '#0DB16E'],
+            css: ['2', 'spinMeSecond', '#0DB16E'],
         },
         {
             index:3,
@@ -1468,7 +1468,7 @@ export const FinancialData = {
              
                
             },
-            css: ['card3', 'spinMeThird', '#FF0000'],
+            css: ['3', 'spinMeThird', '#FF0000'],
         },
         {
             index:4,
@@ -2006,7 +2006,7 @@ export const FinancialData = {
                     }
                 ]
             },
-            css: ['card4', 'spinMeFourth', '#0DB16E'],
+            css: ['4', 'spinMeFourth', '#0DB16E'],
         }
     ],
     multiChart:[
@@ -2578,7 +2578,7 @@ export const JourneyData = {
                 ]
              
             },
-            css: ['journeyCard1', 'vertSpinMeFirst', 'verticalText1']
+            css: ['1', 'vertSpinMeFirst', 'verticalText1']
         },
         {
             index:2,
@@ -3088,7 +3088,7 @@ export const JourneyData = {
              
 
             },
-            css: ['journeyCard2', 'vertSpinMeSecond', 'verticalText2']
+            css: ['2', 'vertSpinMeSecond', 'verticalText2']
         },
         {
             index:3,
@@ -3598,7 +3598,7 @@ export const JourneyData = {
                 ]
              
             },
-            css: ['journeyCard3', 'vertSpinMeThird', 'verticalText3']
+            css: ['3', 'vertSpinMeThird', 'verticalText3']
         },
         {
             index:4,
@@ -4108,7 +4108,7 @@ export const JourneyData = {
                 ]
              
             },
-            css: ['journeyCard4', 'vertSpinMeFourth', 'verticalText4']
+            css: ['4', 'vertSpinMeFourth', 'verticalText4']
         },
         {
             index:5,
@@ -4617,7 +4617,7 @@ export const JourneyData = {
                     }
                 ]
             },
-            css: ['journeyCard5', 'vertSpinMeFifth', 'verticalText5']
+            css: ['5', 'vertSpinMeFifth', 'verticalText5']
         },
         {
             index:6,
@@ -5126,7 +5126,7 @@ export const JourneyData = {
                     }
                 ]
             },
-            css: ['journeyCard6', 'vertSpinMeSixth', 'verticalText6']
+            css: ['6', 'vertSpinMeSixth', 'verticalText6']
         }
     ],
     multiChart:[

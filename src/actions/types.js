@@ -58,3 +58,7 @@ export const TOGGLE_COMMENT_CARD_VISIBILITY = 'toggle_comment_card_visibility';
 
 export const ADD_NEW_JOURNEY_COMMENT = 'add_new_journey_comment';
 export const ADD_NEW_JOURNEY_REPLY = 'add_new_journey_reply';
+
+export const UPDATE_DEFAULT_SUMMARY_PREFERENCE = 'update_default_summary_preference';
+export const UPDATE_DEFAULT_FIN_KPI_PREFERENCE      = 'update_default_fin_kpi_preference';
+export const UPDATE_DEFAULT_JOURN_KPI_PREFERENCE = 'update_default_journ_kpi_preference';

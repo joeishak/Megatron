@@ -10,7 +10,7 @@ class JourneySummary extends Component {
     constructor(props){
         super(props);
         this.state ={
-            activeJourneyCard: 'journeyCard1'
+            activeJourneyCard: undefined
         }
         this.onJourneyCardClicked = this.onJourneyCardClicked.bind(this);
     }
@@ -100,7 +100,7 @@ class JourneySummary extends Component {
             <div className="col-lg-3 col-md-4" style={{height:'100%'}}>
             <JourneySquareList
               data={this.props.data}
-              activeJourneyCard = {this.state.activeJourneyCard}
+              activeJourneyCard = {this.state.activeJourneyCard || this.props.defaultKpi}
               getColor={this.getColor}
               renderUnits={  this.renderUnits}
               formatPercentage = {this.formatPercentage}

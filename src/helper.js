@@ -1,14 +1,12 @@
 import { Security, ImplicitCallback } from '@okta/okta-react';
 
 async function checkAuthentication() {
-  // console.log(this);
     const authenticated = await this.props.auth.isAuthenticated();
     if (authenticated !== this.state.authenticated) {
       if (authenticated && !this.state.userinfo) {
         const userinfo = await this.props.auth.getUser();
         this.setState({ authenticated, userinfo });
         if(this.props.user.sub ===  undefined ){
-          console.log(this.props.user, userinfo);
           this.props.updateOKTAUser(userinfo);
           this.props.getUserSettings(userinfo.sub);
 
