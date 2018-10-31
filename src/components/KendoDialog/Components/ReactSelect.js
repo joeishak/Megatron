@@ -1,7 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
 
-
 // Transform the list so that the component can render the drop downs
 let transformList = (objList) => {
 
@@ -16,25 +15,24 @@ let transformList = (objList) => {
                     category: objList[i].category,
                     value: objList[i].value,
                     label: objList[i].value
-                }
-            )
+                })
         }
-
     }
     return newObjList;
 };
 
-let transformList2 = (objList) => {
+let transformDefaultList = (objList) => {
 
     if ( objList !== undefined) {
         if (objList[0] !== undefined) {
-            // console.log('TESTING', objList[0]);
+
             let newObj  = {
                 index: objList[0].index,
                 category: objList[0].category,
                 value: objList[0].value,
                 label: objList[0].value
             };
+
             return newObj; 
         }
     }
@@ -43,8 +41,7 @@ let transformList2 = (objList) => {
 // Render Component
 const ReactSelect = (props) => {
     return (
-        
-        <Select options={transformList(props.options)} defaultValue={transformList2(props.defaultValue)} onChange={props.updateFilter} />
+        <Select options={transformList(props.options)}  defaultValue={transformDefaultList(props.defaultValue)} onChange={props.updateFilter}/>
     );
 };
 

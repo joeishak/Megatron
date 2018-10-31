@@ -6,6 +6,7 @@ import '@progress/kendo-ui';
 import styles from './KendoDialog.css';
 import $ from 'jquery';
 import ReactSelect from './Components/ReactSelect';
+import * as _ from 'lodash'
 
 
 
@@ -17,7 +18,8 @@ class KendoDialog extends Component {
             title: this.props.title,
             selectedSummary: undefined,
             financialsSummaryOptions: 'CancellationsARR',
-            journeysSummaryViewOptions: 'Discover'
+            journeysSummaryViewOptions: 'Discover',
+            savedClicked: undefined
         };
         
         this.closeDialog = this.closeDialog.bind(this)      
@@ -31,6 +33,7 @@ class KendoDialog extends Component {
     }
     closeDialog () {
         this.props.updateDialogVisibility(false);
+        this.setState({savedClicked: undefined});
     }
 
 
@@ -166,57 +169,83 @@ class KendoDialog extends Component {
         // }
         this.props.updateUserSettings(this.props.activeFilters,this.props.user, view, fin,journ );
         // this.props.saveSettings()
+        this.setState({savedClicked: true});
+        
+        setTimeout(() => this.closeDialog(), 1500);
+        // this.closeDialog();
     }
 
 
-    findFilter = (activeFilters, category) => {
+    // findFilter = (activeFilters, category) => {
 
-        for (let i = 0; i < activeFilters.length; i++) {
-            switch(category) {
-                case 'geos':
-                    const geoIndex = activeFilters.findIndex(x => x.category === category);
-
-                    return [activeFilters[geoIndex]];
-                case 'marketAreas':
-                    const marketAreasIndex = activeFilters.findIndex(x => x.category === category);
+    //     for (let i = 0; i < activeFilters.length; i++) {
+    //         switch(category) {
+    //             case 'geos':
+    //                 const geoIndex = activeFilters.findIndex(x => x.category === category);
+                
+    //                 return [activeFilters[geoIndex]];
+    //             case 'marketAreas':
+    //                 const marketAreasIndex = activeFilters.findIndex(x => x.category === category);
                     
-                    return [activeFilters[marketAreasIndex]];
-                case 'productNames':
-                    const productNamesIndex = activeFilters.findIndex(x => x.category === category);
+    //                 return [activeFilters[marketAreasIndex]];
+    //             case 'productNames':
+    //                 const productNamesIndex = activeFilters.findIndex(x => x.category === category);
       
-                    return [activeFilters[productNamesIndex]];
-                case 'quarters':
-                    const quartersIndex = activeFilters.findIndex(x => x.category === category);
-      
-                    return [activeFilters[quartersIndex]];
-                case 'routeToMarkets':
-                    const routeToMarketsIndex = activeFilters.findIndex(x => x.category === category);
+    //                 return [activeFilters[productNamesIndex]];
+    //             case 'quarters':
+    //                 const quartersIndex = activeFilters.findIndex(x => x.category === category);
+    //                 console.log('jr', quartersIndex);
+    //                 return [activeFilters[quartersIndex]];
+    //             case 'routeToMarkets':
+    //                 const routeToMarketsIndex = activeFilters.findIndex(x => x.category === category);
  
-                    return [activeFilters[routeToMarketsIndex]];
-                case 'segments':
-                    const segmentsIndex = activeFilters.findIndex(x => x.category === category);
+    //                 return [activeFilters[routeToMarketsIndex]];
+    //             case 'segments':
+    //                 const segmentsIndex = activeFilters.findIndex(x => x.category === category);
      
-                    return [activeFilters[segmentsIndex]];
-                case 'subscriptionOfferings':
-                    const subscriptionOfferingsIndex = activeFilters.findIndex(x => x.category === category);
+    //                 return [activeFilters[segmentsIndex]];
+    //             case 'subscriptionOfferings':
+    //                 const subscriptionOfferingsIndex = activeFilters.findIndex(x => x.category === category);
 
-                    return [activeFilters[subscriptionOfferingsIndex]];
-                    default: break;
-            }
-        }
+    //                 return [activeFilters[subscriptionOfferingsIndex]];
+    //                 default: break;
+    //         }
+    //     }
+    // }
+
+
+
+    generateFilterList = (filterList) => {
+        console.log('kendo dialog debug', filterList);
+        let filterObjectList = Object.keys(filterList).map((ele) => {
+            return new Object({ type: ele, list: filterList[ele]})
+          });
+        console.log('kendo dialog debug', filterObjectList);
+        let listOfFiltersApplied = filterObjectList.map( ele => {
+            return ele['list'].map( (item) => {
+                return item['value'];}) 
+        });
+        console.log('kendo dialog debug', listOfFiltersApplied);
+        let arrs = listOfFiltersApplied.map( (ele) => { return ele; }) // combine the arrays
+        console.log('kendo dialog debug', arrs);
+        let items =  _.uniq(_.flatten(arrs)); // flatten the array
+        console.log('kendo dialog debug', items);
+        return _.pull(items, 'All Data'); 
+
     }
- 
  
     render(){
 
+        
+        const filtersApplied = this.generateFilterList(this.props.activeFilters);
         const defaultSum = this.state.selectedSummary || this.props.defaultSummaryView;
         const show = this.props.dialogIsOpen
         const kendoDialog = show ? ( 
         <div className="content">
-
-        {/* {console.log('KendoDialog.js Available Filters',this.props.availableFilters)} */}
-                {/* `col journeysAmount k-float-left ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : '' */}
+                    
             <Dialog width={939} height={626}  title={`Data Preferences for ${this.props.user.name} `} onClose={this.closeDialog}>
+
+                {/* All the Contents */}
                 <div className="container-fluid">
                     <div className="col-lg-6 col-md-6">
                     {/* Filters */}
@@ -228,25 +257,25 @@ class KendoDialog extends Component {
                                     <div className="col-lg-6 col-md-6">
                                         <p>Quarter</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.quarters}/> */}
-                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler} options={this.props.availableFilters.quarters} defaultValue={this.findFilter(this.props.activeFilters, 'quarters')}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler} defaultValue={this.props.activeFilters.quarters} options={this.props.availableFilters.quarters} ></ReactSelect>
                                     </div>
                                     <div className="col-lg-6 col-md-6">
                                         <p>Geo</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.geos}/> */}
-                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.geos} defaultValue={this.findFilter(this.props.activeFilters, 'geos')}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.geos} ></ReactSelect>
                                     </div>
                                 </div>
-                                {/* second row */}
+                           
                                 <div className="row dropRow">
                                     <div className="col-lg-6 col-md-6">
                                         <p>Product name</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.products}/> */}
-                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.products} defaultValue={this.findFilter(this.props.activeFilters, 'productNames')}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.products}></ReactSelect>
                                     </div>
                                     <div className="col-lg-6 col-md-6">
                                         <p>Subscription Offering</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.subscriptionOfferings} /> */}
-                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler} options={this.props.availableFilters.subscriptionOfferings} defaultValue={this.findFilter(this.props.activeFilters, 'subscriptionOfferings')}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler} options={this.props.availableFilters.subscriptionOfferings}></ReactSelect>
                                     </div>
                                 </div>
                                 {/* third row */}
@@ -254,12 +283,12 @@ class KendoDialog extends Component {
                                     <div className="col-lg-6 col-md-6">
                                         <p>Market Area</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.marketAreas} /> */}
-                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.marketAreas} defaultValue={this.findFilter(this.props.activeFilters, 'marketAreas')}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.marketAreas} ></ReactSelect>
                                     </div>
                                     <div className="col-lg-6 col-md-6">
                                         <p>Route to Market</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.routeToMarkets}/> */}
-                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.routeToMarkets} defaultValue={this.findFilter(this.props.activeFilters, 'routeToMarkets')}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.routeToMarkets}></ReactSelect>
                                     </div>
                                 </div>
                                 {/* fourth row */}
@@ -267,13 +296,26 @@ class KendoDialog extends Component {
                                     <div className="col-lg-6 col-md-6">
                                         <p>Segment</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.segments}/> */}
-                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.segments} defaultValue={this.findFilter(this.props.activeFilters, 'segments')}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  defaultValue={this.props.activeFilters.segments} options={this.props.availableFilters.segments}></ReactSelect>
                                     </div>
                                     <div className="col-lg-6 col-md-6">
                                         <p id="filter-reset">Re-set all filters</p>
                                     </div>
                                 </div>
+
                             </div>
+
+                                 {/* Filters List */}
+                            <div className="contentpad filterListItems">
+                                <p>Filters Applied:</p>
+                                
+                                <ul className="filterList">
+                                    {filtersApplied.map((item) => {
+                                        return <li><b>{item}</b></li>
+                                    })}
+                                </ul>
+                            </div>
+
                     </div>
                     <div className="col-lg-6 col-md-6">
                     {/* Views */}
@@ -284,7 +326,7 @@ class KendoDialog extends Component {
 
                             <div className="col-lg-6 col-md-6">
                                 <div className="row">
-                                    <div className={`radio ${this.props.defaultView === 'Financial' ? 'radio-checked': ''}`}>
+                                    <div className={`radio ${this.props.defaultView === 'Financial' ? '//radio-checked': ''}`}>
                                         <input id="Financials" name="summaryViewOptions" type="radio" checked={this.props.defaultView ==='Financial'} onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="Financials" className="radio-label"><b>Financials</b></label>
                                     </div>
@@ -293,7 +335,7 @@ class KendoDialog extends Component {
 
                             <div className="col-lg-6 col-md-6">
                             <div className="row">
-                                    <div className={`radio ${this.props.defaultView === 'Journey' ? 'radio-checked': ''}`}>
+                                    <div className={`radio ${this.props.defaultView === 'Journey' ? '//radio-checked': ''}`}>
                                         <input id="Journeys" name="summaryViewOptions" type="radio" checked={this.props.defaultView === 'Journey'}  onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="Journeys" className="radio-label"><b>Journeys</b></label>
                                     </div>
@@ -310,25 +352,25 @@ class KendoDialog extends Component {
                         <div className="col-lg-6 col-md-6">
                             <div className="row default-kpi-labels">Financials Summary</div>
                             <div className="row">
-                                    <div className={`radio ${this.props.defaultFin.toString() === '1' ? 'radio-checked': ''}`}>
+                                    <div className={`radio ${this.props.defaultFin.toString() === '1' ? '//radio-checked': ''}`}>
                                         <input id="NetNewARR" name="financialsSummaryOptions" type="radio" checked={this.props.defaultFin.toString()  === '1' } onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="NetNewARR" className="radio-label"><b>Net New ARR</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
-                                    <div className={`radio ${this.props.defaultFin.toString()  === '2' ? 'radio-checked': ''}`}>
+                                    <div className={`radio ${this.props.defaultFin.toString()  === '2' ? '//radio-checked': ''}`}>
                                         <input id="GrossNewArr" name="financialsSummaryOptions" type="radio" checked={this.props.defaultFin.toString() === '2'} onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="GrossNewArr" className="radio-label"><b>Gross New ARR</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
-                                    <div className={`radio ${this.props.defaultFin.toString()  === '3' ? 'radio-checked': ''}`}>
+                                    <div className={`radio ${this.props.defaultFin.toString()  === '3' ? '//radio-checked': ''}`}>
                                         <input id="CancellationsARR" name="financialsSummaryOptions" type="radio" checked={this.props.defaultFin.toString()  === '3'} onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="CancellationsARR" className="radio-label"><b>Cancellations ARR</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
-                                    <div className={`radio ${this.props.defaultFin.toString()  === '4' ? 'radio-checked': ''}`}>
+                                    <div className={`radio ${this.props.defaultFin.toString()  === '4' ? '//radio-checked': ''}`}>
                                         <input id="Renewal@FPARR" name="financialsSummaryOptions" type="radio" checked={this.props.defaultFin.toString()  === '4'} onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="Renewal@FPARR" className="radio-label"><b>Renewal@FP ARR</b></label>
                                     </div>
@@ -338,31 +380,31 @@ class KendoDialog extends Component {
                         <div className="col-lg-6 col-md-6">
                             <div className="row default-kpi-labels">Journeys Summary</div>
                             <div className="row ">
-                                    <div className={`radio ${this.props.defaultJourn.toString() === '1' ? 'radio-checked': ''}`}>
+                                    <div className={`radio ${this.props.defaultJourn.toString() === '1' ? '//radio-checked': ''}`}>
                                         <input id="Discover" name="journeysSummaryViewOptions" type="radio" checked={this.props.defaultJourn.toString() === '1'}   onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="Discover" className="radio-label"><b>Discover</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
-                                    <div className={`radio ${this.props.defaultJourn.toString() === '2' ? 'radio-checked': ''}`}>
+                                    <div className={`radio ${this.props.defaultJourn.toString() === '2' ? '//radio-checked': ''}`}>
                                         <input id="Try" name="journeysSummaryViewOptions" type="radio"  checked={this.props.defaultJourn.toString() === '2'} onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="Try" className="radio-label"><b>Try</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
-                                    <div className={`radio ${this.props.defaultJourn.toString() === '3' ? 'radio-checked': ''}`}>
+                                    <div className={`radio ${this.props.defaultJourn.toString() === '3' ? '//radio-checked': ''}`}>
                                         <input id="Buy" name="journeysSummaryViewOptions" type="radio" checked={this.props.defaultJourn.toString() === '3'} onChange={ (e) => this.onItemChecked(e) } />
                                         <label htmlFor="Buy" className="radio-label"><b>Buy</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
-                                    <div className={`radio ${this.props.defaultJourn.toString() === '4' ? 'radio-checked': ''}`}>
+                                    <div className={`radio ${this.props.defaultJourn.toString() === '4' ? '//radio-checked': ''}`}>
                                         <input id="Use" name="journeysSummaryViewOptions" type="radio"  checked={this.props.defaultJourn.toString() === '4'} onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="Use" className="radio-label"><b>Use</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
-                                    <div className={`radio ${this.props.defaultJourn.toString() === '5' ? 'radio-checked': ''}`}>
+                                    <div className={`radio ${this.props.defaultJourn.toString() === '5' ? '//radio-checked': ''}`}>
                                         <input id="Renew" name="journeysSummaryViewOptions" type="radio" checked={this.props.defaultJourn.toString() === '5'} onChange={ (e) => this.onItemChecked(e) }/>
                                         <label htmlFor="Renew" className="radio-label"><b>Renew</b></label>
                                     </div>
@@ -372,19 +414,29 @@ class KendoDialog extends Component {
                     </div>
                 </div>
                 
-            {/* Save Button */}
-            <button className="saveButton" onClick={this.saveChanges}>
-                Save Changes
-            </button>
+                {/* Save Button */}
+                <button className="saveButton" onClick={this.saveChanges}>Save Changes</button>
              
             </Dialog>
+        </div>) : null;
 
-         </div>
-            
-            ) : null;
+        const savedPrompt =  show ? (
+            <div className="content">
+                <Dialog width={939} height={626}  title={`Data Preferences for ${this.props.user.name} `} onClose={this.closeDialog}>
+
+                    <div className="container"><h1>Saved!</h1></div>
+
+                </Dialog>
+            </div>
+
+        ) : null;
+
+                                    
+        const screenView = this.state.savedClicked ? savedPrompt : kendoDialog;
+
         return(
             <div className="dialogContainer fluid">
-              {kendoDialog}
+                {screenView}
             </div>
         )
     }
