@@ -71,6 +71,13 @@ class App extends Component {
       }
       this.props.addValueToActiveMultiFilter({index: 1, category:'quarters', value: this.props.preferences.defaultQuarter});
       this.props.addValueToActiveMultiFilter({index: 2, category:'segments', value: this.props.preferences.defaultSegment});
+      this.props.addValueToActiveMultiFilter(this.props.preferences.geoFilters);
+      this.props.addValueToActiveMultiFilter(this.props.preferences.productFilters);
+      this.props.addValueToActiveMultiFilter(this.props.preferences.routeFilters);
+      this.props.addValueToActiveMultiFilter(this.props.preferences.marketFilters);
+      this.props.addValueToActiveMultiFilter(this.props.preferences.subscriptionFilters);
+
+      
     }
     
    

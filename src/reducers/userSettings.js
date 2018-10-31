@@ -11,10 +11,23 @@ let newState = undefined;
 export default   function(state = {},action) {
     switch(action.type) {
         case GET_USER_SETTINGS:
-            return action.payload.data[0];
+        newState  = action.payload.data[0];
+        newState.geoFilters = JSON.parse(newState.geoFilters)
+        newState.productFilters = JSON.parse(newState.productFilters)
+        newState.routeFilters = JSON.parse(newState.routeFilters)
+        newState.subscriptionFilters = JSON.parse(newState.subscriptionFilters)
+        newState.marketFilters = JSON.parse(newState.marketFilters)
+            return newState;
         case UPDATE_USER_SETTINGS:
 
-            return action.payload.data[0];
+        newState  = action.payload.data[0];
+        newState.geoFilters = JSON.parse(newState.geoFilters)
+        newState.productFilters = JSON.parse(newState.productFilters)
+        newState.routeFilters = JSON.parse(newState.routeFilters)
+        newState.subscriptionFilters = JSON.parse(newState.subscriptionFilters)
+        newState.marketFilters = JSON.parse(newState.marketFilters)
+
+            return newState;
         case UPDATE_DEFAULT_SUMMARY_PREFERENCE:
 
          newState = Object.assign({}, state);
