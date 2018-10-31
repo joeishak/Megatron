@@ -216,20 +216,20 @@ class KendoDialog extends Component {
 
 
     generateFilterList = (filterList) => {
-        console.log('kendo dialog debug', filterList);
+        // console.log('kendo dialog debug', filterList);
         let filterObjectList = Object.keys(filterList).map((ele) => {
             return new Object({ type: ele, list: filterList[ele]})
           });
-        console.log('kendo dialog debug', filterObjectList);
+        // console.log('kendo dialog debug', filterObjectList);
         let listOfFiltersApplied = filterObjectList.map( ele => {
             return ele['list'].map( (item) => {
                 return item['value'];}) 
         });
-        console.log('kendo dialog debug', listOfFiltersApplied);
+        // console.log('kendo dialog debug', listOfFiltersApplied);
         let arrs = listOfFiltersApplied.map( (ele) => { return ele; }) // combine the arrays
-        console.log('kendo dialog debug', arrs);
+        // console.log('kendo dialog debug', arrs);
         let items =  _.uniq(_.flatten(arrs)); // flatten the array
-        console.log('kendo dialog debug', items);
+        // console.log('kendo dialog debug', items);
         return _.pull(items, 'All Data'); 
 
     }

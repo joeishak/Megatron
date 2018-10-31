@@ -59,36 +59,59 @@ class App extends Component {
    componentDidUpdate(prevProps) {
     this.checkAuthentication();
  
-    if(prevProps.preferences !== this.props.preferences){
+    if(prevProps.preferences.defaultSummaryView !== this.props.defaultSummaryView){
       if(this.props.preferences.defaultSummaryView === 'Financial'){
-        this.props.updateSwitchFilterValue(false);
-      } else{
         this.props.updateSwitchFilterValue(true);
+      } else{
+        this.props.updateSwitchFilterValue(false);
       }
+    }
+
+    let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
+    let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined
+    console.log('prev props:',prevPropsIsEmpty, 'props',propsNotEmpty);
+    // debugger;
+    if( prevPropsIsEmpty && propsNotEmpty){
+     console.log('I made it');
       this.props.addValueToActiveMultiFilter({index: 1, category:'quarters', value: this.props.preferences.defaultQuarter});
       this.props.addValueToActiveMultiFilter({index: 2, category:'segments', value: this.props.preferences.defaultSegment});
-      this.props.preferences.geoFilters.forEach(ele => {
-        this.props.addValueToActiveMultiFilter(ele);
-      });
+      if(this.props.preferences.geoFilters!==""){
+        this.props.preferences.geoFilters.forEach(ele => {
+          this.props.addValueToActiveMultiFilter(ele);
+        });
+      }
+      
       // this.props.addValueToActiveMultiFilter(this.props.preferences.geoFilters);
-      this.props.preferences.productFilters.forEach(ele => {
-        this.props.addValueToActiveMultiFilter(ele);
-      });
+      if(this.props.preferences.productFilters !== ""){
+        this.props.preferences.productFilters.forEach(ele => {
+          this.props.addValueToActiveMultiFilter(ele);
+        });
+      }
+     
 
       // this.props.addValueToActiveMultiFilter(this.props.preferences.productFilters);
+      if(this.props.preferences.routeFilters !== ""){
+
       this.props.preferences.routeFilters.forEach(ele => {
         this.props.addValueToActiveMultiFilter(ele);
       });
+    }
 
       // this.props.addValueToActiveMultiFilter(this.props.preferences.routeFilters);
+      if(this.props.preferences.marketFilters !== ""){
+
       this.props.preferences.marketFilters.forEach(ele => {
         this.props.addValueToActiveMultiFilter(ele);
       });
 
+    }
       // this.props.addValueToActiveMultiFilter(this.props.preferences.marketFilters);
+      if(this.props.preferences.subscriptionFilters !== ""){
+      
       this.props.preferences.subscriptionFilters.forEach(ele => {
         this.props.addValueToActiveMultiFilter(ele);
       });
+    }
       // this.props.addValueToActiveMultiFilter(this.props.preferences.subscriptionFilters);
     }
     
