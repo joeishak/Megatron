@@ -58,20 +58,20 @@ class App extends Component {
 
    componentDidUpdate(prevProps) {
     this.checkAuthentication();
- 
-    if(prevProps.preferences.defaultSummaryView !== this.props.defaultSummaryView){
-      if(this.props.preferences.defaultSummaryView === 'Financial'){
-        this.props.updateSwitchFilterValue(true);
-      } else{
-        this.props.updateSwitchFilterValue(false);
-      }
-    }
-
     let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
+ 
+   
+
     let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined
     console.log('prev props:',prevPropsIsEmpty, 'props',propsNotEmpty);
     // debugger;
     if( prevPropsIsEmpty && propsNotEmpty){
+
+      if(this.props.preferences.defaultSummaryView === 'Financial'){
+        this.props.updateSwitchFilterValue(false);
+      } else{
+        this.props.updateSwitchFilterValue(true);
+      }
      console.log('I made it');
       this.props.addValueToActiveMultiFilter({index: 1, category:'quarters', value: this.props.preferences.defaultQuarter});
       this.props.addValueToActiveMultiFilter({index: 2, category:'segments', value: this.props.preferences.defaultSegment});

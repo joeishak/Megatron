@@ -54,11 +54,13 @@ class KendoDialog extends Component {
                 case "Financials":
                 this.props.updateDefaultSummaryPreference('Financial');
             this.setState({selectedSummary: 'Financial'});
+            this.props.updateSwitchFilterValue(false);
 
                 break;
                 case "Journeys":
                 this.props.updateDefaultSummaryPreference('Journey');
             this.setState({selectedSummary: 'Journey'});
+            this.props.updateSwitchFilterValue(true);
 
                 break;
                 default:
@@ -129,89 +131,15 @@ class KendoDialog extends Component {
 
         let fin = this.convertFinId(this.state.financialsSummaryOptions)
         let journ = this.convertJournId(this.state.journeysSummaryViewOptions)
-        // switch(this.state.financialsSummaryOptions){
-        //     case 'NetNewArr':
-        //     fin = 1;
-        //     break;
-        //     case 'GrossNewArr':
-        //     fin = 2;
-        //     break;
-        //     case 'CancellationsARR':
-        //     fin = 3;
-        //     break;
-        //     case 'Renewal@FPARR':
-        //     fin = 4;
-        //     break;
-        //     default:
-        //     fin = 1;
-        //     break;
-        // }
-
-        // switch(this.state.journeysSummaryViewOptions){
-        //     case 'Discover':
-        //     journ = 1;
-        //     break;
-        //     case 'Try':
-        //     journ = 2;
-        //     break;
-        //     case 'Buy':
-        //     journ = 3;
-        //     break;
-        //     case 'Use':
-        //     journ = 4;
-        //     break;
-        //     case 'Renew':
-        //     journ = 5;
-        //     break;
-        //     default: 
-        //     journ = 1;
-        //     break;
-        // }
+       
         this.props.updateUserSettings(this.props.activeFilters,this.props.user, view, fin,journ ,this.props.availableFilters,this.props.preferences.settingId);
-        // this.props.saveSettings()
         this.setState({savedClicked: true});
         
         setTimeout(() => this.closeDialog(), 1500);
-        // this.closeDialog();
     }
 
 
-    // findFilter = (activeFilters, category) => {
-
-    //     for (let i = 0; i < activeFilters.length; i++) {
-    //         switch(category) {
-    //             case 'geos':
-    //                 const geoIndex = activeFilters.findIndex(x => x.category === category);
-                
-    //                 return [activeFilters[geoIndex]];
-    //             case 'marketAreas':
-    //                 const marketAreasIndex = activeFilters.findIndex(x => x.category === category);
-                    
-    //                 return [activeFilters[marketAreasIndex]];
-    //             case 'productNames':
-    //                 const productNamesIndex = activeFilters.findIndex(x => x.category === category);
-      
-    //                 return [activeFilters[productNamesIndex]];
-    //             case 'quarters':
-    //                 const quartersIndex = activeFilters.findIndex(x => x.category === category);
-    //                 console.log('jr', quartersIndex);
-    //                 return [activeFilters[quartersIndex]];
-    //             case 'routeToMarkets':
-    //                 const routeToMarketsIndex = activeFilters.findIndex(x => x.category === category);
- 
-    //                 return [activeFilters[routeToMarketsIndex]];
-    //             case 'segments':
-    //                 const segmentsIndex = activeFilters.findIndex(x => x.category === category);
-     
-    //                 return [activeFilters[segmentsIndex]];
-    //             case 'subscriptionOfferings':
-    //                 const subscriptionOfferingsIndex = activeFilters.findIndex(x => x.category === category);
-
-    //                 return [activeFilters[subscriptionOfferingsIndex]];
-    //                 default: break;
-    //         }
-    //     }
-    // }
+    
 
 
 
