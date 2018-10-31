@@ -1,3 +1,4 @@
+
 import {
     GET_USER_SETTINGS,
     UPDATE_USER_SETTINGS,
@@ -12,13 +13,12 @@ export default   function(state = {},action) {
     switch(action.type) {
         case GET_USER_SETTINGS:
         newState  = action.payload.data[0];
+
         if(newState.geoFilters !== ""){
             newState.geoFilters = JSON.parse(newState.geoFilters)
-
         }
         if(newState.productFilters !== ""){
             newState.productFilters = JSON.parse(newState.productFilters)
-
         }
         if(newState.routeFilters!== ""){
             newState.routeFilters = JSON.parse(newState.routeFilters)

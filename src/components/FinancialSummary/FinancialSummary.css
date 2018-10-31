@@ -232,11 +232,7 @@
 	position: absolute;
 	background: white;
 	border-bottom: 4px solid white;
-<<<<<<< HEAD
 	width: 100%;
-=======
-	width:100%;
->>>>>>> 7e2a30e30d63358d6dd462250562c602cc735f1b
     height: 175px;
 }
 .arrow_box:after, .arrow_box:before {

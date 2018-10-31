@@ -128,11 +128,11 @@ export function updateUserSettings(activeFilters, user, defaultSummary, defaultF
     //     subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
     //     routeToMarkets: Object.values(availableFilters.routeToMarkets)
     // }
-    let stringGeo = JSON.stringify(activeFilters.geos);
-    let stringProducts = JSON.stringify(activeFilters.products);
-    let stringRoutes = JSON.stringify(activeFilters.routes);
-    let stringMarkets = JSON.stringify(activeFilters.markets);
-    let stringSubscription = JSON.stringify(activeFilters.subscriptions);
+    let stringGeo = activeFilters.geos;
+    let stringProducts = activeFilters.products
+    let stringRoutes = activeFilters.routes;
+    let stringMarkets = activeFilters.markets;
+    let stringSubscription = activeFilters.subscriptions;
     let params = {
         quarter: activeFilters.quarters[0].value,
         segment: activeFilters.segments[0].value,
@@ -140,11 +140,11 @@ export function updateUserSettings(activeFilters, user, defaultSummary, defaultF
         view: defaultSummary,
         fin: defaultFinKpi,
         journ: defaultJournKpi,
-        geos: stringGeo,
-        products: stringProducts,
-        subscriptions: stringSubscription,
-        routes: stringRoutes,
-        markets: stringMarkets
+        geos: JSON.stringify(stringGeo),
+        products: JSON.stringify(stringProducts),
+        subscriptions: JSON.stringify(stringSubscription),
+        routes: JSON.stringify(stringRoutes),
+        markets: JSON.stringify(stringMarkets)
     }
     console.log('Updating User Setting Params: ',params);
     let res = utils.postUserSettings(params);
