@@ -117,19 +117,39 @@ export function updateDefaultSummaryPreference(type){
         payload: type
     }
 }
-export function updateUserSettings(activeFilters, user, defaultSummary, defaultFinKpi, defaultJournKpi){
+export function updateUserSettings(activeFilters, user, defaultSummary, defaultFinKpi, defaultJournKpi,availableFilters,settingId){
 
-
+    // let allFilters = {
+    //     quarters: Object.values(availableFilters.quarters),
+    //     geos: Object.values(availableFilters.geos),
+    //     marketAreas: Object.values(availableFilters.marketAreas),
+    //     products: Object.values(availableFilters.products),
+    //     segments: Object.values(availableFilters.segments),
+    //     subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
+    //     routeToMarkets: Object.values(availableFilters.routeToMarkets)
+    // }
+    let stringGeo = JSON.stringify(activeFilters.geos);
+    let stringProducts = JSON.stringify(activeFilters.products);
+    let stringRoutes = JSON.stringify(activeFilters.routes);
+    let stringMarkets = JSON.stringify(activeFilters.markets);
+    let stringSubscription = JSON.stringify(activeFilters.subscriptions);
     let params = {
         quarter: activeFilters.quarters[0].value,
         segment: activeFilters.segments[0].value,
         user: user.sub,
         view: defaultSummary,
         fin: defaultFinKpi,
-        journ: defaultJournKpi
+        journ: defaultJournKpi,
+        geos: stringGeo,
+        products: stringProducts,
+        subscriptions: stringSubscription,
+        routes: stringRoutes,
+        markets: stringMarkets
     }
     console.log('Updating User Setting Params: ',params);
     let res = utils.postUserSettings(params);
+    console.log(res);
+    // let res2 = utils.postMultiValueSettings(activeFilters,settingId,availableFilters);
 
     return {
         type: UPDATE_USER_SETTINGS,

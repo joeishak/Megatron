@@ -378,9 +378,48 @@ export function postUserSettings(params){
       "view":params.view,
       "fin":params.fin,
       "journ":params.journ,
-      "user": params.user   
+      "user": params.user,
+      "products": params.products,
+      "geos": params.geos,
+      "subscriptions":params.subscriptions,
+      "routes": params.routes,
+      "markets":params.markets
     }
   }
 
+  return axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
+}
+export function postMultiValueSettings(activeFilters,setting, availableFilters ){
+  let body = {
+    "conn":  '18',
+    "qry": 'NewMultivalueSetting',
+    "columnNames": 'true',
+    "params": {
+      "setting":'',
+      "filter":'',
+      "type":''
+    }
+  }
+  if(activeFilters.geos[0].value === 'All Data'){
+    availableFilters.geos.map(item =>{
+      body.params = {
+        "setting":setting,
+        "filter":item.value,
+        "type":'geo'
+      }
+      return  axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
+    })
+  } else{
+    activeFilters.geo.map(item =>{
+      body.params = {
+        "setting":setting,
+        "filter":item.value,
+        "type":'geo'
+      }
+      return  axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
+    })
+  }
+  
+  
   return axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
 }

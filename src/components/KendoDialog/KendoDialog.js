@@ -167,7 +167,7 @@ class KendoDialog extends Component {
         //     journ = 1;
         //     break;
         // }
-        this.props.updateUserSettings(this.props.activeFilters,this.props.user, view, fin,journ );
+        this.props.updateUserSettings(this.props.activeFilters,this.props.user, view, fin,journ ,this.props.availableFilters,this.prefernces.settingId);
         // this.props.saveSettings()
         this.setState({savedClicked: true});
         
