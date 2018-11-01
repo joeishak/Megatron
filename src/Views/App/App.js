@@ -170,13 +170,14 @@ class App extends Component {
   }
   render(){
 
+    const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
     return (
       
       <div style={{height:'100%'}}>
         {this.state.authenticated &&
         <span>
           {/* Data Preferences */}
-          <KendoDialog /> 
+          {kdialog}
           <Navigation />
           <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
           {(this.props.commentBoxIsOpen) ? <CommentBox /> : null}

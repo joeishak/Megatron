@@ -97,11 +97,8 @@ class Navigation extends Component {
     }
 
     onDataPreferencesSelcted () {
-      let dialogState = this.state.dataPrefDialogVisible;
-
-      this.setState({dataPrefDialogVisible: !dialogState}, () => {
-        this.props.updateDialogVisibility(this.state.dataPrefDialogVisible);
-      });
+      
+        this.props.updateDialogVisibility(true);
     }
     updateCommentsNav(){
       let toggle = this.props.toggleCommentaryOn;

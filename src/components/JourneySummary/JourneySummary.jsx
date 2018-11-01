@@ -24,6 +24,9 @@ class JourneySummary extends Component {
         if(this.props.toggleCommentary!== nextProps.toggleCommentary){
             return true;
         }
+        if(nextProps.defaultKpi !== this.props.defaultKpi ){
+            return true;
+        }
         return false;
     }
     formatPercentage(value) {

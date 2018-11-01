@@ -27,6 +27,9 @@ class KendoDialog extends Component {
             animation:true
         })
     }
+    componentDidMount(){
+        this.open();
+    }
     open() {
         $("[data-role='window']").each(function (index) {
             $(this).data('kendoWindow').open()});
@@ -106,10 +109,10 @@ class KendoDialog extends Component {
             case 'Discover':
             return 1;
             break;
-            case 'Try':
+            case 'Buy':
             return 2;
             break;
-            case 'Buy':
+            case 'Try':
             return 3;
             break;
             case 'Use':
@@ -332,14 +335,14 @@ class KendoDialog extends Component {
                             </div>
                             <div className="row pullUp">
                                     <div className={`radio ${this.props.defaultJourn.toString() === '2' ? '//radio-checked': ''}`}>
-                                        <input id="Try" name="journeysSummaryViewOptions" type="radio"  checked={this.props.defaultJourn.toString() === '2'} onChange={ (e) => this.onItemChecked(e) }/>
-                                        <label htmlFor="Try" className="radio-label"><b>Try</b></label>
+                                        <input id="Buy" name="journeysSummaryViewOptions" type="radio" checked={this.props.defaultJourn.toString() === '2'} onChange={ (e) => this.onItemChecked(e) } />
+                                        <label htmlFor="Buy" className="radio-label"><b>Buy</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
                                     <div className={`radio ${this.props.defaultJourn.toString() === '3' ? '//radio-checked': ''}`}>
-                                        <input id="Buy" name="journeysSummaryViewOptions" type="radio" checked={this.props.defaultJourn.toString() === '3'} onChange={ (e) => this.onItemChecked(e) } />
-                                        <label htmlFor="Buy" className="radio-label"><b>Buy</b></label>
+                                        <input id="Try" name="journeysSummaryViewOptions" type="radio"  checked={this.props.defaultJourn.toString() === '3'} onChange={ (e) => this.onItemChecked(e) }/>
+                                        <label htmlFor="Try" className="radio-label"><b>Try</b></label>
                                     </div>
                             </div>
                             <div className="row pullUp">
