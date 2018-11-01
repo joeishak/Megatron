@@ -3,6 +3,7 @@ import React, {Component } from 'react';
 import {connect } from 'react-redux';
 import * as actions from 'actions';
 import styles from './KendoMultiChart.css';
+
 import {
     Chart,
     ChartTitle,
@@ -17,8 +18,10 @@ import {
     ChartArea,
     ChartSeriesItemTooltip,
     ChartTooltip,
-    ChartLegend
+    ChartLegend,
+    ChartLegendItem
 } from '@progress/kendo-react-charts';
+
 
 class KendoMultiChart extends Component {
 
@@ -37,40 +40,40 @@ class KendoMultiChart extends Component {
         this.formatDataValues = this.formatDataValues.bind(this);
     }
  
-    formatYAxisValues = (valuesArr) => {
-        const returnValuesArr = valuesArr.map(ele => {
-            if(ele> 1000000)
-            return (ele/1000000);
-            else return (ele/1000);
-        });
+    // formatYAxisValues = (valuesArr) => {
+    //     const returnValuesArr = valuesArr.map(ele => {
+    //         if(ele> 1000000)
+    //         return (ele/1000000);
+    //         else return (ele/1000);
+    //     });
 
-        return returnValuesArr;
-    }
+    //     return returnValuesArr;
+    // }
 
-    labelContent(e){
-        const suffix = ' M';
-        const prefix = '$';
-        return ( prefix + (parseInt(e.value)/ 1000000) + suffix);
-    }
+    // labelContent = (type, e) => {
+    //     console.log('debug', e.value);
+    //     console.log('debug', type);
+    //     const suffix = ' M';
+    //     const prefix = '$';
+    //     return ( prefix + (parseInt(e.value)/ 1000000) + suffix);
+    // }
  
-    labelPercentageContent(e){
-        const prefix = '% ';
-        return ( prefix +e.value);
+    // labelPercentageContent(e){
+    //     const prefix = '% ';
+    //     return ( prefix +e.value);
 
-    }
+    // }
 
-    labelUnitsContent(e){
-        const suffix = ' M';
-        return ( parseInt(e.value)/1000000) + suffix
-    }
+    // labelUnitsContent(e){
+    //     const suffix = ' M';
+    //     return ( parseInt(e.value)/1000000) + suffix
+    // }
+
     formatDataValues(arr){
-
         let newArr;
-
         newArr = arr.map(item=>{
             return item.toFixed(1);
         });
-        
         return newArr;
     }
 
@@ -123,6 +126,7 @@ class KendoMultiChart extends Component {
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
 
         const SharedTooltip = (props) => {
+            // console.log('debug', props);
             const { points } = props;
             const title = props.categoryText;
             return (
@@ -139,10 +143,23 @@ class KendoMultiChart extends Component {
         }
         const sharedTooltipRender = (context) => (<SharedTooltip {...context}/>)
 
+        // Y axis Values
+        const labelContentRender = (props) => { return this.renderValue(this.props.valueType, props.value); }
+
+        // legend labels
+        const legendRender = (props) => {
+           
+            const customVisual = props.createVisual();
+
+            return customVisual;
+        }
+
         const ChartContainer = () => (
             
-                <Chart pannable={false} zoomable={false}>
-                    <ChartLegend  position='bottom' labels={{color: this.props.color}} />
+                <Chart pannable={false} zoomable={false} >
+                    <ChartLegend  position='bottom' labels={{color: this.props.color}} >
+                        <ChartLegendItem visual={legendRender}/>
+                    </ChartLegend>
                     <ChartTooltip shared={true} background="black" color="white" render={sharedTooltipRender}/>
                     <ChartCategoryAxis>
                             <ChartCategoryAxisItem max='13' maxDivisions={13} />
@@ -152,7 +169,7 @@ class KendoMultiChart extends Component {
                     <ChartArea background="transparent" height={this.props.chartHeight} />
                     <ChartTitle text="" />
                     <ChartValueAxis>
-                        <ChartValueAxisItem color={this.props.color} labels={{content: this.labelContent, skip: 1, step: 2}} />
+                        <ChartValueAxisItem color={this.props.color} labels={{content: labelContentRender, skip: 1, step: 2}} />
                     </ChartValueAxis>
                     <ChartCategoryAxis major >
                         <ChartCategoryAxisItem color={this.props.color} categories={categories}>

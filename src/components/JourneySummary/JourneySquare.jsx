@@ -35,7 +35,7 @@ class JourneySquare extends Component {
                                 </div>
                                 <div className="row k-float-left">
                                     <div className="journeyKendoGraph">
-                                        <KendoBulletChart values={[this.props.item.value, this.props.item.target]} color="white" key={this.props.item.index} ></KendoBulletChart>
+                                        <KendoBulletChart values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="white" key={this.props.item.index} ></KendoBulletChart>
                                     </div>
                                 </div>  
                             </div>

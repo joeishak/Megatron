@@ -19,7 +19,8 @@ class KendoDialog extends Component {
             selectedSummary: undefined,
             financialsSummaryOptions: 'CancellationsARR',
             journeysSummaryViewOptions: 'Discover',
-            savedClicked: undefined
+            savedClicked: undefined,
+            onFilterHover: false
         };
         
         this.closeDialog = this.closeDialog.bind(this)      
@@ -36,12 +37,6 @@ class KendoDialog extends Component {
         this.setState({savedClicked: undefined});
     }
 
-
-    // componentDidUpdate(prevProps){
-    //   if ( this.props.preferences !== prevProps.preferences){
-    //     this.setState({selectedSummary: this.props.preferences.defaultSummaryView});
-    //   }
-    // }
     onItemChecked(e) {
         e.preventDefault()
 
@@ -138,43 +133,29 @@ class KendoDialog extends Component {
         setTimeout(() => this.closeDialog(), 1500);
     }
 
+    onMouseEnterHandler = () => {
+        console.log('entered');
+      
+    }
 
+    onMoueLeaveHandler = () => {
+        console.log('left');
+      
+    }
     
     removeFilter (filterToRemove) {
-
         this.props.removeMultiFilter(filterToRemove);
-
     }
-    // console.log('kendo dialog debug', filterList);
-    // let filterObjectList = Object.keys(filterList).map((ele) => {
-    //     return new Object({ type: ele, list: filterList[ele]})
-    //   });
-    // // console.log('kendo dialog debug', filterObjectList);
-    // let listOfFiltersApplied = filterObjectList.map( ele => {
-    //     return ele['list'].map( (item) => {
-    //         return item['value'];}) 
-    // });
-    // // console.log('kendo dialog debug', listOfFiltersApplied);
-    // let arrs = listOfFiltersApplied.map( (ele) => { return ele; }) // combine the arrays
-    // // console.log('kendo dialog debug', arrs);
-    // let items =  _.uniq(_.flatten(arrs)); // flatten the array
-    // // console.log('kendo dialog debug', items);
-    // return _.pull(items, 'All Data'); 
 
     generateFilterList = (filterList) => {
 
-        let filterObjectList = Object.keys(filterList).map((ele) => {
-            return  filterList[ele];
-          });
-    
+        let filterObjectList = Object.keys(filterList).map((ele) => { return  filterList[ele]; });
         let arrs = filterObjectList.map( (ele) => { return ele; }) // combine the arrays
-
         let items =  _.uniq(_.flatten(arrs)); // flatten the array
-
         let allDataRemoved = items.map((ele) => {
             if (ele.value !== 'All Data') { return ele }
-        })
-        console.log('kendo debug dialog', _.pull(allDataRemoved, undefined))
+        });
+
         return _.pull(allDataRemoved, undefined);
     }
  
@@ -255,8 +236,12 @@ class KendoDialog extends Component {
                                 
                                 <ul className="filterList">
                                     {filtersApplied.map((item) => {
-                                        return <li onClick={(e) => this.removeFilter(item)} className="miniMultiFilter">{item.value}</li>
-                                        // {console.log('kendo dialog debug', item.value)}
+                                        return <li onClick={(e) => this.removeFilter(item)} 
+                                        onMouseEnter={this.onMouseEnterHandler} 
+                                        onMouseLeave={this.onMoueLeaveHandler} 
+                                        className="miniMultiFilter">
+                                            {item.value}
+                                        </li>
                                     })}
                                 </ul>
                             </div>
@@ -369,7 +354,7 @@ class KendoDialog extends Component {
             <div className="content">
                 <Dialog width={939} height={626}  title={`Data Preferences for ${this.props.user.name} `} onClose={this.closeDialog}>
 
-                    <div className="container-fluid">
+                    <div className="container-fluid savedContainer">
                         <h1>Saved!</h1>
                     </div>
 
