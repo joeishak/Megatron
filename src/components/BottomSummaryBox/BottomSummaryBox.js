@@ -21,6 +21,7 @@ class ButtomSummaryBox extends Component {
         super(props);
         // Initialize state
         this.state = {
+            count: 0
         }
         //Binding functions to this
         this.openDialog= this.openDialog.bind(this);
@@ -31,7 +32,6 @@ class ButtomSummaryBox extends Component {
     //Event Handler for the View Details Button
     openDialog = ()=>{
         // Call an action for mapped props to update the dialog/windows visibility to True
-        // this.props.updateDialogVisibility(true)
         this.props.showSummaryDetails();
     }
     render(){
@@ -65,6 +65,7 @@ class ButtomSummaryBox extends Component {
                                             this.props.activeSummary.details.stats.reverse().map(item=>{
                                                 return(
                                                     <CSSTransitionGroup
+                                                        key={this.state.count++}
                                                         transitionName="example"
                                                         transitionAppear={true}
                                                         transitionAppearTimeout={800}
@@ -93,6 +94,7 @@ class ButtomSummaryBox extends Component {
                                             this.props.activeSummary.details.stats.map(item=>{
                                                 return(
                                                     <CSSTransitionGroup
+                                                        key={this.state.count++}
                                                         transitionName="example"
                                                         transitionAppear={true}
                                                         transitionAppearTimeout={800}

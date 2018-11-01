@@ -22,24 +22,30 @@ export default ChildComponent => {
             if(prevProps.switchFilter !== this.props.switchFilter){
                 if(this.props.switchFilter === false){
                     this.props.updateFinancialSummaryActiveCard(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1]);
-                } else {
+                } else  {
                     this.props.updateJourneySummaryActiveCard(this.props.journeyData[parseInt(this.props.preferences.defaultJournKpi)-1]);
                 }
             }
-            // if(this.props.preferences.defaultFinKpi !== undefined && this.props.finData[0] !== undefined){
-            //     console.log(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1]);
 
-            //     if(this.props.preferences.defaultSummaryView === 'Financial'){
-            //         this.props.updateFinancialSummaryActiveCard(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1])
+            if(this.props.preferences !== prevProps.preferences ){
 
-            //     } else  if(this.props.preferences.defaultSummaryView === 'Journey'){
-            //         this.props.updateFinancialSummaryActiveCard(this.props.journeyData[parseInt(this.props.preferences.defaultJournKpi)-1])
+                if(this.props.preferences.defaultSummaryView === 'Financial'){
+                    if(this.props.preferences.defaultFinKpi !== prevProps.preferences.defaultFinKpi){
+                        this.props.updateFinancialSummaryActiveCard(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1])
+                    }
 
-            //     }
-            // }
+                } else  if(this.props.preferences.defaultSummaryView === 'Journey'){
+                    if (this.props.preferences.defaultJournKpi !== prevProps.preferences.defaultJournKpi){
+                        this.props.updateJourneySummaryActiveCard(this.props.journeyData[parseInt(this.props.preferences.defaultJournKpi)-1])
+
+                    }
+                }
+            }
+
             if(this.props.finData !== prevProps.finData && this.props.switchFilter === false){
                 this.props.updateFinancialSummaryActiveCard(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1]);
             }
+
             if(this.props.journeyData !== prevProps.journeyData && this.props.switchFilter === true){
                 this.props.updateJourneySummaryActiveCard(this.props.journeyData[parseInt(this.props.preferences.defaultJournKpi)-1]);
             }

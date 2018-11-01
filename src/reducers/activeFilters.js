@@ -43,7 +43,7 @@ export default function(state = {
                     switch(cat){
                         case 'geos':
                         _.remove(copyOfState.geos, item => {return item.value==='All Data'});
-                        _.remove(copyOfState.geos, item => {return item.value=== action.payload.value});
+                        _.remove(copyOfState.geos, item => {return item.index=== action.payload.index});
                         copyOfState.geos.push(action.payload);
                         break;
                         case 'quarters':

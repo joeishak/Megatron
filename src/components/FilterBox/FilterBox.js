@@ -23,7 +23,8 @@ class FilterBox extends Component {
             closeNewFilterActive: false,
             showSlide: false,
             filterButtonTitle: 'Add Filters',
-            filterBarArr: []
+            filterBarArr: [],
+            totalFilterPills: 0
         }
 
         //Binding functions to this
@@ -76,7 +77,7 @@ class FilterBox extends Component {
             //For each active filter, return a Filter Pill Box Component mapped to the filter
             filterBarArr.map(filter =>{
                 if(filter!==undefined){
-                    return <FilterPillBox key={filter.index} data={filter} />
+                    return <FilterPillBox key={this.state.totalFilterPills++} data={filter} />
                 } else return <span />
             })
         )

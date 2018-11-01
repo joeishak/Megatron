@@ -10,12 +10,20 @@ class JourneySummary extends Component {
     constructor(props){
         super(props);
         this.state ={
-            activeJourneyCard: undefined
+            activeJourneyCard: undefined 
         }
         this.onJourneyCardClicked = this.onJourneyCardClicked.bind(this);
     }
 
+    componentDidUpdate(prevProps){
+        
+    //    if(prevProps.defaultKpi !== this.props.defaultKpi){
+    //        this.setState({activeCard: `'${this.props.defaultKpi}'`});
+    //        this.props.updateJourneySummaryActiveCard
+    //    }
+    }
     shouldComponentUpdate(nextProps,nextState){
+
         if(nextProps.data !== this.props.data){
             return true;
         } else if(nextState.activeJourneyCard !== this.state.activeJourneyCard){
@@ -24,7 +32,12 @@ class JourneySummary extends Component {
         if(this.props.toggleCommentary!== nextProps.toggleCommentary){
             return true;
         }
+        if(nextProps.defaultKpi !== this.props.defaultKpi ){
+            return true;
+        }
+
         return false;
+
     }
     formatPercentage(value) {
         return (value.toFixed(1) / 100).toFixed(2);

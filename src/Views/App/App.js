@@ -170,18 +170,19 @@ class App extends Component {
   }
   render(){
 
+    const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
     return (
       
       <div style={{height:'100%'}}>
         {this.state.authenticated &&
-          <span>
-            {/* Data Preferences */}
-            <KendoDialog /> 
-            <Navigation />
-            <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
-            {(this.props.commentBoxIsOpen) ? <CommentBox /> : null}
-            <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
-            {this.getSummary()}
+        <span>
+          {/* Data Preferences */}
+          {kdialog}
+          <Navigation />
+          <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
+          {(this.props.commentBoxIsOpen) ? <CommentBox /> : null}
+          <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
+          {this.getSummary()}
           </span>
         }
          {this.state.authenticated === false &&
