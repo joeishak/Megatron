@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
 import JourneySquare from './JourneySquare.jsx';
 class JourneySquareList extends Component {
+    shouldComponentUpdate(nextProps){
+        if(this.props.toggleCommentary !== nextProps.toggleCommentary){
+            return true;
+        }
+        else if(this.props.data !== nextProps.data){
+            return true;
+        }
+        else if(this.props.activeJourneyCard !== nextProps.activeJourneyCard){
+            return true;
+        }
+
+        return false;
+    }
     render(){
         return(
             this.props.data.map(item => {
+                let isActive = parseInt(this.props.activeJourneyCard) === item.index ? true : false;
+
                 return (
                     <JourneySquare 
                     key={item.index}
                     item={item}
-                    activeJourneyCard = {this.props.activeJourneyCard}
+                    activeJourneyCard = {isActive}
                     getColor={this.props.getColor}
                     renderUnits={  this.props.renderUnits}
                     formatPercentage = {this.props.formatPercentage}

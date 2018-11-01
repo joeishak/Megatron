@@ -7,12 +7,12 @@ import styles from './JourneySummary.css';
 class JourneySquare extends Component {
     render(){
         return(
-<div className="journeyBoxHover" key={this.props.item.index}>    
+    <div className="journeyBoxHover" key={this.props.item.index}>    
              
-                    <div className={ `journeyBox ${this.props.item.css[1]} ${this.props.activeJourneyCard === this.props.item.css[0] ? this.props.getColor(this.props.item.value, this.props.item.target, 'journey', false) : ''}`} 
+                    <div className={ `journeyBox ${this.props.item.css[1]} ${this.props.activeJourneyCard === true ? this.props.getColor(this.props.item.value, this.props.item.target, 'journey', false) : ''}`} 
                     onClick={e => this.props.onJourneyCardClicked(e, this.props.item)}>
                 
-                    <div  className={`journeyHeader k-float-left ${this.props.activeJourneyCard === this.props.item.css[0] ? this.props.getColor(this.props.item.value, this.props.item.target, 'journey', true) : ''}`} >
+                    <div  className={`journeyHeader k-float-left ${this.props.activeJourneyCard === true ? this.props.getColor(this.props.item.value, this.props.item.target, 'journey', true) : ''}`} >
                         <div className={this.props.item.css[2]}><p className="journeyHeaderTitle ">{this.props.item.title}</p></div>
                     </div>
 

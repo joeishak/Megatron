@@ -22,7 +22,7 @@ export default ChildComponent => {
             if(prevProps.switchFilter !== this.props.switchFilter){
                 if(this.props.switchFilter === false){
                     this.props.updateFinancialSummaryActiveCard(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1]);
-                } else {
+                } else  {
                     this.props.updateJourneySummaryActiveCard(this.props.journeyData[parseInt(this.props.preferences.defaultJournKpi)-1]);
                 }
             }
@@ -36,7 +36,7 @@ export default ChildComponent => {
 
                 } else  if(this.props.preferences.defaultSummaryView === 'Journey'){
                     if (this.props.preferences.defaultJournKpi !== prevProps.preferences.defaultJournKpi){
-                        this.props.updateFinancialSummaryActiveCard(this.props.journeyData[parseInt(this.props.preferences.defaultJournKpi)-1])
+                        this.props.updateJourneySummaryActiveCard(this.props.journeyData[parseInt(this.props.preferences.defaultJournKpi)-1])
 
                     }
                 }
