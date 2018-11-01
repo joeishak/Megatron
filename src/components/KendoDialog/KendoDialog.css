@@ -220,6 +220,18 @@
     
 }
 
+.miniMultiFilter {
+    font-weight: bold;
+}
+.miniMultiFilter:hover {
+    border: 2px solid red;
+    color: red;
+    font-weight: bold;
+    content: 'ADD';
+}
+
+
+
 .userPompt{
     display: block;
     width: 939px;
@@ -227,51 +239,6 @@
     background-color: red;
 }
 
-/* saved */
 
-.saving {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%);
-  }
-  .saving .dots {
-    height: 5px;
-    width: 5px;
-    padding: 10px;
-    background: #fff;
-    border-radius: 80px;
-    animation-name: opacityDots;
-    animation-duration: 2.5s;
-    animation-iteration-count: infinite;
-    animation-fill-mode: both;
-    margin: 0 5px;
-  }
-  .saving .dots:nth-child(1) {
-    animation-delay: 0.3s;
-  }
-  .saving .dots:nth-child(2) {
-    animation-delay: 0.6s;
-  }
-  .saving .dots:nth-child(3) {
-    animation-delay: 0.9s;
-  }
-  .saving .dots:nth-child(4) {
-    animation-delay: 1.2s;
-  }
-  .saving .dots:nth-child(5) {
-    animation-delay: 1.5s;
-  }
-  
-  @keyframes opacityDots {
-    0% {
-      opacity: .2;
-    }
-    20% {
-      opacity: 1;
-    }
-    100% {
-      opacity: .2;
-    }
-  }
-  
+
+/* saved */
