@@ -132,3 +132,24 @@ input:checked + .slider:before  {
 	animation-duration: 100s;
 	animation-delay: 5s;
 }
+
+
+.slideIn{
+	animation: slideIn 1.4s forwards;
+}
+
+@-moz-keyframes slideIn {
+	0% { -webkit-transform: translateX(-600px); }
+
+    100% { -webkit-transform: translateX(0); }
+} 
+@-webkit-keyframes slideIn {
+	0% { -webkit-transform: translateX(-600px); }
+
+    100% { -webkit-transform: translateX(0); }
+} 
+@keyframes slideIn {
+	0% { -webkit-transform: translateX(-600px); }
+
+    100% { -webkit-transform: translateX(0); }
+} 

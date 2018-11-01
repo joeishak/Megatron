@@ -140,26 +140,42 @@ class KendoDialog extends Component {
 
 
     
+    removeFilter (filterToRemove) {
 
+        this.props.removeMultiFilter(filterToRemove);
 
+    }
+    // console.log('kendo dialog debug', filterList);
+    // let filterObjectList = Object.keys(filterList).map((ele) => {
+    //     return new Object({ type: ele, list: filterList[ele]})
+    //   });
+    // // console.log('kendo dialog debug', filterObjectList);
+    // let listOfFiltersApplied = filterObjectList.map( ele => {
+    //     return ele['list'].map( (item) => {
+    //         return item['value'];}) 
+    // });
+    // // console.log('kendo dialog debug', listOfFiltersApplied);
+    // let arrs = listOfFiltersApplied.map( (ele) => { return ele; }) // combine the arrays
+    // // console.log('kendo dialog debug', arrs);
+    // let items =  _.uniq(_.flatten(arrs)); // flatten the array
+    // // console.log('kendo dialog debug', items);
+    // return _.pull(items, 'All Data'); 
 
     generateFilterList = (filterList) => {
-        // console.log('kendo dialog debug', filterList);
-        let filterObjectList = Object.keys(filterList).map((ele) => {
-            return new Object({ type: ele, list: filterList[ele]})
-          });
-        // console.log('kendo dialog debug', filterObjectList);
-        let listOfFiltersApplied = filterObjectList.map( ele => {
-            return ele['list'].map( (item) => {
-                return item['value'];}) 
-        });
-        // console.log('kendo dialog debug', listOfFiltersApplied);
-        let arrs = listOfFiltersApplied.map( (ele) => { return ele; }) // combine the arrays
-        // console.log('kendo dialog debug', arrs);
-        let items =  _.uniq(_.flatten(arrs)); // flatten the array
-        // console.log('kendo dialog debug', items);
-        return _.pull(items, 'All Data'); 
 
+        let filterObjectList = Object.keys(filterList).map((ele) => {
+            return  filterList[ele];
+          });
+    
+        let arrs = filterObjectList.map( (ele) => { return ele; }) // combine the arrays
+
+        let items =  _.uniq(_.flatten(arrs)); // flatten the array
+
+        let allDataRemoved = items.map((ele) => {
+            if (ele.value !== 'All Data') { return ele }
+        })
+        console.log('kendo debug dialog', _.pull(allDataRemoved, undefined))
+        return _.pull(allDataRemoved, undefined);
     }
  
     render(){
@@ -239,7 +255,8 @@ class KendoDialog extends Component {
                                 
                                 <ul className="filterList">
                                     {filtersApplied.map((item) => {
-                                        return <li><b>{item}</b></li>
+                                        return <li onClick={(e) => this.removeFilter(item)} className="miniMultiFilter">{item.value}</li>
+                                        // {console.log('kendo dialog debug', item.value)}
                                     })}
                                 </ul>
                             </div>
@@ -352,7 +369,9 @@ class KendoDialog extends Component {
             <div className="content">
                 <Dialog width={939} height={626}  title={`Data Preferences for ${this.props.user.name} `} onClose={this.closeDialog}>
 
-                    <div className="container"><h1>Saved!</h1></div>
+                    <div className="container-fluid">
+                        <h1>Saved!</h1>
+                    </div>
 
                 </Dialog>
             </div>
