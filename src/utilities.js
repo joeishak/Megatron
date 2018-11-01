@@ -201,7 +201,8 @@ export function getFinancialSummaryData(allFilters, _parameters){
  // Remove First Row from all the filters 
  // Contains All Data Filters
  // allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
- generateFilterParams('fin',filterParams,allFilters,_parameters);
+ generateFilterParams('fin', filterParams, allFilters, _parameters);
+ 
  let params1 = filterParams.reduce((prev, param) => {
          let p = '';
          p = prev + '&' + param.prompt + '=' + param.value;

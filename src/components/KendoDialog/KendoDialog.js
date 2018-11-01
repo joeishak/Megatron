@@ -190,7 +190,7 @@ class KendoDialog extends Component {
                                     <div className="col-lg-6 col-md-6">
                                         <p>Geo</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.geos}/> */}
-                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.geos} ></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler} defaultValue={this.props.activeFilters.geos[0]} options={this.props.availableFilters.geos} ></ReactSelect>
                                     </div>
                                 </div>
                            
@@ -198,12 +198,12 @@ class KendoDialog extends Component {
                                     <div className="col-lg-6 col-md-6">
                                         <p>Product name</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.products}/> */}
-                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.products}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler} defaultValue={this.props.activeFilters.products[0]} options={this.props.availableFilters.products}></ReactSelect>
                                     </div>
                                     <div className="col-lg-6 col-md-6">
                                         <p>Subscription Offering</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.subscriptionOfferings} /> */}
-                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler} options={this.props.availableFilters.subscriptionOfferings}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler} defaultValue={this.props.activeFilters.subscriptions[0]} options={this.props.availableFilters.subscriptionOfferings}></ReactSelect>
                                     </div>
                                 </div>
                                 {/* third row */}
@@ -211,12 +211,12 @@ class KendoDialog extends Component {
                                     <div className="col-lg-6 col-md-6">
                                         <p>Market Area</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.marketAreas} /> */}
-                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.marketAreas} ></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  defaultValue={this.props.activeFilters.markets[0]} options={this.props.availableFilters.marketAreas} ></ReactSelect>
                                     </div>
                                     <div className="col-lg-6 col-md-6">
                                         <p>Route to Market</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.routeToMarkets}/> */}
-                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  options={this.props.availableFilters.routeToMarkets}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  defaultValue={this.props.activeFilters.routes[0]} options={this.props.availableFilters.routeToMarkets}></ReactSelect>
                                     </div>
                                 </div>
                                 {/* fourth row */}
@@ -224,7 +224,7 @@ class KendoDialog extends Component {
                                     <div className="col-lg-6 col-md-6">
                                         <p>Segment</p>
                                         {/* <KendoDropDownList  data={this.props.availableFilters.segments}/> */}
-                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  defaultValue={this.props.activeFilters.segments} options={this.props.availableFilters.segments}></ReactSelect>
+                                        <ReactSelect updateFilter={this.updateActiveFiltersHandler}  defaultValue={this.props.activeFilters.geos[0]}defaultValue={this.props.activeFilters.segments} options={this.props.availableFilters.segments}></ReactSelect>
                                     </div>
                                     <div className="col-lg-6 col-md-6">
                                         <p id="filter-reset">Re-set all filters</p>

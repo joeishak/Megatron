@@ -43,30 +43,43 @@ export default function(state = {
                     switch(cat){
                         case 'geos':
                         _.remove(copyOfState.geos, item => {return item.value==='All Data'});
+                        _.remove(copyOfState.geos, item => {return item.value=== action.payload.value});
                         copyOfState.geos.push(action.payload);
                         break;
                         case 'quarters':
                         _.remove(copyOfState.quarters, item => {return item.value==='All Data'});
+                        _.remove(copyOfState.quarters, item => {return item.value=== action.payload.value});
+
                         copyOfState.quarters = [action.payload];
                         break;
                         case 'subscriptionOfferings':
                         _.remove(copyOfState.subscriptions, item => {return item.value==='All Data'});
+                        _.remove(copyOfState.subscriptions, item => {return item.value=== action.payload.value});
+
                         copyOfState.subscriptions.push(action.payload);
                         break;
                         case 'segments':
                         _.remove(copyOfState.segments, item => {return item.value==='All Data'});
+                        _.remove(copyOfState.segments, item => {return item.value=== action.payload.value});
+
                         copyOfState.segments=[action.payload];
                         break;
                         case 'marketAreas':
                         _.remove(copyOfState.markets, item => {return item.value==='All Data'});
+                        _.remove(copyOfState.markets, item => {return item.value=== action.payload.value});
+
                         copyOfState.markets.push(action.payload);
                         break;
                         case 'productNames':
                         _.remove(copyOfState.products, item => {return item.value==='All Data'});
+                        _.remove(copyOfState.products, item => {return item.value=== action.payload.value});
+
                         copyOfState.products.push(action.payload);
                         break;
                         case 'routeToMarkets':
                         _.remove(copyOfState.routes, item => {return item.value==='All Data'});
+                        _.remove(copyOfState.routes, item => {return item.value=== action.payload.value});
+
                         copyOfState.routes.push(action.payload);
                         break;
                         default: 
