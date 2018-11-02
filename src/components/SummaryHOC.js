@@ -42,11 +42,11 @@ export default ChildComponent => {
             // }
 
             if(this.props.finData !== prevProps.finData && this.props.switchFilter === false){
-                this.props.updateFinancialSummaryActiveCard(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1]);
+                this.props.updateFinancialSummaryActiveCard(this.props.activeSummarySquare || this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1]);
             }
 
             if(this.props.journeyData !== prevProps.journeyData && this.props.switchFilter === true){
-                this.props.updateJourneySummaryActiveCard(this.props.journeyData[parseInt(this.props.preferences.defaultJournKpi)-1]);
+                this.props.updateJourneySummaryActiveCard(this.props.activeSummarySquare || this.props.journeyData[parseInt(this.props.preferences.defaultJournKpi)-1]);
             }
         }
     
