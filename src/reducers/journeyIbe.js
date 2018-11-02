@@ -2,8 +2,7 @@ import {
 
     ADD_NEW_JOURNEY_COMMENT,
     ADD_NEW_JOURNEY_REPLY,
-    GET_FILTERED_JOURNEY_IBE_DATA,
-    GET_FILTERED_JOURNEY_QTD_DATA
+    GET_FILTERED_JOURNEY_IBE_DATA
     
 } from 'actions/types';
 import { JourneyData } from '../variables.js';
@@ -31,19 +30,39 @@ export default function(state = JourneyData.squares, action) {
     switch(action.type) {
         case GET_FILTERED_JOURNEY_IBE_DATA:
         //Journey Actual Targets / Multichart
+
+        let journeyActualTarget = action.payload[0].data[0];
+        let journeyMultichart = action.payload[1].data[0];
+        let journeyQtdTotal = action.payload[2].data[0];
+        let journeyGeoQtd = action.payload[3].data[0];
+        let journeyBuyUseActual = action.payload[5].data[0];
+        let journeyBuyUseGeoQtd = action.payload[6].data[0];
+        let journeyBuyUseMultichart = action.payload[7].data[0];
+        let journeyBuyUseQtdTotal = action.payload[8].data[0];
         let item = action.payload[0].data[0];
+
+        console.log(action.payload,{
+            "journeyActualTarget":journeyActualTarget,
+            "journeyMultichart": journeyMultichart,
+            "journeyQTDTotal": journeyQtdTotal,
+            "journeyGeoQtd": journeyGeoQtd,
+            "journeyBuyUseActual": journeyBuyUseActual,
+            "journeyBuyUseGeo": journeyBuyUseGeoQtd,
+            "journeyBuyUseMultichart": journeyBuyUseMultichart,
+            "journeyBuyUseQtdTotal": journeyBuyUseQtdTotal
+        });
         totalConversionActual    += item.ConversionActual;
         totalConversionTarget    += item.ConversionTarget;
-        totalNewQfmActual        += item.NewQfmActual;
-        totalNewQfmTarget        += item.NewQfmTarget;
+        totalNewQfmActual        += journeyBuyUseActual.NewQfmActual;
+        totalNewQfmTarget        += journeyBuyUseActual.NewQfmTarget;
         totalPaymentFailureActual += item.PaymentFailureRateActual;
         totalPaymentFailureTarget += item.PaymentFailureRateTarget;
         totalTrafficActual       += item.TrafficActual;
         totalTrafficTarget       += item.TrafficTarget;
         totalUiCancelActual      += item.UiCancelRateActual;
         totalUiCancelTarget      += item.UiCancelRateTarget;
-        totalRepeatUserActual    += item.RepeatUserMauActual;
-        totalRepeatUserTarget    += item.RepeatUserMauTarget;
+        totalRepeatUserActual    += journeyBuyUseActual.RepeatUserMauActual;
+        totalRepeatUserTarget    += journeyBuyUseActual.RepeatUserMauTarget;
 
         let conversion = {
           actual: [],

@@ -5182,6 +5182,10 @@ export const InfoburstAzure = {
         JourneyMultiChart: '?q=JourneyMultichartQuery',
         JourneyQtd: '?q=JourneyQtdTotal',
         JourneyGeoQtd: '?q=JourneyGeoQTd',
+        JourneyBuyUseActualTarget: '?q=JourneyBuyUseActualTargetQuery',
+        JourneyBuyUseGeoQtd: '?q=JourneyBuyUseGeoQTD',
+        JourneyBuyUseMultichart: '?q=JourneyBuyUseMultichartQuery',
+        JourneyBuyUseQTDTotal: '?q=JourneyBuyUseQTDTotal',
         JourneyMarketAreaQtd: '?q=JourneyMarketAreaQTD',
         FinancialUnitsMultichart: '?q=FinancialUnitsMultichart'
      },
