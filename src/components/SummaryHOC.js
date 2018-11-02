@@ -14,38 +14,35 @@ export default ChildComponent => {
 
         }
         componentDidUpdate(prevProps){
+
+            // If the old available filters change or the active filters change
+            // Call for new data with the filters
             if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
                 this.props.getQueryFilteredIBEData(this.props.activeFilters, this.props.availableFilters);
                 this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters, this.props.availableFilters);
             }
+
+            //If the user switches between summaries
+            // do the following
             if(prevProps.switchFilter !== this.props.switchFilter){
+                    //If the user switches to financials
                 if(this.props.switchFilter === false){
+                    //update the active card to the first Financial square
                     this.props.updateFinancialSummaryActiveCard(this.props.finData[0]);
                 } else  {
+                    //uupdate the active card to the first Journey Square
                     this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
                 }
             }
-
-            // if(this.props.preferences !== prevProps.preferences ){
-
-            //     if(this.props.preferences.defaultSummaryView === 'Financial'){
-            //         if(this.props.preferences.defaultFinKpi !== prevProps.preferences.defaultFinKpi){
-            //             this.props.updateFinancialSummaryActiveCard(this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1])
-            //         }
-
-            //     } else  if(this.props.preferences.defaultSummaryView === 'Journey'){
-            //         if (this.props.preferences.defaultJournKpi !== prevProps.preferences.defaultJournKpi){
-            //             this.props.updateJourneySummaryActiveCard(this.props.journeyData[parseInt(this.props.preferences.defaultJournKpi)-1])
-
-            //         }
-            //     }
-            // }
-
+            //If the preferences change && the user is on Financials
             if(this.props.preferences !== prevProps.preferences && this.props.switchFilter === false){
+                // Update the active card to the Financial one chosen in data preferences
                 this.props.updateFinancialSummaryActiveCard( this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1]);
             }
+            //If the preferences change && the user is on Journeys
 
             if(this.props.preferences !== prevProps.preferences && this.props.switchFilter === true){
+                // Update the active card to the Jourey Onne chosen in data preferences
                 this.props.updateJourneySummaryActiveCard(this.props.journeyData[parseInt(this.props.preferences.defaultJournKpi)-1]);
             }
         }
