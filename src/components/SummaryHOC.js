@@ -17,7 +17,6 @@ export default ChildComponent => {
             if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
                 this.props.getQueryFilteredIBEData(this.props.activeFilters, this.props.availableFilters);
                 this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters, this.props.availableFilters);
-                // this.props.getFilteredJourneyQtdData(this.props.activeFilters, this.props.availableFilters);
             }
             if(prevProps.switchFilter !== this.props.switchFilter){
                 if(this.props.switchFilter === false){

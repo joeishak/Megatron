@@ -247,7 +247,7 @@ let filterParams2 = [
   {prompt: 'geoFilters', value: ''},
   {prompt: 'maFilters', value: ''},
   {prompt: 'routeFilters', value: ''},
-  {prompt: 'segmentFilters', value: ''}
+
 ];
   filterParams[1].value = _parameters.products[0].value;
     filterParams[2].value = _parameters.geos[0].value;
@@ -259,7 +259,6 @@ let filterParams2 = [
     filterParams2[2].value = _parameters.geos[0].value;
     filterParams2[3].value = _parameters.markets[0].value;
     filterParams2[4].value = _parameters.routes[0].value;
-    filterParams2[5].value = _parameters.segments[0].value;
 
     // Remove First Row from all the filters 
     // Contains All Data Filters
@@ -267,6 +266,7 @@ let filterParams2 = [
     generateFilterParams('journ',filterParams,allFilters,_parameters);
     generateFilterParams('',filterParams2,allFilters,_parameters);
 
+    console.log(filterParams, filterParams2);
     let params1 = filterParams.reduce((prev, param) => {
             let p = '';
             p = prev + '&' + param.prompt + '=' + param.value;

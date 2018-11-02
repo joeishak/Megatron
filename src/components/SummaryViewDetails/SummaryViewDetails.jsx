@@ -250,7 +250,7 @@ class SummaryViewDetails extends Component {
     if( prevProps.activeFilters !== this.props.activeFilters ){
       this.props.getQueryFilteredIBEData(this.props.activeFilters,prevProps.availableFilters);
       this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,prevProps.availableFilters);
-      this.props.getFilteredJourneyQtdData(this.props.activeFilters,this.props.availableFilters);
+      // this.props.getFilteredJourneyQtdData(this.props.activeFilters,this.props.availableFilters);
 
     }
     if(this.props.journeyData !== prevProps.journeyData){

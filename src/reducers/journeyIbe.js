@@ -32,9 +32,9 @@ export default function(state = JourneyData.squares, action) {
         //Journey Actual Targets / Multichart
 
         let journeyActualTarget = action.payload[0].data[0];
-        let journeyMultichart = action.payload[1].data[0];
+        let journeyMultichart = action.payload[1].data;
         let journeyQtdTotal = action.payload[2].data[0];
-        let journeyGeoQtd = action.payload[3].data[0];
+        let journeyGeoQtd = action.payload[3].data;
         let journeyBuyUseActual = action.payload[5].data[0];
         let journeyBuyUseGeoQtd = action.payload[6].data[0];
         let journeyBuyUseMultichart = action.payload[7].data[0];
@@ -102,17 +102,13 @@ export default function(state = JourneyData.squares, action) {
            conversion.target.push(item.ConversionTarget);
            conversion.ly.push(item.ConversionLy);
            
-           newQfm.actual.push(item.NewQfmActual);
-           newQfm.target.push(item.NewQfmTarget);
-           newQfm.ly.push(item.NewQfmLy);
+         
 
            paymentFailures.actual.push(item.PaymentFailureRateActual);
            paymentFailures.target.push(item.PaymentFailureRateTarget);
            paymentFailures.ly.push(item.PaymentFailureRateLy);
            
-           repeatUserMau.actual.push(item.RepeatUserMauActual);
-           repeatUserMau.target.push(item.RepeatUserMauTarget);
-           repeatUserMau.ly.push(item.RepeatUserMauLy);
+     
 
            uiCancel.actual.push(item.UiCancelRateActual);
            uiCancel.target.push(item.UiCancelRateTarget);
@@ -123,6 +119,16 @@ export default function(state = JourneyData.squares, action) {
            traffic.ly.push(item.TrafficLy);
        
         };
+
+        for (let i = 0; i< action.payload[7].data.length; i++){
+            let buyUseItem = action.payload[7].data[i]
+            newQfm.actual.push(buyUseItem.NewQfmActual);
+            newQfm.target.push(buyUseItem.NewQfmTarget);
+            newQfm.ly.push(buyUseItem.NewQfmLy);
+            repeatUserMau.actual.push(buyUseItem.RepeatUserMauActual);
+            repeatUserMau.target.push(buyUseItem.RepeatUserMauTarget);
+            repeatUserMau.ly.push(buyUseItem.RepeatUserMauLy);
+        }
  
          for (let i = 0; i < squares.length; i++) {
              switch(i){
@@ -167,7 +173,7 @@ export default function(state = JourneyData.squares, action) {
          }
          //Journeys QTD Total
             let data = action.payload[2].data[0];
-
+            let buyUseQtd = journeyBuyUseQtdTotal;
             let trafficSquare       = JSON.parse(JSON.stringify(squares[0].details.qtdw.qtd));
             let newQfmSquare        = JSON.parse(JSON.stringify(squares[1].details.qtdw.qtd));
             let conversionSquare    = JSON.parse(JSON.stringify(squares[2].details.qtdw.qtd));
@@ -181,11 +187,11 @@ export default function(state = JourneyData.squares, action) {
         trafficSquare[6].value = data.TraficYY;
         trafficSquare[4].value = data.TrafficVSQrf;
 
-        newQfmSquare[0].value = data.NewQfmActual;
-        newQfmSquare[5].value = data.NewQfmQQ;
-        newQfmSquare[2].value = data.NewQfmTarget;
-        newQfmSquare[6].value = data.NewQfmYY;
-        newQfmSquare[4].value = data.NewQfmVSQrf;
+        newQfmSquare[0].value = buyUseQtd.NewQfmActual;
+        newQfmSquare[5].value = buyUseQtd.NewQfmQQ;
+        newQfmSquare[2].value = buyUseQtd.NewQfmTarget;
+        newQfmSquare[6].value = buyUseQtd.NewQfmYY;
+        newQfmSquare[4].value = buyUseQtd.NewQfmVSQrf;
 
 
         conversionSquare[0].value = data.ConversionActual
@@ -195,11 +201,11 @@ export default function(state = JourneyData.squares, action) {
         conversionSquare[4].value = data.ConversionQfmVSQrf
 
 
-        repeatSquare[0].value = data.RepeatUserMauActual
-        repeatSquare[5].value = data.RepeatUserMauQfmQQ
-        repeatSquare[2].value = data.RepeatUserMauTarget
-        repeatSquare[6].value = data.RepeatUserMauQfmYY
-        repeatSquare[4].value = data.RepeatUserMautQfmVSQrf
+        repeatSquare[0].value = buyUseQtd.RepeatUserMauActual
+        repeatSquare[5].value = buyUseQtd.RepeatUserMauQfmQQ
+        repeatSquare[2].value = buyUseQtd.RepeatUserMauTarget
+        repeatSquare[6].value = buyUseQtd.RepeatUserMauQfmYY
+        repeatSquare[4].value = buyUseQtd.RepeatUserMautQfmVSQrf
 
         qtrUiSquare[0].value = data.UiCancelRateActual
         qtrUiSquare[5].value = data.UiCancelRateQQ
@@ -215,6 +221,7 @@ export default function(state = JourneyData.squares, action) {
 
         
          data = action.payload[3].data;
+         let buyUseGeo = action.payload[6].data;
 
          let trafficSquareGeo       =  JSON.parse(JSON.stringify(squares[0].details.geo.qtd));
          let newQfmSquareGeo        =  JSON.parse(JSON.stringify(squares[1].details.geo.qtd));
@@ -231,6 +238,7 @@ export default function(state = JourneyData.squares, action) {
          let qtrFailArr=[];
          for(let i = 0; i <data.length; i ++){
              let item = data[i];
+             let item2= buyUseGeo[i];
              let traffic = {
                  index: i,
                  actuals: item.TrafficActual,
@@ -246,16 +254,16 @@ export default function(state = JourneyData.squares, action) {
              }
              let qfm = {
                 index: i,
-                actuals: item.NewQfmActual,
+                actuals: item2.NewQfmActual,
                 units: 0.0,
-                marketArea: item.market_area_code, 
-                qq: item.NewQfmQQ,
-                qrf: item.NewQfmTarget,
+                marketArea: item2.market_area_code, 
+                qq: item2.NewQfmQQ,
+                qrf: item2.NewQfmTarget,
                 qrfDiff: 0.0,
-                type: item.geo_code,
+                type: item2.geo_code,
                 units: 0.0,
-                vsQrf:item.NewQfmVSQrf,
-                yy: item.NewQfmYY
+                vsQrf:item2.NewQfmVSQrf,
+                yy: item2.NewQfmYY
             }
             let conv = {
                 index: i,
@@ -272,16 +280,16 @@ export default function(state = JourneyData.squares, action) {
             }
             let rep = {
                 index: i,
-                actuals: item.RepeatUserMauActual,
+                actuals: item2.RepeatUserMauActual,
                 units: 0.0,
-                marketArea: item.market_area_code, 
-                qq: item.RepeatUserMauQfmQQ,
-                qrf: item.RepeatUserMauTarget,
+                marketArea: item2.market_area_code, 
+                qq: item2.RepeatUserMauQfmQQ,
+                qrf: item2.RepeatUserMauTarget,
                 qrfDiff: 0.0,
                 type: item.geo_code,
                 units: 0.0,
-                vsQrf:item.RepeatUserMautQfmVSQrf,
-                yy: item.RepeatUserMauQfmYY
+                vsQrf:item2.RepeatUserMautQfmVSQrf,
+                yy: item2.RepeatUserMauQfmYY
             }
             let qtru = {
                 index: i,
