@@ -47,7 +47,7 @@ class App extends Component {
       this.getSummary = this.getSummary.bind(this);
       this.login = this.login.bind(this);
       // this.props.getAdobeData();
-      this.getFilters();
+      this.getFilters('fin');
   }
  
   async componentDidMount() {
@@ -124,7 +124,7 @@ class App extends Component {
   }
 
   getFilters(){
-    this.props.generateFilterData();
+    this.props.generateFilterData('fin');
   }
   
   /* Event Handler for the Filter Box to open the filter panel with the drop downs */

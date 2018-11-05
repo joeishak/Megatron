@@ -108,6 +108,9 @@ export function generateFilterParams(type,filterParams, allFilters, _activeParam
       filterParams[3].value = getParamValues(_activeParams.markets,allFilters.marketAreas);
       filterParams[4].value = getParamValues(_activeParams.routes,allFilters.routeToMarkets);
       filterParams[5].value = getParamValues(_activeParams.segments,allFilters.segments);
+      filterParams[6].value = getParamValues(_activeParams.subscriptions,allFilters.subscriptionOfferings);
+      
+
       break;
       default: 
       filterParams[0].value = getParamValues(_activeParams.quarters,allFilters.quarters);
@@ -115,6 +118,8 @@ export function generateFilterParams(type,filterParams, allFilters, _activeParam
       filterParams[2].value = getParamValues(_activeParams.geos,allFilters.geos);
       filterParams[3].value = getParamValues(_activeParams.markets,allFilters.marketAreas);
       filterParams[4].value = getParamValues(_activeParams.routes,allFilters.routeToMarkets);
+      filterParams[5].value = getParamValues(_activeParams.subscriptions,allFilters.subscriptionOfferings);
+
       break;
     }
    
@@ -190,7 +195,22 @@ export function initiateFilterDataRequests(){
   let promiseArr1 = Promise.all(responseArray);
   return promiseArr1;
 }
-
+export function initiateJourneyFilterDataRequests(){
+ 
+  responseArray= [];
+  promiseArr = [];
+  const maResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID+ InfoburstAzure.filterQueryNames.MarketFilters, {headers: headers, responseType: 'text'})
+  const segementsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID+ InfoburstAzure.filterQueryNames.SegmentFilters, {headers: headers, responseType: 'text'});
+  const subscriptionResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcIDjourneyXdcID+ InfoburstAzure.filterQueryNames.SubscriptionFilters, {headers: headers, responseType: 'text'});
+  const routesResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID+ InfoburstAzure.filterQueryNames.RouteFilters, {headers: headers, responseType: 'text'});
+  const quartersResponse = axios.get(InfoburstAzure.xdcCacheQueryURL +  InfoburstAzure.journeyXdcID+ InfoburstAzure.filterQueryNames.QuarterFilters, {headers: headers, responseType: 'text'});
+  const productResponse = axios.get(InfoburstAzure.xdcCacheQueryURL +  InfoburstAzure.journeyXdcID+ InfoburstAzure.filterQueryNames.ProductFilters, {headers: headers, responseType: 'text'});
+  const geoResponse = axios.get(InfoburstAzure.xdcCacheQueryURL +  InfoburstAzure.journeyXdcID+ InfoburstAzure.filterQueryNames.GeoFilters, {headers: headers, responseType: 'text'});
+  
+  responseArray.push(quartersResponse,maResponse,productResponse,segementsResponse,subscriptionResponse,routesResponse,geoResponse);
+  let promiseArr1 = Promise.all(responseArray);
+  return promiseArr1;
+}
 export function getFinancialSummaryData(allFilters, _parameters){
   responseArray = [];
 
@@ -238,7 +258,9 @@ export function getJourneySummaryData(allFilters,_parameters){
     {prompt: 'geoFilters', value: ''},
     {prompt: 'maFilters', value: ''},
     {prompt: 'routeFilters', value: ''},
-    {prompt: 'segmentFilters', value: ''}
+    {prompt: 'segmentFilters', value: ''},
+    {prompt: 'subscriptionFilters', value: ''}
+
 ];
 
 let filterParams2 = [
@@ -247,6 +269,8 @@ let filterParams2 = [
   {prompt: 'geoFilters', value: ''},
   {prompt: 'maFilters', value: ''},
   {prompt: 'routeFilters', value: ''},
+  {prompt: 'subscriptionFilters', value: ''}
+
 
 ];
   filterParams[1].value = _parameters.products[0].value;
@@ -254,11 +278,15 @@ let filterParams2 = [
     filterParams[3].value = _parameters.markets[0].value;
     filterParams[4].value = _parameters.routes[0].value;
     filterParams[5].value = _parameters.segments[0].value;
+    filterParams[6].value = _parameters.subscriptions[0].value;
+
 
     filterParams2[1].value = _parameters.products[0].value;
     filterParams2[2].value = _parameters.geos[0].value;
     filterParams2[3].value = _parameters.markets[0].value;
     filterParams2[4].value = _parameters.routes[0].value;
+    filterParams[5].value = _parameters.subscriptions[0].value;
+
 
     // Remove First Row from all the filters 
     // Contains All Data Filters

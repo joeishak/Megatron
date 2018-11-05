@@ -5176,7 +5176,7 @@ export const InfoburstAzure = {
          GeoFilters: '?q=GeoFilters&json=1'
      },
      summaryQueryNames: {
-        FinancialActualTarget: '?q=FinancialActualTargetQuery',
+        FinancialActualTarget: '?q=FinancialActualTarget',
         FinancialMultiChart: '?q=FinancialMultichartQuery',
         JourneyActualTarget:'?q=JourneyActualTargetQuery',
         JourneyMultiChart: '?q=JourneyMultichartQuery',
@@ -5189,8 +5189,8 @@ export const InfoburstAzure = {
         JourneyMarketAreaQtd: '?q=JourneyMarketAreaQTD',
         FinancialUnitsMultichart: '?q=FinancialUnitsMultichart'
      },
-     dataXdcID:  '\\57',
+     dataXdcID:  '\\52',
      journeyXdcID: '\\19',
-     filtersXdcID: '\\56'
+     filtersXdcID: '\\52',
      
 }
