@@ -16,6 +16,7 @@ import toggleCommentaryReducer from 'reducers/toggleCommentary.js';
 import journeyReducer from 'reducers/journeyIbe.js';
 import multiChartMetricReducer from 'reducers/multichartIsArr.js';
 import userSettingsReducer from 'reducers/userSettings.js';
+import healthAndHeartbeatReducer from 'reducers/healthAndHeartbeat.js';
 
 export default combineReducers({
     auth: authReducer,
@@ -34,7 +35,8 @@ export default combineReducers({
     toggleCommentaryBox: toggleCommentaryReducer,
     journeyData: journeyReducer,
     multichartIsArr: multiChartMetricReducer,
-    preferences: userSettingsReducer
+    preferences: userSettingsReducer,
+    sysInfo: healthAndHeartbeatReducer
 
 
 });

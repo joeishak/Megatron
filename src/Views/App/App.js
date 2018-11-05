@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Navigation from 'components/Navigation/Navigation';
-import {connect } from 'react-redux';
+import {connect} from 'react-redux';
 import * as actions from 'actions';
 import styles from './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { withAuth } from '@okta/okta-react';
 import { checkAuthentication } from '../../helper';
+
 
 import '@progress/kendo-theme-default/dist/all.css';
 // Kendo Components
@@ -47,21 +48,22 @@ class App extends Component {
       this.getSummary = this.getSummary.bind(this);
       this.login = this.login.bind(this);
       // this.props.getAdobeData();
+      this.props.getIbHeartbeat();
+
       this.getFilters();
   }
+
  
   async componentDidMount() {
     this.checkAuthentication();
- 
-
+    
   }
 
-   componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps) {
+
     this.checkAuthentication();
     let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
  
-   
-
     let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined
     console.log('prev props:',prevPropsIsEmpty, 'props',propsNotEmpty);
     // debugger;
@@ -114,17 +116,14 @@ class App extends Component {
     }
       // this.props.addValueToActiveMultiFilter(this.props.preferences.subscriptionFilters);
     }
-    
-   
   }
 
   async login() {
     this.props.auth.login('/');
-
   }
 
   getFilters(){
-    this.props.generateFilterData();
+    this.props.generateFilterData(); 
   }
   
   /* Event Handler for the Filter Box to open the filter panel with the drop downs */
@@ -171,6 +170,7 @@ class App extends Component {
   render(){
 
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
+
     return (
       
       <div style={{height:'100%'}}>
@@ -195,6 +195,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log('debug', state);
   return {
     dialogIsOpen: state.isDialogOpen, 
     detailIsOpen: state.detailsIsOpen,

@@ -9,8 +9,6 @@ async function checkAuthentication() {
         if(this.props.user.sub ===  undefined ){
           this.props.updateOKTAUser(userinfo);
           this.props.getUserSettings(userinfo.sub);
-
-
         }
         this.props.changeAuth(authenticated);
       } else {

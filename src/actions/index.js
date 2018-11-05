@@ -30,7 +30,8 @@ import {
     ADD_NEW_JOURNEY_REPLY,
     GET_FILTERED_JOURNEY_IBE_DATA,
     GET_FILTERED_JOURNEY_QTD_DATA,
-    MULTICHART_IS_ARR
+    MULTICHART_IS_ARR,
+    GET_IBHEARTBEAT
 
 } from 'actions/types';
 import * as utils from '../utilities';
@@ -412,5 +413,14 @@ export function updateMultichartMetric(value){
     return {
         type: MULTICHART_IS_ARR,
         payload:value
+    }
+}
+
+// Health and Heartbeat
+export function getIbHeartbeat() {
+    const res = utils.getHeartbeat();
+    return {
+        type: GET_IBHEARTBEAT,
+        payload: res
     }
 }

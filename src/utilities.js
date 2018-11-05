@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { InfoburstAzure} from './variables';
 import axios from 'axios';
+import * as actions from 'actions';
 
 
 const token = 'Basic ' + btoa(InfoburstAzure.user + ':' + InfoburstAzure.pass);
@@ -395,6 +396,10 @@ export function getUser(user){
  
 }
 
+// Heartbeat
+export function getHeartbeat() {
+  return axios.get(InfoburstAzure.sysInfo, {headers: headers, responseType: 'text'});
+}
 
 export function requestUserSettings(sub){
   let body = {

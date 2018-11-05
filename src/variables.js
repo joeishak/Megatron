@@ -5165,6 +5165,7 @@ export const InfoburstAzure = {
      dbQuery: 'http://localhost:8551/infoburst/rest/db/query',
      xdcCacheURL: 'http://localhost:8551/infoburst/rest/get/xdc/',
      xdcCacheQueryURL: 'http://localhost:8551/infoburst/rest/exec/xdcqry/',
+     sysInfo: 'http://localhost:8551/sysinfo',
      jsonFormat: '&json=1',
      filterQueryNames:{
          MarketFilters: '?q=MarketFilters&json=1',
