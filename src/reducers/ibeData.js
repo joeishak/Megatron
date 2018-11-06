@@ -27,6 +27,7 @@ export default function(state = FinancialData.squares, action) {
         
         case GET_QUERY_FILTERED_IBE_DATA:
             let item = action.payload[0].data[0];
+            console.log(action.payload);
             totalNetNewARRActual +=  item.NetNewARRActual;
             totalNetNewARRTarget += item.NetNewARRTarget
             totalCancellationsActual +=  item.NetCancellationARRActual;

@@ -9,10 +9,10 @@ export default ChildComponent => {
     class ComposedComponent extends Component {
      
         componentDidMount(){
-            // this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
-            // this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
-
+            this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
+            this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
         }
+        
         componentDidUpdate(prevProps){
 
             // If the old available filters change or the active filters change
@@ -28,20 +28,23 @@ export default ChildComponent => {
                     //If the user switches to financials
                 if(this.props.switchFilter === false){
                     //update the active card to the first Financial square
+                    this.props.generateFilterData('fin');
                     this.props.updateFinancialSummaryActiveCard(this.props.finData[0]);
                 } else  {
                     //uupdate the active card to the first Journey Square
+                    this.props.generateFilterData('journ');
+
                     this.props.updateJourneySummaryActiveCard(this.props.journeyData[0]);
                 }
             }
             //If the preferences change && the user is on Financials
-            if(this.props.preferences !== prevProps.preferences && this.props.switchFilter === false){
+            if(this.props.preferences !== prevProps.preferences && this.props.switchFilter === false && this.props.finData.length !== 0 ){
                 // Update the active card to the Financial one chosen in data preferences
                 this.props.updateFinancialSummaryActiveCard( this.props.finData[parseInt(this.props.preferences.defaultFinKpi)-1]);
             }
             //If the preferences change && the user is on Journeys
 
-            if(this.props.preferences !== prevProps.preferences && this.props.switchFilter === true){
+            if(this.props.preferences !== prevProps.preferences && this.props.switchFilter === true  && this.props.journeyData.length !== 0){
                 // Update the active card to the Jourey Onne chosen in data preferences
                 this.props.updateJourneySummaryActiveCard(this.props.journeyData[parseInt(this.props.preferences.defaultJournKpi)-1]);
             }

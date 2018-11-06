@@ -15,8 +15,9 @@ import React, { Component } from 'react';
 import { Button, Header } from 'semantic-ui-react';
 import { checkAuthentication } from '../../helper';
 import { userInfo } from 'os';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
-export default withAuth(class Home extends Component {
+export default withAuth(class ServiceChecker extends Component {
   constructor(props) {
     super(props);
     this.state = { authenticated: null, userinfo: null };
@@ -36,6 +37,11 @@ export default withAuth(class Home extends Component {
     this.props.auth.login('/');
   }
 
+
+  // if connected 
+  // change the route to //App
+  // if not 
+  // change the route to an error page //Service is down
   render() {
    
 

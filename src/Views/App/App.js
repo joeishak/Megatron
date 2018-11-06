@@ -49,8 +49,7 @@ class App extends Component {
       this.login = this.login.bind(this);
       // this.props.getAdobeData();
       this.props.getIbHeartbeat();
-
-      this.getFilters();
+      this.getFilters('fin');
   }
 
  
@@ -123,7 +122,7 @@ class App extends Component {
   }
 
   getFilters(){
-    this.props.generateFilterData(); 
+    this.props.generateFilterData('fin');
   }
   
   /* Event Handler for the Filter Box to open the filter panel with the drop downs */

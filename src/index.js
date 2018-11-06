@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Root from 'Root';
 import {BrowserRouter, Router, Route} from 'react-router-dom';
 import App from 'Views/App/App.js';
-import Home from 'Views/Home/Home.jsx';
+import ServiceChecker from 'Views/ServiceChecker/ServiceChecker.jsx';
 
 import Login from './components/Login/Login.js';
 import registerServiceWorker from './registerServiceWorker';
@@ -14,7 +14,7 @@ import config from './.samples.config';
 //   redirect_uri: window.location.origin + '/implicit/callback',
 //   client_id: '0oagvenik1CmjZzhZ0h7'
 // }
-const inStyles={
+const inStyles =  {
 	root: {
 		height: '100%',
 		width:'100%'
@@ -26,7 +26,7 @@ ReactDOM.render(
 		<Security issuer={config.oidc.issuer}
                   client_id={config.oidc.clientId}
                   redirect_uri={config.oidc.redirectUri}>
-			<Route path="/" exact={true} component={App} />
+			<Route path="/" exact={true} component={App} /> {/* Service Checker */}
 			<Route path="/implicit/callback" component={ImplicitCallback} />
 			{/* <Route path="/login" component={Login} /> */}
 			{/* <Route path="/app" component={App} /> */}

@@ -182,9 +182,22 @@ export function updateDialogVisibility(isDialogVisible) {
  * Generate the data that goes into the filter box
  * 
  */
-export function generateFilterData() {
- 
-    let promiseArr1 = utils.initiateFilterDataRequests();
+export function generateFilterData(type) {
+    let promiseArr1;
+    switch(type){
+        case 'fin':
+        promiseArr1 =  utils.initiateFilterDataRequests();
+    console.log(promiseArr1);
+
+        break;
+        case 'journ':
+        promiseArr1 = utils.initiateJourneyFilterDataRequests();
+    console.log(promiseArr1);
+
+        break;
+
+    }
+   
     return{
         type: GENERATE_FILTER_DATA,
         payload: promiseArr1
