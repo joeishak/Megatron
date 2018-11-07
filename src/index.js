@@ -26,8 +26,8 @@ ReactDOM.render(
 		<Security issuer={config.oidc.issuer}
                   client_id={config.oidc.clientId}
                   redirect_uri={config.oidc.redirectUri}>
-			<Route path={`${process.env.PUBLIC_URL}/`} exact={true} component={App} /> {/* Service Checker */}
 			<Route path="*" exact={true} component={App} />
+			{/* <Route path={`${process.env.PUBLIC_URL}/`} exact={true} component={App} /> Service Checker */}
 			<Route path={`${process.env.PUBLIC_URL}` + "/implicit/callback/"} component={ImplicitCallback} />
 			{/* <Route path="/login" component={Login} /> */}
 			{/* <Route path="/app" component={App} /> */}

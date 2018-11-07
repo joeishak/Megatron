@@ -122,22 +122,26 @@ export default function(state = FinancialData.squares, action) {
             let netUnits = {
                 actual: [],
                 target: [],
-                ly: []
+                ly: [],
+                lq:[]
             }
             let netCancUnits = {
                 actual: [],
                 target: [],
-                ly: []
+                ly: [],
+                lq:[]
             };
             let grossUnits = {
                 actual: [],
                 target: [],
-                ly: []
+                ly: [],
+                lq:[]
             };
             let termUnits = {
                 actual: [],
                 target: [],
-                ly: []
+                ly: [],
+                lq:[]
             };
             
             for(let i = 0; i< action.payload[2].data.length; i++) {
@@ -145,17 +149,25 @@ export default function(state = FinancialData.squares, action) {
                 netUnits.actual.push(item.NetNewUnitsActual);
                 netUnits.target.push(item.NetNewUnitsTarget);
                 netUnits.ly.push(item.NetNewUnitsLY);
+                netUnits.lq.push(item.NetNewUnitsLQ);
+
                 
                 netCancUnits.actual.push(item.CancellationUnitsActual);
                 netCancUnits.target.push(item.CancellationUnitsTarget);
                 netCancUnits.ly.push(item.CancellationsUnitsLY);
+                netCancUnits.lq.push(item.CancellationsUnitsLQ);
+
                 grossUnits.actual.push(item.GrossNewUnitsActual);
                 grossUnits.target.push(item.GrossNewUnitsTarget);
                 grossUnits.ly.push(item.GrossNewUnitsLY);
+                grossUnits.lq.push(item.GrossNewUnitsLQ);
+
                 
                 termUnits.actual.push(item.TermEndUnitsActual);
                 termUnits.target.push(item.TermEndUnitsTarget);
                 termUnits.ly.push(item.TermEndRenewalUnitsLY);
+                termUnits.lq.push(item.TermEndRenewalUnitsLQ);
+
             };
       
             let newMulti;
@@ -163,16 +175,16 @@ export default function(state = FinancialData.squares, action) {
               for (let i = 0; i < squares.length; i++) {
                   switch(i){
                       case 0:
-                      newMulti  = [netUnits.actual,netUnits.target,netUnits.ly];
+                      newMulti  = [netUnits.actual,netUnits.target,netUnits.ly,netUnits.lq];
                       break;
                       case 1:
-                      newMulti  = [grossUnits.actual,grossUnits.target,grossUnits.ly];
+                      newMulti  = [grossUnits.actual,grossUnits.target,grossUnits.ly,grossUnits.lq];
                       break;
                       case 2: 
-                      newMulti  =  [netCancUnits.actual,netCancUnits.target,netCancUnits.ly];
+                      newMulti  =  [netCancUnits.actual,netCancUnits.target,netCancUnits.ly,netCancUnits.lq];
                       break;
                       case 3: 
-                      newMulti  = [termUnits.actual,termUnits.target,termUnits.ly];
+                      newMulti  = [termUnits.actual,termUnits.target,termUnits.ly,termUnits.lq];
                       break;
                       default:
                       break;

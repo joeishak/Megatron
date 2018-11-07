@@ -242,7 +242,7 @@ export function getFinancialSummaryData(allFilters, _parameters){
    const multiChartResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialMultiChart  + params1 + '&json=1', 
    {headers: headers, responseType: 'text'});
 
-   const unitsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.FinancialUnitsMultichart  + params1 + '&json=1', 
+   const unitsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialUnitsMultichart  + params1 + '&json=1', 
    {headers: headers, responseType: 'text'});
    responseArray.push(response,multiChartResponse, unitsResponse);
    let promiseArr = Promise.all(responseArray);
@@ -295,7 +295,7 @@ let filterParams2 = [
     generateFilterParams('journ',filterParams,allFilters,_parameters);
     generateFilterParams('',filterParams2,allFilters,_parameters);
 
-    console.log(filterParams, filterParams2);
+    // console.log(filterParams, filterParams2);
     let params1 = filterParams.reduce((prev, param) => {
             let p = '';
             p = prev + '&' + param.prompt + '=' + param.value;

@@ -74,12 +74,14 @@ export default ChildComponent => {
 
          //   Event handler for toggle change 'Financials' and 'Joruneys'
         onToggleButtonChanged = (e) => {
-                this.props.updateSwitchFilterValue(!this.props.switchFilter);
                     if(this.props.switchFilter === true){
                         this.props.updateJourneySummaryActiveCard(this.props.finData[0]);
                     } else {
                         this.props.updateFinancialSummaryActiveCard(this.props.journeyData[0]);
                     }
+
+                this.props.updateSwitchFilterValue(!this.props.switchFilter);
+
         }
         //Function to check state and return either Financials summary or Journeys Summary
         getSummaryTitle() {
@@ -96,6 +98,7 @@ export default ChildComponent => {
                     <ChildComponent {...this.props}   
                     data={this.props.journeyData}
                     toggleCommentary = {this.props.toggleCommentary}
+                    activeCard = {this.props.activeSummarySquare}
                     onCommentIconClick={this.onCommentIconClick}
                     defaultKpi = {this.props.preferences.defaultJournKpi}
 
@@ -108,6 +111,7 @@ export default ChildComponent => {
                     toggleCommentary={this.props.toggleCommentary} 
                     data = {this.props.finData} 
                     defaultKpi = {this.props.preferences.defaultFinKpi}
+                    activeCard = {this.props.activeSummarySquare}
 
                    />
                 )
@@ -128,7 +132,7 @@ export default ChildComponent => {
     }
 
     function mapStateToProps(state) {
-        console.log(state);
+        // console.log(state);
         return { 
             filters: state.filters, 
             switchFilter: state.switchFilter, 

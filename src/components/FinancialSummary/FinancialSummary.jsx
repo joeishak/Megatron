@@ -15,7 +15,7 @@ class FinancialSummary extends Component {
     constructor(props){
         super(props);
         this.state = {
-            activeCard:undefined
+            activeCard: '1'
 
         }
         this.selectedCard = this.selectedCard.bind(this);
@@ -33,7 +33,7 @@ class FinancialSummary extends Component {
     shouldComponentUpdate(nextProps,nextState){
         if(nextProps.data !== this.props.data){
             return true;
-        } else if(nextState.activeCard !== this.state.activeCard){
+        } else if(nextProps.activeCard !== this.props.activeCard){
             return true;
         }
         if(this.props.toggleCommentary!== nextProps.toggleCommentary){
@@ -74,7 +74,7 @@ class FinancialSummary extends Component {
                         <FinancialSquareList 
                             onCommentIconClick={this.props.onCommentIconClick}
                             toggleCommentary={this.props.toggleCommentary} 
-                            activeCard={this.state.activeCard || this.props.defaultKpi} 
+                            activeCard={this.state.activeCard || this.props.activeCard } 
                             data = {this.props.data} 
                             enableChart={this.enableChart1Arrow} 
                             selectedCard={(e,index) =>{this.selectedCard(e,index)}} />

@@ -64,7 +64,7 @@ class App extends Component {
     let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
  
     let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined
-    console.log('prev props:',prevPropsIsEmpty, 'props',propsNotEmpty);
+    // console.log('prev props:',prevPropsIsEmpty, 'props',propsNotEmpty);
     // debugger;
     if( prevPropsIsEmpty && propsNotEmpty){
 
@@ -73,7 +73,6 @@ class App extends Component {
       } else{
         this.props.updateSwitchFilterValue(true);
       }
-     console.log('I made it');
       this.props.addValueToActiveMultiFilter({index: 1, category:'quarters', value: this.props.preferences.defaultQuarter});
       this.props.addValueToActiveMultiFilter({index: 2, category:'segments', value: this.props.preferences.defaultSegment});
       if(this.props.preferences.geoFilters!==""){
@@ -194,7 +193,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('debug', state);
+  // console.log('debug', state);
   return {
     dialogIsOpen: state.isDialogOpen, 
     detailIsOpen: state.detailsIsOpen,
