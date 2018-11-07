@@ -39,22 +39,26 @@ export default function(state = FinancialData.squares, action) {
             let netArr = {
                 actual: [],
                 target: [],
-                ly: []
+                ly: [],
+                lq: []
             }
             let netCancellations = {
                 actual: [],
                 target: [],
-                ly: []
+                ly: [],
+                lq: []
             };
             let grossArr = {
                 actual: [],
                 target: [],
-                ly: []
+                ly: [],
+                lq: []
             };
             let termRenewal = {
                 actual: [],
                 target: [],
-                ly: []
+                ly: [],
+                lq: []
             };
             
              for(let i = 0; i< action.payload[1].data.length; i++) {
@@ -63,18 +67,22 @@ export default function(state = FinancialData.squares, action) {
                  netArr.actual.push(item.NetNewARRActual);
                  netArr.target.push(item.NetNewARRTarget);
                  netArr.ly.push(item.NetNewARRLY);
+                 netArr.lq.push(item.NetNewARRLQ);
                  
                  netCancellations.actual.push(item.NetCancellationARRActual);
                  netCancellations.target.push(item.NetCancellationARRTarget);
                  netCancellations.ly.push(item.NetCancellationsARRLY);
+                 netCancellations.lq.push(item.NetCancellationsARRLQ);
  
                  grossArr.actual.push(item.GrossNewARRActual);
                  grossArr.target.push(item.GrossNewARRTarget);
                  grossArr.ly.push(item.GrossNewARRLY);
+                 grossArr.lq.push(item.GrossNewARRLQ);
                  
                  termRenewal.actual.push(item.RenewalAtFPActual);
                  termRenewal.target.push(item.RenewalAtFPTarget);
                  termRenewal.ly.push(item.TermEndRenewalLY);
+                 termRenewal.lq.push(item.TermEndRenewalLQ);
              
              };
        
@@ -83,22 +91,22 @@ export default function(state = FinancialData.squares, action) {
                        case 0:
                        currentActual = totalNetNewARRActual;
                        currentTarget = totalNetNewARRTarget;
-                       currentMulti  = [netArr.actual,netArr.target,netArr.ly];
+                       currentMulti  = [netArr.actual,netArr.target,netArr.ly,netArr.lq];
                        break;
                        case 1:
                        currentActual = totalGrossActual;
                        currentTarget = totalGrossTarget;
-                       currentMulti  = [grossArr.actual,grossArr.target,grossArr.ly];
+                       currentMulti  = [grossArr.actual,grossArr.target,grossArr.ly,grossArr.lq];
                        break;
                        case 2: 
                        currentActual = totalCancellationsActual;
                        currentTarget = totalCancellationsTarget;
-                       currentMulti  =  [netCancellations.actual,netCancellations.target,netCancellations.ly];
+                       currentMulti  =  [netCancellations.actual,netCancellations.target,netCancellations.ly,netCancellations.lq];
                        break;
                        case 3: 
                        currentActual = totalRenewalActual;
                        currentTarget =  totalRenewalTarget;
-                       currentMulti  = [termRenewal.actual,termRenewal.target,termRenewal.ly];
+                       currentMulti  = [termRenewal.actual,termRenewal.target,termRenewal.ly,termRenewal.lq];
                        break;
                        default:
                        break;
