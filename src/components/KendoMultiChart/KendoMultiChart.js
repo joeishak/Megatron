@@ -34,7 +34,8 @@ class KendoMultiChart extends Component {
              overIsVisible: true,
              yAxisLabel: 'Million $',
              yAxisText: 'Million',
-             multiChartValidIndexes: [3,4,5,6]
+             multiChartValidIndexes: [3,4,5,6],
+             count: 0
             
         };
         this.formatDataValues = this.formatDataValues.bind(this);
@@ -134,7 +135,7 @@ class KendoMultiChart extends Component {
                     <div className="tooltipTitle"><b>Week {title}</b></div>
                     {points.map((point) => ( 
 
-                    <div>
+                    <div key={this.state.count++}>
                         <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div> 
                         <b>{point.series.name}</b> : <div className="tooltipValue"> {this.renderValue(this.props.valueType, point.value)} </div>
                     </div>))}
@@ -188,7 +189,7 @@ class KendoMultiChart extends Component {
                             <ChartSeriesItem name='Last Year' type="line" data={this.formatDataValues(chartData[2])} color='#DFDE43'  >
                                     <ChartSeriesItemTooltip  background="#3c3c3c"  />
                             </ChartSeriesItem>
-                            <ChartSeriesItem name='Last Quarter' type="line" data={chartData[3]} color='white'  >
+                            <ChartSeriesItem name='Last Quarter' type="line" data={[] || this.formatDataValues(chartData[3])} color='white'  >
                                 <ChartSeriesItemTooltip  background="#3c3c3c"  />
                             </ChartSeriesItem>
                         </ChartSeries> : 
@@ -202,7 +203,7 @@ class KendoMultiChart extends Component {
                             <ChartSeriesItem name='Last Year' type="line" data={chartData[2]} color='#DFDE43'  >
                                 <ChartSeriesItemTooltip  background="#3c3c3c"  />
                             </ChartSeriesItem>
-                            <ChartSeriesItem name='Last Quarter' type="line" data={chartData[3]} color='white'  >
+                            <ChartSeriesItem name='Last Quarter' type="line" data={chartData[3]} color='black'  >
                                 <ChartSeriesItemTooltip  background="#3c3c3c"  />
                             </ChartSeriesItem>
                         </ChartSeries>
