@@ -40,6 +40,7 @@ class JourneySummary extends Component {
 
     }
     formatPercentage(value) {
+        console.log(value);
         return (value * 100).toFixed(2);
     }
 

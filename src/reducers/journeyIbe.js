@@ -67,32 +67,38 @@ export default function(state = JourneyData.squares, action) {
         let conversion = {
           actual: [],
           target: [],
-          ly: []
+          ly: [],
+          lq:[]
         }
         let newQfm = {
             actual: [],
             target: [],
-            ly: []
+            ly: [],
+            lq:[]
         };
         let paymentFailures = {
             actual: [],
             target: [],
-            ly: []
+            ly: [],
+            lq:[]
         };
         let repeatUserMau = {
             actual: [],
             target: [],
-            ly: []
+            ly: [],
+            lq:[]
         };
         let uiCancel = {
             actual: [],
             target: [],
-            ly: []
+            ly: [],
+            lq:[]
             };
             let traffic = {
                 actual: [],
                 target: [],
-                ly: []
+                ly: [],
+                lq:[]
             };
       
        for(let i = 0; i< action.payload[1].data.length; i++) {
@@ -101,22 +107,28 @@ export default function(state = JourneyData.squares, action) {
            conversion.actual.push(item.ConversionActual);
            conversion.target.push(item.ConversionTarget);
            conversion.ly.push(item.ConversionLy);
+           conversion.lq.push(item.ConversionLq);
+
            
          
 
            paymentFailures.actual.push(item.PaymentFailureRateActual);
            paymentFailures.target.push(item.PaymentFailureRateTarget);
            paymentFailures.ly.push(item.PaymentFailureRateLy);
+           paymentFailures.lq.push(item.PaymentFailureRateLq);
            
      
 
            uiCancel.actual.push(item.UiCancelRateActual);
            uiCancel.target.push(item.UiCancelRateTarget);
            uiCancel.ly.push(item.UiCancelRateLy);
+           uiCancel.lq.push(item.UiCancelRateLq);
 
            traffic.actual.push(item.TrafficActual);
            traffic.target.push(item.TrafficTarget);
            traffic.ly.push(item.TrafficLy);
+           traffic.lq.push(item.TrafficLq);
+
        
         };
 
@@ -125,9 +137,13 @@ export default function(state = JourneyData.squares, action) {
             newQfm.actual.push(buyUseItem.NewQfmActual);
             newQfm.target.push(buyUseItem.NewQfmTarget);
             newQfm.ly.push(buyUseItem.NewQfmLy);
+            newQfm.lq.push(buyUseItem.NewQfmLq);
+
             repeatUserMau.actual.push(buyUseItem.RepeatUserMauActual);
             repeatUserMau.target.push(buyUseItem.RepeatUserMauTarget);
             repeatUserMau.ly.push(buyUseItem.RepeatUserMauLy);
+            repeatUserMau.lq.push(buyUseItem.RepeatUserMauLq);
+
         }
  
          for (let i = 0; i < squares.length; i++) {
@@ -135,33 +151,33 @@ export default function(state = JourneyData.squares, action) {
                  case 0:
                  currentActual = totalTrafficActual;
                  currentTarget = totalTrafficTarget;
-                 currentMulti  = [traffic.actual,traffic.target,traffic.ly];
+                 currentMulti  = [traffic.actual,traffic.target,traffic.ly,traffic.lq];
                  break;
                  case 1:
                  currentActual = totalNewQfmActual;
                  currentTarget = totalNewQfmTarget;
-                 currentMulti  = [newQfm.actual,newQfm.target,newQfm.ly];
+                 currentMulti  = [newQfm.actual,newQfm.target,newQfm.ly, newQfm.lq];
                  break;
                  case 2: 
                  currentActual = totalConversionActual;
                  currentTarget = totalConversionTarget;
-                 currentMulti  =  [conversion.actual,conversion.target,conversion.ly];
+                 currentMulti  =  [conversion.actual,conversion.target,conversion.ly,conversion.lq];
 
                  break;
                  case 3: 
                  currentActual = totalRepeatUserActual;
                  currentTarget =  totalRepeatUserTarget;
-                 currentMulti  = [repeatUserMau.actual,repeatUserMau.target,repeatUserMau.ly];
+                 currentMulti  = [repeatUserMau.actual,repeatUserMau.target,repeatUserMau.ly,repeatUserMau.lq];
                  break;
                  case 4:
                  currentActual = totalUiCancelActual;
                  currentTarget =  totalUiCancelTarget;
-                 currentMulti  = [uiCancel.actual,uiCancel.target,uiCancel.ly];
+                 currentMulti  = [uiCancel.actual,uiCancel.target,uiCancel.ly,uiCancel.lq];
                  break;
                  case 5:
                  currentActual = totalPaymentFailureActual;
                  currentTarget =  totalPaymentFailureTarget;
-                 currentMulti  = [paymentFailures.actual,paymentFailures.target,paymentFailures.ly];
+                 currentMulti  = [paymentFailures.actual,paymentFailures.target,paymentFailures.ly,paymentFailures.lq];
                  break;
                  break;
                  default:
