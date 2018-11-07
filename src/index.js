@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from 'Root';
-import {BrowserRouter, Router, Route} from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 import App from 'Views/App/App.js';
 import ServiceChecker from 'Views/ServiceChecker/ServiceChecker.jsx';
 
@@ -26,11 +26,12 @@ ReactDOM.render(
 		<Security issuer={config.oidc.issuer}
                   client_id={config.oidc.clientId}
                   redirect_uri={config.oidc.redirectUri}>
-			<Route path="/" exact={true} component={App} /> {/* Service Checker */}
-			<Route path="/implicit/callback" component={ImplicitCallback} />
+			<Route path={`${process.env.PUBLIC_URL}/`} exact={true} component={App} /> {/* Service Checker */}
+			<Route path="*" exact={true} component={App} />
+			<Route path={`${process.env.PUBLIC_URL}` + "/implicit/callback/"} component={ImplicitCallback} />
 			{/* <Route path="/login" component={Login} /> */}
 			{/* <Route path="/app" component={App} /> */}
-			</Security>
+			</Security> 	
 		</BrowserRouter>
 	</Root>
 , document.querySelector('#root'));

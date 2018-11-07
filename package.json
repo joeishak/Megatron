@@ -2,6 +2,7 @@
   "name": "practice",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://localhost:8551/apps/adobepocbuild/",
   "dependencies": {
     "@nivo/bar": "^0.42.1",
     "@nivo/calendar": "^0.43.0",
@@ -30,7 +31,6 @@
     "classnames": "^2.2.6",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "fast-xml-parser": "^3.12.5",
     "hammerjs": "^2.0.8",
     "jquery": "^3.3.1",
     "moxios": "^0.4.0",
