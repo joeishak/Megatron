@@ -40,7 +40,7 @@ class JourneySummary extends Component {
 
     }
     formatPercentage(value) {
-        return (value.toFixed(1) / 100).toFixed(2);
+        return (value * 100).toFixed(2);
     }
 
      // Event handler when the Journey Card is active and clicked
