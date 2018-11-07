@@ -26,9 +26,11 @@ ReactDOM.render(
 		<Security issuer={config.oidc.issuer}
                   client_id={config.oidc.clientId}
                   redirect_uri={config.oidc.redirectUri}>
-			<Route path={`${process.env.PUBLIC_URL}/`} exact={true} component={App} /> {/* Service Checker */}
-			<Route path="*" exact={true} component={App} />
+			<Route path="/apps/adobepocbuild" exact={true} component={App} /> {/* Service Checker */}
+			{console.log(`${process.env.PUBLIC_URL}/`)}
+			<Route path="" exact={true} component={App} />
 			<Route path={`${process.env.PUBLIC_URL}` + "/implicit/callback/"} component={ImplicitCallback} />
+			{console.log(`${process.env.PUBLIC_URL}` + "/implicit/callback/")}
 			{/* <Route path="/login" component={Login} /> */}
 			{/* <Route path="/app" component={App} /> */}
 			</Security> 	
