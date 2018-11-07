@@ -188,6 +188,9 @@ class KendoMultiChart extends Component {
                             <ChartSeriesItem name='Last Year' type="line" data={this.formatDataValues(chartData[2])} color='#DFDE43'  >
                                     <ChartSeriesItemTooltip  background="#3c3c3c"  />
                             </ChartSeriesItem>
+                            <ChartSeriesItem name='Last Quarter' type="line" data={chartData[3]} color='white'  >
+                                <ChartSeriesItemTooltip  background="#3c3c3c"  />
+                            </ChartSeriesItem>
                         </ChartSeries> : 
                         <ChartSeries >
                             <ChartSeriesItem name='Actual' type="column" gap={2} spacing={0.25} data={chartData[0]} color={this.props.color} >
@@ -197,6 +200,9 @@ class KendoMultiChart extends Component {
                                 <ChartSeriesItemTooltip background="#3c3c3c"   />
                             </ChartSeriesItem>
                             <ChartSeriesItem name='Last Year' type="line" data={chartData[2]} color='#DFDE43'  >
+                                <ChartSeriesItemTooltip  background="#3c3c3c"  />
+                            </ChartSeriesItem>
+                            <ChartSeriesItem name='Last Quarter' type="line" data={chartData[3]} color='white'  >
                                 <ChartSeriesItemTooltip  background="#3c3c3c"  />
                             </ChartSeriesItem>
                         </ChartSeries>
