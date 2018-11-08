@@ -191,6 +191,19 @@
 	height: 200px;
 } */
 
+@media only screen and (max-width: 1023px) {
+    .mobile {
+        display: none;
+    }
+}
+
+/* ipad Portrait */
+/* @media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : portrait) { 
+	.mobile {
+		display: none;
+	} 
+} */
+
 .finCommentIcon{
 	margin-top: 4px;
 	margin-right: 4px;
@@ -205,6 +218,9 @@
 	background-color: blue;
 	/* padding-top: 15px;
 	margin-bottom: 20px; */
+	-moz-box-shadow: 0 0 20px rgb(109, 109, 109);
+	-webkit-box-shadow: 0 0 20px rgb(109, 109, 109);
+	box-shadow: 0 0 20px rgb(109, 109, 109);
 }
 .selectedCardText {
 	color: white !important;

@@ -79,7 +79,7 @@ class PrimarySquare extends Component {
         })
         return(
             <div> 
-                 <div className="col-md-2 col-lg-2"  
+                 <div className="col-sm-2 col-md-2 col-lg-2 mobile"  
                 onClick = {this.props.enableChart}
                  key={this.props.item.index}>
 
