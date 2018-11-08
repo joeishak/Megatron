@@ -367,7 +367,7 @@
 
 }
 .arrow_box {
-	margin-top: 144px;
+	margin-top: 10px;
 	position: relative;
 	text-align: center;
 	height: 35px;
@@ -380,7 +380,7 @@
 	left: 0;
 	height: 100%;
 	width: 51%;
-	background: white;
+	background: blue;
 	transform: skew(0deg, 9deg);
   }
   .arrow_box:after {
@@ -390,6 +390,6 @@
 	right: 0;
 	height: 100%;
 	width: 50%;
-	background: white;
+	background: blue;
 	transform: skew(0deg, -9deg);
   }
