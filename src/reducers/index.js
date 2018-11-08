@@ -17,7 +17,7 @@ import journeyReducer from 'reducers/journeyIbe.js';
 import multiChartMetricReducer from 'reducers/multichartIsArr.js';
 import userSettingsReducer from 'reducers/userSettings.js';
 import healthAndHeartbeatReducer from 'reducers/healthAndHeartbeat.js';
-
+import primaryDataReducer from 'reducers/primaryData.js';
 export default combineReducers({
     auth: authReducer,
     user: userReducer,
@@ -36,7 +36,8 @@ export default combineReducers({
     journeyData: journeyReducer,
     multichartIsArr: multiChartMetricReducer,
     preferences: userSettingsReducer,
-    sysInfo: healthAndHeartbeatReducer
+    sysInfo: healthAndHeartbeatReducer,
+    primaryData: primaryDataReducer
 
 
 });

@@ -19,7 +19,7 @@ class FinancialList extends Component {
     }
     render(){
         return(
-            <div className="chartRow">
+            <div className="chartRow ">
             { this.props.data.map(item=>{
                 let isActive = parseInt(this.props.activeCard) === item.index ? true : false;
               return (

@@ -21,6 +21,7 @@ export const UPDATE_SWITCH_FILTER_VALUE      = "update_switch_filter_value";
 export const UPDATE_DIALOG_VISIBILITY        = "update_dialog_visibility";
 // All Data 
 export const GET_ALL_DATA                    = "get_all_data";
+export const GET_PRIMARY_DATA                = "get_primary_data";
 
 // Data for the Filters 
 export const GENERATE_FILTER_DATA                       = "generate_filter_data";

@@ -5,6 +5,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import commentIconOn from '../../assets/images/comments-on.svg';
 import commentIconOff from '../../assets/images/comments-off.svg';
 import styles from './PrimaryContent.css';
+import classNames from 'classnames';
 class PrimarySquare extends Component {
   
     
@@ -73,8 +74,11 @@ class PrimarySquare extends Component {
     }
 
     render(){
+        const alignCenter = classNames({
+            center: true
+        })
         return(
-            <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3"  onClick = {this.props.enableChart} key={this.props.item.index}>
+            <div className="col-xs-12 col-sm-12 col-md-2 col-lg-2"  onClick = {this.props.enableChart} key={this.props.item.index}>
 
             <div >
                 <div className="flipper">
@@ -86,26 +90,42 @@ class PrimarySquare extends Component {
                             transitionAppearTimeout={1000}
                             transitionEnter={false} 
                             transitionLeave={false}>
-                            {/* {this.state.show ? ( */}
-                             {/* Financial Summary  */}
+                            {/* Image Icon For Comments */}
+
                             <div className={`sumChartSquare zoom ${this.props.activeCard ? 'selectedCard ' : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
                                 <div className={`sumChartContent ${this.props.item.css[1]}`}>
+                                    {this.props.toggleCommentary ? (<span className="k-float-right finCommentIcon"><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick()}/></span>) : null}
+                                    
                                     <div className={`sumChartHeader ${this.props.activeCard ? this.getColor(this.props.item.value, this.props.item.target, 'financial') : ''}`}>
-                                    <p className={`sumChartHeaderText ${this.props.activeCard ? 'selectedCardText' : ''}`}
+                                    <p className={`sumChartHeaderText ${alignCenter} ${this.props.activeCard ? 'selectedCardText' : ''}`}
                                     >{this.props.item.header}</p>
                                     </div>
-                                     {/* Image Icon For Comments */}
-        {this.props.toggleCommentary ? (<span className="k-float-right finCommentIcon"><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick()}/></span>) : null}
-  
-                                        <div className={`donutChart ${this.props.activeCard ? 'arrow_box' : ''}`}>
+                                    {/* Secondary Header */}
+                                    <div className={`donutChart ${alignCenter} ${this.props.activeCard ? 'arrow_box' : ''}`}>
+
+                                    <div className={` secondaryHeader`}>Net New Arr</div>
+
+                                    {/* REFACTOR: Remove formatted value , bullet chart, and formatter target to SummaryMetric 
+                                     - - Pass Item down
+                                     */}
+                                    {/* Formatted Value $###.## (M / %)*/}
+                                    <div className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>
+                                        $135.66M
+                                    </div>
+                                    {/* Bullet Chart */}
                                             <div >
-                                            <KendoDonutChart donutColor={this.props.item.value >= this.props.item.target ? '#0DB16E': '#FF0000'} key={this.props.item.index} donutCenterRender= {()=> 
-                                            <div className="insideDonut"><span className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>{this.renderDollarValue(this.props.item.value)}</span><span className='targetText'>Target</span><span className='targetValueText'>{this.renderDollarValue(this.props.item.target)}</span></div>}/> 
+                                            {/* <KendoDonutChart donutColor={this.props.item.value >= this.props.item.target ? '#0DB16E': '#FF0000'} key={this.props.item.index} donutCenterRender= {()=>  */}
+                                            {/*  <div className="insideDonut"><span className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>{this.renderDollarValue(this.props.item.value)}</span><span className='targetText'>Target</span><span className='targetValueText'>{this.renderDollarValue(this.props.item.target)}</span></div>}/> 
+                                            
+ */}                                            <KendoBulletChart values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="black" key={this.props.item.index} ></KendoBulletChart>
                                             </div>
-                                        </div>
+                                    {/* Formatted Target $###.## (M / %)*/}
+                                    <div className='formattedTarget'>TARGET $ 135.66M</div>
+                                    </div>
+  
+                                       
                                     </div>
                             </div>
-                        {/* ): null} */}
                         </CSSTransitionGroup>
                     </div>
                 </div>

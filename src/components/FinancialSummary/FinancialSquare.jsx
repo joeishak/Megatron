@@ -4,8 +4,10 @@ import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
 import { CSSTransitionGroup } from 'react-transition-group';
 import commentIconOn from '../../assets/images/comments-on.svg';
 import commentIconOff from '../../assets/images/comments-off.svg';
-import styles from './FinancialSummary.css';
 import classNames from 'classnames';
+
+import styles from './FinancialSummary.css';
+import { align } from '@progress/kendo-drawing';
 class FinancialSquare extends Component {
   
     
