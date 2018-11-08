@@ -22,7 +22,7 @@ class PrimaryContentList extends Component {
     }
     render(){
         return(
-            <div className="chartRow">
+            <div className="row">
 
             { this.props.data.map(item=>{
                 let isActive = parseInt(this.props.activeCard) === item.index ? true : false;

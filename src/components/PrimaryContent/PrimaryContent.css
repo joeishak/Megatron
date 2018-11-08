@@ -201,7 +201,7 @@
 /* active card */
 .selectedCard {
 	height: 180px;
-	border: 1px solid gray;
+	/* border: 1px solid gray; */
 	background-color: blue;
 	/* padding-top: 15px;
 	margin-bottom: 20px; */
