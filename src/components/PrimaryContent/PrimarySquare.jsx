@@ -78,36 +78,43 @@ class PrimarySquare extends Component {
             center: true
         })
         return(
-            <div className="col-xs-12 col-sm-6 col-md-2 col-lg-2"  
+            <div className="col-xs-12 col-sm-12 col-md-2 col-lg-2"  
                 onClick = {this.props.enableChart}
                  key={this.props.item.index}>
 
-                <div className={`sumChartSquare zoom ${this.props.activeCard ? 'selectedCard ' : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
-                        <div className={`sumChartContent ${this.props.item.css[1]}`}>
+                {/* Card */}
+                <div className={`sumChartSquare zoom   ${this.props.item.css[1]} ${this.props.activeCard ? 'selectedCard ' : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
+                        <div className={`sumChartContent  ${this.props.item.css[1]}`}>
                                         {this.props.toggleCommentary ? (<span className="k-float-right finCommentIcon"><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick()}/></span>) : null}
                                         
+                            {/* Header */}
                             <div className={`sumChartHeader ${this.props.activeCard ? this.getColor(this.props.item.value, this.props.item.target, 'financial') : ''}`}>
                                 <p className={`sumChartHeaderText ${this.props.activeCard ? 'selectedCardText' : ''}`}>
-                                    {this.props.item.header}
+                                    {this.props.item.category}
                                 </p>
-                                        </div>
-                                        {/* Secondary Header */}
-                                        <div className={`donutChart ${this.props.activeCard ? '' : ''}`}>    
-                                            <div className='secondaryHeader'>Net New Arr</div>
-                                            {/* Formatted Value $###.## (M / %)*/}
-                                            <div className='formattedValue'>$ 135.66M</div>
-                                            {/* Bullet Chart */}
-                                                    <div >
-                                                    {/* <KendoDonutChart donutColor={this.props.item.value >= this.props.item.target ? '#0DB16E': '#FF0000'} key={this.props.item.index} donutCenterRender= {()=>  */}
-                                                    {/*  <div className="insideDonut"><span className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>{this.renderDollarValue(this.props.item.value)}</span><span className='targetText'>Target</span><span className='targetValueText'>{this.renderDollarValue(this.props.item.target)}</span></div>}/> 
-                                                    */}
-                                                    <KendoBulletChart values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="black" key={this.props.item.index} ></KendoBulletChart>
-                                                    </div>
-                                            {/* Formatted Target $###.## (M / %)*/}
-                                            <div className='formattedTarget'>$ 135.66M</div>
                             </div>
-                                    
-                            <div className={`${this.props.activeCard ? 'arrow_box' : ''}`}></div>
+
+                                <div className={alignCenter}>
+                                        <div className={` secondaryHeader`}>{this.props.item.header}</div>
+
+                                        {/* REFACTOR: Remove formatted value , bullet chart, and formatter target to SummaryMetric 
+                                        - - Pass Item down
+                                        */}
+                                        {/* Formatted Value $###.## (M / %)*/}
+                                        <div className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>
+                                            $135.66M
+                                        </div>
+                                        {/* Bullet Chart */}
+                                                <div >
+                                                {/* <KendoDonutChart donutColor={this.props.item.value >= this.props.item.target ? '#0DB16E': '#FF0000'} key={this.props.item.index} donutCenterRender= {()=>  */}
+                                                {/*  <div className="insideDonut"><span className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>{this.renderDollarValue(this.props.item.value)}</span><span className='targetText'>Target</span><span className='targetValueText'>{this.renderDollarValue(this.props.item.target)}</span></div>}/> 
+                                                
+                                        */}                                            <KendoBulletChart values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="black" key={this.props.item.index} ></KendoBulletChart>
+                                                </div>
+                                        {/* Formatted Target $###.## (M / %)*/}
+                                        <div className='formattedTarget'>TARGET $ 135.66M</div>
+                                </div> 
+                            <div className={` ${this.props.activeCard ? 'arrow_box' : ''}`}></div>
                                         
                             </div>
                      

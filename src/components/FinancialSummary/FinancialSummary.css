@@ -159,12 +159,12 @@
 
 
 /* Previous Inline Style */
-.sumChartSquare {
+/* .sumChartSquare {
 	height: 230px; 
 	width: 100%;
 	margin-top: 10px;
 	border: 1px solid red;
-}
+} */
 
 .selectedCardFontColorGreen {
 	color: #0DB16e;
@@ -283,6 +283,8 @@
 .chartRow{
 	padding-bottom: 60px;
 	background-color: red;
+	padding-left: 40px;
+	padding-right: 40px;
 
 }
 /* Card Flip */

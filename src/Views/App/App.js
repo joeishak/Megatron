@@ -167,7 +167,7 @@ class App extends Component {
           <PrimaryContentList 
                             onCommentIconClick={()=>{console.log('hello world');}}
                             toggleCommentary={true} 
-                            activeCard={1 } 
+                            activeCard={0 } 
                             data = {this.props.primaryData} 
                             enableChart={()=>{console.log('hello world');}} 
                             selectedCard={(e,index) =>{console.log('hello world');}} /> 
