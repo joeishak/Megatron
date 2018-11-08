@@ -334,3 +334,20 @@
 
 /* Primary Square */
 
+.center{
+	text-align: center;
+	align-content: center;
+}
+
+.secondaryHeader{
+	font-size: 1.3em;
+}
+/* .valueText{
+	font-size: 1.8em;
+
+} */
+
+.formattedTarget{
+	font-size: 1.2em;
+
+}

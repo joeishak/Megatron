@@ -4,7 +4,10 @@ import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
 import { CSSTransitionGroup } from 'react-transition-group';
 import commentIconOn from '../../assets/images/comments-on.svg';
 import commentIconOff from '../../assets/images/comments-off.svg';
+import classNames from 'classnames';
+
 import styles from './FinancialSummary.css';
+import { align } from '@progress/kendo-drawing';
 class FinancialSquare extends Component {
   
     
@@ -96,15 +99,15 @@ class FinancialSquare extends Component {
                                     {this.props.toggleCommentary ? (<span className="k-float-right finCommentIcon"><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick()}/></span>) : null}
                                     
                                     <div className={`sumChartHeader ${this.props.activeCard ? this.getColor(this.props.item.value, this.props.item.target, 'financial') : ''}`}>
-                                    <p className={`sumChartHeaderText ${this.props.activeCard ? 'selectedCardText' : ''}`}
+                                    <p className={`sumChartHeaderText ${alignCenter} ${this.props.activeCard ? 'selectedCardText' : ''}`}
                                     >{this.props.item.header}</p>
                                     </div>
                                     {/* Secondary Header */}
-                                    <div className={`donutChart ${this.props.activeCard ? 'arrow_box' : ''}`}>
+                                    <div className={`donutChart ${alignCenter} ${this.props.activeCard ? 'arrow_box' : ''}`}>
 
-                                    <div className='secondaryHeader'>Net New Arr</div>
+                                    <div className={` secondaryHeader`}>Net New Arr</div>
                                     {/* Formatted Value $###.## (M / %)*/}
-                                    <div className='formattedValue'>$ 135.66M</div>
+                                    <div className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>$ 135.66M</div>
                                     {/* Bullet Chart */}
                                             <div >
                                             {/* <KendoDonutChart donutColor={this.props.item.value >= this.props.item.target ? '#0DB16E': '#FF0000'} key={this.props.item.index} donutCenterRender= {()=>  */}
@@ -113,7 +116,7 @@ class FinancialSquare extends Component {
  */}                                            <KendoBulletChart values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="black" key={this.props.item.index} ></KendoBulletChart>
                                             </div>
                                     {/* Formatted Target $###.## (M / %)*/}
-                                    <div className='formattedTarget'>$ 135.66M</div>
+                                    <div className='formattedTarget'>TARGET $ 135.66M</div>
                                     </div>
   
                                        
