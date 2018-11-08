@@ -164,13 +164,13 @@ class App extends Component {
    
           {(this.props.commentBoxIsOpen) ? <CommentBox /> : null}
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
-{/*           <PrimaryContentList 
+          <PrimaryContentList 
                             onCommentIconClick={()=>{console.log('hello world');}}
-                            toggleCommentary={()=>{console.log('hello world');}} 
+                            toggleCommentary={true} 
                             activeCard={1 } 
-                            data = {[]} 
+                            data = {this.props.primaryData} 
                             enableChart={()=>{console.log('hello world');}} 
-                            selectedCard={(e,index) =>{console.log('hello world');}} /> */}
+                            selectedCard={(e,index) =>{console.log('hello world');}} /> 
           {/* Secondary */}
           {/* DEtails */}
           {this.getSummary()}
@@ -186,7 +186,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log('debug', state);
+  console.log('debug', state);
   return {
     dialogIsOpen: state.isDialogOpen, 
     detailIsOpen: state.detailsIsOpen,
@@ -195,7 +195,8 @@ function mapStateToProps(state) {
     user: state.user,
     preferences: state.preferences,
     finData: state.ibeData,
-    journeyData: state.journeyData
+    journeyData: state.journeyData,
+    primaryData: state.primaryData
   };
 }
 

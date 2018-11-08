@@ -106,8 +106,14 @@ class FinancialSquare extends Component {
                                     <div className={`donutChart ${alignCenter} ${this.props.activeCard ? 'arrow_box' : ''}`}>
 
                                     <div className={` secondaryHeader`}>Net New Arr</div>
+
+                                    {/* REFACTOR: Remove formatted value , bullet chart, and formatter target to SummaryMetric 
+                                     - - Pass Item down
+                                     */}
                                     {/* Formatted Value $###.## (M / %)*/}
-                                    <div className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>$ 135.66M</div>
+                                    <div className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>
+                                        $135.66M
+                                    </div>
                                     {/* Bullet Chart */}
                                             <div >
                                             {/* <KendoDonutChart donutColor={this.props.item.value >= this.props.item.target ? '#0DB16E': '#FF0000'} key={this.props.item.index} donutCenterRender= {()=>  */}

@@ -261,10 +261,10 @@
 
 
 /* Inside the Donut Charts */
-.insideDonut {
+/* .insideDonut {
 	padding-top: 30px;
-}
-.valueText{
+} */
+/* .valueText{
 	font-size:30px;
 	display:block;
 }
@@ -275,12 +275,13 @@
 
 .selectedCardFontColorRed {
 	color: #ff0000;
-}
+} */
 /* End Financial Squares */
 
 
 .chartRow{
 	padding-bottom: 60px;
+	background-color:#f4f4f4
 }
 /* Card Flip */
 
@@ -298,10 +299,6 @@
 }
 
 
-.valueText{
-	font-size:30px;
-	display:block;
-}
 .targetText{
 	font-size:11px;
 	display:block;
@@ -329,4 +326,31 @@
     background-color: #1f1f1f;
 	height: 100%;
 	width:100%
+}
+
+
+/* Primary Square */
+
+.center{
+	text-align: center;
+	align-content: center;
+}
+
+.secondaryHeader{
+	font-size: 1.3em;
+}
+
+.valueText{
+	font-size:1.8em;
+	font-weight: bold;
+	display:block;/* .valueText{
+		font-size: 1.8em;
+	
+	} */
+}
+
+
+.formattedTarget{
+	font-size: 1.2em;
+
 }

@@ -13,6 +13,7 @@ import {
     UPDATE_SWITCH_FILTER_VALUE,
     UPDATE_DIALOG_VISIBILITY , 
     GET_ALL_DATA,
+    GET_PRIMARY_DATA,
     GENERATE_FILTER_DATA,
     ADD_MULTI_FILTER,
     REMOVE_MULTI_FILTER,
@@ -62,6 +63,12 @@ export function changeAuth(isLoggedIn) {
     }
 }
 
+export function getPrimaryData(){
+    return{
+        type: GET_PRIMARY_DATA,
+        payload: null
+    }
+}
 export  function updateOKTAUser(user){
     utils.addUserToDB(user);
     // let userdb = utils.getUser(user);

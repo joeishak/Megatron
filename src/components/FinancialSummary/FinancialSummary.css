@@ -281,6 +281,7 @@
 
 .chartRow{
 	padding-bottom: 60px;
+	background-color:#f4f4f4
 }
 /* Card Flip */
 
@@ -298,10 +299,6 @@
 }
 
 
-.valueText{
-	font-size:30px;
-	display:block;
-}
 .targetText{
 	font-size:11px;
 	display:block;
@@ -342,10 +339,16 @@
 .secondaryHeader{
 	font-size: 1.3em;
 }
-/* .valueText{
-	font-size: 1.8em;
 
-} */
+.valueText{
+	font-size:1.8em;
+	font-weight: bold;
+	display:block;/* .valueText{
+		font-size: 1.8em;
+	
+	} */
+}
+
 
 .formattedTarget{
 	font-size: 1.2em;
