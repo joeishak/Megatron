@@ -26,7 +26,8 @@ class JourneySummary extends Component {
 
         if(nextProps.data !== this.props.data){
             return true;
-        } else if(nextState.activeJourneyCard !== this.state.activeJourneyCard){
+        } 
+        if(nextState.activeJourneyCard !== this.state.activeJourneyCard){
             return true;
         }
         if(this.props.toggleCommentary!== nextProps.toggleCommentary){

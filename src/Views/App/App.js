@@ -164,16 +164,16 @@ class App extends Component {
    
           {(this.props.commentBoxIsOpen) ? <CommentBox /> : null}
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
-          <PrimaryContentList 
+{/*           <PrimaryContentList 
                             onCommentIconClick={()=>{console.log('hello world');}}
                             toggleCommentary={()=>{console.log('hello world');}} 
                             activeCard={1 } 
                             data = {[]} 
                             enableChart={()=>{console.log('hello world');}} 
-                            selectedCard={(e,index) =>{console.log('hello world');}} />
+                            selectedCard={(e,index) =>{console.log('hello world');}} /> */}
           {/* Secondary */}
           {/* DEtails */}
-          {/* {this.getSummary()} */}
+          {this.getSummary()}
           </span>
         }
          {this.state.authenticated === false &&
