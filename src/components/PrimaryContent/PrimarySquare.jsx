@@ -88,18 +88,18 @@ class PrimarySquare extends Component {
                                         
                             <div className={`sumChartHeader ${this.props.activeCard ? this.getColor(this.props.item.value, this.props.item.target, 'financial') : ''}`}>
                                 <p className={`sumChartHeaderText ${this.props.activeCard ? 'selectedCardText' : ''}`}>
-                                    {this.props.item.header}
+                                    {this.props.item.category}
                                 </p>
                             </div>
                                 <div className={alignCenter}>
-                                        <div className={` secondaryHeader`}>Net New Arr</div>
+                                        <div className={` secondaryHeader`}>{this.props.item.header}</div>
 
                                         {/* REFACTOR: Remove formatted value , bullet chart, and formatter target to SummaryMetric 
                                         - - Pass Item down
                                         */}
                                         {/* Formatted Value $###.## (M / %)*/}
                                         <div className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>
-                                            $135.66M
+                                            {this.props.item.value}
                                         </div>
                                         {/* Bullet Chart */}
                                                 <div >
@@ -109,7 +109,7 @@ class PrimarySquare extends Component {
                                         */}                                            <KendoBulletChart values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="black" key={this.props.item.index} ></KendoBulletChart>
                                                 </div>
                                         {/* Formatted Target $###.## (M / %)*/}
-                                        <div className='formattedTarget'>TARGET $ 135.66M</div>
+                                        <div className='formattedTarget'>TARGET {this.props.item.target}</div>
                                 </div> 
                             <div className={`${this.props.activeCard ? 'arrow_box' : ''}`}></div>
                                         

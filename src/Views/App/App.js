@@ -151,6 +151,12 @@ class App extends Component {
       }
     }
   }
+
+
+  updateActivePrimary(index){
+    console.log(index)
+    this.props.updateActivePrimaryCard(index);
+  }
   render(){
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
     return (
@@ -167,10 +173,10 @@ class App extends Component {
           <PrimaryContentList 
                             onCommentIconClick={()=>{console.log('hello world');}}
                             toggleCommentary={true} 
-                            activeCard={0 } 
+                            activeCard={this.props.activePrimaryCard } 
                             data = {this.props.primaryData} 
                             enableChart={()=>{console.log('hello world');}} 
-                            selectedCard={(e,index) =>{console.log('hello world');}} /> 
+                            selectedCard={(e,index) =>{this.updateActivePrimary(index)}} /> 
           {/* Secondary */}
           {/* DEtails */}
           {/* {this.getSummary()} */}
@@ -196,7 +202,9 @@ function mapStateToProps(state) {
     preferences: state.preferences,
     finData: state.ibeData,
     journeyData: state.journeyData,
-    primaryData: state.primaryData
+    primaryData: state.primaryData,
+    activePrimaryCard: state.activeCards.primary,
+    activeSecondaryCard: state.activeCards.secondary
   };
 }
 

@@ -4,14 +4,18 @@ import PrimarySquare from './PrimarySquare.jsx'
 
 class PrimaryContentList extends Component {
 
+    componentDidUpdate(prevProps){
+        console.log(this.props.activeCard)
+
+    }
     shouldComponentUpdate(nextProps){
         if(this.props.toggleCommentary !== nextProps.toggleCommentary){
             return true;
         }
-        else if(this.props.data !== nextProps.data){
+        if(this.props.data !== nextProps.data){
             return true;
         }
-        else if(this.props.activeCard !== nextProps.activeCard){
+        if(this.props.activeCard !== nextProps.activeCard){
             return true;
         }
         return false;
@@ -19,6 +23,7 @@ class PrimaryContentList extends Component {
     render(){
         return(
             <div className="chartRow">
+
             { this.props.data.map(item=>{
                 let isActive = parseInt(this.props.activeCard) === item.index ? true : false;
               return (

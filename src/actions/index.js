@@ -21,6 +21,7 @@ import {
     HIDE_SUMMARY_VIEW_DETAILS,    
     UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD,
     UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD,
+    UPDATE_ACTIVE_PRIMARY_CARD,
     GET_QUERY_FILTERED_IBE_DATA,
     GET_EXCEL_MULTICHART,
     UPDATE_COMMENT_BOX_VISIBILITY,
@@ -279,7 +280,13 @@ export function updateJourneySummaryActiveCard(squareItem){
     }
 }
 
-
+export function updateActivePrimaryCard(index){
+    console.log(index);
+    return {
+        type: UPDATE_ACTIVE_PRIMARY_CARD,
+        payload: index
+    }
+}
 /**
  * Get all the local data for adobe
  * 
