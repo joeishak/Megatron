@@ -261,10 +261,10 @@
 
 
 /* Inside the Donut Charts */
-.insideDonut {
+/* .insideDonut {
 	padding-top: 30px;
-}
-.valueText{
+} */
+/* .valueText{
 	font-size:30px;
 	display:block;
 }
@@ -275,7 +275,7 @@
 
 .selectedCardFontColorRed {
 	color: #ff0000;
-}
+} */
 /* End Financial Squares */
 
 
@@ -330,3 +330,7 @@
 	height: 100%;
 	width:100%
 }
+
+
+/* Primary Square */
+
