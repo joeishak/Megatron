@@ -173,7 +173,7 @@ class App extends Component {
                             selectedCard={(e,index) =>{console.log('hello world');}} /> 
           {/* Secondary */}
           {/* DEtails */}
-          {this.getSummary()}
+          {/* {this.getSummary()} */}
           </span>
         }
          {this.state.authenticated === false &&

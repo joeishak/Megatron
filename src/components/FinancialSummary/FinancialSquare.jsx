@@ -109,7 +109,7 @@ class FinancialSquare extends Component {
                                             <div className='formattedTarget'>$ 135.66M</div>
                             </div>
                                     
-                            <div className={`${this.props.activeCard ? 'arrow_box' : ''}`}></div>
+                            {/* <div className={`${this.props.activeCard ? 'arrow_box' : ''}`}></div> */}
                                         
                             </div>
                      

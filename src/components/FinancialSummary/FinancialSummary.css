@@ -163,6 +163,7 @@
 	height: 230px; 
 	width: 100%;
 	margin-top: 10px;
+	border: 1px solid red;
 }
 
 .selectedCardFontColorGreen {
@@ -281,7 +282,8 @@
 
 .chartRow{
 	padding-bottom: 60px;
-	background-color:#f4f4f4
+	background-color: red;
+
 }
 /* Card Flip */
 
