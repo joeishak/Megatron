@@ -228,10 +228,10 @@
 
 /* Arrow */
 
-.arrow_box {
+/* .arrow_box {
 	position: absolute;
-	background: white;
-	border-bottom: 4px solid white;
+	background: red;
+	border-bottom: 4px solid red;
 	width: 100%;
     height: 175px;
 }
@@ -247,17 +247,17 @@
 }
 
 .arrow_box:after {
-	border-color: rgba(136, 183, 213, 0);
-	border-top-color:white;
+	border-color: rgba(255, 0, 0, 0);
+	border-top-color:red;
 	border-width: 15px;
 	margin-left: -15px;
 }
 .arrow_box:before {
-	border-color: rgba(194, 225, 245, 0);
-	border-top-color:white;
+	border-color: rgba(255, 0, 0, 0);
+	border-top-color:red;
 	border-width: 21px;
 	margin-left: -21px;
-}
+} */
 
 
 /* Inside the Donut Charts */

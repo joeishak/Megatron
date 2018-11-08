@@ -185,9 +185,9 @@
 	color: white !important;
 }
 
-.selectedCardSquare {
-	height: 225px;
-}
+/* .selectedCardSquare {
+	height: 200px;
+} */
 
 .finCommentIcon{
 	margin-top: 4px;
@@ -198,19 +198,26 @@
 }
 .selectedCard {
 	height: 225px;
-
 	padding-top: 15px;
 	margin-bottom: 20px;
+
+
 }
 .selectedCardText {
 	color: white !important;
 }
+
 .sumChartHeaderText {
-	/* dynamic */
 	color: rgb(21, 21, 21);
 	padding-top: 8px;
 	text-align: center;
-	font-size:18px;
+	font-size:20px;
+	font-weight: bold;
+	margin-left: 20px;
+}
+
+.sumChartHeader {
+	height: 50px;
 }
 
 .sumChartContent {
@@ -227,38 +234,65 @@
 
 
 /* Arrow */
-
 .arrow_box {
+	margin-top: 144px;
+	position: relative;
+	text-align: center;
+	height: 35px;
+	width: auto;
+  }
+  .arrow_box:before {
+	content: '';
 	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 51%;
 	background: white;
-	border-bottom: 4px solid white;
-	width: 100%;
-    height: 175px;
-}
-.arrow_box:after, .arrow_box:before {
+	transform: skew(0deg, 9deg);
+  }
+  .arrow_box:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 50%;
+	background: white;
+	transform: skew(0deg, -9deg);
+  }
+
+
+/* .arrow_box:after, .arrow_box:before {
 	top: 100%;
 	left: 50%;
 	border: solid transparent;
 	content: " ";
-	height: 0;
-	width: 0;
+	height: 50px;
+
 	position: absolute;
 	pointer-events: none;
 }
 
 .arrow_box:after {
 	border-color: rgba(136, 183, 213, 0);
-	border-top-color:white;
-	border-width: 15px;
-	margin-left: -15px;
+	border-top-color:red;
+
+	width: 0 ;
+	height: 0;
+	border-style: solid;
+	border-width: 19px 100px 0 100px;
+	border-color: #ffffff transparent transparent transparent;
+	
+
 }
 .arrow_box:before {
 	border-color: rgba(194, 225, 245, 0);
-	border-top-color:white;
-	border-width: 21px;
-	margin-left: -21px;
-}
+	border-top-color:red;
+}  */
 
+/* New Arrow */
+/*  */
 
 /* Inside the Donut Charts */
 .insideDonut {
