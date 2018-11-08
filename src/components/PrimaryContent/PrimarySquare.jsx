@@ -102,7 +102,7 @@ class PrimarySquare extends Component {
                                         */}
                                         {/* Formatted Value $###.## (M / %)*/}
                                         <div className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>
-                                            $135.66M
+                                            {this.props.item.value}
                                         </div>
                                         {/* Bullet Chart */}
                                                 <div >
@@ -112,7 +112,7 @@ class PrimarySquare extends Component {
                                         */}                                            <KendoBulletChart values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="black" key={this.props.item.index} ></KendoBulletChart>
                                                 </div>
                                         {/* Formatted Target $###.## (M / %)*/}
-                                        <div className='formattedTarget'>TARGET $ 135.66M</div>
+                                        <div className='formattedTarget'>TARGET {this.props.item.target}</div>
                                 </div> 
                             <div className={` ${this.props.activeCard ? 'arrow_box' : ''}`}></div>
                                         

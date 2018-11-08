@@ -366,3 +366,30 @@
 	font-size: 1.2em;
 
 }
+.arrow_box {
+	margin-top: 144px;
+	position: relative;
+	text-align: center;
+	height: 35px;
+	width: auto;
+  }
+  .arrow_box:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 51%;
+	background: white;
+	transform: skew(0deg, 9deg);
+  }
+  .arrow_box:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 50%;
+	background: white;
+	transform: skew(0deg, -9deg);
+  }
