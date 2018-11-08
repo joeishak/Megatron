@@ -21,6 +21,7 @@ import CommentBox from '../../components/CommentBox/CommentBox.jsx';
 import ButtomSummaryBox from '../../components/BottomSummaryBox/BottomSummaryBox';
 import FinancialSummary from '../../components/FinancialSummary/FinancialSummary.jsx';
 import JourneySummary from '../../components/JourneySummary/JourneySummary.jsx';
+import PrimaryContentList from '../../components/PrimaryContent/PrimaryContentList.jsx';
 import SummaryHOC from '../../components/SummaryHOC.js';
 import Login from '../../components/Login/Login';
 class App extends Component {
@@ -62,10 +63,7 @@ class App extends Component {
 
     this.checkAuthentication();
     let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
- 
     let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined
-    // console.log('prev props:',prevPropsIsEmpty, 'props',propsNotEmpty);
-    // debugger;
     if( prevPropsIsEmpty && propsNotEmpty){
 
       if(this.props.preferences.defaultSummaryView === 'Financial'){
@@ -80,15 +78,12 @@ class App extends Component {
           this.props.addValueToActiveMultiFilter(ele);
         });
       }
-      
       // this.props.addValueToActiveMultiFilter(this.props.preferences.geoFilters);
       if(this.props.preferences.productFilters !== ""){
         this.props.preferences.productFilters.forEach(ele => {
           this.props.addValueToActiveMultiFilter(ele);
         });
       }
-     
-
       // this.props.addValueToActiveMultiFilter(this.props.preferences.productFilters);
       if(this.props.preferences.routeFilters !== ""){
 
@@ -96,18 +91,14 @@ class App extends Component {
         this.props.addValueToActiveMultiFilter(ele);
       });
     }
-
       // this.props.addValueToActiveMultiFilter(this.props.preferences.routeFilters);
       if(this.props.preferences.marketFilters !== ""){
-
       this.props.preferences.marketFilters.forEach(ele => {
         this.props.addValueToActiveMultiFilter(ele);
       });
-
     }
       // this.props.addValueToActiveMultiFilter(this.props.preferences.marketFilters);
       if(this.props.preferences.subscriptionFilters !== ""){
-      
       this.props.preferences.subscriptionFilters.forEach(ele => {
         this.props.addValueToActiveMultiFilter(ele);
       });
@@ -119,11 +110,9 @@ class App extends Component {
   async login() {
     this.props.auth.login('/');
   }
-
   getFilters(){
     this.props.generateFilterData('fin');
   }
-  
   /* Event Handler for the Filter Box to open the filter panel with the drop downs */
   openDialogFilterPanel(){
     // Opening the panel
@@ -131,13 +120,10 @@ class App extends Component {
       this.setState({showDropDowns: true});
       this.setState({filterPanelIsOpen: true})
     } else { /* Closing the Panel */
-
       this.setState({showDropDowns: false});
       // this.setState({filterPanelIsOpen: false});
-      
       this.time = setTimeout(()=>{
       this.setState({filterPanelIsOpen: false});
-
         },300);
     }
   }
@@ -166,11 +152,8 @@ class App extends Component {
     }
   }
   render(){
-
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
-
     return (
-      
       <div style={{height:'100%'}}>
         {this.state.authenticated &&
         <span>
@@ -178,9 +161,19 @@ class App extends Component {
           {kdialog}
           <Navigation />
           <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
+   
           {(this.props.commentBoxIsOpen) ? <CommentBox /> : null}
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
-          {this.getSummary()}
+          <PrimaryContentList 
+                            onCommentIconClick={()=>{console.log('hello world');}}
+                            toggleCommentary={()=>{console.log('hello world');}} 
+                            activeCard={1 } 
+                            data = {[]} 
+                            enableChart={()=>{console.log('hello world');}} 
+                            selectedCard={(e,index) =>{console.log('hello world');}} />
+          {/* Secondary */}
+          {/* DEtails */}
+          {/* {this.getSummary()} */}
           </span>
         }
          {this.state.authenticated === false &&

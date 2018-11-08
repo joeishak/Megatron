@@ -134,8 +134,8 @@ export default ChildComponent => {
     function mapStateToProps(state) {
         // console.log(state);
         return { 
-            filters: state.filters, 
-            switchFilter: state.switchFilter, 
+            filters: state.filters, /* Not sure if needed */
+            switchFilter: state.switchFilter, /* WE can remove once completed new design */
             appData: state.adobeData, 
             finData: state.ibeData,
             toggleCommentary: state.toggleCommentaryBox,
@@ -143,7 +143,10 @@ export default ChildComponent => {
             availableFilters: state.availableFilters,
             activeSummaryIndex: state.activeSummarySquare.index ,
             journeyData: state.journeyData,
-            preferences: state.preferences
+            preferences: state.preferences,
+            commentBoxIsOpen: state.commentBoxIsOpen,
+            user: state.user
+
         }
     }
     return connect(mapStateToProps) (ComposedComponent);
