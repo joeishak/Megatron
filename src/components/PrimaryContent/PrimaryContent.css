@@ -205,6 +205,7 @@
 		color:white;
 		
 	}
+	
 	.secondaryCategory{
 		width: 50% !important;
 		font-size: 1.8em;
@@ -227,6 +228,10 @@
 		background-color:#1f1f1f !important;
 	}
 
+
+	.primaryRow{
+		background-color: #1f1f1f !important;
+	}
 }
 
 @media only screen and (min-width: 1023px) {
@@ -240,6 +245,9 @@
 	.secondaryCategory{
 		color:black !important;
 		
+	}
+	.sumChartHeaderText{
+		color: black !important;
 	}
 	
 	
