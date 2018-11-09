@@ -158,10 +158,12 @@ class App extends Component {
   updateActivePrimary(index){
     console.log(index)
     this.props.updateActivePrimaryCard(index);
+    this.props.updateActiveSecondaryCard(0);
   }
   updateActiveSecondary(index){
     console.log(index)
     this.props.updateActiveSecondaryCard(index);
+    
   }
   render(){
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;

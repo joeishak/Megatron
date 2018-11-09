@@ -16,27 +16,73 @@ class PrimarySquare extends Component {
         }
         return renderM;
     }
-
-    renderDollarValue(value) {
+    renderUnits(value){
         let returnValue = '';
+        // console.log(value);
         value = parseInt(value)
         if (value > 1000 && value <= 999999) {
             value = (value/1000).toFixed(1);
-            returnValue = '$' + value.toString() + 'K';
+            returnValue =  value.toString() + 'K';
         } else if (value > 1000000 && value <= 999999999) {
             value = (value/1000000).toFixed(1);
-            returnValue = '$' +  value.toString() + 'M';
+            returnValue =  value.toString() + 'M';
             // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
         } else if (value > 1000000000 && value <= 999999999999) {
             value = (value/1000000000).toFixed(1);
-            returnValue ='$' +  value.toString() + 'B';
+            returnValue =  value.toString() + 'B';
         } else if (value > 1000000000 && value <= 999999999999999) {
             value = (parseInt(value)/1000000000000).toFixed(1);
-            returnValue ='$' +  value.toString() + 'T';
+            returnValue = value.toString() + 'T';
         } else {
-            return '$' + value.toString();
+            return  value.toString();
         }
         return returnValue;
+    }
+    renderDollarValue(value) {
+        let returnValue = '';
+        let abs;
+        let prefix ='$';
+        let suffix; 
+        let isNegative = false;
+        if ( value < 0){
+            isNegative = true;
+            abs = Math.abs(value)
+            console.log(abs);
+        } else { abs=value };
+
+        abs = parseInt(abs)
+        if (abs > 1000 && abs <= 999999) {
+            abs = (abs/1000).toFixed(1);
+             suffix  = 'K';
+            returnValue =abs;
+        } else if (abs > 1000000 && abs <= 999999999) {
+            abs = (abs/1000000).toFixed(1);
+             suffix  = 'M';
+            returnValue =abs;
+            // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
+        } else if (abs > 1000000000 && abs <= 999999999999) {
+            abs = (abs/1000000000).toFixed(1);
+
+             suffix  = 'B';
+            returnValue =abs;
+        } else if (abs > 1000000000000 && abs <= 999999999999999) {
+            abs = (abs/1000000000000).toFixed(1);
+
+             suffix  = 'T';
+            returnValue =abs;
+        } else {
+            returnValue =  abs;
+        }
+        
+        if(isNegative){
+            return prefix + (-1*returnValue).toString() + suffix;
+        } else{
+            return prefix+ returnValue.toString() + suffix;
+        }
+    }
+    formatPercentage(value) {
+        // console.log(value);
+        return (value * 100).toFixed(2);
     }
     shouldComponentUpdate(nextProps){
         return true;
@@ -73,6 +119,31 @@ class PrimarySquare extends Component {
         return retColor;
     }
 
+    formatMetric(item, type){
+
+        console.log(item);
+        if(type==='value'){
+            switch(item.valueType){
+                case 'units':
+                return this.renderUnits(item.value);
+                case 'currency':
+                return this.renderDollarValue(item.value);
+                case 'percentage':
+                return this.formatPercentage(item.value);
+            }
+        }
+        else{
+            switch(item.valueType){
+                case 'units':
+                return this.renderUnits(item.target);
+                case 'currency':
+                return this.renderDollarValue(item.target);
+                case 'percentage':
+                return this.formatPercentage(item.target);
+            }
+        }
+        
+    }
     render(){
         const alignCenter = classNames({
             center: true
@@ -102,8 +173,10 @@ class PrimarySquare extends Component {
                                         - - Pass Item down
                                         */}
                                         {/* Formatted Value $###.## (M / %)*/}
+                                     
+
                                         <div className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>
-                                            {this.props.item.value}
+                                            {this.formatMetric(this.props.item,'value')}
                                         </div>
                                         {/* Bullet Chart */}
                                                 <div >
@@ -113,7 +186,7 @@ class PrimarySquare extends Component {
                                         */}                                            <KendoBulletChart values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="black" key={this.props.item.index} ></KendoBulletChart>
                                                 </div>
                                         {/* Formatted Target $###.## (M / %)*/}
-                                        <div className='formattedTarget'>TARGET {this.props.item.target}</div>
+                                        <div className='formattedTarget'>TARGET {this.formatMetric(this.props.item,'target')}</div>
                                 </div> 
                             <div className={` ${this.props.activeCard ? 'arrow_box' : ''}`}></div>
                                         

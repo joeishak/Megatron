@@ -50,27 +50,28 @@ class SecondarySquares extends Component {
                         {/* Image Icon For Comments */}
                         {this.props.toggleCommentary ? (<div className="k-float-right cardCommentIcon"><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={this.props.onCommentIconClick}/></div>) : null}
                   
-                        
-                            <div className="journeyContent">
+                        <div className='journeyContent'>
+                            <div >{this.props.item.header}</div>
+                            <div  className={`   ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{this.props.item.value}</div>
+                            <div className=''><KendoBulletChart width={175} values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="white" key={this.props.item.index} ></KendoBulletChart></div>
+                            <div className='secondaryTarget'>{this.props.item.target}</div>
+                        </div>
+                            {/* <div className="journeyContent">
                                 <p>{this.props.item.header}</p>
-                                <div className="row">
+                            
 
                                     {(this.props.item.index === 1 || this.props.item.index === 2) ?
-                                     <div className={`col journeysAmount k-float-left ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{this.props.renderUnits(this.props.item.value)}</div>:
-                                     <div className={`col journeysAmount k-float-left ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{this.props.formatPercentage(this.props.item.value)} %</div> }
+                                     <div className={` journeysAmount  ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{this.props.renderUnits(this.props.item.value)}</div>:
+                                     <div className={` journeysAmount  ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{this.props.formatPercentage(this.props.item.value)} %</div> }
                                     
-
                                
-                                </div>
-                                <div className="row k-float-left">
                                     <div className="journeyKendoGraph">
                                         <KendoBulletChart width={175} values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="white" key={this.props.item.index} ></KendoBulletChart>
                                     </div>
-                                </div>  
                                 {(this.props.item.index === 1 || this.props.item.index === 2) ?
-                                     <div className="col journeysTarget ">TARGET {this.props.renderUnits(this.props.item.target)} </div>:
-                                     <div className="col journeysTarget ">TARGET {this.props.formatPercentage(this.props.item.target) }%</div> }
-                            </div>
+                                     <div className=" journeysTarget ">TARGET {this.props.renderUnits(this.props.item.target)} </div>:
+                                     <div className="journeysTarget ">TARGET {this.props.formatPercentage(this.props.item.target) }%</div> }
+                            </div> */}
                         </div>
                 {/* </CSSTransitionGroup> */}
 

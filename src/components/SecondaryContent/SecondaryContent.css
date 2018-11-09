@@ -7,8 +7,8 @@
 }
 /* Figma Styles */
 .journeyBox {
-	width: 230px;
-	height: 125px;
+	width: 240px;
+	height: 140px;
 	background: #000000;
 	/* Dynamic */
 	border: 2px solid #3c3c3c;
@@ -16,7 +16,7 @@
 }
 
 .journeyHeader {
-	height: 125px;
+	height: 100%;
 	width: 15px;
 	left: 0%;
 	right: 96.09%;
@@ -116,6 +116,7 @@
 	padding-left: 50px;
 	padding-top: 14px;
 	color: #FFFFFF;
+	height: 100%;
 
 }
 
@@ -124,6 +125,9 @@
 	padding-left: 13px;
 	font-style: normal;
 	font-weight: 300;
+	width: 90%;
+	float: left;
+	clear: right;
 	line-height: normal;
 	font-size: 32px;
 	color: #FF0000;
@@ -132,7 +136,6 @@
 .journeysAmountGreen {
 	color: #0DB16E;
 	font-family: Ubuntu;
-	padding-left: 13px;
 	font-style: normal;
 	font-weight: 300;
 	line-height: normal;
@@ -142,7 +145,7 @@
 .journeysTarget {
 	align-content: center;
 	text-align: center;
-	width: 40px;
+	width: 90%;
 	font-family: Ubuntu;
 	font-style: normal;
 	font-weight: 300;
@@ -150,14 +153,19 @@
 	font-size: 11px;
 	padding-right: 70px;
 	padding-top: 6px;
-	float:right;
 	color: #FFFFFF;
+	clear: left;
 }
 
+.secondaryTarget{
+	padding-bottom: 15px;
+}
 .journeyKendoGraph {
-	height: 36px;
+	height: auto;
 	/* border: 1px dotted red ; */
 	margin-top: -37px;
+	width: 90%;
+	clear: right;
 }
 
 
