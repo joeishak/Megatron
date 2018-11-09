@@ -14,6 +14,7 @@ import {
     UPDATE_DIALOG_VISIBILITY , 
     GET_ALL_DATA,
     GET_PRIMARY_DATA,
+    GET_SECONDARY_DATA,
     GENERATE_FILTER_DATA,
     ADD_MULTI_FILTER,
     REMOVE_MULTI_FILTER,
@@ -22,6 +23,7 @@ import {
     UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD,
     UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD,
     UPDATE_ACTIVE_PRIMARY_CARD,
+    UPDATE_ACTIVE_SECONDARY_CARD,
     GET_QUERY_FILTERED_IBE_DATA,
     GET_EXCEL_MULTICHART,
     UPDATE_COMMENT_BOX_VISIBILITY,
@@ -70,6 +72,14 @@ export function getPrimaryData(){
         payload: null
     }
 }
+
+export function getSecondaryData(){
+    return{
+        type: GET_SECONDARY_DATA,
+        payload: null
+    }
+}
+
 export  function updateOKTAUser(user){
     utils.addUserToDB(user);
     // let userdb = utils.getUser(user);
@@ -284,6 +294,14 @@ export function updateActivePrimaryCard(index){
     console.log(index);
     return {
         type: UPDATE_ACTIVE_PRIMARY_CARD,
+        payload: index
+    }
+}
+
+export function updateActiveSecondaryCard(index){
+    console.log(index);
+    return {
+        type: UPDATE_ACTIVE_SECONDARY_CARD,
         payload: index
     }
 }

@@ -9,8 +9,8 @@ class SecondarySquares extends Component {
         return(
     <div className="journeyBoxHover" key={this.props.item.index}>    
              
-                    <div className={ `journeyBox ${this.props.item.css[1]} ${this.props.activeJourneyCard === true ? this.props.getColor(this.props.item.value, this.props.item.target, 'journey', false) : ''}`} 
-                    onClick={e => this.props.onJourneyCardClicked(e, this.props.item)}>
+                    <div className={ `journeyBox  ${this.props.activeJourneyCard === true ? this.props.getColor(this.props.item.value, this.props.item.target, 'journey', false) : ''}`} 
+                    onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index)}>
                 
                     <div  className={`journeyHeader k-float-left ${this.props.activeJourneyCard === true ? this.props.getColor(this.props.item.value, this.props.item.target, 'journey', true) : ''}`} >
                         {/* <div className={this.props.item.css[2]}><p className="journeyHeaderTitle ">{this.props.item.title}</p></div> */}

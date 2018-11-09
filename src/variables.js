@@ -5736,6 +5736,9 @@ export const SecondaryData = [
         header: 'Net New ARR',
         value: 0,
         target: 0,
+        comments: [
+              
+        ],
         valueType: 'currency'
     },
     {
@@ -5744,6 +5747,9 @@ export const SecondaryData = [
         header: 'Gross New ARR',
         value: 0,
         target: 0,
+        comments: [
+              
+        ],
         valueType: 'currency'
     },
     {
@@ -5752,6 +5758,9 @@ export const SecondaryData = [
         header: 'Cancellations ARR',
         value: 0,
         target: 0,
+        comments: [
+              
+        ],
         valueType: 'currency'
     },
     {
@@ -5760,6 +5769,9 @@ export const SecondaryData = [
         header: 'Renewal@FP ARR',
         value: 0,
         target: 0,
+        comments: [
+              
+        ],
         valueType: 'currency'
     },
     {
@@ -5768,6 +5780,9 @@ export const SecondaryData = [
         header: 'Marketable Universe',
         value: 0,
         target: 0,
+        comments: [
+              
+        ],
         valueType: 'units'
     },
     {
@@ -5776,6 +5791,9 @@ export const SecondaryData = [
         header: 'Traffic',
         value: 0,
         target: 0,
+        comments: [
+              
+        ],
         valueType: 'units'
     },
     {
@@ -5784,6 +5802,9 @@ export const SecondaryData = [
         header: 'UQFM Conversion ',
         value: 0,
         target: 0,
+        comments: [
+              
+        ],
         valueType: 'percent'
     },
     {
@@ -5792,6 +5813,9 @@ export const SecondaryData = [
         header: 'Paid Media Spend',
         value: 0,
         target: 0,
+        comments: [
+              
+        ],
         valueType: 'percent'
     },
 
