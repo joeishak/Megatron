@@ -159,7 +159,17 @@
 
 /* Mobile Screens */
 @media only screen and (max-width: 1024px) {
-    .navbar-nav {
+    .flLeft {
         padding-left: 20px;
+    }
+    .flRight {
+        padding-right: 20px;
+    }
+
+}
+
+@media only screen and (max-width: 765px) {
+    .userIcon {
+        display: none;
     }
 }

@@ -70,3 +70,7 @@ export const UPDATE_DEFAULT_JOURN_KPI_PREFERENCE = 'update_default_journ_kpi_pre
 
 // Health and Heartbeat
 export const GET_IBHEARTBEAT = 'get_ibheartbeat';
+
+// App Settings
+export const SET_APP_SETTINGS = 'set_app_settings';
+export const GET_APP_SETTINGS = 'get_app_settings';

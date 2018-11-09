@@ -20,17 +20,28 @@ class KendoDialog extends Component {
             financialsSummaryOptions: 'CancellationsARR',
             journeysSummaryViewOptions: 'Discover',
             savedClicked: undefined,
-            onFilterHover: false
+            onFilterHover: false,
         };
         
         this.closeDialog = this.closeDialog.bind(this)      
         $('.content').kendoWindow({
             animation:true
         })
+ 
     }
+    
+
+
     componentDidMount(){
+        window.addEventListener("resize", this.resize.bind(this));
+        this.resize();
         this.open();
     }
+
+    resize() {
+        // console.log('resizing', window.innerWidth, window.innerHeight);
+    }
+
     open() {
         $("[data-role='window']").each(function (index) {
             $(this).data('kendoWindow').open()});
@@ -169,9 +180,11 @@ class KendoDialog extends Component {
         const defaultSum = this.state.selectedSummary || this.props.defaultSummaryView;
         const show = this.props.dialogIsOpen
         const kendoDialog = show ? ( 
-        <div className="content">
+        <div className="content ">
                     
-            <Dialog width={939} height={626}  title={`Data Preferences for ${this.props.user.name} `} onClose={this.closeDialog}>
+            
+            <div className="desktopDialog">
+                <Dialog width={939} height={626}  title={`Data Preferences for ${this.props.user.name} `} onClose={this.closeDialog}>
 
                 {/* All the Contents */}
                 <div className="container-fluid">
@@ -193,7 +206,7 @@ class KendoDialog extends Component {
                                         <ReactSelect updateFilter={this.updateActiveFiltersHandler} defaultValue={this.props.activeFilters.geos[0]} options={this.props.availableFilters.geos} ></ReactSelect>
                                     </div>
                                 </div>
-                           
+                        
                                 <div className="row dropRow">
                                     <div className="col-lg-6 col-md-6">
                                         <p>Product name</p>
@@ -233,7 +246,7 @@ class KendoDialog extends Component {
 
                             </div>
 
-                                 {/* Filters List */}
+                                {/* Filters List */}
                             <div className="contentpad filterListItems">
                                 <p>Filters Applied:</p>
                                 
@@ -346,11 +359,14 @@ class KendoDialog extends Component {
 
                     </div>
                 </div>
-                
+
                 {/* Save Button */}
                 <button className="saveButton" onClick={this.saveChanges}>Save Changes</button>
-             
-            </Dialog>
+                </Dialog>
+            </div>
+            <div className="mobileDialog"> 
+                <Dialog width={window.innerWidth - 19} height={window.innerHeight}  title={`Data Preferences`} onClose={this.closeDialog}></Dialog>
+            </div>
         </div>) : null;
 
         const savedPrompt =  show ? (

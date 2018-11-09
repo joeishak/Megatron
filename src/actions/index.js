@@ -35,7 +35,9 @@ import {
     GET_FILTERED_JOURNEY_IBE_DATA,
     GET_FILTERED_JOURNEY_QTD_DATA,
     MULTICHART_IS_ARR,
-    GET_IBHEARTBEAT
+    GET_IBHEARTBEAT,
+    GET_APP_SETTINGS,
+    SET_APP_SETTINGS
 
 } from 'actions/types';
 import * as utils from '../utilities';
@@ -53,6 +55,20 @@ let filterParams = [
     {prompt: 'routeFilters', value: ''},
     {prompt: 'segmentFilters', value: ''}
 ];
+
+export function setAppSettings(settings) {
+    return {
+        type: SET_APP_SETTINGS,
+        payload: settings
+    }
+}
+
+export function getAppSettings() {
+    return {
+        type: GET_APP_SETTINGS,
+        payload: null
+    }
+}
 
 /**
  * Change the state of Authentication for the user.
