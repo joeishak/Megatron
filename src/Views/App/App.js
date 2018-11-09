@@ -182,7 +182,7 @@ class App extends Component {
                             selectedCard={(e,index) =>{this.updateActivePrimary(index)}} /> 
           {/* Secondary */}
        
-          {/* DEtails */}  
+          {/* DEtails  */}
           </div>
           {/* {this.getSummary()} */}
           </span>

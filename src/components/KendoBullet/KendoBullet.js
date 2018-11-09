@@ -82,7 +82,7 @@ class KendoBulletChart extends Component {
 
     return (
       <div>
-      <Chart style={{ height: 36, width: 240 }}>
+      <Chart style={{ height: 36, width: this.props.width }}>
         <ChartArea background="transparent"/>
           <ChartSeries>
               <ChartSeriesItem type="bullet" color={colorRender} data={this.props.values} target={this.state.targetColor} />

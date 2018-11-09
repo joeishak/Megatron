@@ -152,6 +152,7 @@ class PrimarySquare extends Component {
                                        
                                         <span className='bullet'>
                                                    <KendoBulletChart 
+                                                    width = {200}
                                                     values={[this.props.item.value, this.props.item.target]} 
                                                     valueType={this.props.item.valueType} 
                                                     color="black" 

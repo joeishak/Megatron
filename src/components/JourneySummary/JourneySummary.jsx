@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import JourneySquareList from 'components/JourneySummary/JourneySquareList.jsx';
+import SecondaryContentList from 'components/SecondaryContent/SecondaryContentList.jsx';
 import ButtomSummaryBox from 'components/BottomSummaryBox/BottomSummaryBox';
 import {connect} from 'react-redux';
 import  * as actions from 'actions';
@@ -113,7 +113,7 @@ class JourneySummary extends Component {
         return(
             <div className="row" style={{height:'1024px'}}>
             <div className="col-lg-3 col-md-4" style={{height:'100%'}}>
-            <JourneySquareList
+            <SecondaryContentList
               data={this.props.data}
               activeJourneyCard = {this.state.activeJourneyCard || this.props.defaultKpi}
               getColor={this.getColor}

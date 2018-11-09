@@ -5729,6 +5729,75 @@ export const PrimaryData = [
     ]
 
 
+export const SecondaryData = [
+    {
+        index: 0,
+        category: 0,
+        header: 'Net New ARR',
+        value: 0,
+        target: 0,
+        valueType: 'currency'
+    },
+    {
+        index: 1,
+        category: 0,
+        header: 'Gross New ARR',
+        value: 0,
+        target: 0,
+        valueType: 'currency'
+    },
+    {
+        index: 2,
+        category: 0,
+        header: 'Cancellations ARR',
+        value: 0,
+        target: 0,
+        valueType: 'currency'
+    },
+    {
+        index: 3,
+        category: 0,
+        header: 'Renewal@FP ARR',
+        value: 0,
+        target: 0,
+        valueType: 'currency'
+    },
+    {
+        index: 4,
+        category: 1,
+        header: 'Marketable Universe',
+        value: 0,
+        target: 0,
+        valueType: 'units'
+    },
+    {
+        index: 5,
+        category: 1,
+        header: 'Traffic',
+        value: 0,
+        target: 0,
+        valueType: 'units'
+    },
+    {
+        index: 6,
+        category: 1,
+        header: 'UQFM Conversion ',
+        value: 0,
+        target: 0,
+        valueType: 'percent'
+    },
+    {
+        index: 7,
+        category: 1,
+        header: 'Paid Media Spend',
+        value: 0,
+        target: 0,
+        valueType: 'percent'
+    },
+
+]
+  
+    
 export const InfoburstAzure = {
      user: 'admin',
      pass: 'admin',
