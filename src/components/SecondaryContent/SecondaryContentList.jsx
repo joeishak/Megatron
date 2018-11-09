@@ -19,7 +19,8 @@ class SecondaryContentList extends Component {
     }
     render(){
         return(
-            this.props.data.map(item => {
+            <div style={{marginTop: '30px'}}> 
+            {this.props.data.map(item => {
                 let isActive = parseInt(this.props.activeJourneyCard) === item.index ? true : false;
                 if(this.props.activePrimary === item.category){
                     return (
@@ -38,7 +39,8 @@ class SecondaryContentList extends Component {
                     );
                 } else return null;
                
-            })
+            })}
+            </div>
         )
     }
 }
