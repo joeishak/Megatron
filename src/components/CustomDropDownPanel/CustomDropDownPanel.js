@@ -102,10 +102,10 @@ class CustomDropDownPanel extends Component {
                                 data={availableFilters.segments}/>
                         </div>
                 
-                        <div className={quarterFilterContainer + ' default'} >
+                        {/* <div className={quarterFilterContainer + ' default'} >
                             
                             <input type='checkbox' /><span> Make these my default settings</span>
-                        </div>
+                        </div> */}
             </div>
         )
     }

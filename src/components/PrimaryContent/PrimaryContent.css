@@ -207,6 +207,7 @@
 		color:white;
 		
 	}
+	
 	.secondaryCategory{
 		width: 50% !important;
 		font-size: 1.8em;
@@ -229,6 +230,10 @@
 		background-color:#1f1f1f !important;
 	}
 
+
+	.primaryRow{
+		background-color: #1f1f1f !important;
+	}
 }
 
 /* Desktop Stylings */
@@ -253,6 +258,9 @@
 	}
 	.formattedTarget {
 		font-size: 1.1em;
+	}
+	.sumChartHeaderText{
+		color: black !important;
 	}
 	
 	

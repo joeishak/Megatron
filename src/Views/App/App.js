@@ -171,6 +171,8 @@ class App extends Component {
           {(this.props.commentBoxIsOpen) ? <CommentBox /> : null}
 
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
+          
+          <div style={{width:'100%', height: '1050px', backgroundColor: '#1f1f1f'}}>
           <PrimaryContentList 
                             onCommentIconClick={()=>{console.log('hello world');}}
                             toggleCommentary={true} 
@@ -179,8 +181,9 @@ class App extends Component {
                             enableChart={()=>{console.log('hello world');}} 
                             selectedCard={(e,index) =>{this.updateActivePrimary(index)}} /> 
           {/* Secondary */}
-          <div style={{width:'100%', height: '300px', backgroundColor: '#1f1f1f'}}> </div>
-          {/* DEtails */}
+       
+          {/* DEtails */}  
+          </div>
           {/* {this.getSummary()} */}
           </span>
         }
