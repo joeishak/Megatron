@@ -29,6 +29,12 @@
     padding-left: 20px;
 }
 
+@media only screen and (max-width: 1024px) {
+    .panelDropDownContainer {
+        display: none;
+    }
+}
+
 .panelBarContainer-closed{
     height: 0px;  
     display:none;
