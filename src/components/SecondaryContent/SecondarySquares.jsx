@@ -4,6 +4,7 @@ import commentIconOn from '../../assets/images/comments-on.svg';
 import commentIconOff from '../../assets/images/comments-off.svg';
 import KendoBulletChart from '../KendoBullet/KendoBullet';
 import styles from './SecondaryContent.css';
+import  * as utils from '../../utilities.js';
 class SecondarySquares extends Component {
     // Need to Refactor
     getColor(value, target, type, header) {
@@ -37,6 +38,8 @@ class SecondarySquares extends Component {
         return retColor;
     }
     render(){
+        const formattedValue = utils.formatMetric(this.props.item,'value');
+        const formattedTarget = utils.formatMetric(this.props.item,'target');
         return(
     <div className="journeyBoxHover" key={this.props.item.index}>    
              
@@ -52,9 +55,9 @@ class SecondarySquares extends Component {
                   
                         <div className='journeyContent'>
                             <div >{this.props.item.header}</div>
-                            <div  className={`   ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{this.props.item.value}</div>
+                            <div  className={`  journeysAmount ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{formattedValue}</div>
                             <div className=''><KendoBulletChart width={175} values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="white" key={this.props.item.index} ></KendoBulletChart></div>
-                            <div className='secondaryTarget'>{this.props.item.target}</div>
+                            <div className='secondaryTarget'>{formattedTarget}</div>
                         </div>
                             {/* <div className="journeyContent">
                                 <p>{this.props.item.header}</p>

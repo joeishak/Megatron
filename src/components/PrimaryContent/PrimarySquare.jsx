@@ -72,8 +72,8 @@ class PrimarySquare extends Component {
         
     }
     render(){
-        const formattedValue = this.formatMetric(this.props.item,'value');
-        const formattedTarget = this.formatMetric(this.props.item,'target');
+        const formattedValue = utils.formatMetric(this.props.item,'value');
+        const formattedTarget = utils.formatMetric(this.props.item,'target');
         const alignCenter = classNames({
             center: true
         })
@@ -143,7 +143,7 @@ class PrimarySquare extends Component {
                                         <span className={`  secondaryCategory`}>{this.props.item.category}</span>
                                            {/* Formatted Value $###.## (M / %)*/}
                                            <span className={  this.props.item.value >= this.props.item.target ? '  valueText selectedCardFontColorGreen' : ' valueText selectedCardFontColorRed'}>
-                                            {this.props.item.value}
+                                            {formattedValue}
                                         </span>
                                         <span className={`  secondaryHeader`}>{this.props.item.header}</span>
 

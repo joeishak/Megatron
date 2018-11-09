@@ -122,12 +122,9 @@
 
 .journeysAmount {
 	font-family: Ubuntu;
-	padding-left: 13px;
 	font-style: normal;
 	font-weight: 300;
 	width: 90%;
-	float: left;
-	clear: right;
 	line-height: normal;
 	font-size: 32px;
 	color: #FF0000;

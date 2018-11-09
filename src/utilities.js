@@ -584,5 +584,31 @@ export function renderDollarValue(value) {
 }
 export function formatPercentage(value) {
   // console.log(value);
-  return '%' + (value * 100).toFixed(2);
+  return  (value * 100).toFixed(2) + '%';
+}
+
+export function formatMetric(item, type){
+
+  console.log(item);
+  if(type==='value'){
+      switch(item.valueType){
+          case 'units':
+          return renderUnits(item.value);
+          case 'currency':
+          return renderDollarValue(item.value);
+          case 'percent':
+          return formatPercentage(item.value);
+      }
+  }
+  else{
+      switch(item.valueType){
+          case 'units':
+          return renderUnits(item.target);
+          case 'currency':
+          return renderDollarValue(item.target);
+          case 'percent':
+          return formatPercentage(item.target);
+      }
+  }
+  
 }
