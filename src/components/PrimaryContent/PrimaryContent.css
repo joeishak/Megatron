@@ -192,6 +192,9 @@
 
 
 @media only screen and (max-width: 1024px) {
+	body {
+		background-color: black;
+	}
     .desktop {
         display: none;
 	}
@@ -231,13 +234,16 @@
 		background-color:#1f1f1f !important;
 	}
 	.primaryRow{
-		background-color: #1f1f1f !important;
+		background-color:black !important;
 	}
 
 	
 }
 
 @media only screen and (min-width: 1023px) {
+	body {
+		background-color: #1f1f1f;
+	}
     .mobile {
         display: none;
 	}

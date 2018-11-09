@@ -178,7 +178,7 @@ class App extends Component {
 
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
           
-          <div style={{width:'100%', height: '1050px', backgroundColor: '#1f1f1f'}}>
+          <div style={{width:'100%', height: '1050px'}}>
           <PrimaryContentList 
                             onCommentIconClick={()=>{console.log('hello world');}}
                             toggleCommentary={true} 
