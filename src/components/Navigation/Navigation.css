@@ -156,3 +156,10 @@
   box-sizing: border-box;
   border-radius: 100%;
 } */
+
+/* Mobile Screens */
+@media only screen and (max-width: 1024px) {
+    .navbar-nav {
+        padding-left: 20px;
+    }
+}
