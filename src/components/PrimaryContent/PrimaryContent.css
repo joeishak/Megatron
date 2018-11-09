@@ -249,6 +249,10 @@
 	.sumChartHeaderText{
 		color: black !important;
 	}
+	.primaryRow {
+		padding-left: 3% !important;
+		padding-right: 3% !important;
+	}
 	
 	
 }
