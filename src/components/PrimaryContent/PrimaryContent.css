@@ -243,8 +243,8 @@
 		color:black !important;
 	}
 	.primaryRow {
-		padding-left: 5%;
-		padding-right: 5%;
+		margin-left: 5% !important;
+		margin-right: 5% !important;
 		height: 201px;
 	}
 	.secondaryHeader{
@@ -266,6 +266,7 @@
 } */
 
 .finCommentIcon{
+	height: 5px;
 	margin-top: 4px;
 	margin-right: 4px;
 	z-index: 3;

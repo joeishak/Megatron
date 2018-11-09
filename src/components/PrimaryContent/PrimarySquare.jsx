@@ -6,6 +6,7 @@ import commentIconOn from '../../assets/images/comments-on.svg';
 import commentIconOff from '../../assets/images/comments-off.svg';
 import styles from './PrimaryContent.css';
 import classNames from 'classnames';
+
 class PrimarySquare extends Component {
   
     
@@ -81,7 +82,7 @@ class PrimarySquare extends Component {
             <div> 
 
                 {/* Desktop View */}
-                <div className="col-sm-2 col-md-2 col-lg-2 desktop"  
+                <div className="col-sm-12 col-md-2 col-lg-2 desktop"  
                         onClick = {this.props.enableChart}
                         key={this.props.item.index}>
 
