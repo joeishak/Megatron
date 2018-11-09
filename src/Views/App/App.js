@@ -169,6 +169,7 @@ class App extends Component {
           <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
    
           {(this.props.commentBoxIsOpen) ? <CommentBox /> : null}
+
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
           <PrimaryContentList 
                             onCommentIconClick={()=>{console.log('hello world');}}
@@ -178,6 +179,7 @@ class App extends Component {
                             enableChart={()=>{console.log('hello world');}} 
                             selectedCard={(e,index) =>{this.updateActivePrimary(index)}} /> 
           {/* Secondary */}
+          <div style={{width:'100%', height: '300px', backgroundColor: '#1f1f1f'}}> </div>
           {/* DEtails */}
           {/* {this.getSummary()} */}
           </span>
