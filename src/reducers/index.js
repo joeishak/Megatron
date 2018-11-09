@@ -20,6 +20,7 @@ import healthAndHeartbeatReducer from 'reducers/healthAndHeartbeat.js';
 import primaryDataReducer from 'reducers/primaryData.js';
 import activeCardReducer from 'reducers/activeCards.js';
 import secondaryDataReducer from 'reducers/secondaryData.js';
+import appSettingsReducer from 'reducers/appSettings.js';
 export default combineReducers({
     auth: authReducer,
     user: userReducer,
@@ -41,7 +42,6 @@ export default combineReducers({
     sysInfo: healthAndHeartbeatReducer,
     primaryData: primaryDataReducer,
     activeCards: activeCardReducer,
-    secondaryData: secondaryDataReducer
-
-
+    secondaryData: secondaryDataReducer,
+    appSettings: appSettingsReducer
 });

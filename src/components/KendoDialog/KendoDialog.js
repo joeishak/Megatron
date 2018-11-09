@@ -37,8 +37,9 @@ class KendoDialog extends Component {
         this.resize();
         this.open();
     }
+
     resize() {
-        console.log('resizing', window.innerWidth, window.innerHeight);
+        // console.log('resizing', window.innerWidth, window.innerHeight);
     }
 
     open() {

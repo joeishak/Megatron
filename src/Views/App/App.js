@@ -55,10 +55,22 @@ class App extends Component {
       this.getFilters('fin');
   }
 
+  resize() {
+    // console.log('resizing', window.innerWidth, window.innerHeight);
+    const appSettings = {
+      window: {
+        height: window.innerHeight,
+        width: window.innerWidth
+      }
+    }
+    this.props.setAppSettings(appSettings);
+}
+
  
   async componentDidMount() {
+    window.addEventListener("resize", this.resize.bind(this));
+    this.resize();
     this.checkAuthentication();
-    
   }
 
   componentDidUpdate(prevProps) {
@@ -163,6 +175,38 @@ class App extends Component {
     console.log(index)
     this.props.updateActiveSecondaryCard(index);
   }
+
+  
+  getPrimaryContent = () => {
+    return (<PrimaryContentList 
+      onCommentIconClick={()=>{console.log('hello world');}}
+      toggleCommentary={true} 
+      activeCard={this.props.activePrimaryCard } 
+      data = {this.props.primaryData} 
+      enableChart={()=>{console.log('hello world');}} 
+      selectedCard={(e,index) =>{this.updateActivePrimary(index)}} /> 
+    );
+  }
+
+
+  getSecondaryContent = () => {
+    // Logic to render depending on App settings. this.props.appSettings.window.height and this.props.appSettings.window.width
+    const currentHeight = this.props.appSettings.window.height;
+    const currentWidth = this.props.appSettings.window.width;
+
+    return ( <SecondaryContentList
+      data={this.props.secondaryData}
+      activeJourneyCard = {this.props.activeSecondaryCard}
+      getColor={()=>{console.log('hello world');}}
+      renderUnits={ ()=>{console.log('hello world');}}
+      formatPercentage = {()=>{console.log('hello world');}}
+      onJourneyCardClicked={(e,index) =>{this.updateActiveSecondary(index)}}
+      toggleCommentary = {true}
+      onCommentIconClick={()=>{console.log('hello world');}}
+      activePrimary={this.props.activePrimaryCard}
+    />);
+  }
+
   render(){
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
     return (
@@ -179,25 +223,15 @@ class App extends Component {
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
           
           <div style={{width:'100%', height: '1050px'}}>
-          <PrimaryContentList 
-                            onCommentIconClick={()=>{console.log('hello world');}}
-                            toggleCommentary={true} 
-                            activeCard={this.props.activePrimaryCard } 
-                            data = {this.props.primaryData} 
-                            enableChart={()=>{console.log('hello world');}} 
-                            selectedCard={(e,index) =>{this.updateActivePrimary(index)}} /> 
+
+          {/* Primary */}
+
+          {this.getPrimaryContent()}
+
           {/* Secondary */}
-          <SecondaryContentList
-              data={this.props.secondaryData}
-              activeJourneyCard = {this.props.activeSecondaryCard}
-              getColor={()=>{console.log('hello world');}}
-              renderUnits={ ()=>{console.log('hello world');}}
-              formatPercentage = {()=>{console.log('hello world');}}
-              onJourneyCardClicked={(e,index) =>{this.updateActiveSecondary(index)}}
-              toggleCommentary = {true}
-              onCommentIconClick={()=>{console.log('hello world');}}
-              activePrimary={this.props.activePrimaryCard}
-            />
+          
+          {this.getSecondaryContent()}
+
           {/* DEtails  */}
           </div>
           {/* {this.getSummary()} */}
@@ -213,7 +247,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('debug', state);
+  console.log('app.js state', state);
   return {
     dialogIsOpen: state.isDialogOpen, 
     detailIsOpen: state.detailsIsOpen,
@@ -226,7 +260,8 @@ function mapStateToProps(state) {
     primaryData: state.primaryData,
     activePrimaryCard: state.activeCards.primary,
     activeSecondaryCard: state.activeCards.secondary,
-    secondaryData: state.secondaryData
+    secondaryData: state.secondaryData,
+    appSettings: state.appSettings
   };
 }
 
