@@ -498,3 +498,91 @@ export function postMultiValueSettings(activeFilters,setting, availableFilters )
   
   return axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
 }
+
+export function renderUnits(value){
+  let returnValue = '';
+  let abs;
+  let suffix; 
+  let isNegative = false;
+  if ( value < 0){
+      isNegative = true;
+      abs = Math.abs(value)
+      console.log(abs);
+  } else { abs=value };
+
+  abs = parseInt(abs)
+  if (abs > 1000 && abs <= 999999) {
+      abs = (abs/1000).toFixed(1);
+       suffix  = 'K';
+      returnValue =abs;
+  } else if (abs > 1000000 && abs <= 999999999) {
+      abs = (abs/1000000).toFixed(1);
+       suffix  = 'M';
+      returnValue =abs;
+      // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
+  } else if (abs > 1000000000 && abs <= 999999999999) {
+      abs = (abs/1000000000).toFixed(1);
+
+       suffix  = 'B';
+      returnValue =abs;
+  } else if (abs > 1000000000000 && abs <= 999999999999999) {
+      abs = (abs/1000000000000).toFixed(1);
+
+       suffix  = 'T';
+      returnValue =abs;
+  } else {
+      returnValue =  abs;
+  }
+  
+  if(isNegative){
+      return  (-1*returnValue).toString() + suffix;
+  } else{
+      return  returnValue.toString() + suffix;
+  }
+}
+export function renderDollarValue(value) {
+  let returnValue = '';
+  let abs;
+  let prefix ='$';
+  let suffix; 
+  let isNegative = false;
+  if ( value < 0){
+      isNegative = true;
+      abs = Math.abs(value)
+      console.log(abs);
+  } else { abs=value };
+
+  abs = parseInt(abs)
+  if (abs > 1000 && abs <= 999999) {
+      abs = (abs/1000).toFixed(1);
+       suffix  = 'K';
+      returnValue =abs;
+  } else if (abs > 1000000 && abs <= 999999999) {
+      abs = (abs/1000000).toFixed(1);
+       suffix  = 'M';
+      returnValue =abs;
+      // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
+  } else if (abs > 1000000000 && abs <= 999999999999) {
+      abs = (abs/1000000000).toFixed(1);
+
+       suffix  = 'B';
+      returnValue =abs;
+  } else if (abs > 1000000000000 && abs <= 999999999999999) {
+      abs = (abs/1000000000000).toFixed(1);
+
+       suffix  = 'T';
+      returnValue =abs;
+  } else {
+      returnValue =  abs;
+  }
+  
+  if(isNegative){
+      return prefix + (-1*returnValue).toString() + suffix;
+  } else{
+      return prefix+ returnValue.toString() + suffix;
+  }
+}
+export function formatPercentage(value) {
+  // console.log(value);
+  return '%' + (value * 100).toFixed(2);
+}

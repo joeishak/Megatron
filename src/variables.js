@@ -5176,7 +5176,7 @@ export const PrimaryData = [
             index: 1 ,
             category: 'Discover',
             header: 'Traffic',
-            value: 87233.444,
+            value: -87233.444,
             target: 89233.111, 
             valueType: 'units',
             comments: [
@@ -5188,7 +5188,7 @@ export const PrimaryData = [
             index: 2 ,
             category: 'Buy',
             header: `New QFM's`,
-            value: 123444958.2344,
+            value: -123444958.2344,
             target: 29387456.2345234, 
             valueType: 'units',
             comments: [
@@ -5200,8 +5200,8 @@ export const PrimaryData = [
             index: 3 ,
             category: 'Try',
             header: 'Conversions',
-            value: 12341234,
-            target: 234234, 
+            value: .059,
+            target: .060, 
             valueType: 'percent',
             comments: [
               
@@ -5212,8 +5212,8 @@ export const PrimaryData = [
             index: 4 ,
             category: 'Use',
             header: 'Repeat User MAU',
-            value: 0,
-            target: 0, 
+            value: -.123,
+            target: -.68, 
             valueType: 'percent',
             comments: [
               
@@ -5224,8 +5224,8 @@ export const PrimaryData = [
             index: 5 ,
             category: 'Renew',
             header: 'QTR UI Rate',
-            value: 0,
-            target: 0, 
+            value: .55,
+            target: .40, 
             valueType: 'percent',
             comments: [
               
