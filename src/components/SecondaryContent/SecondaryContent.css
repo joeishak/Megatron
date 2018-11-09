@@ -1,7 +1,10 @@
 .journeyBoxHover:hover {
 	animation: grow .20s ease-in-out forwards;
     }
-    
+.journeyBoxHover{
+	width: 230px;
+	display: inline;
+}
 /* Figma Styles */
 .journeyBox {
 	width: 230px;
