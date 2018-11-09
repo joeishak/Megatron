@@ -190,6 +190,8 @@
 	height: 200px;
 } */
 
+
+/* Mobile Stylings */
 @media only screen and (max-width: 1024px) {
     .desktop {
         display: none;
@@ -234,17 +236,28 @@
 	}
 }
 
+/* Desktop Stylings */
 @media only screen and (min-width: 1023px) {
     .mobile {
         display: none;
 	}
 	.sumChartSquare{
 		margin-top: 20px;
-
 	}
 	.secondaryCategory{
 		color:black !important;
-		
+	}
+	.primaryRow {
+		padding-left: 5%;
+		padding-right: 5%;
+		height: 201px;
+	}
+	.secondaryHeader{
+		padding-top: 5px;
+		font-size: 1.1em;
+	}
+	.formattedTarget {
+		font-size: 1.1em;
 	}
 	.sumChartHeaderText{
 		color: black !important;
@@ -309,7 +322,9 @@
 }
 
 
-/* Arrow */
+
+
+/* Arrow
 .arrow_box {
 	margin-top: 10px;
 	position: relative;
@@ -366,7 +381,7 @@
 	padding-bottom: 60px;
 	background-color: rgb(235, 235, 235);
 	/* 200  */
-	height: 200px;
+	height: 205px;
 	padding-left:  40px;
 	padding-right: 40px;
 }
@@ -423,9 +438,9 @@
 	align-content: center;
 }
 
-.secondaryHeader{
+/* .secondaryHeader{
 	font-size: 1.3em;
-}
+} */
 
 .valueText{
 	font-size:1.8em;
@@ -437,12 +452,12 @@
 }
 
 
-.formattedTarget{
+/* .formattedTarget{
 	font-size: 1.2em;
 
-}
+} */
 .arrow_box {
-	margin-top: 10px;
+	margin-top: -5px;
 	position: relative;
 	text-align: center;
 	height: 35px;

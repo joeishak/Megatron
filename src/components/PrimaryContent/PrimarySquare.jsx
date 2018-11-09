@@ -79,9 +79,11 @@ class PrimarySquare extends Component {
         })
         return(
             <div> 
-                 <div className="col-sm-2 col-md-2 col-lg-2 desktop"  
-                onClick = {this.props.enableChart}
-                 key={this.props.item.index}>
+
+                {/* Desktop View */}
+                <div className="col-sm-2 col-md-2 col-lg-2 desktop"  
+                        onClick = {this.props.enableChart}
+                        key={this.props.item.index}>
 
                 {/* Card */}
                 <div className={`sumChartSquare zoom   ${this.props.item.css[1]} ${this.props.activeCard ? 'selectedCard ' : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
@@ -123,9 +125,11 @@ class PrimarySquare extends Component {
       
               
             </div>
-            <div className="col-xs-12 mobile"  
-                onClick = {this.props.enableChart}
-                 key={this.props.item.index}>
+                
+                {/* Mobile View */}
+                <div className="col-xs-12 mobile"  
+                    onClick = {this.props.enableChart}
+                    key={this.props.item.index}>
 
                 {/* Card */}
                 <div className={`sumChartSquare zoom   ${this.props.item.css[1]} ${this.props.activeCard ? 'selectedCard ' : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
@@ -165,9 +169,8 @@ class PrimarySquare extends Component {
       
               
             </div>
+            
             </div>
-           
-
         )
     }
 }
