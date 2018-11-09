@@ -22,6 +22,8 @@ import ButtomSummaryBox from '../../components/BottomSummaryBox/BottomSummaryBox
 import FinancialSummary from '../../components/FinancialSummary/FinancialSummary.jsx';
 import JourneySummary from '../../components/JourneySummary/JourneySummary.jsx';
 import PrimaryContentList from '../../components/PrimaryContent/PrimaryContentList.jsx';
+import SecondaryContentList from '../../components/SecondaryContent/SecondaryContentList.jsx';
+
 import SummaryHOC from '../../components/SummaryHOC.js';
 import Login from '../../components/Login/Login';
 class App extends Component {
@@ -157,6 +159,10 @@ class App extends Component {
     console.log(index)
     this.props.updateActivePrimaryCard(index);
   }
+  updateActiveSecondary(index){
+    console.log(index)
+    this.props.updateActiveSecondaryCard(index);
+  }
   render(){
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
     return (
@@ -172,19 +178,29 @@ class App extends Component {
 
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
           
-          <div style={{width:'100%', height: '1050px', backgroundColor: 'black'}}>
-              <PrimaryContentList 
-                                onCommentIconClick={()=>{console.log('hello world');}}
-                                toggleCommentary={true} 
-                                activeCard={this.props.activePrimaryCard } 
-                                data = {this.props.primaryData} 
-                                enableChart={()=>{console.log('hello world');}} 
-                                selectedCard={(e,index) =>{this.updateActivePrimary(index)}} /> 
-              {/* Secondary */}
-          
-              {/* DEtails  */}
-              </div>
-              {/* {this.getSummary()} */}
+          <div style={{width:'100%', height: '1050px', backgroundColor: '#1f1f1f'}}>
+          <PrimaryContentList 
+                            onCommentIconClick={()=>{console.log('hello world');}}
+                            toggleCommentary={true} 
+                            activeCard={this.props.activePrimaryCard } 
+                            data = {this.props.primaryData} 
+                            enableChart={()=>{console.log('hello world');}} 
+                            selectedCard={(e,index) =>{this.updateActivePrimary(index)}} /> 
+          {/* Secondary */}
+          <SecondaryContentList
+              data={this.props.secondaryData}
+              activeJourneyCard = {this.props.activeSecondaryCard}
+              getColor={()=>{console.log('hello world');}}
+              renderUnits={ ()=>{console.log('hello world');}}
+              formatPercentage = {()=>{console.log('hello world');}}
+              onJourneyCardClicked={(e,index) =>{this.updateActiveSecondary(index)}}
+              toggleCommentary = {true}
+              onCommentIconClick={()=>{console.log('hello world');}}
+              activePrimary={this.props.activePrimaryCard}
+            />
+          {/* DEtails  */}
+          </div>
+          {/* {this.getSummary()} */}
           </span>
         }
          {this.state.authenticated === false &&
@@ -209,7 +225,8 @@ function mapStateToProps(state) {
     journeyData: state.journeyData,
     primaryData: state.primaryData,
     activePrimaryCard: state.activeCards.primary,
-    activeSecondaryCard: state.activeCards.secondary
+    activeSecondaryCard: state.activeCards.secondary,
+    secondaryData: state.secondaryData
   };
 }
 

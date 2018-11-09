@@ -22,7 +22,7 @@ export const UPDATE_DIALOG_VISIBILITY        = "update_dialog_visibility";
 // All Data 
 export const GET_ALL_DATA                    = "get_all_data";
 export const GET_PRIMARY_DATA                = "get_primary_data";
-
+export const GET_SECONDARY_DATA              = "get_secondary_data";
 
 // Data for the Filters 
 export const GENERATE_FILTER_DATA                       = "generate_filter_data";
@@ -40,6 +40,8 @@ export const UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD= "update_financial_summary_act
 export const UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD  = "update_journey_summary_active_card";
 
 export const UPDATE_ACTIVE_PRIMARY_CARD          = "update_active_primary_card";
+export const UPDATE_ACTIVE_SECONDARY_CARD          = "update_active_secondary_card";
+
 // Infoburst Actions
 export const GET_IBE_DATA = "get_ibe_data";
 export const GET_FILTERED_IBE_DATA = 'get_filtered_ibe_data';

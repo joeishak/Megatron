@@ -11,6 +11,9 @@ class SecondaryContentList extends Component {
         else if(this.props.activeJourneyCard !== nextProps.activeJourneyCard){
             return true;
         }
+        else if (this.props.activePrimary !== nextProps.activePrimary){
+            return true;
+        }
 
         return false;
     }
@@ -18,21 +21,23 @@ class SecondaryContentList extends Component {
         return(
             this.props.data.map(item => {
                 let isActive = parseInt(this.props.activeJourneyCard) === item.index ? true : false;
-
-                return (
-                    <SecondarySquares 
-                    key={item.index}
-                    item={item}
-                    activeJourneyCard = {isActive}
-                    getColor={this.props.getColor}
-                    renderUnits={  this.props.renderUnits}
-                    formatPercentage = {this.props.formatPercentage}
-                    onJourneyCardClicked={(e,index) => {this.props.onJourneyCardClicked(e,index)}}
-                    toggleCommentary = {this.props.toggleCommentary}
-                    onCommentIconClick={this.props.onCommentIconClick}
-                    />
-          
-                );
+                if(this.props.activePrimary === item.category){
+                    return (
+                        <SecondarySquares 
+                        key={item.index}
+                        item={item}
+                        activeJourneyCard = {isActive}
+                        getColor={this.props.getColor}
+                        renderUnits={  this.props.renderUnits}
+                        formatPercentage = {this.props.formatPercentage}
+                        onJourneyCardClicked={(e,index) => {this.props.onJourneyCardClicked(e,index)}}
+                        toggleCommentary = {this.props.toggleCommentary}
+                        onCommentIconClick={this.props.onCommentIconClick}
+                        />
+              
+                    );
+                } else return null;
+               
             })
         )
     }
