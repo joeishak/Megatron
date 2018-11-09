@@ -189,6 +189,8 @@
 	height: 200px;
 } */
 
+
+
 @media only screen and (max-width: 1024px) {
     .desktop {
         display: none;
@@ -197,12 +199,13 @@
 		height: 85px !important;
 		background-color: #1f1f1f;
 		padding: 15px;
+		margin-bottom: 4px;
 	}
 	.secondaryHeader{
 		width: 50% !important;
 		float: left;
 		color:white;
-		
+		font-size: 1em !important;
 	}
 	
 	.secondaryCategory{
@@ -224,13 +227,14 @@
 
 	}
 	.selectedCard{
+		margin-left: 10px;
 		background-color:#1f1f1f !important;
 	}
-
-
 	.primaryRow{
 		background-color: #1f1f1f !important;
 	}
+
+	
 }
 
 @media only screen and (min-width: 1023px) {
@@ -256,6 +260,16 @@
 		font-size: 1.1em;
 		padding-top: 1%;
 	}
+	.selectedCard {
+		height: 180px;
+		/* border: 1px solid gray; */
+		background-color: white;
+		/* padding-top: 15px;
+		margin-bottom: 20px; */
+		-moz-box-shadow: 0 0 20px rgb(109, 109, 109);
+		-webkit-box-shadow: 0 0 20px rgb(109, 109, 109);
+		box-shadow: 0 0 20px rgb(109, 109, 109);
+	}
 }
 
 /* ipad Portrait */
@@ -273,16 +287,7 @@
 	float:right;
 }
 /* active card */
-.selectedCard {
-	height: 180px;
-	/* border: 1px solid gray; */
-	background-color: white;
-	/* padding-top: 15px;
-	margin-bottom: 20px; */
-	-moz-box-shadow: 0 0 20px rgb(109, 109, 109);
-	-webkit-box-shadow: 0 0 20px rgb(109, 109, 109);
-	box-shadow: 0 0 20px rgb(109, 109, 109);
-}
+
 .selectedCardText {
 	color: white !important;
 }
@@ -344,7 +349,7 @@
 }
 
 .primaryRow{
-	height: 215px !important;
+	height: 210px !important;
 	background-color: #f4f4f4;
 }
 
