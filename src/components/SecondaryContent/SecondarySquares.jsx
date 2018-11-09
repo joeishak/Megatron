@@ -56,7 +56,13 @@ class SecondarySquares extends Component {
                         <div className='journeyContent'>
                             <div >{this.props.item.header}</div>
                             <div  className={`  journeysAmount ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{formattedValue}</div>
-                            <div className=''><KendoBulletChart width={175} values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="white" key={this.props.item.index} ></KendoBulletChart></div>
+                            <div className=''>
+                                <KendoBulletChart 
+                                    width={175} 
+                                    values={[this.props.item.value, this.props.item.target]} 
+                                    valueType={this.props.item.valueType} 
+                                    color="white" 
+                                    key={this.props.item.index} ></KendoBulletChart></div>
                             <div className='secondaryTarget'>{formattedTarget}</div>
                         </div>
                             {/* <div className="journeyContent">
