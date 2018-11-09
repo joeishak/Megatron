@@ -248,8 +248,8 @@
 		color:black !important;
 	}
 	.primaryRow {
-		margin-left: 5% !important;
-		margin-right: 5% !important;
+		padding-left: 5% !important;
+		padding-right: 5% !important;
 		height: 201px;
 	}
 	.secondaryHeader{
@@ -354,10 +354,6 @@
 	transform: skew(0deg, -9deg);
 }
 
-.primaryRow{
-	height: 215px !important;
-	background-color: #f4f4f4;
-}
 
 /* Inside the Donut Charts */
 /* .insideDonut {
@@ -377,6 +373,10 @@
 } */
 /* End Financial Squares */
 
+.primaryRow{
+	height: 202px !important;
+	background-color: #f4f4f4 !important;
+} 
 
 .chartRow{
 	padding-bottom: 60px;
@@ -462,7 +462,7 @@
 	position: relative;
 	text-align: center;
 	height: 35px;
-	width: auto;
+	width: 97%;
   }
   .arrow_box:before {
 	content: '';
