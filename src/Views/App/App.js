@@ -172,19 +172,19 @@ class App extends Component {
 
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
           
-          <div style={{width:'100%', height: '1050px', backgroundColor: '#1f1f1f'}}>
-          <PrimaryContentList 
-                            onCommentIconClick={()=>{console.log('hello world');}}
-                            toggleCommentary={true} 
-                            activeCard={this.props.activePrimaryCard } 
-                            data = {this.props.primaryData} 
-                            enableChart={()=>{console.log('hello world');}} 
-                            selectedCard={(e,index) =>{this.updateActivePrimary(index)}} /> 
-          {/* Secondary */}
-       
-          {/* DEtails  */}
-          </div>
-          {/* {this.getSummary()} */}
+          <div style={{width:'100%', height: '1050px', backgroundColor: 'black'}}>
+              <PrimaryContentList 
+                                onCommentIconClick={()=>{console.log('hello world');}}
+                                toggleCommentary={true} 
+                                activeCard={this.props.activePrimaryCard } 
+                                data = {this.props.primaryData} 
+                                enableChart={()=>{console.log('hello world');}} 
+                                selectedCard={(e,index) =>{this.updateActivePrimary(index)}} /> 
+              {/* Secondary */}
+          
+              {/* DEtails  */}
+              </div>
+              {/* {this.getSummary()} */}
           </span>
         }
          {this.state.authenticated === false &&
