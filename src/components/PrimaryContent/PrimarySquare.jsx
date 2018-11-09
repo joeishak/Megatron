@@ -112,7 +112,7 @@ class PrimarySquare extends Component {
                                                 {/* <KendoDonutChart donutColor={this.props.item.value >= this.props.item.target ? '#0DB16E': '#FF0000'} key={this.props.item.index} donutCenterRender= {()=>  */}
                                                 {/*  <div className="insideDonut"><span className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>{this.renderDollarValue(this.props.item.value)}</span><span className='targetText'>Target</span><span className='targetValueText'>{this.renderDollarValue(this.props.item.target)}</span></div>}/> 
                                                 
-                                        */}                                            <KendoBulletChart values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="black" key={this.props.item.index} ></KendoBulletChart>
+                                        */}                                            <KendoBulletChart values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="#3c3c3c" key={this.props.item.index} ></KendoBulletChart>
                                                 </div>
                                         {/* Formatted Target $###.## (M / %)*/}
                                         <div className='formattedTarget'>TARGET {formattedTarget}</div>
@@ -157,7 +157,7 @@ class PrimarySquare extends Component {
                                                     width = {200}
                                                     values={[this.props.item.value, this.props.item.target]} 
                                                     valueType={this.props.item.valueType} 
-                                                    color="black" 
+                                                    color="white" 
                                                     key={this.props.item.index} ></KendoBulletChart>
                                                 </span>
                                 </div> 

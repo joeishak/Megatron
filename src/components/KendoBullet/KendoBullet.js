@@ -85,7 +85,7 @@ class KendoBulletChart extends Component {
       <Chart style={{ height: 36, width: this.props.width }}>
         <ChartArea background="transparent"/>
           <ChartSeries>
-              <ChartSeriesItem type="bullet" color={colorRender} data={this.props.values} target={this.state.targetColor} />
+              <ChartSeriesItem type="bullet" color={colorRender} data={this.props.values} target={{color: this.props.color}} />
           </ChartSeries>
           <ChartCategoryAxis>
             <ChartCategoryAxisItem majorGridLines={this.state.hidden} minorGridLines={this.state.hidden} />
