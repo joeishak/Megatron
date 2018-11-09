@@ -162,7 +162,6 @@
 .sumChartSquare {
 	height: 200px; 
 	width: 100%;
-	margin-top: 20px;
 
 	/* box-shadow: 5px 10px; */
 }
@@ -197,13 +196,39 @@
     .desktop {
         display: none;
 	}
-	.primary-container {
-		padding-left: 0;
-		padding-right: 0;
+	.sumChartSquare{
+		height: 85px !important;
+		background-color: #1f1f1f;
+		padding: 15px;
 	}
-	.selectedCard {
-		background-color: red !important;
+	.secondaryHeader{
+		width: 50% !important;
+		float: left;
+		color:white;
+		
 	}
+	.secondaryCategory{
+		width: 50% !important;
+		font-size: 1.8em;
+		float: left;
+		color:white;
+		
+	}
+	.valueText{
+		width:50% !important;
+		font-size: 1.8em;
+		float: right;
+		text-align: right;
+	}
+	.bullet{
+		width:50% !important;
+		float: right;
+
+	}
+	.selectedCard{
+		background-color:#1f1f1f !important;
+	}
+
 }
 
 /* Desktop Stylings */
@@ -211,14 +236,26 @@
     .mobile {
         display: none;
 	}
-
-	.primary-container{
-		padding-left: 4%;
-		padding-right: 4%;
-		height: 200px;
-		background-color: gray;
-		
+	.sumChartSquare{
+		margin-top: 20px;
 	}
+	.secondaryCategory{
+		color:black !important;
+	}
+	.primaryRow {
+		padding-left: 5%;
+		padding-right: 5%;
+		height: 201px;
+	}
+	.secondaryHeader{
+		padding-top: 5px;
+		font-size: 1.1em;
+	}
+	.formattedTarget {
+		font-size: 1.1em;
+	}
+	
+	
 }
 
 /* ipad Portrait */
@@ -239,7 +276,7 @@
 .selectedCard {
 	height: 180px;
 	/* border: 1px solid gray; */
-	background-color: blue;
+	background-color: white;
 	/* padding-top: 15px;
 	margin-bottom: 20px; */
 	-moz-box-shadow: 0 0 20px rgb(109, 109, 109);
@@ -251,7 +288,7 @@
 }
 .sumChartHeaderText {
 	/* dynamic */
-	color: rgb(21, 21, 21);
+	color: white;
 	/* padding-top: 8px; */
 	text-align: center;
 	font-size:20px;
@@ -294,7 +331,7 @@
 	left: 0;
 	height: 100%;
 	width: 51%;
-	background: blue;
+	background: white;
 	transform: skew(0deg, 9deg);
   }
   .arrow_box:after {
@@ -304,11 +341,14 @@
 	right: 0;
 	height: 100%;
 	width: 50%;
-	background: blue;
+	background: white;
 	transform: skew(0deg, -9deg);
 }
- */
 
+.primaryRow{
+	height: 215px !important;
+	background-color: #f4f4f4;
+}
 
 /* Inside the Donut Charts */
 /* .insideDonut {
@@ -333,7 +373,7 @@
 	padding-bottom: 60px;
 	background-color: rgb(235, 235, 235);
 	/* 200  */
-	height: 200px;
+	height: 205px;
 	padding-left:  40px;
 	padding-right: 40px;
 }
@@ -390,9 +430,9 @@
 	align-content: center;
 }
 
-.secondaryHeader{
+/* .secondaryHeader{
 	font-size: 1.3em;
-}
+} */
 
 .valueText{
 	font-size:1.8em;
@@ -404,10 +444,10 @@
 }
 
 
-.formattedTarget{
+/* .formattedTarget{
 	font-size: 1.2em;
 
-}
+} */
 .arrow_box {
 	margin-top: -5px;
 	position: relative;
@@ -422,7 +462,7 @@
 	left: 0;
 	height: 100%;
 	width: 51%;
-	background: blue;
+	background: white;
 	transform: skew(0deg, 9deg);
   }
   .arrow_box:after {
@@ -432,6 +472,9 @@
 	right: 0;
 	height: 100%;
 	width: 50%;
-	background: blue;
+	background: white;
 	transform: skew(0deg, -9deg);
   }
+
+  
+  /**Mobile CSS**/
