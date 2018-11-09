@@ -191,16 +191,34 @@
 	height: 200px;
 } */
 
+
+/* Mobile Stylings */
 @media only screen and (max-width: 1024px) {
     .desktop {
         display: none;
-    }
+	}
+	.primary-container {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.selectedCard {
+		background-color: red !important;
+	}
 }
 
+/* Desktop Stylings */
 @media only screen and (min-width: 1023px) {
     .mobile {
         display: none;
-    }
+	}
+
+	.primary-container{
+		padding-left: 4%;
+		padding-right: 4%;
+		height: 200px;
+		background-color: gray;
+		
+	}
 }
 
 /* ipad Portrait */
@@ -259,7 +277,9 @@
 }
 
 
-/* Arrow */
+
+
+/* Arrow
 .arrow_box {
 	margin-top: 10px;
 	position: relative;
@@ -287,7 +307,7 @@
 	background: blue;
 	transform: skew(0deg, -9deg);
 }
-
+ */
 
 
 /* Inside the Donut Charts */
@@ -389,7 +409,7 @@
 
 }
 .arrow_box {
-	margin-top: 10px;
+	margin-top: -5px;
 	position: relative;
 	text-align: center;
 	height: 35px;
