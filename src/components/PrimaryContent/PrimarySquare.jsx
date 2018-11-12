@@ -7,8 +7,6 @@ import commentIconOff from '../../assets/images/comments-off.svg';
 import styles from './PrimaryContent.css';
 import classNames from 'classnames';
 import * as utils from '../../utilities.js';
-import { connect } from 'react-redux';
-import * as actions from 'actions';
 
 class PrimarySquare extends Component {
   
@@ -73,7 +71,7 @@ class PrimarySquare extends Component {
         
     // }
     render(){
-        {utils.getDeviceType(this.props.window)}
+        // {utils.getDeviceType(this.props.window)}
         const formattedValue = utils.formatMetric(this.props.item,'value');
         const formattedTarget = utils.formatMetric(this.props.item,'target');
         const alignCenter = classNames({
@@ -183,11 +181,4 @@ class PrimarySquare extends Component {
 
 // export default (PrimarySquare)
 
-function mapStateToProps(state){
-    // console.log('Primary Square', state.appSettings);
-    return { 
-        toggleCommentary: state.toggleCommentaryBox,
-        window: state.appSettings.window
-     }
-}
-export default connect(mapStateToProps,actions)(PrimarySquare);
+export default (PrimarySquare);

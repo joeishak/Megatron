@@ -180,15 +180,19 @@ class App extends Component {
     
   }
 
-  
+  onCommentIconClick = () => {
+    this.props.showCommentBox();
+}
   getPrimaryContent = () => {
     return (<PrimaryContentList 
-      onCommentIconClick={()=>{console.log('hello world');}}
-      toggleCommentary={true} 
+      onCommentIconClick={this.onCommentIconClick}
+      toggleCommentary={this.props.toggleCommentary} 
       activeCard={this.props.activePrimaryCard } 
       data = {this.props.primaryData} 
       enableChart={()=>{console.log('hello world');}} 
-      selectedCard={(e,index) =>{this.updateActivePrimary(index)}} /> 
+      selectedCard={(e,index) =>{this.updateActivePrimary(index)}} 
+      deviceType= {this.props.appSettings.deviceType}/> 
+
     );
   }
 
@@ -200,12 +204,13 @@ class App extends Component {
     const dekstopContent = ( <SecondaryContentList
       data={this.props.secondaryData}
       activeJourneyCard = {this.props.activeSecondaryCard}
-      getColor={()=>{console.log('hello world');}}
-      renderUnits={ ()=>{console.log('hello world');}}
-      formatPercentage = {()=>{console.log('hello world');}}
+      // getColor={()=>{console.log('hello world');}}
+      // renderUnits={ ()=>{console.log('hello world');}}
+      // formatPercentage = {()=>{console.log('hello world');}}
       onJourneyCardClicked={(e,index) =>{this.updateActiveSecondary(index)}}
-      toggleCommentary = {true}
-      onCommentIconClick={()=>{console.log('hello world');}}
+      onCommentIconClick={this.onCommentIconClick}
+      toggleCommentary={this.props.toggleCommentary} 
+      deviceType= {this.props.appSettings.deviceType}
       activePrimary={this.props.activePrimaryCard}
     />);
 
@@ -281,7 +286,9 @@ function mapStateToProps(state) {
     activePrimaryCard: state.activeCards.primary,
     activeSecondaryCard: state.activeCards.secondary,
     secondaryData: state.secondaryData,
-    appSettings: state.appSettings
+    appSettings: state.appSettings,
+    toggleCommentary: state.toggleCommentaryBox,
+    window: state.appSettings.window
   };
 }
 
