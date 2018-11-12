@@ -45,38 +45,41 @@ class PrimarySquare extends Component {
         return retColor;
     }
 
-    // formatMetric(item, type){
-
-    //     console.log(item);
-    //     if(type==='value'){
-    //         switch(item.valueType){
-    //             case 'units':
-    //             return utils.renderUnits(item.value);
-    //             case 'currency':
-    //             return utils.renderDollarValue(item.value);
-    //             case 'percent':
-    //             return utils.formatPercentage(item.value);
-    //         }
-    //     }
-    //     else{
-    //         switch(item.valueType){
-    //             case 'units':
-    //             return utils.renderUnits(item.target);
-    //             case 'currency':
-    //             return utils.renderDollarValue(item.target);
-    //             case 'percent':
-    //             return utils.formatPercentage(item.target);
-    //         }
-    //     }
-        
-    // }
     render(){
+        const isMobile = (this.deviceType.includes('mobile') ? true : false);
+        const isLaptop = (this.deviceType.includes('laptop') ? true : false);
+        const isTablet = (this.deviceType.includes('tablet') ? true : false);
+
         // {utils.getDeviceType(this.props.window)}
         const formattedValue = utils.formatMetric(this.props.item,'value');
         const formattedTarget = utils.formatMetric(this.props.item,'target');
         const alignCenter = classNames({
             center: true
-        })
+        });
+
+        const responsiveSumChartSquare = className({
+            mobileSumChartSquare: isMobile,
+            laptopSumChartSquare:  isLaptop,
+            tabletSumChartSquare: isTablet
+
+        });
+        const responsiveSumChartContent= className({
+            mobileSumChartContent: isMobile,
+            laptopSumChartContent:  isLaptop,
+            tabletSumChartContent: isTablet
+
+        });
+        const laptopClasses = className({
+            laptopSumChartSquare: isLaptop,
+            laptopSumChartContent:  isLaptop,
+
+        });
+        const tabletClasses = className({
+            tabletSumChartSquare: isTablet,
+            tabletsumChartContent:  isTablet,
+
+        });
+
         return(
             <div> 
 
@@ -86,7 +89,7 @@ class PrimarySquare extends Component {
                         key={this.props.item.index}>
 
                 {/* Card */}
-                <div className={`sumChartSquare zoom   ${this.props.item.css[1]} ${this.props.activeCard ? 'selectedCard ' : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
+                <div className={responsiveSumChartSquare `sumChartSquare zoom   ${this.props.item.css[1]} ${this.props.activeCard ? 'selectedCard ' : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
                         <div className={`sumChartContent  ${this.props.item.css[1]}`}>
                                         {this.props.toggleCommentary ? (<span className="k-float-right finCommentIcon"><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick()}/></span>) : <div className="emptyIcon"></div>}
                                         

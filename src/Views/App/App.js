@@ -204,9 +204,6 @@ class App extends Component {
     const dekstopContent = ( <SecondaryContentList
       data={this.props.secondaryData}
       activeJourneyCard = {this.props.activeSecondaryCard}
-      // getColor={()=>{console.log('hello world');}}
-      // renderUnits={ ()=>{console.log('hello world');}}
-      // formatPercentage = {()=>{console.log('hello world');}}
       onJourneyCardClicked={(e,index) =>{this.updateActiveSecondary(index)}}
       onCommentIconClick={this.onCommentIconClick}
       toggleCommentary={this.props.toggleCommentary} 
