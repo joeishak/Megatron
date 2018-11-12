@@ -618,7 +618,7 @@ export function formatMetric(item, type){
 export function getDeviceType(window) {
 
   let width = window.width;
-  let deviceType = undefined;
+  let deviceType;
 
   // Constants to compare to
   const mobile = [ 
@@ -636,11 +636,13 @@ export function getDeviceType(window) {
     if(width <= mobile[i].width) {
       deviceType = mobile[i].type
       break;
-    } else {
-      deviceType = 'laptopTV'
-    }
+    } 
   }
 
+
+  if(deviceType === undefined){
+      deviceType = 'laptopTV'
+  }
   // console.log('debug state', width);
 
   return deviceType;

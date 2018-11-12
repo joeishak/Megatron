@@ -5,16 +5,18 @@ class SecondaryContentList extends Component {
         if(this.props.toggleCommentary !== nextProps.toggleCommentary){
             return true;
         }
-        else if(this.props.data !== nextProps.data){
+         if(this.props.data !== nextProps.data){
             return true;
         }
-        else if(this.props.activeJourneyCard !== nextProps.activeJourneyCard){
+         if(this.props.activeJourneyCard !== nextProps.activeJourneyCard){
             return true;
         }
-        else if (this.props.activePrimary !== nextProps.activePrimary){
+         if (this.props.activePrimary !== nextProps.activePrimary){
             return true;
         }
-
+        if(this.props.deviceType !== nextProps.deviceType){
+            return true;
+        }
         return false;
     }
     render(){
@@ -28,6 +30,7 @@ class SecondaryContentList extends Component {
                         key={item.index}
                         item={item}
                         activeJourneyCard = {isActive}
+                        deviceType = {this.props.deviceType}
                         onJourneyCardClicked={(e,index) => {this.props.onJourneyCardClicked(e,index)}}
                         toggleCommentary = {this.props.toggleCommentary}
                         onCommentIconClick={this.props.onCommentIconClick}

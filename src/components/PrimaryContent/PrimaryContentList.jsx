@@ -18,6 +18,9 @@ class PrimaryContentList extends Component {
         if(this.props.activeCard !== nextProps.activeCard){
             return true;
         }
+        if(this.props.deviceType !== nextProps.deviceType ){
+            return true;
+        }
         return false;
     }
     render(){

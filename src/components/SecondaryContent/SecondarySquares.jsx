@@ -7,6 +7,10 @@ import styles from './SecondaryContent.css';
 import  * as utils from '../../utilities.js';
 class SecondarySquares extends Component {
     // Need to Refactor
+    componentDidUpdate(prevProps){
+            console.log('Debug that secondary!' ,this.props.deviceType)
+
+    }
     getColor(value, target, type, header) {
         let retColor = '';
         if(type === 'financial' ) {
