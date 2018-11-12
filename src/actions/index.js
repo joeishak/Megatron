@@ -37,8 +37,7 @@ import {
     MULTICHART_IS_ARR,
     GET_IBHEARTBEAT,
     GET_APP_SETTINGS,
-    SET_APP_SETTINGS,
-    UPDATE_DEVICE_TYPE
+    SET_APP_SETTINGS
 
 } from 'actions/types';
 import * as utils from '../utilities';
@@ -58,9 +57,11 @@ let filterParams = [
 ];
 
 export function setAppSettings(settings) {
+    let deviceType = utils.getDeviceType({width: settings.window.width, height: settings.window.height});
+
     return {
         type: SET_APP_SETTINGS,
-        payload: settings
+        payload: {settings,deviceType}
     }
 }
 
@@ -70,13 +71,7 @@ export function getAppSettings() {
         payload: null
     }
 }
-export  function updateDeviceType(window){
-    let deviceType = utils.getDeviceType({width: window.innerWidth, height: window.innerHeight});
-        return {
-            type: UPDATE_DEVICE_TYPE,
-            payload: deviceType
-        }
-}
+
 /**
  * Change the state of Authentication for the user.
  * 

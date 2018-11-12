@@ -19,7 +19,6 @@ class SecondaryContentList extends Component {
         if (this.props.deviceType !== nextProps.deviceType) {
             return true;
         }
-
         return false;
     }
     render(){

@@ -9,6 +9,10 @@ import classNames from 'classnames';
 class SecondarySquares extends Component {
 
     // Need to Refactor
+    componentDidUpdate(prevProps){
+            console.log('Debug that secondary!' ,this.props.deviceType)
+
+    }
     getColor(value, target, type, header) {
         let retColor = '';
         if(type === 'financial' ) {
@@ -84,31 +88,45 @@ class SecondarySquares extends Component {
 
     getMobileContent() {
         
+        const isTablet = (this.props.deviceType.includes('tablet') ? true : false);
+        const isMobile = (this.props.deviceType.includes('mobile') ? true : false);
+
         const formattedValue = utils.formatMetric(this.props.item,'value');
         const formattedTarget = utils.formatMetric(this.props.item,'target');
-    
-        
-        return  ( 
-        <div className="" key={this.props.item.index}>    
-            <div className={ `  ${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', false) : ''}`} 
+
+        const secondaryBoxHover = classNames({'mobileSecondaryHover': isTablet || isMobile });
+        const secondaryBox = classNames({ 'mobileSecondaryBox':isTablet || isMobile });
+        const secondaryBoxHeader = classNames({'mobileSecondaryHeader': isTablet || isMobile});
+        const commentsIcon = classNames({'mobileCommentsIcon': isTablet || isMobile});
+        const secondaryBoxContent = classNames({'mobileSecondaryContent': isTablet || isMobile});
+        const seconaryBoxContentAmount = classNames({'mobileSecondaryBoxContentAmount': isTablet || isMobile})
+        const boxContentTarget = classNames({'mobileSecondaryContentTarget': isTablet || isMobile});
+        const boxContentAmountGreen = classNames({'mobileSecondaryContanetAmountGreen': isTablet || isMobile})
+        const boxBullet = classNames({'mobileSecondaryBullet': isTablet || isMobile})
+        const secondaryBoxHeaderTitle = classNames({'secondaryBoxHeaderTitle': isTablet || isMobile})
+       
+        return ( <div className={secondaryBoxHover} key={this.props.item.index}>    
+            <div className={ `${secondaryBox}  ${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', false) : ''}`} 
                 onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index)}>
-                <div  className={`${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', true) : ''}`} >
+                <div  className={`${secondaryBoxHeader} ${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', true) : ''}`} >
                     {/* <div className={this.props.item.css[2]}><p className="journeyHeaderTitle ">{this.props.item.title}</p></div> */}
                 </div>
-                    <div className="">
-                        <div >{this.props.item.header}</div>
-                        <div  className={` ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{formattedValue}</div>
-                        <div className=''>
+                    {/* Image Icon For Comments */}
+                    {this.props.toggleCommentary ? (<div className={commentsIcon}><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={this.props.onCommentIconClick}/></div>) : null}  
+                    <div className={secondaryBoxContent}>
+                        <div className={secondaryBoxHeaderTitle}>{this.props.item.header}</div>
+                        <div  className={`  ${seconaryBoxContentAmount} ${this.props.item.value >= this.props.item.target ? `${boxContentAmountGreen}` : ''}`}>{formattedValue}</div>
+                        <div className={boxBullet}>
                             <KendoBulletChart 
                                 width={175} 
                                 values={[this.props.item.value, this.props.item.target]} 
                                 valueType={this.props.item.valueType} 
                                 color="white" 
                                 key={this.props.item.index} ></KendoBulletChart></div>
-                        <div className="">{formattedTarget}</div>
+                        <div className={boxContentTarget}>{formattedTarget}</div>
                     </div>
                 </div>
-        </div>);
+            </div>);
     }
 
     render(){

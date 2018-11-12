@@ -82,9 +82,10 @@ class App extends Component {
 
   componentDidUpdate(prevProps) {
 
-    if(this.props.appSettings.window != prevProps.appSettings.window){
-      this.props.updateDeviceType(this.props.appSettings.window)
-    }
+    // if(this.props.appSettings.window !== prevProps.appSettings.window){
+    //   console.log()
+    //   this.props.updateDeviceType(this.props.appSettings.window)
+    // }
     this.checkAuthentication();
     let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
     let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined
@@ -198,21 +199,40 @@ class App extends Component {
       data = {this.props.primaryData} 
       enableChart={()=>{console.log('hello world');}} 
       selectedCard={(e,index) =>{this.updateActivePrimary(index)}} 
-      deviceType= {this.props.appSettings.deviceType}/> 
+      deviceType= {this.props.deviceType}/> 
+
     );
   }
 
 
   getSecondaryContent = () => {
+    // Logic to render depending on App settings. this.props.appSettings.window.height and this.props.appSettings.window.width
     return ( <SecondaryContentList
       data={this.props.secondaryData}
       activeJourneyCard = {this.props.activeSecondaryCard}
       onJourneyCardClicked={(e,index) =>{this.updateActiveSecondary(index)}}
       onCommentIconClick={this.onCommentIconClick}
       toggleCommentary={this.props.toggleCommentary} 
-      deviceType= {utils.getDeviceType(this.state.window)}
+      deviceType= {this.props.deviceType}
       activePrimary={this.props.activePrimaryCard}
     />);
+
+    // const tabletContent = (<div>Tablet Content!</div>);
+
+    // const mobileContent = (<div>Mobile Content1</div>);
+
+    // if (utils.getDeviceType(this.props.appSettings.window).includes('mobile')) {
+    //   secondaryRender = mobileContent;
+    // }
+
+    // if (utils.getDeviceType(this.props.appSettings.window).includes('laptop')) {
+    //   secondaryRender = dekstopContent;
+    // }
+
+    // if (utils.getDeviceType(this.props.appSettings.window).includes('tablet')) {
+    //   secondaryRender = tabletContent;
+    // }
+    // return secondaryRender;
   }
 
   render(){
@@ -271,6 +291,7 @@ function mapStateToProps(state) {
     activeSecondaryCard: state.activeCards.secondary,
     secondaryData: state.secondaryData,
     appSettings: state.appSettings,
+    deviceType: state.appSettings.deviceType,
     toggleCommentary: state.toggleCommentaryBox,
     window: state.appSettings.window
   };
