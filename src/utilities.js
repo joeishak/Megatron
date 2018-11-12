@@ -622,11 +622,11 @@ export function getDeviceType(window) {
 
   // Constants to compare to
   const mobile = [ 
-    { type: 'mobileS', width: 320 }, 
+    {type: 'mobileS', width: 320 }, 
     {type: 'mobileM', width: 375 }, 
     {type: 'mobileL', width: 425}, 
     {type: 'tabletP', width: 768},
-    {type: 'laptop', width: 1024 },
+    {type: 'tablet', width: 1024 },
     {type: 'laptopL', width: 1440 },
     {type: 'latptop4k', width: 2560 },
   ]

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navigation from 'components/Navigation/Navigation';
 import {connect} from 'react-redux';
 import * as actions from 'actions';
+import * as utils from '../../utilities.js';
 import styles from './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { withAuth } from '@okta/okta-react';
@@ -193,10 +194,9 @@ class App extends Component {
 
   getSecondaryContent = () => {
     // Logic to render depending on App settings. this.props.appSettings.window.height and this.props.appSettings.window.width
-    const currentHeight = this.props.appSettings.window.height;
-    const currentWidth = this.props.appSettings.window.width;
+    let secondaryRender = null;
 
-    return ( <SecondaryContentList
+    const dekstopContent = ( <SecondaryContentList
       data={this.props.secondaryData}
       activeJourneyCard = {this.props.activeSecondaryCard}
       getColor={()=>{console.log('hello world');}}
@@ -207,6 +207,23 @@ class App extends Component {
       onCommentIconClick={()=>{console.log('hello world');}}
       activePrimary={this.props.activePrimaryCard}
     />);
+
+    const tabletContent = (<div>Tablet Content!</div>);
+
+    const mobileContent = (<div>Mobile Content1</div>);
+
+    if (utils.getDeviceType(this.props.appSettings.window).includes('mobile')) {
+      secondaryRender = mobileContent;
+    }
+
+    if (utils.getDeviceType(this.props.appSettings.window).includes('laptop')) {
+      secondaryRender = dekstopContent;
+    }
+
+    if (utils.getDeviceType(this.props.appSettings.window).includes('tablet')) {
+      secondaryRender = tabletContent;
+    }
+    return secondaryRender;
   }
 
   render(){
