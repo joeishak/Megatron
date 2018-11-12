@@ -57,50 +57,108 @@ class PrimarySquare extends Component {
             center: true
         });
 
+
+        const responsiveSquareSize = classNames({
+            "col-sm-12 col-md-2 col-lg-2 ": isLaptop,
+            "col-xs-12 ": (isMobile || isTablet) ? true: false
+        })
         const responsiveSumChartSquare = classNames({
+            sumChartSquare: true,
             mobileSumChartSquare: isMobile,
-            laptopSumChartSquare:  isLaptop,
-            tabletSumChartSquare: isTablet
-
-        });
-        const responsiveSumChartContent= classNames({
-            mobileSumChartContent: isMobile,
-            laptopSumChartContent:  isLaptop,
-            tabletSumChartContent: isTablet
-
-        });
-        const laptopClasses = classNames({
-            laptopSumChartSquare: isLaptop,
-            laptopSumChartContent:  isLaptop,
-
-        });
-        const tabletClasses = classNames({
             tabletSumChartSquare: isTablet,
-            tabletsumChartContent:  isTablet,
+            laptopSumChartSquare:  isLaptop
+
+        });
+        // const responsiveSumChartContent= classNames({
+        //     sumChartContent: true
+        //     // mobileSumChartContent: isMobile,
+        //     // tabletSumChartContent: isTablet,
+        //     // laptopSumChartContent:  isLaptop
+
+        // });
+        // const responsiveZoom = classNames({
+        //     zoom: true
+        // });
+        const responsiveSelectedCard = classNames({
+            selectedCard: true,
+            mobileSelectedCard: isMobile,
+            tabletSelectedCard:  isTablet,
+            laptopSelectedCard: isLaptop
+
+        });
+        const responsiveCommentIcon = classNames({
+            finCommentIcon: true,
+            mobileCommentIcon: isMobile,
+            tabletCommentIcon: isTablet,
+            laptopCommentIcon: isLaptop
         });
 
+        const responsiveEmptyComment = classNames({
+            emptyIcon: true
+        });
+        const responsiveSumChartHeader = classNames({
+            sumChartHeader: true,
+            mobileSumChartHeader: isMobile,
+            tabletSumChartHeader: isTablet,
+            laptopSumChartHeader: isLaptop
+        });
+
+        const responsiveSumChartHeaderText = classNames({
+            sumChartHeaderText: true,
+            mobileSumChartHeaderText: isMobile,
+            tabletSumChartHeaderText: isTablet,
+            laptopSumChartHeaderText: isLaptop
+        });
+        
+        const responsiveSelectedCardText = classNames({
+            selectedCardText: true,
+            mobileSelectedCardText: isMobile,
+            tabletSelectedCardText: isTablet,
+            laptopSelectedCardText: isLaptop
+        });
+
+        const responsiveSecondaryHeader = classNames({
+            secondaryHeader: true,
+            mobileSecondaryHeader: isMobile,
+            tabletSecondaryHeader: isTablet,
+            laptopSecondaryHeader: isLaptop
+        });
+
+        const responsiveValueText  = classNames({
+            valueText: true,
+            mobileValueText: isMobile,
+            tabletValueText: isTablet,
+            laptopValuesText: isLaptop
+        });
+
+        const responsiveTarget = classNames({
+            formattedTarget: true,
+            mobileTargetText: isMobile,
+            tabletTargetText: isTablet,
+            laptopTargetText: isLaptop
+        });
         return(
             <div> 
 
                 {/* Desktop View */}
-                <div className="col-sm-12 col-md-2 col-lg-2 desktop"  
+                <div className={responsiveSquareSize}  
                         onClick = {this.props.enableChart}
                         key={this.props.item.index}>
 
                 {/* Card */}
-                <div className={ `sumChartSquare zoom   ${this.props.item.css[1]} ${this.props.activeCard ? 'selectedCard ' : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
+                <div className={`${responsiveSumChartSquare}    ${this.props.item.css[1]} ${this.props.activeCard ? responsiveSelectedCard : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
                         <div className={`sumChartContent  ${this.props.item.css[1]}`}>
-                                        {this.props.toggleCommentary ? (<span className="k-float-right finCommentIcon"><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick()}/></span>) : <div className="emptyIcon"></div>}
+                                        {this.props.toggleCommentary ? (<span className={` k-float-right   ${responsiveCommentIcon}`}><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick()}/></span>) : <div className="emptyIcon"></div>}
                                         
                             {/* Header */}
-                            <div className={`sumChartHeader ${this.props.activeCard ? this.getColor(this.props.item.value, this.props.item.target, 'financial') : ''}`}>
-                                <p className={`sumChartHeaderText ${this.props.activeCard ? 'selectedCardText' : ''}`}>
+                            <div className={`${responsiveSumChartHeader} ${this.props.activeCard ? this.getColor(this.props.item.value, this.props.item.target, 'financial') : ''}`}>
+                                <p className={`${responsiveSumChartHeaderText} ${this.props.activeCard ? responsiveSelectedCardText : ''}`}>
                                     {this.props.item.category}
                                 </p>
                             </div>
 
                                 <div className={alignCenter}>
-                                        <div className={` secondaryHeader`}>{this.props.item.header}</div>
+                                        <div className={responsiveSecondaryHeader}>{this.props.item.header}</div>
 
                                         {/* REFACTOR: Remove formatted value , bullet chart, and formatter target to SummaryMetric 
                                         - - Pass Item down
@@ -108,7 +166,7 @@ class PrimarySquare extends Component {
                                         {/* Formatted Value $###.## (M / %)*/}
                                      
 
-                                        <div className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>
+                                        <div className={`${responsiveValueText}  ${this.props.item.value >= this.props.item.target ?  'selectedCardFontColorGreen' : ' selectedCardFontColorRed'} `}>
                                             {formattedValue}
                                         </div>
                                         {/* Bullet Chart */}
@@ -120,9 +178,9 @@ class PrimarySquare extends Component {
                                         <KendoBulletChart values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="#3c3c3c" key={this.props.item.index} ></KendoBulletChart>
                                                 </div>
                                         {/* Formatted Target $###.## (M / %)*/}
-                                        <div className='formattedTarget'>TARGET {formattedTarget}</div>
+                                        <div className={responsiveTarget}>TARGET {formattedTarget}</div>
                                 </div> 
-                            <div className={` ${this.props.activeCard ? 'arrow_box' : ''}`}></div>
+                            {(isMobile || isTablet) ? null : <div className={` ${this.props.activeCard ? 'arrow_box' : ''}`}></div>}
                                         
                             </div>
                      
@@ -131,50 +189,6 @@ class PrimarySquare extends Component {
               
             </div>
                 
-                {/* Mobile View */}
-                <div className="col-xs-12 mobile"  
-                    onClick = {this.props.enableChart}
-                    key={this.props.item.index}>
-
-                {/* Card */}
-                <div className={`sumChartSquare zoom   ${this.props.item.css[1]} ${this.props.activeCard ? 'selectedCard ' : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
-                        <div className={`sumChartContent  ${this.props.item.css[1]}`}>
-                            {/* Header */}
-                            {/* <div className={`sumChartHeader ${this.props.activeCard ? this.getColor(this.props.item.value, this.props.item.target, 'financial') : ''}`}>
-                                <p className={`sumChartHeaderText ${this.props.activeCard ? 'selectedCardText' : ''}`}>
-                                    {this.props.item.category}
-                                </p>
-                            </div> */}
-
-                                <div >
-                                        <span className={`  secondaryCategory`}>{this.props.item.category}</span>
-                                           {/* Formatted Value $###.## (M / %)*/}
-                                           <span className={  this.props.item.value >= this.props.item.target ? '  valueText selectedCardFontColorGreen' : ' valueText selectedCardFontColorRed'}>
-                                            {formattedValue}
-                                        </span>
-                                        <span className={`  secondaryHeader`}>{this.props.item.header}</span>
-
-                                
-                                      
-                                        {/* Bullet Chart */}
-                                             
-                                       
-                                        <span className='bullet'>
-                                                   <KendoBulletChart 
-                                                    width = {200}
-                                                    values={[this.props.item.value, this.props.item.target]} 
-                                                    valueType={this.props.item.valueType} 
-                                                    color="white" 
-                                                    key={this.props.item.index} ></KendoBulletChart>
-                                                </span>
-                                </div> 
-                                        
-                            </div>
-                     
-                     </div>
-      
-              
-            </div>
             
             </div>
         )

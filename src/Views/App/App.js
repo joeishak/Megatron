@@ -40,8 +40,11 @@ class App extends Component {
       showDropDowns: false,
       dialogIsOpen: this.props.dialogIsOpen,
       authenticated: null,
-      userinfo: null
-      
+      userinfo: null,
+      window: {
+        height: window.innerHeight,
+        weidth: window.innerWidth
+      }
     };
 
 
@@ -57,18 +60,20 @@ class App extends Component {
   }
 
   resize() {
-    // console.log('resizing', window.innerWidth, window.innerHeight);
+    // console.log('debug', window.innerWidth)
     const appSettings = {
       window: {
         height: window.innerHeight,
         width: window.innerWidth
-      },
-      deviceType: utils.getDeviceType({width: window.innerWidth, height: window.innerHeight})
+      }
     }
     this.props.setAppSettings(appSettings);
-}
-
- 
+    this.setState({
+      window: appSettings.window
+    });
+    // console.log('debug',utils.getDeviceType(this.state.window))
+  }
+  
   componentDidMount() {
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
@@ -77,6 +82,9 @@ class App extends Component {
 
   componentDidUpdate(prevProps) {
 
+    if(this.props.appSettings.window != prevProps.appSettings.window){
+      this.props.updateDeviceType(this.props.appSettings.window)
+    }
     this.checkAuthentication();
     let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
     let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined
@@ -168,7 +176,6 @@ class App extends Component {
     }
   }
 
-
   updateActivePrimary(index){
     console.log(index)
     this.props.updateActivePrimaryCard(index);
@@ -177,12 +184,12 @@ class App extends Component {
   updateActiveSecondary(index){
     console.log(index)
     this.props.updateActiveSecondaryCard(index);
-    
   }
 
   onCommentIconClick = () => {
     this.props.showCommentBox();
-}
+  }
+
   getPrimaryContent = () => {
     return (<PrimaryContentList 
       onCommentIconClick={this.onCommentIconClick}
@@ -192,60 +199,20 @@ class App extends Component {
       enableChart={()=>{console.log('hello world');}} 
       selectedCard={(e,index) =>{this.updateActivePrimary(index)}} 
       deviceType= {this.props.appSettings.deviceType}/> 
-
     );
   }
 
 
   getSecondaryContent = () => {
-    // Logic to render depending on App settings. this.props.appSettings.window.height and this.props.appSettings.window.width
-    console.log('debug', this.props.deviceType)
-    let secondaryRender = null;
-
-    const dekstopContent = ( <SecondaryContentList
+    return ( <SecondaryContentList
       data={this.props.secondaryData}
       activeJourneyCard = {this.props.activeSecondaryCard}
       onJourneyCardClicked={(e,index) =>{this.updateActiveSecondary(index)}}
       onCommentIconClick={this.onCommentIconClick}
       toggleCommentary={this.props.toggleCommentary} 
-      deviceType= {this.props.appSettings.deviceType}
+      deviceType= {utils.getDeviceType(this.state.window)}
       activePrimary={this.props.activePrimaryCard}
     />);
-
-    const tabletContent =  ( <SecondaryContentList
-      data={this.props.secondaryData}
-      activeJourneyCard = {this.props.activeSecondaryCard}
-      onJourneyCardClicked={(e,index) =>{this.updateActiveSecondary(index)}}
-      onCommentIconClick={this.onCommentIconClick}
-      toggleCommentary={this.props.toggleCommentary} 
-      deviceType= {this.props.appSettings.deviceType}
-      activePrimary={this.props.activePrimaryCard}
-    />);
-
-
-    const mobileContent = ( <SecondaryContentList
-      data={this.props.secondaryData}
-      activeJourneyCard = {this.props.activeSecondaryCard}
-      onJourneyCardClicked={(e,index) =>{this.updateActiveSecondary(index)}}
-      onCommentIconClick={this.onCommentIconClick}
-      toggleCommentary={this.props.toggleCommentary} 
-      deviceType= {this.props.appSettings.deviceType}
-      activePrimary={this.props.activePrimaryCard}
-    />);
-
-
-    if (utils.getDeviceType(this.props.appSettings.window).includes('mobile')) {
-      secondaryRender = mobileContent;
-    }
-
-    if (utils.getDeviceType(this.props.appSettings.window).includes('laptop')) {
-      secondaryRender = dekstopContent;
-    }
-
-    if (utils.getDeviceType(this.props.appSettings.window).includes('tablet')) {
-      secondaryRender = tabletContent;
-    }
-    return secondaryRender;
   }
 
   render(){

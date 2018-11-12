@@ -7,6 +7,7 @@ import styles from './SecondaryContent.css';
 import  * as utils from '../../utilities.js';
 import classNames from 'classnames';
 class SecondarySquares extends Component {
+
     // Need to Refactor
     getColor(value, target, type, header) {
         let retColor = '';
@@ -38,14 +39,10 @@ class SecondarySquares extends Component {
 
         return retColor;
     }
-
-    render(){
-        {console.log('debug', this.props.deviceType )}
-
-        const isMobile = (this.props.deviceType.includes('mobile') ? true : false);
+    getLaptopContent() {
+        // const isMobile = (this.props.deviceType.includes('mobile') ? true : false);
         const isLaptop = (this.props.deviceType.includes('laptop') ? true : false);
-        const isTablet = (this.props.deviceType.includes('tablet') ? true : false);
-
+        // const isTablet = (this.props.deviceType.includes('tablet') ? true : false);
 
         const formattedValue = utils.formatMetric(this.props.item,'value');
         const formattedTarget = utils.formatMetric(this.props.item,'target');
@@ -58,35 +55,75 @@ class SecondarySquares extends Component {
         const seconaryBoxContentAmount = classNames({'journeysAmount': isLaptop})
         const boxContentTarget = classNames({'secondaryTarget': isLaptop});
 
+       
+        return ( <div className={secondaryBoxHover} key={this.props.item.index}>    
+            <div className={ `${secondaryBox}  ${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', false) : ''}`} 
+                onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index)}>
+                <div  className={`${secondaryBoxHeader} ${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', true) : ''}`} >
+                    {/* <div className={this.props.item.css[2]}><p className="journeyHeaderTitle ">{this.props.item.title}</p></div> */}
+                </div>
+                    {/* Image Icon For Comments */}
+                    {this.props.toggleCommentary ? (<div className={commentsIcon}><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={this.props.onCommentIconClick}/></div>) : null}  
+                    <div className={secondaryBoxContent}>
+                        <div >{this.props.item.header}</div>
+                        <div  className={`  ${seconaryBoxContentAmount} ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{formattedValue}</div>
+                        <div className=''>
+                            <KendoBulletChart 
+                                width={175} 
+                                values={[this.props.item.value, this.props.item.target]} 
+                                valueType={this.props.item.valueType} 
+                                color="white" 
+                                key={this.props.item.index} ></KendoBulletChart></div>
+                        <div className={boxContentTarget}>{formattedTarget}</div>
+                    </div>
+                </div>
+            </div>);
+
+
+    }
+
+    getMobileContent() {
+        
+        const formattedValue = utils.formatMetric(this.props.item,'value');
+        const formattedTarget = utils.formatMetric(this.props.item,'target');
+    
+        
+        return  ( 
+        <div className="" key={this.props.item.index}>    
+            <div className={ `  ${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', false) : ''}`} 
+                onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index)}>
+                <div  className={`${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', true) : ''}`} >
+                    {/* <div className={this.props.item.css[2]}><p className="journeyHeaderTitle ">{this.props.item.title}</p></div> */}
+                </div>
+                    <div className="">
+                        <div >{this.props.item.header}</div>
+                        <div  className={` ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{formattedValue}</div>
+                        <div className=''>
+                            <KendoBulletChart 
+                                width={175} 
+                                values={[this.props.item.value, this.props.item.target]} 
+                                valueType={this.props.item.valueType} 
+                                color="white" 
+                                key={this.props.item.index} ></KendoBulletChart></div>
+                        <div className="">{formattedTarget}</div>
+                    </div>
+                </div>
+        </div>);
+    }
+
+    render(){
+        {console.log('debug', this.props.deviceType )}
+
+        const isMobile = (this.props.deviceType.includes('mobile') ? true : false);
+        const isLaptop = (this.props.deviceType.includes('laptop') ? true : false);
+        const isTablet = (this.props.deviceType.includes('tablet') ? true : false);
+
         return(
-            <div className={secondaryBoxHover} key={this.props.item.index}>    
-             
-                <div className={ `${secondaryBox}  ${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', false) : ''}`} 
-                    onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index)}>
-                
-                    <div  className={`${secondaryBoxHeader} ${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', true) : ''}`} >
-                        {/* <div className={this.props.item.css[2]}><p className="journeyHeaderTitle ">{this.props.item.title}</p></div> */}
-                    </div>
-
-                        {/* Image Icon For Comments */}
-                        {this.props.toggleCommentary ? (<div className={commentsIcon}><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={this.props.onCommentIconClick}/></div>) : null}
-                  
-                        <div className={secondaryBoxContent}>
-                            <div >{this.props.item.header}</div>
-                            <div  className={`  ${seconaryBoxContentAmount} ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{formattedValue}</div>
-                            <div className=''>
-                                <KendoBulletChart 
-                                    width={175} 
-                                    values={[this.props.item.value, this.props.item.target]} 
-                                    valueType={this.props.item.valueType} 
-                                    color="white" 
-                                    key={this.props.item.index} ></KendoBulletChart></div>
-                            <div className={boxContentTarget}>{formattedTarget}</div>
-                        </div>
-
-                    </div>
-
-             </div>  
+            <div>
+                <div>{isMobile ? this.getMobileContent() : null}</div>
+                <div>{isTablet ? this.getMobileContent() : null}</div>
+                <div>{isLaptop ? this.getLaptopContent() : null}</div>
+            </div>
         )
     }
 }
