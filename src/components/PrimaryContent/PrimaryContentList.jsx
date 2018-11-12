@@ -31,7 +31,7 @@ class PrimaryContentList extends Component {
 
         const responsivePrimaryRow = classNames({
             "row primaryRow": true,
-            mobilePrimaryRow: isMobile,
+            mobilePrimaryRow: isMobile || isTablet,
             tabletPrimaryRow: isTablet,
             laptopPrimaryRow: isLaptop
         });

@@ -15,11 +15,9 @@ const firstState = {
 export default function(state = firstState,action) {
     switch(action.type) {
         case SET_APP_SETTINGS:
-            console.log('testing', action.payload);
             let newState1 = Object.assign({},state);
             return {...newState1,deviceType: action.payload.deviceType, window: action.payload.settings.window};
         case GET_APP_SETTINGS:
-            console.log('testing', action.payload);
             return state;
        
         default: 

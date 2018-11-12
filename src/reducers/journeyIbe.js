@@ -41,16 +41,16 @@ export default function(state = JourneyData.squares, action) {
         let journeyBuyUseQtdTotal = action.payload[8].data[0];
         let item = action.payload[0].data[0];
 
-        console.log(action.payload,{
-            "journeyActualTarget":journeyActualTarget,
-            "journeyMultichart": journeyMultichart,
-            "journeyQTDTotal": journeyQtdTotal,
-            "journeyGeoQtd": journeyGeoQtd,
-            "journeyBuyUseActual": journeyBuyUseActual,
-            "journeyBuyUseGeo": journeyBuyUseGeoQtd,
-            "journeyBuyUseMultichart": journeyBuyUseMultichart,
-            "journeyBuyUseQtdTotal": journeyBuyUseQtdTotal
-        });
+        // console.log(action.payload,{
+        //     "journeyActualTarget":journeyActualTarget,
+        //     "journeyMultichart": journeyMultichart,
+        //     "journeyQTDTotal": journeyQtdTotal,
+        //     "journeyGeoQtd": journeyGeoQtd,
+        //     "journeyBuyUseActual": journeyBuyUseActual,
+        //     "journeyBuyUseGeo": journeyBuyUseGeoQtd,
+        //     "journeyBuyUseMultichart": journeyBuyUseMultichart,
+        //     "journeyBuyUseQtdTotal": journeyBuyUseQtdTotal
+        // });
         totalConversionActual    += item.ConversionActual;
         totalConversionTarget    += item.ConversionTarget;
         totalNewQfmActual        += journeyBuyUseActual.NewQfmActual;

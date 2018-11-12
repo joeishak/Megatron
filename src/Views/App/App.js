@@ -65,7 +65,6 @@ class App extends Component {
       }
     }
     this.props.setAppSettings(appSettings);
-    // this.props.updateDeviceType(appSettings.window)
 }
 
  
@@ -77,10 +76,7 @@ class App extends Component {
 
   componentDidUpdate(prevProps) {
 
-    // if(this.props.appSettings.window !== prevProps.appSettings.window){
-    //   console.log()
-    //   this.props.updateDeviceType(this.props.appSettings.window)
-    // }
+ 
     this.checkAuthentication();
     let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
     let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined
@@ -271,7 +267,6 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('debug state', state);
   return {
     dialogIsOpen: state.isDialogOpen, 
     detailIsOpen: state.detailsIsOpen,

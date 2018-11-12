@@ -295,7 +295,6 @@ let filterParams2 = [
     generateFilterParams('journ',filterParams,allFilters,_parameters);
     generateFilterParams('',filterParams2,allFilters,_parameters);
 
-    // console.log(filterParams, filterParams2);
     let params1 = filterParams.reduce((prev, param) => {
             let p = '';
             p = prev + '&' + param.prompt + '=' + param.value;
@@ -507,7 +506,6 @@ export function renderUnits(value){
   if ( value < 0){
       isNegative = true;
       abs = Math.abs(value)
-      console.log(abs);
   } else { abs=value };
 
   abs = parseInt(abs)
@@ -549,7 +547,6 @@ export function renderDollarValue(value) {
   if ( value < 0){
       isNegative = true;
       abs = Math.abs(value)
-      console.log(abs);
   } else { abs=value };
 
   abs = parseInt(abs)
@@ -583,13 +580,11 @@ export function renderDollarValue(value) {
   }
 }
 export function formatPercentage(value) {
-  // console.log(value);
   return  (value * 100).toFixed(2) + '%';
 }
 
 export function formatMetric(item, type){
 
-  console.log(item);
   if(type==='value'){
       switch(item.valueType){
           case 'units':
@@ -643,7 +638,6 @@ export function getDeviceType(window) {
   if(deviceType === undefined){
       deviceType = 'laptopTV'
   }
-  // console.log('debug state', width);
 
   return deviceType;
 

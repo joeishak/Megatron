@@ -185,6 +185,10 @@
 	width: 100%;
 	/* box-shadow: 5px 10px; */
 }
+
+.selectedCardText {
+	color: white ;
+}
 .sumChartContent {
 	height:100%;
 	width:100%;
@@ -194,24 +198,43 @@
 	margin-top: -8px;
 	height: 40px;
 }
+
 .sumChartHeaderText {
-	color: black;
+	/* dynamic */
+	color: white;
 	/* padding-top: 8px; */
 	text-align: center;
 	font-size:20px;
 	font-weight: bold;
 	margin-left: 12%;
 }
-.selectedCardText {
-	color: white ;
+
+
+
+.valueText{
+	font-size:1.8em;
+	font-weight: bold;
+	display:block;
 }
 .primaryRow{
 	height: 202px ;
 	background-color: #f4f4f4 ;
 } 
+
+.finCommentIcon{
+	height: 5px;
+	margin-top: 4px;
+	margin-right: 4px;
+	z-index: 3;
+	position: relative;
+	float:right;
+}
 /* Laptop Stylings */
 .laptopSumChartSquare{
 	margin-top: 20px;
+}
+.laptopSelectedCardText{
+	color: white;
 }
 .laptopSecondaryCategory{
 	color:black !important;
@@ -262,14 +285,18 @@
 .mobileSumChartSquare, .tabletSumChartSquare{
 	height: 85px !important;
 	background-color: #1f1f1f;
-	padding: 15px;
-	margin-bottom: 4px;
+	padding-left: 15px;
+	padding-top: 15px;
+
 }
 .mobileSecondaryHeader{
 	width: 50% !important;
 	float: left;
-	color:white;
+	color:white !important;
 	font-size: 1em !important;
+}
+.mobileSumChartHeaderText{
+	color: white !important;
 }
 
 .mobileSecondaryCategory{
@@ -282,20 +309,34 @@
 .mobileValueText{
 	width:50% !important;
 	font-size: 1.8em;
-	float: right;
-	text-align: right;
+	float: left;
+	text-align: left;
 }
 .mobileBullet{
 	width:50% !important;
 	float: right;
 
 }
+.mobileSecondaryHeader{
+	width: 50% !important;
+	font-size: 1.8em;
+	float: left;
+	color:white;
+	
+}
+.secondaryCategory{
+	width: 50% !important;
+	font-size: 1.8em;
+	float: left;
+	color:white;
+	
+}
 .mobileSelectedCard{
 	margin-left: 10px;
 	background-color:#1f1f1f !important;
 }
 .mobilePrimaryRow{
-	background-color:black !important;
+	background-color:black ;
 }
 @media only screen and (max-width: 1024px) {
 	body {
@@ -304,12 +345,7 @@
     .desktop {
         display: none;
 	}
-	.sumChartSquare{
-		height: 85px !important;
-		background-color: #1f1f1f;
-		padding: 15px;
-		margin-bottom: 4px;
-	}
+
 	
 
 	
@@ -323,11 +359,6 @@
     .mobile {
         display: none;
 	}
-	.sumChartSquare{
-		margin-top: 20px;
-	}
-	
-	
 }
 
 /* ipad Portrait */
@@ -337,19 +368,9 @@
 	} 
 } */
 
-.finCommentIcon{
-	height: 5px;
-	margin-top: 4px;
-	margin-right: 4px;
-	z-index: 3;
-	position: relative;
-	float:right;
-}
+
 /* active card */
 
-.selectedCardText {
-	color: white !important;
-}
 
 
 .sumChartHeader {
@@ -484,14 +505,6 @@
 	font-size: 1.3em;
 } */
 
-.valueText{
-	font-size:1.8em;
-	font-weight: bold;
-	display:block;/* .valueText{
-		font-size: 1.8em;
-	
-	} */
-}
 
 
 /* .formattedTarget{
