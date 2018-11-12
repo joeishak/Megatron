@@ -7,9 +7,10 @@ import commentIconOff from '../../assets/images/comments-off.svg';
 import styles from './PrimaryContent.css';
 import classNames from 'classnames';
 import * as utils from '../../utilities.js';
+import { connect } from 'react-redux';
+import * as actions from 'actions';
+
 class PrimarySquare extends Component {
-  
-    
   
     shouldComponentUpdate(nextProps){
         return true;
@@ -72,6 +73,7 @@ class PrimarySquare extends Component {
         
     // }
     render(){
+        {utils.getDeviceType(this.props.window)}
         const formattedValue = utils.formatMetric(this.props.item,'value');
         const formattedTarget = utils.formatMetric(this.props.item,'target');
         const alignCenter = classNames({
@@ -88,7 +90,7 @@ class PrimarySquare extends Component {
                 {/* Card */}
                 <div className={`sumChartSquare zoom   ${this.props.item.css[1]} ${this.props.activeCard ? 'selectedCard ' : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
                         <div className={`sumChartContent  ${this.props.item.css[1]}`}>
-                                        {this.props.toggleCommentary ? (<span className="k-float-right finCommentIcon"><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick()}/></span>) : null}
+                                        {this.props.toggleCommentary ? (<span className="k-float-right finCommentIcon"><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick()}/></span>) : <div className="emptyIcon"></div>}
                                         
                             {/* Header */}
                             <div className={`sumChartHeader ${this.props.activeCard ? this.getColor(this.props.item.value, this.props.item.target, 'financial') : ''}`}>
@@ -114,7 +116,8 @@ class PrimarySquare extends Component {
                                                 {/* <KendoDonutChart donutColor={this.props.item.value >= this.props.item.target ? '#0DB16E': '#FF0000'} key={this.props.item.index} donutCenterRender= {()=>  */}
                                                 {/*  <div className="insideDonut"><span className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>{this.renderDollarValue(this.props.item.value)}</span><span className='targetText'>Target</span><span className='targetValueText'>{this.renderDollarValue(this.props.item.target)}</span></div>}/> 
                                                 
-                                        */}                                            <KendoBulletChart values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="#3c3c3c" key={this.props.item.index} ></KendoBulletChart>
+                                        */} 
+                                        <KendoBulletChart values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="#3c3c3c" key={this.props.item.index} ></KendoBulletChart>
                                                 </div>
                                         {/* Formatted Target $###.## (M / %)*/}
                                         <div className='formattedTarget'>TARGET {formattedTarget}</div>
@@ -178,4 +181,13 @@ class PrimarySquare extends Component {
     }
 }
 
-export default (PrimarySquare)
+// export default (PrimarySquare)
+
+function mapStateToProps(state){
+    // console.log('Primary Square', state.appSettings);
+    return { 
+        toggleCommentary: state.toggleCommentaryBox,
+        window: state.appSettings.window
+     }
+}
+export default connect(mapStateToProps,actions)(PrimarySquare);

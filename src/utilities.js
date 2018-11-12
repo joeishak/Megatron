@@ -612,3 +612,33 @@ export function formatMetric(item, type){
   }
   
 }
+/**
+ * Gets the device type depending on the screen size, Mobile
+ */
+export function getDeviceType(window) {
+
+  let width = window.width;
+  let deviceType = undefined;
+
+  // Constants to compare to
+  const mobile = [ 
+    { type: 'mobileS', width: 320 }, 
+    {type: 'mobileM', width: 375 }, 
+    {type: 'mobileL', width: 425}, 
+    {type: 'tabletP', width: 768},
+    {type: 'laptop', width: 1024 },
+    {type: 'laptopL', width: 1440 },
+    {type: 'latptop4k', width: 2560 },
+  ]
+
+
+  for (let i = 0; i < mobile.length; i++) {
+    if(width <= mobile[i].width) {
+      deviceType = mobile[i].type
+      break;
+    }
+  }
+
+  return deviceType;
+
+}

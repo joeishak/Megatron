@@ -505,3 +505,10 @@ img {
 	height: 24px;
 
 }
+
+.emptyIcon {
+	float: right;
+	width: 28px;
+	height: 28px;
+	content: " ";
+}
