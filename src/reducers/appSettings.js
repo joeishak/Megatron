@@ -16,7 +16,7 @@ export default function(state = firstState,action) {
             return action.payload;
         case GET_APP_SETTINGS:
             console.log('testing', action.payload);
-            return action.payload;
+            return state;
         default: 
             return state;
     }

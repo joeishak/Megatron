@@ -21,8 +21,7 @@ class KendoBulletChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hidden: {visible: false},
-      targetColor: {color: 'white'}
+      hidden: {visible: false}
     }
   }
 
