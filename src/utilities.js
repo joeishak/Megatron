@@ -628,7 +628,7 @@ export function getDeviceType(window) {
     {type: 'tabletP', width: 768},
     {type: 'tablet', width: 1024 },
     {type: 'laptopL', width: 1440 },
-    {type: 'latptop4k', width: 2560 },
+    {type: 'laptop4k', width: 2560 }
   ]
 
 
@@ -636,8 +636,12 @@ export function getDeviceType(window) {
     if(width <= mobile[i].width) {
       deviceType = mobile[i].type
       break;
+    } else {
+      deviceType = 'laptopTV'
     }
   }
+
+  // console.log('debug state', width);
 
   return deviceType;
 

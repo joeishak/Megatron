@@ -62,13 +62,14 @@ class App extends Component {
       window: {
         height: window.innerHeight,
         width: window.innerWidth
-      }
+      },
+      deviceType: utils.getDeviceType({width: window.innerWidth, height: window.innerHeight})
     }
     this.props.setAppSettings(appSettings);
 }
 
  
-  async componentDidMount() {
+  componentDidMount() {
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
     this.checkAuthentication();
@@ -266,7 +267,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('app.js state', state);
+  console.log('debug state', state);
   return {
     dialogIsOpen: state.isDialogOpen, 
     detailIsOpen: state.detailsIsOpen,
