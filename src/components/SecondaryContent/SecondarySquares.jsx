@@ -5,6 +5,7 @@ import commentIconOff from '../../assets/images/comments-off.svg';
 import KendoBulletChart from '../KendoBullet/KendoBullet';
 import styles from './SecondaryContent.css';
 import  * as utils from '../../utilities.js';
+import classNames from 'classnames';
 class SecondarySquares extends Component {
     // Need to Refactor
     getColor(value, target, type, header) {
@@ -37,25 +38,42 @@ class SecondarySquares extends Component {
 
         return retColor;
     }
+
     render(){
+        {console.log('debug', this.props.deviceType )}
+
+        const isMobile = (this.props.deviceType.includes('mobile') ? true : false);
+        const isLaptop = (this.props.deviceType.includes('laptop') ? true : false);
+        const isTablet = (this.props.deviceType.includes('tablet') ? true : false);
+
+
         const formattedValue = utils.formatMetric(this.props.item,'value');
         const formattedTarget = utils.formatMetric(this.props.item,'target');
+
+        const secondaryBoxHover = classNames({'journeyBoxHover': isLaptop });
+        const secondaryBox = classNames({ 'journeyBox': isLaptop });
+        const secondaryBoxHeader = classNames({'journeyHeader k-float-left': isLaptop});
+        const commentsIcon = classNames({'k-float-right cardCommentIcon': isLaptop});
+        const secondaryBoxContent = classNames({'journeyContent': isLaptop});
+        const seconaryBoxContentAmount = classNames({'journeysAmount': isLaptop})
+        const boxContentTarget = classNames({'secondaryTarget': isLaptop});
+
         return(
-    <div className="journeyBoxHover" key={this.props.item.index}>    
+            <div className={secondaryBoxHover} key={this.props.item.index}>    
              
-                    <div className={ `journeyBox  ${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', false) : ''}`} 
+                <div className={ `${secondaryBox}  ${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', false) : ''}`} 
                     onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index)}>
                 
-                    <div  className={`journeyHeader k-float-left ${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', true) : ''}`} >
+                    <div  className={`${secondaryBoxHeader} ${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', true) : ''}`} >
                         {/* <div className={this.props.item.css[2]}><p className="journeyHeaderTitle ">{this.props.item.title}</p></div> */}
                     </div>
 
                         {/* Image Icon For Comments */}
-                        {this.props.toggleCommentary ? (<div className="k-float-right cardCommentIcon"><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={this.props.onCommentIconClick}/></div>) : null}
+                        {this.props.toggleCommentary ? (<div className={commentsIcon}><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={this.props.onCommentIconClick}/></div>) : null}
                   
-                        <div className='journeyContent'>
+                        <div className={secondaryBoxContent}>
                             <div >{this.props.item.header}</div>
-                            <div  className={`  journeysAmount ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{formattedValue}</div>
+                            <div  className={`  ${seconaryBoxContentAmount} ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{formattedValue}</div>
                             <div className=''>
                                 <KendoBulletChart 
                                     width={175} 
@@ -63,28 +81,12 @@ class SecondarySquares extends Component {
                                     valueType={this.props.item.valueType} 
                                     color="white" 
                                     key={this.props.item.index} ></KendoBulletChart></div>
-                            <div className='secondaryTarget'>{formattedTarget}</div>
+                            <div className={boxContentTarget}>{formattedTarget}</div>
                         </div>
-                            {/* <div className="journeyContent">
-                                <p>{this.props.item.header}</p>
-                            
 
-                                    {(this.props.item.index === 1 || this.props.item.index === 2) ?
-                                     <div className={` journeysAmount  ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{this.props.renderUnits(this.props.item.value)}</div>:
-                                     <div className={` journeysAmount  ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{this.props.formatPercentage(this.props.item.value)} %</div> }
-                                    
-                               
-                                    <div className="journeyKendoGraph">
-                                        <KendoBulletChart width={175} values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="white" key={this.props.item.index} ></KendoBulletChart>
-                                    </div>
-                                {(this.props.item.index === 1 || this.props.item.index === 2) ?
-                                     <div className=" journeysTarget ">TARGET {this.props.renderUnits(this.props.item.target)} </div>:
-                                     <div className="journeysTarget ">TARGET {this.props.formatPercentage(this.props.item.target) }%</div> }
-                            </div> */}
-                        </div>
-                {/* </CSSTransitionGroup> */}
+                    </div>
 
-                    </div>  
+             </div>  
         )
     }
 }

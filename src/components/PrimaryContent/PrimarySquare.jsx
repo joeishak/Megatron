@@ -46,9 +46,9 @@ class PrimarySquare extends Component {
     }
 
     render(){
-        const isMobile = (this.deviceType.includes('mobile') ? true : false);
-        const isLaptop = (this.deviceType.includes('laptop') ? true : false);
-        const isTablet = (this.deviceType.includes('tablet') ? true : false);
+        const isMobile = (this.props.deviceType.includes('mobile') ? true : false);
+        const isLaptop = (this.props.deviceType.includes('laptop') ? true : false);
+        const isTablet = (this.props.deviceType.includes('tablet') ? true : false);
 
         // {utils.getDeviceType(this.props.window)}
         const formattedValue = utils.formatMetric(this.props.item,'value');
@@ -57,27 +57,26 @@ class PrimarySquare extends Component {
             center: true
         });
 
-        const responsiveSumChartSquare = className({
+        const responsiveSumChartSquare = classNames({
             mobileSumChartSquare: isMobile,
             laptopSumChartSquare:  isLaptop,
             tabletSumChartSquare: isTablet
 
         });
-        const responsiveSumChartContent= className({
+        const responsiveSumChartContent= classNames({
             mobileSumChartContent: isMobile,
             laptopSumChartContent:  isLaptop,
             tabletSumChartContent: isTablet
 
         });
-        const laptopClasses = className({
+        const laptopClasses = classNames({
             laptopSumChartSquare: isLaptop,
             laptopSumChartContent:  isLaptop,
 
         });
-        const tabletClasses = className({
+        const tabletClasses = classNames({
             tabletSumChartSquare: isTablet,
             tabletsumChartContent:  isTablet,
-
         });
 
         return(
@@ -89,7 +88,7 @@ class PrimarySquare extends Component {
                         key={this.props.item.index}>
 
                 {/* Card */}
-                <div className={responsiveSumChartSquare `sumChartSquare zoom   ${this.props.item.css[1]} ${this.props.activeCard ? 'selectedCard ' : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
+                <div className={ `sumChartSquare zoom   ${this.props.item.css[1]} ${this.props.activeCard ? 'selectedCard ' : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
                         <div className={`sumChartContent  ${this.props.item.css[1]}`}>
                                         {this.props.toggleCommentary ? (<span className="k-float-right finCommentIcon"><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick()}/></span>) : <div className="emptyIcon"></div>}
                                         

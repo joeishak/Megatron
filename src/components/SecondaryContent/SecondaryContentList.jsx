@@ -25,6 +25,7 @@ class SecondaryContentList extends Component {
                 if(this.props.activePrimary === item.category){
                     return (
                         <SecondarySquares 
+                        deviceType={this.props.deviceType}
                         key={item.index}
                         item={item}
                         activeJourneyCard = {isActive}

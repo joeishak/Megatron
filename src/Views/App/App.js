@@ -199,6 +199,7 @@ class App extends Component {
 
   getSecondaryContent = () => {
     // Logic to render depending on App settings. this.props.appSettings.window.height and this.props.appSettings.window.width
+    console.log('debug', this.props.deviceType)
     let secondaryRender = null;
 
     const dekstopContent = ( <SecondaryContentList
@@ -211,9 +212,27 @@ class App extends Component {
       activePrimary={this.props.activePrimaryCard}
     />);
 
-    const tabletContent = (<div>Tablet Content!</div>);
+    const tabletContent =  ( <SecondaryContentList
+      data={this.props.secondaryData}
+      activeJourneyCard = {this.props.activeSecondaryCard}
+      onJourneyCardClicked={(e,index) =>{this.updateActiveSecondary(index)}}
+      onCommentIconClick={this.onCommentIconClick}
+      toggleCommentary={this.props.toggleCommentary} 
+      deviceType= {this.props.appSettings.deviceType}
+      activePrimary={this.props.activePrimaryCard}
+    />);
 
-    const mobileContent = (<div>Mobile Content1</div>);
+
+    const mobileContent = ( <SecondaryContentList
+      data={this.props.secondaryData}
+      activeJourneyCard = {this.props.activeSecondaryCard}
+      onJourneyCardClicked={(e,index) =>{this.updateActiveSecondary(index)}}
+      onCommentIconClick={this.onCommentIconClick}
+      toggleCommentary={this.props.toggleCommentary} 
+      deviceType= {this.props.appSettings.deviceType}
+      activePrimary={this.props.activePrimaryCard}
+    />);
+
 
     if (utils.getDeviceType(this.props.appSettings.window).includes('mobile')) {
       secondaryRender = mobileContent;
@@ -231,6 +250,7 @@ class App extends Component {
 
   render(){
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
+
     return (
       <div style={{height:'100%'}}>
         {this.state.authenticated &&
@@ -269,7 +289,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('debug state', state);
+
   return {
     dialogIsOpen: state.isDialogOpen, 
     detailIsOpen: state.detailsIsOpen,
