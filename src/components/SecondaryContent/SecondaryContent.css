@@ -248,11 +248,12 @@
 	color: red;
 	font-family: Ubuntu;
 	font-style: normal;
-	font-weight: 300;
+	font-weight: 200;
 	line-height: normal;
-	font-size: 30px;
+	font-size: 25px;
 	margin-bottom: -20px;
 	margin-right: 20px;
+
 }
 .mobileSecondaryContentTarget { display: none; }
 
@@ -260,30 +261,32 @@
 	color: #0DB16E;
 	font-family: Ubuntu;
 	font-style: normal;
-	font-weight: 300;
+	font-weight: 200;
 	line-height: normal;
-	font-size: 30px;
+	font-size: 25px;
 	margin-bottom: -20px;
 	margin-right: 20px;
+
 }
 
 .mobileSecondaryBullet {
 	margin-top: 20px;
 	float: right;
-	width: 30%;
-	margin-right: 10px;
-	margin-right: 20px;
+	width: 48%;
+	padding-right: -10px;
+
 }
 .secondaryBoxHeaderTitle {
 	font-family: Ubuntu;
 	font-style: normal;
 	font-weight: bold;
 	line-height: normal;
-	font-size: 1.6em;
+	font-size: 25px;
 	color: white;
 	float: left;
 	padding-top: 24px;
 	padding-left: 24px;
-	width: 65%;
+	width: 50%;
 	height: 79px;
+	
 }
