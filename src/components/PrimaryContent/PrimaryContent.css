@@ -190,7 +190,7 @@
 } */
 
 
-
+/* Mobile Stylings */
 @media only screen and (max-width: 1024px) {
 	body {
 		background-color: black;
@@ -240,6 +240,7 @@
 	
 }
 
+/* Desktop Stylings */
 @media only screen and (min-width: 1023px) {
 	body {
 		background-color: #1f1f1f;
@@ -249,11 +250,21 @@
 	}
 	.sumChartSquare{
 		margin-top: 20px;
-
 	}
 	.secondaryCategory{
 		color:black !important;
-		
+	}
+	.primaryRow {
+		padding-left: 5% !important;
+		padding-right: 5% !important;
+		height: 201px;
+	}
+	.secondaryHeader{
+		padding-top: 5px;
+		font-size: 1.1em;
+	}
+	.formattedTarget {
+		font-size: 1.1em;
 	}
 	.sumChartHeaderText{
 		color: black !important;
@@ -286,6 +297,7 @@
 } */
 
 .finCommentIcon{
+	height: 5px;
 	margin-top: 4px;
 	margin-right: 4px;
 	z-index: 3;
@@ -325,7 +337,9 @@
 } */
 
 
-/* Arrow */
+
+
+/* Arrow
 .arrow_box {
 	margin-top: 10px;
 	position: relative;
@@ -354,10 +368,6 @@
 	transform: skew(0deg, -9deg);
 }
 
-.primaryRow{
-	height: 210px !important;
-	background-color: #f4f4f4;
-}
 
 /* Inside the Donut Charts */
 /* .insideDonut {
@@ -377,12 +387,16 @@
 } */
 /* End Financial Squares */
 
+.primaryRow{
+	height: 202px !important;
+	background-color: #f4f4f4 !important;
+} 
 
 .chartRow{
 	padding-bottom: 60px;
 	background-color: rgb(235, 235, 235);
 	/* 200  */
-	height: 200px;
+	height: 205px;
 	padding-left:  40px;
 	padding-right: 40px;
 }
@@ -454,16 +468,16 @@
 }
 
 
-.formattedTarget{
-	font-size: 1.1em;
+/* .formattedTarget{
+	font-size: 1.2em;
 
-}
+} */
 .arrow_box {
-	margin-top: 10px;
+	margin-top: -5px;
 	position: relative;
 	text-align: center;
 	height: 35px;
-	width: auto;
+	width: 97%;
   }
   .arrow_box:before {
 	content: '';

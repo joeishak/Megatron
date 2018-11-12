@@ -140,7 +140,7 @@ class Navigation extends Component {
             <Nav pullRight>
             <div className="dropDownContainerBox">
               <div className="flLeft">
-                  <NavDropdown eventKey={3} className="dropDownContainer" title={this.processLoggedUser(this.props.user)} id="nav-dropdown" noCaret>
+                  <NavDropdown eventKey={3} className="dropDownContainer" title={this.processLoggedUser(this.props.user) || ""} id="nav-dropdown" noCaret>
                       <MenuItem eventKey={3.1}>Account Settings</MenuItem>
                       <MenuItem eventKey={3.2} onClick={e => this.onDataPreferencesSelcted(e)}>Data Preferences</MenuItem>
                       <MenuItem eventKey={3.3} onClick={this.logout}>Log Out</MenuItem>

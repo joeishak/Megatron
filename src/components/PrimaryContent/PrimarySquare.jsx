@@ -47,31 +47,31 @@ class PrimarySquare extends Component {
         return retColor;
     }
 
-    formatMetric(item, type){
+    // formatMetric(item, type){
 
-        console.log(item);
-        if(type==='value'){
-            switch(item.valueType){
-                case 'units':
-                return utils.renderUnits(item.value);
-                case 'currency':
-                return utils.renderDollarValue(item.value);
-                case 'percent':
-                return utils.formatPercentage(item.value);
-            }
-        }
-        else{
-            switch(item.valueType){
-                case 'units':
-                return utils.renderUnits(item.target);
-                case 'currency':
-                return utils.renderDollarValue(item.target);
-                case 'percent':
-                return utils.formatPercentage(item.target);
-            }
-        }
+    //     console.log(item);
+    //     if(type==='value'){
+    //         switch(item.valueType){
+    //             case 'units':
+    //             return utils.renderUnits(item.value);
+    //             case 'currency':
+    //             return utils.renderDollarValue(item.value);
+    //             case 'percent':
+    //             return utils.formatPercentage(item.value);
+    //         }
+    //     }
+    //     else{
+    //         switch(item.valueType){
+    //             case 'units':
+    //             return utils.renderUnits(item.target);
+    //             case 'currency':
+    //             return utils.renderDollarValue(item.target);
+    //             case 'percent':
+    //             return utils.formatPercentage(item.target);
+    //         }
+    //     }
         
-    }
+    // }
     render(){
         {utils.getDeviceType(this.props.window)}
         const formattedValue = utils.formatMetric(this.props.item,'value');
@@ -81,10 +81,11 @@ class PrimarySquare extends Component {
         })
         return(
             <div> 
-                 <div className="col-sm-2 col-md-2 col-lg-2 desktop"  
-                onClick = {this.props.enableChart}
-                 key={this.props.item.index}>
-        
+
+                {/* Desktop View */}
+                <div className="col-sm-12 col-md-2 col-lg-2 desktop"  
+                        onClick = {this.props.enableChart}
+                        key={this.props.item.index}>
 
                 {/* Card */}
                 <div className={`sumChartSquare zoom   ${this.props.item.css[1]} ${this.props.activeCard ? 'selectedCard ' : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
@@ -129,9 +130,11 @@ class PrimarySquare extends Component {
       
               
             </div>
-            <div className="col-xs-12 mobile"  
-                onClick = {this.props.enableChart}
-                 key={this.props.item.index}>
+                
+                {/* Mobile View */}
+                <div className="col-xs-12 mobile"  
+                    onClick = {this.props.enableChart}
+                    key={this.props.item.index}>
 
                 {/* Card */}
                 <div className={`sumChartSquare zoom   ${this.props.item.css[1]} ${this.props.activeCard ? 'selectedCard ' : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
@@ -172,9 +175,8 @@ class PrimarySquare extends Component {
       
               
             </div>
+            
             </div>
-           
-
         )
     }
 }
