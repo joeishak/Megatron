@@ -62,8 +62,7 @@ class App extends Component {
       window: {
         height: window.innerHeight,
         width: window.innerWidth
-      },
-      deviceType: utils.getDeviceType({width: window.innerWidth, height: window.innerHeight})
+      }
     }
     this.props.setAppSettings(appSettings);
 }
@@ -77,6 +76,9 @@ class App extends Component {
 
   componentDidUpdate(prevProps) {
 
+    if(this.props.appSettings.window != prevProps.appSettings.window){
+      this.props.updateDeviceType(this.props.appSettings.window)
+    }
     this.checkAuthentication();
     let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
     let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined

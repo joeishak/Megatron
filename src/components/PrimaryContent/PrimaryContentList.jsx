@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './PrimaryContent.css';
 import PrimarySquare from './PrimarySquare.jsx'
-
+import classNames from 'classnames'
 class PrimaryContentList extends Component {
 
     componentDidUpdate(prevProps){
@@ -21,8 +21,19 @@ class PrimaryContentList extends Component {
         return false;
     }
     render(){
+        const isMobile = (this.props.deviceType.includes('mobile') ? true : false);
+        const isLaptop = (this.props.deviceType.includes('laptop') ? true : false);
+        const isTablet = (this.props.deviceType.includes('tablet') ? true : false);
+
+
+        const responsivePrimaryRow = classNames({
+            "row primaryRow": true,
+            mobilePrimaryRow: isMobile,
+            tabletPrimaryRow: isTablet,
+            laptopPrimaryRow: isLaptop
+        });
         return(
-            <div className="row primaryRow">
+            <div className={responsivePrimaryRow}>
 
             { this.props.data.map(item=>{
                 let isActive = parseInt(this.props.activeCard) === item.index ? true : false;
