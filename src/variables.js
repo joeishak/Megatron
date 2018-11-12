@@ -5241,8 +5241,8 @@ export const SecondaryData = [
         index: 0,
         category: 0,
         header: 'Net New ARR',
-        value: 0,
-        target: 0,
+        value: 12125,
+        target: 1323452345,
         comments: [
               
         ],
@@ -5252,8 +5252,8 @@ export const SecondaryData = [
         index: 1,
         category: 0,
         header: 'Gross New ARR',
-        value: 0,
-        target: 0,
+        value: 12341234,
+        target: 1245234254,
         comments: [
               
         ],
@@ -5263,8 +5263,8 @@ export const SecondaryData = [
         index: 2,
         category: 0,
         header: 'Cancellations ARR',
-        value: 0,
-        target: 0,
+        value: 23444,
+        target: 222344,
         comments: [
               
         ],
@@ -5274,8 +5274,8 @@ export const SecondaryData = [
         index: 3,
         category: 0,
         header: 'Renewal@FP ARR',
-        value: 0,
-        target: 0,
+        value: 6654524,
+        target: 123452,
         comments: [
               
         ],
@@ -5285,8 +5285,8 @@ export const SecondaryData = [
         index: 4,
         category: 1,
         header: 'Marketable Universe',
-        value: 0,
-        target: 0,
+        value: 23563456,
+        target: 34563456,
         comments: [
               
         ],
@@ -5296,8 +5296,8 @@ export const SecondaryData = [
         index: 5,
         category: 1,
         header: 'Traffic',
-        value: 0,
-        target: 0,
+        value: 73456345,
+        target: 23462345,
         comments: [
               
         ],
@@ -5307,8 +5307,8 @@ export const SecondaryData = [
         index: 6,
         category: 1,
         header: 'UQFM Conversion ',
-        value: 0,
-        target: 0,
+        value: .34523,
+        target: .23452345,
         comments: [
               
         ],
@@ -5318,8 +5318,8 @@ export const SecondaryData = [
         index: 7,
         category: 1,
         header: 'Paid Media Spend',
-        value: 0,
-        target: 0,
+        value: .746,
+        target: .97766,
         comments: [
               
         ],

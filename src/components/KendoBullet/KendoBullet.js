@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
-
+import * as utils from '../../utilities.js'
 import {
   Chart,
   ChartTooltip,
@@ -59,13 +59,16 @@ class KendoBulletChart extends Component {
 
   render () {
 
+    const formattedValue = utils.formatMetric({valueType :this.props.valueType, value: this.props.values[0]}, 'value');
+    const formattedTarget = utils.formatMetric({valueType :this.props.valueType, value: this.props.values[1]}, 'target');
+
     const tooltipRender = ({ point }) => {
       const { value } = point;
       return (
         <span>
-          Target:  {this.renderValue(this.props.valueType,value.target)}
+          Target:  {formattedTarget}
           <br />
-          Actual:  {this.renderValue(this.props.valueType,value.current)}
+          Actual:  {formattedValue}
         </span>
       )};
 
