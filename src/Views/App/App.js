@@ -24,6 +24,7 @@ import FinancialSummary from '../../components/FinancialSummary/FinancialSummary
 import JourneySummary from '../../components/JourneySummary/JourneySummary.jsx';
 import PrimaryContentList from '../../components/PrimaryContent/PrimaryContentList.jsx';
 import SecondaryContentList from '../../components/SecondaryContent/SecondaryContentList.jsx';
+import FilterPage from '../../components/MobileComponents/FitlerPage/FilterPage.jsx';
 
 import SummaryHOC from '../../components/SummaryHOC.js';
 import Login from '../../components/Login/Login';
@@ -175,12 +176,11 @@ class App extends Component {
   }
 
   updateActivePrimary(index){
-    console.log(index)
     this.props.updateActivePrimaryCard(index);
     this.props.updateActiveSecondaryCard(0);
   }
   updateActiveSecondary(index){
-    console.log(index)
+    // console.log(index)
     this.props.updateActiveSecondaryCard(index);
   }
 
@@ -201,7 +201,6 @@ class App extends Component {
     );
   }
 
-
   getSecondaryContent = () => {
     // Logic to render depending on App settings. this.props.appSettings.window.height and this.props.appSettings.window.width
     return ( <SecondaryContentList
@@ -212,6 +211,7 @@ class App extends Component {
       toggleCommentary={this.props.toggleCommentary} 
       deviceType= {this.props.deviceType}
       activePrimary={this.props.activePrimaryCard}
+      primaryDataCategory={this.props.primaryData[this.props.activePrimaryCard].category}
     />);
 
     // const tabletContent = (<div>Tablet Content!</div>);
@@ -234,8 +234,11 @@ class App extends Component {
 
   render(){
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
+    const isMobileOrTablet = utils.getDeviceType(this.state.window).includes('mobile') || utils.getDeviceType(this.state.window).includes('tablet');
+
 
     return (
+      
       <div style={{height:'100%'}}>
         {this.state.authenticated &&
         <span>
@@ -250,18 +253,20 @@ class App extends Component {
           
           <div style={{width:'100%', height: '1050px'}}>
 
-          {/* Primary */}
+          <FilterPage activeFilters={this.props.activeFilters} availableFilters={this.props.availableFilters}></FilterPage>
 
-          {this.getPrimaryContent()}
+          {/* Primary */}
+          {/* {this.getPrimaryContent()} */}
 
           {/* Secondary */}
           
-          {this.getSecondaryContent()}
+          {/* {this.getSecondaryContent()} */}
 
           {/* DEtails  */}
           </div>
           {/* {this.getSummary()} */}
-          </span>
+        </span>
+
         }
          {this.state.authenticated === false &&
               this.props.auth.login('/')
@@ -273,7 +278,10 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log('app state', state);
   return {
+    activeFilters: state.activeFilters,
+    availableFilters: state.availableFilters,
     dialogIsOpen: state.isDialogOpen, 
     detailIsOpen: state.detailsIsOpen,
     switchFilter: state.switchFilter,
