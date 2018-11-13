@@ -226,3 +226,67 @@
 	padding-top: 50px;
 }
 
+
+/* Mobile */
+
+.mobileSecondaryBox {
+	height: 80px;
+	background-color: #1f1f1f;
+
+}
+.mobileSecondaryHeader {
+	display: none;
+}
+.mobileSecondaryHover {
+	border: 2px solid black;
+}
+.mobileCommentsIcon { display: none; }
+
+.mobileSecondaryBoxContentAmount {
+	margin-right: 10px;
+	float: right;
+	color: red;
+	font-family: Ubuntu;
+	font-style: normal;
+	font-weight: 200;
+	line-height: normal;
+	font-size: 25px;
+	margin-bottom: -20px;
+	margin-right: 20px;
+
+}
+.mobileSecondaryContentTarget { display: none; }
+
+.mobileSecondaryContanetAmountGreen {
+	color: #0DB16E;
+	font-family: Ubuntu;
+	font-style: normal;
+	font-weight: 200;
+	line-height: normal;
+	font-size: 25px;
+	margin-bottom: -20px;
+	margin-right: 20px;
+
+}
+
+.mobileSecondaryBullet {
+	margin-top: 20px;
+	float: right;
+	width: 48%;
+	padding-right: -10px;
+
+}
+.secondaryBoxHeaderTitle {
+	font-family: Ubuntu;
+	font-style: normal;
+	font-weight: bold;
+	line-height: normal;
+	font-size: 25px;
+	color: white;
+	float: left;
+	padding-top: 24px;
+	padding-left: 24px;
+	width: 50%;
+	height: 79px;
+	
+}

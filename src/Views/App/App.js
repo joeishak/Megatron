@@ -40,8 +40,11 @@ class App extends Component {
       showDropDowns: false,
       dialogIsOpen: this.props.dialogIsOpen,
       authenticated: null,
-      userinfo: null
-      
+      userinfo: null,
+      window: {
+        height: window.innerHeight,
+        weidth: window.innerWidth
+      }
     };
 
 
@@ -57,7 +60,7 @@ class App extends Component {
   }
 
   resize() {
-    // console.log('resizing', window.innerWidth, window.innerHeight);
+    // console.log('debug', window.innerWidth)
     const appSettings = {
       window: {
         height: window.innerHeight,
@@ -65,9 +68,18 @@ class App extends Component {
       }
     }
     this.props.setAppSettings(appSettings);
+<<<<<<< HEAD
 }
 
  
+=======
+    this.setState({
+      window: appSettings.window
+    });
+    // console.log('debug',utils.getDeviceType(this.state.window))
+  }
+  
+>>>>>>> 0cae4f2ab44f5af76387392e6dd258dbe3e64d8a
   componentDidMount() {
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
@@ -168,7 +180,6 @@ class App extends Component {
     }
   }
 
-
   updateActivePrimary(index){
     console.log(index)
     this.props.updateActivePrimaryCard(index);
@@ -177,12 +188,12 @@ class App extends Component {
   updateActiveSecondary(index){
     console.log(index)
     this.props.updateActiveSecondaryCard(index);
-    
   }
 
   onCommentIconClick = () => {
     this.props.showCommentBox();
-}
+  }
+
   getPrimaryContent = () => {
     return (<PrimaryContentList 
       onCommentIconClick={this.onCommentIconClick}
@@ -229,6 +240,7 @@ class App extends Component {
 
   render(){
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
+
     return (
       <div style={{height:'100%'}}>
         {this.state.authenticated &&
@@ -267,6 +279,10 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0cae4f2ab44f5af76387392e6dd258dbe3e64d8a
   return {
     dialogIsOpen: state.isDialogOpen, 
     detailIsOpen: state.detailsIsOpen,

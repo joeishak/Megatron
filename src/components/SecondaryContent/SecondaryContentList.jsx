@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import SecondarySquares from './SecondarySquares';
 class SecondaryContentList extends Component {
+
     shouldComponentUpdate(nextProps){
+
         if(this.props.toggleCommentary !== nextProps.toggleCommentary){
             return true;
         }
-         if(this.props.data !== nextProps.data){
+        if(this.props.data !== nextProps.data){
             return true;
         }
-         if(this.props.activeJourneyCard !== nextProps.activeJourneyCard){
+        if(this.props.activeJourneyCard !== nextProps.activeJourneyCard){
             return true;
         }
-         if (this.props.activePrimary !== nextProps.activePrimary){
+        if (this.props.activePrimary !== nextProps.activePrimary){
             return true;
         }
-        if(this.props.deviceType !== nextProps.deviceType){
+        if (this.props.deviceType !== nextProps.deviceType) {
             return true;
         }
         return false;
@@ -27,15 +29,14 @@ class SecondaryContentList extends Component {
                 if(this.props.activePrimary === item.category){
                     return (
                         <SecondarySquares 
+                        deviceType={this.props.deviceType}
                         key={item.index}
                         item={item}
                         activeJourneyCard = {isActive}
-                        deviceType = {this.props.deviceType}
                         onJourneyCardClicked={(e,index) => {this.props.onJourneyCardClicked(e,index)}}
                         toggleCommentary = {this.props.toggleCommentary}
                         onCommentIconClick={this.props.onCommentIconClick}
                         />
-              
                     );
                 } else return null;
                
