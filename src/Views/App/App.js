@@ -68,18 +68,12 @@ class App extends Component {
       }
     }
     this.props.setAppSettings(appSettings);
-<<<<<<< HEAD
-}
-
- 
-=======
     this.setState({
       window: appSettings.window
     });
     // console.log('debug',utils.getDeviceType(this.state.window))
   }
   
->>>>>>> 0cae4f2ab44f5af76387392e6dd258dbe3e64d8a
   componentDidMount() {
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
@@ -279,10 +273,6 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-<<<<<<< HEAD
-=======
-
->>>>>>> 0cae4f2ab44f5af76387392e6dd258dbe3e64d8a
   return {
     dialogIsOpen: state.isDialogOpen, 
     detailIsOpen: state.detailsIsOpen,
