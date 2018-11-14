@@ -14,7 +14,7 @@ const inStyles = {
 
 const DropDownFilter = (props) => {
     return (
-        <div className="dropDownContainer">
+        <div className="dropDownContainerK">
             <p className="dropDownTitle">{props.title}</p>
            {/* <ReactSelect updateFilter={props.updateFilter} defaultValue={props.defaultValue} options={props.options} ></ReactSelect> */}
             <div className="kdropDown">
