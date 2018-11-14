@@ -5167,6 +5167,7 @@ export const PrimaryData = [
             value: -10523457772345.34570239485,
             target: 2023453.3453,
             valueType: 'currency',
+            type: 'financial',
             comments: [
               
              ],
@@ -5179,6 +5180,7 @@ export const PrimaryData = [
             value: -87233.444,
             target: 89233.111, 
             valueType: 'units',
+            type: 'journey',
             comments: [
               
             ],
@@ -5191,6 +5193,7 @@ export const PrimaryData = [
             value: -123444958.2344,
             target: 29387456.2345234, 
             valueType: 'units',
+            type: 'journey',
             comments: [
               
             ],
@@ -5203,6 +5206,7 @@ export const PrimaryData = [
             value: .059,
             target: .060, 
             valueType: 'percent',
+            type: 'journey',
             comments: [
               
             ],
@@ -5215,6 +5219,7 @@ export const PrimaryData = [
             value: -.123,
             target: -.68, 
             valueType: 'percent',
+            type: 'journey',
             comments: [
               
             ],
@@ -5227,6 +5232,7 @@ export const PrimaryData = [
             value: .55,
             target: .40, 
             valueType: 'percent',
+            type: 'journey',
             comments: [
               
             ],
@@ -5284,20 +5290,21 @@ export const SecondaryData = [
     {
         index: 4,
         category: 1,
-        header: 'Marketable Universe',
-        value: 23563456,
-        target: 34563456,
+        header: 'Traffic',
+        value: 73456345,
+        target: 23462345,
         comments: [
               
         ],
         valueType: 'units'
+        
     },
     {
         index: 5,
         category: 1,
-        header: 'Traffic',
-        value: 73456345,
-        target: 23462345,
+        header: 'Marketable Universe',
+        value: 23563456,
+        target: 34563456,
         comments: [
               
         ],
@@ -5348,6 +5355,12 @@ export const InfoburstAzure = {
      },
      summaryQueryNames: {
         FinancialActualTarget: '?q=FinancialActualTarget',
+        FinancialActualTargetPrimary: '?q=FinancialActualTargetPrimary',
+        JourneyActualTargetPrimary:'?q=JourneyActualTargetPrimary',
+        JourneyBuyUseActualTargetPrimary: '?q=JourneysBuyUseActualTarget',
+        FinancialActualTargetSecondary: '?q=FinancialActualTargetSecondary',
+        FinancialQTD: '?q=FinancialQTD',
+        FinancialUnitsMultiChart: '?q=FinancialUnitsMultichart',
         FinancialMultiChart: '?q=FinancialMultichartQuery',
         JourneyActualTarget:'?q=JourneyActualTargetQuery',
         JourneyMultiChart: '?q=JourneyMultichartQuery',
@@ -5360,8 +5373,9 @@ export const InfoburstAzure = {
         JourneyMarketAreaQtd: '?q=JourneyMarketAreaQTD',
         FinancialUnitsMultichart: '?q=FinancialUnitsMultichart'
      },
-     dataXdcID:  '\\52',
-     journeyXdcID: '\\19',
-     filtersXdcID: '\\52',
+     dataXdcID:  '\\1084',
+     journeyXdcID: '\\1117',
+     filtersXdcID: '\\1092',
+     appXdcID: '\\102'
      
 }

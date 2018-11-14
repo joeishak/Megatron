@@ -52,7 +52,7 @@ class App extends Component {
       this.checkAuthentication = checkAuthentication.bind(this);
       this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
       this.getFilters  =this.getFilters.bind(this);
-      this.getSummary = this.getSummary.bind(this);
+      // this.getSummary = this.getSummary.bind(this);
       this.login = this.login.bind(this);
       // this.props.getAdobeData();
       this.props.getIbHeartbeat();
@@ -84,6 +84,12 @@ class App extends Component {
 
  
     this.checkAuthentication();
+
+    // If the old available filters change or the active filters change
+         // Call for new data with the filters
+    if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
+      this.props.getPrimaryData(this.props.activeFilters, this.props.availableFilters);
+    }
     let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
     let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined
     if( prevPropsIsEmpty && propsNotEmpty){
@@ -149,30 +155,30 @@ class App extends Component {
         },300);
     }
   }
-  getSummary(){
-    switch(this.props.detailIsOpen){
-      case true:
-      return(
-        <div style={{height:'100%'}}>
-          <SummaryViewDetails />
-        </div>
-      )
-      case false:
-      if(this.props.switchFilter === false){
-        return (
-          <div style={{height:'100%'}}>
-          <FinancialSummary  />
-         </div>
-        ) 
-      } else{
-        return (
-          <div style={{height:'100%'}}>
-         <JourneySummary />
-        </div>
-        )
-      }
-    }
-  }
+  // getSummary(){
+  //   switch(this.props.detailIsOpen){
+  //     case true:
+  //     return(
+  //       <div style={{height:'100%'}}>
+  //         <SummaryViewDetails />
+  //       </div>
+  //     )
+  //     case false:
+  //     if(this.props.switchFilter === false){
+  //       return (
+  //         <div style={{height:'100%'}}>
+  //         <FinancialSummary  />
+  //        </div>
+  //       ) 
+  //     } else{
+  //       return (
+  //         <div style={{height:'100%'}}>
+  //        <JourneySummary />
+  //       </div>
+  //       )
+  //     }
+  //   }
+  // }
 
   updateActivePrimary(index){
     console.log(index)
@@ -276,6 +282,8 @@ function mapStateToProps(state) {
   return {
     dialogIsOpen: state.isDialogOpen, 
     detailIsOpen: state.detailsIsOpen,
+    activeFilters: state.activeFilters,
+    availableFilters: state.availableFilters,
     switchFilter: state.switchFilter,
     commentBoxIsOpen: state.commentBoxIsOpen,
     user: state.user,
