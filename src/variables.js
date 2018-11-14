@@ -5169,7 +5169,50 @@ export const PrimaryData = [
             valueType: 'currency',
             type: 'financial',
             comments: [
-              
+                {
+                    id: 0,
+                    userName: 'Morty Smith',
+                    time: '8:34am',
+                    comment: 'Check out the increased sales in this sector. This will make a huge difference.',
+                    replies: [
+                        {
+                            id: 0,
+                            userName: 'Rick Sanchez',
+                            time: '9:04am',
+                            comment: 'Wow! Great job team!'
+                            
+                        },
+                        {
+                            id: 1,
+                            userName: 'Shaun White',
+                            time: '9:34am',
+                            comment: 'Was this for last month?'
+                            
+                        },
+                        {
+                            id: 2,
+                            userName: 'Morty Smith',
+                            time: '9:54am',
+                            comment: 'Yes.'
+                            
+                        }
+                    ]
+                },
+                {
+                    id: 1,
+                    userName: 'Shaun White',
+                    time: '12:33pm',
+                    comment: 'What happened in Quarter 3? ',
+                    replies: [
+                        {
+                            id: 0,
+                            userName: 'Amit Sethi',
+                            time: '8:34am',
+                            comment: 'Our customers in Japan did not take to our marketing strategy. '
+                            
+                        }
+                    ]
+                }
              ],
             css: ['1', 'spinMeFirst', '#FF0000'],
         },

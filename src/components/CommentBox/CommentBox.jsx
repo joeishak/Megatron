@@ -85,24 +85,7 @@ class CommentBox extends Component {
         this.commentInput.focus();
      
     }
-    // shouldComponentUpdate(nextProps,nextState){
-    //     if( nextProps.ibeData !== this.props.ibeData){
-    //         if(!this.props.switchFilter){
-    //         this.props.updateFinancialSummaryActiveCard(nextProps.ibeData[this.props.currentMetric-1]);
-    //         } else
-    //         {
-    //             // console.log(this.props.appData);
-    //             this.props.updateJourneySummaryActiveCard(this.props.appData.journey.squares[this.props.currentMetric-1]);
-    //         }
-    //         return true;
-
-    //     } else if(nextState.replyMessage !== this.state.replyMessage) {
-    //     return true;
-
-    //     } else {
-    //         return false;
-    //     }
-    // }
+   
     setAddCommentFocus = (e, userName) => {
        
         this.setState({commentToBeRepliedTo: e.target.id,replyMessage: '', commentCommand: `Responding to ${userName}...`, commentingUser: true});
@@ -122,7 +105,7 @@ class CommentBox extends Component {
             }
 
             // Post the Comment
-            if(this.props.switchFilter){
+            if(this.props.isPrimary){
                 this.props.addNewJourneyComment(this.props.currentMetric,comment);
             }else{
                 this.props.addNewCommentToMetric(this.props.currentMetric,comment);
@@ -143,7 +126,7 @@ class CommentBox extends Component {
                 'Reply: ',comment
             )
              // Post the Comment
-             if(this.props.switchFilter){
+             if(this.props.isPrimary){
                 this.props.addNewJourneyReply(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);
             }else{
                 this.props.addNewReplyToMetricComment(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);
@@ -227,6 +210,7 @@ class CommentBox extends Component {
             {/* Comments */}
                 <div className='commentsContainer'>
                 {
+                    (this.props.comments !== undefined) ?
                         this.props.comments.map(comment=>{
                             return (
                                 <div key = {comment.id} className='comment'>
@@ -279,7 +263,7 @@ class CommentBox extends Component {
                                     </div>
                                 </div>
                             </div>)
-                        })
+                        }) : null}
 
                 }
                 
@@ -304,12 +288,7 @@ class CommentBox extends Component {
 
 function mapStateToProps(state){
     return {
-        currentMetric: state.activeSummarySquare.index,
-        comments: state.activeSummarySquare.comments,
-        commentBoxHeader: state.activeSummarySquare.header,
-        ibeData: state.ibeData,
         appData: state.adobeData,
-        switchFilter: state.switchFilter,
         user: state.user
     }
 }

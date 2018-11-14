@@ -1,7 +1,6 @@
 import {
     ADD_MULTI_FILTER,
-    REMOVE_MULTI_FILTER,
-    UPDATE_MULTI_FILTER_VALUES
+    REMOVE_MULTI_FILTER
 } from 'actions/types';
 import _ from 'lodash';
 export default function(state = {
@@ -87,8 +86,7 @@ export default function(state = {
                     }
                 }
             return copyOfState;
-        case UPDATE_MULTI_FILTER_VALUES:
-            return state;
+
         case REMOVE_MULTI_FILTER:
              copyOfState = JSON.parse(JSON.stringify(state))  
              cat= action.payload.category;

@@ -1,9 +1,10 @@
 import {
-GET_PRIMARY_DATA
-
+GET_PRIMARY_DATA,
 } from 'actions/types';
 import { PrimaryData } from '../variables.js';
 let newState;
+let copyOfSquare;
+let index = 0;
 export default function(state = PrimaryData, action) {
     switch(action.type) {
         case  GET_PRIMARY_DATA:
@@ -29,6 +30,20 @@ export default function(state = PrimaryData, action) {
             newState[5].value = action.payload[1].data[0].UiCancelRateActual;
             newState[5].target = action.payload[1].data[0].UiCancelRateTarget;
             return newState;
+        //     case ADD_NEW_PRIMARY_COMMENT: 
+        //       index = action.payload.square-1;
+        //       copyOfSquare = Object.assign({},state[index]);
+        //       copyOfSquare.comments.push(action.payload.comment);
+        //       state[index] = copyOfSquare;
+        //   return [...state];
+        //   // CAse for adding a reply to a previous comment
+        //   case ADD_NEW_PRIMARY_REPLY:
+        //       index = action.payload.square-1;
+        //       copyOfSquare = Object.assign({},state[index]);
+        //       let commentIndex = Number(action.payload.comment)
+        //       copyOfSquare.comments[commentIndex].replies.push(action.payload.reply);
+        //       state[index] = copyOfSquare;
+        //   return [...state]
           default: 
             return state;
     }

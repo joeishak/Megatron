@@ -3,15 +3,10 @@
 import {  
     CHANGE_AUTH, 
     UPDATE_OKTA_USER,
-    GET_USER_SETTINGS,
     UPDATE_USER_SETTINGS,           
-    UPDATE_USER_MULTIVALUE_SETTINGS,
-    UPDATE_DEFAULT_SUMMARY_PREFERENCE,
-    UPDATE_DEFAULT_FIN_KPI_PREFERENCE ,
-    UPDATE_DEFAULT_JOURN_KPI_PREFERENCE,
-    UPDATE_SWITCH_FILTER_VALUE,
+    SET_APP_SETTINGS,
+    SET_VIEW_APP_SETTINGS,
     UPDATE_DIALOG_VISIBILITY , 
-    GET_ALL_DATA,
     GET_PRIMARY_DATA,
     GET_SECONDARY_DATA,
     GENERATE_FILTER_DATA,
@@ -19,11 +14,8 @@ import {
     REMOVE_MULTI_FILTER,
     SHOW_SUMMARY_VIEW_DETAILS,    
     HIDE_SUMMARY_VIEW_DETAILS,    
-    UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD,
-    UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD,
     UPDATE_ACTIVE_PRIMARY_CARD,
     UPDATE_ACTIVE_SECONDARY_CARD,
-    GET_QUERY_FILTERED_IBE_DATA,
     GET_EXCEL_MULTICHART,
     UPDATE_COMMENT_BOX_VISIBILITY,
     ADD_NEW_COMMENT,
@@ -31,12 +23,13 @@ import {
     TOGGLE_COMMENT_CARD_VISIBILITY,
     ADD_NEW_JOURNEY_COMMENT,
     ADD_NEW_JOURNEY_REPLY,
-    GET_FILTERED_JOURNEY_IBE_DATA,
-    GET_FILTERED_JOURNEY_QTD_DATA,
     MULTICHART_IS_ARR,
     GET_IBHEARTBEAT,
-    SET_APP_SETTINGS,
-    SET_VIEW_APP_SETTINGS
+
+    UPDATE_FILTER_VISIBILITITY  ,
+    UPDATE_COMMENT_VISIBILITITY ,
+    UPDATE_PRIMARY_VISIBILITITY ,
+    UPDATE_SECONDARY_VISIBILITITY  
 
 } from 'actions/types';
 import * as utils from '../utilities';
@@ -54,6 +47,58 @@ let filterParams = [
     {prompt: 'routeFilters', value: ''},
     {prompt: 'segmentFilters', value: ''}
 ];
+/**
+ * Change the state of Authentication for the user.
+ * 
+ * @param {boolean} isLoggedIn 
+ */
+export function changeAuth(isLoggedIn) {
+    return {
+        type: CHANGE_AUTH,
+        payload: isLoggedIn
+    }
+}
+
+/***
+ * Update User In Database From Okta
+ */
+export  function updateOKTAUser(user){
+    utils.addUserToDB(user);
+    // let userdb = utils.getUser(user);
+    return {
+        type: UPDATE_OKTA_USER,
+        payload: user
+    }
+}
+
+
+export function updateUserSettings(activeFilters, user, defaultSummary, defaultFinKpi, defaultJournKpi,availableFilters,settingId){
+
+    let stringGeo = activeFilters.geos;
+    let stringProducts = activeFilters.products
+    let stringRoutes = activeFilters.routes;
+    let stringMarkets = activeFilters.markets;
+    let stringSubscription = activeFilters.subscriptions;
+    let params = {
+        quarter: activeFilters.quarters[0].value,
+        segment: activeFilters.segments[0].value,
+        user: user.sub,
+        view: defaultSummary,
+        fin: defaultFinKpi,
+        journ: defaultJournKpi,
+        geos: JSON.stringify(stringGeo),
+        products: JSON.stringify(stringProducts),
+        subscriptions: JSON.stringify(stringSubscription),
+        routes: JSON.stringify(stringRoutes),
+        markets: JSON.stringify(stringMarkets)
+    }
+    let res = utils.postUserSettings(params);
+    return {
+        type: UPDATE_USER_SETTINGS,
+        payload: res
+    }
+}
+
 
 export function setAppSettings(settings) {
     let deviceType = utils.getDeviceType({width: settings.window.width, height: settings.window.height});
@@ -75,17 +120,6 @@ export function setViewAppSettings() {
 }
 
 
-/**
- * Change the state of Authentication for the user.
- * 
- * @param {boolean} isLoggedIn 
- */
-export function changeAuth(isLoggedIn) {
-    return {
-        type: CHANGE_AUTH,
-        payload: isLoggedIn
-    }
-}
 
 export function getPrimaryData(_parameters,availableFilters){
 
@@ -114,87 +148,10 @@ export function getSecondaryData(){
     }
 }
 
-export  function updateOKTAUser(user){
-    utils.addUserToDB(user);
-    // let userdb = utils.getUser(user);
-    return {
-        type: UPDATE_OKTA_USER,
-        payload: user
-    }
-}
 
 
-/**
- * Update the value of the Switch Filter 
- * 
- * @param {boolean} switchFilterValue 
- */
 
 
-export function getUserSettings(sub){
-    let res = utils.requestUserSettings(sub);
-    return {
-        type: GET_USER_SETTINGS,
-        payload: res
-    }
-}
-
-export function updateDefaultJournKpiPreference(type){
-
-    
-    return {
-        type: UPDATE_DEFAULT_JOURN_KPI_PREFERENCE,
-        payload: type
-    }
-}
-export function updateDefaultFinKpiPreference(type){
-
-    
-    return {
-        type: UPDATE_DEFAULT_FIN_KPI_PREFERENCE,
-        payload: type
-    }
-}
-export function updateDefaultSummaryPreference(type){
-
-    
-    return {
-        type: UPDATE_DEFAULT_SUMMARY_PREFERENCE,
-        payload: type
-    }
-}
-export function updateUserSettings(activeFilters, user, defaultSummary, defaultFinKpi, defaultJournKpi,availableFilters,settingId){
-
-    let stringGeo = activeFilters.geos;
-    let stringProducts = activeFilters.products
-    let stringRoutes = activeFilters.routes;
-    let stringMarkets = activeFilters.markets;
-    let stringSubscription = activeFilters.subscriptions;
-    let params = {
-        quarter: activeFilters.quarters[0].value,
-        segment: activeFilters.segments[0].value,
-        user: user.sub,
-        view: defaultSummary,
-        fin: defaultFinKpi,
-        journ: defaultJournKpi,
-        geos: JSON.stringify(stringGeo),
-        products: JSON.stringify(stringProducts),
-        subscriptions: JSON.stringify(stringSubscription),
-        routes: JSON.stringify(stringRoutes),
-        markets: JSON.stringify(stringMarkets)
-    }
-    let res = utils.postUserSettings(params);
-    return {
-        type: UPDATE_USER_SETTINGS,
-        payload: res
-    }
-}
-export function updateSwitchFilterValue(switchFilterValue) {
-    return {
-        type: UPDATE_SWITCH_FILTER_VALUE,
-        payload: switchFilterValue
-    }
-}
 
 /**
  * Update the visibility of the Modal Dialog Box
@@ -207,35 +164,18 @@ export function updateDialogVisibility(isDialogVisible) {
         payload: isDialogVisible
     }
 }
-
-
-
 /**
  * Generate the data that goes into the filter box
  * 
  */
-export function generateFilterData(type) {
+export function generateFilterData() {
     let promiseArr1;
-    switch(type){
-        case 'fin':
-        promiseArr1 =  utils.initiateFilterDataRequests();
-    console.log(promiseArr1);
-
-        break;
-        case 'journ':
-        promiseArr1 = utils.initiateJourneyFilterDataRequests();
-    console.log(promiseArr1);
-
-        break;
-
-    }
-   
+    promiseArr1 =  utils.initiateFilterDataRequests();
     return{
         type: GENERATE_FILTER_DATA,
         payload: promiseArr1
     }
 }
-
 /**
  * Add a value to the active filters for the multi filter
  * 
@@ -282,27 +222,6 @@ export function hideSummaryDetails(filter){
 }
 
 
-/***
- * Update the Financial Summary Active Card
- * @param {squareItem}
- */
-export function updateFinancialSummaryActiveCard(squareItem){
-    return {
-        type: UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD,
-        payload: squareItem
-    }
-}
-
-/***
- * Update the Journey Summary Active Card
- * @param {squareItem}
- */
-export function updateJourneySummaryActiveCard(squareItem){
-    return {
-        type: UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD,
-        payload: squareItem
-    }
-}
 
 export function updateActivePrimaryCard(index){
     console.log(index);
@@ -319,83 +238,14 @@ export function updateActiveSecondaryCard(index){
         payload: index
     }
 }
-/**
- * Get all the local data for adobe
- * 
- * @param {boolean} status
- */
-export function getAdobeData() {
 
 
-    return {
-        type: GET_ALL_DATA,
-        payload: {}
-    }
-}
 /**
  * 
  * @param {*} _parameters 
  * @param {*} availableFilters 
  */
-export function getQueryFilteredIBEData(_parameters,availableFilters){
 
-    let allFilters = {
-        quarters: Object.values(availableFilters.quarters),
-        geos: Object.values(availableFilters.geos),
-        marketAreas: Object.values(availableFilters.marketAreas),
-        products: Object.values(availableFilters.products),
-        segments: Object.values(availableFilters.segments),
-        subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
-        routeToMarkets: Object.values(availableFilters.routeToMarkets)
-    }
-    promiseArr =  utils.getFinancialSummaryData(allFilters, _parameters);
-
-      return {
-          type: GET_QUERY_FILTERED_IBE_DATA,
-          payload: promiseArr
-      }
-   
-
-}
-export function getQueryFilteredJourneyIBEData(_parameters,availableFilters){
-
-    let allFilters = {
-        quarters: Object.values(availableFilters.quarters),
-        geos: Object.values(availableFilters.geos),
-        marketAreas: Object.values(availableFilters.marketAreas),
-        products: Object.values(availableFilters.products),
-        segments: Object.values(availableFilters.segments),
-        subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
-        routeToMarkets: Object.values(availableFilters.routeToMarkets)
-    }
-    promiseArr = utils.getJourneySummaryData(allFilters,_parameters);
-      return{
-          type: GET_FILTERED_JOURNEY_IBE_DATA,
-          payload: promiseArr
-      }
-   
-
-}
-
-// export function getFilteredJourneyQtdData(_parameters,availableFilters){
-
-//     let allFilters = {
-//         quarters: Object.values(availableFilters.quarters),
-//         geos: Object.values(availableFilters.geos),
-//         marketAreas: Object.values(availableFilters.marketAreas),
-//         products: Object.values(availableFilters.products),
-//         segments: Object.values(availableFilters.segments),
-//         subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
-//         routeToMarkets: Object.values(availableFilters.routeToMarkets)
-//     }
-//     promiseArr = utils.getJourneyQtdData(allFilters,_parameters);
-//       return{
-//           type: GET_FILTERED_JOURNEY_QTD_DATA,
-//           payload: promiseArr
-//       }
-   
-
-// }
 
 export function getExcelMultichartData(_parameters,availableFilters){
     return {
@@ -482,4 +332,21 @@ export function getIbHeartbeat() {
         type: GET_IBHEARTBEAT,
         payload: res
     }
+}
+
+export function updateViewSetting(component, isShowing){
+switch(component){
+    case 'primary':
+    
+    break;
+    case  'secondary':
+    break;
+    case  'navigation':
+    break;
+    case  'filter':
+    break;
+    default:
+    break;
+
+}
 }

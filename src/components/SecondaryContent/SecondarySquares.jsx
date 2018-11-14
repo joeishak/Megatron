@@ -67,7 +67,7 @@ class SecondarySquares extends Component {
                     {/* <div className={this.props.item.css[2]}><p className="journeyHeaderTitle ">{this.props.item.title}</p></div> */}
                 </div>
                     {/* Image Icon For Comments */}
-                    {this.props.toggleCommentary ? (<div className={commentsIcon}><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={this.props.onCommentIconClick}/></div>) : null}  
+                    {this.props.toggleCommentary ? (<div className={commentsIcon}><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick(e,'secondary',this.props.item.index)}/></div>) : null}  
                     <div className={secondaryBoxContent}>
                         <div >{this.props.item.header}</div>
                         <div  className={`  ${seconaryBoxContentAmount} ${this.props.item.value >= this.props.item.target ? 'journeysAmountGreen' : ''}`}>{formattedValue}</div>
@@ -112,7 +112,7 @@ class SecondarySquares extends Component {
                     {/* <div className={this.props.item.css[2]}><p className="journeyHeaderTitle ">{this.props.item.title}</p></div> */}
                 </div>
                     {/* Image Icon For Comments */}
-                    {this.props.toggleCommentary ? (<div className={commentsIcon}><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={this.props.onCommentIconClick}/></div>) : null}  
+                    {this.props.toggleCommentary ? (<div className={commentsIcon}><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick(e,'secondary',this.props.item.index)}/></div>) : null}  
                     <div className={secondaryBoxContent}>
                         <div className={secondaryBoxHeaderTitle}>{this.props.item.header}</div>
                         <div  className={`  ${seconaryBoxContentAmount} ${this.props.item.value >= this.props.item.target ? `${boxContentAmountGreen}` : ''}`}>{formattedValue}</div>

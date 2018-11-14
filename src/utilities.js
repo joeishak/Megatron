@@ -486,18 +486,18 @@ export function getHeartbeat() {
   return axios.get(InfoburstAzure.sysInfo, {headers: headers, responseType: 'text'});
 }
 
-export function requestUserSettings(sub){
-  let body = {
-    "conn":  '18',
-    "qry": 'GetUserSettings',
-    "columnNames": 'true',
-    "params": {
-      "sub": sub     
-    }
-  }
+// export function requestUserSettings(sub){
+//   let body = {
+//     "conn":  '18',
+//     "qry": 'GetUserSettings',
+//     "columnNames": 'true',
+//     "params": {
+//       "sub": sub     
+//     }
+//   }
 
-  return axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
-}
+//   return axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
+// }
 
 export function postUserSettings(params){
   let body = {

@@ -41,7 +41,15 @@ class PrimaryContentList extends Component {
             { this.props.data.map(item=>{
                 let isActive = parseInt(this.props.activeCard) === item.index ? true : false;
               return (
-                  <PrimarySquare key={item.index} deviceType={this.props.deviceType} onCommentIconClick={this.props.onCommentIconClick}  toggleCommentary={this.props.toggleCommentary} enableChart={this.props.enableChart1Arrow} selectedCard={(e,index) =>{this.props.selectedCard(e,index)}} key={item.index} activeCard={isActive} item={item}>  </PrimarySquare>
+                  <PrimarySquare 
+                    key={item.index}
+                    deviceType={this.props.deviceType} 
+                    onCommentIconClick={(e,type,index) =>{this.props.onCommentIconClick(e,type,index)}}  
+                    toggleCommentary={this.props.toggleCommentary} 
+                    enableChart={this.props.enableChart1Arrow} 
+                    selectedCard={(e,index) =>{this.props.selectedCard(e,index)}} 
+                    activeCard={isActive} 
+                    item={item}>  </PrimarySquare>
             )
             })}
             </div>

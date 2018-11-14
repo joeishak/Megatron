@@ -48,7 +48,7 @@ class SecondaryContentList extends Component {
                             activeJourneyCard = {isActive}
                             onJourneyCardClicked={(e,index) => {this.props.onJourneyCardClicked(e,index)}}
                             toggleCommentary = {this.props.toggleCommentary}
-                            onCommentIconClick={this.props.onCommentIconClick}
+                            onCommentIconClick={(e,type,index) =>{this.props.onCommentIconClick(e,type,index)}}
                             />
                         );
                     } else return null;

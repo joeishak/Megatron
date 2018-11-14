@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import KendoDonutChart from '../KendoDonutChart/KendoDonutChart';
 import KendoBulletChart from '../KendoBullet/KendoBullet';
 import { CSSTransitionGroup } from 'react-transition-group';
 import commentIconOn from '../../assets/images/comments-on.svg';
@@ -136,7 +135,7 @@ class PrimarySquare extends Component {
                 {/* Card */}
                 <div className={`${responsiveSumChartSquare}    ${this.props.item.css[1]} ${this.props.activeCard ? responsiveSelectedCard : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
                         <div className={`sumChartContent  ${this.props.item.css[1]}`}>
-                                        {this.props.toggleCommentary ? (<span className={` k-float-right   ${responsiveCommentIcon}`}><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick()}/></span>) : <div className="emptyIcon"></div>}
+                                        {this.props.toggleCommentary ? (<span className={` k-float-right   ${responsiveCommentIcon}`}><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick(e,'primary',this.props.item.index)}/></span>) : <div className="emptyIcon"></div>}
                             {(isMobile || isTablet) ? null :  
                                 <div className={`${responsiveSumChartHeader} ${this.props.activeCard ? this.getColor(this.props.item.value, this.props.item.target, 'financial') : ''}`}>
                                     <p className={`${responsiveSumChartHeaderText} ${this.props.activeCard ? responsiveSelectedCardText : ''}`}>

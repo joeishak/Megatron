@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Root from 'Root';
 import {BrowserRouter, Route} from 'react-router-dom';
 import App from 'Views/App/App.js';
-import ServiceChecker from 'Views/ServiceChecker/ServiceChecker.jsx';
 
 import Login from './components/Login/Login.js';
 import registerServiceWorker from './registerServiceWorker';
