@@ -35,7 +35,8 @@ import {
     GET_FILTERED_JOURNEY_QTD_DATA,
     MULTICHART_IS_ARR,
     GET_IBHEARTBEAT,
-    SET_APP_SETTINGS
+    SET_APP_SETTINGS,
+    SET_VIEW_APP_SETTINGS
 
 } from 'actions/types';
 import * as utils from '../utilities';
@@ -60,6 +61,16 @@ export function setAppSettings(settings) {
     return {
         type: SET_APP_SETTINGS,
         payload: {settings,deviceType}
+    }
+}
+
+
+export function setViewAppSettings() {
+   
+
+    return {
+        type: SET_VIEW_APP_SETTINGS,
+        payload: null
     }
 }
 

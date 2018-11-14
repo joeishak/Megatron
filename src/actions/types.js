@@ -72,4 +72,4 @@ export const GET_IBHEARTBEAT = 'get_ibheartbeat';
 
 // App Settings
 export const SET_APP_SETTINGS = 'set_app_settings';
-
+export const SET_VIEW_APP_SETTINGS = 'set_view_app_settings';
