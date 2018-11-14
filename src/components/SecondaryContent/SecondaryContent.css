@@ -248,11 +248,12 @@
 	color: red;
 	font-family: Ubuntu;
 	font-style: normal;
-	font-weight: 200;
+	font-weight: bold;
 	line-height: normal;
 	font-size: 25px;
 	margin-bottom: -20px;
 	margin-right: 20px;
+	padding-top:10px;
 
 }
 .mobileSecondaryContentTarget { display: none; }
@@ -261,7 +262,7 @@
 	color: #0DB16E;
 	font-family: Ubuntu;
 	font-style: normal;
-	font-weight: 200;
+	font-weight: bold;
 	line-height: normal;
 	font-size: 25px;
 	margin-bottom: -20px;
@@ -279,9 +280,9 @@
 .secondaryBoxHeaderTitle {
 	font-family: Ubuntu;
 	font-style: normal;
-	font-weight: bold;
+	/* font-weight: bold; */
 	line-height: normal;
-	font-size: 25px;
+	font-size: 1.5em;
 	color: white;
 	float: left;
 	padding-top: 24px;
@@ -289,4 +290,29 @@
 	width: 50%;
 	height: 79px;
 	
+}
+
+/* Primary Data Category Navigation and Title */
+.primaryDataCategoryContainer {
+	border: 1px solid transparent;
+	height: 80px;
+}
+
+.primaryCategoryTitle {
+	font-family: Ubuntu;
+	font-style: normal;
+	/* font-weight: bold; */
+	line-height: normal;
+	font-size: 1.9em;
+	color: white;
+	margin-top: 20px;
+	width: 50%;
+	margin-left: 70px;
+}
+
+.primaryCateogryNav  {
+	float: left;
+	font-size: 3.3em;
+	color: white;
+	margin-left: 20px;
 }

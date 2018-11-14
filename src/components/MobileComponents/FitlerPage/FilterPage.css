@@ -1,0 +1,44 @@
+.filterMobileContainer {
+    background-color: #3c3c3c;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+.filterMobilePillsContainer {
+    padding: 10px;
+    border: 1px solid transparent;
+}
+
+.filterMobileDropDownContainer {
+    margin: auto;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+
+.filterListMobile {
+    display: inline;
+    list-style: none;
+}
+
+.filterListMobile li {
+    display: inline-block;
+    border: 1px solid white;
+    border-radius: 25px;
+    margin-top: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.filterListMobile li:after {
+    content: "  ";
+  }
+
+
+
