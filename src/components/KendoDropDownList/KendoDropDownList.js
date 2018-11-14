@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // Custom Components and Styles
 import * as actions from 'actions';
+import styles from './KendoDropDownList.css';
 import { DropDownList } from '@progress/kendo-react-dropdowns';
 // In Line Styles
 const inStyles = {
@@ -34,12 +35,14 @@ class KendoDropDownList extends Component {
     
     render(){
         return(
-            <DropDownList 
-                style={inStyles.background} 
-                textField="value"
-                data={this.props.data} 
-                onChange={this.handleFilterChange} 
-                 />
+            <div className="kdropDownLaptop">
+                <DropDownList 
+                    style={inStyles.background} 
+                    textField="value"
+                    data={this.props.data} 
+                    onChange={this.handleFilterChange} 
+                    />
+            </div>
         )
     }
 }

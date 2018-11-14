@@ -31,7 +31,7 @@ class SecondaryContentList extends Component {
                 <div className="primaryCategoryTitle">{this.props.primaryDataCategory}</div>
             </div> ): null;
         
-        const renderStyle = isMobileAndTablet ? { height:'100%', border: '1px solid red'} : { height:'100%', border: '1px solid red', marginTop: '30px'};
+        const renderStyle = isMobileAndTablet ? { height:'100%'} : { height:'100%', marginTop: '30px'};
         
         return(
             <div style={renderStyle}> 

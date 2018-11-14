@@ -253,14 +253,14 @@ class App extends Component {
           
           <div style={{width:'100%', height: '1050px'}}>
 
-          <FilterPage activeFilters={this.props.activeFilters} availableFilters={this.props.availableFilters}></FilterPage>
+          {/* <FilterPage activeFilters={this.props.activeFilters} availableFilters={this.props.availableFilters}></FilterPage> */}
 
           {/* Primary */}
-          {/* {this.getPrimaryContent()} */}
+          {this.getPrimaryContent()}
 
           {/* Secondary */}
           
-          {/* {this.getSecondaryContent()} */}
+          {this.getSecondaryContent()}
 
           {/* DEtails  */}
           </div>

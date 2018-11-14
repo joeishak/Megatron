@@ -3,6 +3,7 @@ import styles from './FilterPage.css';
 import * as _ from 'lodash';
 import * as actions from 'actions';
 import {connect } from 'react-redux';
+import KendoDropDownList from '../../KendoDropDownList/KendoDropDownList.js';
 
 // components
 import DropDownFilter from './components/DropDownFilter.jsx';
@@ -28,7 +29,7 @@ class FilterPage extends Component {
 
     // when a drop down is selected
     updateActiveFiltersHandler = (e) => {
-        this.props.addValueToActiveMultiFilter(e);
+        this.props.addValueToActiveMultiFilter(e.target.value);
     }
 
     render () {
@@ -47,13 +48,41 @@ class FilterPage extends Component {
                 </div>
 
                 <div className="filterMobileDropDownContainer">
-                    <DropDownFilter title="Quarter" updateFilter={this.updateActiveFiltersHandler} defaultValue={this.props.activeFilters} options={this.props.availableFilters.quarters}/>
-                    <DropDownFilter title="Geo" defaultValue={this.props.activeFilters} options={this.props.availableFilters.geos}/>
-                    <DropDownFilter title="Product Name" defaultValue={this.props.activeFilters} options={this.props.availableFilters.products}/>
-                    <DropDownFilter title="Subscription Offering" defaultValue={this.props.activeFilters} options={this.props.availableFilters.subscriptionOfferings}/>
-                    <DropDownFilter title="Market Area" defaultValue={this.props.activeFilters} options={this.props.availableFilters.marketAreas}/>
-                    <DropDownFilter title="Route To Market" defaultValue={this.props.activeFilters} options={this.props.availableFilters.routeToMarkets}/>
-                    <DropDownFilter title="Segment" defaultValue={this.props.activeFilters} options={this.props.availableFilters.segments}/>
+                    <DropDownFilter 
+                        title="Quarter" 
+                        updateFilter={this.updateActiveFiltersHandler} 
+                        defaultValue={this.props.activeFilters} 
+                        options={this.props.availableFilters.quarters}/>
+                    <DropDownFilter 
+                        title="Geo" 
+                        updateFilter={this.updateActiveFiltersHandler}
+                        defaultValue={this.props.activeFilters} 
+                        options={this.props.availableFilters.geos}/>
+                    <DropDownFilter 
+                        title="Product Name" 
+                        updateFilter={this.updateActiveFiltersHandler}
+                        defaultValue={this.props.activeFilters} 
+                        options={this.props.availableFilters.products}/>
+                    <DropDownFilter 
+                        title="Subscription Offering" 
+                        updateFilter={this.updateActiveFiltersHandler}
+                        defaultValue={this.props.activeFilters} 
+                        options={this.props.availableFilters.subscriptionOfferings}/>
+                    <DropDownFilter 
+                        title="Market Area" 
+                        updateFilter={this.updateActiveFiltersHandler}
+                        defaultValue={this.props.activeFilters} 
+                        options={this.props.availableFilters.marketAreas}/>
+                    <DropDownFilter 
+                        title="Route To Market"
+                        updateFilter={this.updateActiveFiltersHandler}
+                        defaultValue={this.props.activeFilters} 
+                        options={this.props.availableFilters.routeToMarkets}/>
+                    <DropDownFilter 
+                        title="Segment" 
+                        updateFilter={this.updateActiveFiltersHandler}
+                        defaultValue={this.props.activeFilters} 
+                        options={this.props.availableFilters.segments}/>
                 </div>
             </div>
         )

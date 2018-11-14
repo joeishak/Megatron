@@ -6,3 +6,11 @@
 .dropDownContainer {
     margin-top: 0px;
 }
+
+.kdropDown {
+    width: 100%;
+}
+
+.k-widget, .k-dropdown, .k-header {
+    width: 100%
+}
