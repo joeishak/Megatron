@@ -3,7 +3,6 @@
 import {  
     CHANGE_AUTH, 
     UPDATE_OKTA_USER,
-    GET_DB_USER,
     GET_USER_SETTINGS,
     UPDATE_USER_SETTINGS,           
     UPDATE_USER_MULTIVALUE_SETTINGS,
@@ -36,7 +35,6 @@ import {
     GET_FILTERED_JOURNEY_QTD_DATA,
     MULTICHART_IS_ARR,
     GET_IBHEARTBEAT,
-    GET_APP_SETTINGS,
     SET_APP_SETTINGS
 
 } from 'actions/types';
@@ -65,12 +63,6 @@ export function setAppSettings(settings) {
     }
 }
 
-export function getAppSettings() {
-    return {
-        type: GET_APP_SETTINGS,
-        payload: null
-    }
-}
 
 /**
  * Change the state of Authentication for the user.
@@ -121,13 +113,6 @@ export  function updateOKTAUser(user){
 }
 
 
-export const getDbUser = (user) => {
-   let  newuser = utils.getUser(user);
-    return {
-        type: GET_DB_USER,
-        payload: newuser
-    }
-}
 /**
  * Update the value of the Switch Filter 
  * 
@@ -169,15 +154,6 @@ export function updateDefaultSummaryPreference(type){
 }
 export function updateUserSettings(activeFilters, user, defaultSummary, defaultFinKpi, defaultJournKpi,availableFilters,settingId){
 
-    // let allFilters = {
-    //     quarters: Object.values(availableFilters.quarters),
-    //     geos: Object.values(availableFilters.geos),
-    //     marketAreas: Object.values(availableFilters.marketAreas),
-    //     products: Object.values(availableFilters.products),
-    //     segments: Object.values(availableFilters.segments),
-    //     subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
-    //     routeToMarkets: Object.values(availableFilters.routeToMarkets)
-    // }
     let stringGeo = activeFilters.geos;
     let stringProducts = activeFilters.products
     let stringRoutes = activeFilters.routes;
@@ -196,11 +172,7 @@ export function updateUserSettings(activeFilters, user, defaultSummary, defaultF
         routes: JSON.stringify(stringRoutes),
         markets: JSON.stringify(stringMarkets)
     }
-    console.log('Updating User Setting Params: ',params);
     let res = utils.postUserSettings(params);
-    console.log(res);
-    // let res2 = utils.postMultiValueSettings(activeFilters,settingId,availableFilters);
-
     return {
         type: UPDATE_USER_SETTINGS,
         payload: res

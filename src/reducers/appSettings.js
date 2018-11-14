@@ -1,6 +1,5 @@
 import {
-    SET_APP_SETTINGS,
-    GET_APP_SETTINGS
+    SET_APP_SETTINGS
 } from 'actions/types';
 
 const firstState = {
@@ -17,9 +16,6 @@ export default function(state = firstState,action) {
         case SET_APP_SETTINGS:
             let newState1 = Object.assign({},state);
             return {...newState1,deviceType: action.payload.deviceType, window: action.payload.settings.window};
-        case GET_APP_SETTINGS:
-            return state;
-       
         default: 
             return state;
     }
