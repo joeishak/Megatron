@@ -561,6 +561,10 @@ export function renderUnits(value){
   let abs;
   let suffix; 
   let isNegative = false;
+  if(value === 0){
+    return 0;
+  }
+  
   if ( value < 0){
       isNegative = true;
       abs = Math.abs(value)
@@ -602,6 +606,9 @@ export function renderDollarValue(value) {
   let prefix ='$';
   let suffix; 
   let isNegative = false;
+  if(value === 0){
+    return 0;
+  }
   if ( value < 0){
       isNegative = true;
       abs = Math.abs(value)

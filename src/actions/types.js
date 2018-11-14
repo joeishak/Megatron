@@ -9,7 +9,6 @@ export const CHANGE_AUTH                     = 'change_auth';
 
 // User
 export const UPDATE_OKTA_USER                = 'update_okta_user';
-export const GET_DB_USER                     = 'get_db_user';
 
 // User SEttings 
 export const GET_USER_SETTINGS               = 'get_user_settings';
@@ -73,5 +72,4 @@ export const GET_IBHEARTBEAT = 'get_ibheartbeat';
 
 // App Settings
 export const SET_APP_SETTINGS = 'set_app_settings';
-export const GET_APP_SETTINGS = 'get_app_settings';
-export const UPDATE_DEVICE_TYPE = 'update_device_type';
+
