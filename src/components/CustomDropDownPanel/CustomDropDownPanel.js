@@ -24,10 +24,10 @@ class CustomDropDownPanel extends Component {
     }
 
     componentDidUpdate(prevProps){
-        if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
-            this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
-            this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
-        }
+        // if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
+        //     this.props.getQueryFilteredIBEData(this.props.activeFilters,this.props.availableFilters);
+        //     this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,this.props.availableFilters);
+        // }
     }
   
     render(){

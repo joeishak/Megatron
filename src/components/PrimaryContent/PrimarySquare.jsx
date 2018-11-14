@@ -56,8 +56,6 @@ class PrimarySquare extends Component {
         const alignCenter = classNames({
             center: true
         });
-
-
         const responsiveSquareSize = classNames({
             "col-sm-12 col-md-2 col-lg-2 ": isLaptop,
             "col-xs-12 ": (isMobile || isTablet) ? true: false
@@ -69,16 +67,6 @@ class PrimarySquare extends Component {
             laptopSumChartSquare:  isLaptop
 
         });
-        // const responsiveSumChartContent= classNames({
-        //     sumChartContent: true
-        //     // mobileSumChartContent: isMobile,
-        //     // tabletSumChartContent: isTablet,
-        //     // laptopSumChartContent:  isLaptop
-
-        // });
-        // const responsiveZoom = classNames({
-        //     zoom: true
-        // });
         const responsiveSelectedCard = classNames({
             selectedCard: true,
             mobileSelectedCard: isMobile || isTablet,
@@ -92,7 +80,6 @@ class PrimarySquare extends Component {
             tabletCommentIcon: isTablet || isMobile,
             laptopCommentIcon: isLaptop
         });
-
         const responsiveEmptyComment = classNames({
             emptyIcon: true
         });
@@ -102,42 +89,36 @@ class PrimarySquare extends Component {
             tabletSumChartHeader: isTablet ,
             laptopSumChartHeader: isLaptop
         });
-
         const responsiveSumChartHeaderText = classNames({
             sumChartHeaderText: true,
             mobileSumChartHeaderText: isMobile|| isTablet,
             tabletSumChartHeaderText: isTablet ,
             laptopSumChartHeaderText: isLaptop
         });
-        
         const responsiveSelectedCardText = classNames({
             selectedCardText: true,
             mobileSelectedCardText: isMobile|| isTablet,
             tabletSelectedCardText: isTablet ,
             laptopSelectedCardText: isLaptop
         });
-
         const responsiveSecondaryHeader = classNames({
             secondaryHeader: true,
             mobileSecondaryHeader: isMobile || isTablet,
             tabletSecondaryHeader: isTablet ,
             laptopSecondaryHeader: isLaptop
         });
-
         const responsiveValueText  = classNames({
             valueText: true,
             mobileValueText: isMobile|| isTablet,
             tabletValueText: isTablet ,
             laptopValuesText: isLaptop
         });
-
         const responsiveTarget = classNames({
             formattedTarget: true,
             mobileTargetText: isMobile|| isTablet,
             tabletTargetText: isTablet,
             laptopTargetText: isLaptop
         });
-
         const responsiveBullet = classNames({
             bullet: true,
             mobileBullet: isMobile|| isTablet,
@@ -156,8 +137,6 @@ class PrimarySquare extends Component {
                 <div className={`${responsiveSumChartSquare}    ${this.props.item.css[1]} ${this.props.activeCard ? responsiveSelectedCard : ''}`} onClick={e => this.props.selectedCard(e, this.props.item.index)}>
                         <div className={`sumChartContent  ${this.props.item.css[1]}`}>
                                         {this.props.toggleCommentary ? (<span className={` k-float-right   ${responsiveCommentIcon}`}><img  alt="" src={this.props.item.comments.length !== 0 ? commentIconOn: commentIconOff} onClick={e => this.props.onCommentIconClick()}/></span>) : <div className="emptyIcon"></div>}
-                                        
-
                             {(isMobile || isTablet) ? null :  
                                 <div className={`${responsiveSumChartHeader} ${this.props.activeCard ? this.getColor(this.props.item.value, this.props.item.target, 'financial') : ''}`}>
                                     <p className={`${responsiveSumChartHeaderText} ${this.props.activeCard ? responsiveSelectedCardText : ''}`}>
@@ -173,12 +152,7 @@ class PrimarySquare extends Component {
                                             {formattedValue}
                                         </span>
                                         <span className={responsiveSecondaryHeader}>{this.props.item.header}</span>
-
-                                
-                                      
                                         {/* Bullet Chart */}
-                                             
-                                       
                                         <span className={responsiveBullet}>
                                                    <KendoBulletChart 
                                                     width = {200}
@@ -188,29 +162,16 @@ class PrimarySquare extends Component {
                                                     key={this.props.item.index} ></KendoBulletChart>
                                                 </span>
                                 </div>  :  
-                            
                                 <div className={alignCenter}>
                                             <div className={responsiveSecondaryHeader}>{this.props.item.header}</div>
-
-                                            {/* REFACTOR: Remove formatted value , bullet chart, and formatter target to SummaryMetric 
-                                            - - Pass Item down
-                                            */}
-                                            {/* Formatted Value $###.## (M / %)*/}
-                                        
-
                                             <div className={`${responsiveValueText}  ${this.props.item.value >= this.props.item.target ?  'selectedCardFontColorGreen' : ' selectedCardFontColorRed'} `}>
                                                 {formattedValue}
                                             </div>
-                                            {/* Bullet Chart */}
                                                     <div >
-                                                    {/* <KendoDonutChart donutColor={this.props.item.value >= this.props.item.target ? '#0DB16E': '#FF0000'} key={this.props.item.index} donutCenterRender= {()=>  */}
-                                                    {/*  <div className="insideDonut"><span className={  this.props.item.value >= this.props.item.target ? ' valueText selectedCardFontColorGreen' : 'valueText selectedCardFontColorRed'}>{this.renderDollarValue(this.props.item.value)}</span><span className='targetText'>Target</span><span className='targetValueText'>{this.renderDollarValue(this.props.item.target)}</span></div>}/> 
-                                                    
-                                            */} 
                                             <KendoBulletChart values={[this.props.item.value, this.props.item.target]} valueType={this.props.item.valueType} color="#3c3c3c" key={this.props.item.index} ></KendoBulletChart>
                                                     </div>
                                             {/* Formatted Target $###.## (M / %)*/}
-                                            <div className={responsiveTarget}>TARGET {formattedTarget}</div>
+                                            <div className={responsiveTarget}>{formattedTarget}</div>
                                     </div> }
 
                                

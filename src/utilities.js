@@ -250,6 +250,64 @@ export function getFinancialSummaryData(allFilters, _parameters){
    return promiseArr;
 }
 
+export function requestPrimaryData(allFilters, _parameters){
+  responseArray = [];
+
+ // filterParams[0].value = _parameters.quarters[0].value;
+ filterParams[1].value = _parameters.products[0].value;
+ filterParams[2].value = _parameters.geos[0].value;
+ filterParams[3].value = _parameters.subscriptions[0].value;
+ filterParams[4].value = _parameters.markets[0].value;
+ filterParams[5].value = _parameters.routes[0].value;
+ filterParams[6].value = _parameters.segments[0].value;
+
+let journParams = [
+  {prompt: 'quarterFilters', value: ''},
+  {prompt: 'productFilters', value: ''},
+  {prompt: 'geoFilters', value: ''},
+  {prompt: 'maFilters', value: ''},
+  {prompt: 'routeFilters', value: ''},
+  {prompt: 'subscriptionFilters', value: ''}
+]
+ // Remove First Row from all the filters 
+ // Contains All Data Filters
+ // allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
+ generateFilterParams('fin', filterParams, allFilters, _parameters);
+ generateFilterParams('', journParams, allFilters, _parameters);
+
+
+ 
+ let params1 = filterParams.reduce((prev, param) => {
+         let p = '';
+         p = prev + '&' + param.prompt + '=' + param.value;
+         return p;
+     
+   }, '');
+   let params2 = journParams.reduce((prev, param) => {
+    let p = '';
+    p = prev + '&' + param.prompt + '=' + param.value;
+    return p;
+
+}, '');
+
+   const primaryFinancial = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialActualTargetPrimary  + params1 + '&json=1', 
+   {headers: headers, responseType: 'text'});
+   const primaryJourney = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyActualTargetPrimary  + params1 + '&json=1', 
+   {headers: headers, responseType: 'text'});
+   const primaryBuyUse= axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyBuyUseActualTargetPrimary  + params2 + '&json=1', 
+   {headers: headers, responseType: 'text'});
+
+  //  const primaryJourney =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.FinancialMultiChart  + params1 + '&json=1', 
+  //  {headers: headers, responseType: 'text'});
+
+  //  const unitsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialUnitsMultichart  + params1 + '&json=1', 
+  //  {headers: headers, responseType: 'text'});
+   responseArray.push(primaryFinancial, primaryJourney,primaryBuyUse);
+   let promiseArr = Promise.all(responseArray);
+
+   return promiseArr;
+}
+
 export function getJourneySummaryData(allFilters,_parameters){
   responseArray = [];
   promiseArr = [];

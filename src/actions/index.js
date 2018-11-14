@@ -84,10 +84,23 @@ export function changeAuth(isLoggedIn) {
     }
 }
 
-export function getPrimaryData(){
+export function getPrimaryData(_parameters,availableFilters){
+
+    console.log('I made to index.js get primary data');
+    let allFilters = {
+        quarters: Object.values(availableFilters.quarters),
+        geos: Object.values(availableFilters.geos),
+        marketAreas: Object.values(availableFilters.marketAreas),
+        products: Object.values(availableFilters.products),
+        segments: Object.values(availableFilters.segments),
+        subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
+        routeToMarkets: Object.values(availableFilters.routeToMarkets)
+    }
+    promiseArr = utils.requestPrimaryData(allFilters,_parameters);
+  
     return{
         type: GET_PRIMARY_DATA,
-        payload: null
+        payload: promiseArr
     }
 }
 

@@ -3,11 +3,32 @@ GET_PRIMARY_DATA
 
 } from 'actions/types';
 import { PrimaryData } from '../variables.js';
-
+let newState;
 export default function(state = PrimaryData, action) {
     switch(action.type) {
         case  GET_PRIMARY_DATA:
-            return state;
+        console.log(action.payload);
+
+            newState = Object.assign([], state);
+            //Finance
+            newState[0].value = action.payload[0].data[0].NetNewARRActual;
+            newState[0].target = action.payload[0].data[0].NetNewARRTarget;
+            //Discover
+            newState[1].value = action.payload[1].data[0].TrafficActual;
+            newState[1].target = action.payload[1].data[0].TrafficTarget;
+             //Buy
+             newState[2].value = action.payload[2].data[0].NewQfmActual;
+             newState[2].target = action.payload[2].data[0].NewQfmTarget;
+              //Try
+            newState[3].value = action.payload[1].data[0].ConversionActual;
+            newState[3].target = action.payload[1].data[0].ConversionTarget;
+             //Use
+             newState[4].value = action.payload[2].data[0].RepeatUserMauActual;
+             newState[4].target = action.payload[2].data[0].RepeatUserMauTarget;
+              //Renew
+            newState[5].value = action.payload[1].data[0].UiCancelRateActual;
+            newState[5].target = action.payload[1].data[0].UiCancelRateTarget;
+            return newState;
           default: 
             return state;
     }
