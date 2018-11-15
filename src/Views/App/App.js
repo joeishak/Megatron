@@ -11,6 +11,8 @@ import '@progress/kendo-theme-default/dist/all.css';
 
 // Custom Components
 import FilterBox from 'components/FilterBox/FilterBox';
+import Playground from '../../components/MobileComponents/Playground/Playground.jsx';
+// import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
 import CustomDropDownPanel from 'components/CustomDropDownPanel/CustomDropDownPanel';
 import SummaryViewDetails from 'components/SummaryViewDetails/SummaryViewDetails';
 import KendoDialog from '../../components/KendoDialog/KendoDialog';
@@ -19,7 +21,7 @@ import PrimaryContentList from '../../components/PrimaryContent/PrimaryContentLi
 import SecondaryContentList from '../../components/SecondaryContent/SecondaryContentList.jsx';
 import FilterPage from '../../components/MobileComponents/FitlerPage/FilterPage.jsx';
 import Login from '../../components/Login/Login';
-
+import { timingSafeEqual } from 'crypto';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -67,9 +69,6 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps) {
-
- 
-    this.checkAuthentication();
 
     // If the old available filters change or the active filters change
     //  Call for new data with the filters
@@ -140,6 +139,9 @@ class App extends Component {
     // console.log(index)
     this.props.updateActiveSecondaryCard(index);
   }
+  updateMobileView(toUpdateTo) {
+    console.log(toUpdateTo);
+  }
 
   onCommentIconClick = (e,type,index) => {
    console.log(e,index,type);
@@ -178,9 +180,11 @@ class App extends Component {
       deviceType= {this.props.deviceType}
       activePrimary={this.props.activePrimaryCard}
       primaryDataCategory={this.props.primaryData[this.props.activePrimaryCard].category}
+      updateMobileView={(e, updateTo) => {this.updateMobileView(updateTo)}}
     />);
 
   }
+
 
   render(){
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
@@ -217,6 +221,9 @@ class App extends Component {
 
               {/* Secondary */}      
               {this.getSecondaryContent()}
+
+              {/* Playground */}
+              {/* <Playground></Playground> */}
          
           </div>
          

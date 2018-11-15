@@ -1,0 +1,29 @@
+.horizontalSliderContainer {
+    color: white;
+    height: 200px;
+  
+    width: 100%;
+    background-color: black;
+    overflow-y: hidden 
+}
+
+.scrolling-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: hidden 
+}
+
+.card {
+   
+    height: 195px;
+    width: 220px;
+    flex: 0 0 auto;
+    overflow-y: hidden 
+}
+
+.scrolling-wrapper::-webkit-scrollbar {
+    display: none;
+}
+  
