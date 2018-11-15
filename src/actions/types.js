@@ -26,10 +26,10 @@ export const UPDATE_DEFAULT_JOURN_KPI_PREFERENCE = 'update_default_journ_kpi_pre
 export const UPDATE_ACTIVE_PRIMARY_CARD          = "update_active_primary_card";
 export const UPDATE_ACTIVE_SECONDARY_CARD          = "update_active_secondary_card";
 // Not an infoburst action now, but will be
-export const ADD_NEW_COMMENT = 'add_new_comment';
-export const ADD_NEW_REPLY   = 'add_new_reply';
-export const ADD_NEW_JOURNEY_COMMENT = 'add_new_journey_comment';
-export const ADD_NEW_JOURNEY_REPLY = 'add_new_journey_reply';
+export const ADD_NEW_PRIMARY_COMMENT = 'add_new_primary_comment';
+export const ADD_NEW_PRIMARY_REPLY   = 'add_new_primary_reply';
+export const ADD_NEW_SECONDARY_COMMENT = 'add_new_secondary_comment';
+export const ADD_NEW_SECONDARY_REPLY = 'add_new_secondary_reply';
 export const GET_EXCEL_MULTICHART = 'get_excel_multichart';
 // Comment Box
 export const UPDATE_COMMENT_BOX_VISIBILITY = 'update_comment_box_visibility';

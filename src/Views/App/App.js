@@ -75,6 +75,9 @@ class App extends Component {
     //  Call for new data with the filters
     if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
       this.props.getPrimaryData(this.props.activeFilters, this.props.availableFilters);
+      this.props.getSecondaryData(this.props.activeFilters, this.props.availableFilters);
+
+      
     }
     let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
     let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined
@@ -196,9 +199,11 @@ class App extends Component {
    
           {(this.props.commentBoxIsOpen) ? 
             <CommentBox
+              currentMetric={this.state.activeCommentBoxMetric.index}
               comments={this.state.activeCommentBoxMetric.comments} 
               commentBoxHeader={this.state.activeCommentBoxMetric.header} 
-              isPrimary={(this.state.activeCommentBoxMetric.type!==undefined) ? true: false}/>
+              isPrimary={(this.state.activeCommentBoxMetric.type !== undefined) ? true: false}
+              user={this.props.user}/>
                : null}
 
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>

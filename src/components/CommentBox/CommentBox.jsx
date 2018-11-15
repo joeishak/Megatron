@@ -105,10 +105,11 @@ class CommentBox extends Component {
             }
 
             // Post the Comment
-            if(this.props.isPrimary){
-                this.props.addNewJourneyComment(this.props.currentMetric,comment);
+            if(this.props.isPrimary === false){
+                console.log('Im in')
+                this.props.addNewCommentToSecondaryMetric(this.props.currentMetric,comment);
             }else{
-                this.props.addNewCommentToMetric(this.props.currentMetric,comment);
+                this.props.addNewCommentToPrimaryMetric(this.props.currentMetric,comment);
             }
             
             this.setState({replyMessage: ''})
@@ -126,10 +127,10 @@ class CommentBox extends Component {
                 'Reply: ',comment
             )
              // Post the Comment
-             if(this.props.isPrimary){
-                this.props.addNewJourneyReply(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);
+             if(this.props.isPrimary === false){
+                this.props.addNewReplyToSecondaryMetric(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);
             }else{
-                this.props.addNewReplyToMetricComment(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);
+                this.props.addNewReplyToPrimaryMetricComment(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);
             }
            
             this.setState({
@@ -264,10 +265,6 @@ class CommentBox extends Component {
                                 </div>
                             </div>)
                         }) : null}
-
-                }
-                
-
                 </div>
             {/* Reply / Attachment Footer */}
                 <div className='commentResponseFooter'>
@@ -288,8 +285,6 @@ class CommentBox extends Component {
 
 function mapStateToProps(state){
     return {
-        appData: state.adobeData,
-        user: state.user
     }
 }
 export default connect(mapStateToProps,actions) (CommentBox)
