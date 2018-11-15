@@ -20,23 +20,23 @@ import {
             newState[1].value = action.payload[0].data[0].GrossNewARRActual;
             newState[1].target = action.payload[0].data[0].GrossNewARRTarget;
             //  //Cacncellations
-             newState[2].value = action.payload[0].data[0].NetCancellationsARRActual;
-             newState[2].target = action.payload[0].data[0].NetCancellationsARRTarget;
+             newState[2].value = action.payload[0].data[0].NetCancellationARRActual;
+             newState[2].target = action.payload[0].data[0].NetCancellationARRTarget;
             //   //Renewal
             newState[3].value = action.payload[0].data[0].RenewalAtFPActual;
             newState[3].target = action.payload[0].data[0].RenewalAtFPTarget;
             //  //Target
-             newState[5].value = action.payload[2].data[0].TrafficActual;
-             newState[5].target = action.payload[2].data[0].TrafficTarget;
+             newState[5].value = action.payload[1].data[0].TrafficActual;
+             newState[5].target = action.payload[1].data[0].TrafficTarget;
             //  //Marketable universe
              newState[5].value = action.payload[2].data[0].MarketableActual;
              newState[5].target = action.payload[2].data[0].MarketableTarget;
             //   //UQFM Conversions
-            newState[6].value = action.payload[1].data[0].UQFMActual;
-            newState[6].target = action.payload[1].data[0].UQFMTarget;
+            newState[6].value = action.payload[2].data[0].UQFMActual;
+            newState[6].target = action.payload[2].data[0].UQFMTarget;
             // Paid Media Spend
-            newState[7].value = action.payload[1].data[0].PaidMediaSpendActual;
-            newState[7].target = action.payload[1].data[0].PaidMediaSpendTarget;
+            newState[7].value = action.payload[2].data[0].PaidMediaSpendActual;
+            newState[7].target = action.payload[2].data[0].PaidMediaSpendTarget;
             return newState;
             case ADD_NEW_SECONDARY_COMMENT: 
                 index = action.payload.square;

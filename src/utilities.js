@@ -343,7 +343,7 @@ let params3 = group3Params.reduce((prev, param) => {
    {headers: headers, responseType: 'text'});
    const primaryG2Journey = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG2SecondaryActualTarget  + params2 + '&json=1', 
    {headers: headers, responseType: 'text'});
-   const primaryG3Journey= axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG3SecondaryPrimaryActualTarget  + params3 + '&json=1', 
+   const primaryG3Journey= axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG3SecondaryActualTarget  + params3 + '&json=1', 
    {headers: headers, responseType: 'text'});
 
   //  const primaryJourney =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.FinancialMultiChart  + params1 + '&json=1', 

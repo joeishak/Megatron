@@ -7,7 +7,6 @@ import async from 'middlewares/async';
 
 export default ({children, initialState ={
     isDialogOpen: false,
-    adobeData: [],
     availableFilters: {
         quarters:[{
             index: 0,
@@ -55,8 +54,6 @@ export default ({children, initialState ={
         products:[{index: 207, category: "productNames", value: "All Data"}]
     },
     detailsIsOpen: false,
-  
-    ibeData: []
 }}) => {
     const store = createStore(
         reducers,
