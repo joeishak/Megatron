@@ -14,6 +14,7 @@ import '@progress/kendo-theme-default/dist/all.css';
 
 // Custom Components
 import FilterBox from 'components/FilterBox/FilterBox';
+import Playground from '../../components/MobileComponents/Playground/Playground.jsx';
 // import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
 import CustomDropDownPanel from 'components/CustomDropDownPanel/CustomDropDownPanel';
 import SummaryViewDetails from 'components/SummaryViewDetails/SummaryViewDetails';
@@ -28,6 +29,7 @@ import FilterPage from '../../components/MobileComponents/FitlerPage/FilterPage.
 
 import SummaryHOC from '../../components/SummaryHOC.js';
 import Login from '../../components/Login/Login';
+import { timingSafeEqual } from 'crypto';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -83,57 +85,54 @@ class App extends Component {
 
   componentDidUpdate(prevProps) {
 
- 
-    this.checkAuthentication();
-
     // If the old available filters change or the active filters change
          // Call for new data with the filters
-    if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
-      this.props.getPrimaryData(this.props.activeFilters, this.props.availableFilters);
-    }
-    let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
-    let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined
-    if( prevPropsIsEmpty && propsNotEmpty){
+    // if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
+    //   this.props.getPrimaryData(this.props.activeFilters, this.props.availableFilters);
+    // }
+    // let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
+    // let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined
+    // if( prevPropsIsEmpty && propsNotEmpty){
 
-      if(this.props.preferences.defaultSummaryView === 'Financial'){
-        this.props.updateSwitchFilterValue(false);
-      } else{
-        this.props.updateSwitchFilterValue(true);
-      }
-      this.props.addValueToActiveMultiFilter({index: 1, category:'quarters', value: this.props.preferences.defaultQuarter});
-      this.props.addValueToActiveMultiFilter({index: 2, category:'segments', value: this.props.preferences.defaultSegment});
-      if(this.props.preferences.geoFilters!==""){
-        this.props.preferences.geoFilters.forEach(ele => {
-          this.props.addValueToActiveMultiFilter(ele);
-        });
-      }
-      // this.props.addValueToActiveMultiFilter(this.props.preferences.geoFilters);
-      if(this.props.preferences.productFilters !== ""){
-        this.props.preferences.productFilters.forEach(ele => {
-          this.props.addValueToActiveMultiFilter(ele);
-        });
-      }
-      // this.props.addValueToActiveMultiFilter(this.props.preferences.productFilters);
-      if(this.props.preferences.routeFilters !== ""){
+    //   if(this.props.preferences.defaultSummaryView === 'Financial'){
+    //     this.props.updateSwitchFilterValue(false);
+    //   } else{
+    //     this.props.updateSwitchFilterValue(true);
+    //   }
+    //   this.props.addValueToActiveMultiFilter({index: 1, category:'quarters', value: this.props.preferences.defaultQuarter});
+    //   this.props.addValueToActiveMultiFilter({index: 2, category:'segments', value: this.props.preferences.defaultSegment});
+    //   if(this.props.preferences.geoFilters!==""){
+    //     this.props.preferences.geoFilters.forEach(ele => {
+    //       this.props.addValueToActiveMultiFilter(ele);
+    //     });
+    //   }
+    //   // this.props.addValueToActiveMultiFilter(this.props.preferences.geoFilters);
+    //   if(this.props.preferences.productFilters !== ""){
+    //     this.props.preferences.productFilters.forEach(ele => {
+    //       this.props.addValueToActiveMultiFilter(ele);
+    //     });
+    //   }
+    //   // this.props.addValueToActiveMultiFilter(this.props.preferences.productFilters);
+    //   if(this.props.preferences.routeFilters !== ""){
 
-      this.props.preferences.routeFilters.forEach(ele => {
-        this.props.addValueToActiveMultiFilter(ele);
-      });
-    }
-      // this.props.addValueToActiveMultiFilter(this.props.preferences.routeFilters);
-      if(this.props.preferences.marketFilters !== ""){
-      this.props.preferences.marketFilters.forEach(ele => {
-        this.props.addValueToActiveMultiFilter(ele);
-      });
-    }
-      // this.props.addValueToActiveMultiFilter(this.props.preferences.marketFilters);
-      if(this.props.preferences.subscriptionFilters !== ""){
-      this.props.preferences.subscriptionFilters.forEach(ele => {
-        this.props.addValueToActiveMultiFilter(ele);
-      });
-    }
-      // this.props.addValueToActiveMultiFilter(this.props.preferences.subscriptionFilters);
-    }
+    //   this.props.preferences.routeFilters.forEach(ele => {
+    //     this.props.addValueToActiveMultiFilter(ele);
+    //   });
+    // }
+    //   // this.props.addValueToActiveMultiFilter(this.props.preferences.routeFilters);
+    //   if(this.props.preferences.marketFilters !== ""){
+    //   this.props.preferences.marketFilters.forEach(ele => {
+    //     this.props.addValueToActiveMultiFilter(ele);
+    //   });
+    // }
+    //   // this.props.addValueToActiveMultiFilter(this.props.preferences.marketFilters);
+    //   if(this.props.preferences.subscriptionFilters !== ""){
+    //   this.props.preferences.subscriptionFilters.forEach(ele => {
+    //     this.props.addValueToActiveMultiFilter(ele);
+    //   });
+    // }
+    //   // this.props.addValueToActiveMultiFilter(this.props.preferences.subscriptionFilters);
+    // }
   }
 
   async login() {
@@ -189,6 +188,9 @@ class App extends Component {
     // console.log(index)
     this.props.updateActiveSecondaryCard(index);
   }
+  updateMobileView(toUpdateTo) {
+    console.log(toUpdateTo);
+  }
 
   onCommentIconClick = () => {
     this.props.showCommentBox();
@@ -212,12 +214,13 @@ class App extends Component {
     return ( <SecondaryContentList
       data={this.props.secondaryData}
       activeJourneyCard = {this.props.activeSecondaryCard}
-      onJourneyCardClicked={(e,index) =>{this.updateActiveSecondary(index)}}
+      onJourneyCardClicked={(e,index) => {this.updateActiveSecondary(index)}}
       onCommentIconClick={this.onCommentIconClick}
       toggleCommentary={this.props.toggleCommentary} 
       deviceType= {this.props.deviceType}
       activePrimary={this.props.activePrimaryCard}
       primaryDataCategory={this.props.primaryData[this.props.activePrimaryCard].category}
+      updateMobileView={(e, updateTo) => {this.updateMobileView(updateTo)}}
     />);
 
     // const tabletContent = (<div>Tablet Content!</div>);
@@ -237,6 +240,7 @@ class App extends Component {
     // }
     // return secondaryRender;
   }
+
 
   render(){
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
@@ -262,10 +266,13 @@ class App extends Component {
               {/* <FilterPage activeFilters={this.props.activeFilters} availableFilters={this.props.availableFilters}></FilterPage> */}
 
               {/* Primary */}
-              {this.getPrimaryContent()}
+              {/* {this.getPrimaryContent()} */}
 
               {/* Secondary */}      
               {this.getSecondaryContent()}
+
+              {/* Playground */}
+              {/* <Playground></Playground> */}
          
           </div>
          

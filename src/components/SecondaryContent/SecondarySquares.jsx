@@ -10,7 +10,7 @@ class SecondarySquares extends Component {
 
     // Need to Refactor
     componentDidUpdate(prevProps){
-            console.log('Debug that secondary!' ,this.props.deviceType)
+          
 
     }
     getColor(value, target, type, header) {
@@ -60,7 +60,9 @@ class SecondarySquares extends Component {
         const boxContentTarget = classNames({'secondaryTarget': isLaptop});
 
        
-        return ( <div className={secondaryBoxHover} key={this.props.item.index}>    
+        return ( 
+        
+        <div className={secondaryBoxHover} key={this.props.item.index}>    
             <div className={ `${secondaryBox}  ${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', false) : ''}`} 
                 onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index)}>
                 <div  className={`${secondaryBoxHeader} ${this.props.activeJourneyCard === true ? this.getColor(this.props.item.value, this.props.item.target, 'journey', true) : ''}`} >
@@ -81,7 +83,7 @@ class SecondarySquares extends Component {
                         <div className={boxContentTarget}>{formattedTarget}</div>
                     </div>
                 </div>
-            </div>);
+        </div>);
 
 
     }
@@ -130,7 +132,7 @@ class SecondarySquares extends Component {
     }
 
     render(){
-        {console.log('debug', this.props.deviceType )}
+      
 
         const isMobile = (this.props.deviceType.includes('mobile') ? true : false);
         const isLaptop = (this.props.deviceType.includes('laptop') ? true : false);

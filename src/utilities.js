@@ -660,18 +660,18 @@ export function formatMetric(item, type){
           return formatPercentage(item.value);
       }
   }
-  else{
+  else if (type === 'target') {
       switch(item.valueType){
           case 'units':
-          return renderUnits(item.target);
+          return renderUnits(item.value);
           case 'currency':
-          return renderDollarValue(item.target);
+          return renderDollarValue(item.value);
           case 'percent':
-          return formatPercentage(item.target);
+          return formatPercentage(item.value);
       }
   }
-  
 }
+
 /**
  * Gets the device type depending on the screen size, Mobile
  */

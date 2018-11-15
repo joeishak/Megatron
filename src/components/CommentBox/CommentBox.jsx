@@ -112,7 +112,7 @@ class CommentBox extends Component {
        
         if(e.key==='Enter' && this.state.commentToBeRepliedTo === null){
 
-            console.log('debug',this.props.user);
+         
             let comment= {
                 id: this.props.comments.length,
                 userName: this.props.user.name,
