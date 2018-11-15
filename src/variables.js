@@ -5169,7 +5169,50 @@ export const PrimaryData = [
             valueType: 'currency',
             type: 'financial',
             comments: [
-              
+                {
+                    id: 0,
+                    userName: 'Morty Smith',
+                    time: '8:34am',
+                    comment: 'Check out the increased sales in this sector. This will make a huge difference.',
+                    replies: [
+                        {
+                            id: 0,
+                            userName: 'Rick Sanchez',
+                            time: '9:04am',
+                            comment: 'Wow! Great job team!'
+                            
+                        },
+                        {
+                            id: 1,
+                            userName: 'Shaun White',
+                            time: '9:34am',
+                            comment: 'Was this for last month?'
+                            
+                        },
+                        {
+                            id: 2,
+                            userName: 'Morty Smith',
+                            time: '9:54am',
+                            comment: 'Yes.'
+                            
+                        }
+                    ]
+                },
+                {
+                    id: 1,
+                    userName: 'Shaun White',
+                    time: '12:33pm',
+                    comment: 'What happened in Quarter 3? ',
+                    replies: [
+                        {
+                            id: 0,
+                            userName: 'Amit Sethi',
+                            time: '8:34am',
+                            comment: 'Our customers in Japan did not take to our marketing strategy. '
+                            
+                        }
+                    ]
+                }
              ],
             css: ['1', 'spinMeFirst', '#FF0000'],
         },
@@ -5354,24 +5397,30 @@ export const InfoburstAzure = {
          GeoFilters: '?q=GeoFilters&json=1'
      },
      summaryQueryNames: {
-        FinancialActualTarget: '?q=FinancialActualTarget',
+        // FinancialActualTarget: '?q=FinancialActualTarget',
         FinancialActualTargetPrimary: '?q=FinancialActualTargetPrimary',
-        JourneyActualTargetPrimary:'?q=JourneyActualTargetPrimary',
-        JourneyBuyUseActualTargetPrimary: '?q=JourneysBuyUseActualTarget',
+        // JourneyActualTargetPrimary:'?q=JourneyActualTargetPrimary',
+        // JourneyBuyUseActualTargetPrimary: '?q=JourneysBuyUseActualTarget',
         FinancialActualTargetSecondary: '?q=FinancialActualTargetSecondary',
-        FinancialQTD: '?q=FinancialQTD',
-        FinancialUnitsMultiChart: '?q=FinancialUnitsMultichart',
-        FinancialMultiChart: '?q=FinancialMultichartQuery',
-        JourneyActualTarget:'?q=JourneyActualTargetQuery',
-        JourneyMultiChart: '?q=JourneyMultichartQuery',
-        JourneyQtd: '?q=JourneyQtdTotal',
-        JourneyGeoQtd: '?q=JourneyGeoQTd',
-        JourneyBuyUseActualTarget: '?q=JourneyBuyUseActualTargetQuery',
-        JourneyBuyUseGeoQtd: '?q=JourneyBuyUseGeoQTD',
-        JourneyBuyUseMultichart: '?q=JourneyBuyUseMultichartQuery',
-        JourneyBuyUseQTDTotal: '?q=JourneyBuyUseQTDTotal',
-        JourneyMarketAreaQtd: '?q=JourneyMarketAreaQTD',
-        FinancialUnitsMultichart: '?q=FinancialUnitsMultichart'
+        // FinancialQTD: '?q=FinancialQTD',
+        // FinancialUnitsMultiChart: '?q=FinancialUnitsMultichart',
+        // FinancialMultiChart: '?q=FinancialMultichartQuery',
+        // JourneyActualTarget:'?q=JourneyActualTargetQuery',
+        // JourneyMultiChart: '?q=JourneyMultichartQuery',
+        // JourneyQtd: '?q=JourneyQtdTotal',
+        // JourneyGeoQtd: '?q=JourneyGeoQTd',
+        // JourneyBuyUseActualTarget: '?q=JourneyBuyUseActualTargetQuery',
+        // JourneyBuyUseGeoQtd: '?q=JourneyBuyUseGeoQTD',
+        // JourneyBuyUseMultichart: '?q=JourneyBuyUseMultichartQuery',
+        // JourneyBuyUseQTDTotal: '?q=JourneyBuyUseQTDTotal',
+        // JourneyMarketAreaQtd: '?q=JourneyMarketAreaQTD',
+        // FinancialUnitsMultichart: '?q=FinancialUnitsMultichart'
+        // FinancialActualTarget: '?q=FinancialActualTarget',
+        JourneysG2PrimaryActualTarget: '?q=Group2PrimaryActualTarget',
+        JourneysG3PrimaryActualTarget: '?q=Group3PrimaryActualTarget',
+        JourneysG2SecondaryActualTarget: '?q=Group2SecondaryActualTarget',
+        JourneysG3SecondaryActualTarget: '?q=Group3SecondaryActualTarget'
+
      },
      dataXdcID:  '\\1084',
      journeyXdcID: '\\1117',

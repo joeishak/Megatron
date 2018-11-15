@@ -10,6 +10,7 @@ let defaultState = [];
 export default function(state = defaultState, action) {
     switch(action.type) {
         case GENERATE_FILTER_DATA:
+        console.log(action.payload);
         let quarterFilters = action.payload[0].data;
         let marketsFilters = action.payload[1].data;
         let productsFilters = action.payload[2].data;

@@ -63,8 +63,8 @@ class SecondaryContentList extends Component {
             <div style={renderStyle}> 
                 {/* Primary Category Title !! Not Viewable on Desktop View */}
                 {navigationTitle}
-                {/* {secondaryContentTop} */}
-                {secondaryTopSlider}
+                {secondaryContentTop}
+                {/* {secondaryTopSlider} */}
                 <div className="secondaryContentBottom">
                    {secondaryContentBottom}
                 </div>

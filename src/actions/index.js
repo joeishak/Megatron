@@ -3,40 +3,33 @@
 import {  
     CHANGE_AUTH, 
     UPDATE_OKTA_USER,
-    GET_USER_SETTINGS,
     UPDATE_USER_SETTINGS,           
-    UPDATE_USER_MULTIVALUE_SETTINGS,
-    UPDATE_DEFAULT_SUMMARY_PREFERENCE,
-    UPDATE_DEFAULT_FIN_KPI_PREFERENCE ,
-    UPDATE_DEFAULT_JOURN_KPI_PREFERENCE,
-    UPDATE_SWITCH_FILTER_VALUE,
-    UPDATE_DIALOG_VISIBILITY , 
-    GET_ALL_DATA,
+    SET_APP_SETTINGS,
+    SET_VIEW_APP_SETTINGS,
     GET_PRIMARY_DATA,
     GET_SECONDARY_DATA,
+    UPDATE_DIALOG_VISIBILITY ,
     GENERATE_FILTER_DATA,
     ADD_MULTI_FILTER,
     REMOVE_MULTI_FILTER,
     SHOW_SUMMARY_VIEW_DETAILS,    
     HIDE_SUMMARY_VIEW_DETAILS,    
-    UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD,
-    UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD,
     UPDATE_ACTIVE_PRIMARY_CARD,
     UPDATE_ACTIVE_SECONDARY_CARD,
-    GET_QUERY_FILTERED_IBE_DATA,
     GET_EXCEL_MULTICHART,
     UPDATE_COMMENT_BOX_VISIBILITY,
-    ADD_NEW_COMMENT,
-    ADD_NEW_REPLY  ,
     TOGGLE_COMMENT_CARD_VISIBILITY,
-    ADD_NEW_JOURNEY_COMMENT,
-    ADD_NEW_JOURNEY_REPLY,
-    GET_FILTERED_JOURNEY_IBE_DATA,
-    GET_FILTERED_JOURNEY_QTD_DATA,
+    ADD_NEW_PRIMARY_COMMENT,
+    ADD_NEW_PRIMARY_REPLY  ,
+    ADD_NEW_SECONDARY_COMMENT,
+    ADD_NEW_SECONDARY_REPLY,
     MULTICHART_IS_ARR,
     GET_IBHEARTBEAT,
-    SET_APP_SETTINGS,
-    SET_VIEW_APP_SETTINGS
+    UPDATE_FILTER_VISIBILITITY  ,
+    UPDATE_COMMENT_VISIBILITITY ,
+    UPDATE_PRIMARY_VISIBILITITY ,
+    UPDATE_SECONDARY_VISIBILITITY  ,
+
 
 } from 'actions/types';
 import * as utils from '../utilities';
@@ -54,27 +47,6 @@ let filterParams = [
     {prompt: 'routeFilters', value: ''},
     {prompt: 'segmentFilters', value: ''}
 ];
-
-export function setAppSettings(settings) {
-    let deviceType = utils.getDeviceType({width: settings.window.width, height: settings.window.height});
-
-    return {
-        type: SET_APP_SETTINGS,
-        payload: {settings,deviceType}
-    }
-}
-
-
-export function setViewAppSettings() {
-   
-
-    return {
-        type: SET_VIEW_APP_SETTINGS,
-        payload: null
-    }
-}
-
-
 /**
  * Change the state of Authentication for the user.
  * 
@@ -87,33 +59,9 @@ export function changeAuth(isLoggedIn) {
     }
 }
 
-export function getPrimaryData(_parameters,availableFilters){
-
-    console.log('I made to index.js get primary data');
-    let allFilters = {
-        quarters: Object.values(availableFilters.quarters),
-        geos: Object.values(availableFilters.geos),
-        marketAreas: Object.values(availableFilters.marketAreas),
-        products: Object.values(availableFilters.products),
-        segments: Object.values(availableFilters.segments),
-        subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
-        routeToMarkets: Object.values(availableFilters.routeToMarkets)
-    }
-    promiseArr = utils.requestPrimaryData(allFilters,_parameters);
-  
-    return{
-        type: GET_PRIMARY_DATA,
-        payload: promiseArr
-    }
-}
-
-export function getSecondaryData(){
-    return{
-        type: GET_SECONDARY_DATA,
-        payload: null
-    }
-}
-
+/***
+ * Update User In Database From Okta
+ */
 export  function updateOKTAUser(user){
     utils.addUserToDB(user);
     // let userdb = utils.getUser(user);
@@ -123,46 +71,16 @@ export  function updateOKTAUser(user){
     }
 }
 
-
 /**
- * Update the value of the Switch Filter 
- * 
- * @param {boolean} switchFilterValue 
+ * Update the User Settings in the database. 
+ * @param {*} activeFilters 
+ * @param {*} user 
+ * @param {*} defaultSummary 
+ * @param {*} defaultFinKpi 
+ * @param {*} defaultJournKpi 
+ * @param {*} availableFilters 
+ * @param {*} settingId 
  */
-
-
-export function getUserSettings(sub){
-    let res = utils.requestUserSettings(sub);
-    return {
-        type: GET_USER_SETTINGS,
-        payload: res
-    }
-}
-
-export function updateDefaultJournKpiPreference(type){
-
-    
-    return {
-        type: UPDATE_DEFAULT_JOURN_KPI_PREFERENCE,
-        payload: type
-    }
-}
-export function updateDefaultFinKpiPreference(type){
-
-    
-    return {
-        type: UPDATE_DEFAULT_FIN_KPI_PREFERENCE,
-        payload: type
-    }
-}
-export function updateDefaultSummaryPreference(type){
-
-    
-    return {
-        type: UPDATE_DEFAULT_SUMMARY_PREFERENCE,
-        payload: type
-    }
-}
 export function updateUserSettings(activeFilters, user, defaultSummary, defaultFinKpi, defaultJournKpi,availableFilters,settingId){
 
     let stringGeo = activeFilters.geos;
@@ -189,12 +107,74 @@ export function updateUserSettings(activeFilters, user, defaultSummary, defaultF
         payload: res
     }
 }
-export function updateSwitchFilterValue(switchFilterValue) {
+
+/**
+ * Set the app settings  for window and device type
+ * @param {object} settings 
+ * 
+ */
+export function setAppSettings(settings) {
+    let deviceType = utils.getDeviceType({width: settings.window.width, height: settings.window.height});
+
     return {
-        type: UPDATE_SWITCH_FILTER_VALUE,
-        payload: switchFilterValue
+        type: SET_APP_SETTINGS,
+        payload: {settings,deviceType}
     }
 }
+
+
+export function setViewAppSettings() {
+   
+
+    return {
+        type: SET_VIEW_APP_SETTINGS,
+        payload: null
+    }
+}
+
+
+
+export function getPrimaryData(_parameters,availableFilters){
+
+    let allFilters = {
+        quarters: Object.values(availableFilters.quarters),
+        geos: Object.values(availableFilters.geos),
+        marketAreas: Object.values(availableFilters.marketAreas),
+        products: Object.values(availableFilters.products),
+        segments: Object.values(availableFilters.segments),
+        subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
+        routeToMarkets: Object.values(availableFilters.routeToMarkets)
+    }
+    promiseArr = utils.requestPrimaryData(allFilters,_parameters);
+  
+    return{
+        type: GET_PRIMARY_DATA,
+        payload: promiseArr
+    }
+}
+
+export function getSecondaryData(_parameters,availableFilters){
+    let allFilters = {
+        quarters: Object.values(availableFilters.quarters),
+        geos: Object.values(availableFilters.geos),
+        marketAreas: Object.values(availableFilters.marketAreas),
+        products: Object.values(availableFilters.products),
+        segments: Object.values(availableFilters.segments),
+        subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
+        routeToMarkets: Object.values(availableFilters.routeToMarkets)
+    }
+    promiseArr = utils.requestSecondaryData(allFilters,_parameters);
+    console.log(promiseArr);
+    return{
+        type: GET_SECONDARY_DATA,
+        payload: promiseArr
+    }
+}
+
+
+
+
+
 
 /**
  * Update the visibility of the Modal Dialog Box
@@ -207,35 +187,18 @@ export function updateDialogVisibility(isDialogVisible) {
         payload: isDialogVisible
     }
 }
-
-
-
 /**
  * Generate the data that goes into the filter box
  * 
  */
-export function generateFilterData(type) {
+export function generateFilterData() {
     let promiseArr1;
-    switch(type){
-        case 'fin':
-        promiseArr1 =  utils.initiateFilterDataRequests();
-    console.log(promiseArr1);
-
-        break;
-        case 'journ':
-        promiseArr1 = utils.initiateJourneyFilterDataRequests();
-    console.log(promiseArr1);
-
-        break;
-
-    }
-   
+    promiseArr1 =  utils.initiateFilterDataRequests();
     return{
         type: GENERATE_FILTER_DATA,
         payload: promiseArr1
     }
 }
-
 /**
  * Add a value to the active filters for the multi filter
  * 
@@ -282,28 +245,10 @@ export function hideSummaryDetails(filter){
 }
 
 
-/***
- * Update the Financial Summary Active Card
- * @param {squareItem}
+/**
+ * Update the active primary card
+ * @param {} index 
  */
-export function updateFinancialSummaryActiveCard(squareItem){
-    return {
-        type: UPDATE_FINANCIAL_SUMMARY_ACTIVE_CARD,
-        payload: squareItem
-    }
-}
-
-/***
- * Update the Journey Summary Active Card
- * @param {squareItem}
- */
-export function updateJourneySummaryActiveCard(squareItem){
-    return {
-        type: UPDATE_JOURNEY_SUMMARY_ACTIVE_CARD,
-        payload: squareItem
-    }
-}
-
 export function updateActivePrimaryCard(index){
     console.log(index);
     return {
@@ -311,92 +256,29 @@ export function updateActivePrimaryCard(index){
         payload: index
     }
 }
-
+/**
+ * Update the active Secondary Card
+ * @param {*} index 
+ */
 export function updateActiveSecondaryCard(index){
-    console.log(index);
     return {
         type: UPDATE_ACTIVE_SECONDARY_CARD,
         payload: index
     }
 }
-/**
- * Get all the local data for adobe
- * 
- * @param {boolean} status
- */
-export function getAdobeData() {
 
 
-    return {
-        type: GET_ALL_DATA,
-        payload: {}
-    }
-}
 /**
  * 
  * @param {*} _parameters 
  * @param {*} availableFilters 
  */
-export function getQueryFilteredIBEData(_parameters,availableFilters){
 
-    let allFilters = {
-        quarters: Object.values(availableFilters.quarters),
-        geos: Object.values(availableFilters.geos),
-        marketAreas: Object.values(availableFilters.marketAreas),
-        products: Object.values(availableFilters.products),
-        segments: Object.values(availableFilters.segments),
-        subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
-        routeToMarkets: Object.values(availableFilters.routeToMarkets)
-    }
-    promiseArr =  utils.getFinancialSummaryData(allFilters, _parameters);
-
-      return {
-          type: GET_QUERY_FILTERED_IBE_DATA,
-          payload: promiseArr
-      }
-   
-
-}
-export function getQueryFilteredJourneyIBEData(_parameters,availableFilters){
-
-    let allFilters = {
-        quarters: Object.values(availableFilters.quarters),
-        geos: Object.values(availableFilters.geos),
-        marketAreas: Object.values(availableFilters.marketAreas),
-        products: Object.values(availableFilters.products),
-        segments: Object.values(availableFilters.segments),
-        subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
-        routeToMarkets: Object.values(availableFilters.routeToMarkets)
-    }
-    promiseArr = utils.getJourneySummaryData(allFilters,_parameters);
-      return{
-          type: GET_FILTERED_JOURNEY_IBE_DATA,
-          payload: promiseArr
-      }
-   
-
-}
-
-// export function getFilteredJourneyQtdData(_parameters,availableFilters){
-
-//     let allFilters = {
-//         quarters: Object.values(availableFilters.quarters),
-//         geos: Object.values(availableFilters.geos),
-//         marketAreas: Object.values(availableFilters.marketAreas),
-//         products: Object.values(availableFilters.products),
-//         segments: Object.values(availableFilters.segments),
-//         subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
-//         routeToMarkets: Object.values(availableFilters.routeToMarkets)
-//     }
-//     promiseArr = utils.getJourneyQtdData(allFilters,_parameters);
-//       return{
-//           type: GET_FILTERED_JOURNEY_QTD_DATA,
-//           payload: promiseArr
-//       }
-   
-
-// }
-
+/**
+ * Get the data for Excel Multichart
+ * @param {} _parameters 
+ * @param {*} availableFilters 
+ */
 export function getExcelMultichartData(_parameters,availableFilters){
     return {
         type: GET_EXCEL_MULTICHART,
@@ -404,6 +286,9 @@ export function getExcelMultichartData(_parameters,availableFilters){
     }
 }
 
+/**
+ * Show the comment box
+ */
 export function showCommentBox(){
     return {
         type: UPDATE_COMMENT_BOX_VISIBILITY,
@@ -411,6 +296,9 @@ export function showCommentBox(){
     }
 }
 
+/**
+ * Hide the Comment Box
+ */
 export function hideCommentBox(){
     return{
         type: UPDATE_COMMENT_BOX_VISIBILITY,
@@ -418,6 +306,10 @@ export function hideCommentBox(){
     }
 }
 
+/**
+ * Hide/Show the comment icon on the metric squares
+ * @param {} _toggleStatus 
+ */
 export function toggleCommentBox(_toggleStatus) {
     return {
         type: TOGGLE_COMMENT_CARD_VISIBILITY,
@@ -425,9 +317,14 @@ export function toggleCommentBox(_toggleStatus) {
     }
 }
 
-export function addNewCommentToMetric(activeSquareID, comment ){
+/**
+ * Add a comment to the active Primarysquare
+ * @param {} activeSquareID 
+ * @param {*} comment 
+ */
+export function addNewCommentToPrimaryMetric(activeSquareID, comment ){
     return {
-        type: ADD_NEW_COMMENT,
+        type: ADD_NEW_PRIMARY_COMMENT,
         payload: {
             square: activeSquareID,
             comment: comment
@@ -435,9 +332,15 @@ export function addNewCommentToMetric(activeSquareID, comment ){
     }
 }
 
-export function addNewReplyToMetricComment(activeSquareID, commentId,reply ){
+/**
+ * Add a reply to a comment in this metric
+ * @param {} activeSquareID 
+ * @param {*} commentId 
+ * @param {*} reply 
+ */
+export function addNewReplyToPrimaryMetricComment(activeSquareID, commentId,reply ){
     return {
-        type: ADD_NEW_REPLY,
+        type: ADD_NEW_PRIMARY_REPLY,
         payload: {
             square: activeSquareID,
             comment: commentId,
@@ -445,10 +348,14 @@ export function addNewReplyToMetricComment(activeSquareID, commentId,reply ){
         }
     }
 }
-
-export function addNewJourneyComment(activeSquareID, comment){
+/**
+ * Add a comment to the active Secondary Square
+ * @param {} activeSquareID 
+ * @param {*} comment 
+ */
+export function addNewCommentToSecondaryMetric(activeSquareID, comment){
     return {
-        type: ADD_NEW_JOURNEY_COMMENT,
+        type: ADD_NEW_SECONDARY_COMMENT,
         payload: {
             square: activeSquareID,
             comment: comment
@@ -456,9 +363,15 @@ export function addNewJourneyComment(activeSquareID, comment){
     }
 }
 
-export function addNewJourneyReply(activeSquareID,commentId,reply){
+/**
+ * Add a reply to a commen tin this metric
+ * @param {} activeSquareID 
+ * @param {*} commentId 
+ * @param {*} reply 
+ */
+export function addNewReplyToSecondaryMetric(activeSquareID,commentId,reply){
     return {
-        type: ADD_NEW_JOURNEY_REPLY,
+        type: ADD_NEW_SECONDARY_REPLY,
         payload: {
             square: activeSquareID,
             comment: commentId,
@@ -468,6 +381,10 @@ export function addNewJourneyReply(activeSquareID,commentId,reply){
 
 }
 
+/**
+ * Get data for excel
+ * @param {} value 
+ */
 export function updateMultichartMetric(value){
     return {
         type: MULTICHART_IS_ARR,
@@ -482,4 +399,25 @@ export function getIbHeartbeat() {
         type: GET_IBHEARTBEAT,
         payload: res
     }
+}
+/**
+ * Update which view is currently showing/ hiding
+ * @param {*} component 
+ * @param {*} isShowing 
+ */
+export function updateViewSetting(component, isShowing){
+switch(component){
+    case 'primary':
+    
+    break;
+    case  'secondary':
+    break;
+    case  'navigation':
+    break;
+    case  'filter':
+    break;
+    default:
+    break;
+
+}
 }

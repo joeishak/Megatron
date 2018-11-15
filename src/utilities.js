@@ -92,8 +92,16 @@ export function findIfFilterIsApplied(arr){
  */
 export function generateFilterParams(type,filterParams, allFilters, _activeParams){
 
+  /***
+   * Group 1: Net New Arr, Gross New Arr, Cancellations, Renewal
+   *        -- All Filters
+   * Group 2: Traffic, Conversions, Qtr UI Rate, QTR Payment Failure
+   *        -- Quarter, Geo, Market, Segment Fitlers
+   * Group 3: New Qfm, Repeat Usr Mau, Marketable Universe UQFM, Paid Media Spending, Paid Media Sourced, New UQfM
+   *        -- Quarter, Geo, Market
+   */
     switch(type){
-      case 'fin':
+      case 1:
       filterParams[0].value = getParamValues(_activeParams.quarters,allFilters.quarters);
       filterParams[1].value = getParamValues(_activeParams.products,allFilters.products);
       filterParams[2].value = getParamValues(_activeParams.geos,allFilters.geos);
@@ -102,24 +110,18 @@ export function generateFilterParams(type,filterParams, allFilters, _activeParam
       filterParams[5].value = getParamValues(_activeParams.routes,allFilters.routeToMarkets);
       filterParams[6].value = getParamValues(_activeParams.segments,allFilters.segments);
       break;
-      case 'journ':
+      case 2:
       filterParams[0].value = getParamValues(_activeParams.quarters,allFilters.quarters);
-      filterParams[1].value = getParamValues(_activeParams.products,allFilters.products);
-      filterParams[2].value = getParamValues(_activeParams.geos,allFilters.geos);
-      filterParams[3].value = getParamValues(_activeParams.markets,allFilters.marketAreas);
-      filterParams[4].value = getParamValues(_activeParams.routes,allFilters.routeToMarkets);
-      filterParams[5].value = getParamValues(_activeParams.segments,allFilters.segments);
-      filterParams[6].value = getParamValues(_activeParams.subscriptions,allFilters.subscriptionOfferings);
+      filterParams[1].value = getParamValues(_activeParams.geos,allFilters.geos);
+      filterParams[2].value = getParamValues(_activeParams.markets,allFilters.marketAreas);
+      filterParams[3].value = getParamValues(_activeParams.segments,allFilters.segments);
       
 
       break;
       default: 
       filterParams[0].value = getParamValues(_activeParams.quarters,allFilters.quarters);
-      filterParams[1].value = getParamValues(_activeParams.products,allFilters.products);
-      filterParams[2].value = getParamValues(_activeParams.geos,allFilters.geos);
-      filterParams[3].value = getParamValues(_activeParams.markets,allFilters.marketAreas);
-      filterParams[4].value = getParamValues(_activeParams.routes,allFilters.routeToMarkets);
-      filterParams[5].value = getParamValues(_activeParams.subscriptions,allFilters.subscriptionOfferings);
+      filterParams[1].value = getParamValues(_activeParams.geos,allFilters.geos);
+      filterParams[2].value = getParamValues(_activeParams.markets,allFilters.marketAreas);
 
       break;
     }
@@ -212,43 +214,6 @@ export function initiateJourneyFilterDataRequests(){
   let promiseArr1 = Promise.all(responseArray);
   return promiseArr1;
 }
-export function getFinancialSummaryData(allFilters, _parameters){
-  responseArray = [];
-
- // filterParams[0].value = _parameters.quarters[0].value;
- filterParams[1].value = _parameters.products[0].value;
- filterParams[2].value = _parameters.geos[0].value;
- filterParams[3].value = _parameters.subscriptions[0].value;
- filterParams[4].value = _parameters.markets[0].value;
- filterParams[5].value = _parameters.routes[0].value;
- filterParams[6].value = _parameters.segments[0].value;
-
-
- // Remove First Row from all the filters 
- // Contains All Data Filters
- // allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
- generateFilterParams('fin', filterParams, allFilters, _parameters);
- 
- let params1 = filterParams.reduce((prev, param) => {
-         let p = '';
-         p = prev + '&' + param.prompt + '=' + param.value;
-         return p;
-     
-   }, '');
-
-   const response = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialActualTarget  + params1 + '&json=1', 
-   {headers: headers, responseType: 'text'});
-
-   const multiChartResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialMultiChart  + params1 + '&json=1', 
-   {headers: headers, responseType: 'text'});
-
-   const unitsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialUnitsMultichart  + params1 + '&json=1', 
-   {headers: headers, responseType: 'text'});
-   responseArray.push(response,multiChartResponse, unitsResponse);
-   let promiseArr = Promise.all(responseArray);
-
-   return promiseArr;
-}
 
 export function requestPrimaryData(allFilters, _parameters){
   responseArray = [];
@@ -261,19 +226,26 @@ export function requestPrimaryData(allFilters, _parameters){
  filterParams[5].value = _parameters.routes[0].value;
  filterParams[6].value = _parameters.segments[0].value;
 
-let journParams = [
+let group2Params = [
   {prompt: 'quarterFilters', value: ''},
-  {prompt: 'productFilters', value: ''},
   {prompt: 'geoFilters', value: ''},
   {prompt: 'maFilters', value: ''},
-  {prompt: 'routeFilters', value: ''},
-  {prompt: 'subscriptionFilters', value: ''}
+  {prompt: 'segmentFilters', value: ''}
+
+]
+
+let group3Params = [
+  {prompt: 'quarterFilters', value: ''},
+  {prompt: 'geoFilters', value: ''},
+  {prompt: 'maFilters', value: ''},
 ]
  // Remove First Row from all the filters 
  // Contains All Data Filters
  // allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
- generateFilterParams('fin', filterParams, allFilters, _parameters);
- generateFilterParams('', journParams, allFilters, _parameters);
+ generateFilterParams(1, filterParams, allFilters, _parameters);
+ generateFilterParams(2, group2Params, allFilters, _parameters);
+ generateFilterParams(3, group3Params, allFilters, _parameters);
+
 
 
  
@@ -283,18 +255,24 @@ let journParams = [
          return p;
      
    }, '');
-   let params2 = journParams.reduce((prev, param) => {
+let params2 = group2Params.reduce((prev, param) => {
     let p = '';
     p = prev + '&' + param.prompt + '=' + param.value;
     return p;
 
 }, '');
+let params3 = group3Params.reduce((prev, param) => {
+  let p = '';
+  p = prev + '&' + param.prompt + '=' + param.value;
+  return p;
 
-   const primaryFinancial = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialActualTargetPrimary  + params1 + '&json=1', 
+}, '');
+
+   const primaryFinancial = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialActualTargetSecondary  + params1 + '&json=1', 
    {headers: headers, responseType: 'text'});
-   const primaryJourney = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyActualTargetPrimary  + params1 + '&json=1', 
+   const primaryG2Journey = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG2PrimaryActualTarget  + params2 + '&json=1', 
    {headers: headers, responseType: 'text'});
-   const primaryBuyUse= axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyBuyUseActualTargetPrimary  + params2 + '&json=1', 
+   const primaryG3Journey= axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG3PrimaryActualTarget  + params3 + '&json=1', 
    {headers: headers, responseType: 'text'});
 
   //  const primaryJourney =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.FinancialMultiChart  + params1 + '&json=1', 
@@ -302,100 +280,170 @@ let journParams = [
 
   //  const unitsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialUnitsMultichart  + params1 + '&json=1', 
   //  {headers: headers, responseType: 'text'});
-   responseArray.push(primaryFinancial, primaryJourney,primaryBuyUse);
+   responseArray.push(primaryFinancial, primaryG2Journey,primaryG3Journey);
    let promiseArr = Promise.all(responseArray);
 
    return promiseArr;
 }
 
-export function getJourneySummaryData(allFilters,_parameters){
+export function requestSecondaryData(allFilters, _parameters){
   responseArray = [];
-  promiseArr = [];
-  let filterParams = [
-    {prompt: 'quarterFilters', value: ''},
-    {prompt: 'productFilters', value: ''},
-    {prompt: 'geoFilters', value: ''},
-    {prompt: 'maFilters', value: ''},
-    {prompt: 'routeFilters', value: ''},
-    {prompt: 'segmentFilters', value: ''},
-    {prompt: 'subscriptionFilters', value: ''}
 
-];
+ // filterParams[0].value = _parameters.quarters[0].value;
+ filterParams[1].value = _parameters.products[0].value;
+ filterParams[2].value = _parameters.geos[0].value;
+ filterParams[3].value = _parameters.subscriptions[0].value;
+ filterParams[4].value = _parameters.markets[0].value;
+ filterParams[5].value = _parameters.routes[0].value;
+ filterParams[6].value = _parameters.segments[0].value;
 
-let filterParams2 = [
+let group2Params = [
   {prompt: 'quarterFilters', value: ''},
-  {prompt: 'productFilters', value: ''},
   {prompt: 'geoFilters', value: ''},
   {prompt: 'maFilters', value: ''},
-  {prompt: 'routeFilters', value: ''},
-  {prompt: 'subscriptionFilters', value: ''}
+  {prompt: 'segmentFilters', value: ''}
+]
+
+let group3Params = [
+  {prompt: 'quarterFilters', value: ''},
+  {prompt: 'geoFilters', value: ''},
+  {prompt: 'maFilters', value: ''},
+]
+ // Remove First Row from all the filters 
+ // Contains All Data Filters
+ // allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
+ generateFilterParams(1, filterParams, allFilters, _parameters);
+ generateFilterParams(2, group2Params, allFilters, _parameters);
+ generateFilterParams(3, group3Params, allFilters, _parameters);
 
 
-];
-  filterParams[1].value = _parameters.products[0].value;
-    filterParams[2].value = _parameters.geos[0].value;
-    filterParams[3].value = _parameters.markets[0].value;
-    filterParams[4].value = _parameters.routes[0].value;
-    filterParams[5].value = _parameters.segments[0].value;
-    filterParams[6].value = _parameters.subscriptions[0].value;
 
+ 
+ let params1 = filterParams.reduce((prev, param) => {
+         let p = '';
+         p = prev + '&' + param.prompt + '=' + param.value;
+         return p;
+     
+   }, '');
+let params2 = group2Params.reduce((prev, param) => {
+    let p = '';
+    p = prev + '&' + param.prompt + '=' + param.value;
+    return p;
 
-    filterParams2[1].value = _parameters.products[0].value;
-    filterParams2[2].value = _parameters.geos[0].value;
-    filterParams2[3].value = _parameters.markets[0].value;
-    filterParams2[4].value = _parameters.routes[0].value;
-    filterParams[5].value = _parameters.subscriptions[0].value;
+}, '');
+let params3 = group3Params.reduce((prev, param) => {
+  let p = '';
+  p = prev + '&' + param.prompt + '=' + param.value;
+  return p;
 
+}, '');
 
-    // Remove First Row from all the filters 
-    // Contains All Data Filters
-    // allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
-    generateFilterParams('journ',filterParams,allFilters,_parameters);
-    generateFilterParams('',filterParams2,allFilters,_parameters);
+   const primaryFinancial = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialActualTargetSecondary  + params1 + '&json=1', 
+   {headers: headers, responseType: 'text'});
+   const primaryG2Journey = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG2SecondaryActualTarget  + params2 + '&json=1', 
+   {headers: headers, responseType: 'text'});
+   const primaryG3Journey= axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG3SecondaryActualTarget  + params3 + '&json=1', 
+   {headers: headers, responseType: 'text'});
 
-    let params1 = filterParams.reduce((prev, param) => {
-            let p = '';
-            p = prev + '&' + param.prompt + '=' + param.value;
-            return p;
-        
-      }, '');
+  //  const primaryJourney =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.FinancialMultiChart  + params1 + '&json=1', 
+  //  {headers: headers, responseType: 'text'});
 
-      let params2 = filterParams2.reduce((prev, param) => {
-        let p = '';
-        p = prev + '&' + param.prompt + '=' + param.value;
-        return p;
-    
-  }, '');
+  //  const unitsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialUnitsMultichart  + params1 + '&json=1', 
+  //  {headers: headers, responseType: 'text'});
+   responseArray.push(primaryFinancial, primaryG2Journey,primaryG3Journey);
+   let promiseArr = Promise.all(responseArray);
 
-      const response = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyActualTarget  + params1 + '&json=1', 
-      {headers: headers, responseType: 'text'});
-
-      const multiChartResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyMultiChart  + params1 + '&json=1', 
-      {headers: headers, responseType: 'text'});
-
-      const totalresponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyQtd  + params1 + '&json=1', 
-      {headers: headers, responseType: 'text'});
-
-      const geoResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyGeoQtd  + params1 + '&json=1', 
-      {headers: headers, responseType: 'text'});
-      const maResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyMarketAreaQtd  + params1 + '&json=1', 
-      {headers: headers, responseType: 'text'});
-
-      const BuyUseActual =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyBuyUseActualTarget  + params2 + '&json=1', 
-      {headers: headers, responseType: 'text'});
-
-      const BuyUseGeoQtd =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyBuyUseGeoQtd  + params2 + '&json=1', 
-      {headers: headers, responseType: 'text'});
-      
-      const BuyUseMultichart = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyBuyUseMultichart  + params2 + '&json=1', 
-      {headers: headers, responseType: 'text'});
-
-      const BuyUseQtdTotal = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyBuyUseQTDTotal  + params2 + '&json=1', 
-      {headers: headers, responseType: 'text'});
-      responseArray.push(response,multiChartResponse, totalresponse, geoResponse,maResponse, BuyUseActual, BuyUseGeoQtd,BuyUseMultichart,BuyUseQtdTotal);
-      promiseArr = Promise.all(responseArray);
-  return promiseArr;
+   return promiseArr;
 }
+
+// export function getJourneySummaryData(allFilters,_parameters){
+//   responseArray = [];
+//   promiseArr = [];
+//   let filterParams = [
+//     {prompt: 'quarterFilters', value: ''},
+//     {prompt: 'productFilters', value: ''},
+//     {prompt: 'geoFilters', value: ''},
+//     {prompt: 'maFilters', value: ''},
+//     {prompt: 'routeFilters', value: ''},
+//     {prompt: 'segmentFilters', value: ''},
+//     {prompt: 'subscriptionFilters', value: ''}
+
+// ];
+
+// let filterParams2 = [
+//   {prompt: 'quarterFilters', value: ''},
+//   {prompt: 'productFilters', value: ''},
+//   {prompt: 'geoFilters', value: ''},
+//   {prompt: 'maFilters', value: ''},
+//   {prompt: 'routeFilters', value: ''},
+//   {prompt: 'subscriptionFilters', value: ''}
+
+
+// ];
+//   filterParams[1].value = _parameters.products[0].value;
+//     filterParams[2].value = _parameters.geos[0].value;
+//     filterParams[3].value = _parameters.markets[0].value;
+//     filterParams[4].value = _parameters.routes[0].value;
+//     filterParams[5].value = _parameters.segments[0].value;
+//     filterParams[6].value = _parameters.subscriptions[0].value;
+
+
+//     filterParams2[1].value = _parameters.products[0].value;
+//     filterParams2[2].value = _parameters.geos[0].value;
+//     filterParams2[3].value = _parameters.markets[0].value;
+//     filterParams2[4].value = _parameters.routes[0].value;
+//     filterParams[5].value = _parameters.subscriptions[0].value;
+
+
+//     // Remove First Row from all the filters 
+//     // Contains All Data Filters
+//     // allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
+//     generateFilterParams('journ',filterParams,allFilters,_parameters);
+//     generateFilterParams('',filterParams2,allFilters,_parameters);
+
+//     let params1 = filterParams.reduce((prev, param) => {
+//             let p = '';
+//             p = prev + '&' + param.prompt + '=' + param.value;
+//             return p;
+        
+//       }, '');
+
+//       let params2 = filterParams2.reduce((prev, param) => {
+//         let p = '';
+//         p = prev + '&' + param.prompt + '=' + param.value;
+//         return p;
+    
+//   }, '');
+
+//       const response = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyActualTarget  + params1 + '&json=1', 
+//       {headers: headers, responseType: 'text'});
+
+//       const multiChartResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyMultiChart  + params1 + '&json=1', 
+//       {headers: headers, responseType: 'text'});
+
+//       const totalresponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyQtd  + params1 + '&json=1', 
+//       {headers: headers, responseType: 'text'});
+
+//       const geoResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyGeoQtd  + params1 + '&json=1', 
+//       {headers: headers, responseType: 'text'});
+//       const maResponse =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyMarketAreaQtd  + params1 + '&json=1', 
+//       {headers: headers, responseType: 'text'});
+
+//       const BuyUseActual =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyBuyUseActualTarget  + params2 + '&json=1', 
+//       {headers: headers, responseType: 'text'});
+
+//       const BuyUseGeoQtd =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyBuyUseGeoQtd  + params2 + '&json=1', 
+//       {headers: headers, responseType: 'text'});
+      
+//       const BuyUseMultichart = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyBuyUseMultichart  + params2 + '&json=1', 
+//       {headers: headers, responseType: 'text'});
+
+//       const BuyUseQtdTotal = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneyBuyUseQTDTotal  + params2 + '&json=1', 
+//       {headers: headers, responseType: 'text'});
+//       responseArray.push(response,multiChartResponse, totalresponse, geoResponse,maResponse, BuyUseActual, BuyUseGeoQtd,BuyUseMultichart,BuyUseQtdTotal);
+//       promiseArr = Promise.all(responseArray);
+//   return promiseArr;
+// }
 
 // export function getJourneyQtdData(allFilters,_parameters){
 
@@ -486,18 +534,18 @@ export function getHeartbeat() {
   return axios.get(InfoburstAzure.sysInfo, {headers: headers, responseType: 'text'});
 }
 
-export function requestUserSettings(sub){
-  let body = {
-    "conn":  '18',
-    "qry": 'GetUserSettings',
-    "columnNames": 'true',
-    "params": {
-      "sub": sub     
-    }
-  }
+// export function requestUserSettings(sub){
+//   let body = {
+//     "conn":  '18',
+//     "qry": 'GetUserSettings',
+//     "columnNames": 'true',
+//     "params": {
+//       "sub": sub     
+//     }
+//   }
 
-  return axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
-}
+//   return axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
+// }
 
 export function postUserSettings(params){
   let body = {
@@ -525,12 +573,12 @@ export function postMultiValueSettings(activeFilters,setting, availableFilters )
   let body = {
     "conn":  '18',
     "qry": 'NewMultivalueSetting',
-    "columnNames": 'true',
-    "params": {
+    params:{
       "setting":'',
       "filter":'',
       "type":''
     }
+    
   }
   if(activeFilters.geos[0].value === 'All Data'){
     availableFilters.geos.map(item =>{
