@@ -62,7 +62,7 @@ class KendoBulletChart extends Component {
     const formattedValue = utils.formatMetric({valueType :this.props.valueType, value: this.props.values[0]}, 'value');
     const formattedTarget = utils.formatMetric({valueType :this.props.valueType, value: this.props.values[1]}, 'target');
 
-    console.log('debug', formattedValue, formattedTarget);
+    // console.log('debug', formattedValue, formattedTarget);
 
     const tooltipRender = ({ point }) => {
       const { value } = point;

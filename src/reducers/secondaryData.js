@@ -14,17 +14,17 @@ import {
             console.log(action.payload);
             newState = Object.assign([], state);
             // //Finance
-            newState[0].value = action.payload[0].data[0].NetNewARRActual;
-            newState[0].target = action.payload[0].data[0].NetNewARRTarget;
+            newState[0].value = action.payload[0].data[0].NewARRActual;
+            newState[0].target = action.payload[0].data[0].NewARRTarget;
             // //Gross New Arr
-            newState[1].value = action.payload[0].data[0].GrossNewARRActual;
-            newState[1].target = action.payload[0].data[0].GrossNewARRTarget;
+            newState[1].value = action.payload[0].data[0].GrossARRActual;
+            newState[1].target = action.payload[0].data[0].GrossARRTarget;
             //  //Cacncellations
-             newState[2].value = action.payload[0].data[0].NetCancellationARRActual;
-             newState[2].target = action.payload[0].data[0].NetCancellationARRTarget;
+             newState[2].value = action.payload[0].data[0].CancelARRActual;
+             newState[2].target = action.payload[0].data[0].CancelARRTarget;
             //   //Renewal
-            newState[3].value = action.payload[0].data[0].RenewalAtFPActual;
-            newState[3].target = action.payload[0].data[0].RenewalAtFPTarget;
+            newState[3].value = action.payload[0].data[0].RenewARRActual;
+            newState[3].target = action.payload[0].data[0].RenewARRTarget;
             //  //Target
              newState[5].value = action.payload[1].data[0].TrafficActual;
              newState[5].target = action.payload[1].data[0].TrafficTarget;

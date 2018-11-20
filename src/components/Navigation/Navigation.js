@@ -1,7 +1,8 @@
 // Npm Modules
 import React, { Component } from 'react';
 import { Route,Link } from 'react-router-dom';
-import {Nav,  Navbar, NavDropdown, MenuItem} from 'react-bootstrap';
+  
+import {Nav,  Navbar,NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 import {  Expand, } from '@progress/kendo-react-animation';
 import classNames from 'classnames';
 import { withAuth } from '@okta/okta-react';
@@ -138,6 +139,7 @@ class Navigation extends Component {
               </li>
             </ul>
             <Nav pullRight>
+            <NavItem>
             <div className="dropDownContainerBox">
               <div className="flLeft">
                   <NavDropdown eventKey={3} className="dropDownContainer" title={this.processLoggedUser(this.props.user) || ""} id="nav-dropdown" noCaret>
@@ -156,6 +158,7 @@ class Navigation extends Component {
                 <img alt="" className="commentIcon" onClick={this.updateCommentsNav} src={!this.props.toggleCommentaryOn ? commentIconOff : commentIconOn}/>
               </div>
               </div>
+              </NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

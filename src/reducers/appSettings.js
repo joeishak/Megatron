@@ -11,10 +11,10 @@ const firstState = {
         },
         deviceType:null,
         views: {
-            primaryIsVisible: true, 
+            mobileViewIsprimary: true, 
+            mobileViewIsSecondary: false,
             navigationIsVisible: false,
             filterBoxIsVisible: false, 
-            secondaryIsVisible: false,
             commentBoxIsVisible: false,
         }
 }
@@ -25,6 +25,7 @@ export default function(state = firstState,action) {
             let newState1 = Object.assign({},state);
             return {...newState1,deviceType: action.payload.deviceType, window: action.payload.settings.window};
         case SET_VIEW_APP_SETTINGS:
+        console.log(action.payload);
             let newState = Object.assign({},state);
             
             newState.views = action.payload

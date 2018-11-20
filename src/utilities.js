@@ -711,11 +711,11 @@ export function formatMetric(item, type){
   else if (type === 'target') {
       switch(item.valueType){
           case 'units':
-          return renderUnits(item.value);
+          return renderUnits(item.target);
           case 'currency':
-          return renderDollarValue(item.value);
+          return renderDollarValue(item.target);
           case 'percent':
-          return formatPercentage(item.value);
+          return formatPercentage(item.target);
       }
   }
 }

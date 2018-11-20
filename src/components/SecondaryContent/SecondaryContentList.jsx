@@ -28,13 +28,13 @@ class SecondaryContentList extends Component {
 
 
         const isMobileAndTablet = this.props.deviceType.includes('mobile') || this.props.deviceType.includes('tablet');
-        const navigationTitle = isMobileAndTablet ? (
+        const navigationTitle = isMobileAndTablet && this.props.mobilePrimaryIsActive === false ? (
             <div className="primaryDataCategoryContainer">
                 <p className="primaryCateogryNav" onClick={(e) => this.props.updateMobileView(e,'primary')}>{`<`}</p>
                 <div className="primaryCategoryTitle">{this.props.primaryDataCategory}</div>
             </div> ): null;
 
-        const secondaryContentTop = this.props.data.map(item => {
+        const secondaryContentTop = (this.props.mobileSecondaryIsActive || isMobileAndTablet!==true) ? this.props.data.map(item => {
             let isActive = parseInt(this.props.activeJourneyCard) === item.index ? true : false;
             if(this.props.activePrimary === item.category){
                 return (
@@ -50,7 +50,7 @@ class SecondaryContentList extends Component {
                 );
             } else return null;
         
-        });
+        }) :null;
 
         const secondaryTopSlider = <HorizontalSlider 
             activeJourneyCard={this.props.activeJourneyCard}
@@ -58,11 +58,11 @@ class SecondaryContentList extends Component {
    
         
         const renderStyle = isMobileAndTablet ? { height:'100%'} : { height:'100%', marginTop: '30px'};
-        const secondaryContentBottom = isMobileAndTablet ? <Playground></Playground>  : null;
+        const secondaryContentBottom = isMobileAndTablet && this.props.mobileSecondaryIsActive ? <Playground></Playground>  : null;
         return(
             <div style={renderStyle}> 
                 {/* Primary Category Title !! Not Viewable on Desktop View */}
-                {navigationTitle}
+                {navigationTitle}  
                 {secondaryContentTop}
                 {/* {secondaryTopSlider} */}
                 <div className="secondaryContentBottom">

@@ -164,7 +164,7 @@ export function getSecondaryData(_parameters,availableFilters){
         routeToMarkets: Object.values(availableFilters.routeToMarkets)
     }
     promiseArr = utils.requestSecondaryData(allFilters,_parameters);
-    console.log(promiseArr);
+    // console.log(promiseArr);
     return{
         type: GET_SECONDARY_DATA,
         payload: promiseArr
@@ -250,7 +250,7 @@ export function hideSummaryDetails(filter){
  * @param {} index 
  */
 export function updateActivePrimaryCard(index){
-    console.log(index);
+    // console.log(index);
     return {
         type: UPDATE_ACTIVE_PRIMARY_CARD,
         payload: index
@@ -405,19 +405,27 @@ export function getIbHeartbeat() {
  * @param {*} component 
  * @param {*} isShowing 
  */
-export function updateViewSetting(component, isShowing){
+export function updateViewSetting(component, views){
+    let view ={};
 switch(component){
     case 'primary':
-    
+    view.mobileViewIsPrimary = !views.mobileViewIsPrimary;
     break;
     case  'secondary':
+    view.mobileViewIsSecondary = !views.mobileViewIsSecondary;
     break;
     case  'navigation':
+    
     break;
     case  'filter':
     break;
     default:
     break;
 
+}
+
+return {
+    type: SET_VIEW_APP_SETTINGS,
+    payload: view
 }
 }

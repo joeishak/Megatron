@@ -221,11 +221,11 @@ function mapStateToProps(state){
     // console.log('debug',state.activeSummarySquare.valueType);
     return { 
         switchFilter: state.switchFilter, 
-        activeSummarySquare: state.activeSummarySquare,
+        activeSummarySquare: state.secondaryData[state.activeCards.secondary], 
         multichartMetric: state.multichartIsArr, 
-        activeUnits: state.activeSummarySquare.details.unitMultichart, 
-        activeMultichart: state.activeSummarySquare.details.multichart, 
-        valueType: state.activeSummarySquare.valueType
+        activeUnits: state.secondaryData[state.activeCards.secondary].details.unitMultichart, 
+        activeMultichart: state.secondaryData[state.activeCards.secondary].details.multichart, 
+        valueType: state.secondaryData[state.activeCards.secondary].valueType
     }
 }
 export default connect(mapStateToProps,actions)( KendoMultiChart);

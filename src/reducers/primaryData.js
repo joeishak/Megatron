@@ -14,24 +14,37 @@ export default function(state = PrimaryData, action) {
         console.log(action.payload);
 
             newState = Object.assign([], state);
+            //Actual, Targets, Vs QRf
             // //Finance
-            newState[0].value = action.payload[0].data[0].NetNewARRActual;
-            newState[0].target = action.payload[0].data[0].NetNewARRTarget;
+            newState[0].value = action.payload[0].data[0].NewARRActual;
+            newState[0].target = action.payload[0].data[0].NewARRTarget;
+            newState[0].vsqrf = action.payload[0].data[0].NewVsQrf;
+
             // //Discover
             newState[1].value = action.payload[1].data[0].TrafficActual;
             newState[1].target = action.payload[1].data[0].TrafficTarget;
+            newState[1].vsqrf = action.payload[1].data[0].TrafficVSQrf;
+
             //  //Buy
              newState[2].value = action.payload[2].data[0].NewQfmActual;
              newState[2].target = action.payload[2].data[0].NewQfmTarget;
+             newState[2].vsqrf = action.payload[2].data[0].NewQfmVsQrf;
+
             //   //Try
             newState[3].value = action.payload[1].data[0].ConversionActual;
             newState[3].target = action.payload[1].data[0].ConversionTarget;
+            newState[3].vsqrf = action.payload[1].data[0].ConvcersionVsQrf;
+
             //  //Use
              newState[4].value = action.payload[2].data[0].RepeatUserMauActual;
              newState[4].target = action.payload[2].data[0].RepeatUserMauTarget;
+             newState[4].vsqrf = action.payload[2].data[0].RepeatUserMauVsQrf;
+
             //   //Renew
             newState[5].value = action.payload[1].data[0].UiCancelRateActual;
             newState[5].target = action.payload[1].data[0].UiCancelRateTarget;
+            newState[5].vsqrf = action.payload[1].data[0].UiCacncelRateVsQrf;
+
             return newState;
             case ADD_NEW_PRIMARY_COMMENT: 
               index = action.payload.square;

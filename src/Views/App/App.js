@@ -61,14 +61,14 @@ class App extends Component {
     // console.log('debug',utils.getDeviceType(this.state.window))
   }
   
-  componentDidMount() {
+  async componentDidMount() {
     this.props.generateFilterData();
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
     this.checkAuthentication();
   }
 
-  componentDidUpdate(prevProps) {
+  async componentDidUpdate(prevProps) {
 
     // If the old available filters change or the active filters change
     //  Call for new data with the filters
@@ -112,7 +112,7 @@ class App extends Component {
     }
   }
 
-  login() {
+  async login() {
     this.props.auth.login('/');
   }
 
@@ -140,7 +140,7 @@ class App extends Component {
     this.props.updateActiveSecondaryCard(index);
   }
   updateMobileView(toUpdateTo) {
-    console.log(toUpdateTo);
+   this.props.updateViewSetting(toUpdateTo, this.props.appSettings.views)
   }
 
   onCommentIconClick = (e,type,index) => {
@@ -164,7 +164,10 @@ class App extends Component {
       data = {this.props.primaryData} 
       enableChart={()=>{console.log('hello world');}} 
       selectedCard={(e,index) =>{this.updateActivePrimary(index)}} 
-      deviceType= {this.props.deviceType}/> 
+      deviceType= {this.props.deviceType}
+      mobilePrimaryIsActive = { this.props.mobileIsPrimary}
+      updateMobileView={(e, updateTo) => {this.updateMobileView(updateTo)}}
+      /> 
 
     );
   }
@@ -179,6 +182,8 @@ class App extends Component {
       toggleCommentary={this.props.toggleCommentary} 
       deviceType= {this.props.deviceType}
       activePrimary={this.props.activePrimaryCard}
+      mobileSecondaryIsActive = {this.props.mobileIsSecondary}
+      mobilePrimaryIsActive = {this.props.mobileIsSecondary}
       primaryDataCategory={this.props.primaryData[this.props.activePrimaryCard].category}
       updateMobileView={(e, updateTo) => {this.updateMobileView(updateTo)}}
     />);
@@ -220,8 +225,8 @@ class App extends Component {
               {this.getPrimaryContent()}
 
               {/* Secondary */}      
-              {this.getSecondaryContent()}
-
+              {this.getSecondaryContent() }
+              <SummaryViewDetails />
               {/* Playground */}
               {/* <Playground></Playground> */}
          
@@ -257,7 +262,9 @@ function mapStateToProps(state) {
     appSettings: state.appSettings,
     deviceType: state.appSettings.deviceType,
     toggleCommentary: state.toggleCommentaryBox,
-    window: state.appSettings.window
+    window: state.appSettings.window,
+    mobileIsPrimary: state.appSettings.views.mobilePrimaryIsActive,
+    mobileIsSecondary: state.appSettings.views.mobileSecondaryIsActive
   };
 }
 

@@ -558,10 +558,10 @@ detailsRenderDollar(item) {
 function mapStateToProps(state) {
   return {
     previousViewWasJourneys: state.switchFilter,
-    activeItem: state.activeSummarySquare,
+    activeItem: state.secondaryData[state.activeCards.secondary],
     activeFilters: state.activeFilters,
     availableFilters: state.availableFilters,
-    qtdwData: state.activeSummarySquare.details.qtdw,
+    qtdwData: state.secondaryData[state.activeCards.secondary].details.qtdw,
     summaryData: state.adobeData,
     journeyData: state.journeyData,
     multichartIsArr: state.multichartIsArr
