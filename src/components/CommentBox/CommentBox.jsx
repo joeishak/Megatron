@@ -106,7 +106,6 @@ class CommentBox extends Component {
 
             // Post the Comment
             if(this.props.isPrimary === false){
-                console.log('Im in')
                 this.props.addNewCommentToSecondaryMetric(this.props.currentMetric,comment);
             }else{
                 this.props.addNewCommentToPrimaryMetric(this.props.currentMetric,comment);
@@ -114,7 +113,6 @@ class CommentBox extends Component {
             
             this.setState({replyMessage: ''})
         } else if (e.key==='Enter' && this.state.commentToBeRepliedTo !== null){
-            // console.log('The comment:',this.props.comments[this.state.commentToBeRepliedTo]);
             let comment= {
                 id: this.props.comments[this.state.commentToBeRepliedTo].replies.length,
                 userName: this.props.user.name,
@@ -122,10 +120,7 @@ class CommentBox extends Component {
                 comment: e.target.value
                 
             }
-            console.log(
-                'Current metric:',this.props.currentMetric, 'Comment To Be Replied To:',this.state.commentToBeRepliedTo,
-                'Reply: ',comment
-            )
+          
              // Post the Comment
              if(this.props.isPrimary === false){
                 this.props.addNewReplyToSecondaryMetric(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);

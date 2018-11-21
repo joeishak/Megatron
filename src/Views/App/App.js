@@ -21,6 +21,9 @@ import PrimaryContentList from '../../components/PrimaryContent/PrimaryContentLi
 import SecondaryContentList from '../../components/SecondaryContent/SecondaryContentList.jsx';
 import FilterPage from '../../components/MobileComponents/FitlerPage/FilterPage.jsx';
 import Login from '../../components/Login/Login';
+import {
+  PRIMARY, SECONDARY, MOBILE, TABLET, LAPTOP
+} from  '../../Constants/consts.js';
 import { timingSafeEqual } from 'crypto';
 class App extends Component {
   constructor(props) {
@@ -58,7 +61,6 @@ class App extends Component {
     // this.setState({
     //   window: appSettings.window
     // });
-    // console.log('debug',utils.getDeviceType(this.state.window))
   }
   
   async componentDidMount() {
@@ -94,7 +96,6 @@ class App extends Component {
         });
       }
       if(this.props.preferences.routeFilters !== ""){
-
       this.props.preferences.routeFilters.forEach(ele => {
         this.props.addValueToActiveMultiFilter(ele);
       });
@@ -111,11 +112,9 @@ class App extends Component {
       }
     }
   }
-
   async login() {
     this.props.auth.login('/');
   }
-
   /* Event Handler for the Filter Box to open the filter panel with the drop downs */
   openDialogFilterPanel(){
     // Opening the panel
@@ -130,26 +129,41 @@ class App extends Component {
         },300);
     }
   }
-
   updateActivePrimary(index){
     this.props.updateActivePrimaryCard(index);
     this.props.updateActiveSecondaryCard(0);
+
+    if(this.props.mobileIsPrimary === true){
+      this.updateMobileView(PRIMARY, false);
+      this.updateMobileView(SECONDARY, true);
+    }
   }
   updateActiveSecondary(index){
-    // console.log(index)
     this.props.updateActiveSecondaryCard(index);
   }
-  updateMobileView(toUpdateTo) {
-   this.props.updateViewSetting(toUpdateTo, this.props.appSettings.views)
+  updateMobileView(updateComponent, toUpdateTo) {
+    //If the user is on Secondary 
+    if(updateComponent === SECONDARY){
+      // and the user wants to  goes back to primary
+      if(toUpdateTo === false){
+        this.props.updateViewSetting(updateComponent, toUpdateTo)
+        this.props.updateViewSetting(PRIMARY,true);
+      }
+    // Else they are on primary 
+    } else {
+      if(toUpdateTo === false ){
+        this.props.updateViewSetting(updateComponent, toUpdateTo);
+        this.props.updateViewSetting(SECONDARY,true);
+      }
+    }
   }
 
   onCommentIconClick = (e,type,index) => {
-   console.log(e,index,type);
-   if(type === 'primary'){
+   if(type === PRIMARY){
      this.setState({activeCommentBoxMetric: this.props.primaryData[index]},()=>{
         this.props.showCommentBox();
      });
-   } else if(type ==='secondary'){
+   } else if(type ===SECONDARY){
     this.setState({activeCommentBoxMetric: this.props.secondaryData[index]},()=>{
       this.props.showCommentBox();
    });
@@ -183,9 +197,8 @@ class App extends Component {
       deviceType= {this.props.deviceType}
       activePrimary={this.props.activePrimaryCard}
       mobileSecondaryIsActive = {this.props.mobileIsSecondary}
-      mobilePrimaryIsActive = {this.props.mobileIsSecondary}
       primaryDataCategory={this.props.primaryData[this.props.activePrimaryCard].category}
-      updateMobileView={(e, updateTo) => {this.updateMobileView(updateTo)}}
+      updateMobileView={(e, updateTo) => {this.updateMobileView(SECONDARY, updateTo)}}
     />);
 
   }
@@ -193,7 +206,7 @@ class App extends Component {
 
   render(){
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
-    const isMobileOrTablet = utils.getDeviceType(this.state.window).includes('mobile') || utils.getDeviceType(this.state.window).includes('tablet');
+    const isMobileOrTablet = utils.getDeviceType(this.state.window).includes(MOBILE) || utils.getDeviceType(this.state.window).includes(TABLET);
 
 
     return (
@@ -229,16 +242,12 @@ class App extends Component {
               <SummaryViewDetails />
               {/* Playground */}
               {/* <Playground></Playground> */}
-         
           </div>
-         
         </span>
-
         }
          {this.state.authenticated === false &&
               this.props.auth.login('/')
-
-          }
+         }
       </div>
     )
   }
@@ -263,8 +272,8 @@ function mapStateToProps(state) {
     deviceType: state.appSettings.deviceType,
     toggleCommentary: state.toggleCommentaryBox,
     window: state.appSettings.window,
-    mobileIsPrimary: state.appSettings.views.mobilePrimaryIsActive,
-    mobileIsSecondary: state.appSettings.views.mobileSecondaryIsActive
+    mobileIsPrimary: state.appSettings.views.primaryIsVisible,
+    mobileIsSecondary: state.appSettings.views.secondaryIsVisible
   };
 }
 

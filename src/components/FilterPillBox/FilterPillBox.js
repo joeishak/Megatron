@@ -21,7 +21,6 @@ class FilterPillBox extends  Component {
     
     //Function that calls the action which removes the specified multifilter according to the index
     removeFilter(){
-        // console.log(this.props.data);
         this.props.removeMultiFilter(this.props.data);
         // this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
     }

@@ -403,29 +403,15 @@ export function getIbHeartbeat() {
 /**
  * Update which view is currently showing/ hiding
  * @param {*} component 
- * @param {*} isShowing 
+ * @param {*} isShowing
  */
-export function updateViewSetting(component, views){
-    let view ={};
-switch(component){
-    case 'primary':
-    view.mobileViewIsPrimary = !views.mobileViewIsPrimary;
-    break;
-    case  'secondary':
-    view.mobileViewIsSecondary = !views.mobileViewIsSecondary;
-    break;
-    case  'navigation':
+export function updateViewSetting(component, isShowing){
+
     
-    break;
-    case  'filter':
-    break;
-    default:
-    break;
-
-}
-
 return {
     type: SET_VIEW_APP_SETTINGS,
-    payload: view
+    payload: {
+        component, isShowing
+    }
 }
 }

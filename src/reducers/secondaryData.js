@@ -11,7 +11,6 @@ import {
     export default function(state = SecondaryData, action) {
         switch(action.type) {
             case  GET_SECONDARY_DATA:
-            console.log(action.payload);
             newState = Object.assign([], state);
             // //Finance
             newState[0].value = action.payload[0].data[0].NewARRActual;
@@ -52,7 +51,6 @@ import {
                 let commentIndex = Number(action.payload.comment)
                 copyOfSquare.comments[commentIndex].replies.push(action.payload.reply);
                 state[index] = copyOfSquare;
-                console.log(state);
             return [...state]
               default: 
                 return state;
