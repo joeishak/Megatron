@@ -50,8 +50,8 @@ class PrimarySquare extends Component {
         const isTablet = (this.props.deviceType.includes('tablet') ? true : false);
 
         // {utils.getDeviceType(this.props.window)}
-        const formattedValue = utils.formatMetric(this.props.item,'value');
-        const formattedTarget = utils.formatMetric(this.props.item,'target');
+        const formattedValue = utils.formatMetric({valueType :this.props.item.valueType, value: this.props.item.value}, 'value');
+        const formattedTarget = utils.formatMetric({valueType :this.props.item.valueType, value: this.props.item.target}, 'target');
         const alignCenter = classNames({
             center: true
         });

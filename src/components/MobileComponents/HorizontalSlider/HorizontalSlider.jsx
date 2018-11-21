@@ -22,10 +22,8 @@ class HorizontalSlider extends Component {
             
                         {this.props.data.map(item => {
                             let isActive = parseInt(this.props.activeJourneyCard) === item.index ? true : false;
-   
-                            let formattedValue = utils.formatMetric({value: item.value, valueType: item.valueType },'value');
-                            let formattedTarget = utils.formatMetric({value: item.target, valueType: item.valueType },'target');
-                
+                            const formattedValue = utils.formatMetric({valueType :this.props.item.valueType, value: this.props.item.value}, 'value');
+                            const formattedTarget = utils.formatMetric({valueType :this.props.item.valueType, value: this.props.item.target}, 'target');
                             if(this.props.activePrimary === item.category) {
                                 return <div className="card" key={item.index}>
                                 <SliderSqare 

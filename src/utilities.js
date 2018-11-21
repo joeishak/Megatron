@@ -712,11 +712,12 @@ export function formatMetric(item, type){
   else if (type === 'target') {
       switch(item.valueType){
           case 'units':
-          return renderUnits(item.target);
+          return (item.value !== NaN ) ? renderUnits(item.value) : 0;
           case 'currency':
-          return renderDollarValue(item.target);
+          return (item.value !== NaN ) ? renderDollarValue(item.value) : 0;
           case 'percent':
-          return formatPercentage(item.target);
+          return (item.value !== NaN ) ? formatPercentage(item.value) : 0;
+
       }
   }
 }
