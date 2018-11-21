@@ -48,8 +48,9 @@ class SecondarySquares extends Component {
         const isLaptop = (this.props.deviceType.includes('laptop') ? true : false);
         // const isTablet = (this.props.deviceType.includes('tablet') ? true : false);
 
-        const formattedValue = utils.formatMetric(this.props.item,'value');
-        const formattedTarget = utils.formatMetric(this.props.item,'target');
+        const formattedValue = utils.formatMetric({valueType :this.props.item.valueType, value: this.props.item.value}, 'value');
+        const formattedTarget = utils.formatMetric({valueType :this.props.item.valueType, value: this.props.item.target}, 'target');
+
 
         const secondaryBoxHover = classNames({'journeyBoxHover': isLaptop });
         const secondaryBox = classNames({ 'journeyBox': isLaptop });
@@ -93,8 +94,9 @@ class SecondarySquares extends Component {
         const isTablet = (this.props.deviceType.includes('tablet') ? true : false);
         const isMobile = (this.props.deviceType.includes('mobile') ? true : false);
 
-        const formattedValue = utils.formatMetric(this.props.item,'value');
-        const formattedTarget = utils.formatMetric(this.props.item,'target');
+        const formattedValue = utils.formatMetric({valueType :this.props.item.valueType, value: this.props.item.value}, 'value');
+        const formattedTarget = utils.formatMetric({valueType :this.props.item.valueType, value: this.props.item.target}, 'target');
+
 
         const secondaryBoxHover = classNames({'mobileSecondaryHover': isTablet || isMobile });
         const secondaryBox = classNames({ 'mobileSecondaryBox':isTablet || isMobile });
