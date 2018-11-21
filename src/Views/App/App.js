@@ -39,7 +39,8 @@ class App extends Component {
         height: window.innerHeight,
         weidth: window.innerWidth
       },
-      activeCommentBoxMetric: undefined
+      activeCommentBoxMetric: undefined,
+      isFilterPageVisible: false,
     };
 
       /*Bindings  */
@@ -200,10 +201,17 @@ class App extends Component {
 
   }
 
+  onFilterToggled = (e) => {
+    console.log('Filter Toggled');
+    const toggleState = !this.state.isFilterPageVisible;
+    this.setState({isFilterPageVisible: toggleState});
+  }
 
   render(){
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
     const isMobileOrTablet = utils.getDeviceType(this.state.window).includes(MOBILE) || utils.getDeviceType(this.state.window).includes(TABLET);
+    const filtersPage = this.state.isFilterPageVisible ? <FilterPage activeFilters={this.props.activeFilters} availableFilters={this.props.availableFilters}></FilterPage> : null;
+
 
 
     return (
@@ -213,7 +221,7 @@ class App extends Component {
         <span>
           {/* Data Preferences */}
           {kdialog}
-          <Navigation />
+          <Navigation onFilterToggled={e => this.onFilterToggled(e)} isFilterPageVisible={this.state.isFilterPageVisible}/>
           <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
    
           {(this.props.commentBoxIsOpen) ? 
@@ -229,14 +237,14 @@ class App extends Component {
           
           <div style={{width:'100%', height: '1050px'}}>
 
-              {/* <FilterPage activeFilters={this.props.activeFilters} availableFilters={this.props.availableFilters}></FilterPage> */}
-
+              {filtersPage}
+             
               {/* Primary */}
-              {this.getPrimaryContent()}
+              {this.state.isFilterPageVisible? null: this.getPrimaryContent()}
 
               {/* Secondary */}      
-              {this.getSecondaryContent() }
-              <SummaryViewDetails />
+              {this.state.isFilterPageVisible? null: this.getSecondaryContent() }
+              {this.state.isFilterPageVisible? null: <SummaryViewDetails />}
               {/* Playground */}
               {/* <Playground></Playground> */}
           </div>

@@ -158,6 +158,32 @@
 } */
 
 /* Mobile Screens */
+
+.filterIcon {
+    margin-top: 13px;
+    margin-left: 10px;
+    margin-right: 4px;
+    width: 42px;
+    height: 42px;
+}
+
+.fitlerIconMobile {
+    padding-top:4px;
+    width: 32px;
+    height: 32px;
+}
+
+.filterButton {
+    /* border: 1px dotted red; */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    float: right;
+}
+
+.filterIconContainer {
+    float: right;
+}
 @media only screen and (max-width: 1024px) {
     .flLeft {
         padding-left: 20px;
@@ -171,5 +197,14 @@
 @media only screen and (max-width: 765px) {
     .userIcon {
         display: none;
+    }
+    .filterIcon {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 765px) {
+    .fitlerIconMobile {
+       display: none;
     }
 }

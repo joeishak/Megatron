@@ -3,6 +3,18 @@
     width: 100%;
     height: 100%;
     color: white;
+    -webkit-animation: slideFilter 1s forwards;
+    -webkit-animation-delay: 2s;
+    animation: slideFilter 1s forwards;
+    animation-delay: 2s;
+}
+
+@-webkit-keyframes slideFilter {
+    100% { left: 0; }
+}
+
+@keyframes slideFilter {
+    100% { left: 0; }
 }
 
 .filterMobilePillsContainer {

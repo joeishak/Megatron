@@ -14,10 +14,14 @@ import styles from './Navigation.css';
 
 import logo from "../../assets/images/adobe-logo-nav-1.svg";
 import userIcon from './user-icon.svg';
+import filterUnselected from './assets/filter-unselected.svg';
+import filterSelected from './assets/filter-selected.svg';
 import commentIconOff from './assets/images/comment-icon-off.svg';
 import commentIconOn from './assets/images/comment-icon-on.svg';
 
 import profilePic from "./assets/images/amit-profile.png";
+
+
 
 
 
@@ -107,18 +111,24 @@ class Navigation extends Component {
         return _user.name;
       }       
     }
-    navToggle = (e) => {
-      console.log('toggled');
-      // if mobile view show filter screen and hide NavbarCollapse, else function as a toggle.
-    }
+
+    // onFilterToggled = (e) => {
+    //   console.log('toggled');
+    //   // if mobile view show filter screen and hide NavbarCollapse, else function as a toggle.
+    // }
     
     render() {
       //local constants for showing the logo with an animation 
+      const filterIcon = this.props.isFilterPageVisible ? filterSelected : filterUnselected;
       const { show } = this.state;
       const logos = show ? (<img alt="" src={logo} className="imgLogo"/>) : null;
       const { activeTab } = this.state;
       const filterButton = 
-      (this.props.deviceType.includes('tablet') || this.props.deviceType.includes('mobile') ? <div className="k-float-right"><button>FILTER</button></div>: null);
+      (this.props.deviceType.includes('tablet') || this.props.deviceType.includes('mobile') ? 
+      <div className="filterButton">
+        <img alt="" className="fitlerIconMobile" src={filterIcon} onClick={e => this.props.onFilterToggled(e)}/>
+      </div>:
+       null);
     
         return(
 
@@ -127,11 +137,14 @@ class Navigation extends Component {
             <Navbar.Brand className="navBrandLogo">
               <div href="#brand" style={{width: 130}}><Expand>{logos}</Expand></div>
             </Navbar.Brand>
-            <Navbar.Toggle onClick={e => this.navToggle(e)}/>
+
+                <Navbar.Toggle/>
+        
+
               {filterButton}
           </Navbar.Header>
           <Navbar.Collapse >  
-            <ul className="nav navbar-nav">
+            {/* <ul className="nav navbar-nav">
               <li className={`navItem ${activeTab === 'tab1' ? 'selected' : ''}`} 
                 onClick={e => this.selectedNavItem(e, 'tab1')}>
                 <Link  to="/" className="navText">
@@ -140,7 +153,7 @@ class Navigation extends Component {
                 </Link>
                 <Route path = "/post" component ={App} />
               </li>
-            </ul>
+            </ul> */}
             <Nav pullRight>
             <div className="dropDownContainerBox">
               <div className="flLeft">
@@ -152,10 +165,9 @@ class Navigation extends Component {
               </div>
               <div className="flLeft"><img alt="" className="userIcon" src={userIcon}/></div>
 
-              <div className='flRight'> 
+              <div className='flRight'> <img alt="" className="commentIcon" onClick={this.updateCommentsNav} src={!this.props.toggleCommentaryOn ? commentIconOff : commentIconOn}/> </div>
 
-                <img alt="" className="commentIcon" onClick={this.updateCommentsNav} src={!this.props.toggleCommentaryOn ? commentIconOff : commentIconOn}/>
-              </div>
+              {this.props.deviceType.includes('tablet') ? <div className="filterIconContainer"><img className="filterIcon" src={filterIcon} onClick={e => this.props.onFilterToggled(e)}></img></div>: null}
             </div>
             </Nav>
           </Navbar.Collapse>
