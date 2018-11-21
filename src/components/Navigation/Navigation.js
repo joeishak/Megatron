@@ -1,8 +1,7 @@
 // Npm Modules
 import React, { Component } from 'react';
 import { Route,Link } from 'react-router-dom';
-  
-import {Nav,  Navbar,NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
+import {Nav,  Navbar, NavDropdown, MenuItem} from 'react-bootstrap';
 import {  Expand, } from '@progress/kendo-react-animation';
 import classNames from 'classnames';
 import { withAuth } from '@okta/okta-react';
@@ -66,9 +65,6 @@ class Navigation extends Component {
       });
       }, 1000);
     }
-    async logout() {
-      this.props.auth.logout('/');
-    }
     //Event handler for setting the active tab
     // Dictates the style for the chosen tab
     selectedNavItem (e, tab) {
@@ -111,12 +107,17 @@ class Navigation extends Component {
         return _user.name;
       }       
     }
+    navToggle = (e) => {
+      console.log('toggled');
+      // if mobile view show filter screen and hide NavbarCollapse, else function as a toggle.
+    }
     
     render() {
       //local constants for showing the logo with an animation 
       const { show } = this.state;
       const logos = show ? (<img alt="" src={logo} className="imgLogo"/>) : null;
       const { activeTab } = this.state;
+      const filterButton = (this.props.deviceType === 'tablet' || this.props.deviceType === 'mobile' ? <div className="k-float-right"><button>FILTER</button></div>);
     
         return(
 
@@ -125,7 +126,8 @@ class Navigation extends Component {
             <Navbar.Brand className="navBrandLogo">
               <div href="#brand" style={{width: 130}}><Expand>{logos}</Expand></div>
             </Navbar.Brand>
-            <Navbar.Toggle />
+            <Navbar.Toggle onClick={e => this.navToggle(e)}/>
+
           </Navbar.Header>
           <Navbar.Collapse >  
             <ul className="nav navbar-nav">
@@ -139,7 +141,6 @@ class Navigation extends Component {
               </li>
             </ul>
             <Nav pullRight>
-            <NavItem>
             <div className="dropDownContainerBox">
               <div className="flLeft">
                   <NavDropdown eventKey={3} className="dropDownContainer" title={this.processLoggedUser(this.props.user) || ""} id="nav-dropdown" noCaret>
@@ -149,16 +150,12 @@ class Navigation extends Component {
                   </NavDropdown>
               </div>
               <div className="flLeft"><img alt="" className="userIcon" src={userIcon}/></div>
-              {/* <div className="flLeft"><img alt="" className="profilePic" src={userIcon}/></div> */}
+
               <div className='flRight'> 
-                {/* <a className={commentsNavigationItem} onClick={this.updateCommentsNav}>
-                  <div className="redicon"></div>
-                  <div className="redicontext"></div>
-                </a> */}
+
                 <img alt="" className="commentIcon" onClick={this.updateCommentsNav} src={!this.props.toggleCommentaryOn ? commentIconOff : commentIconOn}/>
               </div>
-              </div>
-              </NavItem>
+            </div>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -167,11 +164,13 @@ class Navigation extends Component {
 }
 
 function maptStateToProps(state) {
+  console.log(state);
   return {
     dialogIsOpen: state.dialogIsOpen,
     commentBoxIsOpen: state.commentBoxIsOpen,
     toggleCommentaryOn: state.toggleCommentaryBox,
-    user: state.user
+    user: state.user,
+    deviceType: state.appSettings.deviceType
   }
 }
 

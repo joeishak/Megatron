@@ -20,7 +20,7 @@ import CommentBox from '../../components/CommentBox/CommentBox.jsx';
 import PrimaryContentList from '../../components/PrimaryContent/PrimaryContentList.jsx';
 import SecondaryContentList from '../../components/SecondaryContent/SecondaryContentList.jsx';
 import FilterPage from '../../components/MobileComponents/FitlerPage/FilterPage.jsx';
-import Login from '../../components/Login/Login';
+// import Login from '../../components/Login/Login';
 import { timingSafeEqual } from 'crypto';
 class App extends Component {
   constructor(props) {
@@ -61,14 +61,14 @@ class App extends Component {
     // console.log('debug',utils.getDeviceType(this.state.window))
   }
   
-  async componentDidMount() {
+  componentDidMount() {
     this.props.generateFilterData();
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
     this.checkAuthentication();
   }
 
-  async componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps) {
 
     // If the old available filters change or the active filters change
     //  Call for new data with the filters
@@ -112,7 +112,7 @@ class App extends Component {
     }
   }
 
-  async login() {
+  login() {
     this.props.auth.login('/');
   }
 
@@ -140,7 +140,13 @@ class App extends Component {
     this.props.updateActiveSecondaryCard(index);
   }
   updateMobileView(toUpdateTo) {
-   this.props.updateViewSetting(toUpdateTo, this.props.appSettings.views)
+    console.log(toUpdateTo);
+    switch(toUpdateTo){
+      case 'primary':
+        //code
+        break;
+      
+    }
   }
 
   onCommentIconClick = (e,type,index) => {
@@ -164,10 +170,7 @@ class App extends Component {
       data = {this.props.primaryData} 
       enableChart={()=>{console.log('hello world');}} 
       selectedCard={(e,index) =>{this.updateActivePrimary(index)}} 
-      deviceType= {this.props.deviceType}
-      mobilePrimaryIsActive = { this.props.mobileIsPrimary}
-      updateMobileView={(e, updateTo) => {this.updateMobileView(updateTo)}}
-      /> 
+      deviceType= {this.props.deviceType}/> 
 
     );
   }
@@ -182,8 +185,6 @@ class App extends Component {
       toggleCommentary={this.props.toggleCommentary} 
       deviceType= {this.props.deviceType}
       activePrimary={this.props.activePrimaryCard}
-      mobileSecondaryIsActive = {this.props.mobileIsSecondary}
-      mobilePrimaryIsActive = {this.props.mobileIsSecondary}
       primaryDataCategory={this.props.primaryData[this.props.activePrimaryCard].category}
       updateMobileView={(e, updateTo) => {this.updateMobileView(updateTo)}}
     />);
@@ -225,10 +226,8 @@ class App extends Component {
               {this.getPrimaryContent()}
 
               {/* Secondary */}      
-              {this.getSecondaryContent() }
-              <SummaryViewDetails />
-              {/* Playground */}
-              {/* <Playground></Playground> */}
+              {this.getSecondaryContent()}
+
          
           </div>
          
@@ -238,7 +237,7 @@ class App extends Component {
          {this.state.authenticated === false &&
               this.props.auth.login('/')
 
-          }
+        }
       </div>
     )
   }
@@ -262,9 +261,7 @@ function mapStateToProps(state) {
     appSettings: state.appSettings,
     deviceType: state.appSettings.deviceType,
     toggleCommentary: state.toggleCommentaryBox,
-    window: state.appSettings.window,
-    mobileIsPrimary: state.appSettings.views.mobilePrimaryIsActive,
-    mobileIsSecondary: state.appSettings.views.mobileSecondaryIsActive
+    window: state.appSettings.window
   };
 }
 
