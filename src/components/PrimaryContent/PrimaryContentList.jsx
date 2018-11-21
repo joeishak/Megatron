@@ -42,7 +42,7 @@ class PrimaryContentList extends Component {
         return(
             <div className={responsivePrimaryRow}>
 
-            {(isVisible || isLaptop === true) ?
+            {(isVisible === true || isLaptop === true) ?
              this.props.data.map(item=>{
                 let isActive = parseInt(this.props.activeCard) === item.index ? true : false;
               return (

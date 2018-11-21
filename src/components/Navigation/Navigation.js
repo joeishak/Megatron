@@ -117,7 +117,8 @@ class Navigation extends Component {
       const { show } = this.state;
       const logos = show ? (<img alt="" src={logo} className="imgLogo"/>) : null;
       const { activeTab } = this.state;
-      const filterButton = (this.props.deviceType.includes('laptop') || this.props.deviceType.includes('mobile') ? <div className="k-float-right"><button>FILTER</button></div>: null);
+      const filterButton = 
+      (this.props.deviceType.includes('tablet') || this.props.deviceType.includes('mobile') ? <div className="k-float-right"><button>FILTER</button></div>: null);
     
         return(
 

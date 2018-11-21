@@ -29,6 +29,12 @@ class SecondaryContentList extends Component {
         }
         return false;
     }
+
+    updateView = (e) => {
+        this.props.updateMobileView(PRIMARY, true);
+        this.props.updateMobileView(SECONDARY, false);
+    }
+
     render(){
 
 
@@ -36,11 +42,13 @@ class SecondaryContentList extends Component {
         
         const navigationTitle = (isMobileAndTablet===true && this.props.mobileSecondaryIsActive === true) ? (
             <div className="primaryDataCategoryContainer">
-                <p className="primaryCateogryNav" onClick={(e) => this.props.updateMobileView(e, false)}>{`<`}</p>
+                <p className="primaryCateogryNav" onClick={(e) => this.updateView(e)}>{`<`}</p>
                 <div className="primaryCategoryTitle">{this.props.primaryDataCategory}</div>
             </div> ): null;
 
-        const secondaryContentTop = (this.props.mobileSecondaryIsActive === true && isMobileAndTablet===true || isMobileAndTablet === false) ? this.props.data.map(item => {
+
+
+        const secondaryContentTop = ((this.props.mobileSecondaryIsActive === true && isMobileAndTablet===true) || isMobileAndTablet === false) ? this.props.data.map(item => {
             let isActive = parseInt(this.props.activeJourneyCard) === item.index ? true : false;
             if(this.props.activePrimary === item.category){
                 return (

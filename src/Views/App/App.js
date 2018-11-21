@@ -195,7 +195,7 @@ class App extends Component {
       activePrimary={this.props.activePrimaryCard}
       mobileSecondaryIsActive = {this.props.mobileIsSecondary}
       primaryDataCategory={this.props.primaryData[this.props.activePrimaryCard].category}
-      updateMobileView={(e, updateTo) => {this.updateMobileView(SECONDARY, updateTo)}}
+      updateMobileView={(component, updateTo) => {this.updateMobileView(component, updateTo)}}
     />);
 
   }
