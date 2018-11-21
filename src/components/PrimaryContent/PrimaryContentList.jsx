@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import styles from './PrimaryContent.css';
 import PrimarySquare from './PrimarySquare.jsx'
-import classNames from 'classnames'
+import classNames from 'classnames';
+import {
+    PRIMARY, SECONDARY, MOBILE, TABLET, LAPTOP
+} from  '../../Constants/consts.js';
 class PrimaryContentList extends Component {
 
     componentDidUpdate(prevProps){
-        console.log(this.props.activeCard)
-
     }
     shouldComponentUpdate(nextProps){
         if(this.props.toggleCommentary !== nextProps.toggleCommentary){
@@ -21,13 +22,16 @@ class PrimaryContentList extends Component {
         if(this.props.deviceType !== nextProps.deviceType ){
             return true;
         }
+        if(this.props.mobilePrimaryIsActive !== nextProps.mobilePrimaryIsActive){
+            return true;
+        }
         return false;
     }
     render(){
-        const isMobile = (this.props.deviceType.includes('mobile') ? true : false);
-        const isLaptop = (this.props.deviceType.includes('laptop') ? true : false);
-        const isTablet = (this.props.deviceType.includes('tablet') ? true : false);
-
+        const isMobile = (this.props.deviceType.includes(MOBILE) ? true : false);
+        const isLaptop = (this.props.deviceType.includes(LAPTOP) ? true : false);
+        const isTablet = (this.props.deviceType.includes(TABLET) ? true : false);
+        const isVisible = (this.props.mobilePrimaryIsActive === true) ? true: false;
 
         const responsivePrimaryRow = classNames({
             "row primaryRow": true,
@@ -38,7 +42,8 @@ class PrimaryContentList extends Component {
         return(
             <div className={responsivePrimaryRow}>
 
-            { this.props.data.map(item=>{
+            {(isVisible || isLaptop === true) ?
+             this.props.data.map(item=>{
                 let isActive = parseInt(this.props.activeCard) === item.index ? true : false;
               return (
                   <PrimarySquare 
@@ -51,7 +56,8 @@ class PrimaryContentList extends Component {
                     activeCard={isActive} 
                     item={item}>  </PrimarySquare>
             )
-            })}
+            }) : null
+        }
             </div>
         )
     }

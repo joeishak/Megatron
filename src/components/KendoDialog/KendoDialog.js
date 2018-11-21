@@ -39,7 +39,6 @@ class KendoDialog extends Component {
     }
 
     resize() {
-        // console.log('resizing', window.innerWidth, window.innerHeight);
     }
 
     open() {
@@ -54,7 +53,6 @@ class KendoDialog extends Component {
     onItemChecked(e) {
         e.preventDefault()
 
-        console.log(e.target.id);
 
 
         //TODO:  3 Different Actions for updating the defaultSummary, defaultFinKpi and defaultJournKpi
@@ -130,7 +128,6 @@ class KendoDialog extends Component {
     }
     // Save the changes
     saveChanges = () => {
-        console.log('save changes button clicked');
 
         let view = (this.state.selectedSummary ==='Financial')? 'Financial': 'Journey';
 
@@ -143,13 +140,13 @@ class KendoDialog extends Component {
         setTimeout(() => this.closeDialog(), 1500);
     }
 
+    // Entered
     onMouseEnterHandler = () => {
-        console.log('entered');
       
     }
 
+    //Left
     onMoueLeaveHandler = () => {
-        console.log('left');
       
     }
     

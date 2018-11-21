@@ -11,7 +11,6 @@ let copyOfState;
 export default function(state = PrimaryData, action) {
     switch(action.type) {
         case  GET_PRIMARY_DATA:
-        console.log(action.payload);
 
             newState = Object.assign([], state);
             //Actual, Targets, Vs QRf
@@ -50,7 +49,6 @@ export default function(state = PrimaryData, action) {
               index = action.payload.square;
               copyOfState = Object.assign([],state);
               copyOfState[index].comments.push(action.payload.comment);
-              console.log('copy of state',copyOfState);
           return copyOfState;
           // CAse for adding a reply to a previous comment
           case ADD_NEW_PRIMARY_REPLY:

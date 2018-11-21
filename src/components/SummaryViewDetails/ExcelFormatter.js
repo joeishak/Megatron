@@ -3,6 +3,5 @@ export default class ExcelFormatter {
         this.data = data;
     }
     formatDataForExcel = () =>{
-    console.log('From the Excel Formatter: ', this.data);
     }
 }

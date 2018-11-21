@@ -117,7 +117,7 @@ class Navigation extends Component {
       const { show } = this.state;
       const logos = show ? (<img alt="" src={logo} className="imgLogo"/>) : null;
       const { activeTab } = this.state;
-      const filterButton = (this.props.deviceType === 'tablet' || this.props.deviceType === 'mobile' ? <div className="k-float-right"><button>FILTER</button></div>);
+      const filterButton = (this.props.deviceType.includes('laptop') || this.props.deviceType.includes('mobile') ? <div className="k-float-right"><button>FILTER</button></div>: null);
     
         return(
 
@@ -127,7 +127,7 @@ class Navigation extends Component {
               <div href="#brand" style={{width: 130}}><Expand>{logos}</Expand></div>
             </Navbar.Brand>
             <Navbar.Toggle onClick={e => this.navToggle(e)}/>
-
+              {filterButton}
           </Navbar.Header>
           <Navbar.Collapse >  
             <ul className="nav navbar-nav">

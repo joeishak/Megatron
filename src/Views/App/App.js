@@ -20,7 +20,10 @@ import CommentBox from '../../components/CommentBox/CommentBox.jsx';
 import PrimaryContentList from '../../components/PrimaryContent/PrimaryContentList.jsx';
 import SecondaryContentList from '../../components/SecondaryContent/SecondaryContentList.jsx';
 import FilterPage from '../../components/MobileComponents/FitlerPage/FilterPage.jsx';
-// import Login from '../../components/Login/Login';
+import Login from '../../components/Login/Login';
+import {
+  PRIMARY, SECONDARY, MOBILE, TABLET, LAPTOP
+} from  '../../Constants/consts.js';
 import { timingSafeEqual } from 'crypto';
 class App extends Component {
   constructor(props) {
@@ -58,7 +61,6 @@ class App extends Component {
     // this.setState({
     //   window: appSettings.window
     // });
-    // console.log('debug',utils.getDeviceType(this.state.window))
   }
   
   componentDidMount() {
@@ -94,7 +96,6 @@ class App extends Component {
         });
       }
       if(this.props.preferences.routeFilters !== ""){
-
       this.props.preferences.routeFilters.forEach(ele => {
         this.props.addValueToActiveMultiFilter(ele);
       });
@@ -111,11 +112,9 @@ class App extends Component {
       }
     }
   }
-
-  login() {
+  async login() {
     this.props.auth.login('/');
   }
-
   /* Event Handler for the Filter Box to open the filter panel with the drop downs */
   openDialogFilterPanel(){
     // Opening the panel
@@ -130,32 +129,41 @@ class App extends Component {
         },300);
     }
   }
-
   updateActivePrimary(index){
     this.props.updateActivePrimaryCard(index);
     this.props.updateActiveSecondaryCard(0);
+
+    if(this.props.mobileIsPrimary === true){
+      this.updateMobileView(PRIMARY, false);
+      this.updateMobileView(SECONDARY, true);
+    }
   }
   updateActiveSecondary(index){
-    // console.log(index)
     this.props.updateActiveSecondaryCard(index);
   }
-  updateMobileView(toUpdateTo) {
-    console.log(toUpdateTo);
-    switch(toUpdateTo){
-      case 'primary':
-        //code
-        break;
-      
+  updateMobileView(updateComponent, toUpdateTo) {
+    //If the user is on Secondary 
+    if(updateComponent === SECONDARY){
+      // and the user wants to  goes back to primary
+      if(toUpdateTo === false){
+        this.props.updateViewSetting(updateComponent, toUpdateTo)
+        this.props.updateViewSetting(PRIMARY,true);
+      }
+    // Else they are on primary 
+    } else {
+      if(toUpdateTo === false ){
+        this.props.updateViewSetting(updateComponent, toUpdateTo);
+        this.props.updateViewSetting(SECONDARY,true);
+      }
     }
   }
 
   onCommentIconClick = (e,type,index) => {
-   console.log(e,index,type);
-   if(type === 'primary'){
+   if(type === PRIMARY){
      this.setState({activeCommentBoxMetric: this.props.primaryData[index]},()=>{
         this.props.showCommentBox();
      });
-   } else if(type ==='secondary'){
+   } else if(type ===SECONDARY){
     this.setState({activeCommentBoxMetric: this.props.secondaryData[index]},()=>{
       this.props.showCommentBox();
    });
@@ -185,8 +193,9 @@ class App extends Component {
       toggleCommentary={this.props.toggleCommentary} 
       deviceType= {this.props.deviceType}
       activePrimary={this.props.activePrimaryCard}
+      mobileSecondaryIsActive = {this.props.mobileIsSecondary}
       primaryDataCategory={this.props.primaryData[this.props.activePrimaryCard].category}
-      updateMobileView={(e, updateTo) => {this.updateMobileView(updateTo)}}
+      updateMobileView={(e, updateTo) => {this.updateMobileView(SECONDARY, updateTo)}}
     />);
 
   }
@@ -194,7 +203,7 @@ class App extends Component {
 
   render(){
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
-    const isMobileOrTablet = utils.getDeviceType(this.state.window).includes('mobile') || utils.getDeviceType(this.state.window).includes('tablet');
+    const isMobileOrTablet = utils.getDeviceType(this.state.window).includes(MOBILE) || utils.getDeviceType(this.state.window).includes(TABLET);
 
 
     return (
@@ -226,18 +235,16 @@ class App extends Component {
               {this.getPrimaryContent()}
 
               {/* Secondary */}      
-              {this.getSecondaryContent()}
-
-         
+              {this.getSecondaryContent() }
+              <SummaryViewDetails />
+              {/* Playground */}
+              {/* <Playground></Playground> */}
           </div>
-         
         </span>
-
         }
          {this.state.authenticated === false &&
               this.props.auth.login('/')
-
-        }
+         }
       </div>
     )
   }
@@ -261,7 +268,9 @@ function mapStateToProps(state) {
     appSettings: state.appSettings,
     deviceType: state.appSettings.deviceType,
     toggleCommentary: state.toggleCommentaryBox,
-    window: state.appSettings.window
+    window: state.appSettings.window,
+    mobileIsPrimary: state.appSettings.views.primaryIsVisible,
+    mobileIsSecondary: state.appSettings.views.secondaryIsVisible
   };
 }
 

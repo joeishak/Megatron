@@ -52,8 +52,7 @@ class KendoMultiChart extends Component {
     // }
 
     // labelContent = (type, e) => {
-    //     console.log('debug', e.value);
-    //     console.log('debug', type);
+  
     //     const suffix = ' M';
     //     const prefix = '$';
     //     return ( prefix + (parseInt(e.value)/ 1000000) + suffix);
@@ -127,7 +126,6 @@ class KendoMultiChart extends Component {
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
 
         const SharedTooltip = (props) => {
-            // console.log('debug', props);
             const { points } = props;
             const title = props.categoryText;
             return (
@@ -218,7 +216,6 @@ class KendoMultiChart extends Component {
 
 }
 function mapStateToProps(state){
-    // console.log('debug',state.activeSummarySquare.valueType);
     return { 
         switchFilter: state.switchFilter, 
         activeSummarySquare: state.secondaryData[state.activeCards.secondary], 

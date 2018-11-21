@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import SecondarySquares from './SecondarySquares';
 import Playground from '../MobileComponents/Playground/Playground';
 import HorizontalSlider from '../MobileComponents/HorizontalSlider/HorizontalSlider.jsx';
-
+import {
+    PRIMARY, SECONDARY, MOBILE, TABLET, LAPTOP
+} from  '../../Constants/consts.js';
 class SecondaryContentList extends Component {
 
     shouldComponentUpdate(nextProps){
@@ -22,19 +24,23 @@ class SecondaryContentList extends Component {
         if (this.props.deviceType !== nextProps.deviceType) {
             return true;
         }
+        if(this.props.mobileSecondaryIsActive !== nextProps.mobileSecondaryIsActive){
+            return true;
+        }
         return false;
     }
     render(){
 
 
-        const isMobileAndTablet = this.props.deviceType.includes('mobile') || this.props.deviceType.includes('tablet');
-        const navigationTitle = isMobileAndTablet && this.props.mobilePrimaryIsActive === false ? (
+        const isMobileAndTablet = this.props.deviceType.includes(MOBILE) || this.props.deviceType.includes(TABLET);
+        
+        const navigationTitle = (isMobileAndTablet===true && this.props.mobileSecondaryIsActive === true) ? (
             <div className="primaryDataCategoryContainer">
-                <p className="primaryCateogryNav" onClick={(e) => this.props.updateMobileView(e,'primary')}>{`<`}</p>
+                <p className="primaryCateogryNav" onClick={(e) => this.props.updateMobileView(e, false)}>{`<`}</p>
                 <div className="primaryCategoryTitle">{this.props.primaryDataCategory}</div>
             </div> ): null;
 
-        const secondaryContentTop = (this.props.mobileSecondaryIsActive || isMobileAndTablet!==true) ? this.props.data.map(item => {
+        const secondaryContentTop = (this.props.mobileSecondaryIsActive === true && isMobileAndTablet===true || isMobileAndTablet === false) ? this.props.data.map(item => {
             let isActive = parseInt(this.props.activeJourneyCard) === item.index ? true : false;
             if(this.props.activePrimary === item.category){
                 return (
