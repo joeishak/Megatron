@@ -493,7 +493,7 @@ detailsRenderDollar(item) {
               </div>
           </div>
           <div className="chartContainer col-md-12">
-            <KendoMultiChart color='white' />
+            <KendoMultiChart color='white'  deviceType='laptop' />
           </div> 
         </div>
         {/* Second Row for Quarterly to Date title header */}

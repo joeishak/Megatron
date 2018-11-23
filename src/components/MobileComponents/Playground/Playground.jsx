@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styles from './Playground.css';
+import MobileMultiChart from './components/MobileMultiChart/MobileMultiChart.jsx';
 
 class Playground extends Component {
 
@@ -48,7 +49,7 @@ class Playground extends Component {
                     <div className="carousel-inner">
                         <div id="1" className={`item ${item1Active}`} >
                         
-                            <p>Content for first box</p>
+                           <MobileMultiChart></MobileMultiChart>
                         
                         </div>
                         <div id="2" className={`item ${item2Active}`} >

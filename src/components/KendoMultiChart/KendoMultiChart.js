@@ -153,12 +153,17 @@ class KendoMultiChart extends Component {
             return customVisual;
         }
 
+        const chartLegend = this.props.deviceType === 'laptop' ? 
+        <ChartLegend  position='bottom' labels={{color: this.props.color}} >
+            <ChartLegendItem visual={legendRender}/>
+        </ChartLegend> : <ChartLegend visible={false} />
+
         const ChartContainer = () => (
             
                 <Chart pannable={false} zoomable={false} >
-                    <ChartLegend  position='bottom' labels={{color: this.props.color}} >
-                        <ChartLegendItem visual={legendRender}/>
-                    </ChartLegend>
+
+                    {chartLegend}
+
                     <ChartTooltip shared={true} background="black" color="white" render={sharedTooltipRender}/>
                     <ChartCategoryAxis>
                             <ChartCategoryAxisItem max='13' maxDivisions={13} />

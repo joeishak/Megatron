@@ -72,7 +72,7 @@ class SecondaryContentList extends Component {
    
 
         
-        const renderStyle = isMobileAndTablet ? { height:'100%', width: '100%'} : { height:'100%', marginTop: '30px', width:'17%'};
+        const renderStyle = isMobileAndTablet ? { height:'100%', width: '100%'} : { height:'100%', marginTop: '30px', width:'18%'};
         const secondaryContentBottom = isMobileAndTablet && this.props.mobileSecondaryIsActive ? 
             
             <div className="secondaryContentBottom">
