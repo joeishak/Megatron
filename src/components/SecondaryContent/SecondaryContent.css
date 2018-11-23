@@ -55,6 +55,12 @@
 .journeyHeaderAlert { background-color: #FF0000;}
 
 
+
+.journeyBoxAlert {
+	position: relative;
+	background: #131313;
+	border: 4px solid #FF0000;
+}
 .journeyBoxAlert:after, .journeyBoxAlert:before {
 	left: 100%;
 	top: 50%;
@@ -67,16 +73,16 @@
 }
 
 .journeyBoxAlert:after {
-	border-color: rgba(213, 213, 213, 0);
-	border-left-color:#ff0000;
-	border-width: 15px;
-	margin-top: -15px;
+	border-color: rgba(136, 183, 213, 0);
+	border-left-color: #FF0000;
+	border-width: 20px;
+	margin-top: -20px;
 }
 .journeyBoxAlert:before {
-	border-color: rgba(245, 0, 0, 0);
-	border-left-color: #f50000;
-	border-width: 18px;
-	margin-top: -18px;
+	border-color: rgba(194, 225, 245, 0);
+	border-left-color: #FF0000;
+	border-width: 26px;
+	margin-top: -26px;
 }
 /* END DYNAMIC RED */
 
@@ -85,7 +91,11 @@
 
 .journeyHeaderAlertGreen { background-color:#0DB16E;}
 
-
+.journeyBoxAlertGreen {
+	position: relative;
+	background: #131313;
+	border: 4px solid #0DB16E;
+}
 .journeyBoxAlertGreen:after, .journeyBoxAlertGreen:before {
 	left: 100%;
 	top: 50%;
@@ -98,16 +108,16 @@
 }
 
 .journeyBoxAlertGreen:after {
-	border-color: rgba(213, 213, 213, 0);
-	border-left-color:#0DB16E;
-	border-width: 15px;
-	margin-top: -15px;
+	border-color: rgba(136, 183, 213, 0);
+	border-left-color: #0DB16E;
+	border-width: 20px;
+	margin-top: -20px;
 }
 .journeyBoxAlertGreen:before {
-	border-color: rgba(245, 0, 0, 0);
+	border-color: rgba(194, 225, 245, 0);
 	border-left-color: #0DB16E;
-	border-width: 18px;
-	margin-top: -18px;
+	border-width: 26px;
+	margin-top: -26px;
 }
 /* END DYNAMIC RED */
 
