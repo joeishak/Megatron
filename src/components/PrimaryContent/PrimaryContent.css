@@ -234,7 +234,7 @@
 	margin-top: 20px;
 }
 .laptopSelectedCardText{
-	color: white;
+	color: white !important;
 }
 .laptopSecondaryCategory{
 	color:black !important;

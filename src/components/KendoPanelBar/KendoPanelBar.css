@@ -143,14 +143,19 @@
     background-color: #1f1f1f !important;
     color: white !important;
 }
-.k-panelbar, .k-item, .k-link {
+.k-panelbar, .k-link {
+    background-color: #1f1f1f;
     color: white !important;
+}
+
+.k-item {
+    background-color: #1f1f1f;
+    color: white;
 }
 
 .k-panelbar, .k-item.k-state-expanded, .k-link {
     color: black;
     background-color: #1f1f1f !important;
-    /* border-color: white; */
 }
 .geoTableContainer{
     padding:0px;
