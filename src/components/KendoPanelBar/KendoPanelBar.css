@@ -1,20 +1,24 @@
 .panelItemTitle{
     font-size:24px;
-    background-color:white;
+    background-color:#1f1f1f;
+    color: white;
 }
 
 .topHeaderBar{
   font-size: 12px;
+  background-color: #1f1f1f;
 }
 .lowerHeaderBar{
     width:100%;
     height: 30px;
-    background-color: #F4F4F4;
+    background-color: #1f1f1f;
+    color: white;
 }
 .allLowerHeaderBar{
     width:100%;
     height: 30px;
-    background-color: #F4F4F4;
+    background-color: #1f1f1f;
+    color: white;
     padding:0px;
 }
 .qtdColumn{
@@ -32,12 +36,14 @@
     font-size: 12px;
     text-align: center;
     width: 11.11%;
-    color: #000000;
-    background-color: white;
+    color: white;
+    background-color: #1f1f1f;
+
 }
 .header{
     font-weight: bold;
-    background-color: #F4F4F4 !important;
+    background-color: #3c3c3c !important;
+    color: white;
     
 }
 .qtdGeoHeader{
@@ -63,8 +69,8 @@
        font-size: 12px;
        text-align: center;
        width: 12.5%;
-       color: #000000;
-       background-color: white;
+       color: white;
+       background-color: #1f1f1f;
 }
 
 .weekGeoHeader{
@@ -89,7 +95,7 @@
     font-size: 12px;
 }
 .topPanelHeader{
-    background-color:white;
+    background-color: #1f1f1f;
 }
 .rightTopHeaderBar{
     float:left;
@@ -120,8 +126,8 @@
  font-size: 12px;
  text-align: center;
  width: 6.63%;
- color: #000000;
- background-color: white;
+ color: white;
+ background-color: #1f1f1f;
 }
 .allGeoHeader{
     text-align:  left !important;
@@ -133,22 +139,23 @@
 
 }
 
-.allColumn{
-
-}
 .k-state-selected{
-    background-color: white !important;
-    color: black !important;
+    background-color: #1f1f1f !important;
+    color: white !important;
 }
-.k-panelbar>.k-item>.k-link {
-    color: black;
+.k-panelbar, .k-item, .k-link {
+    color: white !important;
 }
 
-.k-panelbar>.k-item.k-state-expanded>.k-link {
+.k-panelbar, .k-item.k-state-expanded, .k-link {
     color: black;
-    background-color: white;
-    border-color: white;
+    background-color: #1f1f1f !important;
+    /* border-color: white; */
 }
 .geoTableContainer{
     padding:0px;
+}
+
+.k-content {
+    background-color: transparent !important;
 }

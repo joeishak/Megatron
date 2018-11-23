@@ -1,3 +1,7 @@
+.secondaryCLContainer {
+	float: left;
+}
+
 .journeyBoxHover:hover {
 	animation: grow .20s ease-in-out forwards;
     }

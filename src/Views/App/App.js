@@ -59,9 +59,9 @@ class App extends Component {
       }
     }
     this.props.setAppSettings(appSettings);
-    // this.setState({
-    //   window: appSettings.window
-    // });
+    this.setState({
+      window: appSettings.window
+    });
   }
   
   componentDidMount() {
@@ -209,10 +209,11 @@ class App extends Component {
 
   render(){
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
-    const isMobileOrTablet = utils.getDeviceType(this.state.window).includes(MOBILE) || utils.getDeviceType(this.state.window).includes(TABLET);
+    const isMobileOrTablet = utils.getDeviceType(this.state.window).includes('mobile') || utils.getDeviceType(this.state.window).includes('tablet');
+    console.log('isMobileOrTablet', isMobileOrTablet);
     const filtersPage = this.state.isFilterPageVisible ? <FilterPage activeFilters={this.props.activeFilters} availableFilters={this.props.availableFilters}></FilterPage> : null;
 
-
+    const summaryViewDetails = isMobileOrTablet ? null: <SummaryViewDetails/> ;
 
     return (
       
@@ -244,7 +245,7 @@ class App extends Component {
 
               {/* Secondary */}      
               {this.state.isFilterPageVisible? null: this.getSecondaryContent() }
-              {this.state.isFilterPageVisible? null: <SummaryViewDetails />}
+              {this.state.isFilterPageVisible? null: summaryViewDetails}
               {/* Playground */}
               {/* <Playground></Playground> */}
           </div>

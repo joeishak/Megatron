@@ -12,6 +12,7 @@ import KendoMultiChart from '../KendoMultiChart/KendoMultiChart';
 // Custom Components
 import Workbook from 'react-excel-workbook'
 import excelLogo from '../../assets/images/excel-logo.png';
+import excelLogoGreen from '../../assets/images/excel-logo-green.svg';
 // Services
 import ExcelFormatter from './ExcelFormatter';
 
@@ -470,11 +471,11 @@ detailsRenderDollar(item) {
 
       <div className="sumViewContainer">
       {/* Bread Crumbs */}
-        <span className='breadCrumb' onClick={this.closeSummary.bind(this)}>
+        {/* <span className='breadCrumb' onClick={this.closeSummary.bind(this)}>
           {this.state.summaryType} Summary > </span> 
           <span>  {this.props.activeItem.header}
         </span>
-        <br/>
+        <br/> */}
 
         {/* First Row for Ttle Bar and Metric Filter */}
         <div className="row container-fluid titleBarHeader">
@@ -492,7 +493,7 @@ detailsRenderDollar(item) {
               </div>
           </div>
           <div className="chartContainer col-md-12">
-            <KendoMultiChart color='black' />
+            <KendoMultiChart color='white' />
           </div> 
         </div>
         {/* Second Row for Quarterly to Date title header */}
@@ -500,7 +501,7 @@ detailsRenderDollar(item) {
         <span className="col-md-3 detailTitle2">Quarterly To Date</span>
         <span className="col-md-6 excelSpan" >
               <Workbook filename="example.xlsx" element={<button className='exportButton'><span>Export To Excel </span>    
-                      <img alt="" className="excelLogo" style={{height: '20px',width:'20px'}} src={excelLogo} /></button>}>
+                      <img alt="" className="excelLogo" style={{height: '20px',width:'20px'}} src={excelLogoGreen} /></button>}>
                 <Workbook.Sheet data={this.state.excelTestData} name="QTD">
                   <Workbook.Column label="Actuals" value="Actuals"/>
                   <Workbook.Column label="Units" value="Units"/>
