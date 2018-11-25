@@ -12,7 +12,6 @@ import '@progress/kendo-theme-default/dist/all.css';
 // Custom Components
 import FilterBox from 'components/FilterBox/FilterBox';
 import Playground from '../../components/MobileComponents/Playground/Playground.jsx';
-// import TopSummaryBox from 'components/TopSummaryBox/TopSummaryBox';
 import CustomDropDownPanel from 'components/CustomDropDownPanel/CustomDropDownPanel';
 import SummaryViewDetails from 'components/SummaryViewDetails/SummaryViewDetails';
 import KendoDialog from '../../components/KendoDialog/KendoDialog';
@@ -62,7 +61,7 @@ class App extends Component {
     //   window: appSettings.window
     // });
   }
-  
+
   componentDidMount() {
     this.props.generateFilterData();
     window.addEventListener("resize", this.resize.bind(this));
@@ -78,7 +77,7 @@ class App extends Component {
       this.props.getPrimaryData(this.props.activeFilters, this.props.availableFilters);
       this.props.getSecondaryData(this.props.activeFilters, this.props.availableFilters);
 
-      
+
     }
     let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
     let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined
@@ -142,14 +141,14 @@ class App extends Component {
     this.props.updateActiveSecondaryCard(index);
   }
   updateMobileView(updateComponent, toUpdateTo) {
-    //If the user is on Secondary 
+    //If the user is on Secondary
     if(updateComponent === SECONDARY){
       // and the user wants to  goes back to primary
       if(toUpdateTo === false){
         this.props.updateViewSetting(updateComponent, toUpdateTo)
         this.props.updateViewSetting(PRIMARY,true);
       }
-    // Else they are on primary 
+    // Else they are on primary
     } else {
       if(toUpdateTo === false ){
         this.props.updateViewSetting(updateComponent, toUpdateTo);
@@ -171,14 +170,15 @@ class App extends Component {
   }
 
   getPrimaryContent = () => {
-    return (<PrimaryContentList 
+    return (<PrimaryContentList
       onCommentIconClick={(e,type,index)=>{this.onCommentIconClick(e,type,index)}}
-      toggleCommentary={this.props.toggleCommentary} 
-      activeCard={this.props.activePrimaryCard } 
-      data = {this.props.primaryData} 
-      enableChart={()=>{console.log('hello world');}} 
-      selectedCard={(e,index) =>{this.updateActivePrimary(index)}} 
-      deviceType= {this.props.deviceType}/> 
+      toggleCommentary={this.props.toggleCommentary}
+      activeCard={this.props.activePrimaryCard }
+      data = {this.props.primaryData}
+      enableChart={()=>{console.log('hello world');}}
+      selectedCard={(e,index) =>{this.updateActivePrimary(index)}}
+      deviceType= {this.props.deviceType}
+      mobilePrimaryIsActive = {this.props.mobileIsPrimary}/>
 
     );
   }
@@ -190,7 +190,7 @@ class App extends Component {
       activeJourneyCard = {this.props.activeSecondaryCard}
       onJourneyCardClicked={(e,index) =>{this.updateActiveSecondary(index)}}
       onCommentIconClick={(e,type,index)=>{this.onCommentIconClick(e,type,index)}}
-      toggleCommentary={this.props.toggleCommentary} 
+      toggleCommentary={this.props.toggleCommentary}
       deviceType= {this.props.deviceType}
       activePrimary={this.props.activePrimaryCard}
       mobileSecondaryIsActive = {this.props.mobileIsSecondary}
@@ -207,7 +207,7 @@ class App extends Component {
 
 
     return (
-      
+
       <div style={{height:'100%'}}>
         {this.state.authenticated &&
         <span>
@@ -215,18 +215,18 @@ class App extends Component {
           {kdialog}
           <Navigation />
           <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
-   
-          {(this.props.commentBoxIsOpen) ? 
+
+          {(this.props.commentBoxIsOpen) ?
             <CommentBox
               currentMetric={this.state.activeCommentBoxMetric.index}
-              comments={this.state.activeCommentBoxMetric.comments} 
-              commentBoxHeader={this.state.activeCommentBoxMetric.header} 
+              comments={this.state.activeCommentBoxMetric.comments}
+              commentBoxHeader={this.state.activeCommentBoxMetric.header}
               isPrimary={(this.state.activeCommentBoxMetric.type !== undefined) ? true: false}
               user={this.props.user}/>
                : null}
 
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
-          
+
           <div style={{width:'100%', height: '1050px'}}>
 
               {/* <FilterPage activeFilters={this.props.activeFilters} availableFilters={this.props.availableFilters}></FilterPage> */}
@@ -234,7 +234,7 @@ class App extends Component {
               {/* Primary */}
               {this.getPrimaryContent()}
 
-              {/* Secondary */}      
+              {/* Secondary */}
               {this.getSecondaryContent() }
               <SummaryViewDetails />
               {/* Playground */}
@@ -255,7 +255,7 @@ function mapStateToProps(state) {
   return {
     activeFilters: state.activeFilters,
     availableFilters: state.availableFilters,
-    dialogIsOpen: state.isDialogOpen, 
+    dialogIsOpen: state.isDialogOpen,
     detailIsOpen: state.detailsIsOpen,
     availableFilters: state.availableFilters,
     commentBoxIsOpen: state.commentBoxIsOpen,

@@ -42,18 +42,18 @@ class PrimaryContentList extends Component {
         return(
             <div className={responsivePrimaryRow}>
 
-            {(isVisible === true || isLaptop === true) ?
+            {(isLaptop === false && isVisible === true) || isLaptop === true ?
              this.props.data.map(item=>{
                 let isActive = parseInt(this.props.activeCard) === item.index ? true : false;
               return (
-                  <PrimarySquare 
+                  <PrimarySquare
                     key={item.index}
-                    deviceType={this.props.deviceType} 
-                    onCommentIconClick={(e,type,index) =>{this.props.onCommentIconClick(e,type,index)}}  
-                    toggleCommentary={this.props.toggleCommentary} 
-                    enableChart={this.props.enableChart1Arrow} 
-                    selectedCard={(e,index) =>{this.props.selectedCard(e,index)}} 
-                    activeCard={isActive} 
+                    deviceType={this.props.deviceType}
+                    onCommentIconClick={(e,type,index) =>{this.props.onCommentIconClick(e,type,index)}}
+                    toggleCommentary={this.props.toggleCommentary}
+                    enableChart={this.props.enableChart1Arrow}
+                    selectedCard={(e,index) =>{this.props.selectedCard(e,index)}}
+                    activeCard={isActive}
                     item={item}>  </PrimarySquare>
             )
             }) : null
