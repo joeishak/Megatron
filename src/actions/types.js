@@ -5,14 +5,15 @@ export const REMOVE_MULTI_FILTER             = "remove_multi_filter";
 export const CHANGE_AUTH                     = 'change_auth';
 // User
 export const UPDATE_OKTA_USER                = 'update_okta_user';
-// User SEttings 
+// User SEttings
 export const UPDATE_USER_SETTINGS            = 'update_user_settings';
-// Modal Dialog Box 
+// Modal Dialog Box
 export const UPDATE_DIALOG_VISIBILITY        = "update_dialog_visibility";
-// All Data 
+// All Data
 export const GET_PRIMARY_DATA                = "get_primary_data";
 export const GET_SECONDARY_DATA              = "get_secondary_data";
-// Data for the Filters 
+export const GET_SECONDARY_DETAIL_DATA       = 'get_secondary_detail_data'
+// Data for the Filters
 export const GENERATE_FILTER_DATA                       = "generate_filter_data";
 // Summary View Details
 export const SHOW_SUMMARY_VIEW_DETAILS               = "show_summary_view_details";
@@ -43,10 +44,3 @@ export const UPDATE_FILTER_VISIBILITITY  = 'update_filter_visibility';
 export const UPDATE_COMMENT_VISIBILITITY  = 'update_comment_visibility';
 export const UPDATE_PRIMARY_VISIBILITITY  = 'update_primary_visibility';
 export const UPDATE_SECONDARY_VISIBILITITY  = 'update_primary_visibility';
-
-
-
-
-
-
-

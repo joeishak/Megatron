@@ -36,11 +36,11 @@ class KendoMultiChart extends Component {
              yAxisText: 'Million',
              multiChartValidIndexes: [3,4,5,6],
              count: 0
-            
+
         };
         this.formatDataValues = this.formatDataValues.bind(this);
     }
- 
+
     // formatYAxisValues = (valuesArr) => {
     //     const returnValuesArr = valuesArr.map(ele => {
     //         if(ele> 1000000)
@@ -52,12 +52,12 @@ class KendoMultiChart extends Component {
     // }
 
     // labelContent = (type, e) => {
-  
+
     //     const suffix = ' M';
     //     const prefix = '$';
     //     return ( prefix + (parseInt(e.value)/ 1000000) + suffix);
     // }
- 
+
     // labelPercentageContent(e){
     //     const prefix = '% ';
     //     return ( prefix +e.value);
@@ -76,7 +76,7 @@ class KendoMultiChart extends Component {
         });
         return newArr;
     }
-
+    
     getTooltipType = (seriesType) => {
         switch (seriesType) {
             case 'Actual':
@@ -131,10 +131,10 @@ class KendoMultiChart extends Component {
             return (
                 <div className="tooltipContainer">
                     <div className="tooltipTitle"><b>Week {title}</b></div>
-                    {points.map((point) => ( 
+                    {points.map((point) => (
 
                     <div key={this.state.count++}>
-                        <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div> 
+                        <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div>
                         <b>{point.series.name}</b> : <div className="tooltipValue"> {this.renderValue(this.props.valueType, point.value)} </div>
                     </div>))}
                 </div>
@@ -147,19 +147,19 @@ class KendoMultiChart extends Component {
 
         // legend labels
         const legendRender = (props) => {
-           
+
             const customVisual = props.createVisual();
 
             return customVisual;
         }
 
-        const chartLegend = this.props.deviceType === 'laptop' ? 
+        const chartLegend = this.props.deviceType === 'laptop' ?
         <ChartLegend  position='bottom' labels={{color: this.props.color}} >
             <ChartLegendItem visual={legendRender}/>
         </ChartLegend> : <ChartLegend visible={false} />
 
         const ChartContainer = () => (
-            
+
                 <Chart pannable={false} zoomable={false} >
 
                     {chartLegend}
@@ -195,7 +195,7 @@ class KendoMultiChart extends Component {
                             <ChartSeriesItem name='Last Quarter' type="line" data={[] || this.formatDataValues(chartData[3])} color='white'  >
                                 <ChartSeriesItemTooltip  background="#3c3c3c"  />
                             </ChartSeriesItem>
-                        </ChartSeries> : 
+                        </ChartSeries> :
                         <ChartSeries >
                             <ChartSeriesItem name='Actual' type="column" gap={2} spacing={0.25} data={chartData[0]} color={this.props.color} >
                                 <ChartSeriesItemTooltip  background="#3c3c3c"   />
@@ -211,7 +211,7 @@ class KendoMultiChart extends Component {
                             </ChartSeriesItem>
                         </ChartSeries>
                     }
-                    
+
                 </Chart>
     );
     return(
@@ -221,12 +221,12 @@ class KendoMultiChart extends Component {
 
 }
 function mapStateToProps(state){
-    return { 
-        switchFilter: state.switchFilter, 
-        activeSummarySquare: state.secondaryData[state.activeCards.secondary], 
-        multichartMetric: state.multichartIsArr, 
-        activeUnits: state.secondaryData[state.activeCards.secondary].details.unitMultichart, 
-        activeMultichart: state.secondaryData[state.activeCards.secondary].details.multichart, 
+    return {
+        switchFilter: state.switchFilter,
+        activeSummarySquare: state.secondaryData[state.activeCards.secondary],
+        multichartMetric: state.multichartIsArr,
+        activeUnits: state.secondaryData[state.activeCards.secondary].details.unitMultichart,
+        activeMultichart: state.secondaryData[state.activeCards.secondary].details.multichart,
         valueType: state.secondaryData[state.activeCards.secondary].valueType
     }
 }

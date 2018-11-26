@@ -30,7 +30,7 @@ import {connect } from 'react-redux';
 import * as actions from 'actions';
 
 class Navigation extends Component {
-      
+
 
     //When the component is constructed
     constructor(props) {
@@ -54,7 +54,7 @@ class Navigation extends Component {
     async componentDidMount() {
       this.checkAuthentication();
     }
-  
+
     async componentDidUpdate() {
       this.checkAuthentication();
     }
@@ -63,7 +63,7 @@ class Navigation extends Component {
     }
     // Function to show the logo after 1 second
     showLogo = () => {
-      this.timeout = setTimeout(() => { 
+      this.timeout = setTimeout(() => {
         this.setState({
           show: true
       });
@@ -98,7 +98,7 @@ class Navigation extends Component {
     }
 
     onDataPreferencesSelcted () {
-      
+
         this.props.updateDialogVisibility(true);
     }
     updateCommentsNav(){
@@ -109,27 +109,26 @@ class Navigation extends Component {
     processLoggedUser = (_user) => {
       if (Object.keys(_user).length !== 0) {
         return _user.name;
-      }       
+      }
     }
 
     // onFilterToggled = (e) => {
-    //   console.log('toggled');
     //   // if mobile view show filter screen and hide NavbarCollapse, else function as a toggle.
     // }
-    
+
     render() {
-      //local constants for showing the logo with an animation 
+      //local constants for showing the logo with an animation
       const filterIcon = this.props.isFilterPageVisible ? filterSelected : filterUnselected;
       const { show } = this.state;
       const logos = show ? (<img alt="" src={logo} className="imgLogo"/>) : null;
       const { activeTab } = this.state;
-      const filterButton = 
-      (this.props.deviceType.includes('tablet') || this.props.deviceType.includes('mobile') ? 
+      const filterButton =
+      (this.props.deviceType.includes('tablet') || this.props.deviceType.includes('mobile') ?
       <div className="filterButton">
         <img alt="" className="fitlerIconMobile" src={filterIcon} onClick={e => this.props.onFilterToggled(e)}/>
       </div>:
        null);
-    
+
         return(
 
         <Navbar  fluid className="navContainer">
@@ -139,13 +138,13 @@ class Navigation extends Component {
             </Navbar.Brand>
 
                 <Navbar.Toggle/>
-        
+
 
               {filterButton}
           </Navbar.Header>
-          <Navbar.Collapse >  
+          <Navbar.Collapse >
             {/* <ul className="nav navbar-nav">
-              <li className={`navItem ${activeTab === 'tab1' ? 'selected' : ''}`} 
+              <li className={`navItem ${activeTab === 'tab1' ? 'selected' : ''}`}
                 onClick={e => this.selectedNavItem(e, 'tab1')}>
                 <Link  to="/" className="navText">
                 <div >
@@ -177,7 +176,6 @@ class Navigation extends Component {
 }
 
 function maptStateToProps(state) {
-  console.log(state);
   return {
     dialogIsOpen: state.dialogIsOpen,
     commentBoxIsOpen: state.commentBoxIsOpen,

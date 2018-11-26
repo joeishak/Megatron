@@ -77,7 +77,7 @@ class App extends Component {
     if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
       this.props.getPrimaryData(this.props.activeFilters, this.props.availableFilters);
       this.props.getSecondaryData(this.props.activeFilters, this.props.availableFilters);
-
+      this.props.getDetailsData(this.props.activeFilters, this.props.availableFilters);
 
     }
     let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
@@ -133,7 +133,7 @@ class App extends Component {
     this.props.updateActivePrimaryCard(index);
     this.props.updateActiveSecondaryCard(0);
 
-    if(this.props.mobileIsPrimary === true){
+    if(this.props.mobileIsPrimary === true && this.props.deviceType.includes(LAPTOP) === false){
       this.updateMobileView(PRIMARY, false);
       this.updateMobileView(SECONDARY, true);
     }

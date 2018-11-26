@@ -1,8 +1,9 @@
 import {
     GET_SECONDARY_DATA,
+    GET_SECONDARY_DETAIL_DATA,
     ADD_NEW_SECONDARY_COMMENT,
     ADD_NEW_SECONDARY_REPLY
-    
+
     } from 'actions/types';
     import { SecondaryData } from '../variables.js';
     let copyOfSquare;
@@ -11,6 +12,7 @@ import {
     export default function(state = SecondaryData, action) {
         switch(action.type) {
             case  GET_SECONDARY_DATA:
+            //Make a copy of state
             newState = Object.assign([], state);
             // //Finance
             newState[0].value = action.payload[0].data[0].NewARRActual;
@@ -37,7 +39,11 @@ import {
             newState[7].value = action.payload[2].data[0].PaidMediaSpendActual;
             newState[7].target = action.payload[2].data[0].PaidMediaSpendTarget;
             return newState;
-            case ADD_NEW_SECONDARY_COMMENT: 
+            case GET_SECONDARY_DETAIL_DATA:
+            console.log('Action Payload for Detail Data',action.payload);
+            newState = Object.assign({},state);
+            return newState;
+            case ADD_NEW_SECONDARY_COMMENT:
                 index = action.payload.square;
                 copyOfSquare = Object.assign({},state[index]);
                 copyOfSquare.comments.push(action.payload.comment);
@@ -46,13 +52,13 @@ import {
             // CAse for adding a reply to a previous comment
             case ADD_NEW_SECONDARY_REPLY:
                 index = action.payload.square;
-                
+
                 copyOfSquare = Object.assign({},state[index]);
                 let commentIndex = Number(action.payload.comment)
                 copyOfSquare.comments[commentIndex].replies.push(action.payload.reply);
                 state[index] = copyOfSquare;
             return [...state]
-              default: 
+              default:
                 return state;
         }
     }

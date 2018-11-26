@@ -17,21 +17,21 @@ export const FinancialData = {
                             userName: 'Rick Sanchez',
                             time: '9:04am',
                             comment: 'Wow! Great job team!'
-                            
+
                         },
                         {
                             id: 1,
                             userName: 'Shaun White',
                             time: '9:34am',
                             comment: 'Was this for last month?'
-                            
+
                         },
                         {
                             id: 2,
                             userName: 'Morty Smith',
                             time: '9:54am',
                             comment: 'Yes.'
-                            
+
                         }
                     ]
                 },
@@ -46,19 +46,19 @@ export const FinancialData = {
                             userName: 'Amit Sethi',
                             time: '8:34am',
                             comment: 'Our customers in Japan did not take to our marketing strategy. '
-                            
+
                         }
                     ]
                 }
              ],
             details:{
                 multichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
                 unitMultichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
@@ -100,7 +100,7 @@ export const FinancialData = {
                             value: 66.7
                         }
                     ],
-                    week:[ 
+                    week:[
                         {
                             index: 1,
                             header:'Actuals',
@@ -560,12 +560,12 @@ export const FinancialData = {
             comments: [],
             details:{
                 multichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
                 unitMultichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
@@ -607,7 +607,7 @@ export const FinancialData = {
                             value: 66.7
                         }
                     ],
-                    week:[ 
+                    week:[
                         {
                             index: 1,
                             header:'Actuals',
@@ -1067,12 +1067,12 @@ export const FinancialData = {
             comments: [],
             details:{
                 multichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
                 unitMultichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
@@ -1114,7 +1114,7 @@ export const FinancialData = {
                             value: 66.7
                         }
                     ],
-                    week:[ 
+                    week:[
                         {
                             index: 1,
                             header:'Actuals',
@@ -1465,8 +1465,8 @@ export const FinancialData = {
                         text: 'Y/Y'
                     }
                 ]
-             
-               
+
+
             },
             css: ['3', 'spinMeThird', '#FF0000'],
         },
@@ -1487,7 +1487,7 @@ export const FinancialData = {
                             userName: 'Morty Smith',
                             time: '9:04am',
                             comment: 'Let me double check with the InfoBurst admin'
-                            
+
                         }
                     ]
                 },
@@ -1502,19 +1502,19 @@ export const FinancialData = {
                             userName: 'Morty Smith',
                             time: '1:00pm',
                             comment: 'Thanks Shaun! No I think we are fine with the refresh schedule for now. '
-                            
+
                         }
                     ]
                 }
              ],
             details:{
                 multichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
                 unitMultichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
@@ -1556,7 +1556,7 @@ export const FinancialData = {
                             value: 66.7
                         }
                     ],
-                    week:[ 
+                    week:[
                         {
                             index: 1,
                             header:'Actuals',
@@ -2010,7 +2010,7 @@ export const FinancialData = {
         }
     ],
     multiChart:[
-        [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+        [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
         [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
         [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
     ],
@@ -2058,7 +2058,7 @@ export const JourneyData = {
                             userName: 'Morty Smith',
                             time: '9:04am',
                             comment: 'Let me double check with the InfoBurst admin'
-                            
+
                         }
                     ]
                 },
@@ -2073,19 +2073,19 @@ export const JourneyData = {
                             userName: 'Morty Smith',
                             time: '1:00pm',
                             comment: 'Thanks Shaun! No I think we are fine with the refresh schedule for now. '
-                            
+
                         }
                     ]
                 }
              ],
             details:{
                 multichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
                 unitMultichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
@@ -2127,7 +2127,7 @@ export const JourneyData = {
                             value: 66.7
                         }
                     ],
-                    week:[ 
+                    week:[
                         {
                             index: 1,
                             header:'Actuals',
@@ -2576,7 +2576,7 @@ export const JourneyData = {
                         text: 'Y/Y'
                     }
                 ]
-             
+
             },
             css: ['1', 'vertSpinMeFirst', 'verticalText1']
         },
@@ -2589,12 +2589,12 @@ export const JourneyData = {
             comments: [],
             details:{
                 multichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
                 unitMultichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
@@ -2636,7 +2636,7 @@ export const JourneyData = {
                             value: 66.7
                         }
                     ],
-                    week:[ 
+                    week:[
                         {
                             index: 1,
                             header:'Actuals',
@@ -3085,7 +3085,7 @@ export const JourneyData = {
                         text: 'Y/Y'
                     }
                 ]
-             
+
 
             },
             css: ['2', 'vertSpinMeSecond', 'verticalText2']
@@ -3100,12 +3100,12 @@ export const JourneyData = {
             comments: [],
             details:{
                 multichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
                 unitMultichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
@@ -3147,7 +3147,7 @@ export const JourneyData = {
                             value: 66.7
                         }
                     ],
-                    week:[ 
+                    week:[
                         {
                             index: 1,
                             header:'Actuals',
@@ -3596,7 +3596,7 @@ export const JourneyData = {
                         text: 'Y/Y'
                     }
                 ]
-             
+
             },
             css: ['3', 'vertSpinMeThird', 'verticalText3']
         },
@@ -3610,12 +3610,12 @@ export const JourneyData = {
             comments: [],
             details:{
                 multichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
                 unitMultichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
@@ -3657,7 +3657,7 @@ export const JourneyData = {
                             value: 66.7
                         }
                     ],
-                    week:[ 
+                    week:[
                         {
                             index: 1,
                             header:'Actuals',
@@ -4106,7 +4106,7 @@ export const JourneyData = {
                         text: 'Y/Y'
                     }
                 ]
-             
+
             },
             css: ['4', 'vertSpinMeFourth', 'verticalText4']
         },
@@ -4120,12 +4120,12 @@ export const JourneyData = {
             comments: [],
             details:{
                 multichart: [
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
                 unitMultichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
@@ -4167,7 +4167,7 @@ export const JourneyData = {
                             value: 66.7
                         }
                     ],
-                    week:[ 
+                    week:[
                         {
                             index: 1,
                             header:'Actuals',
@@ -4629,12 +4629,12 @@ export const JourneyData = {
             comments: [],
             details:{
                 multichart: [
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
                 unitMultichart:[
-                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                    [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                     [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                     [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
                 ],
@@ -4676,7 +4676,7 @@ export const JourneyData = {
                             value: 66.7
                         }
                     ],
-                    week:[ 
+                    week:[
                         {
                             index: 1,
                             header:'Actuals',
@@ -5130,7 +5130,7 @@ export const JourneyData = {
         }
     ],
     multiChart:[
-        [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+        [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
         [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
         [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
     ],
@@ -5180,21 +5180,21 @@ export const PrimaryData = [
                             userName: 'Rick Sanchez',
                             time: '9:04am',
                             comment: 'Wow! Great job team!'
-                            
+
                         },
                         {
                             id: 1,
                             userName: 'Shaun White',
                             time: '9:34am',
                             comment: 'Was this for last month?'
-                            
+
                         },
                         {
                             id: 2,
                             userName: 'Morty Smith',
                             time: '9:54am',
                             comment: 'Yes.'
-                            
+
                         }
                     ]
                 },
@@ -5209,7 +5209,7 @@ export const PrimaryData = [
                             userName: 'Amit Sethi',
                             time: '8:34am',
                             comment: 'Our customers in Japan did not take to our marketing strategy. '
-                            
+
                         }
                     ]
                 }
@@ -5221,11 +5221,11 @@ export const PrimaryData = [
             category: 'Discover',
             header: 'Traffic',
             value: -87233.444,
-            target: 89233.111, 
+            target: 89233.111,
             valueType: 'units',
             type: 'journey',
             comments: [
-              
+
             ],
             css: ['1', 'spinMeFirst', '#FF0000'],
         },
@@ -5234,11 +5234,11 @@ export const PrimaryData = [
             category: 'Buy',
             header: `New QFM's`,
             value: -123444958.2344,
-            target: 29387456.2345234, 
+            target: 29387456.2345234,
             valueType: 'units',
             type: 'journey',
             comments: [
-              
+
             ],
             css: ['1', 'spinMeFirst', '#FF0000'],
         },
@@ -5247,11 +5247,11 @@ export const PrimaryData = [
             category: 'Try',
             header: 'Conversions',
             value: .059,
-            target: .060, 
+            target: .060,
             valueType: 'percent',
             type: 'journey',
             comments: [
-              
+
             ],
             css: ['1', 'spinMeFirst', '#FF0000'],
         },
@@ -5260,11 +5260,11 @@ export const PrimaryData = [
             category: 'Use',
             header: 'Repeat User MAU',
             value: -.123,
-            target: -.68, 
+            target: -.68,
             valueType: 'percent',
             type: 'journey',
             comments: [
-              
+
             ],
             css: ['1', 'spinMeFirst', '#FF0000'],
         },
@@ -5273,15 +5273,15 @@ export const PrimaryData = [
             category: 'Renew',
             header: 'QTR UI Rate',
             value: .55,
-            target: .40, 
+            target: .40,
             valueType: 'percent',
             type: 'journey',
             comments: [
-              
+
             ],
             css: ['1', 'spinMeFirst', '#FF0000'],
         }
-      
+
     ]
 
 
@@ -5293,16 +5293,16 @@ export const SecondaryData = [
         value: 12125,
         target: 1323452345,
         comments: [
-              
+
         ],
         details:{
             multichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
             unitMultichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
@@ -5344,7 +5344,7 @@ export const SecondaryData = [
                         value: 66.7
                     }
                 ],
-                week:[ 
+                week:[
                     {
                         index: 1,
                         header:'Actuals',
@@ -5803,16 +5803,16 @@ export const SecondaryData = [
         value: 12341234,
         target: 1245234254,
         comments: [
-              
+
         ],
         details:{
             multichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
             unitMultichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
@@ -5854,7 +5854,7 @@ export const SecondaryData = [
                         value: 66.7
                     }
                 ],
-                week:[ 
+                week:[
                     {
                         index: 1,
                         header:'Actuals',
@@ -6313,16 +6313,16 @@ export const SecondaryData = [
         value: 23444,
         target: 222344,
         comments: [
-              
+
         ],
         details:{
             multichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
             unitMultichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
@@ -6364,7 +6364,7 @@ export const SecondaryData = [
                         value: 66.7
                     }
                 ],
-                week:[ 
+                week:[
                     {
                         index: 1,
                         header:'Actuals',
@@ -6823,16 +6823,16 @@ export const SecondaryData = [
         value: 6654524,
         target: 123452,
         comments: [
-              
+
         ],
         details:{
             multichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
             unitMultichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
@@ -6874,7 +6874,7 @@ export const SecondaryData = [
                         value: 66.7
                     }
                 ],
-                week:[ 
+                week:[
                     {
                         index: 1,
                         header:'Actuals',
@@ -7333,16 +7333,16 @@ export const SecondaryData = [
         value: 73456345,
         target: 23462345,
         comments: [
-              
+
         ],
         details:{
             multichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
             unitMultichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
@@ -7384,7 +7384,7 @@ export const SecondaryData = [
                         value: 66.7
                     }
                 ],
-                week:[ 
+                week:[
                     {
                         index: 1,
                         header:'Actuals',
@@ -7835,7 +7835,7 @@ export const SecondaryData = [
             ]
         },
         valueType: 'units'
-        
+
     },
     {
         index: 5,
@@ -7844,16 +7844,16 @@ export const SecondaryData = [
         value: 23563456,
         target: 34563456,
         comments: [
-              
+
         ],
         details:{
             multichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
             unitMultichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
@@ -7895,7 +7895,7 @@ export const SecondaryData = [
                         value: 66.7
                     }
                 ],
-                week:[ 
+                week:[
                     {
                         index: 1,
                         header:'Actuals',
@@ -8354,16 +8354,16 @@ export const SecondaryData = [
         value: .34523,
         target: .23452345,
         comments: [
-              
+
         ],
         details:{
             multichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
             unitMultichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
@@ -8405,7 +8405,7 @@ export const SecondaryData = [
                         value: 66.7
                     }
                 ],
-                week:[ 
+                week:[
                     {
                         index: 1,
                         header:'Actuals',
@@ -8864,16 +8864,16 @@ export const SecondaryData = [
         value: .746,
         target: .97766,
         comments: [
-              
+
         ],
         details:{
             multichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
             unitMultichart:[
-                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166], 
+                [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
                 [120, 67, 231, 196,173,485,222,192,157,213,199,103,112],
                 [45, 124, 189, 143,102,184,293,444,304,203,442,122,100]
             ],
@@ -8915,7 +8915,7 @@ export const SecondaryData = [
                         value: 66.7
                     }
                 ],
-                week:[ 
+                week:[
                     {
                         index: 1,
                         header:'Actuals',
@@ -9368,8 +9368,8 @@ export const SecondaryData = [
         valueType: 'percent'
     },
 ]
-  
-    
+
+
 export const InfoburstAzure = {
      user: 'admin',
      pass: 'admin',
@@ -9384,40 +9384,32 @@ export const InfoburstAzure = {
          SubscriptionFilters:'?q=SubscriptionFilters&json=1',
          RouteFilters: '?q=RouteFilters&json=1',
          QuarterFilters: '?q=QuarterFilters&json=1',
-         ProductFilters:'?q=ProductFilters&json=1', 
+         ProductFilters:'?q=ProductFilters&json=1',
          GeoFilters: '?q=GeoFilters&json=1'
      },
      summaryQueryNames: {
-
         FinancialActualTargetPrimary: '?q=FinancialActualTargetPrimary',
         FinancialActualTargetSecondary: '?q=FinancialActualTargetSecondary',
+        FinancialMultichart: '?q=FinancialMultichartQuery',
+        FinancialUnits: '?q=FinancialUnitsMultichart',
+        FinancialQTD: '?q=FinancialQTD',
+        FinancialGeoQtd: '?q=FinancialGeoQTD',
         JourneysG2PrimaryActualTarget: '?q=Group2PrimaryActualTarget',
         JourneysG3PrimaryActualTarget: '?q=Group3PrimaryActualTarget',
         JourneysG2SecondaryActualTarget: '?q=Group2SecondaryActualTarget',
-        JourneysG3SecondaryActualTarget: '?q=Group3SecondaryActualTarget'
-        // FinancialActualTarget: '?q=FinancialActualTarget',
-        // JourneyActualTargetPrimary:'?q=JourneyActualTargetPrimary',
-        // JourneyBuyUseActualTargetPrimary: '?q=JourneysBuyUseActualTarget',
-        // FinancialQTD: '?q=FinancialQTD',
-        // FinancialUnitsMultiChart: '?q=FinancialUnitsMultichart',
-        // FinancialMultiChart: '?q=FinancialMultichartQuery',
-        // JourneyActualTarget:'?q=JourneyActualTargetQuery',
-        // JourneyMultiChart: '?q=JourneyMultichartQuery',
-        // JourneyQtd: '?q=JourneyQtdTotal',
-        // JourneyGeoQtd: '?q=JourneyGeoQTd',
-        // JourneyBuyUseActualTarget: '?q=JourneyBuyUseActualTargetQuery',
-        // JourneyBuyUseGeoQtd: '?q=JourneyBuyUseGeoQTD',
-        // JourneyBuyUseMultichart: '?q=JourneyBuyUseMultichartQuery',
-        // JourneyBuyUseQTDTotal: '?q=JourneyBuyUseQTDTotal',
-        // JourneyMarketAreaQtd: '?q=JourneyMarketAreaQTD',
-        // FinancialUnitsMultichart: '?q=FinancialUnitsMultichart'
-        // FinancialActualTarget: '?q=FinancialActualTarget',
-       
-
+        JourneysG3SecondaryActualTarget: '?q=Group3SecondaryActualTarget',
+        JourneysG2MultiChart:'',
+        JourneysG3MultiChart:'',
+        JourneysG2QTD: '',
+        JourneysG3QTD: '',
+        JourneysG2WeeklyQTD: '',
+        JourneysG3WeeklyQTD: '',
+        JourneysG2GeoQTD: '',
+        JourneysG3GeoQTD: ''
      },
      dataXdcID:  '\\1128',
      journeyXdcID: '\\1139',
      filtersXdcID: '\\1092',
      appXdcID: '\\102'
-     
+
 }

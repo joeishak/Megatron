@@ -1,19 +1,20 @@
 
 
-import {  
-    CHANGE_AUTH, 
+import {
+    CHANGE_AUTH,
     UPDATE_OKTA_USER,
-    UPDATE_USER_SETTINGS,           
+    UPDATE_USER_SETTINGS,
     SET_APP_SETTINGS,
     SET_VIEW_APP_SETTINGS,
     GET_PRIMARY_DATA,
     GET_SECONDARY_DATA,
+    GET_SECONDARY_DETAIL_DATA,
     UPDATE_DIALOG_VISIBILITY ,
     GENERATE_FILTER_DATA,
     ADD_MULTI_FILTER,
     REMOVE_MULTI_FILTER,
-    SHOW_SUMMARY_VIEW_DETAILS,    
-    HIDE_SUMMARY_VIEW_DETAILS,    
+    SHOW_SUMMARY_VIEW_DETAILS,
+    HIDE_SUMMARY_VIEW_DETAILS,
     UPDATE_ACTIVE_PRIMARY_CARD,
     UPDATE_ACTIVE_SECONDARY_CARD,
     GET_EXCEL_MULTICHART,
@@ -34,7 +35,7 @@ import {
 } from 'actions/types';
 import * as utils from '../utilities';
 
-// HTTP Variables 
+// HTTP Variables
 
 let promiseArr =[];
 
@@ -49,8 +50,8 @@ let filterParams = [
 ];
 /**
  * Change the state of Authentication for the user.
- * 
- * @param {boolean} isLoggedIn 
+ *
+ * @param {boolean} isLoggedIn
  */
 export function changeAuth(isLoggedIn) {
     return {
@@ -72,14 +73,14 @@ export  function updateOKTAUser(user){
 }
 
 /**
- * Update the User Settings in the database. 
- * @param {*} activeFilters 
- * @param {*} user 
- * @param {*} defaultSummary 
- * @param {*} defaultFinKpi 
- * @param {*} defaultJournKpi 
- * @param {*} availableFilters 
- * @param {*} settingId 
+ * Update the User Settings in the database.
+ * @param {*} activeFilters
+ * @param {*} user
+ * @param {*} defaultSummary
+ * @param {*} defaultFinKpi
+ * @param {*} defaultJournKpi
+ * @param {*} availableFilters
+ * @param {*} settingId
  */
 export function updateUserSettings(activeFilters, user, defaultSummary, defaultFinKpi, defaultJournKpi,availableFilters,settingId){
 
@@ -110,8 +111,8 @@ export function updateUserSettings(activeFilters, user, defaultSummary, defaultF
 
 /**
  * Set the app settings  for window and device type
- * @param {object} settings 
- * 
+ * @param {object} settings
+ *
  */
 export function setAppSettings(settings) {
     let deviceType = utils.getDeviceType({width: settings.window.width, height: settings.window.height});
@@ -124,7 +125,7 @@ export function setAppSettings(settings) {
 
 
 export function setViewAppSettings() {
-   
+
 
     return {
         type: SET_VIEW_APP_SETTINGS,
@@ -146,7 +147,7 @@ export function getPrimaryData(_parameters,availableFilters){
         routeToMarkets: Object.values(availableFilters.routeToMarkets)
     }
     promiseArr = utils.requestPrimaryData(allFilters,_parameters);
-  
+
     return{
         type: GET_PRIMARY_DATA,
         payload: promiseArr
@@ -169,8 +170,26 @@ export function getSecondaryData(_parameters,availableFilters){
         type: GET_SECONDARY_DATA,
         payload: promiseArr
     }
+
 }
 
+export function getDetailsData(_parameters,availableFilters){
+    let allFilters = {
+        quarters: Object.values(availableFilters.quarters),
+        geos: Object.values(availableFilters.geos),
+        marketAreas: Object.values(availableFilters.marketAreas),
+        products: Object.values(availableFilters.products),
+        segments: Object.values(availableFilters.segments),
+        subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
+        routeToMarkets: Object.values(availableFilters.routeToMarkets)
+    }
+    promiseArr = utils.requestDetailsData(allFilters,_parameters);
+    // console.log(promiseArr);
+    return{
+        type: GET_SECONDARY_DETAIL_DATA,
+        payload: promiseArr
+    }
+}
 
 
 
@@ -178,8 +197,8 @@ export function getSecondaryData(_parameters,availableFilters){
 
 /**
  * Update the visibility of the Modal Dialog Box
- * 
- * @param {boolean} isDialogVisible 
+ *
+ * @param {boolean} isDialogVisible
  */
 export function updateDialogVisibility(isDialogVisible) {
     return {
@@ -189,7 +208,7 @@ export function updateDialogVisibility(isDialogVisible) {
 }
 /**
  * Generate the data that goes into the filter box
- * 
+ *
  */
 export function generateFilterData() {
     let promiseArr1;
@@ -201,7 +220,7 @@ export function generateFilterData() {
 }
 /**
  * Add a value to the active filters for the multi filter
- * 
+ *
  * @param {object} filter
  */
 
@@ -214,7 +233,7 @@ export function generateFilterData() {
 
  /**
  * Remove a value to the active filters for the multi filter
- * 
+ *
  * @param {object} filter
  */
  export function removeMultiFilter(filter){
@@ -247,7 +266,7 @@ export function hideSummaryDetails(filter){
 
 /**
  * Update the active primary card
- * @param {} index 
+ * @param {} index
  */
 export function updateActivePrimaryCard(index){
     // console.log(index);
@@ -258,7 +277,7 @@ export function updateActivePrimaryCard(index){
 }
 /**
  * Update the active Secondary Card
- * @param {*} index 
+ * @param {*} index
  */
 export function updateActiveSecondaryCard(index){
     return {
@@ -269,15 +288,15 @@ export function updateActiveSecondaryCard(index){
 
 
 /**
- * 
- * @param {*} _parameters 
- * @param {*} availableFilters 
+ *
+ * @param {*} _parameters
+ * @param {*} availableFilters
  */
 
 /**
  * Get the data for Excel Multichart
- * @param {} _parameters 
- * @param {*} availableFilters 
+ * @param {} _parameters
+ * @param {*} availableFilters
  */
 export function getExcelMultichartData(_parameters,availableFilters){
     return {
@@ -308,7 +327,7 @@ export function hideCommentBox(){
 
 /**
  * Hide/Show the comment icon on the metric squares
- * @param {} _toggleStatus 
+ * @param {} _toggleStatus
  */
 export function toggleCommentBox(_toggleStatus) {
     return {
@@ -319,8 +338,8 @@ export function toggleCommentBox(_toggleStatus) {
 
 /**
  * Add a comment to the active Primarysquare
- * @param {} activeSquareID 
- * @param {*} comment 
+ * @param {} activeSquareID
+ * @param {*} comment
  */
 export function addNewCommentToPrimaryMetric(activeSquareID, comment ){
     return {
@@ -334,9 +353,9 @@ export function addNewCommentToPrimaryMetric(activeSquareID, comment ){
 
 /**
  * Add a reply to a comment in this metric
- * @param {} activeSquareID 
- * @param {*} commentId 
- * @param {*} reply 
+ * @param {} activeSquareID
+ * @param {*} commentId
+ * @param {*} reply
  */
 export function addNewReplyToPrimaryMetricComment(activeSquareID, commentId,reply ){
     return {
@@ -350,8 +369,8 @@ export function addNewReplyToPrimaryMetricComment(activeSquareID, commentId,repl
 }
 /**
  * Add a comment to the active Secondary Square
- * @param {} activeSquareID 
- * @param {*} comment 
+ * @param {} activeSquareID
+ * @param {*} comment
  */
 export function addNewCommentToSecondaryMetric(activeSquareID, comment){
     return {
@@ -365,9 +384,9 @@ export function addNewCommentToSecondaryMetric(activeSquareID, comment){
 
 /**
  * Add a reply to a commen tin this metric
- * @param {} activeSquareID 
- * @param {*} commentId 
- * @param {*} reply 
+ * @param {} activeSquareID
+ * @param {*} commentId
+ * @param {*} reply
  */
 export function addNewReplyToSecondaryMetric(activeSquareID,commentId,reply){
     return {
@@ -383,7 +402,7 @@ export function addNewReplyToSecondaryMetric(activeSquareID,commentId,reply){
 
 /**
  * Get data for excel
- * @param {} value 
+ * @param {} value
  */
 export function updateMultichartMetric(value){
     return {
@@ -402,12 +421,12 @@ export function getIbHeartbeat() {
 }
 /**
  * Update which view is currently showing/ hiding
- * @param {*} component 
+ * @param {*} component
  * @param {*} isShowing
  */
 export function updateViewSetting(component, isShowing){
 
-    
+
 return {
     type: SET_VIEW_APP_SETTINGS,
     payload: {
