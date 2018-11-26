@@ -1,3 +1,5 @@
+
+
 body {
     overflow-x: hidden;
 }
@@ -36,3 +38,8 @@ body {
 .custom-animation-enter-active {
     transform: scale(1);
 }
+
+/* Styling */
+
+
+

@@ -4,7 +4,7 @@ import {
 } from 'actions/types';
 
 import {
-    PRIMARY, SECONDARY 
+    PRIMARY, SECONDARY
 } from '../Constants/consts';
 const firstState = {
 
@@ -14,10 +14,10 @@ const firstState = {
         },
         deviceType:null,
         views: {
-            primaryIsVisible: true, 
-            secondaryIsVisible: true,
+            primaryIsVisible: true,
+            secondaryIsVisible: false,
             navigationIsVisible: false,
-            filterBoxIsVisible: false, 
+            filterBoxIsVisible: false,
             commentBoxIsVisible: false,
         }
 }
@@ -42,15 +42,15 @@ export default function(state = firstState,action) {
             break;
             default:
             break;
-        
+
         }
-        
-            
-            
+
+
+
             // newState.views = action.payload
 
             return newState ;
-        default: 
+        default:
             return state;
     }
 }

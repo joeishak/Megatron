@@ -15,53 +15,53 @@
 } */
 /**Horizontal Spins**/
 .spinMeFirst{
-	animation: spin 0.6s ease-in-out forwards; 
+	animation: spin 0.6s ease-in-out forwards;
 
 }
 .spinMeSecond{
-	animation: spin 0.8s ease-in-out forwards; 
+	animation: spin 0.8s ease-in-out forwards;
 
 }
 .spinMeThird{
-	animation: spin 1.0s ease-in-out forwards; 
+	animation: spin 1.0s ease-in-out forwards;
 
 }
 .spinMeFourth{
-	animation: spin 1.2s ease-in-out forwards; 
+	animation: spin 1.2s ease-in-out forwards;
 
 }
 @-moz-keyframes spin {
   from {-moz-transform: rotateY(0deg);}
   to {-moz-transform: rotateY(360deg);}
-} 
+}
 @-webkit-keyframes spin {
 	from {-webkit-transform: rotateY(0deg);}
 	to {-webkit-transform: rotateY(360deg);}
-} 
+}
 @keyframes spin {
 	from {transform: rotateY(0deg);}
 	to {transform: rotateY(360deg);}
-} 
+}
 
   /**Vertical Spins**/
 .vertSpinMeFirst{
-	animation: slideIn 0.4s  forwards; 
+	animation: slideIn 0.4s  forwards;
 
 }
 .vertSpinMeSecond{
-	animation: slideIn 0.6s  forwards; 
+	animation: slideIn 0.6s  forwards;
 
 }
 .vertSpinMeThird{
-	animation: slideIn 0.8s  forwards; 
+	animation: slideIn 0.8s  forwards;
 
 }
 .vertSpinMeFourth{
-	animation: slideIn 1s  forwards; 
+	animation: slideIn 1s  forwards;
 
 }
 .vertSpinMeFifth{
-	animation: slideIn 1.2s  forwards; 
+	animation: slideIn 1.2s  forwards;
 }
 .vertSpinMeSixth{
 	animation: slideIn 1.4s forwards;
@@ -69,32 +69,32 @@
 @-moz-keyframes vertspin {
 	from {-moz-transform: rotateX(0deg);}
 	to {-moz-transform: rotateX(720deg);}
-} 
+}
 @-webkit-keyframes vertspin {
 	from {-webkit-transform: rotateX(0deg);}
 	to {-webkit-transform: rotateX(720deg);}
-} 
+}
 @keyframes vertspin {
 	from {transform: rotateX(0deg);}
 	to {transform: rotateX(720deg);}
-} 
+}
 
 @-moz-keyframes slideIn {
 	0% { -webkit-transform: translateX(-600px); }
 	50% { -webkit-transform: translateX(-240px); }
     100% { -webkit-transform: translateX(0); }
-} 
+}
 @-webkit-keyframes slideIn {
 	0% { -webkit-transform: translateX(-600px); }
 	50% { -webkit-transform: translateX(-240px); }
     100% { -webkit-transform: translateX(0); }
-} 
+}
 @keyframes slideIn {
 	0% { -webkit-transform: translateX(-600px); }
 	50% { -webkit-transform: translateX(-240px); }
     100% { -webkit-transform: translateX(0); }
-} 
- 
+}
+
 /* flip speed goes here */
 .flipper {
 	transition: 0.6s;
@@ -141,7 +141,7 @@
 .financialBoxHover:hover {
 	animation: grow .20s ease-in-out forwards;
 	}
-	
+
 @keyframes grow {
 	100% {transform: scale(1.02); }
 }
@@ -164,7 +164,7 @@
 }
 .selectedCardHeaderGreen {
 	background-color: #0DB16e;
-} 
+}
 
 
 /* .selectedCardSquare {
@@ -181,7 +181,7 @@
 /*****************************/
 /* All View Port Stylings */
 .sumChartSquare{
-	height: 200px; 
+	height: 200px;
 	width: 100%;
 	/* box-shadow: 5px 10px; */
 }
@@ -217,9 +217,9 @@
 	display:block;
 }
 .primaryRow{
-	height: 202px ;
+	height: 180px ;
 	background-color: #f4f4f4 ;
-} 
+}
 
 .finCommentIcon{
 	height: 5px;
@@ -234,7 +234,7 @@
 	margin-top: 20px;
 }
 .laptopSelectedCardText{
-	color: white;
+	color: white !important;
 }
 .laptopSecondaryCategory{
 	color:black !important;
@@ -252,7 +252,7 @@
 .laptopPrimaryRow {
 	padding-left: 5% !important;
 	padding-right: 5% !important;
-	height: 201px;
+	height: 192px;
 }
 .laptopSecondaryHeader{
 	padding-top: 5px;
@@ -283,7 +283,7 @@
 
 /* Mobile && Tablet Stylings */
 .mobileSumChartSquare, .tabletSumChartSquare{
-	height: 85px !important;
+	height: 90px !important;
 	background-color: #1f1f1f;
 	padding-left: 15px;
 	padding-top: 15px;
@@ -304,7 +304,7 @@
 	font-size: 1.8em;
 	float: left;
 	color:white;
-	
+
 }
 .mobileValueText{
 	width:50% !important;
@@ -322,17 +322,17 @@
 	font-size: 1.8em;
 	float: left;
 	color:white;
-	
+
 }
 .secondaryCategory{
 	width: 50% !important;
 	font-size: 1.8em;
 	float: left;
 	color:white;
-	
+
 }
 .mobileSelectedCard{
-	margin-left: 10px;
+	/* margin-left: 10px; */
 	background-color:#1f1f1f !important;
 }
 .mobilePrimaryRow{
@@ -346,9 +346,9 @@
         display: none;
 	}
 
-	
 
-	
+
+
 }
 
 /* Desktop Stylings */
@@ -362,10 +362,10 @@
 }
 
 /* ipad Portrait */
-/* @media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : portrait) { 
+/* @media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : portrait) {
 	.mobile {
 		display: none;
-	} 
+	}
 } */
 
 
@@ -482,7 +482,7 @@
 	/* padding-top: 30px; */
 	padding-bottom: 250px;
     height: 100%;
-} 
+}
 
 
 
@@ -515,7 +515,7 @@
 	margin-top: -5px;
 	position: relative;
 	text-align: center;
-	height: 35px;
+	height: 40px;
 	width: 97%;
   }
   .arrow_box:before {

@@ -33,6 +33,7 @@ class PrimaryContentList extends Component {
         const isTablet = (this.props.deviceType.includes(TABLET) ? true : false);
         const isVisible = (this.props.mobilePrimaryIsActive === true) ? true: false;
 
+
         const responsivePrimaryRow = classNames({
             "row primaryRow": true,
             mobilePrimaryRow: isMobile || isTablet,

@@ -70,18 +70,26 @@ class SecondaryContentList extends Component {
             activeJourneyCard={this.props.activeJourneyCard}
             data={this.props.data} activePrimary={this.props.activePrimary} onCardClicked={this.props.onJourneyCardClicked}/>
    
+
         
-        const renderStyle = isMobileAndTablet ? { height:'100%'} : { height:'100%', marginTop: '30px'};
-        const secondaryContentBottom = isMobileAndTablet && this.props.mobileSecondaryIsActive ? <Playground></Playground>  : null;
+        const renderStyle = isMobileAndTablet ? { height:'100%', width: '100%'} : { height:'100%', marginTop: '30px', width:'18%'};
+        const secondaryContentBottom = isMobileAndTablet && this.props.mobileSecondaryIsActive ? 
+            
+            <div className="secondaryContentBottom">
+            <Playground></Playground> 
+
+            </div>
+        
+        
+        : null;
         return(
-            <div style={renderStyle}> 
+            <div style={renderStyle} className="secondaryCLContainer"> 
                 {/* Primary Category Title !! Not Viewable on Desktop View */}
                 {navigationTitle}  
                 {secondaryContentTop}
                 {/* {secondaryTopSlider} */}
-                <div className="secondaryContentBottom">
-                   {secondaryContentBottom}
-                </div>
+                {secondaryContentBottom}
+
             </div>
         )
     }
