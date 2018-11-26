@@ -77,8 +77,8 @@ class App extends Component {
     //  Call for new data with the filters
     if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
       this.props.getPrimaryData(this.props.activeFilters, this.props.availableFilters);
-      // this.props.getSecondaryData(this.props.activeFilters, this.props.availableFilters);
-      // this.props.getDetailsData(this.props.activeFilters, this.props.availableFilters);
+      this.props.getSecondaryData(this.props.activeFilters, this.props.availableFilters);
+      this.props.getDetailsData(this.props.activeFilters, this.props.availableFilters);
 
     }
     let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
