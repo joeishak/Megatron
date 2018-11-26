@@ -252,37 +252,37 @@ export function processFinancialGeoQTD(newState,data){
                marketArea: item.market_area_code,
                qq: item.GrossARRQQTY,
                qrf: item.GrossTarget,
-               qrfDiff: 0.0,
+               qrfDiff: item.GrossVsQrfDiff,
                type: item.geo_code,
                units: 0.0,
-               vsQrf:item.NewQfmVSQrf,
-               yy: item.NewQfmYY
+               vsQrf:item.GrossVsQrf,
+               yy: item.GrossArrYY
            }
            let canc = {
                index: i,
-               actuals: item.ConversionActual,
+               actuals: item.CancelARRActual,
                units: 0.0,
                marketArea: item.market_area_code,
-               qq: item.ConversionQQ,
-               qrf: item.ConversionTarget,
-               qrfDiff: 0.0,
+               qq: item.CancelARRQQTY,
+               qrf: item.CancelARRTarget,
+               qrfDiff: item.CancelArrVsQrfDiff,
                type: item.geo_code,
                units: 0.0,
-               vsQrf:item.ConversionQfmVSQrf,
-               yy: item.ConversionYY
+               vsQrf:item.CancelVsQrf,
+               yy: item.CancelARRYY
            }
            let ren = {
                index: i,
-               actuals: item.RepeatUserMauActual,
+               actuals: item.RenewActual,
                units: 0.0,
                marketArea: item.market_area_code,
-               qq: item.RepeatUserMauQfmQQ,
-               qrf: item.RepeatUserMauTarget,
-               qrfDiff: 0.0,
+               qq: item.RenewARRQQTY,
+               qrf: item.RenewARRTarget,
+               qrfDiff: item.RenewVsQrfDiff,
                type: item.geo_code,
                units: 0.0,
-               vsQrf:item.RepeatUserMautQfmVSQrf,
-               yy: item.RepeatUserMauQfmYY
+               vsQrf:item.RenewVSQRF,
+               yy: item.RenewARRYY
            }
 
             newState[0].details.geo.qtd.push(net);
