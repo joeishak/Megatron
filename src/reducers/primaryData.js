@@ -12,6 +12,7 @@ export default function(state = PrimaryData, action) {
     switch(action.type) {
         case  GET_PRIMARY_DATA:
 
+console.log(action.payload);
             newState = Object.assign([], state);
             //Actual, Targets, Vs QRf
             // //Finance
@@ -45,7 +46,7 @@ export default function(state = PrimaryData, action) {
             newState[5].vsqrf = action.payload[1].data[0].UiCacncelRateVsQrf;
 
             return newState;
-            case ADD_NEW_PRIMARY_COMMENT: 
+            case ADD_NEW_PRIMARY_COMMENT:
               index = action.payload.square;
               copyOfState = Object.assign([],state);
               copyOfState[index].comments.push(action.payload.comment);
@@ -58,7 +59,7 @@ export default function(state = PrimaryData, action) {
               copyOfSquare.comments[commentIndex].replies.push(action.payload.reply);
               state[index] = copyOfSquare;
           return [...state]
-          default: 
+          default:
             return state;
     }
 }

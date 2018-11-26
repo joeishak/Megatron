@@ -9394,10 +9394,10 @@ export const InfoburstAzure = {
         FinancialUnits: '?q=FinancialUnitsMultichart',
         FinancialQTD: '?q=FinancialQTD',
         FinancialGeoQtd: '?q=FinancialGeoQTD',
-        JourneysG2PrimaryActualTarget: '?q=Group2PrimaryActualTarget',
-        JourneysG3PrimaryActualTarget: '?q=Group3PrimaryActualTarget',
-        JourneysG2SecondaryActualTarget: '?q=Group2SecondaryActualTarget',
-        JourneysG3SecondaryActualTarget: '?q=Group3SecondaryActualTarget',
+        JourneysG2PrimaryActualTarget: '?q=G2PrimaryActualTarget',
+        JourneysG3PrimaryActualTarget: '?q=G3PrimaryActualTarget',
+        JourneysG2SecondaryActualTarget: '?q=G2SecondaryActualTarget',
+        JourneysG3SecondaryActualTarget: '?q=G3SecondaryActualTarget',
         JourneysG2MultiChart:'',
         JourneysG3MultiChart:'',
         JourneysG2QTD: '',
@@ -9408,7 +9408,7 @@ export const InfoburstAzure = {
         JourneysG3GeoQTD: ''
      },
      dataXdcID:  '\\1128',
-     journeyXdcID: '\\1139',
+     journeyXdcID: '\\1149',
      filtersXdcID: '\\1092',
      appXdcID: '\\102'
 
