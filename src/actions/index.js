@@ -171,6 +171,7 @@ export function getSecondaryData(_parameters,availableFilters){
         payload: promiseArr
     }
 
+
 }
 
 export function getDetailsData(_parameters,availableFilters){
