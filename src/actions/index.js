@@ -174,6 +174,7 @@ export function getSecondaryData(_parameters,availableFilters){
 }
 
 export function getDetailsData(_parameters,availableFilters){
+  console.log('I made it');
     let allFilters = {
         quarters: Object.values(availableFilters.quarters),
         geos: Object.values(availableFilters.geos),

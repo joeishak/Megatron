@@ -409,9 +409,9 @@ let params3 = group3Params.reduce((prev, param) => {
 }, '');
 
   // Financials
-   const finMulti = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialMultiChart  + params1 + '&json=1',
+   const finMulti = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialMultichart  + params1 + '&json=1',
    {headers: headers, responseType: 'text'});
-   const finUnitsMulti = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialUnitsMultichart  + params1 + '&json=1',
+   const finUnitsMulti = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialUnits  + params1 + '&json=1',
    {headers: headers, responseType: 'text'});
    const finGeo = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialGeoQtd  + params1 + '&json=1',
    {headers: headers, responseType: 'text'});
@@ -423,13 +423,13 @@ let params3 = group3Params.reduce((prev, param) => {
   {headers: headers, responseType: 'text'});
   const journG3Mutli = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG3MultiChart  + params3 + '&json=1',
   {headers: headers, responseType: 'text'});
-  const journG2QTD = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG2QTD  + params2 + '&json=1',
+  const journG2QTD = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG2MultiChart  + params2 + '&json=1',
   {headers: headers, responseType: 'text'});
-  const journG3QTD = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG3QTD  + params3 + '&json=1',
+  const journG3QTD = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG2MultiChart  + params2 + '&json=1',
   {headers: headers, responseType: 'text'});
-  const journG2Geo = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG2GeoQTD  + params2 + '&json=1',
+  const journG2Geo = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG2MultiChart  + params2 + '&json=1',
   {headers: headers, responseType: 'text'});
-  const journG3Geo = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG3GeoQTD  + params3 + '&json=1',
+  const journG3Geo = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG2MultiChart  + params2 + '&json=1',
   {headers: headers, responseType: 'text'});
 
 

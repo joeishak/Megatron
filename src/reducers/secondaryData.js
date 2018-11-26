@@ -9,6 +9,7 @@ import {
     let copyOfSquare;
     let index = 0;
     let newState;
+    let currentMulti;
     export default function(state = SecondaryData, action) {
         switch(action.type) {
             case  GET_SECONDARY_DATA:
@@ -40,9 +41,66 @@ import {
             newState[7].target = action.payload[2].data[0].PaidMediaSpendTarget;
             return newState;
             case GET_SECONDARY_DETAIL_DATA:
+
             console.log('Action Payload for Detail Data',action.payload);
-            newState = Object.assign({},state);
+            let netArr ={ actual: [], target:[], lq: [], ly: []},
+                netCancellations = { actual: [], target:[], lq: [], ly: []},
+                grossArr = { actual: [], target:[], lq: [], ly: []},
+                termRenewal = { actual: [], target:[], lq: [], ly: []};
+            newState = Object.assign([],state);
+
+
+            //Get Financial Multichart values
+            for(let i = 0; i< action.payload[0].data.length; i++) {
+                 let item = action.payload[0].data[i];
+
+                 netArr.actual.push(item.NewARRActual);
+                 netArr.target.push(item.NewARRTarget);
+                 netArr.ly.push(item.NewARRLY);
+                 netArr.lq.push(item.NewARRLQ);
+
+                 netCancellations.actual.push(item.CancelARRActual);
+                 netCancellations.target.push(item.CancelARRTarget);
+                 netCancellations.ly.push(item.CancelARRLY);
+                 netCancellations.lq.push(item.CancelARRLQ);
+
+                 grossArr.actual.push(item.GrossARRActual);
+                 grossArr.target.push(item.GrossARRTarget);
+                 grossArr.ly.push(item.GrossARRLY);
+                 grossArr.lq.push(item.GrossARRLQ);
+
+                 termRenewal.actual.push(item.RenewARRActual);
+                 termRenewal.target.push(item.RenewARRTarget);
+                 termRenewal.ly.push(item.RenewARRLY);
+                 termRenewal.lq.push(item.RenewARRLQ);
+
+             };
+             // console.log('Local Variables', netArr, netCancellations,grossArr,termRenewal);
+             // Get Journey G2 Multichart Values
+             // Get Journey G3 Multichart Values
+             for (let i = 0; i < newState.length; i++) {
+                  switch(i){
+                      case 0:
+                      currentMulti  = [netArr.actual,netArr.target,netArr.ly,netArr.lq];
+                      break;
+                      case 1:
+                      currentMulti  = [grossArr.actual,grossArr.target,grossArr.ly,grossArr.lq];
+                      break;
+                      case 2:
+                      currentMulti  =  [netCancellations.actual,netCancellations.target,netCancellations.ly,netCancellations.lq];
+                      break;
+                      case 3:
+                      currentMulti  = [termRenewal.actual,termRenewal.target,termRenewal.ly,termRenewal.lq];
+                      break;
+                      default:
+                      break;
+                  }
+                  // console.log(currentMulti);
+                  newState[i]['details'].multichart = currentMulti;
+
+              }
             return newState;
+
             case ADD_NEW_SECONDARY_COMMENT:
                 index = action.payload.square;
                 copyOfSquare = Object.assign({},state[index]);

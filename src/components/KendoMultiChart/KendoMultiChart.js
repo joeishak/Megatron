@@ -41,34 +41,6 @@ class KendoMultiChart extends Component {
         this.formatDataValues = this.formatDataValues.bind(this);
     }
 
-    // formatYAxisValues = (valuesArr) => {
-    //     const returnValuesArr = valuesArr.map(ele => {
-    //         if(ele> 1000000)
-    //         return (ele/1000000);
-    //         else return (ele/1000);
-    //     });
-
-    //     return returnValuesArr;
-    // }
-
-    // labelContent = (type, e) => {
-
-    //     const suffix = ' M';
-    //     const prefix = '$';
-    //     return ( prefix + (parseInt(e.value)/ 1000000) + suffix);
-    // }
-
-    // labelPercentageContent(e){
-    //     const prefix = '% ';
-    //     return ( prefix +e.value);
-
-    // }
-
-    // labelUnitsContent(e){
-    //     const suffix = ' M';
-    //     return ( parseInt(e.value)/1000000) + suffix
-    // }
-
     formatDataValues(arr){
         let newArr;
         newArr = arr.map(item=>{
@@ -76,7 +48,7 @@ class KendoMultiChart extends Component {
         });
         return newArr;
     }
-    
+
     getTooltipType = (seriesType) => {
         switch (seriesType) {
             case 'Actual':
@@ -85,6 +57,8 @@ class KendoMultiChart extends Component {
                 return 'tooltipTarget';
             case 'Last Year':
                 return 'tooltipLastYear';
+            case 'Last Quarter':
+                return 'tooltipLastQuarter';
         }
     }
 
@@ -192,7 +166,7 @@ class KendoMultiChart extends Component {
                             <ChartSeriesItem name='Last Year' type="line" data={this.formatDataValues(chartData[2])} color='#DFDE43'  >
                                     <ChartSeriesItemTooltip  background="#3c3c3c"  />
                             </ChartSeriesItem>
-                            <ChartSeriesItem name='Last Quarter' type="line" data={[] || this.formatDataValues(chartData[3])} color='white'  >
+                            <ChartSeriesItem name='Last Quarter' type="line" data={ this.formatDataValues(chartData[3])} color='purple'  >
                                 <ChartSeriesItemTooltip  background="#3c3c3c"  />
                             </ChartSeriesItem>
                         </ChartSeries> :
@@ -206,7 +180,7 @@ class KendoMultiChart extends Component {
                             <ChartSeriesItem name='Last Year' type="line" data={chartData[2]} color='#DFDE43'  >
                                 <ChartSeriesItemTooltip  background="#3c3c3c"  />
                             </ChartSeriesItem>
-                            <ChartSeriesItem name='Last Quarter' type="line" data={chartData[3]} color='black'  >
+                            <ChartSeriesItem name='Last Quarter' type="line" data={chartData[3]} color='purple'  >
                                 <ChartSeriesItemTooltip  background="#3c3c3c"  />
                             </ChartSeriesItem>
                         </ChartSeries>

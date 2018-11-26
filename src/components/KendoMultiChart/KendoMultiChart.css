@@ -26,13 +26,17 @@
 .tooltipLastYear {
     background-color:#DFDE43;
 }
+.tooltipLastQuarter {
+    background-color:purple;
+}
+
 
 .tooltipTitle {
     color: white;
     display: inline-block;
     margin-left: 35%;
     margin-bottom: 10px;
-    
+
 }
 
 .tooltipValue {
