@@ -9407,14 +9407,14 @@ export const InfoburstAzure = {
         JourneysG3SecondaryActualTarget: '?q=G3SecondaryActualTarget',
         JourneysG2MultiChart:'?q=JourneyG2MultichartQuery',
         JourneysG3MultiChart:'?q=JourneyG3MultichartQuery',
-        JourneysG2QTD: '?q=JourneyG3QTD',
-        JourneysG3QTD: '?q=JourneyG3MQTD',
-        JourneysG2GeoQTD: '?q=JourneyG3GeoQTD',
+        JourneysG2QTD: '?q=JourneyG2QTD',
+        JourneysG3QTD: '?q=JourneyG3QTD',
+        JourneysG2GeoQTD: '?q=JourneyG2GeoQTD',
         JourneysG3GeoQTD: '?q=JourneyG3GeoQTD'
      },
      dataXdcID:  '\\1128',
      journeyXdcID: '\\1149',
      filtersXdcID: '\\1092',
-     appXdcID: '\\102'
+     appXdcID: '\\1088'
 
 }

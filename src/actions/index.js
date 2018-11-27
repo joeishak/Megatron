@@ -65,7 +65,6 @@ export function changeAuth(isLoggedIn) {
  */
 export  function updateOKTAUser(user){
     utils.addUserToDB(user);
-    // let userdb = utils.getUser(user);
     return {
         type: UPDATE_OKTA_USER,
         payload: user

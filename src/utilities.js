@@ -417,13 +417,13 @@ let params3 = group3Params.reduce((prev, param) => {
   {headers: headers, responseType: 'text'});
   const journG3Mutli = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG3MultiChart  + params3 + '&json=1',
   {headers: headers, responseType: 'text'});
-  const journG2QTD = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG2MultiChart  + params2 + '&json=1',
+  const journG2QTD = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG2QTD  + params2 + '&json=1',
   {headers: headers, responseType: 'text'});
-  const journG3QTD = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG2MultiChart  + params2 + '&json=1',
+  const journG3QTD = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG3QTD  + params3 + '&json=1',
   {headers: headers, responseType: 'text'});
-  const journG2Geo = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG2MultiChart  + params2 + '&json=1',
+  const journG2Geo = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG2GeoQTD  + params2 + '&json=1',
   {headers: headers, responseType: 'text'});
-  const journG3Geo = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG2MultiChart  + params2 + '&json=1',
+  const journG3Geo = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG3GeoQTD  + params3 + '&json=1',
   {headers: headers, responseType: 'text'});
 
 
@@ -440,7 +440,7 @@ let params3 = group3Params.reduce((prev, param) => {
   responseArray = [];
   promiseArr = [];
   let body = {
-    "conn":  '18',
+    "conn":  '1088',
     "qry": 'NewUser',
     "columnNames": 'true',
     "params": {
@@ -460,19 +460,6 @@ let params3 = group3Params.reduce((prev, param) => {
 }
 
 
-export function getUser(user){
-  let body = {
-    "conn":  '18',
-    "qry": 'GetUsers',
-    "columnNames": 'true',
-    "params": {
-      "sub": user.sub
-    }
-  }
-
-  return axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
-
-}
 
 // Heartbeat
 export function getHeartbeat() {
