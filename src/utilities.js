@@ -656,11 +656,11 @@ export function formatMetric(item, type){
   else if (type === 'target') {
       switch(item.valueType){
           case 'units':
-          return (item.value !== NaN ) ? renderUnits(item.value) : 0;
+          return ( renderUnits(item.value) !== NaN ) ? renderUnits(item.value) : 0;
           case 'currency':
-          return (item.value !== NaN ) ? renderDollarValue(item.value) : 0;
+          return (renderDollarValue(item.value)) ? renderDollarValue(item.value) : 0;
           case 'percent':
-          return (item.value !== NaN ) ? formatPercentage(item.value) : 0;
+          return (formatPercentage(item.value) !== NaN ) ? formatPercentage(item.value) : 0;
 
       }
   }

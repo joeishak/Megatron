@@ -121,7 +121,6 @@ export function processFinancialMultichart(newState, data){
         newState[i]['details'].multichart = currentMulti;
     }
 }
-
 export function processFinancialUnitsMultichart(newState,data){
   let netUnits= { actual: [], target:[], lq: [], ly: []},
       netCancUnits={ actual: [], target:[], lq: [], ly: []},
@@ -170,10 +169,9 @@ export function processFinancialUnitsMultichart(newState,data){
              break;
          }
          newState[i]['details'].unitMultichart = newMulti;
-         newState[i]['valueType'] = 'currency';
+         // newState[i]['valueType'] = 'currency';
        }
 }
-
 export function processFinancialQTD(newState,data){
   // State Order: Actual, Units, QRF, QRFDiff, VSQrf, QQ, YY
   for ( let i = 0; i< newState.length; i++){
