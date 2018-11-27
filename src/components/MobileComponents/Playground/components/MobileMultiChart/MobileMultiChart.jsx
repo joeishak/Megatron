@@ -4,9 +4,14 @@ import styles from './MobileMultiChart.css';
 
 class MobileMultiChart extends Component {
     render () {
+
+        const bottomHeight = this.props.bottomContainerHeight - 100;
+        // console.log('size', bottomHeight);
+
+
         return (
-            <div className="mobile-multichart-container">
-                <KendoMultiChart color='white' deviceType='mobileTablet' chartHeight={360}></KendoMultiChart>
+            <div className="mobile-multichart-container" style={{height: `${bottomHeight}px`}}>
+                <KendoMultiChart color='white' deviceType='mobileTablet' chartHeight={bottomHeight}></KendoMultiChart>
             </div>
         )
     }

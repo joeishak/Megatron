@@ -36,7 +36,7 @@ class App extends Component {
       authenticated: null,
       window: {
         height: window.innerHeight,
-        weidth: window.innerWidth
+        width: window.innerWidth
       },
       activeCommentBoxMetric: undefined,
       isFilterPageVisible: false,
@@ -198,6 +198,8 @@ class App extends Component {
       mobileSecondaryIsActive = {this.props.mobileIsSecondary}
       primaryDataCategory={this.props.primaryData[this.props.activePrimaryCard].category}
       updateMobileView={(component, updateTo) => {this.updateMobileView(component, updateTo)}}
+      windowHeight={this.state.window.height}
+      windowWidth={this.state.window.width}
     />);
 
   }
@@ -211,20 +213,21 @@ class App extends Component {
   render(){
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
     const isMobileOrTablet = utils.getDeviceType(this.state.window).includes('mobile') || utils.getDeviceType(this.state.window).includes('tablet');
-    console.log('isMobileOrTablet', isMobileOrTablet);
-    const filtersPage = this.state.isFilterPageVisible ? <FilterPage activeFilters={this.props.activeFilters} availableFilters={this.props.availableFilters}></FilterPage> : null;
+    const filtersPage = this.state.isFilterPageVisible ? <FilterPage windowHeight={this.state.window.height} activeFilters={this.props.activeFilters} availableFilters={this.props.availableFilters}></FilterPage> : null;
 
     const summaryViewDetails = isMobileOrTablet ? null: <SummaryViewDetails/> ;
 
+
+
     return (
 
-      <div style={{height:'100%'}}>
+      <div style={{height:`${this.state.window.height}px`}}>
         {this.state.authenticated &&
         <span>
           {/* Data Preferences */}
           {kdialog}
           <Navigation onFilterToggled={e => this.onFilterToggled(e)} isFilterPageVisible={this.state.isFilterPageVisible}/>
-          <FilterBox handleNewFilterClick={this.openDialogFilterPanel}/>
+          <FilterBox handleNewFilterClick={this.openDialogFilterPanel} />
 
           {(this.props.commentBoxIsOpen) ?
             <CommentBox
@@ -237,7 +240,7 @@ class App extends Component {
 
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
 
-          <div style={{width:'100%', height: '1050px'}}>
+          <div>
 
               {filtersPage}
 

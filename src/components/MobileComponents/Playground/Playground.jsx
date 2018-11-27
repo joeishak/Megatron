@@ -37,7 +37,7 @@ class Playground extends Component {
         const item3Active = (this.state.activeItem === '3') ? 'active': '';
 
         return (
-            <div className="playgroundContainer">
+            <div className="playgroundContainer" style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
                     <div id="myCarousel" className="carousel slide">
 
                         <ol className="carousel-indicators">
@@ -47,19 +47,20 @@ class Playground extends Component {
                         </ol>
             
                     <div className="carousel-inner">
-                        <div id="1" className={`item ${item1Active}`} >
+                        <div id="1" className={`item ${item1Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
                         
                             {/* Mobile Multi Chart */}
-                           <MobileMultiChart></MobileMultiChart>
+                           <MobileMultiChart bottomContainerHeight={this.props.bottomContainerHeight}></MobileMultiChart>
+
                         
                         </div>
-                        <div id="2" className={`item ${item2Active}`} >
+                        <div id="2" className={`item ${item2Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
                         
                              {/* Mobile View Details */}
                             <p>Content for second box</p>
                         
                         </div>
-                        <div id="3" className={`item ${item3Active}`} >
+                        <div id="3" className={`item ${item3Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
                             
                             {/* Mobile Comments */}
                             <p>Content for third box</p>
