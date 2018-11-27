@@ -35,9 +35,10 @@ class FilterPage extends Component {
     render () {
 
         const filtersApplied = this.generateFilterList(this.props.activeFilters);
+        const navbarPixelHeight = 85;
 
         return (
-            <div className="filterMobileContainer">
+            <div className="filterMobileContainer" style={{height: this.props.windowHeight - navbarPixelHeight}}>
 
                 <div className="filterMobilePillsContainer">
                     <ul className="filterListMobile">
