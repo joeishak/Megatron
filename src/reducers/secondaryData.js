@@ -20,7 +20,7 @@ let copyOfSquare,
             return newState;
             case GET_SECONDARY_DETAIL_DATA:
               newState = Object.assign([], state);
-              console.log('Action Payload for Detail Data',action.payload);
+              // console.log('Action Payload for Detail Data',action.payload);
               processFinancialMultichart(newState, action.payload[0].data);
               processFinancialUnitsMultichart(newState  ,action.payload[1].data);
               processFinancialQTD(newState, action.payload[3].data);
@@ -335,7 +335,6 @@ export function processJourneyMultichart(g2,g3,newState){
        qtrpayment.lq.push(item.PaymentFailureRateLq);
 
    };
-   console.log(g2, g3, traffic, conv);
    //Get Journeys G2 Multichart values
    for(let i = 0; i< g3.length; i++) {
        let item = g3[i];
