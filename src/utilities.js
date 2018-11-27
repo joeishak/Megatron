@@ -335,7 +335,6 @@ let params3 = group3Params.reduce((prev, param) => {
   let p = '';
   p = prev + '&' + param.prompt + '=' + param.value;
   return p;
-
 }, '');
 
    const primaryFinancial = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialActualTargetSecondary  + params1 + '&json=1',
@@ -345,11 +344,6 @@ let params3 = group3Params.reduce((prev, param) => {
    const primaryG3Journey= axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.JourneysG3SecondaryActualTarget  + params3 + '&json=1',
    {headers: headers, responseType: 'text'});
 
-  //  const primaryJourney =  axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.journeyXdcID + InfoburstAzure.summaryQueryNames.FinancialMultiChart  + params1 + '&json=1',
-  //  {headers: headers, responseType: 'text'});
-
-  //  const unitsResponse = axios.get(InfoburstAzure.xdcCacheQueryURL + InfoburstAzure.dataXdcID + InfoburstAzure.summaryQueryNames.FinancialUnitsMultichart  + params1 + '&json=1',
-  //  {headers: headers, responseType: 'text'});
    responseArray.push(primaryFinancial, primaryG2Journey,primaryG3Journey);
    let promiseArr = Promise.all(responseArray);
 
@@ -662,11 +656,11 @@ export function formatMetric(item, type){
   else if (type === 'target') {
       switch(item.valueType){
           case 'units':
-          return (item.value !== NaN ) ? renderUnits(item.value) : 0;
+          return ( renderUnits(item.value) !== NaN ) ? renderUnits(item.value) : 0;
           case 'currency':
-          return (item.value !== NaN ) ? renderDollarValue(item.value) : 0;
+          return (renderDollarValue(item.value)) ? renderDollarValue(item.value) : 0;
           case 'percent':
-          return (item.value !== NaN ) ? formatPercentage(item.value) : 0;
+          return (formatPercentage(item.value) !== NaN ) ? formatPercentage(item.value) : 0;
 
       }
   }
