@@ -57,13 +57,14 @@
     background-color: transparent;
 }
 /* Multi Chart Metric Container */
-.multiChartMetricContainer{
+.multiChartMetricContainer, .totalTimeMetricContainer{
     float: right;
     padding: 0px;
     height:30px;
+    width: 20%;
 }
 /* Units Metric Left Side of Selector */
-.unitMetric{
+.unitMetric, .qtdMetric{
     float:left;
     text-align: center;
     padding-top: 5px;
@@ -74,7 +75,7 @@
     border: 1px solid #f4f4f4;
 }
 /* ARR Metric Right Side of Selector */
-.arrMetric{
+.arrMetric, .weekMetric{
     float:left;
     width:50%;
     height:30px;
@@ -94,7 +95,6 @@
 
 /* QTD Title Row */
 .qtdTitleBarHeader{
-    margin-top:33px;
     background-color:transparent;
     padding-top: 15px;
     padding-bottom:15px;
@@ -106,41 +106,45 @@
 }
 
 /* QTD Total Metric Filter Container */
-.totalTimeMetricContainer{
+/* .totalTimeMetricContainer{
     float:right;
-    /* width:100%; */
     padding: 0px;
     height:30px;
     background-color:transparent;
-
+    width: 30%;
     align-content: right;
-}
+} */
 
-.totalFilterContainer{
-    float:right;
-}
+
 /* QTD Metric */
-.qtdMetric{
+/* .qtdMetric{
     float:left;
     text-align: center;
     padding-top: 5px;
     height:30px;
-
-    width:80px;
+    width:50%;
     border-top-left-radius: 100px;
     border-bottom-left-radius: 100px;
-    border: 1px solid #3C3C3C;
+    border: 1px solid white;
+} */
+
+.excelSpan{
+    float: right;
+    width: 20%;
+    padding-right: 5px;
 }
 /* Week  Metric */
-.weekMetric{
-    padding-top: 5px;
-    height:30px;
-    width:80px;
+/* .weekMetric{
     float:left;
+    width:50%;
+    height:30px;
     text-align: center;
+    padding-top:5px;
+    border-top-right-radiqus: 100px;
+    border-bottom-right-radius: 100px;
     border: 1px solid #3C3C3C;
 
-}
+} */
 .redBG{
     background-color:#ff0000 !important;
     color:white !important;
@@ -164,9 +168,8 @@
 
 /* Active Time Metric Chosen */
 .activeTimeMetric{
-    width: 80px;
-    color:white;
-    background-color: #3C3C3C;
+    color:black;
+    background-color: white;
 
 }
 

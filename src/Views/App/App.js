@@ -155,7 +155,15 @@ class App extends Component {
   }
   updateActivePrimary(index) {
     this.props.updateActivePrimaryCard(index);
-    this.props.updateActiveSecondaryCard(0);
+    // this.props.updateActiveSecondaryCard(0);
+    switch(index){
+        case(0):
+            this.props.updateActiveSecondaryCard(0);
+            break;
+        case(1):
+            this.props.updateActiveSecondaryCard(4);
+            break;
+    }
 
     if (
       this.props.mobileIsPrimary === true &&
@@ -167,6 +175,7 @@ class App extends Component {
   }
   updateActiveSecondary(index) {
     this.props.updateActiveSecondaryCard(index);
+
   }
   updateMobileView(updateComponent, toUpdateTo) {
     //If the user is on Secondary

@@ -161,7 +161,7 @@ class SecondaryContentList extends Component {
       isMobileAndTablet === false
         ? this.props.data.map(item => {
             let isActive =
-              parseInt(this.props.activeJourneyCard) === item.index
+              this.props.activeJourneyCard === item.index
                 ? true
                 : false;
             if (this.props.activePrimary === item.category) {

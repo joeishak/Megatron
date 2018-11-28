@@ -523,17 +523,32 @@ class SummaryViewDetails extends Component {
 
         {/* First Row for Ttle Bar and Metric Filter */}
         <div className="row container-fluid titleBarHeader">
-          <span className="col-md-3 detailTitle">
+          <span className=" detailTitle">
             {this.props.activeItem.header}
             {/* <button className='exportButton'>Export To Excel</button> */}
           </span>
             {/* The Excell export and the QTD Go Here **/}
-            <span className="col-md-3 excelSpan">
+
+            <div className=" multiChartMetricContainer ">
+              <div
+                onClick={this.updateMultiChartMetricFilter}
+                className={UnitStyles}
+              >
+                UNITS
+              </div>
+              <div
+                onClick={this.updateMultiChartMetricFilter}
+                className={ArrStyles}
+              >
+                ARR
+              </div>
+            </div>
+            <span className=" excelSpan">
               <Workbook
                 filename="example.xlsx"
                 element={
                   <button className="exportButton">
-                    <span>Export To Excel </span>
+                    <span>Export </span>
                     <img
                       alt=""
                       className="excelLogo"
@@ -552,7 +567,6 @@ class SummaryViewDetails extends Component {
                   <Workbook.Column label="Q/Q" value="QQ" />
                   <Workbook.Column label="Y/Y" value="YY" />
                 </Workbook.Sheet>
-
                 <Workbook.Sheet data={this.state.excelTestGeo} name="Geo">
                   <Workbook.Column label="Actuals" value="actuals" />
                   <Workbook.Column label="Units" value="units" />
@@ -564,46 +578,32 @@ class SummaryViewDetails extends Component {
                 </Workbook.Sheet>
               </Workbook>
             </span>
-            <div className=" col-md-3 totalTimeMetricContainer">
-             <span className="totalFilterContainer">
-                <div onClick={this.updateQtdMetricFilter} className={QTDStyles}>
-                  QTD
-                </div>
-                <div onClick={this.updateQtdMetricFilter} className={AllStyles}>
-                  WEEK
-                </div>
-              </span>
-            </div>
-          <div className=" col-md-2 multiChartMetricContainer ">
-            <div
-              onClick={this.updateMultiChartMetricFilter}
-              className={UnitStyles}
-            >
-              UNITS
-            </div>
-            <div
-              onClick={this.updateMultiChartMetricFilter}
-              className={ArrStyles}
-            >
-              ARR
-            </div>
-          </div>
+
+
           <div className="chartContainer col-md-12">
             <KendoMultiChart color="white" deviceType="laptop" />
           </div>
         </div>
         {/* Second Row for Quarterly to Date title header */}
         <div className=" qtdTitleBarHeader container-fluid row">
-          <span className="col-md-3 detailTitle2">Quarterly To Date</span>
-
-
+          <span className="detailTitle2">Quarterly To Date</span>
+              <div className=" totalTimeMetricContainer">
+               <span >
+                  <div onClick={this.updateQtdMetricFilter} className={QTDStyles}>
+                    QTD
+                  </div>
+                  <div onClick={this.updateQtdMetricFilter} className={WeekStyles}>
+                    WEEK
+                  </div>
+                </span>
+              </div>
         </div>
 
         <div className="  qtdTopDetails container-fluid row white">
-          <div className=" qtdTotalTitle col-md-2">&nbsp;</div>
+          <div className=" qtdTotalTitle col-md-1">&nbsp;</div>
           {this.renderQuarterlyToDateTableHeader()}
           <div className=" qtdTotalTitle col-md-12">
-            <div className=" qtdTotalTitle col-md-2">Total</div>
+            <div className=" qtdTotalTitle col-md-1">Total</div>
             {this.renderQuarterlyToDate(qtdwColSizes, qtdTotalTable)}
           </div>
         </div>
