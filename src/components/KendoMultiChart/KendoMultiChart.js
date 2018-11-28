@@ -3,6 +3,7 @@ import React, {Component } from 'react';
 import {connect } from 'react-redux';
 import * as actions from 'actions';
 import styles from './KendoMultiChart.css';
+import * as utils from '../../utilities.js';
 
 import {
     Chart,
@@ -106,10 +107,9 @@ class KendoMultiChart extends Component {
                 <div className="tooltipContainer">
                     <div className="tooltipTitle"><b>Week {title}</b></div>
                     {points.map((point) => (
-
                     <div key={this.state.count++}>
                         <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div>
-                        <b>{point.series.name}</b> : <div className="tooltipValue"> {this.renderValue(this.props.valueType, point.value)} </div>
+                        <b>{point.series.name}</b> : <div className="tooltipValue"> {utils.formatMetric({valueType :this.props.valueType, value: point.value}, 'target')} </div>
                     </div>))}
                 </div>
             );
@@ -117,7 +117,7 @@ class KendoMultiChart extends Component {
         const sharedTooltipRender = (context) => (<SharedTooltip {...context}/>)
 
         // Y axis Values
-        const labelContentRender = (props) => { return this.renderValue(this.props.valueType, props.value); }
+        const labelContentRender = (props) => { return utils.formatMetric({valueType :this.props.valueType, value: props.value}, 'target'); }
 
         // legend labels
         const legendRender = (props) => {

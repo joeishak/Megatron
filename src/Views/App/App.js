@@ -1,35 +1,39 @@
-import React, { Component } from 'react';
-import Navigation from 'components/Navigation/Navigation';
-import {connect} from 'react-redux';
-import * as actions from 'actions';
-import * as utils from '../../utilities.js';
-import styles from './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { withAuth } from '@okta/okta-react';
-import { checkAuthentication } from '../../helper';
-import '@progress/kendo-theme-default/dist/all.css';
+import React, { Component } from "react";
+import Navigation from "components/Navigation/Navigation";
+import { connect } from "react-redux";
+import * as actions from "actions";
+import * as utils from "../../utilities.js";
+import styles from "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { withAuth } from "@okta/okta-react";
+import { checkAuthentication } from "../../helper";
+import "@progress/kendo-theme-default/dist/all.css";
 
 // Custom Components
-import FilterBox from 'components/FilterBox/FilterBox';
-import Playground from '../../components/MobileComponents/Playground/Playground.jsx';
-import CustomDropDownPanel from 'components/CustomDropDownPanel/CustomDropDownPanel';
-import SummaryViewDetails from 'components/SummaryViewDetails/SummaryViewDetails';
-import KendoDialog from '../../components/KendoDialog/KendoDialog';
-import CommentBox from '../../components/CommentBox/CommentBox.jsx';
-import PrimaryContentList from '../../components/PrimaryContent/PrimaryContentList.jsx';
-import SecondaryContentList from '../../components/SecondaryContent/SecondaryContentList.jsx';
-import FilterPage from '../../components/MobileComponents/FitlerPage/FilterPage.jsx';
-import Login from '../../components/Login/Login';
+import FilterBox from "components/FilterBox/FilterBox";
+import Playground from "../../components/MobileComponents/Playground/Playground.jsx";
+import CustomDropDownPanel from "components/CustomDropDownPanel/CustomDropDownPanel";
+import SummaryViewDetails from "components/SummaryViewDetails/SummaryViewDetails";
+import KendoDialog from "../../components/KendoDialog/KendoDialog";
+import CommentBox from "../../components/CommentBox/CommentBox.jsx";
+import PrimaryContentList from "../../components/PrimaryContent/PrimaryContentList.jsx";
+import SecondaryContentList from "../../components/SecondaryContent/SecondaryContentList.jsx";
+import FilterPage from "../../components/MobileComponents/FitlerPage/FilterPage.jsx";
+import Login from "../../components/Login/Login";
 import {
-  PRIMARY, SECONDARY, MOBILE, TABLET, LAPTOP
-} from  '../../Constants/consts.js';
-import { timingSafeEqual } from 'crypto';
+  PRIMARY,
+  SECONDARY,
+  MOBILE,
+  TABLET,
+  LAPTOP
+} from "../../Constants/consts.js";
+import { timingSafeEqual } from "crypto";
 class App extends Component {
   constructor(props) {
     super(props);
 
     /* Initializing local state */
-    this.state ={
+    this.state = {
       index: 0,
       filterPanelIsOpen: false,
       showDropDowns: false,
@@ -39,15 +43,14 @@ class App extends Component {
         width: window.innerWidth
       },
       activeCommentBoxMetric: undefined,
-      isFilterPageVisible: false,
+      isFilterPageVisible: false
     };
 
-      /*Bindings  */
-      this.checkAuthentication = checkAuthentication.bind(this);
-      this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
-      this.login = this.login.bind(this);
-      this.props.getIbHeartbeat();
-
+    /*Bindings  */
+    this.checkAuthentication = checkAuthentication.bind(this);
+    this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
+    this.login = this.login.bind(this);
+    this.props.getIbHeartbeat();
   }
 
   resize() {
@@ -56,7 +59,7 @@ class App extends Component {
         height: window.innerHeight,
         width: window.innerWidth
       }
-    }
+    };
     this.props.setAppSettings(appSettings);
     this.setState({
       window: appSettings.window
@@ -75,195 +78,260 @@ class App extends Component {
 
     // If the old available filters change or the active filters change
     //  Call for new data with the filters
-    if(prevProps.availableFilters !== this.props.availableFilters || prevProps.activeFilters !== this.props.activeFilters ){
-      this.props.getPrimaryData(this.props.activeFilters, this.props.availableFilters);
-      this.props.getSecondaryData(this.props.activeFilters, this.props.availableFilters);
-      this.props.getDetailsData(this.props.activeFilters, this.props.availableFilters);
+    if (
+      prevProps.availableFilters !== this.props.availableFilters ||
+      prevProps.activeFilters !== this.props.activeFilters
+    ) {
+      this.props.getPrimaryData(
+        this.props.activeFilters,
+        this.props.availableFilters
+      );
+      this.props.getSecondaryData(
+        this.props.activeFilters,
+        this.props.availableFilters
+      );
+      this.props.getDetailsData(
+        this.props.activeFilters,
+        this.props.availableFilters
+      );
     }
-    let prevPropsIsEmpty= Object.keys(prevProps.preferences).length === 0;
-    let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined
-    if( prevPropsIsEmpty && propsNotEmpty){
-      this.props.addValueToActiveMultiFilter({index: 1, category:'quarters', value: this.props.preferences.defaultQuarter});
-      this.props.addValueToActiveMultiFilter({index: 2, category:'segments', value: this.props.preferences.defaultSegment});
-      if(this.props.preferences.geoFilters!==""){
+    let prevPropsIsEmpty = Object.keys(prevProps.preferences).length === 0;
+    let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined;
+    if (prevPropsIsEmpty && propsNotEmpty) {
+      this.props.addValueToActiveMultiFilter({
+        index: 1,
+        category: "quarters",
+        value: this.props.preferences.defaultQuarter
+      });
+      this.props.addValueToActiveMultiFilter({
+        index: 2,
+        category: "segments",
+        value: this.props.preferences.defaultSegment
+      });
+      if (this.props.preferences.geoFilters !== "") {
         this.props.preferences.geoFilters.forEach(ele => {
           this.props.addValueToActiveMultiFilter(ele);
         });
       }
-      if(this.props.preferences.productFilters !== ""){
+      if (this.props.preferences.productFilters !== "") {
         this.props.preferences.productFilters.forEach(ele => {
           this.props.addValueToActiveMultiFilter(ele);
         });
       }
-      if(this.props.preferences.routeFilters !== ""){
-      this.props.preferences.routeFilters.forEach(ele => {
-        this.props.addValueToActiveMultiFilter(ele);
-      });
+      if (this.props.preferences.routeFilters !== "") {
+        this.props.preferences.routeFilters.forEach(ele => {
+          this.props.addValueToActiveMultiFilter(ele);
+        });
       }
-      if(this.props.preferences.marketFilters !== ""){
-      this.props.preferences.marketFilters.forEach(ele => {
-        this.props.addValueToActiveMultiFilter(ele);
-      });
+      if (this.props.preferences.marketFilters !== "") {
+        this.props.preferences.marketFilters.forEach(ele => {
+          this.props.addValueToActiveMultiFilter(ele);
+        });
       }
-      if(this.props.preferences.subscriptionFilters !== ""){
-      this.props.preferences.subscriptionFilters.forEach(ele => {
-        this.props.addValueToActiveMultiFilter(ele);
-      });
+      if (this.props.preferences.subscriptionFilters !== "") {
+        this.props.preferences.subscriptionFilters.forEach(ele => {
+          this.props.addValueToActiveMultiFilter(ele);
+        });
       }
     }
   }
   async login() {
-    this.props.auth.login('/');
+    this.props.auth.login("/");
   }
   /* Event Handler for the Filter Box to open the filter panel with the drop downs */
-  openDialogFilterPanel(){
+  openDialogFilterPanel() {
     // Opening the panel
-    if(!this.state.filterPanelIsOpen){
-      this.setState({showDropDowns: true});
-      this.setState({filterPanelIsOpen: true})
-    } else { /* Closing the Panel */
-      this.setState({showDropDowns: false});
+    if (!this.state.filterPanelIsOpen) {
+      this.setState({ showDropDowns: true });
+      this.setState({ filterPanelIsOpen: true });
+    } else {
+      /* Closing the Panel */
+      this.setState({ showDropDowns: false });
       // this.setState({filterPanelIsOpen: false});
-      this.time = setTimeout(()=>{
-      this.setState({filterPanelIsOpen: false});
-        },300);
+      this.time = setTimeout(() => {
+        this.setState({ filterPanelIsOpen: false });
+      }, 300);
     }
   }
-  updateActivePrimary(index){
+  updateActivePrimary(index) {
     this.props.updateActivePrimaryCard(index);
     this.props.updateActiveSecondaryCard(0);
 
-    if(this.props.mobileIsPrimary === true && this.props.deviceType.includes(LAPTOP) === false){
+    if (
+      this.props.mobileIsPrimary === true &&
+      this.props.deviceType.includes(LAPTOP) === false
+    ) {
       this.updateMobileView(PRIMARY, false);
       this.updateMobileView(SECONDARY, true);
     }
   }
-  updateActiveSecondary(index){
+  updateActiveSecondary(index) {
     this.props.updateActiveSecondaryCard(index);
   }
   updateMobileView(updateComponent, toUpdateTo) {
     //If the user is on Secondary
-    if(updateComponent === SECONDARY){
+    if (updateComponent === SECONDARY) {
       // and the user wants to  goes back to primary
-      if(toUpdateTo === false){
-        this.props.updateViewSetting(updateComponent, toUpdateTo)
-        this.props.updateViewSetting(PRIMARY,true);
-      }
-    // Else they are on primary
-    } else {
-      if(toUpdateTo === false ){
+      if (toUpdateTo === false) {
         this.props.updateViewSetting(updateComponent, toUpdateTo);
-        this.props.updateViewSetting(SECONDARY,true);
+        this.props.updateViewSetting(PRIMARY, true);
+      }
+      // Else they are on primary
+    } else {
+      if (toUpdateTo === false) {
+        this.props.updateViewSetting(updateComponent, toUpdateTo);
+        this.props.updateViewSetting(SECONDARY, true);
       }
     }
   }
 
-  onCommentIconClick = (e,type,index) => {
-   if(type === PRIMARY){
-     this.setState({activeCommentBoxMetric: this.props.primaryData[index]},()=>{
-        this.props.showCommentBox();
-     });
-   } else if(type ===SECONDARY){
-    this.setState({activeCommentBoxMetric: this.props.secondaryData[index]},()=>{
-      this.props.showCommentBox();
-   });
-   }
-  }
+  onCommentIconClick = (e, type, index) => {
+    if (type === PRIMARY) {
+      this.setState(
+        { activeCommentBoxMetric: this.props.primaryData[index] },
+        () => {
+          this.props.showCommentBox();
+        }
+      );
+    } else if (type === SECONDARY) {
+      this.setState(
+        { activeCommentBoxMetric: this.props.secondaryData[index] },
+        () => {
+          this.props.showCommentBox();
+        }
+      );
+    }
+  };
 
   getPrimaryContent = () => {
-    return (<PrimaryContentList
-      onCommentIconClick={(e,type,index)=>{this.onCommentIconClick(e,type,index)}}
-      toggleCommentary={this.props.toggleCommentary}
-      activeCard={this.props.activePrimaryCard }
-      data = {this.props.primaryData}
-      enableChart={()=>{console.log('hello world');}}
-      selectedCard={(e,index) =>{this.updateActivePrimary(index)}}
-      deviceType= {this.props.deviceType}
-      mobilePrimaryIsActive = {this.props.mobileIsPrimary}/>
-
+    return (
+      <PrimaryContentList
+        onCommentIconClick={(e, type, index) => {
+          this.onCommentIconClick(e, type, index);
+        }}
+        toggleCommentary={this.props.toggleCommentary}
+        activeCard={this.props.activePrimaryCard}
+        data={this.props.primaryData}
+        enableChart={() => {
+          console.log("hello world");
+        }}
+        selectedCard={(e, index) => {
+          this.updateActivePrimary(index);
+        }}
+        deviceType={this.props.deviceType}
+        mobilePrimaryIsActive={this.props.mobileIsPrimary}
+      />
     );
-  }
+  };
 
   getSecondaryContent = () => {
     // Logic to render depending on App settings. this.props.appSettings.window.height and this.props.appSettings.window.width
-    return ( <SecondaryContentList
-      data={this.props.secondaryData}
-      activeJourneyCard = {this.props.activeSecondaryCard}
-      onJourneyCardClicked={(e,index) =>{this.updateActiveSecondary(index)}}
-      onCommentIconClick={(e,type,index)=>{this.onCommentIconClick(e,type,index)}}
-      toggleCommentary={this.props.toggleCommentary}
-      deviceType= {this.props.deviceType}
-      activePrimary={this.props.activePrimaryCard}
-      mobileSecondaryIsActive = {this.props.mobileIsSecondary}
-      primaryDataCategory={this.props.primaryData[this.props.activePrimaryCard].category}
-      updateMobileView={(component, updateTo) => {this.updateMobileView(component, updateTo)}}
-      windowHeight={this.state.window.height}
-      windowWidth={this.state.window.width}
-    />);
+    return (
+      <SecondaryContentList
+        data={this.props.secondaryData}
+        activeJourneyCard={this.props.activeSecondaryCard}
+        onJourneyCardClicked={(e, index) => {
+          this.updateActiveSecondary(index);
+        }}
+        onCommentIconClick={(e, type, index) => {
+          this.onCommentIconClick(e, type, index);
+        }}
+        toggleCommentary={this.props.toggleCommentary}
+        deviceType={this.props.deviceType}
+        activePrimary={this.props.activePrimaryCard}
+        mobileSecondaryIsActive={this.props.mobileIsSecondary}
+        primaryDataCategory={
+          this.props.primaryData[this.props.activePrimaryCard].category
+        }
+        updateMobileView={(component, updateTo) => {
+          this.updateMobileView(component, updateTo);
+        }}
+        windowHeight={this.state.window.height}
+        windowWidth={this.state.window.width}
+      />
+    );
+  };
 
-  }
-
-  onFilterToggled = (e) => {
-    console.log('Filter Toggled');
+  onFilterToggled = e => {
+    console.log("Filter Toggled");
     const toggleState = !this.state.isFilterPageVisible;
-    this.setState({isFilterPageVisible: toggleState});
-  }
+    this.setState({ isFilterPageVisible: toggleState });
+  };
 
-  render(){
+  render() {
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
-    const isMobileOrTablet = utils.getDeviceType(this.state.window).includes('mobile') || utils.getDeviceType(this.state.window).includes('tablet');
-    const filtersPage = this.state.isFilterPageVisible ? <FilterPage windowHeight={this.state.window.height} activeFilters={this.props.activeFilters} availableFilters={this.props.availableFilters}></FilterPage> : null;
+    const isMobileOrTablet =
+      utils.getDeviceType(this.state.window).includes("mobile") ||
+      utils.getDeviceType(this.state.window).includes("tablet");
+    const filtersPage = this.state.isFilterPageVisible ? (
+      <FilterPage
+        windowHeight={this.state.window.height}
+        activeFilters={this.props.activeFilters}
+        availableFilters={this.props.availableFilters}
+      />
+    ) : null;
 
-    const summaryViewDetails = isMobileOrTablet ? null: <SummaryViewDetails/> ;
-
-
+    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails />;
 
     return (
+      <div style={{ height: `${this.state.window.height}px` }}>
+        {this.state.authenticated && (
+          <span>
+            {/* Data Preferences */}
+            {kdialog}
+            <Navigation
+              onFilterToggled={e => this.onFilterToggled(e)}
+              isFilterPageVisible={this.state.isFilterPageVisible}
+            />
+            <FilterBox handleNewFilterClick={this.openDialogFilterPanel} />
 
-      <div style={{height:`${this.state.window.height}px`}}>
-        {this.state.authenticated &&
-        <span>
-          {/* Data Preferences */}
-          {kdialog}
-          <Navigation onFilterToggled={e => this.onFilterToggled(e)} isFilterPageVisible={this.state.isFilterPageVisible}/>
-          <FilterBox handleNewFilterClick={this.openDialogFilterPanel} />
+            {this.props.commentBoxIsOpen ? (
+              <CommentBox
+                currentMetric={this.state.activeCommentBoxMetric.index}
+                comments={this.state.activeCommentBoxMetric.comments}
+                commentBoxHeader={this.state.activeCommentBoxMetric.header}
+                isPrimary={
+                  this.state.activeCommentBoxMetric.type !== undefined
+                    ? true
+                    : false
+                }
+                user={this.props.user}
+              />
+            ) : null}
 
-          {(this.props.commentBoxIsOpen) ?
-            <CommentBox
-              currentMetric={this.state.activeCommentBoxMetric.index}
-              comments={this.state.activeCommentBoxMetric.comments}
-              commentBoxHeader={this.state.activeCommentBoxMetric.header}
-              isPrimary={(this.state.activeCommentBoxMetric.type !== undefined) ? true: false}
-              user={this.props.user}/>
-               : null}
+            <CustomDropDownPanel
+              handleClose={this.openDialogFilterPanel}
+              showContainer={this.state.filterPanelIsOpen}
+              showSlide={this.state.showDropDowns}
+            />
 
-          <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
-
-          <div>
-
+            <div>
               {filtersPage}
 
               {/* Primary */}
-              {this.state.isFilterPageVisible || this.props.mobileIsPrimary === false? null: this.getPrimaryContent()}
+              {this.state.isFilterPageVisible ||
+              this.props.mobileIsPrimary === false
+                ? null
+                : this.getPrimaryContent()}
 
               {/* Secondary */}
-              {this.state.isFilterPageVisible? null: this.getSecondaryContent() }
-              {this.state.isFilterPageVisible? null: summaryViewDetails}
+              {this.state.isFilterPageVisible
+                ? null
+                : this.getSecondaryContent()}
+              {this.state.isFilterPageVisible ? null : summaryViewDetails}
               {/* Playground */}
               {/* <Playground></Playground> */}
-          </div>
-        </span>
-        }
-         {this.state.authenticated === false &&
-              this.props.auth.login('/')
-         }
+            </div>
+          </span>
+        )}
+        {this.state.authenticated === false && this.props.auth.login("/")}
       </div>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
-  console.log('app state', state);
+  console.log("app state", state);
   return {
     activeFilters: state.activeFilters,
     availableFilters: state.availableFilters,
@@ -286,4 +354,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, actions)(withAuth(App));
+export default connect(
+  mapStateToProps,
+  actions
+)(withAuth(App));

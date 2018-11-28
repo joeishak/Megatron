@@ -625,7 +625,8 @@ export function renderDollarValue(value) {
   }
 }
 export function formatPercentage(value) {
-  return  (value * 100).toFixed(2) + '%';
+    let newValue = (value * 100).toFixed(2);
+  return  newValue > 100 ? '100%': newValue+'%';
 }
 
 export function formatMetric(item, type){
@@ -650,6 +651,9 @@ export function formatMetric(item, type){
           return (formatPercentage(item.value) !== NaN ) ? formatPercentage(item.value) : 0;
 
       }
+  }
+  else if ( type=== 'qrf'){
+      return (formatPercentage(item.value) !== NaN ) ? formatPercentage(item.value) : 0;
   }
 }
 
