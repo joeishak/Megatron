@@ -157,19 +157,18 @@ class SecondaryContentList extends Component {
                     />
                 );
             } else return null;
-
         }) : null;
 
-        // const secondaryTopSlider = <HorizontalSlider 
+        // const secondaryTopSlider = <HorizontalSlider
         //     activeJourneyCard={this.props.activeJourneyCard}
         //     data={this.props.data} activePrimary={this.props.activePrimary} onCardClicked={this.props.onJourneyCardClicked}/>
 
-
+        // const bottomSize =  this.state.initialPos
         const renderStyleBottom = isMobileAndTablet ? { height: `${this.state.initialPos}px`, width: '100%',position: 'fixed'} : { height: '100%' };
         const renderContainerStyle = isMobileAndTablet ? { height: `${this.props.windowHeight - navBarHeight}px`, width: '100%' } : { height: '100%', marginTop: '30px', width: '18%' };
 
-        const mobileBottom = isMobileAndTablet && this.props.mobileSecondaryIsActive ? 
-        
+        const mobileBottom = isMobileAndTablet && this.props.mobileSecondaryIsActive ?
+
         <div style={ renderStyleBottom } className="box3">
 
             {/* resizer bar */}
@@ -177,7 +176,7 @@ class SecondaryContentList extends Component {
 
             {/* Three Slide Playground bar */}
             <div className="secondaryContentBottom" style={{height: `${this.state.initialPos - containerPullBar}px`}}>
-                <Playground bottomContainerHeight={this.state.initialPos} item={this.props.data[this.props.activeJourneyCard]}></Playground>
+                <Playground bottomContainerHeight={this.state.initialPos} comments={this.props.data[this.props.activeJourneyCard].comments}> </Playground>
             </div>
         </div> : null;
 

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import styles from './Playground.css';
 import MobileMultiChart from './components/MobileMultiChart/MobileMultiChart.jsx';
-import MobileViewDetails from './components/MobileViewDetails/MobileViewDetails.jsx';
-
+import MobileCommentBox from '../../CommentBox/MobileCommentBox';
 class Playground extends Component {
 
     constructor(props) {
@@ -44,39 +43,26 @@ class Playground extends Component {
         return (
             <div className="playgroundContainer" style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
                     <div id="myCarousel" className="carousel slide">
-
                         <ol className="carousel-indicators">
                             <li data-target="#carouselExampleIndicators" data-slide-to="0" className={`${item1Active}`}></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="1" className={`${item2Active}`}></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="2" className={`${item3Active}`}></li>
                         </ol>
-            
                     <div className="carousel-inner">
                         <div id="1" className={`item ${item1Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
-                        
                             {/* Mobile Multi Chart */}
                            <MobileMultiChart bottomContainerHeight={this.props.bottomContainerHeight}></MobileMultiChart>
-
-                        
                         </div>
                         <div id="2" className={`item ${item2Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
-                        
                              {/* Mobile View Details */}
-                            <MobileViewDetails></MobileViewDetails>
-                        
+                            <p>Content for second box</p>
                         </div>
                         <div id="3" className={`item ${item3Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
-                            
-                            {/* Mobile Comments */}
-                            <p>Content for third box</p>
-                            
-                        
+                            <MobileCommentBox comments={this.props.comments}></MobileCommentBox>
                         </div>
                     </div>
-               
                     <a className="carousel-control left" href="#myCarousel" data-slide="prev" onClick={e => this.onNavigateClick('prev',e)}>&lsaquo;</a>
                     <a className="carousel-control right" href="#myCarousel" data-slide="next" onClick={e => this.onNavigateClick('next',e)}>&rsaquo;</a>
-
                     </div>
             </div>
         )
@@ -84,8 +70,3 @@ class Playground extends Component {
 }
 
 export default Playground;
-
-
-
-
-

@@ -49,6 +49,36 @@ export const FinancialData = {
 
                         }
                     ]
+                },
+                {
+                    id: 2,
+                    userName: 'Shaun White',
+                    time: '12:33pm',
+                    comment: 'What happened in Quarter 3? ',
+                    replies: [
+                        {
+                            id: 0,
+                            userName: 'Amit Sethi',
+                            time: '8:34am',
+                            comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    userName: 'Shaun White',
+                    time: '12:33pm',
+                    comment: 'What happened in Quarter 3? ',
+                    replies: [
+                        {
+                            id: 0,
+                            userName: 'Amit Sethi',
+                            time: '8:34am',
+                            comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                        }
+                    ]
                 }
              ],
             details:{
@@ -5293,7 +5323,141 @@ export const SecondaryData = [
         value: 12125,
         target: 1323452345,
         comments: [
-        ],
+            {
+                id: 0,
+                userName: 'Morty Smith',
+                time: '8:34am',
+                comment: 'Check out the increased sales in this sector. This will make a huge difference.',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Rick Sanchez',
+                        time: '9:04am',
+                        comment: 'Wow! Great job team!'
+
+                    },
+                    {
+                        id: 1,
+                        userName: 'Shaun White',
+                        time: '9:34am',
+                        comment: 'Was this for last month?'
+
+                    },
+                    {
+                        id: 2,
+                        userName: 'Morty Smith',
+                        time: '9:54am',
+                        comment: 'Yes.'
+
+                    }
+                ]
+            },
+            {
+                id: 1,
+                userName: 'Shaun White',
+                time: '12:33pm',
+                comment: 'What happened in Quarter 3? ',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Amit Sethi',
+                        time: '8:34am',
+                        comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                    }
+                ]
+            },
+            {
+                id: 2,
+                userName: 'Shaun White',
+                time: '12:33pm',
+                comment: 'What happened in Quarter 3? ',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Amit Sethi',
+                        time: '8:34am',
+                        comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                    }
+                ]
+            },
+            {
+                id: 3,
+                userName: 'Shaun White',
+                time: '12:33pm',
+                comment: 'What happened in Quarter 3? ',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Amit Sethi',
+                        time: '8:34am',
+                        comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                    }
+                ]
+            },
+            {
+                id: 4,
+                userName: 'Shaun White',
+                time: '12:33pm',
+                comment: 'What happened in Quarter 3? ',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Amit Sethi',
+                        time: '8:34am',
+                        comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                    }
+                ]
+            },
+            {
+                id: 5,
+                userName: 'Shaun White',
+                time: '12:33pm',
+                comment: 'What happened in Quarter 3? ',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Amit Sethi',
+                        time: '8:34am',
+                        comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                    }
+                ]
+            },
+            {
+                id: 6,
+                userName: 'Shaun White',
+                time: '12:33pm',
+                comment: 'What happened in Quarter 3? ',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Amit Sethi',
+                        time: '8:34am',
+                        comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                    }
+                ]
+            },
+            {
+                id: 7,
+                userName: 'Shaun White',
+                time: '12:33pm',
+                comment: 'What happened in Quarter 3? ',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Amit Sethi',
+                        time: '8:34am',
+                        comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                    }
+                ]
+            }
+         ],
         details:{
             multichart:[
                 [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
@@ -5804,7 +5968,51 @@ export const SecondaryData = [
         value: 12341234,
         target: 1245234254,
         comments: [
-        ],
+            {
+                id: 0,
+                userName: 'Morty Smith',
+                time: '8:34am',
+                comment: 'Check out the increased sales in this sector. This will make a huge difference.',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Rick Sanchez',
+                        time: '9:04am',
+                        comment: 'Wow! Great job team!'
+
+                    },
+                    {
+                        id: 1,
+                        userName: 'Shaun White',
+                        time: '9:34am',
+                        comment: 'Was this for last month?'
+
+                    },
+                    {
+                        id: 2,
+                        userName: 'Morty Smith',
+                        time: '9:54am',
+                        comment: 'Yes.'
+
+                    }
+                ]
+            },
+            {
+                id: 1,
+                userName: 'Shaun White',
+                time: '12:33pm',
+                comment: 'What happened in Quarter 3? ',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Amit Sethi',
+                        time: '8:34am',
+                        comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                    }
+                ]
+            }
+         ],
         details:{
             multichart:[
                 [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
@@ -6315,8 +6523,51 @@ export const SecondaryData = [
         value: 23444,
         target: 222344,
         comments: [
+            {
+                id: 0,
+                userName: 'Morty Smith',
+                time: '8:34am',
+                comment: 'Check out the increased sales in this sector. This will make a huge difference.',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Rick Sanchez',
+                        time: '9:04am',
+                        comment: 'Wow! Great job team!'
 
-        ],
+                    },
+                    {
+                        id: 1,
+                        userName: 'Shaun White',
+                        time: '9:34am',
+                        comment: 'Was this for last month?'
+
+                    },
+                    {
+                        id: 2,
+                        userName: 'Morty Smith',
+                        time: '9:54am',
+                        comment: 'Yes.'
+
+                    }
+                ]
+            },
+            {
+                id: 1,
+                userName: 'Shaun White',
+                time: '12:33pm',
+                comment: 'What happened in Quarter 3? ',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Amit Sethi',
+                        time: '8:34am',
+                        comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                    }
+                ]
+            }
+         ],
         details:{
             multichart:[
                 [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
@@ -6827,7 +7078,51 @@ export const SecondaryData = [
         value: 6654524,
         target: 123452,
         comments: [
-        ],
+            {
+                id: 0,
+                userName: 'Morty Smith',
+                time: '8:34am',
+                comment: 'Check out the increased sales in this sector. This will make a huge difference.',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Rick Sanchez',
+                        time: '9:04am',
+                        comment: 'Wow! Great job team!'
+
+                    },
+                    {
+                        id: 1,
+                        userName: 'Shaun White',
+                        time: '9:34am',
+                        comment: 'Was this for last month?'
+
+                    },
+                    {
+                        id: 2,
+                        userName: 'Morty Smith',
+                        time: '9:54am',
+                        comment: 'Yes.'
+
+                    }
+                ]
+            },
+            {
+                id: 1,
+                userName: 'Shaun White',
+                time: '12:33pm',
+                comment: 'What happened in Quarter 3? ',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Amit Sethi',
+                        time: '8:34am',
+                        comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                    }
+                ]
+            }
+         ],
         details:{
             multichart:[
                 [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
@@ -7338,7 +7633,51 @@ export const SecondaryData = [
         value: 73456345,
         target: 23462345,
         comments: [
-        ],
+            {
+                id: 0,
+                userName: 'Morty Smith',
+                time: '8:34am',
+                comment: 'Check out the increased sales in this sector. This will make a huge difference.',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Rick Sanchez',
+                        time: '9:04am',
+                        comment: 'Wow! Great job team!'
+
+                    },
+                    {
+                        id: 1,
+                        userName: 'Shaun White',
+                        time: '9:34am',
+                        comment: 'Was this for last month?'
+
+                    },
+                    {
+                        id: 2,
+                        userName: 'Morty Smith',
+                        time: '9:54am',
+                        comment: 'Yes.'
+
+                    }
+                ]
+            },
+            {
+                id: 1,
+                userName: 'Shaun White',
+                time: '12:33pm',
+                comment: 'What happened in Quarter 3? ',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Amit Sethi',
+                        time: '8:34am',
+                        comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                    }
+                ]
+            }
+         ],
         details:{
             multichart:[
                 [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
@@ -7849,8 +8188,51 @@ export const SecondaryData = [
         value: 23563456,
         target: 34563456,
         comments: [
+            {
+                id: 0,
+                userName: 'Morty Smith',
+                time: '8:34am',
+                comment: 'Check out the increased sales in this sector. This will make a huge difference.',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Rick Sanchez',
+                        time: '9:04am',
+                        comment: 'Wow! Great job team!'
 
-        ],
+                    },
+                    {
+                        id: 1,
+                        userName: 'Shaun White',
+                        time: '9:34am',
+                        comment: 'Was this for last month?'
+
+                    },
+                    {
+                        id: 2,
+                        userName: 'Morty Smith',
+                        time: '9:54am',
+                        comment: 'Yes.'
+
+                    }
+                ]
+            },
+            {
+                id: 1,
+                userName: 'Shaun White',
+                time: '12:33pm',
+                comment: 'What happened in Quarter 3? ',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Amit Sethi',
+                        time: '8:34am',
+                        comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                    }
+                ]
+            }
+         ],
         details:{
             multichart:[
                 [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
@@ -8359,7 +8741,51 @@ export const SecondaryData = [
         value: .34523,
         target: .23452345,
         comments: [
-        ],
+            {
+                id: 0,
+                userName: 'Morty Smith',
+                time: '8:34am',
+                comment: 'Check out the increased sales in this sector. This will make a huge difference.',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Rick Sanchez',
+                        time: '9:04am',
+                        comment: 'Wow! Great job team!'
+
+                    },
+                    {
+                        id: 1,
+                        userName: 'Shaun White',
+                        time: '9:34am',
+                        comment: 'Was this for last month?'
+
+                    },
+                    {
+                        id: 2,
+                        userName: 'Morty Smith',
+                        time: '9:54am',
+                        comment: 'Yes.'
+
+                    }
+                ]
+            },
+            {
+                id: 1,
+                userName: 'Shaun White',
+                time: '12:33pm',
+                comment: 'What happened in Quarter 3? ',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Amit Sethi',
+                        time: '8:34am',
+                        comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                    }
+                ]
+            }
+         ],
         details:{
             multichart:[
                 [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
@@ -8870,7 +9296,51 @@ export const SecondaryData = [
         value: .746,
         target: .97766,
         comments: [
-        ],
+            {
+                id: 0,
+                userName: 'Morty Smith',
+                time: '8:34am',
+                comment: 'Check out the increased sales in this sector. This will make a huge difference.',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Rick Sanchez',
+                        time: '9:04am',
+                        comment: 'Wow! Great job team!'
+
+                    },
+                    {
+                        id: 1,
+                        userName: 'Shaun White',
+                        time: '9:34am',
+                        comment: 'Was this for last month?'
+
+                    },
+                    {
+                        id: 2,
+                        userName: 'Morty Smith',
+                        time: '9:54am',
+                        comment: 'Yes.'
+
+                    }
+                ]
+            },
+            {
+                id: 1,
+                userName: 'Shaun White',
+                time: '12:33pm',
+                comment: 'What happened in Quarter 3? ',
+                replies: [
+                    {
+                        id: 0,
+                        userName: 'Amit Sethi',
+                        time: '8:34am',
+                        comment: 'Our customers in Japan did not take to our marketing strategy. '
+
+                    }
+                ]
+            }
+         ],
         details:{
             multichart:[
                 [100, 123, 234, 343,222,443,211,123,45,232,124,25,166],
