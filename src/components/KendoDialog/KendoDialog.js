@@ -264,7 +264,10 @@ class KendoDialog extends Component {
                 </Dialog>
             </div>
             <div className="mobileDialog"> 
-                <Dialog width={window.innerWidth - 19} height={window.innerHeight}  title={`Data Preferences`} onClose={this.closeDialog}></Dialog>
+                <Dialog width={window.innerWidth - 19} height={window.innerHeight}  title={`Data Preferences`} onClose={this.closeDialog}>
+                
+                
+                </Dialog>
             </div>
         </div>) : null;
 

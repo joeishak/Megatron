@@ -316,7 +316,6 @@ class App extends Component {
 
             <div>
               {filtersPage}
-
               {/* Primary */}
               {this.state.isFilterPageVisible ||
               this.props.mobileIsPrimary === false

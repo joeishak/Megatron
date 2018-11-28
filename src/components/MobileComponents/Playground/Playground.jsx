@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 import styles from './Playground.css';
 import MobileMultiChart from './components/MobileMultiChart/MobileMultiChart.jsx';
 import MobileCommentBox from '../../CommentBox/MobileCommentBox';
+import MobileViewDetails from './components/MobileViewDetails/MobileViewDetails.jsx';
 class Playground extends Component {
 
     constructor(props) {
         super(props);
         this.state = { activeItem: '1' }
+    }
+
+    componentDidMount() {
+        console.log(this.props.item);
     }
 
     onNavigateClick = (type, e) => {
@@ -46,12 +51,10 @@ class Playground extends Component {
                         </ol>
                     <div className="carousel-inner">
                         <div id="1" className={`item ${item1Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
-                            {/* Mobile Multi Chart */}
                            <MobileMultiChart bottomContainerHeight={this.props.bottomContainerHeight}></MobileMultiChart>
                         </div>
                         <div id="2" className={`item ${item2Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
-                             {/* Mobile View Details */}
-                            <p>Content for second box</p>
+                            <MobileViewDetails valueType={this.props.valueType} detailsData={this.props.detailsData}></MobileViewDetails>
                         </div>
                         <div id="3" className={`item ${item3Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
                             <MobileCommentBox comments={this.props.comments}></MobileCommentBox>

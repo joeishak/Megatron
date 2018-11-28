@@ -15,7 +15,8 @@
     /* border: 1px solid red; */
     justify-content: center;
     color: white;
-    overflow: auto;
+    /* overflow: auto; */
+    overflow-y: hidden;
     
 }
 
