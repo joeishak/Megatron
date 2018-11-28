@@ -592,9 +592,10 @@ export function renderDollarValue(value) {
   if ( value < 0){
       isNegative = true;
       abs = Math.abs(value)
-  } else { abs=value };
+  } else { abs = value };
 
-  abs = parseInt(abs)
+  abs = parseInt(abs);
+  console.log('debuggin', abs)
   if (abs > 1000 && abs <= 999999) {
       abs = (abs/1000).toFixed(1);
        suffix  = 'K';
@@ -604,22 +605,27 @@ export function renderDollarValue(value) {
        suffix  = 'M';
       returnValue =abs;
       // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
-  } else if (abs > 1000000000 && abs <= 999999999999) {
+      // 10
+    } else if (abs > 1000000000 && abs <= 999999999999) {
       abs = (abs/1000000000).toFixed(1);
-
        suffix  = 'B';
       returnValue =abs;
+      // 13
   } else if (abs > 1000000000000 && abs <= 999999999999999) {
       abs = (abs/1000000000000).toFixed(1);
-
        suffix  = 'T';
       returnValue =abs;
+      // 16
+  } else if (abs > 1000000000000000 && abs <= 999999999999999999) {
+      abs = (abs/1000000000000000).toFixed(1);
+       suffix = 'Q';
+       returnValue = abs
   } else {
       returnValue =  abs;
   }
 
   if(isNegative){
-      return prefix + (-1*returnValue).toString() + suffix;
+      return prefix + (-1 * returnValue).toString() + suffix;
   } else{
       return prefix+ returnValue.toString() + suffix;
   }
@@ -629,7 +635,6 @@ export function formatPercentage(value) {
 }
 
 export function formatMetric(item, type){
-
   if(type==='value'){
       switch(item.valueType){
           case 'units':

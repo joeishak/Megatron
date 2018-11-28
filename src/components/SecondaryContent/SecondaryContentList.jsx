@@ -176,7 +176,13 @@ class SecondaryContentList extends Component {
 
             {/* Three Slide Playground bar */}
             <div className="secondaryContentBottom" style={{height: `${this.state.initialPos - containerPullBar}px`}}>
-                <Playground bottomContainerHeight={this.state.initialPos} comments={this.props.data[this.props.activeJourneyCard].comments}> </Playground>
+                <Playground 
+                bottomContainerHeight={this.state.initialPos} 
+                comments={this.props.data[this.props.activeJourneyCard].comments} 
+                selectedSecondary={this.props.activeJourneyCard}
+                detailsData={this.props.data[this.props.activeJourneyCard].details.qtdw}
+                valueType={this.props.data[this.props.activeJourneyCard].valueType}
+                > </Playground>
             </div>
         </div> : null;
 
