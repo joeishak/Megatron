@@ -40,6 +40,7 @@ class App extends Component {
       },
       activeCommentBoxMetric: undefined,
       isFilterPageVisible: false,
+      inputTypeIsMouse: true,
     };
 
       /*Bindings  */
@@ -47,7 +48,6 @@ class App extends Component {
       this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
       this.login = this.login.bind(this);
       this.props.getIbHeartbeat();
-
   }
 
   resize() {
@@ -157,7 +157,6 @@ class App extends Component {
       }
     }
   }
-
   onCommentIconClick = (e,type,index) => {
    if(type === PRIMARY){
      this.setState({activeCommentBoxMetric: this.props.primaryData[index]},()=>{
@@ -169,7 +168,6 @@ class App extends Component {
    });
    }
   }
-
   getPrimaryContent = () => {
     return (<PrimaryContentList
       onCommentIconClick={(e,type,index)=>{this.onCommentIconClick(e,type,index)}}
@@ -183,7 +181,6 @@ class App extends Component {
 
     );
   }
-
   getSecondaryContent = () => {
     // Logic to render depending on App settings. this.props.appSettings.window.height and this.props.appSettings.window.width
     return ( <SecondaryContentList
@@ -200,23 +197,17 @@ class App extends Component {
       windowHeight={this.state.window.height}
       windowWidth={this.state.window.width}
     />);
-
   }
-
   onFilterToggled = (e) => {
     console.log('Filter Toggled');
     const toggleState = !this.state.isFilterPageVisible;
     this.setState({isFilterPageVisible: toggleState});
   }
-
   render(){
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
-    const isMobileOrTablet = utils.getDeviceType(this.state.window).includes('mobile') || utils.getDeviceType(this.state.window).includes('tablet');
+    const isMobileOrTablet = utils.getDeviceType(this.state.window).includes(MOBILE) || utils.getDeviceType(this.state.window).includes(TABLET);
     const filtersPage = this.state.isFilterPageVisible ? <FilterPage windowHeight={this.state.window.height} activeFilters={this.props.activeFilters} availableFilters={this.props.availableFilters}></FilterPage> : null;
-
     const summaryViewDetails = isMobileOrTablet ? null: <SummaryViewDetails/> ;
-
-
 
     return (
 
@@ -240,18 +231,14 @@ class App extends Component {
           <CustomDropDownPanel handleClose={this.openDialogFilterPanel} showContainer={this.state.filterPanelIsOpen} showSlide={this.state.showDropDowns}/>
 
           <div>
-
               {filtersPage}
-
               {/* Primary */}
               {this.state.isFilterPageVisible || this.props.mobileIsPrimary === false? null: this.getPrimaryContent()}
-
               {/* Secondary */}
               {this.state.isFilterPageVisible? null: this.getSecondaryContent() }
               {this.state.isFilterPageVisible? null: summaryViewDetails}
-              {/* Playground */}
-              {/* <Playground></Playground> */}
           </div>
+
         </span>
         }
          {this.state.authenticated === false &&

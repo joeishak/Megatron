@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import SecondarySquares from './SecondarySquares';
 import Playground from '../MobileComponents/Playground/Playground';
-import HorizontalSlider from '../MobileComponents/HorizontalSlider/HorizontalSlider.jsx';
+// import HorizontalSlider from '../MobileComponents/HorizontalSlider/HorizontalSlider.jsx';
 import {
     PRIMARY, SECONDARY, MOBILE, TABLET, LAPTOP
 } from '../../Constants/consts.js';
 // import ResizablePanels from '../MobileComponents/ResizablePanels/ResizablePanels.jsx';
 // import SplitPane from 'react-split-pane';
-import Rnd from 'react-rnd';
-
 
 const navBarHeight = 81;
 const titleContainerHeight = 80;
@@ -47,7 +45,6 @@ class SecondaryContentList extends Component {
 
 
     componentDidMount() {
-
 
         console.log('window height is:', this.props.windowHeight);
         console.log('window height top section is:', this.calculateHeight());
@@ -167,17 +164,9 @@ class SecondaryContentList extends Component {
         //     activeJourneyCard={this.props.activeJourneyCard}
         //     data={this.props.data} activePrimary={this.props.activePrimary} onCardClicked={this.props.onJourneyCardClicked}/>
 
-        // const bottomSize =  this.state.initialPos
 
         const renderStyleBottom = isMobileAndTablet ? { height: `${this.state.initialPos}px`, width: '100%',position: 'fixed'} : { height: '100%' };
         const renderContainerStyle = isMobileAndTablet ? { height: `${this.props.windowHeight - navBarHeight}px`, width: '100%' } : { height: '100%', marginTop: '30px', width: '18%' };
-        // const secondaryContentBottom = isMobileAndTablet && this.props.mobileSecondaryIsActive ?
-
-            // <div className="secondaryContentBottom" style={renderStyleBottom}>
-            //     <Playground bottomContainerHeight={this.state.initialPos}></Playground>
-            // </div>
-
-            // : null;
 
         const mobileBottom = isMobileAndTablet && this.props.mobileSecondaryIsActive ? 
         
@@ -188,15 +177,13 @@ class SecondaryContentList extends Component {
 
             {/* Three Slide Playground bar */}
             <div className="secondaryContentBottom" style={{height: `${this.state.initialPos - containerPullBar}px`}}>
-                <Playground bottomContainerHeight={this.state.initialPos}></Playground>
+                <Playground bottomContainerHeight={this.state.initialPos} item={this.props.data[this.props.activeJourneyCard]}></Playground>
             </div>
         </div> : null;
-
 
         return (
 
             <div style={renderContainerStyle} className="secondaryCLContainer" onTouchEnd={e => this.stopResize(e)} onMouseUp={(e) => this.stopResize(e)}>
-
                 {navigationTitle}
                 {secondaryContentTop}
                 {mobileBottom}

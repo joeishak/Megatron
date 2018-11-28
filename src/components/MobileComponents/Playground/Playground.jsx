@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import styles from './Playground.css';
 import MobileMultiChart from './components/MobileMultiChart/MobileMultiChart.jsx';
+import MobileViewDetails from './components/MobileViewDetails/MobileViewDetails.jsx';
 
 class Playground extends Component {
 
     constructor(props) {
         super(props);
         this.state = { activeItem: '1' }
+    }
+
+    componentDidMount() {
+        console.log(this.props.item);
     }
 
     onNavigateClick = (type, e) => {
@@ -57,13 +62,14 @@ class Playground extends Component {
                         <div id="2" className={`item ${item2Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
                         
                              {/* Mobile View Details */}
-                            <p>Content for second box</p>
+                            <MobileViewDetails></MobileViewDetails>
                         
                         </div>
                         <div id="3" className={`item ${item3Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
                             
                             {/* Mobile Comments */}
                             <p>Content for third box</p>
+                            
                         
                         </div>
                     </div>
