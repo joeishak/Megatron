@@ -512,11 +512,11 @@
 
 } */
 .arrow_box {
-	margin-top: -5px;
+	margin-top: 10px;
 	position: relative;
 	text-align: center;
 	height: 40px;
-	width: 97%;
+	width: 100%;
   }
   .arrow_box:before {
 	content: '';

@@ -11,7 +11,7 @@
 }
 /* Figma Styles */
 .journeyBox {
-	width: 240px;
+	width: 100%;
 	height: 140px;
 	background: #000000;
 	/* Dynamic */
@@ -128,7 +128,7 @@
 	font-weight: 200;
 	line-height: normal;
 	font-size: 15px;
-	padding-left: 50px;
+	padding-left: 30px;
 	padding-top: 14px;
 	color: #FFFFFF;
 	height: 100%;

@@ -54,7 +54,7 @@ class Playground extends Component {
                            <MobileMultiChart bottomContainerHeight={this.props.bottomContainerHeight}></MobileMultiChart>
                         </div>
                         <div id="2" className={`item ${item2Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
-                            <MobileViewDetails selectedSecondary={this.props.selectedSecondary} valueType={this.props.valueType} detailsData={this.props.detailsData}></MobileViewDetails>
+                            <MobileViewDetails valueType={this.props.valueType} detailsData={this.props.detailsData}></MobileViewDetails>
                         </div>
                         <div id="3" className={`item ${item3Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
                             <MobileCommentBox comments={this.props.comments}></MobileCommentBox>

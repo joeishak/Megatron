@@ -20,16 +20,16 @@ class KendoPanelBar extends Component {
         this.getTable = this.getTable.bind(this);
         this.getGeoContent = this.getGeoContent.bind(this);
     }
- 
+
    shouldComponentUpdate(nextProps){
     return true;
    }
-   
+
     getLowerHeader(){
         switch(this.props.timeMetric){
             case 'qtd':
                 return (
-                <div className="lowerHeaderBar "> 
+                <div className="lowerHeaderBar ">
                     <div className="qtdColumn header qtdGeoHeader  col">
                     Geo
                     </div>
@@ -61,7 +61,7 @@ class KendoPanelBar extends Component {
                 );
             case 'week':
             return (
-                <div className="lowerHeaderBar "> 
+                <div className="lowerHeaderBar ">
                     <div className="weekColumn header weekGeoHeader  col">
                     Geo
                     </div>
@@ -86,13 +86,13 @@ class KendoPanelBar extends Component {
                     <div className="weekColumn header col">
                     W/W
                     </div>
-                    
-    
+
+
                 </div>
                 );
             case 'all':
             return(
-                <div className="allLowerHeaderBar "> 
+                <div className="allLowerHeaderBar ">
                     <div className="allColumn header allColumn  col">
                     Geo
                     </div>
@@ -138,10 +138,10 @@ class KendoPanelBar extends Component {
                     <div className="allColumn header col">
                     W/W
                     </div>
-                    
+
                 </div>
             );
-            default: 
+            default:
             break;
         }
     }
@@ -151,30 +151,30 @@ class KendoPanelBar extends Component {
           return(
             <div className=" topHeaderBar qtdDetailTitle col-md-11">Quarterly To Date</div>
           );
-          case 'week': 
+          case 'week':
           return(
             <div className="topHeaderBar weekDetailTitle col-md-11">Week</div>
           );
-          case 'all': 
+          case 'all':
           return(
-      
+
             <div className="topHeaderBar allContainer col-md-12">
-            <div className="topHeaderBar allWeekDetailTitle col-md-6">Week</div> 
+            <div className="topHeaderBar allWeekDetailTitle col-md-6">Week</div>
             <div className="topHeaderBar allQtdDetailTitle col-md-6">Quartely To Date</div>
             </div>
-            
+
           );
-          default: 
+          default:
           break;
-      
+
         }
     }
 
     renderDollarValue(value) {
-      
+
         let returnValue = '';
         value = parseInt(value)
-       
+
         if (value > 1000 && value <= 999999) {
             value = (value/1000).toFixed(1);
             returnValue = '' + value.toString() + 'K';
@@ -191,7 +191,7 @@ class KendoPanelBar extends Component {
         } else {
             return '' + value.toString();
         }
-      
+
         return returnValue;
     }
 
@@ -204,7 +204,7 @@ class KendoPanelBar extends Component {
             case 'qtd':
             return(
                 this.props.activeSummary.details.geo.qtd.map(item =>{
-                   
+
                     return(
                         <span key={item.index}>
                               <div className="qtdColumn qtdGeoHeader  col">
@@ -214,33 +214,32 @@ class KendoPanelBar extends Component {
                                     {item.marketArea}
                                 </div>
                         <div className="qtdColumn col">
-                            
                             $ {this.renderDollarValue(item.actuals)}
                         </div>
                         <div className="qtdColumn col">
-                            
+
                             {this.renderDollarValue(item.units)}
                         </div>
                         <div className="qtdColumn col">
-                            
+
                             $ {this.renderDollarValue(item.qrf)}
                         </div>
                         <div className="qtdColumn col">
-                            
+
                             $ {this.renderDollarValue(item.qrfDiff)}
                         </div>
                         <div className={ (item.vsQrf <= 0)? 'qtdColumn col redBG': ' qtdColumn col greenBG'}>
-                            
+
                             {this.formatPercentage(item.vsQrf)} %
-                            
+
                         </div>
                         <div className="qtdColumn col">
-                            
-                            {this.formatPercentage(item.qq)} %
+
+                            {this.formatPercentage(item.qq) >100 ? 100: this.formatPercentage(item.qq) <100 ? -100: this.formatPercentage(item.qq) } %
                         </div>
                         <div className="qtdColumn col">
-                            
-                            {this.formatPercentage(item.yy)} %
+
+                            {this.formatPercentage(item.yy)>100 ? 100: this.formatPercentage(item.yy) < 100? -100:this.formatPercentage(item.yy) } %
                         </div>
                         </span>
                     )
@@ -250,7 +249,7 @@ class KendoPanelBar extends Component {
             case 'week':
             return(
                 this.props.activeSummary.details.geo.week.map(item =>{
-               
+
                     return(
                         <span key={item.index}>
                               <div className="weekColumn weekGeoHeader  col">
@@ -277,7 +276,7 @@ class KendoPanelBar extends Component {
                         <div className="weekColumn col">
                             {item.ww}
                         </div>
-                       
+
                         </span>
                     )
                 })
@@ -335,26 +334,26 @@ class KendoPanelBar extends Component {
                                  </div>
                                   </span>
                 )
-               
+
 
             }).reverse()
 
             return allComponent;
-            
-            default: 
+
+            default:
             break;
         }
     }
-    getTable(){ 
+    getTable(){
         switch(this.props.timeMetric){
             case 'qtd':
             return (
                 <div className=''>
-                   
-                    <div className="  col-md-12"> 
+
+                    <div className="  col-md-12">
                         {this.getGeoContent('qtd')}
                     </div>
-                    <div className="  col-md-12"> 
+                    <div className="  col-md-12">
                             <div className="qtdColumn qtdGeoHeader  col">
                             &nbsp;
                             </div>
@@ -387,11 +386,11 @@ class KendoPanelBar extends Component {
             case 'week':
             return (
                 <div className=''>
-                   
-                    <div className=" col-md-12"> 
+
+                    <div className=" col-md-12">
                         {this.getGeoContent('week')}
                     </div>
-                    <div className=" col-md-12"> 
+                    <div className=" col-md-12">
                             <div className="weekColumn weekGeoHeader  col">
                             &nbsp;
                             </div>
@@ -416,17 +415,17 @@ class KendoPanelBar extends Component {
                             <div className="weekColumn header col">
                             W/W
                             </div>
-                         
+
                     </div>
                 </div>);
             case 'all':
             return (
                 <div className=''>
-                   
-                    <div className="  col-md-12"> 
+
+                    <div className="  col-md-12">
                         {this.getGeoContent('all')}
                     </div>
-                    <div className=" col-md-12"> 
+                    <div className=" col-md-12">
                             <div className="allColumn allGeoHeader  col">
                             &nbsp;
                             </div>
@@ -451,7 +450,7 @@ class KendoPanelBar extends Component {
                             <div className="allColumn header col">
                             W/W
                             </div>
-                         
+
                     </div>
                 </div>);
                 default: break;
@@ -463,13 +462,13 @@ class KendoPanelBar extends Component {
             case 'geo':
             return (
                 <div className='row'>
-                    <div className='col-md-12 topPanelHeader'> 
+                    <div className='col-md-12 topPanelHeader'>
                         {this.getTopHeader()}
                     </div>
-                    <div className='col-md-12'> 
+                    <div className='col-md-12'>
                         {this.getLowerHeader()}
                     </div>
-                    <div className='col-md-12 geoTableContainer'> 
+                    <div className='col-md-12 geoTableContainer'>
                         {this.getTable()}
                     </div>
                 </div>
@@ -478,13 +477,13 @@ class KendoPanelBar extends Component {
             case 'marketarea':
             return (
                 <div className='row'>
-                    <div className='col-md-12 topPanelHeader'> 
+                    <div className='col-md-12 topPanelHeader'>
                         {this.getTopHeader()}
                     </div>
-                    <div className='col-md-12'> 
+                    <div className='col-md-12'>
                         {this.getLowerHeader()}
                     </div>
-                    <div className='col-md-12 geoTableContainer'> 
+                    <div className='col-md-12 geoTableContainer'>
                         {this.getTable()}
                     </div>
                 </div>
@@ -510,7 +509,7 @@ class KendoPanelBar extends Component {
                        <PanelBarItem className="panelItemTitle" expanded={true} title="Geo">
                            {this.getPanelContents('geo')}
                        </ PanelBarItem>
-                       <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area' >  
+                       <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area' >
                            {this.getPanelContents('marketarea')}
                        </ PanelBarItem>
                        <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
