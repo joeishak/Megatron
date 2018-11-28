@@ -39,9 +39,9 @@
 }
 hr{
     border-top: 1px solid lightslategray !important;
-    margin-top: 10px !important; 
+    margin-top: 10px !important;
     padding-top: 5%;
-     margin-bottom: 0px !important; 
+     margin-bottom: 0px !important;
 }
 .commentsContainer{
     width:100%;
@@ -177,4 +177,32 @@ hr{
 .fileContainer{
     margin: 0px !important;
     padding: 0px !important;
+}
+
+/* Content 2: QTD / Weekly Data */
+.mobileCommentContainer{
+  overflow: auto;
+  overflow: hidden;
+}
+.mobileComment, .mobileCommentUserHeader,
+.mobileCommentUserName, .mobileCommentTime,
+.mobileMainCommentContent{
+  color:white;
+}
+.theDateTime{
+  margin-left: 20px;
+  color: white;
+  margin-bottom: 15px;
+}
+.mobileCommentUserHeader {
+  /* background-color:red; */
+  margin-left: 20px;
+
+}
+
+.mobileCommentUserName, .mobileCommentTime {
+  padding-left: 15px;
+}
+.mobileMainCommentContent{
+  margin-left: 65px;
 }
