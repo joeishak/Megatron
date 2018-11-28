@@ -10,6 +10,38 @@
     float: right;
     color: white;
 }
+/* Animation */
+.example-appear {
+    opacity: 0;
+    transform: translateX(-200px);
+    animation-duration: 4s;
+    animation-delay: 2s;
+}
+.example-appear.example-appear-active {
+    opacity: 1;
+    transform: translateX(0px);
+    transition: all 1s ease-out;
+    animation-duration: 100s;
+    animation-delay: 5s;
+}
+.statsHeader {
+    float: right;
+    margin-right: 30px;
+    font-weight: 600;
+
+}
+.stats{
+    font-size:20px;
+    font-weight: 600;
+}
+
+/* Background Indicators */
+.red{
+    color: #FF0000;
+}
+.green{
+    color: #0DB16E;
+}
 
 /* Summary Breadcrumb */
 .breadCrumb{

@@ -15,7 +15,7 @@ import excelLogo from "../../assets/images/excel-logo.png";
 import excelLogoGreen from "../../assets/images/excel-logo-green.svg";
 // Services
 import ExcelFormatter from "./ExcelFormatter";
-
+import { CSSTransitionGroup } from 'react-transition-group';
 class SummaryViewDetails extends Component {
   constructor(props) {
     super(props);
@@ -597,6 +597,25 @@ class SummaryViewDetails extends Component {
                   </div>
                 </span>
               </div>
+               {
+                                             this.props.activeItem.details.stats.map(item=>{
+                                                 return(
+                                                     <CSSTransitionGroup
+                                                         key={this.state.count++}
+                                                         transitionName="example"
+                                                         transitionAppear={true}
+                                                         transitionAppearTimeout={800}
+                                                         transitionEnter={false}
+                                                         transitionLeave={false} >
+                                                         <div className=" statsHeader">
+                                                             <div className={ (item.color==='red')? 'stats red' : 'stats green '}> {item.value}%</div>
+                                                             <div className="footer"> {item.text}</div>
+                                                         </div>
+                                                     </CSSTransitionGroup>
+                                                 )
+                                             })
+                                         }
+
         </div>
 
         <div className="  qtdTopDetails container-fluid row white">

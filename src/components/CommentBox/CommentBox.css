@@ -181,8 +181,7 @@ hr{
 
 /* Content 2: QTD / Weekly Data */
 .mobileCommentContainer{
-  overflow: auto;
-  overflow: hidden;
+  overflow-y: auto;
 }
 .mobileComment, .mobileCommentUserHeader,
 .mobileCommentUserName, .mobileCommentTime,
