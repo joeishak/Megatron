@@ -11,10 +11,12 @@
     width: 10px;
     border-radius: 50%;
     margin-right: 5px;
+    color: black;
 }
 
 .tooltipActual {
     background-color: white;
+    border: 1px solid black;
 }
 
 
@@ -34,12 +36,28 @@
 .tooltipTitle {
     color: white;
     display: inline-block;
-    margin-left: 35%;
+    text-align: center;
+    padding: 10px;
     margin-bottom: 10px;
-
+    background: red;
+    width: 100%;
+    height: 100%;
 }
 
 .tooltipValue {
     margin-left: 7px;
     float: right;
+    color: black;
+}
+
+.tooltipContainer {
+    background-color: white;
+}
+
+.series-name {
+    color: black;
+}
+
+.series-values {
+    color: black;
 }

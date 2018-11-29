@@ -109,7 +109,11 @@ class KendoMultiChart extends Component {
                     {points.map((point) => (
                     <div key={this.state.count++}>
                         <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div>
-                        <b>{point.series.name}</b> : <div className="tooltipValue"> {utils.formatMetric({valueType :this.props.valueType, value: point.value}, 'target')} </div>
+                        <b className="series-name">{point.series.name}</b> :
+                            <div className="tooltipValue"> 
+                                <b className="series-value">{utils.formatMetric({valueType :this.props.valueType, value: point.value}, 'target')}
+                                </b> 
+                            </div>
                     </div>))}
                 </div>
             );
@@ -138,7 +142,7 @@ class KendoMultiChart extends Component {
 
                     {chartLegend}
 
-                    <ChartTooltip shared={true} background="black" color="white" render={sharedTooltipRender}/>
+                    <ChartTooltip shared={true} background="white" border={{color: 'red', width: 3}} color="white" render={sharedTooltipRender}/>
                     <ChartCategoryAxis>
                             <ChartCategoryAxisItem max='13' maxDivisions={13} />
                     </ChartCategoryAxis>
