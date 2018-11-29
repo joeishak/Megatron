@@ -36,12 +36,22 @@ class KendoMultiChart extends Component {
              yAxisLabel: 'Million $',
              yAxisText: 'Million',
              multiChartValidIndexes: [3,4,5,6],
-             count: 0
+             count: 0,
+             toolTipBorderColor: 'red'
 
         };
         this.formatDataValues = this.formatDataValues.bind(this);
     }
 
+shouldComponenUpdate(nextState){
+
+
+    if(nextState.toolTipBorderColor !== this.state.toolTipBorderColor ||
+    nextState.toolTipBorderColor === this.state.toolTipBorderColor){
+        return false;
+    }
+    return true;
+}
     formatDataValues(arr){
         let newArr;
         newArr = arr.map(item=>{
@@ -102,17 +112,21 @@ class KendoMultiChart extends Component {
 
         const SharedTooltip = (props) => {
             const { points } = props;
+            let bgColor = (points[0].value - points[1].value )> 0 ? 'ttBGGreen': 'ttBGRed';
+            // (points[0].value - points[1].value )> 0 ? this.setState({toolTipBorderColor: 'green'}): this.setState({toolTipBorderColor: 'red'});
+
+
             const title = props.categoryText;
             return (
                 <div className="tooltipContainer">
-                    <div className="tooltipTitle"><b>Week {title}</b></div>
+                    <div className={`'tooltipTitle' + ${bgColor}` }><b>Week {title}</b></div>
                     {points.map((point) => (
                     <div key={this.state.count++}>
                         <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div>
                         <b className="series-name">{point.series.name}</b> :
-                            <div className="tooltipValue"> 
+                            <div className="tooltipValue">
                                 <b className="series-value">{utils.formatMetric({valueType :this.props.valueType, value: point.value}, 'target')}
-                                </b> 
+                                </b>
                             </div>
                     </div>))}
                 </div>
@@ -142,7 +156,7 @@ class KendoMultiChart extends Component {
 
                     {chartLegend}
 
-                    <ChartTooltip shared={true} background="white" border={{color: 'red', width: 3}} color="white" render={sharedTooltipRender}/>
+                    <ChartTooltip shared={true} background="white" border={{color: this.state.toolTipBorderColor, width: 3}} color="white" render={sharedTooltipRender}/>
                     <ChartCategoryAxis>
                             <ChartCategoryAxisItem max='13' maxDivisions={13} />
                     </ChartCategoryAxis>
