@@ -215,6 +215,7 @@ class App extends Component {
   getPrimaryContent = () => {
     return (
       <PrimaryContentList
+        window={this.state.window}
         onCommentIconClick={(e, type, index) => {
           this.onCommentIconClick(e, type, index);
         }}
@@ -255,14 +256,12 @@ class App extends Component {
         updateMobileView={(component, updateTo) => {
           this.updateMobileView(component, updateTo);
         }}
-        windowHeight={this.state.window.height}
-        windowWidth={this.state.window.width}
+        window={this.state.window}
       />
     );
   };
 
   onFilterToggled = e => {
-    // console.log("Filter Toggled");
     const toggleState = !this.state.isFilterPageVisible;
     this.setState({ isFilterPageVisible: toggleState });
   };

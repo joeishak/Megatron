@@ -62,6 +62,7 @@ class KendoBulletChart extends Component {
     const formattedValue = utils.formatMetric({valueType :this.props.valueType, value: this.props.values[0]}, 'value');
     const formattedTarget = utils.formatMetric({valueType :this.props.valueType, value: this.props.values[1]}, 'target');
 
+    const bulletStyle = this.props.isMobileOrTablet ? { height: 36, width: this.props.width, float: 'right' } : { height: 36, width: this.props.width };
 
     const tooltipRender = ({ point }) => {
       const { value } = point;
@@ -85,7 +86,7 @@ class KendoBulletChart extends Component {
 
     return (
       <div>
-      <Chart style={{ height: 36, width: this.props.width }}>
+      <Chart style={bulletStyle}>
         <ChartArea background="transparent"/>
           <ChartSeries>
               <ChartSeriesItem type="bullet" color={colorRender} data={this.props.values} target={{color: this.props.color}} />

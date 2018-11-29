@@ -27,18 +27,12 @@ class SecondaryContentList extends Component {
 
     this.state = {
       isDragging: false,
-      initialPos: this.props.windowHeight - this.calculateHeight(),
-      onloadPos: this.props.windowHeight - this.calculateHeight()
+      initialPos: this.props.window.height - this.calculateHeight(),
+      onloadPos: this.props.window.height - this.calculateHeight()
     };
   }
 
   componentDidMount() {
-    // console.log("window height is:", this.props.windowHeight);
-    // console.log("window height top section is:", this.calculateHeight());
-    // console.log(
-    //   "window height bottom is:",
-    //   this.props.windowHeight - this.calculateHeight()
-    // );
 
     ReactDOM.findDOMNode(this).addEventListener("mousemove", this.resizePanel);
     ReactDOM.findDOMNode(this).addEventListener("touchmove", this.resizePanel);
@@ -51,7 +45,7 @@ class SecondaryContentList extends Component {
   componentWillUnmount() {
     this.setState({
       isDragging: false,
-      initialPos: this.props.windowHeight - this.calculateHeight()
+      initialPos: this.props.window.height - this.calculateHeight()
     });
   }
 
@@ -113,7 +107,7 @@ class SecondaryContentList extends Component {
     if (this.state.isDragging) {
       if (this.isTouchDevice()) {
         // on Mobile
-        const delta = this.props.windowHeight - event.touches[0].clientY;
+        const delta = this.props.window.height - event.touches[0].clientY;
         if (delta < this.state.onloadPos) {
           this.setState({ initialPos: this.state.onloadPos });
         } else {
@@ -121,7 +115,7 @@ class SecondaryContentList extends Component {
         }
       } else {
         // on Desktop
-        const delta = this.props.windowHeight - event.clientY;
+        const delta = this.props.window.height - event.clientY;
         if (delta < this.state.onloadPos) {
           this.setState({ initialPos: this.state.onloadPos });
         } else {
@@ -167,6 +161,7 @@ class SecondaryContentList extends Component {
             if (this.props.activePrimary === item.category) {
               return (
                 <SecondarySquares
+                  window={this.props.window}
                   deviceType={this.props.deviceType}
                   key={item.index}
                   item={item}
@@ -189,7 +184,7 @@ class SecondaryContentList extends Component {
         }
       : { height: "100%" };
     const renderContainerStyle = isMobileAndTablet
-      ? { height: `${this.props.windowHeight - navBarHeight}px`, width: "100%" }
+      ? { height: `${this.props.window.height - navBarHeight}px`, width: "100%" }
       : { height: "100%", marginTop: "30px", width: "20%" };
     const mobileBottom =
       isMobileAndTablet && this.props.mobileSecondaryIsActive ? (

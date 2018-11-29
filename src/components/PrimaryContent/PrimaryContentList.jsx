@@ -48,6 +48,7 @@ class PrimaryContentList extends Component {
                 let isActive = parseInt(this.props.activeCard) === item.index ? true : false;
               return (
                   <PrimarySquare
+                    window={this.props.window}
                     key={item.index}
                     deviceType={this.props.deviceType}
                     onCommentIconClick={(e,type,index) =>{this.props.onCommentIconClick(e,type,index)}}

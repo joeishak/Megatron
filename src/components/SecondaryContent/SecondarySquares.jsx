@@ -264,6 +264,7 @@ class SecondarySquares extends Component {
             </div>
             <div className={boxBullet}>
               <KendoBulletChart
+                isMobileOrTablet={utils.getDeviceType(this.props.window).includes("mobile") || utils.getDeviceType(this.props.window).includes("tablet")}
                 width={175}
                 values={[this.props.item.value, this.props.item.target]}
                 valueType={this.props.item.valueType}

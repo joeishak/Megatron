@@ -50,6 +50,9 @@ class PrimarySquare extends Component {
     const isMobile = this.props.deviceType.includes("mobile") ? true : false;
     const isLaptop = this.props.deviceType.includes("laptop") ? true : false;
     const isTablet = this.props.deviceType.includes("tablet") ? true : false;
+    const isMobileOrTablet = 
+      utils.getDeviceType(this.props.window).includes("mobile") ||
+      utils.getDeviceType(this.props.window).includes("tablet");
 
     // {utils.getDeviceType(this.props.window)}
     const formattedValue = utils.formatMetric(
@@ -219,6 +222,7 @@ class PrimarySquare extends Component {
                   {/* Bullet Chart */}
                   <span className={responsiveBullet}>
                     <KendoBulletChart
+                      isMobileOrTablet={isMobileOrTablet}
                       width={200}
                       values={[this.props.item.value, this.props.item.target]}
                       valueType={this.props.item.valueType}

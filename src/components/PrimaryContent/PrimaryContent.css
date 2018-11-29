@@ -307,6 +307,7 @@
 
 }
 .mobileValueText{
+	margin-top: -2px;
 	width:50% !important;
 	font-size: 1.8em;
 	float: left;
@@ -316,7 +317,6 @@
 .mobileBullet{
 	width:50% !important;
 	float: right;
-
 }
 .mobileSecondaryHeader{
 	width: 50% !important;
