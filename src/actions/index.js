@@ -3,6 +3,7 @@
 import {
     CHANGE_AUTH,
     UPDATE_OKTA_USER,
+    GET_USER_SETTINGS,
     UPDATE_USER_SETTINGS,
     SET_APP_SETTINGS,
     SET_VIEW_APP_SETTINGS,
@@ -60,6 +61,13 @@ export function changeAuth(isLoggedIn) {
     }
 }
 
+export function getUserSettings(sub){
+    let res = utils.requestUserSettings(sub);
+    return {
+        type: GET_USER_SETTINGS,
+        payload: res
+    }
+}
 /***
  * Update User In Database From Okta
  */
@@ -81,7 +89,7 @@ export  function updateOKTAUser(user){
  * @param {*} availableFilters
  * @param {*} settingId
  */
-export function updateUserSettings(activeFilters, user, defaultSummary, defaultFinKpi, defaultJournKpi,availableFilters,settingId){
+export function updateUserSettings(activeFilters, user,availableFilters,settingId){
 
     let stringGeo = activeFilters.geos;
     let stringProducts = activeFilters.products
@@ -92,9 +100,6 @@ export function updateUserSettings(activeFilters, user, defaultSummary, defaultF
         quarter: activeFilters.quarters[0].value,
         segment: activeFilters.segments[0].value,
         user: user.sub,
-        view: defaultSummary,
-        fin: defaultFinKpi,
-        journ: defaultJournKpi,
         geos: JSON.stringify(stringGeo),
         products: JSON.stringify(stringProducts),
         subscriptions: JSON.stringify(stringSubscription),

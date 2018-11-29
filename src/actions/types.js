@@ -7,6 +7,7 @@ export const CHANGE_AUTH                     = 'change_auth';
 export const UPDATE_OKTA_USER                = 'update_okta_user';
 // User SEttings
 export const UPDATE_USER_SETTINGS            = 'update_user_settings';
+export const     GET_USER_SETTINGS  = 'get_user_settings';
 // Modal Dialog Box
 export const UPDATE_DIALOG_VISIBILITY        = "update_dialog_visibility";
 // All Data
