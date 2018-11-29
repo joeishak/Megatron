@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "actions";
 import styles from "./SummaryViewDetails.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import * as utils from "../../utilities.js";
 import classNames from "classnames";
 import "@progress/kendo-theme-default/dist/all.css";
 // Kendo Components
@@ -352,7 +353,7 @@ class SummaryViewDetails extends Component {
           : this.renderDollarValue(value);
       return tmpValue;
     } else {
-      return this.formatPercentage(value);
+      return utils.formatMetric({valueType: this.props.activeItem.valueType, value: this.props.activeItem.value}, 'value');
     }
   }
   detailsRenderM(item) {

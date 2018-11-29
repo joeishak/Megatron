@@ -31,6 +31,13 @@ class FilterBox extends Component {
         this.changeFilterPanelStatus = this.changeFilterPanelStatus.bind(this);
     }
 
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     if (this.state.totalFilterPills !== nextState.totalFilterPills) {
+    //         return false;
+    //     }
+    //     return true;
+    // }
+
    // Function that renders the Filter Pills
     renderFilterPills(){
         // As long as there is an active filter
@@ -77,6 +84,7 @@ class FilterBox extends Component {
             //For each active filter, return a Filter Pill Box Component mapped to the filter
             filterBarArr.map(filter =>{
                 if(filter!==undefined){
+
                     return <FilterPillBox key={this.state.totalFilterPills++} data={filter} />
                 } else return <span />
             })
@@ -85,6 +93,8 @@ class FilterBox extends Component {
     else return null;
        
     }
+
+
     changeFilterPanelStatus = () => {
         
         this.props.handleNewFilterClick();

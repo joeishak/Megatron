@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center; */
-    overflow: auto;
+    overflow: hidden;
 }
 
 .item {
@@ -15,7 +15,7 @@
     /* border: 1px solid red; */
     justify-content: center;
     color: white;
-    
+
 }
 
 .hideMe {

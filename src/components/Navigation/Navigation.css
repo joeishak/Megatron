@@ -12,6 +12,12 @@
     font-size: 16px; 
 }
 
+.right-bar-span {
+    float: right;
+    list-style-type: none;
+
+}
+
 .userIcon {
     padding-top: 12px;
     width:54px;
