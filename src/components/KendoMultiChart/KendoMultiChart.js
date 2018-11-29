@@ -102,6 +102,7 @@ class KendoMultiChart extends Component {
         const sharedTooltipRender = (props) => {
             const { points } = props;
             let bgColor = (points[0].value - points[1].value )> 0 ? 'ttBGGreen': 'ttBGRed';
+              let textColor =  (points[0].value - points[1].value )> 0 ? 'textGreen': 'textRed';
             let borderColor = (points[0].value - points[1].value) > 0 ? '#0DB16E'  : '#FF0000';
             const title = props.categoryText;
 
@@ -114,14 +115,15 @@ class KendoMultiChart extends Component {
                             <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div>
                             <b className="series-name">{point.series.name}</b> :
                                 <div className="tooltipValue">
-                                    <b className="series-value" > 
-                                    {utils.formatMetric({valueType :this.props.valueType, value: point.value}, 'target')} 
-                                    </b>
+                                    {(point.series.name === 'Actual' ?
+                                    <b className={`'series-value' + ${textColor}`}>{utils.formatMetric({valueType :this.props.valueType, value: point.value}, 'target')}</b> :
+                                        <b className="series-value">{utils.formatMetric({valueType :this.props.valueType, value: point.value}, 'target')}
+                                </b>)}
                                 </div>
                         </div>))}
                 </div>
                 </div>
-    
+
 
             );
         }
