@@ -11,7 +11,7 @@ import * as _ from 'lodash'
 
 
 class KendoDialog extends Component {
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -22,14 +22,14 @@ class KendoDialog extends Component {
             savedClicked: undefined,
             onFilterHover: false,
         };
-        
-        this.closeDialog = this.closeDialog.bind(this)      
+
+        this.closeDialog = this.closeDialog.bind(this)
         $('.content').kendoWindow({
             animation:true
         })
- 
+
     }
-    
+
 
 
     componentDidMount(){
@@ -68,7 +68,7 @@ class KendoDialog extends Component {
                 break;
                 default:
                 break;
-                
+
             }
         } else if (e.target.name === 'financialsSummaryOptions') {
             this.setState({financialsSummaryOptions: e.target.id});
@@ -77,7 +77,7 @@ class KendoDialog extends Component {
             this.setState({journeysSummaryViewOptions: e.target.id})
             // this.props.updateDefaultJournKpiPreference(this.convertJournId(e.target.id));
         }
- 
+
     }
 
     updateActiveFiltersHandler = (e) => {
@@ -85,7 +85,7 @@ class KendoDialog extends Component {
     }
 
     convertFinId(id){
-        
+
         switch(id){
             case 'NetNewArr':
             return  1;
@@ -121,7 +121,7 @@ class KendoDialog extends Component {
             case 'Renew':
             return 5;
             break;
-            default: 
+            default:
             return 1;
             break;
         }
@@ -133,23 +133,23 @@ class KendoDialog extends Component {
 
         let fin = this.convertFinId(this.state.financialsSummaryOptions);
         let journ = this.convertJournId(this.state.journeysSummaryViewOptions)
-       
-        this.props.updateUserSettings(this.props.activeFilters,this.props.user, view, fin,journ ,this.props.availableFilters,this.props.preferences.settingId);
+
+        this.props.updateUserSettings(this.props.activeFilters,this.props.user,this.props.availableFilters,this.props.preferences.settingId);
         this.setState({savedClicked: true});
-        
+
         setTimeout(() => this.closeDialog(), 1500);
     }
 
     // Entered
     onMouseEnterHandler = () => {
-      
+
     }
 
     //Left
     onMoueLeaveHandler = () => {
-      
+
     }
-    
+
     removeFilter (filterToRemove) {
         this.props.removeMultiFilter(filterToRemove);
     }
@@ -165,17 +165,17 @@ class KendoDialog extends Component {
 
         return _.pull(allDataRemoved, undefined);
     }
- 
+
     render(){
 
-        
+
         const filtersApplied = this.generateFilterList(this.props.activeFilters);
         const defaultSum = this.state.selectedSummary || this.props.defaultSummaryView;
         const show = this.props.dialogIsOpen
-        const kendoDialog = show ? ( 
+        const kendoDialog = show ? (
         <div className="content ">
-                    
-            
+
+
             <div className="desktopDialog">
                 <Dialog width={939} height={626}  title={`Data Preferences for ${this.props.user.name} `} onClose={this.closeDialog}>
 
@@ -199,7 +199,7 @@ class KendoDialog extends Component {
                                         <ReactSelect updateFilter={this.updateActiveFiltersHandler} defaultValue={this.props.activeFilters.geos[0]} options={this.props.availableFilters.geos} ></ReactSelect>
                                     </div>
                                 </div>
-                        
+
                                 <div className="row dropRow">
                                     <div className="col-lg-6 col-md-6">
                                         <p>Product name</p>
@@ -242,12 +242,12 @@ class KendoDialog extends Component {
                                 {/* Filters List */}
                             <div className="contentpad filterListItems">
                                 <p>Filters Applied:</p>
-                                
+
                                 <ul className="filterList">
                                     {filtersApplied.map((item) => {
-                                        return <li onClick={(e) => this.removeFilter(item)} 
-                                        onMouseEnter={this.onMouseEnterHandler} 
-                                        onMouseLeave={this.onMoueLeaveHandler} 
+                                        return <li onClick={(e) => this.removeFilter(item)}
+                                        onMouseEnter={this.onMouseEnterHandler}
+                                        onMouseLeave={this.onMoueLeaveHandler}
                                         className="miniMultiFilter">
                                             {item.value}
                                         </li>
@@ -256,17 +256,17 @@ class KendoDialog extends Component {
                             </div>
 
                     </div>
-                    
+
                 </div>
 
                 {/* Save Button */}
                 <button className="saveButton" onClick={this.saveChanges}>Save Changes</button>
                 </Dialog>
             </div>
-            <div className="mobileDialog"> 
+            <div className="mobileDialog">
                 <Dialog width={window.innerWidth - 19} height={window.innerHeight}  title={`Data Preferences`} onClose={this.closeDialog}>
-                
-                
+
+
                 </Dialog>
             </div>
         </div>) : null;
@@ -284,7 +284,7 @@ class KendoDialog extends Component {
 
         ) : null;
 
-                                    
+
         const screenView = this.state.savedClicked ? savedPrompt : kendoDialog;
 
         return(
@@ -296,7 +296,7 @@ class KendoDialog extends Component {
 }
 
 function mapStateToProps(state){
-    
+
     return {
         dialogIsOpen: state.isDialogOpen,
         availableFilters: state.availableFilters,

@@ -466,30 +466,27 @@ export function getHeartbeat() {
   return axios.get(InfoburstAzure.sysInfo, {headers: headers, responseType: 'text'});
 }
 
-// export function requestUserSettings(sub){
-//   let body = {
-//     "conn":  '18',
-//     "qry": 'GetUserSettings',
-//     "columnNames": 'true',
-//     "params": {
-//       "sub": sub
-//     }
-//   }
+export function requestUserSettings(sub){
+  let body = {
+    "conn":  '1088',
+    "qry": 'GetUserSettings',
+    "columnNames": 'true',
+    "params": {
+      "sub": sub
+    }
+  }
 
-//   return axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
-// }
+  return axios.post(InfoburstAzure.dbQuery, body, {headers: headers, responseType: 'text'})
+}
 
 export function postUserSettings(params){
   let body = {
-    "conn":  '18',
+    "conn":  '1088',
     "qry": 'UpdateSettings',
     "columnNames": 'true',
     "params": {
       "quarter":params.quarter,
       "segment":params.segment,
-      "view":params.view,
-      "fin":params.fin,
-      "journ":params.journ,
       "user": params.user,
       "products": params.products,
       "geos": params.geos,

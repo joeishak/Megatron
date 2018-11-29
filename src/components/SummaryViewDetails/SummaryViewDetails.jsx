@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "actions";
 import styles from "./SummaryViewDetails.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import * as utils from "../../utilities.js";
 import classNames from "classnames";
 import "@progress/kendo-theme-default/dist/all.css";
 // Kendo Components
@@ -15,7 +16,7 @@ import excelLogo from "../../assets/images/excel-logo.png";
 import excelLogoGreen from "../../assets/images/excel-logo-green.svg";
 // Services
 import ExcelFormatter from "./ExcelFormatter";
-
+import { CSSTransitionGroup } from 'react-transition-group';
 class SummaryViewDetails extends Component {
   constructor(props) {
     super(props);
@@ -352,7 +353,7 @@ class SummaryViewDetails extends Component {
           : this.renderDollarValue(value);
       return tmpValue;
     } else {
-      return this.formatPercentage(value);
+      return utils.formatMetric({valueType: this.props.activeItem.valueType, value: this.props.activeItem.value}, 'value');
     }
   }
   detailsRenderM(item) {
@@ -597,6 +598,25 @@ class SummaryViewDetails extends Component {
                   </div>
                 </span>
               </div>
+               {
+                                             this.props.activeItem.details.stats.map(item=>{
+                                                 return(
+                                                     <CSSTransitionGroup
+                                                         key={this.state.count++}
+                                                         transitionName="example"
+                                                         transitionAppear={true}
+                                                         transitionAppearTimeout={800}
+                                                         transitionEnter={false}
+                                                         transitionLeave={false} >
+                                                         <div className=" statsHeader">
+                                                             <div className={ (item.color==='red')? 'stats red' : 'stats green '}> {item.value}%</div>
+                                                             <div className="footer"> {item.text}</div>
+                                                         </div>
+                                                     </CSSTransitionGroup>
+                                                 )
+                                             })
+                                         }
+
         </div>
 
         <div className="  qtdTopDetails container-fluid row white">

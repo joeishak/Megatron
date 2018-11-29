@@ -10,6 +10,38 @@
     float: right;
     color: white;
 }
+/* Animation */
+.example-appear {
+    opacity: 0;
+    transform: translateX(-200px);
+    animation-duration: 4s;
+    animation-delay: 2s;
+}
+.example-appear.example-appear-active {
+    opacity: 1;
+    transform: translateX(0px);
+    transition: all 1s ease-out;
+    animation-duration: 100s;
+    animation-delay: 5s;
+}
+.statsHeader {
+    float: right;
+    margin-right: 30px;
+    font-weight: 600;
+
+}
+.stats{
+    font-size:20px;
+    font-weight: 600;
+}
+
+/* Background Indicators */
+.red{
+    color: #FF0000;
+}
+.green{
+    color: #0DB16E;
+}
 
 /* Summary Breadcrumb */
 .breadCrumb{
@@ -180,7 +212,7 @@
 
 .qtdDetailTitle{
     float:right;
-    width: 750px;
+    width: 75%;
     height:30px;
     clear:right;
     text-align:center;
@@ -239,7 +271,7 @@
     margin:auto;
 }
 .colContainer{
-    height:80px;
+    height:60px;
     background-color:#3c3c3c;
     float:right;
     margin:1px;
@@ -276,7 +308,7 @@
 }
 
 .normalTableSize{
-    width: 750px;
+    width: 75%
 }
 .halfTableSize{
     width:860px;

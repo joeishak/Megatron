@@ -120,9 +120,9 @@ class PrimarySquare extends Component {
     });
     const responsiveSecondaryHeader = classNames({
       secondaryHeader: true,
-      mobileSecondaryHeader: isMobile || isTablet,
-      tabletSecondaryHeader: isTablet,
-      laptopSecondaryHeader: isLaptop
+      mobilePrimarySecondaryHeader: isMobile || isTablet,
+      tabletPrimarySecondaryHeader: isTablet,
+      laptopPrimarySecondaryHeader: isLaptop
     });
     const responsiveValueText = classNames({
       valueText: true,
@@ -158,7 +158,8 @@ class PrimarySquare extends Component {
             onClick={e => this.props.selectedCard(e, this.props.item.index)}
           >
             <div className={`sumChartContent  ${this.props.item.css[1]}`}>
-              {this.props.toggleCommentary ? (
+
+              {isLaptop && this.props.toggleCommentary ? (
                 <span className={` k-float-right   ${responsiveCommentIcon}`}>
                   <img
                     alt=""
@@ -202,7 +203,7 @@ class PrimarySquare extends Component {
               )}
               {/* Header */}
               {isMobile || isTablet ? (
-                <div>
+                <div className='mobilePrimContent'>
                   <span className={"secondaryCategory"}>
                     {this.props.item.category}
                   </span>

@@ -249,7 +249,7 @@
 
 }
 .mobileSecondaryHeader {
-	display: none;
+	/* display: none; */
 }
 .mobileSecondaryHover {
 	border: 2px solid black;

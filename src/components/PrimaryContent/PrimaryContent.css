@@ -183,6 +183,7 @@
 .sumChartSquare{
 	height: 200px;
 	width: 100%;
+	margin-bottom:5px;
 	/* box-shadow: 5px 10px; */
 }
 
@@ -236,7 +237,7 @@
 .laptopSelectedCardText{
 	color: white !important;
 }
-.laptopSecondaryCategory{
+.laptopPrimarySecondaryCategory{
 	color:black !important;
 }
 .laptopSumChartHeaderText {
@@ -307,26 +308,28 @@
 
 }
 .mobileValueText{
-	margin-top: -2px;
-	width:50% !important;
-	font-size: 1.8em;
-	float: left;
-	text-align: right;
-	padding-right: 40px;
+	width: 50% !important;
+    font-size: 1.8em;
+    float: right;
+    text-align: right;
+    padding-right: 25px;
 }
 .mobileBullet{
 	width:50% !important;
 	float: right;
 }
-.mobileSecondaryHeader{
+.mobilePrimarySecondaryHeader{
 	width: 50% !important;
 	font-size: 1.8em;
 	float: left;
 	color:white;
 
 }
+.mobilePrimContent{
+	width: 100%;
+}
 .secondaryCategory{
-	width: 50% !important;
+	width: 30% !important;
 	font-size: 1.8em;
 	float: left;
 	color:white;

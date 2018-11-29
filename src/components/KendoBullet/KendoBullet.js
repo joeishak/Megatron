@@ -106,7 +106,7 @@ class KendoBulletChart extends Component {
 
 function mapStateToProps(state) {
   return {
-  
+
   }
 }
 

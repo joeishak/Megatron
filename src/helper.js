@@ -8,7 +8,7 @@ async function checkAuthentication() {
         this.setState({ authenticated, userinfo });
         if(this.props.user.sub ===  undefined ){
           this.props.updateOKTAUser(userinfo);
-          // this.props.getUserSettings(userinfo.sub);
+          this.props.getUserSettings(userinfo.sub);
         }
         this.props.changeAuth(authenticated);
       } else {
@@ -17,6 +17,6 @@ async function checkAuthentication() {
       }
     }
   }
-  
+
   /* eslint-disable import/prefer-default-export */
   export { checkAuthentication };
