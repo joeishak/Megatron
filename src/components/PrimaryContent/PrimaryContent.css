@@ -310,7 +310,8 @@
 	width:50% !important;
 	font-size: 1.8em;
 	float: left;
-	text-align: left;
+	text-align: right;
+	padding-right: 40px;
 }
 .mobileBullet{
 	width:50% !important;
