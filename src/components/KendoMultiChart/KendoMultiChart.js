@@ -99,43 +99,42 @@ class KendoMultiChart extends Component {
         const chartData = (this.props.multichartMetric ? this.props.activeMultichart : this.props.activeUnits);
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
 
-        const SharedTooltip = (props) => {
+        const sharedTooltipRender = (props) => {
             const { points } = props;
             let bgColor = (points[0].value - points[1].value )> 0 ? 'ttBGGreen': 'ttBGRed';
-            let textColor =  (points[0].value - points[1].value )> 0 ? 'textGreen': 'textRed';
-            let borderColor =  (points[0].value - points[1].value )> 0 ? 'borderGreen': 'borderRed';
-
-
+              let textColor =  (points[0].value - points[1].value )> 0 ? 'textGreen': 'textRed';
+            let borderColor = (points[0].value - points[1].value) > 0 ? '#0DB16E'  : '#FF0000';
             const title = props.categoryText;
+
             return (
-                <div className={`tooltipContainer ${borderColor}`}>
-                    <div className="innerContainer">
+                <div className="tooltipContainer" style={{border: `4px solid ${borderColor}`}}>
+                <div className="innerContent">
                     <div className={`tooltipTitle ${bgColor}` }><b>Week {title}</b></div>
-                    {points.map((point) => (
-                    <div key={this.state.count++}>
-                        <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div>
-                        <b className="series-name">{point.series.name} : </b>
-                            <div className="tooltipValue">
-                                {(point.series.name === 'Actual' ?
+                        {points.map((point) => (
+                        <div key={this.state.count++}>
+                            <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div>
+                            <b className="series-name">{point.series.name}</b> :
+                                <div className="tooltipValue">
+                                    {(point.series.name === 'Actual' ?
                                     <b className={`'series-value' + ${textColor}`}>{utils.formatMetric({valueType :this.props.valueType, value: point.value}, 'target')}</b> :
                                         <b className="series-value">{utils.formatMetric({valueType :this.props.valueType, value: point.value}, 'target')}
                                 </b>)}
-                            </div>
-                    </div>))}
-                    </div>
+                                </div>
+                        </div>))}
                 </div>
+                </div>
+
+
             );
         }
-        const sharedTooltipRender = (context) => (<SharedTooltip {...context}/>)
+
 
         // Y axis Values
         const labelContentRender = (props) => { return utils.formatMetric({valueType :this.props.valueType, value: props.value}, 'target'); }
 
         // legend labels
         const legendRender = (props) => {
-
             const customVisual = props.createVisual();
-
             return customVisual;
         }
 
@@ -144,12 +143,11 @@ class KendoMultiChart extends Component {
             <ChartLegendItem visual={legendRender}/>
         </ChartLegend> : <ChartLegend visible={false} />
 
+
         const ChartContainer = () => (
 
                 <Chart pannable={false} zoomable={false} >
-
                     {chartLegend}
-
                     <ChartTooltip shared={true} render={sharedTooltipRender}/>
                     <ChartCategoryAxis>
                             <ChartCategoryAxisItem max='13' maxDivisions={13} />

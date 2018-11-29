@@ -221,6 +221,7 @@
     border-right: 1px solid #3c3c3c;
     font-size: 12px;
 }
+
 .weekDetailTitle{
     float:right;
     width: 75%;
@@ -232,6 +233,7 @@
     border-right: 1px solid #3c3c3c;
     font-size: 12px;
 }
+
 .allContainer{
     padding: 0px;
 }
