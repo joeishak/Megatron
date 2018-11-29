@@ -36,22 +36,11 @@ class KendoMultiChart extends Component {
              yAxisLabel: 'Million $',
              yAxisText: 'Million',
              multiChartValidIndexes: [3,4,5,6],
-             count: 0,
-             toolTipBorderColor: 'red'
-
+             count: 0
         };
         this.formatDataValues = this.formatDataValues.bind(this);
     }
 
-shouldComponenUpdate(nextState){
-
-
-    if(nextState.toolTipBorderColor !== this.state.toolTipBorderColor ||
-    nextState.toolTipBorderColor === this.state.toolTipBorderColor){
-        return false;
-    }
-    return true;
-}
     formatDataValues(arr){
         let newArr;
         newArr = arr.map(item=>{
@@ -125,7 +114,8 @@ shouldComponenUpdate(nextState){
                             <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div>
                             <b className="series-name">{point.series.name}</b> :
                                 <div className="tooltipValue">
-                                    <b className="series-value">{utils.formatMetric({valueType :this.props.valueType, value: point.value}, 'target')}
+                                    <b className="series-value" > 
+                                    {utils.formatMetric({valueType :this.props.valueType, value: point.value}, 'target')} 
                                     </b>
                                 </div>
                         </div>))}
@@ -156,7 +146,7 @@ shouldComponenUpdate(nextState){
 
                 <Chart pannable={false} zoomable={false} >
                     {chartLegend}
-                    <ChartTooltip shared={true}  render={sharedTooltipRender}/>
+                    <ChartTooltip shared={true} render={sharedTooltipRender}/>
                     <ChartCategoryAxis>
                             <ChartCategoryAxisItem max='13' maxDivisions={13} />
                     </ChartCategoryAxis>

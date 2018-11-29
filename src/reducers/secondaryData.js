@@ -289,8 +289,8 @@ export function processSecondaryData(g1, g2, g3, newState){
   newState[3].value = g1.data[0].RenewARRActual;
   newState[3].target = g1.data[0].RenewARRTarget;
   //  //Target
-   newState[5].value = g2.data[0].TrafficActual;
-   newState[5].target = g2.data[0].TrafficTarget;
+   newState[4].value = g2.data[0].TrafficActual;
+   newState[4].target = g2.data[0].TrafficTarget;
   //  //Marketable universe
    newState[5].value = g3.data[0].MarketableActual;
    newState[5].target = g3.data[0].MarketableTarget;

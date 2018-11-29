@@ -111,6 +111,7 @@ class Navigation extends Component {
 
   render() {
     //local constants for showing the logo with an animation
+    const isLaptop =  this.props.deviceType.includes('laptop');
     const filterIcon = this.props.isFilterPageVisible
       ? filterSelected
       : filterUnselected;
@@ -138,10 +139,9 @@ class Navigation extends Component {
               <Expand>{logos}</Expand>
             </div>
           </Navbar.Brand>
-
-          <Navbar.Toggle />
           {filterButton}
         </Navbar.Header>
+        {isLaptop === true ?
         <Navbar.Collapse>
           <span className="right-bar-span">
             <div className="dropDownContainerBox">
@@ -183,18 +183,17 @@ class Navigation extends Component {
                 />{" "}
               </div>
 
-              {this.props.deviceType.includes("tablet") ? (
-                <div className="filterIconContainer">
-                  <img
-                    className="filterIcon"
-                    src={filterIcon}
-                    onClick={e => this.props.onFilterToggled(e)}
-                  />
-                </div>
-              ) : null}
+
             </div>
           </span>
-        </Navbar.Collapse>
+      </Navbar.Collapse> :
+            <div className="filterIconContainer">
+                <img
+                  className="filterIcon"
+                  src={filterIcon}
+                  onClick={e => this.props.onFilterToggled(e)}
+                />
+            </div> }
       </Navbar>
     );
   }

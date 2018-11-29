@@ -25,6 +25,20 @@
 .ttBGGreen {
     background-color:#0DB16E ;
 }
+
+
+.textRed {
+    color: #FF0000;
+}
+.textGreen {
+    color:#0DB16E ;
+}
+.borderRed {
+    border: 5px solid #FF0000;
+}
+.borderGreen {
+    border: 5px solid #0DB16E ;
+}
 .tooltipTarget {
     background-color: #0E9CC6;
 }
