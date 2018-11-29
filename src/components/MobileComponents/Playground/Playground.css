@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center; */
-    overflow: auto;
+    overflow: hidden;
 }
 
 .item {
@@ -16,7 +16,7 @@
     justify-content: center;
     color: white;
     /* overflow: auto; */
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     
 }
 

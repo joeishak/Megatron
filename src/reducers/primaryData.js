@@ -12,7 +12,7 @@ export default function(state = PrimaryData, action) {
     switch(action.type) {
         case  GET_PRIMARY_DATA:
 
-console.log(action.payload);
+// console.log(action.payload);
             newState = Object.assign([], state);
             //Actual, Targets, Vs QRf
             // //Finance

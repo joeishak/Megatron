@@ -537,9 +537,10 @@ export function postMultiValueSettings(activeFilters,setting, availableFilters )
 }
 
 export function renderUnits(value){
+
   let returnValue = '';
   let abs;
-  let suffix;
+  let suffix = '';
   let isNegative = false;
   if(value === 0){
     return 0;
@@ -551,6 +552,7 @@ export function renderUnits(value){
   } else { abs=value };
 
   abs = parseInt(abs)
+
   if (abs > 1000 && abs <= 999999) {
       abs = (abs/1000).toFixed(1);
        suffix  = 'K';
@@ -562,14 +564,17 @@ export function renderUnits(value){
       // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
   } else if (abs > 1000000000 && abs <= 999999999999) {
       abs = (abs/1000000000).toFixed(1);
-
        suffix  = 'B';
       returnValue =abs;
   } else if (abs > 1000000000000 && abs <= 999999999999999) {
       abs = (abs/1000000000000).toFixed(1);
-
        suffix  = 'T';
       returnValue =abs;
+      // 16
+    } else if (abs > 1000000000000000 && abs <= 999999999999999999) {
+      abs = (abs/1000000000000000).toFixed(1);
+       suffix = 'Q';
+       returnValue = abs
   } else {
       returnValue =  abs;
   }
@@ -584,7 +589,7 @@ export function renderDollarValue(value) {
   let returnValue = '';
   let abs;
   let prefix ='$';
-  let suffix;
+  let suffix = '';
   let isNegative = false;
   if(value === 0){
     return 0;
@@ -595,7 +600,7 @@ export function renderDollarValue(value) {
   } else { abs = value };
 
   abs = parseInt(abs);
-  console.log('debuggin', abs)
+
   if (abs > 1000 && abs <= 999999) {
       abs = (abs/1000).toFixed(1);
        suffix  = 'K';

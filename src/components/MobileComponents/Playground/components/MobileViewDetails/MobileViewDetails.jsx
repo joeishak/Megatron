@@ -9,13 +9,13 @@ class MobileViewDetails extends Component {
         if (this.props.detailsData !== nextProps.detailsData) {
             return true;
         }
+        return false;
     }
 
     render () {
 
         const vsQRFcolor = utils.formatMetric({valueType:  this.props.valueType, value: this.props.detailsData.qtd[4].value}, 'value') > 0 ? 'green-details' : 'red-details';
-
-        {console.log('data',this.props.valueType)}
+        
         return (
             <div>
                 <div className="container-fluid details-mobile-container" style={{ height: '200px'}}>

@@ -143,7 +143,7 @@ class Navigation extends Component {
           {filterButton}
         </Navbar.Header>
         <Navbar.Collapse>
-          <span>
+          <span className="right-bar-span">
             <div className="dropDownContainerBox">
               <div className="flLeft">
                 <NavDropdown

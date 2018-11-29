@@ -33,12 +33,12 @@ class SecondaryContentList extends Component {
   }
 
   componentDidMount() {
-    console.log("window height is:", this.props.windowHeight);
-    console.log("window height top section is:", this.calculateHeight());
-    console.log(
-      "window height bottom is:",
-      this.props.windowHeight - this.calculateHeight()
-    );
+    // console.log("window height is:", this.props.windowHeight);
+    // console.log("window height top section is:", this.calculateHeight());
+    // console.log(
+    //   "window height bottom is:",
+    //   this.props.windowHeight - this.calculateHeight()
+    // );
 
     ReactDOM.findDOMNode(this).addEventListener("mousemove", this.resizePanel);
     ReactDOM.findDOMNode(this).addEventListener("touchmove", this.resizePanel);

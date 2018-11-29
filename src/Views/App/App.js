@@ -222,7 +222,7 @@ class App extends Component {
         activeCard={this.props.activePrimaryCard}
         data={this.props.primaryData}
         enableChart={() => {
-          console.log("hello world");
+          // console.log("hello world");
         }}
         selectedCard={(e, index) => {
           this.updateActivePrimary(index);
@@ -262,7 +262,7 @@ class App extends Component {
   };
 
   onFilterToggled = e => {
-    console.log("Filter Toggled");
+    // console.log("Filter Toggled");
     const toggleState = !this.state.isFilterPageVisible;
     this.setState({ isFilterPageVisible: toggleState });
   };
@@ -339,7 +339,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("app state", state);
+  // console.log("app state", state);
   return {
     activeFilters: state.activeFilters,
     availableFilters: state.availableFilters,
