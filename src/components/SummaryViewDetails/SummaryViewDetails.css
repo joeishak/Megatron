@@ -212,7 +212,7 @@
 
 .qtdDetailTitle{
     float:right;
-    width: 75%;
+    width: 80%;
     height:30px;
     clear:right;
     text-align:center;
@@ -308,7 +308,7 @@
 }
 
 .normalTableSize{
-    width: 75%
+    width: 80%
 }
 .halfTableSize{
     width:860px;

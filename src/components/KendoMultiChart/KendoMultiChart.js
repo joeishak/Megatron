@@ -36,22 +36,11 @@ class KendoMultiChart extends Component {
              yAxisLabel: 'Million $',
              yAxisText: 'Million',
              multiChartValidIndexes: [3,4,5,6],
-             count: 0,
-             toolTipBorderColor: 'red'
-
+             count: 0
         };
         this.formatDataValues = this.formatDataValues.bind(this);
     }
 
-shouldComponenUpdate(nextState){
-
-
-    if(nextState.toolTipBorderColor !== this.state.toolTipBorderColor ||
-    nextState.toolTipBorderColor === this.state.toolTipBorderColor){
-        return false;
-    }
-    return true;
-}
     formatDataValues(arr){
         let newArr;
         newArr = arr.map(item=>{
@@ -113,20 +102,23 @@ shouldComponenUpdate(nextState){
         const SharedTooltip = (props) => {
             const { points } = props;
             let bgColor = (points[0].value - points[1].value )> 0 ? 'ttBGGreen': 'ttBGRed';
-            // (points[0].value - points[1].value )> 0 ? this.setState({toolTipBorderColor: 'green'}): this.setState({toolTipBorderColor: 'red'});
+            let textColor =  (points[0].value - points[1].value )> 0 ? 'textGreen': 'textRed';
+            let borderColor =  (points[0].value - points[1].value )> 0 ? 'borderGreen': 'borderRed';
 
 
             const title = props.categoryText;
             return (
-                <div className="tooltipContainer">
-                    <div className={`'tooltipTitle' + ${bgColor}` }><b>Week {title}</b></div>
+                <div className={`'tooltipContainer ' + ${borderColor}`}>
+                    <div className={`'tooltipTitle ' + ${bgColor}` }><b>Week {title}</b></div>
                     {points.map((point) => (
                     <div key={this.state.count++}>
                         <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div>
-                        <b className="series-name">{point.series.name}</b> :
+                        <b className="series-name">{point.series.name} : </b>
                             <div className="tooltipValue">
-                                <b className="series-value">{utils.formatMetric({valueType :this.props.valueType, value: point.value}, 'target')}
-                                </b>
+                                {(point.series.name === 'Actual' ?
+                                    <b className={`'series-value' + ${textColor}`}>{utils.formatMetric({valueType :this.props.valueType, value: point.value}, 'target')}</b> :
+                                        <b className="series-value">{utils.formatMetric({valueType :this.props.valueType, value: point.value}, 'target')}
+                                </b>)}
                             </div>
                     </div>))}
                 </div>
@@ -156,7 +148,7 @@ shouldComponenUpdate(nextState){
 
                     {chartLegend}
 
-                    <ChartTooltip shared={true} background="white" border={{color: this.state.toolTipBorderColor, width: 3}} color="white" render={sharedTooltipRender}/>
+                    <ChartTooltip shared={true}  border={{color: this.state.toolTipBorderColor, width: 0}} color="white" render={sharedTooltipRender}/>
                     <ChartCategoryAxis>
                             <ChartCategoryAxisItem max='13' maxDivisions={13} />
                     </ChartCategoryAxis>
