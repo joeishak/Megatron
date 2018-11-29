@@ -108,8 +108,9 @@ class KendoMultiChart extends Component {
 
             const title = props.categoryText;
             return (
-                <div className={`'tooltipContainer ' + ${borderColor}`}>
-                    <div className={`'tooltipTitle ' + ${bgColor}` }><b>Week {title}</b></div>
+                <div className={`tooltipContainer ${borderColor}`}>
+                    <div className="innerContainer">
+                    <div className={`tooltipTitle ${bgColor}` }><b>Week {title}</b></div>
                     {points.map((point) => (
                     <div key={this.state.count++}>
                         <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div>
@@ -121,6 +122,7 @@ class KendoMultiChart extends Component {
                                 </b>)}
                             </div>
                     </div>))}
+                    </div>
                 </div>
             );
         }
@@ -148,7 +150,7 @@ class KendoMultiChart extends Component {
 
                     {chartLegend}
 
-                    <ChartTooltip shared={true}  border={{color: this.state.toolTipBorderColor, width: 0}} color="white" render={sharedTooltipRender}/>
+                    <ChartTooltip shared={true} render={sharedTooltipRender}/>
                     <ChartCategoryAxis>
                             <ChartCategoryAxisItem max='13' maxDivisions={13} />
                     </ChartCategoryAxis>
