@@ -154,8 +154,8 @@ class App extends Component {
     }
   }
   updateActivePrimary(index) {
+      console.log('From Updating Primary : ' , index);
     this.props.updateActivePrimaryCard(index);
-    // this.props.updateActiveSecondaryCard(0);
     switch(index){
         case(0):
             this.props.updateActiveSecondaryCard(0);
