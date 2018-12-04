@@ -72,6 +72,47 @@ class App extends Component {
     this.resize();
     this.checkAuthentication();
   }
+  shouldComponentUpdate(nextProps,nextState){
+      if(this.props.primaryData !== nextProps.primaryData){
+          return true;
+      }
+      if ( this.props.secondaryData !== nextProps.secondaryData){
+          return true;
+      }
+      if( this.state.authenticated !== nextState.authenticated){
+          return true;
+      }if(this.props.deviceType !== nextProps.deviceType){
+          return true;
+      }
+      if(this.props.mobileIsPrimary !== nextProps.mobileIsPrimary){
+          return true;
+      }
+      if(this.props.mobileIsSecondary !== nextProps.mobileIsSecondary){
+          return true;
+      }
+      if(this.props.activeFilters !== nextProps.activeFilters){
+          return true;
+      }
+      if(this.props.availableFilters !== nextProps.availableFilters){
+         return true;
+      }
+      if(this.props.activePrimaryCard !== nextProps.activePrimaryCard){
+          return true;
+      }
+      if(this.props.activeSecondaryCard !== nextProps.activeSecondaryCard){
+          return true;
+      }
+      if(this.props.toggleCommentary !== nextProps.toggleCommentary){
+          return true;
+      }
+      if(this.props.commentBoxIsOpen !== nextProps.commentBoxIsOpen){
+          return true;
+      }
+      if(this.state.activeCommentBoxMetric !== nextState.activeCommentBoxMetric){
+          return true;
+      }
+      return false;
+  }
 
   componentDidUpdate(prevProps) {
     this.checkAuthentication();

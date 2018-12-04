@@ -65,9 +65,7 @@ class SecondaryContentList extends Component {
     if (this.props.deviceType !== nextProps.deviceType) {
       return true;
     }
-    if (
-      this.props.mobileSecondaryIsActive !== nextProps.mobileSecondaryIsActive
-    ) {
+    if ( this.props.mobileSecondaryIsActive !== nextProps.mobileSecondaryIsActive  ) {
       return true;
     }
     return false;
