@@ -84,12 +84,10 @@ class App extends Component {
       }if(this.props.deviceType !== nextProps.deviceType){
           return true;
       }
-      if(this.props.mobileIsPrimary !== nextProps.mobileIsPrimary){
+      if(this.props.mobileIsPrimary !== nextProps.mobileIsPrimary || this.props.mobileIsSecondary !== nextProps.mobileIsSecondary){
           return true;
       }
-      if(this.props.mobileIsSecondary !== nextProps.mobileIsSecondary){
-          return true;
-      }
+      
       if(this.props.activeFilters !== nextProps.activeFilters){
           return true;
       }
@@ -109,6 +107,16 @@ class App extends Component {
           return true;
       }
       if(this.state.activeCommentBoxMetric !== nextState.activeCommentBoxMetric){
+          return true;
+      }
+      if(this.state.filterPanelIsOpen !== nextState.filterPanelIsOpen){
+          return true;
+      }
+      if(this.state.isFilterPageVisible !== nextState.isFilterPageVisible){
+
+          return true;
+      }
+      if(this.props.dialogIsOpen !== nextProps.dialogIsOpen){
           return true;
       }
       return false;
