@@ -1,18 +1,17 @@
-import {  PanelBar, PanelBarItem  } from '@progress/kendo-react-layout';
-import { connect } from 'react-redux';
+import {PanelBar, PanelBarItem} from '@progress/kendo-react-layout';
+import {connect} from 'react-redux';
 import * as actions from 'actions';
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 // import classNames from 'classnames'
 import styles from './KendoPanelBar.css';
 import '@progress/kendo-theme-default/dist/all.css'
-
+import {DIMENSIONS} from '../../Constants/consts'
 class KendoPanelBar extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
-        this.state = {
-        }
+        this.state = {}
 
         this.getPanelContents = this.getPanelContents.bind(this);
         this.getTopHeader = this.getTopHeader.bind(this);
@@ -21,151 +20,154 @@ class KendoPanelBar extends Component {
         this.getGeoContent = this.getGeoContent.bind(this);
     }
 
-   shouldComponentUpdate(nextProps){
-    return true;
-   }
-
-    getLowerHeader(){
-        switch(this.props.timeMetric){
+    shouldComponentUpdate(nextProps) {
+        return true;
+    }
+    getLowerHeaderCategory(type){
+            switch(type){
+                case DIMENSIONS.GEO:
+                return 'Geo';
+                case DIMENSIONS.MARKET:
+                return 'Geo';
+                case DIMENSIONS.ROUTE:
+                return 'Route';
+                case DIMENSIONS.SEGMENT:
+                return 'Segment';
+                default:
+                return 'Product';
+            }
+        }
+    getLowerHeader(type) {
+        let isMarket = type === DIMENSIONS.MARKET;
+       let qtdColumnClass = (isMarket  ) ? 'qtdMarketColumn': 'qtdColumn';
+       let weekColumnClass = (isMarket) ? 'weekMarketColumn': 'weekColumn';
+       let MAColumn = (isMarket) ? <div className={`${qtdColumnClass}  header qtdMaHeader col`}>
+               Market Area
+           </div>: <span></span>
+        switch (this.props.timeMetric) {
             case 'qtd':
-                return (
-                <div className="lowerHeaderBar ">
-                    <div className="qtdColumn header qtdGeoHeader  col">
-                    Geo
-                    </div>
-                    <div className="qtdColumn header qtdMaHeader col">
-                    Market Area
+                return (<div className="lowerHeaderBar ">
+                    <div className={`${qtdColumnClass}  header qtdGeoHeader col`}>
+                        {this.getLowerHeaderCategory(type)}
+                     </div>
+                     {MAColumn}
+                    <div className="qtdColumn header col">
+                        Actuals
                     </div>
                     <div className="qtdColumn header col">
-                    Actuals
+                        Units
                     </div>
                     <div className="qtdColumn header col">
-                    Units
+                        QRF
                     </div>
                     <div className="qtdColumn header col">
-                    QRF
+                        QRF DIFF
                     </div>
                     <div className="qtdColumn header col">
-                    QRF DIFF
+                        vs QRF
                     </div>
                     <div className="qtdColumn header col">
-                    vs QRF
+                        Q/Q
                     </div>
                     <div className="qtdColumn header col">
-                    Q/Q
+                        Y/Y
                     </div>
-                    <div className="qtdColumn header col">
-                    Y/Y
-                    </div>
-                </div>
-                );
+                </div>);
             case 'week':
-            return (
-                <div className="lowerHeaderBar ">
+                return (<div className="lowerHeaderBar ">
                     <div className="weekColumn header weekGeoHeader  col">
-                    Geo
+                        Geo
                     </div>
                     <div className="weekColumn header weekMaHeader col">
-                    Market Area
+                        Market Area
                     </div>
                     <div className="weekColumn header col">
-                    Actuals
+                        Actuals
                     </div>
                     <div className="weekColumn header col">
-                    Units
+                        Units
                     </div>
                     <div className="weekColumn header col">
-                    QRF
+                        QRF
                     </div>
                     <div className="weekColumn header col">
-                    QRF DIFF
+                        QRF DIFF
                     </div>
                     <div className="weekColumn header col">
-                    vs QRF
+                        vs QRF
                     </div>
                     <div className="weekColumn header col">
-                    W/W
+                        W/W
                     </div>
 
-
-                </div>
-                );
+                </div>);
             case 'all':
-            return(
-                <div className="allLowerHeaderBar ">
+                return (<div className="allLowerHeaderBar ">
                     <div className="allColumn header allColumn  col">
-                    Geo
+                        Geo
                     </div>
                     <div className="allColumn header allMaHeader col">
-                    Market Area
+                        Market Area
                     </div>
                     <div className="allColumn header col">
-                    Actuals
+                        Actuals
                     </div>
                     <div className="allColumn header col">
-                    Units
+                        Units
                     </div>
                     <div className="allColumn header col">
-                    QRF
+                        QRF
                     </div>
                     <div className="allColumn header col">
-                    QRF DIFF
+                        QRF DIFF
                     </div>
                     <div className="allColumn header col">
-                    vs QRF
+                        vs QRF
                     </div>
                     <div className="allColumn header col">
-                    Q/Q
+                        Q/Q
                     </div>
                     <div className="allColumn header col">
-                    Y/Y
+                        Y/Y
                     </div>
                     <div className="allColumn header col">
-                    Actuals
+                        Actuals
                     </div>
                     <div className="allColumn header col">
-                    Units
+                        Units
                     </div>
                     <div className="allColumn header col">
-                    QRF
+                        QRF
                     </div>
                     <div className="allColumn header col">
-                    QRF DIFF
+                        QRF DIFF
                     </div>
                     <div className="allColumn header col">
-                    vs QRF
+                        vs QRF
                     </div>
                     <div className="allColumn header col">
-                    W/W
+                        W/W
                     </div>
 
-                </div>
-            );
+                </div>);
             default:
-            break;
+                break;
         }
     }
-    getTopHeader(){
-        switch(this.props.timeMetric){
+
+    getTopHeader() {
+        switch (this.props.timeMetric) {
             case 'qtd':
-          return(
-            <div className=" topHeaderBar qtdDetailTitle col-md-11">Quarterly To Date</div>
-          );
-          case 'week':
-          return(
-            <div className="topHeaderBar weekDetailTitle col-md-11">Week</div>
-          );
-          case 'all':
-          return(
-
-            <div className="topHeaderBar allContainer col-md-12">
-            <div className="topHeaderBar allWeekDetailTitle col-md-6">Week</div>
-            <div className="topHeaderBar allQtdDetailTitle col-md-6">Quartely To Date</div>
-            </div>
-
-          );
-          default:
-          break;
+                return (<div className=" topHeaderBar qtdDetailTitle col-md-11">Quarterly To Date</div>);
+            case 'week':
+                return (<div className="topHeaderBar weekDetailTitle col-md-11">Week</div>);
+            case 'all':
+                return (<div className="topHeaderBar allContainer col-md-12">
+                    <div className="topHeaderBar allWeekDetailTitle col-md-6">Week</div>
+                    <div className="topHeaderBar allQtdDetailTitle col-md-6">Quartely To Date</div>
+                </div>);
+            default:
+                break;
 
         }
     }
@@ -176,18 +178,18 @@ class KendoPanelBar extends Component {
         value = parseInt(value)
 
         if (value > 1000 && value <= 999999) {
-            value = (value/1000).toFixed(1);
+            value = (value / 1000).toFixed(1);
             returnValue = '' + value.toString() + 'K';
         } else if (value > 1000000 && value <= 999999999) {
-            value = (value/1000000).toFixed(1);
-            returnValue = '' +  value.toString() + 'M';
+            value = (value / 1000000).toFixed(1);
+            returnValue = '' + value.toString() + 'M';
             // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
         } else if (value > 1000000000 && value <= 999999999999) {
-            value = (value/1000000000).toFixed(1);
-            returnValue ='' +  value.toString() + 'B';
+            value = (value / 1000000000).toFixed(1);
+            returnValue = '' + value.toString() + 'B';
         } else if (value > 1000000000 && value <= 999999999999999) {
-            value = (parseInt(value)/1000000000000).toFixed(1);
-            returnValue ='' +  value.toString() + 'T';
+            value = (parseInt(value) / 1000000000000).toFixed(1);
+            returnValue = '' + value.toString() + 'T';
         } else {
             return '' + value.toString();
         }
@@ -199,336 +201,333 @@ class KendoPanelBar extends Component {
         return Math.round(value * 100) / 100;
     }
 
-    getGeoContent(){
-        switch(this.props.timeMetric){
-            case 'qtd':
-            return(
-                this.props.activeSummary.details.geo.qtd.map(item =>{
+    getMarketAreaContent() {
+          let marketCount = 0;
+          switch (this.props.timeMetric) {
+              case 'qtd':
+                  return (this.props.activeSummary.details.market.qtd.map(item => {
 
-                    return(
-                        <span key={item.index}>
-                              <div className="qtdColumn qtdGeoHeader  col">
-                                    {item.type}
-                                </div>
-                            <div className="qtdColumn qtdMaHeader col">
-                                    {item.marketArea}
-                                </div>
-                        <div className="qtdColumn col">
-                            $ {this.renderDollarValue(item.actuals)}
-                        </div>
-                        <div className="qtdColumn col">
+                      return (<span key={marketCount++}>
+                          <div className="qtdMarketColumn qtdGeoHeader  col">
+                              {item.type}
+                          </div>
+                          <div className="qtdMarketColumn qtdMaHeader col">
+                              {item.marketArea}
+                          </div>
+                          <div className="qtdMarketColumn col">
+                              $ {this.renderDollarValue(item.actuals)}
+                          </div>
+                          <div className="qtdMarketColumn col">
 
-                            {this.renderDollarValue(item.units)}
-                        </div>
-                        <div className="qtdColumn col">
+                              {this.renderDollarValue(item.units)}
+                          </div>
+                          <div className="qtdMarketColumn col">
 
-                            $ {this.renderDollarValue(item.qrf)}
-                        </div>
-                        <div className="qtdColumn col">
+                              $ {this.renderDollarValue(item.qrf)}
+                          </div>
+                          <div className="qtdMarketColumn col">
 
-                            $ {this.renderDollarValue(item.qrfDiff)}
-                        </div>
-                        <div className={ (item.vsQrf <= 0)? 'qtdColumn col redBG': ' qtdColumn col greenBG'}>
+                              $ {this.renderDollarValue(item.qrfDiff)}
+                          </div>
+                          <div className={(
+                                  item.vsQrf <= 0)
+                                  ? 'qtdMarketColumn col redBG'
+                                  : ' qtdMarketColumn col greenBG'}>
 
-                            {this.formatPercentage(item.vsQrf)} %
+                              {this.formatPercentage(item.vsQrf)}
+                              %
 
-                        </div>
-                        <div className="qtdColumn col">
+                          </div>
+                          <div className="qtdMarketColumn col">
 
-                            {this.formatPercentage(item.qq) >100 ? 100: this.formatPercentage(item.qq) <100 ? -100: this.formatPercentage(item.qq) } %
-                        </div>
-                        <div className="qtdColumn col">
+                              {
+                                  this.formatPercentage(item.qq) > 100
+                                      ? 100
+                                      : this.formatPercentage(item.qq) < 100
+                                          ? -100
+                                          : this.formatPercentage(item.qq)
+                              }
+                              %
+                          </div>
+                          <div className="qtdMarketColumn col">
 
-                            {this.formatPercentage(item.yy)>100 ? 100: this.formatPercentage(item.yy) < 100? -100:this.formatPercentage(item.yy) } %
-                        </div>
-                        </span>
-                    )
-                })
+                              {
+                                  this.formatPercentage(item.yy) > 100
+                                      ? 100
+                                      : this.formatPercentage(item.yy) < 100
+                                          ? -100
+                                          : this.formatPercentage(item.yy)
+                              }
+                              %
+                          </div>
+                      </span>)
+                  }));
+              case 'week':
+                  return (this.props.activeSummary.details.market.week.map(item => {
 
-            );
-            case 'week':
-            return(
-                this.props.activeSummary.details.geo.week.map(item =>{
+                      return (<span key={marketCount++}>
+                          <div className="weekMarketColumn weekGeoHeader  col">
+                              {item.type}
+                          </div>
+                          <div className="weekMarketColumn weekMaHeader col">
+                              {item.marketArea}
+                          </div>
+                          <div className="weekMarketColumn col">
+                              {item.actuals}
+                          </div>
+                          <div className="weekMarketColumn col">
+                              {item.units}
+                          </div>
+                          <div className="weekMarketColumn col">
+                              {item.qrf}
+                          </div>
+                          <div className="weekMarketColumn col">
+                              {item.qrfDiff}
+                          </div>
+                          <div className={(
+                                  item.vsQrf <= 0)
+                                  ? 'weekMarketColumn col redBG'
+                                  : 'weekMarketColumn col greenBG'}>
+                              {item.vsQrf}
+                          </div>
+                          <div className="weekMarketColumn col">
+                              {item.ww}
+                          </div>
 
-                    return(
-                        <span key={item.index}>
-                              <div className="weekColumn weekGeoHeader  col">
-                                    {item.type}
-                                </div>
-                            <div className="weekColumn weekMaHeader col">
-                                    {item.marketArea}
-                                </div>
-                        <div className="weekColumn col">
-                            {item.actuals}
-                        </div>
-                        <div className="weekColumn col">
-                            {item.units}
-                        </div>
-                        <div className="weekColumn col">
-                            {item.qrf}
-                        </div>
-                        <div className="weekColumn col">
-                            {item.qrfDiff}
-                        </div>
-                        <div className={ (item.vsQrf <= 0)? 'weekColumn col redBG': 'weekColumn col greenBG'}>
-                            {item.vsQrf}
-                        </div>
-                        <div className="weekColumn col">
-                            {item.ww}
-                        </div>
+                      </span>)
+                  }));
+              default:
+                  break;
+          }
+      }
+      getGeoContent() {
+          switch (this.props.timeMetric) {
+              case 'qtd':
+                  return (this.props.activeSummary.details.geo.qtd.map(item => {
 
-                        </span>
-                    )
-                })
+                      return (<span key={item.index}>
+                          <div className="qtdColumn qtdGeoHeader  col">
+                              {item.type}
+                          </div>
+                          <div className="qtdColumn col">
+                              $ {this.renderDollarValue(item.actuals)}
+                          </div>
+                          <div className="qtdColumn col">
 
-            );
-            case 'all':
-            let sumData = this.props.activeSummary.details.geo.all;
-           let allComponent = this.props.activeSummary.details.geo.all.map(item =>{
-                return(
-                                <span key={item.index}>
-                                      <div className="allColumn qtdGeoHeader  col">
-                                            {item.qtd.type}
-                                        </div>
-                                    <div className="allColumn qtdMaHeader col">
-                                            {item.qtd.marketArea}
-                                        </div>
-                                <div className="allColumn col">
-                                    {item.qtd.actuals}
-                                </div>
-                                <div className="allColumn col">
-                                    {item.qtd.units}
-                                </div>
-                                <div className="allColumn col">
-                                    {item.qtd.qrf}
-                                </div>
-                                <div className="allColumn col">
-                                    {item.qtd.qrfDiff}
-                                </div>
-                                <div className={ (item.vsQrf <= 0)? 'allColumn col redBG': 'allColumn col greenBG'}>
-                                    {item.qtd.vsQrf}
-                                </div>
-                                <div className="allColumn col">
-                                    {item.qtd.qq}
-                                </div>
-                                <div className="allColumn col">
-                                    {item.qtd.yy}
-                                </div>
-                                <div className="allColumn col">
-                                 {item.week.actuals}
-                                </div>
-                                <div className="allColumn col">
-                                    {item.week.units}
-                                </div>
-                                <div className="allColumn col">
-                                    {item.week.qrf}
-                                </div>
-                                <div className="allColumn col">
-                                    {item.week.qrfDiff}
-                                </div>
-                                <div className={ (item.vsQrf <= 0)? 'allColumn col redBG': 'allColumn col greenBG'}>
-                                    {item.week.vsQrf}
-                                </div>
-                                <div className="allColumn col">
-                                     {item.week.ww}
-                                 </div>
-                                  </span>
-                )
+                              {this.renderDollarValue(item.units)}
+                          </div>
+                          <div className="qtdColumn col">
+
+                              $ {this.renderDollarValue(item.qrf)}
+                          </div>
+                          <div className="qtdColumn col">
+
+                              $ {this.renderDollarValue(item.qrfDiff)}
+                          </div>
+                          <div className={(
+                                  item.vsQrf <= 0)
+                                  ? 'qtdColumn col redBG'
+                                  : ' qtdColumn col greenBG'}>
+
+                              {this.formatPercentage(item.vsQrf)}
+                              %
+
+                          </div>
+                          <div className="qtdColumn col">
+
+                              {
+                                  this.formatPercentage(item.qq) > 100
+                                      ? 100
+                                      : this.formatPercentage(item.qq) < 100
+                                          ? -100
+                                          : this.formatPercentage(item.qq)
+                              }
+                              %
+                          </div>
+                          <div className="qtdColumn col">
+
+                              {
+                                  this.formatPercentage(item.yy) > 100
+                                      ? 100
+                                      : this.formatPercentage(item.yy) < 100
+                                          ? -100
+                                          : this.formatPercentage(item.yy)
+                              }
+                              %
+                          </div>
+                      </span>)
+                  }));
+              case 'week':
+                  return (this.props.activeSummary.details.geo.week.map(item => {
+                      return (<span key={item.index}>
+                          <div className="weekColumn weekGeoHeader  col">
+                              {item.type}
+                          </div>
+                          <div className="weekColumn col">
+                              {item.actuals}
+                          </div>
+                          <div className="weekColumn col">
+                              {item.units}
+                          </div>
+                          <div className="weekColumn col">
+                              {item.qrf}
+                          </div>
+                          <div className="weekColumn col">
+                              {item.qrfDiff}
+                          </div>
+                          <div className={(
+                                  item.vsQrf <= 0)
+                                  ? 'weekColumn col redBG'
+                                  : 'weekColumn col greenBG'}>
+                              {item.vsQrf}
+                          </div>
+                          <div className="weekColumn col">
+                              {item.ww}
+                          </div>
+                      </span>)
+                  }));
+              default:
+                  break;
+          }
+      }
+      getDataContent(type){
+          switch(type){
+              case DIMENSIONS.GEO:
+                  return this.getGeoContent();
+              case DIMENSIONS.MARKET:
+                  return this.getMarketAreaContent();
+              default:
+               return this.getMarketAreaContent();;
+          }
+      }
+      getTable(type) {
+          let isMarket = type === DIMENSIONS.MARKET;
+          let qtdColumnClass = (isMarket  ) ? 'qtdMarketColumn': 'qtdColumn';
+          let weekColumnClass = (isMarket) ? 'weekMarketColumn': 'weekColumn'
+          switch (this.props.timeMetric) {
+              case 'qtd':
+                  return (<div className=''>
+                      <div className="  col-md-12">
+                          {this.getDataContent(type)}
+                      </div>
+                      <div className="  col-md-12">
+                          {isMarket ? <div className={`${qtdColumnClass} qtdGeoHeader  col`}>
+                              &nbsp;
+                          </div> : <span></span>}
+                          <div className={`${qtdColumnClass} header qtdMaHeader col`}>
+                              Total
+                          </div>
+                          <div className={`${qtdColumnClass} header col`}>
+                              Actuals
+                          </div>
+                          <div className={`${qtdColumnClass} header col`}>
+                              Units
+                          </div>
+                          <div className={`${qtdColumnClass} header col`}>
+                              QRF
+                          </div>
+                          <div className={`${qtdColumnClass} header col`}>
+                              QRF DIFF
+                          </div>
+                          <div className={`${qtdColumnClass} header col`}>
+                              vs QRF
+                          </div>
+                          <div className={`${qtdColumnClass} header col`}>
+                              Q/Q
+                          </div>
+                          <div className={`${qtdColumnClass} header col`}>
+                              Y/Y
+                          </div>
+                      </div>
+                  </div>);
+              case 'week':
+                  return (<div className=''>
+                      <div className=" col-md-12">
+                          {this.getDataContent(type)}
+
+                      </div>
+                      <div className=" col-md-12">
+                          {isMarket? <div className={`${weekColumnClass} header weekGeoHeader col`}>
+                              &nbsp;
+                          </div> :<span></span>}
+                          <div className={`${weekColumnClass} header weekMaHeader col`}>
+                              Total
+                          </div>
+                          <div className={`${weekColumnClass} header col`}>
+                              Actuals
+                          </div>
+                          <div className={`${weekColumnClass} header col`}>
+                              Units
+                          </div>
+                          <div className={`${weekColumnClass} header col`}>
+                              QRF
+                          </div>
+                          <div className={`${weekColumnClass} header col`}>
+                              QRF DIFF
+                          </div>
+                          <div className={`${weekColumnClass} header col`}>
+                              vs QRF
+                          </div>
+                          <div className={`${weekColumnClass} header col`}>
+                              W/W
+                          </div>
+
+                      </div>
+                  </div>);
+              default:
+                  break;
+          }
+      }
 
 
-            }).reverse()
-
-            return allComponent;
-
-            default:
-            break;
-        }
-    }
-    getTable(){
-        switch(this.props.timeMetric){
-            case 'qtd':
-            return (
-                <div className=''>
-
-                    <div className="  col-md-12">
-                        {this.getGeoContent('qtd')}
-                    </div>
-                    <div className="  col-md-12">
-                            <div className="qtdColumn qtdGeoHeader  col">
-                            &nbsp;
-                            </div>
-                            <div className="qtdColumn header qtdMaHeader col">
-                            Total
-                            </div>
-                            <div className="qtdColumn header col">
-                            Actuals
-                            </div>
-                            <div className="qtdColumn header col">
-                            Units
-                            </div>
-                            <div className="qtdColumn header col">
-                            QRF
-                            </div>
-                            <div className="qtdColumn header col">
-                            QRF DIFF
-                            </div>
-                            <div className="qtdColumn header col">
-                            vs QRF
-                            </div>
-                            <div className="qtdColumn header col">
-                            Q/Q
-                            </div>
-                            <div className="qtdColumn header col">
-                            Y/Y
-                            </div>
-                    </div>
-                </div>);
-            case 'week':
-            return (
-                <div className=''>
-
-                    <div className=" col-md-12">
-                        {this.getGeoContent('week')}
-                    </div>
-                    <div className=" col-md-12">
-                            <div className="weekColumn weekGeoHeader  col">
-                            &nbsp;
-                            </div>
-                            <div className="weekColumn header weekMaHeader col">
-                            Total
-                            </div>
-                            <div className="weekColumn header col">
-                            Actuals
-                            </div>
-                            <div className="weekColumn header col">
-                            Units
-                            </div>
-                            <div className="weekColumn header col">
-                            QRF
-                            </div>
-                            <div className="weekColumn header col">
-                            QRF DIFF
-                            </div>
-                            <div className="weekColumn header col">
-                            vs QRF
-                            </div>
-                            <div className="weekColumn header col">
-                            W/W
-                            </div>
-
-                    </div>
-                </div>);
-            case 'all':
-            return (
-                <div className=''>
-
-                    <div className="  col-md-12">
-                        {this.getGeoContent('all')}
-                    </div>
-                    <div className=" col-md-12">
-                            <div className="allColumn allGeoHeader  col">
-                            &nbsp;
-                            </div>
-                            <div className="allColumn header allMaHeader col">
-                            Total
-                            </div>
-                            <div className="allColumn header col">
-                            Actuals
-                            </div>
-                            <div className="allColumn header col">
-                            Units
-                            </div>
-                            <div className="allColumn header col">
-                            QRF
-                            </div>
-                            <div className="allColumn header col">
-                            QRF DIFF
-                            </div>
-                            <div className="allColumn header col">
-                            vs QRF
-                            </div>
-                            <div className="allColumn header col">
-                            W/W
-                            </div>
-
-                    </div>
-                </div>);
-                default: break;
-        }
-    }
-    /* Return Contents for  */
-    getPanelContents(type){
-        switch (type){
-            case 'geo':
-            return (
-                <div className='row'>
+    /* Return Contents for */
+    getPanelContents(type) {
+        return (
+            <div className='row'>
                     <div className='col-md-12 topPanelHeader'>
                         {this.getTopHeader()}
                     </div>
                     <div className='col-md-12'>
-                        {this.getLowerHeader()}
+                        {this.getLowerHeader(type)}
                     </div>
                     <div className='col-md-12 geoTableContainer'>
-                        {this.getTable()}
+                        {this.getTable(type)}
                     </div>
-                </div>
+            </div>
+        );
 
-            );
-            case 'marketarea':
-            return (
-                <div className='row'>
-                    <div className='col-md-12 topPanelHeader'>
-                        {this.getTopHeader()}
-                    </div>
-                    <div className='col-md-12'>
-                        {this.getLowerHeader()}
-                    </div>
-                    <div className='col-md-12 geoTableContainer'>
-                        {this.getTable()}
-                    </div>
-                </div>
-
-            );
-            case 'routetomarket':
-            return (<div> {type}</div>);
-            case 'segments':
-            return (<div> {type}</div>);
-            case 'productname':
-            return (<div> {type}</div>);
-            default:
-            return;
-        }
     }
- render(){
-    // var red = classNames({
-    //     'red': true
-    // });
-     return(
-        <div className={'panel-wrapper'}>
-                   <PanelBar >
-                       <PanelBarItem className="panelItemTitle" expanded={false} title="Geo">
-                           {this.getPanelContents('geo')}
-                       </ PanelBarItem>
-                       <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area' >
-                           {this.getPanelContents('marketarea')}
-                       </ PanelBarItem>
-                       <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
-                            {this.getPanelContents('routetomarket')}
-                       </PanelBarItem>
-                       <PanelBarItem className="panelItemTitle" expanded={false} title='Segments' >
-                            {this.getPanelContents('segments')}
-                       </ PanelBarItem>
-                       <PanelBarItem className="panelItemTitle" expanded={false} title='Product Name' >
-                            {this.getPanelContents('productname')}
-                       </PanelBarItem>
+    render() {
+        // var red = classNames({
+        //     'red': true
+        // });
+        return (<div className={'panel-wrapper'}>
+            <PanelBar >
+                <PanelBarItem className="panelItemTitle" expanded={true} title="Geo">
+                   {this.getPanelContents(DIMENSIONS.GEO)}
+               </ PanelBarItem>
+               <PanelBarItem className="panelItemTitle" expanded={true} title='Market Area'>
+                   {this.getPanelContents(DIMENSIONS.MARKET)}
+               </ PanelBarItem>
+               <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
+                       {this.getPanelContents(DIMENSIONS.ROUTE)}
+               </PanelBarItem>
+               <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                       {this.getPanelContents(DIMENSIONS.SEGMENT)}
+               </ PanelBarItem>
+               <PanelBarItem className="panelItemTitle" expanded={false} title='Product Name'>
+                   {this.getPanelContents(DIMENSIONS.PRODUCT)}
+               </PanelBarItem>
 
-                   </PanelBar>
-               </div>
-     )
- }
+            </PanelBar>
+        </div>)
+    }
 }
 
-function mapStateToProps(state){
-    return { activeSummary: state.secondaryData[state.activeCards.secondary], activeGeo: state.secondaryData[state.activeCards.secondary].details.geo.qtd }
+function mapStateToProps(state) {
+    return {
+        activeSummary: state.secondaryData[state.activeCards.secondary],
+        activeGeo: state.secondaryData[state.activeCards.secondary].details.geo.qtd
+    }
 }
-export default connect(mapStateToProps,actions)(KendoPanelBar);
+export default connect(mapStateToProps, actions)(KendoPanelBar);
