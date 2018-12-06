@@ -46,7 +46,7 @@ export default ({children, initialState ={
     },
     activeFilters:{
         geos:[{index: 205, category: "geos", value: "All Data"}],
-        quarters:[{index: 211, category: "quarters", value: "2018-Q3"}],
+        quarters:[{index: 211, category: "quarters", value: "2018-Q4"}],
         segments:[{index: 209, category: "segments", value: "Digital Media"}],
         subscriptions:[{index: 210, category: "subscriptionOfferings", value: "All Data"}],
         markets: [{index: 206, category: "marketAreas", value: "All Data"}],

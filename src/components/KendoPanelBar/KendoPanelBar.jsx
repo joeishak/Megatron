@@ -506,7 +506,7 @@ class KendoPanelBar extends Component {
      return(
         <div className={'panel-wrapper'}>
                    <PanelBar >
-                       <PanelBarItem className="panelItemTitle" expanded={true} title="Geo">
+                       <PanelBarItem className="panelItemTitle" expanded={false} title="Geo">
                            {this.getPanelContents('geo')}
                        </ PanelBarItem>
                        <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area' >

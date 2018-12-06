@@ -11,9 +11,6 @@ class PrimarySquare extends Component {
   constructor(props) {
     super(props);
   }
-  shouldComponentUpdate(nextProps) {
-    return true;
-  }
   // Need to Refactor
   getColor(value, target, type, header) {
     let retColor = "";
@@ -50,7 +47,7 @@ class PrimarySquare extends Component {
     const isMobile = this.props.deviceType.includes("mobile") ? true : false;
     const isLaptop = this.props.deviceType.includes("laptop") ? true : false;
     const isTablet = this.props.deviceType.includes("tablet") ? true : false;
-    const isMobileOrTablet = 
+    const isMobileOrTablet =
       utils.getDeviceType(this.props.window).includes("mobile") ||
       utils.getDeviceType(this.props.window).includes("tablet");
 

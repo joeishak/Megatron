@@ -43,10 +43,14 @@ class KendoMultiChart extends Component {
 
     formatDataValues(arr){
         let newArr;
+        if(arr.length>0){
         newArr = arr.map(item=>{
             return item.toFixed(1);
         });
+        }
+
         return newArr;
+        
     }
 
     getTooltipType = (seriesType) => {

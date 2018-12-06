@@ -12,7 +12,7 @@ const firstState = {
           height: null,
           width: null
         },
-        deviceType:null,
+        deviceType:'laptop',
         views: {
             primaryIsVisible: true,
             secondaryIsVisible: false,
@@ -26,15 +26,15 @@ export default function(state = firstState,action) {
     switch(action.type) {
         case SET_APP_SETTINGS:
             let newState1 = Object.assign({},state);
-            return {...newState1,deviceType: action.payload.deviceType, window: action.payload.settings.window};
+            return {...newState1, window: action.payload.settings.window};
         case SET_VIEW_APP_SETTINGS:
             let newState = Object.assign({},state);
         switch(action.payload.component){
             case PRIMARY:
-            newState.views.primaryIsVisible = action.payload.isShowing;
+            // newState.views.primaryIsVisible = action.payload.isShowing;
             break;
             case  SECONDARY:
-            newState.views.secondaryIsVisible = action.payload.isShowing
+            // newState.views.secondaryIsVisible = action.payload.isShowing
             break;
             case  'navigation':
             break;

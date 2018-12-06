@@ -477,6 +477,7 @@ class SummaryViewDetails extends Component {
     this.props.hideSummaryDetails();
   }
   render() {
+
     var UnitStyles = classNames({
       unitMetric: true,
       activeMetric: this.props.multichartIsArr ? false : true
@@ -512,7 +513,9 @@ class SummaryViewDetails extends Component {
           : false,
       halfTableSize: this.state.activeTimeMetric === "all" ? true : false
     });
-
+    let qtdCounts = 0;
+    let geoCounts = 0;
+    let statsCounts = 0;
     return (
       <div className="sumViewContainer">
         {/* Bread Crumbs */}
@@ -602,7 +605,7 @@ class SummaryViewDetails extends Component {
                                              this.props.activeItem.details.stats.map(item=>{
                                                  return(
                                                      <CSSTransitionGroup
-                                                         key={this.state.count++}
+                                                         key={statsCounts++}
                                                          transitionName="example"
                                                          transitionAppear={true}
                                                          transitionAppearTimeout={800}

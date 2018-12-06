@@ -350,3 +350,6 @@
 /* .k-widget, .k-panelbar, .k-reset, .k-header {
     background-color: transparent;
 } */
+.k-panelbar>.k-item>.k-link .k-icon {
+    color: white !important;
+}

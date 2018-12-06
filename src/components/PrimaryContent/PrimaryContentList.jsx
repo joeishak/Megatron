@@ -13,16 +13,16 @@ class PrimaryContentList extends Component {
         if(this.props.toggleCommentary !== nextProps.toggleCommentary){
             return true;
         }
-        if(this.props.data !== nextProps.data){
+         if(this.props.data !== nextProps.data){
             return true;
         }
-        if(this.props.activeCard !== nextProps.activeCard){
+     if(this.props.activeCard !== nextProps.activeCard){
             return true;
         }
         if(this.props.deviceType !== nextProps.deviceType ){
             return true;
         }
-        if(this.props.mobilePrimaryIsActive !== nextProps.mobilePrimaryIsActive){
+     if (this.props.mobilePrimaryIsActive !== nextProps.mobilePrimaryIsActive){
             return true;
         }
         return false;

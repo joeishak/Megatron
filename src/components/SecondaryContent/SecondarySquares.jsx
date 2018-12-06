@@ -9,6 +9,22 @@ import classNames from "classnames";
 class SecondarySquares extends Component {
   // Need to Refactor
   componentDidUpdate(prevProps) {}
+
+  // shouldComponentUpdate(nextProps){
+  //     if(this.props.item !== nextProps.item ){
+  //
+  //         return true;
+  //     }
+  //     if(this.props.item.target !== nextProps.item.target){
+  //         return true;
+  //     }
+  //     if(this.props.toggleCommentary !== nextProps.toggleCommentary){
+  //
+  //         return true;
+  //     }
+  //
+  //     return false;
+  // }
   getColor(value, target, type, header) {
     let retColor = "";
     if (type === "financial") {

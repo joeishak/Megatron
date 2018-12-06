@@ -9,7 +9,7 @@ export default function(state = {
     let cat;
     switch(action.type) {
         case  ADD_MULTI_FILTER:
-            copyOfState = JSON.parse(JSON.stringify(state))  
+            copyOfState = JSON.parse(JSON.stringify(state))
                 cat = action.payload.category;
                 if(action.payload.value==='All Data'){
                     switch(cat){
@@ -35,7 +35,7 @@ export default function(state = {
                         case 'routeToMarkets':
                         copyOfState.routes =[action.payload];
                         break;
-                        default: 
+                        default:
                         break;
                     }
                 } else {
@@ -81,14 +81,14 @@ export default function(state = {
 
                         copyOfState.routes.push(action.payload);
                         break;
-                        default: 
+                        default:
                         break;
                     }
                 }
             return copyOfState;
 
         case REMOVE_MULTI_FILTER:
-             copyOfState = JSON.parse(JSON.stringify(state))  
+             copyOfState = JSON.parse(JSON.stringify(state))
              cat= action.payload.category;
             switch(cat){
                 case 'geos':
@@ -100,7 +100,7 @@ export default function(state = {
                 case 'quarters':
                 _.remove(copyOfState.quarters, item => {return item.index===action.payload.index});
                 if(copyOfState.quarters.length=== 0){
-                copyOfState.quarters =[{index: 211, category: "quarters", value: "2018-Q3"}];
+                copyOfState.quarters =[{index: 211, category: "quarters", value: "2018-Q4"}];
                 }
                 break;
                 case 'subscriptionOfferings':
@@ -133,10 +133,10 @@ export default function(state = {
                 copyOfState.routes =[{index: 208, category: "routeToMarkets", value: "All Data"}];
                 }
                 break;
-                default: 
+                default:
                 return state;
             }
             return copyOfState;
-        default: 
+        default:
             return state;
     }}

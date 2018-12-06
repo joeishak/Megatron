@@ -49,29 +49,34 @@ class SecondaryContentList extends Component {
     });
   }
 
-  shouldComponentUpdate(nextProps) {
-    if (this.props.toggleCommentary !== nextProps.toggleCommentary) {
-      return true;
-    }
-    if (this.props.data !== nextProps.data) {
-      return true;
-    }
-    if (this.props.activeJourneyCard !== nextProps.activeJourneyCard) {
-      return true;
-    }
-    if (this.props.activePrimary !== nextProps.activePrimary) {
-      return true;
-    }
-    if (this.props.deviceType !== nextProps.deviceType) {
-      return true;
-    }
-    if (
-      this.props.mobileSecondaryIsActive !== nextProps.mobileSecondaryIsActive
-    ) {
-      return true;
-    }
-    return false;
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   if (this.props.toggleCommentary !== nextProps.toggleCommentary) {
+  //     return true;
+  //   }
+  //   if (this.props.data !== nextProps.data) {
+  //     return true;
+  //   }
+  //   if (this.props.activeJourneyCard !== nextProps.activeJourneyCard) {
+  //     return true;
+  //   }
+  //   if (this.props.activePrimary !== nextProps.activePrimary) {
+  //     return true;
+  //   }
+  //   if (this.props.deviceType !== nextProps.deviceType) {
+  //     return true;
+  //   }
+  //   if ( this.props.mobileSecondaryIsActive !== nextProps.mobileSecondaryIsActive  ) {
+  //     return true;
+  //   }
+  //   if(this.props.primaryDataCategory !== nextProps.primaryDataCategory){
+  //
+  //       return true;
+  //   }
+  //   if(this.props.window !== nextProps.windows){
+  //       return true;
+  //   }
+  //   return false;
+  // }
 
   isTouchDevice() {
     return "ontouchstart" in document.documentElement;

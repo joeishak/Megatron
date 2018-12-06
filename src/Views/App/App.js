@@ -72,6 +72,55 @@ class App extends Component {
     this.resize();
     this.checkAuthentication();
   }
+  shouldComponentUpdate(nextProps,nextState){
+      if(this.props.primaryData !== nextProps.primaryData){
+          return true;
+      }
+      if ( this.props.secondaryData !== nextProps.secondaryData){
+          return true;
+      }
+      if( this.state.authenticated !== nextState.authenticated){
+          return true;
+      }if(this.props.deviceType !== nextProps.deviceType){
+          return true;
+      }
+      if(this.props.mobileIsPrimary !== nextProps.mobileIsPrimary || this.props.mobileIsSecondary !== nextProps.mobileIsSecondary){
+          return true;
+      }
+      
+      if(this.props.activeFilters !== nextProps.activeFilters){
+          return true;
+      }
+      if(this.props.availableFilters !== nextProps.availableFilters){
+         return true;
+      }
+      if(this.props.activePrimaryCard !== nextProps.activePrimaryCard){
+          return true;
+      }
+      if(this.props.activeSecondaryCard !== nextProps.activeSecondaryCard){
+          return true;
+      }
+      if(this.props.toggleCommentary !== nextProps.toggleCommentary){
+          return true;
+      }
+      if(this.props.commentBoxIsOpen !== nextProps.commentBoxIsOpen){
+          return true;
+      }
+      if(this.state.activeCommentBoxMetric !== nextState.activeCommentBoxMetric){
+          return true;
+      }
+      if(this.state.filterPanelIsOpen !== nextState.filterPanelIsOpen){
+          return true;
+      }
+      if(this.state.isFilterPageVisible !== nextState.isFilterPageVisible){
+
+          return true;
+      }
+      if(this.props.dialogIsOpen !== nextProps.dialogIsOpen){
+          return true;
+      }
+      return false;
+  }
 
   componentDidUpdate(prevProps) {
     this.checkAuthentication();
@@ -154,8 +203,8 @@ class App extends Component {
     }
   }
   updateActivePrimary(index) {
+      console.log('From Updating Primary : ' , index);
     this.props.updateActivePrimaryCard(index);
-    // this.props.updateActiveSecondaryCard(0);
     switch(index){
         case(0):
             this.props.updateActiveSecondaryCard(0);
