@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import {
     PRIMARY, SECONDARY, MOBILE, TABLET, LAPTOP
 } from  '../../Constants/consts.js';
+import * as utils from '../../utilities';
 class PrimaryContentList extends Component {
 
     componentDidUpdate(prevProps){
@@ -28,9 +29,9 @@ class PrimaryContentList extends Component {
         return false;
     }
     render(){
-        const isMobile = (this.props.deviceType.includes(MOBILE) ? true : false);
-        const isLaptop = (this.props.deviceType.includes(LAPTOP) ? true : false);
-        const isTablet = (this.props.deviceType.includes(TABLET) ? true : false);
+        const isMobile = utils.includes(this.props.deviceType, 'mobile') ? true : false;
+        const isLaptop = utils.includes(this.props.deviceType, 'laptop') ? true : false;
+        const isTablet = utils.includes(this.props.deviceType, 'tablet') ? true : false;
         const isVisible = (this.props.mobilePrimaryIsActive === true) ? true: false;
 
 

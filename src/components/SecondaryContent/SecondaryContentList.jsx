@@ -14,6 +14,8 @@ import {
 // import SplitPane from 'react-split-pane';
 import Rnd from "react-rnd";
 
+import * as utils from '../../utilities';
+
 const navBarHeight = 81;
 const titleContainerHeight = 80;
 const secondaryRowHeight = 84;
@@ -139,8 +141,8 @@ class SecondaryContentList extends Component {
 
   render() {
     const isMobileAndTablet =
-      this.props.deviceType.includes(MOBILE) ||
-      this.props.deviceType.includes(TABLET);
+      utils.includes(this.props.deviceType, 'mobile') ||
+      utils.includes(this.props.deviceType, 'tablet');
     const navigationTitle =
       isMobileAndTablet === true &&
       this.props.mobileSecondaryIsActive === true ? (

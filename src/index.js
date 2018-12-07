@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from 'Root';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {HashRouter as Router, Route} from 'react-router-dom';
 import App from 'Views/App/App.js';
 
-import Login from './components/Login/Login.js';
+// import Login from './components/Login/Login.js';
 import registerServiceWorker from './registerServiceWorker';
 import { Security, ImplicitCallback } from '@okta/okta-react';
 import config from './.samples.config';
@@ -15,19 +15,20 @@ const inStyles =  {
 		width:'100%'
 	}
 }
+const route = '${process.env.PUBLIC_URL}';
 ReactDOM.render(
 	<Root  style={inStyles.root}>
-		<BrowserRouter>
+		<Router>
 		<Security issuer={config.oidc.issuer}
                   client_id={config.oidc.clientId}
                   redirect_uri={config.oidc.redirectUri}>
-			<Route path="/apps/adobepoc" exact={true} component={App} /> {/* Service Checker */}
+			<Route path="/summary" exact={true} component={App} /> {/* Service Checker */}
 			<Route path="" exact={true} component={App} /> {/* Service Checker */}
 
-			<Route path={`${process.env.PUBLIC_URL}` + "/implicit/callback/"} component={ImplicitCallback} />
+			<Route path={`http://70.176.243.97:8551/apps/adobecallback/index.html`} component={ImplicitCallback} />
 
 			</Security>
-		</BrowserRouter>
+		</Router>
 	</Root>
 , document.querySelector('#root'));
 registerServiceWorker();

@@ -44,12 +44,10 @@ class PrimarySquare extends Component {
   }
 
   render() {
-    const isMobile = this.props.deviceType.includes("mobile") ? true : false;
-    const isLaptop = this.props.deviceType.includes("laptop") ? true : false;
-    const isTablet = this.props.deviceType.includes("tablet") ? true : false;
-    const isMobileOrTablet =
-      utils.getDeviceType(this.props.window).includes("mobile") ||
-      utils.getDeviceType(this.props.window).includes("tablet");
+    const isMobile = utils.includes(this.props.deviceType, 'mobile') ? true : false;
+    const isLaptop = utils.includes(this.props.deviceType, 'laptop') ? true : false;
+    const isTablet = utils.includes(this.props.deviceType, 'tablet') ? true : false;
+    const isMobileOrTablet = utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet');
 
     // {utils.getDeviceType(this.props.window)}
     const formattedValue = utils.formatMetric(

@@ -4,6 +4,7 @@ import axios from 'axios';
 import * as actions from 'actions';
 
 
+
 const token = 'Basic ' + btoa(Infoburst.user + ':' + Infoburst.pass);
 const headers = {'Authorization': token , 'Accept': '*/*'};
 let responseArray = [];
@@ -125,24 +126,24 @@ export function generateFilterParams(type,filterParams, allFilters, _activeParam
 
       break;
     }
-
-
-
 }
+
 /**
  *
  * @param {*} allFilters
  * @param {*} availableFilters
  */
+
+//  Object.keys(obj).map(e => obj[e])
 export function getAllFilters(allFilters, availableFilters){
   allFilters = {
-      quarters: Object.values(availableFilters.quarters),
-      geos: Object.values(availableFilters.geos),
-      marketAreas: Object.values(availableFilters.marketAreas),
-      products: Object.values(availableFilters.products),
-      segments: Object.values(availableFilters.segments),
-      subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
-      routeToMarkets: Object.values(availableFilters.routeToMarkets)
+      quarters: Object.keys(availableFilters.quarters).map(e => availableFilters.quarters[e]),
+      geos:  Object.keys(availableFilters.geos).map(e => availableFilters.geos[e]),
+      marketAreas: Object.keys(availableFilters.marketAreas).map(e => availableFilters.marketAreas[e]),
+      products: Object.keys(availableFilters.products).map(e => availableFilters.products[e]),
+      segments: Object.keys(availableFilters.segments).map(e => availableFilters.segments[e]),
+      subscriptionOfferings: Object.keys(availableFilters.subscriptionOfferings).map(e => availableFilters.subscriptionOfferings[e]),
+      routeToMarkets: Object.keys(availableFilters.routeToMarkets).map(e => availableFilters.routeToMarkets[e]),
   }
 }
 
@@ -459,7 +460,17 @@ let params3 = group3Params.reduce((prev, param) => {
   })
 }
 
-
+export function includes(container, value) {
+  // console.log(container, value);
+  let returnValue = false;
+  if (container !== null && container !== undefined && value !== null && value !== undefined) {
+    let n = container.indexOf(value);
+    if (n >= 0) {
+      returnValue = true;
+    } 
+  }
+  return returnValue;
+}
 
 // Heartbeat
 export function getHeartbeat() {

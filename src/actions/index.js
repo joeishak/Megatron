@@ -142,13 +142,13 @@ export function setViewAppSettings() {
 export function getPrimaryData(_parameters,availableFilters){
 
     let allFilters = {
-        quarters: Object.values(availableFilters.quarters),
-        geos: Object.values(availableFilters.geos),
-        marketAreas: Object.values(availableFilters.marketAreas),
-        products: Object.values(availableFilters.products),
-        segments: Object.values(availableFilters.segments),
-        subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
-        routeToMarkets: Object.values(availableFilters.routeToMarkets)
+        quarters: Object.keys(availableFilters.quarters).map(e => availableFilters.quarters[e]),
+        geos:  Object.keys(availableFilters.geos).map(e => availableFilters.geos[e]),
+        marketAreas: Object.keys(availableFilters.marketAreas).map(e => availableFilters.marketAreas[e]),
+        products:  Object.keys(availableFilters.products).map(e => availableFilters.products[e]),
+        segments: Object.keys(availableFilters.segments).map(e => availableFilters.segments[e]),
+        subscriptionOfferings: Object.keys(availableFilters.subscriptionOfferings).map(e => availableFilters.subscriptionOfferings[e]),
+        routeToMarkets:  Object.keys(availableFilters.routeToMarkets).map(e => availableFilters.routeToMarkets[e])
     }
     promiseArr = utils.requestPrimaryData(allFilters,_parameters);
 
@@ -160,13 +160,13 @@ export function getPrimaryData(_parameters,availableFilters){
 
 export function getSecondaryData(_parameters,availableFilters){
     let allFilters = {
-        quarters: Object.values(availableFilters.quarters),
-        geos: Object.values(availableFilters.geos),
-        marketAreas: Object.values(availableFilters.marketAreas),
-        products: Object.values(availableFilters.products),
-        segments: Object.values(availableFilters.segments),
-        subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
-        routeToMarkets: Object.values(availableFilters.routeToMarkets)
+        quarters: Object.keys(availableFilters.quarters).map(e => availableFilters.quarters[e]),
+        geos:  Object.keys(availableFilters.geos).map(e => availableFilters.geos[e]),
+        marketAreas: Object.keys(availableFilters.marketAreas).map(e => availableFilters.marketAreas[e]),
+        products:  Object.keys(availableFilters.products).map(e => availableFilters.products[e]),
+        segments: Object.keys(availableFilters.segments).map(e => availableFilters.segments[e]),
+        subscriptionOfferings: Object.keys(availableFilters.subscriptionOfferings).map(e => availableFilters.subscriptionOfferings[e]),
+        routeToMarkets:  Object.keys(availableFilters.routeToMarkets).map(e => availableFilters.routeToMarkets[e])
     }
     promiseArr = utils.requestSecondaryData(allFilters,_parameters);
     // console.log(promiseArr);
@@ -181,13 +181,13 @@ export function getSecondaryData(_parameters,availableFilters){
 export function getDetailsData(_parameters,availableFilters){
 //   console.log('I made it');
     let allFilters = {
-        quarters: Object.values(availableFilters.quarters),
-        geos: Object.values(availableFilters.geos),
-        marketAreas: Object.values(availableFilters.marketAreas),
-        products: Object.values(availableFilters.products),
-        segments: Object.values(availableFilters.segments),
-        subscriptionOfferings: Object.values(availableFilters.subscriptionOfferings),
-        routeToMarkets: Object.values(availableFilters.routeToMarkets)
+        quarters: Object.keys(availableFilters.quarters).map(e => availableFilters.quarters[e]),
+        geos:  Object.keys(availableFilters.geos).map(e => availableFilters.geos[e]),
+        marketAreas: Object.keys(availableFilters.marketAreas).map(e => availableFilters.marketAreas[e]),
+        products:  Object.keys(availableFilters.products).map(e => availableFilters.products[e]),
+        segments: Object.keys(availableFilters.segments).map(e => availableFilters.segments[e]),
+        subscriptionOfferings: Object.keys(availableFilters.subscriptionOfferings).map(e => availableFilters.subscriptionOfferings[e]),
+        routeToMarkets:  Object.keys(availableFilters.routeToMarkets).map(e => availableFilters.routeToMarkets[e])
     }
     promiseArr = utils.requestDetailsData(allFilters,_parameters);
     // console.log(promiseArr);

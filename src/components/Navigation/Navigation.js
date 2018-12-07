@@ -20,6 +20,7 @@ import commentIconOff from "./assets/images/comment-icon-off.svg";
 import commentIconOn from "./assets/images/comment-icon-on.svg";
 
 import profilePic from "./assets/images/amit-profile.png";
+import * as utils from '../../utilities';
 
 // Redux
 import { connect } from "react-redux";
@@ -111,16 +112,14 @@ class Navigation extends Component {
 
   render() {
     //local constants for showing the logo with an animation
-    const isLaptop =  this.props.deviceType.includes('laptop');
+    const isLaptop = utils.includes( this.props.deviceType, 'laptop');
     const filterIcon = this.props.isFilterPageVisible
       ? filterSelected
       : filterUnselected;
     const { show } = this.state;
     const logos = show ? <img alt="" src={logo} className="imgLogo" /> : null;
     const { activeTab } = this.state;
-    const filterButton =
-      this.props.deviceType.includes("tablet") ||
-      this.props.deviceType.includes("mobile") ? (
+    const filterButton = utils.includes(this.props.deviceType, 'tablet') || utils.includes(this.props.deviceType, 'mobile') ? (
         <div className="filterButton">
           <img
             alt=""

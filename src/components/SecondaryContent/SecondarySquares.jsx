@@ -57,7 +57,7 @@ class SecondarySquares extends Component {
   }
   getLaptopContent() {
     // const isMobile = (this.props.deviceType.includes('mobile') ? true : false);
-    const isLaptop = this.props.deviceType.includes("laptop") ? true : false;
+    const isLaptop = utils.includes(this.props.deviceType, 'laptop') ? true : false;
     // const isTablet = (this.props.deviceType.includes('tablet') ? true : false);
 
     const formattedValue = utils.formatMetric(
@@ -171,8 +171,8 @@ class SecondarySquares extends Component {
   }
 
   getMobileContent() {
-    const isTablet = this.props.deviceType.includes("tablet") ? true : false;
-    const isMobile = this.props.deviceType.includes("mobile") ? true : false;
+    const isTablet = utils.includes(this.props.deviceType, 'tablet') ? true : false;
+    const isMobile = utils.includes(this.props.deviceType, 'mobile') ? true : false;
 
     const formattedValue = utils.formatMetric(
       { valueType: this.props.item.valueType, value: this.props.item.value },
@@ -280,7 +280,7 @@ class SecondarySquares extends Component {
             </div>
             <div className={boxBullet}>
               <KendoBulletChart
-                isMobileOrTablet={utils.getDeviceType(this.props.window).includes("mobile") || utils.getDeviceType(this.props.window).includes("tablet")}
+                isMobileOrTablet={utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet')}
                 width={175}
                 values={[this.props.item.value, this.props.item.target]}
                 valueType={this.props.item.valueType}
@@ -297,9 +297,9 @@ class SecondarySquares extends Component {
   }
 
   render() {
-    const isMobile = this.props.deviceType.includes("mobile") ? true : false;
-    const isLaptop = this.props.deviceType.includes("laptop") ? true : false;
-    const isTablet = this.props.deviceType.includes("tablet") ? true : false;
+    const isMobile = utils.includes(this.props.deviceType, 'mobile') ? true : false;
+    const isLaptop = utils.includes(this.props.deviceType, 'laptop') ? true : false;
+    const isTablet = utils.includes(this.props.deviceType, 'tablet') ? true : false;
 
     return (
       <div>

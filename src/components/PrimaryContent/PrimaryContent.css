@@ -14,7 +14,7 @@
 	height: 480px;
 } */
 /**Horizontal Spins**/
-.spinMeFirst{
+/* .spinMeFirst{
 	animation: spin 0.6s ease-in-out forwards;
 
 }
@@ -27,9 +27,9 @@
 
 }
 .spinMeFourth{
-	animation: spin 1.2s ease-in-out forwards;
+	animation: spin 1.2s ease-in-out forwards; */
 
-}
+/* } */
 @-moz-keyframes spin {
   from {-moz-transform: rotateY(0deg);}
   to {-moz-transform: rotateY(360deg);}
@@ -44,7 +44,7 @@
 }
 
   /**Vertical Spins**/
-.vertSpinMeFirst{
+/* .vertSpinMeFirst{
 	animation: slideIn 0.4s  forwards;
 
 }
@@ -65,7 +65,7 @@
 }
 .vertSpinMeSixth{
 	animation: slideIn 1.4s forwards;
-}
+} */
 @-moz-keyframes vertspin {
 	from {-moz-transform: rotateX(0deg);}
 	to {-moz-transform: rotateX(720deg);}

@@ -51,6 +51,7 @@ class App extends Component {
     this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
     this.login = this.login.bind(this);
     this.props.getIbHeartbeat();
+
   }
 
   resize() {
@@ -214,9 +215,9 @@ class App extends Component {
             break;
     }
 
+
     if (
-      this.props.mobileIsPrimary === true &&
-      this.props.deviceType.includes(LAPTOP) === false
+      this.props.mobileIsPrimary === true && utils.includes(this.props.deviceType, 'laptop') === false
     ) {
       this.updateMobileView(PRIMARY, false);
       this.updateMobileView(SECONDARY, true);
@@ -316,10 +317,9 @@ class App extends Component {
   };
 
   render() {
+    // console.log(utils.includes(utils.getDeviceType(this.state.window), 'tablet'));
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
-    const isMobileOrTablet =
-      utils.getDeviceType(this.state.window).includes("mobile") ||
-      utils.getDeviceType(this.state.window).includes("tablet");
+    const isMobileOrTablet = utils.includes(utils.getDeviceType(this.state.window), 'mobile') || utils.includes(utils.getDeviceType(this.state.window), 'tablet');
     const filtersPage = this.state.isFilterPageVisible ? (
       <FilterPage
         windowHeight={this.state.window.height}
