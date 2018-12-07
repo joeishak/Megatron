@@ -353,7 +353,7 @@ class SummaryViewDetails extends Component {
           : this.renderDollarValue(value);
       return tmpValue;
     } else {
-      return utils.formatMetric({valueType: this.props.activeItem.valueType, value: this.props.activeItem.value}, 'value');
+      return utils.formatMetric({ valueType: this.props.activeItem.valueType, value: this.props.activeItem.value }, 'value');
     }
   }
   detailsRenderM(item) {
@@ -508,7 +508,7 @@ class SummaryViewDetails extends Component {
       qtdTotalTable: true,
       normalTableSize:
         this.state.activeTimeMetric === "week" ||
-        this.state.activeTimeMetric === "qtd"
+          this.state.activeTimeMetric === "qtd"
           ? true
           : false,
       halfTableSize: this.state.activeTimeMetric === "all" ? true : false
@@ -531,57 +531,59 @@ class SummaryViewDetails extends Component {
             {this.props.activeItem.header}
             {/* <button className='exportButton'>Export To Excel</button> */}
           </span>
-            {/* The Excell export and the QTD Go Here **/}
-
-            <div className=" multiChartMetricContainer ">
-              <div
-                onClick={this.updateMultiChartMetricFilter}
-                className={UnitStyles}
-              >
-                UNITS
-              </div>
-              <div
-                onClick={this.updateMultiChartMetricFilter}
-                className={ArrStyles}
-              >
-                ARR
-              </div>
+          {/* The Excell export and the QTD Go Here **/}
+          {this.props.activePrimary < 1 ?
+          <div className=" multiChartMetricContainer ">
+          <div
+            onClick={this.updateMultiChartMetricFilter}
+            className={UnitStyles}
+          >
+            UNITS
             </div>
-            <span className=" excelSpan">
-              <Workbook
-                filename="example.xlsx"
-                element={
-                  <button className="exportButton">
-                    <span>Export </span>
-                    <img
-                      alt=""
-                      className="excelLogo"
-                      style={{ height: "20px", width: "20px" }}
-                      src={excelLogoGreen}
-                    />
-                  </button>
-                }
-              >
-                <Workbook.Sheet data={this.state.excelTestData} name="QTD">
-                  <Workbook.Column label="Actuals" value="Actuals" />
-                  <Workbook.Column label="Units" value="Units" />
-                  <Workbook.Column label="QRF" value="QRF" />
-                  <Workbook.Column label="QRFDiff" value="QRFDiff" />
-                  <Workbook.Column label="vsQRF" value="vsQRF" />
-                  <Workbook.Column label="Q/Q" value="QQ" />
-                  <Workbook.Column label="Y/Y" value="YY" />
-                </Workbook.Sheet>
-                <Workbook.Sheet data={this.state.excelTestGeo} name="Geo">
-                  <Workbook.Column label="Actuals" value="actuals" />
-                  <Workbook.Column label="Units" value="units" />
-                  <Workbook.Column label="Geo" value="geo" />
-                  <Workbook.Column label="MarketArea" value="marketArea" />
-                  <Workbook.Column label="vsQRF" value="vsQrf" />
-                  <Workbook.Column label="Q/Q" value="QQ" />
-                  <Workbook.Column label="Y/Y" value="YY" />
-                </Workbook.Sheet>
-              </Workbook>
-            </span>
+          <div
+            onClick={this.updateMultiChartMetricFilter}
+            className={ArrStyles}
+          >
+            ARR
+            </div>
+        </div> :
+      <span></span> }
+          
+          <span className=" excelSpan">
+            <Workbook
+              filename="example.xlsx"
+              element={
+                <button className="exportButton">
+                  <span>Export </span>
+                  <img
+                    alt=""
+                    className="excelLogo"
+                    style={{ height: "20px", width: "20px" }}
+                    src={excelLogoGreen}
+                  />
+                </button>
+              }
+            >
+              <Workbook.Sheet data={this.state.excelTestData} name="QTD">
+                <Workbook.Column label="Actuals" value="Actuals" />
+                <Workbook.Column label="Units" value="Units" />
+                <Workbook.Column label="QRF" value="QRF" />
+                <Workbook.Column label="QRFDiff" value="QRFDiff" />
+                <Workbook.Column label="vsQRF" value="vsQRF" />
+                <Workbook.Column label="Q/Q" value="QQ" />
+                <Workbook.Column label="Y/Y" value="YY" />
+              </Workbook.Sheet>
+              <Workbook.Sheet data={this.state.excelTestGeo} name="Geo">
+                <Workbook.Column label="Actuals" value="actuals" />
+                <Workbook.Column label="Units" value="units" />
+                <Workbook.Column label="Geo" value="geo" />
+                <Workbook.Column label="MarketArea" value="marketArea" />
+                <Workbook.Column label="vsQRF" value="vsQrf" />
+                <Workbook.Column label="Q/Q" value="QQ" />
+                <Workbook.Column label="Y/Y" value="YY" />
+              </Workbook.Sheet>
+            </Workbook>
+          </span>
 
 
           <div className="chartContainer col-md-12">
@@ -591,34 +593,34 @@ class SummaryViewDetails extends Component {
         {/* Second Row for Quarterly to Date title header */}
         <div className=" qtdTitleBarHeader container-fluid row">
           <span className="detailTitle2">Quarterly To Date</span>
-              <div className=" totalTimeMetricContainer">
-               <span >
-                  <div onClick={this.updateQtdMetricFilter} className={QTDStyles}>
-                    QTD
+          <div className=" totalTimeMetricContainer">
+            <span >
+              <div onClick={this.updateQtdMetricFilter} className={QTDStyles}>
+                QTD
                   </div>
-                  <div onClick={this.updateQtdMetricFilter} className={WeekStyles}>
-                    WEEK
+              <div onClick={this.updateQtdMetricFilter} className={WeekStyles}>
+                WEEK
                   </div>
-                </span>
-              </div>
-               {
-                                             this.props.activeItem.details.stats.map(item=>{
-                                                 return(
-                                                     <CSSTransitionGroup
-                                                         key={statsCounts++}
-                                                         transitionName="example"
-                                                         transitionAppear={true}
-                                                         transitionAppearTimeout={800}
-                                                         transitionEnter={false}
-                                                         transitionLeave={false} >
-                                                         <div className=" statsHeader">
-                                                             <div className={ (item.color==='red')? 'stats red' : 'stats green '}> {item.value}%</div>
-                                                             <div className="footer"> {item.text}</div>
-                                                         </div>
-                                                     </CSSTransitionGroup>
-                                                 )
-                                             })
-                                         }
+            </span>
+          </div>
+          {
+            this.props.activeItem.details.stats.map(item => {
+              return (
+                <CSSTransitionGroup
+                  key={statsCounts++}
+                  transitionName="example"
+                  transitionAppear={true}
+                  transitionAppearTimeout={800}
+                  transitionEnter={false}
+                  transitionLeave={false} >
+                  <div className=" statsHeader">
+                    <div className={(item.color === 'red') ? 'stats red' : 'stats green '}> {item.value}%</div>
+                    <div className="footer"> {item.text}</div>
+                  </div>
+                </CSSTransitionGroup>
+              )
+            })
+          }
 
         </div>
 
@@ -646,6 +648,7 @@ class SummaryViewDetails extends Component {
 function mapStateToProps(state) {
   return {
     previousViewWasJourneys: state.switchFilter,
+    activePrimary: state.activeCards.primary,
     activeItem: state.secondaryData[state.activeCards.secondary],
     activeFilters: state.activeFilters,
     availableFilters: state.availableFilters,

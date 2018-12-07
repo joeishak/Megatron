@@ -88,7 +88,7 @@ class App extends Component {
       if(this.props.mobileIsPrimary !== nextProps.mobileIsPrimary || this.props.mobileIsSecondary !== nextProps.mobileIsSecondary){
           return true;
       }
-      
+
       if(this.props.activeFilters !== nextProps.activeFilters){
           return true;
       }
@@ -374,7 +374,8 @@ class App extends Component {
               {this.state.isFilterPageVisible
                 ? null
                 : this.getSecondaryContent()}
-              {this.state.isFilterPageVisible ? null : summaryViewDetails}
+              {this.state.isFilterPageVisible  && this.props.mobileIsPrimary? null : null}
+              {summaryViewDetails}
               {/* Playground */}
               {/* <Playground></Playground> */}
             </div>
@@ -387,7 +388,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log("app state", state);
+  console.log("app state", state);
   return {
     activeFilters: state.activeFilters,
     availableFilters: state.availableFilters,

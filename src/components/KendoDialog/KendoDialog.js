@@ -21,6 +21,7 @@ class KendoDialog extends Component {
             journeysSummaryViewOptions: 'Discover',
             savedClicked: undefined,
             onFilterHover: false,
+            filterListCount: 0
         };
 
         this.closeDialog = this.closeDialog.bind(this)
@@ -33,13 +34,13 @@ class KendoDialog extends Component {
 
 
     componentDidMount(){
-        window.addEventListener("resize", this.resize.bind(this));
-        this.resize();
+        // window.addEventListener("resize", this.resize.bind(this));
+        // this.resize();
         this.open();
     }
 
-    resize() {
-    }
+    // resize() {
+    // }
 
     open() {
         $("[data-role='window']").each(function (index) {
@@ -245,7 +246,7 @@ class KendoDialog extends Component {
 
                                 <ul className="filterList">
                                     {filtersApplied.map((item) => {
-                                        return <li onClick={(e) => this.removeFilter(item)}
+                                        return <li key={this.state.filterListCount++} onClick={(e) => this.removeFilter(item)}
                                         onMouseEnter={this.onMouseEnterHandler}
                                         onMouseLeave={this.onMoueLeaveHandler}
                                         className="miniMultiFilter">

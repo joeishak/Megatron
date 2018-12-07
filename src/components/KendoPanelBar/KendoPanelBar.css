@@ -35,7 +35,26 @@
     line-height: 30px;
     font-size: 12px;
     text-align: center;
-    width: 11.11%;
+    width: 12.48%;
+    color: white;
+    background-color: #1f1f1f;
+
+}
+.qtdMarketColumn{
+    /* Market Area US ROW T */
+    display: block;
+    /* position: absolute; */
+    /* left: 9.96%;
+    right: 80.18%;
+    top: 52.69%;
+    bottom: 32.96%; */
+    float:left;
+    font-family: Ubuntu;
+    font-style: normal;
+    line-height: 30px;
+    font-size: 12px;
+    text-align: center;
+    width: 11%;
     color: white;
     background-color: #1f1f1f;
 
@@ -44,7 +63,7 @@
     font-weight: bold;
     background-color: #3c3c3c !important;
     color: white;
-    
+
 }
 .qtdGeoHeader{
     text-align:  left !important;
@@ -68,11 +87,28 @@
        line-height: 30px;
        font-size: 12px;
        text-align: center;
-       width: 12.5%;
+       width: 14.28%;
        color: white;
        background-color: #1f1f1f;
 }
-
+.weekMarketColumn{
+       /* Market Area US ROW T */
+       display: block;
+       /* position: absolute; */
+       /* left: 9.96%;
+       right: 80.18%;
+       top: 52.69%;
+       bottom: 32.96%; */
+       float:left;
+       font-family: Ubuntu;
+       font-style: normal;
+       line-height: 30px;
+       font-size: 12px;
+       text-align: center;
+       width: 12.2%;
+       color: white;
+       background-color: #1f1f1f;
+}
 .weekGeoHeader{
     text-align:  left !important;
 

@@ -25,6 +25,17 @@ class KendoBulletChart extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps){
+    if(this.props.values[0] !== nextProps.values[0]){
+      return true;
+    }
+    if(this.props.values[1] !== nextProps.values[1]){
+      return true;
+    }
+
+    return false;
+  } 
+
   renderUnits(value) {
     let returnValue = '';
     value = parseInt(value)

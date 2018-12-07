@@ -41,6 +41,20 @@ class KendoMultiChart extends Component {
         this.formatDataValues = this.formatDataValues.bind(this);
     }
 
+    shouldComponentUpdate(nextProps){
+        if(this.props.activeMultichart[0][0] !== nextProps.activeMultichart[0][0] ){
+            return true;
+        } 
+        if(this.props.activeUnits[0][0] !== nextProps.activeUnits[0][0] ){
+
+            return true;
+        } 
+        if(this.props.multichartMetric !== nextProps.multichartMetric){
+
+            return true;
+        }
+        return false;
+    }
     formatDataValues(arr){
         let newArr;
         if(arr.length>0){
@@ -210,8 +224,7 @@ class KendoMultiChart extends Component {
 }
 function mapStateToProps(state){
     return {
-        switchFilter: state.switchFilter,
-        activeSummarySquare: state.secondaryData[state.activeCards.secondary],
+
         multichartMetric: state.multichartIsArr,
         activeUnits: state.secondaryData[state.activeCards.secondary].details.unitMultichart,
         activeMultichart: state.secondaryData[state.activeCards.secondary].details.multichart,
