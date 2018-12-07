@@ -35,6 +35,8 @@ export default function (state = SecondaryData, action) {
         // Financial Market QTD - 10
         // Journey G2 Market QTD  - 11
         // Journey G3 Market Qtd - 12
+
+        console.log(action.payload);
         newState = Object.assign([], state);
         processFinancialMultichart(newState, action.payload[0].data);
         processFinancialUnitsMultichart(newState, action.payload[1].data);
@@ -44,6 +46,7 @@ export default function (state = SecondaryData, action) {
         processJourneyMultichart(action.payload[4].data, action.payload[5].data, newState);
         processJourneyQTD(action.payload[6].data[0], action.payload[7].data[0], newState);
         processJourneyGeoQTD(action.payload[8].data, action.payload[9].data, newState);
+        processJourneyMarketAreaQTD(action.payload[11].data, action.payload[12].data,newState)
         return newState;
     case ADD_NEW_SECONDARY_COMMENT:
         index = action.payload.square;
@@ -691,6 +694,82 @@ export function processJourneyGeoQTD(g2, g3, newState) {
         newState[5].details.geo.qtd.push(marketable);
         newState[6].details.geo.qtd.push(uqfm);
         newState[7].details.geo.qtd.push(paid);
+
+
+
+    }
+}
+export function processJourneyMarketAreaQTD(g2, g3, newState) {
+
+    //Clear old Values
+    newState[4].details.market.qtd = [];
+    newState[5].details.market.qtd = [];
+    newState[6].details.market.qtd = [];
+    newState[7].details.market.qtd = [];
+    for (let i = 0; i < g2.length; i++) {
+        let item = g2[i];
+        let traffic = {
+            index: i,
+            actuals: item.TrafficActual,
+            units: 0.0,
+            marketArea: item.market_area_code,
+            qq: item.TrafficQQTY,
+            qrf: item.TrafficTarget,
+            qrfDiff: item.TrafficVsQrf,
+            type: item.geo_code,
+            units: 0.0,
+            vsQrf: item.TrafficVsQrf,
+            yy: item.TrafficYY
+        }
+        newState[4].details.market.qtd.push(traffic);
+    }
+
+    for (let i = 0; i < g3.length; i++) {
+        let item = g3[i];
+
+        let marketable = {
+            index: i,
+            actuals: item.MarketableActual,
+            units: 0.0,
+            marketArea: item.market_area_code,
+            qq: item.MarketableQQTY,
+            qrf: item.MarketableTarget,
+            qrfDiff: item.MarketableVsQrf,
+            type: item.geo_code,
+            units: 0.0,
+            vsQrf: item.MarketableVsQrf,
+            yy: item.MarketableYY
+        }
+        let uqfm = {
+            index: i,
+            actuals: item.UQFMActual,
+            units: 0.0,
+            marketArea: item.market_area_code,
+            qq: item.UQFMQQTY,
+            qrf: item.UQFMTarget,
+            qrfDiff: item.UQFMVsQrf,
+            type: item.geo_code,
+            units: 0.0,
+            vsQrf: item.UQFMVsQrf,
+            yy: item.UQFMYY
+        }
+        let paid = {
+            index: i,
+            actuals: item.PaidMediaSpendActual,
+            units: 0.0,
+            marketArea: item.market_area_code,
+            qq: item.PaidMediaSpendVsQrf,
+            qrf: item.PaidMediaSpendTarget,
+            qrfDiff: item.PaidMediaSpendVsQrf,
+            type: item.geo_code,
+            units: 0.0,
+            vsQrf: item.PaidMediaSpendVsQrf,
+            yy: item.PaidMediaSpendYY
+        }
+
+        newState[5].details.market.qtd.push(marketable);
+        newState[6].details.market.qtd.push(uqfm);
+        newState[7].details.market.qtd.push(paid);
 
 
 

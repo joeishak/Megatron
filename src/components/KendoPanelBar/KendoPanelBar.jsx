@@ -12,7 +12,6 @@ class KendoPanelBar extends Component {
         super(props);
 
         this.state = {}
-
         this.getPanelContents = this.getPanelContents.bind(this);
         this.getTopHeader = this.getTopHeader.bind(this);
         this.getLowerHeader = this.getLowerHeader.bind(this);
@@ -38,7 +37,7 @@ class KendoPanelBar extends Component {
             }
         }
     getLowerHeader(type) {
-        let isMarket = type === DIMENSIONS.MARKET;
+       let isMarket = type === DIMENSIONS.MARKET;
        let qtdColumnClass = (isMarket  ) ? 'qtdMarketColumn': 'qtdColumn';
        let weekColumnClass = (isMarket) ? 'weekMarketColumn': 'weekColumn';
        let MAColumn = (isMarket) ? <div className={`${qtdColumnClass}  header qtdMaHeader col`}>
@@ -73,7 +72,7 @@ class KendoPanelBar extends Component {
                         Y/Y
                     </div>
                 </div>);
-            case 'week':
+             default:
                 return (<div className="lowerHeaderBar ">
                 <div className={`${weekColumnClass} header weekGeoHeader  col`}>
                     {this.getLowerHeaderCategory(type)}
@@ -96,62 +95,10 @@ class KendoPanelBar extends Component {
                 <div className={`${weekColumnClass} header  col`}>
                     vs QRF
                 </div>
-                <div className="weekColumn header col">
+                <div className={`${weekColumnClass} header  col`}>
                     W/W
                 </div>
-
                 </div>);
-            case 'all':
-                return (<div className="allLowerHeaderBar ">
-                    <div className="allColumn header allColumn  col">
-                        Geo
-                    </div>
-                    <div className="allColumn header allMaHeader col">
-                        Market Area
-                    </div>
-                    <div className="allColumn header col">
-                        Actuals
-                    </div>
-                    <div className="allColumn header col">
-                        Units
-                    </div>
-                    <div className="allColumn header col">
-                        QRF
-                    </div>
-                    <div className="allColumn header col">
-                        QRF DIFF
-                    </div>
-                    <div className="allColumn header col">
-                        vs QRF
-                    </div>
-                    <div className="allColumn header col">
-                        Q/Q
-                    </div>
-                    <div className="allColumn header col">
-                        Y/Y
-                    </div>
-                    <div className="allColumn header col">
-                        Actuals
-                    </div>
-                    <div className="allColumn header col">
-                        Units
-                    </div>
-                    <div className="allColumn header col">
-                        QRF
-                    </div>
-                    <div className="allColumn header col">
-                        QRF DIFF
-                    </div>
-                    <div className="allColumn header col">
-                        vs QRF
-                    </div>
-                    <div className="allColumn header col">
-                        W/W
-                    </div>
-
-                </div>);
-            default:
-                break;
         }
     }
 
@@ -159,16 +106,8 @@ class KendoPanelBar extends Component {
         switch (this.props.timeMetric) {
             case 'qtd':
                 return (<div className=" topHeaderBar qtdDetailTitle col-md-11">Quarterly To Date</div>);
-            case 'week':
+                default:
                 return (<div className="topHeaderBar weekDetailTitle col-md-11">Week</div>);
-            case 'all':
-                return (<div className="topHeaderBar allContainer col-md-12">
-                    <div className="topHeaderBar allWeekDetailTitle col-md-6">Week</div>
-                    <div className="topHeaderBar allQtdDetailTitle col-md-6">Quartely To Date</div>
-                </div>);
-            default:
-                break;
-
         }
     }
 
@@ -262,7 +201,7 @@ class KendoPanelBar extends Component {
                           </div>
                       </span>)
                   }));
-              case 'week':
+                  default:
                   return (this.props.activeSummary.details.market.week.map(item => {
 
                       return (<span key={marketCount++}>
@@ -296,8 +235,7 @@ class KendoPanelBar extends Component {
 
                       </span>)
                   }));
-              default:
-                  break;
+             
           }
       }
       getGeoContent() {

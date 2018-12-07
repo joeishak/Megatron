@@ -6457,8 +6457,8 @@ export const Infoburst = {
         JourneysG3QTD: '?q=JourneyG3QTD',
         JourneysG2GeoQTD: '?q=JourneyG2GeoQTD',
         JourneysG3GeoQTD: '?q=JourneyG3GeoQTD',
-        JourneysG2MarketQTD: '?q=JourneyG2MarketQTD',
-        JourneysG3MarketQTD: '?q=JourneyG3MarketQTD'
+        JourneysG2MarketQTD: '?q=JourneyG2MarketAreaQTD',
+        JourneysG3MarketQTD: '?q=JourneyG3MarketAreaQTD'
     },
     dataXdcID: '\\1128',
     journeyXdcID: '\\1149',

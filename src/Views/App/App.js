@@ -388,7 +388,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log("app state", state);
+  console.log("app state", state);
   return {
     activeFilters: state.activeFilters,
     availableFilters: state.availableFilters,
