@@ -51,54 +51,54 @@ class KendoPanelBar extends Component {
                         {this.getLowerHeaderCategory(type)}
                      </div>
                      {MAColumn}
-                    <div className="qtdColumn header col">
+                     <div className={`${qtdColumnClass}  header col`}>
                         Actuals
                     </div>
-                    <div className="qtdColumn header col">
+                    <div className={`${qtdColumnClass}  header col`}>
                         Units
                     </div>
-                    <div className="qtdColumn header col">
+                    <div className={`${qtdColumnClass}  header col`}>
                         QRF
                     </div>
-                    <div className="qtdColumn header col">
+                    <div className={`${qtdColumnClass}  header col`}>
                         QRF DIFF
                     </div>
-                    <div className="qtdColumn header col">
+                    <div className={`${qtdColumnClass}  header col`}>
                         vs QRF
                     </div>
-                    <div className="qtdColumn header col">
+                    <div className={`${qtdColumnClass}  header col`}>
                         Q/Q
                     </div>
-                    <div className="qtdColumn header col">
+                    <div className={`${qtdColumnClass}  header col`}>
                         Y/Y
                     </div>
                 </div>);
             case 'week':
                 return (<div className="lowerHeaderBar ">
-                    <div className="weekColumn header weekGeoHeader  col">
-                        Geo
-                    </div>
-                    <div className="weekColumn header weekMaHeader col">
-                        Market Area
-                    </div>
-                    <div className="weekColumn header col">
-                        Actuals
-                    </div>
-                    <div className="weekColumn header col">
-                        Units
-                    </div>
-                    <div className="weekColumn header col">
-                        QRF
-                    </div>
-                    <div className="weekColumn header col">
-                        QRF DIFF
-                    </div>
-                    <div className="weekColumn header col">
-                        vs QRF
-                    </div>
-                    <div className="weekColumn header col">
-                        W/W
-                    </div>
+                <div className={`${weekColumnClass} header weekGeoHeader  col`}>
+                    {this.getLowerHeaderCategory(type)}
+                </div>
+                {(type===DIMENSIONS.MARKET) ? <div className={`${weekColumnClass} header weekMaHeader  col`}>
+                    Market Area
+                </div> : <span></span>}
+                <div className={`${weekColumnClass} header  col`}>
+                    Actuals
+                </div>
+                <div className={`${weekColumnClass} header  col`}>
+                    Units
+                </div>
+                <div className={`${weekColumnClass} header  col`}>
+                    QRF
+                </div>
+                <div className={`${weekColumnClass} header  col`}>
+                    QRF DIFF
+                </div>
+                <div className={`${weekColumnClass} header  col`}>
+                    vs QRF
+                </div>
+                <div className="weekColumn header col">
+                    W/W
+                </div>
 
                 </div>);
             case 'all':
