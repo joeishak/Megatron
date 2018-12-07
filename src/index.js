@@ -15,7 +15,8 @@ const inStyles =  {
 		width:'100%'
 	}
 }
-const route = '${process.env.PUBLIC_URL}';
+// '${process.env.PUBLIC_URL}';
+// http://70.176.243.97:8551/apps/adobecallback/index.html
 ReactDOM.render(
 	<Root  style={inStyles.root}>
 		<Router>
@@ -25,7 +26,7 @@ ReactDOM.render(
 			<Route path="/summary" exact={true} component={App} /> {/* Service Checker */}
 			<Route path="" exact={true} component={App} /> {/* Service Checker */}
 
-			<Route path={`http://70.176.243.97:8551/apps/adobecallback/index.html`} component={ImplicitCallback} />
+			<Route path={`${process.env.PUBLIC_URL}`} component={ImplicitCallback} />
 
 			</Security>
 		</Router>
