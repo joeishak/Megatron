@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from 'Root';
-import {HashRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import App from 'Views/App/App.js';
 
 // import Login from './components/Login/Login.js';
@@ -26,7 +26,7 @@ ReactDOM.render(
 			<Route path="/summary" exact={true} component={App} /> {/* Service Checker */}
 			<Route path="" exact={true} component={App} /> {/* Service Checker */}
 
-			<Route path={`${process.env.PUBLIC_URL}`} component={ImplicitCallback} />
+			<Route path={`${process.env.PUBLIC_URL}`+ '/implicit/callback'} component={ImplicitCallback} />
 
 			</Security>
 		</Router>

@@ -193,6 +193,7 @@ class SecondaryContentList extends Component {
     const renderContainerStyle = isMobileAndTablet
       ? { height: `${this.props.window.height - navBarHeight}px`, width: "100%" }
       : { height: "100%", marginTop: "30px", width: "20%" };
+      
     const mobileBottom =
       isMobileAndTablet && this.props.mobileSecondaryIsActive ? (
         <div style={renderStyleBottom} className="box3">
