@@ -3,8 +3,8 @@ export const PrimaryData = [
         index: 0,
         category: 'Finance',
         header: 'Net New ARR',
-        value: -10523457772345.34570239485,
-        target: 2023453.3453,
+        value: '-',
+        target: '-',
         valueType: 'currency',
         type: 'financial',
         comments: [

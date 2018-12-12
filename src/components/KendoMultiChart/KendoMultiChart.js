@@ -57,7 +57,7 @@ class KendoMultiChart extends Component {
     }
     formatDataValues(arr){
         let newArr;
-        if(arr.length>0 ){
+        if(arr !== undefined  ){
             newArr = arr.map(item=>{
                 if(this.props.multichartMetric ===true){
                     return item.toFixed(1);

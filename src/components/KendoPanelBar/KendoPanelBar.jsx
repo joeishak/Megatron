@@ -4,8 +4,10 @@ import * as actions from 'actions';
 import React, {Component} from 'react';
 // import classNames from 'classnames'
 import styles from './KendoPanelBar.css';
-import '@progress/kendo-theme-default/dist/all.css'
-import {DIMENSIONS} from '../../Constants/consts'
+import '@progress/kendo-theme-default/dist/all.css';
+import {DIMENSIONS} from '../../Constants/consts';
+import * as utils from "../../utilities.js";
+
 class KendoPanelBar extends Component {
 
     constructor(props) {
@@ -154,50 +156,32 @@ class KendoPanelBar extends Component {
                               {item.marketArea}
                           </div>
                           <div className="qtdMarketColumn col">
-                              $ {this.renderDollarValue(item.actuals)}
+                               {utils.formatMetric({valueType: 'currency', value:item.actuals },'value')}
                           </div>
                           <div className="qtdMarketColumn col">
+                              {utils.formatMetric({valueType: 'units', value:item.units },'value')}
 
-                              {this.renderDollarValue(item.units)}
                           </div>
                           <div className="qtdMarketColumn col">
+                          {utils.formatMetric({valueType: 'currency', value:item.qrf },'value')}
 
-                              $ {this.renderDollarValue(item.qrf)}
                           </div>
                           <div className="qtdMarketColumn col">
+                          {utils.formatMetric({valueType: 'currency', value:item.qrfDiff },'value')}
 
-                              $ {this.renderDollarValue(item.qrfDiff)}
                           </div>
                           <div className={(
                                   item.vsQrf <= 0)
                                   ? 'qtdMarketColumn col redBG'
                                   : ' qtdMarketColumn col greenBG'}>
 
-                              {this.formatPercentage(item.vsQrf)}
-                              %
-
+                          {utils.formatMetric({valueType: 'currency', value:item.vsQrf },'value')}
                           </div>
                           <div className="qtdMarketColumn col">
-
-                              {
-                                  this.formatPercentage(item.qq) > 100
-                                      ? 100
-                                      : this.formatPercentage(item.qq) < 100
-                                          ? -100
-                                          : this.formatPercentage(item.qq)
-                              }
-                              %
+                          {utils.formatMetric({valueType: 'percent', value:item.qq },'value')}
                           </div>
                           <div className="qtdMarketColumn col">
-
-                              {
-                                  this.formatPercentage(item.yy) > 100
-                                      ? 100
-                                      : this.formatPercentage(item.yy) < 100
-                                          ? -100
-                                          : this.formatPercentage(item.yy)
-                              }
-                              %
+                          {utils.formatMetric({valueType: 'percent', value:item.yy },'value')}
                           </div>
                       </span>)
                   }));
@@ -212,25 +196,27 @@ class KendoPanelBar extends Component {
                               {item.marketArea}
                           </div>
                           <div className="weekMarketColumn col">
-                              {item.actuals}
+                          {utils.formatMetric({valueType: 'currency', value:item.actuals },'value')}
+                              
                           </div>
                           <div className="weekMarketColumn col">
-                              {item.units}
+                          {utils.formatMetric({valueType: 'units', value:item.units },'value')}
+                             
                           </div>
                           <div className="weekMarketColumn col">
-                              {item.qrf}
+                          {utils.formatMetric({valueType: 'currency', value:item.qrf },'value')}
                           </div>
                           <div className="weekMarketColumn col">
-                              {item.qrfDiff}
+                          {utils.formatMetric({valueType: 'currency', value:item.qrfDiff },'value')}
                           </div>
                           <div className={(
                                   item.vsQrf <= 0)
                                   ? 'weekMarketColumn col redBG'
                                   : 'weekMarketColumn col greenBG'}>
-                              {item.vsQrf}
+                                  {utils.formatMetric({valueType: 'currency', value:item.vsQrf },'value')}
                           </div>
                           <div className="weekMarketColumn col">
-                              {item.ww}
+                          {utils.formatMetric({valueType: 'percent', value:item.ww },'value')}
                           </div>
 
                       </span>)
@@ -248,50 +234,37 @@ class KendoPanelBar extends Component {
                               {item.type}
                           </div>
                           <div className="qtdColumn col">
-                              $ {this.renderDollarValue(item.actuals)}
+                              {utils.formatMetric({valueType: 'currency', value:item.actuals },'value')}
+
                           </div>
                           <div className="qtdColumn col">
-
-                              {this.renderDollarValue(item.units)}
+                             {utils.formatMetric({valueType: 'units', value:item.units },'value')}
                           </div>
                           <div className="qtdColumn col">
+                          {utils.formatMetric({valueType: 'currency', value:item.qrf },'value')}
 
-                              $ {this.renderDollarValue(item.qrf)}
                           </div>
                           <div className="qtdColumn col">
+                          {utils.formatMetric({valueType: 'currency', value:item.qrfDiff },'value')}
 
-                              $ {this.renderDollarValue(item.qrfDiff)}
                           </div>
                           <div className={(
                                   item.vsQrf <= 0)
                                   ? 'qtdColumn col redBG'
                                   : ' qtdColumn col greenBG'}>
 
-                              {this.formatPercentage(item.vsQrf)}
-                              %
+                             
+                              {utils.formatMetric({valueType: 'currency', value:item.vsQrf },'value')}
 
                           </div>
                           <div className="qtdColumn col">
+                          {utils.formatMetric({valueType: 'percent', value:item.qq },'value')}
 
-                              {
-                                  this.formatPercentage(item.qq) > 100
-                                      ? 100
-                                      : this.formatPercentage(item.qq) < 100
-                                          ? -100
-                                          : this.formatPercentage(item.qq)
-                              }
-                              %
                           </div>
                           <div className="qtdColumn col">
+                          {utils.formatMetric({valueType: 'percent', value:item.yy },'value')}
 
-                              {
-                                  this.formatPercentage(item.yy) > 100
-                                      ? 100
-                                      : this.formatPercentage(item.yy) < 100
-                                          ? -100
-                                          : this.formatPercentage(item.yy)
-                              }
-                              %
+                              
                           </div>
                       </span>)
                   }));
@@ -302,25 +275,28 @@ class KendoPanelBar extends Component {
                               {item.type}
                           </div>
                           <div className="weekColumn col">
-                              {item.actuals}
+                              {utils.formatMetric({valueType: 'currency', value:item.actuals },'value')}
                           </div>
                           <div className="weekColumn col">
-                              {item.units}
+                          {utils.formatMetric({valueType: 'units', value:item.units },'value')}
+                     
                           </div>
                           <div className="weekColumn col">
-                              {item.qrf}
+                          {utils.formatMetric({valueType: 'currency', value:item.qrf },'value')}
+                     
                           </div>
                           <div className="weekColumn col">
-                              {item.qrfDiff}
+                          {utils.formatMetric({valueType: 'currency', value:item.qrfDiff },'value')}
+                             
                           </div>
                           <div className={(
                                   item.vsQrf <= 0)
                                   ? 'weekColumn col redBG'
                                   : 'weekColumn col greenBG'}>
-                              {item.vsQrf}
+                              {utils.formatMetric({valueType: 'currency', value:item.vsQrf },'value')}
                           </div>
                           <div className="weekColumn col">
-                              {item.ww}
+                          {utils.formatMetric({valueType: 'percent', value:item.ww },'value')}
                           </div>
                       </span>)
                   }));
