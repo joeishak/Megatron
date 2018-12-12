@@ -16,8 +16,8 @@ import Rnd from "react-rnd";
 
 import * as utils from '../../utilities';
 
-const navBarHeight = 81;
-const titleContainerHeight = 80;
+const navBarHeight = 50;
+const titleContainerHeight = 55;
 const secondaryRowHeight = 84;
 const containerPullBar = 15;
 

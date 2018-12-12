@@ -336,7 +336,7 @@ class App extends Component {
     const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails />;
 
     return (
-      <div style={{ height: `${this.state.window.height}px`}}>
+      <div style={isMobileOrTablet ? { height: `${this.state.window.height}px`} : (this.props.dialogIsOpen ? {height: `100%`, marginTop: '-20px'} : {height: '100%'})}>
         {this.state.authenticated && (
           <span>
             {/* Data Preferences */}

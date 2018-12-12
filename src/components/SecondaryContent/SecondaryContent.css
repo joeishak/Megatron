@@ -340,8 +340,9 @@
 
 /* Primary Data Category Navigation and Title */
 .primaryDataCategoryContainer {
+	padding-top: -10px;
 	border: 1px solid transparent;
-	height: 80px;
+	height: 55px;
 }
 
 .primaryCategoryTitle {
@@ -349,18 +350,22 @@
 	font-style: normal;
 	/* font-weight: bold; */
 	line-height: normal;
-	font-size: 1.9em;
+	font-size: 1.6em;
 	color: white;
-	margin-top: 20px;
+	/* margin-top: 20px; */
 	width: 50%;
 	margin-left: 70px;
+	height: 30px;
+	margin-top: 12px;
 }
 
 .primaryCateogryNav  {
 	float: left;
-	font-size: 3.3em;
+	font-size: 2.8em;
 	color: white;
 	margin-left: 20px;
+	height: 30px;
+	margin-top: -5px;
 }
 
 /* .secondaryContentBottom {

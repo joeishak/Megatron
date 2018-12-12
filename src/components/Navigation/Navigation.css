@@ -18,6 +18,11 @@
     font-size: 16px; 
 }
 
+.filterToggleMobile {
+    width: 100%;
+
+}
+
 .right-bar-span {
     float: right;
     list-style-type: none;
@@ -37,7 +42,7 @@
 }
 
 .commentIcon {
-    margin-top: 7px;
+    margin-top: 9px;
     height: 46px;
     margin-left: 14px;
 }
@@ -169,6 +174,9 @@
 
 /* Mobile Screens */
 
+.dropDownContainer {
+    margin-top: 25px;
+}
 
 
 .filterIcon {
@@ -193,9 +201,6 @@
     float: right;
 }
 
-.filterIconContainer {
-    float: right;
-}
 
 .loggedUser {
     font-family: 'Ubuntu', sans-serif !important;
@@ -217,6 +222,7 @@
         margin-top: -6px;
     }
 
+
 }
 
 @media only screen and (max-width: 765px) {
@@ -226,6 +232,7 @@
     .filterIcon {
         display: none;
     }
+
 
 }
 
@@ -239,4 +246,6 @@
     .imgLogo, .loggedUser {
         margin-top: 10px;
     }
+
 }
+
