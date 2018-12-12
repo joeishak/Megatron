@@ -57,11 +57,16 @@ class KendoMultiChart extends Component {
     }
     formatDataValues(arr){
         let newArr;
-        if(arr.length>0){
-        newArr = arr.map(item=>{
-            return item.toFixed(1);
-        });
-        }
+        if(arr.length>0 ){
+            newArr = arr.map(item=>{
+                if(this.props.multichartMetric ===true){
+                    return item.toFixed(1);
+
+                }
+                return item
+               
+            });
+        } 
 
         return newArr;
         
@@ -80,43 +85,14 @@ class KendoMultiChart extends Component {
         }
     }
 
-    renderUnits(value) {
-        let returnValue = '';
-        value = parseInt(value)
-        if (value > 1000 && value <= 999999) {
-            value = (value/1000).toFixed(1);
-            returnValue =  value.toString() + ' K';
-        } else if (value > 1000000 && value <= 999999999) {
-            value = (value/1000000).toFixed(1);
-            returnValue =  value.toString() + ' M';
-        } else if (value > 1000000000 && value <= 999999999999) {
-            value = (value/1000000000).toFixed(1);
-            returnValue =  value.toString() + ' B';
-        } else if (value > 1000000000 && value <= 999999999999999) {
-            value = (parseInt(value)/1000000000000).toFixed(1);
-            returnValue = value.toString() + ' T';
-        } else {
-            return  value.toString();
-        }
-        return returnValue;
-    }
+   
 
-    renderValue = (type, value) => {
-        switch (type) {
-            case 'currency':
-                return  '$ ' + this.renderUnits(value);
-            case 'units':
-                return  this.renderUnits(value);
-            case 'percent':
-                return  (value/ 10).toFixed(2).toString() + ' %';
-        }
-    }
+   
 
     render(){
 
-        const chartData = (this.props.multichartMetric ? this.props.activeMultichart : this.props.activeUnits);
+        const chartData = (this.props.multichartMetric === true? this.props.activeMultichart : this.props.activeUnits);
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
-
         const sharedTooltipRender = (props) => {
             const { points } = props;
             let bgColor = (points[0].value - points[1].value )> 0 ? 'ttBGGreen': 'ttBGRed';
@@ -124,6 +100,7 @@ class KendoMultiChart extends Component {
             let borderColor = (points[0].value - points[1].value) > 0 ? '#0DB16E'  : '#FF0000';
             const title = props.categoryText;
 
+            if(this.props.multichartMetric === true){
             return (
                 <div className="tooltipContainer" style={{border: `4px solid ${borderColor}`}}>
                 <div className="innerContent">
@@ -143,12 +120,40 @@ class KendoMultiChart extends Component {
                 </div>
 
 
-            );
+            );}
+            else {
+                return (
+                    <div className="tooltipContainer" style={{border: `4px solid ${borderColor}`}}>
+                    <div className="innerContent">
+                        <div className={`tooltipTitle ${bgColor}` }><b>Week {title}</b></div>
+                            {points.map((point) => (
+                            <div key={this.state.count++}>
+                                <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div>
+                                <b className="series-name">{point.series.name}</b> :
+                                    <div className="tooltipValue">
+                                        {(point.series.name === 'Actual' ?
+                                        <b className={`'series-value' + ${textColor}`}>{utils.formatMetric({valueType :'units', value: point.value}, 'value')}</b> :
+                                            <b className="series-value">{utils.formatMetric({valueType :'units', value: point.value}, 'value')}
+                                    </b>)}
+                                    </div>
+                            </div>))}
+                    </div>
+                    </div>
+    
+    
+                )
+            }
         }
 
 
         // Y axis Values
-        const labelContentRender = (props) => { return utils.formatMetric({valueType :this.props.valueType, value: props.value}, 'target'); }
+        const labelContentRender = (props) => { 
+            if(this.props.multichartMetric === true) {
+                 return utils.formatMetric({valueType :this.props.valueType, value: props.value}, 'value'); }
+            else{
+                return utils.formatMetric({valueType :'units', value: props.value}, 'value');
+            }
+        }
 
         // legend labels
         const legendRender = (props) => {
@@ -183,7 +188,6 @@ class KendoMultiChart extends Component {
                         <ChartCategoryAxisTitle text="" />
                         </ChartCategoryAxisItem>
                     </ChartCategoryAxis>
-                    {(this.props.multichartMetric) ?
                         <ChartSeries >
                             <ChartSeriesItem name='Actual' type="column"   gap={2}  width='20px' spacing={0.25} data={this.formatDataValues(chartData[0])} color={this.props.color} visible={this.state.seriesVisible} >
                                     <ChartSeriesItemTooltip render={this.tooltipRender} background="#3c3c3c" />
@@ -195,20 +199,6 @@ class KendoMultiChart extends Component {
                                     <ChartSeriesItemTooltip  background="#3c3c3c"  />
                             </ChartSeriesItem>
                             <ChartSeriesItem name='Last Quarter' type="line" data={ this.formatDataValues(chartData[3])} color='purple'  >
-                                <ChartSeriesItemTooltip  background="#3c3c3c"  />
-                            </ChartSeriesItem>
-                        </ChartSeries> :
-                        <ChartSeries >
-                            <ChartSeriesItem name='Actual' type="column" gap={2} spacing={0.25} data={chartData[0]} color={this.props.color} >
-                                <ChartSeriesItemTooltip  background="#3c3c3c"   />
-                            </ChartSeriesItem>
-                            <ChartSeriesItem name='Target' type="line" data={chartData[1]} color='#0E9CC6'>
-                                <ChartSeriesItemTooltip background="#3c3c3c"   />
-                            </ChartSeriesItem>
-                            <ChartSeriesItem name='Last Year' type="line" data={chartData[2]} color='#DFDE43'  >
-                                <ChartSeriesItemTooltip  background="#3c3c3c"  />
-                            </ChartSeriesItem>
-                            <ChartSeriesItem name='Last Quarter' type="line" data={chartData[3]} color='purple'  >
                                 <ChartSeriesItemTooltip  background="#3c3c3c"  />
                             </ChartSeriesItem>
                         </ChartSeries>
@@ -224,7 +214,6 @@ class KendoMultiChart extends Component {
 }
 function mapStateToProps(state){
     return {
-
         multichartMetric: state.multichartIsArr,
         activeUnits: state.secondaryData[state.activeCards.secondary].details.unitMultichart,
         activeMultichart: state.secondaryData[state.activeCards.secondary].details.multichart,

@@ -26,8 +26,12 @@ ReactDOM.render(
 			<Route path="/summary" exact={true} component={App} />
 			<Route path="" exact={true} component={App} />
 
-			{/* // IB APPS */}
-			<Route path={` http://rtb.corp.adobe.com:8551/apps/rtbcallback/index.html`} component={ImplicitCallback}></Route>
+
+			{/* IBAPPS*/}
+			{/* <Route path={`${process.env.PUBLIC_URL}`} component={ImplicitCallback} /> */}
+
+			 {/*  IIS*/}
+			{/* <Route path={`${process.env.PUBLIC_URL}` + '/implicit/callback/'} component={ImplicitCallback} /> */}
 
 			{/* // Localhost */}
 			<Route path={`${process.env.PUBLIC_URL}`+ '/implicit/callback'} component={ImplicitCallback} />
