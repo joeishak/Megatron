@@ -67,7 +67,7 @@ class App extends Component {
     });
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.props.generateFilterData();
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
@@ -123,7 +123,7 @@ class App extends Component {
       return false;
   }
 
-  componentDidUpdate(prevProps) {
+  async componentDidUpdate(prevProps) {
     this.checkAuthentication();
 
     // If the old available filters change or the active filters change

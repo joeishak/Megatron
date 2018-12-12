@@ -2,7 +2,7 @@
   "name": "practice",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://localhost:8551/apps/adobepoc/",
+  "homepage": "http://localhost:8551/apps/rtbalpha/",
   "dependencies": {
     "@okta/okta-react": "^1.1.4",
     "@okta/okta-signin-widget": "^2.13.0",
