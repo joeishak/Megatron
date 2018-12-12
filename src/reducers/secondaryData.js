@@ -220,7 +220,7 @@ export function processFinancialQTD(newState, data) {
             // New New Arr
         case 0:
             newState[i].details.qtdw.qtd[0].value = findata.NewActuals;
-            newState[i].details.qtdw.qtd[1].value = findata.NewActuals;
+            newState[i].details.qtdw.qtd[1].value = findata.NewUnitsActual;
             newState[i].details.qtdw.qtd[2].value = findata.NewTarget;
             newState[i].details.qtdw.qtd[3].value = findata.NewVsQrfDiff;
             newState[i].details.qtdw.qtd[4].value = findata.NewVSQRF;
@@ -230,7 +230,7 @@ export function processFinancialQTD(newState, data) {
             // Gross New Arr
         case 1:
             newState[i].details.qtdw.qtd[0].value = findata.GrossARRActual;
-            newState[i].details.qtdw.qtd[1].value = findata.GrossARRActual;
+            newState[i].details.qtdw.qtd[1].value = findata.GrossUnitsActual;
             newState[i].details.qtdw.qtd[2].value = findata.GrossARRTarget;
             newState[i].details.qtdw.qtd[3].value = findata.GrossVsQrfDiff;
             newState[i].details.qtdw.qtd[4].value = findata.GrossVsQrf;
@@ -240,7 +240,7 @@ export function processFinancialQTD(newState, data) {
             // Cancellations Arr
         case 2:
             newState[i].details.qtdw.qtd[0].value = findata.CancelARRActual;
-            newState[i].details.qtdw.qtd[1].value = findata.CancelARRActual;
+            newState[i].details.qtdw.qtd[1].value = findata.CancelUnitsActual;
             newState[i].details.qtdw.qtd[2].value = findata.CancelARRTarget;
             newState[i].details.qtdw.qtd[3].value = findata.CancelArrVsQrfDiff;
             newState[i].details.qtdw.qtd[4].value = findata.CancelVsQrf;
@@ -250,7 +250,7 @@ export function processFinancialQTD(newState, data) {
             // Renewals Arr
         case 3:
             newState[i].details.qtdw.qtd[0].value = findata.RenewActuals;
-            newState[i].details.qtdw.qtd[1].value = findata.RenewActuals;
+            newState[i].details.qtdw.qtd[1].value = findata.RenewUnitsActual;
             newState[i].details.qtdw.qtd[2].value = findata.RenewARRTarget;
             newState[i].details.qtdw.qtd[3].value = findata.RenewVsQrfDiff;
             newState[i].details.qtdw.qtd[4].value = findata.RenewVSQRF;
@@ -261,7 +261,7 @@ export function processFinancialQTD(newState, data) {
     }
 }
 export function processFinancialGeoQTD(newState, data) {
-
+    console.log(data);
     //Clear old Values
     newState[0].details.geo.qtd = [];
     newState[1].details.geo.qtd = [];
@@ -272,48 +272,44 @@ export function processFinancialGeoQTD(newState, data) {
         let net = {
             index: i,
             actuals: item.NewActuals,
-            units: 0.0,
+            units: item.NewUnitsActual,
             qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.geo_code,
-            units: 0.0,
             vsQrf: item.NewVSQRF,
             yy: item.NewYY
         }
         let gross = {
             index: i,
             actuals: item.GrossARRActual,
-            units: 0.0,
+            units: item.GrossUnitsActual,
             qq: item.GrossARRQQTY,
-            qrf: item.GrossTarget,
+            qrf: item.GrossARRTarget,
             qrfDiff: item.GrossVsQrfDiff,
             type: item.geo_code,
-            units: 0.0,
             vsQrf: item.GrossVsQrf,
-            yy: item.GrossArrYY
+            yy: item.GrossYY
         }
         let canc = {
             index: i,
             actuals: item.CancelARRActual,
-            units: 0.0,
+            units: item.CancelUnitsActual,
             qq: item.CancelARRQQTY,
             qrf: item.CancelARRTarget,
             qrfDiff: item.CancelArrVsQrfDiff,
             type: item.geo_code,
-            units: 0.0,
             vsQrf: item.CancelVsQrf,
             yy: item.CancelARRYY
         }
         let ren = {
             index: i,
             actuals: item.RenewalActuals,
-            units: 0.0,
+            units: item.RenewUnitsActual,
             qq: item.RenewARRQQTY,
             qrf: item.RenewARRTarget,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.geo_code,
-            units: 0.0,
             vsQrf: item.RenewVSQRF,
             yy: item.RenewARRYY
         }
@@ -341,52 +337,48 @@ export function processFinancialMarketQTD(newState, data) {
         let net = {
             index: i,
             actuals: item.NewActuals,
-            units: 0.0,
+            units: item.NewUnitsActual,
             marketArea: item.market_area_code,
             qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.geo_code,
-            units: 0.0,
             vsQrf: item.NewVSQRF,
             yy: item.NewYY
         }
         let gross = {
             index: i,
             actuals: item.GrossARRActual,
-            units: 0.0,
             marketArea: item.market_area_code,
             qq: item.GrossARRQQTY,
-            qrf: item.GrossTarget,
+            qrf: item.GrossARRTarget,
             qrfDiff: item.GrossVsQrfDiff,
             type: item.geo_code,
-            units: 0.0,
+            units: item.GrossUnitsActual,
             vsQrf: item.GrossVsQrf,
-            yy: item.GrossArrYY
+            yy: item.GrossYY
         }
         let canc = {
             index: i,
             actuals: item.CancelARRActual,
-            units: 0.0,
             marketArea: item.market_area_code,
             qq: item.CancelARRQQTY,
             qrf: item.CancelARRTarget,
             qrfDiff: item.CancelArrVsQrfDiff,
             type: item.geo_code,
-            units: 0.0,
+            units: item.CancelUnitsActual,
             vsQrf: item.CancelVsQrf,
             yy: item.CancelARRYY
         }
         let ren = {
             index: i,
             actuals: item.RenewalActuals,
-            units: 0.0,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
             qrf: item.RenewARRTarget,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.geo_code,
-            units: 0.0,
+            units: item.RenewUnitsActual,
             vsQrf: item.RenewVSQRF,
             yy: item.RenewARRYY
         }
@@ -400,7 +392,6 @@ export function processFinancialMarketQTD(newState, data) {
 
 }
 export function processSecondaryData(g1, g2, g3, newState) {
-
     //Finance
     newState[0].value = g1.data[0].NewARRActual;
     newState[0].target = g1.data[0].NewARRTarget;

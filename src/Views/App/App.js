@@ -186,7 +186,6 @@ class App extends Component {
     }// End If for Previous Props is Empty
 
     if(this.props.activePrimaryCard.index > 0){
-      
       this.props.updateMultichartMetric(true);
     }
   }
@@ -216,6 +215,7 @@ class App extends Component {
             this.props.updateActiveSecondaryCard(0);
             break;
         case(1):
+            this.props.updateMultichartMetric(true);
             this.props.updateActiveSecondaryCard(4);
             break;
     }

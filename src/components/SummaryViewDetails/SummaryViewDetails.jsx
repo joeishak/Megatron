@@ -341,18 +341,18 @@ class SummaryViewDetails extends Component {
   }
   renderDollarValuePanelBarItems(value, item) {
     if (
-      item.header === "Actuals" ||
-      item.header === "QRF" ||
+      // item.header === "Actuals" ||
+      // item.header === "QRF" ||
       item.header === "Units"
     ) {
       // If Units remove the dollar sign
-      let tmpValue =
-        item.header === "Units"
-          ? this.renderDollarValue(value).substr(1)
-          : this.renderDollarValue(value);
-      return tmpValue;
+      // let tmpValue =
+      //   item.header === "Units"
+      //     ? this.renderDollarValue(value).substr(1)
+      //     : this.renderDollarValue(value);
+      return utils.formatMetric({ valueType: 'units', value: item.value }, 'value');
     } else {
-      return utils.formatMetric({ valueType: this.props.activeItem.valueType, value: this.props.activeItem.value }, 'value');
+      return utils.formatMetric({ valueType: this.props.activeItem.valueType, value: item.value}, 'value');
     }
   }
   detailsRenderM(item) {
@@ -426,46 +426,7 @@ class SummaryViewDetails extends Component {
               .reverse()}
           </div>
         );
-      case "all":
-        return (
-          <div className={qtdTotalTable + " col-md-11"}>
-            {this.props.activeItem.details.qtdw.week
-              .map(item => {
-                return (
-                  <div
-                    key={item.index}
-                    className={
-                      qtdwColSizes + (item.header === "Vs Qrf" ? " redBG" : " ")
-                    }
-                  >
-                    <span className="contHeader"> {item.header} </span>
-                    <span className="valHeader">
-                      {" "}
-                      {this.renderDollarValuePanelBarItems(item.value, item)}
-                    </span>
-                  </div>
-                );
-              })
-              .reverse()}
-            {this.props.activeItem.details.qtdw.qtd
-              .map(item => {
-                return (
-                  <div
-                    key={item.index}
-                    className={
-                      qtdwColSizes + (item.header === "Vs Qrf" ? " redBG" : " ")
-                    }
-                  >
-                    <span className="contHeader"> {item.header} </span>
-                    <span className="valHeader">
-                      {this.renderDollarValuePanelBarItems(item.value, item)}
-                    </span>
-                  </div>
-                );
-              })
-              .reverse()}
-          </div>
-        );
+     
       default:
         break;
     }
