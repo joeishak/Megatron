@@ -77,8 +77,12 @@ class App extends Component {
       if(this.props.primaryData !== nextProps.primaryData){
           return true;
       }
+      
       if ( this.props.secondaryData !== nextProps.secondaryData){
           return true;
+      }
+      if(this.props.secondaryData[this.props.activeSecondaryCard].details.qtdw !== nextProps.secondaryData[nextProps.activeSecondaryCard].details.qtdw ){
+        return true;
       }
       if( this.state.authenticated !== nextState.authenticated){
           return true;

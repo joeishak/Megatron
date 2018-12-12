@@ -871,9 +871,24 @@ export function renderDollarValue(value) {
     }
 }
 export function formatPercentage(value) {
-    let newValue = (value * 100)
-        .toFixed(2);
-    return newValue > 100 ? '100%' : newValue + '%';
+    let percentage = value*100;
+    let absVal = Math.abs(percentage);
+     // Greater than or less than 100 
+    // set value to 100
+    if( absVal >= 100 ){
+        if(value < 0){
+            percentage =  -100;
+        } else{
+            percentage =  100;
+        }
+    } else{
+
+        percentage = value
+         .toFixed(2);
+     
+    }
+   
+    return percentage + '%';
 }
 
 export function formatMetric(item, type) {
@@ -884,6 +899,7 @@ export function formatMetric(item, type) {
         case 'currency':
             return renderDollarValue(item.value);
         case 'percent':
+        let formattedPercent 
             return formatPercentage(item.value);
         }
     } else if (type === 'target') {
