@@ -12,7 +12,7 @@ export default function(state = PrimaryData, action) {
     switch(action.type) {
         case  GET_PRIMARY_DATA:
 
-// console.log(action.payload);
+            console.log(action.payload);
             newState = Object.assign([], state);
             //Actual, Targets, Vs QRf
             // //Finance
@@ -43,7 +43,7 @@ export default function(state = PrimaryData, action) {
             //   //Renew
             newState[5].value = action.payload[1].data[0].UiCancelRateActual;
             newState[5].target = action.payload[1].data[0].UiCancelRateTarget;
-            newState[5].vsqrf = action.payload[1].data[0].UiCacncelRateVsQrf;
+            newState[5].vsqrf = action.payload[1].data[0].UiCancelRateVsQrf;
 
             return newState;
             case ADD_NEW_PRIMARY_COMMENT:

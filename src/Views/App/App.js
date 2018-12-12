@@ -183,6 +183,11 @@ class App extends Component {
           this.props.addValueToActiveMultiFilter(ele);
         });
       }
+    }// End If for Previous Props is Empty
+
+    if(this.props.activePrimaryCard.index > 0){
+      
+      this.props.updateMultichartMetric(true);
     }
   }
   async login() {

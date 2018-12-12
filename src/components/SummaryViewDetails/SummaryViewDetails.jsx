@@ -342,7 +342,6 @@ class SummaryViewDetails extends Component {
   renderDollarValuePanelBarItems(value, item) {
     if (
       item.header === "Actuals" ||
-      item.header === "QRF Diff" ||
       item.header === "QRF" ||
       item.header === "Units"
     ) {

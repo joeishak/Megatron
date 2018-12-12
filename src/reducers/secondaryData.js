@@ -36,7 +36,6 @@ export default function (state = SecondaryData, action) {
         // Journey G2 Market QTD  - 11
         // Journey G3 Market Qtd - 12
 
-        console.log(action.payload);
         newState = Object.assign([], state);
         processFinancialMultichart(newState, action.payload[0].data);
         processFinancialUnitsMultichart(newState, action.payload[1].data);
@@ -174,7 +173,7 @@ export function processFinancialUnitsMultichart(newState, data) {
         netUnits.actual.push(item.NewUnitsActual);
         netUnits.target.push(item.NewUnitsTarget);
         netUnits.ly.push(item.NewUnitsLY);
-        netUnits.lq.push(item.NewUnitsLQ);
+        netUnits.lq.push(item.NeWUnitsLQ);
         netCancUnits.actual.push(item.CancelUnitsActual);
         netCancUnits.target.push(item.CancelUnitsTarget);
         netCancUnits.ly.push(item.CancelUnitsLY);
@@ -191,6 +190,7 @@ export function processFinancialUnitsMultichart(newState, data) {
 
     // Set Units
     for (let i = 0; i < newState.length; i++) {
+        newMulti = []
         switch (i) {
         case 0:
             newMulti = [netUnits.actual, netUnits.target, netUnits.ly, netUnits.lq];
@@ -267,7 +267,6 @@ export function processFinancialGeoQTD(newState, data) {
     newState[1].details.geo.qtd = [];
     newState[2].details.geo.qtd = [];
     newState[3].details.geo.qtd = [];
-    console.log(data);
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         let net = {
@@ -308,7 +307,7 @@ export function processFinancialGeoQTD(newState, data) {
         }
         let ren = {
             index: i,
-            actuals: item.RenewActual,
+            actuals: item.RenewalActuals,
             units: 0.0,
             qq: item.RenewARRQQTY,
             qrf: item.RenewARRTarget,
@@ -337,7 +336,6 @@ export function processFinancialMarketQTD(newState, data) {
     newState[1].details.market.qtd = [];
     newState[2].details.market.qtd = [];
     newState[3].details.market.qtd = [];
-    console.log(data);
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         let net = {
@@ -381,7 +379,7 @@ export function processFinancialMarketQTD(newState, data) {
         }
         let ren = {
             index: i,
-            actuals: item.RenewActual,
+            actuals: item.RenewalActuals,
             units: 0.0,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,

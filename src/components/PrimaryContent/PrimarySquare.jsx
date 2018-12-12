@@ -61,12 +61,12 @@ class PrimarySquare extends Component {
     const formattedQRF = utils.formatMetric(
       {
         valueType: this.props.item.valueType,
-        value:
+        value:(this.props.item.target === 0)? 0: (
           (this.props.item.value - this.props.item.target) /
-          this.props.item.target
+          this.props.item.target)
       },
       "qrf"
-    );
+    ) || 0;
     const alignCenter = classNames({
       center: true
     });
@@ -252,7 +252,7 @@ class PrimarySquare extends Component {
                   </div>
                   {/* Formatted Target $###.## (M / %)*/}
                   <div className={responsiveTarget}>
-                    {formattedTarget} ( {formattedQRF} vs QRF)
+                    {formattedTarget} ( {(formattedQRF)} vs QRF)
                   </div>
                 </div>
               )}
