@@ -23,9 +23,13 @@ ReactDOM.render(
 		<Security issuer={config.oidc.issuer}
                   client_id={config.oidc.clientId}
                   redirect_uri={config.oidc.redirectUri}>
-			<Route path="/summary" exact={true} component={App} /> {/* Service Checker */}
-			<Route path="" exact={true} component={App} /> {/* Service Checker */}
+			<Route path="/summary" exact={true} component={App} />
+			<Route path="" exact={true} component={App} />
 
+			{/* // IB APPS */}
+			<Route path={` http://rtb.corp.adobe.com:8551/apps/rtbcallback/index.html`} component={ImplicitCallback}></Route>
+
+			{/* // Localhost */}
 			<Route path={`${process.env.PUBLIC_URL}`+ '/implicit/callback'} component={ImplicitCallback} />
 
 			</Security>

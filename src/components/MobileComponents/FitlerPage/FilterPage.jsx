@@ -3,7 +3,7 @@ import styles from './FilterPage.css';
 import * as _ from 'lodash';
 import * as actions from 'actions';
 import {connect } from 'react-redux';
-import KendoDropDownList from '../../KendoDropDownList/KendoDropDownList.js';
+// import KendoDropDownList from '../../KendoDropDownList/KendoDropDownList.js';
 
 // components
 import DropDownFilter from './components/DropDownFilter.jsx';
@@ -35,7 +35,7 @@ class FilterPage extends Component {
     render () {
 
         const filtersApplied = this.generateFilterList(this.props.activeFilters);
-        const navbarPixelHeight = 85;
+        // const navbarPixelHeight = 85;
 
         return (
             <div className="filterMobileContainer" >

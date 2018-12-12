@@ -308,7 +308,7 @@ export function processFinancialGeoQTD(newState, data) {
         }
         let ren = {
             index: i,
-            actuals: item.RenewActual,
+            actuals: item.RenewalActuals,
             units: 0.0,
             qq: item.RenewARRQQTY,
             qrf: item.RenewARRTarget,
@@ -381,7 +381,7 @@ export function processFinancialMarketQTD(newState, data) {
         }
         let ren = {
             index: i,
-            actuals: item.RenewActual,
+            actuals: item.RenewalActuals,
             units: 0.0,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
