@@ -7,11 +7,10 @@ class Playground extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { activeItem: '1' }
-    }
-
-    componentDidMount() {
-        // console.log(this.props.item);
+        this.state = { 
+            activeItem: '1' 
+        
+        }
     }
 
     onNavigateClick = (type, e) => {
@@ -43,26 +42,32 @@ class Playground extends Component {
 
         return (
             <div className="playgroundContainer" style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
-                    <div id="myCarousel" className="carousel slide">
-                        <ol className="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" className={`${item1Active}`}></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1" className={`${item2Active}`}></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2" className={`${item3Active}`}></li>
-                        </ol>
+                <div id="myCarousel" className="carousel slide">
+
+                    <ol className="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" className={`${item1Active}`}></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1" className={`${item2Active}`}></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2" className={`${item3Active}`}></li>
+                    </ol>
+
                     <div className="carousel-inner">
+                        {/* MOBILE MULTICHART  */}
                         <div id="1" className={`item ${item1Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
-                           <MobileMultiChart bottomContainerHeight={this.props.bottomContainerHeight}></MobileMultiChart>
+                            <MobileMultiChart bottomContainerHeight={this.props.bottomContainerHeight}></MobileMultiChart>
                         </div>
+                        {/* MOBILE VIEW DETAIILS */}
                         <div id="2" className={`item ${item2Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
                             <MobileViewDetails valueType={this.props.valueType} detailsData={this.props.detailsData}></MobileViewDetails>
                         </div>
+                        {/* MOBILE COMMENT BOX */}
                         <div id="3" className={`item ${item3Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
                             <MobileCommentBox comments={this.props.comments}></MobileCommentBox>
                         </div>
                     </div>
+
                     <a className="carousel-control left" href="#myCarousel" data-slide="prev" onClick={e => this.onNavigateClick('prev',e)}>&lsaquo;</a>
                     <a className="carousel-control right" href="#myCarousel" data-slide="next" onClick={e => this.onNavigateClick('next',e)}>&rsaquo;</a>
-                    </div>
+                </div>
             </div>
         )
     }

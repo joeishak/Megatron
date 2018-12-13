@@ -10,9 +10,6 @@ import {
   TABLET,
   LAPTOP
 } from "../../Constants/consts.js";
-// import ResizablePanels from '../MobileComponents/ResizablePanels/ResizablePanels.jsx';
-// import SplitPane from 'react-split-pane';
-import Rnd from "react-rnd";
 
 import * as utils from '../../utilities';
 
@@ -42,6 +39,7 @@ class SecondaryContentList extends Component {
     ReactDOM.findDOMNode(this).addEventListener("touchend", this.stopResize);
     ReactDOM.findDOMNode(this).addEventListener("mouseleave", this.stopResize);
     ReactDOM.findDOMNode(this).addEventListener("touchcancel", this.stopResize);
+    
   }
 
   componentWillUnmount() {
@@ -51,41 +49,16 @@ class SecondaryContentList extends Component {
     });
   }
 
-  // shouldComponentUpdate(nextProps) {
-  //   if (this.props.toggleCommentary !== nextProps.toggleCommentary) {
-  //     return true;
-  //   }
-  //   if (this.props.data !== nextProps.data) {
-  //     return true;
-  //   }
-  //   if (this.props.activeJourneyCard !== nextProps.activeJourneyCard) {
-  //     return true;
-  //   }
-  //   if (this.props.activePrimary !== nextProps.activePrimary) {
-  //     return true;
-  //   }
-  //   if (this.props.deviceType !== nextProps.deviceType) {
-  //     return true;
-  //   }
-  //   if ( this.props.mobileSecondaryIsActive !== nextProps.mobileSecondaryIsActive  ) {
-  //     return true;
-  //   }
-  //   if(this.props.primaryDataCategory !== nextProps.primaryDataCategory){
-  //
-  //       return true;
-  //   }
-  //   if(this.props.window !== nextProps.windows){
-  //       return true;
-  //   }
-  //   return false;
-  // }
-
   isTouchDevice() {
     return "ontouchstart" in document.documentElement;
   }
 
   calculateHeight = () => {
-    return navBarHeight + titleContainerHeight + secondaryRowHeight * 4;
+    let navHeight = 50;
+    if (this.props.window.width > 1024 || this.props.window.width > 765) {
+      navHeight = 80;
+    }
+    return navHeight + titleContainerHeight + secondaryRowHeight * 4;
   };
 
   startResize = () => {

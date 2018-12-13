@@ -19,7 +19,7 @@ ReactDOM.render(
 		<Router>
 		<Security issuer={config.oidc.issuer}
                   client_id={config.oidc.clientId}
-                  redirect_uri="http://localhost:4300/implicit/callback">
+                  redirect_uri={config.oidc.redirectUri}>
 			<Route path="/summary" exact={true} component={App} />
 			<Route path="/" exact={true} component={App} />
 
