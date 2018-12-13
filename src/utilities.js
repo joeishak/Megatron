@@ -913,7 +913,7 @@ export function formatMetric(item, type) {
 
         }
     } else if (type === 'qrf') {
-        return (formatPercentage(item.value) !== NaN) ? formatPercentage(item.value) : 0;
+        return (isNaN(formatPercentage(item.value)) ) ? formatPercentage(item.value) : 0;
     }
 }
 
