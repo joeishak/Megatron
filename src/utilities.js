@@ -871,20 +871,24 @@ export function renderDollarValue(value) {
     }
 }
 export function formatPercentage(value) {
+    let isNegative = (value< 0) ? true: false;
     let percentage = value*100;
     let absVal = Math.abs(percentage);
      // Greater than or less than 100 
     // set value to 100
     if( absVal >= 100 ){
-        if(value < 0){
+        if(isNegative) {
             percentage =  -100;
-        } else{
+        } else {
             percentage =  100;
         }
     } else{
 
-        percentage = value
-         .toFixed(2);
+        if(value === 0 || value === undefined){
+            return '0.00%';
+        }
+
+        percentage = (value*100).toFixed(2);
      
     }
    
