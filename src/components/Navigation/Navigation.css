@@ -1,8 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu:300');
-* {
-    font-family: 'Ubuntu', sans-serif ;
-}
-
 .flRight{
     float: right;
 }
@@ -10,17 +5,11 @@
     float:left;
 }
 .navContainer{
-    height: 80px;
     margin-bottom: 0px !important;
 }
 
 .navText {
     font-size: 16px; 
-}
-
-.filterToggleMobile {
-    width: 100%;
-
 }
 
 .right-bar-span {
@@ -33,6 +22,7 @@
     padding-top: 12px;
     width:54px;
     height:54px;
+ 
 }
 
 .profilePic{
@@ -42,7 +32,7 @@
 }
 
 .commentIcon {
-    margin-top: 9px;
+    margin-top: 7px;
     height: 46px;
     margin-left: 14px;
 }
@@ -58,8 +48,11 @@
     margin-top: 10px;
 }
 
+.imgLogo {
+    margin-top: 3px;
+}
 
-/* .navItem{
+.navItem{
     margin-top: 5px;
     padding-left: 5px;
     padding-right:5px;
@@ -67,9 +60,9 @@
     margin-right: 5px;
     margin-top:15px;
     padding-bottom: 15px;
-} */
+}
 
-/* .dropDownContainer {
+.dropDownContainer {
     padding-right: 10px;
     margin-top: 20px;
     padding-bottom: 20px;
@@ -79,15 +72,13 @@
 .dropDownContainerBox {
     margin-right: 7px;
     margin-top: 10px;
-} */
+}
 
-/* .selected {
+.selected {
     border-bottom: 5px solid #FF0000;
-} */
+}
 
-
-
-/* #nav-dropdown {
+#nav-dropdown {
     color: rgb(46, 46, 46);
     text-decoration: none;
 }
@@ -100,7 +91,7 @@
 
 #nav-dropdown::after {
     display:none;
-} */
+}
 
 /* .commentNotificationCircle{
     height: 5px;
@@ -174,11 +165,6 @@
 
 /* Mobile Screens */
 
-.dropDownContainer {
-    margin-top: 25px;
-}
-
-
 .filterIcon {
     margin-top: 13px;
     margin-left: 10px;
@@ -201,12 +187,9 @@
     float: right;
 }
 
-
-.loggedUser {
-    font-family: 'Ubuntu', sans-serif !important;
-    font-weight: 300 !important;
+.filterIconContainer {
+    float: right;
 }
-
 
 @media only screen and (max-width: 1024px) {
     .flLeft {
@@ -215,14 +198,6 @@
     .flRight {
         padding-right: 20px;
     }
-    .navbar-default{
-        height: 50px !important;
-    }
-    .imgLogo, .loggedUser {
-        margin-top: -6px;
-    }
-
-
 }
 
 @media only screen and (max-width: 765px) {
@@ -232,20 +207,24 @@
     .filterIcon {
         display: none;
     }
-
-
+    .navbar {
+        height: 50px !important;
+        margin-bottom: 0px !important;
+    }
+    .imgLogo {
+        margin-top: 15px !important;
+    }
+    .navBrandLogo, .navbar-brand {
+        margin-top: -20px;
+    }
 }
 
 @media only screen and (min-width: 765px) {
     .fitlerIconMobile {
        display: none;
     }
-    .navbar-default{
-        height: 80px !important;
-    }
-    .imgLogo, .loggedUser {
-        margin-top: 10px;
-    }
-
 }
 
+.navbar, .navbar-header {
+    margin-bottom: 0px !important;
+}

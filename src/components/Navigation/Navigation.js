@@ -1,16 +1,15 @@
 // Npm Modules
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
-import { Nav, Navbar, NavDropdown, MenuItem } from "react-bootstrap";
+// import { Route, Link } from "react-router-dom";
+import { Navbar, NavDropdown, MenuItem } from "react-bootstrap";
 import { Expand } from "@progress/kendo-react-animation";
-// import classNames from "classNames";
+// import classNames from "classnames";
 import { withAuth } from "@okta/okta-react";
 import { checkAuthentication } from "../../helper";
 
-import App from "../../Views/App/App.js";
+// import App from "../../Views/App/App.js";
 import styles from "./Navigation.css";
 
-// Images Imports, Adobe Logo, User Icon, CommentIcon ON, CommentsIcon Off
 
 import logo from "../../assets/images/adobe-logo-nav-1.svg";
 import userIcon from "./user-icon.svg";
@@ -19,7 +18,7 @@ import filterSelected from "./assets/filter-selected.svg";
 import commentIconOff from "./assets/images/comment-icon-off.svg";
 import commentIconOn from "./assets/images/comment-icon-on.svg";
 
-import profilePic from "./assets/images/amit-profile.png";
+// import profilePic from "./assets/images/amit-profile.png";
 import * as utils from '../../utilities';
 
 // Redux
@@ -36,8 +35,7 @@ class Navigation extends Component {
       activeTab: "tab1",
       dataPrefDialogVisible: this.props.dialogIsOpen,
       commentsAreActive: false,
-      authenticated: null,
-      isUserMenuVisible: false
+      authenticated: null
     };
     //Binding functions to this
     this.checkAuthentication = checkAuthentication.bind(this);
@@ -93,12 +91,6 @@ class Navigation extends Component {
     }
   }
 
-  onUserMenuClick = () => {
-    console.log('user mennu clicked');
-    const state = this.state.isUserMenuVisible;
-    this.setState({isUserMenuVisible: !state});
-  }
-
   onDataPreferencesSelcted() {
     this.props.updateDialogVisibility(true);
   }
@@ -113,18 +105,15 @@ class Navigation extends Component {
     }
   };
 
-  // onFilterToggled = (e) => {
-  //   // if mobile view show filter screen and hide NavbarCollapse, else function as a toggle.
-  // }
-
   render() {
     //local constants for showing the logo with an animation
-    const isLaptop = utils.includes(this.props.deviceType, 'laptop');
+    const isLaptop = utils.includes( this.props.deviceType, 'laptop');
     const filterIcon = this.props.isFilterPageVisible
       ? filterSelected
       : filterUnselected;
     const { show } = this.state;
-    const logos = show ? <img alt="" src={logo} className="imgLogo"/> : null;
+    const logos = show ? <img alt="" src={logo} className="imgLogo" /> : null;
+    const { activeTab } = this.state;
     const filterButton = utils.includes(this.props.deviceType, 'tablet') || utils.includes(this.props.deviceType, 'mobile') ? (
         <div className="filterButton">
           <img
@@ -137,74 +126,72 @@ class Navigation extends Component {
       ) : null;
 
     return (
-        <div className="navbar-default" style={{height: '80px !important'}} >
-        
-          <div className="container-fluid">
-
-            <div className="navbar-header">
-              <a className="navbar-brand">{logos}</a>
+      <Navbar fluid className="navContainer">
+        <Navbar.Header>
+          <Navbar.Brand className="navBrandLogo">
+            <div href="#brand" style={{ width: 130 }}>
+              <Expand>{logos}</Expand>
             </div>
+          </Navbar.Brand>
+          {filterButton}
+        </Navbar.Header>
+        {isLaptop === true ?
+        <Navbar.Collapse>
+          <span className="right-bar-span">
+            <div className="dropDownContainerBox">
+              <div className="flLeft">
+                <NavDropdown
+                  eventKey={3}
+                  className="dropDownContainer"
+                  title={this.processLoggedUser(this.props.user) || ""}
+                  id="nav-dropdown"
+                  noCaret
+                >
+                  <MenuItem eventKey={3.1}>Account Settings</MenuItem>
+                  <MenuItem
+                    eventKey={3.2}
+                    onClick={e => this.onDataPreferencesSelcted(e)}
+                  >
+                    Data Preferences
+                  </MenuItem>
+                  <MenuItem eventKey={3.3} onClick={this.logout}>
+                    Log Out
+                  </MenuItem>
+                </NavDropdown>
+              </div>
+              <div className="flLeft">
+                <img alt="" className="userIcon" src={userIcon} />
+              </div>
 
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <Navbar.Collapse>
-                <span className="right-bar-span">
-                  <div className="dropDownContainerBox">
-                    <div className="flLeft">
-                      <NavDropdown
-                        eventKey={3}
-                        className="dropDownContainer"
-                        title={this.processLoggedUser(this.props.user) || ""}
-                        id="nav-dropdown"
-                        noCaret>
-                          <MenuItem eventKey={3.1}>
-                          Account Settings
-                          </MenuItem>
-                          <MenuItem
-                            eventKey={3.2}
-                            onClick={e => this.onDataPreferencesSelcted(e)}>
-                            Data Preferences
-                          </MenuItem>
-                          <MenuItem eventKey={3.3} onClick={this.logout}>
-                            Log Out
-                          </MenuItem>
-                      </NavDropdown>
-                    </div>
-                    <div className="flLeft">
-                      <img alt="" className="userIcon" src={userIcon} />
-                    </div>
-                    
-                    {!isLaptop ? <div className="flRight">
-                      <div className="filterIconContainer">
-                          <img
-                            className="filterIcon"
-                            src={filterIcon}
-                            onClick={e => this.props.onFilterToggled(e)}
-                          />
-                      </div>
-                    </div>  : null}
+              <div className="flRight">
+                {" "}
+                <img
+                  alt=""
+                  className="commentIcon"
+                  onClick={this.updateCommentsNav}
+                  src={
+                    !this.props.toggleCommentaryOn
+                      ? commentIconOff
+                      : commentIconOn
+                  }
+                />{" "}
+              </div>
 
-                    {isLaptop ? <div className="flRight">
-                      {" "}
-                      <img
-                        alt=""
-                        className="commentIcon"
-                        onClick={this.updateCommentsNav}
-                        src={
-                          !this.props.toggleCommentaryOn
-                            ? commentIconOff
-                            : commentIconOn
-                        }
-                      />{" "}
-                    </div>: null}
-
-                  </div>
-                </span>
-              </Navbar.Collapse>
 
             </div>
-
-          </div>
-        </div>
+          </span>
+      </Navbar.Collapse> :
+            <div className="filterIconContainer">
+                <img
+                  className="filterIcon"
+                  src={filterIcon}
+                  onClick={e => this.props.onFilterToggled(e)}
+                />
+            </div> 
+          
+          
+      }
+      </Navbar>
     );
   }
 }
@@ -223,68 +210,3 @@ export default connect(
   maptStateToProps,
   actions
 )(withAuth(Navigation));
-
-
-{/* <Navbar fluid className="navContainer" style={!isLaptop ? {height: '60px'} : {height: '80px'}}>
-<Navbar.Header>
-  <Navbar.Brand className="navBrandLogo">
-    <div href="#brand" style={!isLaptop ? {height: '60px', width: '130px'} : {height: '80px', width: '130px'}}>
-      <Expand>{logos}</Expand>
-    </div>
-  </Navbar.Brand>
-  {filterButton}
-</Navbar.Header>
-{isLaptop === true ?
-<Navbar.Collapse>
-  <span className="right-bar-span">
-    <div className="dropDownContainerBox">
-      <div className="flLeft">
-        <NavDropdown
-          eventKey={3}
-          className="dropDownContainer"
-          title={this.processLoggedUser(this.props.user) || ""}
-          id="nav-dropdown"
-          noCaret
-        >
-          <MenuItem eventKey={3.1}>Account Settings</MenuItem>
-          <MenuItem
-            eventKey={3.2}
-            onClick={e => this.onDataPreferencesSelcted(e)}
-          >
-            Data Preferences
-          </MenuItem>
-          <MenuItem eventKey={3.3} onClick={this.logout}>
-            Log Out
-          </MenuItem>
-        </NavDropdown>
-      </div>
-      <div className="flLeft">
-        <img alt="" className="userIcon" src={userIcon} />
-      </div>
-
-      <div className="flRight">
-        {" "}
-        <img
-          alt=""
-          className="commentIcon"
-          onClick={this.updateCommentsNav}
-          src={
-            !this.props.toggleCommentaryOn
-              ? commentIconOff
-              : commentIconOn
-          }
-        />{" "}
-      </div>
-
-
-    </div>
-  </span>
-</Navbar.Collapse> :
-    <div className="filterIconContainer">
-        <img
-          className="filterIcon"
-          src={filterIcon}
-          onClick={e => this.props.onFilterToggled(e)}
-        />
-    </div> }
-</Navbar> */}

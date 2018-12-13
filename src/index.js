@@ -18,19 +18,19 @@ const inStyles =  {
 // '${process.env.PUBLIC_URL}';
 // http://70.176.243.97:8551/apps/adobecallback/index.html
 ReactDOM.render(
-	<Root  style={inStyles.root}>
+	<Root style={inStyles.root}>
 		<Router>
 		<Security issuer={config.oidc.issuer}
                   client_id={config.oidc.clientId}
-                  redirect_uri={config.oidc.redirectUri}>
+                  redirect_uri="http://localhost:4300/implicit/callback">
 			<Route path="/summary" exact={true} component={App} />
-			<Route path="" exact={true} component={App} />
+			<Route path="/" exact={true} component={App} />
 
 
 			{/* IBAPPS*/}
 			{/* <Route path={`${process.env.PUBLIC_URL}`} component={ImplicitCallback} /> */}
 
-			 {/*  IIS*/}
+			{/*  IIS*/}
 			{/* <Route path={`${process.env.PUBLIC_URL}` + '/implicit/callback/'} component={ImplicitCallback} /> */}
 
 			{/* // Localhost */}
