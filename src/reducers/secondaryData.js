@@ -35,7 +35,6 @@ export default function (state = SecondaryData, action) {
         // Financial Market QTD - 10
         // Journey G2 Market QTD  - 11
         // Journey G3 Market Qtd - 12
-        console.log(action.payload);
 
         newState = Object.assign([], state);
         processFinancialMultichart(newState, action.payload[0].data);

@@ -15,8 +15,7 @@ const inStyles =  {
 		width:'100%'
 	}
 }
-// '${process.env.PUBLIC_URL}';
-// http://70.176.243.97:8551/apps/adobecallback/index.html
+
 ReactDOM.render(
 	<Root style={inStyles.root}>
 		<Router>
