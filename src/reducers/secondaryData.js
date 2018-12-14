@@ -250,7 +250,7 @@ export function processFinancialQTD(newState, data) {
             break;
             // Renewals Arr
         case 3:
-            newState[i].details.qtdw.qtd[0].value = findata.RenewActuals;
+            newState[i].details.qtdw.qtd[0].value = findata.RenewalActuals;
             newState[i].details.qtdw.qtd[1].value = findata.RenewUnitsActual;
             newState[i].details.qtdw.qtd[2].value = findata.RenewARRTarget;
             newState[i].details.qtdw.qtd[3].value = findata.RenewVsQrfDiff;
