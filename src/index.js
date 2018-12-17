@@ -24,7 +24,7 @@ ReactDOM.render(
                   redirect_uri={config.oidc.redirectUri}>
 			<Route path="/summary" exact={true} component={App} />
 			<Route path="/" exact={true} component={App} />
-
+			{/* <Route path="" exact={true} component={App} /> */}
 
 			{/* IBAPPS*/}
 			{/* <Route path={`${process.env.PUBLIC_URL}`} component={ImplicitCallback} /> */}
@@ -33,7 +33,7 @@ ReactDOM.render(
 			{/* <Route path={`${process.env.PUBLIC_URL}` + '/implicit/callback/'} component={ImplicitCallback} /> */}
 
 			{/* // Localhost */}
-			<Route path={`${process.env.PUBLIC_URL}`+ '/implicit/callback'} component={ImplicitCallback} />
+			<Route path="/implicit/callback" component={ImplicitCallback} />
 
 			</Security>
 		</Router>

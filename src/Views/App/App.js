@@ -124,6 +124,9 @@ class App extends Component {
       if(this.props.dialogIsOpen !== nextProps.dialogIsOpen){
           return true;
       }
+      if(this.props.preferences !== nextProps.preferences){
+        return true;
+      }
       return false;
   }
 
