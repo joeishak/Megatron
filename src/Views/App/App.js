@@ -81,7 +81,10 @@ class App extends Component {
       if ( this.props.secondaryData !== nextProps.secondaryData){
           return true;
       }
-      if(this.props.secondaryData[this.props.activeSecondaryCard].details.qtdw !== nextProps.secondaryData[nextProps.activeSecondaryCard].details.qtdw ){
+      if(this.props.secondaryData[this.props.activeSecondaryCard].details.qtdw.qtd[0].value !== nextProps.secondaryData[nextProps.activeSecondaryCard].details.qtdw.qtd[0].value ){
+        return true;
+      }
+      if(this.props.secondaryData[this.props.activeSecondaryCard].details.geo !== nextProps.secondaryData[nextProps.activeSecondaryCard].details.geo ){
         return true;
       }
       if( this.state.authenticated !== nextState.authenticated){
@@ -92,7 +95,6 @@ class App extends Component {
       if(this.props.mobileIsPrimary !== nextProps.mobileIsPrimary || this.props.mobileIsSecondary !== nextProps.mobileIsSecondary){
           return true;
       }
-
       if(this.props.activeFilters !== nextProps.activeFilters){
           return true;
       }
@@ -118,7 +120,6 @@ class App extends Component {
           return true;
       }
       if(this.state.isFilterPageVisible !== nextState.isFilterPageVisible){
-
           return true;
       }
       if(this.props.dialogIsOpen !== nextProps.dialogIsOpen){
@@ -215,7 +216,7 @@ class App extends Component {
     }
   }
   updateActivePrimary(index) {
-      console.log('From Updating Primary : ' , index);
+    console.log('From Updating Primary : ' , index);
     this.props.updateActivePrimaryCard(index);
     switch(index){
         case(0):
@@ -226,8 +227,6 @@ class App extends Component {
             this.props.updateActiveSecondaryCard(4);
             break;
     }
-
-
     if (
       this.props.mobileIsPrimary === true && utils.includes(this.props.deviceType, 'laptop') === false
     ) {

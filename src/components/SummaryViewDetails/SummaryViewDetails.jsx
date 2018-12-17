@@ -255,19 +255,6 @@ class SummaryViewDetails extends Component {
     );
   }
 
-  componentDidUpdate(prevProps) {
-    // if( prevProps.activeFilters !== this.props.activeFilters ){
-    //   this.props.getQueryFilteredIBEData(this.props.activeFilters,prevProps.availableFilters);
-    //   this.props.getQueryFilteredJourneyIBEData(this.props.activeFilters,prevProps.availableFilters);
-    //   // this.props.getFilteredJourneyQtdData(this.props.activeFilters,this.props.availableFilters);
-
-    // }
-    if (this.props.journeyData !== prevProps.journeyData) {
-      this.props.updateJourneySummaryActiveCard(
-        this.props.journeyData[this.props.activeItem.index - 1]
-      );
-    }
-  }
 
   updateMultiChartMetricFilter(e) {
     let metric = e.target.innerHTML.toLowerCase();
