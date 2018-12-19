@@ -10,6 +10,7 @@ import { checkAuthentication } from "../../helper";
 import "@progress/kendo-theme-default/dist/all.css";
 
 // Custom Components
+import LoadingScreen from "../Loading/Loading.jsx";
 import FilterBox from "components/FilterBox/FilterBox";
 import Playground from "../../components/MobileComponents/Playground/Playground.jsx";
 import CustomDropDownPanel from "components/CustomDropDownPanel/CustomDropDownPanel";
@@ -43,7 +44,8 @@ class App extends Component {
         width: window.innerWidth
       },
       activeCommentBoxMetric: undefined,
-      isFilterPageVisible: false
+      isFilterPageVisible: false,
+      isLoading: true
     };
 
     /*Bindings  */
@@ -75,59 +77,76 @@ class App extends Component {
   }
   shouldComponentUpdate(nextProps,nextState){
       if(this.props.primaryData !== nextProps.primaryData){
+        this.setState({isLoading: false});
           return true;
-      }
-      
+      }  
       if ( this.props.secondaryData !== nextProps.secondaryData){
+        this.setState({isLoading: false});
           return true;
       }
       if(this.props.secondaryData[this.props.activeSecondaryCard].details.qtdw.qtd[0].value !== nextProps.secondaryData[nextProps.activeSecondaryCard].details.qtdw.qtd[0].value ){
+
         return true;
       }
       if(this.props.secondaryData[this.props.activeSecondaryCard].details.geo !== nextProps.secondaryData[nextProps.activeSecondaryCard].details.geo ){
+
         return true;
       }
       if( this.state.authenticated !== nextState.authenticated){
-          return true;
-      }if(this.props.deviceType !== nextProps.deviceType){
-          return true;
+
+        return true;
+      }
+      if(this.props.deviceType !== nextProps.deviceType){
+
+        return true;
       }
       if(this.props.mobileIsPrimary !== nextProps.mobileIsPrimary || this.props.mobileIsSecondary !== nextProps.mobileIsSecondary){
-          return true;
+
+        return true;
       }
       if(this.props.activeFilters !== nextProps.activeFilters){
-          return true;
+
+        return true;
       }
       if(this.props.availableFilters !== nextProps.availableFilters){
-         return true;
+
+        return true;
       }
       if(this.props.activePrimaryCard !== nextProps.activePrimaryCard){
-          return true;
+
+        return true;
       }
       if(this.props.activeSecondaryCard !== nextProps.activeSecondaryCard){
-          return true;
+
+        return true;
       }
       if(this.props.toggleCommentary !== nextProps.toggleCommentary){
-          return true;
+
+        return true;
       }
       if(this.props.commentBoxIsOpen !== nextProps.commentBoxIsOpen){
-          return true;
+
+        return true;
       }
       if(this.state.activeCommentBoxMetric !== nextState.activeCommentBoxMetric){
           return true;
       }
       if(this.state.filterPanelIsOpen !== nextState.filterPanelIsOpen){
-          return true;
-      }
-      if(this.state.isFilterPageVisible !== nextState.isFilterPageVisible){
-          return true;
-      }
-      if(this.props.dialogIsOpen !== nextProps.dialogIsOpen){
-          return true;
-      }
-      if(this.props.preferences !== nextProps.preferences){
         return true;
       }
+      if(this.state.isFilterPageVisible !== nextState.isFilterPageVisible){
+
+        return true;
+      }
+      if(this.props.dialogIsOpen !== nextProps.dialogIsOpen){
+
+        return true;
+      }
+      if(this.props.preferences !== nextProps.preferences){
+
+        return true;
+      }
+
       return false;
   }
 
@@ -152,6 +171,7 @@ class App extends Component {
         this.props.activeFilters,
         this.props.availableFilters
       );
+      // this.setState({isLoading: true});
     }
     let prevPropsIsEmpty = Object.keys(prevProps.preferences).length === 0;
     let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined;
@@ -344,13 +364,15 @@ class App extends Component {
     return (
       <div style={isMobileOrTablet ? { height: `${this.state.window.height}px`} : (this.props.dialogIsOpen ? {height: `100%`, marginTop: '-20px'} : {height: '100%'})}>
         {this.state.authenticated && (
+
           <span>
             {/* Data Preferences */}
             {kdialog}
+
             <Navigation
               onFilterToggled={e => this.onFilterToggled(e)}
-              isFilterPageVisible={this.state.isFilterPageVisible}
-            />
+              isFilterPageVisible={this.state.isFilterPageVisible}/>
+
             <FilterBox handleNewFilterClick={this.openDialogFilterPanel} />
 
             {this.props.commentBoxIsOpen ? (
@@ -375,20 +397,22 @@ class App extends Component {
 
             <div>
               {filtersPage}
-              {/* Primary */}
-              {this.state.isFilterPageVisible ||
-              this.props.mobileIsPrimary === false
-                ? null
-                : this.getPrimaryContent()}
 
-              {/* Secondary */}
-              {this.state.isFilterPageVisible
-                ? null
-                : this.getSecondaryContent()}
-              {this.state.isFilterPageVisible  && this.props.mobileIsPrimary? null : null}
-              {summaryViewDetails}
-              {/* Playground */}
-              {/* <Playground></Playground> */}
+              {this.state.isLoading === true ? <LoadingScreen></LoadingScreen> : 
+                            (<div>
+                              {/* Primary */}
+                              {this.state.isFilterPageVisible ||
+                              this.props.mobileIsPrimary === false ? null : this.getPrimaryContent()}
+                              {/* Secondary */}
+                              {this.state.isFilterPageVisible ? null : this.getSecondaryContent()}
+                              {this.state.isFilterPageVisible  && this.props.mobileIsPrimary? null : null}
+                              {summaryViewDetails}
+                            </div>)
+            
+            
+              }
+
+
             </div>
           </span>
         )}

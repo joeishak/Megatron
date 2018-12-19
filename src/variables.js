@@ -6418,7 +6418,7 @@ const PORT = ':8551/'
 const INFOBURST = 'infoburst/'
 const REST = 'rest/'
 const domains = {
-    local: 'http://localhost',
+    local: 'https://localhost',
     adobe: 'http://infoburst.corp.adobe.com'
 }
 const prodDomain = domains.local;
@@ -6428,7 +6428,7 @@ export const Infoburst = {
     dbQuery: prodDomain + PORT + INFOBURST + REST + 'db/query',
     xdcCacheURL: prodDomain + PORT + INFOBURST + REST + 'get/xdc/',
     xdcCacheQueryURL: prodDomain + PORT + INFOBURST + REST + 'exec/xdcqry/',
-    sysInfo: 'http://localhost:8551/sysinfo',
+    sysInfo: 'https://localhost:8551/sysinfo',
     jsonFormat: '&json=1',
     filterQueryNames: {
         MarketFilters: '?q=MarketFilters&json=1',

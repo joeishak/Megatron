@@ -15,7 +15,7 @@ const inStyles =  {
 }
 
 ReactDOM.render(
-	<Root style={inStyles.root}>
+	<Root style={inStyles.root} >
 		<Router>
 		<Security issuer={config.oidc.issuer}
                   client_id={config.oidc.clientId}

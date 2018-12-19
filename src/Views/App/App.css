@@ -9,6 +9,7 @@ body {
 }
 /* Animation */
 
+
 .example-appear {
     opacity: 0;
     transform: translateY(-200px);
