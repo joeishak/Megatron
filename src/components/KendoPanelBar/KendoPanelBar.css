@@ -200,3 +200,7 @@
 .k-content {
     background-color: transparent !important;
 }
+
+.k-icon, .k-i-arrow-s, .k-panelbar-expand {
+    margin-right: 100%;
+}

@@ -11,6 +11,8 @@ export const     GET_USER_SETTINGS  = 'get_user_settings';
 // Modal Dialog Box
 export const UPDATE_DIALOG_VISIBILITY        = "update_dialog_visibility";
 // All Data
+
+export const GET_SUMMARY_DATA               = " get_summary_data";
 export const GET_PRIMARY_DATA                = "get_primary_data";
 export const GET_SECONDARY_DATA              = "get_secondary_data";
 export const GET_SECONDARY_DETAIL_DATA       = 'get_secondary_detail_data'

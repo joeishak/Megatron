@@ -3,8 +3,8 @@ export const PrimaryData = [
         index: 0,
         category: 'Finance',
         header: 'Net New ARR',
-        value: '-',
-        target: '-',
+        value: undefined,
+        target: undefined,
         valueType: 'currency',
         type: 'financial',
         comments: [
@@ -27,24 +27,24 @@ export const PrimaryData = [
         },
     {
         index: 2,
-        category: 'Buy',
-        header: `New QFM's`,
-        value: -123444958.2344,
-        target: 29387456.2345234,
-        valueType: 'units',
+        category: 'Try',
+        header: 'Conversions',
+        value: .059,
+        target: .060,
+        valueType: 'percent',
         type: 'journey',
         comments: [
 
             ],
         css: ['1', 'spinMeFirst', '#FF0000'],
         },
-    {
+        {
         index: 3,
-        category: 'Try',
-        header: 'Conversions',
-        value: .059,
-        target: .060,
-        valueType: 'percent',
+        category: 'Buy',
+        header: `New QFM's`,
+        value: -123444958.2344,
+        target: 29387456.2345234,
+        valueType: 'units',
         type: 'journey',
         comments: [
 
