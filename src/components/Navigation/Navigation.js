@@ -53,7 +53,7 @@ class Navigation extends Component {
     this.checkAuthentication();
   }
   async logout() {
-    this.props.auth.logout("/");
+    this.props.auth.logout("/summary");
   }
   // Function to show the logo after 1 second
   showLogo = () => {
