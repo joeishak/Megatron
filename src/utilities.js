@@ -395,7 +395,169 @@ export function requestPrimaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+export function requestSummaryData(allFilters,_parameters){
+    responseArray = [];
 
+    // filterParams[0].value = _parameters.quarters[0].value;
+    filterParams[1].value = _parameters.products[0].value;
+    filterParams[2].value = _parameters.geos[0].value;
+    filterParams[3].value = _parameters.subscriptions[0].value;
+    filterParams[4].value = _parameters.markets[0].value;
+    filterParams[5].value = _parameters.routes[0].value;
+    filterParams[6].value = _parameters.segments[0].value;
+
+    let group2Params = [
+        {
+            prompt: 'quarterFilters',
+            value: ''
+        },
+        {
+            prompt: 'geoFilters',
+            value: ''
+        },
+        {
+            prompt: 'maFilters',
+            value: ''
+        },
+        {
+            prompt: 'segmentFilters',
+            value: ''
+        }
+
+]
+
+    let group3Params = [
+        {
+            prompt: 'quarterFilters',
+            value: ''
+        },
+        {
+            prompt: 'geoFilters',
+            value: ''
+        },
+        {
+            prompt: 'maFilters',
+            value: ''
+        },
+]
+    // Remove First Row from all the filters
+    // Contains All Data Filters
+    // allFilters = utils.removeAllDataValueFromFilterArray(allFilters);
+    generateFilterParams(1, filterParams, allFilters, _parameters);
+    generateFilterParams(2, group2Params, allFilters, _parameters);
+    generateFilterParams(3, group3Params, allFilters, _parameters);
+
+
+
+
+    let params1 = filterParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+
+    }, '');
+    let params2 = group2Params.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+
+    }, '');
+    let params3 = group3Params.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+
+    }, '');
+
+    //Primary 
+    const primaryFinancial = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.dataXdcID + Infoburst.summaryQueryNames.FinancialActualTargetSecondary + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const primaryG2Journey = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG2PrimaryActualTarget + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const primaryG3Journey = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG3PrimaryActualTarget + params3 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Secondary
+    const secondaryFinancial = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.dataXdcID + Infoburst.summaryQueryNames.FinancialActualTargetSecondary + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const secondaryG2Journey = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG2SecondaryActualTarget + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const secondaryG3Journey = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG3SecondaryActualTarget + params3 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Details
+    // Financials
+    const finMulti = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.dataXdcID + Infoburst.summaryQueryNames.FinancialMultichart + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const finUnitsMulti = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.dataXdcID + Infoburst.summaryQueryNames.FinancialUnits + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const finGeo = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.dataXdcID + Infoburst.summaryQueryNames.FinancialGeoQtd + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const finQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.dataXdcID + Infoburst.summaryQueryNames.FinancialQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const finMarkets = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.dataXdcID + Infoburst.summaryQueryNames.FinancialMarketQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    // Journeys
+    const journG2Mutli = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG2MultiChart + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const journG3Mutli = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG3MultiChart + params3 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const journG2QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG2QTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const journG3QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG3QTD + params3 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const journG2Geo = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG2GeoQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const journG3Geo = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG3GeoQTD + params3 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const journG2Market = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG2MarketQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const journG3Market = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG3MarketQTD + params3 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+    
+    responseArray.push(primaryFinancial, primaryG2Journey,primaryG3Journey,secondaryFinancial,secondaryG2Journey,secondaryG3Journey, finMulti, finUnitsMulti, finGeo, finQTD, journG2Mutli, journG3Mutli, journG2QTD, journG3QTD, journG2Geo, journG3Geo, finMarkets, journG2Market, journG3Market);
+    let promiseArr = Promise.all(responseArray);
+
+    return promiseArr;
+}
 export function requestSecondaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -468,20 +630,20 @@ export function requestSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    const primaryFinancial = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.dataXdcID + Infoburst.summaryQueryNames.FinancialActualTargetSecondary + params1 + '&json=1', {
+    const secondaryFinancial = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.dataXdcID + Infoburst.summaryQueryNames.FinancialActualTargetSecondary + params1 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const primaryG2Journey = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG2SecondaryActualTarget + params2 + '&json=1', {
+    const secondaryG2Journey = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG2SecondaryActualTarget + params2 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const primaryG3Journey = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG3SecondaryActualTarget + params3 + '&json=1', {
+    const secondaryG3Journey = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG3SecondaryActualTarget + params3 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
 
-    responseArray.push(primaryFinancial, primaryG2Journey, primaryG3Journey);
+    responseArray.push(secondaryFinancial,secondaryG2Journey, secondaryG3Journey);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;

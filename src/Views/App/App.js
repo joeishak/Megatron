@@ -73,63 +73,57 @@ class App extends Component {
     this.resize();
     this.checkAuthentication();
   }
-  shouldComponentUpdate(nextProps,nextState){
-      if(this.props.primaryData !== nextProps.primaryData){
-          return true;
-      }
-      
-      if ( this.props.secondaryData !== nextProps.secondaryData){
-          return true;
-      }
-      if(this.props.secondaryData[this.props.activeSecondaryCard].details.qtdw.qtd[0].value !== nextProps.secondaryData[nextProps.activeSecondaryCard].details.qtdw.qtd[0].value ){
-        return true;
-      }
-      if(this.props.secondaryData[this.props.activeSecondaryCard].details.geo !== nextProps.secondaryData[nextProps.activeSecondaryCard].details.geo ){
-        return true;
-      }
-      if( this.state.authenticated !== nextState.authenticated){
-          return true;
-      }if(this.props.deviceType !== nextProps.deviceType){
-          return true;
-      }
-      if(this.props.mobileIsPrimary !== nextProps.mobileIsPrimary || this.props.mobileIsSecondary !== nextProps.mobileIsSecondary){
-          return true;
-      }
-      if(this.props.activeFilters !== nextProps.activeFilters){
-          return true;
-      }
-      if(this.props.availableFilters !== nextProps.availableFilters){
-         return true;
-      }
-      if(this.props.activePrimaryCard !== nextProps.activePrimaryCard){
-          return true;
-      }
-      if(this.props.activeSecondaryCard !== nextProps.activeSecondaryCard){
-          return true;
-      }
-      if(this.props.toggleCommentary !== nextProps.toggleCommentary){
-          return true;
-      }
-      if(this.props.commentBoxIsOpen !== nextProps.commentBoxIsOpen){
-          return true;
-      }
-      if(this.state.activeCommentBoxMetric !== nextState.activeCommentBoxMetric){
-          return true;
-      }
-      if(this.state.filterPanelIsOpen !== nextState.filterPanelIsOpen){
-          return true;
-      }
-      if(this.state.isFilterPageVisible !== nextState.isFilterPageVisible){
-          return true;
-      }
-      if(this.props.dialogIsOpen !== nextProps.dialogIsOpen){
-          return true;
-      }
-      if(this.props.preferences !== nextProps.preferences){
-        return true;
-      }
-      return false;
-  }
+  // shouldComponentUpdate(nextProps,nextState){
+
+  //    if( this.props.primaryData[0].value !== nextProps.primaryData[0].value ||
+  //       this.props.secondaryData[0].value !== nextProps.secondaryData[0].value ){
+  //       return true;
+  //    }
+    
+  //     if( this.state.authenticated !== nextState.authenticated){
+  //         return true;
+  //     }
+  //     if(this.props.deviceType !== nextProps.deviceType){
+  //         return true;
+  //     }
+  //     if(this.props.mobileIsPrimary !== nextProps.mobileIsPrimary || this.props.mobileIsSecondary !== nextProps.mobileIsSecondary){
+  //         return true;
+  //     }
+  //     if(this.props.activeFilters !== nextProps.activeFilters){
+  //         return true;
+  //     }
+  //     if(this.props.availableFilters !== nextProps.availableFilters){
+  //        return true;
+  //     }
+  //     if(this.props.activePrimaryCard !== nextProps.activePrimaryCard){
+  //         return true;
+  //     }
+  //     if(this.props.activeSecondaryCard !== nextProps.activeSecondaryCard){
+  //         return true;
+  //     }
+  //     if(this.props.toggleCommentary !== nextProps.toggleCommentary){
+  //         return true;
+  //     }
+  //     if(this.props.commentBoxIsOpen !== nextProps.commentBoxIsOpen){
+  //         return true;
+  //     }
+  //     if(this.state.activeCommentBoxMetric !== nextState.activeCommentBoxMetric){
+  //         return true;
+  //     }
+  //     if(this.state.filterPanelIsOpen !== nextState.filterPanelIsOpen){
+  //         return true;
+  //     }
+  //     if(this.state.isFilterPageVisible !== nextState.isFilterPageVisible){
+  //         return true;
+  //     }
+  //     if(this.props.dialogIsOpen !== nextProps.dialogIsOpen){
+  //         return true;
+  //     }
+  //     if(this.props.preferences !== nextProps.preferences){
+  //       return true;
+  //     }
+  //     return false;
+  // }
 
   async componentDidUpdate(prevProps) {
     this.checkAuthentication();
@@ -140,18 +134,7 @@ class App extends Component {
       prevProps.availableFilters !== this.props.availableFilters ||
       prevProps.activeFilters !== this.props.activeFilters
     ) {
-      this.props.getPrimaryData(
-        this.props.activeFilters,
-        this.props.availableFilters
-      );
-      this.props.getSecondaryData(
-        this.props.activeFilters,
-        this.props.availableFilters
-      );
-      this.props.getDetailsData(
-        this.props.activeFilters,
-        this.props.availableFilters
-      );
+      this.props.getSummaryData(this.props.activeFilters, this.props.availableFilters);
     }
     let prevPropsIsEmpty = Object.keys(prevProps.preferences).length === 0;
     let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined;
@@ -409,16 +392,17 @@ function mapStateToProps(state) {
     commentBoxIsOpen: state.commentBoxIsOpen,
     user: state.user,
     preferences: state.preferences,
-    primaryData: state.primaryData,
+    primaryData: state.summaryData.primary,
     activePrimaryCard: state.activeCards.primary,
     activeSecondaryCard: state.activeCards.secondary,
-    secondaryData: state.secondaryData,
+    secondaryData: state.summaryData.secondary,
     appSettings: state.appSettings,
     deviceType: state.appSettings.deviceType,
     toggleCommentary: state.toggleCommentaryBox,
     window: state.appSettings.window,
     mobileIsPrimary: state.appSettings.views.primaryIsVisible,
-    mobileIsSecondary: state.appSettings.views.secondaryIsVisible
+    mobileIsSecondary: state.appSettings.views.secondaryIsVisible,
+    summaryData: state.summaryData
   };
 }
 

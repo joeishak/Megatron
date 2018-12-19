@@ -7,6 +7,7 @@ import {
     UPDATE_USER_SETTINGS,
     SET_APP_SETTINGS,
     SET_VIEW_APP_SETTINGS,
+    GET_SUMMARY_DATA,
     GET_PRIMARY_DATA,
     GET_SECONDARY_DATA,
     GET_SECONDARY_DETAIL_DATA,
@@ -138,7 +139,24 @@ export function setViewAppSettings() {
 }
 
 
+export function getSummaryData(_parameters, availableFilters){
+    let allFilters = {
+        quarters: Object.keys(availableFilters.quarters).map(e => availableFilters.quarters[e]),
+        geos:  Object.keys(availableFilters.geos).map(e => availableFilters.geos[e]),
+        marketAreas: Object.keys(availableFilters.marketAreas).map(e => availableFilters.marketAreas[e]),
+        products:  Object.keys(availableFilters.products).map(e => availableFilters.products[e]),
+        segments: Object.keys(availableFilters.segments).map(e => availableFilters.segments[e]),
+        subscriptionOfferings: Object.keys(availableFilters.subscriptionOfferings).map(e => availableFilters.subscriptionOfferings[e]),
+        routeToMarkets:  Object.keys(availableFilters.routeToMarkets).map(e => availableFilters.routeToMarkets[e])
+    }
+    promiseArr = utils.requestSummaryData(allFilters,_parameters);
+    return {
+        type: GET_SUMMARY_DATA,
+        payload: promiseArr
+    }
 
+
+}
 export function getPrimaryData(_parameters,availableFilters){
 
     let allFilters = {

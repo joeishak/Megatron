@@ -25,15 +25,17 @@ export default function(state = PrimaryData, action) {
             newState[1].target = action.payload[1].data[0].TrafficTarget;
             newState[1].vsqrf = action.payload[1].data[0].TrafficVSQrf;
 
-            //  //Buy
-             newState[2].value = action.payload[2].data[0].NewQfmActual;
-             newState[2].target = action.payload[2].data[0].NewQfmTarget;
-             newState[2].vsqrf = action.payload[2].data[0].NewQfmVsQrf;
-
+            
             //   //Try
-            newState[3].value = action.payload[1].data[0].ConversionActual;
-            newState[3].target = action.payload[1].data[0].ConversionTarget;
-            newState[3].vsqrf = action.payload[1].data[0].ConvcersionVsQrf;
+            newState[2].value = action.payload[1].data[0].ConversionActual;
+            newState[2].target = action.payload[1].data[0].ConversionTarget;
+            newState[2].vsqrf = action.payload[1].data[0].ConvcersionVsQrf;
+            
+            //  //Buy
+             newState[3].value = action.payload[2].data[0].NewQfmActual;
+             newState[3].target = action.payload[2].data[0].NewQfmTarget;
+             newState[3].vsqrf = action.payload[2].data[0].NewQfmVsQrf;
+
 
             //  //Use
              newState[4].value = action.payload[2].data[0].RepeatUserMauActual;

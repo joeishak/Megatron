@@ -15,6 +15,7 @@ import primaryDataReducer from 'reducers/primaryData.js';
 import activeCardReducer from 'reducers/activeCards.js';
 import secondaryDataReducer from 'reducers/secondaryData.js';
 import appSettingsReducer from 'reducers/appSettings.js';
+import summaryDataReducer from 'reducers/summaryData.js';
 export default combineReducers({
     auth: authReducer,
     user: userReducer,
@@ -31,5 +32,6 @@ export default combineReducers({
     primaryData: primaryDataReducer,
     activeCards: activeCardReducer,
     secondaryData: secondaryDataReducer,
-    appSettings: appSettingsReducer
+    appSettings: appSettingsReducer,
+    summaryData: summaryDataReducer
 });
