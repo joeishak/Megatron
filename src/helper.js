@@ -14,9 +14,11 @@ async function checkAuthentication() {
       } else {
         this.setState({ authenticated });
         this.props.changeAuth(authenticated);
+        console.log('hello world');
       }
     }
   }
 
   /* eslint-disable import/prefer-default-export */
   export { checkAuthentication };
+/*Hello World*/

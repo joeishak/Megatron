@@ -420,7 +420,7 @@ class KendoPanelBar extends Component {
                 <PanelBarItem className="panelItemTitle" expanded={true} title="Geo">
                    {this.getPanelContents(DIMENSIONS.GEO)}
                </ PanelBarItem>
-               <PanelBarItem className="panelItemTitle" expanded={true} title='Market Area'>
+               <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
                    {this.getPanelContents(DIMENSIONS.MARKET)}
                </ PanelBarItem>
                <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
