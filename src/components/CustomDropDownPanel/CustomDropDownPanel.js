@@ -45,20 +45,6 @@ class CustomDropDownPanel extends Component {
                             data={availableFilters.geos}/>
                         </div>
                         <div className={quarterFilterContainer} >
-                            <p> Product Name</p>
-                            <KendoDropDownList  
-                                type='products' 
-                                defaultItem={this.props.activeFilters.products} 
-                                data={availableFilters.products}/>
-                        </div>
-                        <div className={quarterFilterContainer} >
-                            <p> Subscription Offering</p>
-                            <KendoDropDownList  
-                                type='subscriptions' 
-                                defaultItem={this.props.activeFilters.subscriptions}
-                                data={availableFilters.subscriptionOfferings} />
-                        </div>
-                        <div className={quarterFilterContainer} >
                             <p> Market Area</p>
                             <KendoDropDownList 
                                 type='markets' 
@@ -79,6 +65,21 @@ class CustomDropDownPanel extends Component {
                                 defaultItem={this.props.activeFilters.segments}
                                 data={availableFilters.segments}/>
                         </div>
+                        <div className={quarterFilterContainer} >
+                            <p> Subscription Offering</p>
+                            <KendoDropDownList  
+                                type='subscriptions' 
+                                defaultItem={this.props.activeFilters.subscriptions}
+                                data={availableFilters.subscriptionOfferings} />
+                        </div>
+                        <div className={quarterFilterContainer} >
+                            <p> Product Name</p>
+                            <KendoDropDownList  
+                                type='products' 
+                                defaultItem={this.props.activeFilters.products} 
+                                data={availableFilters.products}/>
+                        </div>
+                    
             </div>
         )
     }
