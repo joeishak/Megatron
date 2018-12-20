@@ -35,10 +35,27 @@
     line-height: 30px;
     font-size: 12px;
     text-align: center;
-    width: 12.48%;
+    width: 12.41%;
     color: white;
     background-color: #1f1f1f;
-
+}
+.qtdJourneyColumn{
+    /* Market Area US ROW T */
+    display: block;
+    /* position: absolute; */
+    /* left: 9.96%;
+    right: 80.18%;
+    top: 52.69%;
+    bottom: 32.96%; */
+    float:left;
+    font-family: Ubuntu;
+    font-style: normal;
+    line-height: 30px;
+    font-size: 12px;
+    text-align: center;
+    width: 14.18%;
+    color: white;
+    background-color: #1f1f1f;
 }
 .qtdMarketColumn{
     /* Market Area US ROW T */
@@ -59,6 +76,25 @@
     background-color: #1f1f1f;
 
 }
+.qtdJourneyMarketColumn{
+    /* Market Area US ROW T */
+    display: block;
+    /* position: absolute; */
+    /* left: 9.96%;
+    right: 80.18%;
+    top: 52.69%;
+    bottom: 32.96%; */
+    float:left;
+    font-family: Ubuntu;
+    font-style: normal;
+    line-height: 30px;
+    font-size: 12px;
+    text-align: center;
+    width: 12.48%;
+    color: white;
+    background-color: #1f1f1f;
+
+}
 .header{
     font-weight: bold;
     background-color: #3c3c3c !important;
@@ -70,7 +106,7 @@
     padding-left: 5px;
 }
 .qtdMaHeader{
-    text-align:  right !important;
+    text-align:  left !important;
 }
 
 .weekColumn{
@@ -109,16 +145,49 @@
        color: white;
        background-color: #1f1f1f;
 }
+
+.weekJourneyColumn{
+    /* Market Area US ROW T */
+    display: block;
+    /* position: absolute; */
+    /* left: 9.96%;
+    right: 80.18%;
+    top: 52.69%;
+    bottom: 32.96%; */
+    float:left;
+    font-family: Ubuntu;
+    font-style: normal;
+    line-height: 30px;
+    font-size: 12px;
+    text-align: center;
+    width: 16.55%;
+    color: white;
+    background-color: #1f1f1f;
+}
+.weekJourneyMarketColumn{
+    /* Market Area US ROW T */
+    display: block;
+    /* position: absolute; */
+    /* left: 9.96%;
+    right: 80.18%;
+    top: 52.69%;
+    bottom: 32.96%; */
+    float:left;
+    font-family: Ubuntu;
+    font-style: normal;
+    line-height: 30px;
+    font-size: 12px;
+    text-align: center;
+    width: 11.11%;
+    color: white;
+    background-color: #1f1f1f;
+}
 .weekGeoHeader{
     text-align:  left !important;
-
 }
-
 .weekMaHeader{
     text-align:  right !important;
-
 }
-
 .leftTopHeaderBar{
     float:left;
     width:390px;

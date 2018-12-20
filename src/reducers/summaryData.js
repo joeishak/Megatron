@@ -625,42 +625,38 @@ export function processJourneyQTD(g2, g3, newState) {
             // Traffic
         case 4:
             newState[i].details.qtdw.qtd[0].value = group2.TrafficActual;
-            newState[i].details.qtdw.qtd[1].value = group2.TrafficActual;
+            newState[i].details.qtdw.qtd[1].value = group2.TrafficTarget;
             newState[i].details.qtdw.qtd[2].value = group2.TrafficTarget;
-            newState[i].details.qtdw.qtd[3].value = group2.TrafficTarget;
-            newState[i].details.qtdw.qtd[4].value = group2.TrafficVsQrf;
-            newState[i].details.qtdw.qtd[5].value = group2.TrafficQQTY;
-            newState[i].details.qtdw.qtd[6].value = group2.TrafficYY;
+            newState[i].details.qtdw.qtd[3].value = group2.TrafficVsQrf;
+            newState[i].details.qtdw.qtd[4].value = group2.TrafficQQTY;
+            newState[i].details.qtdw.qtd[5].value = group2.TrafficYY;
             break;
             // Marketable Universe
         case 5:
             newState[i].details.qtdw.qtd[0].value = group3.MarketableActual;
-            newState[i].details.qtdw.qtd[1].value = group3.MarketableActual;
-            newState[i].details.qtdw.qtd[2].value = group3.MarketableTarget;
+            newState[i].details.qtdw.qtd[1].value = group3.MarketableTarget;
+            newState[i].details.qtdw.qtd[2].value = group3.MarketableVsQrf;
             newState[i].details.qtdw.qtd[3].value = group3.MarketableVsQrf;
-            newState[i].details.qtdw.qtd[4].value = group3.MarketableVsQrf;
-            newState[i].details.qtdw.qtd[5].value = group3.MarketableQQTY;
-            newState[i].details.qtdw.qtd[6].value = group3.MarketableYY;
+            newState[i].details.qtdw.qtd[4].value = group3.MarketableQQTY;
+            newState[i].details.qtdw.qtd[5].value = group3.MarketableYY;
             break;
             // Uqgm Conversion
         case 6:
             newState[i].details.qtdw.qtd[0].value = group3.UQFMActual;
-            newState[i].details.qtdw.qtd[1].value = group3.UQFMActual;
-            newState[i].details.qtdw.qtd[2].value = group3.UQFMTarget;
-            newState[i].details.qtdw.qtd[3].value = group3.UQFMActual;
-            newState[i].details.qtdw.qtd[4].value = group3.UQFMVsQrf;
-            newState[i].details.qtdw.qtd[5].value = group3.UQFMQQTY;
-            newState[i].details.qtdw.qtd[6].value = group3.UQFMYY;
+            newState[i].details.qtdw.qtd[1].value = group3.UQFMTarget;
+            newState[i].details.qtdw.qtd[2].value = group3.UQFMActual;
+            newState[i].details.qtdw.qtd[3].value = group3.UQFMVsQrf;
+            newState[i].details.qtdw.qtd[4].value = group3.UQFMQQTY;
+            newState[i].details.qtdw.qtd[5].value = group3.UQFMYY;
             break;
             // Paid Media Spend
         case 7:
             newState[i].details.qtdw.qtd[0].value = group3.PaidMediaSpendActual;
-            newState[i].details.qtdw.qtd[1].value = group3.PaidMediaSpendActual;
-            newState[i].details.qtdw.qtd[2].value = group3.PaidMediaSpendTarget;
-            newState[i].details.qtdw.qtd[3].value = group3.PaidMediaSpendActual;
-            newState[i].details.qtdw.qtd[4].value = group3.PaidMediaSpendVsQrf;
-            newState[i].details.qtdw.qtd[5].value = group3.PaidMediaSpendQQTY;
-            newState[i].details.qtdw.qtd[6].value = group3.PaidMediaSpendYY;
+            newState[i].details.qtdw.qtd[1].value = group3.PaidMediaSpendTarget;
+            newState[i].details.qtdw.qtd[2].value = group3.PaidMediaSpendActual;
+            newState[i].details.qtdw.qtd[3].value = group3.PaidMediaSpendVsQrf;
+            newState[i].details.qtdw.qtd[4].value = group3.PaidMediaSpendQQTY;
+            newState[i].details.qtdw.qtd[5].value = group3.PaidMediaSpendYY;
             break;
         }
     }
@@ -677,13 +673,11 @@ export function processJourneyGeoQTD(g2, g3, newState) {
         let traffic = {
             index: i,
             actuals: item.TrafficActual,
-            units: 0.0,
             marketArea: item.market_area_code,
             qq: item.TrafficQQTY,
             qrf: item.TrafficTarget,
             qrfDiff: item.TrafficVsQrf,
             type: item.geo_code,
-            units: 0.0,
             vsQrf: item.TrafficVsQrf,
             yy: item.TrafficYY
         }
@@ -696,39 +690,33 @@ export function processJourneyGeoQTD(g2, g3, newState) {
         let marketable = {
             index: i,
             actuals: item.MarketableActual,
-            units: 0.0,
             marketArea: item.market_area_code,
             qq: item.MarketableQQTY,
             qrf: item.MarketableTarget,
             qrfDiff: item.MarketableVsQrf,
             type: item.geo_code,
-            units: 0.0,
             vsQrf: item.MarketableVsQrf,
             yy: item.MarketableYY
         }
         let uqfm = {
             index: i,
             actuals: item.UQFMActual,
-            units: 0.0,
             marketArea: item.market_area_code,
             qq: item.UQFMQQTY,
             qrf: item.UQFMTarget,
             qrfDiff: item.UQFMVsQrf,
             type: item.geo_code,
-            units: 0.0,
             vsQrf: item.UQFMVsQrf,
             yy: item.UQFMYY
         }
         let paid = {
             index: i,
             actuals: item.PaidMediaSpendActual,
-            units: 0.0,
             marketArea: item.market_area_code,
             qq: item.PaidMediaSpendVsQrf,
             qrf: item.PaidMediaSpendTarget,
             qrfDiff: item.PaidMediaSpendVsQrf,
             type: item.geo_code,
-            units: 0.0,
             vsQrf: item.PaidMediaSpendVsQrf,
             yy: item.PaidMediaSpendYY
         }
@@ -753,13 +741,11 @@ export function processJourneyMarketAreaQTD(g2, g3, newState) {
         let traffic = {
             index: i,
             actuals: item.TrafficActual,
-            units: 0.0,
             marketArea: item.market_area_code,
             qq: item.TrafficQQTY,
             qrf: item.TrafficTarget,
             qrfDiff: item.TrafficVsQrf,
             type: item.geo_code,
-            units: 0.0,
             vsQrf: item.TrafficVsQrf,
             yy: item.TrafficYY
         }
@@ -772,39 +758,33 @@ export function processJourneyMarketAreaQTD(g2, g3, newState) {
         let marketable = {
             index: i,
             actuals: item.MarketableActual,
-            units: 0.0,
             marketArea: item.market_area_code,
             qq: item.MarketableQQTY,
             qrf: item.MarketableTarget,
             qrfDiff: item.MarketableVsQrf,
             type: item.geo_code,
-            units: 0.0,
             vsQrf: item.MarketableVsQrf,
             yy: item.MarketableYY
         }
         let uqfm = {
             index: i,
             actuals: item.UQFMActual,
-            units: 0.0,
             marketArea: item.market_area_code,
             qq: item.UQFMQQTY,
             qrf: item.UQFMTarget,
             qrfDiff: item.UQFMVsQrf,
             type: item.geo_code,
-            units: 0.0,
             vsQrf: item.UQFMVsQrf,
             yy: item.UQFMYY
         }
         let paid = {
             index: i,
             actuals: item.PaidMediaSpendActual,
-            units: 0.0,
             marketArea: item.market_area_code,
             qq: item.PaidMediaSpendVsQrf,
             qrf: item.PaidMediaSpendTarget,
             qrfDiff: item.PaidMediaSpendVsQrf,
             type: item.geo_code,
-            units: 0.0,
             vsQrf: item.PaidMediaSpendVsQrf,
             yy: item.PaidMediaSpendYY
         }

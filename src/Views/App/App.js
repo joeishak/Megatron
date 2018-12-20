@@ -45,7 +45,7 @@ class App extends Component {
       },
       activeCommentBoxMetric: undefined,
       isFilterPageVisible: false,
-      isLoading: true
+      isLoading: false
     };
 
     /*Bindings  */
