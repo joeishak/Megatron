@@ -23,9 +23,10 @@ export default function (state = {
 }, action) {
     switch (action.type) {
         case GET_SUMMARY_DATA:
-        // primaryFinancial, primaryG2Journey,primaryG3Journey,secondaryFinancial,secondaryG2Journey,
-        // secondaryG3Journey, finMulti, finUnitsMulti, finGeo, finQTD, journG2Mutli, journG3Mutli, 
-        // journG2QTD, journG3QTD, journG2Geo, journG3Geo, finMarkets, journG2Market, journG3Market
+        // primaryFinancial, primaryG2Journey, primaryG3Journey, secondaryFinancial, secondaryG2Journey, secondaryG3Journey, 
+        // finMulti, finUnitsMulti, finGeo, finQTD, journG2Mutli, journG3Mutli, journG2QTD, journG3QTD, journG2Geo, journG3Geo,
+        // finMarkets, journG2Market, journG3Market,finRoutes,finSegments,finProducts,journG2Routes,journG2Segments,
+        // journG2Products,journG3Routes,journG3Segments,journG3Products);
 
 
             console.log(action.payload);
@@ -63,20 +64,10 @@ export default function (state = {
 
             processSecondaryData(action.payload[3], action.payload[4], action.payload[5], newState.secondary)
 
-            // Indexes for Action  Payload containing promises from Infoburst
-            // Financial Multichart - 6
-            // Financial Units - 7
-            // Financial Geo QTD - 8
-            // Financial QTD Total - 9,
-            // Journey G2 Multichart - 10
-            // Journey G3 Multichart - 11
-            // Journey G2 QTD  - 12
-            // Journey G3 QTD - 13
-            // Journey G2 Geo QTD - 14
-            // Journey G3 Geo QTD - 15
-            // Financial Market QTD -16
-            // Journey G2 Market QTD  - 17
-            // Journey G3 Market Qtd - 18
+          // 0 -primaryFinancial, primaryG2Journey, primaryG3Journey, secondaryFinancial, secondaryG2Journey, secondaryG3Journey, 
+        // finMulti, finUnitsMulti, finGeo, finQTD, journG2Mutli, journG3Mutli, journG2QTD, journG3QTD, journG2Geo, journG3Geo,
+        // finMarkets, journG2Market, journG3Market,finRoutes,finSegments,finProducts,journG2Routes,journG2Segments,
+        // journG2Products,journG3Routes,journG3Segments,27 - journG3Products);
 
             processFinancialMultichart(newState.secondary, action.payload[6].data);
             processFinancialUnitsMultichart(newState.secondary, action.payload[7].data);
@@ -87,6 +78,14 @@ export default function (state = {
             processJourneyQTD(action.payload[12].data[0], action.payload[13].data[0], newState.secondary);
             processJourneyGeoQTD(action.payload[14].data, action.payload[15].data, newState.secondary);
             processJourneyMarketAreaQTD(action.payload[17].data, action.payload[18].data, newState.secondary)
+            processFinancialRoutesQTD(newState.secondary,action.payload[18].data  );
+            processFinancialSegmentQTD(newState.secondary,action.payload[19].data);
+            processFinancialProductsQTD(newState.secondary, action.payload[20].data);
+            processJourneyRoutesQTD(action.payload[22].data, action.payload[25].data, newState.secondary);
+            processJourneySegmentQTD(action.payload[23].data, action.payload[26].data, newState.secondary);
+            processJourneyProductQTD(action.payload[24].data, action.payload[27].data, newState.secondary);
+
+
             return newState;
         case ADD_NEW_PRIMARY_COMMENT:
             index = action.payload.square;
@@ -375,8 +374,6 @@ export function processFinancialGeoQTD(newState, data) {
 
 
     }
-
-
 }
 export function processFinancialMarketQTD(newState, data) {
 
@@ -440,6 +437,205 @@ export function processFinancialMarketQTD(newState, data) {
         newState[1].details.market.qtd.push(gross);
         newState[2].details.market.qtd.push(canc);
         newState[3].details.market.qtd.push(ren);
+
+    }
+
+}
+export function processFinancialRoutesQTD(newState, data) {
+
+    //Clear old Values
+    newState[0].details.routes.qtd = [];
+    newState[1].details.routes.qtd = [];
+    newState[2].details.routes.qtd = [];
+    newState[3].details.routes.qtd = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_code,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewVSQRF,
+            yy: item.NewYY
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossARRActual,
+            marketArea: item.market_area_code,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossARRTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.geo_code,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossVsQrf,
+            yy: item.GrossYY
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelARRActual,
+            marketArea: item.market_area_code,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelARRTarget,
+            qrfDiff: item.CancelArrVsQrfDiff,
+            type: item.geo_code,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelVsQrf,
+            yy: item.CancelARRYY
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalActuals,
+            marketArea: item.market_area_code,
+            qq: item.RenewARRQQTY,
+            qrf: item.RenewARRTarget,
+            qrfDiff: item.RenewVsQrfDiff,
+            type: item.geo_code,
+            units: item.RenewUnitsActual,
+            vsQrf: item.RenewVSQRF,
+            yy: item.RenewARRYY
+        }
+
+        newState[0].details.routes.qtd.push(net);
+        newState[1].details.routes.qtd.push(gross);
+        newState[2].details.routes.qtd.push(canc);
+        newState[3].details.routes.qtd.push(ren);
+
+    }
+
+}
+
+export function processFinancialSegmentQTD(newState, data) {
+
+    //Clear old Values
+    newState[0].details.segment.qtd = [];
+    newState[1].details.segment.qtd = [];
+    newState[2].details.segment.qtd = [];
+    newState[3].details.segment.qtd = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_code,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewVSQRF,
+            yy: item.NewYY
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossARRActual,
+            marketArea: item.market_area_code,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossARRTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.geo_code,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossVsQrf,
+            yy: item.GrossYY
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelARRActual,
+            marketArea: item.market_area_code,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelARRTarget,
+            qrfDiff: item.CancelArrVsQrfDiff,
+            type: item.geo_code,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelVsQrf,
+            yy: item.CancelARRYY
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalActuals,
+            marketArea: item.market_area_code,
+            qq: item.RenewARRQQTY,
+            qrf: item.RenewARRTarget,
+            qrfDiff: item.RenewVsQrfDiff,
+            type: item.geo_code,
+            units: item.RenewUnitsActual,
+            vsQrf: item.RenewVSQRF,
+            yy: item.RenewARRYY
+        }
+
+        newState[0].details.segment.qtd.push(net);
+        newState[1].details.segment.qtd.push(gross);
+        newState[2].details.segment.qtd.push(canc);
+        newState[3].details.segment.qtd.push(ren);
+
+    }
+
+}
+export function processFinancialProductsQTD(newState, data) {
+
+    //Clear old Values
+    newState[0].details.product.qtd = [];
+    newState[1].details.product.qtd = [];
+    newState[2].details.product.qtd = [];
+    newState[3].details.product.qtd = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_code,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewVSQRF,
+            yy: item.NewYY
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossARRActual,
+            marketArea: item.market_area_code,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossARRTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.geo_code,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossVsQrf,
+            yy: item.GrossYY
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelARRActual,
+            marketArea: item.market_area_code,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelARRTarget,
+            qrfDiff: item.CancelArrVsQrfDiff,
+            type: item.geo_code,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelVsQrf,
+            yy: item.CancelARRYY
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalActuals,
+            marketArea: item.market_area_code,
+            qq: item.RenewARRQQTY,
+            qrf: item.RenewARRTarget,
+            qrfDiff: item.RenewVsQrfDiff,
+            type: item.geo_code,
+            units: item.RenewUnitsActual,
+            vsQrf: item.RenewVSQRF,
+            yy: item.RenewARRYY
+        }
+
+        newState[0].details.product.qtd.push(net);
+        newState[1].details.product.qtd.push(gross);
+        newState[2].details.product.qtd.push(canc);
+        newState[3].details.product.qtd.push(ren);
 
     }
 
@@ -792,6 +988,210 @@ export function processJourneyMarketAreaQTD(g2, g3, newState) {
         newState[5].details.market.qtd.push(marketable);
         newState[6].details.market.qtd.push(uqfm);
         newState[7].details.market.qtd.push(paid);
+
+
+
+    }
+}
+export function processJourneyRoutesQTD(g2, g3, newState) {
+
+    //Clear old Values
+    newState[4].details.routes.qtd = [];
+    newState[5].details.routes.qtd = [];
+    newState[6].details.routes.qtd = [];
+    newState[7].details.routes.qtd = [];
+    for (let i = 0; i < g2.length; i++) {
+        let item = g2[i];
+        let traffic = {
+            index: i,
+            actuals: item.TrafficActual,
+            marketArea: item.market_area_code,
+            qq: item.TrafficQQTY,
+            qrf: item.TrafficTarget,
+            qrfDiff: item.TrafficVsQrf,
+            type: item.geo_code,
+            vsQrf: item.TrafficVsQrf,
+            yy: item.TrafficYY
+        }
+        newState[4].details.routes.qtd.push(traffic);
+    }
+
+    for (let i = 0; i < g3.length; i++) {
+        let item = g3[i];
+
+        let marketable = {
+            index: i,
+            actuals: item.MarketableActual,
+            marketArea: item.market_area_code,
+            qq: item.MarketableQQTY,
+            qrf: item.MarketableTarget,
+            qrfDiff: item.MarketableVsQrf,
+            type: item.geo_code,
+            vsQrf: item.MarketableVsQrf,
+            yy: item.MarketableYY
+        }
+        let uqfm = {
+            index: i,
+            actuals: item.UQFMActual,
+            marketArea: item.market_area_code,
+            qq: item.UQFMQQTY,
+            qrf: item.UQFMTarget,
+            qrfDiff: item.UQFMVsQrf,
+            type: item.geo_code,
+            vsQrf: item.UQFMVsQrf,
+            yy: item.UQFMYY
+        }
+        let paid = {
+            index: i,
+            actuals: item.PaidMediaSpendActual,
+            marketArea: item.market_area_code,
+            qq: item.PaidMediaSpendVsQrf,
+            qrf: item.PaidMediaSpendTarget,
+            qrfDiff: item.PaidMediaSpendVsQrf,
+            type: item.geo_code,
+            vsQrf: item.PaidMediaSpendVsQrf,
+            yy: item.PaidMediaSpendYY
+        }
+
+        newState[5].details.routes.qtd.push(marketable);
+        newState[6].details.routes.qtd.push(uqfm);
+        newState[7].details.routes.qtd.push(paid);
+
+
+
+    }
+}
+export function processJourneySegmentQTD(g2, g3, newState) {
+
+    //Clear old Values
+    newState[4].details.segment.qtd = [];
+    newState[5].details.segment.qtd = [];
+    newState[6].details.segment.qtd = [];
+    newState[7].details.segment.qtd = [];
+    for (let i = 0; i < g2.length; i++) {
+        let item = g2[i];
+        let traffic = {
+            index: i,
+            actuals: item.TrafficActual,
+            marketArea: item.market_area_code,
+            qq: item.TrafficQQTY,
+            qrf: item.TrafficTarget,
+            qrfDiff: item.TrafficVsQrf,
+            type: item.geo_code,
+            vsQrf: item.TrafficVsQrf,
+            yy: item.TrafficYY
+        }
+        newState[4].details.segment.qtd.push(traffic);
+    }
+
+    for (let i = 0; i < g3.length; i++) {
+        let item = g3[i];
+
+        let marketable = {
+            index: i,
+            actuals: item.MarketableActual,
+            marketArea: item.market_area_code,
+            qq: item.MarketableQQTY,
+            qrf: item.MarketableTarget,
+            qrfDiff: item.MarketableVsQrf,
+            type: item.geo_code,
+            vsQrf: item.MarketableVsQrf,
+            yy: item.MarketableYY
+        }
+        let uqfm = {
+            index: i,
+            actuals: item.UQFMActual,
+            marketArea: item.market_area_code,
+            qq: item.UQFMQQTY,
+            qrf: item.UQFMTarget,
+            qrfDiff: item.UQFMVsQrf,
+            type: item.geo_code,
+            vsQrf: item.UQFMVsQrf,
+            yy: item.UQFMYY
+        }
+        let paid = {
+            index: i,
+            actuals: item.PaidMediaSpendActual,
+            marketArea: item.market_area_code,
+            qq: item.PaidMediaSpendVsQrf,
+            qrf: item.PaidMediaSpendTarget,
+            qrfDiff: item.PaidMediaSpendVsQrf,
+            type: item.geo_code,
+            vsQrf: item.PaidMediaSpendVsQrf,
+            yy: item.PaidMediaSpendYY
+        }
+
+        newState[5].details.segment.qtd.push(marketable);
+        newState[6].details.segment.qtd.push(uqfm);
+        newState[7].details.segment.qtd.push(paid);
+
+
+
+    }
+}
+export function processJourneyProductQTD(g2, g3, newState) {
+
+    //Clear old Values
+    newState[4].details.product.qtd = [];
+    newState[5].details.product.qtd = [];
+    newState[6].details.product.qtd = [];
+    newState[7].details.product.qtd = [];
+    for (let i = 0; i < g2.length; i++) {
+        let item = g2[i];
+        let traffic = {
+            index: i,
+            actuals: item.TrafficActual,
+            marketArea: item.market_area_code,
+            qq: item.TrafficQQTY,
+            qrf: item.TrafficTarget,
+            qrfDiff: item.TrafficVsQrf,
+            type: item.geo_code,
+            vsQrf: item.TrafficVsQrf,
+            yy: item.TrafficYY
+        }
+        newState[4].details.product.qtd.push(traffic);
+    }
+
+    for (let i = 0; i < g3.length; i++) {
+        let item = g3[i];
+
+        let marketable = {
+            index: i,
+            actuals: item.MarketableActual,
+            marketArea: item.market_area_code,
+            qq: item.MarketableQQTY,
+            qrf: item.MarketableTarget,
+            qrfDiff: item.MarketableVsQrf,
+            type: item.geo_code,
+            vsQrf: item.MarketableVsQrf,
+            yy: item.MarketableYY
+        }
+        let uqfm = {
+            index: i,
+            actuals: item.UQFMActual,
+            marketArea: item.market_area_code,
+            qq: item.UQFMQQTY,
+            qrf: item.UQFMTarget,
+            qrfDiff: item.UQFMVsQrf,
+            type: item.geo_code,
+            vsQrf: item.UQFMVsQrf,
+            yy: item.UQFMYY
+        }
+        let paid = {
+            index: i,
+            actuals: item.PaidMediaSpendActual,
+            marketArea: item.market_area_code,
+            qq: item.PaidMediaSpendVsQrf,
+            qrf: item.PaidMediaSpendTarget,
+            qrfDiff: item.PaidMediaSpendVsQrf,
+            type: item.geo_code,
+            vsQrf: item.PaidMediaSpendVsQrf,
+            yy: item.PaidMediaSpendYY
+        }
+
+        newState[5].details.product.qtd.push(marketable);
+        newState[6].details.product.qtd.push(uqfm);
+        newState[7].details.product.qtd.push(paid);
 
 
 

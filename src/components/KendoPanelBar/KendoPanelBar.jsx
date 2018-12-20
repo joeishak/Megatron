@@ -145,10 +145,8 @@ class KendoPanelBar extends Component {
         let qtdColumnClass, weekColumnClass;
         let isJourney = this.props.activeSummary.index  > 3
     
-
         if(isJourney){
             // Journeys
-            
                 qtdColumnClass = 'qtdJourneyMarketColumn';
                 weekColumnClass = 'weekJourneyMarketColumn';
         } else{
@@ -332,10 +330,307 @@ class KendoPanelBar extends Component {
                 break;
         }
     }
+    getRoutesContent() {
+        let isJourney = this.props.activeSummary.index  > 3
+
+        let qtdColumnClass, weekColumnClass;
+        if(isJourney){
+            // Journeys
+            
+                qtdColumnClass = 'qtdJourneyColumn';
+                weekColumnClass = 'weekJourneyColumn';
+        } else{
+            // Financial
+                qtdColumnClass = 'qtdColumn';
+                weekColumnClass = 'weekColumn';
+        } 
+               // {`${qtdColumnClass}`+ " qtdGeoHeader col"}
+        // {`${qtdColumnClass}`+ " qtdMaHeader col"}
+        // {`${qtdColumnClass}`+ " col"}
+        // {`${qtdColumnClass}`+ " col redBG"}
+        // {`${qtdColumnClass}`+ " col greenBG"}
+        // {`${weekColumnClass}`+ " weekGeoHeader col"}
+        // {`${weekColumnClass}`+ " weekMaHeader col"}
+        // {`${weekColumnClass}`+ " col"}
+        // {`${weekColumnClass}`+ " col redBG"}
+        // {`${weekColumnClass}`+ " col greenBG"}
+
+        switch (this.props.timeMetric) {
+            case 'qtd':
+                return (this.props.activeSummary.details.routes.qtd.map(item => {
+                    return (<span key={item.index}>
+                        <div className={`${qtdColumnClass}`+ " qtdGeoHeader col"}>
+                            {item.type}
+                        </div>
+                        <div className={`${qtdColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.actuals }, 'value')}
+                        </div>
+                        {isJourney? <span> </span>:
+                            <div className={`${qtdColumnClass}`+ " col"}>
+                                {utils.formatMetric({ valueType: 'units', value: item.units }, 'value')}
+                            </div>
+                        }
+                        
+                        <div className={`${qtdColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.qrf }, 'value')}
+                        </div>
+                        <div className={`${qtdColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.qrfDiff }, 'value')}
+                        </div>
+                        <div className={(
+                            item.vsQrf <= 0)
+                            ?`${qtdColumnClass}`+ " col redBG"
+                            : `${qtdColumnClass}`+ " col greenBG"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.vsQrf }, 'value')}
+                        </div>
+                        <div className={`${qtdColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'percent', value: item.qq }, 'value')}
+                        </div>
+                        <div className={`${qtdColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'percent', value: item.yy }, 'value')}
+                        </div>
+                    </span>)
+                }));
+            case 'week':
+                return (this.props.activeSummary.details.routes.week.map(item => {
+                    return (<span key={item.index}>
+                        <div className={`${weekColumnClass}`+ " weekGeoHeader col"}>
+                            {item.type}
+                        </div>
+                        <div className={`${weekColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.actuals }, 'value')}
+                        </div>
+                        {isJourney? <span> </span>:
+
+                        <div className={`${weekColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'units', value: item.units }, 'value')}
+                        </div>
+                        }
+                        <div className={`${weekColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.qrf }, 'value')}
+                        </div>
+                        <div className={`${weekColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.qrfDiff }, 'value')}
+                        </div>
+                        <div className={(
+                            item.vsQrf <= 0)
+                            ? `${weekColumnClass}`+ " col redBG"
+                            : `${weekColumnClass}`+ " col greenBG"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.vsQrf }, 'value')}
+                        </div>
+                        <div className={`${weekColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'percent', value: item.ww }, 'value')}
+                        </div>
+                    </span>)
+                }));
+            default:
+                break;
+        }
+    }
+    getSegmentContent() {
+        let isJourney = this.props.activeSummary.index  > 3
+
+        let qtdColumnClass, weekColumnClass;
+        if(isJourney){
+            // Journeys
+            
+                qtdColumnClass = 'qtdJourneyColumn';
+                weekColumnClass = 'weekJourneyColumn';
+        } else{
+            // Financial
+                qtdColumnClass = 'qtdColumn';
+                weekColumnClass = 'weekColumn';
+        } 
+               // {`${qtdColumnClass}`+ " qtdGeoHeader col"}
+        // {`${qtdColumnClass}`+ " qtdMaHeader col"}
+        // {`${qtdColumnClass}`+ " col"}
+        // {`${qtdColumnClass}`+ " col redBG"}
+        // {`${qtdColumnClass}`+ " col greenBG"}
+        // {`${weekColumnClass}`+ " weekGeoHeader col"}
+        // {`${weekColumnClass}`+ " weekMaHeader col"}
+        // {`${weekColumnClass}`+ " col"}
+        // {`${weekColumnClass}`+ " col redBG"}
+        // {`${weekColumnClass}`+ " col greenBG"}
+
+        switch (this.props.timeMetric) {
+            case 'qtd':
+                return (this.props.activeSummary.details.segment.qtd.map(item => {
+                    return (<span key={item.index}>
+                        <div className={`${qtdColumnClass}`+ " qtdGeoHeader col"}>
+                            {item.type}
+                        </div>
+                        <div className={`${qtdColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.actuals }, 'value')}
+                        </div>
+                        {isJourney? <span> </span>:
+                            <div className={`${qtdColumnClass}`+ " col"}>
+                                {utils.formatMetric({ valueType: 'units', value: item.units }, 'value')}
+                            </div>
+                        }
+                        
+                        <div className={`${qtdColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.qrf }, 'value')}
+                        </div>
+                        <div className={`${qtdColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.qrfDiff }, 'value')}
+                        </div>
+                        <div className={(
+                            item.vsQrf <= 0)
+                            ?`${qtdColumnClass}`+ " col redBG"
+                            : `${qtdColumnClass}`+ " col greenBG"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.vsQrf }, 'value')}
+                        </div>
+                        <div className={`${qtdColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'percent', value: item.qq }, 'value')}
+                        </div>
+                        <div className={`${qtdColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'percent', value: item.yy }, 'value')}
+                        </div>
+                    </span>)
+                }));
+            case 'week':
+                return (this.props.activeSummary.details.segment.week.map(item => {
+                    return (<span key={item.index}>
+                        <div className={`${weekColumnClass}`+ " weekGeoHeader col"}>
+                            {item.type}
+                        </div>
+                        <div className={`${weekColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.actuals }, 'value')}
+                        </div>
+                        {isJourney? <span> </span>:
+
+                        <div className={`${weekColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'units', value: item.units }, 'value')}
+                        </div>
+                        }
+                        <div className={`${weekColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.qrf }, 'value')}
+                        </div>
+                        <div className={`${weekColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.qrfDiff }, 'value')}
+                        </div>
+                        <div className={(
+                            item.vsQrf <= 0)
+                            ? `${weekColumnClass}`+ " col redBG"
+                            : `${weekColumnClass}`+ " col greenBG"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.vsQrf }, 'value')}
+                        </div>
+                        <div className={`${weekColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'percent', value: item.ww }, 'value')}
+                        </div>
+                    </span>)
+                }));
+            default:
+                break;
+        }
+    }
+    getProductContent() {
+        let isJourney = this.props.activeSummary.index  > 3
+
+        let qtdColumnClass, weekColumnClass;
+        if(isJourney){
+            // Journeys
+            
+                qtdColumnClass = 'qtdJourneyColumn';
+                weekColumnClass = 'weekJourneyColumn';
+        } else{
+            // Financial
+                qtdColumnClass = 'qtdColumn';
+                weekColumnClass = 'weekColumn';
+        } 
+               // {`${qtdColumnClass}`+ " qtdGeoHeader col"}
+        // {`${qtdColumnClass}`+ " qtdMaHeader col"}
+        // {`${qtdColumnClass}`+ " col"}
+        // {`${qtdColumnClass}`+ " col redBG"}
+        // {`${qtdColumnClass}`+ " col greenBG"}
+        // {`${weekColumnClass}`+ " weekGeoHeader col"}
+        // {`${weekColumnClass}`+ " weekMaHeader col"}
+        // {`${weekColumnClass}`+ " col"}
+        // {`${weekColumnClass}`+ " col redBG"}
+        // {`${weekColumnClass}`+ " col greenBG"}
+
+        switch (this.props.timeMetric) {
+            case 'qtd':
+                return (this.props.activeSummary.details.product.qtd.map(item => {
+                    return (<span key={item.index}>
+                        <div className={`${qtdColumnClass}`+ " qtdGeoHeader col"}>
+                            {item.type}
+                        </div>
+                        <div className={`${qtdColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.actuals }, 'value')}
+                        </div>
+                        {isJourney? <span> </span>:
+                            <div className={`${qtdColumnClass}`+ " col"}>
+                                {utils.formatMetric({ valueType: 'units', value: item.units }, 'value')}
+                            </div>
+                        }
+                        
+                        <div className={`${qtdColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.qrf }, 'value')}
+                        </div>
+                        <div className={`${qtdColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.qrfDiff }, 'value')}
+                        </div>
+                        <div className={(
+                            item.vsQrf <= 0)
+                            ?`${qtdColumnClass}`+ " col redBG"
+                            : `${qtdColumnClass}`+ " col greenBG"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.vsQrf }, 'value')}
+                        </div>
+                        <div className={`${qtdColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'percent', value: item.qq }, 'value')}
+                        </div>
+                        <div className={`${qtdColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'percent', value: item.yy }, 'value')}
+                        </div>
+                    </span>)
+                }));
+            case 'week':
+                return (this.props.activeSummary.details.product.week.map(item => {
+                    return (<span key={item.index}>
+                        <div className={`${weekColumnClass}`+ " weekGeoHeader col"}>
+                            {item.type}
+                        </div>
+                        <div className={`${weekColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.actuals }, 'value')}
+                        </div>
+                        {isJourney? <span> </span>:
+
+                        <div className={`${weekColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'units', value: item.units }, 'value')}
+                        </div>
+                        }
+                        <div className={`${weekColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.qrf }, 'value')}
+                        </div>
+                        <div className={`${weekColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.qrfDiff }, 'value')}
+                        </div>
+                        <div className={(
+                            item.vsQrf <= 0)
+                            ? `${weekColumnClass}`+ " col redBG"
+                            : `${weekColumnClass}`+ " col greenBG"}>
+                            {utils.formatMetric({ valueType: 'currency', value: item.vsQrf }, 'value')}
+                        </div>
+                        <div className={`${weekColumnClass}`+ " col"}>
+                            {utils.formatMetric({ valueType: 'percent', value: item.ww }, 'value')}
+                        </div>
+                    </span>)
+                }));
+            default:
+                break;
+        }
+    }
     getDataContent(type) {
         switch (type) {
             case DIMENSIONS.MARKET:
                 return this.getMarketAreaContent();
+            case DIMENSIONS.ROUTE:
+                return this.getRoutesContent();
+            case DIMENSIONS.SEGMENT:
+                return this.getSegmentContent();
+            case DIMENSIONS.PRODUCT:
+                return this.getProductContent();
             default:
                 return this.getGeoContent();
         }

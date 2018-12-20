@@ -551,9 +551,51 @@ export function requestSummaryData(allFilters,_parameters){
         responseType: 'text'
     });
 
-
+    //TODO: The rest of the details
+    finRoutes
+    finSegments
+ 
+    const finRoutes  = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.dataXdcID + Infoburst.summaryQueryNames.FinancialRouteQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const finSegments  = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.dataXdcID + Infoburst.summaryQueryNames.FinancialSegmentQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const finProducts  = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.dataXdcID + Infoburst.summaryQueryNames.FinancialProductQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const journG2Routes  = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG2RoutesQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const journG2Segments =  axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG2SegmentsQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const journG2Products =  axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG2ProductsQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const journG3Routes  = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG3RouteQTD+ params3 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const journG3Segments =  axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG3SegmentQTD + params3 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const journG3Products = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.journeyXdcID + Infoburst.summaryQueryNames.JourneysG3ProductQTD+ params3 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
     
-    responseArray.push(primaryFinancial, primaryG2Journey,primaryG3Journey,secondaryFinancial,secondaryG2Journey,secondaryG3Journey, finMulti, finUnitsMulti, finGeo, finQTD, journG2Mutli, journG3Mutli, journG2QTD, journG3QTD, journG2Geo, journG3Geo, finMarkets, journG2Market, journG3Market);
+    responseArray.push( primaryFinancial, primaryG2Journey, primaryG3Journey, secondaryFinancial, secondaryG2Journey, secondaryG3Journey, 
+                        finMulti, finUnitsMulti, finGeo, finQTD, journG2Mutli, journG3Mutli, journG2QTD, journG3QTD, journG2Geo, journG3Geo,
+                        finMarkets, journG2Market, journG3Market,finRoutes,finSegments,finProducts,journG2Routes,journG2Segments,
+                        journG2Products,journG3Routes,journG3Segments,journG3Products);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
