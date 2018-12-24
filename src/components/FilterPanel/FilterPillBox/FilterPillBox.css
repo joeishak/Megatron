@@ -1,0 +1,44 @@
+
+
+.filterText{
+    border: 1px solid #ffffffd8;
+    border-radius: 20px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right:10px;
+    margin-bottom: 20px;
+    margin-top:40px;
+    width: inherit;
+    margin-right: 10px;
+    font-size: 14px;
+    font-style: light;
+
+}
+.filterText, .xButton{
+ color: #ffffff;
+ background-color: #3c3c3c;
+ 
+}
+
+.xButton{
+    padding-left: 15px;
+    font-size: 1.3em;
+}
+
+
+/* Animation */
+
+.example-appear {
+    opacity: 0;
+    transform: translateY(-200px);
+    animation-duration: 4s;
+    animation-delay: 2s;
+}
+  
+.example-appear.example-appear-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 1s ease-out;
+    animation-duration: 100s;
+    animation-delay: 5s;
+}

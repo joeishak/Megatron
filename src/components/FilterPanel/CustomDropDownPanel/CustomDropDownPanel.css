@@ -1,0 +1,150 @@
+
+
+.ddFilter-appear {
+    opacity: 0;
+    transform: translateY(-200px);
+    animation-duration: 4s;
+    animation-delay: 2s;
+}
+  
+.ddFilter-appear.ddFilter-appear-active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 1s ease-out;
+    animation-duration: 100s;
+    animation-delay: 5s;
+}
+
+.panelDropDownContainer{
+    height: 150px;
+    width: 100%;
+    background-color: #3c3c3c;
+    -webkit-transition: height 1s; /* For Safari 3.1 to 6.0 */
+    transition: height 1s;
+}
+.panelBarContainer-open{
+    color: white;
+    background-color: #3c3c3c;
+    height: 150px !important;
+    padding-left: 20px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .panelDropDownContainer {
+        display: none;
+    }
+}
+
+.panelBarContainer-closed{
+    height: 0px;  
+    display:none;
+    /* display:none; */
+  
+    /* display: none; */
+}
+
+.quarterFilterContainer{
+    float:left;
+    font-size:14px !important;
+    display:none;
+    height: 0px;
+    margin-right: 20px;
+    padding-top: 5px;
+    -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
+    transition: height 2s;
+    
+}
+.quarterFilterContainer-open{
+    display:inline-block;
+    height: 60px;
+}
+.quarterFilterContainer-closed{
+    height: 0px;
+    /* display:none; */
+}
+
+
+/* Drop Down Animations */
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fader {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fader {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fader {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fader {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@media only screen and (max-width: 1607px) {
+    /* tablets and desktop */
+    .panelBarContainer-open{
+        height: 210px;
+
+    }
+}
+
+@media only screen and (max-width: 810px) {
+    /* tablets and desktop */
+    .panelBarContainer-open{
+        height: 350px;
+
+    }
+}
+
+.k-dropdown .k-dropdown-wrap .k-select, .k-ie .k-dropdown .k-dropdown-wrap .k-select, .k-ff .k-dropdown .k-dropdown-wrap .k-select {
+    background-color: rgb(34, 34, 34) !important;
+    color: white !important;
+    color: white;
+}
+
+[data-role="popup"] {
+    background-color: rgb(34, 34, 34) !important;
+    color: white !important;
+}
+
+[data-role="popup"] ul li[class="k-item k-state-hover"], [data-role="popup"] ul li[class="k-item k-state-selected k-state-focused"] {
+    border-radius: 0px;
+}
+
+.k-select .k-dropdown .k-dropdown-wrap .k-ff .k-select {
+    background-color: rgb(34, 34, 34) !important;
+    color: white !important;
+    color: white !important;
+}
+
+.k-list-container {
+    white-space: nowrap !important;
+}
+
+.k-input {
+    background-color: rgb(34, 34, 34) !important;
+    color: white !important;
+}
+
+.k-dropdown{
+    background-color: rgb(34, 34, 34) !important;
+    color: white !important;
+}
+
+.default{
+    margin-top: 35px;
+}

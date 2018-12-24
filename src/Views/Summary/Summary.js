@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Navigation from "components/Navigation/Navigation";
 import { connect } from "react-redux";
 import * as actions from "actions";
 import * as utils from "../../utilities.js";
@@ -9,16 +8,18 @@ import { withAuth } from "@okta/okta-react";
 import { checkAuthentication } from "../../helper";
 import "@progress/kendo-theme-default/dist/all.css";
 // Custom Components
+
 import LoadingScreen from "../Loading/Loading.jsx";
-import FilterBox from "components/FilterBox/FilterBox";
+import Navigation from "components/Navigation/Navigation";
+import FilterPanel from "components/FilterPanel/FilterPanel";
+import CommentBox from "../../components/CommentBox/CommentBox.jsx";
+
+
 import Playground from "../../components/MobileComponents/Playground/Playground.jsx";
-import CustomDropDownPanel from "components/CustomDropDownPanel/CustomDropDownPanel";
 import SummaryViewDetails from "components/SummaryViewDetails/SummaryViewDetails";
 import KendoDialog from "../../components/KendoDialog/KendoDialog";
-import CommentBox from "../../components/CommentBox/CommentBox.jsx";
 import PrimaryContentList from "../../components/PrimaryContent/PrimaryContentList.jsx";
 import SecondaryContentList from "../../components/SecondaryContent/SecondaryContentList.jsx";
-import FilterPage from "../../components/MobileComponents/FitlerPage/FilterPage.jsx";
 import Login from "../../components/Login/Login";
 import {
   PRIMARY,
@@ -35,8 +36,6 @@ class Summary extends Component {
     /* Initializing local state */
     this.state = {
       index: 0,
-      filterPanelIsOpen: false,
-      showDropDowns: false,
       authenticated: null,
       window: {
         height: window.innerHeight,
@@ -48,10 +47,8 @@ class Summary extends Component {
 
     /*Bindings  */
     this.checkAuthentication = checkAuthentication.bind(this);
-    this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
     this.login = this.login.bind(this);
     this.props.getIbHeartbeat();
-
   }
 
   resize() {
@@ -135,21 +132,6 @@ class Summary extends Component {
   }
   async login() {
     this.props.auth.login("/");
-  }
-  /* Event Handler for the Filter Box to open the filter panel with the drop downs */
-  openDialogFilterPanel() {
-    // Opening the panel
-    if (!this.state.filterPanelIsOpen) {
-      this.setState({ showDropDowns: true });
-      this.setState({ filterPanelIsOpen: true });
-    } else {
-      /* Closing the Panel */
-      this.setState({ showDropDowns: false });
-      // this.setState({filterPanelIsOpen: false});
-      this.time = setTimeout(() => {
-        this.setState({ filterPanelIsOpen: false });
-      }, 300);
-    }
   }
   updateActivePrimary(index) {
     this.props.updateActivePrimaryCard(index);
@@ -261,13 +243,7 @@ class Summary extends Component {
     // console.log(utils.includes(utils.getDeviceType(this.state.window), 'tablet'));
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
     const isMobileOrTablet = utils.includes(utils.getDeviceType(this.state.window), 'mobile') || utils.includes(utils.getDeviceType(this.state.window), 'tablet');
-    const filtersPage = this.props.mobileFiltersIsShown ? (
-      <FilterPage
-        windowHeight={this.state.window.height}
-        activeFilters={this.props.activeFilters}
-        availableFilters={this.props.availableFilters}
-      />
-    ) : null;
+   
 
     const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails />;
 
@@ -279,12 +255,9 @@ class Summary extends Component {
             {kdialog}
             {/* Navigation */}
             <Navigation/>
-            <FilterBox handleNewFilterClick={this.openDialogFilterPanel} />
-            <CustomDropDownPanel
-              handleClose={this.openDialogFilterPanel}
-              showContainer={this.state.filterPanelIsOpen}
-              showSlide={this.state.showDropDowns}
-            />
+            <FilterPanel
+            window={this.state.window}/>
+
             {this.props.commentBoxIsOpen ? (
             <CommentBox
               currentMetric={this.state.activeCommentBoxMetric.index}
@@ -299,18 +272,18 @@ class Summary extends Component {
             />
             ) : null}
             <div>
-              {filtersPage}
+         
 
               {this.state.isLoading === true ? <LoadingScreen></LoadingScreen> : 
-                            (<div>
-                              {/* Primary */}
-                              {this.state.isFilterPageVisible ||
-                              this.props.mobileIsPrimary === false ? null : this.getPrimaryContent()}
-                              {/* Secondary */}
-                              {this.state.isFilterPageVisible ? null : this.getSecondaryContent()}
-                              {this.state.isFilterPageVisible  && this.props.mobileIsPrimary? null : null}
-                              {summaryViewDetails}
-                            </div>)
+               (<div>
+                 {/* Primary */}
+                 {this.state.isFilterPageVisible ||
+                 this.props.mobileIsPrimary === false ? null : this.getPrimaryContent()}
+                 {/* Secondary */}
+                 {this.state.isFilterPageVisible ? null : this.getSecondaryContent()}
+                 {this.state.isFilterPageVisible  && this.props.mobileIsPrimary? null : null}
+                 {summaryViewDetails}
+               </div>)
               }
             </div>
           </span>
