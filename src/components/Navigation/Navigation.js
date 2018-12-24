@@ -1,13 +1,12 @@
 // Npm Modules
 import React, { Component } from "react";
-// import { Route, Link } from "react-router-dom";
 import { Navbar, NavDropdown, MenuItem } from "react-bootstrap";
 import { Expand } from "@progress/kendo-react-animation";
-// import classNames from "classnames";
 import { withAuth } from "@okta/okta-react";
 import { checkAuthentication } from "../../helper";
-
-// import App from "../../Views/App/App.js";
+import {
+  MOBILE_FILTER_PAGE
+} from "../../Constants/consts.js";
 import styles from "./Navigation.css";
 
 
@@ -18,13 +17,15 @@ import filterSelected from "./assets/filter-selected.svg";
 import commentIconOff from "./assets/images/comment-icon-off.svg";
 import commentIconOn from "./assets/images/comment-icon-on.svg";
 
-// import profilePic from "./assets/images/amit-profile.png";
 import * as utils from '../../utilities';
 
 // Redux
 import { connect } from "react-redux";
 import * as actions from "actions";
 
+
+import CompanyHeader from './CompanyHeader.js';
+import UserNav from './UserNav.js';
 class Navigation extends Component {
   //When the component is constructed
   constructor(props) {
@@ -35,13 +36,13 @@ class Navigation extends Component {
       activeTab: "tab1",
       dataPrefDialogVisible: this.props.dialogIsOpen,
       commentsAreActive: false,
-      authenticated: null
+      authenticated: null,
+      isFilterPageVisible: false,
     };
     //Binding functions to this
     this.checkAuthentication = checkAuthentication.bind(this);
     this.showLogo = this.showLogo.bind(this);
     this.updateCommentsNav = this.updateCommentsNav.bind(this);
-    this.logout = this.logout.bind(this);
     this.showLogo();
   }
 
@@ -52,9 +53,11 @@ class Navigation extends Component {
   async componentDidUpdate() {
     this.checkAuthentication();
   }
-  async logout() {
-    this.props.auth.logout("/summary");
-  }
+  onFilterToggled = e => {
+    const toggleState = !this.state.isFilterPageVisible;
+    this.setState({ isFilterPageVisible: toggleState });
+    this.props.updateViewSetting(MOBILE_FILTER_PAGE, toggleState);
+  };
   // Function to show the logo after 1 second
   showLogo = () => {
     this.timeout = setTimeout(() => {
@@ -106,7 +109,8 @@ class Navigation extends Component {
   };
 
   render() {
-    //local constants for showing the logo with an animation
+
+    
     const isLaptop = utils.includes( this.props.deviceType, 'laptop');
     const filterIcon = this.props.isFilterPageVisible
       ? filterSelected
@@ -114,83 +118,33 @@ class Navigation extends Component {
     const { show } = this.state;
     const logos = show ? <img alt="" src={logo} className="imgLogo" /> : null;
     const { activeTab } = this.state;
-    const filterButton = utils.includes(this.props.deviceType, 'tablet') || utils.includes(this.props.deviceType, 'mobile') ? (
-        <div className="filterButton">
-          <img
-            alt=""
-            className="fitlerIconMobile"
-            src={filterIcon}
-            onClick={e => this.props.onFilterToggled(e)}
-          />
-        </div>
-      ) : null;
+
 
     return (
       <Navbar fluid className="navContainer">
-        <Navbar.Header>
-          <Navbar.Brand className="navBrandLogo">
-            <div href="#brand" style={{ width: 130 }}>
-              <Expand>{logos}</Expand>
-            </div>
-          </Navbar.Brand>
-          {filterButton}
-        </Navbar.Header>
-        {isLaptop === true ?
-        <Navbar.Collapse>
-          <span className="right-bar-span">
-            <div className="dropDownContainerBox">
-              <div className="flLeft">
-                <NavDropdown
-                  eventKey={3}
-                  className="dropDownContainer"
-                  title={this.processLoggedUser(this.props.user) || ""}
-                  id="nav-dropdown"
-                  noCaret
-                >
-                  <MenuItem eventKey={3.1}>Account Settings</MenuItem>
-                  <MenuItem
-                    eventKey={3.2}
-                    onClick={e => this.onDataPreferencesSelcted(e)}
-                  >
-                    Data Preferences
-                  </MenuItem>
-                  <MenuItem eventKey={3.3} onClick={this.logout}>
-                    Log Out
-                  </MenuItem>
-                </NavDropdown>
-              </div>
-              <div className="flLeft">
-                <img alt="" className="userIcon" src={userIcon} />
-              </div>
+        {/* The responseive company logo and */}
+        <CompanyHeader 
+        deviceType={this.props.deviceType}
+        isFilterPageVisible={this.state.isFilterPageVisible}
+        show={show}
+        filterIcon={filterIcon}
+        onFilterToggled={(e)=>{this.onFilterToggled(e)}}
+        logos={logos}
+        />
 
-              <div className="flRight">
-                {" "}
-                <img
-                  alt=""
-                  className="commentIcon"
-                  onClick={this.updateCommentsNav}
-                  src={
-                    !this.props.toggleCommentaryOn
-                      ? commentIconOff
-                      : commentIconOn
-                  }
-                />{" "}
-              </div>
-
-
-            </div>
-          </span>
-      </Navbar.Collapse> :
-            <div className="filterIconContainer">
-                <img
-                  className="filterIcon"
-                  src={filterIcon}
-                  onClick={e => this.props.onFilterToggled(e)}
-                />
-            </div> 
+        <UserNav
+        isLaptop={isLaptop}
+        onDataPreferencesSelcted={(e)=>{this.onDataPreferencesSelcted(e)}}
+        username={this.processLoggedUser(this.props.user || " ")}
+        logout={()=>{ this.props.auth.logout("/summary");}}
+        filterIcon={filterIcon}
+        toggleCommentaryOn={this.props.toggleCommentaryOn}
+        updateCommentsNav={this.updateCommentsNav}
+        onFilterToggled={(e)=>{this.onFilterToggled(e)}}
+        />
+        
           
           
-      }
       </Navbar>
     );
   }

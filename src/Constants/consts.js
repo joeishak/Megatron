@@ -13,3 +13,4 @@ export const DIMENSIONS = {
     QUARTER: 'quarter',
     ROUTE: 'route'
 }
+export const MOBILE_FILTER_PAGE = 'mobile_filter_page';

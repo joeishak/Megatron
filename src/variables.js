@@ -3,8 +3,8 @@ export const PrimaryData = [
         index: 0,
         category: 'Finance',
         header: 'Net New ARR',
-        value: undefined,
-        target: undefined,
+        value: 0,
+        target: 0,
         valueType: 'currency',
         type: 'financial',
         comments: [
@@ -5144,17 +5144,20 @@ const PORT = ':8551/'
 const INFOBURST = 'infoburst/'
 const REST = 'rest/'
 const domains = {
-    local: 'https://localhost',
-    adobe: 'http://infoburst.corp.adobe.com'
+    local: 'http://localhost',
+    adobe: 'http://infoburst.corp.adobe.com',
+    vm1: 'http://vm1.infosol.com'
 }
 const prodDomain = domains.local;
 export const Infoburst = {
+    // user: 'jishak',
+    // pass: '68tailoperatorhanga#',
     user: 'admin',
     pass: 'admin',
     dbQuery: prodDomain + PORT + INFOBURST + REST + 'db/query',
     xdcCacheURL: prodDomain + PORT + INFOBURST + REST + 'get/xdc/',
     xdcCacheQueryURL: prodDomain + PORT + INFOBURST + REST + 'exec/xdcqry/',
-    sysInfo: 'https://localhost:8551/sysinfo',
+    sysInfo: 'http://vm1.infosol.com:8551/sysinfo',
     jsonFormat: '&json=1',
     filterQueryNames: {
         MarketFilters: '?q=MarketFilters&json=1',
@@ -5198,6 +5201,9 @@ export const Infoburst = {
     dataXdcID: '\\1128',
     journeyXdcID: '\\1149',
     filtersXdcID: '\\1092',
+    //  dataXdcID: '\\500',
+    // journeyXdcID: '\\501',
+    // filtersXdcID: '\\499',
     appXdcID: '\\1088'
 
 }

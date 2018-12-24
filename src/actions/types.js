@@ -47,3 +47,4 @@ export const UPDATE_FILTER_VISIBILITITY  = 'update_filter_visibility';
 export const UPDATE_COMMENT_VISIBILITITY  = 'update_comment_visibility';
 export const UPDATE_PRIMARY_VISIBILITITY  = 'update_primary_visibility';
 export const UPDATE_SECONDARY_VISIBILITITY  = 'update_primary_visibility';
+export const UPDATE_MOBILE_FILTER_PAGE_VISIBILITY  = 'update_mobile_filter_page_visibility';

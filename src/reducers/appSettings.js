@@ -5,7 +5,8 @@ import {
 
 import {
     PRIMARY,
-    SECONDARY
+    SECONDARY,
+    MOBILE_FILTER_PAGE
 } from '../Constants/consts';
 const firstState = {
 
@@ -44,6 +45,8 @@ export default function (state = firstState, action) {
             break;
         case 'filter':
             break;
+        case MOBILE_FILTER_PAGE:
+            newState.views.mobileFilterPageIsVisible = action.payload.isShowing;
         default:
             break;
 
