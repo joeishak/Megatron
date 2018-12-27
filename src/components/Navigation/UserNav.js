@@ -8,8 +8,6 @@ import userIcon from "./user-icon.svg";
 
  const UserNav = ({isLaptop,onDataPreferencesSelcted,logout,filterIcon,
                  toggleCommentaryOn,onFilterToggled,username,updateCommentsNav}) => {
-   
-    
 
     return ( 
       isLaptop === true ?

@@ -89,33 +89,31 @@ export default function (state = {
             return newState;
         case ADD_NEW_PRIMARY_COMMENT:
             index = action.payload.square;
-            copyOfState = Object.assign([], state);
-            copyOfState[index].primary.comments.push(action.payload.comment);
-            return copyOfState;
+            copyOfState = Object.assign({}, state);
+            let newComments = copyOfState.primary[index].comments.map(item=>{
+            return item})
+            newComments.push(action.payload.comment);
+            return {...copyOfState, comments: newComments};
         // CAse for adding a reply to a previous comment
         case ADD_NEW_PRIMARY_REPLY:
             index = action.payload.square;
-            copyOfSquare = Object.assign({}, state[index]);
-             commentIndex = Number(action.payload.comment)
-            copyOfSquare.primary.comments[commentIndex].replies.push(action.payload.reply);
-            state[index] = copyOfSquare;
-            return [...state]
+            copyOfState = Object.assign({}, state);
+            commentIndex = Number(action.payload.comment)
+            copyOfState.primary[index].comments[commentIndex].replies.push(action.payload.reply);
+            return {...copyOfState};
    
         case ADD_NEW_SECONDARY_COMMENT:
             index = action.payload.square;
-            copyOfSquare = Object.assign({}, state[index]);
-            copyOfSquare.secondary.comments.push(action.payload.comment);
-            state[index] = copyOfSquare;
-            return [...state];
+            copyOfState = Object.assign({}, state);
+            copyOfState.secondary[index].comments.push(action.payload.comment);
+            return {...copyOfState};
         // CAse for adding a reply to a previous comment
         case ADD_NEW_SECONDARY_REPLY:
             index = action.payload.square;
-
-            copyOfSquare = Object.assign({}, state[index]);
+            copyOfState = Object.assign({}, state);
              commentIndex = Number(action.payload.comment)
-            copyOfSquare.secondary.comments[commentIndex].replies.push(action.payload.reply);
-            state[index] = copyOfSquare;
-            return [...state]
+             copyOfState.secondary[index].comments[commentIndex].replies.push(action.payload.reply);
+            return {...copyOfState};
         default:
             return state;
     }

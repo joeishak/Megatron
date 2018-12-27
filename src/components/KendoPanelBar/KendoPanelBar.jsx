@@ -784,8 +784,8 @@ class KendoPanelBar extends Component {
 
 function mapStateToProps(state) {
     return {
-        activeSummary: state.secondaryData[state.activeCards.secondary],
-        activeGeo: state.secondaryData[state.activeCards.secondary].details.geo.qtd
+        activeSummary: state.summaryData.secondary[state.activeCards.secondary],
+        activeGeo: state.summaryData.secondary[state.activeCards.secondary].details.geo.qtd
     }
 }
 export default connect(mapStateToProps, actions)(KendoPanelBar);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './Playground.css';
 import MobileMultiChart from './components/MobileMultiChart/MobileMultiChart.jsx';
-import MobileCommentBox from '../../CommentBox/MobileCommentBox';
+import MobileCommentBox from '../../CommentPanel/MobileCommentBox';
 import MobileViewDetails from './components/MobileViewDetails/MobileViewDetails.jsx';
 class Playground extends Component {
 

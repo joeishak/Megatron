@@ -42,13 +42,15 @@ class KendoMultiChart extends Component {
     }
 
     shouldComponentUpdate(nextProps){
-        if(this.props.activeMultichart[0][0] !== nextProps.activeMultichart[0][0] ){
-            return true;
-        } 
-        if(this.props.activeUnits[0][0] !== nextProps.activeUnits[0][0] ){
-
-            return true;
-        } 
+        if(this.props.activePrimary === 0){
+            if(this.props.activeMultichart[0][0] !== nextProps.activeMultichart[0][0] ){
+                return true;
+            } 
+            if(this.props.activeUnits[0][0] !== nextProps.activeUnits[0][0] ){
+    
+                return true;
+            } 
+        }
         if(this.props.multichartMetric !== nextProps.multichartMetric){
 
             return true;
@@ -218,9 +220,10 @@ class KendoMultiChart extends Component {
 function mapStateToProps(state){
     return {
         multichartMetric: state.multichartIsArr,
-        activeUnits: state.secondaryData[state.activeCards.secondary].details.unitMultichart,
-        activeMultichart: state.secondaryData[state.activeCards.secondary].details.multichart,
-        valueType: state.secondaryData[state.activeCards.secondary].valueType
+        activePrimary: state.activeCards.primary,
+        activeUnits:state.summaryData.secondary[state.activeCards.secondary].details.unitMultichart,
+        activeMultichart: state.summaryData.secondary[state.activeCards.secondary].details.multichart,
+        valueType: state.summaryData.secondary[state.activeCards.secondary].valueType
     }
 }
 export default connect(mapStateToProps,actions)( KendoMultiChart);

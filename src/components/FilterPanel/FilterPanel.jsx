@@ -5,7 +5,7 @@ import * as actions from 'actions';
 import FilterBarHeader from './FilterBarHeader/FilterBarHeader.js';
 import FilterPage from "../MobileComponents/FitlerPage/FilterPage.jsx";
 
-import CustomDropDownPanel from '../CustomDropDownPanel/CustomDropDownPanel.js';
+import CustomDropDownPanel from './CustomDropDownPanel/CustomDropDownPanel.js';
 class FilterPanel extends Component{
     constructor(props){
         super(props);

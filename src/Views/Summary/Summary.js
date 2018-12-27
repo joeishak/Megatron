@@ -12,7 +12,9 @@ import "@progress/kendo-theme-default/dist/all.css";
 import LoadingScreen from "../Loading/Loading.jsx";
 import Navigation from "components/Navigation/Navigation";
 import FilterPanel from "components/FilterPanel/FilterPanel";
-import CommentBox from "../../components/CommentBox/CommentBox.jsx";
+import CommentPanel from "components/CommentPanel/CommentPanel";
+
+
 
 
 import Playground from "../../components/MobileComponents/Playground/Playground.jsx";
@@ -20,7 +22,6 @@ import SummaryViewDetails from "components/SummaryViewDetails/SummaryViewDetails
 import KendoDialog from "../../components/KendoDialog/KendoDialog";
 import PrimaryContentList from "../../components/PrimaryContent/PrimaryContentList.jsx";
 import SecondaryContentList from "../../components/SecondaryContent/SecondaryContentList.jsx";
-import Login from "../../components/Login/Login";
 import {
   PRIMARY,
   SECONDARY,
@@ -41,7 +42,7 @@ class Summary extends Component {
         height: window.innerHeight,
         width: window.innerWidth
       },
-      activeCommentBoxMetric: undefined,
+      activeCommentBoxMetric: 0,
       isLoading: true
     };
 
@@ -172,21 +173,7 @@ class Summary extends Component {
   }
 
   onCommentIconClick = (e, type, index) => {
-    if (type === PRIMARY) {
-      this.setState(
-        { activeCommentBoxMetric: this.props.primaryData[index] },
-        () => {
-          this.props.showCommentBox();
-        }
-      );
-    } else if (type === SECONDARY) {
-      this.setState(
-        { activeCommentBoxMetric: this.props.secondaryData[index] },
-        () => {
-          this.props.showCommentBox();
-        }
-      );
-    }
+    this.props.showCommentBox();
   };
 
   getPrimaryContent = () => {
@@ -240,11 +227,10 @@ class Summary extends Component {
 
 
   render() {
-    // console.log(utils.includes(utils.getDeviceType(this.state.window), 'tablet'));
+    const {user} = this.props;
+    const {activeCommentBoxMetric} = this.state; 
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
     const isMobileOrTablet = utils.includes(utils.getDeviceType(this.state.window), 'mobile') || utils.includes(utils.getDeviceType(this.state.window), 'tablet');
-   
-
     const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails />;
 
     return (
@@ -253,24 +239,13 @@ class Summary extends Component {
           <span>
             {/* Data Preferences */}
             {kdialog}
-            {/* Navigation */}
+            {/* Navigation*/}
             <Navigation/>
             <FilterPanel
-            window={this.state.window}/>
-
-            {this.props.commentBoxIsOpen ? (
-            <CommentBox
-              currentMetric={this.state.activeCommentBoxMetric.index}
-              comments={this.state.activeCommentBoxMetric.comments}
-              commentBoxHeader={this.state.activeCommentBoxMetric.header}
-              isPrimary={
-                this.state.activeCommentBoxMetric.type !== undefined
-                  ? true
-                  : false
-              }
-              user={this.props.user}
+             window={this.state.window}/>
+            <CommentPanel
+             user={this.props.user}
             />
-            ) : null}
             <div>
          
 
@@ -295,14 +270,12 @@ class Summary extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("app state", state);
   return {
     activeFilters: state.activeFilters,
     availableFilters: state.availableFilters,
     dialogIsOpen: state.isDialogOpen,
     detailIsOpen: state.detailsIsOpen,
     availableFilters: state.availableFilters,
-    commentBoxIsOpen: state.commentBoxIsOpen,
     user: state.user,
     preferences: state.preferences,
     primaryData: state.summaryData.primary,
@@ -319,7 +292,6 @@ function mapStateToProps(state) {
     mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible
   };
 }
-
 export default connect(
   mapStateToProps,
   actions

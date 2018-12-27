@@ -11,9 +11,7 @@ import toggleCommentaryReducer from 'reducers/toggleCommentary.js';
 import multiChartMetricReducer from 'reducers/multichartIsArr.js';
 import userSettingsReducer from 'reducers/userSettings.js';
 import healthAndHeartbeatReducer from 'reducers/healthAndHeartbeat.js';
-import primaryDataReducer from 'reducers/primaryData.js';
 import activeCardReducer from 'reducers/activeCards.js';
-import secondaryDataReducer from 'reducers/secondaryData.js';
 import appSettingsReducer from 'reducers/appSettings.js';
 import summaryDataReducer from 'reducers/summaryData.js';
 export default combineReducers({
@@ -29,9 +27,7 @@ export default combineReducers({
     multichartIsArr: multiChartMetricReducer,
     preferences: userSettingsReducer,
     sysInfo: healthAndHeartbeatReducer,
-    primaryData: primaryDataReducer,
     activeCards: activeCardReducer,
-    secondaryData: secondaryDataReducer,
     appSettings: appSettingsReducer,
     summaryData: summaryDataReducer
 });

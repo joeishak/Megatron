@@ -5,7 +5,7 @@ import  classNames from 'classnames';
 // Custom Components and Styles
 import * as actions from 'actions';
 import styles from './CustomDropDownPanel.css';
-import KendoDropDownList from '../KendoDropDownList/KendoDropDownList'
+import KendoDropDownList from '../../KendoDropDownList/KendoDropDownList'
 
 class CustomDropDownPanel extends Component {
     //When the component is constructed

@@ -596,10 +596,10 @@ function mapStateToProps(state) {
   return {
     previousViewWasJourneys: state.switchFilter,
     activePrimary: state.activeCards.primary,
-    activeItem: state.secondaryData[state.activeCards.secondary],
+    activeItem: state.summaryData.secondary[state.activeCards.secondary],
     activeFilters: state.activeFilters,
     availableFilters: state.availableFilters,
-    qtdwData: state.secondaryData[state.activeCards.secondary].details.qtdw,
+    qtdwData: state.summaryData.secondary[state.activeCards.secondary].details.qtdw,
     summaryData: state.adobeData,
     journeyData: state.journeyData,
     multichartIsArr: state.multichartIsArr

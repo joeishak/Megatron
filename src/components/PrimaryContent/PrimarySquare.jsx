@@ -154,7 +154,7 @@ class PrimarySquare extends Component {
           >
             <div className={`sumChartContent  ${this.props.item.css[1]}`}>
 
-              {isLaptop && this.props.toggleCommentary ? (
+              {/* {isLaptop && this.props.toggleCommentary ? (
                 <span className={` k-float-right   ${responsiveCommentIcon}`}>
                   <img
                     alt=""
@@ -174,7 +174,7 @@ class PrimarySquare extends Component {
                 </span>
               ) : (
                 <div className="emptyIcon" />
-              )}
+              )} */}
               {isMobile || isTablet ? null : (
                 <div
                   className={`${responsiveSumChartHeader} ${
