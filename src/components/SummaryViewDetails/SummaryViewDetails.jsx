@@ -7,7 +7,7 @@ import * as utils from "../../utilities.js";
 import classNames from "classnames";
 import "@progress/kendo-theme-default/dist/all.css";
 // Kendo Components
-import KendoPanelBar from "components/KendoPanelBar/KendoPanelBar.jsx";
+// import KendoPanelBar from "components/KendoPanelBar/KendoPanelBar.jsx";
 
 import KendoMultiChart from "../KendoMultiChart/KendoMultiChart";
 // Custom Components
@@ -17,6 +17,8 @@ import excelLogoGreen from "../../assets/images/excel-logo-green.svg";
 // Services
 import ExcelFormatter from "./ExcelFormatter";
 import { CSSTransitionGroup } from 'react-transition-group';
+
+import DetailBreakdown from './DetailBreakdown/DetailBreakdown';
 class SummaryViewDetails extends Component {
   constructor(props) {
     super(props);
@@ -29,46 +31,6 @@ class SummaryViewDetails extends Component {
       activeMetric: "arr",
       activeTimeMetric: "qtd",
       excelTestData: [
-        {
-          Actuals: 66.7,
-          Units: 55,
-          QRF: 66.7,
-          QRFDiff: 43434.2,
-          QQ: 23.5,
-          YY: 84.22
-        },
-        {
-          Actuals: 66.7,
-          Units: 55,
-          QRF: 66.7,
-          QRFDiff: 43434.2,
-          QQ: 23.5,
-          YY: 84.22
-        },
-        {
-          Actuals: 66.7,
-          Units: 55,
-          QRF: 66.7,
-          QRFDiff: 43434.2,
-          QQ: 23.5,
-          YY: 84.22
-        },
-        {
-          Actuals: 66.7,
-          Units: 55,
-          QRF: 66.7,
-          QRFDiff: 43434.2,
-          QQ: 23.5,
-          YY: 84.22
-        },
-        {
-          Actuals: 66.7,
-          Units: 55,
-          QRF: 66.7,
-          QRFDiff: 43434.2,
-          QQ: 23.5,
-          YY: 84.22
-        },
         {
           Actuals: 66.7,
           Units: 55,
@@ -89,149 +51,6 @@ class SummaryViewDetails extends Component {
           vsQrf: 666.5,
           QQ: 233,
           YY: 94.2
-        },
-        {
-          geo: "Amer",
-          marketArea: "US",
-          actuals: 66.5,
-          units: 55.3,
-          Qrf: 22.3,
-          QRFDiff: 44.5,
-          vsQrf: 666.5,
-          QQ: 233,
-          YY: 94.2
-        },
-        {
-          geo: "Amer",
-          marketArea: "US",
-          actuals: 66.5,
-          units: 55.3,
-          Qrf: 22.3,
-          QRFDiff: 44.5,
-          vsQrf: 666.5,
-          QQ: 233,
-          YY: 94.2
-        },
-        {
-          geo: "Amer",
-          marketArea: "US",
-          actuals: 66.5,
-          units: 55.3,
-          Qrf: 22.3,
-          QRFDiff: 44.5,
-          vsQrf: 666.5,
-          QQ: 233,
-          YY: 94.2
-        },
-        {
-          geo: "Amer",
-          marketArea: "US",
-          actuals: 66.5,
-          units: 55.3,
-          Qrf: 22.3,
-          QRFDiff: 44.5,
-          vsQrf: 666.5,
-          QQ: 233,
-          YY: 94.2
-        },
-        {
-          geo: "Amer",
-          marketArea: "US",
-          actuals: 66.5,
-          units: 55.3,
-          Qrf: 22.3,
-          QRFDiff: 44.5,
-          vsQrf: 666.5,
-          QQ: 233,
-          YY: 94.2
-        },
-        {
-          geo: "Amer",
-          marketArea: "US",
-          actuals: 66.5,
-          units: 55.3,
-          Qrf: 22.3,
-          QRFDiff: 44.5,
-          vsQrf: 666.5,
-          QQ: 233,
-          YY: 94.2
-        },
-        {
-          geo: "Amer",
-          marketArea: "US",
-          actuals: 66.5,
-          units: 55.3,
-          Qrf: 22.3,
-          QRFDiff: 44.5,
-          vsQrf: 666.5,
-          QQ: 233,
-          YY: 94.2
-        },
-        {
-          geo: "Amer",
-          marketArea: "US",
-          actuals: 66.5,
-          units: 55.3,
-          Qrf: 22.3,
-          QRFDiff: 44.5,
-          vsQrf: 666.5,
-          QQ: 233,
-          YY: 94.2
-        },
-        {
-          geo: "Amer",
-          marketArea: "US",
-          actuals: 66.5,
-          units: 55.3,
-          Qrf: 22.3,
-          QRFDiff: 44.5,
-          vsQrf: 666.5,
-          QQ: 233,
-          YY: 94.2
-        },
-        {
-          geo: "Amer",
-          marketArea: "US",
-          actuals: 66.5,
-          units: 55.3,
-          Qrf: 22.3,
-          QRFDiff: 44.5,
-          vsQrf: 666.5,
-          QQ: 233,
-          YY: 94.2
-        },
-        {
-          geo: "Amer",
-          marketArea: "US",
-          actuals: 66.5,
-          units: 55.3,
-          Qrf: 22.3,
-          QRFDiff: 44.5,
-          vsQrf: 666.5,
-          QQ: 233,
-          YY: 94.2
-        },
-        {
-          geo: "Asia",
-          marketArea: "US",
-          actuals: 66.5,
-          units: 55.3,
-          Qrf: 22.3,
-          QRFDiff: 44.5,
-          vsQrf: 666.5,
-          QQ: 233,
-          YY: 94.2
-        },
-        {
-          geo: "Asia",
-          marketArea: "US",
-          actuals: 66.5,
-          units: 55.3,
-          Qrf: 22.3,
-          QRFDiff: 44.5,
-          vsQrf: 666.5,
-          QQ: 233,
-          YY: 94.2
         }
       ]
     };
@@ -241,20 +60,8 @@ class SummaryViewDetails extends Component {
       this
     );
     this.updateQtdMetricFilter = this.updateQtdMetricFilter.bind(this);
-    this.renderQuarterlyToDate = this.renderQuarterlyToDate.bind(this);
-    this.renderQuarterlyToDateTableHeader = this.renderQuarterlyToDateTableHeader.bind(
-      this
-    );
-    this.renderDollarValue = this.renderDollarValue.bind(this);
-    this.renderM = this.renderM.bind(this);
-    this.detailsRenderM = this.detailsRenderM.bind(this);
-    this.detailsRenderDollar = this.detailsRenderDollar.bind(this);
-    this.formatPercentage = this.formatPercentage.bind(this);
-    this.renderDollarValuePanelBarItems = this.renderDollarValuePanelBarItems.bind(
-      this
-    );
+ 
   }
-
 
   updateMultiChartMetricFilter(e) {
     let metric = e.target.innerHTML.toLowerCase();
@@ -270,155 +77,8 @@ class SummaryViewDetails extends Component {
     //Either be 'qtd', 'week' or 'all'
     this.setState({ activeTimeMetric: e.target.innerHTML.toLowerCase() });
   }
-  renderQuarterlyToDateTableHeader() {
-    switch (this.state.activeTimeMetric) {
-      case "qtd":
-        return (
-          <div className=" qtdDetailTitle col-md-11">Quarterly To Date</div>
-        );
-      case "week":
-        return <div className=" qtdDetailTitle col-md-11">Week</div>;
-      case "all":
-        return (
-          <div className=" allContainer col-md-12">
-            <div className=" allWeekDetailTitle col-md-6">Week</div>
-            <div className=" allQtdDetailTitle col-md-6">Quartely To Date</div>
-          </div>
-        );
-      default:
-        break;
-    }
-  }
-  renderM(index) {
-    let renderM = "";
-
-    if (index === 1 || index === 2) {
-      renderM = "M";
-    } else {
-      renderM = "%";
-    }
-
-    return renderM;
-  }
-  renderDollarValue(value) {
-    let returnValue = "";
-    value = parseInt(value);
-
-    if (value > 1000 && value <= 999999) {
-      value = (value / 1000).toFixed(1);
-      returnValue = "$" + value.toString() + "K";
-    } else if (value > 1000000 && value <= 999999999) {
-      value = (value / 1000000).toFixed(1);
-      returnValue = "$" + value.toString() + "M";
-      // returnValue = (value.toString() === '0.0') ? (value.toString() + 'K' : value.toString() + 'M'
-    } else if (value > 1000000000 && value <= 999999999999) {
-      value = (value / 1000000000).toFixed(1);
-      returnValue = "$" + value.toString() + "B";
-    } else if (value > 1000000000 && value <= 999999999999999) {
-      value = (parseInt(value) / 1000000000000).toFixed(1);
-      returnValue = "$" + value.toString() + "T";
-    } else {
-      return "$" + value.toString();
-    }
-
-    return returnValue;
-  }
-  formatPercentage(value) {
-    return (Math.round(value * 100) / 100).toString() + "%";
-  }
-  renderDollarValuePanelBarItems(value, item) {
-    if (
-      // item.header === "Actuals" ||
-      // item.header === "QRF" ||
-      item.header === "Units"
-    ) {
-      // If Units remove the dollar sign
-      // let tmpValue =
-      //   item.header === "Units"
-      //     ? this.renderDollarValue(value).substr(1)
-      //     : this.renderDollarValue(value);
-      return utils.formatMetric({ valueType: 'units', value: item.value }, 'value');
-    } else {
-      return utils.formatMetric({ valueType: this.props.activeItem.valueType, value: item.value}, 'value');
-    }
-  }
-  detailsRenderM(item) {
-    if (
-      item.header === "Actuals" ||
-      item.header === "QRF Diff" ||
-      item.header === "QRF" ||
-      item.header === "Units"
-    ) {
-      return "M";
-    } else return "%";
-  }
-
-  detailsRenderDollar(item) {
-    if (
-      item.header === "Actuals" ||
-      item.header === "QRF Diff" ||
-      item.header === "QRF"
-    ) {
-      return "$";
-    } else return "";
-  }
-  renderQuarterlyToDate(qtdwColSizes, qtdTotalTable) {
-    switch (this.state.activeTimeMetric) {
-      case "qtd":
-        return (
-          <div className={qtdTotalTable + " col-md-11"}>
-            {this.props.activeItem.details.qtdw.qtd
-              .map(item => {
-                return (
-                  <div
-                    key={item.index}
-                    className={
-                      qtdwColSizes + (item.header === "Vs Qrf" ? " redBG" : " ")
-                    }
-                  >
-                    <span className="contHeader"> {item.header}</span>
-                    <span className="valHeader">
-                      {" "}
-                      {this.renderDollarValuePanelBarItems(item.value, item)}
-                    </span>
-                  </div>
-                );
-              })
-              .reverse()}
-          </div>
-        );
-      case "week":
-        let formatter = new ExcelFormatter(
-          this.props.activeItem.details.qtdw.week
-        );
-        formatter.formatDataForExcel();
-        return (
-          <div className={qtdTotalTable + " col-md-11"}>
-            {this.props.activeItem.details.qtdw.week
-              .map(item => {
-                return (
-                  <div
-                    key={item.index}
-                    className={
-                      qtdwColSizes + (item.header === "Vs Qrf" ? " redBG" : " ")
-                    }
-                  >
-                    <span className="contHeader"> {item.header} </span>
-                    <span className="valHeader">
-                      {this.renderDollarValuePanelBarItems(item.value, item)}
-                    </span>
-                  </div>
-                );
-              })
-              .reverse()}
-          </div>
-        );
-     
-      default:
-        break;
-    }
-  }
-
+ 
+ 
   closeSummary() {
     this.props.updateMultichartMetric(true);
     this.props.hideSummaryDetails();
@@ -570,23 +230,11 @@ class SummaryViewDetails extends Component {
           }
 
         </div>
-
-        <div className="  qtdTopDetails container-fluid row white">
-          <div className=" qtdTotalTitle col-md-1">&nbsp;</div>
-          {this.renderQuarterlyToDateTableHeader()}
-          <div className=" qtdTotalTitle col-md-12">
-            <div className=" qtdTotalTitle col-md-1">Total</div>
-            {this.renderQuarterlyToDate(qtdwColSizes, qtdTotalTable)}
-          </div>
-        </div>
-        <div className="  qtdTopDetails container-fluid row white">
-          <KendoPanelBar
-            activeSummary={this.props.activeItem}
-            renderTableHeaders={this.renderQuarterlyToDateTableHeader}
-            timeMetric={this.state.activeTimeMetric}
-            background="white"
-          />
-        </div>
+        <DetailBreakdown
+        activeSummary={this.props.activeItem}
+        
+        activeTimeMetric={this.state.activeTimeMetric}
+        background="white"/>
       </div>
     );
   }

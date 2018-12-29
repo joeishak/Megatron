@@ -46,7 +46,6 @@ class CommentPanel extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log('Comment Panel' ,state);
     return {
         commentBoxIsOpen: state.commentBoxIsOpen,
         currentMetric: state.activeCards.secondary,
