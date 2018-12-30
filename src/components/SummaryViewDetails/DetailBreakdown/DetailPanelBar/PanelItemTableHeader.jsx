@@ -8,7 +8,7 @@ class PanelItemTableHeader extends Component {
             case DIMENSIONS.GEO:
                 return 'Geo';
             case DIMENSIONS.MARKET:
-                return 'Geo';
+                return 'Market';
             case DIMENSIONS.ROUTE:
                 return 'Route';
             case DIMENSIONS.SEGMENT:
@@ -19,12 +19,12 @@ class PanelItemTableHeader extends Component {
     }
     getLowerHeader(type) {
 
-        let isMarket = type === DIMENSIONS.MARKET;
+        let isGeo = type === DIMENSIONS.GEO;
         let qtdColumnClass, weekColumnClass;
         let isJourney = this.props.activeSummary.index  > 3
         if(isJourney){
             // Journeys
-            if(isMarket){
+            if(isGeo){
                 qtdColumnClass = 'qtdJourneyMarketColumn';
                 weekColumnClass = 'weekJourneyMarketColumn';
             } else{
@@ -33,7 +33,7 @@ class PanelItemTableHeader extends Component {
             }
         } else{
             // Financial
-            if(isMarket){
+            if(isGeo){
                 qtdColumnClass = 'qtdMarketColumn';
                 weekColumnClass = 'weekMarketColumn';
             } else{
@@ -42,7 +42,7 @@ class PanelItemTableHeader extends Component {
             }
         } 
         
-        let MAColumn = (isMarket) ? <div className={`${qtdColumnClass}  header qtdMaHeader col`}>
+        let MAColumn = (isGeo) ? <div className={`${qtdColumnClass}  header qtdMaHeader col`}>
             Market Area
            </div> : <span></span>
 
@@ -82,7 +82,7 @@ class PanelItemTableHeader extends Component {
                     <div className={`${weekColumnClass} header weekGeoHeader  col`}>
                         {this.getLowerHeaderCategory(type)}
                     </div>
-                    {(type === DIMENSIONS.MARKET) ? <div className={`${weekColumnClass} header weekMaHeader  col`}>
+                    {(type === DIMENSIONS.GEO) ? <div className={`${weekColumnClass} header weekMaHeader  col`}>
                         Market Area
                 </div> : <span></span>}
                     <div className={`${weekColumnClass} header  col`}>

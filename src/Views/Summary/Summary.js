@@ -270,6 +270,7 @@ class Summary extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     activeFilters: state.activeFilters,
     availableFilters: state.availableFilters,

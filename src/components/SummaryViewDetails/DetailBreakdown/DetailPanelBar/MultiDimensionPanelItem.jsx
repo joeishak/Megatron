@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import * as utils from "../../../../utilities.js";
 
 class MultiDimensionPanelItem extends Component {
+    
     getMultiDimensionPanelItem(){
         let marketCount = 0;
         let qtdColumnClass, weekColumnClass;

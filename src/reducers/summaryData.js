@@ -22,14 +22,14 @@ export default function (state = {
     secondary: SecondaryData
 }, action) {
     switch (action.type) {
-        case GET_SUMMARY_DATA:
+        case GET_SUMMARY_DATA: 
         // primaryFinancial, primaryG2Journey, primaryG3Journey, secondaryFinancial, secondaryG2Journey, secondaryG3Journey, 
         // finMulti, finUnitsMulti, finGeo, finQTD, journG2Mutli, journG3Mutli, journG2QTD, journG3QTD, journG2Geo, journG3Geo,
         // finMarkets, journG2Market, journG3Market,finRoutes,finSegments,finProducts,journG2Routes,journG2Segments,
         // journG2Products,journG3Routes,journG3Segments,journG3Products);
 
+        console.log(action.payload);
 
-            console.log(action.payload);
         newState = Object.assign({}, state);
             //Actual, Targets, Vs QRf
             // //Finance
@@ -64,10 +64,10 @@ export default function (state = {
 
             processSecondaryData(action.payload[3], action.payload[4], action.payload[5], newState.secondary)
 
-          // 0 -primaryFinancial, primaryG2Journey, primaryG3Journey, secondaryFinancial, secondaryG2Journey, secondaryG3Journey, 
-        // finMulti, finUnitsMulti, finGeo, finQTD, journG2Mutli, journG3Mutli, journG2QTD, journG3QTD, journG2Geo, journG3Geo,
-        // finMarkets, journG2Market, journG3Market,finRoutes,finSegments,finProducts,journG2Routes,journG2Segments,
-        // journG2Products,journG3Routes,journG3Segments,27 - journG3Products);
+            // 0 -primaryFinancial, primaryG2Journey, primaryG3Journey, secondaryFinancial, secondaryG2Journey, secondaryG3Journey, 
+            // finMulti, finUnitsMulti, finGeo, finQTD, journG2Mutli, journG3Mutli, journG2QTD, journG3QTD, journG2Geo, journG3Geo,
+            // finMarkets, journG2Market, journG3Market,finRoutes,finSegments,finProducts,journG2Routes,journG2Segments,
+            // journG2Products,journG3Routes,journG3Segments,27 - journG3Products);
 
             processFinancialMultichart(newState.secondary, action.payload[6].data);
             processFinancialUnitsMultichart(newState.secondary, action.payload[7].data);
@@ -78,9 +78,9 @@ export default function (state = {
             processJourneyQTD(action.payload[12].data[0], action.payload[13].data[0], newState.secondary);
             processJourneyGeoQTD(action.payload[14].data, action.payload[15].data, newState.secondary);
             processJourneyMarketAreaQTD(action.payload[17].data, action.payload[18].data, newState.secondary)
-            processFinancialRoutesQTD(newState.secondary,action.payload[18].data  );
-            processFinancialSegmentQTD(newState.secondary,action.payload[19].data);
-            processFinancialProductsQTD(newState.secondary, action.payload[20].data);
+            processFinancialRoutesQTD(newState.secondary,action.payload[19].data  );
+            processFinancialSegmentQTD(newState.secondary,action.payload[20].data);
+            processFinancialProductsQTD(newState.secondary, action.payload[21].data);
             processJourneyRoutesQTD(action.payload[22].data, action.payload[25].data, newState.secondary);
             processJourneySegmentQTD(action.payload[23].data, action.payload[26].data, newState.secondary);
             processJourneyProductQTD(action.payload[24].data, action.payload[27].data, newState.secondary);
@@ -311,7 +311,6 @@ export function processFinancialQTD(newState, data) {
     }
 }
 export function processFinancialGeoQTD(newState, data) {
-    console.log(data);
     //Clear old Values
     newState[0].details.geo.qtd = [];
     newState[1].details.geo.qtd = [];
@@ -323,6 +322,7 @@ export function processFinancialGeoQTD(newState, data) {
             index: i,
             actuals: item.NewActuals,
             units: item.NewUnitsActual,
+            marketArea: item.market_area_code,
             qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
@@ -333,33 +333,36 @@ export function processFinancialGeoQTD(newState, data) {
         let gross = {
             index: i,
             actuals: item.GrossARRActual,
-            units: item.GrossUnitsActual,
+            marketArea: item.market_area_code,
             qq: item.GrossARRQQTY,
             qrf: item.GrossARRTarget,
             qrfDiff: item.GrossVsQrfDiff,
             type: item.geo_code,
+            units: item.GrossUnitsActual,
             vsQrf: item.GrossVsQrf,
             yy: item.GrossYY
         }
         let canc = {
             index: i,
             actuals: item.CancelARRActual,
-            units: item.CancelUnitsActual,
+            marketArea: item.market_area_code,
             qq: item.CancelARRQQTY,
             qrf: item.CancelARRTarget,
             qrfDiff: item.CancelArrVsQrfDiff,
             type: item.geo_code,
+            units: item.CancelUnitsActual,
             vsQrf: item.CancelVsQrf,
             yy: item.CancelARRYY
         }
         let ren = {
             index: i,
             actuals: item.RenewalActuals,
-            units: item.RenewUnitsActual,
+            marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
             qrf: item.RenewARRTarget,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.geo_code,
+            units: item.RenewUnitsActual,
             vsQrf: item.RenewVSQRF,
             yy: item.RenewARRYY
         }
@@ -390,7 +393,7 @@ export function processFinancialMarketQTD(newState, data) {
             qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
-            type: item.geo_code,
+            type: item.market_area_code,
             vsQrf: item.NewVSQRF,
             yy: item.NewYY
         }
@@ -401,7 +404,7 @@ export function processFinancialMarketQTD(newState, data) {
             qq: item.GrossARRQQTY,
             qrf: item.GrossARRTarget,
             qrfDiff: item.GrossVsQrfDiff,
-            type: item.geo_code,
+            type: item.market_area_code,
             units: item.GrossUnitsActual,
             vsQrf: item.GrossVsQrf,
             yy: item.GrossYY
@@ -413,7 +416,7 @@ export function processFinancialMarketQTD(newState, data) {
             qq: item.CancelARRQQTY,
             qrf: item.CancelARRTarget,
             qrfDiff: item.CancelArrVsQrfDiff,
-            type: item.geo_code,
+            type: item.market_area_code,
             units: item.CancelUnitsActual,
             vsQrf: item.CancelVsQrf,
             yy: item.CancelARRYY
@@ -425,7 +428,7 @@ export function processFinancialMarketQTD(newState, data) {
             qq: item.RenewARRQQTY,
             qrf: item.RenewARRTarget,
             qrfDiff: item.RenewVsQrfDiff,
-            type: item.geo_code,
+            type: item.market_area_code,
             units: item.RenewUnitsActual,
             vsQrf: item.RenewVSQRF,
             yy: item.RenewARRYY
@@ -456,7 +459,7 @@ export function processFinancialRoutesQTD(newState, data) {
             qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
-            type: item.geo_code,
+            type: item.route_to_market,
             vsQrf: item.NewVSQRF,
             yy: item.NewYY
         }
@@ -467,7 +470,7 @@ export function processFinancialRoutesQTD(newState, data) {
             qq: item.GrossARRQQTY,
             qrf: item.GrossARRTarget,
             qrfDiff: item.GrossVsQrfDiff,
-            type: item.geo_code,
+            type: item.route_to_market,
             units: item.GrossUnitsActual,
             vsQrf: item.GrossVsQrf,
             yy: item.GrossYY
@@ -479,7 +482,7 @@ export function processFinancialRoutesQTD(newState, data) {
             qq: item.CancelARRQQTY,
             qrf: item.CancelARRTarget,
             qrfDiff: item.CancelArrVsQrfDiff,
-            type: item.geo_code,
+            type: item.route_to_market,
             units: item.CancelUnitsActual,
             vsQrf: item.CancelVsQrf,
             yy: item.CancelARRYY
@@ -491,7 +494,7 @@ export function processFinancialRoutesQTD(newState, data) {
             qq: item.RenewARRQQTY,
             qrf: item.RenewARRTarget,
             qrfDiff: item.RenewVsQrfDiff,
-            type: item.geo_code,
+            type: item.route_to_market,
             units: item.RenewUnitsActual,
             vsQrf: item.RenewVSQRF,
             yy: item.RenewARRYY
@@ -523,7 +526,7 @@ export function processFinancialSegmentQTD(newState, data) {
             qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
-            type: item.geo_code,
+            type: item.segment_pivot,
             vsQrf: item.NewVSQRF,
             yy: item.NewYY
         }
@@ -534,7 +537,7 @@ export function processFinancialSegmentQTD(newState, data) {
             qq: item.GrossARRQQTY,
             qrf: item.GrossARRTarget,
             qrfDiff: item.GrossVsQrfDiff,
-            type: item.geo_code,
+            type: item.segment_pivot,
             units: item.GrossUnitsActual,
             vsQrf: item.GrossVsQrf,
             yy: item.GrossYY
@@ -546,7 +549,7 @@ export function processFinancialSegmentQTD(newState, data) {
             qq: item.CancelARRQQTY,
             qrf: item.CancelARRTarget,
             qrfDiff: item.CancelArrVsQrfDiff,
-            type: item.geo_code,
+            type: item.segment_pivot,
             units: item.CancelUnitsActual,
             vsQrf: item.CancelVsQrf,
             yy: item.CancelARRYY
@@ -558,7 +561,7 @@ export function processFinancialSegmentQTD(newState, data) {
             qq: item.RenewARRQQTY,
             qrf: item.RenewARRTarget,
             qrfDiff: item.RenewVsQrfDiff,
-            type: item.geo_code,
+            type: item.segment_pivot,
             units: item.RenewUnitsActual,
             vsQrf: item.RenewVSQRF,
             yy: item.RenewARRYY
@@ -589,7 +592,7 @@ export function processFinancialProductsQTD(newState, data) {
             qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
-            type: item.geo_code,
+            type: item.product_name,
             vsQrf: item.NewVSQRF,
             yy: item.NewYY
         }
@@ -600,7 +603,7 @@ export function processFinancialProductsQTD(newState, data) {
             qq: item.GrossARRQQTY,
             qrf: item.GrossARRTarget,
             qrfDiff: item.GrossVsQrfDiff,
-            type: item.geo_code,
+            type: item.product_name,
             units: item.GrossUnitsActual,
             vsQrf: item.GrossVsQrf,
             yy: item.GrossYY
@@ -612,7 +615,7 @@ export function processFinancialProductsQTD(newState, data) {
             qq: item.CancelARRQQTY,
             qrf: item.CancelARRTarget,
             qrfDiff: item.CancelArrVsQrfDiff,
-            type: item.geo_code,
+            type: item.product_name,
             units: item.CancelUnitsActual,
             vsQrf: item.CancelVsQrf,
             yy: item.CancelARRYY
@@ -624,7 +627,7 @@ export function processFinancialProductsQTD(newState, data) {
             qq: item.RenewARRQQTY,
             qrf: item.RenewARRTarget,
             qrfDiff: item.RenewVsQrfDiff,
-            type: item.geo_code,
+            type: item.product_name,
             units: item.RenewUnitsActual,
             vsQrf: item.RenewVSQRF,
             yy: item.RenewARRYY
@@ -939,7 +942,7 @@ export function processJourneyMarketAreaQTD(g2, g3, newState) {
             qq: item.TrafficQQTY,
             qrf: item.TrafficTarget,
             qrfDiff: item.TrafficVsQrf,
-            type: item.geo_code,
+            type: item.market_area_code,
             vsQrf: item.TrafficVsQrf,
             yy: item.TrafficYY
         }
@@ -956,7 +959,7 @@ export function processJourneyMarketAreaQTD(g2, g3, newState) {
             qq: item.MarketableQQTY,
             qrf: item.MarketableTarget,
             qrfDiff: item.MarketableVsQrf,
-            type: item.geo_code,
+            type: item.market_area_code,
             vsQrf: item.MarketableVsQrf,
             yy: item.MarketableYY
         }
@@ -967,7 +970,7 @@ export function processJourneyMarketAreaQTD(g2, g3, newState) {
             qq: item.UQFMQQTY,
             qrf: item.UQFMTarget,
             qrfDiff: item.UQFMVsQrf,
-            type: item.geo_code,
+            type: item.market_area_code,
             vsQrf: item.UQFMVsQrf,
             yy: item.UQFMYY
         }
@@ -978,7 +981,7 @@ export function processJourneyMarketAreaQTD(g2, g3, newState) {
             qq: item.PaidMediaSpendVsQrf,
             qrf: item.PaidMediaSpendTarget,
             qrfDiff: item.PaidMediaSpendVsQrf,
-            type: item.geo_code,
+            type: item.market_area_code,
             vsQrf: item.PaidMediaSpendVsQrf,
             yy: item.PaidMediaSpendYY
         }
@@ -1007,7 +1010,7 @@ export function processJourneyRoutesQTD(g2, g3, newState) {
             qq: item.TrafficQQTY,
             qrf: item.TrafficTarget,
             qrfDiff: item.TrafficVsQrf,
-            type: item.geo_code,
+            type: item.route_to_market,
             vsQrf: item.TrafficVsQrf,
             yy: item.TrafficYY
         }
@@ -1024,7 +1027,7 @@ export function processJourneyRoutesQTD(g2, g3, newState) {
             qq: item.MarketableQQTY,
             qrf: item.MarketableTarget,
             qrfDiff: item.MarketableVsQrf,
-            type: item.geo_code,
+            type: item.route_to_market,
             vsQrf: item.MarketableVsQrf,
             yy: item.MarketableYY
         }
@@ -1046,7 +1049,7 @@ export function processJourneyRoutesQTD(g2, g3, newState) {
             qq: item.PaidMediaSpendVsQrf,
             qrf: item.PaidMediaSpendTarget,
             qrfDiff: item.PaidMediaSpendVsQrf,
-            type: item.geo_code,
+            type: item.route_to_market,
             vsQrf: item.PaidMediaSpendVsQrf,
             yy: item.PaidMediaSpendYY
         }
@@ -1075,7 +1078,7 @@ export function processJourneySegmentQTD(g2, g3, newState) {
             qq: item.TrafficQQTY,
             qrf: item.TrafficTarget,
             qrfDiff: item.TrafficVsQrf,
-            type: item.geo_code,
+            type: item.segment_pivot,
             vsQrf: item.TrafficVsQrf,
             yy: item.TrafficYY
         }
@@ -1092,7 +1095,7 @@ export function processJourneySegmentQTD(g2, g3, newState) {
             qq: item.MarketableQQTY,
             qrf: item.MarketableTarget,
             qrfDiff: item.MarketableVsQrf,
-            type: item.geo_code,
+            type: item.segment_pivot,
             vsQrf: item.MarketableVsQrf,
             yy: item.MarketableYY
         }
@@ -1103,7 +1106,7 @@ export function processJourneySegmentQTD(g2, g3, newState) {
             qq: item.UQFMQQTY,
             qrf: item.UQFMTarget,
             qrfDiff: item.UQFMVsQrf,
-            type: item.geo_code,
+            type: item.segment_pivot,
             vsQrf: item.UQFMVsQrf,
             yy: item.UQFMYY
         }
@@ -1114,7 +1117,7 @@ export function processJourneySegmentQTD(g2, g3, newState) {
             qq: item.PaidMediaSpendVsQrf,
             qrf: item.PaidMediaSpendTarget,
             qrfDiff: item.PaidMediaSpendVsQrf,
-            type: item.geo_code,
+            type: item.segment_pivot,
             vsQrf: item.PaidMediaSpendVsQrf,
             yy: item.PaidMediaSpendYY
         }
@@ -1143,7 +1146,7 @@ export function processJourneyProductQTD(g2, g3, newState) {
             qq: item.TrafficQQTY,
             qrf: item.TrafficTarget,
             qrfDiff: item.TrafficVsQrf,
-            type: item.geo_code,
+            type: item.product_name,
             vsQrf: item.TrafficVsQrf,
             yy: item.TrafficYY
         }
@@ -1160,7 +1163,7 @@ export function processJourneyProductQTD(g2, g3, newState) {
             qq: item.MarketableQQTY,
             qrf: item.MarketableTarget,
             qrfDiff: item.MarketableVsQrf,
-            type: item.geo_code,
+            type: item.product_name,
             vsQrf: item.MarketableVsQrf,
             yy: item.MarketableYY
         }
@@ -1171,7 +1174,7 @@ export function processJourneyProductQTD(g2, g3, newState) {
             qq: item.UQFMQQTY,
             qrf: item.UQFMTarget,
             qrfDiff: item.UQFMVsQrf,
-            type: item.geo_code,
+            type: item.product_name,
             vsQrf: item.UQFMVsQrf,
             yy: item.UQFMYY
         }
@@ -1182,7 +1185,7 @@ export function processJourneyProductQTD(g2, g3, newState) {
             qq: item.PaidMediaSpendVsQrf,
             qrf: item.PaidMediaSpendTarget,
             qrfDiff: item.PaidMediaSpendVsQrf,
-            type: item.geo_code,
+            type: item.product_name,
             vsQrf: item.PaidMediaSpendVsQrf,
             yy: item.PaidMediaSpendYY
         }

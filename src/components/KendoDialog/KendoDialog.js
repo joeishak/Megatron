@@ -143,18 +143,15 @@ class KendoDialog extends Component {
 
     // Entered
     onMouseEnterHandler = () => {
-
     }
 
     //Left
     onMoueLeaveHandler = () => {
-
     }
 
     removeFilter (filterToRemove) {
         this.props.removeMultiFilter(filterToRemove);
     }
-
     generateFilterList = (filterList) => {
 
         let filterObjectList = Object.keys(filterList).map((ele) => { return  filterList[ele]; });
@@ -163,12 +160,12 @@ class KendoDialog extends Component {
         let allDataRemoved = items.map((ele) => {
             if (ele.value !== 'All Data') { return ele }
         });
-
         return _.pull(allDataRemoved, undefined);
     }
-
+    handleResetFiltersClick(){
+        
+    }
     render(){
-
 
         const filtersApplied = this.generateFilterList(this.props.activeFilters);
         const defaultSum = this.state.selectedSummary || this.props.defaultSummaryView;
@@ -234,7 +231,7 @@ class KendoDialog extends Component {
                                         <ReactSelect updateFilter={this.updateActiveFiltersHandler}  defaultValue={this.props.activeFilters.geos[0]}defaultValue={this.props.activeFilters.segments} options={this.props.availableFilters.segments}></ReactSelect>
                                     </div>
                                     <div className="col-lg-6 col-md-6">
-                                        <p id="filter-reset">Re-set all filters</p>
+                                        <a id="filter-reset" onClick={this.handleResetFiltersClick}>Re-set all filters</a>
                                     </div>
                                 </div>
 

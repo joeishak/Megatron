@@ -16,7 +16,7 @@ class PanelItemTable extends Component {
         switch (type) {
             case DIMENSIONS.MARKET:
                 return (
-                    <MultiDimensionPanelItem
+                    <SingleDimensionPanelItem
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.market}
                     isJourney={this.state.isJourney}/>
@@ -37,7 +37,7 @@ class PanelItemTable extends Component {
                 data={this.props.activeSummary.details.product}
                 isJourney={this.state.isJourney}/>
             default:
-                return <SingleDimensionPanelItem
+                return <MultiDimensionPanelItem
                         timeMetric={this.props.timeMetric}
                         data={this.props.activeSummary.details.geo}
                         isJourney={this.state.isJourney}/>
@@ -45,12 +45,12 @@ class PanelItemTable extends Component {
         }
     }
     getTable(type) {
-        let isMarket = type === DIMENSIONS.MARKET;
+        let isGeo = type === DIMENSIONS.GEO;
         let qtdColumnClass, weekColumnClass;
         let isJourney = this.props.activeSummary.index  > 3
         if(isJourney){
             // Journeys
-            if(isMarket){
+            if(isGeo){
                 qtdColumnClass = 'qtdJourneyMarketColumn';
                 weekColumnClass = 'weekJourneyMarketColumn';
             } else{
@@ -59,7 +59,7 @@ class PanelItemTable extends Component {
             }
         } else{
             // Financial
-            if(isMarket){
+            if(isGeo){
                 qtdColumnClass = 'qtdMarketColumn';
                 weekColumnClass = 'weekMarketColumn';
             } else{
@@ -75,7 +75,7 @@ class PanelItemTable extends Component {
                         {this.getDataContent(type)}
                     </div>
                     <div className="  col-md-12">
-                        {isMarket ? <div className={`${qtdColumnClass} qtdGeoHeader  col`}>
+                        {isGeo ? <div className={`${qtdColumnClass} qtdGeoHeader  col`}>
                             &nbsp;
                           </div> : <span></span>}
                         <div className={`${qtdColumnClass} header qtdMaHeader col`}>
@@ -112,7 +112,7 @@ class PanelItemTable extends Component {
 
                     </div>
                     <div className=" col-md-12">
-                        {isMarket ? <div className={`${weekColumnClass} header weekGeoHeader col`}>
+                        {isGeo ? <div className={`${weekColumnClass} header weekGeoHeader col`}>
                             &nbsp;
                           </div> : <span></span>}
                         <div className={`${weekColumnClass} header weekMaHeader col`}>
