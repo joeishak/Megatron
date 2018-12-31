@@ -25,6 +25,7 @@ class KendoDialog extends Component {
         };
 
         this.closeDialog = this.closeDialog.bind(this)
+        this.handleResetFiltersClick = this.handleResetFiltersClick.bind(this);
         $('.content').kendoWindow({
             animation:true
         })
@@ -163,7 +164,7 @@ class KendoDialog extends Component {
         return _.pull(allDataRemoved, undefined);
     }
     handleResetFiltersClick(){
-        
+        this.props.resetFilters(this.props.preferences);
     }
     render(){
 

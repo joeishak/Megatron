@@ -1,6 +1,7 @@
 import {
     ADD_MULTI_FILTER,
-    REMOVE_MULTI_FILTER
+	 REMOVE_MULTI_FILTER,
+	 RESET_FILTERS
 } from 'actions/types';
 import _ from 'lodash';
 export default function(state = {
@@ -86,7 +87,17 @@ export default function(state = {
                     }
                 }
             return copyOfState;
-
+        case RESET_FILTERS: 
+					 let {defaultQuarter, defaultSegment} = action.payload;
+					 copyOfState = JSON.parse(JSON.stringify(state))
+					 copyOfState.geos =[{index: 205, category: "geos", value: "All Data"}];
+                copyOfState.quarters =[{index: 211, category: "quarters", value: defaultQuarter}];
+                copyOfState.subscriptions =[{index: 210, category: "subscriptionOfferings", value: "All Data"}];
+                copyOfState.segments =[{index: 209, category: "segments", value: defaultSegment}];
+                copyOfState.markets =[{index: 206, category: "marketAreas", value: "All Data"}];
+                copyOfState.products =[{index: 207, category: "productNames", value: "All Data"}];
+                copyOfState.routes =[{index: 208, category: "routeToMarkets", value: "All Data"}];
+					 return copyOfState;
         case REMOVE_MULTI_FILTER:
              copyOfState = JSON.parse(JSON.stringify(state))
              cat= action.payload.category;

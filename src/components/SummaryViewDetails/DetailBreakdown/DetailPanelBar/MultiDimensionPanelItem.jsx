@@ -5,6 +5,8 @@ import * as utils from "../../../../utilities.js";
 class MultiDimensionPanelItem extends Component {
     
     getMultiDimensionPanelItem(){
+        
+        let calculatedGeo, prevGeo;
         let marketCount = 0;
         let qtdColumnClass, weekColumnClass;
     
@@ -22,9 +24,19 @@ class MultiDimensionPanelItem extends Component {
         switch (this.props.timeMetric) {
             case 'qtd':
                 return (this.props.data.qtd.map(item => {
+                    
+                    if(this.props.type ==='geo'){
+                        if(item.type===calculatedGeo || item.type === prevGeo){
+                            calculatedGeo="";
+                        } else if( calculatedGeo===undefined || item.type !== calculatedGeo){
+                                calculatedGeo = item.type;
+                            } 
+                       } 
+                       
+                       prevGeo=item.type;
                     return (<span key={marketCount++}>
                         <div className={`${qtdColumnClass}`+ " qtdGeoHeader col"}>
-                            {item.type}
+                            {calculatedGeo===""?<span>&nbsp;</span>: calculatedGeo}
                         </div>
                         <div className={`${qtdColumnClass}`+ " qtdMaHeader col"} >
                             {item.marketArea}

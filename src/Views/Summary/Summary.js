@@ -131,6 +131,14 @@ class Summary extends Component {
       this.props.updateMultichartMetric(true);
     }
   }
+
+  // shouldComponentUpdate(nextProps){
+  //   if(this.props.activeFilters !== nextProps.activeFilters){
+  //     return false;
+  //   }
+
+  //   return true;
+  // }
   async login() {
     this.props.auth.login("/");
   }
@@ -270,7 +278,7 @@ class Summary extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+  console.log(state.preferences);
   return {
     activeFilters: state.activeFilters,
     availableFilters: state.availableFilters,

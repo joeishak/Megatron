@@ -28,7 +28,6 @@ export default function (state = {
         // finMarkets, journG2Market, journG3Market,finRoutes,finSegments,finProducts,journG2Routes,journG2Segments,
         // journG2Products,journG3Routes,journG3Segments,journG3Products);
 
-        console.log(action.payload);
 
         newState = Object.assign({}, state);
             //Actual, Targets, Vs QRf

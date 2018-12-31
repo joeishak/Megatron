@@ -1,6 +1,7 @@
 // Multi Select Filter
 export const ADD_MULTI_FILTER                = "add_multi_filter";
 export const REMOVE_MULTI_FILTER             = "remove_multi_filter";
+export const RESET_FILTERS                   = "reset_filter";
 // Authentication
 export const CHANGE_AUTH                     = 'change_auth';
 // User

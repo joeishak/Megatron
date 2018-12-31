@@ -50,16 +50,16 @@
 
 
 /* Journey Card Selected Dynamic */
-.journeyBoxAlert { border: 2px solid #FF0000;}
+.journeyBoxAlert { border: 2px solid #f4f4f4;}
 
-.journeyHeaderAlert { background-color: #FF0000;}
+.journeyHeaderAlert { background-color: #f4f4f4;}
 
 
 
 .journeyBoxAlert {
 	position: relative;
 	background: #131313;
-	border: 4px solid #FF0000;
+	border: 4px solid #f4f4f4;
 }
 
 .journeyBoxAlert:after, .journeyBoxAlert:before {
@@ -75,27 +75,27 @@
 
 .journeyBoxAlert:after {
 	border-color: rgba(136, 183, 213, 0);
-	border-left-color: #FF0000;
+	border-left-color: #f4f4f4;
 	border-width: 20px;
 	margin-top: -20px;
 }
 .journeyBoxAlert:before {
 	border-color: rgba(194, 225, 245, 0);
-	border-left-color: #FF0000;
+	border-left-color: #f4f4f4;
 	border-width: 26px;
 	margin-top: -26px;
 }
 /* END DYNAMIC RED */
 
 /* Journey Card Selected Dynamic - GREEN */
-.journeyBoxAlertGreen { border: 2px solid #0DB16E;}
+.journeyBoxAlertGreen { border: 2px solid #f4f4f4;}
 
-.journeyHeaderAlertGreen { background-color:#0DB16E;}
+.journeyHeaderAlertGreen { background-color:#f4f4f4;}
 
 .journeyBoxAlertGreen {
 	position: relative;
 	background: #131313;
-	border: 4px solid #0DB16E;
+	border: 4px solid #f4f4f4;
 }
 .journeyBoxAlertGreen:after, .journeyBoxAlertGreen:before {
 	left: 100%;
@@ -110,13 +110,13 @@
 
 .journeyBoxAlertGreen:after {
 	border-color: rgba(136, 183, 213, 0);
-	border-left-color: #0DB16E;
+	border-left-color: #f4f4f4;
 	border-width: 20px;
 	margin-top: -20px;
 }
 .journeyBoxAlertGreen:before {
 	border-color: rgba(194, 225, 245, 0);
-	border-left-color: #0DB16E;
+	border-left-color: #f4f4f4;
 	border-width: 26px;
 	margin-top: -26px;
 }

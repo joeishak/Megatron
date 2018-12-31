@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import * as utils from "../../../../utilities.js";
 
 class SingleDimensionPanelItem extends Component {
+    
     getSingleDimensionPanelItem(){
-        
         let qtdColumnClass, weekColumnClass;
         if(this.props.isJourney){
             // Journeys
@@ -19,6 +19,7 @@ class SingleDimensionPanelItem extends Component {
         switch (this.props.timeMetric) {
             case 'qtd':
                 return (this.props.data.qtd.map(item => {
+                    
                     return (<span key={item.index}>
                         <div className={`${qtdColumnClass}`+ " qtdGeoHeader col"}>
                             {item.type}

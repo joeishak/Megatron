@@ -14,6 +14,7 @@ import {
     UPDATE_DIALOG_VISIBILITY ,
     GENERATE_FILTER_DATA,
     ADD_MULTI_FILTER,
+    RESET_FILTERS,
     REMOVE_MULTI_FILTER,
     SHOW_SUMMARY_VIEW_DETAILS,
     HIDE_SUMMARY_VIEW_DETAILS,
@@ -257,6 +258,15 @@ export function generateFilterData() {
     }
  }
 
+ export function resetFilters(preferences){
+     let { defaultQuarter, defaultSegment} = preferences;
+    return {
+        type: RESET_FILTERS,
+        payload: {
+            defaultQuarter, defaultSegment
+        }
+    }
+ }
  /**
  * Remove a value to the active filters for the multi filter
  *

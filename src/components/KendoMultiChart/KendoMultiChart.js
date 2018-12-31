@@ -58,6 +58,9 @@ class KendoMultiChart extends Component {
         if(this.props.chartHeight !== nextProps.chartHeight){
             return true;
         }
+        if(this.props.activeMultichart !== nextProps.activeMultichart){
+            return true;
+        }
         return false;
     }
     formatDataValues(arr){
