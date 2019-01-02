@@ -19,7 +19,8 @@ ReactDOM.render(
 		<Router>
 		<Security issuer={config.oidc.issuer}
                   client_id={config.oidc.clientId}
-                  redirect_uri={config.oidc.redirectUri}>
+                  redirect_uri={config.oidc.redirectUri}
+				  scope={config.oidc.scope}>
 			<Route path="/summary" exact={true} component={Summary} />
 			<Route path="/" exact={true} component={Summary} />
 			{/* <Route path="" exact={true} component={App} /> */}

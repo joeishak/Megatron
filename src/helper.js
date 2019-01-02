@@ -14,7 +14,6 @@ async function checkAuthentication() {
       } else {
         this.setState({ authenticated });
         this.props.changeAuth(authenticated);
-        console.log('hello world');
       }
     }
   }

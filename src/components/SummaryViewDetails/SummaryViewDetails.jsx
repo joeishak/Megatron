@@ -171,24 +171,63 @@ class SummaryViewDetails extends Component {
                 </button>
               }
             >
-              <Workbook.Sheet data={this.state.excelTestData} name="QTD">
+              <Workbook.Sheet data={this.state.excelTestData} name="Filters">
                 <Workbook.Column label="Actuals" value="Actuals" />
                 <Workbook.Column label="Units" value="Units" />
                 <Workbook.Column label="QRF" value="QRF" />
                 <Workbook.Column label="QRFDiff" value="QRFDiff" />
                 <Workbook.Column label="vsQRF" value="vsQRF" />
-                <Workbook.Column label="Q/Q" value="QQ" />
-                <Workbook.Column label="Y/Y" value="YY" />
+                <Workbook.Column label="Q/Q" value="qq" />
+                <Workbook.Column label="Y/Y" value="yy" />
               </Workbook.Sheet>
-              <Workbook.Sheet data={this.state.excelTestGeo} name="Geo">
+              <Workbook.Sheet data={this.props.activeItem.details.geo.qtd || this.state.excelTestGeo} name="Geos">
+                <Workbook.Column label="Geo" value="type" />
+                <Workbook.Column label="MarketArea" value="marketArea" />
                 <Workbook.Column label="Actuals" value="actuals" />
                 <Workbook.Column label="Units" value="units" />
-                <Workbook.Column label="Geo" value="geo" />
-                <Workbook.Column label="MarketArea" value="marketArea" />
+                <Workbook.Column label="QRF" value="QRF" />
                 <Workbook.Column label="vsQRF" value="vsQrf" />
-                <Workbook.Column label="Q/Q" value="QQ" />
-                <Workbook.Column label="Y/Y" value="YY" />
+                <Workbook.Column label="Q/Q" value="qq" />
+                <Workbook.Column label="Y/Y" value="yy" />
               </Workbook.Sheet>
+              <Workbook.Sheet data={this.props.activeItem.details.market.qtd || this.state.excelTestGeo} name="Market Area">
+                <Workbook.Column label="Market Area" value="type" />
+                <Workbook.Column label="Actuals" value="actuals" />
+                <Workbook.Column label="Units" value="units" />
+                <Workbook.Column label="QRF" value="QRF" />
+                <Workbook.Column label="vsQRF" value="vsQrf" />
+                <Workbook.Column label="Q/Q" value="qq" />
+                <Workbook.Column label="Y/Y" value="yy" />
+              </Workbook.Sheet>
+              <Workbook.Sheet data={this.props.activeItem.details.segment.qtd || this.state.excelTestGeo} name="Segment Pivot">
+                <Workbook.Column label="Segment Pivot" value="type" />
+                <Workbook.Column label="MarketArea" value="marketArea" />
+                <Workbook.Column label="Actuals" value="actuals" />
+                <Workbook.Column label="Units" value="units" />
+                <Workbook.Column label="QRF" value="QRF" />
+                <Workbook.Column label="vsQRF" value="vsQrf" />
+                <Workbook.Column label="Q/Q" value="qq" />
+                <Workbook.Column label="Y/Y" value="yy" />
+              </Workbook.Sheet>
+              <Workbook.Sheet data={this.props.activeItem.details.routes.qtd || this.state.excelTestGeo} name="Route To Market">
+                <Workbook.Column label="Route To Market" value="type" />
+                <Workbook.Column label="Actuals" value="actuals" />
+                <Workbook.Column label="Units" value="units" />
+                <Workbook.Column label="QRF" value="QRF" />
+                <Workbook.Column label="vsQRF" value="vsQrf" />
+                <Workbook.Column label="Q/Q" value="qq" />
+                <Workbook.Column label="Y/Y" value="yy" />
+              </Workbook.Sheet>
+              <Workbook.Sheet data={this.props.activeItem.details.product.qtd || this.state.excelTestGeo} name="Product Names">
+                <Workbook.Column label="Product Name" value="type" />
+                <Workbook.Column label="Actuals" value="actuals" />
+                <Workbook.Column label="Units" value="units" />
+                <Workbook.Column label="QRF" value="QRF" />
+                <Workbook.Column label="vsQRF" value="vsQrf" />
+                <Workbook.Column label="Q/Q" value="qq" />
+                <Workbook.Column label="Y/Y" value="yy" />
+              </Workbook.Sheet>
+
             </Workbook>
           </span>
 
