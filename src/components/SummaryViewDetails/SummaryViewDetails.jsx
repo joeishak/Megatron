@@ -78,13 +78,20 @@ class SummaryViewDetails extends Component {
     this.setState({ activeTimeMetric: e.target.innerHTML.toLowerCase() });
   }
  
+  getExcelFilters (activeFilters){
+    let newArr;
+    let {geos, quarters,markets,routes,segments,subscriptions} = activeFilters;
+    newArr = [].concat(geos, quarters,markets,routes,segments,subscriptions);
+    console.log(newArr);
+    return newArr;
+  }
  
   closeSummary() {
     this.props.updateMultichartMetric(true);
     this.props.hideSummaryDetails();
   }
   render() {
-
+    let {activeFilters} = this.props;
     var UnitStyles = classNames({
       unitMetric: true,
       activeMetric: this.props.multichartIsArr ? false : true
@@ -158,7 +165,7 @@ class SummaryViewDetails extends Component {
           
           <span className=" excelSpan">
             <Workbook
-              filename="example.xlsx"
+              filename={`${this.props.activeItem.header}.xlsx`}
               element={
                 <button className="exportButton">
                   <span>Export </span>
@@ -171,15 +178,12 @@ class SummaryViewDetails extends Component {
                 </button>
               }
             >
-              <Workbook.Sheet data={this.state.excelTestData} name="Filters">
-                <Workbook.Column label="Actuals" value="Actuals" />
-                <Workbook.Column label="Units" value="Units" />
-                <Workbook.Column label="QRF" value="QRF" />
-                <Workbook.Column label="QRFDiff" value="QRFDiff" />
-                <Workbook.Column label="vsQRF" value="vsQRF" />
-                <Workbook.Column label="Q/Q" value="qq" />
-                <Workbook.Column label="Y/Y" value="yy" />
-              </Workbook.Sheet>
+            <Workbook.Sheet data={this.getExcelFilters(activeFilters)} name="Filters">
+              <Workbook.Column label="Dimension" value="category" />
+              <Workbook.Column label="Filter Applied" value="value" />
+              
+            </Workbook.Sheet>
+          
               <Workbook.Sheet data={this.props.activeItem.details.geo.qtd || this.state.excelTestGeo} name="Geos">
                 <Workbook.Column label="Geo" value="type" />
                 <Workbook.Column label="MarketArea" value="marketArea" />
@@ -280,6 +284,7 @@ class SummaryViewDetails extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state.activeFilters);
   return {
     previousViewWasJourneys: state.switchFilter,
     activePrimary: state.activeCards.primary,
