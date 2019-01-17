@@ -41,7 +41,7 @@ let transformDefaultList = (objList) => {
 // Render Component
 const ReactSelect = (props) => {
     return (
-        <Select options={transformList(props.options)}  defaultValue={transformDefaultList(props.defaultValue)} onChange={props.updateFilter}/>
+        <Select options={transformList(props.options)}  closeMenuOnSelect={false} onMenuClose={e => { console.log('MENU CLOSED')}} defaultValue={transformDefaultList(props.defaultValue)} onChange={props.updateFilter}/>
     );
 };
 
