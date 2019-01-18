@@ -877,6 +877,68 @@ export function getHeartbeat() {
     });
 }
 
+    // let body2 = {
+    //     "conn": '1088',
+    //     "qry": 'fetchReplies',
+    //     "columnNames": 'true',
+    //     "params": { }
+    // };
+
+    // const comments = axios.post(Infoburst.dbQuery, body, {
+    //     headers: headers,
+    //     responseType: 'text'
+    // })
+    // const replies = axios.post(Infoburst.dbQuery, body2, {
+    //     headers: headers,
+    //     responseType: 'text'
+    // });
+
+    // responseArray.push(comments,replies);
+    // let promiseArr = Promise.all(responseArray);
+
+export function convertFilterListForDBQuery(arrayList) {
+    return  arrayList.join(", ");
+}
+
+// Fetch Comments
+export function fetchComments(metricId) {
+    responseArray= [];
+    let body = {
+        "conn": '1088',
+        "qry": 'fetchComments',
+        "columnNames": 'true',
+        "params": {
+            "metric": metricId
+         }
+    };
+
+    const res1 =  axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text'}).then((response) => {
+        if (response !== []) {
+            const commentIdsArray = response.data.map( ele => { return ele.id; });
+            const params = convertFilterListForDBQuery(commentIdsArray);
+            let responseBody = {
+                "conn": '1088',
+                "qry": 'fetchReplies',
+                "columnNames": 'true',
+                "params": {
+                    "params": params
+                }
+            };
+            const replies = axios.post(Infoburst.dbQuery, responseBody, { headers: headers, responseType : 'text'}).then((res) => {
+                const commentsComplete = {comment: response.data, replies: res.data};
+                return commentsComplete;
+            });
+
+           return replies;
+        } else {
+            return [];
+        }
+
+    });
+
+    return res1;
+}
+
 export function requestUserSettings(sub) {
     let body = {
         "conn": '1088',

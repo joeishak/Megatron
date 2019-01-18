@@ -23,13 +23,14 @@ import * as actions from 'actions';
         this.setAddCommentFocus = this.setAddCommentFocus.bind(this);
         this.grabProfilePic = this.grabProfilePic.bind(this);
      }
-     componentDidMount(){
+    componentDidMount(){
+        this.props.fetchComments(this.props.currentMetric + 1);
         this.commentInput.focus();
-     }
-     componentDidUpdate(){
+    }
+    componentDidUpdate(){
         this.commentInput.focus();
-     }
-     handleCommentMouseEnter(e,userName){
+    }
+    handleCommentMouseEnter(e,userName){
         this.setState({commentCommand: `Respond to ${userName} . . .` });
 
     }
@@ -38,7 +39,7 @@ import * as actions from 'actions';
             this.setState({commentCommand: `Responding to ${userName} . . .`}) : 
             this.setState({commentCommand: 'Add A Comment . . .'});
     }
-     setAddCommentFocus = (e, userName) => {
+    setAddCommentFocus = (e, userName) => {
        
         this.setState({commentToBeRepliedTo: e.target.id,replyMessage: '', commentCommand: `Responding to ${userName}...`, commentingUser: true});
         this.commentInput.focus();
@@ -90,23 +91,19 @@ import * as actions from 'actions';
     onDrop(picture) {
         this.setState({ pictures: this.state.pictures.concat(picture)});
     }
-
     onClose(e) {
         this.props.hideCommentBox();
     }
-
     mouseEnter = (e, userName) => {
         this.setState({commentCommand: `Respond to ${userName} . . .` });
         this.forceUpdate();
     }
-
     mouseLeave = (e, userName) => {
         this.state.commentingUser ? 
             this.setState({commentCommand: `Responding to ${userName} . . .`}) : 
             this.setState({commentCommand: 'Add A Comment . . .'});
         this.forceUpdate();
     }
-
     grabProfilePic (userName) {
 
 
@@ -119,12 +116,13 @@ import * as actions from 'actions';
 
     }
      render(){
-         let {comments} = this.props
+         let {commentsPackage} = this.props
+         console.log(this.props);
     return(
         <span>  <div className='commentsContainer'>
             {
-                (comments !== undefined) ?
-                    comments.map(comment=>{
+                (commentsPackage !== undefined) ?
+                commentsPackage.map(comment=>{
                         return (
                             <div key = {comment.id} className='comment'>
                             <div className='commentUserHeader'>
@@ -196,9 +194,11 @@ import * as actions from 'actions';
  }
 
  function mapStateToProps(state){
+     console.log(state);
     return {
         currentMetric: state.activeCards.secondary,
-        comments: state.summaryData.secondary[state.activeCards.secondary].comments
+        comments: state.summaryData.secondary[state.activeCards.secondary].comments,
+        commentsPackage: state.commentsPackage
     }
 }
 export default connect(mapStateToProps,actions) (CommentBox)

@@ -32,13 +32,15 @@ import {
     UPDATE_FILTER_VISIBILITITY  ,
     UPDATE_COMMENT_VISIBILITITY ,
     UPDATE_PRIMARY_VISIBILITITY ,
-    UPDATE_SECONDARY_VISIBILITITY  ,
-    UPDATE_MOBILE_FILTER_PAGE_VISIBILITY
+    UPDATE_SECONDARY_VISIBILITITY,
+    UPDATE_MOBILE_FILTER_PAGE_VISIBILITY,
+    FETCH_COMMENTS
     
 
 
 } from 'actions/types';
 import * as utils from '../utilities';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 // HTTP Variables
 
@@ -469,4 +471,13 @@ return {
         component, isShowing
     }
 }
+}
+
+export function fetchComments(metricId) {
+    console.log(metricId);
+    const res = utils.fetchComments(metricId);;
+    return {
+        type: FETCH_COMMENTS,
+        payload: res
+    }
 }
