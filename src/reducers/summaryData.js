@@ -4,7 +4,8 @@ import {
     GET_SECONDARY_DETAIL_DATA,
     ADD_NEW_SECONDARY_COMMENT,
     ADD_NEW_SECONDARY_REPLY,
-    GET_SUMMARY_DATA
+    GET_SUMMARY_DATA,
+    FETCH_COMMENTS
 } from 'actions/types';
 import {
     SecondaryData
@@ -22,6 +23,35 @@ export default function (state = {
     secondary: SecondaryData
 }, action) {
     switch (action.type) {
+
+        case FETCH_COMMENTS:
+        newState = Object.assign({}, state);
+        const replies = action.payload.response.replies;
+        const comments = action.payload.response.comment.map(ele => {
+            return {
+                comment: ele.comment,
+                id: ele.id,
+                replies: replies.map(element => {
+                    if (ele.id === element.commentId) {
+                        return {
+                            comment: element.reply,
+                            id: element.id,
+                            time: element.postTimeStamp,
+                            userName: element.firstName + ' ' + element.lastName
+                        }
+                    }
+                }).filter(notUndefined => notUndefined),
+                time: ele.postTimeStamp,
+                userName: ele.firstName + ' ' + ele.lastName
+            }
+        });
+
+        
+        console.log(comments);    
+
+        newState[action.payload.metricId].details.comments = comments;
+        console.log('Fetched Comments in Summary:',newState[0])
+        return newState;
         case GET_SUMMARY_DATA: 
         // primaryFinancial, primaryG2Journey, primaryG3Journey, secondaryFinancial, secondaryG2Journey, secondaryG3Journey, 
         // finMulti, finUnitsMulti, finGeo, finQTD, journG2Mutli, journG3Mutli, journG2QTD, journG3QTD, journG2Geo, journG3Geo,

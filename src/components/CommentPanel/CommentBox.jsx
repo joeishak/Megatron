@@ -24,7 +24,7 @@ import * as actions from 'actions';
         this.grabProfilePic = this.grabProfilePic.bind(this);
      }
     componentDidMount(){
-        this.props.fetchComments(this.props.currentMetric + 1);
+        this.props.fetchComments(this.props.currentMetric);
         this.commentInput.focus();
     }
     componentDidUpdate(){
@@ -197,8 +197,8 @@ import * as actions from 'actions';
      console.log(state);
     return {
         currentMetric: state.activeCards.secondary,
-        comments: state.summaryData.secondary[state.activeCards.secondary].comments,
-        commentsPackage: state.commentsPackage
+        commentsPackage: state.summaryData.secondary[state.activeCards.secondary].comments,
+        // commentsPackage: state.commentsPackage
     }
 }
 export default connect(mapStateToProps,actions) (CommentBox)

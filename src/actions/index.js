@@ -478,6 +478,6 @@ export function fetchComments(metricId) {
     const res = utils.fetchComments(metricId);;
     return {
         type: FETCH_COMMENTS,
-        payload: res
+        payload: { response:res, metric: metricId}
     }
 }

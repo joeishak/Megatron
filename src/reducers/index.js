@@ -31,5 +31,5 @@ export default combineReducers({
     activeCards: activeCardReducer,
     appSettings: appSettingsReducer,
     summaryData: summaryDataReducer,
-    commentsPackage: commentsReducer
+    // commentsPackage: commentsReducer
 });
