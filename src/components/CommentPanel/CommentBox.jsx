@@ -6,6 +6,7 @@ import CommentControls from './CommentControls';
 import ImageUploader from 'react-images-upload';
 import {connect } from 'react-redux';
 import * as actions from 'actions';
+import * as utils from '../../utilities';
 
  class CommentBox extends Component {
      constructor(props){
@@ -24,7 +25,7 @@ import * as actions from 'actions';
         this.grabProfilePic = this.grabProfilePic.bind(this);
      }
     componentDidMount(){
-        this.props.fetchComments(this.props.currentMetric + 1);
+        this.props.fetchComments(this.props.currentMetric);
         this.commentInput.focus();
     }
     componentDidUpdate(){
@@ -47,33 +48,53 @@ import * as actions from 'actions';
     handleKeyPress(e){
        
         if(e.key==='Enter' && this.state.commentToBeRepliedTo === null){
-
          
-            let comment= {
-                id: this.props.comments.length,
-                userName: this.props.user.name,
-                time: new Date().toLocaleTimeString(),
-                comment: e.target.value,
-                replies: [],
-            }
+            // let comment= {
+            //     id: this.props.comments.length,
+            //     userName: this.props.user.name,
+            //     time: new Date().toLocaleTimeString(),
+            //     comment: e.target.value,
+            //     replies: [],
+            // }
 
-            // Post the Comment
-                this.props.addNewCommentToSecondaryMetric(this.props.currentMetric,comment);
-            
+            const params = {
+                userId: this.props.user.sub, 
+                metricId: this.props.currentMetric, 
+                postDateTime: new Date().toISOString(),
+                comment: e.target.value
+            };
+
+                    // Post Comment
+                    // this.props.addNewCommentToSecondaryMetric(this.props.currentMetric,comment);
+                    // Write to DB, Refresh the metrics from the DB, then refresh Comments count for the comment Indicators
+                    utils.postComment(params);
+                    this.props.fetchComments(this.props.currentMetric);
+                    this.props.fetchCommentsCount();
+  
             
             this.setState({replyMessage: ''})
         } else if (e.key==='Enter' && this.state.commentToBeRepliedTo !== null){
-            let comment= {
-                id: this.props.comments[this.state.commentToBeRepliedTo].replies.length,
-                userName: this.props.user.name,
-                time: new Date().toLocaleTimeString(),
+
+            let params =  {
+                userId: this.props.user.sub,
+                commentId: this.state.commentToBeRepliedTo,
+                postDateTime: new Date().toISOString(),
                 comment: e.target.value
-                
             }
+            
+            // let comment= {
+            //     id: this.props.comments[this.state.commentToBeRepliedTo].replies.length,
+            //     userName: this.props.user.name,
+            //     time: new Date().toLocaleTimeString(),
+            //     comment: e.target.value 
+            // }
           
-             // Post the Comment
-                this.props.addNewReplyToSecondaryMetric(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);
-          
+                // Post the Comment
+                //this.props.addNewReplyToSecondaryMetric(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);
+                    utils.postReply(params);
+                    this.props.fetchComments(this.props.currentMetric);
+                    this.props.fetchCommentsCount();
+      
            
             this.setState({
                 commentToBeRepliedTo :null,
@@ -117,7 +138,7 @@ import * as actions from 'actions';
     }
      render(){
          let {commentsPackage} = this.props
-         console.log(this.props);
+        //  console.log(this.props);
     return(
         <span>  <div className='commentsContainer'>
             {
@@ -194,7 +215,7 @@ import * as actions from 'actions';
  }
 
  function mapStateToProps(state){
-     console.log(state);
+    //  console.log(state);
     return {
         currentMetric: state.activeCards.secondary,
         comments: state.summaryData.secondary[state.activeCards.secondary].comments,

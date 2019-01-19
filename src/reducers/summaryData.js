@@ -4,7 +4,8 @@ import {
     GET_SECONDARY_DETAIL_DATA,
     ADD_NEW_SECONDARY_COMMENT,
     ADD_NEW_SECONDARY_REPLY,
-    GET_SUMMARY_DATA
+    GET_SUMMARY_DATA,
+    FETCH_COMMENTS_COUNT
 } from 'actions/types';
 import {
     SecondaryData
@@ -84,7 +85,6 @@ export default function (state = {
             processJourneySegmentQTD(action.payload[23].data, action.payload[26].data, newState.secondary);
             processJourneyProductQTD(action.payload[24].data, action.payload[27].data, newState.secondary);
 
-
             return newState;
         case ADD_NEW_PRIMARY_COMMENT:
             index = action.payload.square;
@@ -100,7 +100,6 @@ export default function (state = {
             commentIndex = Number(action.payload.comment)
             copyOfState.primary[index].comments[commentIndex].replies.push(action.payload.reply);
             return {...copyOfState};
-   
         case ADD_NEW_SECONDARY_COMMENT:
             index = action.payload.square;
             copyOfState = Object.assign({}, state);
@@ -113,6 +112,16 @@ export default function (state = {
              commentIndex = Number(action.payload.comment)
              copyOfState.secondary[index].comments[commentIndex].replies.push(action.payload.reply);
             return {...copyOfState};
+        case FETCH_COMMENTS_COUNT:
+            copyOfState = Object.assign({}, state);
+            const commentsCount = action.payload;
+
+            for (let i = 0; i < commentsCount.length; i++) {
+                copyOfState.secondary[commentsCount[i].metricId].comments.push(commentsCount[i].commentCount);
+            }
+
+            return {...copyOfState};
+
         default:
             return state;
     }

@@ -66,7 +66,11 @@ class Summary extends Component {
   }
 
   async componentDidMount() {
+    this.props.fetchCommentsCount();
     this.props.generateFilterData();
+
+    // Get all the comments count
+
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
     this.checkAuthentication();
@@ -74,8 +78,11 @@ class Summary extends Component {
 
   async componentDidUpdate(prevProps) {
     this.checkAuthentication();
+    // console.log(prevProps);
+    // console.log(this.props)
+    
 
-    if( this.props.summaryData !== prevProps.summaryData ) {
+    if( this.props.activeFilters !== prevProps.activeFilters ) {
         this.setState({isLoading: false});
     }
 
@@ -278,7 +285,7 @@ class Summary extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state.preferences);
+  // console.log(state.preferences);
   return {
     activeFilters: state.activeFilters,
     availableFilters: state.availableFilters,

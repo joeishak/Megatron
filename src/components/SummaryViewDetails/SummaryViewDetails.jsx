@@ -284,7 +284,7 @@ class SummaryViewDetails extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state.activeFilters);
+  console.log(state);
   return {
     previousViewWasJourneys: state.switchFilter,
     activePrimary: state.activeCards.primary,

@@ -34,7 +34,8 @@ import {
     UPDATE_PRIMARY_VISIBILITITY ,
     UPDATE_SECONDARY_VISIBILITITY,
     UPDATE_MOBILE_FILTER_PAGE_VISIBILITY,
-    FETCH_COMMENTS
+    FETCH_COMMENTS,
+    FETCH_COMMENTS_COUNT
     
 
 
@@ -95,7 +96,7 @@ export  function updateOKTAUser(user){
  * @param {*} availableFilters
  * @param {*} settingId
  */
-export function updateUserSettings(activeFilters, user,availableFilters,settingId){
+export function updateUserSettings(activeFilters, user, availableFilters, settingId){
 
     let stringGeo = activeFilters.geos;
     let stringProducts = activeFilters.products
@@ -463,8 +464,6 @@ export function getIbHeartbeat() {
  * @param {*} isShowing
  */
 export function updateViewSetting(component, isShowing){
-
-
 return {
     type: SET_VIEW_APP_SETTINGS,
     payload: {
@@ -473,11 +472,23 @@ return {
 }
 }
 
+/**
+ * Fethch the comments for current active comment box clicked
+ * @param {*} metricId
+ */
+
 export function fetchComments(metricId) {
-    console.log(metricId);
     const res = utils.fetchComments(metricId);;
     return {
         type: FETCH_COMMENTS,
+        payload: res
+    }
+}
+
+export function fetchCommentsCount() {
+    const res = utils.fetchCommentsCount();
+    return {
+        type: FETCH_COMMENTS_COUNT,
         payload: res
     }
 }

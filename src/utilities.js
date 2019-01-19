@@ -877,32 +877,12 @@ export function getHeartbeat() {
     });
 }
 
-    // let body2 = {
-    //     "conn": '1088',
-    //     "qry": 'fetchReplies',
-    //     "columnNames": 'true',
-    //     "params": { }
-    // };
-
-    // const comments = axios.post(Infoburst.dbQuery, body, {
-    //     headers: headers,
-    //     responseType: 'text'
-    // })
-    // const replies = axios.post(Infoburst.dbQuery, body2, {
-    //     headers: headers,
-    //     responseType: 'text'
-    // });
-
-    // responseArray.push(comments,replies);
-    // let promiseArr = Promise.all(responseArray);
-
 export function convertFilterListForDBQuery(arrayList) {
     return  arrayList.join(", ");
 }
 
 // Fetch Comments
 export function fetchComments(metricId) {
-    responseArray= [];
     let body = {
         "conn": '1088',
         "qry": 'fetchComments',
@@ -938,6 +918,69 @@ export function fetchComments(metricId) {
 
     return res1;
 }
+
+export function fetchCommentsCount() {
+    let body = {
+        "conn": '1088',
+        "qry": 'fetchCommentsCount',
+        "columnNames": 'true',
+        "params": { }
+    };
+
+    return axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' }).then((res) => {
+        // console.log(res.data);
+        return res.data;
+    });
+}
+
+export function postComment(params) {
+    // INSERT INTO Comments values('@userId', @metricId, CONVERT(datetime,'@postDateTime'), '@comment');
+    let body = {
+        "conn": '1088',
+        "qry": 'postComments',
+        "columnNames": 'true',
+        "params": {
+            "userId": params.userId,
+            "metricId": params.metricId,
+            "postDateTime": params.postDateTime,
+            "comment": params.comment
+        }
+    }
+
+   return axios.post(Infoburst.dbQuery, body, {
+        headers: headers,
+        responseType: 'text'
+    }).then((res) => {
+        console.log(res);
+        return res;
+    });
+}
+
+
+export function postReply(params) {
+    let body = {
+        "conn": '1088',
+        "qry": 'postReply',
+        "columnNames": 'true',
+        "params": {
+            "userId": params.userId,
+            "commentId": params.commentId,
+            "postDateTime": params.postDateTime,
+            "comment": params.comment
+        }
+    }
+
+    return axios.post(Infoburst.dbQuery, body, {
+        headers: headers,
+        responseType: 'text'
+    }).then((res) => {
+        console.log(res);
+        return res;
+    });
+}
+
+
+
 
 export function requestUserSettings(sub) {
     let body = {
@@ -975,7 +1018,7 @@ export function postUserSettings(params) {
     return axios.post(Infoburst.dbQuery, body, {
         headers: headers,
         responseType: 'text'
-    })
+    });
 }
 export function postMultiValueSettings(activeFilters, setting, availableFilters) {
     let body = {
