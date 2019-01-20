@@ -5145,13 +5145,12 @@ const INFOBURST = 'infoburst/'
 const REST = 'rest/'
 const domains = {
     local: 'http://localhost',
+    azureIP: 'http://10.30.0.5',
     adobe: 'http://infoburst.corp.adobe.com',
     vm1: 'http://vm1.infosol.com'
 }
-const prodDomain = domains.local;
+const prodDomain = domains.azureIP;
 export const Infoburst = {
-    // user: 'jishak',
-    // pass: '68tailoperatorhanga#',
     user: 'admin',
     pass: 'admin',
     dbQuery: prodDomain + PORT + INFOBURST + REST + 'db/query',
