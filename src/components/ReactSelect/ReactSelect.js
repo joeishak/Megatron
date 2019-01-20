@@ -6,7 +6,7 @@ let transformList = (objList) => {
 
     let newObjList = [];
     if (objList !== undefined && objList !== []) {
-
+        
         // Iterate through each list of objects and convert
         for (let i = 0; i < objList.length; i++) {
             newObjList.push(
@@ -23,31 +23,29 @@ let transformList = (objList) => {
 
 let transformDefaultList = (objList) => {
 
-    if (objList !== undefined) {
+    if ( objList !== undefined) {
         if (objList[0] !== undefined) {
 
-            let newObj = {
+            let newObj  = {
                 index: objList[0].index,
                 category: objList[0].category,
                 value: objList[0].value,
                 label: objList[0].value
             };
 
-            return newObj;
+            return newObj; 
         }
     }
 }
 
 // Render Component
-const ReactSelect = ({options, defaultValue,updateFilter}) => {
+const ReactSelect = (props) => {
     return (
-        <Select
-            options={transformList(options)}
-            closeMenuOnSelect={false}
-            onMenuClose={(e) => {
-                console.log('Menu Closed',e)
-            }}
-            defaultValue={transformDefaultList(defaultValue)} onChange={updateFilter} />
+<<<<<<< HEAD:src/components/KendoDialog/Components/ReactSelect.js
+        <Select options={transformList(props.options)}  closeMenuOnSelect={false} onMenuClose={e => { console.log('MENU CLOSED')}} defaultValue={transformDefaultList(props.defaultValue)} onChange={props.updateFilter}/>
+=======
+        <Select options={transformList(props.options)} closeMenuOnSelect={true}  defaultValue={transformDefaultList(props.defaultValue)} onChange={props.updateFilter}/>
+>>>>>>> d40e6d250433df469f05ef84fad8b8b6f0c33cd8:src/components/ReactSelect/ReactSelect.js
     );
 };
 
