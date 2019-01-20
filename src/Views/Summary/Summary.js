@@ -43,7 +43,7 @@ class Summary extends Component {
         width: window.innerWidth
       },
       activeCommentBoxMetric: 0,
-      isLoading: true
+      isLoading: false
     };
 
     /*Bindings  */
@@ -75,7 +75,7 @@ class Summary extends Component {
   async componentDidUpdate(prevProps) {
     this.checkAuthentication();
 
-    if( this.props.summaryData !== prevProps.summaryData ) {
+    if( this.props.summaryData.secondary[3].details.qtdw.qtd[0].value !== prevProps.summaryData.secondary[3].details.qtdw.qtd[0].value ) {
         this.setState({isLoading: false});
     }
 
