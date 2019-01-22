@@ -2,8 +2,9 @@ import {
     ADD_MULTI_FILTER,
     REMOVE_MULTI_FILTER,
     GENERATE_FILTER_DATA,
+    ADD_PREFERENCES_TO_ACTIVE_FILTERS,
     RESET_FILTERS,
-    ADD_FILTERS_TO_COMBINED
+    SUBMIT_FILTERS
 } from 'actions/types';
 import _ from 'lodash';
 
@@ -46,6 +47,29 @@ export default function (state = {
     }
 }, action) {
     switch (action.type) {
+        case SUBMIT_FILTERS:
+            copyOfState = JSON.parse(JSON.stringify(state));
+            copyOfState.combined.valueFilters = [];
+            // For each key in action . payload
+            // goes,markets,products,quarters,routes,segments,subscriptions
+            Object.keys(action.payload).forEach(item => {
+                copyOfState[item].valueFilters = action.payload[item];
+                copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters, ...action.payload[item]];
+            });
+            return copyOfState;
+        case ADD_PREFERENCES_TO_ACTIVE_FILTERS:
+            let copyOfState1 = JSON.parse(JSON.stringify(state))
+            copyOfState = JSON.parse(JSON.stringify(state))
+            copyOfState.quarters.valueFilters.push({ index: 211, category: "quarters", value: action.payload.defaultQuarter });
+            copyOfState.segments.valueFilters.push({ index: 209, category: "segments", value: action.payload.defaultSegment });
+            copyOfState.routes.valueFilters = action.payload.routeFilters;
+            copyOfState.markets.valueFilters = action.payload.marketFilters;
+            copyOfState.products.valueFilters = action.payload.productFilters;
+            copyOfState.subscriptions.valueFilters = action.payload.subscriptionFilters;
+            copyOfState.geos.valueFilters = action.payload.geoFilters;
+            copyOfState.combined.valueFilters = [...copyOfState.quarters.valueFilters, ...copyOfState.segments.valueFilters, ...copyOfState.routes.valueFilters || {},
+            ...copyOfState.markets.valueFilters || {}, ...copyOfState.products.valueFilters || {}, ...copyOfState.subscriptions.valueFilters || {}, ...copyOfState.geos.valueFilters || {}]
+            return copyOfState;
         case GENERATE_FILTER_DATA:
             let quarterFilters = action.payload[0].data;
             let marketsFilters = action.payload[1].data;
@@ -55,11 +79,11 @@ export default function (state = {
             let routesFilters = action.payload[5].data;
             let geosFilters = action.payload[6].data;
             let newGeoState = processDropDownListFilterValue('geos', geosFilters);
-            let newMAState = processDropDownListFilterValue('marketAreas', marketsFilters);
-            let newProductState = processDropDownListFilterValue('productNames', productsFilters);
-            let newRouteState = processDropDownListFilterValue('routeToMarkets', routesFilters);
+            let newMAState = processDropDownListFilterValue('markets', marketsFilters);
+            let newProductState = processDropDownListFilterValue('products', productsFilters);
+            let newRouteState = processDropDownListFilterValue('routes', routesFilters);
             let newSegmentsState = processDropDownListFilterValue('segments', segmentsFilters);
-            let newSubscriptionState = processDropDownListFilterValue('subscriptionOfferings', subscriptionsFilters);
+            let newSubscriptionState = processDropDownListFilterValue('subscriptions', subscriptionsFilters);
             let newQuartersState = processDropDownListFilterValue('quarters', quarterFilters);
 
 
@@ -68,7 +92,7 @@ export default function (state = {
             {
                 combined: {
                     availableFilters: arr,
-                    valueFilters: [newQuartersState[newQuartersState.length - 1], newSegmentsState[newSegmentsState.length - 1]]
+                    valueFilters: []
                 },
                 markets: {
                     availableFilters: newMAState,
@@ -87,7 +111,7 @@ export default function (state = {
                     valueFilters: []
                 },
                 segments: {
-                    availableFilters: newProductState,
+                    availableFilters: newSegmentsState,
                     valueFilters: []
                 },
                 subscriptions: {
@@ -99,35 +123,21 @@ export default function (state = {
                     valueFilters: []
                 }
             }
+            console.log(obj);
             return obj;
-        case ADD_FILTERS_TO_COMBINED:
-            copyOfState = JSON.parse(JSON.stringify(state))
-            console.log('Howdy from Filters.js: ', action.payload);
 
-          let  returnedFilters =   action.payload.map(item=>{
-                _.remove(copyOfState.combined.valueFilters,(obj=> {return obj.index === item } ));
-                return _.find(copyOfState.combined.availableFilters,(obj=> {return obj.index === item } ));
-            });
-
-            copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters,...returnedFilters]
-            console.log(copyOfState);
-            return copyOfState ;
-        return state;
         case ADD_MULTI_FILTER:
             copyOfState = JSON.parse(JSON.stringify(state))
             cat = action.payload.category;
             copyOfState.combined.valueFilters.push(action.payload);
 
-            _.find(copyOfState.combined.availableFilters, (item => { return item.index === action.payload }))
             console.log(copyOfState);
             switch (cat) {
                 case 'geos':
-                    _.remove(copyOfState.geos.valueFilters, item => { return item.index === action.payload.index });
-                    copyOfState.geos.valueFilters.push(action.payload);
+                    copyOfState.geos.valueFilters = action.payload.quarters;
                     break;
                 case 'quarters':
-                    _.remove(copyOfState.quarters.valueFilters, item => { return item.value === action.payload.value });
-                    _.remove(copyOfState.combined.valueFilters, item => { return item.category === 'quarters' });
+                    _.remove(copyOfState.quarters.valueFilters = action.payload.quarters);
 
 
                     copyOfState.quarters.valueFilters = [action.payload];
@@ -140,7 +150,7 @@ export default function (state = {
                     }
 
                     break;
-                case 'subscriptionOfferings':
+                case 'subscriptions':
                     _.remove(copyOfState.subscriptions.valueFilters, item => { return item.value === action.payload.value });
 
                     copyOfState.subscriptions.valueFilters.push(action.payload);
@@ -155,17 +165,17 @@ export default function (state = {
                         copyOfState.combined.valueFilters.push(action.payload);
                     }
                     break;
-                case 'marketAreas':
+                case 'markets':
                     _.remove(copyOfState.markets.valueFilters, item => { return item.value === action.payload.value });
 
                     copyOfState.markets.valueFilters.push(action.payload);
                     break;
-                case 'productNames':
+                case 'products':
                     _.remove(copyOfState.products.valueFilters, item => { return item.value === action.payload.value });
 
                     copyOfState.products.valueFilters.push(action.payload);
                     break;
-                case 'routeToMarkets':
+                case 'routes':
                     _.remove(copyOfState.routes.valueFilters, item => { return item.value === action.payload.value });
 
                     copyOfState.routes.valueFilters.push(action.payload);
@@ -176,15 +186,24 @@ export default function (state = {
 
             return copyOfState;
         case RESET_FILTERS:
-            let { defaultQuarter, defaultSegment } = action.payload;
+            let { defaultQuarter, defaultSegment, subscriptionFilters, geoFilters, marketFilters, productFilters, routeFilters } = action.payload;
             copyOfState = JSON.parse(JSON.stringify(state))
-            copyOfState.geos = [];
-            copyOfState.quarters = [{ index: 211, category: "quarters", value: defaultQuarter }];
-            copyOfState.subscriptions = [];
-            copyOfState.segments = [{ index: 209, category: "segments", value: defaultSegment }];
-            copyOfState.markets = [];
-            copyOfState.products = [];
-            copyOfState.routes = [];
+            copyOfState.geos.valueFilters = geoFilters
+            copyOfState.quarters.valueFilters = [{ index: 211, category: "quarters", value: defaultQuarter }];
+            copyOfState.subscriptions.valueFilters = subscriptionFilters;
+            copyOfState.segments.valueFilters = [{ index: 209, category: "segments", value: defaultSegment }];
+            copyOfState.markets.valueFilters = marketFilters
+            copyOfState.products.valueFilters = productFilters
+            copyOfState.routes.valueFilters = routeFilters
+            copyOfState.combined.valueFilters = [{ index: 211, category: "quarters", value: defaultQuarter }, { index: 209, category: "segments", value: defaultSegment }];
+            Object.keys(copyOfState).forEach(item => {
+                if (item !== 'combined') {
+                    console.log(copyOfState[item])
+                    if (copyOfState[item].valueFilters.length !== 0) {
+                        copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters, ...copyOfState[item].valueFilters]
+                    }
+                }
+            })
             return copyOfState;
         case REMOVE_MULTI_FILTER:
             copyOfState = JSON.parse(JSON.stringify(state))
@@ -198,25 +217,26 @@ export default function (state = {
                     break;
                 case 'quarters':
                     _.remove(copyOfState.quarters.valueFilters, item => { return item.index === action.payload.index });
-
+                    copyOfState.quarters.valueFilters = [action.payload]
                     break;
-                case 'subscriptionOfferings':
+                case 'subscriptions':
                     _.remove(copyOfState.subscriptions.valueFilters, item => { return item.index === action.payload.index });
 
                     break;
                 case 'segments':
                     _.remove(copyOfState.segments.valueFilters, item => { return item.index === action.payload.index });
+                    copyOfState.segments.valueFilters = [action.payload]
 
                     break;
-                case 'marketAreas':
+                case 'markets':
                     _.remove(copyOfState.markets.valueFilters, item => { return item.index === action.payload.index });
 
                     break;
-                case 'productNames':
+                case 'products':
                     _.remove(copyOfState.products.valueFilters, item => { return item.index === action.payload.index });
 
                     break;
-                case 'routeToMarkets':
+                case 'routes':
                     _.remove(copyOfState.routes.valueFilters, item => { return item.index === action.payload.index });
                     break;
                 default:
@@ -253,7 +273,7 @@ function processDropDownListFilterValue(type, data) {
             });
 
             return newArr;
-        case 'marketAreas':
+        case 'markets':
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -271,7 +291,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'subscriptionOfferings':
+        case 'subscriptions':
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -280,7 +300,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'productNames':
+        case 'products':
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -289,7 +309,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'routeToMarkets':
+        case 'routes':
             newArr = newArr.map(item => {
                 return {
                     index: count++,

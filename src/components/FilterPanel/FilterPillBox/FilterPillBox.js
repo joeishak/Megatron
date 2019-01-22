@@ -33,7 +33,7 @@ class FilterPillBox extends  Component {
                                         transitionAppearTimeout={1000}
                                         transitionEnter={false} 
                                         transitionLeave={false} >
-            <span className="filterText" >{this.state.value}<span className="xButton" onClick={this.removeFilter}>x</span></span>
+            <span className="filterText" >{this.state.value}{/* <span className="xButton" onClick={this.removeFilter}>x</span> */}</span>
             </CSSTransitionGroup>
 
         )

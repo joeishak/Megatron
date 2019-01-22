@@ -1,5 +1,4 @@
 import {
-    GENERATE_FILTER_DATA
   
 } from 'actions/types';
 import _ from 'lodash';
@@ -9,69 +8,7 @@ let defaultState = [];
 
 export default function(state = defaultState, action) {
     switch(action.type) {
-        case GENERATE_FILTER_DATA:
-        let quarterFilters = action.payload[0].data;
-        let marketsFilters = action.payload[1].data;
-        let productsFilters = action.payload[2].data;
-        let segmentsFilters = action.payload[3].data;
-        let subscriptionsFilters = action.payload[4].data;
-        let routesFilters = action.payload[5].data;
-        let geosFilters = action.payload[6].data;
-        let newGeoState = processDropDownListFilterValue('geos',geosFilters);
-        let newMAState = processDropDownListFilterValue('marketAreas',marketsFilters);
-        let newProductState = processDropDownListFilterValue('productNames',productsFilters);
-        let newRouteState = processDropDownListFilterValue('routeToMarkets',routesFilters);
-        let newSegmentsState = processDropDownListFilterValue('segments',segmentsFilters);
-        let newSubscriptionState = processDropDownListFilterValue('subscriptionOfferings',subscriptionsFilters);
-        let newQuartersState = processDropDownListFilterValue('quarters',quarterFilters);
-
-        newGeoState.unshift({
-            index: count++,
-            category: 'geos',
-            value: 'All Data'
-        });
-        newMAState.unshift({
-            index: count++,
-            category: 'marketAreas',
-            value: 'All Data'
-        });
-        newProductState.unshift({
-            index: count++,
-            category: 'productNames',
-            value: 'All Data'
-        });
-        newRouteState.unshift({
-            index: count++,
-            category: 'routeToMarkets',
-            value: 'All Data'
-        });
-        newSubscriptionState.unshift({
-            index: count++,
-            category: 'subscriptionOfferings',
-            value: 'All Data'
-        });
-    
-        if(defaultState===[]){
-            defaultState = {
-                quarters: newQuartersState,
-                geos: newGeoState,
-                products: newProductState,
-                subscriptionOfferings: newSubscriptionState,
-                marketAreas: newMAState,
-                routeToMarkets: newRouteState,
-                segments: newSegmentsState,
-            }
-        }
-
-        return {
-            quarters: newQuartersState,
-            geos: newGeoState,
-            products: newProductState,
-            subscriptionOfferings: newSubscriptionState,
-            marketAreas: newMAState,
-            routeToMarkets: newRouteState,
-            segments: newSegmentsState,
-        }
+        
         default: 
             return state;
     }

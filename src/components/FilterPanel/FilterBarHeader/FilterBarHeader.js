@@ -41,43 +41,39 @@ class FilterBarHeader extends Component {
    // Function that renders the Filter Pills
     renderFilterPills(){
         // As long as there is an active filter
-        let filters = this.props.activeFilters
+        let filters = this.props.filters
         let filterBarArr= [];
-        if(filters.quarters[0].value!=='All Data'){
-        filters.quarters.forEach(item=>{
+        filters.quarters.valueFilters.forEach(item=>{
+            filterBarArr.push(item);
+        });
+        if(filters.geos.valueFilters.length!==0){
+        filters.geos.valueFilters.forEach(item=>{
             filterBarArr.push(item);
         });
         }
-        if(filters.geos[0].value!=='All Data'){
-        filters.geos.forEach(item=>{
+        if(filters.products.valueFilters.length!==0){
+        filters.products.valueFilters.forEach(item=>{
             filterBarArr.push(item);
         });
         }
-        if(filters.products[0].value!=='All Data'){
-        filters.products.forEach(item=>{
+        if(filters.subscriptions.valueFilters.length!==0){
+        filters.subscriptions.valueFilters.forEach(item=>{
             filterBarArr.push(item);
         });
         }
-        if(filters.subscriptions[0].value!=='All Data'){
-        filters.subscriptions.forEach(item=>{
+        if(filters.markets.valueFilters.length!==0){
+        filters.markets.valueFilters.forEach(item=>{
             filterBarArr.push(item);
         });
         }
-        if(filters.markets[0].value!=='All Data'){
-        filters.markets.forEach(item=>{
+        if(filters.routes.valueFilters.length!==0){
+        filters.routes.valueFilters.forEach(item=>{
             filterBarArr.push(item);
         });
         }
-        if(filters.routes[0].value!=='All Data'){
-        filters.routes.forEach(item=>{
+        filters.segments.valueFilters.forEach(item=>{
             filterBarArr.push(item);
         });
-        }
-        if(filters.segments[0].value!=='All Data'){
-        filters.segments.forEach(item=>{
-            filterBarArr.push(item);
-        });
-        }
         if(filterBarArr.length>0) {
             // Return this 
         return(
@@ -138,7 +134,7 @@ class FilterBarHeader extends Component {
     }
 }
 function mapStateToProps(state) {
-    return {filters: state.filters, activeFilters: state.activeFilters};
+    return {filters: state.filters};
   }
   
   export default connect(mapStateToProps,actions) (FilterBarHeader)

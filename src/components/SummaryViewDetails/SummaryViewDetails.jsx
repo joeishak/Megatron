@@ -82,7 +82,7 @@ class SummaryViewDetails extends Component {
     let newArr;
     let {geos, quarters,markets,routes,segments,subscriptions} = activeFilters;
     newArr = [].concat(geos, quarters,markets,routes,segments,subscriptions);
-    console.log(newArr);
+    // console.log(newArr);
     return newArr;
   }
  
@@ -91,7 +91,7 @@ class SummaryViewDetails extends Component {
     this.props.hideSummaryDetails();
   }
   render() {
-    let {activeFilters} = this.props;
+    let {activeFilters, filters} = this.props;
     var UnitStyles = classNames({
       unitMetric: true,
       activeMetric: this.props.multichartIsArr ? false : true
@@ -178,7 +178,7 @@ class SummaryViewDetails extends Component {
                 </button>
               }
             >
-            <Workbook.Sheet data={this.getExcelFilters(activeFilters)} name="Filters">
+            <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
               <Workbook.Column label="Dimension" value="category" />
               <Workbook.Column label="Filter Applied" value="value" />
               
@@ -284,7 +284,7 @@ class SummaryViewDetails extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state.activeFilters);
+  // console.log(state.activeFilters);
   return {
     previousViewWasJourneys: state.switchFilter,
     activePrimary: state.activeCards.primary,
@@ -294,7 +294,8 @@ function mapStateToProps(state) {
     qtdwData: state.summaryData.secondary[state.activeCards.secondary].details.qtdw,
     summaryData: state.adobeData,
     journeyData: state.journeyData,
-    multichartIsArr: state.multichartIsArr
+    multichartIsArr: state.multichartIsArr,
+    filters: state.filters
   };
 }
 

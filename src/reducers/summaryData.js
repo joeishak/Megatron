@@ -58,9 +58,10 @@ export default function (state = {
         // finMarkets, journG2Market, journG3Market,finRoutes,finSegments,finProducts,journG2Routes,journG2Segments,
         // journG2Products,journG3Routes,journG3Segments,journG3Products);
 
-
+        
         newState = Object.assign({}, state);
-            //Actual, Targets, Vs QRf
+            
+        //Actual, Targets, Vs QRf
             // //Finance
             newState.primary[0].value = action.payload[0].data[0].NewARRActual;
             newState.primary[0].target = action.payload[0].data[0].NewARRTarget;
@@ -115,6 +116,9 @@ export default function (state = {
             processJourneyProductQTD(action.payload[24].data, action.payload[27].data, newState.secondary);
 
 
+
+
+            console.log(newState);
             return newState;
         case ADD_NEW_PRIMARY_COMMENT:
             index = action.payload.square;
@@ -298,7 +302,11 @@ export function processFinancialQTD(newState, data) {
         switch (i) {
             // New New Arr
         case 0:
-            newState[i].details.qtdw.qtd[0].value = findata.NewActuals;
+            newState[i].details.qtdw.qtd[0] = {
+                index: 1,
+                header: 'Actuals',
+                value: findata.NewActuals
+            }
             newState[i].details.qtdw.qtd[1].value = findata.NewUnitsActual;
             newState[i].details.qtdw.qtd[2].value = findata.NewTarget;
             newState[i].details.qtdw.qtd[3].value = findata.NewVsQrfDiff;
@@ -341,10 +349,10 @@ export function processFinancialQTD(newState, data) {
 }
 export function processFinancialGeoQTD(newState, data) {
     //Clear old Values
-    newState[0].details.geo.qtd = [];
-    newState[1].details.geo.qtd = [];
-    newState[2].details.geo.qtd = [];
-    newState[3].details.geo.qtd = [];
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         let net = {
@@ -396,14 +404,15 @@ export function processFinancialGeoQTD(newState, data) {
             yy: item.RenewARRYY
         }
 
-        newState[0].details.geo.qtd.push(net);
-        newState[1].details.geo.qtd.push(gross);
-        newState[2].details.geo.qtd.push(canc);
-        newState[3].details.geo.qtd.push(ren);
-
-
-
+         item1.push(net);
+         item2.push(gross);
+         item3.push(canc);
+         item4.push(ren);
     }
+    newState[0].details.geo.qtd = item1;
+    newState[1].details.geo.qtd = item2;
+    newState[2].details.geo.qtd = item3;
+    newState[3].details.geo.qtd = item4;
 }
 export function processFinancialMarketQTD(newState, data) {
 

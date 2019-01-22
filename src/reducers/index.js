@@ -15,6 +15,7 @@ import activeCardReducer from 'reducers/activeCards.js';
 import appSettingsReducer from 'reducers/appSettings.js';
 import summaryDataReducer from 'reducers/summaryData.js';
 import commentsReducer from 'reducers/comments.js';
+import filtersReducer from 'reducers/filters.js';
 export default combineReducers({
     auth: authReducer,
     user: userReducer,
@@ -31,5 +32,6 @@ export default combineReducers({
     activeCards: activeCardReducer,
     appSettings: appSettingsReducer,
     summaryData: summaryDataReducer,
+    filters: filtersReducer
     // commentsPackage: commentsReducer
 });
