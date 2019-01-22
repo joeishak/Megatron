@@ -5146,9 +5146,10 @@ const REST = 'rest/'
 const domains = {
     local: 'http://localhost',
     adobe: 'http://infoburst.corp.adobe.com',
-    vm1: 'http://vm1.infosol.com'
+    vm1: 'http://vm1.infosol.com',
+    azureIp: 'http://10.30.0.5'
 }
-const prodDomain = domains.local;
+const prodDomain = domains.azureIp;
 export const Infoburst = {
     // user: 'jishak',
     // pass: '68tailoperatorhanga#',
