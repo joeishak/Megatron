@@ -42,6 +42,9 @@ class Summary extends Component {
         height: window.innerHeight,
         width: window.innerWidth
       },
+      filtersAreLoaded: false,
+      preferncesAreAddedToFilters: false,
+      initialDataLoadIsComplete: false,
       activeCommentBoxMetric: 0,
       isLoading: true
     };
@@ -67,10 +70,12 @@ class Summary extends Component {
 
   async componentDidMount() {
     this.props.fetchCommentsCount();
-    this.props.generateFilterData();
+    // this.props.generateFilterData();
 
     // Get all the comments count
 
+    this.props.generateFilterData(this.props.preferences);
+  
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
     this.checkAuthentication();
@@ -82,57 +87,50 @@ class Summary extends Component {
     // console.log(this.props)
     
 
-    if( this.props.activeFilters !== prevProps.activeFilters ) {
-        this.setState({isLoading: false});
+    // if(this.props.filters.combined.availableFilters.length===0){
+    // }
+    // Boolean Rule Tests
+    let preferencesAreLoaded = Object.keys(prevProps.preferences).length === 0 && this.props.preferences.defaultSummaryView !== undefined;
+    let filtersAreLoaded = prevProps.filters.combined.availableFilters.length === 0 && this.props.filters.combined.availableFilters.length>0;
+    let appIsReadyToRequestSummaryData = prevProps.filters.combined.valueFilters.length===0 &&  this.props.filters.combined.valueFilters.length > 0;
+    let appInitialLoadIsComplete = this.props.NEwQTDW.qtd[0].value !== 66.7 && prevProps.NEwQTDW.qtd[0].value === undefined;
+    // let filtersSubmitted = this.props.filters.combined.valueFilters !== prevProps.filters.combined.valueFilters && 
+    // console.log(appInitialLoadIsComplete);
+    //Handle Boolean Test Results
+    if(filtersAreLoaded){
+      console.log('Just Recieved filters');
+      this.setState({filtersAreLoaded:true});
     }
 
-    // If the old available filters change or the active filters change
-    //  Call for new data with the filters
-    if (
-      prevProps.availableFilters !== this.props.availableFilters ||
-      prevProps.activeFilters !== this.props.activeFilters
-    ) {
-      this.props.getSummaryData(this.props.activeFilters, this.props.availableFilters);
+    if (preferencesAreLoaded && this.state.preferncesAreAddedToFilters === false) {
+      console.log('Just recieved the preferences');
+      this.props.addPreferencesToActiveFilters(this.props.preferences);
+      this.setState({preferncesAreAddedToFilters: true})
     }
-    let prevPropsIsEmpty = Object.keys(prevProps.preferences).length === 0;
-    let propsNotEmpty = this.props.preferences.defaultSummaryView !== undefined;
-    if (prevPropsIsEmpty && propsNotEmpty) {
-      this.props.addValueToActiveMultiFilter({
-        index: 1,
-        category: "quarters",
-        value: this.props.preferences.defaultQuarter
-      });
-      this.props.addValueToActiveMultiFilter({
-        index: 2,
-        category: "segments",
-        value: this.props.preferences.defaultSegment
-      });
-      if (this.props.preferences.geoFilters !== "") {
-        this.props.preferences.geoFilters.forEach(ele => {
-          this.props.addValueToActiveMultiFilter(ele);
-        });
-      }
-      if (this.props.preferences.productFilters !== "") {
-        this.props.preferences.productFilters.forEach(ele => {
-          this.props.addValueToActiveMultiFilter(ele);
-        });
-      }
-      if (this.props.preferences.routeFilters !== "") {
-        this.props.preferences.routeFilters.forEach(ele => {
-          this.props.addValueToActiveMultiFilter(ele);
-        });
-      }
-      if (this.props.preferences.marketFilters !== "") {
-        this.props.preferences.marketFilters.forEach(ele => {
-          this.props.addValueToActiveMultiFilter(ele);
-        });
-      }
-      if (this.props.preferences.subscriptionFilters !== "") {
-        this.props.preferences.subscriptionFilters.forEach(ele => {
-          this.props.addValueToActiveMultiFilter(ele);
-        });
-      }
-    }// End If for Previous Props is Empty
+
+
+    if(appIsReadyToRequestSummaryData && this.state.preferncesAreAddedToFilters === true) {
+      // console.log('Both Preferences and Filters are loaded');
+      this.props.getSummaryData(this.props.filters);
+      this.setState({initialDataLoadIsComplete: true})
+    }
+
+    if( this.props.summaryData !== prevProps.summaryData && this.state.initialDataLoadIsComplete === true) {
+      this.setState({isLoading: false});
+  }
+
+  if(this.state.initialDataLoadIsComplete === true && (this.props.filters !== prevProps.filters)){
+    this.props.getSummaryData(this.props.filters);
+  } 
+    
+    // // If the old available filters change or the active filters change
+    // //  Call for new data with the filters
+    // if (
+    //   prevProps.availableFilters !== this.props.availableFilters ||
+    //   prevProps.activeFilters !== this.props.activeFilters
+    // ) {
+    //   this.props.getSummaryData(this.props.filters);
+    // }
 
     if(this.props.activePrimaryCard.index > 0){
       this.props.updateMultichartMetric(true);
@@ -285,10 +283,10 @@ class Summary extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log(state.preferences);
+  // console.log(state.filters);
   return {
-    activeFilters: state.activeFilters,
-    availableFilters: state.availableFilters,
+    // activeFilters: state.activeFilters,
+    // availableFilters: state.availableFilters,
     dialogIsOpen: state.isDialogOpen,
     detailIsOpen: state.detailsIsOpen,
     availableFilters: state.availableFilters,
@@ -305,7 +303,9 @@ function mapStateToProps(state) {
     mobileIsPrimary: state.appSettings.views.primaryIsVisible,
     mobileIsSecondary: state.appSettings.views.secondaryIsVisible,
     summaryData: state.summaryData,
-    mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible
+    mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible,
+    filters: state.filters,
+    NEwQTDW: state.summaryData.secondary[0].details.qtdw
   };
 }
 export default connect(

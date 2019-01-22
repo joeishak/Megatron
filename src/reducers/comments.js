@@ -1,9 +1,9 @@
 import { FETCH_COMMENTS} from 'actions/types';
 
-export default function(state = [],action) {
+export default function(state = [], action) {
     switch(action.type) {
         case FETCH_COMMENTS:
-        // console.log(action.payload);
+        console.log(action.payload);
             const replies = action.payload.replies;
             const comments = action.payload.comment.map(ele => {
                 return {
@@ -23,7 +23,7 @@ export default function(state = [],action) {
                     userName: ele.firstName + ' ' + ele.lastName
                 }
             });
-            // console.log(comments);    
+            console.log(comments);    
             return comments;
         default: 
             return state;

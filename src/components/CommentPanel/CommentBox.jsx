@@ -138,7 +138,7 @@ import * as utils from '../../utilities';
     }
      render(){
          let {commentsPackage} = this.props
-        //  console.log(this.props);
+         console.log(this.props.commentsPackage);
     return(
         <span>  <div className='commentsContainer'>
             {
@@ -168,7 +168,7 @@ import * as utils from '../../utilities';
                                     </span>
                                 </div>
                                 <div className='repliesList'>
-                                    {comment.replies.map(reply=>{
+                                    {(comment.replies !== undefined) ? comment.replies.map(reply=>{
                                         return(
                                             <div key={reply.id} className='reply'>
                                             {/* Reply Header */}
@@ -190,7 +190,7 @@ import * as utils from '../../utilities';
                                             </div>
                                         </div>
                                         )
-                                    })}
+                                    }) :null} 
                                    
                                 </div>
                             </div>
@@ -218,7 +218,7 @@ import * as utils from '../../utilities';
     //  console.log(state);
     return {
         currentMetric: state.activeCards.secondary,
-        comments: state.summaryData.secondary[state.activeCards.secondary].comments,
+        // commentsPackage: state.summaryData.secondary[state.activeCards.secondary].comments,
         commentsPackage: state.commentsPackage
     }
 }

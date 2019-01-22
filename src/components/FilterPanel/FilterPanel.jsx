@@ -33,11 +33,11 @@ class FilterPanel extends Component{
         }
     }
     render(){
-        let {activeFilters, availableFilters, mobileFiltersIsShown,window} = this.props;
+        let {activeFilters,filters, availableFilters, mobileFiltersIsShown,window} = this.props;
         const filtersPage = this.props.mobileFiltersIsShown ? (
             <FilterPage
               windowHeight={window.height}
-              activeFilters={activeFilters}
+              filters={filters}
               availableFilters={availableFilters}
             />
           ) :  <div>
@@ -56,6 +56,7 @@ class FilterPanel extends Component{
 function mapStateToProps(state) {
     return {
         activeFilters: state.activeFilters,
+        filters: state.filters,
         availableFilters: state.availableFilters,
         mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible
 };

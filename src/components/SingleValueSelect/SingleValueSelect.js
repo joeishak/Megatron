@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
-
+import * as styles from './SingleValueSelect.css';
 // Transform the list so that the component can render the drop downs
 let transformList = (objList) => {
 
@@ -39,19 +39,20 @@ let transformDefaultList = (objList) => {
 }
 
 // Render Component
-const ReactSelect = ({options, defaultValue,updateFilter, onClose}) => {
+const SingleValueSelect = ({options, activeFilters, defaultValue,onValueChange, onMenuClose}) => {
     return (
         <Select
+        className="blackText"
+            // value={transformList(activeFilters)}
             options={transformList(options)}
-            closeMenuOnSelect={false}
-            isMulti
+            closeMenuOnSelect={true}
             onMenuClose={(e) => {
                 console.log('Menu Closed',e),
-                onClose(e)
+                onMenuClose(e)
             }}
-            defaultValue={transformDefaultList(defaultValue)} onChange={updateFilter} 
+            defaultValue={transformDefaultList(defaultValue)} onChange={onValueChange} 
             />
     );
 };
 
-export default ReactSelect;
+export default SingleValueSelect;

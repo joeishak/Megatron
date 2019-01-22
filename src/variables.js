@@ -91,10 +91,10 @@ export const SecondaryData = [
         ],
         details: {
             multichart: [
-                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
-                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
-                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
-                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+                [],
+                [],
+                [],
+                []
             ],
             unitMultichart: [
                 [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
@@ -107,7 +107,7 @@ export const SecondaryData = [
                     {
                         index: 1,
                         header: 'Actuals',
-                        value: 66.7
+                        value: undefined
                     },
                     {
                         index: 2,
@@ -175,17 +175,7 @@ export const SecondaryData = [
             },
             geo: {
                 qtd: [
-                    {
-                        index: 0,
-                        actuals: 66.7,
-                        units: 751.1,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        qq: -20.00,
-                        yy: -.0733,
-                        type: 'AMER'
-                    }
+                
                 ],
                 week: [
                     {
@@ -5145,14 +5135,13 @@ const INFOBURST = 'infoburst/'
 const REST = 'rest/'
 const domains = {
     local: 'http://localhost',
+    azureIP: 'http://10.30.0.5',
     adobe: 'http://infoburst.corp.adobe.com',
     vm1: 'http://vm1.infosol.com',
     azureIp: 'http://10.30.0.5'
 }
-const prodDomain = domains.azureIp;
+const prodDomain = domains.azureIP;
 export const Infoburst = {
-    // user: 'jishak',
-    // pass: '68tailoperatorhanga#',
     user: 'admin',
     pass: 'admin',
     dbQuery: prodDomain + PORT + INFOBURST + REST + 'db/query',

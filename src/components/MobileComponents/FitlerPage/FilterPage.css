@@ -8,7 +8,19 @@
     animation: slideFilter 1s forwards;
     animation-delay: 2s;
 }
-
+.quarterFilterContainer{
+    float:left;
+    clear:right;
+    font-size:14px !important;
+    display:none;
+    height: 0px;
+    padding-right: 20px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
+    transition: height 2s;
+    
+}
 @-webkit-keyframes slideFilter {
     100% { left: 0; }
 }

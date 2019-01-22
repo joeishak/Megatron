@@ -1,7 +1,10 @@
-// Multi Select Filter
+// Filters
+export const GENERATE_FILTER_DATA                       = "generate_filter_data";
 export const ADD_MULTI_FILTER                = "add_multi_filter";
 export const REMOVE_MULTI_FILTER             = "remove_multi_filter";
 export const RESET_FILTERS                   = "reset_filter";
+export const ADD_PREFERENCES_TO_ACTIVE_FILTERS = "add_preferences_to_active_filters";
+export const SUBMIT_FILTERS                 ="submit_filters";
 // Authentication
 export const CHANGE_AUTH                     = 'change_auth';
 // User
@@ -18,7 +21,6 @@ export const GET_PRIMARY_DATA                = "get_primary_data";
 export const GET_SECONDARY_DATA              = "get_secondary_data";
 export const GET_SECONDARY_DETAIL_DATA       = 'get_secondary_detail_data'
 // Data for the Filters
-export const GENERATE_FILTER_DATA                       = "generate_filter_data";
 // Summary View Details
 export const SHOW_SUMMARY_VIEW_DETAILS               = "show_summary_view_details";
 export const HIDE_SUMMARY_VIEW_DETAILS               = "hide_summary_view_details";
