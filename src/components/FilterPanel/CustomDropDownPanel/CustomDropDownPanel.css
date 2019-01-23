@@ -25,7 +25,7 @@
 .panelBarContainer-open{
     color: white;
     background-color: #3c3c3c;
-    height: 450px !important;
+    height: 400px !important;
     padding-left: 20px;
 }
 
@@ -43,6 +43,22 @@
     /* display: none; */
 }
 
+.button {
+    background-color: #3c3c3c;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 5px;
+    margin-top: 10px;
+  }
+  
+  .button:hover {
+    background-color: #5c5b5b;
+    border-radius: 5px;
+    border:none;
+
+  }
 .quarterFilterContainer{
     float:left;
     clear:right;
@@ -50,7 +66,7 @@
     display:none;
     height: 0px;
     padding-right: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     padding-top: 5px;
     -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
     transition: height 2s;
@@ -99,7 +115,7 @@
 @media only screen and (max-width: 1607px) {
     /* tablets and desktop */
     .panelBarContainer-open{
-        height: 500px;
+        height: 400px;
     }
 }
 

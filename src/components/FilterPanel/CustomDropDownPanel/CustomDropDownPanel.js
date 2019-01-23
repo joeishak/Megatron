@@ -224,9 +224,7 @@ class CustomDropDownPanel extends Component {
                 </div>
 
                 <div className={quarterFilterContainer + ' col-lg-12'}>
-                    <Button primary={true} onClick={this.submitFilters} look="flat">Browse</Button>
-
-
+                    <input className = "button" type={'button'} onClick={this.submitFilters} value="Submit"/>
 
                 </div>
 

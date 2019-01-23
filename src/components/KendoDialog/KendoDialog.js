@@ -424,8 +424,8 @@ class KendoDialog extends Component {
 
 
                                 </div>
-
-                                {/* Filters List */}
+{/* 
+                                Filters List
                                 <div className="contentpad filterListItems">
                                     <p>Filters Applied:</p>
 
@@ -439,7 +439,7 @@ class KendoDialog extends Component {
                                             </li>
                                         })}
                                     </ul>
-                                </div>
+                                </div> */}
 
                             </div>
 
