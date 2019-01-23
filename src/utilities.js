@@ -1047,7 +1047,7 @@ export function renderDollarValue(value) {
 }
 export function formatPercentage(value) {
     let isNegative = (value< 0) ? true: false;
-    let percentage = value*100;
+    let percentage = value;
     let absVal = Math.abs(percentage);
      // Greater than or less than 100 
     // set value to 100
@@ -1063,7 +1063,7 @@ export function formatPercentage(value) {
             return '0.00%';
         }
 
-        percentage = (value*100).toFixed(2);
+        percentage = (value).toFixed(2);
      
     }
    

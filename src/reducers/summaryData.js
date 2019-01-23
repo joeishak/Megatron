@@ -24,35 +24,6 @@ export default function (state = {
     secondary: SecondaryData
 }, action) {
     switch (action.type) {
-
-        // case FETCH_COMMENTS:
-        // newState = Object.assign({}, state);
-        // const replies = action.payload.response.replies;
-        // const comments = action.payload.response.comment.map(ele => {
-        //     return {
-        //         comment: ele.comment,
-        //         id: ele.id,
-        //         replies: replies.map(element => {
-        //             if (ele.id === element.commentId) {
-        //                 return {
-        //                     comment: element.reply,
-        //                     id: element.id,
-        //                     time: element.postTimeStamp,
-        //                     userName: element.firstName + ' ' + element.lastName
-        //                 }
-        //             }
-        //         }).filter(notUndefined => notUndefined),
-        //         time: ele.postTimeStamp,
-        //         userName: ele.firstName + ' ' + ele.lastName
-        //     }
-        // });
-
-        
-        // console.log(comments);    
-
-        // newState[action.payload.metricId].details.comments = comments;
-        // console.log('Fetched Comments in Summary:',newState[0])
-        // return newState;
         case GET_SUMMARY_DATA: 
         // primaryFinancial, primaryG2Journey, primaryG3Journey, secondaryFinancial, secondaryG2Journey, secondaryG3Journey, 
         // finMulti, finUnitsMulti, finGeo, finQTD, journG2Mutli, journG3Mutli, journG2QTD, journG3QTD, journG2Geo, journG3Geo,
@@ -95,10 +66,10 @@ export default function (state = {
 
             processSecondaryData(action.payload[3], action.payload[4], action.payload[5], newState.secondary)
 
-            // 0 -primaryFinancial, primaryG2Journey, primaryG3Journey, secondaryFinancial, secondaryG2Journey, secondaryG3Journey, 
-            // finMulti, finUnitsMulti, finGeo, finQTD, journG2Mutli, journG3Mutli, journG2QTD, journG3QTD, journG2Geo, journG3Geo,
-            // finMarkets, journG2Market, journG3Market,finRoutes,finSegments,finProducts,journG2Routes,journG2Segments,
-            // journG2Products,journG3Routes,journG3Segments,27 - journG3Products);
+            // 0 -primaryFinancial, primaryG2Journey, primaryG3Journey, secondaryFinancial, secondaryG2Journey, secondaryG3Journey -5, 
+            // 6- finMulti, finUnitsMulti, finGeo, finQTD, journG2Mutli, journG3Mutli, journG2QTD, journG3QTD, journG2Geo, journG3Geo -15,
+            // 16- finMarkets, journG2Market, journG3Market,finRoutes,finSegments,finProducts,journG2Routes,journG2Segments-23,
+            // 24- journG2Products,journG3Routes,journG3Segments,27 - journG3Products);
 
             processFinancialMultichart(newState.secondary, action.payload[6].data);
             processFinancialUnitsMultichart(newState.secondary, action.payload[7].data);
@@ -302,10 +273,10 @@ export function processFinancialUnitsMultichart(newState, data) {
     }
 }
 export function processFinancialQTD(newState, data) {
+    console.log(data);
     // State Order: Actual, Units, QRF, QRFDiff, VSQrf, QQ, YY
     for (let i = 0; i < newState.length; i++) {
         let findata = data[0];
-
         switch (i) {
             // New New Arr
         case 0:
@@ -320,6 +291,11 @@ export function processFinancialQTD(newState, data) {
             newState[i].details.qtdw.qtd[4].value = findata.NewVSQRF;
             newState[i].details.qtdw.qtd[5].value = findata.NewARRQQTY;
             newState[i].details.qtdw.qtd[6].value = findata.NewYY;
+            newState[i].details.qtdw.week[0].value= findata.NewARRCW
+            newState[i].details.qtdw.week[1].value= findata.NewARRTargetCW;
+            newState[i].details.qtdw.week[2].value= findata.NewCWVsQrfDiff
+            newState[i].details.qtdw.week[3].value= findata.NewCWVsQrf;
+            newState[i].details.qtdw.week[4].value= findata.NewWW;
             break;
             // Gross New Arr
         case 1:
@@ -330,6 +306,11 @@ export function processFinancialQTD(newState, data) {
             newState[i].details.qtdw.qtd[4].value = findata.GrossVsQrf;
             newState[i].details.qtdw.qtd[5].value = findata.GrossARRQQTY;
             newState[i].details.qtdw.qtd[6].value = findata.GrossARRYY;
+            newState[i].details.qtdw.week[0].value= findata.GrossCW
+            newState[i].details.qtdw.week[1].value= findata.GrossARRTargetCW;
+            newState[i].details.qtdw.week[2].value= findata.GrossCWVsQrfDiff
+            newState[i].details.qtdw.week[3].value= findata.GrossCWVsQrf;
+            newState[i].details.qtdw.week[4].value= findata.GrossWW;
             break;
             // Cancellations Arr
         case 2:
@@ -340,16 +321,26 @@ export function processFinancialQTD(newState, data) {
             newState[i].details.qtdw.qtd[4].value = findata.CancelVsQrf;
             newState[i].details.qtdw.qtd[5].value = findata.CancelARRQQTY;
             newState[i].details.qtdw.qtd[6].value = findata.CancelARRYY;
+            newState[i].details.qtdw.week[0].value= findata.CancelCW
+            newState[i].details.qtdw.week[1].value= findata.CancelARRTargetCW;
+            newState[i].details.qtdw.week[2].value= findata.CancelCWVsQrfDiff
+            newState[i].details.qtdw.week[3].value= findata.CancelCWVsQrf;
+            newState[i].details.qtdw.week[4].value= findata.CancelWW;
             break;
             // Renewals Arr
         case 3:
-            newState[i].details.qtdw.qtd[0].value = findata.RenewalActuals;
+            newState[i].details.qtdw.qtd[0].value = findata.RenewActuals;
             newState[i].details.qtdw.qtd[1].value = findata.RenewUnitsActual;
-            newState[i].details.qtdw.qtd[2].value = findata.RenewARRTarget;
+            newState[i].details.qtdw.qtd[2].value = findata.RenewTarget;
             newState[i].details.qtdw.qtd[3].value = findata.RenewVsQrfDiff;
             newState[i].details.qtdw.qtd[4].value = findata.RenewVSQRF;
             newState[i].details.qtdw.qtd[5].value = findata.RenewARRQQTY;
-            newState[i].details.qtdw.qtd[6].value = findata.RenewARRYY;
+            newState[i].details.qtdw.qtd[6].value = findata.RenewYY;
+            newState[i].details.qtdw.week[0].value= findata.RenewARRCW
+            newState[i].details.qtdw.week[1].value= findata.RenewARRTargetCW;
+            newState[i].details.qtdw.week[2].value= findata.RenewCWVsQrfDiff
+            newState[i].details.qtdw.week[3].value= findata.RenewCWVsQrf;
+            newState[i].details.qtdw.week[4].value= findata.RenewWW;
             break;
         }
     }

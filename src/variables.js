@@ -4759,6 +4759,11 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
                         header: 'QRF',
                         value: 66.7
                     },
@@ -5188,7 +5193,8 @@ export const Infoburst = {
         JourneysG2ProductsQTD: '?q=JourneyG2ProductsQTD',
         JourneysG3ProductQTD: '?q=JourneyG3ProductQTD'
     },
-    dataXdcID: '\\1128',
+    // dataXdcID: '\\1128',
+    dataXdcID: '\\1209',
     journeyXdcID: '\\1149',
     filtersXdcID: '\\1092',
     //  dataXdcID: '\\500',
