@@ -64,6 +64,7 @@ import * as utils from '../../utilities';
                 comment: e.target.value
             };
 
+
                     // Post Comment
                     // this.props.addNewCommentToSecondaryMetric(this.props.currentMetric,comment);
                     // Write to DB, Refresh the metrics from the DB, then refresh Comments count for the comment Indicators
@@ -138,7 +139,7 @@ import * as utils from '../../utilities';
     }
      render(){
          let {commentsPackage} = this.props
-         console.log(this.props.commentsPackage);
+
     return(
         <span>  <div className='commentsContainer'>
             {
