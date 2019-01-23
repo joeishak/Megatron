@@ -771,7 +771,7 @@ export function fetchComments(metricId) {
             };
             const replies = axios.post(Infoburst.dbQuery, responseBody, { headers: headers, responseType : 'text'}).then((res) => {
                 const commentsComplete = {comment: response.data, replies: res.data};
-                console.log(commentsComplete);
+                // console.log(commentsComplete);
                 return commentsComplete;
             });
 
@@ -781,7 +781,7 @@ export function fetchComments(metricId) {
         }
 
     });
-    console.log(res1);
+    // console.log(res1);
     return res1;
 }
 
@@ -1151,4 +1151,15 @@ export function getDeviceType(window) {
 
     return deviceType;
 
+}
+
+export function getDateFormat(_date) {
+
+    let date = new Date(_date);
+    let localOffset = date.getTimezoneOffset() * 60000;
+    let localTime = date.getTime();
+    let newDate = localTime - localOffset;
+    let returnTime = new Date(newDate).toLocaleTimeString();
+
+    return  new Date(_date).toDateString() + ' at ' + returnTime;
 }
