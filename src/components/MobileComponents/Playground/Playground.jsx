@@ -22,6 +22,8 @@ class Playground extends Component {
         ReactDOM.findDOMNode(this).addEventListener("touchend",     this.onTouchEnd);
         ReactDOM.findDOMNode(this).addEventListener("mouseleave",   this.onTouchEnd);
         ReactDOM.findDOMNode(this).addEventListener("touchcancel",  this.onTouchEnd);
+
+
     }
 
     onNavigateClick = (type, e) => {

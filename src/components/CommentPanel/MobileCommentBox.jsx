@@ -116,7 +116,7 @@ class MobileCommentBox extends Component {
                 {(this.props.commentsPackage !== undefined) ?
                         this.props.commentsPackage.map(comment=>{
                             return (
-                                <div key = {comment.id} className='mobileComment'>
+                                <div key={comment.id} className='mobileComment'>
                                 <div className='mobileCommentUserHeader'>
                                     {/* Comment User Icon */}
                                         <img src={this.grabProfilePic(comment.userName)} className="profilePictures"/>
@@ -134,8 +134,7 @@ class MobileCommentBox extends Component {
                                 <div className="mobileCommentsReplies">
                                     {(comment.replies !== undefined) ? comment.replies.map(reply => {
                                         return (
-                                          <div id={reply.id}>
-
+                                          <div key={reply.id}>
                                                 <div className='mobileCommentUserHeader'>
                                                     {/* Comment User Icon */}
                                                         <img src={this.grabProfilePic(reply.userName)} className="profilePictures"/>

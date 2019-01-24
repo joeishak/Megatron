@@ -30,7 +30,7 @@ export default function (state = {
         // finMarkets, journG2Market, journG3Market,finRoutes,finSegments,finProducts,journG2Routes,journG2Segments,
         // journG2Products,journG3Routes,journG3Segments,journG3Products);
 
-        console.log(action.payload);
+        console.log('HERE', action.payload);
         newState = Object.assign({}, state);
             
         //Actual, Targets, Vs QRf
@@ -51,8 +51,6 @@ export default function (state = {
             newState.primary[3].value = action.payload[2].data[0].NewQfmActual;
             newState.primary[3].target = action.payload[2].data[0].NewQfmTarget;
             newState.primary[3].vsqrf = action.payload[2].data[0].NewQfmVsQrf;
-
-     
 
             //  //Use
             newState.primary[4].value = action.payload[2].data[0].RepeatUserMauActual;
@@ -98,7 +96,7 @@ export default function (state = {
 
 
                 
-            // console.log(newState);
+            console.log('HERE', newState);
             return newState;
         case ADD_NEW_PRIMARY_COMMENT:
             index = action.payload.square;
