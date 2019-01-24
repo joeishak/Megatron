@@ -184,6 +184,7 @@
 }
 .weekGeoHeader{
     text-align:  left !important;
+    padding-left: 15px;
 }
 .weekMaHeader{
     text-align:  right !important;

@@ -30,7 +30,7 @@ export default function (state = {
         // finMarkets, journG2Market, journG3Market,finRoutes,finSegments,finProducts,journG2Routes,journG2Segments,
         // journG2Products,journG3Routes,journG3Segments,journG3Products);
 
-        
+        console.log(action.payload);
         newState = Object.assign({}, state);
             
         //Actual, Targets, Vs QRf
@@ -75,18 +75,29 @@ export default function (state = {
             processFinancialUnitsMultichart(newState.secondary, action.payload[7].data);
             processFinancialQTD(newState.secondary, action.payload[9].data);
             processFinancialGeoQTD(newState.secondary, action.payload[8].data);
+            processFinancialGeoWeek(newState.secondary, action.payload[8].data)
             processFinancialMarketQTD(newState.secondary, action.payload[16].data);
+            processFinancialMarketWeek(newState.secondary, action.payload[16].data)
+
             processJourneyMultichart(action.payload[10].data, action.payload[11].data, newState.secondary);
             processJourneyQTD(action.payload[12].data[0], action.payload[13].data[0], newState.secondary);
             processJourneyGeoQTD(action.payload[14].data, action.payload[15].data, newState.secondary);
             processJourneyMarketAreaQTD(action.payload[17].data, action.payload[18].data, newState.secondary)
             processFinancialRoutesQTD(newState.secondary,action.payload[19].data  );
+            processFinancialRoutesWeek(newState.secondary, action.payload[19].data)
+
             processFinancialSegmentQTD(newState.secondary,action.payload[20].data);
+            processFinancialSegmentWeek(newState.secondary, action.payload[20].data)
+
             processFinancialProductsQTD(newState.secondary, action.payload[21].data);
+            processFinancialProductWeek(newState.secondary, action.payload[21].data)
+
             processJourneyRoutesQTD(action.payload[22].data, action.payload[25].data, newState.secondary);
             processJourneySegmentQTD(action.payload[23].data, action.payload[26].data, newState.secondary);
             processJourneyProductQTD(action.payload[24].data, action.payload[27].data, newState.secondary);
 
+
+                
             // console.log(newState);
             return newState;
         case ADD_NEW_PRIMARY_COMMENT:
@@ -296,6 +307,12 @@ export function processFinancialQTD(newState, data) {
             newState[i].details.qtdw.week[2].value= findata.NewCWVsQrfDiff
             newState[i].details.qtdw.week[3].value= findata.NewCWVsQrf;
             newState[i].details.qtdw.week[4].value= findata.NewWW;
+
+
+            newState[i].details.stats[0].value= findata.NewVsQRF;
+            newState[i].details.stats[1].value= findata.NewARRQQTY;
+            newState[i].details.stats[2].value= findata.NewARRQQLY;
+            newState[i].details.stats[3].value= findata.NewYY;
             break;
             // Gross New Arr
         case 1:
@@ -311,6 +328,11 @@ export function processFinancialQTD(newState, data) {
             newState[i].details.qtdw.week[2].value= findata.GrossCWVsQrfDiff
             newState[i].details.qtdw.week[3].value= findata.GrossCWVsQrf;
             newState[i].details.qtdw.week[4].value= findata.GrossWW;
+
+            newState[i].details.stats[0].value= findata.GrossVsQRF;
+            newState[i].details.stats[1].value= findata.GrossARRQQTY;
+            newState[i].details.stats[2].value= findata.GrossARRQQLY;
+            newState[i].details.stats[3].value= findata.GrossYY;
             break;
             // Cancellations Arr
         case 2:
@@ -326,6 +348,13 @@ export function processFinancialQTD(newState, data) {
             newState[i].details.qtdw.week[2].value= findata.CancelCWVsQrfDiff
             newState[i].details.qtdw.week[3].value= findata.CancelCWVsQrf;
             newState[i].details.qtdw.week[4].value= findata.CancelWW;
+
+            newState[i].details.stats[0].value= findata.CancelVsQrf;
+            newState[i].details.stats[1].value= findata.CancelARRQQTY;
+            newState[i].details.stats[2].value= findata.CancelARRQQLY;
+            newState[i].details.stats[3].value= findata.CancelYY;
+
+            
             break;
             // Renewals Arr
         case 3:
@@ -341,6 +370,11 @@ export function processFinancialQTD(newState, data) {
             newState[i].details.qtdw.week[2].value= findata.RenewCWVsQrfDiff
             newState[i].details.qtdw.week[3].value= findata.RenewCWVsQrf;
             newState[i].details.qtdw.week[4].value= findata.RenewWW;
+
+            newState[i].details.stats[0].value= findata.RenewVsQRF;
+            newState[i].details.stats[1].value= findata.RenewARRQQTY;
+            newState[i].details.stats[2].value= findata.RenewARRQQLY;
+            newState[i].details.stats[3].value= findata.RenewYY;
             break;
         }
     }
@@ -391,10 +425,10 @@ export function processFinancialGeoQTD(newState, data) {
         }
         let ren = {
             index: i,
-            actuals: item.RenewalActuals,
+            actuals: item.RenewActuals,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
-            qrf: item.RenewARRTarget,
+            qrf: item.RenewTarget,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.geo_code,
             units: item.RenewUnitsActual,
@@ -411,6 +445,71 @@ export function processFinancialGeoQTD(newState, data) {
     newState[1].details.geo.qtd = item2;
     newState[2].details.geo.qtd = item3;
     newState[3].details.geo.qtd = item4;
+}
+export function processFinancialGeoWeek(newState, data) {
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+   
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewzUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+            
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.CancelCWVsQrf,
+             ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewARRCW,
+            units: item.RenewsUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.RenewARRTargetCW,
+            qrfDiff: item.RenewCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.RenewCWVsQrf,
+           ww: item.RenewWW
+        }
+
+         item1.push(net);
+         item2.push(gross);
+         item3.push(canc);
+         item4.push(ren);
+    }
+    newState[0].details.geo.week = item1;
+    newState[1].details.geo.week = item2;
+    newState[2].details.geo.week = item3;
+    newState[3].details.geo.week = item4;
 }
 export function processFinancialMarketQTD(newState, data) {
 
@@ -459,10 +558,10 @@ export function processFinancialMarketQTD(newState, data) {
         }
         let ren = {
             index: i,
-            actuals: item.RenewalActuals,
+            actuals: item.RenewActuals,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
-            qrf: item.RenewARRTarget,
+            qrf: item.RenewTarget,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.market_area_code,
             units: item.RenewUnitsActual,
@@ -477,6 +576,71 @@ export function processFinancialMarketQTD(newState, data) {
 
     }
 
+}
+export function processFinancialMarketWeek(newState, data) {
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+   
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewzUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+            
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.CancelCWVsQrf,
+             ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewARRCW,
+            units: item.RenewsUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.RenewARRTargetCW,
+            qrfDiff: item.RenewCWVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.RenewCWVsQrf,
+           ww: item.RenewWW
+        }
+
+         item1.push(net);
+         item2.push(gross);
+         item3.push(canc);
+         item4.push(ren);
+    }
+    newState[0].details.market.week = item1;
+    newState[1].details.market.week = item2;
+    newState[2].details.market.week = item3;
+    newState[3].details.market.week = item4;
 }
 export function processFinancialRoutesQTD(newState, data) {
 
@@ -525,10 +689,10 @@ export function processFinancialRoutesQTD(newState, data) {
         }
         let ren = {
             index: i,
-            actuals: item.RenewalActuals,
+            actuals: item.RenewActuals,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
-            qrf: item.RenewARRTarget,
+            qrf: item.RenewTarget,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.route_to_market,
             units: item.RenewUnitsActual,
@@ -544,7 +708,71 @@ export function processFinancialRoutesQTD(newState, data) {
     }
 
 }
+export function processFinancialRoutesWeek(newState, data) {
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+   
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewzUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+            
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.CancelCWVsQrf,
+             ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewARRCW,
+            units: item.RenewsUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.RenewARRTargetCW,
+            qrfDiff: item.RenewCWVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.RenewCWVsQrf,
+           ww: item.RenewWW
+        }
 
+         item1.push(net);
+         item2.push(gross);
+         item3.push(canc);
+         item4.push(ren);
+    }
+    newState[0].details.routes.week = item1;
+    newState[1].details.routes.week = item2;
+    newState[2].details.routes.week = item3;
+    newState[3].details.routes.week = item4;
+}
 export function processFinancialSegmentQTD(newState, data) {
 
     //Clear old Values
@@ -592,10 +820,10 @@ export function processFinancialSegmentQTD(newState, data) {
         }
         let ren = {
             index: i,
-            actuals: item.RenewalActuals,
+            actuals: item.RenewActuals,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
-            qrf: item.RenewARRTarget,
+            qrf: item.RenewTarget,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.segment_pivot,
             units: item.RenewUnitsActual,
@@ -610,6 +838,71 @@ export function processFinancialSegmentQTD(newState, data) {
 
     }
 
+}
+export function processFinancialSegmentWeek(newState, data) {
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+   
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewzUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+            
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.CancelCWVsQrf,
+             ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewARRCW,
+            units: item.RenewsUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.RenewARRTargetCW,
+            qrfDiff: item.RenewCWVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.RenewCWVsQrf,
+           ww: item.RenewWW
+        }
+
+         item1.push(net);
+         item2.push(gross);
+         item3.push(canc);
+         item4.push(ren);
+    }
+    newState[0].details.segment.week = item1;
+    newState[1].details.segment.week = item2;
+    newState[2].details.segment.week = item3;
+    newState[3].details.segment.week = item4;
 }
 export function processFinancialProductsQTD(newState, data) {
 
@@ -658,10 +951,10 @@ export function processFinancialProductsQTD(newState, data) {
         }
         let ren = {
             index: i,
-            actuals: item.RenewalActuals,
+            actuals: item.RenewActuals,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
-            qrf: item.RenewARRTarget,
+            qrf: item.RenewTarget,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.product_name,
             units: item.RenewUnitsActual,
@@ -677,6 +970,72 @@ export function processFinancialProductsQTD(newState, data) {
     }
 
 }
+export function processFinancialProductWeek(newState, data) {
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+   
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewzUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.product_name,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+            
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.product_name,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.product_name,
+            vsQrf: item.CancelCWVsQrf,
+             ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewARRCW,
+            units: item.RenewsUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.RenewARRTargetCW,
+            qrfDiff: item.RenewCWVsQrfDiff,
+            type: item.product_name,
+            vsQrf: item.RenewCWVsQrf,
+           ww: item.RenewWW
+        }
+
+         item1.push(net);
+         item2.push(gross);
+         item3.push(canc);
+         item4.push(ren);
+    }
+    newState[0].details.product.week = item1;
+    newState[1].details.product.week = item2;
+    newState[2].details.product.week = item3;
+    newState[3].details.product.week = item4;
+}
+
 export function processSecondaryData(g1, g2, g3, newState) {
     //Finance
     newState[0].value = g1.data[0].NewARRActual;

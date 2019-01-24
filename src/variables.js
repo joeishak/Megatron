@@ -180,13 +180,14 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
                         qrfDiff: -3.48,
                         vsQrf: -.0495,
                         ww: -20.00,
-                        type: 'AMER'
+                        type: 'US'
                     }
                 ],
                 all: [
@@ -307,14 +308,13 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        marketArea: 'ADOBE.COM/CC.COM',
+                        type: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
                         qrfDiff: -3.48,
                         vsQrf: -.0495,
                         ww: -20.00,
-                        type: 'US'
                     }
                 ],
                 all: [
@@ -5170,8 +5170,8 @@ export const Infoburst = {
         FinancialUnits: '?q=FinancialUnitsMultichart',
         FinancialQTD: '?q=FinancialQTD',
         FinancialGeoQtd: '?q=FinancialGeoQTD',
-        FinancialMarketQTD: '?q=FinancialMarketQTD',
-        FinancialSegmentQTD: '?q=FinancialSegmentQTD',
+        FinancialMarketQTD: '?q=FinancialMarketAreaQTD',
+        FinancialSegmentQTD: '?q=FinancialSegmentsQTD',
         FinancialRouteQTD: '?q=FinancialRoutesQTD',
         FinancialProductQTD: '?q=FinancialProductQTD',
         JourneysG2PrimaryActualTarget: '?q=G2PrimaryActualTarget',

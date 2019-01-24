@@ -283,7 +283,7 @@ class Summary extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log(state.filters);
+  console.log(state.summaryData);
   return {
     // activeFilters: state.activeFilters,
     // availableFilters: state.availableFilters,

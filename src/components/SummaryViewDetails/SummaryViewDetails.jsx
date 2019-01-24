@@ -264,7 +264,9 @@ class SummaryViewDetails extends Component {
                   transitionEnter={false}
                   transitionLeave={false} >
                   <div className=" statsHeader">
-                    <div className={(item.color === 'red') ? 'stats red' : 'stats green '}> {item.value}%</div>
+                    <div className={(item.color === 'red') ? 'stats red' : 'stats green '}>
+                    {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
+                     </div>
                     <div className="footer"> {item.text}</div>
                   </div>
                 </CSSTransitionGroup>
