@@ -79,11 +79,7 @@ class MobileCommentBox extends Component {
         this.setState({todaysDate: dateTime});
         // this.forceUpdate();
         // this.commentInput.focus();
-
     }
-
-
-
 
 
     grabProfilePic (userName) {
@@ -112,18 +108,17 @@ class MobileCommentBox extends Component {
     render(){
 
         return(
+        <span>
             <div className='mobileCommentContainer'>
 
                 <div className='theDateTime'> {this.state.todaysDate}</div>
                 <div >
-                {
-                    (this.props.comments !== undefined) ?
-                        this.props.comments.map(comment=>{
+                {(this.props.commentsPackage !== undefined) ?
+                        this.props.commentsPackage.map(comment=>{
                             return (
                                 <div key = {comment.id} className='mobileComment'>
                                 <div className='mobileCommentUserHeader'>
                                     {/* Comment User Icon */}
-                                    {/* <div className='commentUserIcon'/> */}
                                         <img src={this.grabProfilePic(comment.userName)} className="profilePictures"/>
                                     {/* Comment User Name */}
                                     <span className='mobileCommentUserName'>
@@ -136,10 +131,38 @@ class MobileCommentBox extends Component {
                                 <div className='mobileMainCommentContent'>
                                {comment.comment}
                                 </div>
+                                <div className="mobileCommentsReplies">
+                                    {(comment.replies !== undefined) ? comment.replies.map(reply => {
+                                        return (
+                                          <div id={reply.id}>
+
+                                                <div className='mobileCommentUserHeader'>
+                                                    {/* Comment User Icon */}
+                                                        <img src={this.grabProfilePic(reply.userName)} className="profilePictures"/>
+                                                    {/* Comment User Name */}
+                                                    <span className='mobileCommentUserName'>
+                                                    {reply.userName}
+                                                    </span>
+                                                    {/* Comment User Date */}
+                                                    <span className='mobileCommentTime'>
+                                                    {reply.time}</span>
+                                                </div>
+                                                <div className='mobileMainCommentContent'>
+                                                    {reply.comment}
+                                                </div>
+                                              
+                                          </div>  
+                                        );
+                                    }) : null }
+                                </div>
                             </div>)
                         }) : null}
                 </div>
             </div>
+
+            
+        </span>
+            
         )
     }
 }

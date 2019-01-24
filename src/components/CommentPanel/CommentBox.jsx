@@ -127,23 +127,18 @@ import * as utils from '../../utilities';
         this.forceUpdate();
     }
     grabProfilePic (userName) {
-
-
         switch(userName) {
-         
             default:
                 return profilePic;
                 break;
         }
-
     }
      render(){
          let {commentsPackage} = this.props
 
     return(
         <span>  <div className='commentsContainer'>
-            {
-                (commentsPackage !== undefined) ?
+            {(commentsPackage !== undefined) ?
                 commentsPackage.map(comment=>{
                         return (
                             <div key = {comment.id} className='comment'>
@@ -198,19 +193,19 @@ import * as utils from '../../utilities';
                         </div>)
                     }) : null}
                     
+                </div>
+
+            <div className='commentResponseFooter'>
+                <input ref={(input) => {this.commentInput=input;}} className='replyTextInput' type="text" onChange={this.updateValue} value={this.state.replyMessage} onKeyPress={this.handleKeyPress} placeholder={this.state.commentCommand}/>
+                <ImageUploader
+                    withIcon={false}
+                    buttonText='Choose images'
+                    onChange={this.onDrop}
+                    imgExtension={['.jpg', '.gif', '.png']}
+                    maxFileSize={5242880}
+                    buttonStyles={{backgroundColor: '#3c3c3c'}}/>
             </div>
-              <div className='commentResponseFooter'>
-              <input ref={(input) => {this.commentInput=input;}} className='replyTextInput' type="text" onChange={this.updateValue} value={this.state.replyMessage} onKeyPress={this.handleKeyPress} placeholder={this.state.commentCommand}/>
-               <ImageUploader
-                  withIcon={false}
-                  buttonText='Choose images'
-                  onChange={this.onDrop}
-                  imgExtension={['.jpg', '.gif', '.png']}
-                  maxFileSize={5242880}
-                  buttonStyles={{backgroundColor: '#3c3c3c'}}
-              />
-          </div>
-          </span>
+        </span>
     )
                 }
  }

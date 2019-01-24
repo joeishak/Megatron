@@ -135,7 +135,7 @@ class Playground extends Component {
                         </div>
                         {/* MOBILE COMMENT BOX */}
                         <div id="3" className={`item ${item3Active}`} style={{height: `${this.props.bottomContainerHeight - 20}px`}}>
-                            <MobileCommentBox comments={this.props.comments}></MobileCommentBox>
+                            <MobileCommentBox comments={this.props.comments} commentsPackage={this.props.commentsPackage}></MobileCommentBox>
                         </div>
                     </div>
 

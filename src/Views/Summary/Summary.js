@@ -166,6 +166,7 @@ class Summary extends Component {
     }
   }
   updateActiveSecondary(index) {
+    this.props.fetchComments(index);
     this.props.updateActiveSecondaryCard(index);
   }
   updateMobileView(updateComponent, toUpdateTo) {
@@ -234,6 +235,7 @@ class Summary extends Component {
           this.updateMobileView(component, updateTo);
         }}
         window={this.state.window}
+        commentsPackage={this.props.commentsPackage}
       />
     );
   };
@@ -283,7 +285,7 @@ class Summary extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state.summaryData);
+  // console.log(state.commentsPackage);
   return {
     // activeFilters: state.activeFilters,
     // availableFilters: state.availableFilters,
@@ -305,7 +307,8 @@ function mapStateToProps(state) {
     summaryData: state.summaryData,
     mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible,
     filters: state.filters,
-    NEwQTDW: state.summaryData.secondary[0].details.qtdw
+    NEwQTDW: state.summaryData.secondary[0].details.qtdw,
+    commentsPackage: state.commentsPackage
   };
 }
 export default connect(

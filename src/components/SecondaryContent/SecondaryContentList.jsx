@@ -39,6 +39,8 @@ class SecondaryContentList extends Component {
     ReactDOM.findDOMNode(this).addEventListener("touchend", this.stopResize);
     ReactDOM.findDOMNode(this).addEventListener("mouseleave", this.stopResize);
     ReactDOM.findDOMNode(this).addEventListener("touchcancel", this.stopResize);
+
+
     
   }
 
@@ -189,6 +191,7 @@ class SecondaryContentList extends Component {
             <Playground
               bottomContainerHeight={this.state.initialPos}
               comments={this.props.data[this.props.activeJourneyCard].comments}
+              commentsPackage={this.props.commentsPackage}
               detailsData={this.props.data[this.props.activeJourneyCard].details.qtdw}
               valueType={this.props.data[this.props.activeJourneyCard].valueType}
             >
