@@ -60,7 +60,7 @@ class SummaryViewDetails extends Component {
       this
     );
     this.updateQtdMetricFilter = this.updateQtdMetricFilter.bind(this);
- 
+
   }
 
   updateMultiChartMetricFilter(e) {
@@ -77,21 +77,21 @@ class SummaryViewDetails extends Component {
     //Either be 'qtd', 'week' or 'all'
     this.setState({ activeTimeMetric: e.target.innerHTML.toLowerCase() });
   }
- 
-  getExcelFilters (activeFilters){
+
+  getExcelFilters(activeFilters) {
     let newArr;
-    let {geos, quarters,markets,routes,segments,subscriptions} = activeFilters;
-    newArr = [].concat(geos, quarters,markets,routes,segments,subscriptions);
+    let { geos, quarters, markets, routes, segments, subscriptions } = activeFilters;
+    newArr = [].concat(geos, quarters, markets, routes, segments, subscriptions);
     // console.log(newArr);
     return newArr;
   }
- 
+
   closeSummary() {
     this.props.updateMultichartMetric(true);
     this.props.hideSummaryDetails();
   }
   render() {
-    let {activeFilters, filters} = this.props;
+    let { activeFilters, filters } = this.props;
     var UnitStyles = classNames({
       unitMetric: true,
       activeMetric: this.props.multichartIsArr ? false : true
@@ -147,22 +147,22 @@ class SummaryViewDetails extends Component {
           </span>
           {/* The Excell export and the QTD Go Here **/}
           {this.props.activePrimary < 1 ?
-          <div className=" multiChartMetricContainer ">
-          <div
-            onClick={this.updateMultiChartMetricFilter}
-            className={UnitStyles}
-          >
-            UNITS
+            <div className=" multiChartMetricContainer ">
+              <div
+                onClick={this.updateMultiChartMetricFilter}
+                className={UnitStyles}
+              >
+                UNITS
             </div>
-          <div
-            onClick={this.updateMultiChartMetricFilter}
-            className={ArrStyles}
-          >
-            ARR
+              <div
+                onClick={this.updateMultiChartMetricFilter}
+                className={ArrStyles}
+              >
+                ARR
             </div>
-        </div> :
-      <span></span> }
-          
+            </div> :
+            <span></span>}
+
           <span className=" excelSpan">
             <Workbook
               filename={`${this.props.activeItem.header}.xlsx`}
@@ -178,18 +178,18 @@ class SummaryViewDetails extends Component {
                 </button>
               }
             >
-            <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
-              <Workbook.Column label="Dimension" value="category" />
-              <Workbook.Column label="Filter Applied" value="value" />
-              
-            </Workbook.Sheet>
-          
+              <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
+                <Workbook.Column label="Dimension" value="category" />
+                <Workbook.Column label="Filter Applied" value="value" />
+
+              </Workbook.Sheet>
+
               <Workbook.Sheet data={this.props.activeItem.details.geo.qtd || this.state.excelTestGeo} name="Geos">
                 <Workbook.Column label="Geo" value="type" />
                 <Workbook.Column label="MarketArea" value="marketArea" />
                 <Workbook.Column label="Actuals" value="actuals" />
                 <Workbook.Column label="Units" value="units" />
-                <Workbook.Column label="QRF" value="QRF" />
+                <Workbook.Column label="QRF" value="qrf" />
                 <Workbook.Column label="vsQRF" value="vsQrf" />
                 <Workbook.Column label="Q/Q" value="qq" />
                 <Workbook.Column label="Y/Y" value="yy" />
@@ -265,8 +265,8 @@ class SummaryViewDetails extends Component {
                   transitionLeave={false} >
                   <div className=" statsHeader">
                     <div className={(item.color === 'red') ? 'stats red' : 'stats green '}>
-                    {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
-                     </div>
+                      {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
+                    </div>
                     <div className="footer"> {item.text}</div>
                   </div>
                 </CSSTransitionGroup>
@@ -276,10 +276,10 @@ class SummaryViewDetails extends Component {
 
         </div>
         <DetailBreakdown
-        activeSummary={this.props.activeItem}
-        
-        activeTimeMetric={this.state.activeTimeMetric}
-        background="white"/>
+          activeSummary={this.props.activeItem}
+
+          activeTimeMetric={this.state.activeTimeMetric}
+          background="white" />
       </div>
     );
   }

@@ -5203,7 +5203,6 @@ export const Infoburst = {
     // appXdcID: '\\1088'
     dataXdcID: '\\21',
     journeyXdcID: '\\22',
-    filtersXdcID: '\\20',
-    appDBID: '16'
+    filtersXdcID: '\\20'
 
 }

@@ -699,7 +699,7 @@ export async function addUserToDB(user) {
     responseArray = [];
     promiseArr = [];
     let body = {
-        "conn": Infoburst.appDBID,
+        "conn": '16',
         "qry": 'NewUser',
         "columnNames": 'true',
         "params": {
@@ -749,7 +749,7 @@ export function convertFilterListForDBQuery(arrayList) {
 // Fetch Comments
 export function fetchComments(metricId) {
     let body = {
-        "conn": Infoburst.appDBID,
+        "conn": '16',
         "qry": 'fetchComments',
         "columnNames": 'true',
         "params": {
@@ -759,10 +759,11 @@ export function fetchComments(metricId) {
 
     const res1 = axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' }).then((response) => {
         if (response !== []) {
+            console.log(response);
             const commentIdsArray = response.data.map(ele => { return ele.id; });
             const params = convertFilterListForDBQuery(commentIdsArray);
             let responseBody = {
-                "conn": Infoburst.appDBID,
+                "conn": '16',
                 "qry": 'fetchReplies',
                 "columnNames": 'true',
                 "params": {
@@ -787,7 +788,7 @@ export function fetchComments(metricId) {
 
 export function fetchCommentsCount() {
     let body = {
-        "conn": Infoburst.appDBID,
+        "conn": '16',
         "qry": 'fetchCommentsCount',
         "columnNames": 'true',
         "params": {}
@@ -802,7 +803,7 @@ export function fetchCommentsCount() {
 export function postComment(params) {
     // INSERT INTO Comments values('@userId', @metricId, CONVERT(datetime,'@postDateTime'), '@comment');
     let body = {
-        "conn": Infoburst.appDBID,
+        "conn": '16',
         "qry": 'postComments',
         "columnNames": 'true',
         "params": {
@@ -825,7 +826,7 @@ export function postComment(params) {
 
 export function postReply(params) {
     let body = {
-        "conn": Infoburst.appDBID,
+        "conn": '16',
         "qry": 'postReply',
         "columnNames": 'true',
         "params": {
@@ -850,7 +851,7 @@ export function postReply(params) {
 
 export function requestUserSettings(sub) {
     let body = {
-        "conn": Infoburst.appDBID,
+        "conn": '16',
         "qry": 'GetUserSettings',
         "columnNames": 'true',
         "params": {
@@ -866,7 +867,7 @@ export function requestUserSettings(sub) {
 
 export function postUserSettings(params) {
     let body = {
-        "conn": Infoburst.appDBID,
+        "conn": '16',
         "qry": 'UpdateSettings',
         "columnNames": 'true',
         "params": {
