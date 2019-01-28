@@ -14,8 +14,8 @@ import {
 import * as utils from '../../utilities';
 
 const navBarHeight = 50;
-const titleContainerHeight = 55;
-const secondaryRowHeight = 84;
+const titleContainerHeight = 22;
+const secondaryRowHeight = 64;
 const containerPullBar = 15;
 
 class SecondaryContentList extends Component {
@@ -41,7 +41,7 @@ class SecondaryContentList extends Component {
     ReactDOM.findDOMNode(this).addEventListener("touchcancel", this.stopResize);
 
 
-    
+
   }
 
   componentWillUnmount() {
@@ -120,55 +120,55 @@ class SecondaryContentList extends Component {
       utils.includes(this.props.deviceType, 'tablet');
     const navigationTitle =
       isMobileAndTablet === true &&
-      this.props.mobileSecondaryIsActive === true ? (
-        <div className="primaryDataCategoryContainer">
-          <p
-            className="primaryCateogryNav"
-            onClick={e => this.updateView(e)}
-          >{`<`}</p>
-          <div className="primaryCategoryTitle">
-            {this.props.primaryDataCategory}
+        this.props.mobileSecondaryIsActive === true ? (
+          <div className="primaryDataCategoryContainer">
+            <p
+              className="primaryCateogryNav"
+              onClick={e => this.updateView(e)}
+            >{`<`}</p>
+            <div className="primaryCategoryTitle">
+              {this.props.primaryDataCategory}
+            </div>
           </div>
-        </div>
-      ) : null;
+        ) : null;
     const secondaryContentTop =
       (this.props.mobileSecondaryIsActive === true &&
         isMobileAndTablet === true) ||
-      isMobileAndTablet === false
+        isMobileAndTablet === false
         ? this.props.data.map(item => {
-            let isActive =
-              this.props.activeJourneyCard === item.index
-                ? true
-                : false;
-            if (this.props.activePrimary === item.category) {
-              return (
-                <SecondarySquares
-                  window={this.props.window}
-                  deviceType={this.props.deviceType}
-                  key={item.index}
-                  item={item}
-                  activeJourneyCard={isActive}
-                  onJourneyCardClicked={(e, index) => {
-                    this.props.onJourneyCardClicked(e, index);
-                  }}
-                  toggleCommentary={this.props.toggleCommentary}
-                  onCommentIconClick={this.props.onCommentIconClick}
-                />
-              );
-            } else return null;
-          })
+          let isActive =
+            this.props.activeJourneyCard === item.index
+              ? true
+              : false;
+          if (this.props.activePrimary === item.category) {
+            return (
+              <SecondarySquares
+                window={this.props.window}
+                deviceType={this.props.deviceType}
+                key={item.index}
+                item={item}
+                activeJourneyCard={isActive}
+                onJourneyCardClicked={(e, index) => {
+                  this.props.onJourneyCardClicked(e, index);
+                }}
+                toggleCommentary={this.props.toggleCommentary}
+                onCommentIconClick={this.props.onCommentIconClick}
+              />
+            );
+          } else return null;
+        })
         : null;
     const renderStyleBottom = isMobileAndTablet
       ? {
-          height: `${this.state.initialPos}px`,
-          width: "100%",
-          position: "fixed"
-        }
+        height: `${this.state.initialPos}px`,
+        width: "100%",
+        position: "fixed"
+      }
       : { height: "100%" };
     const renderContainerStyle = isMobileAndTablet
       ? { height: `${this.props.window.height - navBarHeight}px`, width: "100%" }
       : { height: "100%", marginTop: "30px", width: "20%" };
-      
+
     const mobileBottom =
       isMobileAndTablet && this.props.mobileSecondaryIsActive ? (
         <div style={renderStyleBottom} className="box3">

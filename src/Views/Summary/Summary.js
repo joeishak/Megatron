@@ -70,12 +70,11 @@ class Summary extends Component {
 
   async componentDidMount() {
     this.props.fetchCommentsCount();
-    // this.props.generateFilterData();
 
     // Get all the comments count
 
     this.props.generateFilterData(this.props.preferences);
-  
+
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
     this.checkAuthentication();
@@ -85,44 +84,44 @@ class Summary extends Component {
     this.checkAuthentication();
     // console.log(prevProps);
     // console.log(this.props)
-    
+
 
     // if(this.props.filters.combined.availableFilters.length===0){
     // }
     // Boolean Rule Tests
     let preferencesAreLoaded = Object.keys(prevProps.preferences).length === 0 && this.props.preferences.defaultSummaryView !== undefined;
-    let filtersAreLoaded = prevProps.filters.combined.availableFilters.length === 0 && this.props.filters.combined.availableFilters.length>0;
-    let appIsReadyToRequestSummaryData = prevProps.filters.combined.valueFilters.length===0 &&  this.props.filters.combined.valueFilters.length > 0;
+    let filtersAreLoaded = prevProps.filters.combined.availableFilters.length === 0 && this.props.filters.combined.availableFilters.length > 0;
+    let appIsReadyToRequestSummaryData = prevProps.filters.combined.valueFilters.length === 0 && this.props.filters.combined.valueFilters.length > 0;
     let appInitialLoadIsComplete = this.props.NEwQTDW.qtd[0].value !== 66.7 && prevProps.NEwQTDW.qtd[0].value === undefined;
     // let filtersSubmitted = this.props.filters.combined.valueFilters !== prevProps.filters.combined.valueFilters && 
     // console.log(appInitialLoadIsComplete);
     //Handle Boolean Test Results
-    if(filtersAreLoaded){
+    if (filtersAreLoaded) {
       console.log('Just Recieved filters');
-      this.setState({filtersAreLoaded:true});
+      this.setState({ filtersAreLoaded: true });
     }
 
     if (preferencesAreLoaded && this.state.preferncesAreAddedToFilters === false) {
       console.log('Just recieved the preferences');
       this.props.addPreferencesToActiveFilters(this.props.preferences);
-      this.setState({preferncesAreAddedToFilters: true})
+      this.setState({ preferncesAreAddedToFilters: true })
     }
 
 
-    if(appIsReadyToRequestSummaryData && this.state.preferncesAreAddedToFilters === true) {
+    if (appIsReadyToRequestSummaryData && this.state.preferncesAreAddedToFilters === true) {
       // console.log('Both Preferences and Filters are loaded');
       this.props.getSummaryData(this.props.filters);
-      this.setState({initialDataLoadIsComplete: true})
+      this.setState({ initialDataLoadIsComplete: true })
     }
 
-    if( this.props.summaryData !== prevProps.summaryData && this.state.initialDataLoadIsComplete === true) {
-      this.setState({isLoading: false});
-  }
+    if (this.props.summaryData !== prevProps.summaryData && this.state.initialDataLoadIsComplete === true) {
+      this.setState({ isLoading: false });
+    }
 
-  if(this.state.initialDataLoadIsComplete === true && (this.props.filters !== prevProps.filters)){
-    this.props.getSummaryData(this.props.filters);
-  } 
-    
+    if (this.state.initialDataLoadIsComplete === true && (this.props.filters !== prevProps.filters)) {
+      this.props.getSummaryData(this.props.filters);
+    }
+
     // // If the old available filters change or the active filters change
     // //  Call for new data with the filters
     // if (
@@ -132,7 +131,7 @@ class Summary extends Component {
     //   this.props.getSummaryData(this.props.filters);
     // }
 
-    if(this.props.activePrimaryCard.index > 0){
+    if (this.props.activePrimaryCard.index > 0) {
       this.props.updateMultichartMetric(true);
     }
   }
@@ -149,14 +148,14 @@ class Summary extends Component {
   }
   updateActivePrimary(index) {
     this.props.updateActivePrimaryCard(index);
-    switch(index){
-        case(0):
-            this.props.updateActiveSecondaryCard(0);
-            break;
-        case(1):
-            this.props.updateMultichartMetric(true);
-            this.props.updateActiveSecondaryCard(4);
-            break;
+    switch (index) {
+      case (0):
+        this.props.updateActiveSecondaryCard(0);
+        break;
+      case (1):
+        this.props.updateMultichartMetric(true);
+        this.props.updateActiveSecondaryCard(4);
+        break;
     }
     if (
       this.props.mobileIsPrimary === true && utils.includes(this.props.deviceType, 'laptop') === false
@@ -242,38 +241,38 @@ class Summary extends Component {
 
 
   render() {
-    const {user} = this.props;
-    const {activeCommentBoxMetric} = this.state; 
+    const { user } = this.props;
+    const { activeCommentBoxMetric } = this.state;
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
     const isMobileOrTablet = utils.includes(utils.getDeviceType(this.state.window), 'mobile') || utils.includes(utils.getDeviceType(this.state.window), 'tablet');
     const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails />;
 
     return (
-      <div style={isMobileOrTablet ? { height: `${this.state.window.height}px`} : (this.props.dialogIsOpen ? {height: `100%`, marginTop: '-20px'} : {height: '100%'})}>
+      <div style={isMobileOrTablet ? { height: `${this.state.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
         {this.state.authenticated && (
           <span>
             {/* Data Preferences */}
             {kdialog}
             {/* Navigation*/}
-            <Navigation/>
+            <Navigation />
             <FilterPanel
-             window={this.state.window}/>
+              window={this.state.window} />
             <CommentPanel
-             user={this.props.user}
+              user={this.props.user}
             />
             <div>
-         
 
-              {this.state.isLoading === true ? <LoadingScreen></LoadingScreen> : 
-               (<div>
-                 {/* Primary */}
-                 {this.state.isFilterPageVisible ||
-                 this.props.mobileIsPrimary === false ? null : this.getPrimaryContent()}
-                 {/* Secondary */}
-                 {this.state.isFilterPageVisible ? null : this.getSecondaryContent()}
-                 {this.state.isFilterPageVisible  && this.props.mobileIsPrimary? null : null}
-                 {summaryViewDetails}
-               </div>)
+
+              {this.state.isLoading === true ? <LoadingScreen></LoadingScreen> :
+                (<div>
+                  {/* Primary */}
+                  {this.state.isFilterPageVisible ||
+                    this.props.mobileIsPrimary === false ? null : this.getPrimaryContent()}
+                  {/* Secondary */}
+                  {this.state.isFilterPageVisible ? null : this.getSecondaryContent()}
+                  {this.state.isFilterPageVisible && this.props.mobileIsPrimary ? null : null}
+                  {summaryViewDetails}
+                </div>)
               }
             </div>
           </span>

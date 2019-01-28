@@ -9,9 +9,9 @@ export const PrimaryData = [
         type: 'financial',
         comments: [
 
-             ],
+        ],
         css: ['1', 'spinMeFirst', '#FF0000'],
-        },
+    },
     {
         index: 1,
         category: 'Discover',
@@ -22,9 +22,9 @@ export const PrimaryData = [
         type: 'journey',
         comments: [
 
-            ],
+        ],
         css: ['1', 'spinMeFirst', '#FF0000'],
-        },
+    },
     {
         index: 2,
         category: 'Try',
@@ -35,10 +35,10 @@ export const PrimaryData = [
         type: 'journey',
         comments: [
 
-            ],
+        ],
         css: ['1', 'spinMeFirst', '#FF0000'],
-        },
-        {
+    },
+    {
         index: 3,
         category: 'Buy',
         header: `New QFM's`,
@@ -48,9 +48,9 @@ export const PrimaryData = [
         type: 'journey',
         comments: [
 
-            ],
+        ],
         css: ['1', 'spinMeFirst', '#FF0000'],
-        },
+    },
     {
         index: 4,
         category: 'Use',
@@ -61,9 +61,9 @@ export const PrimaryData = [
         type: 'journey',
         comments: [
 
-            ],
+        ],
         css: ['1', 'spinMeFirst', '#FF0000'],
-        },
+    },
     {
         index: 5,
         category: 'Renew',
@@ -74,11 +74,11 @@ export const PrimaryData = [
         type: 'journey',
         comments: [
 
-            ],
+        ],
         css: ['1', 'spinMeFirst', '#FF0000'],
-        }
+    }
 
-    ]
+]
 export const SecondaryData = [
     {
         index: 0,
@@ -175,7 +175,7 @@ export const SecondaryData = [
             },
             geo: {
                 qtd: [
-                
+
                 ],
                 week: [
                     {
@@ -5145,14 +5145,14 @@ const domains = {
     vm1: 'http://vm1.infosol.com',
     azureIp: 'http://10.30.0.5'
 }
-const prodDomain = domains.azureIP;
+const prodDomain = domains.local;
 export const Infoburst = {
     user: 'admin',
     pass: 'admin',
     dbQuery: prodDomain + PORT + INFOBURST + REST + 'db/query',
     xdcCacheURL: prodDomain + PORT + INFOBURST + REST + 'get/xdc/',
     xdcCacheQueryURL: prodDomain + PORT + INFOBURST + REST + 'exec/xdcqry/',
-    sysInfo: 'http://vm1.infosol.com:8551/sysinfo',
+    sysInfo: 'http://localhost:8551/sysinfo',
     jsonFormat: '&json=1',
     filterQueryNames: {
         MarketFilters: '?q=MarketFilters&json=1',
@@ -5193,13 +5193,17 @@ export const Infoburst = {
         JourneysG2ProductsQTD: '?q=JourneyG2ProductsQTD',
         JourneysG3ProductQTD: '?q=JourneyG3ProductQTD'
     },
-    // dataXdcID: '\\1128',
-    dataXdcID: '\\1209',
-    journeyXdcID: '\\1149',
-    filtersXdcID: '\\1092',
-    //  dataXdcID: '\\500',
-    // journeyXdcID: '\\501',
-    // filtersXdcID: '\\499',
-    appXdcID: '\\1088'
+    // // dataXdcID: '\\1128',
+    // dataXdcID: '\\1209',
+    // journeyXdcID: '\\1149',
+    // filtersXdcID: '\\1092',
+    // //  dataXdcID: '\\500',
+    // // journeyXdcID: '\\501',
+    // // filtersXdcID: '\\499',
+    // appXdcID: '\\1088'
+    dataXdcID: '\\21',
+    journeyXdcID: '\\22',
+    filtersXdcID: '\\20',
+    appDBID: '16'
 
 }
