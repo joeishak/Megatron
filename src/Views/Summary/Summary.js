@@ -85,6 +85,9 @@ class Summary extends Component {
     // console.log(prevProps);
     // console.log(this.props)
 
+    if (this.props.user !== prevProps.user) {
+      this.props.getUserSettings(this.props.user.sub);
+    }
 
     // if(this.props.filters.combined.availableFilters.length===0){
     // }
