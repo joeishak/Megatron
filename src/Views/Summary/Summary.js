@@ -92,7 +92,7 @@ class Summary extends Component {
     // if(this.props.filters.combined.availableFilters.length===0){
     // }
     // Boolean Rule Tests
-    let preferencesAreLoaded = Object.keys(prevProps.preferences).length === 0 && this.props.preferences.defaultSummaryView !== undefined;
+    let preferencesAreLoaded = Object.keys(prevProps.preferences).length === 0 && this.props.preferences.geoFilters !== undefined;
     let filtersAreLoaded = prevProps.filters.combined.availableFilters.length === 0 && this.props.filters.combined.availableFilters.length > 0;
     let appIsReadyToRequestSummaryData = prevProps.filters.combined.valueFilters.length === 0 && this.props.filters.combined.valueFilters.length > 0;
     let appInitialLoadIsComplete = this.props.NEwQTDW.qtd[0].value !== 66.7 && prevProps.NEwQTDW.qtd[0].value === undefined;
@@ -287,7 +287,7 @@ class Summary extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+  // console.log(state);
   return {
     // activeFilters: state.activeFilters,
     // availableFilters: state.availableFilters,

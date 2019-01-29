@@ -8,6 +8,7 @@ async function checkAuthentication() {
       this.setState({ authenticated, userinfo });
       if (this.props.user.sub === undefined) {
         this.props.updateOKTAUser(userinfo);
+        // this.props.getUserSettings(this.props.user.sub);
       }
       this.props.changeAuth(authenticated);
     } else {
