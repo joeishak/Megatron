@@ -162,7 +162,7 @@ class FilterPage extends Component {
                     <div className="dropdowns contentpad">
                         {/* first row */}
                         <div className="row dropRow">
-                            <div className="col-lg-6 col-md-6">
+                            <div className="col-xs-12 col-sm-6 col-md-4 ">
                                 <p>Quarter</p>
                                 {/* <KendoDropDownList  data={this.props.availableFilters.quarters}/> */}
                                 <SingleValueSelect
@@ -171,7 +171,7 @@ class FilterPage extends Component {
                                     onValueChange={this.updateSingleValue}
                                     onMenuClose={this.closeSingleValue}
                                 />                                        </div>
-                            <div className="col-lg-6 col-md-6">
+                            <div className="col-xs-12 col-sm-6 col-md-4 ">
                                 <p>Geo</p>
                                 {/* <KendoDropDownList  data={this.props.availableFilters.geos}/> */}
                                 <MultiValueSelect
@@ -179,29 +179,7 @@ class FilterPage extends Component {
                                     onValueChange={(e) => { let type = 'geos'; this.updateMultiValue(e, type) }}
                                     onMenuClose={this.closeMultiValue}
                                 />                                        </div>
-                        </div>
-
-                        <div className="row dropRow">
-                            <div className="col-lg-6 col-md-6">
-                                <p>Product name</p>
-                                {/* <KendoDropDownList  data={this.props.availableFilters.products}/> */}
-                                <MultiValueSelect
-                                    options={filters.products.availableFilters}
-                                    onValueChange={(e) => { let type = 'products'; this.updateMultiValue(e, type) }}
-                                    onMenuClose={this.closeMultiValue}
-                                />                                        </div>
-                            <div className="col-lg-6 col-md-6">
-                                <p>Subscription Offering</p>
-                                {/* <KendoDropDownList  data={this.props.availableFilters.subscriptionOfferings} /> */}
-                                <MultiValueSelect
-                                    options={filters.subscriptions.availableFilters}
-                                    onValueChange={(e) => { let type = 'subscriptions'; this.updateMultiValue(e, type) }}
-                                    onMenuClose={this.closeMultiValue}
-                                />                                        </div>
-                        </div>
-                        {/* third row */}
-                        <div className="row dropRow">
-                            <div className="col-lg-6 col-md-6">
+                            <div className="col-xs-12 col-sm-6 col-md-4">
                                 <p>Market Area</p>
                                 {/* <KendoDropDownList  data={this.props.availableFilters.marketAreas} /> */}
                                 <MultiValueSelect
@@ -210,7 +188,7 @@ class FilterPage extends Component {
                                     onMenuClose={this.closeMultiValue}
                                     values={_.groupBy(this.state.selectedFilters, (item => { return item.category === 'markets' }))}
                                 />                                        </div>
-                            <div className="col-lg-6 col-md-6">
+                            <div className="col-xs-12 col-sm-6 col-md-4">
                                 <p>Route to Market</p>
                                 {/* <KendoDropDownList  data={this.props.availableFilters.routeToMarkets}/> */}
                                 <MultiValueSelect
@@ -218,10 +196,8 @@ class FilterPage extends Component {
                                     onValueChange={(e) => { let type = 'routes'; this.updateMultiValue(e, type) }}
                                     onMenuClose={this.closeMultiValue}
                                 />                                        </div>
-                        </div>
-                        {/* fourth row */}
-                        <div className="row dropRow">
-                            <div className="col-lg-6 col-md-6">
+
+                            <div className="col-xs-12 col-sm-6 col-md-4">
                                 <p>Segment</p>
                                 {/* <KendoDropDownList  data={this.props.availableFilters.segments}/> */}
                                 <SingleValueSelect
@@ -230,9 +206,40 @@ class FilterPage extends Component {
                                     onValueChange={this.updateSingleValue}
                                     onMenuClose={this.closeSingleValue}
                                 />                                    </div>
-                            <div className={' col-lg-12'}>
+                            <div className="col-xs-12 col-sm-6 col-md-4">
+                                <p>Subscription Offering</p>
+                                {/* <KendoDropDownList  data={this.props.availableFilters.subscriptionOfferings} /> */}
+                                <MultiValueSelect
+                                    options={filters.subscriptions.availableFilters}
+                                    onValueChange={(e) => { let type = 'subscriptions'; this.updateMultiValue(e, type) }}
+                                    onMenuClose={this.closeMultiValue}
+                                />                                        </div>
+                            <div className="col-xs-12 col-sm-6  col-md-6">
+                                <p>Product name</p>
+                                {/* <KendoDropDownList  data={this.props.availableFilters.products}/> */}
+                                <MultiValueSelect
+                                    options={filters.products.availableFilters}
+                                    onValueChange={(e) => { let type = 'products'; this.updateMultiValue(e, type) }}
+                                    onMenuClose={this.closeMultiValue}
+                                />                                        </div>
+                            <div className={'col-xs-12 col-sm-6 col-md-6'}>
                                 <Button class="button" primary={true} onClick={this.submitFilters} look="flat">Submit</Button>
                             </div>
+                        </div>
+
+                        <div className="row dropRow">
+
+
+                        </div>
+                        {/* third row */}
+                        <div className="row dropRow">
+
+
+                        </div>
+                        {/* fourth row */}
+                        <div className="row dropRow">
+
+
                         </div>
 
                     </div>
