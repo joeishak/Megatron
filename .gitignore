@@ -94,3 +94,6 @@ src/.samples.config.js
 
 C:\Users\JIshak\Documents\dev\Adobe\.env
 .env
+
+
+src/environmentParams.js
