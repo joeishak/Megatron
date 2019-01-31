@@ -87,3 +87,4 @@ typings/
 #ENV
 .env
 
+environmentParams.js
