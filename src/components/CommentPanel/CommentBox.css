@@ -1,0 +1,234 @@
+.commentBoxContainer{
+    height: 750px;
+    width:500px;
+    background-color:#D8D8D8;
+    display:inline;
+    float:right;
+    z-index: 3;
+    top: 132px;
+    right: 0px;
+    position: absolute;
+}
+.commentBoxHeaderContainer{
+    margin:2.5%;
+    font-size: 24px;
+    font-weight: bold;
+}
+.exitContainer{
+    float:right;
+}
+.exitCommentsButton{
+    width:30px;
+    height:30px;
+
+    -webkit-transform: rotate(135deg);
+    -webkit-transition-duration: .5s;
+    display: inline-block;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.commentDate{
+    width:100%;
+    height: 60px;
+    background-color:white;
+    padding: 2.5%;
+    font-size: 16px;
+    color: grey;
+}
+hr{
+    border-top: 1px solid lightslategray !important;
+    margin-top: 10px !important;
+    padding-top: 5%;
+     margin-bottom: 0px !important;
+}
+.commentsContainer{
+    width:100%;
+    height: 60%;
+    background-color:white;
+    scroll-behavior: smooth;
+    overflow: scroll;
+    overflow-x: hidden;
+    padding: 2.5%;
+
+}
+.commentResponseFooter{
+    margin:5%;
+    float: left;
+    width: 90%
+}
+.replyTextInput{
+    width: 100%;
+    height: 40px;
+    padding:5px;
+    margin-bottom: 5px;
+}
+.newPhotoUploadIcon{
+    background-image: url("../../assets/images/camera.png");
+    height: 30px;
+    width: 30px;
+    display:inline-block;
+    border: 1px dashed black;
+    padding: 10px;
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+}
+
+.comment{
+    height: auto;
+    width: 100%;
+    float:left;
+    margin-bottom: 15px;
+    background-color: white;
+    /* border: 1px solid grey;
+    border-radius: 5px; */
+}
+.commentUserHeader{
+    height: 20px;
+}
+
+.profilePictures {
+    width: 30px;
+    height: 30px;
+}
+.commentUserIcon{
+    background-image:url("../../assets/images/user.png");
+    width:35px;
+    height: 35px;
+    background-repeat: no-repeat;
+    display:inline-block;
+    border-radius: 100%;
+    /* border: 1px solid blue; */
+    background-position-x: center;
+    background-position-y:  center;
+
+}
+.commentUserName{
+    display:inline-block;
+    height: 40px;
+    vertical-align: top;
+    padding-left: 2.5%;
+    font-weight:bold;
+
+}
+.commentTime{
+    display:inline-block;
+    vertical-align: top;
+    padding-left: 2.5%;
+    color: lightgrey;
+}
+.mainCommentContent{
+    padding-left:10%;
+    vertical-align: top;
+}
+.replyArrow{
+    background-image: url("../../assets/images/reply.svg");
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    height:22px;
+    width:22px;
+    display:inline-block;
+    vertical-align: middle;
+}
+.replyArrow:hover {
+    background-image: url("../../assets/images/reply-active.svg");
+    cursor: pointer;
+}
+
+.repliesContainer{
+    width: 100%;
+    height: auto;
+}
+
+.repliesArrowContainer{
+    width: 50px;
+    height: 30px;
+    float:left;
+}
+.repliesArrow{
+    float: right;
+    width: 30px;
+    height:30px;
+    display:inline-block;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    background-image: url("../../assets/images/replies-arrow.png");
+}
+.repliesList{
+    height: 100%;
+    width: 85%;
+    float:left;
+}
+.userReplyingHeader{
+    width:100%;
+    height: 20px;
+}
+.reply{
+    width:100%;
+    display:inline-block;
+}
+.replyContent{
+    padding-left: 11%;
+}
+.fileContainer{
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+/* Content 2: QTD / Weekly Data */
+.mobileCommentContainer{
+  /* overflow: auto;
+  overflow: hidden; */
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
+  box-sizing: content-box;
+}
+
+.mobileCommentContainer:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to bottom, rgba(71, 67, 67, 0), rgb(0, 0, 0) 90%);
+  width: 100%;
+  height: 12em;
+}
+
+
+
+.mobileComment, .mobileCommentUserHeader,
+.mobileCommentUserName, .mobileCommentTime,
+.mobileMainCommentContent{
+  color:white;
+}
+.theDateTime{
+  margin-left: 20px;
+  color: white;
+  margin-bottom: 15px;
+}
+.mobileCommentUserHeader {
+  /* background-color:red; */
+  margin-left: 20px;
+
+}
+
+.mobileCommentUserName, .mobileCommentTime {
+  padding-left: 15px;
+}
+.mobileMainCommentContent{
+  margin-left: 65px;
+}
+
+.mobileCommentsReplies {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 10%;
+}

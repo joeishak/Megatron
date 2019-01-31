@@ -1,0 +1,16 @@
+.playgroundContainer {
+    width: 100%;
+    background-color: black;
+    overflow: hidden;
+}
+
+.item {
+    height: inherit;
+    width: 100%;
+    justify-content: center;
+    color: white;
+}
+
+/* .hideMe {
+    display: none;
+} */
