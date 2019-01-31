@@ -61,7 +61,7 @@ export default function (state = {
             let copyOfState1 = JSON.parse(JSON.stringify(state))
             copyOfState = JSON.parse(JSON.stringify(state))
             copyOfState.quarters.valueFilters.push({ index: 211, category: "quarters", value: '2019-Q1' });
-            copyOfState.segments.valueFilters.push({ index: 209, category: "segments", value: action.payload.defaultSegment });
+            copyOfState.segments.valueFilters.push({ index: 209, category: "segments", value: 'Digital Media' });
             copyOfState.routes.valueFilters = action.payload.routeFilters;
             copyOfState.markets.valueFilters = action.payload.marketFilters;
             copyOfState.products.valueFilters = action.payload.productFilters;

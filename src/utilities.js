@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import {
     Infoburst
-} from './variables';
+} from './environmentParams';
 import axios from 'axios';
 import * as actions from 'actions';
 

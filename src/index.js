@@ -5,8 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'; // Convert To
 import Summary from 'Views/Summary/Summary.js';
 import registerServiceWorker from './registerServiceWorker';
 import { Security, ImplicitCallback } from '@okta/okta-react';
-import config from './.samples.config';
-
+import { config as config } from './environmentParams';
 const inStyles = {
 	root: {
 		height: '100%',
@@ -26,7 +25,7 @@ ReactDOM.render(
 				{/* <Route path="" exact={true} component={App} /> */}
 
 				{/* IBAPPS*/}
-				{/* <Route path={`http://localhost:8551/apps/rtbcallback/index.html`} component={ImplicitCallback} /> */}
+				{/* <Route path={`http://68.231.90.148:8551/apps/rtbcallback/index.html`} component={ImplicitCallback} /> */}
 
 				{/*  IIS*/}
 				{/* <Route path={`${process.env.PUBLIC_URL}` + '/implicit/callback/'} component={ImplicitCallback} /> */}
