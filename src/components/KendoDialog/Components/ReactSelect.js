@@ -39,18 +39,18 @@ let transformDefaultList = (objList) => {
 }
 
 // Render Component
-const ReactSelect = ({options, defaultValue,updateFilter, onClose}) => {
+const ReactSelect = ({ options, defaultValue, updateFilter, onClose }) => {
     return (
         <Select
             options={transformList(options)}
             closeMenuOnSelect={false}
             isMulti
-            onMenuClose={(e) => {
-                console.log('Menu Closed',e),
-                onClose(e)
-            }}
-            defaultValue={transformDefaultList(defaultValue)} onChange={updateFilter} 
-            />
+            // onMenuClose={(e) => {
+            //     // console.log('Menu Closed',e),
+            //     // onClose(e)
+            // }}
+            defaultValue={transformDefaultList(defaultValue)} onChange={updateFilter}
+        />
     );
 };
 

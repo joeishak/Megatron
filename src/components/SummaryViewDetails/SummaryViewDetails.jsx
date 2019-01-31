@@ -16,7 +16,6 @@ import excelLogo from "../../assets/images/excel-logo.png";
 import excelLogoGreen from "../../assets/images/excel-logo-green.svg";
 // Services
 import ExcelFormatter from "./ExcelFormatter";
-import { CSSTransitionGroup } from 'react-transition-group';
 
 import DetailBreakdown from './DetailBreakdown/DetailBreakdown';
 class SummaryViewDetails extends Component {
@@ -256,20 +255,13 @@ class SummaryViewDetails extends Component {
           {
             this.props.activeItem.details.stats.map(item => {
               return (
-                <CSSTransitionGroup
-                  key={statsCounts++}
-                  transitionName="example"
-                  transitionAppear={true}
-                  transitionAppearTimeout={800}
-                  transitionEnter={false}
-                  transitionLeave={false} >
-                  <div className=" statsHeader">
-                    <div className={(item.color === 'red') ? 'stats red' : 'stats green '}>
-                      {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
-                    </div>
-                    <div className="footer"> {item.text}</div>
+
+                <div className=" statsHeader">
+                  <div className={(item.color === 'red') ? 'stats red' : 'stats green '}>
+                    {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
                   </div>
-                </CSSTransitionGroup>
+                  <div className="footer"> {item.text}</div>
+                </div>
               )
             })
           }

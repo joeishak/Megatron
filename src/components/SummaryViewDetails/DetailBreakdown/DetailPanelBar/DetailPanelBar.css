@@ -1,6 +1,6 @@
 .panelItemTitle{
     font-size:24px;
-    background-color:#1f1f1f;
+    background-color:#D8D8D8 !important;
     color: white;
 }
 
@@ -273,4 +273,8 @@
 
 .k-icon, .k-i-arrow-s, .k-panelbar-expand {
     margin-right: 100%;
+}
+.k-link:hover{
+    color: black !important;
+    background-color: #D8D8D8 !important;
 }

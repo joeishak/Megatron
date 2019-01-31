@@ -5,7 +5,6 @@ import * as actions from 'actions';
 import '@progress/kendo-ui';
 import styles from './KendoDialog.css';
 import $ from 'jquery';
-import ReactSelect from './Components/ReactSelect';
 import * as _ from 'lodash'
 import classNames from 'classnames';
 
@@ -349,7 +348,7 @@ class KendoDialog extends Component {
                                 <div className="dropdowns contentpad">
                                     {/* first row */}
                                     <div className="row dropRow">
-                                        <div className={ ' col-lg-2'} >
+                                        <div className={' col-lg-2'} >
                                             <p> Quarter</p>
                                             <SingleValueSelect
                                                 activeFilters={filters.quarters.valueFilters}
@@ -358,7 +357,7 @@ class KendoDialog extends Component {
                                                 onMenuClose={this.closeSingleValue}
                                             />
                                         </div>
-                                        <div className={ ' col-lg-5'} >
+                                        <div className={' col-lg-5'} >
                                             <p> Geo</p>
                                             {/* <ReactSelect
                         updateFilter={this.updateActiveFiltersHandler}
@@ -372,7 +371,7 @@ class KendoDialog extends Component {
                                             />
 
                                         </div>
-                                        <div className={ ' col-lg-5'} >
+                                        <div className={' col-lg-5'} >
                                             <p> Market Area</p>
                                             <MultiValueSelect
                                                 options={filters.markets.availableFilters}
@@ -381,7 +380,7 @@ class KendoDialog extends Component {
                                                 values={_.groupBy(this.state.selectedFilters, (item => { return item.category === 'markets' }))}
                                             />
                                         </div>
-                                        <div className={ ' col-lg-9'} >
+                                        <div className={' col-lg-9'} >
                                             <p>  Route To Market</p>
                                             <MultiValueSelect
                                                 options={filters.routes.availableFilters}
@@ -389,7 +388,7 @@ class KendoDialog extends Component {
                                                 onMenuClose={this.closeMultiValue}
                                             />
                                         </div>
-                                        <div className={ ' col-lg-5'} >
+                                        <div className={' col-lg-5'} >
                                             <p> Segment</p>
                                             <SingleValueSelect
                                                 activeFilters={filters.segments.valueFilters}
@@ -399,7 +398,7 @@ class KendoDialog extends Component {
                                             />
 
                                         </div>
-                                        <div className={ ' col-lg-6'} >
+                                        <div className={' col-lg-6'} >
                                             <p> Subscription Offering</p>
                                             <MultiValueSelect
                                                 options={filters.subscriptions.availableFilters}
@@ -424,7 +423,7 @@ class KendoDialog extends Component {
 
 
                                 </div>
-{/* 
+                                {/* 
                                 Filters List
                                 <div className="contentpad filterListItems">
                                     <p>Filters Applied:</p>

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import SecondarySquares from "./SecondarySquares";
 import Playground from "../MobileComponents/Playground/Playground";
 import HorizontalSlider from "../MobileComponents/HorizontalSlider/HorizontalSlider.jsx";
+import 'hammerjs';
 import {
   PRIMARY,
   SECONDARY,
@@ -16,7 +17,7 @@ import * as utils from '../../utilities';
 const navBarHeight = 50;
 const titleContainerHeight = 22;
 const secondaryRowHeight = 64;
-const containerPullBar = 15;
+const containerPullBar = 25;
 
 class SecondaryContentList extends Component {
   eventHandler = null;
@@ -27,7 +28,7 @@ class SecondaryContentList extends Component {
     this.state = {
       isDragging: false,
       initialPos: this.props.window.height - this.calculateHeight(),
-      onloadPos: this.props.window.height - this.calculateHeight()
+      onloadPos: this.props.window.height - this.calculateHeight(),
     };
   }
 
@@ -41,6 +42,7 @@ class SecondaryContentList extends Component {
     ReactDOM.findDOMNode(this).addEventListener("touchcancel", this.stopResize);
 
 
+    this.setState({ sortedData: this.props.data })
 
   }
 
@@ -51,6 +53,24 @@ class SecondaryContentList extends Component {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    let copy = Object.assign([], this.props.data);
+
+
+    if (utils.includes(this.props.deviceType, 'mobile') ||
+      utils.includes(this.props.deviceType, 'tablet')) {
+
+      if (this.props.activeJourneyCard !== prevProps.activeJourneyCard) {
+
+        console.log([this.props.data[this.props.activeJourneyCard], ...this.state.sortedData.filter(item => item.index !== this.props.activeJourneyCard)])
+        this.setState({ sortedData: [this.props.data[this.props.activeJourneyCard], ...this.state.sortedData.filter(item => item.index !== this.props.activeJourneyCard)] })
+
+        // this.props.onJourneyCardClicked({}, 0);
+      }
+    }
+
+
+  }
   isTouchDevice() {
     return "ontouchstart" in document.documentElement;
   }
@@ -75,7 +95,7 @@ class SecondaryContentList extends Component {
       if (this.state.initialPos > this.state.onloadPos) {
         //it's going up
         this.setState({
-          initialPos: this.state.onloadPos + secondaryRowHeight * 4
+          initialPos: this.state.onloadPos + secondaryRowHeight * 3
         });
       } else {
         this.setState({ initialPos: this.state.onloadPos });
@@ -131,11 +151,13 @@ class SecondaryContentList extends Component {
             </div>
           </div>
         ) : null;
+
+    const data = (isMobileAndTablet === true) ? this.state.sortedData : this.props.data;
     const secondaryContentTop =
       (this.props.mobileSecondaryIsActive === true &&
         isMobileAndTablet === true) ||
         isMobileAndTablet === false
-        ? this.props.data.map(item => {
+        ? data.map(item => {
           let isActive =
             this.props.activeJourneyCard === item.index
               ? true
@@ -180,7 +202,7 @@ class SecondaryContentList extends Component {
             onTouchStart={e => this.startResize(e)}
           >
             {" "}
-            <div className="resizerIcon" />{" "}
+            <div className="resizerIcon" ><span className="k-icon k-i-reorder"></span></div>
           </div>
 
           {/* Three Slide Playground bar */}

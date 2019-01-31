@@ -7,7 +7,6 @@ import * as actions from 'actions';
 import styles from './CustomDropDownPanel.css';
 import { Button } from '@progress/kendo-react-buttons';
 import KendoDropDownList from '../../KendoDropDownList/KendoDropDownList'
-import ReactSelect from '../../ReactSelect/ReactSelect';
 import SingleValueSelect from '../../SingleValueSelect/SingleValueSelect';
 import MultiValueSelect from '../../MultiValueSelect/MultiValueSelect';
 import * as _ from 'lodash';
@@ -69,8 +68,8 @@ class CustomDropDownPanel extends Component {
 
 
     }
-    componentWillUnmount(){
-        this.setState({selectedFilters: []})
+    componentWillUnmount() {
+        this.setState({ selectedFilters: [] })
     }
     closeSingleValue = (e) => {
         // console.log('Closing Single Value',e);
@@ -101,40 +100,40 @@ class CustomDropDownPanel extends Component {
             geos: []
         };
 
-        Object.keys(newFilters).forEach(item=>{
-        
-            switch(item){
+        Object.keys(newFilters).forEach(item => {
+
+            switch (item) {
                 case 'quarters':
                     newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === 'quarters' })) ? /* Then */
-                    [_.find(this.state.selectedFilters, (item => { return item.category === 'quarters' }))] : /* Else */
-                    [...this.props.filters.quarters.valueFilters];
+                        [_.find(this.state.selectedFilters, (item => { return item.category === 'quarters' }))] : /* Else */
+                        [...this.props.filters.quarters.valueFilters];
                     break;
                 case 'segments':
-                    newFilters[item] =  _.find(this.state.selectedFilters, (item => { return item.category === 'segments' })) ?
-                    [_.find(this.state.selectedFilters, (item => { return item.category === 'segments' }))] :
-                    [...this.props.filters.segments.valueFilters];
+                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === 'segments' })) ?
+                        [_.find(this.state.selectedFilters, (item => { return item.category === 'segments' }))] :
+                        [...this.props.filters.segments.valueFilters];
                     break;
                 default:
-                let grouped  = _.groupBy(this.state.selectedFilters,(obj=>{return obj.category === item}));
-                // console.log(grouped);
-                if(grouped.false!==this.state.selectedFilters.length){
+                    let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category === item }));
+                    // console.log(grouped);
+                    if (grouped.false !== this.state.selectedFilters.length) {
 
-                    if(grouped.true!== undefined){
-                        newFilters[item] = grouped.true
-                    } else{
+                        if (grouped.true !== undefined) {
+                            newFilters[item] = grouped.true
+                        } else {
+                            newFilters[item] = [];
+                        }
+                    } else {
                         newFilters[item] = [];
                     }
-                } else{
-                    newFilters[item] = [];
-                }
-                break;
+                    break;
             }
 
         });
 
 
-        this.setState({selectedFilters: []})
-     
+        this.setState({ selectedFilters: [] })
+
         this.props.submitFilters(newFilters);
         //  this.props.getSummaryData(newFilters);
         this.props.handleClose();
@@ -165,7 +164,7 @@ class CustomDropDownPanel extends Component {
                         onMenuClose={this.closeSingleValue}
                     />
                 </div>
-                <div className={quarterFilterContainer + ' col-lg-5'} >
+                <div className={quarterFilterContainer + ' col-lg-3'} >
                     <p> Geo</p>
                     {/* <ReactSelect
                         updateFilter={this.updateActiveFiltersHandler}
@@ -179,16 +178,16 @@ class CustomDropDownPanel extends Component {
                     />
 
                 </div>
-                <div className={quarterFilterContainer + ' col-lg-5'} >
+                <div className={quarterFilterContainer + ' col-lg-4'} >
                     <p> Market Area</p>
                     <MultiValueSelect
                         options={filters.markets.availableFilters}
                         onValueChange={(e) => { let type = 'markets'; this.updateMultiValue(e, type) }}
                         onMenuClose={this.closeMultiValue}
-                        values={_.groupBy(this.state.selectedFilters,(item=>{return item.category === 'markets'}))}
+                        values={_.groupBy(this.state.selectedFilters, (item => { return item.category === 'markets' }))}
                     />
                 </div>
-                <div className={quarterFilterContainer + ' col-lg-9'} >
+                <div className={quarterFilterContainer + ' col-lg-3'} >
                     <p>  Route To Market</p>
                     <MultiValueSelect
                         options={filters.routes.availableFilters}
@@ -196,7 +195,7 @@ class CustomDropDownPanel extends Component {
                         onMenuClose={this.closeMultiValue}
                     />
                 </div>
-                <div className={quarterFilterContainer + ' col-lg-5'} >
+                <div className={quarterFilterContainer + ' col-lg-2'} >
                     <p> Segment</p>
                     <SingleValueSelect
                         activeFilters={filters.segments.valueFilters}
@@ -206,7 +205,7 @@ class CustomDropDownPanel extends Component {
                     />
 
                 </div>
-                <div className={quarterFilterContainer + ' col-lg-6'} >
+                <div className={quarterFilterContainer + ' col-lg-5'} >
                     <p> Subscription Offering</p>
                     <MultiValueSelect
                         options={filters.subscriptions.availableFilters}
@@ -214,7 +213,7 @@ class CustomDropDownPanel extends Component {
                         onMenuClose={this.closeMultiValue}
                     />
                 </div>
-                <div className={quarterFilterContainer + ' col-lg-12'} >
+                <div className={quarterFilterContainer + ' col-lg-5'} >
                     <p> Product Name</p>
                     <MultiValueSelect
                         options={filters.products.availableFilters}
@@ -224,7 +223,7 @@ class CustomDropDownPanel extends Component {
                 </div>
 
                 <div className={quarterFilterContainer + ' col-lg-12'}>
-                    <input className = "button" type={'button'} onClick={this.submitFilters} value="Submit"/>
+                    <input className="button" type={'button'} onClick={this.submitFilters} value="Submit" />
 
                 </div>
 

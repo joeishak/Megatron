@@ -1,32 +1,33 @@
 import * as utils from '../../utilities';
 import React, { Component } from "react";
 import { Navbar } from "react-bootstrap";
-// import { Expand } from "@progress/kendo-react-animation";
 
 
-const CompanyHeader = ({ deviceType, filterIcon, isFilterPageVisible, show, onFilterToggled, logos }) => {
+class CompanyHeader extends Component {
 
-  const filterButton = utils.includes(deviceType, 'tablet') || utils.includes(deviceType, 'mobile') ? (
-    <div className="filterButton">
-      <img
-        alt=""
-        className="fitlerIconMobile"
-        src={filterIcon}
-        onClick={onFilterToggled}
-      />
-    </div>
-  ) : null;
+  render() {
+    const { deviceType, filterIcon, isFilterPageVisible, show, onFilterToggled, logos } = this.props;
 
-
-  return (<Navbar.Header>
-    <Navbar.Brand className="navBrandLogo">
-      <div href="#brand" style={{ width: 130 }}>
-        {/* <Expand> */}{logos}{/* </Expand> */}
+    const filterButton = utils.includes(deviceType, 'tablet') || utils.includes(deviceType, 'mobile') ? (
+      <div className="filterButton">
+        <img
+          alt=""
+          className="fitlerIconMobile"
+          src={filterIcon}
+          onClick={onFilterToggled}
+        />
       </div>
-    </Navbar.Brand>
-    {filterButton}
-  </Navbar.Header>
-  );
+    ) : null;
+
+    return (<span>
+      <Navbar.Brand className="navBrandLogo">
+        <div href="#brand" style={{ width: 130 }}>
+          {logos}
+        </div>
+      </Navbar.Brand>
+      {filterButton}
+    </span>)
+  }
 }
 
 export default CompanyHeader;

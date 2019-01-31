@@ -36,16 +36,13 @@ class Summary extends Component {
 
     /* Initializing local state */
     this.state = {
-      index: 0,
       authenticated: null,
       window: {
         height: window.innerHeight,
         width: window.innerWidth
       },
-      filtersAreLoaded: false,
       preferncesAreAddedToFilters: false,
       initialDataLoadIsComplete: false,
-      activeCommentBoxMetric: 0,
       isLoading: true
     };
 
@@ -63,9 +60,6 @@ class Summary extends Component {
       }
     };
     this.props.setAppSettings(appSettings);
-    this.setState({
-      window: appSettings.window
-    });
   }
 
   async componentDidMount() {
@@ -125,27 +119,12 @@ class Summary extends Component {
       this.props.getSummaryData(this.props.filters);
     }
 
-    // // If the old available filters change or the active filters change
-    // //  Call for new data with the filters
-    // if (
-    //   prevProps.availableFilters !== this.props.availableFilters ||
-    //   prevProps.activeFilters !== this.props.activeFilters
-    // ) {
-    //   this.props.getSummaryData(this.props.filters);
-    // }
 
     if (this.props.activePrimaryCard.index > 0) {
       this.props.updateMultichartMetric(true);
     }
   }
 
-  // shouldComponentUpdate(nextProps){
-  //   if(this.props.activeFilters !== nextProps.activeFilters){
-  //     return false;
-  //   }
-
-  //   return true;
-  // }
   async login() {
     this.props.auth.login("/");
   }
@@ -195,7 +174,7 @@ class Summary extends Component {
   getPrimaryContent = () => {
     return (
       <PrimaryContentList
-        window={this.state.window}
+        window={this.props.window}
         onCommentIconClick={(e, type, index) => {
           this.onCommentIconClick(e, type, index);
         }}
@@ -236,7 +215,7 @@ class Summary extends Component {
         updateMobileView={(component, updateTo) => {
           this.updateMobileView(component, updateTo);
         }}
-        window={this.state.window}
+        window={this.props.window}
         commentsPackage={this.props.commentsPackage}
       />
     );
@@ -245,37 +224,42 @@ class Summary extends Component {
 
   render() {
     const { user } = this.props;
-    const { activeCommentBoxMetric } = this.state;
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
-    const isMobileOrTablet = utils.includes(utils.getDeviceType(this.state.window), 'mobile') || utils.includes(utils.getDeviceType(this.state.window), 'tablet');
+    const isMobileOrTablet = utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet');
     const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails />;
 
     return (
-      <div style={isMobileOrTablet ? { height: `${this.state.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
+      <div style={isMobileOrTablet ? { height: `${this.props.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
         {this.state.authenticated && (
           <span>
             {/* Data Preferences */}
-            {kdialog}
-            {/* Navigation*/}
-            <Navigation />
-            <FilterPanel
-              window={this.state.window} />
-            <CommentPanel
-              user={this.props.user}
-            />
+
             <div>
 
 
               {this.state.isLoading === true ? <LoadingScreen></LoadingScreen> :
-                (<div>
-                  {/* Primary */}
-                  {this.state.isFilterPageVisible ||
-                    this.props.mobileIsPrimary === false ? null : this.getPrimaryContent()}
-                  {/* Secondary */}
-                  {this.state.isFilterPageVisible ? null : this.getSecondaryContent()}
-                  {this.state.isFilterPageVisible && this.props.mobileIsPrimary ? null : null}
-                  {summaryViewDetails}
-                </div>)
+                (
+
+
+                  <div>
+                    {kdialog}
+                    {/* Navigation*/}
+                    <Navigation
+                      mobileFiltersIsShown={this.props.mobileFiltersIsShown} />
+                    <FilterPanel
+                      window={this.props.window} />
+                    <CommentPanel
+                      user={this.props.user}
+                    />
+                    {/* Primary */}
+                    {this.props.mobileFiltersIsShown ||
+                      this.props.mobileIsPrimary === false ? null : this.getPrimaryContent()}
+                    {/* Secondary */}
+                    {this.state.mobileFiltersIsShown ? null : this.getSecondaryContent()}
+                    {/* {this.state.isFilterPageVisible && this.props.mobileIsPrimary ? null : null} */}
+                    {summaryViewDetails}
+                  </div>)
+
               }
             </div>
           </span>
@@ -287,7 +271,7 @@ class Summary extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log(state);
+  console.log(state.appSettings.views.primaryIsVisible);
   return {
     // activeFilters: state.activeFilters,
     // availableFilters: state.availableFilters,

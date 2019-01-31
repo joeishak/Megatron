@@ -45,15 +45,14 @@ let filterParams = [
     }
 ];
 /**
- *
- * @param {*} arrayList
+ * 
+ * @param {*} arrayList 
  */
 export function convertFilterList(arrayList) {
     return "'" + arrayList.join("', '") + "' ";
 }
 /**
- *
- * @param {*} obj
+ * 
  */
 export function removeAllDataValueFromFilterArray(obj) {
     _.remove(obj.quarters, (item) => {
@@ -417,8 +416,8 @@ export function requestSummaryData(allFilters, _parameters) {
     });
 
     //TODO: The rest of the details
-    finRoutes
-    finSegments
+    // finRoutes
+    // finSegments
 
     const finRoutes = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.dataXdcID + Infoburst.summaryQueryNames.FinancialRouteQTD + params1 + '&json=1', {
         headers: headers,

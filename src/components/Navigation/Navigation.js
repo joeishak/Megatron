@@ -1,7 +1,6 @@
 // Npm Modules
 import React, { Component } from "react";
 import { Navbar, NavDropdown, MenuItem } from "react-bootstrap";
-import { Expand } from "@progress/kendo-react-animation";
 import { withAuth } from "@okta/okta-react";
 import { checkAuthentication } from "../../helper";
 import {
@@ -54,9 +53,9 @@ class Navigation extends Component {
     this.checkAuthentication();
   }
   onFilterToggled = e => {
-    const toggleState = !this.state.isFilterPageVisible;
-    this.setState({ isFilterPageVisible: toggleState });
-    this.props.updateViewSetting(MOBILE_FILTER_PAGE, toggleState);
+    // const toggleState = !this.state.isFilterPageVisible;
+    // this.setState({ isFilterPageVisible: toggleState });
+    this.props.updateViewSetting(MOBILE_FILTER_PAGE, !this.props.mobileFiltersIsShown);
   };
   // Function to show the logo after 1 second
   showLogo = () => {
@@ -110,9 +109,9 @@ class Navigation extends Component {
 
   render() {
 
-    
-    const isLaptop = utils.includes( this.props.deviceType, 'laptop');
-    const filterIcon = this.props.isFilterPageVisible
+
+    const isLaptop = utils.includes(this.props.deviceType, 'laptop');
+    const filterIcon = this.props.mobileFiltersIsShown
       ? filterSelected
       : filterUnselected;
     const { show } = this.state;
@@ -123,28 +122,28 @@ class Navigation extends Component {
     return (
       <Navbar fluid className="navContainer">
         {/* The responseive company logo and */}
-        <CompanyHeader 
-        deviceType={this.props.deviceType}
-        isFilterPageVisible={this.state.isFilterPageVisible}
-        show={show}
-        filterIcon={filterIcon}
-        onFilterToggled={(e)=>{this.onFilterToggled(e)}}
-        logos={logos}
+        <CompanyHeader
+          deviceType={this.props.deviceType}
+          isFilterPageVisible={this.props.mobileFiltersIsShown}
+          show={show}
+          filterIcon={filterIcon}
+          onFilterToggled={(e) => { this.onFilterToggled(e) }}
+          logos={logos}
         />
 
         <UserNav
-        isLaptop={isLaptop}
-        onDataPreferencesSelcted={(e)=>{this.onDataPreferencesSelcted(e)}}
-        username={this.processLoggedUser(this.props.user || " ")}
-        logout={()=>{ this.props.auth.logout("/summary");}}
-        filterIcon={filterIcon}
-        toggleCommentaryOn={this.props.toggleCommentaryOn}
-        updateCommentsNav={this.updateCommentsNav}
-        onFilterToggled={(e)=>{this.onFilterToggled(e)}}
+          isLaptop={isLaptop}
+          onDataPreferencesSelcted={(e) => { this.onDataPreferencesSelcted(e) }}
+          username={this.processLoggedUser(this.props.user || " ")}
+          logout={() => { this.props.auth.logout("/summary"); }}
+          filterIcon={filterIcon}
+          toggleCommentaryOn={this.props.toggleCommentaryOn}
+          updateCommentsNav={this.updateCommentsNav}
+          onFilterToggled={(e) => { this.onFilterToggled(e) }}
         />
-        
-          
-          
+
+
+
       </Navbar>
     );
   }

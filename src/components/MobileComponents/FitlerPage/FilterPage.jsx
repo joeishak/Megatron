@@ -7,6 +7,10 @@ import DropDownFilter from './components/DropDownFilter.jsx';
 import classNames from 'classnames';
 import { Button } from '@progress/kendo-react-buttons';
 
+import {
+    PRIMARY,
+    MOBILE_FILTER_PAGE
+} from '../../../Constants/consts';
 import SingleValueSelect from '../../SingleValueSelect/SingleValueSelect';
 import MultiValueSelect from '../../MultiValueSelect/MultiValueSelect';
 class FilterPage extends Component {
@@ -130,10 +134,11 @@ class FilterPage extends Component {
 
 
         this.setState({ selectedFilters: [] })
+        // this.props.handleClose();
+        this.props.updateViewSetting(MOBILE_FILTER_PAGE, false);
 
         this.props.submitFilters(newFilters);
         //  this.props.getSummaryData(newFilters);
-        // this.props.handleClose();
 
     }
     render() {
@@ -225,11 +230,8 @@ class FilterPage extends Component {
                                     onValueChange={this.updateSingleValue}
                                     onMenuClose={this.closeSingleValue}
                                 />                                    </div>
-                            <div className={ ' col-lg-12'}>
-                                <Button primary={true} onClick={this.submitFilters} look="flat">Browse</Button>
-
-
-
+                            <div className={' col-lg-12'}>
+                                <Button class="button" primary={true} onClick={this.submitFilters} look="flat">Submit</Button>
                             </div>
                         </div>
 

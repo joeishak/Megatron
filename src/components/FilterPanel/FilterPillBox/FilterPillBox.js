@@ -1,14 +1,13 @@
 // Npm Modules
 import React, { Component } from 'react';
-import {connect } from 'react-redux';
-import {CSSTransitionGroup} from 'react-transition-group';
+import { connect } from 'react-redux';
 // Custom Components and Styles
 import styles from './FilterPillBox.css';
 import * as actions from 'actions';
 
-class FilterPillBox extends  Component {
+class FilterPillBox extends Component {
     //When the component is constructed
-    constructor(props){
+    constructor(props) {
         super(props);
         // Initialize state
         this.state = {
@@ -18,30 +17,23 @@ class FilterPillBox extends  Component {
         //Binding functions to this
         this.removeFilter = this.removeFilter.bind(this);
     }
-    
+
     //Function that calls the action which removes the specified multifilter according to the index
-    removeFilter(){
+    removeFilter() {
         this.props.removeMultiFilter(this.props.data);
         // this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
     }
-    render(){
-        return(
-            <CSSTransitionGroup
-                                        className="chart1"
-                                        transitionName="example"
-                                        transitionAppear={true}
-                                        transitionAppearTimeout={1000}
-                                        transitionEnter={false} 
-                                        transitionLeave={false} >
+    render() {
+        return (
+
             <span className="filterText" >{this.state.value}{/* <span className="xButton" onClick={this.removeFilter}>x</span> */}</span>
-            </CSSTransitionGroup>
 
         )
     }
 }
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
-    
+
     }
 }
-export default connect(mapStateToProps,actions)(FilterPillBox)
+export default connect(mapStateToProps, actions)(FilterPillBox)

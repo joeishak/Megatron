@@ -8,23 +8,10 @@ import * as utils from "../../utilities.js";
 import classNames from "classnames";
 class SecondarySquares extends Component {
   // Need to Refactor
-  componentDidUpdate(prevProps) {}
+  componentDidUpdate(prevProps) { }
 
-  // shouldComponentUpdate(nextProps){
-  //     if(this.props.item !== nextProps.item ){
-  //
-  //         return true;
-  //     }
-  //     if(this.props.item.target !== nextProps.item.target){
-  //         return true;
-  //     }
-  //     if(this.props.toggleCommentary !== nextProps.toggleCommentary){
-  //
-  //         return true;
-  //     }
-  //
-  //     return false;
-  // }
+
+
   getColor(value, target, type, header) {
     let retColor = "";
     if (type === "financial") {
@@ -35,7 +22,7 @@ class SecondarySquares extends Component {
       }
     } else if (type === "journey" && header === false) {
       if (value >= target) {
-        retColor = "journeyBoxAlertGreen";
+        retColor = "journeyBoxAlert";
       } else {
         retColor = "journeyBoxAlert";
       }
@@ -96,28 +83,19 @@ class SecondarySquares extends Component {
           className={`${secondaryBox}  ${
             this.props.activeJourneyCard === true
               ? this.getColor(
-                  this.props.item.value,
-                  this.props.item.target,
-                  "journey",
-                  false
-                )
+                this.props.item.value,
+                this.props.item.target,
+                "journey",
+                false
+              )
               : ""
-          }`}
+            }`}
           onClick={e =>
             this.props.onJourneyCardClicked(e, this.props.item.index)
           }
         >
           <div
-            className={`${secondaryBoxHeader} ${
-              this.props.activeJourneyCard === true
-                ? this.getColor(
-                    this.props.item.value,
-                    this.props.item.target,
-                    "journey",
-                    true
-                  )
-                : ""
-            }`}
+            className={`${secondaryBoxHeader} `}
           >
             {/* <div className={this.props.item.css[2]}><p className="journeyHeaderTitle ">{this.props.item.title}</p></div> */}
           </div>
@@ -148,7 +126,7 @@ class SecondarySquares extends Component {
                 this.props.item.value >= this.props.item.target
                   ? "journeysAmountGreen"
                   : ""
-              }`}
+                }`}
             >
               {formattedValue}
             </div>
@@ -219,29 +197,15 @@ class SecondarySquares extends Component {
         <div
           className={`${secondaryBox}  ${
             this.props.activeJourneyCard === true
-              ? this.getColor(
-                  this.props.item.value,
-                  this.props.item.target,
-                  "journey",
-                  false
-                )
+              ? 'journeyBoxAlert'
               : ""
-          }`}
+            }`}
           onClick={e =>
             this.props.onJourneyCardClicked(e, this.props.item.index)
           }
         >
           <div
-            className={`${secondaryBoxHeader} ${
-              this.props.activeJourneyCard === true
-                ? this.getColor(
-                    this.props.item.value,
-                    this.props.item.target,
-                    "journey",
-                    true
-                  )
-                : ""
-            }`}
+            className={`${secondaryBoxHeader} `}
           >
             {/* <div className={this.props.item.css[2]}><p className="journeyHeaderTitle ">{this.props.item.title}</p></div> */}
           </div>
@@ -274,7 +238,7 @@ class SecondarySquares extends Component {
                 this.props.item.value >= this.props.item.target
                   ? `${boxContentAmountGreen}`
                   : ""
-              }`}
+                }`}
             >
               {formattedValue}
             </div>

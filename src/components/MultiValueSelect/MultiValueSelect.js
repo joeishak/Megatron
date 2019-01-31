@@ -39,7 +39,7 @@ let transformDefaultList = (objList) => {
 }
 
 // Render Component
-const MultiValueSelect = ({options, defaultValue,onValueChange, values, onMenuClose}) => {
+const MultiValueSelect = ({ options, defaultValue, onValueChange, values, onMenuClose }) => {
     return (
         <Select
             className="blackText"
@@ -48,11 +48,11 @@ const MultiValueSelect = ({options, defaultValue,onValueChange, values, onMenuCl
             closeMenuOnSelect={false}
             isMulti
             onMenuClose={(e) => {
-                console.log('Menu Closed',e),
+                // console.log('Menu Closed',e),
                 onMenuClose(e)
             }}
-            defaultValue={transformDefaultList(values)} onChange={onValueChange} 
-            />
+            defaultValue={transformDefaultList(values)} onChange={onValueChange}
+        />
     );
 };
 

@@ -60,7 +60,7 @@ export default function (state = {
         case ADD_PREFERENCES_TO_ACTIVE_FILTERS:
             let copyOfState1 = JSON.parse(JSON.stringify(state))
             copyOfState = JSON.parse(JSON.stringify(state))
-            copyOfState.quarters.valueFilters.push({ index: 211, category: "quarters", value: action.payload.defaultQuarter });
+            copyOfState.quarters.valueFilters.push({ index: 211, category: "quarters", value: '2019-Q1' });
             copyOfState.segments.valueFilters.push({ index: 209, category: "segments", value: action.payload.defaultSegment });
             copyOfState.routes.valueFilters = action.payload.routeFilters;
             copyOfState.markets.valueFilters = action.payload.marketFilters;
