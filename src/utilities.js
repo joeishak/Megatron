@@ -698,7 +698,7 @@ export async function addUserToDB(user) {
     responseArray = [];
     promiseArr = [];
     let body = {
-        "conn": '16',
+        "conn": `${Infoburst.appXDCID}`,
         "qry": 'NewUser',
         "columnNames": 'true',
         "params": {
@@ -748,7 +748,7 @@ export function convertFilterListForDBQuery(arrayList) {
 // Fetch Comments
 export function fetchComments(metricId) {
     let body = {
-        "conn": '16',
+        "conn": `${Infoburst.appXDCID}`,
         "qry": 'fetchComments',
         "columnNames": 'true',
         "params": {
@@ -762,7 +762,7 @@ export function fetchComments(metricId) {
             const commentIdsArray = response.data.map(ele => { return ele.id; });
             const params = convertFilterListForDBQuery(commentIdsArray);
             let responseBody = {
-                "conn": '16',
+                "conn": `${Infoburst.appXDCID}`,
                 "qry": 'fetchReplies',
                 "columnNames": 'true',
                 "params": {
@@ -787,7 +787,7 @@ export function fetchComments(metricId) {
 
 export function fetchCommentsCount() {
     let body = {
-        "conn": '16',
+        "conn": `${Infoburst.appXDCID}`,
         "qry": 'fetchCommentsCount',
         "columnNames": 'true',
         "params": {}
@@ -802,7 +802,7 @@ export function fetchCommentsCount() {
 export function postComment(params) {
     // INSERT INTO Comments values('@userId', @metricId, CONVERT(datetime,'@postDateTime'), '@comment');
     let body = {
-        "conn": '16',
+        "conn": `${Infoburst.appXDCID}`,
         "qry": 'postComments',
         "columnNames": 'true',
         "params": {
@@ -825,7 +825,7 @@ export function postComment(params) {
 
 export function postReply(params) {
     let body = {
-        "conn": '16',
+        "conn": `${Infoburst.appXDCID}`,
         "qry": 'postReply',
         "columnNames": 'true',
         "params": {
@@ -850,7 +850,7 @@ export function postReply(params) {
 
 export function requestUserSettings(sub) {
     let body = {
-        "conn": '16',
+        "conn": `${Infoburst.appXDCID}`,
         "qry": 'GetUserSettings',
         "columnNames": 'true',
         "params": {
@@ -866,7 +866,7 @@ export function requestUserSettings(sub) {
 
 export function postUserSettings(params) {
     let body = {
-        "conn": '16',
+        "conn": `${Infoburst.appXDCID}`,
         "qry": 'UpdateSettings',
         "columnNames": 'true',
         "params": {
