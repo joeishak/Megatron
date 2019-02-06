@@ -90,9 +90,7 @@ class SecondarySquares extends Component {
               )
               : ""
             }`}
-          onClick={e =>
-            this.props.onJourneyCardClicked(e, this.props.item.index)
-          }
+          onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index) }
         >
           <div
             className={`${secondaryBoxHeader} `}
@@ -193,16 +191,14 @@ class SecondarySquares extends Component {
     });
 
     return (
-      <div className={secondaryBoxHover} key={this.props.item.index}>
+      <div className={secondaryBoxHover} key={this.props.item.index} onClick={e => this.props.onSecondaryCardClicked(e)}>
         <div
           className={`${secondaryBox}  ${
             this.props.activeJourneyCard === true
               ? 'journeyBoxAlert'
               : ""
             }`}
-          onClick={e =>
-            this.props.onJourneyCardClicked(e, this.props.item.index)
-          }
+          onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index) }
         >
           <div
             className={`${secondaryBoxHeader} `}

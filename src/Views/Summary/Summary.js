@@ -194,27 +194,21 @@ class Summary extends Component {
   };
 
   getSecondaryContent = () => {
+    // console.log(this.props.statsDetails);
     // Logic to render depending on App settings. this.props.appSettings.window.height and this.props.appSettings.window.width
     return (
       <SecondaryContentList
+        statsDetails={this.props.statsDetails}
         data={this.props.secondaryData}
         activeJourneyCard={this.props.activeSecondaryCard}
-        onJourneyCardClicked={(e, index) => {
-          this.updateActiveSecondary(index);
-        }}
-        onCommentIconClick={(e, type, index) => {
-          this.onCommentIconClick(e, type, index);
-        }}
+        onJourneyCardClicked={(e, index) => { this.updateActiveSecondary(index); }}
+        onCommentIconClick={(e, type, index) => { this.onCommentIconClick(e, type, index);}}
         toggleCommentary={this.props.toggleCommentary}
         deviceType={this.props.deviceType}
         activePrimary={this.props.activePrimaryCard}
         mobileSecondaryIsActive={this.props.mobileIsSecondary}
-        primaryDataCategory={
-          this.props.primaryData[this.props.activePrimaryCard].category
-        }
-        updateMobileView={(component, updateTo) => {
-          this.updateMobileView(component, updateTo);
-        }}
+        primaryDataCategory={  this.props.primaryData[this.props.activePrimaryCard].category }
+        updateMobileView={(component, updateTo) => { this.updateMobileView(component, updateTo); }}
         window={this.props.window}
         commentsPackage={this.props.commentsPackage}
       />
@@ -271,10 +265,9 @@ class Summary extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state.appSettings.views.primaryIsVisible);
+ 
   return {
-    // activeFilters: state.activeFilters,
-    // availableFilters: state.availableFilters,
+    statsDetails: state.summaryData.secondary[state.activeCards.secondary].details.stats,
     dialogIsOpen: state.isDialogOpen,
     detailIsOpen: state.detailsIsOpen,
     availableFilters: state.availableFilters,
