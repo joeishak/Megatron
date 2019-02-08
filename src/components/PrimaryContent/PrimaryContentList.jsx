@@ -42,7 +42,7 @@ class PrimaryContentList extends Component {
             laptopPrimaryRow: isLaptop
         });
         return (
-            <div className={responsivePrimaryRow}>
+            <div className={`container-primary` + responsivePrimaryRow}>
 
                 {(isLaptop === true) || (isVisible === true) ?
                     this.props.data.map(item => {

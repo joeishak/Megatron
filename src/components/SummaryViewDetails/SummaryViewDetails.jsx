@@ -162,12 +162,14 @@ class SummaryViewDetails extends Component {
             </div> :
             <span></span>}
 
-          <span className=" excelSpan">
+
+
+          <span className="excelSpan">
             <Workbook
               filename={`${this.props.activeItem.header}.xlsx`}
               element={
                 <button className="exportButton">
-                  <span>Export </span>
+                  <span>Export</span>
                   <img
                     alt=""
                     className="excelLogo"
@@ -234,6 +236,17 @@ class SummaryViewDetails extends Component {
             </Workbook>
           </span>
 
+          <div style={{float: 'right'}}>{ this.props.activeItem.details.stats.map(item => {
+              return (
+                <div className=" statsHeader">
+                  <div className={(item.color === 'red') ? 'stats red' : 'stats green '}>
+                    {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
+                  </div>
+                  <div className="footer"> {item.text}</div>
+                </div>
+              )
+            })
+          }</div>
 
           <div className="chartContainer col-md-12">
             <KendoMultiChart color="white" deviceType="laptop" />
@@ -252,7 +265,7 @@ class SummaryViewDetails extends Component {
                   </div>
             </span>
           </div>
-          {
+          {/* {
             this.props.activeItem.details.stats.map(item => {
               return (
 
@@ -264,7 +277,7 @@ class SummaryViewDetails extends Component {
                 </div>
               )
             })
-          }
+          } */}
 
         </div>
         <DetailBreakdown

@@ -278,3 +278,16 @@
     color: black !important;
     background-color: #D8D8D8 !important;
 }
+
+.k-panelbar-collapse {
+    -webkit-transform: rotate(90deg) !important; /* Safari and Chrome */
+    -moz-transform: rotate(90deg) !important;   /* Firefox */
+    -ms-transform: rotate(90deg) !important;   /* IE 9 */
+    -o-transform: rotate(90deg) !important;   /* Opera */
+    transform: rotate(90deg) !important;
+}
+
+/* .k-panelbar-expand::before {
+    border: 1px solid red;
+} */
+

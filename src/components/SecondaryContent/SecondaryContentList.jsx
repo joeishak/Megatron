@@ -164,9 +164,8 @@ class SecondaryContentList extends Component {
           <div className="primaryDataCategoryContainer">
             <p
               className="primaryCateogryNav"
-              onClick={e => this.updateView(e)}
-            >{`<`}</p>
-            <div className="primaryCategoryTitle">
+              onClick={e => this.updateView(e)}>{`<`}</p>
+            <div className="primaryCategoryTitle" onClick={e => this.updateView(e)}>
               {this.props.primaryDataCategory}
             </div>
           </div>
@@ -187,6 +186,7 @@ class SecondaryContentList extends Component {
               <SecondarySquares
                 window={this.props.window}
                 deviceType={this.props.deviceType}
+                statsDetails={this.props.statsDetails}
                 key={item.index}
                 item={item}
                 activeJourneyCard={isActive}
@@ -214,13 +214,13 @@ class SecondaryContentList extends Component {
 
     const mobileBottom = isMobileAndTablet && this.props.mobileSecondaryIsActive && this.state.clicked ? (
       <div className={`box4 ${this.state.detailsClassState}`} >
-        <div className="boxHeader">
-        <div className="close-btn">
+        {/* <div className="boxHeader">
+
+        </div> */}
+        <div className="row">
+            <div className="close-btn">
               <img src={closeBtn} onClick={e => this.onDetailMenuClose(e)}/>
             </div>
-        </div>
-        <div className="row">
-
         
         </div>
         <div className="row four-squares">
@@ -228,10 +228,10 @@ class SecondaryContentList extends Component {
             {this.props.statsDetails.map(item => {
                 return (
                   <div style={{float: 'left', margin: '5px' }} key={Math.random()}>
-                  <div className={item.color + ` stats`}>
+                  <div className={item.color + ` stats-detail`}>
                         <b>{utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}</b>
                     </div>
-                    <div className="stats">
+                    <div className="stats-detail">
                         <b>{item.text}</b>
                     </div>
               </div>

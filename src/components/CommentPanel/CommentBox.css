@@ -179,6 +179,12 @@ hr{
     padding: 0px !important;
 }
 
+.parent{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
 /* Content 2: QTD / Weekly Data */
 .mobileCommentContainer{
   /* overflow: auto;
@@ -188,7 +194,15 @@ hr{
   overflow-y: scroll;
   padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
   box-sizing: content-box;
+  
 }
+
+.mobileCommentContainer::-webkit-scrollbar { 
+    display: none; 
+}
+
+
+
 
 /* .mobileCommentContainer:after {
   content: "";

@@ -230,14 +230,15 @@ class SecondarySquares extends Component {
               {this.props.item.header}
             </div>
             <div
-              className={`  ${seconaryBoxContentAmount} ${
-                this.props.item.value >= this.props.item.target
+              className={`  ${seconaryBoxContentAmount} ${this.props.item.value >= this.props.item.target
                   ? `${boxContentAmountGreen}`
                   : ""
                 }`}
             >
-              {formattedValue}
+              {formattedValue} <span className={`QRF-Percent ` + this.props.statsDetails[0].color}>
+              {utils.formatMetric({ valueType: 'percent', value: this.props.statsDetails[0].value }, 'value')}</span>
             </div>
+          {console.log(this.props.statsDetails)}
             <div className={boxBullet}>
               <KendoBulletChart
                 isMobileOrTablet={utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet')}
@@ -249,7 +250,7 @@ class SecondarySquares extends Component {
                 key={this.props.item.index}
               />
             </div>
-            <div className={boxContentTarget}>{formattedTarget}</div>
+            <div className={boxContentTarget}>Target: {formattedTarget}</div>
           </div>
         </div>
       </div>
