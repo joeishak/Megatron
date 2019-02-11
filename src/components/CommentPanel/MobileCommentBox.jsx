@@ -108,7 +108,7 @@ class MobileCommentBox extends Component {
     render(){
 
         return(
-        <span>
+        <span className="parent">
             <div className='mobileCommentContainer'>
 
                 <div className='theDateTime'> {this.state.todaysDate}</div>

@@ -4,6 +4,9 @@ import SecondarySquares from "./SecondarySquares";
 import Playground from "../MobileComponents/Playground/Playground";
 import HorizontalSlider from "../MobileComponents/HorizontalSlider/HorizontalSlider.jsx";
 import 'hammerjs';
+import closeBtn from '../../assets/images/close-btn.svg';
+import MobileMultiChart from '../../components/MobileComponents/Playground/components/MobileMultiChart/MobileMultiChart.jsx';
+import MobileViewDetails from '../../components/MobileComponents/Playground/components/MobileViewDetails/MobileViewDetails.jsx'
 import {
   PRIMARY,
   SECONDARY,
@@ -13,6 +16,7 @@ import {
 } from "../../Constants/consts.js";
 
 import * as utils from '../../utilities';
+import MobileCommentBox from "../CommentPanel/MobileCommentBox";
 
 const navBarHeight = 50;
 const titleContainerHeight = 22;
@@ -26,6 +30,8 @@ class SecondaryContentList extends Component {
     super(props);
 
     this.state = {
+      detailsClassState: '',
+      clicked: false,
       isDragging: false,
       initialPos: this.props.window.height - this.calculateHeight(),
       onloadPos: this.props.window.height - this.calculateHeight(),
@@ -62,10 +68,9 @@ class SecondaryContentList extends Component {
 
       if (this.props.activeJourneyCard !== prevProps.activeJourneyCard) {
 
-        console.log([this.props.data[this.props.activeJourneyCard], ...this.state.sortedData.filter(item => item.index !== this.props.activeJourneyCard)])
+        // console.log([this.props.data[this.props.activeJourneyCard], ...this.state.sortedData.filter(item => item.index !== this.props.activeJourneyCard)])
         this.setState({ sortedData: [this.props.data[this.props.activeJourneyCard], ...this.state.sortedData.filter(item => item.index !== this.props.activeJourneyCard)] })
 
-        // this.props.onJourneyCardClicked({}, 0);
       }
     }
 
@@ -134,6 +139,21 @@ class SecondaryContentList extends Component {
     this.props.updateMobileView(SECONDARY, false);
   };
 
+  onSecondaryCardClicked = (e) => {
+    this.setState({detailsClassState: 'slide-in-bottom'});
+    this.setState({clicked: true});
+  }
+
+  onDetailMenuClose = (e) => {
+    this.setState({detailsClassState: 'slide-out-bottom'});
+    setTimeout(() => {
+       this.setState({clicked: false});
+    }, 1000);
+    this.setState({ sortedData: this.props.data});
+
+  }
+
+
   render() {
     const isMobileAndTablet =
       utils.includes(this.props.deviceType, 'mobile') ||
@@ -144,9 +164,8 @@ class SecondaryContentList extends Component {
           <div className="primaryDataCategoryContainer">
             <p
               className="primaryCateogryNav"
-              onClick={e => this.updateView(e)}
-            >{`<`}</p>
-            <div className="primaryCategoryTitle">
+              onClick={e => this.updateView(e)}>{`<`}</p>
+            <div className="primaryCategoryTitle" onClick={e => this.updateView(e)}>
               {this.props.primaryDataCategory}
             </div>
           </div>
@@ -167,9 +186,11 @@ class SecondaryContentList extends Component {
               <SecondarySquares
                 window={this.props.window}
                 deviceType={this.props.deviceType}
+                statsDetails={this.props.statsDetails}
                 key={item.index}
                 item={item}
                 activeJourneyCard={isActive}
+                onSecondaryCardClicked={e => this.onSecondaryCardClicked(e) }
                 onJourneyCardClicked={(e, index) => {
                   this.props.onJourneyCardClicked(e, index);
                 }}
@@ -191,36 +212,65 @@ class SecondaryContentList extends Component {
       ? { height: `${this.props.window.height - navBarHeight}px`, width: "100%" }
       : { height: "100%", marginTop: "30px", width: "20%" };
 
-    const mobileBottom =
-      isMobileAndTablet && this.props.mobileSecondaryIsActive ? (
-        <div style={renderStyleBottom} className="box3">
-          {/* resizer bar */}
-          <div
-            style={{ height: `${containerPullBar}px` }}
-            className="mobileResizer"
-            onMouseDown={e => this.startResize(e)}
-            onTouchStart={e => this.startResize(e)}
-          >
-            {" "}
-            <div className="resizerIcon" ><span className="k-icon k-i-reorder"></span></div>
-          </div>
+    const mobileBottom = isMobileAndTablet && this.props.mobileSecondaryIsActive && this.state.clicked ? (
+      <div className={`box4 ${this.state.detailsClassState}`} >
+        {/* <div className="boxHeader">
 
-          {/* Three Slide Playground bar */}
-          <div
-            className="secondaryContentBottom"
-            style={{ height: `${this.state.initialPos - containerPullBar}px` }}
-          >
-            <Playground
-              bottomContainerHeight={this.state.initialPos}
-              comments={this.props.data[this.props.activeJourneyCard].comments}
-              commentsPackage={this.props.commentsPackage}
-              detailsData={this.props.data[this.props.activeJourneyCard].details.qtdw}
-              valueType={this.props.data[this.props.activeJourneyCard].valueType}
-            >
-              {" "}
-            </Playground>
-          </div>
+        </div> */}
+        <div className="row">
+            <div className="close-btn">
+              <img src={closeBtn} onClick={e => this.onDetailMenuClose(e)}/>
+            </div>
+        
         </div>
+        <div className="row four-squares">
+            {/* {console.log(this.props.statsDetails)} */}
+            {this.props.statsDetails.map(item => {
+                return (
+                  <div style={{float: 'left', margin: '5px' }} key={Math.random()}>
+                  <div className={item.color + ` stats-detail`}>
+                        <b>{utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}</b>
+                    </div>
+                    <div className="stats-detail">
+                        <b>{item.text}</b>
+                    </div>
+              </div>
+                );
+            })}
+          
+        </div>
+        {/* Mobile Multi Chart */}
+        <div className="row" style={{paddingLeft: '9px'}}>
+          <MobileMultiChart bottomContainerHeight={250}></MobileMultiChart>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="sliderContainer">
+            <div className="scrolling-wrapper">
+                <div className="slider-content">
+                  <div className="sliderSquareContainerInner slider_box_inner">
+                    <MobileViewDetails detailsData={this.props.data[this.props.activeJourneyCard].details.qtdw} valueType={this.props.data[this.props.activeJourneyCard].valueType}></MobileViewDetails>
+                    
+                  </div>
+                </div>
+
+                <div className="slider-content">
+                  <div className="sliderSquareContainerInner slider_box_inner">
+                    <MobileViewDetails detailsData={this.props.data[this.props.activeJourneyCard].details.qtdw} valueType={this.props.data[this.props.activeJourneyCard].valueType}></MobileViewDetails>
+                  </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        {/* Commnets */}
+        <div style={{paddingLeft: '9px', paddingRight: '9px'}}>
+            <h6>Comments</h6>  
+          <MobileCommentBox comments={this.props.comments} commentsPackage={this.props.commentsPackage}></MobileCommentBox>
+        </div>
+
+      </div>
       ) : null;
 
     return (

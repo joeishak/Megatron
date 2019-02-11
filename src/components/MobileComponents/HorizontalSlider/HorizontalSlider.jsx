@@ -8,11 +8,6 @@ import SliderSqare from './components/SliderSquare.jsx';
 
 class HorizontalSlider extends Component {
 
-    // onCardClicked = (e, index) => {
-    //     console.log('here');
-    //     console.log(e, index);
-    // }
-
 
     render () {
        

@@ -179,6 +179,12 @@ hr{
     padding: 0px !important;
 }
 
+.parent{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
 /* Content 2: QTD / Weekly Data */
 .mobileCommentContainer{
   /* overflow: auto;
@@ -188,9 +194,17 @@ hr{
   overflow-y: scroll;
   padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
   box-sizing: content-box;
+  
 }
 
-.mobileCommentContainer:after {
+.mobileCommentContainer::-webkit-scrollbar { 
+    display: none; 
+}
+
+
+
+
+/* .mobileCommentContainer:after {
   content: "";
   position: absolute;
   z-index: 1;
@@ -200,7 +214,7 @@ hr{
   background-image: linear-gradient(to bottom, rgba(71, 67, 67, 0), rgb(0, 0, 0) 90%);
   width: 100%;
   height: 12em;
-}
+} */
 
 
 

@@ -94,6 +94,9 @@ class KendoBulletChart extends Component {
       }
       return color;
     }
+    
+    // const fqTarget = [this.props.values[0], this.props.values[1] - 500000];
+
 
     return (
       <div>
@@ -101,6 +104,7 @@ class KendoBulletChart extends Component {
         <ChartArea background="transparent"/>
           <ChartSeries>
               <ChartSeriesItem type="bullet" color={colorRender} data={this.props.values} target={{color: this.props.color}} />
+              {/* <ChartSeriesItem type="bullet" color={colorRender} data={fqTarget} target={{color: this.props.color}} /> */}
           </ChartSeries>
           <ChartCategoryAxis>
             <ChartCategoryAxisItem majorGridLines={this.state.hidden} minorGridLines={this.state.hidden} />

@@ -188,7 +188,7 @@ class Playground extends Component {
                     <div className="carousel-inner">
                         {/* MOBILE MULTICHART  */}
                         <div id="1" className={`item ${item1Active}`} style={{ height: `${this.props.bottomContainerHeight - 20}px` }}>
-                            <MobileMultiChart bottomContainerHeight={this.props.bottomContainerHeight}></MobileMultiChart>
+                            {/* <MobileMultiChart bottomContainerHeight={this.props.bottomContainerHeight}></MobileMultiChart> */}
                         </div>
                         {/* MOBILE VIEW DETAIILS */}
                         <div id="2" className={`item ${item2Active}`} style={{ height: `${this.props.bottomContainerHeight - 20}px` }}>

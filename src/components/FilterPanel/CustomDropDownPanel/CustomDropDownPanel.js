@@ -17,6 +17,7 @@ class CustomDropDownPanel extends Component {
         super(props);
         // Initialize state
         this.state = {
+            isButtonHighlighted: false,
             showContainer: this.props.showContainer,
             selectedFilters: [],
             activeDataFilters: [],
@@ -24,6 +25,8 @@ class CustomDropDownPanel extends Component {
     }
 
     componentDidUpdate() {
+        // console.log('UPDATING');
+        // console.log(this.props.filters);
         // // console.log('Updated Filters. . .', this.state.selectedFilters);
         // if(this.props.filters.quarters.valueFilters.length!==0){
         //     this.setState({selectedFilters: [...this.state.selectedFilters, ...this.props.filters.quarters.valueFilters]})
@@ -51,6 +54,8 @@ class CustomDropDownPanel extends Component {
 
         }
 
+        this.setState({isButtonHighlighted: true});
+
     }
     updateMultiValue = (e, type) => {
         // console.log('Updating MultiValue',e,type);
@@ -59,12 +64,12 @@ class CustomDropDownPanel extends Component {
             _.remove(copy, item => { return item.category === type });
             this.setState({ selectedFilters: [...copy] })
 
-
         } else {
             _.remove(copy, item => { return item.category === e[0].category });
             this.setState({ selectedFilters: [...copy, ...e] })
-
         }
+
+        this.setState({isButtonHighlighted: true});
 
 
     }
@@ -89,7 +94,7 @@ class CustomDropDownPanel extends Component {
     }
     submitFilters = (e) => {
         // console.log('Submitting Filters . . . ');
-
+        this.setState({isButtonHighlighted: false})
         let newFilters = {
             quarters: [],
             segments: [],
@@ -141,7 +146,7 @@ class CustomDropDownPanel extends Component {
     }
     render() {
         const { filters } = this.props;
-
+        const isGlowing = this.state.isButtonHighlighted ? 'myGlower' : '';
 
         var panelDropDownContainer = classNames({
             'panelDropDownContainer': true,
@@ -223,8 +228,7 @@ class CustomDropDownPanel extends Component {
                 </div>
 
                 <div className={quarterFilterContainer + ' col-lg-12'}>
-                    <input className="button" type={'button'} onClick={this.submitFilters} value="Submit" />
-
+                    <input className={`button ` + isGlowing} type={'button'} onClick={this.submitFilters} value="Submit" />
                 </div>
 
             </div>

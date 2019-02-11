@@ -166,3 +166,21 @@
 .default{
     margin-top: 35px;
 }
+
+@-webkit-keyframes glow {
+    to {
+         border-color: #2978D9;
+    -webkit-box-shadow: 0 0 5px #2978D9;
+       -moz-box-shadow: 0 0 5px #2978D9;
+            box-shadow: 0 0 5px #2978D9;
+    }
+}
+
+.myGlower {
+    background-color: #ccc;
+    border: 3px solid transparent;
+    -webkit-animation: glow 1.0s infinite alternate;  
+     -webkit-transition: border 1.0s linear, box-shadow 1.0s linear;
+       -moz-transition: border 1.0s linear, box-shadow 1.0s linear;
+            transition: border 1.0s linear, box-shadow 1.0s linear;
+}
