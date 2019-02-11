@@ -117,7 +117,7 @@ class Summary extends Component {
     // }
 
     if (this.state.initialDataLoadIsComplete === true && (this.props.filters !== prevProps.filters)) {
-      this.setState({ isLoading: true });
+      // this.setState({ isLoading: true });
       this.props.getPrimaryData(this.props.filters);
       switch (this.props.activePrimaryCard) {
         case 0:
@@ -149,7 +149,7 @@ class Summary extends Component {
       }
     }
     if (this.props.summaryData !== prevProps.summaryData && this.state.initialDataLoadIsComplete === true) {
-      this.setState({ isLoading: false });
+      // this.setState({ isLoading: false });
     }
     if (this.props.activePrimaryCard.index > 0) {
       this.props.updateMultichartMetric(true);
@@ -279,7 +279,7 @@ class Summary extends Component {
             <div>
 
 
-              {this.state.isLoading === true ? <LoadingScreen></LoadingScreen> :
+              {this.state.isLoading === false ? <LoadingScreen></LoadingScreen> :
                 (
 
 

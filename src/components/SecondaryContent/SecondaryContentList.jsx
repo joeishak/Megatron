@@ -172,13 +172,18 @@ class SecondaryContentList extends Component {
         ) : null;
 
     const data = (isMobileAndTablet === true) ? this.state.sortedData : this.props.data;
-    const secondaryContentTop =
-      (this.props.mobileSecondaryIsActive === true &&
-        isMobileAndTablet === true) ||
-        isMobileAndTablet === false
+
+  
+    let numberOfSecondarySquares = 0;
+    if(data !== undefined) {
+      let filtered = data.filter((ele) => { return ele.category === this.props.activePrimary});
+      numberOfSecondarySquares = filtered.length;   
+    }
+
+    const secondaryContentTop = (this.props.mobileSecondaryIsActive === true &&
+        isMobileAndTablet === true) || isMobileAndTablet === false
         ? data.map(item => {
-          let isActive =
-            this.props.activeJourneyCard === item.index
+          let isActive = this.props.activeJourneyCard === item.index
               ? true
               : false;
           if (this.props.activePrimary === item.category) {
@@ -209,14 +214,14 @@ class SecondaryContentList extends Component {
       }
       : { height: "100%" };
     const renderContainerStyle = isMobileAndTablet
-      ? { height: `${this.props.window.height - navBarHeight}px`, width: "100%" }
+      ? { height: `-${this.props.window.height - navBarHeight}px`, width: "100%" }
       : { height: "100%", marginTop: "30px", width: "20%" };
 
-    const mobileBottom = isMobileAndTablet && this.props.mobileSecondaryIsActive && this.state.clicked ? (
-      <div className={`box4 ${this.state.detailsClassState}`} >
-        {/* <div className="boxHeader">
+    const box4Style = { top: `-${(secondaryRowHeight * numberOfSecondarySquares) - 65}px`}
 
-        </div> */}
+    const mobileBottom = isMobileAndTablet && this.props.mobileSecondaryIsActive && this.state.clicked ? (
+      <div className={`box4 ${this.state.detailsClassState}`} style={box4Style}>
+
         <div className="row">
             <div className="close-btn">
               <img src={closeBtn} onClick={e => this.onDetailMenuClose(e)}/>
@@ -224,7 +229,7 @@ class SecondaryContentList extends Component {
         
         </div>
         <div className="row four-squares">
-            {/* {console.log(this.props.statsDetails)} */}
+
             {this.props.statsDetails.map(item => {
                 return (
                   <div style={{float: 'left', margin: '5px' }} key={Math.random()}>

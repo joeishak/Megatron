@@ -306,7 +306,8 @@
 	border-top-left-radius: 24px;
 	color: white;
 	padding: 13px;
-	top: -191px;
+	/* top: -191px; */
+	/* top: -200px; */
 	border: 2px solid rgb(255, 255, 255);
 }
 
