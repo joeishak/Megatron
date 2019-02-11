@@ -60,9 +60,7 @@ class PrimarySquare extends Component {
     const formattedQRF = utils.formatMetric(
       {
         valueType: this.props.item.valueType,
-        value: (this.props.item.target === 0) ? 0 : (
-          (this.props.item.value - this.props.item.target) /
-          this.props.item.target)
+        value: this.props.item.vsqrf
       },
       "qrf"
     ) || 0;

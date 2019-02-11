@@ -53,14 +53,13 @@ class SecondarySquares extends Component {
     );
     const formattedTarget = utils.formatMetric(
       { valueType: this.props.item.valueType, value: this.props.item.target },
-      "target"
+      "value"
     );
     const formattedQRF = utils.formatMetric(
       {
         valueType: this.props.item.valueType,
         value:
-          (this.props.item.value - this.props.item.target) /
-          this.props.item.target
+          this.props.item.vsQrf
       },
       "qrf"
     );

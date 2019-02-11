@@ -80,6 +80,7 @@ export const PrimaryData = [
 
 ]
 export const SecondaryData = [
+    /* Finance */
     {
         index: 0,
         category: 0,
@@ -107,12 +108,12 @@ export const SecondaryData = [
                     {
                         index: 1,
                         header: 'Actuals',
-                        value: undefined
+                        value: 0
                     },
                     {
                         index: 2,
                         header: 'Units',
-                        value: 66.7
+                        value: 0
                     },
                     {
                         index: 3,
@@ -178,17 +179,7 @@ export const SecondaryData = [
 
                 ],
                 week: [
-                    {
-                        index: 0,
-                        marketArea: 'ADOBE.COM/CC.COM',
-                        actuals: 66.7,
-                        units: 751.1,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        ww: -20.00,
-                        type: 'US'
-                    }
+
                 ],
                 all: [
                     {
@@ -3334,6 +3325,7 @@ export const SecondaryData = [
         },
         valueType: 'currency'
     },
+    /* Discover */
     {
         index: 4,
         category: 1,
@@ -5131,6 +5123,14512 @@ export const SecondaryData = [
                 }
             ]
         },
+        valueType: 'units'
+    },
+    {
+        index: 8,
+        category: 1,
+        header: 'Paid Media Sourced UQFMs',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'units'
+    },
+    {
+        index: 9,
+        category: 1,
+        header: 'New UQFMs',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'units'
+    },
+    {
+        index: 10,
+        category: 1,
+        header: 'Bounce Rate',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    /* Try */
+    {
+        index: 11,
+        category: 2,
+        header: 'New UQFMs',
+        value: 73456345,
+        target: 23462345,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'units'
+
+    },
+    {
+        index: 12,
+        category: 2,
+        header: 'Cumulative UQFMS',
+        value: 23563456,
+        target: 34563456,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ]
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ],
+                all: [
+                    {
+                        index: 0,
+                        qtd: {
+                            segment: 'RESELLER',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'ANZ'
+                        },
+                        week: {
+                            segment: 'US',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'AMER'
+                        }
+                    },
+                    {
+                        index: 1,
+                        qtd: {
+                            segment: 'E-TAIL/RETAIL',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'ROW'
+                        },
+                        week: {
+                            segment: 'ROW',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'AMER'
+                        }
+                    },
+                    {
+                        index: 2,
+                        qtd: {
+                            segment: 'E-TAIL/RETAIL',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'ROW'
+                        },
+                        week: {
+                            segment: 'ROW',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'ASIA'
+                        }
+                    },
+                    {
+                        index: 3,
+                        qtd: {
+                            segment: 'ADOBE.COM/CC.COM',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'US'
+                        },
+                        week: {
+                            segment: 'ANZ',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'ASIA'
+                        }
+                    }
+
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'units'
+    },
+    {
+        index: 13,
+        category: 2,
+        header: 'New QFMs',
+        value: .34523,
+        target: .23452345,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ]
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'units'
+    },
+    {
+        index: 14,
+        category: 2,
+        header: 'Cumulative QFMs',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'units'
+    },
+    {
+        index: 15,
+        category: 2,
+        header: '28 Day New UQFM to QFM',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    {
+        index: 16,
+        category: 2,
+        header: '28 Day New UQFM to QFM',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    {
+        index: 17,
+        category: 2,
+        header: 'Cum. UQFM to QFM',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    /* Buy */
+    {
+        index: 18,
+        category: 3,
+        header: 'Paid Media Spend',
+        value: 73456345,
+        target: 23462345,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'units'
+
+    },
+    {
+        index: 19,
+        category: 3,
+        header: 'Marketing Sourced ARR',
+        value: 23563456,
+        target: 34563456,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ]
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ],
+                all: [
+                    {
+                        index: 0,
+                        qtd: {
+                            segment: 'RESELLER',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'ANZ'
+                        },
+                        week: {
+                            segment: 'US',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'AMER'
+                        }
+                    },
+                    {
+                        index: 1,
+                        qtd: {
+                            segment: 'E-TAIL/RETAIL',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'ROW'
+                        },
+                        week: {
+                            segment: 'ROW',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'AMER'
+                        }
+                    },
+                    {
+                        index: 2,
+                        qtd: {
+                            segment: 'E-TAIL/RETAIL',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'ROW'
+                        },
+                        week: {
+                            segment: 'ROW',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'ASIA'
+                        }
+                    },
+                    {
+                        index: 3,
+                        qtd: {
+                            segment: 'ADOBE.COM/CC.COM',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'US'
+                        },
+                        week: {
+                            segment: 'ANZ',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'ASIA'
+                        }
+                    }
+
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
         valueType: 'currency'
     },
+    {
+        index: 20,
+        category: 3,
+        header: 'Conversion',
+        value: .34523,
+        target: .23452345,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ]
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    {
+        index: 21,
+        category: 3,
+        header: 'D2P Conversion',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    {
+        index: 22,
+        category: 3,
+        header: 'F2P Conversion',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    {
+        index: 23,
+        category: 3,
+        header: 'Gross New ARR',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    }, {
+        index: 24,
+        category: 3,
+        header: 'Gross New Units',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    /* Use */
+    {
+        index: 24,
+        category: 4,
+        header: 'Engagement Index',
+        value: 73456345,
+        target: 23462345,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'units'
+
+    },
+    {
+        index: 25,
+        category: 4,
+        header: 'Paid User MAU',
+        value: 23563456,
+        target: 34563456,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ]
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ],
+                all: [
+                    {
+                        index: 0,
+                        qtd: {
+                            segment: 'RESELLER',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'ANZ'
+                        },
+                        week: {
+                            segment: 'US',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'AMER'
+                        }
+                    },
+                    {
+                        index: 1,
+                        qtd: {
+                            segment: 'E-TAIL/RETAIL',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'ROW'
+                        },
+                        week: {
+                            segment: 'ROW',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'AMER'
+                        }
+                    },
+                    {
+                        index: 2,
+                        qtd: {
+                            segment: 'E-TAIL/RETAIL',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'ROW'
+                        },
+                        week: {
+                            segment: 'ROW',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'ASIA'
+                        }
+                    },
+                    {
+                        index: 3,
+                        qtd: {
+                            segment: 'ADOBE.COM/CC.COM',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'US'
+                        },
+                        week: {
+                            segment: 'ANZ',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'ASIA'
+                        }
+                    }
+
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    {
+        index: 26,
+        category: 4,
+        header: 'Repeat User MAU',
+        value: .34523,
+        target: .23452345,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ]
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    {
+        index: 27,
+        category: 4,
+        header: 'Paid User Success',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    {
+        index: 28,
+        category: 4,
+        header: 'WK 0 WAU rate',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    {
+        index: 29,
+        category: 4,
+        header: 'Wk 4 WAU Rate',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    {
+        index: 30,
+        category: 4,
+        header: 'Learn Discovery',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    {
+        index: 31,
+        category: 4,
+        header: 'In Product NPS',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    /* Renew */
+    {
+        index: 32,
+        category: 5,
+        header: 'Cancellations ARR',
+        value: 73456345,
+        target: 23462345,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'units'
+
+    },
+    {
+        index: 33,
+        category: 5,
+        header: 'Cancellations ARR',
+        value: 23563456,
+        target: 34563456,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ]
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ],
+                all: [
+                    {
+                        index: 0,
+                        qtd: {
+                            segment: 'RESELLER',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'ANZ'
+                        },
+                        week: {
+                            segment: 'US',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'AMER'
+                        }
+                    },
+                    {
+                        index: 1,
+                        qtd: {
+                            segment: 'E-TAIL/RETAIL',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'ROW'
+                        },
+                        week: {
+                            segment: 'ROW',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'AMER'
+                        }
+                    },
+                    {
+                        index: 2,
+                        qtd: {
+                            segment: 'E-TAIL/RETAIL',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'ROW'
+                        },
+                        week: {
+                            segment: 'ROW',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'ASIA'
+                        }
+                    },
+                    {
+                        index: 3,
+                        qtd: {
+                            segment: 'ADOBE.COM/CC.COM',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'US'
+                        },
+                        week: {
+                            segment: 'ANZ',
+                            actuals: 66.7,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'ASIA'
+                        }
+                    }
+
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'units'
+    },
+    {
+        index: 34,
+        category: 5,
+        header: 'QTR Fin Retention Rate',
+        value: .34523,
+        target: .23452345,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ]
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'percent'
+    },
+    {
+        index: 35,
+        category: 5,
+        header: 'QTR UI Rate',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'currency'
+    },
+    {
+        index: 36,
+        category: 5,
+        header: 'QTR PF Rate',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'currency'
+    },
+    {
+        index: 37,
+        category: 5,
+        header: 'Cancellations ARR',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'currency'
+    },
+    {
+        index: 38,
+        category: 5,
+        header: 'EOT Retention Rate',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'currency'
+    },
+    {
+        index: 39,
+        category: 5,
+        header: 'QTR Fin Retention Rate',
+        value: .746,
+        target: .97766,
+        comments: [
+
+        ],
+        details: {
+            multichart: [
+                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+            ],
+            qtdw: {
+                qtd: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'Q/Q',
+                        value: 66.7
+                    },
+                    {
+                        index: 7,
+                        header: 'Y/Y',
+                        value: 66.7
+                    }
+                ],
+                week: [
+                    {
+                        index: 1,
+                        header: 'Actuals',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'Units',
+                        value: 66.7
+                    },
+                    {
+                        index: 3,
+                        header: 'QRF',
+                        value: 66.7
+                    },
+                    {
+                        index: 4,
+                        header: 'QRF Diff',
+                        value: 66.7
+                    },
+                    {
+                        index: 5,
+                        header: 'Vs Qrf',
+                        value: 66.7
+                    },
+                    {
+                        index: 6,
+                        header: 'W/W',
+                        value: 66.7
+                    }
+                ]
+            },
+            geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+                all: []
+            },
+            market: {
+                qtd: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        marketArea: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    }
+                ],
+                all: []
+            },
+            routes: {
+                qtd: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        routes: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        routes: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        routes: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            segment: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        segment: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        segment: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            product: {
+                qtd: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'ANZ'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        product: 'ADOBE.COM/CC.COM',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'US'
+                    },
+                    {
+                        index: 1,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 2,
+                        product: 'E-TAIL/RETAIL',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ROW'
+                    },
+                    {
+                        index: 3,
+                        product: 'RESELLER',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'ANZ'
+                    }
+                ]
+            },
+            stats: [
+                {
+                    value: -2.6,
+                    color: 'red',
+                    text: 'vs QRF'
+                },
+                {
+                    value: -20.4,
+                    color: 'red',
+                    text: 'Q/Q TY'
+                },
+                {
+                    value: -17.0,
+                    color: 'red',
+                    text: 'Q/Q LY'
+                },
+                {
+                    value: -2.9,
+                    color: 'green',
+                    text: 'Y/Y'
+                }
+            ]
+        },
+        valueType: 'currency'
+    }
 ]

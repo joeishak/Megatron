@@ -215,7 +215,7 @@ class FilterPage extends Component {
                                     onMenuClose={this.closeMultiValue}
                                 />                                        </div>
                             <div className="col-xs-12 col-sm-6  col-md-6">
-                                <p>Product name</p>
+                                <p>Product Category</p>
                                 {/* <KendoDropDownList  data={this.props.availableFilters.products}/> */}
                                 <MultiValueSelect
                                     options={filters.products.availableFilters}

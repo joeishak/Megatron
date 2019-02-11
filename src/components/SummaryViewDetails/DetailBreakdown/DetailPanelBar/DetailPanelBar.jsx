@@ -19,7 +19,7 @@ class DetailPanelBar extends Component {
         this.state = {
         }
         this.getPanelContents = this.getPanelContents.bind(this);
-   
+
     }
 
     shouldComponentUpdate(nextProps) {
@@ -27,8 +27,8 @@ class DetailPanelBar extends Component {
     }
 
 
-   
-   
+
+
 
 
     /* Return Contents for */
@@ -37,23 +37,23 @@ class DetailPanelBar extends Component {
             <div className='row'>
                 <div className='col-md-12 topPanelHeader'>
                     {/* {this.getTopHeader()} */}
-                    <DetailPanelItemTimeHeader 
-                    timeMetric={this.props.timeMetric}
+                    <DetailPanelItemTimeHeader
+                        timeMetric={this.props.timeMetric}
                     />
                 </div>
                 <div className='col-md-12'>
                     {/* {this.getLowerHeader(type)} */}
                     <PanelItemTableHeader
-                    timeMetric={this.props.timeMetric}
-                    activeSummary={this.props.activeSummary}
-                    type={type}/>
+                        timeMetric={this.props.timeMetric}
+                        activeSummary={this.props.activeSummary}
+                        type={type} />
                 </div>
                 <div className='col-md-12 geoTableContainer'>
                     {/* {this.getTable(type)} */}
                     <PanelItemTable
-                    type={type}
-                    activeSummary={this.props.activeSummary}
-                    timeMetric={this.props.timeMetric}
+                        type={type}
+                        activeSummary={this.props.activeSummary}
+                        timeMetric={this.props.timeMetric}
                     />
                 </div>
             </div>
@@ -76,7 +76,7 @@ class DetailPanelBar extends Component {
                 <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                 </ PanelBarItem>
-                <PanelBarItem className="panelItemTitle" expanded={false} title='Product Name'>
+                <PanelBarItem className="panelItemTitle" expanded={false} title='Product Category'>
                     {this.getPanelContents(DIMENSIONS.PRODUCT)}
                 </PanelBarItem>
             </PanelBar>

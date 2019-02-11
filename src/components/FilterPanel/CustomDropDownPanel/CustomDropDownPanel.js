@@ -214,7 +214,7 @@ class CustomDropDownPanel extends Component {
                     />
                 </div>
                 <div className={quarterFilterContainer + ' col-lg-5'} >
-                    <p> Product Name</p>
+                    <p> Product Category</p>
                     <MultiValueSelect
                         options={filters.products.availableFilters}
                         onValueChange={(e) => { let type = 'products'; this.updateMultiValue(e, type) }}

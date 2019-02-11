@@ -178,7 +178,7 @@
     line-height: 30px;
     font-size: 13px;
     text-align: center;
-    width: 11.11%;
+    width: 14.21%;
     color: white;
     background-color: #1f1f1f;
 }
@@ -264,7 +264,7 @@
     background-color: #1f1f1f !important;
 }
 .geoTableContainer{
-    padding:0px;
+    padding:5px;
 }
 
 .k-content {

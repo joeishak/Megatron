@@ -83,8 +83,7 @@ class Summary extends Component {
       this.props.getUserSettings(this.props.user.sub);
     }
 
-    // if(this.props.filters.combined.availableFilters.length===0){
-    // }
+
     // Boolean Rule Tests
     let preferencesAreLoaded = Object.keys(prevProps.preferences).length === 0 && this.props.preferences.geoFilters !== undefined;
     let filtersAreLoaded = prevProps.filters.combined.availableFilters.length === 0 && this.props.filters.combined.availableFilters.length > 0;
@@ -106,20 +105,52 @@ class Summary extends Component {
 
 
     if (appIsReadyToRequestSummaryData && this.state.preferncesAreAddedToFilters === true) {
-      // console.log('Both Preferences and Filters are loaded');
-      this.props.getSummaryData(this.props.filters);
+      console.log('Both Preferences and Filters are loaded');
+      this.props.getFinanceSecondaryData(this.props.filters);
+      this.props.getPrimaryData(this.props.filters);
+      // this.props.getSummaryData(this.props.filters);
       this.setState({ initialDataLoadIsComplete: true })
     }
 
+    // if (this.props.summaryData !== prevProps.summaryData && this.state.initialDataLoadIsComplete === true) {
+    //   this.setState({ isLoading: false });
+    // }
+
+    if (this.state.initialDataLoadIsComplete === true && (this.props.filters !== prevProps.filters)) {
+      this.setState({ isLoading: true });
+      this.props.getPrimaryData(this.props.filters);
+      switch (this.props.activePrimaryCard) {
+        case 0:
+          console.log('Fetching Finance')
+          this.props.getFinanceSecondaryData(this.props.filters);
+          break;
+        case 1:
+          console.log('Fetching Discover')
+          this.props.getDiscoverSecondaryData(this.props.filters);
+          break;
+        default:
+          break;
+      }
+    }
+
+    if (this.props.activePrimaryCard !== prevProps.activePrimaryCard) {
+      // this.setState({ isLoading: true });
+      switch (this.props.activePrimaryCard) {
+        case 0:
+          console.log('Fetching Finance')
+          this.props.getFinanceSecondaryData(this.props.filters);
+          break;
+        case 1:
+          console.log('Fetching Discover')
+          this.props.getDiscoverSecondaryData(this.props.filters);
+          break;
+        default:
+          break;
+      }
+    }
     if (this.props.summaryData !== prevProps.summaryData && this.state.initialDataLoadIsComplete === true) {
       this.setState({ isLoading: false });
     }
-
-    if (this.state.initialDataLoadIsComplete === true && (this.props.filters !== prevProps.filters)) {
-      this.props.getSummaryData(this.props.filters);
-    }
-
-
     if (this.props.activePrimaryCard.index > 0) {
       this.props.updateMultichartMetric(true);
     }
@@ -130,6 +161,7 @@ class Summary extends Component {
   }
   updateActivePrimary(index) {
     this.props.updateActivePrimaryCard(index);
+    this.setState({ isLoading: true });
     switch (index) {
       case (0):
         this.props.updateActiveSecondaryCard(0);
@@ -137,6 +169,22 @@ class Summary extends Component {
       case (1):
         this.props.updateMultichartMetric(true);
         this.props.updateActiveSecondaryCard(4);
+        break;
+      case (2):
+        this.props.updateMultichartMetric(true);
+        this.props.updateActiveSecondaryCard(11);
+        break;
+      case (3):
+        this.props.updateMultichartMetric(true);
+        this.props.updateActiveSecondaryCard(18);
+        break;
+      case (4):
+        this.props.updateMultichartMetric(true);
+        this.props.updateActiveSecondaryCard(24);
+        break;
+      default:
+        this.props.updateMultichartMetric(true);
+        this.props.updateActiveSecondaryCard(32);
         break;
     }
     if (
@@ -226,7 +274,7 @@ class Summary extends Component {
     const { user } = this.props;
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
     const isMobileOrTablet = utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet');
-    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails />;
+    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails secondaryData={this.props.secondaryData} />;
 
     return (
       <div style={isMobileOrTablet ? { height: `${this.props.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
@@ -271,7 +319,7 @@ class Summary extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state.appSettings.views.primaryIsVisible);
+  console.log(state.summaryData, state.activeCards);
   return {
     // activeFilters: state.activeFilters,
     // availableFilters: state.availableFilters,
