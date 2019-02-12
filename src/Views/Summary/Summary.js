@@ -43,7 +43,7 @@ class Summary extends Component {
       },
       preferncesAreAddedToFilters: false,
       initialDataLoadIsComplete: false,
-      isLoading: false
+      isLoading: true
     };
 
     /*Bindings  */
@@ -134,13 +134,16 @@ class Summary extends Component {
     }
 
     if (this.props.activePrimaryCard !== prevProps.activePrimaryCard) {
-      // this.setState({ isLoading: true });
       switch (this.props.activePrimaryCard) {
         case 0:
+          this.setState({ isLoading: true });
+
           console.log('Fetching Finance')
           this.props.getFinanceSecondaryData(this.props.filters);
           break;
         case 1:
+          this.setState({ isLoading: true });
+
           console.log('Fetching Discover')
           this.props.getDiscoverSecondaryData(this.props.filters);
           break;
@@ -149,7 +152,7 @@ class Summary extends Component {
       }
     }
     if (this.props.summaryData !== prevProps.summaryData && this.state.initialDataLoadIsComplete === true) {
-      // this.setState({ isLoading: false });
+      this.setState({ isLoading: false });
     }
     if (this.props.activePrimaryCard.index > 0) {
       this.props.updateMultichartMetric(true);
@@ -279,7 +282,7 @@ class Summary extends Component {
             <div>
 
 
-              {this.state.isLoading === false ? <LoadingScreen></LoadingScreen> :
+              {this.state.isLoading === true ? <LoadingScreen></LoadingScreen> :
                 (
 
 
