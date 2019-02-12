@@ -7,6 +7,7 @@ import 'hammerjs';
 import closeBtn from '../../assets/images/close-btn.svg';
 import MobileMultiChart from '../../components/MobileComponents/Playground/components/MobileMultiChart/MobileMultiChart.jsx';
 import MobileViewDetails from '../../components/MobileComponents/Playground/components/MobileViewDetails/MobileViewDetails.jsx'
+import _ from 'lodash';
 import {
   PRIMARY,
   SECONDARY,
@@ -81,11 +82,12 @@ class SecondaryContentList extends Component {
   }
 
   calculateHeight = () => {
+    let list = _.filter(this.props.data, item => { return item.category === this.props.activePrimary })
     let navHeight = 50;
     if (this.props.window.width > 1024 || this.props.window.width > 765) {
       navHeight = 80;
     }
-    return navHeight + titleContainerHeight + secondaryRowHeight * 4;
+    return navHeight + titleContainerHeight + secondaryRowHeight * list.length;
   };
 
   startResize = () => {
@@ -140,16 +142,16 @@ class SecondaryContentList extends Component {
   };
 
   onSecondaryCardClicked = (e) => {
-    this.setState({detailsClassState: 'slide-in-bottom'});
-    this.setState({clicked: true});
+    this.setState({ detailsClassState: 'slide-in-bottom' });
+    this.setState({ clicked: true });
   }
 
   onDetailMenuClose = (e) => {
-    this.setState({detailsClassState: 'slide-out-bottom'});
+    this.setState({ detailsClassState: 'slide-out-bottom' });
     setTimeout(() => {
-       this.setState({clicked: false});
+      this.setState({ clicked: false });
     }, 1000);
-    this.setState({ sortedData: this.props.data});
+    this.setState({ sortedData: this.props.data });
 
   }
 
@@ -190,7 +192,7 @@ class SecondaryContentList extends Component {
                 key={item.index}
                 item={item}
                 activeJourneyCard={isActive}
-                onSecondaryCardClicked={e => this.onSecondaryCardClicked(e) }
+                onSecondaryCardClicked={e => this.onSecondaryCardClicked(e)}
                 onJourneyCardClicked={(e, index) => {
                   this.props.onJourneyCardClicked(e, index);
                 }}
@@ -218,60 +220,60 @@ class SecondaryContentList extends Component {
 
         </div> */}
         <div className="row">
-            <div className="close-btn">
-              <img src={closeBtn} onClick={e => this.onDetailMenuClose(e)}/>
-            </div>
-        
+          <div className="close-btn">
+            <img src={closeBtn} onClick={e => this.onDetailMenuClose(e)} />
+          </div>
+
         </div>
         <div className="row four-squares">
-            {/* {console.log(this.props.statsDetails)} */}
-            {this.props.statsDetails.map(item => {
-                return (
-                  <div style={{float: 'left', margin: '5px' }} key={Math.random()}>
-                  <div className={item.color + ` stats-detail`}>
-                        <b>{utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}</b>
-                    </div>
-                    <div className="stats-detail">
-                        <b>{item.text}</b>
-                    </div>
+          {/* {console.log(this.props.statsDetails)} */}
+          {this.props.statsDetails.map(item => {
+            return (
+              <div style={{ float: 'left', margin: '5px' }} key={Math.random()}>
+                <div className={item.color + ` stats-detail`}>
+                  <b>{utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}</b>
+                </div>
+                <div className="stats-detail">
+                  <b>{item.text}</b>
+                </div>
               </div>
-                );
-            })}
-          
+            );
+          })}
+
         </div>
         {/* Mobile Multi Chart */}
-        <div className="row" style={{paddingLeft: '9px'}}>
+        <div className="row" style={{ paddingLeft: '9px' }}>
           <MobileMultiChart bottomContainerHeight={250}></MobileMultiChart>
         </div>
 
         {/* Bottom Section */}
         <div className="sliderContainer">
-            <div className="scrolling-wrapper">
-                <div className="slider-content">
-                  <div className="sliderSquareContainerInner slider_box_inner">
-                    <MobileViewDetails detailsData={this.props.data[this.props.activeJourneyCard].details.qtdw} valueType={this.props.data[this.props.activeJourneyCard].valueType}></MobileViewDetails>
-                    
-                  </div>
-                </div>
+          <div className="scrolling-wrapper">
+            <div className="slider-content">
+              <div className="sliderSquareContainerInner slider_box_inner">
+                <MobileViewDetails detailsData={this.props.data[this.props.activeJourneyCard].details.qtdw} valueType={this.props.data[this.props.activeJourneyCard].valueType}></MobileViewDetails>
 
-                <div className="slider-content">
-                  <div className="sliderSquareContainerInner slider_box_inner">
-                    <MobileViewDetails detailsData={this.props.data[this.props.activeJourneyCard].details.qtdw} valueType={this.props.data[this.props.activeJourneyCard].valueType}></MobileViewDetails>
-                  </div>
-                </div>
-
+              </div>
             </div>
+
+            <div className="slider-content">
+              <div className="sliderSquareContainerInner slider_box_inner">
+                <MobileViewDetails detailsData={this.props.data[this.props.activeJourneyCard].details.qtdw} valueType={this.props.data[this.props.activeJourneyCard].valueType}></MobileViewDetails>
+              </div>
+            </div>
+
+          </div>
 
         </div>
 
         {/* Commnets */}
-        <div style={{paddingLeft: '9px', paddingRight: '9px'}}>
-            <h6>Comments</h6>  
+        <div style={{ paddingLeft: '9px', paddingRight: '9px' }}>
+          <h6>Comments</h6>
           <MobileCommentBox comments={this.props.comments} commentsPackage={this.props.commentsPackage}></MobileCommentBox>
         </div>
 
       </div>
-      ) : null;
+    ) : null;
 
     return (
       <div

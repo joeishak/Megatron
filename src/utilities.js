@@ -1268,9 +1268,9 @@ export function formatMetric(item, type) {
         switch (item.valueType) {
 
             case 'units':
-                return renderUnits(item.value);
+                return (renderUnits(item.value) !== NaN) ? renderUnits(item.value) : 0;
             case 'currency':
-                return renderDollarValue(item.value);
+                return (renderDollarValue(item.value)) ? renderDollarValue(item.value) : 0;
             case 'percent':
                 return (formatPercentage(item.value) !== NaN) ? formatPercentage(item.value) : 0;
         }

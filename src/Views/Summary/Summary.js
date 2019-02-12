@@ -43,7 +43,7 @@ class Summary extends Component {
       },
       preferncesAreAddedToFilters: false,
       initialDataLoadIsComplete: false,
-      isLoading: true
+      isLoading: false
     };
 
     /*Bindings  */
@@ -117,7 +117,7 @@ class Summary extends Component {
     // }
 
     if (this.state.initialDataLoadIsComplete === true && (this.props.filters !== prevProps.filters)) {
-      this.setState({ isLoading: true });
+      // this.setState({ isLoading: true });
       this.props.getPrimaryData(this.props.filters);
       switch (this.props.activePrimaryCard) {
         case 0:
@@ -161,7 +161,7 @@ class Summary extends Component {
   }
   updateActivePrimary(index) {
     this.props.updateActivePrimaryCard(index);
-    this.setState({ isLoading: true });
+    // this.setState({ isLoading: true });
     switch (index) {
       case (0):
         this.props.updateActiveSecondaryCard(0);

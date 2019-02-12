@@ -1,7 +1,7 @@
 export const PrimaryData = [
     {
         index: 0,
-        category: 'Finance',
+        category: 'Financial Perf.',
         header: 'Net New ARR',
         value: 0,
         target: 0,
