@@ -6,18 +6,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import * as utils from "../../utilities.js";
 import classNames from "classnames";
 import "@progress/kendo-theme-default/dist/all.css";
-// Kendo Components
-// import KendoPanelBar from "components/KendoPanelBar/KendoPanelBar.jsx";
-
+import MultiValueSelect from '../MultiValueSelect/MultiValueSelect';
+import SingleValueSelect from '../SingleValueSelect/SingleValueSelect';
 import KendoMultiChart from "../KendoMultiChart/KendoMultiChart";
-// Custom Components
 import Workbook from "react-excel-workbook";
 import excelLogo from "../../assets/images/excel-logo.png";
 import excelLogoGreen from "../../assets/images/excel-logo-green.svg";
-// Services
 import ExcelFormatter from "./ExcelFormatter";
-
 import DetailBreakdown from './DetailBreakdown/DetailBreakdown';
+
 class SummaryViewDetails extends Component {
   constructor(props) {
     super(props);
@@ -85,6 +82,62 @@ class SummaryViewDetails extends Component {
     return newArr;
   }
 
+  getSummaryFilters(activeItem) {
+    let drillDownFilter;
+    switch(activeItem) {
+      case 4:
+        // Discover - Traffic
+        // console.log('discover traffic');
+        drillDownFilter = <SingleValueSelect
+          activeFilters={[]}
+          options={[{index: 0, category: " ", value: "TRAFFIC FILTER 1"},
+          {index: 1, category: " ", value: "TRAFFIC FILTER 2"},
+          {index: 2, category: " ", value: "TRAFFIC FILTER 3"}]}
+          onValueChange={e => {console.log(e)}}
+          onMenuClose={e => {console.log(e)}}
+        />
+        break;
+      case 7:
+        // Discover - Paid Media Spend
+        // console.log('discover - paid media spend');
+        drillDownFilter = <SingleValueSelect
+          activeFilters={[]}
+          options={[{index: 0, category: " ", value: " Paid Media Spend FILTER 1"},
+          {index: 1, category: " ", value: " Paid Media Spend FILTER 2"},
+          {index: 2, category: " ", value: " Paid Media Spend FILTER 3"}]}
+          onValueChange={e => {console.log(e)}}
+          onMenuClose={e => {console.log(e)}}
+        />
+        break;
+      case 8: 
+        // Discover - Paid Media Sourced UQFM's
+        // console.log('discover- Paid Media Sourced UQFMs');
+        drillDownFilter = <SingleValueSelect
+          activeFilters={[]}
+          options={[{index: 0, category: " ", value: "Paid Media Sourced UQFM's FILTER 1"},
+          {index: 1, category: " ", value: "Paid Media Sourced UQFM's FILTER 2"},
+          {index: 2, category: " ", value: "Paid Media Sourced UQFM's FILTER 3"}]}
+          onValueChange={e => {console.log(e)}}
+          onMenuClose={e => {console.log(e)}}
+        />
+        break;
+      case 27: 
+        // Discover - % Paid User Success UQFM's
+        // console.log('discover- Paid Media Sourced UQFMs');
+        drillDownFilter = <SingleValueSelect
+          activeFilters={[]}
+          options={[{index: 0, category: " ", value: "% Paid User Success FILTER 1"},
+          {index: 1, category: " ", value: "% Paid User Success FILTER 2"},
+          {index: 2, category: " ", value: "% Paid User Successs FILTER 3"}]}
+          onValueChange={e => {console.log(e)}}
+          onMenuClose={e => {console.log(e)}}
+        />
+        break;
+    }
+
+    return drillDownFilter;
+  }
+
   closeSummary() {
     this.props.updateMultichartMetric(true);
     this.props.hideSummaryDetails();
@@ -143,26 +196,30 @@ class SummaryViewDetails extends Component {
         <div className="row container-fluid titleBarHeader">
           <span className=" detailTitle">
             {activeItem.header}
-            {/* <button className='exportButton'>Export To Excel</button> */}
+      
           </span>
-          {/* The Excell export and the QTD Go Here **/}
+ 
+
+          {/* FILTER */}
+          <div className="summary-filter">
+            {this.getSummaryFilters(this.props.activeSecondary)}
+          </div>
+
+
           {this.props.activePrimary < 1 ?
             <div className=" multiChartMetricContainer ">
               <div
                 onClick={this.updateMultiChartMetricFilter}
-                className={UnitStyles}
-              >
+                className={UnitStyles}>
                 UNITS
             </div>
               <div
                 onClick={this.updateMultiChartMetricFilter}
-                className={ArrStyles}
-              >
+                className={ArrStyles}>
                 ARR
             </div>
             </div> :
             <span></span>}
-
 
 
           <span className="excelSpan">
@@ -241,9 +298,9 @@ class SummaryViewDetails extends Component {
             </Workbook>
           </span>
 
-          <div style={{ float: 'right' }}>{this.props.activeItem.details.stats.map(item => {
+          <div className="stats-container-main">{this.props.activeItem.details.stats.map(item => {
             return (
-              <div className=" statsHeader">
+              <div className="statsHeader" key={item.text}>
                 <div className={(item.color === 'red') ? 'stats red' : 'stats green '}>
                   {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
                 </div>
@@ -257,6 +314,8 @@ class SummaryViewDetails extends Component {
             <KendoMultiChart color="white" deviceType="laptop" />
           </div>
         </div>
+
+
         {/* Second Row for Quarterly to Date title header */}
         <div className=" qtdTitleBarHeader container-fluid row">
           <span className="detailTitle2">Quarterly To Date</span>

@@ -31,13 +31,23 @@
 }
 .statsHeader {
     float: right;
-    margin-right: 30px;
+    margin-right: 13px;
     font-weight: 600;
-
 }
+
+.stats-container-main {
+    float: right;
+    margin-right: -13px;
+    padding-bottom: 5px;
+}
+
 .stats{
-    font-size:20px;
+    font-size:13px;
     font-weight: 600;
+}
+
+.footer {
+    font-size: 12px;
 }
 
 /* Background Indicators */
@@ -357,4 +367,11 @@
 } */
 .k-panelbar>.k-item>.k-link .k-icon {
     color: white !important;
+}
+
+.summary-filter {
+    margin-left: 100px;
+    float:left;
+    /* border: 1px solid red; */
+    width: 25%;
 }

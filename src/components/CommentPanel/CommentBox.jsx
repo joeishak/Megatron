@@ -7,6 +7,7 @@ import ImageUploader from 'react-images-upload';
 import {connect } from 'react-redux';
 import * as actions from 'actions';
 import * as utils from '../../utilities';
+import { Thumbs } from 'react-responsive-carousel';
 
  class CommentBox extends Component {
      constructor(props){
@@ -16,6 +17,14 @@ import * as utils from '../../utilities';
              replyMessage: '',
              commentingUser: this.props.user,
              commentToBeRepliedTo: null,
+             isHovered: {
+                 userName: '',
+                 id: 999
+             },
+             isCommentHovered: {
+                userName: '',
+                id: 999
+            }
 
         }
         this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -133,7 +142,33 @@ import * as utils from '../../utilities';
                 break;
         }
     }
-     render(){
+    onCommentReplyDeleteEntered = (e, _id, _userName) => {
+        e.preventDefault();
+        this.setState({isHovered: {userName: _userName, id: _id}});
+    }
+    onCommentReplyDeleteLeave = (e, id) => {
+        e.preventDefault();
+        this.setState({isHovered: {userName: '', id: 999}});
+    }
+    onCommentDeleteEntered = (e, _id, _userName) => {
+        e.preventDefault();
+        this.setState({isCommentHovered: {userName: _userName, id: _id}});
+    }
+    onCommentDeleteLeave = (e, id) => {
+        e.preventDefault();
+        this.setState({isCommentHovered: {userName: '', id: 999}});
+    }
+
+    // Delete Comments && Replies
+    onReplyDeleted = (e, replyId ) => {
+        alert('DELETE:' );
+    }
+    onCommentDeleted = (e, commentId, commentResponses) => {
+        alert('DELETE COMMENT');
+        // Delete all Responses related to comments first
+        const reponsesIdArr = commentResponses.map(ele => {return ele.id});
+    }
+    render(){
          let {commentsPackage} = this.props
 
     return(
@@ -147,8 +182,10 @@ import * as utils from '../../utilities';
                                 {/* <div className='commentUserIcon'/> */}
                                     <img src={profilePic} className="profilePictures"/>
                                 {/* Comment User Name */}
-                                <span className='commentUserName'>
-                                {comment.userName}
+                                <span className='commentUserName' onMouseEnter={e => {this.onCommentDeleteEntered(e,comment.id, this.props.user.name)}}
+                                 onMouseLeave={e => {this.onCommentDeleteLeave(e,comment.id)}}>
+                                {(this.state.isCommentHovered.id === comment.id && this.state.isCommentHovered.userName === comment.userName) ? 
+                                <span style={{color: 'red'}} onClick={e => {this.onCommentDeleted(e, comment.id, comment.replies)}}>DELETE COMMENT</span> : comment.userName}
                                 </span>
                                 {/* Comment User Date */}
                                 <div className='commentTime'>
@@ -156,7 +193,8 @@ import * as utils from '../../utilities';
                             </div>
                             <div className='mainCommentContent'>
                            {comment.comment}
-                            <a id={comment.id} className='replyArrow' onMouseEnter={e => this.handleCommentMouseEnter(e, comment.userName)}  onMouseLeave={e => this.handleCommentMouseLeave(e, comment.userName)} onClick={ e => this.setAddCommentFocus(e, comment.userName)}></a>
+                            <a id={comment.id} className='replyArrow' onMouseEnter={e => this.handleCommentMouseEnter(e, comment.userName)}  
+                            onMouseLeave={e => this.handleCommentMouseLeave(e, comment.userName)} onClick={ e => this.setAddCommentFocus(e, comment.userName)}></a>
                             </div>
                             <div className='repliesContainer'>
                                 <div className='repliesArrowContainer'>
@@ -165,6 +203,7 @@ import * as utils from '../../utilities';
                                 </div>
                                 <div className='repliesList'>
                                     {(comment.replies !== undefined) ? comment.replies.map(reply=>{
+                                        // console.log(this.props.user.name);
                                         return(
                                             <div key={reply.id} className='reply'>
                                             {/* Reply Header */}
@@ -173,12 +212,15 @@ import * as utils from '../../utilities';
                                                     {/* <div className='commentUserIcon' /> */}
                                                     <img src={profilePic} className="profilePictures"/>
                                                     {/* Reply Comment User Name */}
-                                                    <span className='commentUserName'>
-                                                    {reply.userName}
+                                                    <span className='commentUserName' onMouseEnter={e => { this.onCommentReplyDeleteEntered(e, reply.id, this.props.user.name)}} 
+                                                    onMouseLeave={e => {this.onCommentReplyDeleteLeave(e,reply.id)}}>
+                                                    {(this.state.isHovered.id === reply.id && this.state.isHovered.userName === reply.userName) ?
+                                                         <span style={{color: 'red'}} onClick={e => {this.onReplyDeleted(e, reply.id)}}>DELETE RESPONSE</span> 
+                                                         : reply.userName}
                                                     </span>
                                                     {/* Reply Comment User Date */}
                                                     <span className='commentTime'>
-                                                    {reply.time}</span>
+                                                    {this.state.isHovered.id === reply.id  && this.state.isHovered.userName === reply.userName ? '' : reply.time}</span>
                                                 </div>
                                             {/* Reply Content */}
                                             <div className='replyContent'>

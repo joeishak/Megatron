@@ -148,7 +148,8 @@ class SecondaryContentList extends Component {
     this.setState({detailsClassState: 'slide-out-bottom'});
     setTimeout(() => {
        this.setState({clicked: false});
-    }, 1000);
+       this.setState({detailsClassState: ''});
+    }, 200);
     this.setState({ sortedData: this.props.data});
 
   }
