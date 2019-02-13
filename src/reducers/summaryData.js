@@ -34,15 +34,15 @@ export default function (state = {
         case GET_PRIMARY_DATA:
             console.log(action.payload);
             newState = Object.assign({}, state);
-            newState.primary[0].value = action.payload[0].data[0].NetNewARRActual;
-            newState.primary[0].target = action.payload[0].data[0].NetNewARRTarget;
+            newState.primary[0].value = action.payload[0].data[0].NewARRActual;
+            newState.primary[0].target = action.payload[0].data[0].NewARRTargetFQ;
             newState.primary[0].vsqrf = action.payload[0].data[0].NewVsQrf;
             newState.primary[1].value = action.payload[1].data[0].TrafficActual;
             newState.primary[1].target = action.payload[1].data[0].TrafficTarget;
             newState.primary[1].vsqrf = action.payload[1].data[0].TrafficVsQrf;
             newState.secondary[4].value = action.payload[1].data[0].TrafficActual;
             newState.secondary[4].target = action.payload[1].data[0].TrafficTarget;
-            newState.secondary[4].vsqrf = action.payload[1].data[0].TrafficVsQrf;
+            newState.secondary[4].vsQrf = action.payload[1].data[0].TrafficVsQrf;
             return newState;
 
         case GET_FINANCE_SECONDARY_DATA:
@@ -139,8 +139,6 @@ export default function (state = {
             return state;
     }
 }
-
-
 // TODO: Move to Services
 export function processFinanceSecondaryData(g1, newState) {
     //Finance
@@ -156,9 +154,9 @@ export function processFinanceSecondaryData(g1, newState) {
     newState[2].target = g1.data[0].CancelARRTargetFQ;
     newState[2].vsQrf = g1.data[0].CancelVsQrf;
     //   //Renewal
-    newState[3].value = g1.data[0].RenewARRActual;
+    newState[3].value = g1.data[0].RenewActuals;
     newState[3].target = g1.data[0].RenewARRTargetFQ;
-    newState[3].vsQrf = g1.data[0].RenewVsQrf;
+    newState[3].vsQrf = g1.data[0].RenewVSQRF;
 }
 export function processFinancialMultichart(newState, data) {
 
@@ -313,6 +311,8 @@ export function processFinancialUnitsMultichart(newState, data) {
     }
 }
 export function processFinancialQTD(newState, data) {
+
+    console.log(data)
     // State Order: Actual, Units, QRF, QRFDiff, VSQrf, QQ, YY
     for (let i = 0; i < newState.length; i++) {
         let findata = data[0];
@@ -323,7 +323,7 @@ export function processFinancialQTD(newState, data) {
                 newState[i].details.qtdw.qtd[1].value = findata.NewUnitsActual;
                 newState[i].details.qtdw.qtd[2].value = findata.NewTarget;
                 newState[i].details.qtdw.qtd[3].value = findata.NewVsQrfDiff;
-                newState[i].details.qtdw.qtd[4].value = findata.NewVSQRF;
+                newState[i].details.qtdw.qtd[4].value = findata.NewARRVsQrf;
                 newState[i].details.qtdw.qtd[5].value = findata.NewARRQQTY;
                 newState[i].details.qtdw.qtd[6].value = findata.NewYY;
                 newState[i].details.qtdw.week[0].value = findata.NewARRCW
@@ -332,10 +332,7 @@ export function processFinancialQTD(newState, data) {
                 newState[i].details.qtdw.week[3].value = findata.NewCWVsQrfDiff;
                 newState[i].details.qtdw.week[4].value = findata.NewCWVsQrf;
                 newState[i].details.qtdw.week[5].value = findata.NewWW;
-
-
-
-                newState[i].details.stats[0].value = findata.NewVsQRF;
+                newState[i].details.stats[0].value = findata.NewARRVsQrf;
                 newState[i].details.stats[1].value = findata.NewARRQQTY;
                 newState[i].details.stats[2].value = findata.NewARRQQLY;
                 newState[i].details.stats[3].value = findata.NewYY;
@@ -355,11 +352,10 @@ export function processFinancialQTD(newState, data) {
                 newState[i].details.qtdw.week[3].value = findata.GrossCWVsQrfDiff;
                 newState[i].details.qtdw.week[4].value = findata.GrossCWVsQrf;
                 newState[i].details.qtdw.week[5].value = findata.GrossWW;
-
-                newState[i].details.stats[0].value = findata.GrossVsQRF;
+                newState[i].details.stats[0].value = findata.GrossVsQrf;
                 newState[i].details.stats[1].value = findata.GrossARRQQTY;
                 newState[i].details.stats[2].value = findata.GrossARRQQLY;
-                newState[i].details.stats[3].value = findata.GrossYY;
+                newState[i].details.stats[3].value = findata.GrossARRYY;
                 break;
             // Cancellations Arr
             case 2:
@@ -380,7 +376,7 @@ export function processFinancialQTD(newState, data) {
                 newState[i].details.stats[0].value = findata.CancelVsQrf;
                 newState[i].details.stats[1].value = findata.CancelARRQQTY;
                 newState[i].details.stats[2].value = findata.CancelARRQQLY;
-                newState[i].details.stats[3].value = findata.CancelYY;
+                newState[i].details.stats[3].value = findata.CancelARRYY;
 
 
                 break;
@@ -388,7 +384,7 @@ export function processFinancialQTD(newState, data) {
             case 3:
                 newState[i].details.qtdw.qtd[0].value = findata.RenewActuals;
                 newState[i].details.qtdw.qtd[1].value = findata.RenewUnitsActual;
-                newState[i].details.qtdw.qtd[2].value = findata.RenewTarget;
+                newState[i].details.qtdw.qtd[2].value = findata.RenewARRTargetFQ;
                 newState[i].details.qtdw.qtd[3].value = findata.RenewVsQrfDiff;
                 newState[i].details.qtdw.qtd[4].value = findata.RenewVSQRF;
                 newState[i].details.qtdw.qtd[5].value = findata.RenewARRQQTY;
@@ -400,7 +396,7 @@ export function processFinancialQTD(newState, data) {
                 newState[i].details.qtdw.week[4].value = findata.RenewCWVsQrf;
                 newState[i].details.qtdw.week[5].value = findata.RenewWW;
 
-                newState[i].details.stats[0].value = findata.RenewVsQRF;
+                newState[i].details.stats[0].value = findata.RenewVSQRF;
                 newState[i].details.stats[1].value = findata.RenewARRQQTY;
                 newState[i].details.stats[2].value = findata.RenewARRQQLY;
                 newState[i].details.stats[3].value = findata.RenewYY;
@@ -425,7 +421,7 @@ export function processFinancialGeoQTD(newState, data) {
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.geo_code,
-            vsQrf: item.NewVSQRF,
+            vsQrf: item.NewARRVsQrf,
             yy: item.NewYY
         }
         let gross = {
@@ -457,7 +453,7 @@ export function processFinancialGeoQTD(newState, data) {
             actuals: item.RenewActuals,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
-            qrf: item.RenewTarget,
+            qrf: item.RenewARRTargetFQ,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.geo_code,
             units: item.RenewUnitsActual,
@@ -559,7 +555,7 @@ export function processFinancialMarketQTD(newState, data) {
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.market_area_code,
-            vsQrf: item.NewVSQRF,
+            vsQrf: item.NewARRVsQrf,
             yy: item.NewYY
         }
         let gross = {
@@ -591,7 +587,7 @@ export function processFinancialMarketQTD(newState, data) {
             actuals: item.RenewActuals,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
-            qrf: item.RenewTarget,
+            qrf: item.RenewARRTargetFQ,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.market_area_code,
             units: item.RenewUnitsActual,
@@ -690,7 +686,7 @@ export function processFinancialRoutesQTD(newState, data) {
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.route_to_market,
-            vsQrf: item.NewVSQRF,
+            vsQrf: item.NewARRVsQrf,
             yy: item.NewYY
         }
         let gross = {
@@ -722,7 +718,7 @@ export function processFinancialRoutesQTD(newState, data) {
             actuals: item.RenewActuals,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
-            qrf: item.RenewTarget,
+            qrf: item.RenewARRTargetFQ,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.route_to_market,
             units: item.RenewUnitsActual,
@@ -821,7 +817,7 @@ export function processFinancialSegmentQTD(newState, data) {
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.segment_pivot,
-            vsQrf: item.NewVSQRF,
+            vsQrf: item.NewARRVsQrf,
             yy: item.NewYY
         }
         let gross = {
@@ -853,7 +849,7 @@ export function processFinancialSegmentQTD(newState, data) {
             actuals: item.RenewActuals,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
-            qrf: item.RenewTarget,
+            qrf: item.RenewARRTargetFQ,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.segment_pivot,
             units: item.RenewUnitsActual,
@@ -952,7 +948,7 @@ export function processFinancialProductsQTD(newState, data) {
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.product_name,
-            vsQrf: item.NewVSQRF,
+            vsQrf: item.NewARRVsQrf,
             yy: item.NewYY
         }
         let gross = {
@@ -984,7 +980,7 @@ export function processFinancialProductsQTD(newState, data) {
             actuals: item.RenewActuals,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
-            qrf: item.RenewTarget,
+            qrf: item.RenewARRTargetFQ,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.product_name,
             units: item.RenewUnitsActual,
@@ -1068,30 +1064,31 @@ export function processFinancialProductWeek(newState, data) {
 /**Discover**/
 export function processDiscoverSecondaryData(g1, g2, g5, newState) {
 
+    console.log(g2)
     //  //Marketable universe
     newState[5].value = g2.MarketableUniverseActual;
     newState[5].target = g2.MarketableUniverseTargetFQ;
-    newState[5].vsqrf = g2.MarketableUniverseVsQrf;
+    newState[5].vsQrf = g2.MarketableUniverseVsQrf;
 
     //   //UQFM Conversions
     newState[6].value = g2.UQFMConversionActual;
-    newState[6].target = g2.UQFMConversionTargetFQ;
-    newState[6].vsqrf = g2.MarketableUniverseVsQrf;
+    newState[6].target = g2.UQFMConversionActual;
+    newState[6].vsQrf = g2.UQFMConversionActual;
 
     // Paid Media Spend
     newState[7].value = g1.PaidMediaSpendActual;
     newState[7].target = g1.PaidMediaSpendTarget;
-    // newState[5].vsqrf = g1.MarketableUniverseVsQrf;
+    newState[5].vsQrf = g1.PaidMediaSpendVsQrf;
 
     //Paid Media Sourced UQFMS
     newState[8].value = g2.PaidMediaSourcedUQFMSActual;
     newState[8].target = g2.PaidMediaSourcedUQFMSTargetFQ;
-    newState[8].vsqrf = g2.PaidMediaSourcedUQFMSVsQRF;
+    newState[8].vsQrf = g2.PaidMediaSourcedUQFMSVsQRF;
 
     //New UQFMS
     newState[9].value = g2.NewUQFMSActual;
     newState[9].target = g2.NewUQFMSTargetFQ;
-    newState[9].vsqrf = g2.NewUQFMSVsQRF;
+    newState[9].vsQrf = g2.NewUQFMSVsQRF;
 
     //Bounce Rate
     newState[10].value = g5.BounceRateActual;
@@ -1260,6 +1257,11 @@ export function processDiscoverQTDData(g1, g2, g5, newState) {
                 newState[i].details.qtdw.week[2].value = g5.TrafficVsQrfDiffCW;
                 newState[i].details.qtdw.week[3].value = g5.TrafficVsQrfCW;
                 newState[i].details.qtdw.week[4].value = g5.TrafficWW;
+
+                newState[i].details.stats[0].value = g5.TrafficVsQrf;
+                newState[i].details.stats[1].value = g5.TrafficQQTY;
+                newState[i].details.stats[2].value = g5.TrafficQQLY;
+                newState[i].details.stats[3].value = g5.TrafficYY;
                 break;
             // Marketable Universe
             case 5:
@@ -1275,8 +1277,14 @@ export function processDiscoverQTDData(g1, g2, g5, newState) {
                 newState[i].details.qtdw.week[2].value = g2.MarketableUniverseVsQrfDiffCW;
                 newState[i].details.qtdw.week[3].value = g2.MarketableUniverseVsQrfCW;
                 newState[i].details.qtdw.week[4].value = g2.MarketableUniverseWW;
+
+
+                newState[i].details.stats[0].value = g2.MarketableUniverseVsQrf;
+                newState[i].details.stats[1].value = g2.MarketableUniverseQQTY;
+                newState[i].details.stats[2].value = g2.MarketableUniverseQQLY;
+                newState[i].details.stats[3].value = g2.MarketableUniverseYY;
                 break;
-            // Uqgm Conversion
+            // UqFm Conversion
             case 6:
                 newState[i].details.qtdw.qtd[0].value = g2.UQFMConversionActual;
                 newState[i].details.qtdw.qtd[1].value = g2.UQFMConversionActual;
@@ -1290,6 +1298,11 @@ export function processDiscoverQTDData(g1, g2, g5, newState) {
                 newState[i].details.qtdw.week[2].value = g2.UQFMConversionCw;
                 newState[i].details.qtdw.week[3].value = g2.UQFMConversionWW;
                 newState[i].details.qtdw.week[4].value = g2.UQFMConversionWW;
+
+                newState[i].details.stats[0].value = g2.UQFMConversionYY;
+                newState[i].details.stats[1].value = g2.UQFMConversionQQTY;
+                newState[i].details.stats[2].value = g2.UQFMConversionQQLY;
+                newState[i].details.stats[3].value = g2.UQFMConversionYY;
                 break;
             // Paid Media Spend
             case 7:
@@ -1305,27 +1318,37 @@ export function processDiscoverQTDData(g1, g2, g5, newState) {
                 newState[i].details.qtdw.week[2].value = g1.PaidMediaSpendCWVsQrfDiff;
                 newState[i].details.qtdw.week[3].value = g1.PaidMediaSpendCWVsQrf;
                 newState[i].details.qtdw.week[4].value = g1.PaidMediaSpendWW;
+
+                newState[i].details.stats[0].value = g1.PaidMediaSpendVsQrf;
+                newState[i].details.stats[1].value = g1.PaidMediaSpendQQTY;
+                newState[i].details.stats[2].value = g1.PaidMediaSpendQQLY;
+                newState[i].details.stats[3].value = g1.PaidMediaSpendYY;
                 break;
             // Paid Media Sourced
             case 8:
                 newState[i].details.qtdw.qtd[0].value = g2.PaidMediaSourcedUQFMSActual;
                 newState[i].details.qtdw.qtd[1].value = g2.PaidMediaSourcedUQFMSTargetFQ;
-                newState[i].details.qtdw.qtd[2].value = g2.PaidMediaSourcedUQFMSQRFDiff;
+                newState[i].details.qtdw.qtd[2].value = g2.PaidMediaSourcedUQFMSVsQrfDiff;
                 newState[i].details.qtdw.qtd[3].value = g2.PaidMediaSourcedUQFMSVsQRF;
                 newState[i].details.qtdw.qtd[4].value = g2.PaidMediaSourcedUQFMSQQTY;
                 newState[i].details.qtdw.qtd[5].value = g2.PaidMediaSourcedUQFMSYY;
 
                 newState[i].details.qtdw.week[0].value = g2.PaidMediaSourcedUQFMSCW;
                 newState[i].details.qtdw.week[1].value = g2.PaidMediaSourcedUQFMSTargetCW;
-                newState[i].details.qtdw.week[2].value = g2.PaidMediaSourcedUQFMSQRFDiffCW;
+                newState[i].details.qtdw.week[2].value = g2.PaidMediaSourcedUQFMSVsQrfDiffCW;
                 newState[i].details.qtdw.week[3].value = g2.PaidMediaSourcedUQFMSVsQRFCW;
                 newState[i].details.qtdw.week[4].value = g2.PaidMediaSourcedUQFMSWW;
+
+                newState[i].details.stats[0].value = g2.PaidMediaSourcedUQFMSVsQRF;
+                newState[i].details.stats[1].value = g2.PaidMediaSourcedUQFMSQQTY;
+                newState[i].details.stats[2].value = g2.PaidMediaSourcedUQFMSQQLY;
+                newState[i].details.stats[3].value = g2.PaidMediaSourcedUQFMSYY;
                 break;
             // New UQFM
             case 9:
                 newState[i].details.qtdw.qtd[0].value = g2.NewUQFMSActual;
                 newState[i].details.qtdw.qtd[1].value = g2.NewUQFMSTargetFQ;
-                newState[i].details.qtdw.qtd[2].value = g2.NewUQFMSQRFDiff;
+                newState[i].details.qtdw.qtd[2].value = g2.NewUQFMSVsQrfDiff;
                 newState[i].details.qtdw.qtd[3].value = g2.NewUQFMSVsQRF;
                 newState[i].details.qtdw.qtd[4].value = g2.NewUQFMSQQTY;
                 newState[i].details.qtdw.qtd[5].value = g2.NewUQFMSYY;
@@ -1335,6 +1358,11 @@ export function processDiscoverQTDData(g1, g2, g5, newState) {
                 newState[i].details.qtdw.week[2].value = g2.NewUQFMSQRFDiffCW;
                 newState[i].details.qtdw.week[3].value = g2.NewUQFMSVsQRFCW;
                 newState[i].details.qtdw.week[4].value = g2.NewUQFMSWW;
+
+                newState[i].details.stats[0].value = g2.NewUQFMSVsQRF;
+                newState[i].details.stats[1].value = g2.NewUQFMSQQTY;
+                newState[i].details.stats[2].value = g2.NewUQFMSQQLY;
+                newState[i].details.stats[3].value = g2.NewUQFMSYY;
                 break;
             // Bounce Rate
             case 10:
@@ -1342,7 +1370,7 @@ export function processDiscoverQTDData(g1, g2, g5, newState) {
                 newState[i].details.qtdw.qtd[1].value = g5.BounceRateActual;
                 newState[i].details.qtdw.qtd[2].value = g5.BounceRateActual;
                 newState[i].details.qtdw.qtd[3].value = g5.BounceRateActual;
-                newState[i].details.qtdw.qtd[4].value = g5.BounceRateQQLY1;
+                newState[i].details.qtdw.qtd[4].value = g5.BounceRateQQLY;
                 newState[i].details.qtdw.qtd[5].value = g5.BounceRateYY;
 
                 newState[i].details.qtdw.week[0].value = g5.BounceRateCW;
@@ -1350,11 +1378,18 @@ export function processDiscoverQTDData(g1, g2, g5, newState) {
                 newState[i].details.qtdw.week[2].value = g5.BounceRateCW;
                 newState[i].details.qtdw.week[3].value = g5.BounceRateCW;
                 newState[i].details.qtdw.week[4].value = g5.BounceRateWW;
+
+                newState[i].details.stats[0].value = g5.BounceRateYY;
+                newState[i].details.stats[1].value = g5.BounceRateQQLY;
+                newState[i].details.stats[2].value = g5.BounceRateQQLY;
+                newState[i].details.stats[3].value = g5.BounceRateYY;
                 break;
         }
     }
 }
+
 export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
+    console.log(g1, g2, g5)
     //Clear old Values
     newState[4].details.geo.qtd = [];
     newState[5].details.geo.qtd = [];
@@ -1432,7 +1467,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
             marketArea: item.market_area_code,
             qq: item.NewUQFMSQQTY,
             qrf: item.NewUQFMSTargetFQ,
-            qrfDiff: item.NewUQFMSQRFDiff,
+            qrfDiff: item.NewUQFMSVsQrfDiff,
             type: item.geo_code,
             vsQrf: item.NewUQFMSVsQRF,
             yy: item.NewUQFMSYY
@@ -1455,7 +1490,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
             marketArea: item.market_area_code,
             qq: item.PaidMediaSourcedUQFMSQQTY,
             qrf: item.PaidMediaSourcedUQFMSTargetFQ,
-            qrfDiff: item.PaidMediaSourcedUQFMSQRFDiff,
+            qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
             type: item.geo_code,
             vsQrf: item.PaidMediaSourcedUQFMSVsQRF,
             yy: item.PaidMediaSourcedUQFMSYY
@@ -1634,7 +1669,7 @@ export function processDiscoverMarketQTDData(g1, g2, g5, newState) {
             actuals: item.NewUQFMSActual,
             qq: item.NewUQFMSQQTY,
             qrf: item.NewUQFMSTargetFQ,
-            qrfDiff: item.NewUQFMSQRFDiff,
+            qrfDiff: item.NewUQFMSVsQrfDiff,
             type: item.market_area_code,
             vsQrf: item.NewUQFMSVsQRF,
             yy: item.NewUQFMSYY
@@ -1655,7 +1690,7 @@ export function processDiscoverMarketQTDData(g1, g2, g5, newState) {
             actuals: item.PaidMediaSourcedUQFMSActual,
             qq: item.PaidMediaSourcedUQFMSQQTY,
             qrf: item.PaidMediaSourcedUQFMSTargetFQ,
-            qrfDiff: item.PaidMediaSourcedUQFMSQRFDiff,
+            qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
             type: item.market_area_code,
             vsQrf: item.PaidMediaSourcedUQFMSVsQRF,
             yy: item.PaidMediaSourcedUQFMSYY
@@ -1825,7 +1860,7 @@ export function processDiscoverSegmentQTDData(g1, g2, g5, newState) {
             actuals: item.NewUQFMSActual,
             qq: item.NewUQFMSQQTY,
             qrf: item.NewUQFMSTargetFQ,
-            qrfDiff: item.NewUQFMSQRFDiff,
+            qrfDiff: item.NewUQFMSVsQrfDiff,
             type: item.segment_pivot,
             vsQrf: item.NewUQFMSVsQRF,
             yy: item.NewUQFMSYY
@@ -1846,7 +1881,7 @@ export function processDiscoverSegmentQTDData(g1, g2, g5, newState) {
             actuals: item.PaidMediaSourcedUQFMSActual,
             qq: item.PaidMediaSourcedUQFMSQQTY,
             qrf: item.PaidMediaSourcedUQFMSTargetFQ,
-            qrfDiff: item.PaidMediaSourcedUQFMSQRFDiff,
+            qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
             type: item.segment_pivot,
             vsQrf: item.PaidMediaSourcedUQFMSVsQRF,
             yy: item.PaidMediaSourcedUQFMSYY
@@ -2017,7 +2052,7 @@ export function processDiscoverRouteQTDData(g1, g2, g5, newState) {
             actuals: item.NewUQFMSActual,
             qq: item.NewUQFMSQQTY,
             qrf: item.NewUQFMSTargetFQ,
-            qrfDiff: item.NewUQFMSQRFDiff,
+            qrfDiff: item.NewUQFMSVsQrfDiff,
             type: item.route_to_market,
             vsQrf: item.NewUQFMSVsQRF,
             yy: item.NewUQFMSYY
@@ -2038,7 +2073,7 @@ export function processDiscoverRouteQTDData(g1, g2, g5, newState) {
             actuals: item.PaidMediaSourcedUQFMSActual,
             qq: item.PaidMediaSourcedUQFMSQQTY,
             qrf: item.PaidMediaSourcedUQFMSTargetFQ,
-            qrfDiff: item.PaidMediaSourcedUQFMSQRFDiff,
+            qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
             type: item.route_to_market,
             vsQrf: item.PaidMediaSourcedUQFMSVsQRF,
             yy: item.PaidMediaSourcedUQFMSYY
@@ -2209,7 +2244,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             actuals: item.NewUQFMSActual,
             qq: item.NewUQFMSQQTY,
             qrf: item.NewUQFMSTargetFQ,
-            qrfDiff: item.NewUQFMSQRFDiff,
+            qrfDiff: item.NewUQFMSVsQrfDiff,
             type: item.product_name,
             vsQrf: item.NewUQFMSVsQRF,
             yy: item.NewUQFMSYY
@@ -2230,7 +2265,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             actuals: item.PaidMediaSourcedUQFMSActual,
             qq: item.PaidMediaSourcedUQFMSQQTY,
             qrf: item.PaidMediaSourcedUQFMSTargetFQ,
-            qrfDiff: item.PaidMediaSourcedUQFMSQRFDiff,
+            qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
             type: item.product_name,
             vsQrf: item.PaidMediaSourcedUQFMSVsQRF,
             yy: item.PaidMediaSourcedUQFMSYY

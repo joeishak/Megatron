@@ -125,6 +125,7 @@ class Navigation extends Component {
         <CompanyHeader
           deviceType={this.props.deviceType}
           isFilterPageVisible={this.props.mobileFiltersIsShown}
+          isLaptop={isLaptop}
           show={show}
           filterIcon={filterIcon}
           onFilterToggled={(e) => { this.onFilterToggled(e) }}
@@ -140,10 +141,8 @@ class Navigation extends Component {
           toggleCommentaryOn={this.props.toggleCommentaryOn}
           updateCommentsNav={this.updateCommentsNav}
           onFilterToggled={(e) => { this.onFilterToggled(e) }}
+          onFeedbackClick={(e) => { window.alert('The ability to add feedback will be included the final version') }}
         />
-
-
-
       </Navbar>
     );
   }

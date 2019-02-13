@@ -1230,7 +1230,6 @@ export function renderDollarValue(value) {
     }
 }
 export function formatPercentage(value) {
-    // console.log(value);
     let isNegative = (value < 0) ? true : false;
     let percentage = value;
     let absVal = Math.abs(percentage);
@@ -1251,13 +1250,13 @@ export function formatPercentage(value) {
         // percentage = value.toFixed(2);
 
         if (parseFloat(value)) {
-            percentage = value.toFixed(2)
+            percentage = value;
         } else {
             percentage = 0;
         }
     }
 
-    return percentage + '%';
+    return (percentage * 100).toFixed(2) + '%';
 }
 
 export function formatMetric(item, type) {
@@ -1268,9 +1267,9 @@ export function formatMetric(item, type) {
         switch (item.valueType) {
 
             case 'units':
-                return renderUnits(item.value);
+                return (renderUnits(item.value) !== NaN) ? renderUnits(item.value) : 0;
             case 'currency':
-                return renderDollarValue(item.value);
+                return (renderDollarValue(item.value)) ? renderDollarValue(item.value) : 0;
             case 'percent':
                 return (formatPercentage(item.value) !== NaN) ? formatPercentage(item.value) : 0;
         }

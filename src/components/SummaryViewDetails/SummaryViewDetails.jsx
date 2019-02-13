@@ -143,7 +143,7 @@ class SummaryViewDetails extends Component {
     this.props.hideSummaryDetails();
   }
   render() {
-    let { activeFilters, secondaryData, activeSecondary, filters, activeItem } = this.props;
+    let { activeFilters, activePrimary, secondaryData, activeSecondary, filters, activeItem } = this.props;
     // let activeItem = secondaryData[this.props.activeSecondary];
     var UnitStyles = classNames({
       unitMetric: true,
@@ -307,7 +307,7 @@ class SummaryViewDetails extends Component {
                 <div className="footer"> {item.text}</div>
               </div>
             )
-          })
+          }).reverse()
           }</div>
 
           <div className="chartContainer col-md-12">
@@ -345,7 +345,7 @@ class SummaryViewDetails extends Component {
         </div>
         <DetailBreakdown
           activeSummary={activeItem}
-
+          activePrimary={activePrimary}
           activeTimeMetric={this.state.activeTimeMetric}
           background="white" />
       </div>

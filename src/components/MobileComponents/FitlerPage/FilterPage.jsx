@@ -223,7 +223,7 @@ class FilterPage extends Component {
                                     onMenuClose={this.closeMultiValue}
                                 />                                        </div>
                             <div className={'col-xs-12 col-sm-6 col-md-6'}>
-                                <Button class="button" primary={true} onClick={this.submitFilters} look="flat">Submit</Button>
+                                <Button className="button" primary={true} onClick={this.submitFilters} look="flat">Submit</Button>
                             </div>
                         </div>
 

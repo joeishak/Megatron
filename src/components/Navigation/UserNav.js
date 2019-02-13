@@ -3,10 +3,12 @@ import React, { Component } from "react";
 import { Navbar, MenuItem, NavDropdown } from "react-bootstrap";
 import commentIconOff from "./assets/images/comment-icon-off.svg";
 import commentIconOn from "./assets/images/comment-icon-on.svg";
+import feedbackIcon from "../../assets/images/feedback.png";
+
 import userIcon from "./user-icon.svg";
 
 const UserNav = ({ isLaptop, onDataPreferencesSelcted, logout, filterIcon,
-  toggleCommentaryOn, onFilterToggled, username, updateCommentsNav }) => {
+  toggleCommentaryOn, onFeedbackClick, onFilterToggled, username, updateCommentsNav }) => {
 
   return (
     isLaptop === true ?
@@ -38,7 +40,7 @@ const UserNav = ({ isLaptop, onDataPreferencesSelcted, logout, filterIcon,
               <img alt="" className="userIcon" src={userIcon} />
             </div>
 
-            <div className="flRight">
+            <div className="flLeft">
               {" "}
               <img
                 alt=""
@@ -51,7 +53,14 @@ const UserNav = ({ isLaptop, onDataPreferencesSelcted, logout, filterIcon,
                 }
               />{" "}
             </div>
-
+            <div className="flLeft">
+              <img
+                alt=""
+                className="feedbackIcon"
+                src={feedbackIcon}
+                onClick={onFeedbackClick}
+              />
+            </div>
 
           </div>
         </span>

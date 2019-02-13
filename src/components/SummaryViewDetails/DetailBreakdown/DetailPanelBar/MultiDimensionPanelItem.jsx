@@ -40,7 +40,7 @@ class MultiDimensionPanelItem extends Component {
                         </div>
 
                         <div className={`${qtdColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: 'units', value: item.qrf }, 'target')}
+                            {utils.formatMetric({ valueType: 'units', value: item.qrf }, 'qrf')}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'units', value: item.qrfDiff }, 'value')}
@@ -75,7 +75,7 @@ class MultiDimensionPanelItem extends Component {
                         </div>
 
                         <div className={`${weekColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: 'units', value: item.qrf }, 'target')}
+                            {utils.formatMetric({ valueType: 'units', value: item.qrf }, 'qrf')}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'units', value: item.qrfDiff }, 'value')}
