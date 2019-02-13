@@ -6,7 +6,7 @@ import { Navbar } from "react-bootstrap";
 class CompanyHeader extends Component {
 
   render() {
-    const { deviceType, filterIcon, isFilterPageVisible, show, onFilterToggled, logos } = this.props;
+    const { deviceType, filterIcon, isLaptop, isFilterPageVisible, show, onFilterToggled, logos } = this.props;
 
     const filterButton = utils.includes(deviceType, 'tablet') || utils.includes(deviceType, 'mobile') ? (
       <div className="filterButton">
@@ -20,12 +20,17 @@ class CompanyHeader extends Component {
     ) : null;
 
     return (<span>
-      <Navbar.Brand className="navBrandLogo">
-        <div href="#brand" style={{ width: 700 }}>
-          {logos}
-          <span>DME - Run The Business - Alpha Release</span>
-        </div>
-      </Navbar.Brand>
+      {isLaptop ?
+        <Navbar.Brand className="navBrandLogo">
+          <div href="#brand" style={{ width: 700 }}>
+            {logos}
+            <span>DME - Run The Business - Alpha Release </span>
+          </div>
+        </Navbar.Brand> : <Navbar.Brand className="navBrandLogo">
+          <div href="#brand" style={{ width: 130 }}>
+            {logos}
+          </div>
+        </Navbar.Brand>}
       {filterButton}
     </span>)
   }

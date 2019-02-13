@@ -125,6 +125,7 @@ class Navigation extends Component {
         <CompanyHeader
           deviceType={this.props.deviceType}
           isFilterPageVisible={this.props.mobileFiltersIsShown}
+          isLaptop={isLaptop}
           show={show}
           filterIcon={filterIcon}
           onFilterToggled={(e) => { this.onFilterToggled(e) }}
