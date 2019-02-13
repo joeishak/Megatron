@@ -14,10 +14,7 @@ import Navigation from "components/Navigation/Navigation";
 import FilterPanel from "components/FilterPanel/FilterPanel";
 import CommentPanel from "components/CommentPanel/CommentPanel";
 
-
-
-
-import Playground from "../../components/MobileComponents/Playground/Playground.jsx";
+// import Playground from "../../components/MobileComponents/Playground/Playground.jsx";
 import SummaryViewDetails from "components/SummaryViewDetails/SummaryViewDetails";
 import KendoDialog from "../../components/KendoDialog/KendoDialog";
 import PrimaryContentList from "../../components/PrimaryContent/PrimaryContentList.jsx";
@@ -29,7 +26,7 @@ import {
   TABLET,
   LAPTOP
 } from "../../Constants/consts.js";
-import { timingSafeEqual } from "crypto";
+// import { timingSafeEqual } from "crypto";
 class Summary extends Component {
   constructor(props) {
     super(props);

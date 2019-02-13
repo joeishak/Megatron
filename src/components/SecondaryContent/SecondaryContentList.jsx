@@ -171,9 +171,8 @@ class SecondaryContentList extends Component {
           </div>
         ) : null;
 
-    const data = (isMobileAndTablet === true) ? this.state.sortedData : this.props.data;
+    const data = isMobileAndTablet ? this.state.sortedData : this.props.data;
 
-  
     let numberOfSecondarySquares = 0;
     if(data !== undefined) {
       let filtered = data.filter((ele) => { return ele.category === this.props.activePrimary});
@@ -183,9 +182,7 @@ class SecondaryContentList extends Component {
     const secondaryContentTop = (this.props.mobileSecondaryIsActive === true &&
         isMobileAndTablet === true) || isMobileAndTablet === false
         ? data.map(item => {
-          let isActive = this.props.activeJourneyCard === item.index
-              ? true
-              : false;
+          let isActive = this.props.activeJourneyCard === item.index ? true : false;
           if (this.props.activePrimary === item.category) {
             return (
               <SecondarySquares

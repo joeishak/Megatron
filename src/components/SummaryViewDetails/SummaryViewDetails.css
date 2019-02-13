@@ -10,6 +10,11 @@
     float: right;
     color: white;
 }
+
+.row {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
 /* Animation */
 .example-appear {
     opacity: 0;

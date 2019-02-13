@@ -3,7 +3,8 @@
     background-color: #3c3c3c;
     height: 45px;
     font-size: 14px;
-  
+    margin-left: 2px !important;
+    margin-right: 2px !important;
 }
 
 /* Mobile */
