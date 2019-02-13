@@ -140,10 +140,8 @@ class Navigation extends Component {
           toggleCommentaryOn={this.props.toggleCommentaryOn}
           updateCommentsNav={this.updateCommentsNav}
           onFilterToggled={(e) => { this.onFilterToggled(e) }}
+          onFeedbackClick={(e) => { window.alert('The ability to add feedback will be included the final version') }}
         />
-
-
-
       </Navbar>
     );
   }

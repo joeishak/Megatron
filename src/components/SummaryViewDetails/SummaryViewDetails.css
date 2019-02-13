@@ -178,12 +178,15 @@
 
 } */
 .redBG{
-    background-color:#ff0000 !important;
-    color:white !important;
+    /* background-color:#ff0000 !important; */
+    color:#ff0000 !important;
+    font-weight: bold;
 }
 .greenBG{
-    background-color:#0DB16E !important;
-    color:white !important;
+    /* background-color:#0DB16E !important; */
+    color:#0DB16E !important;
+    font-weight: bold;
+
 
 }
 /* All Metric */
@@ -208,11 +211,22 @@
 /* Quaretrly to date Top Details */
 .qtdTopDetails{
     background-color: transparent;
+    padding-left: 25px;
 }
-
-.qtdDetailTitle{
+.qtdJourneyDetailTitle{
     float:right;
     width: 80%;
+    height:30px;
+    clear:right;
+    text-align:center;
+    border-top: 1px solid #3c3c3c;
+    border-left: 1px solid #3c3c3c;
+    border-right: 1px solid #3c3c3c;
+    font-size: 12px;
+}
+.qtdDetailTitle{
+    float:right;
+    width: 90%;
     height:30px;
     clear:right;
     text-align:center;
@@ -281,7 +295,14 @@
 .weekSize{
     width:16.4%;
 }
+.weekJourn{
+    width:17.6%;
+
+}
 .qtdSize{
+    width: 14.65%;
+}
+.qtdFin{
     width: 14%;
 }
 .halfSize{

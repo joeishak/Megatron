@@ -21,8 +21,9 @@ class CompanyHeader extends Component {
 
     return (<span>
       <Navbar.Brand className="navBrandLogo">
-        <div href="#brand" style={{ width: 130 }}>
+        <div href="#brand" style={{ width: 700 }}>
           {logos}
+          <span>DME - Run The Business - Alpha Release</span>
         </div>
       </Navbar.Brand>
       {filterButton}

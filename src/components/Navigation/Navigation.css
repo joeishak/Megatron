@@ -218,7 +218,10 @@
         margin-top: -20px;
     }
 }
-
+.navbar-brand > img {
+    padding-right: 10px;
+    display: inline !important;
+}
 @media only screen and (min-width: 765px) {
     .fitlerIconMobile {
        display: none;
@@ -227,4 +230,10 @@
 
 .navbar, .navbar-header {
     margin-bottom: 0px !important;
+}
+.feedbackIcon{
+    height:42px;
+    width:42px;
+    margin-top: 10px;
+    margin-left:15px;
 }

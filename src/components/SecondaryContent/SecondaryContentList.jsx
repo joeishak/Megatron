@@ -36,10 +36,12 @@ class SecondaryContentList extends Component {
       isDragging: false,
       initialPos: this.props.window.height - this.calculateHeight(),
       onloadPos: this.props.window.height - this.calculateHeight(),
+      sortedData: this.props.data
     };
   }
 
   componentDidMount() {
+    this.setState({ sortedData: this.props.data })
 
     ReactDOM.findDOMNode(this).addEventListener("mousemove", this.resizePanel);
     ReactDOM.findDOMNode(this).addEventListener("touchmove", this.resizePanel);
@@ -49,7 +51,6 @@ class SecondaryContentList extends Component {
     ReactDOM.findDOMNode(this).addEventListener("touchcancel", this.stopResize);
 
 
-    this.setState({ sortedData: this.props.data })
 
   }
 
@@ -157,10 +158,10 @@ class SecondaryContentList extends Component {
 
 
   render() {
-    const isMobileAndTablet =
+    let isMobileAndTablet =
       utils.includes(this.props.deviceType, 'mobile') ||
       utils.includes(this.props.deviceType, 'tablet');
-    const navigationTitle =
+    let navigationTitle =
       isMobileAndTablet === true &&
         this.props.mobileSecondaryIsActive === true ? (
           <div className="primaryDataCategoryContainer">
@@ -173,8 +174,8 @@ class SecondaryContentList extends Component {
           </div>
         ) : null;
 
-    const data = (isMobileAndTablet === true) ? this.state.sortedData : this.props.data;
-
+    let data = (isMobileAndTablet === true) ? this.state.sortedData : this.props.data;
+    console.log(data);
 
     let numberOfSecondarySquares = 0;
     if (data !== undefined) {
@@ -182,7 +183,7 @@ class SecondaryContentList extends Component {
       numberOfSecondarySquares = filtered.length;
     }
 
-    const secondaryContentTop = (this.props.mobileSecondaryIsActive === true &&
+    let secondaryContentTop = (this.props.mobileSecondaryIsActive === true &&
       isMobileAndTablet === true) || isMobileAndTablet === false
       ? data.map(item => {
         let isActive = this.props.activeJourneyCard === item.index
