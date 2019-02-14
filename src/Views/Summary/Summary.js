@@ -40,7 +40,8 @@ class Summary extends Component {
       },
       preferncesAreAddedToFilters: false,
       initialDataLoadIsComplete: false,
-      isLoading: true
+      isLoading: true,
+      isInitiallyLoading: true
     };
 
     /*Bindings  */
@@ -125,6 +126,10 @@ class Summary extends Component {
           console.log('Fetching Discover')
           this.props.getDiscoverSecondaryData(this.props.filters);
           break;
+        case 2:
+          console.log('Fetching Try')
+          this.props.getTrySecondaryData(this.props.filters);
+          break;
         default:
           break;
       }
@@ -144,12 +149,18 @@ class Summary extends Component {
           console.log('Fetching Discover')
           this.props.getDiscoverSecondaryData(this.props.filters);
           break;
+        case 2:
+          this.setState({ isLoading: true });
+
+          console.log('Fetching Try')
+          this.props.getTrySecondaryData(this.props.filters);
+          break;
         default:
           break;
       }
     }
     if (this.props.summaryData !== prevProps.summaryData && this.state.initialDataLoadIsComplete === true) {
-      this.setState({ isLoading: false });
+      this.setState({ isLoading: false, isInitiallyLoading: false });
     }
     if (this.props.activePrimaryCard.index > 0) {
       this.props.updateMultichartMetric(true);
@@ -277,12 +288,8 @@ class Summary extends Component {
             {/* Data Preferences */}
 
             <div>
-
-
-              {this.state.isLoading === true ? <LoadingScreen></LoadingScreen> :
-                (
-
-
+              {
+                this.state.isInitiallyLoading === true ? < LoadingScreen /> :
                   <div>
                     {kdialog}
                     {/* Navigation*/}
@@ -296,13 +303,19 @@ class Summary extends Component {
                     {/* Primary */}
                     {this.props.mobileFiltersIsShown ||
                       this.props.mobileIsPrimary === false ? null : this.getPrimaryContent()}
-                    {/* Secondary */}
-                    {this.state.mobileFiltersIsShown ? null : this.getSecondaryContent()}
+                    {this.state.isLoading === true ? <LoadingScreen></LoadingScreen> :
+                      <span>
+                        {(this.state.mobileFiltersIsShown ? null : this.getSecondaryContent())}
+                        {summaryViewDetails}</span>
+
+                    }
                     {/* {this.state.isFilterPageVisible && this.props.mobileIsPrimary ? null : null} */}
-                    {summaryViewDetails}
-                  </div>)
+                  </div>
 
               }
+
+
+
             </div>
           </span>
         )}

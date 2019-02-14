@@ -78,6 +78,10 @@ export default function (state = {
             let subscriptionsFilters = action.payload[4].data;
             let routesFilters = action.payload[5].data;
             let geosFilters = action.payload[6].data;
+            let channelFilters = action.payload[7].data;
+            let visitFilters = action.payload[8].data;
+            let signFilters = action.payload[9].data;
+
             let newGeoState = processDropDownListFilterValue('geos', geosFilters);
             let newMAState = processDropDownListFilterValue('markets', marketsFilters);
             let newProductState = processDropDownListFilterValue('products', productsFilters);
@@ -85,9 +89,14 @@ export default function (state = {
             let newSegmentsState = processDropDownListFilterValue('segments', segmentsFilters);
             let newSubscriptionState = processDropDownListFilterValue('subscriptions', subscriptionsFilters);
             let newQuartersState = processDropDownListFilterValue('quarters', quarterFilters);
+            let newChannelState = processDropDownListFilterValue('channel', channelFilters);
+            let newVisitState = processDropDownListFilterValue('visit', visitFilters);
+            let newSignState = processDropDownListFilterValue('sign', signFilters);
 
 
-            let arr = [...newQuartersState, ...newGeoState, ...newMAState, ...newProductState, ...newRouteState, ...newSegmentsState, ...newSubscriptionState];
+
+            let arr = [...newQuartersState, ...newGeoState, ...newMAState, ...newProductState, ...newRouteState, ...newSegmentsState, ...newSubscriptionState,
+            ...newChannelState, ...newVisitState, ...newSignState];
             let obj =
             {
                 combined: {
@@ -120,6 +129,18 @@ export default function (state = {
                 },
                 routes: {
                     availableFilters: newRouteState,
+                    valueFilters: []
+                },
+                channels: {
+                    availableFilters: newChannelState,
+                    valueFilters: []
+                },
+                visits: {
+                    availableFilters: newVisitState,
+                    valueFilters: []
+                },
+                signups: {
+                    availableFilters: newSignState,
                     valueFilters: []
                 }
             }
@@ -315,6 +336,33 @@ function processDropDownListFilterValue(type, data) {
                     index: count++,
                     category: type,
                     value: item['route_to_market']
+                }
+            });
+            return newArr;
+        case 'channel':
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['channel']
+                }
+            });
+            return newArr;
+        case 'visit':
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['visit_type']
+                }
+            });
+            return newArr;
+        case 'sign':
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['signup_category']
                 }
             });
             return newArr;

@@ -54,10 +54,21 @@ class DetailBreakdown extends Component {
                     }
                   >
                     <span className="contHeader"> {item.header}</span>
-                    <span className={`valHeader` + (item.header === "Vs Qrf" ? " redBG" : " ")}>
+                    {
+                      (item.header === "Vs Qrf") ?
+                        <span className={`valHeader` + (item.value <= 0 ? " redBG" : " greenBG ")}>
+                          {" "}
+                          {this.renderDollarValuePanelBarItems(item.value, item)}
+                        </span> :
+                        <span className={`valHeader`}>
+                          {" "}
+                          {this.renderDollarValuePanelBarItems(item.value, item)}
+                        </span>
+                    }
+                    {/* <span className={`valHeader` + (item.header === "Vs Qrf" ? " redBG" : " ")}>
                       {" "}
                       {this.renderDollarValuePanelBarItems(item.value, item)}
-                    </span>
+                    </span> */}
                   </div>
                 );
               })

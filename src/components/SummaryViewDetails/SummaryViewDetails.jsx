@@ -76,7 +76,7 @@ class SummaryViewDetails extends Component {
 
   getExcelFilters(activeFilters) {
     let newArr;
-    let { geos, quarters, markets, routes, segments, subscriptions } = activeFilters;
+    let { geos, quarters, markets, routes, segments, subscriptions, channels, visits, signups } = activeFilters;
     newArr = [].concat(geos, quarters, markets, routes, segments, subscriptions);
     // console.log(newArr);
     return newArr;
@@ -84,17 +84,16 @@ class SummaryViewDetails extends Component {
 
   getSummaryFilters(activeItem) {
     let drillDownFilter;
-    switch(activeItem) {
+    let { channels, visits, signups } = this.props.activeFilters;
+    switch (activeItem) {
       case 4:
         // Discover - Traffic
         // console.log('discover traffic');
         drillDownFilter = <SingleValueSelect
           activeFilters={[]}
-          options={[{index: 0, category: " ", value: "TRAFFIC FILTER 1"},
-          {index: 1, category: " ", value: "TRAFFIC FILTER 2"},
-          {index: 2, category: " ", value: "TRAFFIC FILTER 3"}]}
-          onValueChange={e => {console.log(e)}}
-          onMenuClose={e => {console.log(e)}}
+          options={visits.availableFilters}
+          onValueChange={e => { console.log(e) }}
+          onMenuClose={e => { console.log(e) }}
         />
         break;
       case 7:
@@ -102,35 +101,31 @@ class SummaryViewDetails extends Component {
         // console.log('discover - paid media spend');
         drillDownFilter = <SingleValueSelect
           activeFilters={[]}
-          options={[{index: 0, category: " ", value: " Paid Media Spend FILTER 1"},
-          {index: 1, category: " ", value: " Paid Media Spend FILTER 2"},
-          {index: 2, category: " ", value: " Paid Media Spend FILTER 3"}]}
-          onValueChange={e => {console.log(e)}}
-          onMenuClose={e => {console.log(e)}}
+          options={channels.availableFilters}
+          onValueChange={e => { console.log(e) }}
+          onMenuClose={e => { console.log(e) }}
         />
         break;
-      case 8: 
+      case 8:
         // Discover - Paid Media Sourced UQFM's
         // console.log('discover- Paid Media Sourced UQFMs');
         drillDownFilter = <SingleValueSelect
           activeFilters={[]}
-          options={[{index: 0, category: " ", value: "Paid Media Sourced UQFM's FILTER 1"},
-          {index: 1, category: " ", value: "Paid Media Sourced UQFM's FILTER 2"},
-          {index: 2, category: " ", value: "Paid Media Sourced UQFM's FILTER 3"}]}
-          onValueChange={e => {console.log(e)}}
-          onMenuClose={e => {console.log(e)}}
+          options={channels.availableFilters}
+          onValueChange={e => { console.log(e) }}
+          onMenuClose={e => { console.log(e) }}
         />
         break;
-      case 27: 
+      case 27:
         // Discover - % Paid User Success UQFM's
         // console.log('discover- Paid Media Sourced UQFMs');
         drillDownFilter = <SingleValueSelect
           activeFilters={[]}
-          options={[{index: 0, category: " ", value: "% Paid User Success FILTER 1"},
-          {index: 1, category: " ", value: "% Paid User Success FILTER 2"},
-          {index: 2, category: " ", value: "% Paid User Successs FILTER 3"}]}
-          onValueChange={e => {console.log(e)}}
-          onMenuClose={e => {console.log(e)}}
+          options={[{ index: 0, category: " ", value: "% Paid User Success FILTER 1" },
+          { index: 1, category: " ", value: "% Paid User Success FILTER 2" },
+          { index: 2, category: " ", value: "% Paid User Successs FILTER 3" }]}
+          onValueChange={e => { console.log(e) }}
+          onMenuClose={e => { console.log(e) }}
         />
         break;
     }
@@ -196,9 +191,9 @@ class SummaryViewDetails extends Component {
         <div className="row container-fluid titleBarHeader">
           <span className=" detailTitle">
             {activeItem.header}
-      
+
           </span>
- 
+
 
           {/* FILTER */}
           <div className="summary-filter">
@@ -360,7 +355,7 @@ function mapStateToProps(state) {
     activePrimary: state.activeCards.primary,
     activeSecondary: state.activeCards.secondary,
     activeItem: state.summaryData.secondary[state.activeCards.secondary],
-    activeFilters: state.activeFilters,
+    activeFilters: state.filters,
     availableFilters: state.availableFilters,
     qtdwData: state.summaryData.secondary[state.activeCards.secondary].details.qtdw,
     summaryData: state.adobeData,

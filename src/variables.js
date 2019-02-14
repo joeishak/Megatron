@@ -6410,7 +6410,7 @@ export const SecondaryData = [
     },
     /* Try */
     {
-        index: 13,
+        index: 11,
         category: 2,
         header: 'New QFMs',
         value: .34523,
@@ -6835,7 +6835,7 @@ export const SecondaryData = [
         valueType: 'units'
     },
     {
-        index: 11,
+        index: 12,
         category: 2,
         header: 'New UQFMs',
         value: 73456345,
@@ -7262,7 +7262,7 @@ export const SecondaryData = [
 
     },
     {
-        index: 12,
+        index: 13,
         category: 2,
         header: 'Cumulative UQFMS',
         value: 23563456,

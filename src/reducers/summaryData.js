@@ -40,6 +40,11 @@ export default function (state = {
             newState.primary[1].value = action.payload[1].data[0].TrafficActual;
             newState.primary[1].target = action.payload[1].data[0].TrafficTarget;
             newState.primary[1].vsqrf = action.payload[1].data[0].TrafficVsQrf;
+
+            newState.primary[2].value = action.payload[2].data[0].NewQFMSActual;
+            newState.primary[2].target = action.payload[2].data[0].NewQFMSTargetFQ;
+            newState.primary[2].vsqrf = action.payload[2].data[0].NewQFMSVsQrf;
+
             newState.secondary[4].value = action.payload[1].data[0].TrafficActual;
             newState.secondary[4].target = action.payload[1].data[0].TrafficTarget;
             newState.secondary[4].vsQrf = action.payload[1].data[0].TrafficVsQrf;
@@ -97,6 +102,16 @@ export default function (state = {
             processDiscoverProductQTDData(action.payload[21].data, action.payload[22].data, action.payload[23].data, secondary);
 
 
+            return newState;
+        case GET_TRY_SECONDARY_DATA:
+            newState = Object.assign({}, state);
+            console.log(action.payload);
+
+            processTrySecondaryData(action.payload[0].data[0], newState.secondary);
+            processTryMultichartData(action.payload[1].data, newState.secondary);
+            processTryQTDData(action.payload[0].data[0], newState.secondary);
+            // processTryGeoQTDData(action.payload[0].data, newState.secondary);
+            // processTryMarketQTDData(action.payload[0].data, newState.secondary);
             return newState;
         case ADD_NEW_PRIMARY_COMMENT:
             index = action.payload.square;
@@ -1078,7 +1093,7 @@ export function processDiscoverSecondaryData(g1, g2, g5, newState) {
     // Paid Media Spend
     newState[7].value = g1.PaidMediaSpendActual;
     newState[7].target = g1.PaidMediaSpendTarget;
-    newState[5].vsQrf = g1.PaidMediaSpendVsQrf;
+    newState[7].vsQrf = g1.PaidMediaSpendVsQrf;
 
     //Paid Media Sourced UQFMS
     newState[8].value = g2.PaidMediaSourcedUQFMSActual;
@@ -1387,7 +1402,6 @@ export function processDiscoverQTDData(g1, g2, g5, newState) {
         }
     }
 }
-
 export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
     console.log(g1, g2, g5)
     //Clear old Values
@@ -2364,3 +2378,541 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
         newState[10].details.product.week.push(bouncePM);
     }
 }
+
+
+/**Try**/
+export function processTrySecondaryData(g2, newState) {
+
+    console.log(g2)
+    //  New QFMS
+    newState[11].value = g2.NewQFMSActual;
+    newState[11].target = g2.NewQFMSTargetFQ;
+    newState[11].vsQrf = g2.NewQFMSVsQrf;
+
+    //   New UQFMS
+    newState[12].value = g2.NewUQFMSActual;
+    newState[12].target = g2.NewUQFMSTargetFQ;
+    newState[12].vsQrf = g2.NewUQFMSVsQrf;
+
+    // Cumulative UQFMS
+    newState[13].value = g2.CumulativeUqfmsActual;
+    newState[13].target = g2.CumulativeUqfmsTargetFQ;
+    newState[13].vsQrf = g2.CumulativeUqfmsTargetFQ;
+
+    //Cumulative QFMs
+    newState[14].value = g2.CumulativeQFMSActual;
+    newState[14].target = g2.CumulativeQFMSTargetFQ;
+    newState[14].vsQrf = g2.CumulativeQFMSVsQrf;
+
+    //28 Day New UQFM to QFM
+    newState[16].value = g2.Day28NewUQFMActual;
+    newState[16].target = g2.Day28NewUQFMTargetFQ;
+    newState[16].vsQrf = g2.Day28NewUQFMTargetFQ;
+
+    //Cum. UQFM to QFM
+    newState[17].value = g2.CumulativeUqfmToQFMActual;
+    newState[17].target = g2.CumulativeUqfmToQFMTargetFQ;
+    newState[17].vsqrf = g2.CumulativeUqfmToQFMTargetFQ;
+
+}
+export function processTryMultichartData(g2, newState) {
+
+
+    let weekG2Flag = g2.map(item => {
+        return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
+    })
+
+    // _.orderBy(weekFlag, weekNo, ['asc'])
+
+    let newG2 = _.orderBy(weekG2Flag, ['weekNo'], ['asc']);
+
+    let traffic = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    },
+        newQfm = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        },
+        newUqfm = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        },
+        cumulativeUqfm = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        },
+        cumulativeQfm = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        },
+        day28New = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        },
+        cumUqfm = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        }
+
+
+
+    //Get Discover G2 Multichart values
+    for (let i = 0; i < g2.length; i++) {
+        let item = newG2[i];
+        //newQfm
+        newQfm.actual.push(item.NewQFMSActual);
+        newQfm.target.push(item.NewQFMSTargetFQ);
+        newQfm.ly.push(item.NewQFMSLY);
+        newQfm.lq.push(item.NewQFMSLQ);
+        //newUqfm
+        newUqfm.actual.push(item.NewUQFMSActual);
+        newUqfm.target.push(item.NewUQFMSTargetFQ);
+        newUqfm.ly.push(item.NewUQFMSLY);
+        newUqfm.lq.push(item.NewUQFMSLQ);
+
+        //cumulativeUqfm
+        cumulativeUqfm.actual.push(item.CumulativeUqfmToQFMActual);
+        cumulativeUqfm.target.push(item.CumulativeUqfmToQFMTargetFQ);
+        cumulativeUqfm.ly.push(item.CumulativeUqfmToQFMLY);
+        cumulativeUqfm.lq.push(item.CumulativeUqfmToQFMLQ);
+        //cumulativeQfm
+        cumulativeQfm.actual.push(item.CumulativeQFMSActual);
+        cumulativeQfm.target.push(item.CumulativeQFMSTargetFQ);
+        cumulativeQfm.ly.push(item.CumulativeQFMSLY);
+        cumulativeQfm.lq.push(item.CumulativeQFMSLQ);
+        //day28New
+        day28New.actual.push(item.Day28NewUQFMActual);
+        day28New.target.push(item.Day28NewUQFMTargetFQ);
+        day28New.ly.push(item.Day28NewUQFMLY);
+        day28New.lq.push(item.Day28NewUQFMLQ);
+        //cumUqfm
+        cumUqfm.actual.push(item.CumulativeUqfmsActual);
+        cumUqfm.target.push(item.CumulativeUqfmsTargetFQ);
+        cumUqfm.ly.push(item.CumulativeUqfmsLY);
+        cumUqfm.lq.push(item.CumulativeUqfmsLQ);
+
+
+    };
+
+    //Set Multichart Values
+    for (let i = 11; i < newState.length; i++) {
+        switch (i) {
+            case 11:
+                currentMulti = [newQfm.actual, newQfm.target, newQfm.ly, newQfm.lq];
+                break;
+            case 12:
+                currentMulti = [newUqfm.actual, newUqfm.target, newUqfm.ly, newUqfm.lq];
+                break;
+            case 13:
+                currentMulti = [cumulativeUqfm.actual, cumulativeUqfm.target, cumulativeUqfm.ly, cumulativeUqfm.lq];
+                break;
+            case 14:
+                currentMulti = [cumulativeQfm.actual, cumulativeQfm.target, cumulativeQfm.ly, cumulativeQfm.lq];
+                break;
+            case 16:
+                currentMulti = [day28New.actual, day28New.target, day28New.ly, day28New.lq];
+                break;
+            case 17:
+                currentMulti = [cumUqfm.actual, cumUqfm.target, cumUqfm.ly, cumUqfm.lq];
+                break;
+            default:
+                break;
+        }
+        newState[i]['details'].multichart = currentMulti;
+    }
+}
+export function processTryQTDData(g2, newState) {
+    for (let i = 11; i < newState.length; i++) {
+
+
+        switch (i) {
+            // Traffic
+            case 11:
+                newState[i].details.qtdw.qtd[0].value = g2.NewQFMSActual;
+                newState[i].details.qtdw.qtd[1].value = g2.NewQFMSTarget;
+                newState[i].details.qtdw.qtd[2].value = g2.NewQFMSVsQrfDiff;
+                newState[i].details.qtdw.qtd[3].value = g2.NewQFMSVsQrf;
+                newState[i].details.qtdw.qtd[4].value = g2.NewQFMSQQTY;
+                newState[i].details.qtdw.qtd[5].value = g2.NewQFMSYY;
+
+                newState[i].details.qtdw.week[0].value = g2.NewQFMSCW;
+                newState[i].details.qtdw.week[1].value = g2.NewQFMSTargetCW;
+                newState[i].details.qtdw.week[2].value = g2.NewQFMSCWVsQrfDiff;
+                newState[i].details.qtdw.week[3].value = g2.NewQFMSCWVsQrf;
+                newState[i].details.qtdw.week[4].value = g2.NewQFMSWW;
+
+                newState[i].details.stats[0].value = g2.NewQFMSVsQrf;
+                newState[i].details.stats[1].value = g2.NewQFMSQQTY;
+                newState[i].details.stats[2].value = g2.NewQFMSQQLY;
+                newState[i].details.stats[3].value = g2.NewQFMSYY;
+                break;
+            // Marketable Universe
+            case 12:
+                newState[i].details.qtdw.qtd[0].value = g2.NewUQFMSActual;
+                newState[i].details.qtdw.qtd[1].value = g2.NewUQFMSTarget;
+                newState[i].details.qtdw.qtd[2].value = g2.NewUQFMSVsQrfDiff;
+                newState[i].details.qtdw.qtd[3].value = g2.NewUQFMSVsQrf;
+                newState[i].details.qtdw.qtd[4].value = g2.NewUQFMSQQTY;
+                newState[i].details.qtdw.qtd[5].value = g2.NewUQFMSYY;
+
+                newState[i].details.qtdw.week[0].value = g2.NewUQFMSCW;
+                newState[i].details.qtdw.week[1].value = g2.NewUQFMSTargetCW;
+                newState[i].details.qtdw.week[2].value = g2.NewUQFMSCWVsQrfDiff;
+                newState[i].details.qtdw.week[3].value = g2.NewUQFMSCWVsQrf;
+                newState[i].details.qtdw.week[4].value = g2.NewUQFMSWW;
+
+
+                newState[i].details.stats[0].value = g2.NewUQFMSVsQrf;
+                newState[i].details.stats[1].value = g2.NewUQFMSQQTY;
+                newState[i].details.stats[2].value = g2.NewUQFMSQQLY;
+                newState[i].details.stats[3].value = g2.NewUQFMSYY;
+                break;
+            // UqFm Conversion
+            case 13:
+                newState[i].details.qtdw.qtd[0].value = g2.CumulativeUQFMSActual;
+                newState[i].details.qtdw.qtd[1].value = g2.CumulativeUQFMSTarget;
+                newState[i].details.qtdw.qtd[2].value = g2.CumulativeUQFMSVsQrfDiff;
+                newState[i].details.qtdw.qtd[3].value = g2.CumulativeUQFMSVsQrf;
+                newState[i].details.qtdw.qtd[4].value = g2.CumulativeUQFMSQQTY;
+                newState[i].details.qtdw.qtd[5].value = g2.CumulativeUQFMSYY;
+
+                newState[i].details.qtdw.week[0].value = g2.CumulativeUQFMSTargetCW;
+                newState[i].details.qtdw.week[1].value = g2.CumulativeUQFMSTargetCW;
+                newState[i].details.qtdw.week[2].value = g2.CumulativeUQFMSTargetCW;
+                newState[i].details.qtdw.week[3].value = g2.CumulativeUQFMSTargetCW;
+                newState[i].details.qtdw.week[4].value = g2.CumulativeUQFMSTargetCW;
+
+                newState[i].details.stats[0].value = g2.CumulativeUQFMSVsQrf;
+                newState[i].details.stats[1].value = g2.CumulativeUQFMSQQTY;
+                newState[i].details.stats[2].value = g2.CumulativeUQFMSQQLY;
+                newState[i].details.stats[3].value = g2.CumulativeUQFMSYY;
+                break;
+            // Paid Media Spend
+            case 14:
+                newState[i].details.qtdw.qtd[0].value = g2.CumulativeQFMSActual;
+                newState[i].details.qtdw.qtd[1].value = g2.CumulativeQFMSTarget;
+                newState[i].details.qtdw.qtd[2].value = g2.CumulativeQFMSVsQrfDiff;
+                newState[i].details.qtdw.qtd[3].value = g2.CumulativeQFMSVsQrf;
+                newState[i].details.qtdw.qtd[4].value = g2.CumulativeQFMSQQTY;
+                newState[i].details.qtdw.qtd[5].value = g2.CumulativeQFMSYY;
+
+                newState[i].details.qtdw.week[0].value = g2.CumulativeQFMSTargetCW;
+                newState[i].details.qtdw.week[1].value = g2.CumulativeQFMSTargetCW;
+                newState[i].details.qtdw.week[2].value = g2.CumulativeQFMSTargetCW;
+                newState[i].details.qtdw.week[3].value = g2.CumulativeQFMSTargetCW;
+                newState[i].details.qtdw.week[4].value = g2.CumulativeQFMSTargetCW;
+
+                newState[i].details.stats[0].value = g2.CumulativeQFMSVsQrf;
+                newState[i].details.stats[1].value = g2.CumulativeQFMSQQTY;
+                newState[i].details.stats[2].value = g2.CumulativeQFMSQQLY;
+                newState[i].details.stats[3].value = g2.CumulativeQFMSYY;
+                break;
+            // Paid Media Sourced
+            case 16:
+                newState[i].details.qtdw.qtd[0].value = g2.Day28NewUQFMActual;
+                newState[i].details.qtdw.qtd[1].value = g2.Day28NewUQFMTarget;
+                newState[i].details.qtdw.qtd[2].value = g2.Day28NewUQFMVsQrfDiff;
+                newState[i].details.qtdw.qtd[3].value = g2.Day28NewUQFMQQTY;
+                newState[i].details.qtdw.qtd[4].value = g2.Day28NewUQFMQQTY;
+                newState[i].details.qtdw.qtd[5].value = g2.Day28NewUQFMYY;
+
+                newState[i].details.qtdw.week[0].value = g2.Day28NewUQFMCW;
+                newState[i].details.qtdw.week[1].value = g2.Day28UNewQFMTargetCW;
+                newState[i].details.qtdw.week[2].value = g2.Day28NewUQFMCWVsQrfDiff;
+                newState[i].details.qtdw.week[3].value = g2.Day28NewUQFMQQTY;
+                newState[i].details.qtdw.week[4].value = g2.Day28NewUQFMWW;
+
+                newState[i].details.stats[0].value = g2.Day28NewUQFMQQTY;
+                newState[i].details.stats[1].value = g2.Day28NewUQFMQQTY;
+                newState[i].details.stats[2].value = g2.Day28NewUQFMQQLY;
+                newState[i].details.stats[3].value = g2.Day28NewUQFMYY;
+                break;
+            // New UQFM
+            case 17:
+                newState[i].details.qtdw.qtd[0].value = g2.CumulativeUqfmToQFMActual;
+                newState[i].details.qtdw.qtd[1].value = g2.CumulativeUqfmToQFMTarget;
+                newState[i].details.qtdw.qtd[2].value = g2.CumulativeUqfmToQFMVsQrfDiff;
+                // newState[i].details.qtdw.qtd[3].value = g2.NewUQFMSVsQRF;
+                // newState[i].details.qtdw.qtd[4].value = g2.NewUQFMSQQTY;
+                // newState[i].details.qtdw.qtd[5].value = g2.NewUQFMSYY;
+
+                // newState[i].details.qtdw.week[0].value = g2.NewUQFMSCW;
+                // newState[i].details.qtdw.week[1].value = g2.NewUQFMSTargetCW;
+                // newState[i].details.qtdw.week[2].value = g2.NewUQFMSQRFDiffCW;
+                // newState[i].details.qtdw.week[3].value = g2.NewUQFMSVsQRFCW;
+                // newState[i].details.qtdw.week[4].value = g2.NewUQFMSWW;
+
+                // newState[i].details.stats[0].value = g2.NewUQFMSVsQRF;
+                // newState[i].details.stats[1].value = g2.NewUQFMSQQTY;
+                // newState[i].details.stats[2].value = g2.NewUQFMSQQLY;
+                // newState[i].details.stats[3].value = g2.NewUQFMSYY;
+                break;
+        }
+    }
+}
+// export function processTryGeoQTDData(g2, newState) {
+//     console.log(g2)
+//     //Clear old Values
+//     newState[11].details.geo.qtd = [];
+//     newState[12].details.geo.qtd = [];
+//     newState[13].details.geo.qtd = [];
+//     newState[14].details.geo.qtd = [];
+//     newState[16].details.geo.qtd = [];
+//     newState[17].details.geo.qtd = [];
+//     newState[11].details.geo.week = [];
+//     newState[12].details.geo.week = [];
+//     newState[13].details.geo.week = [];
+//     newState[14].details.geo.week = [];
+//     newState[16].details.geo.week = [];
+//     newState[17].details.geo.week = [];
+
+
+//     for (let i = 0; i < g2.length; i++) {
+//         let item = g2[i];
+//         //Market
+//         let marketable = {
+//             index: i,
+//             actuals: item.MarketableUniverseActual,
+//             marketArea: item.market_area_code,
+//             qq: item.MarketableUniverseQQTY,
+//             qrf: item.MarketableUniverseTargetFQ,
+//             qrfDiff: item.MarketableUniverseVsQrfDiff,
+//             type: item.geo_code,
+//             vsQrf: item.MarketableUniverseVsQrf,
+//             yy: item.MarketableUniverseYY
+//         }
+//         let marketPM =
+//         {
+//             index: i,
+//             marketArea: item.market_area_code,
+//             actuals: item.MarketableUniverseCW,
+//             qrf: item.MarketableUniverseTargetCW,
+//             qrfDiff: item.MarketableUniverseVsQrfDiffCW,
+//             vsQrf: item.MarketableUniverseVsQrfCW,
+//             ww: item.MarketableUniverseWW,
+//             type: item.geo_code,
+//         }
+//         // New UQFM
+//         let newUqfm = {
+//             index: i,
+//             actuals: item.NewUQFMSActual,
+//             marketArea: item.market_area_code,
+//             qq: item.NewUQFMSQQTY,
+//             qrf: item.NewUQFMSTargetFQ,
+//             qrfDiff: item.NewUQFMSVsQrfDiff,
+//             type: item.geo_code,
+//             vsQrf: item.NewUQFMSVsQRF,
+//             yy: item.NewUQFMSYY
+//         }
+//         let newPM =
+//         {
+//             index: i,
+//             marketArea: item.market_area_code,
+//             actuals: item.NewUQFMSCW,
+//             qrf: item.NewUQFMSTargetCW,
+//             qrfDiff: item.NewUQFMSQRFDiffCW,
+//             vsQrf: item.NewUQFMSVsQRFCW,
+//             ww: item.NewUQFMSWW,
+//             type: item.geo_code,
+//         }
+//         //Paid Media Sourced
+//         let paid = {
+//             index: i,
+//             actuals: item.PaidMediaSourcedUQFMSActual,
+//             marketArea: item.market_area_code,
+//             qq: item.PaidMediaSourcedUQFMSQQTY,
+//             qrf: item.PaidMediaSourcedUQFMSTargetFQ,
+//             qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
+//             type: item.geo_code,
+//             vsQrf: item.PaidMediaSourcedUQFMSVsQRF,
+//             yy: item.PaidMediaSourcedUQFMSYY
+//         }
+//         let paidPM =
+//         {
+//             index: i,
+//             marketArea: item.market_area_code,
+//             actuals: item.PaidMediaSourcedUQFMSCW,
+//             qrf: item.PaidMediaSourcedUQFMSTargetCW,
+//             qrfDiff: item.PaidMediaSourcedUQFMSQRFDiffCW,
+//             vsQrf: item.PaidMediaSourcedUQFMSVsQRFCW,
+//             ww: item.PaidMediaSourcedUQFMSWW,
+//             type: item.geo_code,
+//         }
+//         //UQFM
+//         let uqfm = {
+//             index: i,
+//             actuals: item.UQFMConversionActual,
+//             marketArea: item.market_area_code,
+//             qq: item.UQFMConversionQQTY,
+//             qrf: item.UQFMActual,
+//             qrfDiff: item.UQFMConversionActual,
+//             type: item.geo_code,
+//             vsQrf: item.UQFMConversionActual,
+//             yy: item.UQFMConversionYY
+//         }
+//         let uqfmPM =
+//         {
+//             index: i,
+//             marketArea: item.market_area_code,
+//             actuals: item.UQFMConversionCW,
+//             qrf: item.UQFMConversionCW,
+//             qrfDiff: item.UQFMConversionWW,
+//             vsQrf: item.UQFMConversionWW,
+//             ww: item.UQFMConversionWW,
+//             type: item.geo_code,
+//         }
+
+//         newState[5].details.geo.qtd.push(marketable);
+//         newState[6].details.geo.qtd.push(uqfm);
+//         newState[8].details.geo.qtd.push(paid);
+//         newState[9].details.geo.qtd.push(newUqfm);
+
+//         newState[5].details.geo.week.push(marketPM);
+//         newState[6].details.geo.week.push(newPM);
+//         newState[8].details.geo.week.push(paidPM);
+//         newState[9].details.geo.week.push(uqfmPM);
+
+
+
+//     }
+
+
+
+// }
+// export function processTryMarketQTDData(g2, newState) {
+//     //Clear old Values
+//     newState[4].details.market.qtd = [];
+//     newState[5].details.market.qtd = [];
+//     newState[6].details.market.qtd = [];
+//     newState[7].details.market.qtd = [];
+//     newState[8].details.market.qtd = [];
+//     newState[9].details.market.qtd = [];
+//     newState[10].details.market.qtd = [];
+//     newState[4].details.market.week = [];
+//     newState[5].details.market.week = [];
+//     newState[6].details.market.week = [];
+//     newState[7].details.market.week = [];
+//     newState[8].details.market.week = [];
+//     newState[9].details.market.week = [];
+//     newState[10].details.market.week = [];
+
+
+//     for (let i = 0; i < g2.length; i++) {
+//         let item = g2[i];
+//         //Market
+//         let marketable = {
+//             index: i,
+//             actuals: item.MarketableUniverseActual,
+//             qq: item.MarketableUniverseQQTY,
+//             qrf: item.MarketableUniverseTargetFQ,
+//             qrfDiff: item.MarketableUniverseVsQrfDiff,
+//             type: item.market_area_code,
+//             vsQrf: item.MarketableUniverseVsQrf,
+//             yy: item.MarketableUniverseYY
+//         }
+//         let marketPM =
+//         {
+//             index: i,
+//             actuals: item.MarketableUniverseCW,
+//             qrf: item.MarketableUniverseTargetCW,
+//             qrfDiff: item.MarketableUniverseVsQrfDiffCW,
+//             vsQrf: item.MarketableUniverseVsQrfCW,
+//             ww: item.MarketableUniverseWW,
+//             type: item.market_area_code,
+//         }
+//         // New UQFM
+//         let newUqfm = {
+//             index: i,
+//             actuals: item.NewUQFMSActual,
+//             qq: item.NewUQFMSQQTY,
+//             qrf: item.NewUQFMSTargetFQ,
+//             qrfDiff: item.NewUQFMSVsQrfDiff,
+//             type: item.market_area_code,
+//             vsQrf: item.NewUQFMSVsQRF,
+//             yy: item.NewUQFMSYY
+//         }
+//         let newPM =
+//         {
+//             index: i,
+//             actuals: item.NewUQFMSCW,
+//             qrf: item.NewUQFMSTargetCW,
+//             qrfDiff: item.NewUQFMSQRFDiffCW,
+//             vsQrf: item.NewUQFMSVsQRFCW,
+//             ww: item.NewUQFMSWW,
+//             type: item.market_area_code,
+//         }
+//         //Paid Media Sourced
+//         let paid = {
+//             index: i,
+//             actuals: item.PaidMediaSourcedUQFMSActual,
+//             qq: item.PaidMediaSourcedUQFMSQQTY,
+//             qrf: item.PaidMediaSourcedUQFMSTargetFQ,
+//             qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
+//             type: item.market_area_code,
+//             vsQrf: item.PaidMediaSourcedUQFMSVsQRF,
+//             yy: item.PaidMediaSourcedUQFMSYY
+//         }
+//         let paidPM =
+//         {
+//             index: i,
+//             actuals: item.PaidMediaSourcedUQFMSCW,
+//             qrf: item.PaidMediaSourcedUQFMSTargetCW,
+//             qrfDiff: item.PaidMediaSourcedUQFMSQRFDiffCW,
+//             vsQrf: item.PaidMediaSourcedUQFMSVsQRFCW,
+//             ww: item.PaidMediaSourcedUQFMSWW,
+//             type: item.market_area_code,
+//         }
+//         //UQFM
+//         let uqfm = {
+//             index: i,
+//             actuals: item.UQFMConversionActual,
+//             qq: item.UQFMConversionQQTY,
+//             qrf: item.UQFMActual,
+//             qrfDiff: item.UQFMConversionActual,
+//             type: item.market_area_code,
+//             vsQrf: item.UQFMConversionActual,
+//             yy: item.UQFMConversionYY
+//         }
+//         let uqfmPM =
+//         {
+//             index: i,
+//             actuals: item.UQFMConversionCW,
+//             qrf: item.UQFMConversionCW,
+//             qrfDiff: item.UQFMConversionWW,
+//             vsQrf: item.UQFMConversionWW,
+//             ww: item.UQFMConversionWW,
+//             type: item.market_area_code,
+//         }
+
+//         newState[5].details.market.qtd.push(marketable);
+//         newState[6].details.market.qtd.push(uqfm);
+//         newState[8].details.market.qtd.push(paid);
+//         newState[9].details.market.qtd.push(newUqfm);
+
+//         newState[5].details.market.week.push(marketPM);
+//         newState[6].details.market.week.push(newPM);
+//         newState[8].details.market.week.push(paidPM);
+//         newState[9].details.market.week.push(uqfmPM);
+
+
+
+//     }
+
+// }
+
+

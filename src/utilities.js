@@ -446,8 +446,20 @@ export function initiateFilterDataRequests() {
         headers: headers,
         responseType: 'text'
     });
-
-    responseArray.push(quartersResponse, maResponse, productResponse, segementsResponse, subscriptionResponse, routesResponse, geoResponse);
+    const channelResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.ChannelFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    const visitResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.VisitFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    const signResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.SignUpFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    responseArray.push(quartersResponse, maResponse, productResponse, segementsResponse,
+        subscriptionResponse, routesResponse, geoResponse, channelResponse, visitResponse, signResponse);
     let promiseArr1 = Promise.all(responseArray);
     return promiseArr1;
 }
@@ -500,10 +512,10 @@ export function requestPrimaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    // const primaryTry = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.JourneysG3PrimaryActualTarget + params5 + '&json=1', {
-    //     headers: headers,
-    //     responseType: 'text'
-    // });
+    const primaryTry = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryActualTargetPrimary + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
     // //Secondary
     // const primaryBuy = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.buyXDCID + Infoburst.summaryQueryNames.FinancialActualTargetSecondary + params5 + '&json=1', {
     //     headers: headers,
@@ -518,7 +530,7 @@ export function requestPrimaryData(allFilters, _parameters) {
     //     responseType: 'text'
     // });
 
-    responseArray.push(primaryFinancial, primaryDiscover);
+    responseArray.push(primaryFinancial, primaryDiscover, primaryTry);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
@@ -733,6 +745,53 @@ export function requestDiscoverSecondaryData(allFilters, _parameters) {
         DiscoverG1SegmentQTD, DiscoverG2SegmentQTD, DiscoverG5SegmentQTD,
         DiscoverG1RouteQTD, DiscoverG5RouteQTD, DiscoverG2RouteQTD,
         DiscoverG1ProductQTD, DiscoverG2ProductQTD, DiscoverG5ProductQTD
+    );
+    let promiseArr = Promise.all(responseArray);
+
+    return promiseArr;
+
+}
+
+export function requestTrySecondaryData(allFilters, _parameters) {
+    responseArray = [];
+    generateFilterParams(2, group2Params, allFilters, _parameters);
+
+
+
+    let params2 = group2Params.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
+
+    // Secondary
+
+    const TrySecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryG2ActualTargetSecondary + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const TryMutlichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryG2MultiChartQuery + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const TryQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryG2QTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const TryGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryG2GeoQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const TryMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryG2MarketAreaQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+
+    responseArray.push(
+        TrySecondary, TryMutlichart, TryQTD, TryGeoQTD, TryMarketQTD
     );
     let promiseArr = Promise.all(responseArray);
 
