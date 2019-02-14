@@ -54,12 +54,14 @@ const UserNav = ({ isLaptop, onDataPreferencesSelcted, logout, filterIcon,
               />{" "}
             </div>
             <div className="flLeft">
-              <img
-                alt=""
-                className="feedbackIcon"
-                src={feedbackIcon}
-                onClick={onFeedbackClick}
-              />
+    
+                  <img
+                  alt=""
+                  className="feedbackIcon"
+                  src={feedbackIcon}
+                  onClick={onFeedbackClick}
+                />
+  
             </div>
 
           </div>

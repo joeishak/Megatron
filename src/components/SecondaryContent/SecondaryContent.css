@@ -122,6 +122,10 @@
 } */
 /* END DYNAMIC RED */
 
+.cardCommentIcon {
+	padding: 7px;
+}
+
 .journeyContent {
 	font-family: Ubuntu;
 	font-style: normal;
@@ -132,15 +136,18 @@
 	padding-top: 14px;
 	color: #FFFFFF;
 	height: 100%;
+	cursor: pointer;
+	font-weight: 400 !important;
 }
 
 .journeysAmount {
+	padding-top: 4px;
 	font-family: Ubuntu;
 	font-style: normal;
-	font-weight: 300;
+	font-weight: 600;
 	width: 90%;
 	line-height: normal;
-	font-size: 32px;
+	font-size: 1.8em;
 	color: #FF0000;
 }
 
@@ -148,9 +155,9 @@
 	color: #0DB16E;
 	font-family: Ubuntu;
 	font-style: normal;
-	font-weight: 300;
+	font-weight: 600;
 	line-height: normal;
-	font-size: 32px;
+	font-size: 1.8em;
 }
 
 .journeysTarget {
@@ -351,7 +358,7 @@
 
 .stats-details {
 	margin-right: 2px;
-	font-size: 11px;
+	font-size: 11px !important;
 }
 
 .mobileResizer {

@@ -24,7 +24,7 @@ class CompanyHeader extends Component {
         <Navbar.Brand className="navBrandLogo">
           <div href="#brand" style={{ width: 700 }}>
             {logos}
-            <span>DME - Run The Business - Alpha Release </span>
+            <span className="nav-brand-header">DME - Run The Business - Alpha Release </span>
           </div>
         </Navbar.Brand> : <Navbar.Brand className="navBrandLogo">
           <div href="#brand" style={{ width: 130 }}>

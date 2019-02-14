@@ -1223,8 +1223,7 @@ export function renderDollarValue(value) {
     }
 
     if (isNegative) {
-        return prefix + (-1 * returnValue)
-            .toString() + suffix;
+        return '- ' + prefix + returnValue.toString() + suffix;
     } else {
         return prefix + returnValue.toString() + suffix;
     }

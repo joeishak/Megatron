@@ -19,7 +19,7 @@
 .pillsContainer{
     overflow: wrap;
     float:left;
-    padding-top:10px;
+    padding-top:12px;
     padding-left: 20px;
 }
 
@@ -33,6 +33,7 @@
 .newFilterText{
     padding-bottom: 5px;
     padding-right: 10px;
+    font-weight: 500;
 }
 
 .newFilterButton{

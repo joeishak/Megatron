@@ -51,6 +51,16 @@ const SingleValueSelect = ({ options, activeFilters, defaultValue, onValueChange
                 onMenuClose(e)
             }}
             defaultValue={transformDefaultList(defaultValue)} onChange={onValueChange}
+            theme={(theme) => ({
+                ...theme,
+                borderRadius: 3,
+                colors: {
+                ...theme.colors,
+                  primary25: '#3C3C3C',
+                  primary: '#2978D9',
+                  primary50: 'gray'
+                },
+              })}
         />
     );
 };

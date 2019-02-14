@@ -52,6 +52,16 @@ const MultiValueSelect = ({ options, defaultValue, onValueChange, values, onMenu
                 onMenuClose(e)
             }}
             defaultValue={transformDefaultList(values)} onChange={onValueChange}
+            theme={(theme) => ({
+                ...theme,
+                borderRadius: 3,
+                colors: {
+                ...theme.colors,
+                  primary25: '#3C3C3C',
+                  primary: '#2978D9',
+                  primary50: 'darkgray'
+                },
+              })}
         />
     );
 };

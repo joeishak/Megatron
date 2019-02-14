@@ -239,7 +239,7 @@ class SecondaryContentList extends Component {
           {this.props.statsDetails.map(item => {
             return (
               <div style={{ float: 'left', margin: '5px' }} key={Math.random()}>
-                <div className={item.color + ` stats-detail`}>
+                <div className={(item.value <= 0 ? 'red': 'green') + ` stats-detail`}>
                   <b>{utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}</b>
                 </div>
                 <div className="stats-detail">

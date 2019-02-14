@@ -10,6 +10,7 @@ import classNames from 'classnames';
 
 import SingleValueSelect from '../SingleValueSelect/SingleValueSelect';
 import MultiValueSelect from '../MultiValueSelect/MultiValueSelect';
+import LoadingScreen from '../../Views/Loading/Loading';
 
 class KendoDialog extends Component {
 
@@ -461,7 +462,7 @@ class KendoDialog extends Component {
                 <Dialog width={939} height={626} title={`Data Preferences for ${this.props.user.name} `} onClose={this.closeDialog}>
 
                     <div className="container-fluid savedContainer">
-                        <h1>Saved!</h1>
+                        <LoadingScreen></LoadingScreen>
                     </div>
 
                 </Dialog>

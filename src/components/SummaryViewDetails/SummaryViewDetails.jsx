@@ -301,7 +301,7 @@ class SummaryViewDetails extends Component {
           <div className="stats-container-main">{this.props.activeItem.details.stats.map(item => {
             return (
               <div className="statsHeader" key={item.text}>
-                <div className={(item.color === 'red') ? 'stats red' : 'stats green '}>
+                <div className={(item.value <= 0) ? 'stats red' : 'stats green '}>
                   {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
                 </div>
                 <div className="footer"> {item.text}</div>

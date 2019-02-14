@@ -237,3 +237,10 @@
     margin-top: 10px;
     margin-left:15px;
 }
+
+img:hover {
+    cursor: pointer;
+}
+
+
+

@@ -51,6 +51,7 @@
     width: 100%;
     padding: 5px;
     margin-top: 10px;
+    font-weight: 580;
   }
   
   .button:hover {
@@ -178,9 +179,36 @@
 
 .myGlower {
     background-color: #ccc;
-    border: 3px solid transparent;
+    color: black;
+    font-weight: 600;
+    border: 4px solid transparent;
     -webkit-animation: glow 1.0s infinite alternate;  
      -webkit-transition: border 1.0s linear, box-shadow 1.0s linear;
        -moz-transition: border 1.0s linear, box-shadow 1.0s linear;
             transition: border 1.0s linear, box-shadow 1.0s linear;
+}
+
+.css-1rcfx4g {
+    background-color: rgb(29, 29, 29) !important;
+    color: white !important;
+    border-style: rgb(49, 49, 49) !important;
+}
+
+.css-s6rynw {
+    background-color: rgb(29, 29, 29) !important;
+    color: white !important;
+}
+
+.css-1g6gooi {
+    background-color: rgb(29, 29, 29) !important;
+    color: white !important;
+}
+
+.css-kd3zsw {
+    background-color: rgb(29, 29, 29) !important;
+    color: white !important;
+}
+
+.css-xp4uvy, .css-1492t68 {
+    color: white !important;
 }

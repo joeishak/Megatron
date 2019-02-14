@@ -245,6 +245,10 @@
 
 }
 
+.k-link {
+    padding-left: 7px !important;
+}
+
 .k-state-selected{
     background-color: #1f1f1f !important;
     color: white !important;
@@ -277,14 +281,23 @@
 .k-link:hover{
     color: black !important;
     background-color: #D8D8D8 !important;
+    padding-left: 7px !important;
+}
+
+.k-i-arrow-s {
+    -webkit-transform: rotate(270deg) !important; /* Safari and Chrome */
+    -moz-transform: rotate(270deg) !important;   /* Firefox */
+    -ms-transform: rotate(270deg) !important;   /* IE 9 */
+    -o-transform: rotate(270deg) !important;   /* Opera */
+    transform: rotate(270deg) !important;
 }
 
 .k-panelbar-collapse {
-    -webkit-transform: rotate(90deg) !important; /* Safari and Chrome */
-    -moz-transform: rotate(90deg) !important;   /* Firefox */
-    -ms-transform: rotate(90deg) !important;   /* IE 9 */
-    -o-transform: rotate(90deg) !important;   /* Opera */
-    transform: rotate(90deg) !important;
+    -webkit-transform: rotate(180deg) !important; /* Safari and Chrome */
+    -moz-transform: rotate(180deg) !important;   /* Firefox */
+    -ms-transform: rotate(180deg) !important;   /* IE 9 */
+    -o-transform: rotate(180deg) !important;   /* Opera */
+    transform: rotate(180deg) !important;
 }
 
 /* .k-panelbar-expand::before {
