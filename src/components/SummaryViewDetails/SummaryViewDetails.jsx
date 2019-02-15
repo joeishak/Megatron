@@ -323,10 +323,13 @@ class SummaryViewDetails extends Component {
           </div>
           <div className="col-md-2 col-lg-2">
             <SingleValueSelect
+              onMenuClose={(e) => { console.log() }}
             />
           </div>
           <div className="col-md-2 col-lg-2">
             <SingleValueSelect
+              onMenuClose={(e) => { console.log() }}
+
             />
           </div>
           <div className="col-md-2 col-lg-2 flRight">
