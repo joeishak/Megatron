@@ -45,6 +45,7 @@ class DetailPanelBar extends Component {
                     <div className='col-md-12'>
                         {/* {this.getLowerHeader(type)} */}
                         <PanelItemTableHeader
+                            qtdIsPercent={this.props.qtdIsPercent}
                             timeMetric={this.props.timeMetric}
                             activeSummary={this.props.activeSummary}
                             type={type} />
@@ -71,6 +72,7 @@ class DetailPanelBar extends Component {
                 <div className='col-md-12'>
                     {/* {this.getLowerHeader(type)} */}
                     <PanelItemTableHeader
+                        qtdIsPercent={this.props.qtdIsPercent}
                         timeMetric={this.props.timeMetric}
                         activeSummary={this.props.activeSummary}
                         type={type} />
@@ -78,6 +80,7 @@ class DetailPanelBar extends Component {
                 <div className='col-md-12 geoTableContainer'>
                     {/* {this.getTable(type)} */}
                     <PanelItemTable
+                        qtdIsPercent={this.props.qtdIsPercent}
                         type={type}
                         activeSummary={this.props.activeSummary}
                         timeMetric={this.props.timeMetric}

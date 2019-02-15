@@ -48,7 +48,8 @@ class SummaryViewDetails extends Component {
           QQ: 233,
           YY: 94.2
         }
-      ]
+      ],
+      qtdIsPercent: true
     };
 
     /*Bindings  */
@@ -58,7 +59,16 @@ class SummaryViewDetails extends Component {
     this.updateQtdMetricFilter = this.updateQtdMetricFilter.bind(this);
 
   }
-
+  updateQTDPercentageFilter = (e) => {
+    let metric = e.target.innerHTML.toLowerCase();
+    console.log(metric);
+    if (metric === "%") {
+      this.setState({ qtdIsPercent: true });
+    } else {
+      this.setState({ qtdIsPercent: false });
+    }
+    // Either be 'units' or 'arr'
+  }
   updateMultiChartMetricFilter(e) {
     let metric = e.target.innerHTML.toLowerCase();
     if (metric === "arr") {
@@ -148,6 +158,14 @@ class SummaryViewDetails extends Component {
       arrMetric: true,
       activeMetric: this.props.multichartIsArr ? true : false
     });
+    var PercentageStyles = classNames({
+      unitMetric: true,
+      activeMetric: this.state.qtdIsPercent ? true : false
+    });
+    var NumberStyles = classNames({
+      arrMetric: true,
+      activeMetric: this.state.qtdIsPercent ? false : true
+    });
     var QTDStyles = classNames({
       qtdMetric: true,
       activeTimeMetric: this.state.activeTimeMetric === "qtd" ? true : false
@@ -199,6 +217,7 @@ class SummaryViewDetails extends Component {
           <div className="summary-filter">
             {this.getSummaryFilters(this.props.activeSecondary)}
           </div>
+
 
           {this.props.activePrimary < 1 ?
 
@@ -332,6 +351,20 @@ class SummaryViewDetails extends Component {
 
             />
           </div>
+          <div className="col-lg-2 ">
+            <div className=" multiChartMetricContainer ">
+              <div
+                onClick={this.updateQTDPercentageFilter}
+                className={PercentageStyles}>
+                %
+                </div>
+              <div
+                onClick={this.updateQTDPercentageFilter}
+                className={NumberStyles}>
+                #
+                </div>
+            </div>
+          </div>
           <div className="col-md-2 col-lg-2 flRight">
             <div className=" totalTimeMetricContainer">
               <span >
@@ -351,6 +384,7 @@ class SummaryViewDetails extends Component {
 
 
         <DetailBreakdown
+          qtdIsPercent={this.state.qtdIsPercent}
           activeSummary={activeItem}
           activePrimary={activePrimary}
           activeTimeMetric={this.state.activeTimeMetric}

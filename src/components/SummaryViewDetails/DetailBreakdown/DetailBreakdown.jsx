@@ -53,17 +53,20 @@ class DetailBreakdown extends Component {
                       qtdwColSizes
                     }
                   >
-                    <span className="contHeader"> {item.header}</span>
-                    {
-                      (item.header === "Vs Qrf") ?
-                        <span className={`valHeader` + (item.value <= 0 ? " redBG" : " greenBG ")}>
-                          {" "}
-                          {this.renderDollarValuePanelBarItems(item.value, item)}
-                        </span> :
-                        <span className={`valHeader`}>
-                          {" "}
-                          {this.renderDollarValuePanelBarItems(item.value, item)}
-                        </span>
+                    {(item.header === "Vs Qrf" || item.header === "Q/Q" || item.header === "Y/Y") ?
+                      <span className="contHeader"> {item.header} {this.props.qtdIsPercent ? '%' : '#'} </span> :
+                      <span className="contHeader"> {item.header}</span>
+                    }
+
+                    {(item.header === "Vs Qrf") ?
+                      <span className={`valHeader` + (item.value <= 0 ? " redBG" : " greenBG ")}>
+                        {" "}
+                        {this.renderDollarValuePanelBarItems(item.value, item)}
+                      </span> :
+                      <span className={`valHeader`}>
+                        {" "}
+                        {this.renderDollarValuePanelBarItems(item.value, item)}
+                      </span>
                     }
                     {/* <span className={`valHeader` + (item.header === "Vs Qrf" ? " redBG" : " ")}>
                       {" "}
@@ -136,6 +139,7 @@ class DetailBreakdown extends Component {
         </div>
         <div className="  qtdTopDetails container-fluid row white">
           <DetailPanelBar
+            qtdIsPercent={this.props.qtdIsPercent}
             activeSummary={activeSummary}
             timeMetric={activeTimeMetric}
             background="white"

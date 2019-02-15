@@ -88,13 +88,13 @@ class PanelItemTableHeader extends Component {
                         QRF DIFF
                     </div>
                     <div onDoubleClick={this.updateVsQRF} className={`${qtdColumnClass} pointer header col`}>
-                        vs QRF {this.state.vsQrfIsPercent ? '%' : '#'}
+                        vs QRF {this.props.qtdIsPercent ? '%' : '#'}
                     </div>
                     <div onDoubleClick={this.updateQQ} className={`${qtdColumnClass} pointer  header col`}>
-                        Q/Q {this.state.qqIsPercent ? '%' : '#'}
+                        Q/Q {this.props.qtdIsPercent ? '%' : '#'}
                     </div>
                     <div onDoubleClick={this.updateYY} className={`${qtdColumnClass} pointer  header col`}>
-                        Y/Y {this.state.yyIsPercent ? '%' : '#'}
+                        Y/Y {this.props.qtdIsPercent ? '%' : '#'}
                     </div>
                 </div>);
             default:

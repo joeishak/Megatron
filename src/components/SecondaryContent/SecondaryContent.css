@@ -12,7 +12,7 @@
 /* Figma Styles */
 .journeyBox {
 	width: 100%;
-	height: 150px;
+	height: 135px;
 	background: #000000;
 	/* Dynamic */
 	border: 2px solid #3c3c3c;
@@ -146,9 +146,10 @@ boxContentAmountGreen
 	font-family: Ubuntu;
 	font-style: normal;
 	font-weight: 600;
-	width: 90%;
+	width: 40%;
 	line-height: normal;
 	font-size: 1.8em;
+	float:left
 }
 
 .journeysAmountGreen {
@@ -177,6 +178,7 @@ boxContentAmountGreen
 
 .secondaryTarget{
 	padding-bottom: 15px;
+	margin-top:10px;
 }
 .journeyKendoGraph {
 	height: auto;

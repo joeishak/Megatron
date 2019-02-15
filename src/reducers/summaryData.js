@@ -49,6 +49,7 @@ export default function (state = {
 
             newState.secondary[4].value = action.payload[1].data[0].TrafficActual;
             newState.secondary[4].target = action.payload[1].data[0].TrafficTarget;
+            newState.secondary[4].targetFQ = action.payload[1].data[0].TrafficTargetFQ;
             newState.secondary[4].vsQrf = action.payload[1].data[0].TrafficVsQrf;
             return newState;
 
@@ -177,7 +178,7 @@ export function processFinanceSecondaryData(g1, newState) {
     newState[2].vsQrf = g1.data[0].CancelVsQrf;
     //   //Renewal
     newState[3].value = g1.data[0].RenewActuals;
-    newState[3].targetFQ = g1.data[0].RenewalARRTargetFQ;
+    newState[3].targetFQ = g1.data[0].RenewARRTargetFQ;
     newState[3].target = g1.data[0].RenewARRTarget;
     newState[3].vsQrf = g1.data[0].RenewVSQRF;
 }
@@ -439,7 +440,7 @@ export function processFinancialQTD(newState, data) {
             case 3:
                 newState[i].details.qtdw.qtd[0].value = findata.RenewActuals;
                 newState[i].details.qtdw.qtd[1].value = findata.RenewUnitsActual;
-                newState[i].details.qtdw.qtd[2].value = findata.RenewARRTargetFQ;
+                newState[i].details.qtdw.qtd[2].value = findata.RenewARRTarget;
                 newState[i].details.qtdw.qtd[3].value = findata.RenewVsQrfDiff;
                 newState[i].details.qtdw.qtd[4].value = findata.RenewVSQRF;
                 newState[i].details.qtdw.qtd[5].value = findata.RenewARRQQTY;
@@ -508,7 +509,7 @@ export function processFinancialGeoQTD(newState, data) {
             actuals: item.RenewActuals,
             marketArea: item.market_area_group,
             qq: item.RenewARRQQTY,
-            qrf: item.RenewARRTargetFQ,
+            qrf: item.RenewARRTarget,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.geo_code,
             units: item.RenewUnitsActual,
@@ -642,7 +643,7 @@ export function processFinancialMarketQTD(newState, data) {
             actuals: item.RenewActuals,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
-            qrf: item.RenewARRTargetFQ,
+            qrf: item.RenewARRTarget,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.market_area_code,
             units: item.RenewUnitsActual,
@@ -773,7 +774,7 @@ export function processFinancialRoutesQTD(newState, data) {
             actuals: item.RenewActuals,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
-            qrf: item.RenewARRTargetFQ,
+            qrf: item.RenewARRTarget,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.route_to_market,
             units: item.RenewUnitsActual,
@@ -904,7 +905,7 @@ export function processFinancialSegmentQTD(newState, data) {
             actuals: item.RenewActuals,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
-            qrf: item.RenewARRTargetFQ,
+            qrf: item.RenewARRTarget,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.segment_pivot,
             units: item.RenewUnitsActual,
@@ -1035,7 +1036,7 @@ export function processFinancialProductsQTD(newState, data) {
             actuals: item.RenewActuals,
             marketArea: item.market_area_code,
             qq: item.RenewARRQQTY,
-            qrf: item.RenewARRTargetFQ,
+            qrf: item.RenewARRTarget,
             qrfDiff: item.RenewVsQrfDiff,
             type: item.product_name,
             units: item.RenewUnitsActual,
@@ -1122,7 +1123,8 @@ export function processDiscoverSecondaryData(g1, g2, g5, newState) {
     console.log(g2)
     //  //Marketable universe
     newState[5].value = g2.MarketableUniverseActual;
-    newState[5].target = g2.MarketableUniverseTargetFQ;
+    newState[5].targetFQ = g2.MarketableUniverseTargetFQ;
+    newState[5].target = g2.MarketableUniverseTarget;
     newState[5].vsQrf = g2.MarketableUniverseVsQrf;
 
     //   //UQFM Conversions
@@ -1133,16 +1135,19 @@ export function processDiscoverSecondaryData(g1, g2, g5, newState) {
     // Paid Media Spend
     newState[7].value = g1.PaidMediaSpendActual;
     newState[7].target = g1.PaidMediaSpendTarget;
+    newState[7].targetFQ = g1.PaidMediaSpendTargetFQ;
     newState[7].vsQrf = g1.PaidMediaSpendVsQrf;
 
     //Paid Media Sourced UQFMS
     newState[8].value = g2.PaidMediaSourcedUQFMSActual;
-    newState[8].target = g2.PaidMediaSourcedUQFMSTargetFQ;
+    newState[8].targetFQ = g2.PaidMediaSourcedUQFMSTargetFQ;
+    newState[8].target = g2.PaidMediaSourcedUQFMSTarget;
     newState[8].vsQrf = g2.PaidMediaSourcedUQFMSVsQRF;
 
     //New UQFMS
     newState[9].value = g2.NewUQFMSActual;
-    newState[9].target = g2.NewUQFMSTargetFQ;
+    newState[9].targetFQ = g2.NewUQFMSTargetFQ;
+    newState[9].target = g2.NewUQFMSTarget;
     newState[9].vsQrf = g2.NewUQFMSVsQRF;
 
     //Bounce Rate

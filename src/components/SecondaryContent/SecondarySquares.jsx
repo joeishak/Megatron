@@ -52,7 +52,7 @@ class SecondarySquares extends Component {
       "value"
     );
     const formattedTarget = utils.formatMetric(
-      { valueType: this.props.item.valueType, value: this.props.item.target },
+      { valueType: this.props.item.valueType, value: this.props.item.targetFQ },
       "value"
     );
     const formattedQRF = utils.formatMetric(
@@ -127,7 +127,7 @@ class SecondarySquares extends Component {
             >
               {formattedValue}
             </div>
-            ( {formattedQRF} vs QRF)
+            <div>( {formattedQRF} vs QRF)</div>
             <div className="">
               <KendoBulletChart
                 width={175}
@@ -139,11 +139,11 @@ class SecondarySquares extends Component {
               />
             </div>
             <div className={boxContentTarget}>
-              {formattedTarget}
+              Target: {formattedTarget}
             </div>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 

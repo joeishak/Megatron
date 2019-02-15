@@ -54,7 +54,7 @@ class PrimarySquare extends Component {
       "value"
     );
     const formattedTarget = utils.formatMetric(
-      { valueType: this.props.item.valueType, value: this.props.item.target },
+      { valueType: this.props.item.valueType, value: this.props.item.targetFQ },
       "target"
     );
     const formattedQRF = utils.formatMetric(
@@ -232,7 +232,7 @@ class PrimarySquare extends Component {
                     </div>
                     {/* Formatted Target $###.## (M / %)*/}
                     <div className={responsiveTarget}>
-                      {formattedTarget}
+                      Target: {formattedTarget}
                     </div>
                   </div>
                 )}
