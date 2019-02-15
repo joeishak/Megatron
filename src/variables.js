@@ -42,8 +42,8 @@ export const PrimaryData = [
         index: 3,
         category: 'Buy',
         header: 'Conversions',
-        value: .059,
-        target: .060,
+        value: .012,
+        target: .0099,
         valueType: 'percent',
         type: 'journey',
         comments: [
@@ -55,8 +55,8 @@ export const PrimaryData = [
         index: 4,
         category: 'Use',
         header: 'Repeat User MAU',
-        value: -.123,
-        target: -.68,
+        value: .6054,
+        target: .6411,
         valueType: 'percent',
         type: 'journey',
         comments: [
@@ -68,8 +68,8 @@ export const PrimaryData = [
         index: 5,
         category: 'Renew',
         header: 'QTR UI Rate',
-        value: .55,
-        target: .40,
+        value: .0335,
+        target: .0584,
         valueType: 'percent',
         type: 'journey',
         comments: [
@@ -105,41 +105,7 @@ export const SecondaryData = [
             ],
             qtdw: {
                 qtd: [
-                    {
-                        index: 1,
-                        header: 'Actuals',
-                        value: 0
-                    },
-                    {
-                        index: 2,
-                        header: 'Units',
-                        value: 0
-                    },
-                    {
-                        index: 3,
-                        header: 'QRF',
-                        value: 66.7
-                    },
-                    {
-                        index: 4,
-                        header: 'QRF Diff',
-                        value: 66.7
-                    },
-                    {
-                        index: 5,
-                        header: 'Vs Qrf',
-                        value: 66.7
-                    },
-                    {
-                        index: 6,
-                        header: 'Q/Q',
-                        value: 66.7
-                    },
-                    {
-                        index: 7,
-                        header: 'Y/Y',
-                        value: 66.7
-                    }
+
                 ],
                 week: [
                     {
@@ -9075,8 +9041,8 @@ export const SecondaryData = [
         index: 20,
         category: 3,
         header: 'Conversion',
-        value: .34523,
-        target: .23452345,
+        value: .0102,
+        target: .0099,
         comments: [
 
         ],
@@ -9500,8 +9466,8 @@ export const SecondaryData = [
         index: 18,
         category: 3,
         header: 'Paid Media Spend',
-        value: 73456345,
-        target: 23462345,
+        value: 6800000,
+        target: 19400000,
         comments: [
 
         ],
@@ -9927,8 +9893,8 @@ export const SecondaryData = [
         index: 19,
         category: 3,
         header: 'Marketing Sourced ARR',
-        value: 23563456,
-        target: 34563456,
+        value: 30500000,
+        target: 81700000,
         comments: [
 
         ],
@@ -10444,8 +10410,8 @@ export const SecondaryData = [
         index: 21,
         category: 3,
         header: 'D2P Conversion',
-        value: .746,
-        target: .97766,
+        value: .0041,
+        target: 0,
         comments: [
 
         ],
@@ -10875,8 +10841,8 @@ export const SecondaryData = [
         index: 22,
         category: 3,
         header: 'F2P Conversion',
-        value: .746,
-        target: .97766,
+        value: .062,
+        target: 0,
         comments: [
 
         ],
@@ -11306,8 +11272,8 @@ export const SecondaryData = [
         index: 23,
         category: 3,
         header: 'Gross New ARR',
-        value: .746,
-        target: .97766,
+        value: 301000000,
+        target: 650600000,
         comments: [
 
         ],
@@ -11737,8 +11703,8 @@ export const SecondaryData = [
         index: 24,
         category: 3,
         header: 'Gross New Units',
-        value: .746,
-        target: .97766,
+        value: 1500000,
+        target: 3200000,
         comments: [
 
         ],
@@ -12162,15 +12128,15 @@ export const SecondaryData = [
                 }
             ]
         },
-        valueType: 'percent'
+        valueType: 'Units'
     },
     /* Use */
     {
         index: 24,
         category: 4,
         header: 'Engagement Index',
-        value: 73456345,
-        target: 23462345,
+        value: 30.2,
+        target: 0,
         comments: [
 
         ],
@@ -12596,8 +12562,8 @@ export const SecondaryData = [
         index: 25,
         category: 4,
         header: 'Paid User MAU',
-        value: 23563456,
-        target: 34563456,
+        value: .6764,
+        target: 0,
         comments: [
 
         ],
@@ -13112,8 +13078,8 @@ export const SecondaryData = [
         index: 26,
         category: 4,
         header: 'Repeat User MAU',
-        value: .34523,
-        target: .23452345,
+        value: .6054,
+        target: .6411,
         comments: [
 
         ],
@@ -13537,8 +13503,8 @@ export const SecondaryData = [
         index: 27,
         category: 4,
         header: 'Paid User Success',
-        value: .746,
-        target: .97766,
+        value: .77,
+        target: 0,
         comments: [
 
         ],
@@ -13968,8 +13934,8 @@ export const SecondaryData = [
         index: 28,
         category: 4,
         header: 'WK 0 WAU rate',
-        value: .746,
-        target: .97766,
+        value: .7011,
+        target: .7800,
         comments: [
 
         ],
@@ -14399,8 +14365,8 @@ export const SecondaryData = [
         index: 29,
         category: 4,
         header: 'Wk 4 WAU Rate',
-        value: .746,
-        target: .97766,
+        value: .5042,
+        target: .5774,
         comments: [
 
         ],
@@ -14830,8 +14796,8 @@ export const SecondaryData = [
         index: 30,
         category: 4,
         header: 'Learn Discovery',
-        value: .746,
-        target: .97766,
+        value: .1776,
+        target: 0,
         comments: [
 
         ],
@@ -15261,8 +15227,8 @@ export const SecondaryData = [
         index: 31,
         category: 4,
         header: 'In Product NPS',
-        value: .746,
-        target: .97766,
+        value: 0,
+        target: 0,
         comments: [
 
         ],
@@ -15693,8 +15659,8 @@ export const SecondaryData = [
         index: 32,
         category: 5,
         header: 'Cancellations ARR',
-        value: 73456345,
-        target: 23462345,
+        value: 215000000,
+        target: 392700000,
         comments: [
 
         ],
@@ -16120,8 +16086,8 @@ export const SecondaryData = [
         index: 33,
         category: 5,
         header: 'Cancellations ARR',
-        value: 23563456,
-        target: 34563456,
+        value: 184400000,
+        target: 336000000,
         comments: [
 
         ],
@@ -16636,8 +16602,8 @@ export const SecondaryData = [
         index: 34,
         category: 5,
         header: 'QTR Fin Retention Rate',
-        value: .34523,
-        target: .23452345,
+        value: .9536,
+        target: .9214,
         comments: [
 
         ],
@@ -17061,8 +17027,8 @@ export const SecondaryData = [
         index: 35,
         category: 5,
         header: 'QTR UI Rate',
-        value: .746,
-        target: .97766,
+        value: .0335,
+        target: .0584,
         comments: [
 
         ],
@@ -17487,8 +17453,8 @@ export const SecondaryData = [
         index: 36,
         category: 5,
         header: 'QTR PF Rate',
-        value: .746,
-        target: .97766,
+        value: .0129,
+        target: .0203,
         comments: [
 
         ],
@@ -17913,8 +17879,8 @@ export const SecondaryData = [
         index: 37,
         category: 5,
         header: 'Cancellations ARR',
-        value: .746,
-        target: .97766,
+        value: 30600000,
+        target: 56700000,
         comments: [
 
         ],
@@ -18344,8 +18310,8 @@ export const SecondaryData = [
         index: 38,
         category: 5,
         header: 'EOT Retention Rate',
-        value: .746,
-        target: .97766,
+        value: .8063,
+        target: .82,
         comments: [
 
         ],
@@ -18775,8 +18741,8 @@ export const SecondaryData = [
         index: 39,
         category: 5,
         header: 'QTR Fin Retention Rate',
-        value: .746,
-        target: .97766,
+        value: .9492,
+        target: 0,
         comments: [
 
         ],

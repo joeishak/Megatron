@@ -35,10 +35,12 @@ export default function (state = {
             console.log(action.payload);
             newState = Object.assign({}, state);
             newState.primary[0].value = action.payload[0].data[0].NewARRActual;
-            newState.primary[0].target = action.payload[0].data[0].NewARRTargetFQ;
+            newState.primary[0].targetFQ = action.payload[0].data[0].NewARRTargetFQ;
+            newState.primary[0].target = action.payload[0].data[0].NewARRTarget;
             newState.primary[0].vsqrf = action.payload[0].data[0].NewVsQrf;
             newState.primary[1].value = action.payload[1].data[0].TrafficActual;
             newState.primary[1].target = action.payload[1].data[0].TrafficTarget;
+            newState.primary[1].targetFQ = action.payload[1].data[0].TrafficTargetFQ;
             newState.primary[1].vsqrf = action.payload[1].data[0].TrafficVsQrf;
 
             newState.primary[2].value = action.payload[2].data[0].NewQFMSActual;
@@ -78,13 +80,15 @@ export default function (state = {
             console.log(action.payload);
             newState = Object.assign({}, state);
             let { secondary } = newState;
+
+            // DiscoverG1QTD, DiscoverG2QTD, DiscoverG5QTD,
+            processDiscoverQTDData(action.payload[6].data[0], action.payload[7].data[0], action.payload[8].data[0], secondary);
+
             // DiscoverG1Secondary, DiscoverG2Secondary, DiscoverG5Secondary,
             processDiscoverSecondaryData(action.payload[0].data[0], action.payload[1].data[0], action.payload[2].data[0], secondary);
             // DiscoverG1Multichart, DiscoverG2Multichart, DiscoverG5Multichart,
             processDiscoverMultichartData(action.payload[3].data, action.payload[4].data, action.payload[5].data, secondary);
 
-            // DiscoverG1QTD, DiscoverG2QTD, DiscoverG5QTD,
-            processDiscoverQTDData(action.payload[6].data[0], action.payload[7].data[0], action.payload[8].data[0], secondary);
 
             // DiscoverG1GeoQTD, DiscoverG2GeoQTD, DiscoverG5GeoQTD,
             processDiscoverGeoQTDData(action.payload[9].data, action.payload[10].data, action.payload[11].data, secondary);
@@ -158,19 +162,23 @@ export default function (state = {
 export function processFinanceSecondaryData(g1, newState) {
     //Finance
     newState[0].value = g1.data[0].NewARRActual;
-    newState[0].target = g1.data[0].NewARRTargetFQ;
+    newState[0].target = g1.data[0].NewARRTarget;
+    newState[0].targetFQ = g1.data[0].NewARRTargetFQ;
     newState[0].vsQrf = g1.data[0].NewVsQrf;
     // //Gross New Arr
     newState[1].value = g1.data[0].GrossARRActual;
-    newState[1].target = g1.data[0].GrossARRTargetFQ;
+    newState[1].targetFQ = g1.data[0].GrossARRTargetFQ;
+    newState[1].target = g1.data[0].GrossARRTarget;
     newState[1].vsQrf = g1.data[0].GrossVsQrf;
     //  //Cacncellations
     newState[2].value = g1.data[0].CancelARRActual;
-    newState[2].target = g1.data[0].CancelARRTargetFQ;
+    newState[2].targetFQ = g1.data[0].CancelARRTargetFQ;
+    newState[2].target = g1.data[0].CancelARRTarget;
     newState[2].vsQrf = g1.data[0].CancelVsQrf;
     //   //Renewal
     newState[3].value = g1.data[0].RenewActuals;
-    newState[3].target = g1.data[0].RenewARRTargetFQ;
+    newState[3].targetFQ = g1.data[0].RenewalARRTargetFQ;
+    newState[3].target = g1.data[0].RenewARRTarget;
     newState[3].vsQrf = g1.data[0].RenewVSQRF;
 }
 export function processFinancialMultichart(newState, data) {
@@ -326,7 +334,7 @@ export function processFinancialUnitsMultichart(newState, data) {
     }
 }
 export function processFinancialQTD(newState, data) {
-
+    newState = Object.assign([], newState);
     console.log(data)
     // State Order: Actual, Units, QRF, QRFDiff, VSQrf, QQ, YY
     for (let i = 0; i < newState.length; i++) {
@@ -334,13 +342,45 @@ export function processFinancialQTD(newState, data) {
         switch (i) {
             // New New Arr
             case 0:
-                newState[i].details.qtdw.qtd[0].value = findata.NewActuals;
-                newState[i].details.qtdw.qtd[1].value = findata.NewUnitsActual;
-                newState[i].details.qtdw.qtd[2].value = findata.NewTarget;
-                newState[i].details.qtdw.qtd[3].value = findata.NewVsQrfDiff;
-                newState[i].details.qtdw.qtd[4].value = findata.NewARRVsQrf;
-                newState[i].details.qtdw.qtd[5].value = findata.NewARRQQTY;
-                newState[i].details.qtdw.qtd[6].value = findata.NewYY;
+                newState[i].details.qtdw.qtd =
+                    [
+                        {
+                            index: 1,
+                            header: 'Actuals',
+                            value: findata.NewActuals
+                        },
+                        {
+                            index: 2,
+                            header: 'Units',
+                            value: findata.NewUnitsActual
+                        },
+                        {
+                            index: 3,
+                            header: 'QRF',
+                            value: findata.NewTarget
+                        },
+                        {
+                            index: 4,
+                            header: 'QRF Diff',
+                            value: findata.NewVsQrfDiff
+                        },
+                        {
+                            index: 5,
+                            header: 'Vs Qrf',
+                            value: findata.NewARRVsQrf
+                        },
+                        {
+                            index: 6,
+                            header: 'Q/Q',
+                            value: findata.NewARRQQTY
+                        },
+                        {
+                            index: 7,
+                            header: 'Y/Y',
+                            value: findata.NewYY
+                        }
+                    ]
+
                 newState[i].details.qtdw.week[0].value = findata.NewARRCW
                 newState[i].details.qtdw.week[1].value = findata.NewUnitsCW;
                 newState[i].details.qtdw.week[2].value = findata.NewARRTargetCW
@@ -431,7 +471,7 @@ export function processFinancialGeoQTD(newState, data) {
             index: i,
             actuals: item.NewActuals,
             units: item.NewUnitsActual,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
@@ -442,7 +482,7 @@ export function processFinancialGeoQTD(newState, data) {
         let gross = {
             index: i,
             actuals: item.GrossARRActual,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qq: item.GrossARRQQTY,
             qrf: item.GrossARRTarget,
             qrfDiff: item.GrossVsQrfDiff,
@@ -454,7 +494,7 @@ export function processFinancialGeoQTD(newState, data) {
         let canc = {
             index: i,
             actuals: item.CancelARRActual,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qq: item.CancelARRQQTY,
             qrf: item.CancelARRTarget,
             qrfDiff: item.CancelArrVsQrfDiff,
@@ -466,7 +506,7 @@ export function processFinancialGeoQTD(newState, data) {
         let ren = {
             index: i,
             actuals: item.RenewActuals,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qq: item.RenewARRQQTY,
             qrf: item.RenewARRTargetFQ,
             qrfDiff: item.RenewVsQrfDiff,
@@ -500,7 +540,7 @@ export function processFinancialGeoWeek(newState, data) {
             index: i,
             actuals: item.NewARRCW,
             units: item.NewUnitsCW,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qrf: item.NewARRTargetCW,
             qrfDiff: item.NewCWVsQrfDiff,
             type: item.geo_code,
@@ -512,7 +552,7 @@ export function processFinancialGeoWeek(newState, data) {
             index: i,
             actuals: item.GrossCW,
             units: item.GrossUnitsCW,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qrf: item.GrossARRTargetCW,
             qrfDiff: item.GrossCWVsQrfDiff,
             type: item.geo_code,
@@ -523,7 +563,7 @@ export function processFinancialGeoWeek(newState, data) {
             index: i,
             actuals: item.CancelCW,
             units: item.CancelUnitsCW,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qrf: item.CancelARRTargetCW,
             qrfDiff: item.CancelCWVsQrfDiff,
             type: item.geo_code,
@@ -534,7 +574,7 @@ export function processFinancialGeoWeek(newState, data) {
             index: i,
             actuals: item.RenewARRCW,
             units: item.RenewsUnitsCW,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qrf: item.RenewARRTargetCW,
             qrfDiff: item.RenewCWVsQrfDiff,
             type: item.geo_code,
@@ -1107,7 +1147,7 @@ export function processDiscoverSecondaryData(g1, g2, g5, newState) {
 
     //Bounce Rate
     newState[10].value = g5.BounceRateActual;
-    newState[10].target = g5.BounceRateActual;
+    newState[10].target = 0;
     // newState[10].vsqrf = g5.BounceRateActual;
 
 }
@@ -1425,7 +1465,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
         let paidmedia = {
             index: i,
             actuals: item.PaidMediaSpendActual,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qq: item.PaidMediaSpendQQTY,
             qrf: item.PaidMediaSpendTarget,
             qrfDiff: item.PaidMediaSpendVsQrfDiff,
@@ -1436,7 +1476,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
         let weekPM =
         {
             index: i,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             actuals: item.PaidMediaSpendCW,
             qrf: item.PaidMediaSpendTargetCW,
             qrfDiff: item.PaidMediaSpendVsQrfDiff,
@@ -1455,7 +1495,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
         let marketable = {
             index: i,
             actuals: item.MarketableUniverseActual,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qq: item.MarketableUniverseQQTY,
             qrf: item.MarketableUniverseTargetFQ,
             qrfDiff: item.MarketableUniverseVsQrfDiff,
@@ -1466,7 +1506,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
         let marketPM =
         {
             index: i,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             actuals: item.MarketableUniverseCW,
             qrf: item.MarketableUniverseTargetCW,
             qrfDiff: item.MarketableUniverseVsQrfDiffCW,
@@ -1478,7 +1518,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
         let newUqfm = {
             index: i,
             actuals: item.NewUQFMSActual,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qq: item.NewUQFMSQQTY,
             qrf: item.NewUQFMSTargetFQ,
             qrfDiff: item.NewUQFMSVsQrfDiff,
@@ -1489,7 +1529,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
         let newPM =
         {
             index: i,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             actuals: item.NewUQFMSCW,
             qrf: item.NewUQFMSTargetCW,
             qrfDiff: item.NewUQFMSQRFDiffCW,
@@ -1501,7 +1541,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
         let paid = {
             index: i,
             actuals: item.PaidMediaSourcedUQFMSActual,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qq: item.PaidMediaSourcedUQFMSQQTY,
             qrf: item.PaidMediaSourcedUQFMSTargetFQ,
             qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
@@ -1512,7 +1552,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
         let paidPM =
         {
             index: i,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             actuals: item.PaidMediaSourcedUQFMSCW,
             qrf: item.PaidMediaSourcedUQFMSTargetCW,
             qrfDiff: item.PaidMediaSourcedUQFMSQRFDiffCW,
@@ -1524,7 +1564,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
         let uqfm = {
             index: i,
             actuals: item.UQFMConversionActual,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qq: item.UQFMConversionQQTY,
             qrf: item.UQFMActual,
             qrfDiff: item.UQFMConversionActual,
@@ -1535,7 +1575,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
         let uqfmPM =
         {
             index: i,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             actuals: item.UQFMConversionCW,
             qrf: item.UQFMConversionCW,
             qrfDiff: item.UQFMConversionWW,
@@ -1564,7 +1604,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
         let traffic = {
             index: i,
             actuals: item.TrafficActual,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qq: item.TrafficQQTY,
             qrf: item.TrafficTargetFQ,
             qrfDiff: item.TrafficVsQrfDiff,
@@ -1575,7 +1615,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
         let trafficPM =
         {
             index: i,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             actuals: item.TrafficCW,
             qrf: item.TrafficTargetCW,
             qrfDiff: item.TrafficVsQrfDiffCW,
@@ -1586,7 +1626,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
         let bounce = {
             index: i,
             actuals: item.BounceRateActual,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qq: item.BounceRateActual,
             qrf: item.BounceRateActual,
             qrfDiff: item.BounceRateActual,
@@ -1597,7 +1637,7 @@ export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
         let bouncePM =
         {
             index: i,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             actuals: item.BounceRateCW,
             qrf: item.BounceRateCW,
             qrfDiff: item.BounceRateWW,
@@ -2684,8 +2724,127 @@ export function processTryQTDData(g2, newState) {
 
 //     for (let i = 0; i < g2.length; i++) {
 //         let item = g2[i];
-//         //Market
-//         let marketable = {
+//         //NewQFM
+//         let newQFM = {
+//             index: i,
+//             actuals: item.NewQFMSActual,
+//             marketArea: item.market_area_code,
+//             qq: item.NewQFMSQQTY,
+//             qrf: item.NewQFMSTarget,
+//             qrfDiff: item.NewQFMSVsQrfDiff,
+//             type: item.geo_code,
+//             vsQrf: item.NewQFMSVsQrf,
+//             yy: item.NewQFMSYY
+//         }
+//         let newQFMWeek =
+//         {
+//             index: i,
+//             marketArea: item.market_area_code,
+//             actuals: item.NewQFMSCW,
+//             qrf: item.NewQFMSTargetCW,
+//             qrfDiff: item.NewQFMSCWVsQrfDiff,
+//             vsQrf: item.NewQFMSCWVsQrf,
+//             ww: item.NewQFMSWW,
+//             type: item.geo_code,
+//         }
+//New UQFM
+//         let newUQFM = {
+//             index: i,
+//             actuals: item.NewUQFMSActual,
+//             marketArea: item.market_area_code,
+//             qq: item.NewUQFMSQQTY,
+//             qrf: item.NewUQFMSTarget,
+//             qrfDiff: item.NewUQFMSVsQrfDiff,
+//             type: item.geo_code,
+//             vsQrf: item.NewUQFMSVsQrf,
+//             yy: item.NewUQFMSYY
+//         }
+//         let newUQFMWeek =
+//         {
+//             index: i,
+//             marketArea: item.market_area_code,
+//             actuals: item.NewUQFMSCW,
+//             qrf: item.NewUQFMSTargetCW,
+//             qrfDiff: item.NewUQFMSCWVsQrfDiff,
+//             vsQrf: item.NewUQFMSCWVsQrf,
+//             ww: item.NewUQFMSWW,
+//             type: item.geo_code,
+//         }
+
+//Cumulative UQFM
+//         let cumuUQFM = {
+//             index: i,
+//             actuals: item.CumulativeUQFMSActual,
+//             marketArea: item.market_area_code,
+//             qq: item.CumulativeUQFMSQQTY,
+//             qrf: item.CumulativeUQFMSTarget,
+//             qrfDiff: item.CumulativeUQFMSVsQrfDiff,
+//             type: item.geo_code,
+//             vsQrf: item.CumulativeUQFMSVsQrf,
+//             yy: item.CumulativeUQFMSYY
+//         }
+//         let cumuUQFMWeek =
+//         {
+//             index: i,
+//             marketArea: item.market_area_code,
+//             actuals: item.CumulativeUQFMSTargetCW,
+//             qrf: item.MarketableUniverseTargetCW,
+//             qrfDiff: item.MarketableUniverseVsQrfDiffCW,
+//             vsQrf: item.MarketableUniverseVsQrfCW,
+//             ww: item.MarketableUniverseWW,
+//             type: item.geo_code,
+//         }
+
+//Cumulative QFM
+//         let cumuQFM = {
+//             index: i,
+//             actuals: item.CumulativeQFMSActual,
+//             marketArea: item.market_area_code,
+//             qq: item.CumulativeQFMSQQTY,
+//             qrf: item.CumulativeQFMSTarget,
+//             qrfDiff: item.CumulativeQFMSVsQrfDiff,
+//             type: item.geo_code,
+//             vsQrf: item.CumulativeQFMSVsQrf,
+//             yy: item.CumulativeQFMSYY
+//         }
+//         let cumuQFMWeek =
+//         {
+//             index: i,
+//             marketArea: item.market_area_code,
+//             actuals: item.MarketableUniverseCW,
+//             qrf: item.CumulativeQFMSTargetCW,
+//             qrfDiff: item.MarketableUniverseVsQrfDiffCW,
+//             vsQrf: item.MarketableUniverseVsQrfCW,
+//             ww: item.MarketableUniverseWW,
+//             type: item.geo_code,
+//         }
+
+//day 28 New UQFM to QFM 
+//         let day28QFM = {
+//             index: i,
+//             actuals: item.Day28NewUQFMActual,
+//             marketArea: item.market_area_code,
+//             qq: item.Day28NewUQFMQQTY,
+//             qrf: item.Day28NewUQFMTarget,
+//             qrfDiff: item.Day28NewUQFMVsQrfDiff,
+//             type: item.geo_code,
+//             vsQrf: item.MarketableUniverseVsQrf,
+//             yy: item.Day28NewUQFMYY
+//         }
+//         let day28QFMWeek =
+//         {
+//             index: i,
+//             marketArea: item.market_area_code,
+//             actuals: item.Day28NewUQFMCW,
+//             qrf: item.Day28UNewQFMTargetCW,
+//             qrfDiff: item.Day28NewUQFMCWVsQrfDiff,
+//             vsQrf: item.Day28NewUQFMWW,
+//             ww: item.Day28NewUQFMWW,
+//             type: item.geo_code,
+//         }
+
+//      Cum UQFM to QFM 
+//         let cumuUQFMtoQFM = {
 //             index: i,
 //             actuals: item.MarketableUniverseActual,
 //             marketArea: item.market_area_code,
@@ -2696,7 +2855,7 @@ export function processTryQTDData(g2, newState) {
 //             vsQrf: item.MarketableUniverseVsQrf,
 //             yy: item.MarketableUniverseYY
 //         }
-//         let marketPM =
+//         let cumuUQFMtoQFMWeek =
 //         {
 //             index: i,
 //             marketArea: item.market_area_code,
@@ -2707,88 +2866,19 @@ export function processTryQTDData(g2, newState) {
 //             ww: item.MarketableUniverseWW,
 //             type: item.geo_code,
 //         }
-//         // New UQFM
-//         let newUqfm = {
-//             index: i,
-//             actuals: item.NewUQFMSActual,
-//             marketArea: item.market_area_code,
-//             qq: item.NewUQFMSQQTY,
-//             qrf: item.NewUQFMSTargetFQ,
-//             qrfDiff: item.NewUQFMSVsQrfDiff,
-//             type: item.geo_code,
-//             vsQrf: item.NewUQFMSVsQRF,
-//             yy: item.NewUQFMSYY
-//         }
-//         let newPM =
-//         {
-//             index: i,
-//             marketArea: item.market_area_code,
-//             actuals: item.NewUQFMSCW,
-//             qrf: item.NewUQFMSTargetCW,
-//             qrfDiff: item.NewUQFMSQRFDiffCW,
-//             vsQrf: item.NewUQFMSVsQRFCW,
-//             ww: item.NewUQFMSWW,
-//             type: item.geo_code,
-//         }
-//         //Paid Media Sourced
-//         let paid = {
-//             index: i,
-//             actuals: item.PaidMediaSourcedUQFMSActual,
-//             marketArea: item.market_area_code,
-//             qq: item.PaidMediaSourcedUQFMSQQTY,
-//             qrf: item.PaidMediaSourcedUQFMSTargetFQ,
-//             qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
-//             type: item.geo_code,
-//             vsQrf: item.PaidMediaSourcedUQFMSVsQRF,
-//             yy: item.PaidMediaSourcedUQFMSYY
-//         }
-//         let paidPM =
-//         {
-//             index: i,
-//             marketArea: item.market_area_code,
-//             actuals: item.PaidMediaSourcedUQFMSCW,
-//             qrf: item.PaidMediaSourcedUQFMSTargetCW,
-//             qrfDiff: item.PaidMediaSourcedUQFMSQRFDiffCW,
-//             vsQrf: item.PaidMediaSourcedUQFMSVsQRFCW,
-//             ww: item.PaidMediaSourcedUQFMSWW,
-//             type: item.geo_code,
-//         }
-//         //UQFM
-//         let uqfm = {
-//             index: i,
-//             actuals: item.UQFMConversionActual,
-//             marketArea: item.market_area_code,
-//             qq: item.UQFMConversionQQTY,
-//             qrf: item.UQFMActual,
-//             qrfDiff: item.UQFMConversionActual,
-//             type: item.geo_code,
-//             vsQrf: item.UQFMConversionActual,
-//             yy: item.UQFMConversionYY
-//         }
-//         let uqfmPM =
-//         {
-//             index: i,
-//             marketArea: item.market_area_code,
-//             actuals: item.UQFMConversionCW,
-//             qrf: item.UQFMConversionCW,
-//             qrfDiff: item.UQFMConversionWW,
-//             vsQrf: item.UQFMConversionWW,
-//             ww: item.UQFMConversionWW,
-//             type: item.geo_code,
-//         }
+//         newState[11].details.geo.qtd.push(newQFM);
+//         newState[12].details.geo.qtd.push(newUQFM);
+//         newState[13].details.geo.qtd.push(cumuUQFM);
+//         newState[14].details.geo.qtd.push(cumuQFM);
+//         newState[16].details.geo.qtd.push(day28QFM);
+//         newState[17].details.geo.qtd.push(cumuUQFMtoQFM);
 
-//         newState[5].details.geo.qtd.push(marketable);
-//         newState[6].details.geo.qtd.push(uqfm);
-//         newState[8].details.geo.qtd.push(paid);
-//         newState[9].details.geo.qtd.push(newUqfm);
-
-//         newState[5].details.geo.week.push(marketPM);
-//         newState[6].details.geo.week.push(newPM);
-//         newState[8].details.geo.week.push(paidPM);
-//         newState[9].details.geo.week.push(uqfmPM);
-
-
-
+//         newState[11].details.geo.week.push(newQFMWeek);
+//         newState[12].details.geo.week.push(newUQFMWeek);
+//         newState[13].details.geo.week.push(cumuUQFMWeek);
+//         newState[14].details.geo.week.push(cumuQFMWeek);
+//         newState[16].details.geo.week.push(day28QFMWeek);
+//         newState[17].details.geo.week.push(cumuUQFMtoQFMWeek);
 //     }
 
 

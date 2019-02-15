@@ -89,7 +89,7 @@ class SecondarySquares extends Component {
               )
               : ""
             }`}
-          onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index) }
+          onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index)}
         >
           <div
             className={`${secondaryBoxHeader} `}
@@ -121,23 +121,25 @@ class SecondarySquares extends Component {
             <div
               className={`  ${seconaryBoxContentAmount} ${
                 this.props.item.value >= this.props.item.target
-                  ? "journeysAmountGreen"
-                  : ""
+                  ? "greenBG"
+                  : "redBG"
                 }`}
             >
               {formattedValue}
             </div>
+            ( {formattedQRF} vs QRF)
             <div className="">
               <KendoBulletChart
                 width={175}
-                values={[this.props.item.value, this.props.item.target]}
+                values={[this.props.item.value, this.props.item.target, this.props.item.targetFQ]}
                 valueType={this.props.item.valueType}
+                fqTarget={this.props.item.targetFQ}
                 color="white"
                 key={this.props.item.index}
               />
             </div>
             <div className={boxContentTarget}>
-              {formattedTarget} ( {formattedQRF} vs QRF)
+              {formattedTarget}
             </div>
           </div>
         </div>
@@ -197,7 +199,7 @@ class SecondarySquares extends Component {
               ? 'journeyBoxAlert'
               : ""
             }`}
-          onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index) }
+          onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index)}
         >
           <div
             className={`${secondaryBoxHeader} `}
@@ -230,19 +232,20 @@ class SecondarySquares extends Component {
             </div>
             <div
               className={`  ${seconaryBoxContentAmount} ${this.props.item.value >= this.props.item.target
-                  ? `${boxContentAmountGreen}`
-                  : ""
+                ? `greenBG`
+                : "redBG"
                 }`}
             >
-              {formattedValue} <span className={`QRF-Percent ` + this.props.statsDetails[0].color}>
-              {utils.formatMetric({ valueType: 'percent', value: this.props.statsDetails[0].value }, 'value')}</span>
+              {formattedValue} <span className={`QRF-Percent ` + this.props.item.details.stats[0].color}>
+                {utils.formatMetric({ valueType: 'percent', value: this.props.item.details.stats[0].value }, 'value')}</span>
             </div>
-          {/* {console.log(this.props.statsDetails)} */}
+            {/* {console.log(this.props.statsDetails)} */}
             <div className={boxBullet}>
               <KendoBulletChart
                 isMobileOrTablet={utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet')}
                 width={175}
                 values={[this.props.item.value, this.props.item.target]}
+                fqTarget={this.props.item.targetFQ}
                 valueType={this.props.item.valueType}
                 color="white"
                 targetColor="white"

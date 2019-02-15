@@ -63,11 +63,20 @@ class MultiDimensionPanelItem extends Component {
             default:
                 return (this.props.data.week.map(item => {
 
+                    if (this.props.type === 'geo') {
+                        if (item.type === calculatedGeo || item.type === prevGeo) {
+                            calculatedGeo = "";
+                        } else if (calculatedGeo === undefined || item.type !== calculatedGeo) {
+                            calculatedGeo = item.type;
+                        }
+                    }
+
+                    prevGeo = item.type;
                     return (<span key={marketCount++}>
-                        <div className={`${weekColumnClass}` + " weekGeoHeader col"}>
-                            {item.type}
+                        <div className={`${qtdColumnClass}` + " qtdGeoHeader col"}>
+                            {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
-                        <div className={`${weekColumnClass}` + " weekMaHeader col"}>
+                        <div className={`${qtdColumnClass}` + " qtdMaHeader col"} >
                             {item.marketArea}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>

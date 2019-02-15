@@ -190,7 +190,7 @@ class SummaryViewDetails extends Component {
         {/* First Row for Ttle Bar and Metric Filter */}
         <div className="row container-fluid titleBarHeader">
           <span className=" detailTitle">
-            {activeItem.header}
+            {/* {activeItem.header} */}
 
           </span>
 
@@ -200,20 +200,23 @@ class SummaryViewDetails extends Component {
             {this.getSummaryFilters(this.props.activeSecondary)}
           </div>
 
-
           {this.props.activePrimary < 1 ?
-            <div className=" multiChartMetricContainer ">
-              <div
-                onClick={this.updateMultiChartMetricFilter}
-                className={UnitStyles}>
-                UNITS
+
+            <div className="col-lg-4 flRight">
+              <div className=" multiChartMetricContainer ">
+                <div
+                  onClick={this.updateMultiChartMetricFilter}
+                  className={UnitStyles}>
+                  UNITS
+                </div>
+                <div
+                  onClick={this.updateMultiChartMetricFilter}
+                  className={ArrStyles}>
+                  ARR
+                </div>
+              </div>
             </div>
-              <div
-                onClick={this.updateMultiChartMetricFilter}
-                className={ArrStyles}>
-                ARR
-            </div>
-            </div> :
+            :
             <span></span>}
 
 
@@ -313,31 +316,37 @@ class SummaryViewDetails extends Component {
 
         {/* Second Row for Quarterly to Date title header */}
         <div className=" qtdTitleBarHeader container-fluid row">
-          <span className="detailTitle2">Quarterly To Date</span>
-          <div className=" totalTimeMetricContainer">
-            <span >
-              <div onClick={this.updateQtdMetricFilter} className={QTDStyles}>
-                QTD
-                  </div>
-              <div onClick={this.updateQtdMetricFilter} className={WeekStyles}>
-                WEEK
-                  </div>
+          <div className="col-md-2 col-lg-4">
+            <span className="detailTitle2 ">
+              {activeItem.header}
             </span>
           </div>
-          {/* {
-            this.props.activeItem.details.stats.map(item => {
-              return (
-                <div key={item.text} className=" statsHeader">
-                  <div className={(item.color === 'red') ? 'stats red' : 'stats green '}>
-                    {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
+          <div className="col-md-2 col-lg-2">
+            <SingleValueSelect
+            />
+          </div>
+          <div className="col-md-2 col-lg-2">
+            <SingleValueSelect
+            />
+          </div>
+          <div className="col-md-2 col-lg-2 flRight">
+            <div className=" totalTimeMetricContainer">
+              <span >
+                <div onClick={this.updateQtdMetricFilter} className={QTDStyles}>
+                  QTD
                   </div>
-                  <div className="footer"> {item.text}</div>
-                </div>
-              )
-            })
-          } */}
+                <div onClick={this.updateQtdMetricFilter} className={WeekStyles}>
+                  WEEK
+                  </div>
+              </span>
+            </div>
+          </div>
+
+
 
         </div>
+
+
         <DetailBreakdown
           activeSummary={activeItem}
           activePrimary={activePrimary}

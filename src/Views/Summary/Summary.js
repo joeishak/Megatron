@@ -86,9 +86,11 @@ class Summary extends Component {
     let preferencesAreLoaded = Object.keys(prevProps.preferences).length === 0 && this.props.preferences.geoFilters !== undefined;
     let filtersAreLoaded = prevProps.filters.combined.availableFilters.length === 0 && this.props.filters.combined.availableFilters.length > 0;
     let appIsReadyToRequestSummaryData = prevProps.filters.combined.valueFilters.length === 0 && this.props.filters.combined.valueFilters.length > 0;
-    let appInitialLoadIsComplete = this.props.NEwQTDW.qtd[0].value !== 66.7 && prevProps.NEwQTDW.qtd[0].value === undefined;
-    // let filtersSubmitted = this.props.filters.combined.valueFilters !== prevProps.filters.combined.valueFilters && 
-    // console.log(appInitialLoadIsComplete);
+    let appInitialLoadIsComplete = this.props.NEwQTDW.qtd.length !== 0;
+
+    // let summaryDataHasUpdated = this.props.summaryData.secondary[this.props.activeSecondaryCard].details.qtdw.qtd[0].value != prevProps.summaryData.secondary[this.props.activeSecondaryCard].details.qtdw.qtd[0].value
+    // let filtersSubmitted = this.props.filters.combined.valueFilters !== prevProps.filters.combined.valueFilters &&
+    console.log(appInitialLoadIsComplete);
     //Handle Boolean Test Results
     if (filtersAreLoaded) {
       console.log('Just Recieved filters');
@@ -159,7 +161,8 @@ class Summary extends Component {
           break;
       }
     }
-    if (this.props.summaryData !== prevProps.summaryData && this.state.initialDataLoadIsComplete === true) {
+    if (appInitialLoadIsComplete && this.state.initialDataLoadIsComplete === true && this.props.summaryData != prevProps.summaryData) {
+      // this.updateActivePrimary(0);
       this.setState({ isLoading: false, isInitiallyLoading: false });
     }
     if (this.props.activePrimaryCard.index > 0) {

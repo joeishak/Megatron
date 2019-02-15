@@ -19,7 +19,7 @@ class CustomDropDownPanel extends Component {
         this.state = {
             isButtonHighlighted: false,
             showContainer: this.props.showContainer,
-            selectedFilters: [],
+            selectedFilters: [...this.props.filters.quarters.valueFilters, ...this.props.filters.segments.valueFilters],
             activeDataFilters: [],
         }
     }
@@ -54,7 +54,7 @@ class CustomDropDownPanel extends Component {
 
         }
 
-        this.setState({isButtonHighlighted: true});
+        this.setState({ isButtonHighlighted: true });
 
     }
     updateMultiValue = (e, type) => {
@@ -69,7 +69,7 @@ class CustomDropDownPanel extends Component {
             this.setState({ selectedFilters: [...copy, ...e] })
         }
 
-        this.setState({isButtonHighlighted: true});
+        this.setState({ isButtonHighlighted: true });
 
 
     }
@@ -94,7 +94,7 @@ class CustomDropDownPanel extends Component {
     }
     submitFilters = (e) => {
         // console.log('Submitting Filters . . . ');
-        this.setState({isButtonHighlighted: false})
+        this.setState({ isButtonHighlighted: false })
         let newFilters = {
             quarters: [],
             segments: [],
@@ -226,16 +226,37 @@ class CustomDropDownPanel extends Component {
                         onMenuClose={this.closeMultiValue}
                     />
                 </div>
-
+                <div className="col-lg-12 globalPrimaryKPIFilters">
+                    <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
+                    <div className={quarterFilterContainer + ' col-lg-2'} >
+                        <p> Global Sub Filter 1</p>
+                        <SingleValueSelect
+                            activeFilters={filters.quarters.valueFilters}
+                            options={filters.quarters.availableFilters}
+                            onValueChange={this.updateSingleValue}
+                            onMenuClose={this.closeSingleValue}
+                        />
+                    </div>
+                    <div className={quarterFilterContainer + ' col-lg-2'} >
+                        <p> Global Sub Filter 2</p>
+                        <SingleValueSelect
+                            activeFilters={filters.quarters.valueFilters}
+                            options={filters.quarters.availableFilters}
+                            onValueChange={this.updateSingleValue}
+                            onMenuClose={this.closeSingleValue}
+                        />
+                    </div>
+                </div>
                 <div className={quarterFilterContainer + ' col-lg-12'}>
                     <input className={`button ` + isGlowing} type={'button'} onClick={this.submitFilters} value="Submit" />
                 </div>
+
 
             </div>
         )
     }
 }
 function mapStateToProps(state) {
-    return { filters: state.filters };
+    return { filters: state.filters, summaryData: state.summaryData, activeCards: state.activeCards };
 }
 export default connect(mapStateToProps, actions)(CustomDropDownPanel)

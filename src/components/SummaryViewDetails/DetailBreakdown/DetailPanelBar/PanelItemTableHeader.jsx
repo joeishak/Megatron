@@ -3,6 +3,15 @@ import ReactDOM from 'react-dom';
 import { DIMENSIONS } from '../../../../Constants/consts';
 
 class PanelItemTableHeader extends Component {
+    constructor(props) {
+        super();
+        this.state = {
+            vsQrfIsPercent: true,
+            qqIsPercent: true,
+            yyIsPercent: true
+        }
+    }
+
     getLowerHeaderCategory(type) {
         switch (type) {
             case DIMENSIONS.GEO:
@@ -17,31 +26,42 @@ class PanelItemTableHeader extends Component {
                 return 'Product';
         }
     }
+    updateVsQRF = () => {
+        this.setState({ vsQrfIsPercent: !this.state.vsQrfIsPercent })
+    }
+    updateQQ = () => {
+        this.setState({ qqIsPercent: !this.state.qqIsPercent })
+
+    }
+    updateYY = () => {
+        this.setState({ yyIsPercent: !this.state.yyIsPercent })
+
+    }
     getLowerHeader(type) {
 
         let isGeo = type === DIMENSIONS.GEO;
         let qtdColumnClass, weekColumnClass;
-        let isJourney = this.props.activeSummary.index  > 3
-        if(isJourney){
+        let isJourney = this.props.activeSummary.index > 3
+        if (isJourney) {
             // Journeys
-            if(isGeo){
+            if (isGeo) {
                 qtdColumnClass = 'qtdJourneyMarketColumn';
                 weekColumnClass = 'weekJourneyMarketColumn';
-            } else{
+            } else {
                 qtdColumnClass = 'qtdJourneyColumn';
                 weekColumnClass = 'weekJourneyColumn';
             }
-        } else{
+        } else {
             // Financial
-            if(isGeo){
+            if (isGeo) {
                 qtdColumnClass = 'qtdMarketColumn';
                 weekColumnClass = 'weekMarketColumn';
-            } else{
+            } else {
                 qtdColumnClass = 'qtdColumn';
                 weekColumnClass = 'weekColumn';
             }
-        } 
-        
+        }
+
         let MAColumn = (isGeo) ? <div className={`${qtdColumnClass}  header qtdMaHeader col`}>
             Market Area
            </div> : <span></span>
@@ -56,7 +76,7 @@ class PanelItemTableHeader extends Component {
                     <div className={`${qtdColumnClass}  header col`}>
                         Actuals
                     </div>
-                    {isJourney? <span></span> :  
+                    {isJourney ? <span></span> :
                         <div className={`${qtdColumnClass}  header col`}>
                             Units
                         </div>
@@ -67,14 +87,14 @@ class PanelItemTableHeader extends Component {
                     <div className={`${qtdColumnClass}  header col`}>
                         QRF DIFF
                     </div>
-                    <div className={`${qtdColumnClass}  header col`}>
-                        vs QRF
+                    <div onDoubleClick={this.updateVsQRF} className={`${qtdColumnClass} pointer header col`}>
+                        vs QRF {this.state.vsQrfIsPercent ? '%' : '#'}
                     </div>
-                    <div className={`${qtdColumnClass}  header col`}>
-                        Q/Q
+                    <div onDoubleClick={this.updateQQ} className={`${qtdColumnClass} pointer  header col`}>
+                        Q/Q {this.state.qqIsPercent ? '%' : '#'}
                     </div>
-                    <div className={`${qtdColumnClass}  header col`}>
-                        Y/Y
+                    <div onDoubleClick={this.updateYY} className={`${qtdColumnClass} pointer  header col`}>
+                        Y/Y {this.state.yyIsPercent ? '%' : '#'}
                     </div>
                 </div>);
             default:
@@ -88,12 +108,12 @@ class PanelItemTableHeader extends Component {
                     <div className={`${weekColumnClass} header  col`}>
                         Actuals
                 </div>
-                {isJourney? <span></span> :  
+                    {isJourney ? <span></span> :
 
-                    <div className={`${weekColumnClass} header  col`}>
-                        Units
+                        <div className={`${weekColumnClass} header  col`}>
+                            Units
                     </div>
-                }
+                    }
                     <div className={`${weekColumnClass} header  col`}>
                         QRF
                 </div>
@@ -109,8 +129,8 @@ class PanelItemTableHeader extends Component {
                 </div>);
         }
     }
-    render(){
-        return(
+    render() {
+        return (
             this.getLowerHeader(this.props.type)
         )
     }

@@ -196,9 +196,10 @@ class PrimarySquare extends Component {
                     <KendoBulletChart
                       isMobileOrTablet={isMobileOrTablet}
                       width={200}
-                      values={[this.props.item.value, this.props.item.target]}
+                      values={[this.props.item.value, this.props.item.target, this.props.item.targetFQ]}
                       valueType={this.props.item.valueType}
                       color="white"
+                      fqTarget={this.props.item.targetFQ}
                       key={this.props.item.index}
                     />
                   </span>
@@ -215,21 +216,24 @@ class PrimarySquare extends Component {
                           : " selectedCardFontColorRed"
                         } `}
                     >
-                      {formattedValue}
+                      {formattedValue}<br />
+
                     </div>
+                    ( {(formattedQRF)} vs QRF)
                     <div>
                       <KendoBulletChart
-                        values={[this.props.item.value, this.props.item.target]}
+                        values={[this.props.item.value, this.props.item.target, this.props.item.targetFQ]}
                         valueType={this.props.item.valueType}
                         color="#3c3c3c"
                         targetColor="black"
+                        fqTarget={this.props.item.targetFQ}
                         key={this.props.item.index}
                       />
                     </div>
                     {/* Formatted Target $###.## (M / %)*/}
                     <div className={responsiveTarget}>
-                      {formattedTarget} ( {(formattedQRF)} vs QRF)
-                  </div>
+                      {formattedTarget}
+                    </div>
                   </div>
                 )}
               {isMobile || isTablet ? null : (

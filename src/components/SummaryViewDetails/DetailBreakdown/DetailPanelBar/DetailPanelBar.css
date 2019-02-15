@@ -7,7 +7,17 @@
 .topHeaderBar{
   font-size: 12px;
   background-color: #1f1f1f;
+  width: 78.5%
 }
+.pointer{
+    cursor: pointer;
+}
+
+.qtdtopHeaderBar{
+    font-size: 12px;
+    background-color: #1f1f1f;
+    width: 75.5%
+  }
 .lowerHeaderBar{
     width:100%;
     height: 30px;
@@ -128,7 +138,9 @@
        background-color: #1f1f1f;
 }
 .weekMarketColumn{
-       /* Market Area US ROW T */
+       /* Market Area US ROW T */    
+       border: 1px solid #3c3c3c;
+
        display: block;
        /* position: absolute; */
        /* left: 9.96%;
@@ -187,7 +199,7 @@
     padding-left: 15px;
 }
 .weekMaHeader{
-    text-align:  right !important;
+    /* text-align:  right !important; */
 }
 .leftTopHeaderBar{
     float:left;

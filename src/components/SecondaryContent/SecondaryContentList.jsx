@@ -50,7 +50,7 @@ class SecondaryContentList extends Component {
     ReactDOM.findDOMNode(this).addEventListener("touchend", this.stopResize);
     ReactDOM.findDOMNode(this).addEventListener("mouseleave", this.stopResize);
     ReactDOM.findDOMNode(this).addEventListener("touchcancel", this.stopResize);
-    this.setState({activeCard: this.props.activeJourneyCard});
+    this.setState({ activeCard: this.props.activeJourneyCard });
 
 
   }
@@ -151,12 +151,12 @@ class SecondaryContentList extends Component {
   onDetailMenuClose = (e) => {
     this.setState({ detailsClassState: 'slide-out-bottom' });
     setTimeout(() => {
-       this.setState({clicked: false});
-       this.setState({detailsClassState: ''});
+      this.setState({ clicked: false });
+      this.setState({ detailsClassState: '' });
     }, 200);
-    this.setState({ sortedData: this.props.data});
+    this.setState({ sortedData: this.props.data });
     this.props.onJourneyCardClicked(e, this.state.activeCard);
- 
+
   }
 
 
@@ -235,11 +235,10 @@ class SecondaryContentList extends Component {
 
         </div>
         <div className="row four-squares">
-
           {this.props.statsDetails.map(item => {
             return (
               <div style={{ float: 'left', margin: '5px' }} key={Math.random()}>
-                <div className={(item.value <= 0 ? 'red': 'green') + ` stats-detail`}>
+                <div className={(item.value <= 0 ? 'red' : 'green') + ` stats-detail`}>
                   <b>{utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}</b>
                 </div>
                 <div className="stats-detail">
@@ -248,13 +247,11 @@ class SecondaryContentList extends Component {
               </div>
             );
           })}
-
         </div>
-        {/* Mobile Multi Chart */}
+        {/*Mobile Multi Chart*/}
         <div className="row" style={{ paddingLeft: '9px' }}>
           <MobileMultiChart bottomContainerHeight={250}></MobileMultiChart>
         </div>
-
         {/* Bottom Section */}
         <div className="sliderContainer">
           <div className="scrolling-wrapper">
