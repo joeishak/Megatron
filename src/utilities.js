@@ -4,6 +4,7 @@ import {
 } from './environmentParams';
 import axios from 'axios';
 import * as actions from 'actions';
+import { dispatch } from 'rxjs/internal/observable/range';
 
 
 
@@ -1000,8 +1001,9 @@ export function fetchComments(metricId) {
     };
 
     const res1 = axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' }).then((response) => {
+
         if (response !== []) {
-            console.log(response);
+    
             const commentIdsArray = response.data.map(ele => { return ele.id; });
             const params = convertFilterListForDBQuery(commentIdsArray);
             let responseBody = {
@@ -1014,7 +1016,6 @@ export function fetchComments(metricId) {
             };
             const replies = axios.post(Infoburst.dbQuery, responseBody, { headers: headers, responseType: 'text' }).then((res) => {
                 const commentsComplete = { comment: response.data, replies: res.data };
-                // console.log(commentsComplete);
                 return commentsComplete;
             });
 

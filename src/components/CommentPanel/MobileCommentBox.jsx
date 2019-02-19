@@ -19,91 +19,18 @@ class MobileCommentBox extends Component {
             commentCommand: 'Add Comment . . .',
             commentingUser: false,
             replyMessage: '',
-            comments: [
-                {
-                    id: 0,
-                    userName: 'Erin Smith',
-                    time: '8:34am',
-                    comment: 'Check out the increased sales in this sector. This will make a huge difference.',
-                    replies: [
-                        {
-                            id: 0,
-                            userName: 'Bob Smith',
-                            time: '9:04am',
-                            comment: 'Wow! Great job team!'
-
-                        },
-                        {
-                            id: 1,
-                            userName: 'Samantha Smith',
-                            time: '9:34am',
-                            comment: 'Was this for last month?'
-
-                        },
-                        {
-                            id: 2,
-                            userName: 'Steve Smith',
-                            time: '9:54am',
-                            comment: 'Yes.'
-
-                        }
-                    ]
-                },
-                {
-                    id: 1,
-                    userName: 'Shaun White',
-                    time: '12:33pm',
-                    comment: 'What happened in Quarter 3? ',
-                    replies: [
-                        {
-                            id: 0,
-                            userName: 'Bob Smith',
-                            time: '8:34am',
-                            comment: 'Our customers in Japan did not take to our marketing strategy. '
-
-                        }
-                    ]
-                }
-             ],
-            pictures: [],
             commentToBeRepliedTo: null,
             rerender: false,
             todaysDate: ''
         }
 
-        this.grabProfilePic = this.grabProfilePic.bind(this);
     }
 
     componentDidMount(){
         let dateTime  = new Date().toDateString();
         this.setState({todaysDate: dateTime});
-        // this.forceUpdate();
-        // this.commentInput.focus();
     }
 
-
-    grabProfilePic (userName) {
-
-
-        switch(userName) {
-            case 'Rick Sanchez':
-                return rick;
-                break;
-            case 'Morty Smith':
-                return morty
-                break;
-            case 'Shaun White':
-                return shaun
-                break;
-            case 'Amit Sethi':
-                return amit
-                break;
-            default:
-                return profilePic;
-                break;
-        }
-
-    }
 
     render(){
 
@@ -113,13 +40,13 @@ class MobileCommentBox extends Component {
 
                 <div className='theDateTime'> {this.state.todaysDate}</div>
                 <div >
-                {(this.props.commentsPackage !== undefined) ?
-                        this.props.commentsPackage.map(comment=>{
+                {(this.props.commentsPackage.data !== undefined) ?
+                        this.props.commentsPackage.data.map(comment=>{
                             return (
                                 <div key={comment.id} className='mobileComment'>
                                 <div className='mobileCommentUserHeader'>
                                     {/* Comment User Icon */}
-                                        <img src={this.grabProfilePic(comment.userName)} className="profilePictures"/>
+                                        <img src={profilePic} className="profilePictures"/>
                                     {/* Comment User Name */}
                                     <span className='mobileCommentUserName'>
                                     {comment.userName}
@@ -137,7 +64,7 @@ class MobileCommentBox extends Component {
                                           <div key={reply.id}>
                                                 <div className='mobileCommentUserHeader'>
                                                     {/* Comment User Icon */}
-                                                        <img src={this.grabProfilePic(reply.userName)} className="profilePictures"/>
+                                                        <img src={profilePic} className="profilePictures"/>
                                                     {/* Comment User Name */}
                                                     <span className='mobileCommentUserName'>
                                                     {reply.userName}

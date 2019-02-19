@@ -61,6 +61,7 @@ class Summary extends Component {
   }
 
   async componentDidMount() {
+    this.props.isFetching(true);
     this.props.fetchCommentsCount();
 
     // Get all the comments count
@@ -90,7 +91,7 @@ class Summary extends Component {
 
     // let summaryDataHasUpdated = this.props.summaryData.secondary[this.props.activeSecondaryCard].details.qtdw.qtd[0].value != prevProps.summaryData.secondary[this.props.activeSecondaryCard].details.qtdw.qtd[0].value
     // let filtersSubmitted = this.props.filters.combined.valueFilters !== prevProps.filters.combined.valueFilters &&
-    console.log(appInitialLoadIsComplete);
+    // console.log(appInitialLoadIsComplete);
     //Handle Boolean Test Results
     if (filtersAreLoaded) {
       console.log('Just Recieved filters');
@@ -153,7 +154,6 @@ class Summary extends Component {
           break;
         case 2:
           this.setState({ isLoading: true });
-
           console.log('Fetching Try')
           this.props.getTrySecondaryData(this.props.filters);
           break;
@@ -209,6 +209,7 @@ class Summary extends Component {
     }
   }
   updateActiveSecondary(index) {
+    this.props.isFetching(true);
     this.props.fetchComments(index);
     this.props.updateActiveSecondaryCard(index);
   }
@@ -230,6 +231,7 @@ class Summary extends Component {
   }
 
   onCommentIconClick = (e, type, index) => {
+    this.props.isFetching(true);
     this.props.showCommentBox();
   };
 

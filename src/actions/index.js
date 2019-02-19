@@ -48,6 +48,7 @@ import {
 } from 'actions/types';
 import * as utils from '../utilities';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { dispatch } from 'rxjs/internal/observable/pairs';
 
 // HTTP Variables
 
@@ -535,21 +536,27 @@ export function updateViewSetting(component, isShowing) {
  * @param {*} metricId
  */
 
-export function fetchComments(metricId) {
-    // console.log(metricId);
-    const response = utils.fetchComments(metricId);;
+export const fetchComments = (metricId) => {
+    const response = utils.fetchComments(metricId);
     return {
         type: FETCH_COMMENTS,
-        payload:
-            response
-
+        payload: response
     }
 }
+
+
 
 export function fetchCommentsCount() {
     const res = utils.fetchCommentsCount();
     return {
         type: FETCH_COMMENTS_COUNT,
         payload: res
+    }
+}
+
+export function isFetching (state) {
+    return {
+        type: 'FETCHING_COMMENTS',
+        payload: state
     }
 }

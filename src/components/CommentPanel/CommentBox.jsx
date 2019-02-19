@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import addIcon from '../../assets/images/add-icon-black.svg';
+// import addIcon from '../../assets/images/add-icon-black.svg';
 import profilePic from '../../assets/images/user.png';
-import CommentControls from './CommentControls';
+// import CommentControls from './CommentControls';
 import ImageUploader from 'react-images-upload';
 import {connect } from 'react-redux';
 import * as actions from 'actions';
 import * as utils from '../../utilities';
-import { Thumbs } from 'react-responsive-carousel';
+import LoadingScreen from '../../Views/Loading/Loading';
 
  class CommentBox extends Component {
      constructor(props){
@@ -31,18 +31,22 @@ import { Thumbs } from 'react-responsive-carousel';
         this.updateValue = this.updateValue.bind(this);
         this.onDrop = this.onDrop.bind(this);
         this.setAddCommentFocus = this.setAddCommentFocus.bind(this);
-        this.grabProfilePic = this.grabProfilePic.bind(this);
+        // this.grabProfilePic = this.grabProfilePic.bind(this);
      }
     componentDidMount(){
+        this.props.isFetching(true);
         this.props.fetchComments(this.props.currentMetric);
-        this.commentInput.focus();
+        if (!this.props.commentsPackage.isLoading) {
+            this.commentInput.focus();
+        }
     }
     componentDidUpdate(){
-        this.commentInput.focus();
+        if (!this.props.commentsPackage.isLoading) {
+            this.commentInput.focus();
+        }
     }
     handleCommentMouseEnter(e,userName){
         this.setState({commentCommand: `Respond to ${userName} . . .` });
-
     }
     handleCommentMouseLeave(e,userName){
         this.state.commentingUser ? 
@@ -50,21 +54,14 @@ import { Thumbs } from 'react-responsive-carousel';
             this.setState({commentCommand: 'Add A Comment . . .'});
     }
     setAddCommentFocus = (e, userName) => {
-       
         this.setState({commentToBeRepliedTo: e.target.id,replyMessage: '', commentCommand: `Responding to ${userName}...`, commentingUser: true});
-        this.commentInput.focus();
+        if (!this.props.commentsPackage.isLoading) {
+            this.commentInput.focus();
+        }
     }
     handleKeyPress(e){
        
         if(e.key==='Enter' && this.state.commentToBeRepliedTo === null){
-         
-            // let comment= {
-            //     id: this.props.comments.length,
-            //     userName: this.props.user.name,
-            //     time: new Date().toLocaleTimeString(),
-            //     comment: e.target.value,
-            //     replies: [],
-            // }
 
             const params = {
                 userId: this.props.user.sub, 
@@ -72,15 +69,16 @@ import { Thumbs } from 'react-responsive-carousel';
                 postDateTime: new Date().toISOString(),
                 comment: e.target.value
             };
-
-
-                    // Post Comment
-                    // this.props.addNewCommentToSecondaryMetric(this.props.currentMetric,comment);
-                    // Write to DB, Refresh the metrics from the DB, then refresh Comments count for the comment Indicators
+                // Post Comment
+                // this.props.addNewCommentToSecondaryMetric(this.props.currentMetric,comment);
+                // Write to DB, Refresh the metrics from the DB, then refresh Comments count for the comment Indicators
+                
+                this.forceUpdate(() => {
+                    this.props.isFetching(true);
                     utils.postComment(params);
                     this.props.fetchComments(this.props.currentMetric);
                     this.props.fetchCommentsCount();
-  
+                })
             
             this.setState({replyMessage: ''})
         } else if (e.key==='Enter' && this.state.commentToBeRepliedTo !== null){
@@ -91,19 +89,16 @@ import { Thumbs } from 'react-responsive-carousel';
                 postDateTime: new Date().toISOString(),
                 comment: e.target.value
             }
-            
-            // let comment= {
-            //     id: this.props.comments[this.state.commentToBeRepliedTo].replies.length,
-            //     userName: this.props.user.name,
-            //     time: new Date().toLocaleTimeString(),
-            //     comment: e.target.value 
-            // }
           
                 // Post the Comment
                 //this.props.addNewReplyToSecondaryMetric(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);
+                this.forceUpdate(() => {
+                    this.props.isFetching(true);
                     utils.postReply(params);
                     this.props.fetchComments(this.props.currentMetric);
                     this.props.fetchCommentsCount();
+                })
+                    // this.forceUpdate();
       
            
             this.setState({
@@ -122,9 +117,6 @@ import { Thumbs } from 'react-responsive-carousel';
     onDrop(picture) {
         this.setState({ pictures: this.state.pictures.concat(picture)});
     }
-    onClose(e) {
-        this.props.hideCommentBox();
-    }
     mouseEnter = (e, userName) => {
         this.setState({commentCommand: `Respond to ${userName} . . .` });
         this.forceUpdate();
@@ -134,13 +126,6 @@ import { Thumbs } from 'react-responsive-carousel';
             this.setState({commentCommand: `Responding to ${userName} . . .`}) : 
             this.setState({commentCommand: 'Add A Comment . . .'});
         this.forceUpdate();
-    }
-    grabProfilePic (userName) {
-        switch(userName) {
-            default:
-                return profilePic;
-                break;
-        }
     }
     onCommentReplyDeleteEntered = (e, _id, _userName) => {
         e.preventDefault();
@@ -158,23 +143,28 @@ import { Thumbs } from 'react-responsive-carousel';
         e.preventDefault();
         this.setState({isCommentHovered: {userName: '', id: 999}});
     }
-
-    // Delete Comments && Replies
     onReplyDeleted = (e, replyId ) => {
         alert('DELETE:' );
     }
     onCommentDeleted = (e, commentId, commentResponses) => {
         alert('DELETE COMMENT');
-        // Delete all Responses related to comments first
         const reponsesIdArr = commentResponses.map(ele => {return ele.id});
     }
+    onBodyCommentCommentClick = (e) => {
+        console.log('GO BACK');
+        // this.setState({commentToBeRepliedTo: null, replyMessage: '', commentCommand: `Add Comment . . .`, commentingUser: false});
+        // if (!this.props.commentsPackage.isLoading) {
+        //     this.commentInput.focus();
+        // }
+    }
     render(){
-         let {commentsPackage} = this.props
+            let { commentsPackage } = this.props;
 
-    return(
-        <span>  <div className='commentsContainer'>
-            {(commentsPackage !== undefined) ?
-                commentsPackage.map(comment=>{
+            // console.log('IS LOADING',commentsPackage.isLoading);
+
+            let componentsData = commentsPackage.isLoading ? <LoadingScreen></LoadingScreen> : <span><div className='commentsContainer' onClick={e => {this.onBodyCommentCommentClick(e)}}>
+            {(commentsPackage.data !== undefined) ?
+                commentsPackage.data.map(comment=>{
                         return (
                             <div key = {comment.id} className='comment'>
                             <div className='commentUserHeader'>
@@ -183,7 +173,7 @@ import { Thumbs } from 'react-responsive-carousel';
                                     <img src={profilePic} className="profilePictures"/>
                                 {/* Comment User Name */}
                                 <span className='commentUserName' onMouseEnter={e => {this.onCommentDeleteEntered(e,comment.id, this.props.user.name)}}
-                                 onMouseLeave={e => {this.onCommentDeleteLeave(e,comment.id)}}>
+                                onMouseLeave={e => {this.onCommentDeleteLeave(e,comment.id)}}>
                                 {(this.state.isCommentHovered.id === comment.id && this.state.isCommentHovered.userName === comment.userName) ? 
                                 <span style={{color: 'red'}} onClick={e => {this.onCommentDeleted(e, comment.id, comment.replies)}}>DELETE COMMENT</span> : comment.userName}
                                 </span>
@@ -192,7 +182,7 @@ import { Thumbs } from 'react-responsive-carousel';
                                 {comment.time}</div>
                             </div>
                             <div className='mainCommentContent'>
-                           {comment.comment}
+                        {comment.comment}
                             <a id={comment.id} className='replyArrow' onMouseEnter={e => this.handleCommentMouseEnter(e, comment.userName)}  
                             onMouseLeave={e => this.handleCommentMouseLeave(e, comment.userName)} onClick={ e => this.setAddCommentFocus(e, comment.userName)}></a>
                             </div>
@@ -215,8 +205,8 @@ import { Thumbs } from 'react-responsive-carousel';
                                                     <span className='commentUserName' onMouseEnter={e => { this.onCommentReplyDeleteEntered(e, reply.id, this.props.user.name)}} 
                                                     onMouseLeave={e => {this.onCommentReplyDeleteLeave(e,reply.id)}}>
                                                     {(this.state.isHovered.id === reply.id && this.state.isHovered.userName === reply.userName) ?
-                                                         <span style={{color: 'red'}} onClick={e => {this.onReplyDeleted(e, reply.id)}}>DELETE RESPONSE</span> 
-                                                         : reply.userName}
+                                                        <span style={{color: 'red'}} onClick={e => {this.onReplyDeleted(e, reply.id)}}>DELETE RESPONSE</span> 
+                                                        : reply.userName}
                                                     </span>
                                                     {/* Reply Comment User Date */}
                                                     <span className='commentTime'>
@@ -229,7 +219,7 @@ import { Thumbs } from 'react-responsive-carousel';
                                         </div>
                                         )
                                     }) :null} 
-                                   
+                                
                                 </div>
                             </div>
                         </div>)
@@ -248,8 +238,8 @@ import { Thumbs } from 'react-responsive-carousel';
                     buttonStyles={{backgroundColor: '#3c3c3c'}}/>
             </div>
         </span>
-    )
-                }
+        return (componentsData)
+    }
  }
 
  function mapStateToProps(state){

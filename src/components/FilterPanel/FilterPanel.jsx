@@ -41,7 +41,7 @@ class FilterPanel extends Component{
               availableFilters={availableFilters}
             />
           ) :  <div>
-          <FilterBarHeader handleNewFilterClick={this.openDialogFilterPanel} />
+          <FilterBarHeader handleNewFilterClick={this.openDialogFilterPanel} filterPanelIsOpen={this.state.filterPanelIsOpen} />
           <CustomDropDownPanel
             handleClose={this.openDialogFilterPanel}
             showContainer={this.state.filterPanelIsOpen}

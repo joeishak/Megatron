@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styles from './MobileViewDetails.css';
 import * as utils from '../../../../../utilities.js';
-import { ItemContent } from 'semantic-ui-react';
 
 class MobileViewDetails extends Component {
 
@@ -14,14 +13,39 @@ class MobileViewDetails extends Component {
     }
 
     formatData(detailsData) {
+        console.log(detailsData);
         const headers = ['Actuals', 'Units', 'QRF', 'QRF Diff', 'Vs Qrf', 'Q/Q', 'Y/Y', 'W/W'];
         return headers.map(ele => {
             return new Object({
                 header: ele,
                 qtdValue: this.findValue(detailsData.qtd, ele),
-                weekValue: this.findValue(detailsData.week, ele)
+                weekValue: this.findValue(detailsData.week, ele),
+                valueType: this.findValueType(ele)
             })
         })      
+    }
+
+    findValueType(toFind) {
+        switch(toFind) {
+            case 'Actuals':
+                return 'currency';
+            case 'Units':
+                return 'units';
+            case 'QRF':
+                return 'currency';
+            case 'QRF Diff':
+                return 'currency';
+            case 'Vs Qrf':
+                return 'percent'
+            case 'Q/Q':
+                return 'percent';
+            case 'Y/Y':
+               return 'percent';
+            case 'W/W':
+              return 'percent';
+            default:
+                return 'units';
+        }
     }
 
     findValue(dataArr, toFind) {
@@ -32,9 +56,8 @@ class MobileViewDetails extends Component {
                found = true;
                retValue = dataArr[i].value
            }
-            
         }
-        if (!found) { retValue = 0; }
+        if (!found) { retValue = 0.01; }
 
         return retValue;
     }
@@ -42,7 +65,7 @@ class MobileViewDetails extends Component {
     render () {
 
         const detailsDataTwo = this.formatData(this.props.detailsData);
-        {console.log(detailsDataTwo)}
+        
 
         const vsQRFcolor = utils.formatMetric({valueType:  this.props.valueType, value: this.props.detailsData.qtd[4].value}, 'value') > 0 ? 'green-details' : 'red-details';
 
@@ -60,9 +83,9 @@ class MobileViewDetails extends Component {
                     {detailsDataTwo.map(ele => {
                         return (
                             <div key={ele.header}>
-                                <div className="col-xs-4 content-col-left" ><p>{ele.header}</p></div>
-                                <div className={`col-xs-4 text-align-mid ${(ele.header === 'Vs Qrf') ? vsQRFcolor: ''}`} ><p>{utils.formatMetric({valueType: this.props.valueType, value: ele.qtdValue}, 'value')}</p></div>
-                                <div className="col-xs-4 text-align-mid" ><p>{ele.weekValue}</p></div>
+                                <div className="col-xs-4 text-align-mid" ><p>{ele.header}</p></div>
+                                <div className={`col-xs-4 text-align-mid ${(ele.header === 'Vs Qrf') ? vsQRFcolor: ''}`} ><p>{utils.formatMetric({valueType: ele.valueType, value: ele.qtdValue}, 'value')}</p></div>
+                                <div className={`col-xs-4 text-align-mid ${(ele.header === 'Vs Qrf') ? vsQRFcolor: ''}`} ><p>{utils.formatMetric({valueType: ele.valueType, value: ele.weekValue}, 'value')}</p></div>
                             </div>
                         )
                     })}

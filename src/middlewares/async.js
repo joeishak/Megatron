@@ -9,7 +9,7 @@ export default ({ dispatch }) => next => action => {
     }
 
     action.payload.then(function(response) {
-        const newAction = {...action,payload: response};
+        const newAction = {...action, payload: response};
         dispatch(newAction);
     });
 

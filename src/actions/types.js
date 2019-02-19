@@ -60,4 +60,5 @@ export const UPDATE_MOBILE_FILTER_PAGE_VISIBILITY = 'update_mobile_filter_page_v
 
 // Comments and responses
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
-export const FETCH_COMMENTS_COUNT = 'FETCH_COMMENTS_COUNT;'
+export const FETCH_COMMENTS_COUNT = 'FETCH_COMMENTS_COUNT';
+export const FETCHING_COMMENTS = 'FETCHING_COMMENTS';

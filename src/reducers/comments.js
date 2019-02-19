@@ -1,10 +1,9 @@
-import { FETCH_COMMENTS} from 'actions/types';
+import { FETCH_COMMENTS, FETCHING_COMMENTS} from 'actions/types';
 import * as utils from '../utilities';
 
-export default function(state = [], action) {
+export default function(state = { data: [], isLoading: true} , action) {
     switch(action.type) {
         case FETCH_COMMENTS:
-
             const replies = action.payload.replies;
             const comments = action.payload.comment.map(ele => {
                 return {
@@ -25,7 +24,9 @@ export default function(state = [], action) {
                 }
             });
   
-            return comments;
+            return  { data: comments, isLoading: false};
+        case FETCHING_COMMENTS:
+            return {data: [], isLoading: action.payload}
         default: 
             return state;
     }

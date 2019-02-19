@@ -148,7 +148,7 @@ export default function (state = {
         case FETCH_COMMENTS_COUNT:
             copyOfState = Object.assign({}, state);
             const commentsCount = action.payload;
-
+            console.log(commentsCount);
             for (let i = 0; i < commentsCount.length; i++) {
                 copyOfState.secondary[commentsCount[i].metricId].comments.push(commentsCount[i].commentCount);
             }

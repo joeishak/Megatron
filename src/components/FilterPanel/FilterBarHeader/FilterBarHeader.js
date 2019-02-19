@@ -37,6 +37,9 @@ class FilterBarHeader extends Component {
     //     }
     //     return true;
     // }
+    componentDidUpdate() {
+        console.log('HERE', this.props.filterPanelIsOpen)
+    }
 
    // Function that renders the Filter Pills
     renderFilterPills(){
@@ -126,7 +129,7 @@ class FilterBarHeader extends Component {
                 { this.renderFilterPills()}
                 </div>
                 <div className="newFilterDiv col-2"> 
-                    <span className="newFilterText" >{this.state.filterButtonTitle}</span> 
+                    <span className="newFilterText" >{this.props.filterPanelIsOpen ? 'Hide Filters' : 'Add Filters'}</span> 
                         <img src={addIcon} alt="" className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img>
                 </div>
             </div>

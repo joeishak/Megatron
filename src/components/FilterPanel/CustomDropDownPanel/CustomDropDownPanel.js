@@ -142,6 +142,7 @@ class CustomDropDownPanel extends Component {
         this.props.submitFilters(newFilters);
         //  this.props.getSummaryData(newFilters);
         this.props.handleClose();
+        
 
     }
     render() {

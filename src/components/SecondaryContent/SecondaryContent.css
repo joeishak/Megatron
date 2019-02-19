@@ -227,7 +227,9 @@ boxContentAmountGreen
 	width:100%;
 }
 
-
+.vs-qrf-desktop {
+	margin-top: 10px !important;
+}
 
 .verticalText1 {
 	padding-top: 58px;
@@ -407,19 +409,21 @@ boxContentAmountGreen
 .primaryDataCategoryContainer {
 	padding-top: -10px;
 	border: 1px solid transparent;
-	height: 23px;
+	height: 50px;
 }
 
 .primaryCategoryTitle {
 	font-family: Ubuntu;
 	font-style: normal;
 	line-height: normal;
+	font-weight: 600;
 	font-size: 1.6em;
 	color: white;
 	width: 50%;
 	margin-left: 70px;
-	height: 30px;
+	height: 60px;
 	font-size: 17px;
+	margin-top: 12px;
 }
 
 .primaryCateogryNav  {
@@ -428,7 +432,7 @@ boxContentAmountGreen
 	color: white;
 	margin-left: 20px;
 	height:20px;
-	margin-top: -5px;
+	margin-top: 7px;
 }
 
 
@@ -436,7 +440,7 @@ boxContentAmountGreen
 .sliderContainer {
 		margin-top: 5px;
     color: white;
-    height: 185px;
+    height: 210px;
     width: 100%;
     background-color: #262125;
 	overflow-y: hidden ;
@@ -451,7 +455,7 @@ boxContentAmountGreen
 }
 
 .slider-content {
-    height: 185px;
+    height: 210px;
     width: 450px;
     flex: 0 0 auto;
 	overflow-y: hidden ;
