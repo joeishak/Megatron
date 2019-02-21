@@ -1,0 +1,246 @@
+.flRight{
+    float: right;
+}
+.flLeft{
+    float:left;
+}
+.navContainer{
+    margin-bottom: 0px !important;
+}
+
+.navText {
+    font-size: 16px; 
+}
+
+.right-bar-span {
+    float: right;
+    list-style-type: none;
+
+}
+
+.userIcon {
+    padding-top: 12px;
+    width:54px;
+    height:54px;
+ 
+}
+
+.profilePic{
+    padding-top: 12px;
+    width: 45px;
+    clip-path: circle(60px at center);
+}
+
+.commentIcon {
+    margin-top: 7px;
+    height: 46px;
+    margin-left: 14px;
+}
+
+.navText:hover {
+    color: gray !important;
+}
+
+.navBrandLogo{
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.imgLogo {
+    margin-top: 3px;
+}
+
+.navItem{
+    margin-top: 5px;
+    padding-left: 5px;
+    padding-right:5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top:15px;
+    padding-bottom: 15px;
+}
+
+.dropDownContainer {
+    padding-right: 10px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    font-size: 16px; 
+}
+
+.dropDownContainerBox {
+    margin-right: 7px;
+    margin-top: 10px;
+}
+
+.selected {
+    border-bottom: 5px solid #FF0000;
+}
+
+#nav-dropdown {
+    color: rgb(46, 46, 46);
+    text-decoration: none;
+}
+    
+#nav-dropdown:hover {
+    color:#00A0C6; 
+    text-decoration:none; 
+    cursor:pointer;  
+}
+
+#nav-dropdown::after {
+    display:none;
+}
+
+/* .commentNotificationCircle{
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 15px;
+    border:  1px solid red;
+
+} */
+/* .commentNotificationCircleRed{
+    border: red;
+} */
+
+/* .commentsIcon{
+    width:40px;
+    height:40px;
+    margin-left:10%;
+    margin-top:10%;
+
+} */
+
+
+/* .center{
+    margin: 0 auto;
+  } */
+/* .roundButton{
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  display:block;
+  background-size: contain;
+  float:left;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+} */
+  
+/* .commentsOff{
+  background-image: url("../../assets/images/comments-off.png");
+  background-color: #fff;
+  border-radius: 100%;
+}
+
+.commentsOn{
+    background-image: url("../../assets/images/comments-on.png");
+    background-color: #fff;
+    border-radius: 100%;
+  } */
+  
+/* .redicon{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background: red;
+  padding:6px;
+  box-sizing: border-box;
+  border-radius: 100%;
+} */
+
+/* .redicontext{
+  position: absolute;
+  top: 10px;
+  right: 3%;
+  padding:10px;
+  box-sizing: border-box;
+  border-radius: 100%;
+} */
+
+/* Mobile Screens */
+
+.filterIcon {
+    margin-top: 13px;
+    margin-left: 10px;
+    margin-right: 4px;
+    width: 42px;
+    height: 42px;
+}
+
+.fitlerIconMobile {
+    padding-top:4px;
+    width: 32px;
+    height: 32px;
+}
+
+.filterButton {
+    /* border: 1px dotted red; */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    float: right;
+}
+
+.filterIconContainer {
+    float: right;
+}
+
+@media only screen and (max-width: 1024px) {
+    .flLeft {
+        padding-left: 20px;
+    }
+    .flRight {
+        padding-right: 20px;
+    }
+}
+
+@media only screen and (max-width: 765px) {
+    .userIcon {
+        display: none;
+    }
+    .filterIcon {
+        display: none;
+    }
+    .navbar {
+        height: 50px !important;
+        margin-bottom: 0px !important;
+    }
+    .imgLogo {
+        margin-top: 15px !important;
+    }
+    .navBrandLogo, .navbar-brand {
+        margin-top: -20px;
+    }
+}
+.navbar-brand > img {
+    padding-right: 10px;
+    display: inline !important;
+}
+@media only screen and (min-width: 765px) {
+    .fitlerIconMobile {
+       display: none;
+    }
+}
+
+.navbar, .navbar-header {
+    margin-bottom: 0px !important;
+}
+.feedbackIcon{
+    height:42px;
+    width:42px;
+    margin-top: 10px;
+    margin-left:15px;
+}
+
+img:hover {
+    cursor: pointer;
+}
+
+
+
