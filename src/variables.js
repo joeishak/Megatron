@@ -8175,7 +8175,7 @@ export const SecondaryData = [
         valueType: 'units'
     },
     {
-        index: 16,
+        index: 15,
         category: 2,
         header: '28 Day New UQFM to QFM',
         value: .746,
@@ -8606,7 +8606,7 @@ export const SecondaryData = [
         valueType: 'percent'
     },
     {
-        index: 17,
+        index: 16,
         category: 2,
         header: 'Cum. UQFM to QFM',
         value: .746,
@@ -9038,7 +9038,7 @@ export const SecondaryData = [
     },
     /* Buy */
     {
-        index: 20,
+        index: 17,
         category: 3,
         header: 'Conversion',
         value: .0102,
@@ -10407,7 +10407,7 @@ export const SecondaryData = [
     },
 
     {
-        index: 21,
+        index: 20,
         category: 3,
         header: 'D2P Conversion',
         value: .0041,
@@ -10838,7 +10838,7 @@ export const SecondaryData = [
         valueType: 'percent'
     },
     {
-        index: 22,
+        index: 21,
         category: 3,
         header: 'F2P Conversion',
         value: .062,
@@ -11269,7 +11269,7 @@ export const SecondaryData = [
         valueType: 'percent'
     },
     {
-        index: 23,
+        index: 22,
         category: 3,
         header: 'Gross New ARR',
         value: 301000000,
@@ -11700,7 +11700,7 @@ export const SecondaryData = [
         valueType: 'percent'
     },
     {
-        index: 24,
+        index: 23,
         category: 3,
         header: 'Gross New Units',
         value: 1500000,

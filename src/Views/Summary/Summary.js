@@ -60,7 +60,7 @@ class Summary extends Component {
     this.props.setAppSettings(appSettings);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.props.isFetching(true);
     this.props.fetchCommentsCount();
 
@@ -70,14 +70,15 @@ class Summary extends Component {
 
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
-    this.checkAuthentication();
   }
 
-  async componentDidUpdate(prevProps) {
-    this.checkAuthentication();
-    // console.log(prevProps);
-    // console.log(this.props)
+  componentDidUpdate(prevProps) {
 
+    this.checkAuthentication();
+
+    if (this.state.authenticated === false) {
+      this.props.auth.login("/")
+    }
     if (this.props.user !== prevProps.user) {
       this.props.getUserSettings(this.props.user.sub);
     }
@@ -324,7 +325,7 @@ class Summary extends Component {
             </div>
           </span>
         )}
-        {this.state.authenticated === false && this.props.auth.login("/")}
+        {/* {this.state.authenticated === false && } */}
       </div>
     );
   }
@@ -333,6 +334,7 @@ class Summary extends Component {
 function mapStateToProps(state) {
 
   return {
+    authenticated: state.authenticated,
     statsDetails: state.summaryData.secondary[state.activeCards.secondary].details.stats,
     dialogIsOpen: state.isDialogOpen,
     detailIsOpen: state.detailsIsOpen,

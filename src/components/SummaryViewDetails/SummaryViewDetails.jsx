@@ -351,7 +351,7 @@ class SummaryViewDetails extends Component {
 
             />
           </div>
-          <div className="col-lg-2 ">
+          <div className="col-md-2 col-lg-2 ">
             <div className=" multiChartMetricContainer ">
               <div
                 onClick={this.updateQTDPercentageFilter}
