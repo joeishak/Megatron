@@ -319,7 +319,6 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[1].value = getParamValues(_activeParams.geos, allFilters.geos);
             filterParams[2].value = getParamValues(_activeParams.markets, allFilters.marketAreas);
 
-
             break;
         case 3:
             filterParams[0].value = getParamValues(_activeParams.quarters, allFilters.quarters);
@@ -758,12 +757,12 @@ export function requestTrySecondaryData(allFilters, _parameters) {
     generateFilterParams(2, group2Params, allFilters, _parameters);
 
 
-
     let params2 = group2Params.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
+    console.log('params2', params2)
 
 
     // Secondary
@@ -794,6 +793,7 @@ export function requestTrySecondaryData(allFilters, _parameters) {
     responseArray.push(
         TrySecondary, TryMutlichart, TryQTD, TryGeoQTD, TryMarketQTD
     );
+    console.log(responseArray);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;

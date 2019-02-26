@@ -238,7 +238,7 @@ export function getDiscoverSecondaryData(filters) {
 }
 
 export function getTrySecondaryData(filters) {
-    // console.log(filters);
+    console.log(filters);
     let allFilters = {
         quarters: Object.keys(filters.quarters.availableFilters).map(e => filters.quarters.availableFilters[e]),
         geos: Object.keys(filters.geos.availableFilters).map(e => filters.geos.availableFilters[e]),
@@ -258,7 +258,8 @@ export function getTrySecondaryData(filters) {
         products: Object.keys(filters.products.valueFilters).map(e => filters.products.valueFilters[e])
     };
 
-    // console.log(filters);
+    console.log(allFilters);
+    console.log(_parameters);
     promiseArr = utils.requestTrySecondaryData(allFilters, _parameters);
 
     return {

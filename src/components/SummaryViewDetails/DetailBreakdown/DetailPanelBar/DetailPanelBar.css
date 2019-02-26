@@ -292,7 +292,7 @@
 }
 .k-link:hover{
     color: black !important;
-    background-color: #D8D8D8 !important;
+    background-color: rgb(71, 71, 71) !important;
     padding-left: 7px !important;
 }
 
@@ -312,7 +312,6 @@
     transform: rotate(180deg) !important;
 }
 
-/* .k-panelbar-expand::before {
-    border: 1px solid red;
-} */
-
+.k-state-default {
+    background-color: #1f1f1f !important;
+}
