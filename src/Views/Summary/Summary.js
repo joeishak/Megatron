@@ -90,9 +90,7 @@ class Summary extends Component {
     let appIsReadyToRequestSummaryData = prevProps.filters.combined.valueFilters.length === 0 && this.props.filters.combined.valueFilters.length > 0;
     let appInitialLoadIsComplete = this.props.NEwQTDW.qtd.length !== 0;
 
-    // let summaryDataHasUpdated = this.props.summaryData.secondary[this.props.activeSecondaryCard].details.qtdw.qtd[0].value != prevProps.summaryData.secondary[this.props.activeSecondaryCard].details.qtdw.qtd[0].value
-    // let filtersSubmitted = this.props.filters.combined.valueFilters !== prevProps.filters.combined.valueFilters &&
-    // console.log(appInitialLoadIsComplete);
+
     //Handle Boolean Test Results
     if (filtersAreLoaded) {
       console.log('Just Recieved filters');
@@ -105,7 +103,7 @@ class Summary extends Component {
       this.setState({ preferncesAreAddedToFilters: true })
     }
 
-
+    //Initial App Loads on Finance Tab
     if (appIsReadyToRequestSummaryData && this.state.preferncesAreAddedToFilters === true) {
       console.log('Both Preferences and Filters are loaded');
       this.props.getFinanceSecondaryData(this.props.filters);
@@ -136,15 +134,15 @@ class Summary extends Component {
           break;
         case 3:
           console.log('Fetching Buy')
-          this.props.getTrySecondaryData(this.props.filters);
+          this.props.getBuySecondaryData(this.props.filters);
           break;
         case 4:
           console.log('Fetching Use')
-          this.props.getTrySecondaryData(this.props.filters);
+          this.props.getUseSecondaryData(this.props.filters);
           break;
         case 5:
           console.log('Fetching Renew')
-          this.props.getTrySecondaryData(this.props.filters);
+          this.props.getRenewSecondaryData(this.props.filters);
           break;
         default:
           break;

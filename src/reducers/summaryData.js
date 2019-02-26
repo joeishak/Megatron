@@ -2424,7 +2424,6 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
     }
 }
 
-
 /**Try**/
 export function processTrySecondaryData(g2, newState) {
 

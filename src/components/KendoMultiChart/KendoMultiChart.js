@@ -205,10 +205,10 @@ class KendoMultiChart extends Component {
                     <ChartSeriesItem name='Target' type="bar" zIndex={0} spacing={0.25} data={this.formatDataValues(chartData[1])} color='#0E9CC6'>
                         <ChartSeriesItemTooltip background="#3c3c3c" />
                     </ChartSeriesItem>
-                    <ChartSeriesItem name='Last Year' type="line" data={this.formatDataValues(chartData[2])} color='#DFDE43'  >
+                    <ChartSeriesItem name='Last Year' type="line" width={5} data={this.formatDataValues(chartData[2])} color='#DFDE43'  >
                         <ChartSeriesItemTooltip background="#3c3c3c" />
                     </ChartSeriesItem>
-                    <ChartSeriesItem name='Last Quarter' type="line" data={this.formatDataValues(chartData[3])} color='purple'  >
+                    <ChartSeriesItem name='Last Quarter' type="line" width={5} data={this.formatDataValues(chartData[3])} color='purple'  >
                         <ChartSeriesItemTooltip background="#3c3c3c" />
                     </ChartSeriesItem>
                 </ChartSeries>
