@@ -81,6 +81,12 @@ export default function (state = {
             let channelFilters = action.payload[7].data;
             let visitFilters = action.payload[8].data;
             let signFilters = action.payload[9].data;
+            // let lastTouch = action.payload[10].data;
+            // let signUpApp = action.payload[11].data;
+            // let productCategory = action.payload[12].data;
+            // let pvw = action.payload[13].data;
+            // let category = action.payload[14].data;
+            // let webSegments = action.payload[15].data;
 
             let newGeoState = processDropDownListFilterValue('geos', geosFilters);
             let newMAState = processDropDownListFilterValue('markets', marketsFilters);
@@ -92,6 +98,16 @@ export default function (state = {
             let newChannelState = processDropDownListFilterValue('channel', channelFilters);
             let newVisitState = processDropDownListFilterValue('visit', visitFilters);
             let newSignState = processDropDownListFilterValue('sign', signFilters);
+            /**
+            let newLastTouchState = processDropDownListFilterValue('lastTouch', lastTouch);
+            let newSignUpAppState = processDropDownListFilterValue('signUpApp', signUpApp);
+            let newProductCategoryState = processDropDownListFilterValue('productCategory', productCategory);
+            let newPVWState = processDropDownListFilterValue('pvw', pvw);
+            let newCategoryState = processDropDownListFilterValue('category', category);
+            let newWebSegmentsState = processDropDownListFilterValue('webSegments', webSegments);
+
+             * 
+             */
 
 
 
@@ -139,10 +155,35 @@ export default function (state = {
                     availableFilters: newVisitState,
                     valueFilters: []
                 },
-                signups: {
+                signupSource: {
                     availableFilters: newSignState,
                     valueFilters: []
+                },
+                lastTouchChannel: {
+                    availableFilters: [],
+                    valueFilters: []
+                },
+                signupApp: {
+                    availableFilters: [],
+                    valueFilters: []
+                },
+                productCategory: {
+                    availableFilters: [],
+                    valueFilters: []
+                },
+                webSegments: {
+                    availableFilters: [],
+                    valueFilters: []
+                },
+                pvw: {
+                    availableFilters: [],
+                    valueFilters: []
+                },
+                category: {
+                    availableFilters: [],
+                    valueFilters: []
                 }
+
             }
             console.log(obj);
             return obj;
@@ -366,6 +407,60 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
+        case 'lastTouch':
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['last_touch_channel']
+                }
+            });
+            return newArr;
+        case 'signUpApp':
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['signup_app_category']
+                }
+            });
+            return newArr;
+        case 'productCategory':
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['product_category']
+                }
+            });
+            return newArr;
+        case 'pvw':
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['pvw']
+                }
+            });
+            return newArr;
+        case 'category':
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['category']
+                }
+            });
+            return newArr;
+        case 'webSegments':
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['web_segments']
+                }
+            });
+            return newArr;
         default:
             return null;
     }
@@ -373,3 +468,9 @@ function processDropDownListFilterValue(type, data) {
 
 
 }
+// let newLastTouchState = processDropDownListFilterValue('lastTouch', lastTouch);
+// let newSignUpAppState = processDropDownListFilterValue('signUpApp', signUpApp);
+// let newProductCategoryState = processDropDownListFilterValue('productCategory', productCategory);
+// let newPVWState = processDropDownListFilterValue('pvw', pvw);
+// let newCategoryState = processDropDownListFilterValue('category', category);
+// let newWebSegmentsState = processDropDownListFilterValue('webSegments', webSegments);

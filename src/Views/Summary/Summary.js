@@ -134,6 +134,18 @@ class Summary extends Component {
           console.log('Fetching Try')
           this.props.getTrySecondaryData(this.props.filters);
           break;
+        case 3:
+          console.log('Fetching Buy')
+          this.props.getTrySecondaryData(this.props.filters);
+          break;
+        case 4:
+          console.log('Fetching Use')
+          this.props.getTrySecondaryData(this.props.filters);
+          break;
+        case 5:
+          console.log('Fetching Renew')
+          this.props.getTrySecondaryData(this.props.filters);
+          break;
         default:
           break;
       }
@@ -157,6 +169,18 @@ class Summary extends Component {
           this.setState({ isLoading: true });
           console.log('Fetching Try')
           this.props.getTrySecondaryData(this.props.filters);
+          break;
+        case 3:
+          console.log('Fetching Buy')
+          this.props.getBuySecondaryData(this.props.filters);
+          break;
+        case 4:
+          console.log('Fetching Use')
+          this.props.getUseSecondaryData(this.props.filters);
+          break;
+        case 5:
+          console.log('Fetching Renew')
+          this.props.getRenewSecondaryData(this.props.filters);
           break;
         default:
           break;

@@ -149,22 +149,38 @@ class CustomDropDownPanel extends Component {
                 return (
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 1</p>
+                        <div className={quarterFilterContainer + ' col-lg-3'} >
+                            <p>  Route To Market</p>
+                            <MultiValueSelect
+                                options={filters.routes.availableFilters}
+                                onValueChange={(e) => { let type = 'routes'; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
+                            />
+                        </div>
+                        <div className={quarterFilterContainer + ' col-lg-3'} >
+                            <p> Segment</p>
                             <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
+                                activeFilters={filters.segments.valueFilters}
+                                options={filters.segments.availableFilters}
                                 onValueChange={this.updateSingleValue}
                                 onMenuClose={this.closeSingleValue}
                             />
+
                         </div>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 2</p>
-                            <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
-                                onValueChange={this.updateSingleValue}
-                                onMenuClose={this.closeSingleValue}
+                        <div className={quarterFilterContainer + ' col-lg-3'} >
+                            <p> Subscription Offering</p>
+                            <MultiValueSelect
+                                options={filters.subscriptions.availableFilters}
+                                onValueChange={(e) => { let type = 'subscriptions'; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
+                            />
+                        </div>
+                        <div className={quarterFilterContainer + ' col-lg-3'} >
+                            <p> Product Category</p>
+                            <MultiValueSelect
+                                options={filters.products.availableFilters}
+                                onValueChange={(e) => { let type = 'products'; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
                             />
                         </div>
                     </div>
@@ -174,22 +190,14 @@ class CustomDropDownPanel extends Component {
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 1</p>
+                            <p> Segment</p>
                             <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
+                                activeFilters={filters.segments.valueFilters}
+                                options={filters.segments.availableFilters}
                                 onValueChange={this.updateSingleValue}
                                 onMenuClose={this.closeSingleValue}
                             />
-                        </div>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 2</p>
-                            <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
-                                onValueChange={this.updateSingleValue}
-                                onMenuClose={this.closeSingleValue}
-                            />
+
                         </div>
                     </div>
                 );
@@ -198,87 +206,39 @@ class CustomDropDownPanel extends Component {
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 1</p>
+                            <p> Sign Up Source</p>
                             <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
+                                activeFilters={filters.segments.valueFilters}
+                                options={filters.segments.availableFilters}
                                 onValueChange={this.updateSingleValue}
                                 onMenuClose={this.closeSingleValue}
                             />
-                        </div>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 2</p>
-                            <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
-                                onValueChange={this.updateSingleValue}
-                                onMenuClose={this.closeSingleValue}
-                            />
+
                         </div>
                     </div>
                 );
             case 3:
-                return (
-                    <div className="col-lg-12 globalPrimaryKPIFilters">
-                        <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 1</p>
-                            <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
-                                onValueChange={this.updateSingleValue}
-                                onMenuClose={this.closeSingleValue}
-                            />
-                        </div>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 2</p>
-                            <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
-                                onValueChange={this.updateSingleValue}
-                                onMenuClose={this.closeSingleValue}
-                            />
-                        </div>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 2</p>
-                            <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
-                                onValueChange={this.updateSingleValue}
-                                onMenuClose={this.closeSingleValue}
-                            />
-                        </div>
-                    </div>
-                );
+                break;
             case 4:
                 return (
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 1</p>
+                            <p> Segment</p>
                             <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
+                                activeFilters={filters.segments.valueFilters}
+                                options={filters.segments.availableFilters}
                                 onValueChange={this.updateSingleValue}
                                 onMenuClose={this.closeSingleValue}
                             />
+
                         </div>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 2</p>
-                            <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
-                                onValueChange={this.updateSingleValue}
-                                onMenuClose={this.closeSingleValue}
-                            />
-                        </div>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 2</p>
-                            <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
-                                onValueChange={this.updateSingleValue}
-                                onMenuClose={this.closeSingleValue}
+                        <div className={quarterFilterContainer + ' col-lg-5'} >
+                            <p> Subscription Offering</p>
+                            <MultiValueSelect
+                                options={filters.subscriptions.availableFilters}
+                                onValueChange={(e) => { let type = 'subscriptions'; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
                             />
                         </div>
                     </div>
@@ -288,39 +248,21 @@ class CustomDropDownPanel extends Component {
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 1</p>
+                            <p> Segment</p>
                             <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
+                                activeFilters={filters.segments.valueFilters}
+                                options={filters.segments.availableFilters}
                                 onValueChange={this.updateSingleValue}
                                 onMenuClose={this.closeSingleValue}
                             />
+
                         </div>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 2</p>
-                            <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
-                                onValueChange={this.updateSingleValue}
-                                onMenuClose={this.closeSingleValue}
-                            />
-                        </div>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 2</p>
-                            <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
-                                onValueChange={this.updateSingleValue}
-                                onMenuClose={this.closeSingleValue}
-                            />
-                        </div>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Global Sub Filter 2</p>
-                            <SingleValueSelect
-                                activeFilters={filters.quarters.valueFilters}
-                                options={filters.quarters.availableFilters}
-                                onValueChange={this.updateSingleValue}
-                                onMenuClose={this.closeSingleValue}
+                        <div className={quarterFilterContainer + ' col-lg-5'} >
+                            <p> Subscription Offering</p>
+                            <MultiValueSelect
+                                options={filters.subscriptions.availableFilters}
+                                onValueChange={(e) => { let type = 'subscriptions'; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
                             />
                         </div>
                     </div>
@@ -377,7 +319,7 @@ class CustomDropDownPanel extends Component {
                         values={_.groupBy(this.state.selectedFilters, (item => { return item.category === 'markets' }))}
                     />
                 </div>
-                <div className={quarterFilterContainer + ' col-lg-3'} >
+                {/* <div className={quarterFilterContainer + ' col-lg-3'} >
                     <p>  Route To Market</p>
                     <MultiValueSelect
                         options={filters.routes.availableFilters}
@@ -410,7 +352,7 @@ class CustomDropDownPanel extends Component {
                         onValueChange={(e) => { let type = 'products'; this.updateMultiValue(e, type) }}
                         onMenuClose={this.closeMultiValue}
                     />
-                </div>
+                </div> */}
                 {this.getGlobalSubFilters(filters, quarterFilterContainer)}
                 <div className={quarterFilterContainer + ' col-lg-12'}>
                     <input className={`button ` + isGlowing} type={'button'} onClick={this.submitFilters} value="Submit" />

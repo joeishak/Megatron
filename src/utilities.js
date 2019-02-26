@@ -799,6 +799,466 @@ export function requestTrySecondaryData(allFilters, _parameters) {
     return promiseArr;
 
 }
+
+export function requestBuySecondaryData(allFilters, _parameters) {
+    responseArray = [];
+    generateFilterParams(1, group1Params, allFilters, _parameters);
+    generateFilterParams(2, group2Params, allFilters, _parameters);
+    generateFilterParams(5, group5Params, allFilters, _parameters);
+
+
+    let params1 = group1Params.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params2 = group2Params.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params5 = group5Params.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
+    // Secondary
+    const DiscoverG1Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1ActualTargetSecondary + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2ActualTargetSecondary + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5ActualTargetSecondary + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Multichart
+    const DiscoverG1Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1MultiChartQuery + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2MultiChartQuery + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5MultiChartQuery + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //QTD
+    const DiscoverG1QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1QTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2QTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5QTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    //Geo QTD
+    const DiscoverG1GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1GeoQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2GeoQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5GeoQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    //Market QTD
+    const DiscoverG1MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1MarketAreaQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2MarketAreaQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5MarketAreaQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+    //Segment QTD
+    const DiscoverG1SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1SegmentQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2SegmentQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5SegmentQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+
+    //Route QTD
+    const DiscoverG1RouteQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1RouteQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5RouteQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2RouteQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2RouteQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5RouteQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+    //Product QTD
+    const DiscoverG1ProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1ProductQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2ProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2ProductQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5ProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5ProductQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+    responseArray.push(
+        DiscoverG1Secondary, DiscoverG2Secondary, DiscoverG5Secondary,
+        DiscoverG1Multichart, DiscoverG2Multichart, DiscoverG5Multichart,
+        DiscoverG1QTD, DiscoverG2QTD, DiscoverG5QTD,
+        DiscoverG1GeoQTD, DiscoverG2GeoQTD, DiscoverG5GeoQTD,
+        DiscoverG1MarketQTD, DiscoverG2MarketQTD, DiscoverG5MarketQTD,
+        DiscoverG1SegmentQTD, DiscoverG2SegmentQTD, DiscoverG5SegmentQTD,
+        DiscoverG1RouteQTD, DiscoverG5RouteQTD, DiscoverG2RouteQTD,
+        DiscoverG1ProductQTD, DiscoverG2ProductQTD, DiscoverG5ProductQTD
+    );
+    let promiseArr = Promise.all(responseArray);
+
+    return promiseArr;
+
+}
+export function requestUseSecondaryData(allFilters, _parameters) {
+    responseArray = [];
+    generateFilterParams(1, group1Params, allFilters, _parameters);
+    generateFilterParams(2, group2Params, allFilters, _parameters);
+    generateFilterParams(5, group5Params, allFilters, _parameters);
+
+
+    let params1 = group1Params.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params2 = group2Params.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params5 = group5Params.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
+    // Secondary
+    const DiscoverG1Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1ActualTargetSecondary + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2ActualTargetSecondary + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5ActualTargetSecondary + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Multichart
+    const DiscoverG1Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1MultiChartQuery + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2MultiChartQuery + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5MultiChartQuery + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //QTD
+    const DiscoverG1QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1QTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2QTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5QTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    //Geo QTD
+    const DiscoverG1GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1GeoQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2GeoQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5GeoQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    //Market QTD
+    const DiscoverG1MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1MarketAreaQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2MarketAreaQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5MarketAreaQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+    //Segment QTD
+    const DiscoverG1SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1SegmentQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2SegmentQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5SegmentQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+
+    //Route QTD
+    const DiscoverG1RouteQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1RouteQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5RouteQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2RouteQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2RouteQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5RouteQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+    //Product QTD
+    const DiscoverG1ProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1ProductQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2ProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2ProductQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5ProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5ProductQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+    responseArray.push(
+        DiscoverG1Secondary, DiscoverG2Secondary, DiscoverG5Secondary,
+        DiscoverG1Multichart, DiscoverG2Multichart, DiscoverG5Multichart,
+        DiscoverG1QTD, DiscoverG2QTD, DiscoverG5QTD,
+        DiscoverG1GeoQTD, DiscoverG2GeoQTD, DiscoverG5GeoQTD,
+        DiscoverG1MarketQTD, DiscoverG2MarketQTD, DiscoverG5MarketQTD,
+        DiscoverG1SegmentQTD, DiscoverG2SegmentQTD, DiscoverG5SegmentQTD,
+        DiscoverG1RouteQTD, DiscoverG5RouteQTD, DiscoverG2RouteQTD,
+        DiscoverG1ProductQTD, DiscoverG2ProductQTD, DiscoverG5ProductQTD
+    );
+    let promiseArr = Promise.all(responseArray);
+
+    return promiseArr;
+
+}
+export function requestRenewSecondaryData(allFilters, _parameters) {
+    responseArray = [];
+    generateFilterParams(1, group1Params, allFilters, _parameters);
+    generateFilterParams(2, group2Params, allFilters, _parameters);
+    generateFilterParams(5, group5Params, allFilters, _parameters);
+
+
+    let params1 = group1Params.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params2 = group2Params.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params5 = group5Params.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
+    // Secondary
+    const DiscoverG1Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1ActualTargetSecondary + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2ActualTargetSecondary + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5ActualTargetSecondary + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Multichart
+    const DiscoverG1Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1MultiChartQuery + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2MultiChartQuery + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5MultiChartQuery + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //QTD
+    const DiscoverG1QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1QTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2QTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5QTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    //Geo QTD
+    const DiscoverG1GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1GeoQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2GeoQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5GeoQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    //Market QTD
+    const DiscoverG1MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1MarketAreaQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2MarketAreaQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5MarketAreaQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+    //Segment QTD
+    const DiscoverG1SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1SegmentQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2SegmentQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5SegmentQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+
+    //Route QTD
+    const DiscoverG1RouteQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1RouteQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5RouteQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2RouteQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2RouteQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5RouteQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+    //Product QTD
+    const DiscoverG1ProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG1ProductQTD + params1 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG2ProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2ProductQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverG5ProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5ProductQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+    responseArray.push(
+        DiscoverG1Secondary, DiscoverG2Secondary, DiscoverG5Secondary,
+        DiscoverG1Multichart, DiscoverG2Multichart, DiscoverG5Multichart,
+        DiscoverG1QTD, DiscoverG2QTD, DiscoverG5QTD,
+        DiscoverG1GeoQTD, DiscoverG2GeoQTD, DiscoverG5GeoQTD,
+        DiscoverG1MarketQTD, DiscoverG2MarketQTD, DiscoverG5MarketQTD,
+        DiscoverG1SegmentQTD, DiscoverG2SegmentQTD, DiscoverG5SegmentQTD,
+        DiscoverG1RouteQTD, DiscoverG5RouteQTD, DiscoverG2RouteQTD,
+        DiscoverG1ProductQTD, DiscoverG2ProductQTD, DiscoverG5ProductQTD
+    );
+    let promiseArr = Promise.all(responseArray);
+
+    return promiseArr;
+
+}
 export function requestDetailsData(allFilters, _parameters) {
     responseArray = [];
 
@@ -1003,7 +1463,7 @@ export function fetchComments(metricId) {
     const res1 = axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' }).then((response) => {
 
         if (response !== []) {
-    
+
             const commentIdsArray = response.data.map(ele => { return ele.id; });
             const params = convertFilterListForDBQuery(commentIdsArray);
             let responseBody = {
