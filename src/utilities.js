@@ -1459,6 +1459,7 @@ export function fetchComments(metricId) {
             "metric": metricId
         }
     };
+    console.log(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' })
 
     const res1 = axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' }).then((response) => {
 

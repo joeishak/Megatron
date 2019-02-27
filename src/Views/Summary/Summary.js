@@ -72,7 +72,7 @@ class Summary extends Component {
     this.resize();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
 
     this.checkAuthentication();
 
@@ -111,10 +111,6 @@ class Summary extends Component {
       // this.props.getSummaryData(this.props.filters);
       this.setState({ initialDataLoadIsComplete: true })
     }
-
-    // if (this.props.summaryData !== prevProps.summaryData && this.state.initialDataLoadIsComplete === true) {
-    //   this.setState({ isLoading: false });
-    // }
 
     if (this.state.initialDataLoadIsComplete === true && (this.props.filters !== prevProps.filters)) {
       // this.setState({ isLoading: true });
@@ -311,13 +307,14 @@ class Summary extends Component {
 
     return (
       <div style={isMobileOrTablet ? { height: `${this.props.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
-        {this.state.authenticated && (
-          <span>
-            {/* Data Preferences */}
+        {
+          this.state.isInitiallyLoading === true ? < LoadingScreen /> :
 
-            <div>
-              {
-                this.state.isInitiallyLoading === true ? < LoadingScreen /> :
+            this.state.authenticated && (
+              <span>
+                {/* Data Preferences */}
+                <div>
+
                   <div>
                     {kdialog}
                     {/* Navigation*/}
@@ -335,18 +332,13 @@ class Summary extends Component {
                       <span>
                         {(this.state.mobileFiltersIsShown ? null : this.getSecondaryContent())}
                         {summaryViewDetails}</span>
-
                     }
                     {/* {this.state.isFilterPageVisible && this.props.mobileIsPrimary ? null : null} */}
                   </div>
 
-              }
-
-
-
-            </div>
-          </span>
-        )}
+                </div>
+              </span>
+            )}
         {/* {this.state.authenticated === false && } */}
       </div>
     );

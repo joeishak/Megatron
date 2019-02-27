@@ -118,6 +118,9 @@ export default function (state = {
             // processTryGeoQTDData(action.payload[0].data, newState.secondary);
             // processTryMarketQTDData(action.payload[0].data, newState.secondary);
             return newState;
+
+
+
         case ADD_NEW_PRIMARY_COMMENT:
             index = action.payload.square;
             copyOfState = Object.assign({}, state);
