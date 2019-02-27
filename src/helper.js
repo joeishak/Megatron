@@ -1,4 +1,4 @@
-// import { Security, ImplicitCallback } from '@okta/okta-react';
+import { Security, ImplicitCallback } from '@okta/okta-react';
 
 async function checkAuthentication() {
   const authenticated = await this.props.auth.isAuthenticated();

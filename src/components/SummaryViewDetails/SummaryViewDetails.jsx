@@ -237,7 +237,7 @@ class SummaryViewDetails extends Component {
             </div>
           </div>
         );
-
+      //Hello
       case 5:
         break;
       case 6:
