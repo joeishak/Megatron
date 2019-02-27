@@ -14,6 +14,7 @@ import excelLogo from "../../assets/images/excel-logo.png";
 import excelLogoGreen from "../../assets/images/excel-logo-green.svg";
 import ExcelFormatter from "./ExcelFormatter";
 import DetailBreakdown from './DetailBreakdown/DetailBreakdown';
+import { SUMMARY_FILTERS } from '../../Constants/consts.js';
 
 class SummaryViewDetails extends Component {
   constructor(props) {
@@ -93,20 +94,11 @@ class SummaryViewDetails extends Component {
   }
 
   getSummaryFilters(activeItem) {
+
     let drillDownFilter;
     let { channels, visits } = this.props.activeFilters;
     switch (activeItem) {
-      //finance
-      case 0:
-        break;
-      case 1:
-        break;
-      case 2:
-        break;
-      case 3:
-        break;
-      //Discover 
-      case 4:
+      case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
         return (
           <div className="row">
             <div className="col-md-12 col-lg-12">
@@ -117,11 +109,9 @@ class SummaryViewDetails extends Component {
                 onMenuClose={e => { console.log(e) }}
               />
             </div>
-
           </div>
         );
-      case 5:
-        //Marketable Universe
+      case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
         return (
           <div className="row">
             <div className="col-md-12 col-lg-12">
@@ -135,10 +125,7 @@ class SummaryViewDetails extends Component {
 
           </div>
         );
-      case 6:
-        //UQFM
-        break;
-      case 7:
+      case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
         //Paid Media Spend
         return (
           <div className="row">
@@ -153,7 +140,7 @@ class SummaryViewDetails extends Component {
 
           </div>
         );
-      case 8:
+      case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
         //Paid Media Sourced
         return (
           <div className="row">
@@ -168,7 +155,7 @@ class SummaryViewDetails extends Component {
 
           </div>
         );
-      case 9:
+      case SUMMARY_FILTERS.DISCOVER_NEW_UQFMS:
         return (
           <div className="row">
             <div className="col-md-6 col-lg-6">
@@ -189,7 +176,7 @@ class SummaryViewDetails extends Component {
             </div>
           </div>
         );
-      case 10:
+      case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
         return (
           <div className="row">
             <div className="col-md-12 col-lg-12">
@@ -204,17 +191,7 @@ class SummaryViewDetails extends Component {
           </div>
         );
 
-      //Try
-      case 11:
-        break;
-      //Buy
-      case 17:
-        break;
-      //Use
-      case 24:
-        break;
-
-      case 27:
+      case SUMMARY_FILTERS.USE_PAID_USER_SUCCESSUQFM:
         // % Paid User Success UQFM's
         // console.log('discover- Paid Media Sourced UQFMs');
         drillDownFilter = <SingleValueSelect
@@ -225,9 +202,6 @@ class SummaryViewDetails extends Component {
           onValueChange={e => { console.log(e) }}
           onMenuClose={e => { console.log(e) }}
         />
-        break;
-      //Renew
-      case 32:
         break;
       default:
         break;

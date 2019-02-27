@@ -60,9 +60,9 @@ import LoadingScreen from '../../Views/Loading/Loading';
         }
     }
     handleKeyPress(e){
-       
-        if(e.key==='Enter' && this.state.commentToBeRepliedTo === null){
 
+        if(e.key==='Enter' && this.state.commentToBeRepliedTo === null){
+            let isCommenter = null;
             const params = {
                 userId: this.props.user.sub, 
                 metricId: this.props.currentMetric, 
@@ -72,15 +72,41 @@ import LoadingScreen from '../../Views/Loading/Loading';
                 // Post Comment
                 // this.props.addNewCommentToSecondaryMetric(this.props.currentMetric,comment);
                 // Write to DB, Refresh the metrics from the DB, then refresh Comments count for the comment Indicators
+                console.log('checking user privelages...', this.props.user.Groups);
+                //check if undefined and comin back from okta
                 
-                this.forceUpdate(() => {
-                    this.props.isFetching(true);
-                    utils.postComment(params);
-                    this.props.fetchComments(this.props.currentMetric);
-                    this.props.fetchCommentsCount();
-                })
-            
-            this.setState({replyMessage: ''})
+                if (this.props.user.Groups !== undefined) {
+                    isCommenter = this.props.user.Groups.includes('Commenters');
+                    console.log('is commenter:', isCommenter);
+                } else {
+                    // theres no groups coming back from okta, post the comments
+                    this.forceUpdate(() => {
+                        this.props.isFetching(true);
+                        utils.postComment(params);
+                        this.props.fetchComments(this.props.currentMetric);
+                        this.props.fetchCommentsCount();
+                    })
+                
+                    this.setState({replyMessage: ''})
+                }
+
+                // check if commenter and only post commenter
+                if (isCommenter !== null && isCommenter) {
+                    console.log()
+                    this.forceUpdate(() => {
+                        this.props.isFetching(true);
+                        utils.postComment(params);
+                        this.props.fetchComments(this.props.currentMetric);
+                        this.props.fetchCommentsCount();
+                    });
+                
+                    this.setState({replyMessage: ''})
+                } else {
+                    // user cannot comment
+
+                }
+                
+
         } else if (e.key==='Enter' && this.state.commentToBeRepliedTo !== null){
 
             let params =  {
