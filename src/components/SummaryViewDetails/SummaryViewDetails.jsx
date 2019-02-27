@@ -713,7 +713,7 @@ class SummaryViewDetails extends Component {
               {activeItem.header}
             </span>
           </div>
-          {this.getQTDDetailFilters(activeItem)}
+          {/* {this.getQTDDetailFilters(activeItem)} */}
           <div className="col-md-2 col-lg-2 ">
             <div className="flRight multiChartMetricContainer ">
               <div
