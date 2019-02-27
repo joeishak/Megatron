@@ -118,6 +118,9 @@ export default function (state = {
             // processTryGeoQTDData(action.payload[0].data, newState.secondary);
             // processTryMarketQTDData(action.payload[0].data, newState.secondary);
             return newState;
+
+
+
         case ADD_NEW_PRIMARY_COMMENT:
             index = action.payload.square;
             copyOfState = Object.assign({}, state);
@@ -2423,7 +2426,6 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
         newState[10].details.product.week.push(bouncePM);
     }
 }
-
 
 /**Try**/
 export function processTrySecondaryData(g2, newState) {
