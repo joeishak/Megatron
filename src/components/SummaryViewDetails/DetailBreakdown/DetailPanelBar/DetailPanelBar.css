@@ -291,9 +291,9 @@
     margin-right: 100%;
 }
 .k-link:hover , .k-header:hover{
-    color: black !important;
-    background-color: rgb(71, 71, 71) !important;
-    padding-left: 7px !important;
+    color: rgb(199, 199, 199) !important;
+    background-color:#3c3c3c !important;
+    /* padding-left: 7px !important; */
 }
 
 .k-i-arrow-s {
