@@ -94,14 +94,42 @@ class SummaryViewDetails extends Component {
   }
 
   getSummaryFilters(activeItem) {
-
     let drillDownFilter;
     let { channels, visits } = this.props.activeFilters;
     switch (activeItem) {
-      case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
+      //finance
+      case 0:
+        break;
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      //Discover 
+      case 4:
         return (
           <div className="row">
-            <div className="col-md-12 col-lg-12">
+            <div className="col-md-12 col-lg-4">
+              {/* Visit Type */}
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+            {/* Last Touch Channel */}
+            <div className="col-md-12 col-lg-4">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+            {/* Visit Status */}
+            <div className="col-md-12 col-lg-4">
               <SingleValueSelect
                 activeFilters={[]}
                 options={visits.availableFilters}
@@ -111,9 +139,11 @@ class SummaryViewDetails extends Component {
             </div>
           </div>
         );
-      case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
+      case 5:
+        //Marketable Universe
         return (
           <div className="row">
+            {/* Channel */}
             <div className="col-md-12 col-lg-12">
               <SingleValueSelect
                 activeFilters={[]}
@@ -125,10 +155,14 @@ class SummaryViewDetails extends Component {
 
           </div>
         );
-      case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
+      case 6:
+        //UQFM
+        break;
+      case 7:
         //Paid Media Spend
         return (
           <div className="row">
+            {/* Channel */}
             <div className="col-md-12 col-lg-12">
               <SingleValueSelect
                 activeFilters={[]}
@@ -140,11 +174,12 @@ class SummaryViewDetails extends Component {
 
           </div>
         );
-      case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
+      case 8:
         //Paid Media Sourced
         return (
           <div className="row">
             <div className="col-md-12 col-lg-12">
+              {/* Channel */}
               <SingleValueSelect
                 activeFilters={[]}
                 options={channels.availableFilters}
@@ -155,9 +190,10 @@ class SummaryViewDetails extends Component {
 
           </div>
         );
-      case SUMMARY_FILTERS.DISCOVER_NEW_UQFMS:
+      case 9:
         return (
           <div className="row">
+            {/* Sign Up Source */}
             <div className="col-md-6 col-lg-6">
               <SingleValueSelect
                 activeFilters={[]}
@@ -166,6 +202,7 @@ class SummaryViewDetails extends Component {
                 onMenuClose={e => { console.log(e) }}
               />
             </div>
+            {/* Sign Up APP */}
             <div className="col-md-6 col-lg-6">
               <SingleValueSelect
                 activeFilters={[]}
@@ -176,9 +213,11 @@ class SummaryViewDetails extends Component {
             </div>
           </div>
         );
-      case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
+      case 10:
         return (
+          // Bounce Rate
           <div className="row">
+            {/* Visit Status */}
             <div className="col-md-12 col-lg-12">
               <SingleValueSelect
                 activeFilters={[]}
@@ -191,25 +230,197 @@ class SummaryViewDetails extends Component {
           </div>
         );
 
-      case SUMMARY_FILTERS.USE_PAID_USER_SUCCESSUQFM:
-        // % Paid User Success UQFM's
-        // console.log('discover- Paid Media Sourced UQFMs');
-        drillDownFilter = <SingleValueSelect
-          activeFilters={[]}
-          options={[{ index: 0, category: " ", value: "% Paid User Success FILTER 1" },
-          { index: 1, category: " ", value: "% Paid User Success FILTER 2" },
-          { index: 2, category: " ", value: "% Paid User Successs FILTER 3" }]}
-          onValueChange={e => { console.log(e) }}
-          onMenuClose={e => { console.log(e) }}
-        />
-        break;
+      //Try
+      case 11:
+        return (
+          // New QFMS
+          <div className="row">
+            {/* Product Name */}
+            <div className="col-md-12 col-lg-12">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+          </div>
+        );
+      case 12:
+        return (
+          // New UQFMS
+          <div className="row">
+            {/* Sign Up APP*/}
+            <div className="col-md-12 col-lg-12">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+          </div>
+        );
+      case 13:
+        return (
+          // Cumulative UQFMS
+          <div className="row">
+            {/* Sign Up APPP*/}
+            <div className="col-md-12 col-lg-12">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+          </div>
+        );
+      //Buy
+      case 17:
+        return (
+          //Conversion
+          <div className="row">
+            {/* Web Segments */}
+            <div className="col-md-6 col-lg-6">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={channels.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+            {/* Last Touch Channel */}
+            <div className="col-md-6 col-lg-6">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={channels.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+            {/* Visit Status */}
+            <div className="col-md-6 col-lg-6">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={channels.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+          </div>
+        );
+      case 18:
+        return (
+          // Paid Media Spend
+          <div className="row">
+            {/* Channel*/}
+            <div className="col-md-12 col-lg-12">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+          </div>
+        );
+      case 19:
+        return (
+          // Marketing Sourced ARR
+          <div className="row">
+            {/* Segments*/}
+            <div className="col-md-12 col-lg-12">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+            {/* Product Category*/}
+            <div className="col-md-12 col-lg-12">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+          </div>
+        );
+      case 22:
+        return (
+          // Gross New ARR
+          <div className="row">
+            {/* PVW*/}
+            <div className="col-md-12 col-lg-12">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+
+          </div>
+        );
+      case 23:
+        return (
+          // Gross New Units
+          <div className="row">
+            {/* PVW*/}
+            <div className="col-md-12 col-lg-12">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+
+          </div>
+        );
+
+      //Use
+      case 28:
+        return (
+          // Wk 0 WAU Rate
+          <div className="row">
+            {/* Category*/}
+            <div className="col-md-12 col-lg-12">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+
+          </div>
+        );
+      case 29:
+        return (
+          // Wk 4 WAU Rate
+          <div className="row">
+            {/* Category*/}
+            <div className="col-md-12 col-lg-12">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+
+          </div>
+        );
       default:
         break;
     }
 
     return drillDownFilter;
   }
-
   getQTDDetailFilters(activeItem) {
     switch (activeItem.index) {
       //finance
