@@ -103,37 +103,69 @@ import LoadingScreen from '../../Views/Loading/Loading';
                     this.setState({replyMessage: ''})
                 } else {
                     // user cannot comment
-
                 }
                 
 
         } else if (e.key==='Enter' && this.state.commentToBeRepliedTo !== null){
-
+            let isCommenter = null;
             let params =  {
                 userId: this.props.user.sub,
                 commentId: this.state.commentToBeRepliedTo,
                 postDateTime: new Date().toISOString(),
                 comment: e.target.value
             }
-          
-                // Post the Comment
-                //this.props.addNewReplyToSecondaryMetric(this.props.currentMetric,this.state.commentToBeRepliedTo,comment);
-                this.forceUpdate(() => {
-                    this.props.isFetching(true);
-                    utils.postReply(params);
-                    this.props.fetchComments(this.props.currentMetric);
-                    this.props.fetchCommentsCount();
-                })
-                    // this.forceUpdate();
-      
-           
-            this.setState({
-                commentToBeRepliedTo :null,
-                replyMessage:'',
-                commentCommand: 'Add Comment . . .',
-                commentingUser: false
-            });
+                if (this.props.user.Groups !== undefined) {
+                    isCommenter = this.props.user.Groups.includes('Commenters');
+                    console.log('is commenter:', isCommenter);
+                } else {
+                    // theres no groups for okta
+                    this.forceUpdate(() => {
+                        this.props.isFetching(true);
+                        utils.postReply(params);
+                        this.props.fetchComments(this.props.currentMetric);
+                        this.props.fetchCommentsCount();
+                    });
+                    
+                    this.setState({
+                        commentToBeRepliedTo :null,
+                        replyMessage:'',
+                        commentCommand: 'Add Comment . . .',
+                        commentingUser: false
+                    });
+                }
 
+                if (isCommenter !== null && isCommenter) {
+                    this.forceUpdate(() => {
+                        this.props.isFetching(true);
+                        utils.postReply(params);
+                        this.props.fetchComments(this.props.currentMetric);
+                        this.props.fetchCommentsCount();
+                    });
+                    
+                    this.setState({
+                        commentToBeRepliedTo :null,
+                        replyMessage:'',
+                        commentCommand: 'Add Comment . . .',
+                        commentingUser: false
+                    });
+                } else {
+                    // user cannot reply
+                }
+          
+
+                // this.forceUpdate(() => {
+                //     this.props.isFetching(true);
+                //     utils.postReply(params);
+                //     this.props.fetchComments(this.props.currentMetric);
+                //     this.props.fetchCommentsCount();
+                // });
+                
+                // this.setState({
+                //     commentToBeRepliedTo :null,
+                //     replyMessage:'',
+                //     commentCommand: 'Add Comment . . .',
+                //     commentingUser: false
+                // });
         }
     }
     updateValue(e){
