@@ -1,14 +1,21 @@
-import { Security, ImplicitCallback } from '@okta/okta-react';
+// import { Security, ImplicitCallback } from '@okta/okta-react';
 
 async function checkAuthentication() {
   const authenticated = await this.props.auth.isAuthenticated();
   if (authenticated !== this.state.authenticated) {
     if (authenticated && !this.state.userinfo) {
       const userinfo = await this.props.auth.getUser();
+      const accessToken = await this.props.auth.getAccessToken();
+
       this.setState({ authenticated, userinfo });
       if (this.props.user.sub === undefined) {
         this.props.updateOKTAUser(userinfo);
-        // this.props.getUserSettings(this.props.user.sub);
+        // this.props.getUserSettings('USER', this.props.user);
+        console.log(this.props.auth)
+        console.log(userinfo);
+        console.log(accessToken);
+
+    
       }
       this.props.changeAuth(authenticated);
     } else {

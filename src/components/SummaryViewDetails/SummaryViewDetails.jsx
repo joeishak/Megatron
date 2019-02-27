@@ -86,7 +86,7 @@ class SummaryViewDetails extends Component {
 
   getExcelFilters(activeFilters) {
     let newArr;
-    let { geos, quarters, markets, routes, segments, subscriptions, channels, visits, signups } = activeFilters;
+    let { geos, quarters, markets, routes, segments, subscriptions, channels, visits } = activeFilters;
     newArr = [].concat(geos, quarters, markets, routes, segments, subscriptions);
     // console.log(newArr);
     return newArr;
@@ -94,40 +94,128 @@ class SummaryViewDetails extends Component {
 
   getSummaryFilters(activeItem) {
     let drillDownFilter;
-    let { channels, visits, signups } = this.props.activeFilters;
+    let { channels, visits } = this.props.activeFilters;
     switch (activeItem) {
+      //finance
+      case 0:
+        break;
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      //Discover 
       case 4:
-        // Discover - Traffic
-        // console.log('discover traffic');
-        drillDownFilter = <SingleValueSelect
-          activeFilters={[]}
-          options={visits.availableFilters}
-          onValueChange={e => { console.log(e) }}
-          onMenuClose={e => { console.log(e) }}
-        />
+        return (
+          <div className="row">
+            <div className="col-md-12 col-lg-12">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+
+          </div>
+        );
+      case 5:
+        //Marketable Universe
+        return (
+          <div className="row">
+            <div className="col-md-12 col-lg-12">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={channels.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+
+          </div>
+        );
+      case 6:
+        //UQFM
         break;
       case 7:
-        // Discover - Paid Media Spend
-        // console.log('discover - paid media spend');
-        drillDownFilter = <SingleValueSelect
-          activeFilters={[]}
-          options={channels.availableFilters}
-          onValueChange={e => { console.log(e) }}
-          onMenuClose={e => { console.log(e) }}
-        />
-        break;
+        //Paid Media Spend
+        return (
+          <div className="row">
+            <div className="col-md-12 col-lg-12">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={channels.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+
+          </div>
+        );
       case 8:
-        // Discover - Paid Media Sourced UQFM's
-        // console.log('discover- Paid Media Sourced UQFMs');
-        drillDownFilter = <SingleValueSelect
-          activeFilters={[]}
-          options={channels.availableFilters}
-          onValueChange={e => { console.log(e) }}
-          onMenuClose={e => { console.log(e) }}
-        />
+        //Paid Media Sourced
+        return (
+          <div className="row">
+            <div className="col-md-12 col-lg-12">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={channels.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+
+          </div>
+        );
+      case 9:
+        return (
+          <div className="row">
+            <div className="col-md-6 col-lg-6">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={channels.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+            <div className="col-md-6 col-lg-6">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={channels.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+          </div>
+        );
+      case 10:
+        return (
+          <div className="row">
+            <div className="col-md-12 col-lg-12">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+
+          </div>
+        );
+
+      //Try
+      case 11:
         break;
+      //Buy
+      case 17:
+        break;
+      //Use
+      case 24:
+        break;
+
       case 27:
-        // Discover - % Paid User Success UQFM's
+        // % Paid User Success UQFM's
         // console.log('discover- Paid Media Sourced UQFMs');
         drillDownFilter = <SingleValueSelect
           activeFilters={[]}
@@ -138,9 +226,109 @@ class SummaryViewDetails extends Component {
           onMenuClose={e => { console.log(e) }}
         />
         break;
+      //Renew
+      case 32:
+        break;
+      default:
+        break;
     }
 
     return drillDownFilter;
+  }
+
+  getQTDDetailFilters(activeItem) {
+    switch (activeItem.index) {
+      //finance
+      case 0:
+        break;
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      //Discover 
+      case 4:
+        return (
+          <div className="row">
+            <div className="col-md-2 col-lg-2">
+              <SingleValueSelect
+                onMenuClose={(e) => { console.log() }}
+              />
+            </div>
+            <div className="col-md-2 col-lg-2">
+              <SingleValueSelect
+                onMenuClose={(e) => { console.log() }}
+              />
+            </div>
+          </div>
+        );
+
+      case 5:
+        break;
+      case 6:
+        break;
+      case 7:
+        return (
+          <div className="row">
+            <div className="col-md-2 col-lg-2">
+              <SingleValueSelect
+                onMenuClose={(e) => { console.log() }}
+              />
+            </div>
+            <div className="col-md-2 col-lg-2">
+              <SingleValueSelect
+                onMenuClose={(e) => { console.log() }}
+              />
+            </div>
+          </div>
+        );
+      case 8:
+        return (
+          <div className="row">
+            <div className="col-md-2 col-lg-2">
+              <SingleValueSelect
+                onMenuClose={(e) => { console.log() }}
+              />
+            </div>
+            <div className="col-md-2 col-lg-2">
+              <SingleValueSelect
+                onMenuClose={(e) => { console.log() }}
+              />
+            </div>
+          </div>
+        );
+      //Try
+      case 11:
+        break;
+      //Buy
+      case 17:
+        break;
+      //Use
+      case 24:
+        break;
+
+      case 27:
+        return (
+          <div className="row">
+            <div className="col-md-2 col-lg-2">
+              <SingleValueSelect
+                onMenuClose={(e) => { console.log() }}
+              />
+            </div>
+            <div className="col-md-2 col-lg-2">
+              <SingleValueSelect
+                onMenuClose={(e) => { console.log() }}
+              />
+            </div>
+          </div>
+        );
+      //Renew
+      case 32:
+        break;
+      default:
+        break;
+    }
   }
 
   closeSummary() {
@@ -214,7 +402,7 @@ class SummaryViewDetails extends Component {
 
 
           {/* FILTER */}
-          <div className="summary-filter">
+          <div className="col-lg-6 col-md-6 summary-filter">
             {this.getSummaryFilters(this.props.activeSecondary)}
           </div>
 
@@ -340,19 +528,9 @@ class SummaryViewDetails extends Component {
               {activeItem.header}
             </span>
           </div>
-          <div className="col-md-2 col-lg-2">
-            <SingleValueSelect
-              onMenuClose={(e) => { console.log() }}
-            />
-          </div>
-          <div className="col-md-2 col-lg-2">
-            <SingleValueSelect
-              onMenuClose={(e) => { console.log() }}
-
-            />
-          </div>
+          {this.getQTDDetailFilters(activeItem)}
           <div className="col-md-2 col-lg-2 ">
-            <div className=" multiChartMetricContainer ">
+            <div className="flRight multiChartMetricContainer ">
               <div
                 onClick={this.updateQTDPercentageFilter}
                 className={PercentageStyles}>

@@ -39,6 +39,12 @@ class MobileCommentBox extends Component {
             <div className='mobileCommentContainer'>
 
                 <div className='theDateTime'> {this.state.todaysDate}</div>
+
+                {this.props.commentsPackage.data.length < 1 || this.props.commentsPackage.data == undefined ?
+                    <div style={{color: 'white', alignContent: 'center'}}>
+                    <h4>No Comments for this Metric</h4>
+                </div>: null}
+
                 <div >
                 {(this.props.commentsPackage.data !== undefined) ?
                         this.props.commentsPackage.data.map(comment=>{

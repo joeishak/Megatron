@@ -8,7 +8,7 @@ export default {
       clientId: '0oagwkc5qdpHzkGnK0h7',
       issuer: 'https://dev-575609.oktapreview.com/oauth2/default',
       redirectUri: buildSettings.local,
-      scope:[ 'openid', 'profil', 'email' ]
+      scope:[ 'openid', 'profile', 'email' ]
     },
     resourceServer: {
       messagesUrl: 'http://localhost:4300/api/messages',

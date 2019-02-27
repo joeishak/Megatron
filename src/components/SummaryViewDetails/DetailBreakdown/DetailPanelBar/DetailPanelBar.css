@@ -290,7 +290,7 @@
 .k-icon, .k-i-arrow-s, .k-panelbar-expand {
     margin-right: 100%;
 }
-.k-link:hover{
+.k-link:hover , .k-header:hover{
     color: black !important;
     background-color: rgb(71, 71, 71) !important;
     padding-left: 7px !important;

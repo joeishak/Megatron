@@ -267,7 +267,93 @@ export function getTrySecondaryData(filters) {
         payload: promiseArr
     }
 }
+export function getBuySecondaryData(filters) {
+    // console.log(filters);
+    let allFilters = {
+        quarters: Object.keys(filters.quarters.availableFilters).map(e => filters.quarters.availableFilters[e]),
+        geos: Object.keys(filters.geos.availableFilters).map(e => filters.geos.availableFilters[e]),
+        marketAreas: Object.keys(filters.markets.availableFilters).map(e => filters.markets.availableFilters[e]),
+        products: Object.keys(filters.products.availableFilters).map(e => filters.products.availableFilters[e]),
+        segments: Object.keys(filters.segments.availableFilters).map(e => filters.segments.availableFilters[e]),
+        subscriptionOfferings: Object.keys(filters.subscriptions.availableFilters).map(e => filters.subscriptions.availableFilters[e]),
+        routeToMarkets: Object.keys(filters.routes.availableFilters).map(e => filters.routes.availableFilters[e])
+    }
+    let _parameters = {
+        geos: Object.keys(filters.geos.valueFilters).map(e => filters.geos.valueFilters[e]),
+        quarters: Object.keys(filters.quarters.valueFilters).map(e => filters.quarters.valueFilters[e]),
+        segments: Object.keys(filters.segments.valueFilters).map(e => filters.segments.valueFilters[e]),
+        subscriptions: Object.keys(filters.subscriptions.valueFilters).map(e => filters.subscriptions.valueFilters[e]),
+        markets: Object.keys(filters.markets.valueFilters).map(e => filters.markets.valueFilters[e]),
+        routes: Object.keys(filters.routes.valueFilters).map(e => filters.routes.valueFilters[e]),
+        products: Object.keys(filters.products.valueFilters).map(e => filters.products.valueFilters[e])
+    };
 
+    // console.log(filters);
+    // promiseArr = utils.requestBuySecondaryData(allFilters, _parameters);
+
+    return {
+        type: GET_BUY_SECONDARY_DATA,
+        payload: promiseArr
+    }
+}
+export function getUseSecondaryData(filters) {
+    // console.log(filters);
+    let allFilters = {
+        quarters: Object.keys(filters.quarters.availableFilters).map(e => filters.quarters.availableFilters[e]),
+        geos: Object.keys(filters.geos.availableFilters).map(e => filters.geos.availableFilters[e]),
+        marketAreas: Object.keys(filters.markets.availableFilters).map(e => filters.markets.availableFilters[e]),
+        products: Object.keys(filters.products.availableFilters).map(e => filters.products.availableFilters[e]),
+        segments: Object.keys(filters.segments.availableFilters).map(e => filters.segments.availableFilters[e]),
+        subscriptionOfferings: Object.keys(filters.subscriptions.availableFilters).map(e => filters.subscriptions.availableFilters[e]),
+        routeToMarkets: Object.keys(filters.routes.availableFilters).map(e => filters.routes.availableFilters[e])
+    }
+    let _parameters = {
+        geos: Object.keys(filters.geos.valueFilters).map(e => filters.geos.valueFilters[e]),
+        quarters: Object.keys(filters.quarters.valueFilters).map(e => filters.quarters.valueFilters[e]),
+        segments: Object.keys(filters.segments.valueFilters).map(e => filters.segments.valueFilters[e]),
+        subscriptions: Object.keys(filters.subscriptions.valueFilters).map(e => filters.subscriptions.valueFilters[e]),
+        markets: Object.keys(filters.markets.valueFilters).map(e => filters.markets.valueFilters[e]),
+        routes: Object.keys(filters.routes.valueFilters).map(e => filters.routes.valueFilters[e]),
+        products: Object.keys(filters.products.valueFilters).map(e => filters.products.valueFilters[e])
+    };
+
+    // console.log(filters);
+    // promiseArr = utils.requestUseSecondaryData(allFilters, _parameters);
+
+    return {
+        type: GET_USE_SECONDARY_DATA,
+        payload: promiseArr
+    }
+}
+export function getRenewSecondaryData(filters) {
+    // console.log(filters);
+    let allFilters = {
+        quarters: Object.keys(filters.quarters.availableFilters).map(e => filters.quarters.availableFilters[e]),
+        geos: Object.keys(filters.geos.availableFilters).map(e => filters.geos.availableFilters[e]),
+        marketAreas: Object.keys(filters.markets.availableFilters).map(e => filters.markets.availableFilters[e]),
+        products: Object.keys(filters.products.availableFilters).map(e => filters.products.availableFilters[e]),
+        segments: Object.keys(filters.segments.availableFilters).map(e => filters.segments.availableFilters[e]),
+        subscriptionOfferings: Object.keys(filters.subscriptions.availableFilters).map(e => filters.subscriptions.availableFilters[e]),
+        routeToMarkets: Object.keys(filters.routes.availableFilters).map(e => filters.routes.availableFilters[e])
+    }
+    let _parameters = {
+        geos: Object.keys(filters.geos.valueFilters).map(e => filters.geos.valueFilters[e]),
+        quarters: Object.keys(filters.quarters.valueFilters).map(e => filters.quarters.valueFilters[e]),
+        segments: Object.keys(filters.segments.valueFilters).map(e => filters.segments.valueFilters[e]),
+        subscriptions: Object.keys(filters.subscriptions.valueFilters).map(e => filters.subscriptions.valueFilters[e]),
+        markets: Object.keys(filters.markets.valueFilters).map(e => filters.markets.valueFilters[e]),
+        routes: Object.keys(filters.routes.valueFilters).map(e => filters.routes.valueFilters[e]),
+        products: Object.keys(filters.products.valueFilters).map(e => filters.products.valueFilters[e])
+    };
+
+    // console.log(filters);
+    // promiseArr = utils.requestRenewSecondaryData(allFilters, _parameters);
+
+    return {
+        type: GET_RENEW_SECONDARY_DATA,
+        payload: promiseArr
+    }
+}
 /**
  * Update the visibility of the Modal Dialog Box
  *
@@ -555,7 +641,7 @@ export function fetchCommentsCount() {
     }
 }
 
-export function isFetching (state) {
+export function isFetching(state) {
     return {
         type: 'FETCHING_COMMENTS',
         payload: state
