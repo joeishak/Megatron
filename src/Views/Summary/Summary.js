@@ -183,6 +183,7 @@ class Summary extends Component {
     if (appInitialLoadIsComplete && this.state.initialDataLoadIsComplete === true && this.props.summaryData != prevProps.summaryData) {
       // this.updateActivePrimary(0);
       this.setState({ isLoading: false, isInitiallyLoading: false });
+      this.props.isFetching(false);
     }
     if (this.props.activePrimaryCard.index > 0) {
       this.props.updateMultichartMetric(true);

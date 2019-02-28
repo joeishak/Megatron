@@ -41,7 +41,8 @@ import {
     UPDATE_SECONDARY_VISIBILITITY,
     UPDATE_MOBILE_FILTER_PAGE_VISIBILITY,
     FETCH_COMMENTS,
-    FETCH_COMMENTS_COUNT
+    FETCH_COMMENTS_COUNT,
+    DELETE_COMMENT
 
 
 
@@ -583,6 +584,20 @@ export function addNewReplyToSecondaryMetric(activeSquareID, commentId, reply) {
         }
     }
 
+}
+
+export function removeComment(commentId, activeSquareID) {
+
+    utils.removeComment({
+        id: commentId
+    });
+    return {
+        type: DELETE_COMMENT,
+        payload: {
+            commentId,
+            activeSquareID
+        }
+    }
 }
 
 /**

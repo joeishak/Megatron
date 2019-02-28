@@ -1545,13 +1545,30 @@ export function postReply(params) {
         headers: headers,
         responseType: 'text'
     }).then((res) => {
-        console.log(res);
         return res;
     });
 }
 
 
+export function removeComment(params) {
+    let body = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'deleteComment',
+        "columnNames": 'true',
+        "params": {
+            "id": parseInt(params.id)
+        }
+    }
 
+    console.log(body);
+    return axios.post(Infoburst.dbQuery, body, {
+        headers: headers
+    }).then((res) => {
+        console.log(res);
+
+        return res;
+    });
+}
 
 export function requestUserSettings(sub) {
     let body = {

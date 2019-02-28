@@ -12,6 +12,7 @@ import {
     GET_BUY_SECONDARY_DATA,
     GET_USE_SECONDARY_DATA,
     GET_RENEW_SECONDARY_DATA,
+    DELETE_COMMENT,
     // FETCH_COMMENTS
 } from 'actions/types';
 import _ from 'lodash'
@@ -157,7 +158,19 @@ export default function (state = {
             }
 
             return { ...copyOfState };
+        case DELETE_COMMENT:
+            copyOfState = Object.assign([], state);
+            let { commentId, activeSquareID } = action.payload;
+            console.log(copyOfState.secondary[activeSquareID]);
+            copyOfState.secondary[activeSquareID] = {
+                ...copyOfState.secondary[activeSquareID],
+                comments: copyOfState.secondary[activeSquareID].comments.filter(comment => {
+                    comment.id !== commentId
+                })
+            }
+            console.log(copyOfState.secondary[activeSquareID].comments);
 
+            return copyOfState;
         default:
             return state;
     }

@@ -11,7 +11,16 @@ export const DIMENSIONS = {
     SEGMENT: 'segment',
     SUBSCRIPTION: 'subscription',
     QUARTER: 'quarter',
-    ROUTE: 'route'
+    ROUTE: 'route',
+    VISITSTATUS: 'visitstatus',
+    SIGNSOURCE: 'signupsource',
+    SIGNAPP: 'signupapp',
+    PRODUCTCAT: 'productcategory',
+    WEBSEGMENT: 'websegment',
+    PVW: 'pvw',
+    CATEGORY: 'category'
+
+
 };
 export const SUMMARY_FILTERS = {
     DISCOVER_TRAFFIC: 4,
