@@ -46,7 +46,7 @@ class Summary extends Component {
 
     /*Bindings  */
     this.checkAuthentication = checkAuthentication.bind(this);
-    this.login = this.login.bind(this);
+    // this.login = this.login.bind(this);
     this.props.getIbHeartbeat();
   }
 
@@ -61,6 +61,7 @@ class Summary extends Component {
   }
 
   componentDidMount() {
+    this.checkAuthentication();
     this.props.isFetching(true);
     this.props.fetchCommentsCount();
 
@@ -76,9 +77,9 @@ class Summary extends Component {
 
     this.checkAuthentication();
 
-    if (this.state.authenticated === false) {
-      this.props.auth.login("/")
-    }
+    // if (this.state.authenticated === false) {
+    //   this.props.auth.login("/")
+    // }
     if (this.props.user !== prevProps.user) {
       this.props.getUserSettings(this.props.user.sub);
     }
@@ -190,9 +191,7 @@ class Summary extends Component {
     }
   }
 
-  async login() {
-    this.props.auth.login("/");
-  }
+
   updateActivePrimary(index) {
     this.props.updateActivePrimaryCard(index);
     // this.setState({ isLoading: true });
@@ -309,16 +308,13 @@ class Summary extends Component {
     return (
       <div style={isMobileOrTablet ? { height: `${this.props.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
         {
-          this.state.isInitiallyLoading === true ? < LoadingScreen /> :
-
-            this.state.authenticated && (
               <span>
-                {/* Data Preferences */}
+      
                 <div>
 
                   <div>
                     {kdialog}
-                    {/* Navigation*/}
+             
                     <Navigation
                       mobileFiltersIsShown={this.props.mobileFiltersIsShown} />
                     <FilterPanel
@@ -326,7 +322,7 @@ class Summary extends Component {
                     <CommentPanel
                       user={this.props.user}
                     />
-                    {/* Primary */}
+             
                     {this.props.mobileFiltersIsShown ||
                       this.props.mobileIsPrimary === false ? null : this.getPrimaryContent()}
                     {this.state.isLoading === true ? <LoadingScreen></LoadingScreen> :
@@ -334,13 +330,13 @@ class Summary extends Component {
                         {(this.state.mobileFiltersIsShown ? null : this.getSecondaryContent())}
                         {summaryViewDetails}</span>
                     }
-                    {/* {this.state.isFilterPageVisible && this.props.mobileIsPrimary ? null : null} */}
+                   
                   </div>
 
                 </div>
               </span>
-            )}
-        {/* {this.state.authenticated === false && } */}
+        }
+
       </div>
     );
   }
