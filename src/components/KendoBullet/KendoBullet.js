@@ -90,16 +90,33 @@ class KendoBulletChart extends Component {
 
     const colorRender = () => {
       let color = '';
-      if (this.props.values[0] >= this.props.values[1]) {
-        color = '#0DB16E';
+
+      if (this.props.cardIndex !== undefined && this.props.cardIndex === 2) {
+        if (this.props.values[1] === 0 ) {
+          color = '#3C3C3C';
+        } else if (this.props.values[0] <= this.props.values[1]) {
+          color = '#0DB16E';
+        } else {
+          color = '#FF0000';
+        }
+  
       } else {
-        color = '#FF0000';
+        if (this.props.values[1] === 0 ) {
+          color = '#3C3C3C';
+        } else if (this.props.values[0] >= this.props.values[1]) {
+          color = '#0DB16E';
+        } else {
+          color = '#FF0000';
+        }
+  
       }
+
       return color;
     }
 
     // const fqTarget = [this.props.values[0], this.props.values[1] - 500000];
 
+    // {console.log(this.props.values)}
 
     return (
       <div>

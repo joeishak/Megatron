@@ -1903,3 +1903,39 @@ export function getDateFormat(_date) {
 
     return new Date(_date).toDateString() + ' at ' + returnTime;
 }
+
+export function getLabelColor(value, target, secondaryCardIndex) {
+    let retColor = "";
+
+    if (secondaryCardIndex === 2) {
+        if (target === 0) {
+            retColor = 'neutralBG';
+          } else if (value >= target) {
+            retColor = 'redBG';
+          } else {
+            retColor = 'greenBG';
+          }
+    } else {
+        if (target === 0) {
+            retColor = 'neutralBG';
+          } else if (value >= target) {
+            retColor = 'greenBG';
+          } else {
+            retColor = 'redBG';
+          }
+    }
+
+    return retColor;
+}
+
+export function getLabelColorPrimary (value, target) {
+    let retColor = "";
+    if (target === 0) {
+      retColor = 'selectedCardFontColorNeutral';
+    } else if (value >= target) {
+      retColor = 'selectedCardFontColorGreen';
+    } else {
+      retColor = 'selectedCardFontColorRed';
+    }
+    return retColor;
+  }

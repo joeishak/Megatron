@@ -151,21 +151,25 @@
 
 
 .selectedCardFontColorGreen {
-	color: #0DB16e;
+	color: #0DB16e !important;
 }
-
 .selectedCardFontColorRed {
-	color: #ff0000;
+	color: #ff0000 !important;
+}
+.selectedCardFontColorNeutral {
+	color: #3c3c3c !important;
 }
 
 /* dynamic */
 .selectedCardHeaderRed {
-	background-color: #ff0000;
+	background-color: #ff0000 !important;
 }
 .selectedCardHeaderGreen {
-	background-color: #0DB16e;
+	background-color: #0DB16e !important;
 }
-
+.selectedCardHeaderNeutral {
+	background-color: #3c3c3c !important;
+}
 
 /* .selectedCardSquare {
 	height: 200px;

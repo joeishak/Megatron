@@ -601,7 +601,7 @@ class SummaryViewDetails extends Component {
 
           {this.props.activePrimary < 1 ?
 
-            <div className="col-lg-4 flRight">
+            <div className="col-lg-2 col-md-3 flRight">
               <div className=" multiChartMetricContainer ">
                 <div
                   onClick={this.updateMultiChartMetricFilter}
@@ -721,7 +721,7 @@ class SummaryViewDetails extends Component {
             </span>
           </div>
           {/* {this.getQTDDetailFilters(activeItem)} */}
-          <div className="col-md-2 col-lg-2 ">
+          {/* <div className="col-md-3 col-lg-2 ">
             <div className="flRight multiChartMetricContainer ">
               <div
                 onClick={this.updateQTDPercentageFilter}
@@ -734,7 +734,7 @@ class SummaryViewDetails extends Component {
                 #
                 </div>
             </div>
-          </div>
+          </div> */}
           <div className="col-md-2 col-lg-2 flRight">
             <div className=" totalTimeMetricContainer">
               <span >

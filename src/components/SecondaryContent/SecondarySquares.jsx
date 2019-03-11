@@ -10,8 +10,6 @@ class SecondarySquares extends Component {
   // Need to Refactor
   componentDidUpdate(prevProps) { }
 
-
-
   getColor(value, target, type, header) {
     let retColor = "";
     if (type === "financial") {
@@ -42,6 +40,8 @@ class SecondarySquares extends Component {
 
     return retColor;
   }
+
+  
   getLaptopContent() {
     // const isMobile = (this.props.deviceType.includes('mobile') ? true : false);
     const isLaptop = utils.includes(this.props.deviceType, 'laptop') ? true : false;
@@ -75,6 +75,9 @@ class SecondarySquares extends Component {
     const secondaryBoxContent = classNames({ journeyContent: isLaptop });
     const seconaryBoxContentAmount = classNames({ journeysAmount: isLaptop });
     const boxContentTarget = classNames({ secondaryTarget: isLaptop });
+
+    
+
 
     return (
       <div className={secondaryBoxHover} key={this.props.item.index}>
@@ -118,19 +121,16 @@ class SecondarySquares extends Component {
           ) : null}
           <div className={secondaryBoxContent}>
             <div>{this.props.item.header}</div>
-            <div
-              className={`  ${seconaryBoxContentAmount} ${
-                this.props.item.value >= this.props.item.target
-                  ? "greenBG"
-                  : "redBG"
-                }`}
-            >
+            {/* {console.log(this.props.item)} */}
+            <div className={`  ${seconaryBoxContentAmount} ${utils.getLabelColor(this.props.item.value, this.props.item.target, this.props.item.index)}`} 
+>
               {formattedValue}
             </div>
             <div className="vs-qrf-desktop">( {formattedQRF} vs QRF)</div>
             <div>
               <KendoBulletChart
                 width={175}
+                cardIndex={this.props.item.index}
                 values={[this.props.item.value, this.props.item.target, this.props.item.targetFQ]}
                 valueType={this.props.item.valueType}
                 fqTarget={this.props.item.targetFQ}
@@ -231,10 +231,7 @@ class SecondarySquares extends Component {
               {this.props.item.header}
             </div>
             <div
-              className={`  ${seconaryBoxContentAmount} ${this.props.item.value >= this.props.item.target
-                ? `greenBG`
-                : "redBG"
-                }`}
+              className={`  ${seconaryBoxContentAmount} ${utils.getLabelColor(this.props.item.value, this.props.item.target, this.props.item.index)}`}
             >
               {formattedValue} <span className={`QRF-Percent ` + this.props.item.details.stats[0].color}>
                 {utils.formatMetric({ valueType: 'percent', value: this.props.item.details.stats[0].value }, 'value')}</span>
@@ -244,7 +241,8 @@ class SecondarySquares extends Component {
               <KendoBulletChart
                 isMobileOrTablet={utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet')}
                 width={175}
-                values={[this.props.item.value, this.props.item.target]}
+                cardIndex={"hello"}
+                values={[this.props.item.value, this.props.item.target, this.props.item.targetFQ]}
                 fqTarget={this.props.item.targetFQ}
                 valueType={this.props.item.valueType}
                 color="white"

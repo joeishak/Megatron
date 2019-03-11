@@ -12,9 +12,13 @@ class PrimarySquare extends Component {
   }
   // Need to Refactor
   getColor(value, target, type, header) {
+    // console.log('value', value);
+    // console.log('target', target);
     let retColor = "";
     if (type === "financial") {
-      if (value >= target) {
+      if (target === 0) {
+        retColor = 'selectedCardHeaderNeutral'
+      } else if (value >= target) {
         retColor = "selectedCardHeaderGreen";
       } else {
         retColor = "selectedCardHeaderRed";
@@ -41,6 +45,7 @@ class PrimarySquare extends Component {
 
     return retColor;
   }
+
 
   render() {
     const isMobile = utils.includes(this.props.deviceType, 'mobile') ? true : false;
@@ -181,9 +186,8 @@ class PrimarySquare extends Component {
                   {/* Formatted Value $###.## (M / %)*/}
                   <span
                     className={`${responsiveValueText}  ${
-                      this.props.item.value >= this.props.item.target
-                        ? "  selectedCardFontColorGreen"
-                        : " selectedCardFontColorRed"
+                      utils.getLabelColorPrimary(this.props.item.value, this.props.item.target)
+                      // (this.props.item.value >= this.props.item.target) ? "selectedCardFontColorGreen": "selectedCardFontColorRed"
                       }`}
                   >
                     {formattedValue}
@@ -211,9 +215,10 @@ class PrimarySquare extends Component {
                     </div>
                     <div
                       className={`${responsiveValueText}  ${
-                        this.props.item.value >= this.props.item.target
-                          ? "selectedCardFontColorGreen"
-                          : " selectedCardFontColorRed"
+                        utils.getLabelColorPrimary(this.props.item.value, this.props.item.target)
+                        // this.props.item.value >= this.props.item.target
+                        //   ? "selectedCardFontColorGreen"
+                        //   : " selectedCardFontColorRed"
                         } `}
                     >
                       {formattedValue}<br />

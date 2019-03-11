@@ -18,7 +18,9 @@
 	border: 2px solid #3c3c3c;
 	box-sizing: border-box;
 }
+
 boxContentAmountGreen
+
 .journeyHeader {
 	height: 100%;
 	width: 15px;
@@ -49,11 +51,6 @@ boxContentAmountGreen
 }
 
 
-/* Journey Card Selected Dynamic */
-/* .journeyBoxAlert { border: 2px solid #f4f4f4;} */
-
-/* .journeyHeaderAlert { background-color: #f4f4f4;} */
-
 
 
 .journeyBoxAlert {
@@ -61,6 +58,9 @@ boxContentAmountGreen
 	background: #131313;
 	border: 2px solid #f4f4f4 !important;
 }
+
+
+
 
 /* .journeyBoxAlert:after, .journeyBoxAlert:before {
 	left: 100%;

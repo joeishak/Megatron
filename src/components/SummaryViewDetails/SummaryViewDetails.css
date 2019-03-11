@@ -205,9 +205,12 @@
     /* background-color:#0DB16E !important; */
     color:#0DB16E !important;
     font-weight: bold;
-
-
 }
+.neutralBG {
+    color: white !important;
+    font-weight: bold;
+}
+
 /* All Metric */
 .allMetric{
     float:left;
