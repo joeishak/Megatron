@@ -114,7 +114,7 @@ class Summary extends Component {
     }
 
     if (this.state.initialDataLoadIsComplete === true && (this.props.filters !== prevProps.filters)) {
-      // this.setState({ isLoading: true });
+      this.setState({ isLoading: true });
       this.props.getPrimaryData(this.props.filters);
       switch (this.props.activePrimaryCard) {
         case 0:
@@ -307,34 +307,67 @@ class Summary extends Component {
 
     return (
       <div style={isMobileOrTablet ? { height: `${this.props.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
+
+        {kdialog}
+
+        {/* Navigation*/}
+
+        <Navigation
+
+          mobileFiltersIsShown={this.props.mobileFiltersIsShown} />
+
         {
+          this.state.isLoading === true ? <LoadingScreen /> :
+
+            (
+
               <span>
-      
+
+                {/* Data Preferences */}
+
                 <div>
 
+
+
                   <div>
-                    {kdialog}
-             
-                    <Navigation
-                      mobileFiltersIsShown={this.props.mobileFiltersIsShown} />
+
                     <FilterPanel
+
                       window={this.props.window} />
+
                     <CommentPanel
+
                       user={this.props.user}
+
                     />
-             
+
+                    {/* Primary */}
+
                     {this.props.mobileFiltersIsShown ||
+
                       this.props.mobileIsPrimary === false ? null : this.getPrimaryContent()}
+
                     {this.state.isLoading === true ? <LoadingScreen></LoadingScreen> :
+
                       <span>
+
                         {(this.state.mobileFiltersIsShown ? null : this.getSecondaryContent())}
+
                         {summaryViewDetails}</span>
+
                     }
-                   
+
+                    {/* {this.state.isFilterPageVisible && this.props.mobileIsPrimary ? null : null} */}
+
                   </div>
 
+
+
                 </div>
+
               </span>
+
+            )
         }
 
       </div>
