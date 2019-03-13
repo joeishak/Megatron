@@ -70,7 +70,7 @@ function processDropDownListFilterValue(type, data){
             return {
                 index: count++,
                 category: type,
-                value: item['product_name']
+                value: item['product_category']
             }
         });
         return newArr;

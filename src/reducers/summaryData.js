@@ -394,7 +394,7 @@ export function processFinancialQTD(newState, data) {
                         {
                             index: 7,
                             header: 'Y/Y',
-                            value: findata.NewYY
+                            value: findata.NewARRYY
                         }
                     ]
 
@@ -407,45 +407,45 @@ export function processFinancialQTD(newState, data) {
                 newState[i].details.stats[0].value = findata.NewARRVsQrf;
                 newState[i].details.stats[1].value = findata.NewARRQQTY;
                 newState[i].details.stats[2].value = findata.NewARRQQLY;
-                newState[i].details.stats[3].value = findata.NewYY;
+                newState[i].details.stats[3].value = findata.NewARRYY;
                 break;
             // Gross New Arr
             case 1:
-                newState[i].details.qtdw.qtd[0].value = findata.GrossARRActual;
+                newState[i].details.qtdw.qtd[0].value = findata.GrossActuals;
                 newState[i].details.qtdw.qtd[1].value = findata.GrossUnitsActual;
-                newState[i].details.qtdw.qtd[2].value = findata.GrossARRTarget;
+                newState[i].details.qtdw.qtd[2].value = findata.GrossTarget;
                 newState[i].details.qtdw.qtd[3].value = findata.GrossVsQrfDiff;
-                newState[i].details.qtdw.qtd[4].value = findata.GrossVsQrf;
+                newState[i].details.qtdw.qtd[4].value = findata.GrossARRVsQrf;
                 newState[i].details.qtdw.qtd[5].value = findata.GrossARRQQTY;
                 newState[i].details.qtdw.qtd[6].value = findata.GrossARRYY;
-                newState[i].details.qtdw.week[0].value = findata.GrossCW
+                newState[i].details.qtdw.week[0].value = findata.GrossARRCW
                 newState[i].details.qtdw.week[1].value = findata.GrossUnitsCW;
                 newState[i].details.qtdw.week[2].value = findata.GrossARRTargetCW
                 newState[i].details.qtdw.week[3].value = findata.GrossCWVsQrfDiff;
                 newState[i].details.qtdw.week[4].value = findata.GrossCWVsQrf;
                 newState[i].details.qtdw.week[5].value = findata.GrossWW;
-                newState[i].details.stats[0].value = findata.GrossVsQrf;
+                newState[i].details.stats[0].value = findata.GrossARRVsQrf;
                 newState[i].details.stats[1].value = findata.GrossARRQQTY;
                 newState[i].details.stats[2].value = findata.GrossARRQQLY;
                 newState[i].details.stats[3].value = findata.GrossARRYY;
                 break;
             // Cancellations Arr
             case 2:
-                newState[i].details.qtdw.qtd[0].value = findata.CancelARRActual;
+                newState[i].details.qtdw.qtd[0].value = findata.CancelActuals;
                 newState[i].details.qtdw.qtd[1].value = findata.CancelUnitsActual;
-                newState[i].details.qtdw.qtd[2].value = findata.CancelARRTarget;
-                newState[i].details.qtdw.qtd[3].value = findata.CancelArrVsQrfDiff;
-                newState[i].details.qtdw.qtd[4].value = findata.CancelVsQrf;
+                newState[i].details.qtdw.qtd[2].value = findata.CancelTarget;
+                newState[i].details.qtdw.qtd[3].value = findata.CancelVsQrfDiff;
+                newState[i].details.qtdw.qtd[4].value = findata.CancelARRVsQrf;
                 newState[i].details.qtdw.qtd[5].value = findata.CancelARRQQTY;
                 newState[i].details.qtdw.qtd[6].value = findata.CancelARRYY;
-                newState[i].details.qtdw.week[0].value = findata.CancelCW
+                newState[i].details.qtdw.week[0].value = findata.CancelARRCW;
                 newState[i].details.qtdw.week[1].value = findata.CancelUnitsCW;
                 newState[i].details.qtdw.week[2].value = findata.CancelARRTargetCW
                 newState[i].details.qtdw.week[3].value = findata.CancelCWVsQrfDiff;
                 newState[i].details.qtdw.week[4].value = findata.CancelCWVsQrf;
                 newState[i].details.qtdw.week[5].value = findata.CancelWW;
 
-                newState[i].details.stats[0].value = findata.CancelVsQrf;
+                newState[i].details.stats[0].value = findata.CancelARRVsQrf;
                 newState[i].details.stats[1].value = findata.CancelARRQQTY;
                 newState[i].details.stats[2].value = findata.CancelARRQQLY;
                 newState[i].details.stats[3].value = findata.CancelARRYY;
@@ -454,24 +454,24 @@ export function processFinancialQTD(newState, data) {
                 break;
             // Renewals Arr
             case 3:
-                newState[i].details.qtdw.qtd[0].value = findata.RenewActuals;
-                newState[i].details.qtdw.qtd[1].value = findata.RenewUnitsActual;
-                newState[i].details.qtdw.qtd[2].value = findata.RenewARRTarget;
-                newState[i].details.qtdw.qtd[3].value = findata.RenewVsQrfDiff;
-                newState[i].details.qtdw.qtd[4].value = findata.RenewVSQRF;
-                newState[i].details.qtdw.qtd[5].value = findata.RenewARRQQTY;
-                newState[i].details.qtdw.qtd[6].value = findata.RenewYY;
-                newState[i].details.qtdw.week[0].value = findata.RenewARRCW
-                newState[i].details.qtdw.week[1].value = findata.RenewsUnitsCW;
-                newState[i].details.qtdw.week[2].value = findata.RenewARRTargetCW
-                newState[i].details.qtdw.week[3].value = findata.RenewCWVsQrfDiff;
-                newState[i].details.qtdw.week[4].value = findata.RenewCWVsQrf;
-                newState[i].details.qtdw.week[5].value = findata.RenewWW;
+                newState[i].details.qtdw.qtd[0].value = findata.RenewalActuals;
+                newState[i].details.qtdw.qtd[1].value = findata.RenewalUnitsActual;
+                newState[i].details.qtdw.qtd[2].value = findata.RenewalTarget;
+                newState[i].details.qtdw.qtd[3].value = findata.RenewalVsQrfDiff;
+                newState[i].details.qtdw.qtd[4].value = findata.RenewalARRVsQrf;
+                newState[i].details.qtdw.qtd[5].value = findata.RenewalARRQQTY;
+                newState[i].details.qtdw.qtd[6].value = findata.RenewalARRYY;
+                newState[i].details.qtdw.week[0].value = findata.RenewalARRCW
+                newState[i].details.qtdw.week[1].value = findata.RenewalUnitsCW;
+                newState[i].details.qtdw.week[2].value = findata.RenewalARRTargetCW
+                newState[i].details.qtdw.week[3].value = findata.RenewalCWVsQrfDiff;
+                newState[i].details.qtdw.week[4].value = findata.RenewalCWVsQrf;
+                newState[i].details.qtdw.week[5].value = findata.RenewalWW;
 
-                newState[i].details.stats[0].value = findata.RenewVSQRF;
-                newState[i].details.stats[1].value = findata.RenewARRQQTY;
-                newState[i].details.stats[2].value = findata.RenewARRQQLY;
-                newState[i].details.stats[3].value = findata.RenewYY;
+                newState[i].details.stats[0].value = findata.RenewalARRVsQrf;
+                newState[i].details.stats[1].value = findata.RenewalARRQQTY;
+                newState[i].details.stats[2].value = findata.RenewalARRQQLY;
+                newState[i].details.stats[3].value = findata.RenewalARRYY;
                 break;
         }
     }
@@ -498,39 +498,39 @@ export function processFinancialGeoQTD(newState, data) {
         }
         let gross = {
             index: i,
-            actuals: item.GrossARRActual,
+            actuals: item.GrossActuals,
             marketArea: item.market_area_group,
             qq: item.GrossARRQQTY,
-            qrf: item.GrossARRTarget,
+            qrf: item.GrossTarget,
             qrfDiff: item.GrossVsQrfDiff,
             type: item.geo_code,
             units: item.GrossUnitsActual,
-            vsQrf: item.GrossVsQrf,
-            yy: item.GrossYY
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
         }
         let canc = {
             index: i,
-            actuals: item.CancelARRActual,
+            actuals: item.CancelActuals,
             marketArea: item.market_area_group,
             qq: item.CancelARRQQTY,
-            qrf: item.CancelARRTarget,
-            qrfDiff: item.CancelArrVsQrfDiff,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
             type: item.geo_code,
             units: item.CancelUnitsActual,
-            vsQrf: item.CancelVsQrf,
+            vsQrf: item.CancelARRVsQrf,
             yy: item.CancelARRYY
         }
         let ren = {
             index: i,
-            actuals: item.RenewActuals,
+            actuals: item.RenewalActuals,
             marketArea: item.market_area_group,
-            qq: item.RenewARRQQTY,
-            qrf: item.RenewARRTarget,
-            qrfDiff: item.RenewVsQrfDiff,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
             type: item.geo_code,
-            units: item.RenewUnitsActual,
-            vsQrf: item.RenewVSQRF,
-            yy: item.RenewARRYY
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
         }
 
         item1.push(net);
@@ -567,7 +567,7 @@ export function processFinancialGeoWeek(newState, data) {
         }
         let gross = {
             index: i,
-            actuals: item.GrossCW,
+            actuals: item.GrossARRCW,
             units: item.GrossUnitsCW,
             marketArea: item.market_area_group,
             qrf: item.GrossARRTargetCW,
@@ -578,7 +578,7 @@ export function processFinancialGeoWeek(newState, data) {
         }
         let canc = {
             index: i,
-            actuals: item.CancelCW,
+            actuals: item.CancelARRCW,
             units: item.CancelUnitsCW,
             marketArea: item.market_area_group,
             qrf: item.CancelARRTargetCW,
@@ -589,14 +589,14 @@ export function processFinancialGeoWeek(newState, data) {
         }
         let ren = {
             index: i,
-            actuals: item.RenewARRCW,
-            units: item.RenewsUnitsCW,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
             marketArea: item.market_area_group,
-            qrf: item.RenewARRTargetCW,
-            qrfDiff: item.RenewCWVsQrfDiff,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
             type: item.geo_code,
-            vsQrf: item.RenewCWVsQrf,
-            ww: item.RenewWW
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
         }
 
         item1.push(net);
@@ -632,39 +632,39 @@ export function processFinancialMarketQTD(newState, data) {
         }
         let gross = {
             index: i,
-            actuals: item.GrossARRActual,
+            actuals: item.GrossActuals,
             marketArea: item.market_area_code,
             qq: item.GrossARRQQTY,
-            qrf: item.GrossARRTarget,
+            qrf: item.GrossTarget,
             qrfDiff: item.GrossVsQrfDiff,
             type: item.market_area_code,
             units: item.GrossUnitsActual,
-            vsQrf: item.GrossVsQrf,
-            yy: item.GrossYY
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
         }
         let canc = {
             index: i,
-            actuals: item.CancelARRActual,
+            actuals: item.CancelActuals,
             marketArea: item.market_area_code,
             qq: item.CancelARRQQTY,
-            qrf: item.CancelARRTarget,
-            qrfDiff: item.CancelArrVsQrfDiff,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
             type: item.market_area_code,
             units: item.CancelUnitsActual,
-            vsQrf: item.CancelVsQrf,
+            vsQrf: item.CancelARRVsQrf,
             yy: item.CancelARRYY
         }
         let ren = {
             index: i,
-            actuals: item.RenewActuals,
+            actuals: item.RenewalActuals,
             marketArea: item.market_area_code,
-            qq: item.RenewARRQQTY,
-            qrf: item.RenewARRTarget,
-            qrfDiff: item.RenewVsQrfDiff,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
             type: item.market_area_code,
-            units: item.RenewUnitsActual,
-            vsQrf: item.RenewVSQRF,
-            yy: item.RenewARRYY
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
         }
 
         newState[0].details.market.qtd.push(net);
@@ -698,7 +698,7 @@ export function processFinancialMarketWeek(newState, data) {
         }
         let gross = {
             index: i,
-            actuals: item.GrossCW,
+            actuals: item.GrossARRCW,
             units: item.GrossUnitsCW,
             marketArea: item.market_area_code,
             qrf: item.GrossARRTargetCW,
@@ -709,7 +709,7 @@ export function processFinancialMarketWeek(newState, data) {
         }
         let canc = {
             index: i,
-            actuals: item.CancelCW,
+            actuals: item.CancelARRCW,
             units: item.CancelUnitsCW,
             marketArea: item.market_area_code,
             qrf: item.CancelARRTargetCW,
@@ -720,14 +720,14 @@ export function processFinancialMarketWeek(newState, data) {
         }
         let ren = {
             index: i,
-            actuals: item.RenewARRCW,
-            units: item.RenewsUnitsCW,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
             marketArea: item.market_area_code,
-            qrf: item.RenewARRTargetCW,
-            qrfDiff: item.RenewCWVsQrfDiff,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
             type: item.market_area_code,
-            vsQrf: item.RenewCWVsQrf,
-            ww: item.RenewWW
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
         }
 
         item1.push(net);
@@ -763,39 +763,39 @@ export function processFinancialRoutesQTD(newState, data) {
         }
         let gross = {
             index: i,
-            actuals: item.GrossARRActual,
+            actuals: item.GrossActuals,
             marketArea: item.market_area_code,
             qq: item.GrossARRQQTY,
-            qrf: item.GrossARRTarget,
+            qrf: item.GrossTarget,
             qrfDiff: item.GrossVsQrfDiff,
             type: item.route_to_market,
             units: item.GrossUnitsActual,
-            vsQrf: item.GrossVsQrf,
-            yy: item.GrossYY
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
         }
         let canc = {
             index: i,
-            actuals: item.CancelARRActual,
+            actuals: item.CancelActuals,
             marketArea: item.market_area_code,
             qq: item.CancelARRQQTY,
-            qrf: item.CancelARRTarget,
-            qrfDiff: item.CancelArrVsQrfDiff,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
             type: item.route_to_market,
             units: item.CancelUnitsActual,
-            vsQrf: item.CancelVsQrf,
+            vsQrf: item.CancelARRVsQrf,
             yy: item.CancelARRYY
         }
         let ren = {
             index: i,
-            actuals: item.RenewActuals,
+            actuals: item.RenewalActuals,
             marketArea: item.market_area_code,
-            qq: item.RenewARRQQTY,
-            qrf: item.RenewARRTarget,
-            qrfDiff: item.RenewVsQrfDiff,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
             type: item.route_to_market,
-            units: item.RenewUnitsActual,
-            vsQrf: item.RenewVSQRF,
-            yy: item.RenewARRYY
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
         }
 
         newState[0].details.routes.qtd.push(net);
@@ -829,7 +829,7 @@ export function processFinancialRoutesWeek(newState, data) {
         }
         let gross = {
             index: i,
-            actuals: item.GrossCW,
+            actuals: item.GrossARRCW,
             units: item.GrossUnitsCW,
             marketArea: item.market_area_code,
             qrf: item.GrossARRTargetCW,
@@ -840,7 +840,7 @@ export function processFinancialRoutesWeek(newState, data) {
         }
         let canc = {
             index: i,
-            actuals: item.CancelCW,
+            actuals: item.CancelARRCW,
             units: item.CancelUnitsCW,
             marketArea: item.market_area_code,
             qrf: item.CancelARRTargetCW,
@@ -851,14 +851,14 @@ export function processFinancialRoutesWeek(newState, data) {
         }
         let ren = {
             index: i,
-            actuals: item.RenewARRCW,
-            units: item.RenewsUnitsCW,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
             marketArea: item.market_area_code,
-            qrf: item.RenewARRTargetCW,
-            qrfDiff: item.RenewCWVsQrfDiff,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
             type: item.route_to_market,
-            vsQrf: item.RenewCWVsQrf,
-            ww: item.RenewWW
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
         }
 
         item1.push(net);
@@ -894,39 +894,39 @@ export function processFinancialSegmentQTD(newState, data) {
         }
         let gross = {
             index: i,
-            actuals: item.GrossARRActual,
+            actuals: item.GrossActuals,
             marketArea: item.market_area_code,
             qq: item.GrossARRQQTY,
-            qrf: item.GrossARRTarget,
+            qrf: item.GrossTarget,
             qrfDiff: item.GrossVsQrfDiff,
             type: item.segment_pivot,
             units: item.GrossUnitsActual,
-            vsQrf: item.GrossVsQrf,
-            yy: item.GrossYY
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
         }
         let canc = {
             index: i,
-            actuals: item.CancelARRActual,
+            actuals: item.CancelActuals,
             marketArea: item.market_area_code,
             qq: item.CancelARRQQTY,
-            qrf: item.CancelARRTarget,
-            qrfDiff: item.CancelArrVsQrfDiff,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
             type: item.segment_pivot,
             units: item.CancelUnitsActual,
-            vsQrf: item.CancelVsQrf,
+            vsQrf: item.CancelARRVsQrf,
             yy: item.CancelARRYY
         }
         let ren = {
             index: i,
-            actuals: item.RenewActuals,
+            actuals: item.RenewalActuals,
             marketArea: item.market_area_code,
-            qq: item.RenewARRQQTY,
-            qrf: item.RenewARRTarget,
-            qrfDiff: item.RenewVsQrfDiff,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
             type: item.segment_pivot,
-            units: item.RenewUnitsActual,
-            vsQrf: item.RenewVSQRF,
-            yy: item.RenewARRYY
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
         }
 
         newState[0].details.segment.qtd.push(net);
@@ -960,7 +960,7 @@ export function processFinancialSegmentWeek(newState, data) {
         }
         let gross = {
             index: i,
-            actuals: item.GrossCW,
+            actuals: item.GrossARRCW,
             units: item.GrossUnitsCW,
             marketArea: item.market_area_code,
             qrf: item.GrossARRTargetCW,
@@ -971,7 +971,7 @@ export function processFinancialSegmentWeek(newState, data) {
         }
         let canc = {
             index: i,
-            actuals: item.CancelCW,
+            actuals: item.CancelARRCW,
             units: item.CancelUnitsCW,
             marketArea: item.market_area_code,
             qrf: item.CancelARRTargetCW,
@@ -982,14 +982,14 @@ export function processFinancialSegmentWeek(newState, data) {
         }
         let ren = {
             index: i,
-            actuals: item.RenewARRCW,
-            units: item.RenewsUnitsCW,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
             marketArea: item.market_area_code,
-            qrf: item.RenewARRTargetCW,
-            qrfDiff: item.RenewCWVsQrfDiff,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
             type: item.segment_pivot,
-            vsQrf: item.RenewCWVsQrf,
-            ww: item.RenewWW
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
         }
 
         item1.push(net);
@@ -1019,45 +1019,45 @@ export function processFinancialProductsQTD(newState, data) {
             qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
-            type: item.product_name,
+            type: item.product_category,
             vsQrf: item.NewARRVsQrf,
             yy: item.NewYY
         }
         let gross = {
             index: i,
-            actuals: item.GrossARRActual,
+            actuals: item.GrossActuals,
             marketArea: item.market_area_code,
             qq: item.GrossARRQQTY,
-            qrf: item.GrossARRTarget,
+            qrf: item.GrossTarget,
             qrfDiff: item.GrossVsQrfDiff,
-            type: item.product_name,
+            type: item.product_category,
             units: item.GrossUnitsActual,
-            vsQrf: item.GrossVsQrf,
-            yy: item.GrossYY
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
         }
         let canc = {
             index: i,
-            actuals: item.CancelARRActual,
+            actuals: item.CancelActuals,
             marketArea: item.market_area_code,
             qq: item.CancelARRQQTY,
-            qrf: item.CancelARRTarget,
-            qrfDiff: item.CancelArrVsQrfDiff,
-            type: item.product_name,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
+            type: item.product_category,
             units: item.CancelUnitsActual,
-            vsQrf: item.CancelVsQrf,
+            vsQrf: item.CancelARRVsQrf,
             yy: item.CancelARRYY
         }
         let ren = {
             index: i,
-            actuals: item.RenewActuals,
+            actuals: item.RenewalActuals,
             marketArea: item.market_area_code,
-            qq: item.RenewARRQQTY,
-            qrf: item.RenewARRTarget,
-            qrfDiff: item.RenewVsQrfDiff,
-            type: item.product_name,
-            units: item.RenewUnitsActual,
-            vsQrf: item.RenewVSQRF,
-            yy: item.RenewARRYY
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
+            type: item.product_category,
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
         }
 
         newState[0].details.product.qtd.push(net);
@@ -1084,43 +1084,43 @@ export function processFinancialProductWeek(newState, data) {
             marketArea: item.market_area_code,
             qrf: item.NewARRTargetCW,
             qrfDiff: item.NewCWVsQrfDiff,
-            type: item.product_name,
+            type: item.product_category,
             vsQrf: item.NewCWVsQrf,
             ww: item.NewWW
 
         }
         let gross = {
             index: i,
-            actuals: item.GrossCW,
+            actuals: item.GrossARRCW,
             units: item.GrossUnitsCW,
             marketArea: item.market_area_code,
             qrf: item.GrossARRTargetCW,
             qrfDiff: item.GrossCWVsQrfDiff,
-            type: item.product_name,
+            type: item.product_category,
             vsQrf: item.GrossCWVsQrf,
             ww: item.GrossWW
         }
         let canc = {
             index: i,
-            actuals: item.CancelCW,
+            actuals: item.CancelARRCW,
             units: item.CancelUnitsCW,
             marketArea: item.market_area_code,
             qrf: item.CancelARRTargetCW,
             qrfDiff: item.CancelCWVsQrfDiff,
-            type: item.product_name,
+            type: item.product_category,
             vsQrf: item.CancelCWVsQrf,
             ww: item.CancelWW
         }
         let ren = {
             index: i,
-            actuals: item.RenewARRCW,
-            units: item.RenewsUnitsCW,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
             marketArea: item.market_area_code,
-            qrf: item.RenewARRTargetCW,
-            qrfDiff: item.RenewCWVsQrfDiff,
-            type: item.product_name,
-            vsQrf: item.RenewCWVsQrf,
-            ww: item.RenewWW
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
+            type: item.product_category,
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
         }
 
         item1.push(net);
@@ -2272,7 +2272,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             qq: item.PaidMediaSpendQQTY,
             qrf: item.PaidMediaSpendTarget,
             qrfDiff: item.PaidMediaSpendVsQrfDiff,
-            type: item.product_name,
+            type: item.product_category,
             vsQrf: item.PaidMediaSpendVsQrf,
             yy: item.PaidMediaSpendYY
         }
@@ -2284,7 +2284,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             qrfDiff: item.PaidMediaSpendVsQrfDiff,
             vsQrf: item.PaidMediaSpendVsQrf,
             ww: item.PaidMediaSpendWW,
-            type: item.product_name,
+            type: item.product_category,
         }
         newState[7].details.product.qtd.push(paidmedia);
         newState[7].details.product.week.push(weekPM);
@@ -2299,7 +2299,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             qq: item.MarketableUniverseQQTY,
             qrf: item.MarketableUniverseTargetFQ,
             qrfDiff: item.MarketableUniverseVsQrfDiff,
-            type: item.product_name,
+            type: item.product_category,
             vsQrf: item.MarketableUniverseVsQrf,
             yy: item.MarketableUniverseYY
         }
@@ -2311,7 +2311,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             qrfDiff: item.MarketableUniverseVsQrfDiffCW,
             vsQrf: item.MarketableUniverseVsQrfCW,
             ww: item.MarketableUniverseWW,
-            type: item.product_name,
+            type: item.product_category,
         }
         // New UQFM
         let newUqfm = {
@@ -2320,7 +2320,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             qq: item.NewUQFMSQQTY,
             qrf: item.NewUQFMSTargetFQ,
             qrfDiff: item.NewUQFMSVsQrfDiff,
-            type: item.product_name,
+            type: item.product_category,
             vsQrf: item.NewUQFMSVsQRF,
             yy: item.NewUQFMSYY
         }
@@ -2332,7 +2332,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             qrfDiff: item.NewUQFMSQRFDiffCW,
             vsQrf: item.NewUQFMSVsQRFCW,
             ww: item.NewUQFMSWW,
-            type: item.product_name,
+            type: item.product_category,
         }
         //Paid Media Sourced
         let paid = {
@@ -2341,7 +2341,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             qq: item.PaidMediaSourcedUQFMSQQTY,
             qrf: item.PaidMediaSourcedUQFMSTargetFQ,
             qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
-            type: item.product_name,
+            type: item.product_category,
             vsQrf: item.PaidMediaSourcedUQFMSVsQRF,
             yy: item.PaidMediaSourcedUQFMSYY
         }
@@ -2353,7 +2353,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             qrfDiff: item.PaidMediaSourcedUQFMSQRFDiffCW,
             vsQrf: item.PaidMediaSourcedUQFMSVsQRFCW,
             ww: item.PaidMediaSourcedUQFMSWW,
-            type: item.product_name,
+            type: item.product_category,
         }
         //UQFM
         let uqfm = {
@@ -2362,7 +2362,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             qq: item.UQFMConversionQQTY,
             qrf: item.UQFMActual,
             qrfDiff: item.UQFMConversionActual,
-            type: item.product_name,
+            type: item.product_category,
             vsQrf: item.UQFMConversionActual,
             yy: item.UQFMConversionYY
         }
@@ -2374,7 +2374,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             qrfDiff: item.UQFMConversionWW,
             vsQrf: item.UQFMConversionWW,
             ww: item.UQFMConversionWW,
-            type: item.product_name,
+            type: item.product_category,
         }
 
         newState[5].details.product.qtd.push(marketable);
@@ -2398,7 +2398,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             qq: item.TrafficQQTY,
             qrf: item.TrafficTargetFQ,
             qrfDiff: item.TrafficVsQrfDiff,
-            type: item.product_name,
+            type: item.product_category,
             vsQrf: item.TrafficVsQrf,
             yy: item.TrafficYY
         }
@@ -2410,7 +2410,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             qrfDiff: item.TrafficVsQrfDiffCW,
             vsQrf: item.TrafficVsQrfCW,
             ww: item.TrafficWW,
-            type: item.product_name,
+            type: item.product_category,
 
         }
         let bounce = {
@@ -2419,7 +2419,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             qq: item.BounceRateActual,
             qrf: item.BounceRateActual,
             qrfDiff: item.BounceRateActual,
-            type: item.product_name,
+            type: item.product_category,
             vsQrf: item.BounceRateYY,
             yy: item.BounceRateYY
         }
@@ -2431,7 +2431,7 @@ export function processDiscoverProductQTDData(g1, g2, g5, newState) {
             qrfDiff: item.BounceRateWW,
             vsQrf: item.BounceRateWW,
             ww: item.BounceRateWW,
-            type: item.product_name,
+            type: item.product_category,
         }
         newState[4].details.product.qtd.push(traffic);
         newState[10].details.product.qtd.push(bounce);
