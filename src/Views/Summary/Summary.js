@@ -81,16 +81,16 @@ class Summary extends Component {
     if (this.props.user !== prevProps.user) {
       this.props.getUserSettings(this.props.user.sub);
     }
-// Boolean Rule Tests
 
+    // Boolean Rule Tests
     let filtersAreLoaded = Object(this.props.filters).hasOwnProperty('combined') && Object(prevProps.filters).hasOwnProperty('combined')===false;
     let preferencesAreLoaded = Object(this.props.preferences).hasOwnProperty('geoFilters');
-  // let appIsReadyToRequestSummaryData = prevProps.filters.combined.valueFilters.length === 0 && this.props.filters.combined.valueFilters.length > 0;
-let appInitialLoadIsComplete = this.props.NEwQTDW.qtd.length !== 0;
-let summaryDataLoaded = this.props.summaryData.secondary !== prevProps.summaryData.secondary;
+    // TODO: This will not catch the case of a card changing that is not NewArr, fix immediately
+    let appInitialLoadIsComplete = this.props.NEwQTDW.qtd.length !== 0;
+    let summaryDataLoaded = this.props.summaryData.secondary !== prevProps.summaryData.secondary;
 
     // console.log('Checking Filters (',filtersAreLoaded,'): 1. Previouly: ',prevProps.filters,'Currently: ',this.props.filters);
-    console.log('Checking Preferences (',this.props.preferences,'): 1. Previouly: ',prevProps.preferences,'Currently: ',this.props.preferences);
+    // console.log('Checking Preferences (',this.props.preferences,'): 1. Previouly: ',prevProps.preferences,'Currently: ',this.props.preferences);
     // // console.log('Checking the Filterss Combined(',appIsReadyToRequestSummaryData,'): 1. Previouly: ',prevProps.filters.combined,'Currently: ',this.props.filters.combined);
     // console.log('Checking Summary Data(',appInitialLoadIsComplete,summaryDataLoaded,'): 1. Previouly: ',prevProps.NEwQTDW,'Currently: ',this.props.NEwQTDW);
 

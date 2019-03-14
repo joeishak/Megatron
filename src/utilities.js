@@ -694,7 +694,6 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
     //Multichart
-
     const DiscoverG5Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficMutlichart + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -730,7 +729,7 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
 
 
 
-    //LTC QTD
+    //Last touch channelQTD 
 
     const DiscoverGLTCQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficLTCQTD + params5 + '&json=1', {
         headers: headers,
@@ -738,15 +737,16 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
     });
 
 
-    //Conv QTD
+    //Conversion Type QTD
 
     const DiscoverG5ConvQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficConvTypeQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    //Mobile Vs Desktop
+    //Mobile Vs Desktop QTD
+ 
 
-    //NEw Vs Repeat
+    //NEw Vs Repeat QTD
 
     responseArray.push(
         DiscoverG5Secondary,

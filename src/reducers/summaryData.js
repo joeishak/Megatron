@@ -93,6 +93,7 @@ export default function (state = {
                 processTrafficWebSegmentQTDData(action.payload[5].data, newState.secondary);
                 processTrafficLTCQTDData(action.payload[6].data, newState.secondary);
                 processTrafficConvQTDData(action.payload[7].data, newState.secondary);
+                return newState;
         case GET_DISCOVER_SECONDARY_DATA:/** Variables index 4-10 */
             console.log(action.payload);
             newState = Object.assign({}, state);
@@ -1192,12 +1193,12 @@ export function processTrafficMultichartData(g5, newState) {
         let item = newG5[i];
         //traffic
         traffic.actual.push(item.TrafficActual);
-        traffic.target.push(item.TrafficTargetFQ);
+        traffic.target.push(item.TrafficTarget);
         traffic.ly.push(item.TrafficLY);
         traffic.lq.push(item.TrafficLQ);
         // Bounce
         bounceRate.actual.push(item.BounceRateActual);
-        bounceRate.target.push(item.BounceRateTargetFQ);
+        bounceRate.target.push(item.BounceRateTarget);
         bounceRate.ly.push(item.BounceRateLY);
         bounceRate.lq.push(item.BounceRateLQ);
 

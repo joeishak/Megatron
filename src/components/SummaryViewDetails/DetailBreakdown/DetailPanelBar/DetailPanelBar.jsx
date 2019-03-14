@@ -114,6 +114,7 @@ class DetailPanelBar extends Component {
                         </PanelBarItem>
                     </PanelBar>
                 )
+            //Traffic
             case 1:
                 return (
                     <PanelBar >
@@ -127,6 +128,15 @@ class DetailPanelBar extends Component {
                             {this.getPanelContents(DIMENSIONS.SEGMENT)}
                         </ PanelBarItem>
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Channel'>
+                            {this.getPanelContents('Channel')}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion'>
+                            {this.getPanelContents('Channel')}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Mobile Vs Desktop'>
+                            {this.getPanelContents('Channel')}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='New Vs Repeat'>
                             {this.getPanelContents('Channel')}
                         </ PanelBarItem>
 
