@@ -130,7 +130,7 @@ class SummaryViewDetails extends Component {
   }
   getSummaryFilters(activeItem) {
     let drillDownFilter;
-    let { lastTouchChannel, convType, webSegments, channels, visits } = this.props.activeFilters;
+    let { lastTouchChannel, convType, webSegments, visits } = this.props.activeFilters;
     switch (activeItem) {
       //finance
       // case 0:
@@ -195,7 +195,7 @@ class SummaryViewDetails extends Component {
             <div className="col-md-12 col-lg-12">
               <SingleValueSelect
                 activeFilters={[]}
-                options={channels.availableFilters}
+                options={lastTouchChannel.availableFilters}
                 onValueChange={e => { console.log(e) }}
                 onMenuClose={e => { console.log(e) }}
               />
@@ -215,7 +215,7 @@ class SummaryViewDetails extends Component {
             <div className="col-md-12 col-lg-12">
               <SingleValueSelect
                 activeFilters={[]}
-                options={channels.availableFilters}
+                options={lastTouchChannel.availableFilters}
                 onValueChange={e => { console.log(e) }}
                 onMenuClose={e => { console.log(e) }}
               />
@@ -231,7 +231,7 @@ class SummaryViewDetails extends Component {
               {/* Channel */}
               <SingleValueSelect
                 activeFilters={[]}
-                options={channels.availableFilters}
+                options={lastTouchChannel.availableFilters}
                 onValueChange={e => { console.log(e) }}
                 onMenuClose={e => { console.log(e) }}
               />
@@ -246,7 +246,7 @@ class SummaryViewDetails extends Component {
             <div className="col-md-6 col-lg-6">
               <SingleValueSelect
                 activeFilters={[]}
-                options={channels.availableFilters}
+                options={lastTouchChannel.availableFilters}
                 onValueChange={e => { console.log(e) }}
                 onMenuClose={e => { console.log(e) }}
               />
@@ -255,7 +255,7 @@ class SummaryViewDetails extends Component {
             <div className="col-md-6 col-lg-6">
               <SingleValueSelect
                 activeFilters={[]}
-                options={channels.availableFilters}
+                options={lastTouchChannel.availableFilters}
                 onValueChange={e => { console.log(e) }}
                 onMenuClose={e => { console.log(e) }}
               />
@@ -334,7 +334,7 @@ class SummaryViewDetails extends Component {
             <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
               <SingleValueSelect
                 activeFilters={[]}
-                options={channels.availableFilters}
+                options={lastTouchChannel.availableFilters}
                 onValueChange={e => { console.log(e) }}
                 onMenuClose={e => { console.log(e) }}
               />
@@ -343,7 +343,7 @@ class SummaryViewDetails extends Component {
             <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
               <SingleValueSelect
                 activeFilters={[]}
-                options={channels.availableFilters}
+                options={lastTouchChannel.availableFilters}
                 onValueChange={e => { console.log(e) }}
                 onMenuClose={e => { console.log(e) }}
               />
@@ -352,7 +352,7 @@ class SummaryViewDetails extends Component {
             <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
               <SingleValueSelect
                 activeFilters={[]}
-                options={channels.availableFilters}
+                options={lastTouchChannel.availableFilters}
                 onValueChange={e => { console.log(e) }}
                 onMenuClose={e => { console.log(e) }}
               />

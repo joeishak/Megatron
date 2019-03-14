@@ -50,10 +50,10 @@ export default function (state = {
             newState.primary[2].target = action.payload[2].data[0].NewQFMSTargetFQ;
             newState.primary[2].vsqrf = action.payload[2].data[0].NewQFMSVsQrf;
 
-            newState.secondary[4].value = action.payload[1].data[0].TrafficActual;
-            newState.secondary[4].target = action.payload[1].data[0].TrafficTarget;
-            newState.secondary[4].targetFQ = action.payload[1].data[0].TrafficTargetFQ;
-            newState.secondary[4].vsQrf = action.payload[1].data[0].TrafficVsQrf;
+            // newState.secondary[4].value = action.payload[1].data[0].TrafficActual;
+            // newState.secondary[4].target = action.payload[1].data[0].TrafficTarget;
+            // newState.secondary[4].targetFQ = action.payload[1].data[0].TrafficTargetFQ;
+            // newState.secondary[4].vsQrf = action.payload[1].data[0].TrafficVsQrf;
             return newState;
 
         case GET_FINANCE_SECONDARY_DATA:
@@ -83,21 +83,21 @@ export default function (state = {
         case GET_TRAFFIC_SECONDARY_DATA:
             console.log(action.payload);
             newState = Object.assign({}, state);
-  
 
-                processTrafficSecondaryData(action.payload[0].data[0], newState.secondary);
-                processTrafficMultichartData(action.payload[1].data, newState.secondary);
-                processTrafficQTDData(action.payload[2].data[0], newState.secondary);
-                processTrafficGeoQTDData(action.payload[3].data, newState.secondary);
-                processTrafficMarketQTDData(action.payload[4].data, newState.secondary);
-                processTrafficWebSegmentQTDData(action.payload[5].data, newState.secondary);
-                processTrafficLTCQTDData(action.payload[6].data, newState.secondary);
-                processTrafficConvQTDData(action.payload[7].data, newState.secondary);
-                return newState;
+
+            processTrafficSecondaryData(action.payload[0].data[0], newState.secondary);
+            processTrafficMultichartData(action.payload[1].data, newState.secondary);
+            processTrafficQTDData(action.payload[2].data[0], newState.secondary);
+            processTrafficGeoQTDData(action.payload[3].data, newState.secondary);
+            processTrafficMarketQTDData(action.payload[4].data, newState.secondary);
+            processTrafficWebSegmentQTDData(action.payload[5].data, newState.secondary);
+            processTrafficLTCQTDData(action.payload[6].data, newState.secondary);
+            processTrafficConvQTDData(action.payload[7].data, newState.secondary);
+            return newState;
         case GET_DISCOVER_SECONDARY_DATA:/** Variables index 4-10 */
             console.log(action.payload);
             newState = Object.assign({}, state);
-             let { secondary } = newState;
+            let { secondary } = newState;
 
             // DiscoverG1QTD, DiscoverG2QTD, DiscoverG5QTD,
             processDiscoverQTDData(action.payload[6].data[0], action.payload[7].data[0], action.payload[8].data[0], secondary);
@@ -1155,7 +1155,11 @@ export function processFinancialProductWeek(newState, data) {
 
 export function processTrafficSecondaryData(g5, newState) {
     console.log(g5);
- 
+
+    newState[4].value = g5.TrafficActual;
+    newState[4].target = g5.TrafficTarget;
+    newState[4].targetFQ = g5.TrafficTargetFQ;
+    newState[4].vsQrf = g5.TrafficVsQrf;
     //Bounce Rate
     newState[10].value = g5.BounceRateActual;
     newState[10].target = 0;
@@ -1164,7 +1168,7 @@ export function processTrafficSecondaryData(g5, newState) {
 }
 export function processTrafficMultichartData(g5, newState) {
 
-   
+
     let weekG5Flag = g5.map(item => {
         return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
     })
@@ -1173,13 +1177,13 @@ export function processTrafficMultichartData(g5, newState) {
 
     let newG5 = _.orderBy(weekG5Flag, ['weekNo'], ['asc']);
 
-        let traffic = {
-            actual: [],
-            target: [],
-            lq: [],
-            ly: []
-        },
-       
+    let traffic = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    },
+
         bounceRate = {
             actual: [],
             target: [],
@@ -1210,7 +1214,7 @@ export function processTrafficMultichartData(g5, newState) {
                 currentMulti = [traffic.actual, traffic.target, traffic.ly, traffic.lq];
                 break;
             case 10:
-                // currentMulti = [bounceRate.actual, bounceRate.target, bounceRate.ly, bounceRate.lq];
+                currentMulti = [bounceRate.actual, bounceRate.target, bounceRate.ly, bounceRate.lq];
                 break;
             default:
                 break;
@@ -1332,13 +1336,13 @@ export function processTrafficGeoQTDData(g5, newState) {
 export function processTrafficMarketQTDData(g5, newState) {
     //Clear old Values
     newState[4].details.market.qtd = [];
-    
+
     newState[10].details.market.qtd = [];
     newState[4].details.market.week = [];
- 
+
     newState[10].details.market.week = [];
 
-   
+
     for (let i = 0; i < g5.length; i++) {
         let item = g5[i];
         let traffic = {
@@ -1393,7 +1397,7 @@ export function processTrafficWebSegmentQTDData(g5, newState) {
 
     newState[10].details.segment.qtd = [];
     newState[4].details.segment.week = [];
-    
+
     newState[10].details.segment.week = [];
 
     for (let i = 0; i < g5.length; i++) {
@@ -1448,10 +1452,10 @@ export function processTrafficLTCQTDData(g5, newState) {
 
     //Clear old Values
     newState[4].details.routes.qtd = [];
-  
+
     newState[10].details.routes.qtd = [];
     newState[4].details.routes.week = [];
-   
+
     newState[10].details.routes.week = [];
 
     for (let i = 0; i < g5.length; i++) {
@@ -1509,7 +1513,7 @@ export function processTrafficConvQTDData(g5, newState) {
     newState[10].details.product.qtd = [];
     newState[4].details.product.week = [];
     newState[10].details.product.week = [];
-    
+
     for (let i = 0; i < g5.length; i++) {
         let item = g5[i];
         let traffic = {

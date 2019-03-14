@@ -744,9 +744,17 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
     //Mobile Vs Desktop QTD
- 
+    const DiscoverMobDesk = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficMobDeskQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
 
     //NEw Vs Repeat QTD
+    const DiscoverNewRep = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficNewRepQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
     responseArray.push(
         DiscoverG5Secondary,
@@ -756,7 +764,9 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
         DiscoverG5MarketQTD,
         DiscoverG5SegmentQTD,
         DiscoverGLTCQTD,
-        DiscoverG5ConvQTD
+        DiscoverG5ConvQTD,
+        DiscoverMobDesk,
+        DiscoverNewRep
     );
     let promiseArr = Promise.all(responseArray);
 
