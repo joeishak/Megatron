@@ -84,9 +84,12 @@ class Summary extends Component {
       this.props.getUserSettings(this.props.user.sub);
     }
 
-
+    let preferencesAreLoaded
     // Boolean Rule Tests
-    let preferencesAreLoaded = Object.keys(prevProps.preferences).length === 0 && this.props.preferences.geoFilters !== undefined;
+    if(Object.keys(prevProps.preferences).length === 0){
+      preferencesAreLoaded = this.props.preferences.geoFilters !== undefined;
+    }
+     
     let filtersAreLoaded = Object.keys(this.props.filters).length === 19 && Object.keys(prevProps.filters).length === 11;
     let appIsReadyToRequestSummaryData = prevProps.filters.combined.valueFilters.length === 0 && this.props.filters.combined.valueFilters.length > 0;
     let appInitialLoadIsComplete = this.props.NEwQTDW.qtd.length !== 0;
@@ -159,7 +162,9 @@ class Summary extends Component {
           this.setState({ isLoading: true });
 
           console.log('Fetching Discover')
-          this.props.getDiscoverSecondaryData(this.props.filters);
+          this.props.getTrafficSecondaryData(this.props.filters);
+
+          // this.props.getDiscoverSecondaryData(this.props.filters);
           break;
         case 2:
           this.setState({ isLoading: true });

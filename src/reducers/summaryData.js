@@ -85,9 +85,9 @@ export default function (state = {
             newState = Object.assign({}, state);
   
 
-                processTrafficSecondaryData(action.payload[0].data, newState);
+                processTrafficSecondaryData(action.payload[0].data[0], newState);
                 processTrafficMultichartData(action.payload[1].data, newState);
-                processTrafficQTDData(action.payload[2].data, newState);
+                processTrafficQTDData(action.payload[2].data[0], newState);
                 processTrafficGeoQTDData(action.payload[3].data, newState);
                 processTrafficMarketQTDData(action.payload[4].data, newState);
                 processTrafficWebSegmentQTDData(action.payload[5].data, newState);
