@@ -744,7 +744,9 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    //Mobile Vs Desktop
 
+    //NEw Vs Repeat
 
     responseArray.push(
         DiscoverG5Secondary,

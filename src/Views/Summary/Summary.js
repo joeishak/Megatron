@@ -77,23 +77,24 @@ class Summary extends Component {
 
     this.checkAuthentication();
 
-    // if (this.state.authenticated === false) {
-    //   this.props.auth.login("/")
-    // }
+    
     if (this.props.user !== prevProps.user) {
       this.props.getUserSettings(this.props.user.sub);
     }
+// Boolean Rule Tests
 
-    let preferencesAreLoaded
-    // Boolean Rule Tests
-    if(Object.keys(prevProps.preferences).length === 0){
-      preferencesAreLoaded = this.props.preferences.geoFilters !== undefined;
-    }
-     
-    let filtersAreLoaded = Object.keys(this.props.filters).length === 19 && Object.keys(prevProps.filters).length === 11;
-    let appIsReadyToRequestSummaryData = prevProps.filters.combined.valueFilters.length === 0 && this.props.filters.combined.valueFilters.length > 0;
-    let appInitialLoadIsComplete = this.props.NEwQTDW.qtd.length !== 0;
+    let filtersAreLoaded = Object(this.props.filters).hasOwnProperty('combined') && Object(prevProps.filters).hasOwnProperty('combined')===false;
+    let preferencesAreLoaded = Object(this.props.preferences).hasOwnProperty('geoFilters');
+  // let appIsReadyToRequestSummaryData = prevProps.filters.combined.valueFilters.length === 0 && this.props.filters.combined.valueFilters.length > 0;
+let appInitialLoadIsComplete = this.props.NEwQTDW.qtd.length !== 0;
+let summaryDataLoaded = this.props.summaryData.secondary !== prevProps.summaryData.secondary;
 
+    // console.log('Checking Filters (',filtersAreLoaded,'): 1. Previouly: ',prevProps.filters,'Currently: ',this.props.filters);
+    console.log('Checking Preferences (',this.props.preferences,'): 1. Previouly: ',prevProps.preferences,'Currently: ',this.props.preferences);
+    // // console.log('Checking the Filterss Combined(',appIsReadyToRequestSummaryData,'): 1. Previouly: ',prevProps.filters.combined,'Currently: ',this.props.filters.combined);
+    // console.log('Checking Summary Data(',appInitialLoadIsComplete,summaryDataLoaded,'): 1. Previouly: ',prevProps.NEwQTDW,'Currently: ',this.props.NEwQTDW);
+
+    
     console.log(this.props.filters);
     //Handle Boolean Test Results
     if (filtersAreLoaded ) {
@@ -101,19 +102,21 @@ class Summary extends Component {
       this.setState({ filtersAreLoaded: true });
     }
 
-    if (preferencesAreLoaded && this.state.preferncesAreAddedToFilters === false) {
+    if (this.state.filtersAreLoaded && preferencesAreLoaded && this.state.preferncesAreAddedToFilters === false) {
       console.log('Just recieved the preferences');
       this.props.addPreferencesToActiveFilters(this.props.preferences);
       this.setState({ preferncesAreAddedToFilters: true })
     }
 
-    // //Initial App Loads on Finance Tab
-    if (appIsReadyToRequestSummaryData===true && this.state.filtersAreLoaded===true &&  this.state.preferncesAreAddedToFilters === true) {
+    // // //Initial App Loads on Finance Tab
+    if (this.state.filtersAreLoaded===true &&  this.state.preferncesAreAddedToFilters === true && this.state.initialDataLoadIsComplete === false) {
       console.log('Both Preferences and Filters are loaded');
       this.props.getFinanceSecondaryData(this.props.filters);
       this.props.getPrimaryData(this.props.filters);
       // this.props.getSummaryData(this.props.filters);
-      this.setState({ initialDataLoadIsComplete: true })
+      if(this.state.initialDataLoadIsComplete === false){
+        this.setState({ initialDataLoadIsComplete: true })
+      }
     }
 
     if (this.state.initialDataLoadIsComplete === true && (this.props.filters !== prevProps.filters)) {

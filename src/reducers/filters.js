@@ -13,10 +13,7 @@ let defaultState = [];
 let copyOfState;
 let cat;
 export default function (state = {
-    combined: {
-        availableFilters: [],
-        valueFilters: []
-    },
+   
     markets: {
         availableFilters: [],
         valueFilters: []

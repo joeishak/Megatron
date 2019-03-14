@@ -85,14 +85,14 @@ export default function (state = {
             newState = Object.assign({}, state);
   
 
-                processTrafficSecondaryData(action.payload[0].data[0], newState);
-                processTrafficMultichartData(action.payload[1].data, newState);
-                processTrafficQTDData(action.payload[2].data[0], newState);
-                processTrafficGeoQTDData(action.payload[3].data, newState);
-                processTrafficMarketQTDData(action.payload[4].data, newState);
-                processTrafficWebSegmentQTDData(action.payload[5].data, newState);
-                processTrafficLTCQTDData(action.payload[6].data, newState);
-                processTrafficConvQTDData(action.payload[7].data, newState);
+                processTrafficSecondaryData(action.payload[0].data[0], newState.secondary);
+                processTrafficMultichartData(action.payload[1].data, newState.secondary);
+                processTrafficQTDData(action.payload[2].data[0], newState.secondary);
+                processTrafficGeoQTDData(action.payload[3].data, newState.secondary);
+                processTrafficMarketQTDData(action.payload[4].data, newState.secondary);
+                processTrafficWebSegmentQTDData(action.payload[5].data, newState.secondary);
+                processTrafficLTCQTDData(action.payload[6].data, newState.secondary);
+                processTrafficConvQTDData(action.payload[7].data, newState.secondary);
         case GET_DISCOVER_SECONDARY_DATA:/** Variables index 4-10 */
             console.log(action.payload);
             newState = Object.assign({}, state);
@@ -1153,7 +1153,7 @@ export function processFinancialProductWeek(newState, data) {
 
 
 export function processTrafficSecondaryData(g5, newState) {
-
+    console.log(g5);
  
     //Bounce Rate
     newState[10].value = g5.BounceRateActual;
