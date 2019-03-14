@@ -15,6 +15,7 @@ import excelLogoGreen from "../../assets/images/excel-logo-green.svg";
 import ExcelFormatter from "./ExcelFormatter";
 import DetailBreakdown from './DetailBreakdown/DetailBreakdown';
 import { SUMMARY_FILTERS } from '../../Constants/consts.js';
+import * as _ from 'lodash';
 
 class SummaryViewDetails extends Component {
   constructor(props) {
@@ -50,7 +51,9 @@ class SummaryViewDetails extends Component {
           YY: 94.2
         }
       ],
-      qtdIsPercent: true
+      qtdIsPercent: true,
+      selectedFilters: [],
+      activeDataFilters: [],
     };
 
     /*Bindings  */
@@ -92,10 +95,42 @@ class SummaryViewDetails extends Component {
     // console.log(newArr);
     return newArr;
   }
+  updateMultiValue = (e, type) => {
+    // console.log('Updating MultiValue',e,type);
+    let copy = this.state.selectedFilters;
+    if (e.length === 0) {
+        _.remove(copy, item => { return item.category === type });
+        this.setState({ selectedFilters: [...copy] })
 
+    } else {
+        _.remove(copy, item => { return item.category === e[0].category });
+        this.setState({ selectedFilters: [...copy, ...e] })
+    }
+
+    this.setState({ isButtonHighlighted: true });
+
+
+}
+  updateSingleValue = (e) => {
+    // console.log('Updating SingleValue',e);
+    let copy = this.state.selectedFilters;
+    if (this.state.selectedFilters.length === 0) {
+      this.setState({ selectedFilters: [e] })
+    } else {
+      //Find any with the same category
+      _.remove(copy, item => { return item.category === e.category });
+      _.remove(copy, item => { return item.index === e.index });
+      if (copy.length === 0) {
+        this.setState({ selectedFilters: [e] })
+      } else {
+        this.setState({ selectedFilters: [...copy, e] })
+      }
+    }
+    this.setState({ isButtonHighlighted: true });
+  }
   getSummaryFilters(activeItem) {
     let drillDownFilter;
-    let { channels, visits } = this.props.activeFilters;
+    let { lastTouchChannel, convType, webSegments, channels, visits } = this.props.activeFilters;
     switch (activeItem) {
       //finance
       // case 0:
@@ -110,7 +145,7 @@ class SummaryViewDetails extends Component {
       case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
         return (
           <div className="row">
-            <div className="col-md-12 col-lg-12" style={{paddingBottom: '10px'}}>
+            <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
               {/* Visit Type */}
               <SingleValueSelect
                 activeFilters={[]}
@@ -120,19 +155,32 @@ class SummaryViewDetails extends Component {
               />
             </div>
             {/* Last Touch Channel */}
-            <div className="col-md-12 col-lg-12" style={{paddingBottom: '10px'}}>
+            <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
               <SingleValueSelect
                 activeFilters={[]}
-                options={visits.availableFilters}
+                options={lastTouchChannel.availableFilters}
                 onValueChange={e => { console.log(e) }}
                 onMenuClose={e => { console.log(e) }}
               />
             </div>
-            {/* Visit Status */}
-            <div className="col-md-12 col-lg-12" style={{paddingBottom: '10px'}}>
+            {/* Conversion Type */}
+            <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
               <SingleValueSelect
                 activeFilters={[]}
-                options={visits.availableFilters}
+                options={convType.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+              <MultiValueSelect
+                options={convType.availableFilters}
+                onValueChange={(e) => { let type = 'convType'; this.updateMultiValue(e, type) }}
+                onMenuClose={this.closeMultiValue}
+              />
+            </div>
+            <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
+              <SingleValueSelect
+                activeFilters={[]}
+                options={webSegments.availableFilters}
                 onValueChange={e => { console.log(e) }}
                 onMenuClose={e => { console.log(e) }}
               />
@@ -155,7 +203,7 @@ class SummaryViewDetails extends Component {
 
           </div>
         );
-    
+
       // case 6:
       //   //UQFM
       //   break;
@@ -283,7 +331,7 @@ class SummaryViewDetails extends Component {
           //Conversion
           <div className="row">
             {/* Web Segments */}
-            <div className="col-md-12 col-lg-12" style={{paddingBottom: '10px'}}>
+            <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
               <SingleValueSelect
                 activeFilters={[]}
                 options={channels.availableFilters}
@@ -292,7 +340,7 @@ class SummaryViewDetails extends Component {
               />
             </div>
             {/* Last Touch Channel */}
-            <div className="col-md-12 col-lg-12" style={{paddingBottom: '10px'}}>
+            <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
               <SingleValueSelect
                 activeFilters={[]}
                 options={channels.availableFilters}
@@ -301,7 +349,7 @@ class SummaryViewDetails extends Component {
               />
             </div>
             {/* Visit Status */}
-            <div className="col-md-12 col-lg-12" style={{paddingBottom: '10px'}}>
+            <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
               <SingleValueSelect
                 activeFilters={[]}
                 options={channels.availableFilters}
@@ -385,34 +433,34 @@ class SummaryViewDetails extends Component {
 
       //Use
       case SUMMARY_FILTERS.USE_PAID_USER_SUCCESS:
-      // 27
+        // 27
         return (
-        // Gross New Units
-        <div className="row">
+          // Gross New Units
+          <div className="row">
 
-          <div className="col-md-6 col-lg-6">
-            <SingleValueSelect
-              activeFilters={[]}
-              options={visits.availableFilters}
-              onValueChange={e => { console.log(e) }}
-              onMenuClose={e => { console.log(e) }}
-            />
+            <div className="col-md-6 col-lg-6">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+
+            <div className="col-md-6 col-lg-6">
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { console.log(e) }}
+                onMenuClose={e => { console.log(e) }}
+              />
+            </div>
+
           </div>
-
-          <div className="col-md-6 col-lg-6">
-            <SingleValueSelect
-              activeFilters={[]}
-              options={visits.availableFilters}
-              onValueChange={e => { console.log(e) }}
-              onMenuClose={e => { console.log(e) }}
-            />
-          </div>
-
-        </div>
-      );
+        );
       //Renew
       case SUMMARY_FILTERS.USE_WK0_WAU_RATE:
-      // 28
+        // 28
         return (
           // Wk 0 WAU Rate
           <div className="row">
@@ -428,9 +476,9 @@ class SummaryViewDetails extends Component {
 
           </div>
         );
-    
+
       case SUMMARY_FILTERS.USE_WK4WAU_RATE:
-      // 29
+        // 29
         return (
           // Wk 4 WAU Rate
           <div className="row">

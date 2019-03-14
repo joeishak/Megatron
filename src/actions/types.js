@@ -23,6 +23,8 @@ export const GET_DISCOVER_SECONDARY_DATA = "get_discover_secondary_data";
 export const GET_TRY_SECONDARY_DATA = "get_try_secondary_data";
 export const GET_BUY_SECONDARY_DATA = "get_buy_secondary_data";
 export const GET_USE_SECONDARY_DATA = "get_use_secondary_data";
+export const GET_TRAFFIC_SECONDARY_DATA = "get_traffic_secondary_data";
+
 export const GET_RENEW_SECONDARY_DATA = "get_renew_secondary_data";
 export const GET_SECONDARY_DATA = "get_secondary_data";
 export const GET_SECONDARY_DETAIL_DATA = 'get_secondary_detail_data'

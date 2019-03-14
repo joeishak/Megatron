@@ -9,6 +9,7 @@ import {
     GET_FINANCE_SECONDARY_DATA,
     GET_DISCOVER_SECONDARY_DATA,
     GET_TRY_SECONDARY_DATA,
+    GET_TRAFFIC_SECONDARY_DATA,
     GET_BUY_SECONDARY_DATA,
     GET_USE_SECONDARY_DATA,
     GET_RENEW_SECONDARY_DATA,
@@ -26,7 +27,8 @@ let index = 0;
 let copyOfState;
 let commentIndex;
 let currentMulti,
-    newMulti;
+    newMulti,
+    secondary;
 export default function (state = {
     primary: PrimaryData,
     secondary: SecondaryData
@@ -78,10 +80,23 @@ export default function (state = {
             processFinancialProductsQTD(newState.secondary, action.payload[8].data);
             processFinancialProductWeek(newState.secondary, action.payload[8].data);
             return newState;
+        case GET_TRAFFIC_SECONDARY_DATA:
+            console.log(action.payload);
+            newState = Object.assign({}, state);
+  
+
+                processTrafficSecondaryData(action.payload[0].data, newState);
+                processTrafficMultichartData(action.payload[1].data, newState);
+                processTrafficQTDData(action.payload[2].data, newState);
+                processTrafficGeoQTDData(action.payload[3].data, newState);
+                processTrafficMarketQTDData(action.payload[4].data, newState);
+                processTrafficWebSegmentQTDData(action.payload[5].data, newState);
+                processTrafficLTCQTDData(action.payload[6].data, newState);
+                processTrafficConvQTDData(action.payload[7].data, newState);
         case GET_DISCOVER_SECONDARY_DATA:/** Variables index 4-10 */
             console.log(action.payload);
             newState = Object.assign({}, state);
-            let { secondary } = newState;
+             let { secondary } = newState;
 
             // DiscoverG1QTD, DiscoverG2QTD, DiscoverG5QTD,
             processDiscoverQTDData(action.payload[6].data[0], action.payload[7].data[0], action.payload[8].data[0], secondary);
@@ -1134,6 +1149,417 @@ export function processFinancialProductWeek(newState, data) {
     newState[3].details.product.week = item4;
 }
 /**Discover**/
+//Traffic
+
+
+export function processTrafficSecondaryData(g5, newState) {
+
+ 
+    //Bounce Rate
+    newState[10].value = g5.BounceRateActual;
+    newState[10].target = 0;
+    // newState[10].vsqrf = g5.BounceRateActual;
+
+}
+export function processTrafficMultichartData(g5, newState) {
+
+   
+    let weekG5Flag = g5.map(item => {
+        return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
+    })
+    // _.orderBy(weekFlag, weekNo, ['asc'])
+
+
+    let newG5 = _.orderBy(weekG5Flag, ['weekNo'], ['asc']);
+
+        let traffic = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        },
+       
+        bounceRate = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        }
+
+
+    //Get Discover G5 Multichart values
+    for (let i = 0; i < g5.length; i++) {
+        let item = newG5[i];
+        //traffic
+        traffic.actual.push(item.TrafficActual);
+        traffic.target.push(item.TrafficTargetFQ);
+        traffic.ly.push(item.TrafficLY);
+        traffic.lq.push(item.TrafficLQ);
+        // Bounce
+        bounceRate.actual.push(item.BounceRateActual);
+        bounceRate.target.push(item.BounceRateTargetFQ);
+        bounceRate.ly.push(item.BounceRateLY);
+        bounceRate.lq.push(item.BounceRateLQ);
+
+    };
+    //Set Multichart Values
+    for (let i = 4; i < newState.length; i++) {
+        switch (i) {
+            case 4:
+                currentMulti = [traffic.actual, traffic.target, traffic.ly, traffic.lq];
+                break;
+            case 10:
+                // currentMulti = [bounceRate.actual, bounceRate.target, bounceRate.ly, bounceRate.lq];
+                break;
+            default:
+                break;
+        }
+        newState[i]['details'].multichart = currentMulti;
+    }
+}
+export function processTrafficQTDData(g5, newState) {
+    for (let i = 4; i < newState.length; i++) {
+
+
+        switch (i) {
+            // Traffic
+            case 4:
+                newState[i].details.qtdw.qtd[0].value = g5.TrafficActual;
+                newState[i].details.qtdw.qtd[1].value = g5.TrafficTargetFQ;
+                newState[i].details.qtdw.qtd[2].value = g5.TrafficVsQrfDiff;
+                newState[i].details.qtdw.qtd[3].value = g5.TrafficVsQrf;
+                newState[i].details.qtdw.qtd[4].value = g5.TrafficQQTY;
+                newState[i].details.qtdw.qtd[5].value = g5.TrafficYY;
+
+                newState[i].details.qtdw.week[0].value = g5.TrafficCW;
+                newState[i].details.qtdw.week[1].value = g5.TrafficTargetCW;
+                newState[i].details.qtdw.week[2].value = g5.TrafficVsQrfDiffCW;
+                newState[i].details.qtdw.week[3].value = g5.TrafficVsQrfCW;
+                newState[i].details.qtdw.week[4].value = g5.TrafficWW;
+
+                newState[i].details.stats[0].value = g5.TrafficVsQrf;
+                newState[i].details.stats[1].value = g5.TrafficQQTY;
+                newState[i].details.stats[2].value = g5.TrafficQQLY;
+                newState[i].details.stats[3].value = g5.TrafficYY;
+                break;
+            // Bounce Rate
+            case 10:
+                newState[i].details.qtdw.qtd[0].value = g5.BounceRateActual;
+                newState[i].details.qtdw.qtd[1].value = g5.BounceRateActual;
+                newState[i].details.qtdw.qtd[2].value = g5.BounceRateActual;
+                newState[i].details.qtdw.qtd[3].value = g5.BounceRateActual;
+                newState[i].details.qtdw.qtd[4].value = g5.BounceRateQQLY;
+                newState[i].details.qtdw.qtd[5].value = g5.BounceRateYY;
+
+                newState[i].details.qtdw.week[0].value = g5.BounceRateCW;
+                newState[i].details.qtdw.week[1].value = g5.BounceRateCW;
+                newState[i].details.qtdw.week[2].value = g5.BounceRateCW;
+                newState[i].details.qtdw.week[3].value = g5.BounceRateCW;
+                newState[i].details.qtdw.week[4].value = g5.BounceRateWW;
+
+                newState[i].details.stats[0].value = g5.BounceRateYY;
+                newState[i].details.stats[1].value = g5.BounceRateQQLY;
+                newState[i].details.stats[2].value = g5.BounceRateQQLY;
+                newState[i].details.stats[3].value = g5.BounceRateYY;
+                break;
+        }
+    }
+}
+export function processTrafficGeoQTDData(g5, newState) {
+    console.log(g5)
+    //Clear old Values
+    newState[4].details.geo.qtd = [];
+
+    newState[10].details.geo.qtd = [];
+    newState[4].details.geo.week = [];
+
+    newState[10].details.geo.week = [];
+
+
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let traffic = {
+            index: i,
+            actuals: item.TrafficActual,
+            marketArea: item.market_area_group,
+            qq: item.TrafficQQTY,
+            qrf: item.TrafficTargetFQ,
+            qrfDiff: item.TrafficVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.TrafficVsQrf,
+            yy: item.TrafficYY
+        }
+        let trafficPM =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.TrafficCW,
+            qrf: item.TrafficTargetCW,
+            qrfDiff: item.TrafficVsQrfDiffCW,
+            vsQrf: item.TrafficVsQrfCW,
+            ww: item.TrafficWW,
+            type: item.geo_code,
+        }
+        let bounce = {
+            index: i,
+            actuals: item.BounceRateActual,
+            marketArea: item.market_area_group,
+            qq: item.BounceRateActual,
+            qrf: item.BounceRateActual,
+            qrfDiff: item.BounceRateActual,
+            type: item.geo_code,
+            vsQrf: item.BounceRateYY,
+            yy: item.BounceRateYY
+        }
+        let bouncePM =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.BounceRateCW,
+            qrf: item.BounceRateCW,
+            qrfDiff: item.BounceRateWW,
+            vsQrf: item.BounceRateWW,
+            ww: item.BounceRateWW,
+            type: item.geo_code,
+        }
+        newState[4].details.geo.qtd.push(traffic);
+        newState[10].details.geo.qtd.push(bounce);
+        newState[4].details.geo.week.push(trafficPM);
+        newState[10].details.geo.week.push(bouncePM);
+    }
+}
+export function processTrafficMarketQTDData(g5, newState) {
+    //Clear old Values
+    newState[4].details.market.qtd = [];
+    
+    newState[10].details.market.qtd = [];
+    newState[4].details.market.week = [];
+ 
+    newState[10].details.market.week = [];
+
+   
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let traffic = {
+            index: i,
+            actuals: item.TrafficActual,
+            qq: item.TrafficQQTY,
+            qrf: item.TrafficTargetFQ,
+            qrfDiff: item.TrafficVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.TrafficVsQrf,
+            yy: item.TrafficYY
+        }
+        let trafficPM =
+        {
+            index: i,
+            actuals: item.TrafficCW,
+            qrf: item.TrafficTargetCW,
+            qrfDiff: item.TrafficVsQrfDiffCW,
+            vsQrf: item.TrafficVsQrfCW,
+            ww: item.TrafficWW,
+            type: item.market_area_code,
+        }
+        let bounce = {
+            index: i,
+            actuals: item.BounceRateActual,
+            qq: item.BounceRateActual,
+            qrf: item.BounceRateActual,
+            qrfDiff: item.BounceRateActual,
+            type: item.market_area_code,
+            vsQrf: item.BounceRateYY,
+            yy: item.BounceRateYY
+        }
+        let bouncePM =
+        {
+            index: i,
+            actuals: item.BounceRateCW,
+            qrf: item.BounceRateCW,
+            qrfDiff: item.BounceRateWW,
+            vsQrf: item.BounceRateWW,
+            ww: item.BounceRateWW,
+            type: item.market_area_code,
+        }
+        newState[4].details.market.qtd.push(traffic);
+        newState[10].details.market.qtd.push(bounce);
+        newState[4].details.market.week.push(trafficPM);
+        newState[10].details.market.week.push(bouncePM);
+    }
+}
+export function processTrafficWebSegmentQTDData(g5, newState) {
+    //Clear old Values
+    newState[4].details.segment.qtd = [];
+
+    newState[10].details.segment.qtd = [];
+    newState[4].details.segment.week = [];
+    
+    newState[10].details.segment.week = [];
+
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let traffic = {
+            index: i,
+            actuals: item.TrafficActual,
+            qq: item.TrafficQQTY,
+            qrf: item.TrafficTargetFQ,
+            qrfDiff: item.TrafficVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.TrafficVsQrf,
+            yy: item.TrafficYY
+        }
+        let trafficPM =
+        {
+            index: i,
+            actuals: item.TrafficCW,
+            qrf: item.TrafficTargetCW,
+            qrfDiff: item.TrafficVsQrfDiffCW,
+            vsQrf: item.TrafficVsQrfCW,
+            ww: item.TrafficWW,
+            type: item.segment_pivot,
+        }
+        let bounce = {
+            index: i,
+            actuals: item.BounceRateActual,
+            qq: item.BounceRateActual,
+            qrf: item.BounceRateActual,
+            qrfDiff: item.BounceRateActual,
+            type: item.segment_pivot,
+            vsQrf: item.BounceRateYY,
+            yy: item.BounceRateYY
+        }
+        let bouncePM =
+        {
+            index: i,
+            actuals: item.BounceRateCW,
+            qrf: item.BounceRateCW,
+            qrfDiff: item.BounceRateWW,
+            vsQrf: item.BounceRateWW,
+            ww: item.BounceRateWW,
+            type: item.segment_pivot,
+        }
+        newState[4].details.segment.qtd.push(traffic);
+        newState[10].details.segment.qtd.push(bounce);
+        newState[4].details.segment.week.push(trafficPM);
+        newState[10].details.segment.week.push(bouncePM);
+    }
+}
+export function processTrafficLTCQTDData(g5, newState) {
+
+    //Clear old Values
+    newState[4].details.routes.qtd = [];
+  
+    newState[10].details.routes.qtd = [];
+    newState[4].details.routes.week = [];
+   
+    newState[10].details.routes.week = [];
+
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let traffic = {
+            index: i,
+            actuals: item.TrafficActual,
+            qq: item.TrafficQQTY,
+            qrf: item.TrafficTargetFQ,
+            qrfDiff: item.TrafficVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.TrafficVsQrf,
+            yy: item.TrafficYY
+        }
+        let trafficPM =
+        {
+            index: i,
+            actuals: item.TrafficCW,
+            qrf: item.TrafficTargetCW,
+            qrfDiff: item.TrafficVsQrfDiffCW,
+            vsQrf: item.TrafficVsQrfCW,
+            ww: item.TrafficWW,
+            type: item.route_to_market,
+
+        }
+        let bounce = {
+            index: i,
+            actuals: item.BounceRateActual,
+            qq: item.BounceRateActual,
+            qrf: item.BounceRateActual,
+            qrfDiff: item.BounceRateActual,
+            type: item.route_to_market,
+            vsQrf: item.BounceRateYY,
+            yy: item.BounceRateYY
+        }
+        let bouncePM =
+        {
+            index: i,
+            actuals: item.BounceRateCW,
+            qrf: item.BounceRateCW,
+            qrfDiff: item.BounceRateWW,
+            vsQrf: item.BounceRateWW,
+            ww: item.BounceRateWW,
+            type: item.route_to_market,
+        }
+        newState[4].details.routes.qtd.push(traffic);
+        newState[10].details.routes.qtd.push(bounce);
+        newState[4].details.routes.week.push(trafficPM);
+        newState[10].details.routes.week.push(bouncePM);
+    }
+}
+export function processTrafficConvQTDData(g5, newState) {
+    //Clear old Values
+    newState[4].details.product.qtd = [];
+    newState[10].details.product.qtd = [];
+    newState[4].details.product.week = [];
+    newState[10].details.product.week = [];
+    
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let traffic = {
+            index: i,
+            actuals: item.TrafficActual,
+            qq: item.TrafficQQTY,
+            qrf: item.TrafficTargetFQ,
+            qrfDiff: item.TrafficVsQrfDiff,
+            type: item.product_category,
+            vsQrf: item.TrafficVsQrf,
+            yy: item.TrafficYY
+        }
+        let trafficPM =
+        {
+            index: i,
+            actuals: item.TrafficCW,
+            qrf: item.TrafficTargetCW,
+            qrfDiff: item.TrafficVsQrfDiffCW,
+            vsQrf: item.TrafficVsQrfCW,
+            ww: item.TrafficWW,
+            type: item.product_category,
+
+        }
+        let bounce = {
+            index: i,
+            actuals: item.BounceRateActual,
+            qq: item.BounceRateActual,
+            qrf: item.BounceRateActual,
+            qrfDiff: item.BounceRateActual,
+            type: item.product_category,
+            vsQrf: item.BounceRateYY,
+            yy: item.BounceRateYY
+        }
+        let bouncePM =
+        {
+            index: i,
+            actuals: item.BounceRateCW,
+            qrf: item.BounceRateCW,
+            qrfDiff: item.BounceRateWW,
+            vsQrf: item.BounceRateWW,
+            ww: item.BounceRateWW,
+            type: item.product_category,
+        }
+        newState[4].details.product.qtd.push(traffic);
+        newState[10].details.product.qtd.push(bounce);
+        newState[4].details.product.week.push(trafficPM);
+        newState[10].details.product.week.push(bouncePM);
+    }
+}
+//End Traffic
+
 export function processDiscoverSecondaryData(g1, g2, g5, newState) {
 
     console.log(g2)

@@ -44,6 +44,18 @@ export default function (state = {
     routes: {
         availableFilters: [],
         valueFilters: []
+    },
+    webSegments: {
+        availableFilters: [],
+        valueFilters: []
+    },
+    lastTouchChannel: {
+        availableFilters: [],
+        valueFilters: []
+    },
+    visits: {
+        availableFilters: [],
+        valueFilters: []
     }
 }, action) {
     switch (action.type) {
@@ -62,6 +74,10 @@ export default function (state = {
             copyOfState = JSON.parse(JSON.stringify(state))
             copyOfState.quarters.valueFilters.push({ index: 211, category: "quarters", value: '2019-Q1' });
             copyOfState.segments.valueFilters.push({ index: 209, category: "segments", value: 'Digital Media' });
+            copyOfState.webSegments.valueFilters.push({ index: 187, category: "web", value: 'DIGITAL MEDIA' });
+            copyOfState.lastTouchChannel.valueFilters.push({ index: 129, category: "channel", value: 'ALL' });
+            copyOfState.visits.valueFilters.push({ index: 111, category: "visit", value: 'All Visits' });
+
             copyOfState.routes.valueFilters = action.payload.routeFilters;
             copyOfState.markets.valueFilters = action.payload.marketFilters;
             copyOfState.products.valueFilters = action.payload.productFilters;
@@ -80,13 +96,16 @@ export default function (state = {
             let geosFilters = action.payload[6].data;
             let channelFilters = action.payload[7].data;
             let visitFilters = action.payload[8].data;
-            let signFilters = action.payload[9].data;
-            // let lastTouch = action.payload[10].data;
-            // let signUpApp = action.payload[11].data;
-            // let productCategory = action.payload[12].data;
-            // let pvw = action.payload[13].data;
-            // let category = action.payload[14].data;
-            // let webSegments = action.payload[15].data;
+            let CloudTypeFilters = action.payload[9].data
+            let ConvTypeFilters = action.payload[10].data
+            let DiscoverVsBuyFilters = action.payload[11].data
+            let LastTouchChannelFilters = action.payload[12].data
+            let MobileVsDesktopFilters = action.payload[13].data
+            let NewVsRepeatFilters = action.payload[14].data
+            let ProdNameFilters = action.payload[15].data
+            let SignupAppFilters = action.payload[16].data
+            let SignupCatFilters = action.payload[17].data
+            let WebSegFilters = action.payload[18].data
 
             let newGeoState = processDropDownListFilterValue('geos', geosFilters);
             let newMAState = processDropDownListFilterValue('markets', marketsFilters);
@@ -95,24 +114,27 @@ export default function (state = {
             let newSegmentsState = processDropDownListFilterValue('segments', segmentsFilters);
             let newSubscriptionState = processDropDownListFilterValue('subscriptions', subscriptionsFilters);
             let newQuartersState = processDropDownListFilterValue('quarters', quarterFilters);
-            let newChannelState = processDropDownListFilterValue('channel', channelFilters);
             let newVisitState = processDropDownListFilterValue('visit', visitFilters);
-            let newSignState = processDropDownListFilterValue('sign', signFilters);
-            /**
-            let newLastTouchState = processDropDownListFilterValue('lastTouch', lastTouch);
-            let newSignUpAppState = processDropDownListFilterValue('signUpApp', signUpApp);
-            let newProductCategoryState = processDropDownListFilterValue('productCategory', productCategory);
-            let newPVWState = processDropDownListFilterValue('pvw', pvw);
-            let newCategoryState = processDropDownListFilterValue('category', category);
-            let newWebSegmentsState = processDropDownListFilterValue('webSegments', webSegments);
 
-             * 
-             */
+            let newCloud = processDropDownListFilterValue('cloud', CloudTypeFilters);
+            let newConv = processDropDownListFilterValue('conv', ConvTypeFilters);
+            let newDiscBuy = processDropDownListFilterValue('discoverbuy', DiscoverVsBuyFilters);
+            let newChannelState = processDropDownListFilterValue('channel', LastTouchChannelFilters);
+            let newMobileDesk = processDropDownListFilterValue('mobiledesktop', MobileVsDesktopFilters);
+            let newVsRepeat = processDropDownListFilterValue('vsrepeat', NewVsRepeatFilters);
+            let newProdName = processDropDownListFilterValue('prodName', ProdNameFilters);
+            let newSignApp = processDropDownListFilterValue('signUpApp', SignupAppFilters);
+            let newSignCat = processDropDownListFilterValue('signUpCat', SignupCatFilters);
+            let newWeb = processDropDownListFilterValue('web', WebSegFilters);
+
+
+
 
 
 
             let arr = [...newQuartersState, ...newGeoState, ...newMAState, ...newProductState, ...newRouteState, ...newSegmentsState, ...newSubscriptionState,
-            ...newChannelState, ...newVisitState, ...newSignState];
+            ...newChannelState, ...newVisitState,...newCloud,...newConv,...newDiscBuy,...newMobileDesk,...newVsRepeat,...newProdName,...newSignApp,
+            ...newSignCat,...newWeb];
             let obj =
             {
                 combined: {
@@ -147,7 +169,7 @@ export default function (state = {
                     availableFilters: newRouteState,
                     valueFilters: []
                 },
-                channels: {
+                lastTouchChannel: {
                     availableFilters: newChannelState,
                     valueFilters: []
                 },
@@ -155,35 +177,43 @@ export default function (state = {
                     availableFilters: newVisitState,
                     valueFilters: []
                 },
-                signupSource: {
-                    availableFilters: newSignState,
+                signupCategory: {
+                    availableFilters: newSignCat,
                     valueFilters: []
                 },
-                lastTouchChannel: {
-                    availableFilters: [],
-                    valueFilters: []
-                },
+                
                 signupApp: {
-                    availableFilters: [],
+                    availableFilters: newSignApp,
                     valueFilters: []
                 },
-                productCategory: {
-                    availableFilters: [],
+                productName: {
+                    availableFilters: newProdName,
                     valueFilters: []
                 },
                 webSegments: {
-                    availableFilters: [],
+                    availableFilters: newWeb,
                     valueFilters: []
                 },
-                pvw: {
-                    availableFilters: [],
+                cloudType: {
+                    availableFilters: newCloud,
                     valueFilters: []
                 },
-                category: {
-                    availableFilters: [],
+                convType: {
+                    availableFilters: newConv,
+                    valueFilters: []
+                },
+                mobileDesktop: {
+                    availableFilters: newMobileDesk,
+                    valueFilters: []
+                },
+                discoverBuy: {
+                    availableFilters: newDiscBuy,
+                    valueFilters: []
+                },
+                newVsRepeat: {
+                    availableFilters: newVsRepeat,
                     valueFilters: []
                 }
-
             }
             console.log(obj);
             return obj;
@@ -385,7 +415,7 @@ function processDropDownListFilterValue(type, data) {
                 return {
                     index: count++,
                     category: type,
-                    value: item['channel']
+                    value: item['last_touch_channel']
                 }
             });
             return newArr;
@@ -398,7 +428,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'sign':
+        case 'signUpCat':
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -407,30 +437,22 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'lastTouch':
-            newArr = newArr.map(item => {
-                return {
-                    index: count++,
-                    category: type,
-                    value: item['last_touch_channel']
-                }
-            });
-            return newArr;
+
         case 'signUpApp':
             newArr = newArr.map(item => {
                 return {
                     index: count++,
                     category: type,
-                    value: item['signup_app_category']
+                    value: item['signup_app']
                 }
             });
             return newArr;
-        case 'productCategory':
+        case 'prodName':
             newArr = newArr.map(item => {
                 return {
                     index: count++,
                     category: type,
-                    value: item['product_category']
+                    value: item['product_name']
                 }
             });
             return newArr;
@@ -452,12 +474,57 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'webSegments':
+        case 'web':
             newArr = newArr.map(item => {
                 return {
                     index: count++,
                     category: type,
-                    value: item['web_segments']
+                    value: item['web_segment']
+                }
+            });
+            return newArr;
+        case 'cloud':
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['cloud_type']
+                }
+            });
+            return newArr;
+        case 'conv':
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['conversion_type']
+                }
+            });
+            return newArr;
+        case 'discoverbuy':
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['discover_vs_buy']
+                }
+            });
+            return newArr;
+        case 'mobiledesktop':
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['mobile_or_desktop']
+                }
+            });
+            return newArr;
+        case 'vsrepeat':
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['new_or_repeat']
                 }
             });
             return newArr;

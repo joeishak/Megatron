@@ -45,6 +45,36 @@ let filterParams = [
         value: ''
     }
 ];
+let trafficParams = [
+    {
+        prompt: 'geoFilters',
+        value: ''
+    },
+    {
+        prompt: 'quarterFilters',
+        value: ''
+    },
+    {
+        prompt: 'maFilters',
+        value: ''
+    },
+    {
+        prompt: 'WebSegFilters',
+        value: ''
+    },
+    {
+        prompt: 'VisitTypeFilters',
+        value: ''
+    },
+    {
+        prompt: 'LastTouchChannelFilters',
+        value: ''
+    },
+    {
+        prompt: 'ConvTypeFilters',
+        value: ''
+    }
+]
 
 let group1Params = [
     {
@@ -334,11 +364,15 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[4].value = getParamValues(_activeParams.products, allFilters.products);
 
             break;
+        //Traffic
         case 5:
-            filterParams[0].value = getParamValues(_activeParams.quarters, allFilters.quarters);
-            filterParams[1].value = getParamValues(_activeParams.geos, allFilters.geos);
+            filterParams[0].value = getParamValues(_activeParams.geos, allFilters.geos);
+            filterParams[1].value = getParamValues(_activeParams.quarters, allFilters.quarters);
             filterParams[2].value = getParamValues(_activeParams.markets, allFilters.marketAreas);
-            filterParams[3].value = getParamValues(_activeParams.segments, allFilters.segments);
+            filterParams[3].value = getParamValues(_activeParams.webSegments, allFilters.webSegments);
+            filterParams[4].value = getParamValues(_activeParams.visits, allFilters.visits);
+            filterParams[5].value = getParamValues(_activeParams.lastTouchChannel, allFilters.lastTouchChannel);
+            filterParams[6].value = getParamValues(_activeParams.convType, allFilters.convType);
             break;
         case 6:
             filterParams[0].value = getParamValues(_activeParams.quarters, allFilters.quarters);
@@ -454,12 +488,58 @@ export function initiateFilterDataRequests() {
         headers: headers,
         responseType: 'text'
     });
-    const signResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.SignUpFilters, {
+
+    const CloudTypeFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.CloudTypeFilters, {
         headers: headers,
         responseType: 'text'
     });
+
+    const ConvTypeFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.ConvTypeFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverVsBuyFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.DiscoverVsBuyFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    const LastTouchChannelFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.LastTouchChannelFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    const MobileVsDesktopFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.MobileVsDesktopFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    const NewVsRepeatFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.NewVsRepeatFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    const ProdNameFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.ProdNameFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    const SignupAppFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.SignupAppFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    const SignupCatFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.SignupCatFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    const WebSegFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.WebSegFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+
     responseArray.push(quartersResponse, maResponse, productResponse, segementsResponse,
-        subscriptionResponse, routesResponse, geoResponse, channelResponse, visitResponse, signResponse);
+        subscriptionResponse, routesResponse, geoResponse, channelResponse, visitResponse,
+        CloudTypeFilters, ConvTypeFilters, DiscoverVsBuyFilters, LastTouchChannelFilters,
+        MobileVsDesktopFilters, NewVsRepeatFilters, ProdNameFilters, SignupAppFilters, SignupCatFilters, WebSegFilters);
     let promiseArr1 = Promise.all(responseArray);
     return promiseArr1;
 }
@@ -473,8 +553,9 @@ export function requestPrimaryData(allFilters, _parameters) {
     filterParams[5].value = _parameters.routes.length > 0 ? _parameters.routes[0].value : allFilters.routes;
 
     //Generate the filter list 
+    console.log('Utils 556: ', allFilters, _parameters)
     generateFilterParams(2, group2Params, allFilters, _parameters);
-    generateFilterParams(5, group5Params, allFilters, _parameters);
+    generateFilterParams(5, trafficParams, allFilters, _parameters);
     generateFilterParams(8, group8Params, allFilters, _parameters);
 
 
@@ -487,7 +568,7 @@ export function requestPrimaryData(allFilters, _parameters) {
 
     }, '');
 
-    let params5 = group5Params.reduce((prev, param) => {
+    let params5 = trafficParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
@@ -508,7 +589,8 @@ export function requestPrimaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    const primaryDiscover = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverActualTargetPrimary + params5 + '&json=1', {
+    console.log("FEtching Dsicover: ", Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficPrimary + params5 + '&json=1')
+    const primaryDiscover = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficPrimary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -597,12 +679,93 @@ export function requestFinanceSecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+export function requestTrafficSecondaryData(allFilters, _parameters) {
+    responseArray = [];
+    generateFilterParams(5, trafficParams, allFilters, _parameters);
+    let params5 = trafficParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
+
+    const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Multichart
+
+    const DiscoverG5Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficMutlichart + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //QTD
+
+    const DiscoverG5QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    //Geo QTD
+
+    const DiscoverG5GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficGeoQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    //Market QTD
+
+    const DiscoverG5MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficMAQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+    // Web Segment QTD
+
+    const DiscoverG5SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficWebSegQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+
+    //LTC QTD
+
+    const DiscoverGLTCQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficLTCQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+    //Conv QTD
+
+    const DiscoverG5ConvQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficConvTypeQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+
+    responseArray.push(
+        DiscoverG5Secondary,
+        DiscoverG5Multichart,
+        DiscoverG5QTD,
+        DiscoverG5GeoQTD,
+        DiscoverG5MarketQTD,
+        DiscoverG5SegmentQTD,
+        DiscoverGLTCQTD,
+        DiscoverG5ConvQTD
+    );
+    let promiseArr = Promise.all(responseArray);
+
+    return promiseArr;
+}
 
 export function requestDiscoverSecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(1, group1Params, allFilters, _parameters);
     generateFilterParams(2, group2Params, allFilters, _parameters);
-    generateFilterParams(5, group5Params, allFilters, _parameters);
+    generateFilterParams(5, trafficParams, allFilters, _parameters);
 
 
     let params1 = group1Params.reduce((prev, param) => {
@@ -615,7 +778,7 @@ export function requestDiscoverSecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-    let params5 = group5Params.reduce((prev, param) => {
+    let params5 = trafficParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
@@ -630,7 +793,7 @@ export function requestDiscoverSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5ActualTargetSecondary + params5 + '&json=1', {
+    const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -643,7 +806,7 @@ export function requestDiscoverSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    const DiscoverG5Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5MultiChartQuery + params5 + '&json=1', {
+    const DiscoverG5Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficMutlichart + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -656,7 +819,7 @@ export function requestDiscoverSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    const DiscoverG5QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5QTD + params5 + '&json=1', {
+    const DiscoverG5QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -670,7 +833,7 @@ export function requestDiscoverSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    const DiscoverG5GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5GeoQTD + params5 + '&json=1', {
+    const DiscoverG5GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficGeoQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -684,7 +847,7 @@ export function requestDiscoverSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    const DiscoverG5MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5MarketAreaQTD + params5 + '&json=1', {
+    const DiscoverG5MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficMAQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -699,7 +862,7 @@ export function requestDiscoverSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    const DiscoverG5SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5SegmentQTD + params5 + '&json=1', {
+    const DiscoverG5SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficWebSegQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -711,11 +874,11 @@ export function requestDiscoverSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    const DiscoverG5RouteQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2RouteQTD + params2 + '&json=1', {
+    const DiscoverG2RouteQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG2RouteQTD + params2 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const DiscoverG2RouteQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5RouteQTD + params5 + '&json=1', {
+    const DiscoverGLTCQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficLTCQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -730,7 +893,7 @@ export function requestDiscoverSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    const DiscoverG5ProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.DiscoverG5ProductQTD + params5 + '&json=1', {
+    const DiscoverG5ConvQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.discoverXDCID + Infoburst.summaryQueryNames.TrafficConvTypeQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -743,8 +906,8 @@ export function requestDiscoverSecondaryData(allFilters, _parameters) {
         DiscoverG1GeoQTD, DiscoverG2GeoQTD, DiscoverG5GeoQTD,
         DiscoverG1MarketQTD, DiscoverG2MarketQTD, DiscoverG5MarketQTD,
         DiscoverG1SegmentQTD, DiscoverG2SegmentQTD, DiscoverG5SegmentQTD,
-        DiscoverG1RouteQTD, DiscoverG5RouteQTD, DiscoverG2RouteQTD,
-        DiscoverG1ProductQTD, DiscoverG2ProductQTD, DiscoverG5ProductQTD
+        DiscoverG1RouteQTD, DiscoverGLTCQTD, DiscoverG2RouteQTD,
+        DiscoverG1ProductQTD, DiscoverG2ProductQTD, DiscoverG5ConvQTD
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -1910,32 +2073,32 @@ export function getLabelColor(value, target, secondaryCardIndex) {
     if (secondaryCardIndex === 2) {
         if (target === 0) {
             retColor = 'neutralBG';
-          } else if (value >= target) {
+        } else if (value >= target) {
             retColor = 'redBG';
-          } else {
+        } else {
             retColor = 'greenBG';
-          }
+        }
     } else {
         if (target === 0) {
             retColor = 'neutralBG';
-          } else if (value >= target) {
+        } else if (value >= target) {
             retColor = 'greenBG';
-          } else {
+        } else {
             retColor = 'redBG';
-          }
+        }
     }
 
     return retColor;
 }
 
-export function getLabelColorPrimary (value, target) {
+export function getLabelColorPrimary(value, target) {
     let retColor = "";
     if (target === 0) {
-      retColor = 'selectedCardFontColorNeutral';
+        retColor = 'selectedCardFontColorNeutral';
     } else if (value >= target) {
-      retColor = 'selectedCardFontColorGreen';
+        retColor = 'selectedCardFontColorGreen';
     } else {
-      retColor = 'selectedCardFontColorRed';
+        retColor = 'selectedCardFontColorRed';
     }
     return retColor;
-  }
+}

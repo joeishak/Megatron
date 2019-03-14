@@ -185,22 +185,22 @@ class CustomDropDownPanel extends Component {
                         </div>
                     </div>
                 );
-            case 1:
-                return (
-                    <div className="col-lg-12 globalPrimaryKPIFilters">
-                        <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Segment</p>
-                            <SingleValueSelect
-                                activeFilters={filters.segments.valueFilters}
-                                options={filters.segments.availableFilters}
-                                onValueChange={this.updateSingleValue}
-                                onMenuClose={this.closeSingleValue}
-                            />
+            // case 1:
+            //     return (
+            //         <div className="col-lg-12 globalPrimaryKPIFilters">
+            //             <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
+            //             <div className={quarterFilterContainer + ' col-lg-2'} >
+            //                 <p> Web Segment</p>
+            //                 <SingleValueSelect
+            //                     activeFilters={filters.webSegments.valueFilters}
+            //                     options={filters.webSegments.availableFilters}
+            //                     onValueChange={this.updateSingleValue}
+            //                     onMenuClose={this.closeSingleValue}
+            //                 />
 
-                        </div>
-                    </div>
-                );
+            //             </div>
+            //         </div>
+            //     );
             case 2:
                 return (
                     <div className="col-lg-12 globalPrimaryKPIFilters">

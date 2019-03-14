@@ -87,13 +87,13 @@ class Summary extends Component {
 
     // Boolean Rule Tests
     let preferencesAreLoaded = Object.keys(prevProps.preferences).length === 0 && this.props.preferences.geoFilters !== undefined;
-    let filtersAreLoaded = prevProps.filters.combined.availableFilters.length === 0 && this.props.filters.combined.availableFilters.length > 0;
+    let filtersAreLoaded = Object.keys(this.props.filters).length === 19 && Object.keys(prevProps.filters).length === 11;
     let appIsReadyToRequestSummaryData = prevProps.filters.combined.valueFilters.length === 0 && this.props.filters.combined.valueFilters.length > 0;
     let appInitialLoadIsComplete = this.props.NEwQTDW.qtd.length !== 0;
 
-
+    console.log(this.props.filters);
     //Handle Boolean Test Results
-    if (filtersAreLoaded) {
+    if (filtersAreLoaded ) {
       console.log('Just Recieved filters');
       this.setState({ filtersAreLoaded: true });
     }
@@ -104,8 +104,8 @@ class Summary extends Component {
       this.setState({ preferncesAreAddedToFilters: true })
     }
 
-    //Initial App Loads on Finance Tab
-    if (appIsReadyToRequestSummaryData && this.state.preferncesAreAddedToFilters === true) {
+    // //Initial App Loads on Finance Tab
+    if (appIsReadyToRequestSummaryData===true && this.state.filtersAreLoaded===true &&  this.state.preferncesAreAddedToFilters === true) {
       console.log('Both Preferences and Filters are loaded');
       this.props.getFinanceSecondaryData(this.props.filters);
       this.props.getPrimaryData(this.props.filters);
@@ -123,7 +123,8 @@ class Summary extends Component {
           break;
         case 1:
           console.log('Fetching Discover')
-          this.props.getDiscoverSecondaryData(this.props.filters);
+          // this.props.getDiscoverSecondaryData(this.props.filters);
+          this.props.getTrafficSecondaryData(this.props.filters);
           break;
         case 2:
           console.log('Fetching Try')
@@ -186,9 +187,9 @@ class Summary extends Component {
       this.setState({ isLoading: false, isInitiallyLoading: false });
       this.props.isFetching(false);
     }
-    if (this.props.activePrimaryCard.index > 0) {
-      this.props.updateMultichartMetric(true);
-    }
+    // if (this.props.activePrimaryCard.index > 0) {
+    //   this.props.updateMultichartMetric(true);
+    // }
   }
 
 
