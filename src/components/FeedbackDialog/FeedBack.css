@@ -1,0 +1,24 @@
+.feedback-container {
+    height: 490px;
+    font-weight: 600;
+}
+
+.feedback-btn {
+    text-align: center;
+    margin-top: 77px;
+}
+
+.f-headers {
+    font-weight: 600;
+    color: black !important;
+}
+
+.error-box {
+    margin-top: 200px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.error-btn {
+    margin-top: 200px;
+}

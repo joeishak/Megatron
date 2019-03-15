@@ -17,6 +17,7 @@ import CommentPanel from "components/CommentPanel/CommentPanel";
 // import Playground from "../../components/MobileComponents/Playground/Playground.jsx";
 import SummaryViewDetails from "components/SummaryViewDetails/SummaryViewDetails";
 import KendoDialog from "../../components/KendoDialog/KendoDialog";
+import FeedBackDialog from "../../components/FeedbackDialog/FeedBack";
 import PrimaryContentList from "../../components/PrimaryContent/PrimaryContentList.jsx";
 import SecondaryContentList from "../../components/SecondaryContent/SecondaryContentList.jsx";
 import {
@@ -200,7 +201,6 @@ class Summary extends Component {
     // }
   }
 
-
   updateActivePrimary(index) {
     this.props.updateActivePrimaryCard(index);
     // this.setState({ isLoading: true });
@@ -236,11 +236,13 @@ class Summary extends Component {
       this.updateMobileView(SECONDARY, true);
     }
   }
+
   updateActiveSecondary(index) {
     this.props.isFetching(true);
     this.props.fetchComments(index);
     this.props.updateActiveSecondaryCard(index);
   }
+
   updateMobileView(updateComponent, toUpdateTo) {
     //If the user is on Secondary
     if (updateComponent === SECONDARY) {
@@ -262,6 +264,10 @@ class Summary extends Component {
     this.props.isFetching(true);
     this.props.showCommentBox();
   };
+
+  onFeedbackClick = (e) => {
+    console.log('FEEDBACK CLICKED IN SUMMARY');
+  }
 
   getPrimaryContent = () => {
     return (
@@ -311,6 +317,8 @@ class Summary extends Component {
   render() {
     const { user } = this.props;
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
+    const feedbackDialog = this.props.feedbackIsOpen ? <FeedBackDialog /> : null;
+    
     const isMobileOrTablet = utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet');
     const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails secondaryData={this.props.secondaryData} />;
 
@@ -319,11 +327,11 @@ class Summary extends Component {
 
         {kdialog}
 
+        {feedbackDialog}
+
         {/* Navigation*/}
 
-        <Navigation
-
-          mobileFiltersIsShown={this.props.mobileFiltersIsShown} />
+        <Navigation mobileFiltersIsShown = {this.props.mobileFiltersIsShown} />
 
         {
           this.state.isLoading === true ? <LoadingScreen /> :
@@ -385,7 +393,7 @@ class Summary extends Component {
 }
 
 function mapStateToProps(state) {
-
+  console.log(state);
   return {
     authenticated: state.authenticated,
     statsDetails: state.summaryData.secondary[state.activeCards.secondary].details.stats,
@@ -408,7 +416,8 @@ function mapStateToProps(state) {
     mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible,
     filters: state.filters,
     NEwQTDW: state.summaryData.secondary[0].details.qtdw,
-    commentsPackage: state.commentsPackage
+    commentsPackage: state.commentsPackage,
+    feedbackIsOpen: state.isFeedBackDialogOpen
   };
 }
 export default connect(
