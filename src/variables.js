@@ -374,11 +374,11 @@ export const SecondaryData = [
 
                 ]
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -390,7 +390,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -402,7 +402,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -414,7 +414,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -428,7 +428,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -439,7 +439,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -450,7 +450,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -461,7 +461,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -475,7 +475,7 @@ export const SecondaryData = [
                     {
                         index: 0,
                         qtd: {
-                            routes: 'RESELLER',
+                            route: 'RESELLER',
                             actuals: 66.7,
                             units: 751.1,
                             qrf: 70.2,
@@ -486,7 +486,7 @@ export const SecondaryData = [
                             type: 'ANZ'
                         },
                         week: {
-                            routes: 'US',
+                            route: 'US',
                             actuals: 66.7,
                             units: 751.1,
                             qrf: 70.2,
@@ -1141,11 +1141,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -1157,7 +1157,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -1169,7 +1169,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -1181,7 +1181,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -1195,7 +1195,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -1206,7 +1206,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -1217,7 +1217,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -1228,7 +1228,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -1242,7 +1242,7 @@ export const SecondaryData = [
                     {
                         index: 0,
                         qtd: {
-                            routes: 'RESELLER',
+                            route: 'RESELLER',
                             actuals: 66.7,
                             units: 751.1,
                             qrf: 70.2,
@@ -1253,7 +1253,7 @@ export const SecondaryData = [
                             type: 'ANZ'
                         },
                         week: {
-                            routes: 'US',
+                            route: 'US',
                             actuals: 66.7,
                             units: 751.1,
                             qrf: 70.2,
@@ -1908,11 +1908,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -1924,7 +1924,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -1936,7 +1936,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -1948,7 +1948,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -1962,7 +1962,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -1973,7 +1973,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -1984,7 +1984,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -1995,7 +1995,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -2009,7 +2009,7 @@ export const SecondaryData = [
                     {
                         index: 0,
                         qtd: {
-                            routes: 'RESELLER',
+                            route: 'RESELLER',
                             actuals: 66.7,
                             units: 751.1,
                             qrf: 70.2,
@@ -2020,7 +2020,7 @@ export const SecondaryData = [
                             type: 'ANZ'
                         },
                         week: {
-                            routes: 'US',
+                            route: 'US',
                             actuals: 66.7,
                             units: 751.1,
                             qrf: 70.2,
@@ -2675,11 +2675,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -2691,7 +2691,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -2703,7 +2703,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -2715,7 +2715,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -2729,7 +2729,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -2740,7 +2740,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -2751,7 +2751,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -2762,7 +2762,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         units: 751.1,
                         qrf: 70.2,
@@ -2776,7 +2776,7 @@ export const SecondaryData = [
                     {
                         index: 0,
                         qtd: {
-                            routes: 'RESELLER',
+                            route: 'RESELLER',
                             actuals: 66.7,
                             units: 751.1,
                             qrf: 70.2,
@@ -2787,7 +2787,7 @@ export const SecondaryData = [
                             type: 'ANZ'
                         },
                         week: {
-                            routes: 'US',
+                            route: 'US',
                             actuals: 66.7,
                             units: 751.1,
                             qrf: 70.2,
@@ -3423,11 +3423,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -3438,7 +3438,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -3449,7 +3449,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -3460,7 +3460,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -3473,7 +3473,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -3483,7 +3483,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -3493,7 +3493,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -3503,7 +3503,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4209,11 +4209,11 @@ export const SecondaryData = [
                     }
                 ]
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4224,7 +4224,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4235,7 +4235,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4246,7 +4246,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4259,7 +4259,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4269,7 +4269,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4279,7 +4279,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4289,7 +4289,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4725,11 +4725,11 @@ export const SecondaryData = [
                     }
                 ]
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4740,7 +4740,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4751,7 +4751,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4762,7 +4762,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4775,7 +4775,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4785,7 +4785,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4795,7 +4795,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -4805,7 +4805,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5156,11 +5156,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5171,7 +5171,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5182,7 +5182,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5193,7 +5193,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5206,7 +5206,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5216,7 +5216,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5226,7 +5226,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5236,7 +5236,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5582,11 +5582,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5597,7 +5597,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5608,7 +5608,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5619,7 +5619,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5632,7 +5632,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5642,7 +5642,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5652,7 +5652,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5662,7 +5662,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -5877,432 +5877,432 @@ export const SecondaryData = [
         },
         valueType: 'units'
     },
-    {
-        index: 9,
-        category: 1,
-        header: 'New UQFMs',
-        value: .746,
-        target: .97766,
-        comments: [
+    // {
+    //     index: 9,
+    //     category: 1,
+    //     header: 'New UQFMs',
+    //     value: .746,
+    //     target: .97766,
+    //     comments: [
 
-        ],
-        details: {
-            multichart: [
-                [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
-                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
-                [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
-                [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
-            ],
-            qtdw: {
-                qtd: [
-                    {
-                        index: 1,
-                        header: 'Actuals',
-                        value: 66.7
-                    },
-                    {
-                        index: 3,
-                        header: 'QRF',
-                        value: 66.7
-                    },
-                    {
-                        index: 4,
-                        header: 'QRF Diff',
-                        value: 66.7
-                    },
-                    {
-                        index: 5,
-                        header: 'Vs Qrf',
-                        value: 66.7
-                    },
-                    {
-                        index: 6,
-                        header: 'Q/Q',
-                        value: 66.7
-                    },
-                    {
-                        index: 7,
-                        header: 'Y/Y',
-                        value: 66.7
-                    }
-                ],
-                week: [
-                    {
-                        index: 1,
-                        header: 'Actuals',
-                        value: 66.7
-                    },
-                    {
-                        index: 3,
-                        header: 'QRF',
-                        value: 66.7
-                    },
-                    {
-                        index: 4,
-                        header: 'QRF Diff',
-                        value: 66.7
-                    },
-                    {
-                        index: 5,
-                        header: 'Vs Qrf',
-                        value: 66.7
-                    },
-                    {
-                        index: 6,
-                        header: 'W/W',
-                        value: 66.7
-                    }
-                ]
-            },
-            geo: {
-                qtd: [
-                    {
-                        index: 0,
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        qq: -20.00,
-                        yy: -.0733,
-                        type: 'AMER'
-                    }
-                ],
-                week: [
-                    {
-                        index: 0,
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        ww: -20.00,
-                        type: 'AMER'
-                    }
-                ],
-                all: []
-            },
-            market: {
-                qtd: [
-                    {
-                        index: 0,
-                        marketArea: 'ADOBE.COM/CC.COM',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        qq: -20.00,
-                        yy: -.0733,
-                        type: 'US'
-                    }
-                ],
-                week: [
-                    {
-                        index: 0,
-                        marketArea: 'ADOBE.COM/CC.COM',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        ww: -20.00,
-                        type: 'US'
-                    }
-                ],
-                all: []
-            },
-            routes: {
-                qtd: [
-                    {
-                        index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        qq: -20.00,
-                        yy: -.0733,
-                        type: 'US'
-                    },
-                    {
-                        index: 1,
-                        routes: 'E-TAIL/RETAIL',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        qq: -20.00,
-                        yy: -.0733,
-                        type: 'ROW'
-                    },
-                    {
-                        index: 2,
-                        routes: 'E-TAIL/RETAIL',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        qq: -20.00,
-                        yy: -.0733,
-                        type: 'ROW'
-                    },
-                    {
-                        index: 3,
-                        routes: 'RESELLER',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        qq: -20.00,
-                        yy: -.0733,
-                        type: 'ANZ'
-                    }
-                ],
-                week: [
-                    {
-                        index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        ww: -20.00,
-                        type: 'US'
-                    },
-                    {
-                        index: 1,
-                        routes: 'E-TAIL/RETAIL',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        ww: -20.00,
-                        type: 'ROW'
-                    },
-                    {
-                        index: 2,
-                        routes: 'E-TAIL/RETAIL',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        ww: -20.00,
-                        type: 'ROW'
-                    },
-                    {
-                        index: 3,
-                        routes: 'RESELLER',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        ww: -20.00,
-                        type: 'ANZ'
-                    }
-                ]
-            },
-            segment: {
-                qtd: [
-                    {
-                        index: 0,
-                        segment: 'ADOBE.COM/CC.COM',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        qq: -20.00,
-                        yy: -.0733,
-                        type: 'US'
-                    },
-                    {
-                        index: 1,
-                        segment: 'E-TAIL/RETAIL',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        qq: -20.00,
-                        yy: -.0733,
-                        type: 'ROW'
-                    },
-                    {
-                        index: 2,
-                        segment: 'E-TAIL/RETAIL',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        qq: -20.00,
-                        yy: -.0733,
-                        type: 'ROW'
-                    },
-                    {
-                        index: 3,
-                        segment: 'RESELLER',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        qq: -20.00,
-                        yy: -.0733,
-                        type: 'ANZ'
-                    }
-                ],
-                week: [
-                    {
-                        index: 0,
-                        segment: 'ADOBE.COM/CC.COM',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        ww: -20.00,
-                        type: 'US'
-                    },
-                    {
-                        index: 1,
-                        segment: 'E-TAIL/RETAIL',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        ww: -20.00,
-                        type: 'ROW'
-                    },
-                    {
-                        index: 2,
-                        segment: 'E-TAIL/RETAIL',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        ww: -20.00,
-                        type: 'ROW'
-                    },
-                    {
-                        index: 3,
-                        segment: 'RESELLER',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        ww: -20.00,
-                        type: 'ANZ'
-                    }
-                ]
-            },
-            product: {
-                qtd: [
-                    {
-                        index: 0,
-                        product: 'ADOBE.COM/CC.COM',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        qq: -20.00,
-                        yy: -.0733,
-                        type: 'US'
-                    },
-                    {
-                        index: 1,
-                        product: 'E-TAIL/RETAIL',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        qq: -20.00,
-                        yy: -.0733,
-                        type: 'ROW'
-                    },
-                    {
-                        index: 2,
-                        product: 'E-TAIL/RETAIL',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        qq: -20.00,
-                        yy: -.0733,
-                        type: 'ROW'
-                    },
-                    {
-                        index: 3,
-                        product: 'RESELLER',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        qq: -20.00,
-                        yy: -.0733,
-                        type: 'ANZ'
-                    }
-                ],
-                week: [
-                    {
-                        index: 0,
-                        product: 'ADOBE.COM/CC.COM',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        ww: -20.00,
-                        type: 'US'
-                    },
-                    {
-                        index: 1,
-                        product: 'E-TAIL/RETAIL',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        ww: -20.00,
-                        type: 'ROW'
-                    },
-                    {
-                        index: 2,
-                        product: 'E-TAIL/RETAIL',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        ww: -20.00,
-                        type: 'ROW'
-                    },
-                    {
-                        index: 3,
-                        product: 'RESELLER',
-                        actuals: 66.7,
-                        qrf: 70.2,
-                        qrfDiff: -3.48,
-                        vsQrf: -.0495,
-                        ww: -20.00,
-                        type: 'ANZ'
-                    }
-                ]
-            },
-            stats: [
-                {
-                    value: -2.6,
-                    color: 'red',
-                    text: 'vs QRF'
-                },
-                {
-                    value: -20.4,
-                    color: 'red',
-                    text: 'Q/Q TY'
-                },
-                {
-                    value: -17.0,
-                    color: 'red',
-                    text: 'Q/Q LY'
-                },
-                {
-                    value: -2.9,
-                    color: 'green',
-                    text: 'Y/Y'
-                }
-            ]
-        },
-        valueType: 'units'
-    },
+    //     ],
+    //     details: {
+    //         multichart: [
+    //             [100, 123, 234, 343, 222, 443, 211, 123, 45, 232, 124, 25, 166],
+    //             [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+    //             [120, 67, 231, 196, 173, 485, 222, 192, 157, 213, 199, 103, 112],
+    //             [45, 124, 189, 143, 102, 184, 293, 444, 304, 203, 442, 122, 100]
+    //         ],
+    //         qtdw: {
+    //             qtd: [
+    //                 {
+    //                     index: 1,
+    //                     header: 'Actuals',
+    //                     value: 66.7
+    //                 },
+    //                 {
+    //                     index: 3,
+    //                     header: 'QRF',
+    //                     value: 66.7
+    //                 },
+    //                 {
+    //                     index: 4,
+    //                     header: 'QRF Diff',
+    //                     value: 66.7
+    //                 },
+    //                 {
+    //                     index: 5,
+    //                     header: 'Vs Qrf',
+    //                     value: 66.7
+    //                 },
+    //                 {
+    //                     index: 6,
+    //                     header: 'Q/Q',
+    //                     value: 66.7
+    //                 },
+    //                 {
+    //                     index: 7,
+    //                     header: 'Y/Y',
+    //                     value: 66.7
+    //                 }
+    //             ],
+    //             week: [
+    //                 {
+    //                     index: 1,
+    //                     header: 'Actuals',
+    //                     value: 66.7
+    //                 },
+    //                 {
+    //                     index: 3,
+    //                     header: 'QRF',
+    //                     value: 66.7
+    //                 },
+    //                 {
+    //                     index: 4,
+    //                     header: 'QRF Diff',
+    //                     value: 66.7
+    //                 },
+    //                 {
+    //                     index: 5,
+    //                     header: 'Vs Qrf',
+    //                     value: 66.7
+    //                 },
+    //                 {
+    //                     index: 6,
+    //                     header: 'W/W',
+    //                     value: 66.7
+    //                 }
+    //             ]
+    //         },
+    //         geo: {
+    //             qtd: [
+    //                 {
+    //                     index: 0,
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     qq: -20.00,
+    //                     yy: -.0733,
+    //                     type: 'AMER'
+    //                 }
+    //             ],
+    //             week: [
+    //                 {
+    //                     index: 0,
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     ww: -20.00,
+    //                     type: 'AMER'
+    //                 }
+    //             ],
+    //             all: []
+    //         },
+    //         market: {
+    //             qtd: [
+    //                 {
+    //                     index: 0,
+    //                     marketArea: 'ADOBE.COM/CC.COM',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     qq: -20.00,
+    //                     yy: -.0733,
+    //                     type: 'US'
+    //                 }
+    //             ],
+    //             week: [
+    //                 {
+    //                     index: 0,
+    //                     marketArea: 'ADOBE.COM/CC.COM',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     ww: -20.00,
+    //                     type: 'US'
+    //                 }
+    //             ],
+    //             all: []
+    //         },
+    //         route: {
+    //             qtd: [
+    //                 {
+    //                     index: 0,
+    //                     route: 'ADOBE.COM/CC.COM',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     qq: -20.00,
+    //                     yy: -.0733,
+    //                     type: 'US'
+    //                 },
+    //                 {
+    //                     index: 1,
+    //                     route: 'E-TAIL/RETAIL',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     qq: -20.00,
+    //                     yy: -.0733,
+    //                     type: 'ROW'
+    //                 },
+    //                 {
+    //                     index: 2,
+    //                     route: 'E-TAIL/RETAIL',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     qq: -20.00,
+    //                     yy: -.0733,
+    //                     type: 'ROW'
+    //                 },
+    //                 {
+    //                     index: 3,
+    //                     route: 'RESELLER',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     qq: -20.00,
+    //                     yy: -.0733,
+    //                     type: 'ANZ'
+    //                 }
+    //             ],
+    //             week: [
+    //                 {
+    //                     index: 0,
+    //                     route: 'ADOBE.COM/CC.COM',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     ww: -20.00,
+    //                     type: 'US'
+    //                 },
+    //                 {
+    //                     index: 1,
+    //                     route: 'E-TAIL/RETAIL',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     ww: -20.00,
+    //                     type: 'ROW'
+    //                 },
+    //                 {
+    //                     index: 2,
+    //                     route: 'E-TAIL/RETAIL',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     ww: -20.00,
+    //                     type: 'ROW'
+    //                 },
+    //                 {
+    //                     index: 3,
+    //                     route: 'RESELLER',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     ww: -20.00,
+    //                     type: 'ANZ'
+    //                 }
+    //             ]
+    //         },
+    //         segment: {
+    //             qtd: [
+    //                 {
+    //                     index: 0,
+    //                     segment: 'ADOBE.COM/CC.COM',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     qq: -20.00,
+    //                     yy: -.0733,
+    //                     type: 'US'
+    //                 },
+    //                 {
+    //                     index: 1,
+    //                     segment: 'E-TAIL/RETAIL',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     qq: -20.00,
+    //                     yy: -.0733,
+    //                     type: 'ROW'
+    //                 },
+    //                 {
+    //                     index: 2,
+    //                     segment: 'E-TAIL/RETAIL',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     qq: -20.00,
+    //                     yy: -.0733,
+    //                     type: 'ROW'
+    //                 },
+    //                 {
+    //                     index: 3,
+    //                     segment: 'RESELLER',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     qq: -20.00,
+    //                     yy: -.0733,
+    //                     type: 'ANZ'
+    //                 }
+    //             ],
+    //             week: [
+    //                 {
+    //                     index: 0,
+    //                     segment: 'ADOBE.COM/CC.COM',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     ww: -20.00,
+    //                     type: 'US'
+    //                 },
+    //                 {
+    //                     index: 1,
+    //                     segment: 'E-TAIL/RETAIL',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     ww: -20.00,
+    //                     type: 'ROW'
+    //                 },
+    //                 {
+    //                     index: 2,
+    //                     segment: 'E-TAIL/RETAIL',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     ww: -20.00,
+    //                     type: 'ROW'
+    //                 },
+    //                 {
+    //                     index: 3,
+    //                     segment: 'RESELLER',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     ww: -20.00,
+    //                     type: 'ANZ'
+    //                 }
+    //             ]
+    //         },
+    //         product: {
+    //             qtd: [
+    //                 {
+    //                     index: 0,
+    //                     product: 'ADOBE.COM/CC.COM',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     qq: -20.00,
+    //                     yy: -.0733,
+    //                     type: 'US'
+    //                 },
+    //                 {
+    //                     index: 1,
+    //                     product: 'E-TAIL/RETAIL',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     qq: -20.00,
+    //                     yy: -.0733,
+    //                     type: 'ROW'
+    //                 },
+    //                 {
+    //                     index: 2,
+    //                     product: 'E-TAIL/RETAIL',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     qq: -20.00,
+    //                     yy: -.0733,
+    //                     type: 'ROW'
+    //                 },
+    //                 {
+    //                     index: 3,
+    //                     product: 'RESELLER',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     qq: -20.00,
+    //                     yy: -.0733,
+    //                     type: 'ANZ'
+    //                 }
+    //             ],
+    //             week: [
+    //                 {
+    //                     index: 0,
+    //                     product: 'ADOBE.COM/CC.COM',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     ww: -20.00,
+    //                     type: 'US'
+    //                 },
+    //                 {
+    //                     index: 1,
+    //                     product: 'E-TAIL/RETAIL',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     ww: -20.00,
+    //                     type: 'ROW'
+    //                 },
+    //                 {
+    //                     index: 2,
+    //                     product: 'E-TAIL/RETAIL',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     ww: -20.00,
+    //                     type: 'ROW'
+    //                 },
+    //                 {
+    //                     index: 3,
+    //                     product: 'RESELLER',
+    //                     actuals: 66.7,
+    //                     qrf: 70.2,
+    //                     qrfDiff: -3.48,
+    //                     vsQrf: -.0495,
+    //                     ww: -20.00,
+    //                     type: 'ANZ'
+    //                 }
+    //             ]
+    //         },
+    //         stats: [
+    //             {
+    //                 value: -2.6,
+    //                 color: 'red',
+    //                 text: 'vs QRF'
+    //             },
+    //             {
+    //                 value: -20.4,
+    //                 color: 'red',
+    //                 text: 'Q/Q TY'
+    //             },
+    //             {
+    //                 value: -17.0,
+    //                 color: 'red',
+    //                 text: 'Q/Q LY'
+    //             },
+    //             {
+    //                 value: -2.9,
+    //                 color: 'green',
+    //                 text: 'Y/Y'
+    //             }
+    //         ]
+    //     },
+    //     valueType: 'units'
+    // },
     {
         index: 10,
         category: 1,
@@ -6439,11 +6439,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -6454,7 +6454,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -6465,7 +6465,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -6476,7 +6476,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -6489,7 +6489,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -6499,7 +6499,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -6509,7 +6509,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -6519,7 +6519,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7045,11 +7045,11 @@ export const SecondaryData = [
                     }
                 ]
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7060,7 +7060,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7071,7 +7071,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7082,7 +7082,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7095,7 +7095,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7105,7 +7105,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7115,7 +7115,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7125,7 +7125,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7471,11 +7471,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7486,7 +7486,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7497,7 +7497,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7508,7 +7508,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7521,7 +7521,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7531,7 +7531,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7541,7 +7541,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7551,7 +7551,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7897,11 +7897,11 @@ export const SecondaryData = [
                     }
                 ]
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7912,7 +7912,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7923,7 +7923,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7934,7 +7934,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7947,7 +7947,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7957,7 +7957,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7967,7 +7967,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -7977,7 +7977,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8419,11 +8419,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8434,7 +8434,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8445,7 +8445,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8456,7 +8456,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8469,7 +8469,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8479,7 +8479,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8489,7 +8489,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8499,7 +8499,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8850,11 +8850,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8865,7 +8865,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8876,7 +8876,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8887,7 +8887,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8900,7 +8900,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8910,7 +8910,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8920,7 +8920,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -8930,7 +8930,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9281,11 +9281,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9296,7 +9296,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9307,7 +9307,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9318,7 +9318,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9331,7 +9331,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9341,7 +9341,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9351,7 +9351,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9361,7 +9361,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9707,11 +9707,11 @@ export const SecondaryData = [
                     }
                 ]
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9722,7 +9722,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9733,7 +9733,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9744,7 +9744,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9757,7 +9757,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9767,7 +9767,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9777,7 +9777,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -9787,7 +9787,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10133,11 +10133,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10148,7 +10148,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10159,7 +10159,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10170,7 +10170,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10183,7 +10183,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10193,7 +10193,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10203,7 +10203,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10213,7 +10213,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10559,11 +10559,11 @@ export const SecondaryData = [
                     }
                 ]
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10574,7 +10574,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10585,7 +10585,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10596,7 +10596,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10609,7 +10609,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10619,7 +10619,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10629,7 +10629,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -10639,7 +10639,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11082,11 +11082,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11097,7 +11097,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11108,7 +11108,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11119,7 +11119,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11132,7 +11132,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11142,7 +11142,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11152,7 +11152,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11162,7 +11162,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11513,11 +11513,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11528,7 +11528,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11539,7 +11539,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11550,7 +11550,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11563,7 +11563,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11573,7 +11573,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11583,7 +11583,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11593,7 +11593,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11944,11 +11944,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11959,7 +11959,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11970,7 +11970,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11981,7 +11981,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -11994,7 +11994,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12004,7 +12004,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12014,7 +12014,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12024,7 +12024,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12375,11 +12375,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12390,7 +12390,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12401,7 +12401,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12412,7 +12412,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12425,7 +12425,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12435,7 +12435,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12445,7 +12445,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12455,7 +12455,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12802,11 +12802,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12817,7 +12817,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12828,7 +12828,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12839,7 +12839,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12852,7 +12852,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12862,7 +12862,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12872,7 +12872,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -12882,7 +12882,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13228,11 +13228,11 @@ export const SecondaryData = [
                     }
                 ]
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13243,7 +13243,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13254,7 +13254,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13265,7 +13265,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13278,7 +13278,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13288,7 +13288,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13298,7 +13298,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13308,7 +13308,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13744,11 +13744,11 @@ export const SecondaryData = [
                     }
                 ]
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13759,7 +13759,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13770,7 +13770,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13781,7 +13781,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13794,7 +13794,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13804,7 +13804,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13814,7 +13814,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -13824,7 +13824,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14175,11 +14175,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14190,7 +14190,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14201,7 +14201,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14212,7 +14212,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14225,7 +14225,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14235,7 +14235,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14245,7 +14245,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14255,7 +14255,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14606,11 +14606,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14621,7 +14621,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14632,7 +14632,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14643,7 +14643,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14656,7 +14656,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14666,7 +14666,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14676,7 +14676,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -14686,7 +14686,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15037,11 +15037,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15052,7 +15052,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15063,7 +15063,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15074,7 +15074,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15087,7 +15087,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15097,7 +15097,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15107,7 +15107,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15117,7 +15117,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15468,11 +15468,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15483,7 +15483,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15494,7 +15494,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15505,7 +15505,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15518,7 +15518,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15528,7 +15528,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15538,7 +15538,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15548,7 +15548,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15899,11 +15899,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15914,7 +15914,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15925,7 +15925,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15936,7 +15936,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15949,7 +15949,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15959,7 +15959,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15969,7 +15969,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -15979,7 +15979,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16326,11 +16326,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16341,7 +16341,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16352,7 +16352,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16363,7 +16363,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16376,7 +16376,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16386,7 +16386,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16396,7 +16396,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16406,7 +16406,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16752,11 +16752,11 @@ export const SecondaryData = [
                     }
                 ]
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16767,7 +16767,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16778,7 +16778,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16789,7 +16789,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16802,7 +16802,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16812,7 +16812,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16822,7 +16822,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -16832,7 +16832,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17268,11 +17268,11 @@ export const SecondaryData = [
                     }
                 ]
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17283,7 +17283,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17294,7 +17294,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17305,7 +17305,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17318,7 +17318,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17328,7 +17328,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17338,7 +17338,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17348,7 +17348,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17694,11 +17694,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17709,7 +17709,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17720,7 +17720,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17731,7 +17731,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17744,7 +17744,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17754,7 +17754,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17764,7 +17764,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -17774,7 +17774,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18120,11 +18120,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18135,7 +18135,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18146,7 +18146,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18157,7 +18157,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18170,7 +18170,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18180,7 +18180,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18190,7 +18190,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18200,7 +18200,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18551,11 +18551,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18566,7 +18566,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18577,7 +18577,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18588,7 +18588,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18601,7 +18601,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18611,7 +18611,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18621,7 +18621,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18631,7 +18631,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18982,11 +18982,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -18997,7 +18997,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -19008,7 +19008,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -19019,7 +19019,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -19032,7 +19032,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -19042,7 +19042,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -19052,7 +19052,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -19062,7 +19062,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -19413,11 +19413,11 @@ export const SecondaryData = [
                 ],
                 all: []
             },
-            routes: {
+            route: {
                 qtd: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -19428,7 +19428,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -19439,7 +19439,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -19450,7 +19450,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -19463,7 +19463,7 @@ export const SecondaryData = [
                 week: [
                     {
                         index: 0,
-                        routes: 'ADOBE.COM/CC.COM',
+                        route: 'ADOBE.COM/CC.COM',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -19473,7 +19473,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 1,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -19483,7 +19483,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 2,
-                        routes: 'E-TAIL/RETAIL',
+                        route: 'E-TAIL/RETAIL',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,
@@ -19493,7 +19493,7 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        routes: 'RESELLER',
+                        route: 'RESELLER',
                         actuals: 66.7,
                         qrf: 70.2,
                         qrfDiff: -3.48,

@@ -46,35 +46,35 @@ class FilterBarHeader extends Component {
         // As long as there is an active filter
         let filters = this.props.filters
         let filterBarArr= [];
-        filters.quarters.valueFilters.forEach(item=>{
+        filters.quarter.valueFilters.forEach(item=>{
             filterBarArr.push(item);
         });
-        if(filters.geos.valueFilters.length!==0){
-        filters.geos.valueFilters.forEach(item=>{
-            filterBarArr.push(item);
-        });
-        }
-        if(filters.products.valueFilters.length!==0){
-        filters.products.valueFilters.forEach(item=>{
+        if(filters.geo.valueFilters.length!==0){
+        filters.geo.valueFilters.forEach(item=>{
             filterBarArr.push(item);
         });
         }
-        if(filters.subscriptions.valueFilters.length!==0){
-        filters.subscriptions.valueFilters.forEach(item=>{
+        if(filters.product.valueFilters.length!==0){
+        filters.product.valueFilters.forEach(item=>{
             filterBarArr.push(item);
         });
         }
-        if(filters.markets.valueFilters.length!==0){
-        filters.markets.valueFilters.forEach(item=>{
+        if(filters.subscription.valueFilters.length!==0){
+        filters.subscription.valueFilters.forEach(item=>{
             filterBarArr.push(item);
         });
         }
-        if(filters.routes.valueFilters.length!==0){
-        filters.routes.valueFilters.forEach(item=>{
+        if(filters.market.valueFilters.length!==0){
+        filters.market.valueFilters.forEach(item=>{
             filterBarArr.push(item);
         });
         }
-        filters.segments.valueFilters.forEach(item=>{
+        if(filters.route.valueFilters.length!==0){
+        filters.route.valueFilters.forEach(item=>{
+            filterBarArr.push(item);
+        });
+        }
+        filters.segment.valueFilters.forEach(item=>{
             filterBarArr.push(item);
         });
         if(filterBarArr.length>0) {

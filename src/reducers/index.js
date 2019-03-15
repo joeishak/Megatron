@@ -2,8 +2,7 @@ import { combineReducers } from 'redux';
 import authReducer from 'reducers/auth';
 import userReducer from 'reducers/user';
 import dialogReducer from 'reducers/dialog';
-import multiFilterReducer from 'reducers/multiFilter';
-import activeFiltersReducer from 'reducers/activeFilters';
+
 import detailsReducer from 'reducers/summaryDetails';
 import excelDataReducer from 'reducers/excelData.js';
 import commentBoxVisibilityReducer from 'reducers/commentBoxVisible.js';
@@ -20,8 +19,7 @@ export default combineReducers({
     auth: authReducer,
     user: userReducer,
     isDialogOpen: dialogReducer,
-    availableFilters: multiFilterReducer,
-    activeFilters: activeFiltersReducer,
+
     detailsIsOpen: detailsReducer,
     excelData: excelDataReducer,
     commentBoxIsOpen: commentBoxVisibilityReducer,

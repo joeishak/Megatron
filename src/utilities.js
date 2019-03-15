@@ -5,6 +5,7 @@ import {
 import axios from 'axios';
 import * as actions from 'actions';
 import { dispatch } from 'rxjs/internal/observable/range';
+import { DIMENSIONS } from './Constants/consts';
 
 
 
@@ -240,10 +241,10 @@ export function convertFilterList(arrayList) {
  * 
  */
 export function removeAllDataValueFromFilterArray(obj) {
-    _.remove(obj.quarters, (item) => {
+    _.remove(obj.quarter, (item) => {
         return item.value === "All Data"
     })
-    _.remove(obj.products, (item) => {
+    _.remove(obj.product, (item) => {
         return item.value === "All Data"
     })
     _.remove(obj.segements, (item) => {
@@ -255,10 +256,10 @@ export function removeAllDataValueFromFilterArray(obj) {
     _.remove(obj.marketAreas, (item) => {
         return item.value === "All Data"
     })
-    _.remove(obj.geos, (item) => {
+    _.remove(obj.geo, (item) => {
         return item.value === "All Data"
     })
-    _.remove(obj.routeToMarkets, (item) => {
+    _.remove(obj.routeTomarket, (item) => {
         return item.value === "All Data"
     })
 
@@ -269,38 +270,58 @@ export function removeAllDataValueFromFilterArray(obj) {
  * @param {*} arr
  */
 export function findIfFilterIsApplied(arr) {
+    const { GEO,
+        MARKET,
+        PRODUCT,
+        SEGMENT,
+        SUBSCRIPTION,
+        QUARTER,
+        ROUTE,
+        VISITSTATUS,
+        SIGNSOURCE,
+        SIGNAPP,
+        PRODUCTCAT,
+        WEBSEGMENT,
+        PVW,
+        CATEGORY,
+        LTC,
+        NEWVSREPEAT,
+        MOBILEVSDESKTOP,
+        CONVERSION,
+        VISITS
+    } = DIMENSIONS;
     let filtersApplied = {
-        quarters: false,
-        geos: false,
-        products: false,
-        routes: false,
-        segments: false,
-        subscriptions: false,
-        markets: false
+        quarter: false,
+        geo: false,
+        product: false,
+        route: false,
+        segment: false,
+        subscription: false,
+        market: false
     };
     for (let i = 0; i < arr.length; i++) {
         let item = arr[i]
         switch (item.category) {
-            case 'quarters':
-                filtersApplied.quarters = true;
+            case QUARTER:
+                filtersApplied.quarter = true;
                 break;
             case 'productNames':
-                filtersApplied.products = true;
+                filtersApplied.product = true;
                 break;
-            case 'geos':
-                filtersApplied.geos = true;
+            case 'geo':
+                filtersApplied.geo = true;
                 break;
             case 'subscriptionOfferings':
-                filtersApplied.subscriptions = true;
+                filtersApplied.subscription = true;
                 break;
             case 'marketAreas':
-                filtersApplied.markets = true;
+                filtersApplied.market = true;
                 break;
-            case 'routeToMarkets':
-                filtersApplied.routes = true;
+            case 'routeTomarket':
+                filtersApplied.route = true;
                 break;
-            case 'segments':
-                filtersApplied.segments = true;
+            case SEGMENT:
+                filtersApplied.segment = true;
                 break;
             default:
                 break;
@@ -340,64 +361,64 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
      */
     switch (type) {
         case 1:
-            filterParams[0].value = getParamValues(_activeParams.quarters, allFilters.quarters);
-            filterParams[1].value = getParamValues(_activeParams.geos, allFilters.geos);
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
 
             break;
         case 2:
-            filterParams[0].value = getParamValues(_activeParams.quarters, allFilters.quarters);
-            filterParams[1].value = getParamValues(_activeParams.geos, allFilters.geos);
-            filterParams[2].value = getParamValues(_activeParams.markets, allFilters.marketAreas);
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.marketAreas);
 
             break;
         case 3:
-            filterParams[0].value = getParamValues(_activeParams.quarters, allFilters.quarters);
-            filterParams[1].value = getParamValues(_activeParams.geos, allFilters.geos);
-            filterParams[2].value = getParamValues(_activeParams.markets, allFilters.marketAreas);
-            filterParams[3].value = getParamValues(_activeParams.subscriptions, allFilters.subscriptionOfferings);
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.marketAreas);
+            filterParams[3].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             break;
         case 4:
-            filterParams[0].value = getParamValues(_activeParams.quarters, allFilters.quarters);
-            filterParams[1].value = getParamValues(_activeParams.geos, allFilters.geos);
-            filterParams[2].value = getParamValues(_activeParams.markets, allFilters.marketAreas);
-            filterParams[3].value = getParamValues(_activeParams.subscriptions, allFilters.subscriptionOfferings);
-            filterParams[4].value = getParamValues(_activeParams.products, allFilters.products);
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.marketAreas);
+            filterParams[3].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            filterParams[4].value = getParamValues(_activeParams.product, allFilters.product);
 
             break;
         //Traffic
         case 5:
-            filterParams[0].value = getParamValues(_activeParams.geos, allFilters.geos);
-            filterParams[1].value = getParamValues(_activeParams.quarters, allFilters.quarters);
-            filterParams[2].value = getParamValues(_activeParams.markets, allFilters.marketAreas);
-            filterParams[3].value = getParamValues(_activeParams.webSegments, allFilters.webSegments);
+            filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.marketAreas);
+            filterParams[3].value = getParamValues(_activeParams.websegment, allFilters.websegment);
             filterParams[4].value = getParamValues(_activeParams.visits, allFilters.visits);
             filterParams[5].value = getParamValues(_activeParams.lastTouchChannel, allFilters.lastTouchChannel);
             filterParams[6].value = getParamValues(_activeParams.convType, allFilters.convType);
             break;
         case 6:
-            filterParams[0].value = getParamValues(_activeParams.quarters, allFilters.quarters);
-            filterParams[1].value = getParamValues(_activeParams.geos, allFilters.geos);
-            filterParams[2].value = getParamValues(_activeParams.markets, allFilters.marketAreas);
-            filterParams[3].value = getParamValues(_activeParams.segments, allFilters.segments);
-            filterParams[4].value = getParamValues(_activeParams.subscriptions, allFilters.subscriptionOfferings);
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.marketAreas);
+            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             break;
         case 7:
-            filterParams[0].value = getParamValues(_activeParams.quarters, allFilters.quarters);
-            filterParams[1].value = getParamValues(_activeParams.geos, allFilters.geos);
-            filterParams[2].value = getParamValues(_activeParams.markets, allFilters.marketAreas);
-            filterParams[3].value = getParamValues(_activeParams.segments, allFilters.segments);
-            filterParams[4].value = getParamValues(_activeParams.subscriptions, allFilters.subscriptionOfferings);
-            filterParams[5].value = getParamValues(_activeParams.products, allFilters.products);
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.marketAreas);
+            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
 
             break;
         default:
-            filterParams[0].value = getParamValues(_activeParams.quarters, allFilters.quarters);
-            filterParams[1].value = getParamValues(_activeParams.geos, allFilters.geos);
-            filterParams[2].value = getParamValues(_activeParams.markets, allFilters.marketAreas);
-            filterParams[3].value = getParamValues(_activeParams.routes, allFilters.routeToMarkets);
-            filterParams[4].value = getParamValues(_activeParams.segments, allFilters.segments);
-            filterParams[5].value = getParamValues(_activeParams.subscriptions, allFilters.subscriptionOfferings);
-            filterParams[6].value = getParamValues(_activeParams.products, allFilters.products);
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.marketAreas);
+            filterParams[3].value = getParamValues(_activeParams.route, allFilters.routeTomarket);
+            filterParams[4].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[5].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            filterParams[6].value = getParamValues(_activeParams.product, allFilters.product);
 
             break;
     }
@@ -412,13 +433,13 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
 //  Object.keys(obj).map(e => obj[e])
 export function getAllFilters(allFilters, availableFilters) {
     allFilters = {
-        quarters: Object.keys(availableFilters.quarters).map(e => availableFilters.quarters[e]),
-        geos: Object.keys(availableFilters.geos).map(e => availableFilters.geos[e]),
+        quarter: Object.keys(availableFilters.quarter).map(e => availableFilters.quarter[e]),
+        geo: Object.keys(availableFilters.geo).map(e => availableFilters.geo[e]),
         marketAreas: Object.keys(availableFilters.marketAreas).map(e => availableFilters.marketAreas[e]),
-        products: Object.keys(availableFilters.products).map(e => availableFilters.products[e]),
-        segments: Object.keys(availableFilters.segments).map(e => availableFilters.segments[e]),
+        product: Object.keys(availableFilters.product).map(e => availableFilters.product[e]),
+        segment: Object.keys(availableFilters.segment).map(e => availableFilters.segment[e]),
         subscriptionOfferings: Object.keys(availableFilters.subscriptionOfferings).map(e => availableFilters.subscriptionOfferings[e]),
-        routeToMarkets: Object.keys(availableFilters.routeToMarkets).map(e => availableFilters.routeToMarkets[e]),
+        routeTomarket: Object.keys(availableFilters.routeTomarket).map(e => availableFilters.routeTomarket[e]),
     }
 }
 
@@ -464,11 +485,11 @@ export function initiateFilterDataRequests() {
         headers: headers,
         responseType: 'text'
     });
-    const routesResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.RouteFilters, {
+    const routeResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.RouteFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const quartersResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.QuarterFilters, {
+    const quarterResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXdcID + Infoburst.filterQueryNames.QuarterFilters, {
         headers: headers,
         responseType: 'text'
     });
@@ -536,8 +557,8 @@ export function initiateFilterDataRequests() {
         responseType: 'text'
     });
 
-    responseArray.push(quartersResponse, maResponse, productResponse, segementsResponse,
-        subscriptionResponse, routesResponse, geoResponse, channelResponse, visitResponse,
+    responseArray.push(quarterResponse, maResponse, productResponse, segementsResponse,
+        subscriptionResponse, routeResponse, geoResponse, channelResponse, visitResponse,
         CloudTypeFilters, ConvTypeFilters, DiscoverVsBuyFilters, LastTouchChannelFilters,
         MobileVsDesktopFilters, NewVsRepeatFilters, ProdNameFilters, SignupAppFilters, SignupCatFilters, WebSegFilters);
     let promiseArr1 = Promise.all(responseArray);
@@ -546,11 +567,11 @@ export function initiateFilterDataRequests() {
 export function requestPrimaryData(allFilters, _parameters) {
     responseArray = [];
 
-    filterParams[1].value = _parameters.products.length > 0 ? _parameters.products[0].value : allFilters.products;
-    filterParams[2].value = _parameters.geos.length > 0 ? _parameters.geos[0].value : allFilters.geos;
-    filterParams[3].value = _parameters.subscriptions.length > 0 ? _parameters.subscriptions[0].value : allFilters.subscriptios;
-    filterParams[4].value = _parameters.markets.length > 0 ? _parameters.markets[0].value : allFilters.markets;
-    filterParams[5].value = _parameters.routes.length > 0 ? _parameters.routes[0].value : allFilters.routes;
+    filterParams[1].value = _parameters.product.length > 0 ? _parameters.product[0].value : allFilters.product;
+    filterParams[2].value = _parameters.geo.length > 0 ? _parameters.geo[0].value : allFilters.geo;
+    filterParams[3].value = _parameters.subscription.length > 0 ? _parameters.subscription[0].value : allFilters.subscriptios;
+    filterParams[4].value = _parameters.market.length > 0 ? _parameters.market[0].value : allFilters.market;
+    filterParams[5].value = _parameters.route.length > 0 ? _parameters.route[0].value : allFilters.route;
 
     //Generate the filter list 
     console.log('Utils 556: ', allFilters, _parameters)
@@ -623,11 +644,11 @@ export function requestFinanceSecondaryData(allFilters, _parameters) {
 
 
 
-    // filterParams[1].value = _parameters.products.length > 0 ? _parameters.products[0].value : allFilters.products;
-    // filterParams[2].value = _parameters.geos.length > 0 ? _parameters.geos[0].value : allFilters.geos;
-    // filterParams[3].value = _parameters.subscriptions.length > 0 ? _parameters.subscriptions[0].value : allFilters.subscriptios;
-    // filterParams[4].value = _parameters.markets.length > 0 ? _parameters.markets[0].value : allFilters.markets;
-    // filterParams[5].value = _parameters.routes.length > 0 ? _parameters.routes[0].value : allFilters.routes;
+    // filterParams[1].value = _parameters.product.length > 0 ? _parameters.product[0].value : allFilters.product;
+    // filterParams[2].value = _parameters.geo.length > 0 ? _parameters.geo[0].value : allFilters.geo;
+    // filterParams[3].value = _parameters.subscription.length > 0 ? _parameters.subscription[0].value : allFilters.subscriptios;
+    // filterParams[4].value = _parameters.market.length > 0 ? _parameters.market[0].value : allFilters.market;
+    // filterParams[5].value = _parameters.route.length > 0 ? _parameters.route[0].value : allFilters.route;
 
     generateFilterParams(8, group8Params, allFilters, _parameters);
 
@@ -1437,13 +1458,13 @@ export function requestRenewSecondaryData(allFilters, _parameters) {
 export function requestDetailsData(allFilters, _parameters) {
     responseArray = [];
 
-    // filterParams[0].value = _parameters.quarters[0].value;
-    filterParams[1].value = _parameters.products[0].value;
-    filterParams[2].value = _parameters.geos[0].value;
-    filterParams[3].value = _parameters.subscriptions[0].value;
-    filterParams[4].value = _parameters.markets[0].value;
-    filterParams[5].value = _parameters.routes[0].value;
-    filterParams[6].value = _parameters.segments[0].value;
+    // filterParams[0].value = _parameters.quarter[0].value;
+    filterParams[1].value = _parameters.product[0].value;
+    filterParams[2].value = _parameters.geo[0].value;
+    filterParams[3].value = _parameters.subscription[0].value;
+    filterParams[4].value = _parameters.market[0].value;
+    filterParams[5].value = _parameters.route[0].value;
+    filterParams[6].value = _parameters.segment[0].value;
 
     let group2Params = [
         {
@@ -1525,7 +1546,7 @@ export function requestDetailsData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    const finMarkets = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.dataXdcID + Infoburst.summaryQueryNames.FinancialMarketQTD + params1 + '&json=1', {
+    const finmarket = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.dataXdcID + Infoburst.summaryQueryNames.FinancialMarketQTD + params1 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -1567,7 +1588,7 @@ export function requestDetailsData(allFilters, _parameters) {
 
 
 
-    responseArray.push(finMulti, finUnitsMulti, finGeo, finQTD, journG2Mutli, journG3Mutli, journG2QTD, journG3QTD, journG2Geo, journG3Geo, finMarkets, journG2Market, journG3Market);
+    responseArray.push(finMulti, finUnitsMulti, finGeo, finQTD, journG2Mutli, journG3Mutli, journG2QTD, journG3QTD, journG2Geo, journG3Geo, finmarket, journG2Market, journG3Market);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
@@ -1770,11 +1791,11 @@ export function postUserSettings(params) {
             "quarter": params.quarter,
             "segment": params.segment,
             "user": params.user,
-            "products": params.products,
-            "geos": params.geos,
-            "subscriptions": params.subscriptions,
-            "routes": params.routes,
-            "markets": params.markets
+            "product": params.product,
+            "geo": params.geo,
+            "subscription": params.subscription,
+            "route": params.route,
+            "market": params.market
         }
     }
 
@@ -1794,8 +1815,8 @@ export function postMultiValueSettings(activeFilters, setting, availableFilters)
         }
 
     }
-    if (activeFilters.geos[0].value === 'All Data') {
-        availableFilters.geos.map(item => {
+    if (activeFilters.geo[0].value === 'All Data') {
+        availableFilters.geo.map(item => {
             body.params = {
                 "setting": setting,
                 "filter": item.value,

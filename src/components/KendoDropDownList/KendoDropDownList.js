@@ -18,7 +18,7 @@ class KendoDropDownList extends Component {
         super(props);
         // Initialize state
         this.state = {
-            data: this.props.availableFilters.quarters,
+            data: this.props.availableFilters.quarter,
             type: props.type,
             val: this.props.defaultItem
             

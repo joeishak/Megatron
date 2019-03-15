@@ -7,6 +7,7 @@ import styles from './KendoDialog.css';
 import $ from 'jquery';
 import * as _ from 'lodash'
 import classNames from 'classnames';
+import { DIMENSIONS } from '../../Constants/consts';
 
 import SingleValueSelect from '../SingleValueSelect/SingleValueSelect';
 import MultiValueSelect from '../MultiValueSelect/MultiValueSelect';
@@ -135,28 +136,48 @@ class KendoDialog extends Component {
     }
     // Save the changes
     saveChanges = () => {
+        const { GEO,
+            MARKET,
+            PRODUCT,
+            SEGMENT,
+            SUBSCRIPTION,
+            QUARTER,
+            ROUTE,
+            VISITSTATUS,
+            SIGNSOURCE,
+            SIGNAPP,
+            PRODUCTCAT,
+            WEBSEGMENT,
+            PVW,
+            CATEGORY,
+            LTC,
+            NEWVSREPEAT,
+            MOBILEVSDESKTOP,
+            CONVERSION,
+            VISITS
+        } = DIMENSIONS;
         let newFilters = {
-            quarters: [],
-            segments: [],
-            products: [],
-            markets: [],
-            routes: [],
-            subscriptions: [],
-            geos: []
+            quarter: [],
+            segment: [],
+            product: [],
+            market: [],
+            route: [],
+            subscription: [],
+            geo: []
         };
 
         Object.keys(newFilters).forEach(item => {
 
             switch (item) {
-                case 'quarters':
-                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === 'quarters' })) ? /* Then */
-                        [_.find(this.state.selectedFilters, (item => { return item.category === 'quarters' }))] : /* Else */
-                        [...this.props.filters.quarters.valueFilters];
+                case QUARTER:
+                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === QUARTER })) ? /* Then */
+                        [_.find(this.state.selectedFilters, (item => { return item.category === QUARTER }))] : /* Else */
+                        [...this.props.filters.quarter.valueFilters];
                     break;
-                case 'segments':
-                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === 'segments' })) ?
-                        [_.find(this.state.selectedFilters, (item => { return item.category === 'segments' }))] :
-                        [...this.props.filters.segments.valueFilters];
+                case SEGMENT:
+                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SEGMENT })) ?
+                        [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
+                        [...this.props.filters.segment.valueFilters];
                     break;
                 default:
                     let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category === item }));
@@ -275,29 +296,48 @@ class KendoDialog extends Component {
     }
     submitFilters = (e) => {
         // console.log('Submitting Filters . . . ');
-
+        const { GEO,
+            MARKET,
+            PRODUCT,
+            SEGMENT,
+            SUBSCRIPTION,
+            QUARTER,
+            ROUTE,
+            VISITSTATUS,
+            SIGNSOURCE,
+            SIGNAPP,
+            PRODUCTCAT,
+            WEBSEGMENT,
+            PVW,
+            CATEGORY,
+            LTC,
+            NEWVSREPEAT,
+            MOBILEVSDESKTOP,
+            CONVERSION,
+            VISITS
+        } = DIMENSIONS;
         let newFilters = {
-            quarters: [],
-            segments: [],
-            products: [],
-            markets: [],
-            routes: [],
-            subscriptions: [],
-            geos: []
+            quarter: [],
+            segment: [],
+            product: [],
+            market: [],
+            route: [],
+            subscription: [],
+            geo: []
         };
 
         Object.keys(newFilters).forEach(item => {
 
             switch (item) {
-                case 'quarters':
-                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === 'quarters' })) ? /* Then */
-                        [_.find(this.state.selectedFilters, (item => { return item.category === 'quarters' }))] : /* Else */
-                        [...this.props.filters.quarters.valueFilters];
+                case QUARTER:
+                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === QUARTER })) ? /* Then */
+                        [_.find(this.state.selectedFilters, (item => { return item.category === QUARTER }))] : /* Else */
+                        [...this.props.filters.quarter.valueFilters];
                     break;
-                case 'segments':
-                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === 'segments' })) ?
-                        [_.find(this.state.selectedFilters, (item => { return item.category === 'segments' }))] :
-                        [...this.props.filters.segments.valueFilters];
+                case SEGMENT:
+                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SEGMENT })) ?
+                        [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
+                        [...this.props.filters.segment.valueFilters];
                     break;
                 default:
                     let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category === item }));
@@ -332,7 +372,27 @@ class KendoDialog extends Component {
         let { filters } = this.props;
         const filtersApplied = this.generateFilterList(this.props.activeFilters);
         const defaultSum = this.state.selectedSummary || this.props.defaultSummaryView;
-        const show = this.props.dialogIsOpen
+        const show = this.props.dialogIsOpen;
+      const { GEO,
+            MARKET,
+            PRODUCT,
+            SEGMENT,
+            SUBSCRIPTION,
+            QUARTER,
+            ROUTE,
+            VISITSTATUS,
+            SIGNSOURCE,
+            SIGNAPP,
+            PRODUCTCAT,
+            WEBSEGMENT,
+            PVW,
+            CATEGORY,
+            LTC,
+            NEWVSREPEAT,
+            MOBILEVSDESKTOP,
+            CONVERSION,
+            VISITS
+        } = DIMENSIONS;
         const kendoDialog = show ? (
             <div className="content ">
 
@@ -352,8 +412,8 @@ class KendoDialog extends Component {
                                         <div className={' col-lg-2'} >
                                             <p> Quarter</p>
                                             <SingleValueSelect
-                                                activeFilters={filters.quarters.valueFilters}
-                                                options={filters.quarters.availableFilters}
+                                                activeFilters={filters.quarter.valueFilters}
+                                                options={filters.quarter.availableFilters}
                                                 onValueChange={this.updateSingleValue}
                                                 onMenuClose={this.closeSingleValue}
                                             />
@@ -362,12 +422,12 @@ class KendoDialog extends Component {
                                             <p> Geo</p>
                                             {/* <ReactSelect
                         updateFilter={this.updateActiveFiltersHandler}
-                        defaultValue={this.props.activeFilters.geos[0]}
+                        defaultValue={this.props.activeFilters.geo[0]}
                         onClose={(e) => { this.closed(e) }}
-                        options={this.props.availableFilters.geos}></ReactSelect> */}
+                        options={this.props.availableFilters.geo}></ReactSelect> */}
                                             <MultiValueSelect
-                                                options={filters.geos.availableFilters}
-                                                onValueChange={(e) => { let type = 'geos'; this.updateMultiValue(e, type) }}
+                                                options={filters.geo.availableFilters}
+                                                onValueChange={(e) => { let type = 'geo'; this.updateMultiValue(e, type) }}
                                                 onMenuClose={this.closeMultiValue}
                                             />
 
@@ -375,25 +435,25 @@ class KendoDialog extends Component {
                                         <div className={' col-lg-5'} >
                                             <p> Market Area</p>
                                             <MultiValueSelect
-                                                options={filters.markets.availableFilters}
-                                                onValueChange={(e) => { let type = 'markets'; this.updateMultiValue(e, type) }}
+                                                options={filters.market.availableFilters}
+                                                onValueChange={(e) => { let type = MARKET; this.updateMultiValue(e, type) }}
                                                 onMenuClose={this.closeMultiValue}
-                                                values={_.groupBy(this.state.selectedFilters, (item => { return item.category === 'markets' }))}
+                                                values={_.groupBy(this.state.selectedFilters, (item => { return item.category === MARKET }))}
                                             />
                                         </div>
                                         <div className={' col-lg-9'} >
                                             <p>  Route To Market</p>
                                             <MultiValueSelect
-                                                options={filters.routes.availableFilters}
-                                                onValueChange={(e) => { let type = 'routes'; this.updateMultiValue(e, type) }}
+                                                options={filters.route.availableFilters}
+                                                onValueChange={(e) => { let type = ROUTE; this.updateMultiValue(e, type) }}
                                                 onMenuClose={this.closeMultiValue}
                                             />
                                         </div>
                                         <div className={' col-lg-5'} >
                                             <p> Segment</p>
                                             <SingleValueSelect
-                                                activeFilters={filters.segments.valueFilters}
-                                                options={filters.segments.availableFilters}
+                                                activeFilters={filters.segment.valueFilters}
+                                                options={filters.segment.availableFilters}
                                                 onValueChange={this.updateSingleValue}
                                                 onMenuClose={this.closeSingleValue}
                                             />
@@ -402,16 +462,16 @@ class KendoDialog extends Component {
                                         <div className={' col-lg-6'} >
                                             <p> Subscription Offering</p>
                                             <MultiValueSelect
-                                                options={filters.subscriptions.availableFilters}
-                                                onValueChange={(e) => { let type = 'subscriptions'; this.updateMultiValue(e, type) }}
+                                                options={filters.subscription.availableFilters}
+                                                onValueChange={(e) => { let type = SUBSCRIPTION; this.updateMultiValue(e, type) }}
                                                 onMenuClose={this.closeMultiValue}
                                             />
                                         </div>
                                         <div className={' col-lg-12'} >
                                             <p> Product Name</p>
                                             <MultiValueSelect
-                                                options={filters.products.availableFilters}
-                                                onValueChange={(e) => { let type = 'products'; this.updateMultiValue(e, type) }}
+                                                options={filters.product.availableFilters}
+                                                onValueChange={(e) => { let type = PRODUCT; this.updateMultiValue(e, type) }}
                                                 onMenuClose={this.closeMultiValue}
                                             />
                                         </div>

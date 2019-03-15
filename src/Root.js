@@ -7,17 +7,6 @@ import async from 'middlewares/async';
 
 export default ({ children, initialState = {
     isDialogOpen: false,
-    availableFilters: {
-    },
-    activeFilters: {
-        geos: [],
-        quarters: [{ index: 211, category: "quarters", value: "2019-Q1" }],
-        segments: [{ index: 209, category: "segments", value: "Digital Media" }],
-        subscriptions: [],
-        markets: [],
-        routes: [],
-        products: []
-    },
     detailsIsOpen: false,
 } }) => {
     const store = createStore(

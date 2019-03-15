@@ -1,28 +1,29 @@
-export const SECONDARY = 'secondary';
-export const PRIMARY = 'primary';
-export const MOBILE = 'mobile';
-export const TABLET = 'tablet';
-export const LAPTOP = 'laptop';
-export const TV = 'tv';
+export const SECONDARY = "secondary";
+export const PRIMARY = "primary";
+export const MOBILE = "mobile";
+export const TABLET = "tablet";
+export const LAPTOP = "laptop";
+export const TV = "tv";
 export const DIMENSIONS = {
-    GEO: 'geo',
-    MARKET: 'market',
-    PRODUCT: 'product',
-    SEGMENT: 'segment',
-    SUBSCRIPTION: 'subscription',
-    QUARTER: 'quarter',
-    ROUTE: 'route',
-    VISITSTATUS: 'visitstatus',
-    SIGNSOURCE: 'signupsource',
-    SIGNAPP: 'signupapp',
-    PRODUCTCAT: 'productcategory',
-    WEBSEGMENT: 'websegment',
-    PVW: 'pvw',
-    CATEGORY: 'category',
-    LTC: 'lasttouchchannel',
-    NEWVSREPEAT: 'newvsrepeat',
-    MOBILEVSDESKTOP:'mobilevsdesktop',
-    CONVERSION:'conversion',
+    GEO: "geo",
+    MARKET: "market",
+    PRODUCT: "product",
+    SEGMENT: "segment",
+    SUBSCRIPTION: "subscription",
+    QUARTER: "quarter",
+    ROUTE: "route",
+    VISITSTATUS: "visitstatus",
+    SIGNSOURCE: "signupsource",
+    SIGNAPP: "signupapp",
+    PRODUCTCAT: "productcategory",
+    WEBSEGMENT: "websegment",
+    PVW: "pvw",
+    CATEGORY: "category",
+    LTC: "lasttouchchannel",
+    NEWVSREPEAT: "newvsrepeat",
+    MOBILEVSDESKTOP:"mobilevsdesktop",
+    CONVERSION:"conversion",
+    VISITS: "visits",
     
 
 
@@ -50,4 +51,4 @@ export const SUMMARY_FILTERS = {
     USE_WK4WAU_RATE: 29
 };
 
-export const MOBILE_FILTER_PAGE = 'mobile_filter_page';
+export const MOBILE_FILTER_PAGE = "mobile_filter_page";

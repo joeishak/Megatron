@@ -28,7 +28,7 @@ class PanelItemTable extends Component {
             case DIMENSIONS.ROUTE:
                 return <SingleDimensionPanelItem
                     timeMetric={this.props.timeMetric}
-                    data={this.props.activeSummary.details.routes}
+                    data={this.props.activeSummary.details.route}
                     isJourney={this.state.isJourney} />
             case DIMENSIONS.SEGMENT:
                 return <SingleDimensionPanelItem
@@ -61,12 +61,14 @@ class PanelItemTable extends Component {
                 return <SingleDimensionPanelItem
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.nvr}
-                    isJourney={this.state.isJourney} />
+                    isJourney={this.state.isJourney} 
+                    type={DIMENSIONS.NEWVSREPEAT}/>
             case DIMENSIONS.MOBILEVSDESKTOP:
                 return <SingleDimensionPanelItem
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.mvd}
-                    isJourney={this.state.isJourney} />
+                    isJourney={this.state.isJourney}
+                    type={DIMENSIONS.MOBILEVSDESKTOP} />
             default:
                 return <MultiDimensionPanelItem
                     timeMetric={this.props.timeMetric}

@@ -14,7 +14,7 @@ import excelLogo from "../../assets/images/excel-logo.png";
 import excelLogoGreen from "../../assets/images/excel-logo-green.svg";
 import ExcelFormatter from "./ExcelFormatter";
 import DetailBreakdown from './DetailBreakdown/DetailBreakdown';
-import { SUMMARY_FILTERS } from '../../Constants/consts.js';
+import { SUMMARY_FILTERS, DIMENSIONS } from '../../Constants/consts.js';
 import * as _ from 'lodash';
 
 class SummaryViewDetails extends Component {
@@ -87,11 +87,48 @@ class SummaryViewDetails extends Component {
     //Either be 'qtd', 'week' or 'all'
     this.setState({ activeTimeMetric: e.target.innerHTML.toLowerCase() });
   }
+  updateSingleValue = (e) => {
+    console.log('Updating SingleValue',e);
+    let copy = this.state.selectedFilters;
+    if (this.state.selectedFilters.length === 0) {
+      this.setState({ selectedFilters: [e] })
+    } else {
 
+      //Find any with the same category
+      _.remove(copy, item => { return item.category === e.category });
+      _.remove(copy, item => { return item.index === e.index });
+      if (copy.length === 0) {
+        this.setState({ selectedFilters: [e] })
+      } else {
+        this.setState({ selectedFilters: [...copy, e] })
+
+      }
+
+    }
+
+    this.setState({ isButtonHighlighted: true });
+
+  }
+  updateMultiValue = (e, type) => {
+    console.log('Updating MultiValue',e,type);
+    let copy = this.state.selectedFilters;
+    if (e.length === 0) {
+      _.remove(copy, item => { return item.category === type });
+      this.setState({ selectedFilters: [...copy] })
+
+    } else {
+      _.remove(copy, item => { return item.category === e[0].category });
+      this.setState({ selectedFilters: [...copy, ...e] })
+    }
+
+    this.setState({ isButtonHighlighted: true });
+
+
+  }
   getExcelFilters(activeFilters) {
     let newArr;
-    let { geos, quarters, markets, routes, segments, subscriptions, channels, visits } = activeFilters;
-    newArr = [].concat(geos, quarters, markets, routes, segments, subscriptions);
+    let { geo, quarter, market, route, segment, subscription, channels, visits } = activeFilters;
+    newArr = [].concat(geo, quarter, market, route, segment, subscription);
     // console.log(newArr);
     return newArr;
   }
@@ -99,18 +136,116 @@ class SummaryViewDetails extends Component {
     // console.log('Updating MultiValue',e,type);
     let copy = this.state.selectedFilters;
     if (e.length === 0) {
-        _.remove(copy, item => { return item.category === type });
-        this.setState({ selectedFilters: [...copy] })
+      _.remove(copy, item => { return item.category === type });
+      this.setState({ selectedFilters: [...copy] })
 
     } else {
-        _.remove(copy, item => { return item.category === e[0].category });
-        this.setState({ selectedFilters: [...copy, ...e] })
+      _.remove(copy, item => { return item.category === e[0].category });
+      this.setState({ selectedFilters: [...copy, ...e] })
     }
 
     this.setState({ isButtonHighlighted: true });
 
 
+  }
+  submitFilters = (e) => {
+    // console.log('Submitting Filters . . . ');
+    const { GEO,
+      MARKET,
+      PRODUCT,
+      SEGMENT,
+      SUBSCRIPTION,
+      QUARTER,
+      ROUTE,
+      VISITSTATUS,
+      SIGNSOURCE,
+      SIGNAPP,
+      PRODUCTCAT,
+      WEBSEGMENT,
+      PVW,
+      CATEGORY,
+      LTC,
+      NEWVSREPEAT,
+      MOBILEVSDESKTOP,
+      CONVERSION,
+      VISITS
+  } = DIMENSIONS;
+    let newFilters = {
+        quarter: [],
+        segment: [],
+        product: [],
+        market: [],
+        route: [],
+        subscription: [],
+        geo: [],
+        //Traffic Filters
+        LTC: [],
+        CONVERSION: [],
+        WEBSEGMENT:[],
+        VISIT:[]
+    };
+
+    Object.keys(newFilters).forEach(item => {
+
+        switch (item) {
+            case QUARTER:
+                newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === QUARTER })) ? /* Then */
+                    [_.find(this.state.selectedFilters, (item => { return item.category === QUARTER }))] : /* Else */
+                    [...this.props.filters.quarter.valueFilters];
+                break;
+            case SEGMENT:
+                newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SEGMENT })) ?
+                    [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
+                    [...this.props.filters.segment.valueFilters];
+                break;
+                case LTC:
+                newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === QUARTER })) ? /* Then */
+                    [_.find(this.state.selectedFilters, (item => { return item.category === QUARTER }))] : /* Else */
+                    [...this.props.filters.quarter.valueFilters];
+                break;
+            case WEBSEGMENT:
+                newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SEGMENT })) ?
+                    [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
+                    [...this.props.filters.segment.valueFilters];
+                break;
+                case VISITS:
+                newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === QUARTER })) ? /* Then */
+                    [_.find(this.state.selectedFilters, (item => { return item.category === QUARTER }))] : /* Else */
+                    [...this.props.filters.quarter.valueFilters];
+                break;
+            case CONVERSION:
+                newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SEGMENT })) ?
+                    [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
+                    [...this.props.filters.segment.valueFilters];
+                break;
+            default:
+                let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category === item }));
+                // console.log(grouped);
+                if (grouped.false !== this.state.selectedFilters.length) {
+
+                    if (grouped.true !== undefined) {
+                        newFilters[item] = grouped.true
+                    } else {
+                        newFilters[item] = [];
+                    }
+                } else {
+                    newFilters[item] = [];
+                }
+                break;
+        }
+
+    });
+
+
+    this.setState({ selectedFilters: [] })
+
+    this.props.submitFilters(newFilters);
+    //  this.props.getSummaryData(newFilters);
+    this.props.handleClose();
 }
+  closeSingleValue = (e) => {
+    console.log('Closing Single Value', this.state.selectedFilters);
+  }
   updateSingleValue = (e) => {
     // console.log('Updating SingleValue',e);
     let copy = this.state.selectedFilters;
@@ -128,9 +263,13 @@ class SummaryViewDetails extends Component {
     }
     this.setState({ isButtonHighlighted: true });
   }
+  closeMultiValue = (e) => {
+    console.log('Closing Multivalue', this.state.selectedFilters);
+
+  }
   getSummaryFilters(activeItem) {
     let drillDownFilter;
-    let { lastTouchChannel, convType, webSegments, visits } = this.props.activeFilters;
+    let { lastTouchChannel, convType, websegment, visits } = this.props.activeFilters;
     switch (activeItem) {
       //finance
       // case 0:
@@ -145,44 +284,43 @@ class SummaryViewDetails extends Component {
       case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
         return (
           <div className="row">
-            <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
+            <div className="col-md-2 col-lg-2" style={{ paddingBottom: '10px' }}>
               {/* Visit Type */}
+              <div>Visits</div>
               <SingleValueSelect
                 activeFilters={[]}
                 options={visits.availableFilters}
-                onValueChange={e => { console.log(e) }}
-                onMenuClose={e => { console.log(e) }}
+                onValueChange={e => { this.updateSingleValue }}
+                onMenuClose={e => { this.closeSingleValue }}
               />
             </div>
             {/* Last Touch Channel */}
-            <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
+            <div className="col-md-4 col-lg-4" style={{ paddingBottom: '10px' }}>
+              <div>Last Touch Channel </div>
               <SingleValueSelect
                 activeFilters={[]}
                 options={lastTouchChannel.availableFilters}
-                onValueChange={e => { console.log(e) }}
-                onMenuClose={e => { console.log(e) }}
+                onValueChange={e => { this.updateSingleValue }}
+                onMenuClose={e => { this.closeSingleValue }}
+
               />
             </div>
             {/* Conversion Type */}
-            <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
-              <SingleValueSelect
-                activeFilters={[]}
-                options={convType.availableFilters}
-                onValueChange={e => { console.log(e) }}
-                onMenuClose={e => { console.log(e) }}
-              />
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              <div>Conversion </div>
               <MultiValueSelect
                 options={convType.availableFilters}
-                onValueChange={(e) => { let type = 'convType'; this.updateMultiValue(e, type) }}
+                onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
                 onMenuClose={this.closeMultiValue}
               />
             </div>
-            <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              <div>Web segment </div>
               <SingleValueSelect
                 activeFilters={[]}
-                options={webSegments.availableFilters}
-                onValueChange={e => { console.log(e) }}
-                onMenuClose={e => { console.log(e) }}
+                options={websegment.availableFilters}
+                onValueChange={e => { this.updateSingleValue }}
+                onMenuClose={e => { this.closeSingleValue }}
               />
             </div>
           </div>
@@ -330,7 +468,7 @@ class SummaryViewDetails extends Component {
         return (
           //Conversion
           <div className="row">
-            {/* Web Segments */}
+            {/* Web segment */}
             <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
               <SingleValueSelect
                 activeFilters={[]}
@@ -378,7 +516,7 @@ class SummaryViewDetails extends Component {
         return (
           // Marketing Sourced ARR
           <div className="row">
-            {/* Segments*/}
+            {/* segment*/}
             <div className="col-md-6 col-lg-6">
               <SingleValueSelect
                 activeFilters={[]}
@@ -635,14 +773,11 @@ class SummaryViewDetails extends Component {
 
         {/* First Row for Ttle Bar and Metric Filter */}
         <div className="row container-fluid titleBarHeader">
-          <span className=" detailTitle">
-            {/* {activeItem.header} */}
 
-          </span>
 
 
           {/* FILTER */}
-          <div className="col-lg-6 col-md-6 summary-filter">
+          <div className="col-lg-8 col-md-8 summary-filter">
             {this.getSummaryFilters(this.props.activeSecondary)}
           </div>
 
@@ -688,7 +823,7 @@ class SummaryViewDetails extends Component {
 
               </Workbook.Sheet>
 
-              <Workbook.Sheet data={this.props.secondaryData[activeSecondary].details.geo.qtd || []} name="Geos">
+              <Workbook.Sheet data={this.props.secondaryData[activeSecondary].details.geo.qtd || []} name="geo">
                 <Workbook.Column label="Geo" value="type" />
                 <Workbook.Column label="MarketArea" value="marketArea" />
                 <Workbook.Column label="Actuals" value="actuals" />
@@ -719,7 +854,7 @@ class SummaryViewDetails extends Component {
                 <Workbook.Column label="Q/Q" value="qq" />
                 <Workbook.Column label="Y/Y" value="yy" />
               </Workbook.Sheet>
-              <Workbook.Sheet data={secondaryData[activeSecondary].details.routes.qtd || []} name="Route To Market">
+              <Workbook.Sheet data={secondaryData[activeSecondary].details.route.qtd || []} name="Route To Market">
                 <Workbook.Column label="Route To Market" value="type" />
                 <Workbook.Column label="Actuals" value="actuals" />
                 {this.props.activeSecondary < 3 ? <Workbook.Column label="Units" value="units" /> : null}

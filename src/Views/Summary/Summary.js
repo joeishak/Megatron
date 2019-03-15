@@ -41,7 +41,9 @@ class Summary extends Component {
       preferncesAreAddedToFilters: false,
       initialDataLoadIsComplete: false,
       isLoading: true,
-      isInitiallyLoading: true
+      isInitiallyLoading: true,
+      primaryLoaded: false,
+      secondaryLoaded: false,
     };
 
     /*Bindings  */
@@ -87,12 +89,25 @@ class Summary extends Component {
     let preferencesAreLoaded = Object(this.props.preferences).hasOwnProperty('geoFilters');
     // TODO: This will not catch the case of a card changing that is not NewArr, fix immediately
     let appInitialLoadIsComplete = this.props.NEwQTDW.qtd.length !== 0;
-    let summaryDataLoaded = this.props.summaryData.secondary !== prevProps.summaryData.secondary;
+    let primaryLoaded = this.props.summaryData.primary[this.props.activePrimaryCard].value !== prevProps.summaryData.primary[this.props.activePrimaryCard].value;
+    let secondaryLoaded = this.props.summaryData.secondary[this.props.activeSecondaryCard].value !== prevProps.summaryData.secondary[this.props.activeSecondaryCard].value;
 
+    if(primaryLoaded){
+      this.setState({primaryLoaded: true})
+    }
+    if(secondaryLoaded){
+      this.setState({secondaryLoaded: true})
+    }
+    // switch(this.props.activePrimaryCard)
+    // {
+    //   case 0: 
+    //     summaryDataLoaded = 
+
+    // }
     // console.log('Checking Filters (',filtersAreLoaded,'): 1. Previouly: ',prevProps.filters,'Currently: ',this.props.filters);
     // console.log('Checking Preferences (',this.props.preferences,'): 1. Previouly: ',prevProps.preferences,'Currently: ',this.props.preferences);
     // // console.log('Checking the Filterss Combined(',appIsReadyToRequestSummaryData,'): 1. Previouly: ',prevProps.filters.combined,'Currently: ',this.props.filters.combined);
-    // console.log('Checking Summary Data(',appInitialLoadIsComplete,summaryDataLoaded,'): 1. Previouly: ',prevProps.NEwQTDW,'Currently: ',this.props.NEwQTDW);
+    console.log('Checking Summary Data(',primaryLoaded,secondaryLoaded,'): 1. Previouly: ',this.props.summaryData,'Currently: ',prevProps.summaryData);
 
     
     console.log(this.props.filters);
@@ -154,6 +169,7 @@ class Summary extends Component {
     }
 
     if (this.props.activePrimaryCard !== prevProps.activePrimaryCard) {
+      this.setState({userChangedCards:true});
       switch (this.props.activePrimaryCard) {
         case 0:
           this.setState({ isLoading: true });
@@ -190,10 +206,16 @@ class Summary extends Component {
           break;
       }
     }
-    if (appInitialLoadIsComplete && this.state.initialDataLoadIsComplete === true && this.props.summaryData != prevProps.summaryData) {
+    if (appInitialLoadIsComplete && this.state.initialDataLoadIsComplete === true && this.state.primaryLoaded && this.state.secondaryLoaded) {
       // this.updateActivePrimary(0);
       this.setState({ isLoading: false, isInitiallyLoading: false });
       this.props.isFetching(false);
+      this.setState({primaryLoaded: false,secondaryLoaded:false});
+    } else if(appInitialLoadIsComplete && this.state.initialDataLoadIsComplete === true && this.state.userChangedCards && this.state.secondaryLoaded){
+       // this.updateActivePrimary(0);
+       this.setState({ isLoading: false, isInitiallyLoading: false });
+       this.props.isFetching(false);
+       this.setState({secondaryLoaded:false, userChangedCards: false});
     }
     // if (this.props.activePrimaryCard.index > 0) {
     //   this.props.updateMultichartMetric(true);
@@ -325,6 +347,10 @@ class Summary extends Component {
 
           mobileFiltersIsShown={this.props.mobileFiltersIsShown} />
 
+        <FilterPanel
+
+        window={this.props.window} />
+
         {
           this.state.isLoading === true ? <LoadingScreen /> :
 
@@ -339,10 +365,6 @@ class Summary extends Component {
 
 
                   <div>
-
-                    <FilterPanel
-
-                      window={this.props.window} />
 
                     <CommentPanel
 
@@ -386,6 +408,7 @@ class Summary extends Component {
 
 function mapStateToProps(state) {
 
+  console.log("Filters Updated:",state.filters);
   return {
     authenticated: state.authenticated,
     statsDetails: state.summaryData.secondary[state.activeCards.secondary].details.stats,

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import DropDownFilter from './components/DropDownFilter.jsx';
 import classNames from 'classnames';
 import { Button } from '@progress/kendo-react-buttons';
+import { DIMENSIONS } from '../../../Constants/consts';
 
 import {
     PRIMARY,
@@ -90,29 +91,48 @@ class FilterPage extends Component {
 
     submitFilters = (e) => {
         // console.log('Submitting Filters . . . ');
-
+      const { GEO,
+            MARKET,
+            PRODUCT,
+            SEGMENT,
+            SUBSCRIPTION,
+            QUARTER,
+            ROUTE,
+            VISITSTATUS,
+            SIGNSOURCE,
+            SIGNAPP,
+            PRODUCTCAT,
+            WEBSEGMENT,
+            PVW,
+            CATEGORY,
+            LTC,
+            NEWVSREPEAT,
+            MOBILEVSDESKTOP,
+            CONVERSION,
+            VISITS
+        } = DIMENSIONS;
         let newFilters = {
-            quarters: [],
-            segments: [],
-            products: [],
-            markets: [],
-            routes: [],
-            subscriptions: [],
-            geos: []
+            quarter: [],
+            segment: [],
+            product: [],
+            market: [],
+            route: [],
+            subscription: [],
+            geo: []
         };
 
         Object.keys(newFilters).forEach(item => {
 
             switch (item) {
-                case 'quarters':
-                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === 'quarters' })) ? /* Then */
-                        [_.find(this.state.selectedFilters, (item => { return item.category === 'quarters' }))] : /* Else */
-                        [...this.props.filters.quarters.valueFilters];
+                case QUARTER:
+                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === QUARTER })) ? /* Then */
+                        [_.find(this.state.selectedFilters, (item => { return item.category === QUARTER }))] : /* Else */
+                        [...this.props.filters.quarter.valueFilters];
                     break;
-                case 'segments':
-                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === 'segments' })) ?
-                        [_.find(this.state.selectedFilters, (item => { return item.category === 'segments' }))] :
-                        [...this.props.filters.segments.valueFilters];
+                case SEGMENT:
+                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SEGMENT })) ?
+                        [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
+                        [...this.props.filters.segment.valueFilters];
                     break;
                 default:
                     let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category === item }));
@@ -143,6 +163,26 @@ class FilterPage extends Component {
     }
     render() {
         let { filters } = this.props;
+        const { GEO,
+            MARKET,
+            PRODUCT,
+            SEGMENT,
+            SUBSCRIPTION,
+            QUARTER,
+            ROUTE,
+            VISITSTATUS,
+            SIGNSOURCE,
+            SIGNAPP,
+            PRODUCTCAT,
+            WEBSEGMENT,
+            PVW,
+            CATEGORY,
+            LTC,
+            NEWVSREPEAT,
+            MOBILEVSDESKTOP,
+            CONVERSION,
+            VISITS
+        } = DIMENSIONS;
         const filtersApplied = this.generateFilterList(filters.combined.valueFilters);
         var quarterFilterContainer = classNames({
             'quarterFilterContainer': true,
@@ -164,29 +204,29 @@ class FilterPage extends Component {
                         <div className="row dropRow">
                             <div className="col-xs-12 col-sm-6 col-md-4 ">
                                 <p>Quarter</p>
-                                {/* <KendoDropDownList  data={this.props.availableFilters.quarters}/> */}
+                                {/* <KendoDropDownList  data={this.props.availableFilters.quarter}/> */}
                                 <SingleValueSelect
-                                    activeFilters={filters.quarters.valueFilters}
-                                    options={filters.quarters.availableFilters}
+                                    activeFilters={filters.quarter.valueFilters}
+                                    options={filters.quarter.availableFilters}
                                     onValueChange={this.updateSingleValue}
                                     onMenuClose={this.closeSingleValue}
                                 />                                        </div>
                             <div className="col-xs-12 col-sm-6 col-md-4 ">
                                 <p>Geo</p>
-                                {/* <KendoDropDownList  data={this.props.availableFilters.geos}/> */}
+                                {/* <KendoDropDownList  data={this.props.availableFilters.geo}/> */}
                                 <MultiValueSelect
-                                    options={filters.geos.availableFilters}
-                                    onValueChange={(e) => { let type = 'geos'; this.updateMultiValue(e, type) }}
+                                    options={filters.geo.availableFilters}
+                                    onValueChange={(e) => { let type = 'geo'; this.updateMultiValue(e, type) }}
                                     onMenuClose={this.closeMultiValue}
                                 />                                        </div>
                             <div className="col-xs-12 col-sm-6 col-md-4">
                                 <p>Market Area</p>
                                 {/* <KendoDropDownList  data={this.props.availableFilters.marketAreas} /> */}
                                 <MultiValueSelect
-                                    options={filters.markets.availableFilters}
-                                    onValueChange={(e) => { let type = 'markets'; this.updateMultiValue(e, type) }}
+                                    options={filters.market.availableFilters}
+                                    onValueChange={(e) => { let type = MARKET; this.updateMultiValue(e, type) }}
                                     onMenuClose={this.closeMultiValue}
-                                    values={_.groupBy(this.state.selectedFilters, (item => { return item.category === 'markets' }))}
+                                    values={_.groupBy(this.state.selectedFilters, (item => { return item.category === MARKET }))}
                                 />                                        </div>
 
                             <div className={'col-xs-12 col-sm-6 col-md-6'}>

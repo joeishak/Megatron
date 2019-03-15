@@ -92,6 +92,26 @@ class DetailPanelBar extends Component {
     }
 
     getDynamicPanelBar() {
+      const { GEO,
+            MARKET,
+            PRODUCT,
+            SEGMENT,
+            SUBSCRIPTION,
+            QUARTER,
+            ROUTE,
+            VISITSTATUS,
+            SIGNSOURCE,
+            SIGNAPP,
+            PRODUCTCAT,
+            WEBSEGMENT,
+            PVW,
+            CATEGORY,
+            LTC,
+            NEWVSREPEAT,
+            MOBILEVSDESKTOP,
+            CONVERSION,
+            VISITS
+        } = DIMENSIONS;
         switch (this.props.activePrimary) {
             case 0:
                 return (
@@ -105,7 +125,7 @@ class DetailPanelBar extends Component {
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                             {this.getPanelContents(DIMENSIONS.ROUTE)}
                         </PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                             {this.getPanelContents(DIMENSIONS.SEGMENT)}
                         </ PanelBarItem>
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Product Category'>
@@ -123,10 +143,10 @@ class DetailPanelBar extends Component {
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
                             {this.getPanelContents(DIMENSIONS.MARKET)}
                         </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title='Web Segments'>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
                             {this.getPanelContents(DIMENSIONS.WEBSEGMENT)}
                         </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title='Channel'>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title={LTC}>
                             {this.getPanelContents(DIMENSIONS.LTC)}
                         </ PanelBarItem>
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion'>
@@ -149,11 +169,11 @@ class DetailPanelBar extends Component {
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
                             {this.getPanelContents(DIMENSIONS.MARKET)}
                         </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title='Web Segments'>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
                             {this.getPanelContents(DIMENSIONS.SEGMENT)}
                         </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title='Channel'>
-                            {this.getPanelContents('Channel')}
+                        <PanelBarItem className="panelItemTitle" expanded={false} title={LTC}>
+                            {this.getPanelContents(LTC)}
                         </ PanelBarItem>
 
 
@@ -168,11 +188,11 @@ class DetailPanelBar extends Component {
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
                             {this.getPanelContents(DIMENSIONS.MARKET)}
                         </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title='Web Segments'>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
                             {this.getPanelContents(DIMENSIONS.SEGMENT)}
                         </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title='Channel'>
-                            {this.getPanelContents('Channel')}
+                        <PanelBarItem className="panelItemTitle" expanded={false} title={LTC}>
+                            {this.getPanelContents(LTC)}
                         </ PanelBarItem>
 
 
@@ -205,7 +225,7 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                                     {this.getPanelContents(DIMENSIONS.ROUTE)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
 
@@ -226,7 +246,7 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                                     {this.getPanelContents(DIMENSIONS.ROUTE)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
 
@@ -247,7 +267,7 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                                     {this.getPanelContents(DIMENSIONS.ROUTE)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
 
@@ -268,7 +288,7 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                                     {this.getPanelContents(DIMENSIONS.ROUTE)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
 
@@ -292,7 +312,7 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                                     {this.getPanelContents(DIMENSIONS.ROUTE)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
 
@@ -316,7 +336,7 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                                     {this.getPanelContents(DIMENSIONS.ROUTE)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
 
@@ -352,7 +372,7 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                                     {this.getPanelContents(DIMENSIONS.ROUTE)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
 
@@ -373,7 +393,7 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                                     {this.getPanelContents(DIMENSIONS.ROUTE)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
 
@@ -394,7 +414,7 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                                     {this.getPanelContents(DIMENSIONS.ROUTE)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
 
@@ -415,7 +435,7 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                                     {this.getPanelContents(DIMENSIONS.ROUTE)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
 
@@ -436,7 +456,7 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                                     {this.getPanelContents(DIMENSIONS.ROUTE)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
 
@@ -460,14 +480,14 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                                     {this.getPanelContents(DIMENSIONS.ROUTE)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
 
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Subscription Offering'>
                                     {this.getPanelContents(DIMENSIONS.PRODUCT)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Web Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
                             </PanelBar>
@@ -484,14 +504,14 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                                     {this.getPanelContents(DIMENSIONS.ROUTE)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
 
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Subscription Offering'>
                                     {this.getPanelContents(DIMENSIONS.PRODUCT)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Web Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
                             </PanelBar>
@@ -508,7 +528,7 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                                     {this.getPanelContents(DIMENSIONS.ROUTE)}
                                 </PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
 
@@ -531,7 +551,7 @@ class DetailPanelBar extends Component {
                 <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
                     {this.getPanelContents(DIMENSIONS.ROUTE)}
                 </PanelBarItem>
-                <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
+                <PanelBarItem className="panelItemTitle" expanded={false} title={SEGMENT}>
                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                 </ PanelBarItem>
 
@@ -546,11 +566,11 @@ class DetailPanelBar extends Component {
                     <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
                         {this.getPanelContents(DIMENSIONS.MARKET)}
                     </ PanelBarItem>
-                    <PanelBarItem className="panelItemTitle" expanded={false} title='Web Segments'>
+                    <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
                         {this.getPanelContents(DIMENSIONS.SEGMENT)}
                     </ PanelBarItem>
-                    <PanelBarItem className="panelItemTitle" expanded={false} title='Channel'>
-                        {this.getPanelContents('Channel')}
+                    <PanelBarItem className="panelItemTitle" expanded={false} title={LTC}>
+                        {this.getPanelContents(LTC)}
                     </ PanelBarItem>
 
 

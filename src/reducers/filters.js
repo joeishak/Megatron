@@ -6,336 +6,359 @@ import {
     RESET_FILTERS,
     SUBMIT_FILTERS
 } from 'actions/types';
+import { DIMENSIONS } from '../Constants/consts';
 import _ from 'lodash';
 
 let count = 0;
 let defaultState = [];
 let copyOfState;
 let cat;
-export default function (state = {
-   
-    markets: {
-        availableFilters: [],
-        valueFilters: []
-    },
-    quarters: {
-        availableFilters: [],
-        valueFilters: []
-    },
-    geos: {
-        availableFilters: [],
-        valueFilters: []
-    },
-    products: {
-        availableFilters: [],
-        valueFilters: []
-    },
-    segments: {
-        availableFilters: [],
-        valueFilters: []
-    },
-    subscriptions: {
-        availableFilters: [],
-        valueFilters: []
-    },
-    routes: {
-        availableFilters: [],
-        valueFilters: []
-    },
-    webSegments: {
-        availableFilters: [],
-        valueFilters: []
-    },
-    lastTouchChannel: {
-        availableFilters: [],
-        valueFilters: []
-    },
-    visits: {
-        availableFilters: [],
-        valueFilters: []
-    }
-}, action) {
-    switch (action.type) {
-        case SUBMIT_FILTERS:
-            copyOfState = JSON.parse(JSON.stringify(state));
-            copyOfState.combined.valueFilters = [];
-            // For each key in action . payload
-            // goes,markets,products,quarters,routes,segments,subscriptions
-            Object.keys(action.payload).forEach(item => {
-                copyOfState[item].valueFilters = action.payload[item];
-                copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters, ...action.payload[item]];
-            });
-            return copyOfState;
-        case ADD_PREFERENCES_TO_ACTIVE_FILTERS:
-            let copyOfState1 = JSON.parse(JSON.stringify(state))
-            copyOfState = JSON.parse(JSON.stringify(state))
-            copyOfState.quarters.valueFilters.push({ index: 211, category: "quarters", value: '2019-Q1' });
-            copyOfState.segments.valueFilters.push({ index: 209, category: "segments", value: 'Digital Media' });
-            copyOfState.webSegments.valueFilters.push({ index: 187, category: "web", value: 'DIGITAL MEDIA' });
-            copyOfState.lastTouchChannel.valueFilters.push({ index: 129, category: "channel", value: 'ALL' });
-            copyOfState.visits.valueFilters.push({ index: 111, category: "visit", value: 'All Visits' });
+const { GEO,
+    MARKET,
+    PRODUCT,
+    SEGMENT,
+    SUBSCRIPTION,
+    QUARTER,
+    ROUTE,
+    VISITSTATUS,
+    SIGNSOURCE,
+    SIGNAPP,
+    PRODUCTCAT,
+    WEBSEGMENT,
+    PVW,
+    CATEGORY,
+    LTC,
+    NEWVSREPEAT,
+    MOBILEVSDESKTOP,
+    CONVERSION,
+    VISITS
+} = DIMENSIONS;
+    export default function (state = {
 
-            copyOfState.routes.valueFilters = action.payload.routeFilters;
-            copyOfState.markets.valueFilters = action.payload.marketFilters;
-            copyOfState.products.valueFilters = action.payload.productFilters;
-            copyOfState.subscriptions.valueFilters = action.payload.subscriptionFilters;
-            copyOfState.geos.valueFilters = action.payload.geoFilters;
-            copyOfState.combined.valueFilters = [...copyOfState.quarters.valueFilters, ...copyOfState.segments.valueFilters, ...copyOfState.routes.valueFilters || {},
-            ...copyOfState.markets.valueFilters || {}, ...copyOfState.products.valueFilters || {}, ...copyOfState.subscriptions.valueFilters || {}, ...copyOfState.geos.valueFilters || {}]
-            return copyOfState;
-        case GENERATE_FILTER_DATA:
-            let quarterFilters = action.payload[0].data;
-            let marketsFilters = action.payload[1].data;
-            let productsFilters = action.payload[2].data;
-            let segmentsFilters = action.payload[3].data;
-            let subscriptionsFilters = action.payload[4].data;
-            let routesFilters = action.payload[5].data;
-            let geosFilters = action.payload[6].data;
-            let channelFilters = action.payload[7].data;
-            let visitFilters = action.payload[8].data;
-            let CloudTypeFilters = action.payload[9].data
-            let ConvTypeFilters = action.payload[10].data
-            let DiscoverVsBuyFilters = action.payload[11].data
-            let LastTouchChannelFilters = action.payload[12].data
-            let MobileVsDesktopFilters = action.payload[13].data
-            let NewVsRepeatFilters = action.payload[14].data
-            let ProdNameFilters = action.payload[15].data
-            let SignupAppFilters = action.payload[16].data
-            let SignupCatFilters = action.payload[17].data
-            let WebSegFilters = action.payload[18].data
+        market: {
+            availableFilters: [],
+            valueFilters: []
+        },
+        quarter: {
+            availableFilters: [],
+            valueFilters: []
+        },
+        geo: {
+            availableFilters: [],
+            valueFilters: []
+        },
+        product: {
+            availableFilters: [],
+            valueFilters: []
+        },
+        segment: {
+            availableFilters: [],
+            valueFilters: []
+        },
+        subscription: {
+            availableFilters: [],
+            valueFilters: []
+        },
+        route: {
+            availableFilters: [],
+            valueFilters: []
+        },
+        websegment: {
+            availableFilters: [],
+            valueFilters: []
+        },
+        lastTouchChannel: {
+            availableFilters: [],
+            valueFilters: []
+        },
+        visits: {
+            availableFilters: [],
+            valueFilters: []
+        }
+    }, action) {
+        switch (action.type) {
+            case SUBMIT_FILTERS:
+                copyOfState = JSON.parse(JSON.stringify(state));
+                console.log('FILTERS',action.payload);
+                copyOfState.combined.valueFilters = [];
+                // For each key in action . payload
+                // goes,market,product,quarter,route,segment,subscription
+                Object.keys(action.payload).forEach(item => {
+                    copyOfState[item].valueFilters = action.payload[item];
+                    console.log(copyOfState[item], action.payload[item]);
+                    copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters, ...action.payload[item]];
+                });
+                return {...copyOfState};
+            case ADD_PREFERENCES_TO_ACTIVE_FILTERS:
+                let copyOfState1 = JSON.parse(JSON.stringify(state))
+                copyOfState = JSON.parse(JSON.stringify(state))
+                copyOfState.quarter.valueFilters.push({ index: 211, category: QUARTER, value: '2019-Q1' });
+                copyOfState.segment.valueFilters.push({ index: 209, category:SEGMENT, value: 'Digital Media' });
+                copyOfState.websegment.valueFilters.push({ index: 187, category: WEBSEGMENT, value: 'DIGITAL MEDIA' });
+                copyOfState.lastTouchChannel.valueFilters.push({ index: 129, category: LTC, value: 'ALL' });
+                copyOfState.visits.valueFilters.push({ index: 111, category: VISITS, value: 'All Visits' });
 
-            let newGeoState = processDropDownListFilterValue('geos', geosFilters);
-            let newMAState = processDropDownListFilterValue('markets', marketsFilters);
-            let newProductState = processDropDownListFilterValue('products', productsFilters);
-            let newRouteState = processDropDownListFilterValue('routes', routesFilters);
-            let newSegmentsState = processDropDownListFilterValue('segments', segmentsFilters);
-            let newSubscriptionState = processDropDownListFilterValue('subscriptions', subscriptionsFilters);
-            let newQuartersState = processDropDownListFilterValue('quarters', quarterFilters);
-            let newVisitState = processDropDownListFilterValue('visit', visitFilters);
+                copyOfState.route.valueFilters = action.payload.routeFilters;
+                copyOfState.market.valueFilters = action.payload.marketFilters;
+                copyOfState.product.valueFilters = action.payload.productFilters;
+                copyOfState.subscription.valueFilters = action.payload.subscriptionFilters;
+                copyOfState.geo.valueFilters = action.payload.geoFilters;
+                copyOfState.combined.valueFilters = [...copyOfState.quarter.valueFilters, ...copyOfState.segment.valueFilters, ...copyOfState.route.valueFilters || {},
+                ...copyOfState.market.valueFilters || {}, ...copyOfState.product.valueFilters || {}, ...copyOfState.subscription.valueFilters || {}, ...copyOfState.geo.valueFilters || {}]
+                return copyOfState;
+            case GENERATE_FILTER_DATA:
+                let quarterFilter = action.payload[0].data;
+                let marketFilter = action.payload[1].data;
+                let productFilter = action.payload[2].data;
+                let segmentFilter = action.payload[3].data;
+                let subscriptionFilter = action.payload[4].data;
+                let routeFilter = action.payload[5].data;
+                let geoFilter = action.payload[6].data;
+                let channelFilters = action.payload[7].data;
+                let visitFilters = action.payload[8].data;
+                let CloudTypeFilters = action.payload[9].data
+                let ConvTypeFilters = action.payload[10].data
+                let DiscoverVsBuyFilters = action.payload[11].data
+                let LastTouchChannelFilters = action.payload[12].data
+                let MobileVsDesktopFilters = action.payload[13].data
+                let NewVsRepeatFilters = action.payload[14].data
+                let ProdNameFilters = action.payload[15].data
+                let SignupAppFilters = action.payload[16].data
+                let SignupCatFilters = action.payload[17].data
+                let WebSegFilters = action.payload[18].data
 
-            let newCloud = processDropDownListFilterValue('cloud', CloudTypeFilters);
-            let newConv = processDropDownListFilterValue('conv', ConvTypeFilters);
-            let newDiscBuy = processDropDownListFilterValue('discoverbuy', DiscoverVsBuyFilters);
-            let newChannelState = processDropDownListFilterValue('channel', LastTouchChannelFilters);
-            let newMobileDesk = processDropDownListFilterValue('mobiledesktop', MobileVsDesktopFilters);
-            let newVsRepeat = processDropDownListFilterValue('vsrepeat', NewVsRepeatFilters);
-            let newProdName = processDropDownListFilterValue('prodName', ProdNameFilters);
-            let newSignApp = processDropDownListFilterValue('signUpApp', SignupAppFilters);
-            let newSignCat = processDropDownListFilterValue('signUpCat', SignupCatFilters);
-            let newWeb = processDropDownListFilterValue('web', WebSegFilters);
+                let newgeotate = processDropDownListFilterValue(GEO, geoFilter);
+                let newMAState = processDropDownListFilterValue(MARKET, marketFilter);
+                let newproducttate = processDropDownListFilterValue(PRODUCT, productFilter);
+                let newroutetate = processDropDownListFilterValue(ROUTE, routeFilter);
+                let newsegmentState = processDropDownListFilterValue(SEGMENT, segmentFilter);
+                let newsubscriptiontate = processDropDownListFilterValue(SUBSCRIPTION, subscriptionFilter);
+                let newquarterState = processDropDownListFilterValue(QUARTER, quarterFilter);
+                let newVisitState = processDropDownListFilterValue(VISITS, visitFilters);
 
-
-
-
-
-
-            let arr = [...newQuartersState, ...newGeoState, ...newMAState, ...newProductState, ...newRouteState, ...newSegmentsState, ...newSubscriptionState,
-            ...newChannelState, ...newVisitState,...newCloud,...newConv,...newDiscBuy,...newMobileDesk,...newVsRepeat,...newProdName,...newSignApp,
-            ...newSignCat,...newWeb];
-            let obj =
-            {
-                combined: {
-                    availableFilters: arr,
-                    valueFilters: []
-                },
-                markets: {
-                    availableFilters: newMAState,
-                    valueFilters: []
-                },
-                quarters: {
-                    availableFilters: newQuartersState,
-                    valueFilters: []
-                },
-                geos: {
-                    availableFilters: newGeoState,
-                    valueFilters: []
-                },
-                products: {
-                    availableFilters: newProductState,
-                    valueFilters: []
-                },
-                segments: {
-                    availableFilters: newSegmentsState,
-                    valueFilters: []
-                },
-                subscriptions: {
-                    availableFilters: newSubscriptionState,
-                    valueFilters: []
-                },
-                routes: {
-                    availableFilters: newRouteState,
-                    valueFilters: []
-                },
-                lastTouchChannel: {
-                    availableFilters: newChannelState,
-                    valueFilters: []
-                },
-                visits: {
-                    availableFilters: newVisitState,
-                    valueFilters: []
-                },
-                signupCategory: {
-                    availableFilters: newSignCat,
-                    valueFilters: []
-                },
-                
-                signupApp: {
-                    availableFilters: newSignApp,
-                    valueFilters: []
-                },
-                productName: {
-                    availableFilters: newProdName,
-                    valueFilters: []
-                },
-                webSegments: {
-                    availableFilters: newWeb,
-                    valueFilters: []
-                },
-                cloudType: {
-                    availableFilters: newCloud,
-                    valueFilters: []
-                },
-                convType: {
-                    availableFilters: newConv,
-                    valueFilters: []
-                },
-                mobileDesktop: {
-                    availableFilters: newMobileDesk,
-                    valueFilters: []
-                },
-                discoverBuy: {
-                    availableFilters: newDiscBuy,
-                    valueFilters: []
-                },
-                newVsRepeat: {
-                    availableFilters: newVsRepeat,
-                    valueFilters: []
-                }
-            }
-            console.log(obj);
-            return obj;
-
-        case ADD_MULTI_FILTER:
-            copyOfState = JSON.parse(JSON.stringify(state))
-            cat = action.payload.category;
-            copyOfState.combined.valueFilters.push(action.payload);
-
-            console.log(copyOfState);
-            switch (cat) {
-                case 'geos':
-                    copyOfState.geos.valueFilters = action.payload.quarters;
-                    break;
-                case 'quarters':
-                    _.remove(copyOfState.quarters.valueFilters = action.payload.quarters);
+                let newCloud = processDropDownListFilterValue('cloud', CloudTypeFilters);
+                let newConv = processDropDownListFilterValue(CONVERSION, ConvTypeFilters);
+                let newDiscBuy = processDropDownListFilterValue('discoverbuy', DiscoverVsBuyFilters);
+                let newChannelState = processDropDownListFilterValue(LTC, LastTouchChannelFilters);
+                let newMobileDesk = processDropDownListFilterValue(MOBILEVSDESKTOP, MobileVsDesktopFilters);
+                let newVsRepeat = processDropDownListFilterValue(NEWVSREPEAT, NewVsRepeatFilters);
+                let newProdName = processDropDownListFilterValue('prodName', ProdNameFilters);
+                let newSignApp = processDropDownListFilterValue('signUpApp', SignupAppFilters);
+                let newSignCat = processDropDownListFilterValue('signUpCat', SignupCatFilters);
+                let newWeb = processDropDownListFilterValue(WEBSEGMENT, WebSegFilters);
 
 
-                    copyOfState.quarters.valueFilters = [action.payload];
-                    if (copyOfState.combined.valueFilters.length > 0) {
-                        copyOfState.combined.valueFilters.splice(0, 0, action.payload);
 
-                    } else {
-                        copyOfState.combined.valueFilters.push(action.payload);
 
-                    }
 
-                    break;
-                case 'subscriptions':
-                    _.remove(copyOfState.subscriptions.valueFilters, item => { return item.value === action.payload.value });
 
-                    copyOfState.subscriptions.valueFilters.push(action.payload);
-                    break;
-                case 'segments':
-                    _.remove(copyOfState.segments.valueFilters, item => { return item.value === action.payload.value });
-                    _.remove(copyOfState.combined.valueFilters, item => { return item.category === 'segments' });
-                    copyOfState.segments.valueFilters = [action.payload];
-                    if (copyOfState.combined.valueFilters.length > 0) {
-                        copyOfState.combined.valueFilters.splice(1, 0, action.payload);
-                    } else {
-                        copyOfState.combined.valueFilters.push(action.payload);
-                    }
-                    break;
-                case 'markets':
-                    _.remove(copyOfState.markets.valueFilters, item => { return item.value === action.payload.value });
+                let arr = [...newquarterState, ...newgeotate, ...newMAState, ...newproducttate, ...newroutetate, ...newsegmentState, ...newsubscriptiontate,
+                ...newChannelState, ...newVisitState, ...newCloud, ...newConv, ...newDiscBuy, ...newMobileDesk, ...newVsRepeat, ...newProdName, ...newSignApp,
+                ...newSignCat, ...newWeb];
+                let obj =
+                {
+                    combined: {
+                        availableFilters: arr,
+                        valueFilters: []
+                    },
+                    market: {
+                        availableFilters: newMAState,
+                        valueFilters: []
+                    },
+                    quarter: {
+                        availableFilters: newquarterState,
+                        valueFilters: []
+                    },
+                    geo: {
+                        availableFilters: newgeotate,
+                        valueFilters: []
+                    },
+                    product: {
+                        availableFilters: newproducttate,
+                        valueFilters: []
+                    },
+                    segment: {
+                        availableFilters: newsegmentState,
+                        valueFilters: []
+                    },
+                    subscription: {
+                        availableFilters: newsubscriptiontate,
+                        valueFilters: []
+                    },
+                    route: {
+                        availableFilters: newroutetate,
+                        valueFilters: []
+                    },
+                    lastTouchChannel: {
+                        availableFilters: newChannelState,
+                        valueFilters: []
+                    },
+                    visits: {
+                        availableFilters: newVisitState,
+                        valueFilters: []
+                    },
+                    signupCategory: {
+                        availableFilters: newSignCat,
+                        valueFilters: []
+                    },
 
-                    copyOfState.markets.valueFilters.push(action.payload);
-                    break;
-                case 'products':
-                    _.remove(copyOfState.products.valueFilters, item => { return item.value === action.payload.value });
-
-                    copyOfState.products.valueFilters.push(action.payload);
-                    break;
-                case 'routes':
-                    _.remove(copyOfState.routes.valueFilters, item => { return item.value === action.payload.value });
-
-                    copyOfState.routes.valueFilters.push(action.payload);
-                    break;
-                default:
-                    break;
-            }
-
-            return copyOfState;
-        case RESET_FILTERS:
-            let { defaultQuarter, defaultSegment, subscriptionFilters, geoFilters, marketFilters, productFilters, routeFilters } = action.payload;
-            copyOfState = JSON.parse(JSON.stringify(state))
-            copyOfState.geos.valueFilters = geoFilters
-            copyOfState.quarters.valueFilters = [{ index: 211, category: "quarters", value: defaultQuarter }];
-            copyOfState.subscriptions.valueFilters = subscriptionFilters;
-            copyOfState.segments.valueFilters = [{ index: 209, category: "segments", value: defaultSegment }];
-            copyOfState.markets.valueFilters = marketFilters
-            copyOfState.products.valueFilters = productFilters
-            copyOfState.routes.valueFilters = routeFilters
-            copyOfState.combined.valueFilters = [{ index: 211, category: "quarters", value: defaultQuarter }, { index: 209, category: "segments", value: defaultSegment }];
-            Object.keys(copyOfState).forEach(item => {
-                if (item !== 'combined') {
-                    console.log(copyOfState[item])
-                    if (copyOfState[item].valueFilters.length !== 0) {
-                        copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters, ...copyOfState[item].valueFilters]
+                    signupApp: {
+                        availableFilters: newSignApp,
+                        valueFilters: []
+                    },
+                    productName: {
+                        availableFilters: newProdName,
+                        valueFilters: []
+                    },
+                    websegment: {
+                        availableFilters: newWeb,
+                        valueFilters: []
+                    },
+                    cloudType: {
+                        availableFilters: newCloud,
+                        valueFilters: []
+                    },
+                    convType: {
+                        availableFilters: newConv,
+                        valueFilters: []
+                    },
+                    mobileDesktop: {
+                        availableFilters: newMobileDesk,
+                        valueFilters: []
+                    },
+                    discoverBuy: {
+                        availableFilters: newDiscBuy,
+                        valueFilters: []
+                    },
+                    newVsRepeat: {
+                        availableFilters: newVsRepeat,
+                        valueFilters: []
                     }
                 }
-            })
-            return copyOfState;
-        case REMOVE_MULTI_FILTER:
-            copyOfState = JSON.parse(JSON.stringify(state))
-            cat = action.payload.category;
-            _.remove(copyOfState.combined.valueFilters, item => { return item.index === action.payload.index });
+                console.log(obj);
+                return obj;
 
-            switch (cat) {
-                case 'geos':
-                    _.remove(copyOfState.geos.valueFilters, item => { return item.index === action.payload.index });
+            case ADD_MULTI_FILTER:
+                copyOfState = JSON.parse(JSON.stringify(state))
+                cat = action.payload.category;
+                copyOfState.combined.valueFilters.push(action.payload);
 
-                    break;
-                case 'quarters':
-                    _.remove(copyOfState.quarters.valueFilters, item => { return item.index === action.payload.index });
-                    copyOfState.quarters.valueFilters = [action.payload]
-                    break;
-                case 'subscriptions':
-                    _.remove(copyOfState.subscriptions.valueFilters, item => { return item.index === action.payload.index });
+                console.log(copyOfState);
+                switch (cat) {
+                    case GEO:
+                        copyOfState.geo.valueFilters = action.payload.quarter;
+                        break;
+                    case QUARTER:
+                        _.remove(copyOfState.quarter.valueFilters = action.payload.quarter);
 
-                    break;
-                case 'segments':
-                    _.remove(copyOfState.segments.valueFilters, item => { return item.index === action.payload.index });
-                    copyOfState.segments.valueFilters = [action.payload]
 
-                    break;
-                case 'markets':
-                    _.remove(copyOfState.markets.valueFilters, item => { return item.index === action.payload.index });
+                        copyOfState.quarter.valueFilters = [action.payload];
+                        if (copyOfState.combined.valueFilters.length > 0) {
+                            copyOfState.combined.valueFilters.splice(0, 0, action.payload);
 
-                    break;
-                case 'products':
-                    _.remove(copyOfState.products.valueFilters, item => { return item.index === action.payload.index });
+                        } else {
+                            copyOfState.combined.valueFilters.push(action.payload);
 
-                    break;
-                case 'routes':
-                    _.remove(copyOfState.routes.valueFilters, item => { return item.index === action.payload.index });
-                    break;
-                default:
-                    return state;
-            }
-            return copyOfState;
-        default:
-            return state;
+                        }
+
+                        break;
+                    case SUBSCRIPTION:
+                        _.remove(copyOfState.subscription.valueFilters, item => { return item.value === action.payload.value });
+
+                        copyOfState.subscription.valueFilters.push(action.payload);
+                        break;
+                    case SEGMENT:
+                        _.remove(copyOfState.segment.valueFilters, item => { return item.value === action.payload.value });
+                        _.remove(copyOfState.combined.valueFilters, item => { return item.category === SEGMENT });
+                        copyOfState.segment.valueFilters = [action.payload];
+                        if (copyOfState.combined.valueFilters.length > 0) {
+                            copyOfState.combined.valueFilters.splice(1, 0, action.payload);
+                        } else {
+                            copyOfState.combined.valueFilters.push(action.payload);
+                        }
+                        break;
+                    case MARKET:
+                        _.remove(copyOfState.market.valueFilters, item => { return item.value === action.payload.value });
+
+                        copyOfState.market.valueFilters.push(action.payload);
+                        break;
+                    case PRODUCT:
+                        _.remove(copyOfState.product.valueFilters, item => { return item.value === action.payload.value });
+
+                        copyOfState.product.valueFilters.push(action.payload);
+                        break;
+                    case ROUTE:
+                        _.remove(copyOfState.route.valueFilters, item => { return item.value === action.payload.value });
+
+                        copyOfState.route.valueFilters.push(action.payload);
+                        break;
+                    default:
+                        break;
+                }
+
+                return copyOfState;
+            case RESET_FILTERS:
+                let { defaultQuarter, defaultSegment, subscriptionFilters, geoFilters, marketFilters, productFilters, routeFilters } = action.payload;
+                copyOfState = JSON.parse(JSON.stringify(state))
+                copyOfState.geo.valueFilters = geoFilters
+                copyOfState.quarter.valueFilters = [{ index: 211, category: "quarter", value: defaultQuarter }];
+                copyOfState.subscription.valueFilters = subscriptionFilters;
+                copyOfState.segment.valueFilters = [{ index: 209, category: "segment", value: defaultSegment }];
+                copyOfState.market.valueFilters = marketFilters
+                copyOfState.product.valueFilters = productFilters
+                copyOfState.route.valueFilters = routeFilters
+                copyOfState.combined.valueFilters = [{ index: 211, category: "quarter", value: defaultQuarter }, { index: 209, category: "segment", value: defaultSegment }];
+                Object.keys(copyOfState).forEach(item => {
+                    if (item !== 'combined') {
+                        console.log(copyOfState[item])
+                        if (copyOfState[item].valueFilters.length !== 0) {
+                            copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters, ...copyOfState[item].valueFilters]
+                        }
+                    }
+                })
+                return copyOfState;
+            case REMOVE_MULTI_FILTER:
+                copyOfState = JSON.parse(JSON.stringify(state))
+                cat = action.payload.category;
+                _.remove(copyOfState.combined.valueFilters, item => { return item.index === action.payload.index });
+
+                switch (cat) {
+                    case GEO:
+                        _.remove(copyOfState.geo.valueFilters, item => { return item.index === action.payload.index });
+
+                        break;
+                    case QUARTER:
+                        _.remove(copyOfState.quarter.valueFilters, item => { return item.index === action.payload.index });
+                        copyOfState.quarter.valueFilters = [action.payload]
+                        break;
+                    case SUBSCRIPTION:
+                        _.remove(copyOfState.subscription.valueFilters, item => { return item.index === action.payload.index });
+
+                        break;
+                    case SEGMENT:
+                        _.remove(copyOfState.segment.valueFilters, item => { return item.index === action.payload.index });
+                        copyOfState.segment.valueFilters = [action.payload]
+
+                        break;
+                    case MARKET:
+                        _.remove(copyOfState.market.valueFilters, item => { return item.index === action.payload.index });
+
+                        break;
+                    case PRODUCT:
+                        _.remove(copyOfState.product.valueFilters, item => { return item.index === action.payload.index });
+
+                        break;
+                    case ROUTE:
+                        _.remove(copyOfState.route.valueFilters, item => { return item.index === action.payload.index });
+                        break;
+                    default:
+                        return state;
+                }
+                return copyOfState;
+            default:
+                return state;
+        }
     }
-}
 
 
 function processDropDownListFilterValue(type, data) {
@@ -343,7 +366,7 @@ function processDropDownListFilterValue(type, data) {
     let newArr = _.uniq(data);
 
     switch (type) {
-        case 'geos':
+        case GEO:
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -352,7 +375,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'quarters':
+        case QUARTER:
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -362,7 +385,7 @@ function processDropDownListFilterValue(type, data) {
             });
 
             return newArr;
-        case 'markets':
+        case MARKET:
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -371,7 +394,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'segments':
+        case SEGMENT:
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -380,7 +403,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'subscriptions':
+        case SUBSCRIPTION:
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -389,7 +412,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'products':
+        case PRODUCT:
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -398,7 +421,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'routes':
+        case ROUTE:
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -407,7 +430,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'channel':
+        case LTC:
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -416,7 +439,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'visit':
+        case VISITS:
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -471,7 +494,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'web':
+        case WEBSEGMENT:
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -489,7 +512,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'conv':
+        case CONVERSION:
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -507,7 +530,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'mobiledesktop':
+        case MOBILEVSDESKTOP:
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -516,7 +539,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'vsrepeat':
+        case NEWVSREPEAT:
             newArr = newArr.map(item => {
                 return {
                     index: count++,
@@ -537,4 +560,4 @@ function processDropDownListFilterValue(type, data) {
 // let newProductCategoryState = processDropDownListFilterValue('productCategory', productCategory);
 // let newPVWState = processDropDownListFilterValue('pvw', pvw);
 // let newCategoryState = processDropDownListFilterValue('category', category);
-// let newWebSegmentsState = processDropDownListFilterValue('webSegments', webSegments);
+// let newWebsegmentState = processDropDownListFilterValue('websegment', websegment);
