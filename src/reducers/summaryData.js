@@ -1223,23 +1223,24 @@ export function processTrafficMultichartData(g5, newState) {
     }
 }
 export function processTrafficQTDData(g5, newState) {
-    for (let i = 4; i < newState.length; i++) {
+    console.log(g5);
 
+    for (let i = 4; i < newState.length; i++) {
 
         switch (i) {
             // Traffic
             case 4:
-                newState[i].details.qtdw.qtd[0].value = g5.TrafficActual;
-                newState[i].details.qtdw.qtd[1].value = g5.TrafficTargetFQ;
-                newState[i].details.qtdw.qtd[2].value = g5.TrafficVsQrfDiff;
+                newState[i].details.qtdw.qtd[0].value = g5.TrafficActuals;
+                newState[i].details.qtdw.qtd[1].value = g5.TrafficTarget;
+                newState[i].details.qtdw.qtd[2].value = g5.TrafficActuals - g5.TrafficTarget;
                 newState[i].details.qtdw.qtd[3].value = g5.TrafficVsQrf;
                 newState[i].details.qtdw.qtd[4].value = g5.TrafficQQTY;
                 newState[i].details.qtdw.qtd[5].value = g5.TrafficYY;
 
                 newState[i].details.qtdw.week[0].value = g5.TrafficCW;
                 newState[i].details.qtdw.week[1].value = g5.TrafficTargetCW;
-                newState[i].details.qtdw.week[2].value = g5.TrafficVsQrfDiffCW;
-                newState[i].details.qtdw.week[3].value = g5.TrafficVsQrfCW;
+                newState[i].details.qtdw.week[2].value = g5.TrafficCWVsQrfDiff;
+                newState[i].details.qtdw.week[3].value = g5.TrafficCWVsQrf;
                 newState[i].details.qtdw.week[4].value = g5.TrafficWW;
 
                 newState[i].details.stats[0].value = g5.TrafficVsQrf;
@@ -1508,60 +1509,77 @@ export function processTrafficLTCQTDData(g5, newState) {
     }
 }
 export function processTrafficConvQTDData(g5, newState) {
+    console.log(g5);
+    console.log(newState);
     //Clear old Values
-    newState[4].details.product.qtd = [];
-    newState[10].details.product.qtd = [];
-    newState[4].details.product.week = [];
-    newState[10].details.product.week = [];
+    // newState[4].details.conversion.qtd = [];
+    // newState[10].details.conversion.qtd = [];
+    // newState[4].details.conversion.week = [];
+    // newState[10].details.conversion.week = [];
 
-    for (let i = 0; i < g5.length; i++) {
-        let item = g5[i];
-        let traffic = {
-            index: i,
-            actuals: item.TrafficActual,
-            qq: item.TrafficQQTY,
-            qrf: item.TrafficTargetFQ,
-            qrfDiff: item.TrafficVsQrfDiff,
-            type: item.product_category,
-            vsQrf: item.TrafficVsQrf,
-            yy: item.TrafficYY
-        }
-        let trafficPM =
-        {
-            index: i,
-            actuals: item.TrafficCW,
-            qrf: item.TrafficTargetCW,
-            qrfDiff: item.TrafficVsQrfDiffCW,
-            vsQrf: item.TrafficVsQrfCW,
-            ww: item.TrafficWW,
-            type: item.product_category,
+    // for (let i = 0; i < g5.length; i++) {
+    //     let item = g5[i];
+    //     let traffic = {
+    //         index: i,
+    //         actuals: item.TrafficActuals,
+    //         qq: item.TrafficQQTY,
+    //         qrf: item.TrafficTarget,
+    //         qrfDiff: item.TrafficActuals - item.TrafficTarget,
+    //         type: item.conversion_type,
+    //         vsQrf: item.TrafficVsQrf,
+    //         yy: item.TrafficYY
+    //     }
+    //     let trafficPM =
+    //     {
+    //         index: i,
+    //         actuals: item.TrafficCW,
+    //         qrf: item.TrafficTargetCW,
+    //         qrfDiff: item.TrafficCWVsQrfDiff,
+    //         vsQrf: item.TrafficCWVsQrf,
+    //         ww: item.TrafficWW,
+    //         type: item.conversion_type,
+    //     }
+ 
+    //     // BounceRateQQLY: 0
+    //     // BounceRateQQTY: 0
+    //     // ConversionActuals: 0
+    //     // ConversionCW: 0
+    //     // ConversionCWVsQrf: 0
+    //     // ConversionCWVsQrfDiff: 0
+    //     // ConversionQQLY: 0
+    //     // ConversionQQTY: 0
+    //     // ConversionTarget: 0
+    //     // ConversionTargetCW: 0
+    //     // ConversionVsQrfDiff: 0
+    //     // ConversionWW: 0
+    //     // ConversionYY: 0
+    //     // ConversionvsQrf: 0
 
-        }
-        let bounce = {
-            index: i,
-            actuals: item.BounceRateActual,
-            qq: item.BounceRateActual,
-            qrf: item.BounceRateActual,
-            qrfDiff: item.BounceRateActual,
-            type: item.product_category,
-            vsQrf: item.BounceRateYY,
-            yy: item.BounceRateYY
-        }
-        let bouncePM =
-        {
-            index: i,
-            actuals: item.BounceRateCW,
-            qrf: item.BounceRateCW,
-            qrfDiff: item.BounceRateWW,
-            vsQrf: item.BounceRateWW,
-            ww: item.BounceRateWW,
-            type: item.product_category,
-        }
-        newState[4].details.product.qtd.push(traffic);
-        newState[10].details.product.qtd.push(bounce);
-        newState[4].details.product.week.push(trafficPM);
-        newState[10].details.product.week.push(bouncePM);
-    }
+    //     let bounce = {
+    //         index: i,
+    //         actuals: item.BounceRateActuals,
+    //         qrf: item.BounceRateTarget,
+    //         qrfDiff: item.BounceRateVsQrfDiff,
+    //         vsQrf: item.BounceRatevsQrf,
+    //         ww: item.BounceRateWW,
+    //         yy: item.BounceRateYY,
+    //         type: item.conversion_type,
+    //     }
+    //     let bouncePM =
+    //     {
+    //         index: i,
+    //         actuals: item.BounceRateCW,
+    //         qrf: item.BounceRateTargetCW,
+    //         qrfDiff: item.BounceRateCWVsQrfDiff,
+    //         vsQrf: item.BounceRateCWVsQrf,
+    //         ww: item.BounceRateWW,
+    //         type: item.conversion_type,
+    //     }
+    //     newState[4].details.conversion.qtd.push(traffic);
+    //     newState[10].details.conversion.qtd.push(trafficPM);
+    //     newState[4].details.conversion.week .push(bounce);
+    //     newState[10].details.conversion.week.push(bouncePM);
+    // }
 }
 //End Traffic
 
