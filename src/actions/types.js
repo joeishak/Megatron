@@ -14,6 +14,7 @@ export const UPDATE_USER_SETTINGS = 'update_user_settings';
 export const GET_USER_SETTINGS = 'get_user_settings';
 // Modal Dialog Box
 export const UPDATE_DIALOG_VISIBILITY = "update_dialog_visibility";
+export const UPDATE_FEEDBACKFORM_DIALOG_VISIBILITY = 'update_feedbackform_dialog_visibility';
 // All Data
 
 export const GET_SUMMARY_DATA = " get_summary_data";

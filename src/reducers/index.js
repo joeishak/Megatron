@@ -15,6 +15,7 @@ import appSettingsReducer from 'reducers/appSettings.js';
 import summaryDataReducer from 'reducers/summaryData.js';
 import commentsReducer from 'reducers/comments.js';
 import filtersReducer from 'reducers/filters.js';
+import feedbackDialogReducer from 'reducers/feedback.js';
 export default combineReducers({
     auth: authReducer,
     user: userReducer,
@@ -31,5 +32,6 @@ export default combineReducers({
     appSettings: appSettingsReducer,
     summaryData: summaryDataReducer,
     filters: filtersReducer,
-    commentsPackage: commentsReducer
+    commentsPackage: commentsReducer,
+    isFeedBackDialogOpen: feedbackDialogReducer
 });

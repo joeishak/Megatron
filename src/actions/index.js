@@ -17,6 +17,7 @@ import {
     GET_USE_SECONDARY_DATA,
     GET_RENEW_SECONDARY_DATA,
     UPDATE_DIALOG_VISIBILITY,
+    UPDATE_FEEDBACKFORM_DIALOG_VISIBILITY,
     GENERATE_FILTER_DATA,
     ADD_PREFERENCES_TO_ACTIVE_FILTERS,
     ADD_MULTI_FILTER,
@@ -434,6 +435,13 @@ export function updateDialogVisibility(isDialogVisible) {
     return {
         type: UPDATE_DIALOG_VISIBILITY,
         payload: isDialogVisible
+    }
+}
+
+export function updateFeedbackFormVisibility(isFeedbackFormVisible) {
+    return {
+        type: UPDATE_FEEDBACKFORM_DIALOG_VISIBILITY,
+        payload: isFeedbackFormVisible
     }
 }
 
