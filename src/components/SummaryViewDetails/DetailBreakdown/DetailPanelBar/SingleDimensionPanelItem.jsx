@@ -11,8 +11,8 @@ class SingleDimensionPanelItem extends Component {
         switch (this.props.timeMetric) {
             case 'qtd':
                 return (this.props.data.qtd.map(item => {
-
                     return (<span key={item.index}>
+
                         <div className={`${qtdColumnClass}` + " qtdGeoHeader col"}>
                             {item.type}
                         </div>

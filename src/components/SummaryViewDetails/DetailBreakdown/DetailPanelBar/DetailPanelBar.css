@@ -175,6 +175,8 @@
     width: 16.55%;
     color: white;
     background-color: #1f1f1f;
+    border: 1px solid #3c3c3c;
+
 }
 .weekJourneyMarketColumn{
     /* Market Area US ROW T */
@@ -184,13 +186,14 @@
     right: 80.18%;
     top: 52.69%;
     bottom: 32.96%; */
+    border: 1px solid #3c3c3c;
     float:left;
     font-family: Ubuntu;
     font-style: normal;
     line-height: 30px;
     font-size: 13px;
     text-align: center;
-    width: 14.21%;
+    width: 14.25%;
     color: white;
     background-color: #1f1f1f;
 }

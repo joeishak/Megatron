@@ -33,34 +33,34 @@ class DetailPanelBar extends Component {
 
     /* Return Contents for */
     getPanelContents(type) {
-        if (type === 'channel') {
-            return (
-                <div className='row'>
-                    <div className='col-md-12 topPanelHeader'>
-                        {/* {this.getTopHeader()} */}
-                        <DetailPanelItemTimeHeader
-                            timeMetric={this.props.timeMetric}
-                        />
-                    </div>
-                    <div className='col-md-12'>
-                        {/* {this.getLowerHeader(type)} */}
-                        <PanelItemTableHeader
-                            qtdIsPercent={this.props.qtdIsPercent}
-                            timeMetric={this.props.timeMetric}
-                            activeSummary={this.props.activeSummary}
-                            type={type} />
-                    </div>
-                    <div className='col-md-12 geoTableContainer'>
-                        {/* {this.getTable(type)} */}
-                        {/* <PanelItemTable
-                            type={type}
-                            activeSummary={this.props.activeSummary}
-                            timeMetric={this.props.timeMetric}
-                        /> */}
-                    </div>
-                </div>
-            );
-        }
+        // if (type === DIMENSIONS.LTC) {
+        //     return (
+        //         <div className='row'>
+        //             <div className='col-md-12 topPanelHeader'>
+        //                 {/* {this.getTopHeader()} */}
+        //                 <DetailPanelItemTimeHeader
+        //                     timeMetric={this.props.timeMetric}
+        //                 />
+        //             </div>
+        //             <div className='col-md-12'>
+        //                 {/* {this.getLowerHeader(type)} */}
+        //                 <PanelItemTableHeader
+        //                     qtdIsPercent={this.props.qtdIsPercent}
+        //                     timeMetric={this.props.timeMetric}
+        //                     activeSummary={this.props.activeSummary}
+        //                     type={type} />
+        //             </div>
+        //             <div className='col-md-12 geoTableContainer'>
+        //                 {/* {this.getTable(type)} */}
+        //                 {/* <PanelItemTable
+        //                     type={type}
+        //                     activeSummary={this.props.activeSummary}
+        //                     timeMetric={this.props.timeMetric}
+        //                 /> */}
+        //             </div>
+        //         </div>
+        //     );
+        // }
         return (
             <div className='row'>
                 <div className='col-md-12 topPanelHeader'>
@@ -125,19 +125,19 @@ class DetailPanelBar extends Component {
                             {this.getPanelContents(DIMENSIONS.MARKET)}
                         </ PanelBarItem>
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Web Segments'>
-                            {this.getPanelContents(DIMENSIONS.SEGMENT)}
+                            {this.getPanelContents(DIMENSIONS.WEBSEGMENT)}
                         </ PanelBarItem>
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Channel'>
-                            {this.getPanelContents('Channel')}
+                            {this.getPanelContents(DIMENSIONS.LTC)}
                         </ PanelBarItem>
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion'>
-                            {this.getPanelContents('Channel')}
+                            {this.getPanelContents(DIMENSIONS.CONVERSIONS)}
                         </ PanelBarItem>
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Mobile Vs Desktop'>
-                            {this.getPanelContents('Channel')}
+                            {this.getPanelContents(DIMENSIONS.MOBILEVSDESKTOP)}
                         </ PanelBarItem>
                         <PanelBarItem className="panelItemTitle" expanded={false} title='New Vs Repeat'>
-                            {this.getPanelContents('Channel')}
+                            {this.getPanelContents(DIMENSIONS.NEWVSREPEAT)}
                         </ PanelBarItem>
 
 

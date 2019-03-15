@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import * as utils from "../../../../utilities.js";
+import { DIMENSIONS } from '../../../../Constants/consts';
 
 class MultiDimensionPanelItem extends Component {
 
@@ -19,7 +20,7 @@ class MultiDimensionPanelItem extends Component {
             case 'qtd':
                 return (this.props.data.qtd.map(item => {
 
-                    if (this.props.type === 'geo') {
+                    if (this.props.type === DIMENSIONS.GEO ||this.props.type === DIMENSIONS.LTC  ) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
                             calculatedGeo = "";
                         } else if (calculatedGeo === undefined || item.type !== calculatedGeo) {
@@ -33,7 +34,7 @@ class MultiDimensionPanelItem extends Component {
                             {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
                         <div className={`${qtdColumnClass}` + " qtdMaHeader col"} >
-                            {item.marketArea}
+                            {item.marketArea || item.visit}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'units', value: item.actuals }, 'value')}
@@ -50,7 +51,7 @@ class MultiDimensionPanelItem extends Component {
                             ? `${qtdColumnClass}` + " col redBG"
                             : `${qtdColumnClass}` + " col greenBG"}>
 
-                            {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
+                            {utils.formatMetric({ valueType: 'units', value: item.vsQrf }, 'value')}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'percent', value: item.qq }, 'value')}
@@ -63,7 +64,7 @@ class MultiDimensionPanelItem extends Component {
             default:
                 return (this.props.data.week.map(item => {
 
-                    if (this.props.type === 'geo') {
+                    if (this.props.type === DIMENSIONS.GEO ||this.props.type === DIMENSIONS.LTC) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
                             calculatedGeo = "";
                         } else if (calculatedGeo === undefined || item.type !== calculatedGeo) {
@@ -77,7 +78,7 @@ class MultiDimensionPanelItem extends Component {
                             {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
                         <div className={`${qtdColumnClass}` + " qtdMaHeader col"} >
-                            {item.marketArea}
+                            {item.marketArea || item.visit}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'units', value: item.actuals }, 'value')}
@@ -118,7 +119,7 @@ class MultiDimensionPanelItem extends Component {
             case 'qtd':
                 return (this.props.data.qtd.map(item => {
 
-                    if (this.props.type === 'geo') {
+                    if (this.props.type === DIMENSIONS.GEO ||this.props.type === DIMENSIONS.ltc) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
                             calculatedGeo = "";
                         } else if (calculatedGeo === undefined || item.type !== calculatedGeo) {
@@ -132,7 +133,7 @@ class MultiDimensionPanelItem extends Component {
                             {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
                         <div className={`${qtdColumnClass}` + " qtdMaHeader col"} >
-                            {item.marketArea}
+                            {item.marketArea || item.visit}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'currency', value: item.actuals }, 'value')}
@@ -163,13 +164,19 @@ class MultiDimensionPanelItem extends Component {
                 }));
             default:
                 return (this.props.data.week.map(item => {
-
+                    if (this.props.type === DIMENSIONS.GEO ||this.props.type === DIMENSIONS.LTC) {
+                        if (item.type === calculatedGeo || item.type === prevGeo) {
+                            calculatedGeo = "";
+                        } else if (calculatedGeo === undefined || item.type !== calculatedGeo) {
+                            calculatedGeo = item.type;
+                        }
+                    }
                     return (<span key={marketCount++}>
                         <div className={`${weekColumnClass}` + " weekGeoHeader col"}>
-                            {item.type}
+                            {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
                         <div className={`${weekColumnClass}` + " weekMaHeader col"}>
-                            {item.marketArea}
+                            {item.marketArea || item.visit}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'currency', value: item.actuals }, 'value')}
