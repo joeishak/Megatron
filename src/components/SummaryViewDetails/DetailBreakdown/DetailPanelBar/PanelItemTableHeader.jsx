@@ -22,6 +22,8 @@ class PanelItemTableHeader extends Component {
                 return 'Route';
             case DIMENSIONS.SEGMENT:
                 return 'Segment';
+            case DIMENSIONS.CONVERSION:
+                return 'Conversion'
             default:
                 return 'Product';
         }

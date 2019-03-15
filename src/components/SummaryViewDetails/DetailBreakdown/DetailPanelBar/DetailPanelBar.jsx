@@ -108,7 +108,6 @@ class DetailPanelBar extends Component {
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Segments'>
                             {this.getPanelContents(DIMENSIONS.SEGMENT)}
                         </ PanelBarItem>
-
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Product Category'>
                             {this.getPanelContents(DIMENSIONS.PRODUCT)}
                         </PanelBarItem>
@@ -131,7 +130,7 @@ class DetailPanelBar extends Component {
                             {this.getPanelContents(DIMENSIONS.LTC)}
                         </ PanelBarItem>
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion'>
-                            {this.getPanelContents(DIMENSIONS.CONVERSIONS)}
+                            {this.getPanelContents(DIMENSIONS.CONVERSION)}
                         </ PanelBarItem>
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Mobile Vs Desktop'>
                             {this.getPanelContents(DIMENSIONS.MOBILEVSDESKTOP)}
@@ -139,8 +138,6 @@ class DetailPanelBar extends Component {
                         <PanelBarItem className="panelItemTitle" expanded={false} title='New Vs Repeat'>
                             {this.getPanelContents(DIMENSIONS.NEWVSREPEAT)}
                         </ PanelBarItem>
-
-
                     </PanelBar>
                 )
             case 2:

@@ -52,7 +52,7 @@ class PanelItemTable extends Component {
                     isJourney={this.state.isJourney}
                     type={DIMENSIONS.LTC} />
             case DIMENSIONS.CONVERSION:
-                return <MultiDimensionPanelItem
+                return <SingleDimensionPanelItem
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.conversion}
                     isJourney={this.state.isJourney}
