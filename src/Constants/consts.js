@@ -18,7 +18,12 @@ export const DIMENSIONS = {
     PRODUCTCAT: 'productcategory',
     WEBSEGMENT: 'websegment',
     PVW: 'pvw',
-    CATEGORY: 'category'
+    CATEGORY: 'category',
+    LTC: 'lasttouchchannel',
+    NEWVSREPEAT: 'newvsrepeat',
+    MOBILEVSDESKTOP:'mobilevsdesktop',
+    CONVERSIONS:'conversion',
+    
 
 
 };
