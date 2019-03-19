@@ -25,6 +25,7 @@ export const GET_TRY_SECONDARY_DATA = "get_try_secondary_data";
 export const GET_BUY_SECONDARY_DATA = "get_buy_secondary_data";
 export const GET_USE_SECONDARY_DATA = "get_use_secondary_data";
 export const GET_TRAFFIC_SECONDARY_DATA = "get_traffic_secondary_data";
+export const GET_MKTG_SECONDARY_DATA = 'get_marketing_secondary_data';
 
 export const GET_RENEW_SECONDARY_DATA = "get_renew_secondary_data";
 export const GET_SECONDARY_DATA = "get_secondary_data";
@@ -66,3 +67,6 @@ export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const FETCH_COMMENTS_COUNT = 'FETCH_COMMENTS_COUNT';
 export const FETCHING_COMMENTS = 'FETCHING_COMMENTS';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+
+//Feedback
+export const ADD_FEEDBACK = 'add_feedback';

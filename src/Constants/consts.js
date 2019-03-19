@@ -24,7 +24,8 @@ export const DIMENSIONS = {
     MOBILEVSDESKTOP:"mobilevsdesktop",
     CONVERSION:"conversion",
     VISITS: "visits",
-    
+    CHANNELMU: "channelmu",
+    CHANNELPM:"channelpm"
 
 
 };

@@ -79,8 +79,6 @@ class Summary extends Component {
   componentDidUpdate(prevProps, prevState) {
 
     this.checkAuthentication();
-
-    
     if (this.props.user !== prevProps.user) {
       this.props.getUserSettings(this.props.user.sub);
     }
@@ -92,41 +90,35 @@ class Summary extends Component {
     let appInitialLoadIsComplete = this.props.NEwQTDW.qtd.length !== 0;
     let primaryLoaded = this.props.summaryData.primary[this.props.activePrimaryCard].value !== prevProps.summaryData.primary[this.props.activePrimaryCard].value;
     let secondaryLoaded = this.props.summaryData.secondary[this.props.activeSecondaryCard].value !== prevProps.summaryData.secondary[this.props.activeSecondaryCard].value;
-
-    if(primaryLoaded){
-      this.setState({primaryLoaded: true})
-    }
-    if(secondaryLoaded){
-      this.setState({secondaryLoaded: true})
-    }
-    // switch(this.props.activePrimaryCard)
-    // {
-    //   case 0: 
-    //     summaryDataLoaded = 
-
-    // }
-    // console.log('Checking Filters (',filtersAreLoaded,'): 1. Previouly: ',prevProps.filters,'Currently: ',this.props.filters);
+ // console.log('Checking Filters (',filtersAreLoaded,'): 1. Previouly: ',prevProps.filters,'Currently: ',this.props.filters);
     // console.log('Checking Preferences (',this.props.preferences,'): 1. Previouly: ',prevProps.preferences,'Currently: ',this.props.preferences);
     // // console.log('Checking the Filterss Combined(',appIsReadyToRequestSummaryData,'): 1. Previouly: ',prevProps.filters.combined,'Currently: ',this.props.filters.combined);
     console.log('Checking Summary Data(',primaryLoaded,secondaryLoaded,'): 1. Previouly: ',this.props.summaryData,'Currently: ',prevProps.summaryData);
 
     
     console.log(this.props.filters);
+    if(primaryLoaded){
+      console.log('Just Recieved filters');
+
+      this.setState({primaryLoaded: true})
+    }
+    if(secondaryLoaded){
+      console.log('Just recieved the preferences');
+
+      this.setState({secondaryLoaded: true})
+    }
     //Handle Boolean Test Results
     if (filtersAreLoaded ) {
-      console.log('Just Recieved filters');
+      console.log('Both Preferences and Filters are loaded');
+
       this.setState({ filtersAreLoaded: true });
     }
-
     if (this.state.filtersAreLoaded && preferencesAreLoaded && this.state.preferncesAreAddedToFilters === false) {
-      console.log('Just recieved the preferences');
       this.props.addPreferencesToActiveFilters(this.props.preferences);
       this.setState({ preferncesAreAddedToFilters: true })
     }
-
     // // //Initial App Loads on Finance Tab
     if (this.state.filtersAreLoaded===true &&  this.state.preferncesAreAddedToFilters === true && this.state.initialDataLoadIsComplete === false) {
-      console.log('Both Preferences and Filters are loaded');
       this.props.getFinanceSecondaryData(this.props.filters);
       this.props.getPrimaryData(this.props.filters);
       // this.props.getSummaryData(this.props.filters);
@@ -147,22 +139,23 @@ class Summary extends Component {
           console.log('Fetching Discover')
           // this.props.getDiscoverSecondaryData(this.props.filters);
           this.props.getTrafficSecondaryData(this.props.filters);
+          this.props.getMarketingSecondaryData(this.props.filters);
           break;
         case 2:
           console.log('Fetching Try')
-          this.props.getTrySecondaryData(this.props.filters);
+          // this.props.getTrySecondaryData(this.props.filters);
           break;
         case 3:
           console.log('Fetching Buy')
-          this.props.getBuySecondaryData(this.props.filters);
+          // this.props.getBuySecondaryData(this.props.filters);
           break;
         case 4:
           console.log('Fetching Use')
-          this.props.getUseSecondaryData(this.props.filters);
+          // this.props.getUseSecondaryData(this.props.filters);
           break;
         case 5:
           console.log('Fetching Renew')
-          this.props.getRenewSecondaryData(this.props.filters);
+          // this.props.getRenewSecondaryData(this.props.filters);
           break;
         default:
           break;

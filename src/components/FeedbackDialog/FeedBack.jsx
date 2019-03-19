@@ -54,7 +54,7 @@ class FeedBackDialog extends Component {
         if (this.state.featureType !== null && this.state.feedBackType !== null && this.state.message !== 'Enter details...') {
 
             const feedback = {
-                email: this.props.user.email,
+                user: this.props.user.sub,
                 message: this.state.message,
                 type: this.state.feedBackType,
                 feature: this.state.featureType
