@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import * as utils from "../../../../utilities.js";
 
 class SingleDimensionPanelItem extends Component {
+    
     getSingleDimensionJourneyPanelItem() {
         let qtdColumnClass, weekColumnClass;
         qtdColumnClass = 'qtdJourneyColumn';

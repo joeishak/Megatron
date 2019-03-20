@@ -45,6 +45,15 @@ class Summary extends Component {
       isInitiallyLoading: true,
       primaryLoaded: false,
       secondaryLoaded: false,
+      financeHasLoaded: false,
+      discoverHasLoaded: false,
+      tryHasLoaded: false,
+      useHasLoaded: false,
+      renewHasloaded: false,
+      fetchingFinance: false,
+      fetchingDiscoverTraffic: false,
+      fetchingDiscoverMarketing: false,
+      fetchingTry: false,
     };
 
     /*Bindings  */
@@ -84,66 +93,75 @@ class Summary extends Component {
     }
 
     // Boolean Rule Tests
-    let filtersAreLoaded = Object(this.props.filters).hasOwnProperty('combined') && Object(prevProps.filters).hasOwnProperty('combined')===false;
+    let filtersAreLoaded = Object(this.props.filters).hasOwnProperty('combined') && Object(prevProps.filters).hasOwnProperty('combined') === false;
     let preferencesAreLoaded = Object(this.props.preferences).hasOwnProperty('geoFilters');
     // TODO: This will not catch the case of a card changing that is not NewArr, fix immediately
     let appInitialLoadIsComplete = this.props.NEwQTDW.qtd.length !== 0;
     let primaryLoaded = this.props.summaryData.primary[this.props.activePrimaryCard].value !== prevProps.summaryData.primary[this.props.activePrimaryCard].value;
     let secondaryLoaded = this.props.summaryData.secondary[this.props.activeSecondaryCard].value !== prevProps.summaryData.secondary[this.props.activeSecondaryCard].value;
- // console.log('Checking Filters (',filtersAreLoaded,'): 1. Previouly: ',prevProps.filters,'Currently: ',this.props.filters);
+    if (this.props.NetNew.value !== prevProps.NetNew.value) {
+      this.setState({ fetchingFinance: false });
+    }
+    if (this.props.Traffic.value !== prevProps.Traffic.value) {
+      this.setState({ fetchingTraffic: false });
+    }
+    if (this.props.Market.value !== prevProps.Market.value) {
+      this.setState({ fetchingMarketing: false });
+    }
+    // console.log('Checking Filters (',filtersAreLoaded,'): 1. Previouly: ',prevProps.filters,'Currently: ',this.props.filters);
     // console.log('Checking Preferences (',this.props.preferences,'): 1. Previouly: ',prevProps.preferences,'Currently: ',this.props.preferences);
     // // console.log('Checking the Filterss Combined(',appIsReadyToRequestSummaryData,'): 1. Previouly: ',prevProps.filters.combined,'Currently: ',this.props.filters.combined);
-    console.log('Checking Summary Data(',primaryLoaded,secondaryLoaded,'): 1. Previouly: ',this.props.summaryData,'Currently: ',prevProps.summaryData);
+    console.log('Checking Summary Data(', primaryLoaded, secondaryLoaded, '): 1. Previouly: ', this.props.summaryData, 'Currently: ', prevProps.summaryData);
 
-    
-    console.log(this.props.filters);
-    if(primaryLoaded){
-      console.log('Just Recieved filters');
 
-      this.setState({primaryLoaded: true})
+    // console.log(this.props.filters);
+    if (primaryLoaded) {
+      this.setState({ primaryLoaded: true })
     }
-    if(secondaryLoaded){
-      console.log('Just recieved the preferences');
-
-      this.setState({secondaryLoaded: true})
+    if (secondaryLoaded) {
+      this.setState({ secondaryLoaded: true })
     }
     //Handle Boolean Test Results
-    if (filtersAreLoaded ) {
-      console.log('Both Preferences and Filters are loaded');
+    if (filtersAreLoaded) {
+      console.log('Just Recieved filters');
 
       this.setState({ filtersAreLoaded: true });
     }
     if (this.state.filtersAreLoaded && preferencesAreLoaded && this.state.preferncesAreAddedToFilters === false) {
+      console.log('Just recieved the preferences');
       this.props.addPreferencesToActiveFilters(this.props.preferences);
       this.setState({ preferncesAreAddedToFilters: true })
     }
     // // //Initial App Loads on Finance Tab
-    if (this.state.filtersAreLoaded===true &&  this.state.preferncesAreAddedToFilters === true && this.state.initialDataLoadIsComplete === false) {
+    if (this.state.filtersAreLoaded === true && this.state.preferncesAreAddedToFilters === true && this.state.initialDataLoadIsComplete === false) {
+      console.log('Both Preferences and Filters are loaded');
+      this.setState({ fetchingFinance: true })
       this.props.getFinanceSecondaryData(this.props.filters);
       this.props.getPrimaryData(this.props.filters);
-      // this.props.getSummaryData(this.props.filters);
-      if(this.state.initialDataLoadIsComplete === false){
+      if (this.state.initialDataLoadIsComplete === false) {
         this.setState({ initialDataLoadIsComplete: true })
       }
     }
 
     if (this.state.initialDataLoadIsComplete === true && (this.props.filters !== prevProps.filters)) {
-      this.setState({ isLoading: true });
+      this.setState({ isLoading: true, filtersUpdated: true });
       this.props.getPrimaryData(this.props.filters);
       switch (this.props.activePrimaryCard) {
         case 0:
           console.log('Fetching Finance')
+          this.setState({ fetchingFinance: true });
           this.props.getFinanceSecondaryData(this.props.filters);
           break;
         case 1:
           console.log('Fetching Discover')
-          // this.props.getDiscoverSecondaryData(this.props.filters);
-          this.props.getTrafficSecondaryData(this.props.filters);
+          this.setState({ fetchingTraffic: true, fetchingMarketing: true });
           this.props.getMarketingSecondaryData(this.props.filters);
+          this.props.getTrafficSecondaryData(this.props.filters);
+
           break;
         case 2:
           console.log('Fetching Try')
-          // this.props.getTrySecondaryData(this.props.filters);
+          this.props.getTrySecondaryData(this.props.filters);
           break;
         case 3:
           console.log('Fetching Buy')
@@ -163,24 +181,21 @@ class Summary extends Component {
     }
 
     if (this.props.activePrimaryCard !== prevProps.activePrimaryCard) {
-      this.setState({userChangedCards:true});
+      this.setState({ userChangedCards: true, isLoading: true });
       switch (this.props.activePrimaryCard) {
         case 0:
-          this.setState({ isLoading: true });
 
           console.log('Fetching Finance')
           this.props.getFinanceSecondaryData(this.props.filters);
           break;
         case 1:
-          this.setState({ isLoading: true });
-
           console.log('Fetching Discover')
+          this.setState({ fetchingTraffic: true, fetchingMarketing: true });
           this.props.getTrafficSecondaryData(this.props.filters);
+          this.props.getMarketingSecondaryData(this.props.filters);
 
-          // this.props.getDiscoverSecondaryData(this.props.filters);
           break;
         case 2:
-          this.setState({ isLoading: true });
           console.log('Fetching Try')
           this.props.getTrySecondaryData(this.props.filters);
           break;
@@ -200,22 +215,40 @@ class Summary extends Component {
           break;
       }
     }
+
+    //
     if (appInitialLoadIsComplete && this.state.initialDataLoadIsComplete === true && this.state.primaryLoaded && this.state.secondaryLoaded) {
-      // this.updateActivePrimary(0);
+      console.log('Setting Loaded to False in the First If');
       this.setState({ isLoading: false, isInitiallyLoading: false });
       this.props.isFetching(false);
-      this.setState({primaryLoaded: false,secondaryLoaded:false});
-    } else if(appInitialLoadIsComplete && this.state.initialDataLoadIsComplete === true && this.state.userChangedCards && this.state.secondaryLoaded){
-       // this.updateActivePrimary(0);
-       this.setState({ isLoading: false, isInitiallyLoading: false });
-       this.props.isFetching(false);
-       this.setState({secondaryLoaded:false, userChangedCards: false});
+      this.setState({ primaryLoaded: false, secondaryLoaded: false });
+    } else if (appInitialLoadIsComplete && this.state.initialDataLoadIsComplete === true && this.state.userChangedCards && this.state.secondaryLoaded) {
+      console.log('Setting Loaded to False in the Second If');
+      this.setState({ isLoading: false, isInitiallyLoading: false });
+      this.props.isFetching(false);
+      this.setState({ secondaryLoaded: false, userChangedCards: false });
     }
-    // if (this.props.activePrimaryCard.index > 0) {
-    //   this.props.updateMultichartMetric(true);
-    // }
-  }
+    else if (this.state.filtersUpdated && secondaryLoaded) {
+      console.log('Setting Loaded to False in the third If');
+      this.setState({ isLoading: false, isInitiallyLoading: false });
+      this.props.isFetching(false);
+    } else if (this.state.fetchingFinance === false && this.state.primaryLoaded && this.state.secondaryLoaded) {
+      console.log('Setting Loaded to False in the Fourth If');
+      this.setState({ isLoading: false, isInitiallyLoading: false });
+      this.props.isFetching(false);
+      this.setState({ fetchingFinance: true});
+    } else if (this.state.fetchingMarketing === false && this.state.fetchingTraffic===false) {
+      console.log('Setting Loaded to False in the fifth If');
+      this.setState({ isLoading: false, isInitiallyLoading: false });
+      this.props.isFetching(false);
+      this.setState({ fetchingTraffic: true, fetchingMarketing: true });
+    }
 
+  }
+  stopLoading() {
+    this.setState({ isLoading: false, isInitiallyLoading: false });
+    this.props.isFetching(false);
+  }
   updateActivePrimary(index) {
     this.props.updateActivePrimaryCard(index);
     // this.setState({ isLoading: true });
@@ -333,7 +366,7 @@ class Summary extends Component {
     const { user } = this.props;
     const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
     const feedbackDialog = this.props.feedbackIsOpen ? <FeedBackDialog /> : null;
-    
+
     const isMobileOrTablet = utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet');
     const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails secondaryData={this.props.secondaryData} />;
 
@@ -346,11 +379,11 @@ class Summary extends Component {
 
         {/* Navigation*/}
 
-        <Navigation mobileFiltersIsShown = {this.props.mobileFiltersIsShown} />
+        <Navigation mobileFiltersIsShown={this.props.mobileFiltersIsShown} />
 
         <FilterPanel
 
-        window={this.props.window} />
+          window={this.props.window} />
 
         {
           this.state.isLoading === true ? <LoadingScreen /> :
@@ -409,8 +442,8 @@ class Summary extends Component {
 
 function mapStateToProps(state) {
 
-  console.log("Filters Updated:",state.filters);
-  console.log(state);
+  // console.log("Filters Updated:",state.filters);
+  console.log(state.summaryData.secondary);
   return {
     authenticated: state.authenticated,
     statsDetails: state.summaryData.secondary[state.activeCards.secondary].details.stats,
@@ -433,6 +466,9 @@ function mapStateToProps(state) {
     mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible,
     filters: state.filters,
     NEwQTDW: state.summaryData.secondary[0].details.qtdw,
+    NetNew: state.summaryData.secondary[0],
+    Traffic: state.summaryData.secondary[4],
+    Market: state.summaryData.secondary[5],
     commentsPackage: state.commentsPackage,
     feedbackIsOpen: state.isFeedBackDialogOpen
   };

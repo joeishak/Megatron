@@ -88,29 +88,36 @@ class SummaryViewDetails extends Component {
     this.setState({ activeTimeMetric: e.target.innerHTML.toLowerCase() });
   }
   updateSingleValue = (e) => {
-    console.log('Updating SingleValue',e);
+    console.log('Updating SingleValue', e);
     let copy = this.state.selectedFilters;
     if (this.state.selectedFilters.length === 0) {
-      this.setState({ selectedFilters: [e] })
+      this.setState({ selectedFilters: [e] }, () => {
+        this.submitFilters({});
+      })
     } else {
 
       //Find any with the same category
       _.remove(copy, item => { return item.category === e.category });
       _.remove(copy, item => { return item.index === e.index });
       if (copy.length === 0) {
-        this.setState({ selectedFilters: [e] })
+        this.setState({ selectedFilters: [e] }, () => {
+          this.submitFilters({});
+        })
       } else {
-        this.setState({ selectedFilters: [...copy, e] })
+        this.setState({ selectedFilters: [...copy, e] }, () => {
+          this.submitFilters({});
+        })
 
       }
 
     }
 
-    this.setState({ isButtonHighlighted: true });
+
+    // this.setState({ isButtonHighlighted: true });
 
   }
   updateMultiValue = (e, type) => {
-    console.log('Updating MultiValue',e,type);
+    console.log('Updating MultiValue', e, type);
     let copy = this.state.selectedFilters;
     if (e.length === 0) {
       _.remove(copy, item => { return item.category === type });
@@ -118,10 +125,10 @@ class SummaryViewDetails extends Component {
 
     } else {
       _.remove(copy, item => { return item.category === e[0].category });
-      this.setState({ selectedFilters: [...copy, ...e] })
+      this.setState({ selectedFilters: [...copy, ...e] });
     }
 
-    this.setState({ isButtonHighlighted: true });
+
 
 
   }
@@ -132,24 +139,9 @@ class SummaryViewDetails extends Component {
     // console.log(newArr);
     return newArr;
   }
-  updateMultiValue = (e, type) => {
-    // console.log('Updating MultiValue',e,type);
-    let copy = this.state.selectedFilters;
-    if (e.length === 0) {
-      _.remove(copy, item => { return item.category === type });
-      this.setState({ selectedFilters: [...copy] })
 
-    } else {
-      _.remove(copy, item => { return item.category === e[0].category });
-      this.setState({ selectedFilters: [...copy, ...e] })
-    }
-
-    this.setState({ isButtonHighlighted: true });
-
-
-  }
   submitFilters = (e) => {
-    // console.log('Submitting Filters . . . ');
+    console.log('Submitting Filters . . . ');
     const { GEO,
       MARKET,
       PRODUCT,
@@ -168,108 +160,109 @@ class SummaryViewDetails extends Component {
       NEWVSREPEAT,
       MOBILEVSDESKTOP,
       CONVERSION,
-      VISITS
-  } = DIMENSIONS;
+      VISITS,
+      CHANNELMU,
+      CHANNELPM
+    } = DIMENSIONS;
     let newFilters = {
-        quarter: [],
-        segment: [],
-        product: [],
-        market: [],
-        route: [],
-        subscription: [],
-        geo: [],
-        //Traffic Filters
-        LTC: [],
-        CONVERSION: [],
-        WEBSEGMENT:[],
-        VISIT:[]
+      quarter: [],
+      segment: [],
+      product: [],
+      market: [],
+      route: [],
+      subscription: [],
+      geo: [],
+      //Traffic Filters
+      lastTouchChannel: [],
+      convType: [],
+      websegment: [],
+      visits: [],
+      channelMU: [],
+      channelPM: []
     };
 
+    console.log(this.state.selectedFilters);
     Object.keys(newFilters).forEach(item => {
 
-        switch (item) {
-            case QUARTER:
-                newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === QUARTER })) ? /* Then */
-                    [_.find(this.state.selectedFilters, (item => { return item.category === QUARTER }))] : /* Else */
-                    [...this.props.filters.quarter.valueFilters];
-                break;
-            case SEGMENT:
-                newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SEGMENT })) ?
-                    [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
-                    [...this.props.filters.segment.valueFilters];
-                break;
-                case LTC:
-                newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === QUARTER })) ? /* Then */
-                    [_.find(this.state.selectedFilters, (item => { return item.category === QUARTER }))] : /* Else */
-                    [...this.props.filters.quarter.valueFilters];
-                break;
-            case WEBSEGMENT:
-                newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SEGMENT })) ?
-                    [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
-                    [...this.props.filters.segment.valueFilters];
-                break;
-                case VISITS:
-                newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === QUARTER })) ? /* Then */
-                    [_.find(this.state.selectedFilters, (item => { return item.category === QUARTER }))] : /* Else */
-                    [...this.props.filters.quarter.valueFilters];
-                break;
-            case CONVERSION:
-                newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SEGMENT })) ?
-                    [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
-                    [...this.props.filters.segment.valueFilters];
-                break;
-            default:
-                let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category === item }));
-                // console.log(grouped);
-                if (grouped.false !== this.state.selectedFilters.length) {
-
-                    if (grouped.true !== undefined) {
-                        newFilters[item] = grouped.true
-                    } else {
-                        newFilters[item] = [];
-                    }
-                } else {
-                    newFilters[item] = [];
-                }
-                break;
-        }
+      switch (item) {
+        case QUARTER:
+          newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === QUARTER })) ? /* Then */
+            [_.find(this.state.selectedFilters, (item => { return item.category === QUARTER }))] : /* Else */
+            [...this.props.filters.quarter.valueFilters];
+          break;
+        case SEGMENT:
+          newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SEGMENT })) ?
+            [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
+            [...this.props.filters.segment.valueFilters];
+          break;
+        case LTC:
+          console.log("LastTouch ", this.state.selectedFilters);
+          newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === LTC })) ? /* Then */
+            [_.find(this.state.selectedFilters, (item => { return item.category === LTC }))] : /* Else */
+            [...this.props.filters.lastTouchChannel.valueFilters];
+          break;
+        case WEBSEGMENT:
+          newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === WEBSEGMENT })) ?
+            [_.find(this.state.selectedFilters, (item => { return item.category === WEBSEGMENT }))] :
+            [...this.props.filters.websegment.valueFilters];
+          break;
+        case VISITS:
+          console.log("Visits", this.state.selectedFilters);
+          newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === VISITS })) ? /* Then */
+            [_.find(this.state.selectedFilters, (item => { return item.category === VISITS }))] : /* Else */
+            [...this.props.filters.visits.valueFilters];
+          console.log('New Filters', newFilters);
+          break;
+        case CHANNELMU:
+          console.log("CHANNEL MU", this.state.selectedFilters);
+          newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === CHANNELMU })) ? /* Then */
+            [_.find(this.state.selectedFilters, (item => { return item.category === CHANNELMU }))] : /* Else */
+            [...this.props.filters.CHANNELMU.valueFilters];
+          console.log(' CHANNELMU', newFilters);
+          break;
+        case CHANNELPM:
+          console.log("CHANNELPM", this.state.selectedFilters);
+          newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === CHANNELPM })) ? /* Then */
+            [_.find(this.state.selectedFilters, (item => { return item.category === CHANNELPM }))] : /* Else */
+            [...this.props.filters.CHANNELPM.valueFilters];
+          console.log(' CHANNELPM', newFilters);
+          break;
+        default:
+          let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category === item }));
+          if (grouped.false !== this.state.selectedFilters.length) {
+            if (grouped.true !== undefined) {
+              newFilters[item] = grouped.true
+            } else {
+              newFilters[item] = [];
+            }
+          } else {
+            newFilters[item] = [];
+          }
+          break;
+      }
 
     });
 
+    console.log(newFilters);
 
     this.setState({ selectedFilters: [] })
 
     this.props.submitFilters(newFilters);
     //  this.props.getSummaryData(newFilters);
-    this.props.handleClose();
-}
-  closeSingleValue = (e) => {
+    // this.props.handleClose();
+  }
+  closeSingleValue(e) {
     console.log('Closing Single Value', this.state.selectedFilters);
   }
-  updateSingleValue = (e) => {
-    // console.log('Updating SingleValue',e);
-    let copy = this.state.selectedFilters;
-    if (this.state.selectedFilters.length === 0) {
-      this.setState({ selectedFilters: [e] })
-    } else {
-      //Find any with the same category
-      _.remove(copy, item => { return item.category === e.category });
-      _.remove(copy, item => { return item.index === e.index });
-      if (copy.length === 0) {
-        this.setState({ selectedFilters: [e] })
-      } else {
-        this.setState({ selectedFilters: [...copy, e] })
-      }
-    }
-    this.setState({ isButtonHighlighted: true });
-  }
+
   closeMultiValue = (e) => {
     console.log('Closing Multivalue', this.state.selectedFilters);
+    this.submitFilters({});
 
   }
   getSummaryFilters(activeItem) {
     let drillDownFilter;
-    let { lastTouchChannel, convType, websegment, visits } = this.props.activeFilters;
+    let { lastTouchChannel, convType, websegment, visits, channelMU,channelPM } = this.props.activeFilters;
     switch (activeItem) {
       //finance
       // case 0:
@@ -290,8 +283,9 @@ class SummaryViewDetails extends Component {
               <SingleValueSelect
                 activeFilters={[]}
                 options={visits.availableFilters}
-                onValueChange={e => { this.updateSingleValue }}
-                onMenuClose={e => { this.closeSingleValue }}
+                defaultValue={visits.availableFilters}
+                onValueChange={e => { this.updateSingleValue(e) }}
+                onMenuClose={e => { this.closeSingleValue(e) }}
               />
             </div>
             {/* Last Touch Channel */}
@@ -300,9 +294,9 @@ class SummaryViewDetails extends Component {
               <SingleValueSelect
                 activeFilters={[]}
                 options={lastTouchChannel.availableFilters}
-                onValueChange={e => { this.updateSingleValue }}
-                onMenuClose={e => { this.closeSingleValue }}
-
+                defaultValue={[lastTouchChannel.availableFilters[1]]}
+                onValueChange={e => { this.updateSingleValue(e) }}
+                onMenuClose={e => { this.closeSingleValue(e) }}
               />
             </div>
             {/* Conversion Type */}
@@ -311,7 +305,7 @@ class SummaryViewDetails extends Component {
               <MultiValueSelect
                 options={convType.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
-                onMenuClose={this.closeMultiValue}
+                onMenuClose={(e) => { this.closeMultiValue(e) }}
               />
             </div>
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
@@ -319,8 +313,9 @@ class SummaryViewDetails extends Component {
               <SingleValueSelect
                 activeFilters={[]}
                 options={websegment.availableFilters}
-                onValueChange={e => { this.updateSingleValue }}
-                onMenuClose={e => { this.closeSingleValue }}
+                defaultValue={[websegment.availableFilters[8]]}
+                onValueChange={e => { this.updateSingleValue(e) }}
+                onMenuClose={e => { this.closeSingleValue(e) }}
               />
             </div>
           </div>
@@ -330,12 +325,13 @@ class SummaryViewDetails extends Component {
         return (
           <div className="row">
             {/* Channel */}
-            <div className="col-md-12 col-lg-12">
+            <div className="col-md-6 col-lg-6">
               <SingleValueSelect
                 activeFilters={[]}
-                options={lastTouchChannel.availableFilters}
-                onValueChange={e => { console.log(e) }}
-                onMenuClose={e => { console.log(e) }}
+                options={channelMU.availableFilters}
+                defaultValue={[channelMU.availableFilters[0]]}
+                onValueChange={e => { this.updateSingleValue(e) }}
+                onMenuClose={e => { this.closeSingleValue(e) }}
               />
             </div>
 
@@ -353,9 +349,10 @@ class SummaryViewDetails extends Component {
             <div className="col-md-12 col-lg-12">
               <SingleValueSelect
                 activeFilters={[]}
-                options={lastTouchChannel.availableFilters}
-                onValueChange={e => { console.log(e) }}
-                onMenuClose={e => { console.log(e) }}
+                options={channelPM.availableFilters}
+                defaultValue={[channelPM.availableFilters[0]]}
+                onValueChange={e => { this.updateSingleValue(e) }}
+                onMenuClose={e => { this.closeSingleValue(e) }}
               />
             </div>
 
@@ -369,52 +366,62 @@ class SummaryViewDetails extends Component {
               {/* Channel */}
               <SingleValueSelect
                 activeFilters={[]}
-                options={lastTouchChannel.availableFilters}
-                onValueChange={e => { console.log(e) }}
-                onMenuClose={e => { console.log(e) }}
+                options={channelPM.availableFilters}
+                defaultValue={[channelPM.availableFilters[0]]}
+                onValueChange={e => { this.updateSingleValue(e) }}
+                onMenuClose={e => { this.closeSingleValue(e) }}
               />
             </div>
 
           </div>
         );
-      case SUMMARY_FILTERS.DISCOVER_NEW_UQFMS:
-        return (
-          <div className="row">
-            {/* Sign Up Source */}
-            <div className="col-md-6 col-lg-6">
-              <SingleValueSelect
-                activeFilters={[]}
-                options={lastTouchChannel.availableFilters}
-                onValueChange={e => { console.log(e) }}
-                onMenuClose={e => { console.log(e) }}
-              />
-            </div>
-            {/* Sign Up APP */}
-            <div className="col-md-6 col-lg-6">
-              <SingleValueSelect
-                activeFilters={[]}
-                options={lastTouchChannel.availableFilters}
-                onValueChange={e => { console.log(e) }}
-                onMenuClose={e => { console.log(e) }}
-              />
-            </div>
-          </div>
-        );
+     
       case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
         return (
           // Bounce Rate
           <div className="row">
-            {/* Visit Status */}
-            <div className="col-md-12 col-lg-12">
-              <SingleValueSelect
-                activeFilters={[]}
-                options={visits.availableFilters}
-                onValueChange={e => { console.log(e) }}
-                onMenuClose={e => { console.log(e) }}
-              />
-            </div>
-
+          <div className="col-md-2 col-lg-2" style={{ paddingBottom: '10px' }}>
+            {/* Visit Type */}
+            <div>Visits</div>
+            <SingleValueSelect
+              activeFilters={[]}
+              options={visits.availableFilters}
+              defaultValue={visits.availableFilters}
+              onValueChange={e => { this.updateSingleValue(e) }}
+              onMenuClose={e => { this.closeSingleValue(e) }}
+            />
           </div>
+          {/* Last Touch Channel */}
+          <div className="col-md-4 col-lg-4" style={{ paddingBottom: '10px' }}>
+            <div>Last Touch Channel </div>
+            <SingleValueSelect
+              activeFilters={[]}
+              options={lastTouchChannel.availableFilters}
+              defaultValue={[lastTouchChannel.availableFilters[1]]}
+              onValueChange={e => { this.updateSingleValue(e) }}
+              onMenuClose={e => { this.closeSingleValue(e) }}
+            />
+          </div>
+          {/* Conversion Type */}
+          <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+            <div>Conversion </div>
+            <MultiValueSelect
+              options={convType.availableFilters}
+              onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
+              onMenuClose={(e) => { this.closeMultiValue(e) }}
+            />
+          </div>
+          <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+            <div>Web segment </div>
+            <SingleValueSelect
+              activeFilters={[]}
+              options={websegment.availableFilters}
+              defaultValue={[websegment.availableFilters[8]]}
+              onValueChange={e => { this.updateSingleValue(e) }}
+              onMenuClose={e => { this.closeSingleValue(e) }}
+            />
+          </div>
+        </div>
         );
 
       //Try
@@ -803,7 +810,7 @@ class SummaryViewDetails extends Component {
 
 
           <span className="excelSpan">
-            <Workbook
+            {/* <Workbook
               filename={`${activeItem.header}.xlsx`}
               element={
                 <button className="exportButton">
@@ -816,8 +823,8 @@ class SummaryViewDetails extends Component {
                   />
                 </button>
               }
-            >
-              <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
+            > */}
+            {/* <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
                 <Workbook.Column label="Dimension" value="category" />
                 <Workbook.Column label="Filter Applied" value="value" />
 
@@ -875,7 +882,7 @@ class SummaryViewDetails extends Component {
                 <Workbook.Column label="Y/Y" value="yy" />
               </Workbook.Sheet>
 
-            </Workbook>
+            </Workbook> */}
           </span>
 
           <div className="stats-container-main">{this.props.activeItem.details.stats.map(item => {

@@ -68,11 +68,11 @@ class KendoMultiChart extends Component {
         if (arr !== undefined) {
             newArr = arr.map(item => {
                 if (this.props.multichartMetric === true) {
-                    return item.toFixed(1);
-
+                    if (item) {
+                        return item.toFixed(1)
+                    }
                 }
                 return item
-
             });
         }
 
@@ -102,10 +102,11 @@ class KendoMultiChart extends Component {
         const chartData = (this.props.multichartMetric === true ? this.props.activeMultichart : this.props.activeUnits);
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
         const sharedTooltipRender = (props) => {
+            console.log('Shared Props',props.points);
             const { points } = props;
-            let bgColor = (points[0].value - points[1].value) > 0 ? 'ttBGGreen' : 'ttBGRed';
-            let textColor = (points[0].value - points[1].value) > 0 ? 'textGreen' : 'textRed';
-            let borderColor = (points[0].value - points[1].value) > 0 ? '#0DB16E' : '#FF0000';
+            let bgColor = ( (points) ? (points[0].value - points[1].value) > 0 ? 'ttBGGreen' : 'ttBGRed' : '');
+            let textColor = ( (points) ? (points[0].value - points[1].value) > 0 ? 'textGreen' : 'textRed' : '');
+            let borderColor = ( (points) ? (points[0].value - points[1].value) > 0 ? '#0DB16E' : '#FF0000' : '');
             const title = props.categoryText;
 
             if (this.props.multichartMetric === true) {

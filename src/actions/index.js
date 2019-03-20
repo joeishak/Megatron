@@ -161,7 +161,7 @@ export function getPrimaryData(filters) {
     let allFilters = {
         quarter: Object.keys(filters.quarter.availableFilters).map(e => filters.quarter.availableFilters[e]),
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
-        marketAreas: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
+        market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
@@ -202,7 +202,7 @@ export function getFinanceSecondaryData(filters) {
     let allFilters = {
         quarter: Object.keys(filters.quarter.availableFilters).map(e => filters.quarter.availableFilters[e]),
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
-        marketAreas: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
+        market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
@@ -231,7 +231,7 @@ export function getTrafficSecondaryData(filters){
     let allFilters = {
         quarter: Object.keys(filters.quarter.availableFilters).map(e => filters.quarter.availableFilters[e]),
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
-        marketAreas: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
+        market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
@@ -274,19 +274,19 @@ export function getMarketingSecondaryData(filters){
     let allFilters = {
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
         quarter: Object.keys(filters.quarter.availableFilters).map(e => filters.quarter.availableFilters[e]),
-        segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
         //Traffic
-        channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.websegment.availableFilters[e]),
+        channelMU: Object.keys(filters.channelMU.availableFilters).map(e => filters.channelMU.availableFilters[e]),
+        channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
 
     }
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
         quarter: Object.keys(filters.quarter.valueFilters).map(e => filters.quarter.valueFilters[e]),
-        segment: Object.keys(filters.segment.valueFilters).map(e => filters.segment.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         //Traffic
-        channelPM: Object.keys(filters.channelPM.valueFilters).map(e => filters.websegment.valueFilters[e]),
+        channelMU: Object.keys(filters.channelMU.valueFilters).map(e => filters.channelMU.valueFilters[e]),
+        channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
     };
 
     

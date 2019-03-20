@@ -19,13 +19,13 @@ export const DIMENSIONS = {
     WEBSEGMENT: "websegment",
     PVW: "pvw",
     CATEGORY: "category",
-    LTC: "lasttouchchannel",
+    LTC: "lastTouchChannel",
     NEWVSREPEAT: "newvsrepeat",
     MOBILEVSDESKTOP:"mobilevsdesktop",
-    CONVERSION:"conversion",
+    CONVERSION:"convType",
     VISITS: "visits",
-    CHANNELMU: "channelmu",
-    CHANNELPM:"channelpm"
+    CHANNELMU: "channelMU",
+    CHANNELPM:"channelPM"
 
 
 };

@@ -90,11 +90,39 @@ let mktgParams = [
         value: ''
     },
     {
-        prompt: 'segment',
+        prompt: 'channelMUFilters',
+        value: ''
+    }
+];
+let uqfmParams = [
+    {
+        prompt: 'geoFilters',
         value: ''
     },
     {
-        prompt: 'channelPM',
+        prompt: 'quarterFilters',
+        value: ''
+    },
+    {
+        prompt: 'maFilters',
+        value: ''
+    }
+];
+let pmssParams = [
+    {
+        prompt: 'geoFilters',
+        value: ''
+    },
+    {
+        prompt: 'quarterFilters',
+        value: ''
+    },
+    {
+        prompt: 'maFilters',
+        value: ''
+    },
+    {
+        prompt: 'channelPMFilters',
         value: ''
     }
 ]
@@ -390,19 +418,19 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
         case 2:
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.marketAreas);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
 
             break;
         case 3:
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.marketAreas);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             break;
         case 4:
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.marketAreas);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             filterParams[4].value = getParamValues(_activeParams.product, allFilters.product);
 
@@ -411,33 +439,38 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
         case 5:
             filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.marketAreas);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.websegment, allFilters.websegment);
             filterParams[4].value = getParamValues(_activeParams.visits, allFilters.visits);
             filterParams[5].value = getParamValues(_activeParams.lastTouchChannel, allFilters.lastTouchChannel);
             filterParams[6].value = getParamValues(_activeParams.convType, allFilters.convType);
             break;
-            //MKTG - Discover
+        //MKTG - Discover
         case 6:
-            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.marketAreas);
-            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
-            filterParams[4].value = getParamValues(_activeParams.channelPM, allFilters.channelPM);
+            console.log('Gen PArams ', _activeParams, allFilters);
+            filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.channelMU, allFilters.channelMU);
             break;
+        //PMSS - Discover
         case 7:
-            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.marketAreas);
-            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
-            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
-            filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
+        filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
+        filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+        filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+        filterParams[3].value = getParamValues(_activeParams.channelPM, allFilters.channelPM);
 
             break;
+         //UQFM - Discover
+         case 8:
+         filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
+         filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+         filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+             break;
         default:
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.marketAreas);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.route, allFilters.routeTomarket);
             filterParams[4].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[5].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
@@ -593,7 +626,7 @@ export function initiateFilterDataRequests() {
     responseArray.push(quarterResponse, maResponse, productResponse, segementsResponse,
         subscriptionResponse, routeResponse, geoResponse, channelResponse, visitResponse,
         CloudTypeFilters, ConvTypeFilters, DiscoverVsBuyFilters, LastTouchChannelFilters,
-        MobileVsDesktopFilters, NewVsRepeatFilters, ProdNameFilters, SignupAppFilters, SignupCatFilters, WebSegFilters,ChannelMUFilters,ChannelPMFilters);
+        MobileVsDesktopFilters, NewVsRepeatFilters, ProdNameFilters, SignupAppFilters, SignupCatFilters, WebSegFilters, ChannelMUFilters, ChannelPMFilters);
     let promiseArr1 = Promise.all(responseArray);
     return promiseArr1;
 }
@@ -610,7 +643,7 @@ export function requestPrimaryData(allFilters, _parameters) {
     console.log('Utils 556: ', allFilters, _parameters)
     generateFilterParams(2, group2Params, allFilters, _parameters);
     generateFilterParams(5, trafficParams, allFilters, _parameters);
-    generateFilterParams(8, group8Params, allFilters, _parameters);
+    generateFilterParams(9, group8Params, allFilters, _parameters);
 
 
     //turn each list into a string
@@ -676,14 +709,7 @@ export function requestFinanceSecondaryData(allFilters, _parameters) {
     responseArray = [];
 
 
-
-    // filterParams[1].value = _parameters.product.length > 0 ? _parameters.product[0].value : allFilters.product;
-    // filterParams[2].value = _parameters.geo.length > 0 ? _parameters.geo[0].value : allFilters.geo;
-    // filterParams[3].value = _parameters.subscription.length > 0 ? _parameters.subscription[0].value : allFilters.subscriptios;
-    // filterParams[4].value = _parameters.market.length > 0 ? _parameters.market[0].value : allFilters.market;
-    // filterParams[5].value = _parameters.route.length > 0 ? _parameters.route[0].value : allFilters.route;
-
-    generateFilterParams(8, group8Params, allFilters, _parameters);
+    generateFilterParams(9, group8Params, allFilters, _parameters);
 
     let params8 = group8Params.reduce((prev, param) => {
         let p = '';
@@ -738,13 +764,20 @@ export function requestFinanceSecondaryData(allFilters, _parameters) {
 export function requestTrafficSecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(5, trafficParams, allFilters, _parameters);
+    generateFilterParams(8, uqfmParams, allFilters, _parameters);
+
     let params5 = trafficParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
+    let params6 = uqfmParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
 
-
+    // Traffic  & Bounce
     const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -755,46 +788,31 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
     //QTD
-
     const DiscoverG5QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-
     //Geo QTD
-
     const DiscoverG5GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficGeoQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-
     //Market QTD
-
     const DiscoverG5MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficMAQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-
-
     // Web Segment QTD
-
     const DiscoverG5SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficWebSegQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-
-
-
     //Last touch channelQTD 
-
     const DiscoverGLTCQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficLTCQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-
-
     //Conversion Type QTD
-
     const DiscoverG5ConvQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficConvTypeQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -804,14 +822,38 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-
-
     //NEw Vs Repeat QTD
     const DiscoverNewRep = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficNewRepQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
 
+
+    // UQFM
+    const uqfmSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvSecondary + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Multichart
+    const uqfmMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvMutlichart + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //QTD
+    const uqfmQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Geo QTD
+    const uqfmGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvGeoQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Market QTD
+    const uqfmMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvMAQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
     responseArray.push(
         DiscoverG5Secondary,
         DiscoverG5Multichart,
@@ -822,7 +864,8 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
         DiscoverGLTCQTD,
         DiscoverG5ConvQTD,
         DiscoverMobDesk,
-        DiscoverNewRep
+        DiscoverNewRep,
+        uqfmSecondary,uqfmMultichart, uqfmQTD,uqfmGeoQTD,uqfmMarketQTD,
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -830,65 +873,90 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
 }
 
 export function requestMKTGSecondaryData(allFilters, _parameters) {
+    console.log('requesting marketing data');
     responseArray = [];
     generateFilterParams(6, mktgParams, allFilters, _parameters);
-    let params5 = trafficParams.reduce((prev, param) => {
+    generateFilterParams(7, pmssParams, allFilters, _parameters);
+    console.log('MKTG Params before reduce',mktgParams);
+    console.log('PMSS Params before reduce',pmssParams);
+    let params5 = mktgParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-
-
-    const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
+    let params6 = pmssParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    console.log(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUSecondary + params5 + '&json=1');
+    //Marketing
+    const mktgSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUSecondary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Multichart
-    const DiscoverG5Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficMutlichart + params5 + '&json=1', {
+    const mktgMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUMutlichart + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //QTD
-
-    const DiscoverG5QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficQTD + params5 + '&json=1', {
+    const mktgQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-
     //Geo QTD
-
-    const DiscoverG5GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficGeoQTD + params5 + '&json=1', {
+    const mktgGeo = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUGeoQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-
     //Market QTD
+    const mktgMarket = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUMAQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    // Channel QTD
+    const mktgChannelMu = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUChannelQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
-    const DiscoverG5MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficMAQTD + params5 + '&json=1', {
+     //Paid Media Sourced and Spend
+     const pmssSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMSecondary + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Multichart
+    const pmssMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMMutlichart + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //QTD
+    const pmssQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Geo QTD
+    const pmssGeo = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMGeoQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Market QTD
+    const pmssMarket = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMMAQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    // Channel QTD
+    const pmssChannelMu = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMChannelQTD + params6 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
 
 
-    // Web Segment QTD
-
-    const DiscoverG5SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficWebSegQTD + params5 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
-
-
-
-   
 
     responseArray.push(
-        DiscoverG5Secondary,
-        DiscoverG5Multichart,
-        DiscoverG5QTD,
-        DiscoverG5GeoQTD,
-        DiscoverG5MarketQTD,
-        DiscoverG5SegmentQTD,
-      
+        mktgSecondary, mktgMultichart,mktgQTD, mktgGeo, mktgMarket, mktgChannelMu
+        ,pmssSecondary,pmssMultichart, pmssQTD, pmssGeo, pmssMarket, pmssChannelMu
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -946,7 +1014,7 @@ export function requestTrySecondaryData(allFilters, _parameters) {
 }
 
 export function requestBuySecondaryData(allFilters, _parameters) {
- 
+
 }
 
 
