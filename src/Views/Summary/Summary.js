@@ -284,10 +284,6 @@ class Summary extends Component {
     this.props.showCommentBox();
   };
 
-  onFeedbackClick = (e) => {
-    console.log('FEEDBACK CLICKED IN SUMMARY');
-  }
-
   getPrimaryContent = () => {
     return (
       <PrimaryContentList
@@ -346,7 +342,8 @@ class Summary extends Component {
 
     // Open Mail Client
     let mail = document.createElement("a");
-    mail.href = "mailto:someone@yoursite.com?cc=someoneelse@theirsite.com, another@thatsite.com, me@mysite.com&subject=RTB%20Dashboard%20Feedback&body=Add Image Attachment from downloads";
+    mail.href = "mailto:ocf-rtb-feedback@adobe.com?&subject=RTB%20Dashboard%20Feedback&body=Add the [RTBFeedbackCapture_MM_DD_YYY.png] file from the downloads";
+    mail.target = "_top";
     mail.click();
   }
 
