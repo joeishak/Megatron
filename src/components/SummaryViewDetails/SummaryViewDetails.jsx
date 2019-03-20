@@ -240,7 +240,6 @@ class SummaryViewDetails extends Component {
           }
           break;
       }
-
     });
 
     console.log(newFilters);
@@ -898,7 +897,7 @@ class SummaryViewDetails extends Component {
           }</div>
 
           <div className="chartContainer col-md-12">
-            <KendoMultiChart color="white" deviceType="laptop" />
+            <KendoMultiChart color="white" deviceType="laptop"/>
           </div>
         </div>
 

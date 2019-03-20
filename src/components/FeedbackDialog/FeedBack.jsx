@@ -178,8 +178,6 @@ class FeedBackDialog extends Component {
                 <Dialog width={600} height={626} title={`Provide Feedback`} onClose={this.closeDialog}>
                     {error}
                     {main}
-
-            
                 </Dialog>
             </div>
         )

@@ -22,6 +22,10 @@ import * as utils from '../../utilities';
 import { connect } from "react-redux";
 import * as actions from "actions";
 
+// HTML 2 canvas
+import html2canvas from 'html2canvas';
+
+
 
 import CompanyHeader from './CompanyHeader.js';
 import UserNav from './UserNav.js';
@@ -93,10 +97,6 @@ class Navigation extends Component {
     }
   }
 
-  onFeedbackClick(e) {
-    this.props.updateFeedbackFormVisibility(true);
-  }
-
   onDataPreferencesSelcted() {
     this.props.updateDialogVisibility(true);
   }
@@ -145,7 +145,7 @@ class Navigation extends Component {
           toggleCommentaryOn={this.props.toggleCommentaryOn}
           updateCommentsNav={this.updateCommentsNav}
           onFilterToggled={(e) => { this.onFilterToggled(e) }}
-          onFeedbackClick={ (e) => { this.onFeedbackClick(e)}}
+          onFeedbackClick={ (e) => this.props.onFeedbackChange(e) }
         />
       </Navbar>
     );
