@@ -178,8 +178,9 @@ class KendoMultiChart extends Component {
 
 
         const ChartContainer = () => (
+    
 
-            <Chart pannable={false} zoomable={false} >
+            <Chart pannable={false} zoomable={false} renderAs={'canvas'}>
                 {chartLegend}
                 <ChartTooltip shared={true} render={sharedTooltipRender} />
                 <ChartCategoryAxis>
@@ -217,7 +218,11 @@ class KendoMultiChart extends Component {
                 </Chart>
         );
         return (
-            <ChartContainer />
+            <div>
+                <ChartContainer >
+                </ChartContainer>
+            </div>
+
         )
     }
 

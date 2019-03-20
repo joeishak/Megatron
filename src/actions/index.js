@@ -48,8 +48,6 @@ import {
     DELETE_COMMENT,
     ADD_FEEDBACK
 
-
-
 } from 'actions/types';
 import * as utils from '../utilities';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
@@ -774,4 +772,3 @@ export function isFetching(state) {
     }
 }
 
-// 

@@ -241,7 +241,7 @@ class CommentBox extends Component {
                                 <span className='commentUserName' onMouseEnter={e => { this.onCommentDeleteEntered(e, comment.id, this.props.user.name) }}
                                     onMouseLeave={e => { this.onCommentDeleteLeave(e, comment.id) }}>
                                     {(comment.replies.length === 0 && this.state.isCommentHovered.id === comment.id && this.state.isCommentHovered.userName === comment.userName) ?
-                                        <span style={{ color: 'red' }} onClick={e => { this.onCommentDeleted(e, comment.id, comment.replies) }}>DELETE COMMENT</span> : comment.userName}
+                                        <span style={{ color: 'red' }} onClick={e => { this.onCommentDeleted(e, comment.id, comment.replies) }} className="comment-delete">DELETE COMMENT</span> : comment.userName}
                                 </span>
                                 {/* Comment User Date */}
                                 <div className='commentTime'>
@@ -271,7 +271,7 @@ class CommentBox extends Component {
                                                     <span className='commentUserName' onMouseEnter={e => { this.onCommentReplyDeleteEntered(e, reply.id, this.props.user.name) }}
                                                         onMouseLeave={e => { this.onCommentReplyDeleteLeave(e, reply.id) }}>
                                                         {(this.state.isHovered.id === reply.id && this.state.isHovered.userName === reply.userName) ?
-                                                            <span style={{ color: 'red' }} onClick={e => { this.onReplyDeleted(e, reply.id) }}>DELETE RESPONSE</span>
+                                                            <span style={{ color: 'red' }} onClick={e => { this.onReplyDeleted(e, reply.id) }} className="comment-delete">DELETE RESPONSE</span>
                                                             : reply.userName}
                                                     </span>
                                                     {/* Reply Comment User Date */}

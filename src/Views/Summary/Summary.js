@@ -20,6 +20,8 @@ import KendoDialog from "../../components/KendoDialog/KendoDialog";
 import FeedBackDialog from "../../components/FeedbackDialog/FeedBack";
 import PrimaryContentList from "../../components/PrimaryContent/PrimaryContentList.jsx";
 import SecondaryContentList from "../../components/SecondaryContent/SecondaryContentList.jsx";
+import html2canvas from 'html2canvas';
+import { saveAs } from 'file-saver';
 import {
   PRIMARY,
   SECONDARY,
@@ -27,6 +29,8 @@ import {
   TABLET,
   LAPTOP
 } from "../../Constants/consts.js";
+import $ from 'jquery'; 
+
 // import { timingSafeEqual } from "crypto";
 class Summary extends Component {
   constructor(props) {
@@ -328,6 +332,23 @@ class Summary extends Component {
     );
   };
 
+  takeDomScreenshot = () => {
+    console.log('taking screenshot of dom');
+        
+    // Handle taking DOM screenshot
+    html2canvas(document.body, {allowTaint: true, taintTest: false, backgroundColor: '#1F1F1F', useCORS: false}).then(function(canvas) {
+      // Export the canvas to its data URI representation
+      const image = canvas.toDataURL("image/png");
+      const date = new Date().toLocaleDateString();
+      const fileName = 'RTBFeedbackCapture_' + date + '.png';
+      saveAs(image, fileName);
+    });
+
+    // Open Mail Client
+    let mail = document.createElement("a");
+    mail.href = "mailto:someone@yoursite.com?cc=someoneelse@theirsite.com, another@thatsite.com, me@mysite.com&subject=RTB%20Dashboard%20Feedback&body=Add Image Attachment from downloads";
+    mail.click();
+  }
 
   render() {
     const { user } = this.props;
@@ -335,70 +356,43 @@ class Summary extends Component {
     const feedbackDialog = this.props.feedbackIsOpen ? <FeedBackDialog /> : null;
     
     const isMobileOrTablet = utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet');
-    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails secondaryData={this.props.secondaryData} />;
-
+    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails secondaryData={this.props.secondaryData}/>;
     return (
       <div style={isMobileOrTablet ? { height: `${this.props.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
 
         {kdialog}
-
         {feedbackDialog}
 
         {/* Navigation*/}
-
-        <Navigation mobileFiltersIsShown = {this.props.mobileFiltersIsShown} />
-
+        <Navigation mobileFiltersIsShown = {this.props.mobileFiltersIsShown} onFeedbackChange={this.takeDomScreenshot}/>
         <FilterPanel
 
         window={this.props.window} />
-
         {
           this.state.isLoading === true ? <LoadingScreen /> :
-
             (
-
               <span>
-
                 {/* Data Preferences */}
-
                 <div>
-
-
-
                   <div>
-
-                    <CommentPanel
-
-                      user={this.props.user}
-
-                    />
+                    <CommentPanel user={this.props.user}/>
 
                     {/* Primary */}
 
                     {this.props.mobileFiltersIsShown ||
-
                       this.props.mobileIsPrimary === false ? null : this.getPrimaryContent()}
 
                     {this.state.isLoading === true ? <LoadingScreen></LoadingScreen> :
-
                       <span>
-
                         {(this.state.mobileFiltersIsShown ? null : this.getSecondaryContent())}
-
                         {summaryViewDetails}</span>
-
                     }
 
                     {/* {this.state.isFilterPageVisible && this.props.mobileIsPrimary ? null : null} */}
 
                   </div>
-
-
-
                 </div>
-
               </span>
-
             )
         }
 
@@ -410,7 +404,7 @@ class Summary extends Component {
 function mapStateToProps(state) {
 
   console.log("Filters Updated:",state.filters);
-  console.log(state);
+  console.log('SUMMARY JS STATE',  state);
   return {
     authenticated: state.authenticated,
     statsDetails: state.summaryData.secondary[state.activeCards.secondary].details.stats,
