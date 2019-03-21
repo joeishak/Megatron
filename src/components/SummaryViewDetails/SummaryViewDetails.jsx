@@ -306,6 +306,7 @@ class SummaryViewDetails extends Component {
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
               <div>Conversion </div>
               <MultiValueSelect
+                
                 options={convType.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
                 onMenuClose={(e) => { this.closeMultiValue(e) }}
@@ -914,6 +915,7 @@ class SummaryViewDetails extends Component {
 
 
         <DetailBreakdown
+          activeSecondary={this.props.activeSecondary}
           qtdIsPercent={this.state.qtdIsPercent}
           activeSummary={activeItem}
           activePrimary={activePrimary}

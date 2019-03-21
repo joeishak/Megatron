@@ -6,6 +6,24 @@ import ExcelFormatter from "../ExcelFormatter";
 import DetailTotalBar from './DetailTotal';
 import DetailPanelBar from './DetailPanelBar/DetailPanelBar';
 class DetailBreakdown extends Component {
+
+  getColor(activeSecondary, originalColor) {
+    switch (originalColor) {
+        case 'red':
+            if (activeSecondary == 2) {
+                return 'greenBG'
+            } else {
+                return 'sss'
+            }
+        default:
+        if (activeSecondary == 2) {
+            return 'redBG'
+        } else {
+            return 'greenBG'
+        }
+
+    }
+  }
   renderDollarValuePanelBarItems(value, item) {
     if (
       item.header === "Units"
@@ -39,7 +57,7 @@ class DetailBreakdown extends Component {
     }
 
   }
-  renderQuarterlyToDate(qtdwColSizes, qtdTotalTable) {
+  renderQuarterlyToDate(qtdwColSizes, qtdTotalTable, activeSecondary) {
     switch (this.props.activeTimeMetric) {
       case "qtd":
         return (
@@ -59,7 +77,8 @@ class DetailBreakdown extends Component {
                     }
 
                     {(item.header === "Vs Qrf") ?
-                      <span className={`valHeader` + (item.value <= 0 ? " redBG" : " greenBG ")}>
+
+                      <span className={`valHeader ` + (item.value <= 0 ? ` ${this.getColor(activeSecondary, 'red')}` : ` ${this.getColor(activeSecondary, 'green')}`)}>
                         {" "}
                         {this.renderDollarValuePanelBarItems(item.value, item)}
                       </span> :
@@ -95,8 +114,8 @@ class DetailBreakdown extends Component {
                     }
                   >
                     <span className="contHeader"> {item.header} </span>
-                    <span className={`valHeader` + (item.header === "Vs Qrf" ? " redBG" : " ")}>
-                      {this.renderDollarValuePanelBarItems(item.value, item)}
+                    <span className={`valHeader ` + (item.header === "Vs Qrf" ? ` ${this.getColor(activeSecondary, 'red')}` : " ")}>
+                      {this.renderDollarValuePanelBarItems(item.value, item)} 
                     </span>
                   </div>
                 );
@@ -110,7 +129,7 @@ class DetailBreakdown extends Component {
     }
   }
   render() {
-    let { activeTimeMetric, activeSummary } = this.props;
+    let { activeTimeMetric, activeSummary, activeSecondary } = this.props;
     var qtdwColSizes = classNames({
       colContainer: true,
       qtdSize: (activeTimeMetric === "qtd" && this.props.activePrimary === 1) ? true : false,
@@ -134,7 +153,7 @@ class DetailBreakdown extends Component {
           {this.renderQuarterlyToDateTableHeader()}
           <div className=" qtdTotalTitle col-md-12">
             <div className=" qtdTotalTitle col-md-1">Total</div>
-            {this.renderQuarterlyToDate(qtdwColSizes, qtdTotalTable)}
+            {this.renderQuarterlyToDate(qtdwColSizes, qtdTotalTable, activeSecondary)}
           </div>
         </div>
         <div className="  qtdTopDetails container-fluid row white">

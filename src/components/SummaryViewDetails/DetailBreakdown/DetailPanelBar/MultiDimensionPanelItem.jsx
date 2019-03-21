@@ -5,7 +5,25 @@ import { DIMENSIONS } from '../../../../Constants/consts';
 
 class MultiDimensionPanelItem extends Component {
 
-    getMultiDimensionJourneyPanelItem() {
+    getColor(activeSecondary, originalColor) {
+        switch (originalColor) {
+            case 'red':
+                if (activeSecondary == 2) {
+                    return 'greenBG';
+                } else {
+                    return 'redBG';
+                }
+            default:
+            if (activeSecondary == 2) {
+                return 'redBG';
+            } else {
+                return 'greenBG';
+            }
+
+        }
+    }
+
+    getMultiDimensionJourneyPanelItem(activeSecondary) {
 
         let calculatedGeo, prevGeo;
         let marketCount = 0;
@@ -103,7 +121,7 @@ class MultiDimensionPanelItem extends Component {
                 }));
         }
     }
-    getMultiDimensionPanelItem() {
+    getMultiDimensionPanelItem(activeSecondary) {
 
         let calculatedGeo, prevGeo;
         let marketCount = 0;
@@ -116,7 +134,9 @@ class MultiDimensionPanelItem extends Component {
 
 
         switch (this.props.timeMetric) {
+           
             case 'qtd':
+            // console.log('Multi', activeSecondary);
                 return (this.props.data.qtd.map(item => {
 
                     // console.log('HERE',item);
@@ -150,8 +170,8 @@ class MultiDimensionPanelItem extends Component {
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
-                            ? `${qtdColumnClass}` + " col redBG"
-                            : `${qtdColumnClass}` + " col greenBG"}>
+                            ? `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'red')}`
+                            : `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'green')}`}>
 
                             {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
                         </div>
@@ -164,6 +184,7 @@ class MultiDimensionPanelItem extends Component {
                     </span>)
                 }));
             default:
+            // console.log('Multi', activeSecondary);
                 return (this.props.data.week.map(item => {
                     if (this.props.type === DIMENSIONS.GEO ||this.props.type === DIMENSIONS.LTC) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
@@ -193,8 +214,8 @@ class MultiDimensionPanelItem extends Component {
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
-                            ? `${weekColumnClass}` + " col redBG"
-                            : `${weekColumnClass}` + " col greenBG"}>
+                            ? `${weekColumnClass}` + " col " + `${this.getColor(activeSecondary, 'red')}`
+                            : `${weekColumnClass}` + " col " + `${this.getColor(activeSecondary, 'green')}`}>
                             {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
@@ -205,8 +226,9 @@ class MultiDimensionPanelItem extends Component {
         }
     }
     render() {
-        console.log('ACTIVE SECONDARY', this.props.activeSecondary)
-        let MultiDimensionPanelItem = (this.props.isJourney === true) ? this.getMultiDimensionJourneyPanelItem() : this.getMultiDimensionPanelItem();
+        // console.log('ACTIVE SECONDARY', this.props.activeSecondary)
+        let activeSecondary = this.props.activeSecondary !== undefined ? this.props.activeSecondary : 0;
+        let MultiDimensionPanelItem = (this.props.isJourney === true) ? this.getMultiDimensionJourneyPanelItem(activeSecondary) : this.getMultiDimensionPanelItem(activeSecondary);
         return (MultiDimensionPanelItem)
     }
 }

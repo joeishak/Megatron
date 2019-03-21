@@ -3,8 +3,26 @@ import ReactDOM from 'react-dom';
 import * as utils from "../../../../utilities.js";
 
 class SingleDimensionPanelItem extends Component {
+
+    getColor(activeSecondary, originalColor) {
+        switch (originalColor) {
+            case 'red':
+                if (activeSecondary == 2) {
+                    return 'greenBG';
+                } else {
+                    return 'redBG';
+                }
+            default:
+            if (activeSecondary == 2) {
+                return 'redBG';
+            } else {
+                return 'greenBG';
+            }
+
+        }
+    }
     
-    getSingleDimensionJourneyPanelItem() {
+    getSingleDimensionJourneyPanelItem(activeSecondary) {
         let qtdColumnClass, weekColumnClass;
         qtdColumnClass = 'qtdJourneyColumn';
         weekColumnClass = 'weekJourneyColumn';
@@ -70,7 +88,7 @@ class SingleDimensionPanelItem extends Component {
                 break;
         }
     }
-    getSingleDimensionPanelItem() {
+    getSingleDimensionPanelItem(activeSecondary) {
         let qtdColumnClass, weekColumnClass;
 
         // Financial
@@ -78,6 +96,7 @@ class SingleDimensionPanelItem extends Component {
         weekColumnClass = 'weekColumn';
         switch (this.props.timeMetric) {
             case 'qtd':
+            console.log('Multi', activeSecondary);
                 return (this.props.data.qtd.map(item => {
 
                     return (<span key={item.index}>
@@ -98,8 +117,8 @@ class SingleDimensionPanelItem extends Component {
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
-                            ? `${qtdColumnClass}` + " col redBG"
-                            : `${qtdColumnClass}` + " col greenBG"}>
+                            ? `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'red')}`
+                            : `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'green')}`}>
                             {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
@@ -111,6 +130,7 @@ class SingleDimensionPanelItem extends Component {
                     </span>)
                 }));
             case 'week':
+            console.log('Multi', activeSecondary);
                 return (this.props.data.week.map(item => {
                     return (<span key={item.index}>
                         <div className={`${weekColumnClass}` + " weekGeoHeader col"}>
@@ -130,8 +150,8 @@ class SingleDimensionPanelItem extends Component {
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
-                            ? `${weekColumnClass}` + " col redBG"
-                            : `${weekColumnClass}` + " col greenBG"}>
+                            ? `${weekColumnClass}` + " col " + `${this.getColor(activeSecondary, 'red')}`
+                            : `${weekColumnClass}` + " col " + `${this.getColor(activeSecondary, 'green')}`}>
                             {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
@@ -144,7 +164,10 @@ class SingleDimensionPanelItem extends Component {
         }
     }
     render() {
-        let PanelItem = (this.props.isJourney === true) ? this.getSingleDimensionJourneyPanelItem() : this.getSingleDimensionPanelItem()
+        console.log('ACTIVE SECONDARY', this.props.activeSecondary)
+
+        let activeSecondary = this.props.activeSecondary !== undefined ? this.props.activeSecondary : 0;
+        let PanelItem = (this.props.isJourney === true) ? this.getSingleDimensionJourneyPanelItem(0) : this.getSingleDimensionPanelItem(activeSecondary)
         return (PanelItem)
     }
 }

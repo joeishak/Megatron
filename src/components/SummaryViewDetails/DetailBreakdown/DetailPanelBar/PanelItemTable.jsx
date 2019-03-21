@@ -21,68 +21,80 @@ class PanelItemTable extends Component {
             case DIMENSIONS.MARKET:
                 return (
                     <SingleDimensionPanelItem
+                        activeSecondary={this.props.activeSecondary}
                         timeMetric={this.props.timeMetric}
                         data={this.props.activeSummary.details.market}
                         isJourney={this.state.isJourney} />
                 )
             case DIMENSIONS.ROUTE:
                 return <SingleDimensionPanelItem
+                activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.route}
                     isJourney={this.state.isJourney} />
             case DIMENSIONS.SEGMENT:
                 return <SingleDimensionPanelItem
+                activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.segment}
                     isJourney={this.state.isJourney} />
             case DIMENSIONS.PRODUCT:
                 return <SingleDimensionPanelItem
+                activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.product}
                     isJourney={this.state.isJourney} />
             case DIMENSIONS.WEBSEGMENT:
                 return <SingleDimensionPanelItem
+                activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.segment}
                     isJourney={this.state.isJourney} />
             case DIMENSIONS.LTC:
                 return <MultiDimensionPanelItem
+                    activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.ltc}
                     isJourney={this.state.isJourney}
                     type={DIMENSIONS.LTC} />
             case DIMENSIONS.CONVERSION:
                 return <SingleDimensionPanelItem
+                activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.conversion}
                     isJourney={this.state.isJourney}
                     type={DIMENSIONS.CONVERSION} />
             case DIMENSIONS.NEWVSREPEAT:
                 return <SingleDimensionPanelItem
+                activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.nvr}
                     isJourney={this.state.isJourney}
                     type={DIMENSIONS.NEWVSREPEAT} />
             case DIMENSIONS.MOBILEVSDESKTOP:
                 return <SingleDimensionPanelItem
+                activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.mvd}
                     isJourney={this.state.isJourney}
                     type={DIMENSIONS.MOBILEVSDESKTOP} />
             case DIMENSIONS.PRODUCT:
                 return <SingleDimensionPanelItem
+                activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.product}
                     isJourney={this.state.isJourney}
                     type={DIMENSIONS.PRODUCT} />
             case DIMENSIONS.CHANNELPM:
                 return <SingleDimensionPanelItem
+                activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.channel}
                     isJourney={this.state.isJourney}
                     type={DIMENSIONS.CHANNELPM} />
             case DIMENSIONS.CHANNELMU:
                 return <SingleDimensionPanelItem
+                activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.channel}
                     isJourney={this.state.isJourney}
@@ -95,13 +107,14 @@ class PanelItemTable extends Component {
             //         type={DIMENSIONS.SIGNAPP} />
             case DIMENSIONS.SIGNCAT:
                 return <SingleDimensionPanelItem
+                activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.signUpCat}
                     isJourney={this.state.isJourney}
                     type={DIMENSIONS.SIGNCAT} />
             default:
                 return <MultiDimensionPanelItem
-                activeSecondary={this.props.activeSecondary}
+                    activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.geo}
                     isJourney={this.state.isJourney}

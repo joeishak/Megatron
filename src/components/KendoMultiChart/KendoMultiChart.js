@@ -93,25 +93,48 @@ class KendoMultiChart extends Component {
         }
     }
 
+    getColor(activeSecondary, originalColor, type) {
+        switch (originalColor) {
+            case 'red':
+                switch (type) {
+                    case 'bg':
+                        if (activeSecondary == 2) { return 'ttBGGreen' } else { return 'ttBGRed' }
+                    case  'txt':
+                        if (activeSecondary == 2) { return 'textGreen' } else { return 'textRed' }
+                    case 'border':
+                        if (activeSecondary == 2) { return '#0DB16E' } else { return '#FF0000' }
+                }
+            default:
+            switch (type) {
+                case 'bg':
+                    if (activeSecondary == 2) { return 'ttBGRed' } else { return 'ttBGGreen' }
+                case  'txt':
+                    if (activeSecondary == 2) { return 'textRed' } else { return 'textGreen' }
+                case 'border':
+                    if (activeSecondary == 2) { return '#FF0000' } else { return '#0DB16E' }
+            }
 
-
-
+        }
+    }
 
     render() {
-
+        // console.log('DEBUG', this.props.activeSecondary);
         const chartData = (this.props.multichartMetric === true ? this.props.activeMultichart : this.props.activeUnits);
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
+    
         const sharedTooltipRender = (props) => {
             console.log('Shared Props',props.points);
+            // console.log('DEBUG', this.props.activeSecondary);
+            const activeSecondary = this.props.activeSecondary;
             const { points } = props;
-            let bgColor = ( (points) ? (points[0].value - points[1].value) > 0 ? 'ttBGGreen' : 'ttBGRed' : '');
-            let textColor = ( (points) ? (points[0].value - points[1].value) > 0 ? 'textGreen' : 'textRed' : '');
-            let borderColor = ( (points) ? (points[0].value - points[1].value) > 0 ? '#0DB16E' : '#FF0000' : '');
+            let bgColor = ( (points) ? (points[0].value - points[1].value) > 0 ? `${this.getColor(activeSecondary, 'green', 'bg')}` : `${this.getColor(activeSecondary, 'red', 'bg')}` : '');
+            let textColor = ( (points) ? (points[0].value - points[1].value) > 0 ? `${this.getColor(activeSecondary, 'green', 'txt')}` : `${this.getColor(activeSecondary, 'red', 'txt')}` : '');
+            let borderColor = ( (points) ? (points[0].value - points[1].value) > 0 ?`${this.getColor(activeSecondary, 'green', 'border')}` :`${this.getColor(activeSecondary, 'red', 'border')}` : '');
             const title = props.categoryText;
 
             if (this.props.multichartMetric === true) {
                 return (
-                    <div className="tooltipContainer" style={{ border: `4px solid ${borderColor}` }}>
+                    <div className="tooltipContainer" style={{ border: `5px solid ${borderColor}`, borderRadius: '5px' }}>
                         <div className="innerContent">
                             <div className={`tooltipTitle ${bgColor}`}><b>Week {title}</b></div>
                             {points.map((point) => (
@@ -133,7 +156,7 @@ class KendoMultiChart extends Component {
             }
             else {
                 return (
-                    <div className="tooltipContainer" style={{ border: `4px solid ${borderColor}` }}>
+                    <div className="tooltipContainer" style={{ border: `5px solid ${borderColor}`, borderRadius: '5px' }}>
                         <div className="innerContent">
                             <div className={`tooltipTitle ${bgColor}`}><b>Week {title}</b></div>
                             {points.map((point) => (
@@ -229,9 +252,11 @@ class KendoMultiChart extends Component {
 
 }
 function mapStateToProps(state) {
+    // console.log('STATE', state);
     return {
         multichartMetric: state.multichartIsArr,
         activePrimary: state.activeCards.primary,
+        activeSecondary: state.activeCards.secondary,
         activeUnits: state.summaryData.secondary[state.activeCards.secondary].details.unitMultichart,
         activeMultichart: state.summaryData.secondary[state.activeCards.secondary].details.multichart,
         valueType: state.summaryData.secondary[state.activeCards.secondary].valueType
