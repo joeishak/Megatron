@@ -91,18 +91,18 @@ class Summary extends Component {
 
   componentDidUpdate(prevProps, prevState) {
 
+    
+    // Boolean Rule Tests
+    let filtersAreLoaded = Object(this.props.filters).hasOwnProperty('combined') && Object(prevProps.filters).hasOwnProperty('combined') === false;
+    let preferencesAreLoaded = Object(this.props.preferences).hasOwnProperty('geoFilters');
+    let appInitialLoadIsComplete = this.props.NEwQTDW.qtd.length !== 0;
+    let primaryLoaded = this.props.summaryData.primary[this.props.activePrimaryCard].value !== prevProps.summaryData.primary[this.props.activePrimaryCard].value;
+    let secondaryLoaded = this.props.summaryData.secondary[this.props.activeSecondaryCard].value !== prevProps.summaryData.secondary[this.props.activeSecondaryCard].value;
     this.checkAuthentication();
     if (this.props.user !== prevProps.user) {
       this.props.getUserSettings(this.props.user.sub);
     }
 
-    // Boolean Rule Tests
-    let filtersAreLoaded = Object(this.props.filters).hasOwnProperty('combined') && Object(prevProps.filters).hasOwnProperty('combined') === false;
-    let preferencesAreLoaded = Object(this.props.preferences).hasOwnProperty('geoFilters');
-    // TODO: This will not catch the case of a card changing that is not NewArr, fix immediately
-    let appInitialLoadIsComplete = this.props.NEwQTDW.qtd.length !== 0;
-    let primaryLoaded = this.props.summaryData.primary[this.props.activePrimaryCard].value !== prevProps.summaryData.primary[this.props.activePrimaryCard].value;
-    let secondaryLoaded = this.props.summaryData.secondary[this.props.activeSecondaryCard].value !== prevProps.summaryData.secondary[this.props.activeSecondaryCard].value;
     if (this.props.NetNew.value !== prevProps.NetNew.value) {
       console.log('Finance Changed');
       this.setState({ fetchingFinance: false });
@@ -336,38 +336,7 @@ class Summary extends Component {
       
 
     }
-    //When the app initially finishes loading discover primary and secondary
-    //When the app initially finishes loading try primary and secondary
-    // if (appInitialLoadIsComplete && this.state.initialDataLoadIsComplete === true && this.state.primaryLoaded && this.state.secondaryLoaded) {
-    //   console.log('Setting Loaded to False in the First If');
-    //   this.setState({ isLoading: false, isInitiallyLoading: false });
-    //   this.props.isFetching(false);
-    //   this.setState({ primaryLoaded: false, secondaryLoaded: false });
-    // } else if (appInitialLoadIsComplete && this.state.initialDataLoadIsComplete === true && this.state.userChangedCards && this.state.secondaryLoaded) {
-    //   console.log('Setting Loaded to False in the Second If');
-    //   this.setState({ isLoading: false, isInitiallyLoading: false });
-    //   this.props.isFetching(false);
-    //   this.setState({ secondaryLoaded: false, userChangedCards: false });
-    // }
-    // else if ( this.state.initialDataLoadIsComplete === true && this.state.filtersUpdated && secondaryLoaded ) {
-    //   console.log('Setting Loaded to False in the third If');
-    //   this.setState({ isLoading: false, isInitiallyLoading: false });
-    //   this.props.isFetching(false);
-    // } else if ( this.state.initialDataLoadIsComplete === true && this.state.fetchingFinance === false && this.state.primaryLoaded && this.state.secondaryLoaded) {
-    //   console.log('Setting Loaded to False in the Fourth If');
-    //   this.setState({ isLoading: false, isInitiallyLoading: false });
-    //   this.props.isFetching(false);
-    //   this.setState({ fetchingFinance: true});
-    // } else if ( this.state.initialDataLoadIsComplete === true && this.state.fetchingMarketing === false && this.state.fetchingTraffic===false) {
-    //   console.log('Setting Loaded to False in the fifth If');
-    //   this.setState({ isLoading: false, isInitiallyLoading: false });
-    //   this.props.isFetching(false);
-    //   this.setState({ fetchingTraffic: true, fetchingMarketing: true });
-    // } else if(  this.state.initialDataLoadIsComplete === true && this.state.primaryLoaded && this.state.secondaryLoaded && this.state.fetchingTry === false ){
-    //   this.setState({ isLoading: false, isInitiallyLoading: false });
-    //   this.props.isFetching(false);
-    //   this.setState({ fetchingTry: true });
-    // }
+    
 
   }
   stopLoading() {
@@ -415,7 +384,7 @@ class Summary extends Component {
     this.props.fetchComments(index);
     this.props.updateActiveSecondaryCard(index);
   }
-
+ 
   updateMobileView(updateComponent, toUpdateTo) {
     //If the user is on Secondary
     if (updateComponent === SECONDARY) {
