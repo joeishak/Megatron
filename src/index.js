@@ -43,7 +43,6 @@ ReactDOM.render(
 				{/* // Localhost */}
 				<Route path="/implicit/callback" component={ImplicitCallback} />
 			</Security>
-
 		</Router>
 
 	</Root>

@@ -501,14 +501,15 @@ export function processFinancialGeoQTD(newState, data) {
             index: i,
             actuals: item.NewActuals,
             units: item.NewUnitsActual,
-            type: item.market_area_group,
+            marketArea: item.market_area_group,
             qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.geo_code,
             vsQrf: item.NewARRVsQrf,
-            yy: item.NewYY
+            yy: item.NewARRYY
         }
+        console.log(net);
         let gross = {
             index: i,
             actuals: item.GrossActuals,
@@ -551,6 +552,7 @@ export function processFinancialGeoQTD(newState, data) {
         item3.push(canc);
         item4.push(ren);
     }
+    console.log(item1);
     newState[0].details.geo.qtd = item1;
     newState[1].details.geo.qtd = item2;
     newState[2].details.geo.qtd = item3;
@@ -2891,7 +2893,6 @@ export function processTryGeoQTDData(data, newState) {
         newState[14].details.geo.week.push(day28Week);
         newState[15].details.geo.qtd.push(cumuUTQ);
         newState[15].details.geo.week.push(cumuUTQWeek);
-
     }
 }
 export function processTryMarketQTDData(data, newState) {
