@@ -27,10 +27,6 @@ class DetailPanelBar extends Component {
     }
 
 
-
-
-
-
     /* Return Contents for */
     getPanelContents(type) {
         // if (type === DIMENSIONS.LTC) {
@@ -80,6 +76,7 @@ class DetailPanelBar extends Component {
                 <div className='col-md-12 geoTableContainer'>
                     {/* {this.getTable(type)} */}
                     <PanelItemTable
+                        activeSecondary={this.props.activeSecondary}
                         qtdIsPercent={this.props.qtdIsPercent}
                         type={type}
                         activeSummary={this.props.activeSummary}

@@ -207,6 +207,7 @@ class MultiDimensionPanelItem extends Component {
         }
     }
     render() {
+        console.log('ACTIVE SECONDARY', this.props.activeSecondary)
         let MultiDimensionPanelItem = (this.props.isJourney === true) ? this.getMultiDimensionJourneyPanelItem() : this.getMultiDimensionPanelItem();
         return (MultiDimensionPanelItem)
     }

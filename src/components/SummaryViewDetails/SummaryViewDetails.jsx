@@ -886,14 +886,27 @@ class SummaryViewDetails extends Component {
 
   
           <div className="stats-container-main">{this.props.activeItem.details.stats.map(item => {
-            return (
-              <div className="statsHeader" key={item.text}>
-                <div className={(item.value <= 0) ? 'stats red' : 'stats green '}>
-                  {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
+
+            if (this.props.activeSecondary == 2) {
+              return (
+                <div className="statsHeader" key={item.text}>
+                  <div className={(item.value <= 0) ? 'stats green' : 'stats red '}>
+                    {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
+                  </div>
+                  <div className="footer"> {item.text}</div>
                 </div>
-                <div className="footer"> {item.text}</div>
-              </div>
-            )
+              )
+            } else {
+              return (
+                <div className="statsHeader" key={item.text}>
+                  <div className={(item.value <= 0) ? 'stats red' : 'stats green '}>
+                    {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
+                  </div>
+                  <div className="footer"> {item.text}</div>
+                </div>
+              )
+            }
+
           })}</div>
       
 

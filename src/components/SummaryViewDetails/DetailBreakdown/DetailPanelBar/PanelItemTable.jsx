@@ -71,6 +71,7 @@ class PanelItemTable extends Component {
                     type={DIMENSIONS.MOBILEVSDESKTOP} />
             default:
                 return <MultiDimensionPanelItem
+                activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.geo}
                     isJourney={this.state.isJourney}
