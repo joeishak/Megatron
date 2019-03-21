@@ -29,34 +29,6 @@ class DetailPanelBar extends Component {
 
     /* Return Contents for */
     getPanelContents(type) {
-        // if (type === DIMENSIONS.LTC) {
-        //     return (
-        //         <div className='row'>
-        //             <div className='col-md-12 topPanelHeader'>
-        //                 {/* {this.getTopHeader()} */}
-        //                 <DetailPanelItemTimeHeader
-        //                     timeMetric={this.props.timeMetric}
-        //                 />
-        //             </div>
-        //             <div className='col-md-12'>
-        //                 {/* {this.getLowerHeader(type)} */}
-        //                 <PanelItemTableHeader
-        //                     qtdIsPercent={this.props.qtdIsPercent}
-        //                     timeMetric={this.props.timeMetric}
-        //                     activeSummary={this.props.activeSummary}
-        //                     type={type} />
-        //             </div>
-        //             <div className='col-md-12 geoTableContainer'>
-        //                 {/* {this.getTable(type)} */}
-        //                 {/* <PanelItemTable
-        //                     type={type}
-        //                     activeSummary={this.props.activeSummary}
-        //                     timeMetric={this.props.timeMetric}
-        //                 /> */}
-        //             </div>
-        //         </div>
-        //     );
-        // }
         return (
             <div className='row'>
                 <div className='col-md-12 topPanelHeader'>
@@ -132,6 +104,34 @@ class DetailPanelBar extends Component {
                 )
             //Traffic
             case 1:
+            switch (this.props.activeSecondary) {
+                case 4:
+                return (
+                    <PanelBar >
+                    <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                        {this.getPanelContents(DIMENSIONS.GEO)}
+                    </ PanelBarItem>
+                    <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                        {this.getPanelContents(DIMENSIONS.MARKET)}
+                    </ PanelBarItem>
+                    <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
+                        {this.getPanelContents(DIMENSIONS.WEBSEGMENT)}
+                    </ PanelBarItem>
+                    <PanelBarItem className="panelItemTitle" expanded={false} title={'Channel'}>
+                        {this.getPanelContents(DIMENSIONS.LTC)}
+                    </ PanelBarItem>
+                    <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion'>
+                        {this.getPanelContents(DIMENSIONS.CONVERSION)}
+                    </ PanelBarItem>
+                    <PanelBarItem className="panelItemTitle" expanded={false} title='Mobile Vs Desktop'>
+                        {this.getPanelContents(DIMENSIONS.MOBILEVSDESKTOP)}
+                    </ PanelBarItem>
+                    <PanelBarItem className="panelItemTitle" expanded={false} title='New Vs Repeat'>
+                        {this.getPanelContents(DIMENSIONS.NEWVSREPEAT)}
+                    </ PanelBarItem>
+                </PanelBar>
+                )
+                case 5:
                 return (
                     <PanelBar >
                         <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -140,24 +140,81 @@ class DetailPanelBar extends Component {
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
                             {this.getPanelContents(DIMENSIONS.MARKET)}
                         </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
-                            {this.getPanelContents(DIMENSIONS.WEBSEGMENT)}
-                        </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title={LTC}>
-                            {this.getPanelContents(DIMENSIONS.LTC)}
-                        </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion'>
-                            {this.getPanelContents(DIMENSIONS.CONVERSION)}
-                        </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title='Mobile Vs Desktop'>
-                            {this.getPanelContents(DIMENSIONS.MOBILEVSDESKTOP)}
-                        </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title='New Vs Repeat'>
-                            {this.getPanelContents(DIMENSIONS.NEWVSREPEAT)}
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Channel'>
+                            {this.getPanelContents(DIMENSIONS.CHANNELPM)}
                         </ PanelBarItem>
                     </PanelBar>
                 )
+                case 6: 
+                return (
+                    <PanelBar >
+                        <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                            {this.getPanelContents(DIMENSIONS.GEO)}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                            {this.getPanelContents(DIMENSIONS.MARKET)}
+                        </ PanelBarItem>
+                    </PanelBar>
+                )
+                case 7:
+                return (
+                    <PanelBar >
+                        <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                            {this.getPanelContents(DIMENSIONS.GEO)}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                            {this.getPanelContents(DIMENSIONS.MARKET)}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Channel'>
+                            {this.getPanelContents(DIMENSIONS.CHANNELPM)}
+                        </ PanelBarItem>
+                    </PanelBar>
+                )
+                case 8:
+                return (
+                    <PanelBar >
+                    <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                        {this.getPanelContents(DIMENSIONS.GEO)}
+                    </ PanelBarItem>
+                    <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                        {this.getPanelContents(DIMENSIONS.MARKET)}
+                    </ PanelBarItem>
+                    <PanelBarItem className="panelItemTitle" expanded={false} title='Channel'>
+                        {this.getPanelContents(DIMENSIONS.CHANNELPM)}
+                    </ PanelBarItem>
+                </PanelBar>
+                )
+                case 9: 
+                return (
+                    <PanelBar >
+                    <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                        {this.getPanelContents(DIMENSIONS.GEO)}
+                    </ PanelBarItem>
+                    <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                        {this.getPanelContents(DIMENSIONS.MARKET)}
+                    </ PanelBarItem>
+                    <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
+                        {this.getPanelContents(DIMENSIONS.WEBSEGMENT)}
+                    </ PanelBarItem>
+                    <PanelBarItem className="panelItemTitle" expanded={false} title={'Channel'}>
+                        {this.getPanelContents(DIMENSIONS.LTC)}
+                    </ PanelBarItem>
+                    <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion'>
+                        {this.getPanelContents(DIMENSIONS.CONVERSION)}
+                    </ PanelBarItem>
+                    <PanelBarItem className="panelItemTitle" expanded={false} title='Mobile Vs Desktop'>
+                        {this.getPanelContents(DIMENSIONS.MOBILEVSDESKTOP)}
+                    </ PanelBarItem>
+                    <PanelBarItem className="panelItemTitle" expanded={false} title='New Vs Repeat'>
+                        {this.getPanelContents(DIMENSIONS.NEWVSREPEAT)}
+                    </ PanelBarItem>
+                </PanelBar>
+                )
+            }
+               
             case 2:
+            switch (this.props.activeSecondary) {
+                case 10:
                 return (
                     <PanelBar >
                         <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -166,16 +223,88 @@ class DetailPanelBar extends Component {
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
                             {this.getPanelContents(DIMENSIONS.MARKET)}
                         </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
-                            {this.getPanelContents(DIMENSIONS.SEGMENT)}
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Product'>
+                            {this.getPanelContents(DIMENSIONS.PRODUCT)}
                         </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title={LTC}>
-                            {this.getPanelContents(LTC)}
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Sign Up Category'>
+                            {this.getPanelContents(DIMENSIONS.SIGNCAT)}
                         </ PanelBarItem>
-
-
                     </PanelBar>
                 )
+                case 11:
+                return (
+                    <PanelBar >
+                        <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                            {this.getPanelContents(DIMENSIONS.GEO)}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                            {this.getPanelContents(DIMENSIONS.MARKET)}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Sign Up App'>
+                            {this.getPanelContents(DIMENSIONS.SIGNAPP)}
+                        </ PanelBarItem>
+                    </PanelBar>
+                )
+                case 12: 
+                return (
+                    <PanelBar >
+                        <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                            {this.getPanelContents(DIMENSIONS.GEO)}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                            {this.getPanelContents(DIMENSIONS.MARKET)}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Sign Up App'>
+                            {this.getPanelContents(DIMENSIONS.SIGNAPP)}
+                        </ PanelBarItem>
+                       
+                    </PanelBar>
+                )
+                case 13:
+                return (
+                    <PanelBar >
+                        <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                            {this.getPanelContents(DIMENSIONS.GEO)}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                            {this.getPanelContents(DIMENSIONS.MARKET)}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Sign Up Category'>
+                            {this.getPanelContents(DIMENSIONS.SIGNCAT)}
+                        </ PanelBarItem>
+                    </PanelBar>
+                )
+                case 14:
+                return (
+                    <PanelBar >
+                        <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                            {this.getPanelContents(DIMENSIONS.GEO)}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                            {this.getPanelContents(DIMENSIONS.MARKET)}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Sign Up Category'>
+                            {this.getPanelContents(DIMENSIONS.SIGNCAT)}
+                        </ PanelBarItem>
+                    </PanelBar>
+                )
+                case 15: 
+                return (
+                    <PanelBar >
+                        <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                            {this.getPanelContents(DIMENSIONS.GEO)}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                            {this.getPanelContents(DIMENSIONS.MARKET)}
+                        </ PanelBarItem>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title='Sign Up Category'>
+                            {this.getPanelContents(DIMENSIONS.SIGNCAT)}
+                        </ PanelBarItem>
+                    </PanelBar>
+                )
+            }
+
+               
             case 3:
                 return (
                     <PanelBar >

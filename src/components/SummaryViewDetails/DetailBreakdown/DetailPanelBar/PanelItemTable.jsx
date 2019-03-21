@@ -61,14 +61,44 @@ class PanelItemTable extends Component {
                 return <SingleDimensionPanelItem
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.nvr}
-                    isJourney={this.state.isJourney} 
-                    type={DIMENSIONS.NEWVSREPEAT}/>
+                    isJourney={this.state.isJourney}
+                    type={DIMENSIONS.NEWVSREPEAT} />
             case DIMENSIONS.MOBILEVSDESKTOP:
                 return <SingleDimensionPanelItem
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.mvd}
                     isJourney={this.state.isJourney}
                     type={DIMENSIONS.MOBILEVSDESKTOP} />
+            case DIMENSIONS.PRODUCT:
+                return <SingleDimensionPanelItem
+                    timeMetric={this.props.timeMetric}
+                    data={this.props.activeSummary.details.product}
+                    isJourney={this.state.isJourney}
+                    type={DIMENSIONS.PRODUCT} />
+            case DIMENSIONS.CHANNELPM:
+                return <SingleDimensionPanelItem
+                    timeMetric={this.props.timeMetric}
+                    data={this.props.activeSummary.details.channel}
+                    isJourney={this.state.isJourney}
+                    type={DIMENSIONS.CHANNELPM} />
+            case DIMENSIONS.CHANNELMU:
+                return <SingleDimensionPanelItem
+                    timeMetric={this.props.timeMetric}
+                    data={this.props.activeSummary.details.channel}
+                    isJourney={this.state.isJourney}
+                    type={DIMENSIONS.CHANNELMU} />
+            // case DIMENSIONS.SIGNAPP:
+            //     return <MultiDimensionPanelItem
+            //         timeMetric={this.props.timeMetric}
+            //         data={this.props.activeSummary.details.channel}
+            //         isJourney={this.state.isJourney}
+            //         type={DIMENSIONS.SIGNAPP} />
+            case DIMENSIONS.SIGNCAT:
+                return <SingleDimensionPanelItem
+                    timeMetric={this.props.timeMetric}
+                    data={this.props.activeSummary.details.signUpCat}
+                    isJourney={this.state.isJourney}
+                    type={DIMENSIONS.SIGNCAT} />
             default:
                 return <MultiDimensionPanelItem
                 activeSecondary={this.props.activeSecondary}

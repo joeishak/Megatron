@@ -48,13 +48,11 @@ export default function (state = {
             newState.primary[1].vsqrf = action.payload[1].data[0].TrafficVsQrf;
 
             newState.primary[2].value = action.payload[2].data[0].NewQFMSActual;
-            newState.primary[2].target = action.payload[2].data[0].NewQFMSTargetFQ;
+            newState.primary[2].target = action.payload[2].data[0].NewQFMsTarget;
             newState.primary[2].vsqrf = action.payload[2].data[0].NewQFMSVsQrf;
+            newState.primary[2].targetFQ = action.payload[2].data[0].NewQFMSTargetFQ;
 
-            // newState.secondary[4].value = action.payload[1].data[0].TrafficActual;
-            // newState.secondary[4].target = action.payload[1].data[0].TrafficTarget;
-            // newState.secondary[4].targetFQ = action.payload[1].data[0].TrafficTargetFQ;
-            // newState.secondary[4].vsQrf = action.payload[1].data[0].TrafficVsQrf;
+
             return { ...newState };
 
         case GET_FINANCE_SECONDARY_DATA:
@@ -124,50 +122,19 @@ export default function (state = {
             processPMSSChannelQTDData(action.payload[11].data, newState.secondary);
 
             return { ...newState };
-        case GET_DISCOVER_SECONDARY_DATA:/** Variables index 4-10 */
-            console.log(action.payload);
-            newState = Object.assign({}, state);
-            let { secondary } = newState;
-
-            // DiscoverG1QTD, DiscoverG2QTD, DiscoverG5QTD,
-            processDiscoverQTDData(action.payload[6].data[0], action.payload[7].data[0], action.payload[8].data[0], secondary);
-
-            // DiscoverG1Secondary, DiscoverG2Secondary, DiscoverG5Secondary,
-            processDiscoverSecondaryData(action.payload[0].data[0], action.payload[1].data[0], action.payload[2].data[0], secondary);
-            // DiscoverG1Multichart, DiscoverG2Multichart, DiscoverG5Multichart,
-            processDiscoverMultichartData(action.payload[3].data, action.payload[4].data, action.payload[5].data, secondary);
-
-
-            // DiscoverG1GeoQTD, DiscoverG2GeoQTD, DiscoverG5GeoQTD,
-            processDiscoverGeoQTDData(action.payload[9].data, action.payload[10].data, action.payload[11].data, secondary);
-
-            // DiscoverG1MarketQTD, DiscoverG2MarketQTD, DiscoverG5MarketQTD,
-            processDiscoverMarketQTDData(action.payload[12].data, action.payload[13].data, action.payload[14].data, secondary);
-
-            // DiscoverG1SegmentQTD, DiscoverG2SegmentQTD, DiscoverG5SegmentQTD,
-            processDiscoverSegmentQTDData(action.payload[15].data, action.payload[16].data, action.payload[17].data, secondary);
-
-            // DiscoverG1RouteQTD, DiscoverG5RouteQTD, DiscoverG2RouteQTD,
-            processDiscoverRouteQTDData(action.payload[18].data, action.payload[19].data, action.payload[20].data, secondary);
-
-            // DiscoverG1ProductQTD, DiscoverG2ProductQTD, DiscoverG5ProductQTD
-            processDiscoverProductQTDData(action.payload[21].data, action.payload[22].data, action.payload[23].data, secondary);
-
-
-            return newState;
         case GET_TRY_SECONDARY_DATA:
-            newState = Object.assign({}, state);
+            newState = JSON.parse(JSON.stringify(state));
             console.log(action.payload);
 
             processTrySecondaryData(action.payload[0].data[0], newState.secondary);
             processTryMultichartData(action.payload[1].data, newState.secondary);
-            processTryQTDData(action.payload[0].data[0], newState.secondary);
-            // processTryGeoQTDData(action.payload[0].data, newState.secondary);
-            // processTryMarketQTDData(action.payload[0].data, newState.secondary);
-            return newState;
-
-
-
+            processTryQTDData(action.payload[2].data[0], newState.secondary);
+            processTryGeoQTDData(action.payload[3].data, newState.secondary);
+            processTryMarketQTDData(action.payload[4].data, newState.secondary);
+            processTryProductQTDData(action.payload[5].data, newState.secondary);
+            processTrySignUpAppQTDData(action.payload[6].data, newState.secondary);
+            processTrySignUpCatQTDData(action.payload[7].data, newState.secondary);
+            return { ...newState };
         case ADD_NEW_PRIMARY_COMMENT:
             index = action.payload.square;
             copyOfState = Object.assign({}, state);
@@ -535,7 +502,7 @@ export function processFinancialGeoQTD(newState, data) {
             index: i,
             actuals: item.NewActuals,
             units: item.NewUnitsActual,
-            marketArea: item.market_area_group,
+            type: item.market_area_group,
             qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
@@ -1281,7 +1248,7 @@ export function processTrafficMultichartData(g5, newState) {
             case 4:
                 currentMulti = [traffic.actual, traffic.target, traffic.ly, traffic.lq];
                 break;
-            case 10:
+            case 9:
                 currentMulti = [bounceRate.actual, bounceRate.target, bounceRate.ly, bounceRate.lq];
                 break;
             default:
@@ -1317,7 +1284,7 @@ export function processTrafficQTDData(g5, newState) {
                 newState[i].details.stats[3].value = g5.TrafficYY;
                 break;
             // Bounce Rate
-            case 10:
+            case 9:
                 newState[i].details.qtdw.qtd[0].value = g5.BounceRateActual;
                 newState[i].details.qtdw.qtd[1].value = g5.BounceRateActual;
                 newState[i].details.qtdw.qtd[2].value = g5.BounceRateActual;
@@ -1636,7 +1603,6 @@ export function processTrafficConvQTDData(g5, newState) {
         newState[9].details.conversion.week.push(bouncePM);
     }
 }
-
 export function processTrafficMobDeskQTDData(g5, newState) {
 
     //Clear old Values
@@ -1661,7 +1627,7 @@ export function processTrafficMobDeskQTDData(g5, newState) {
 
             qrf: item.TarfficTarget,
 
-            qrfDiff:  item.TrafficActuals - item.TarfficTarget,
+            qrfDiff: item.TrafficActuals - item.TarfficTarget,
 
             type: item.mobile_or_desktop,
 
@@ -1766,7 +1732,7 @@ export function processTrafficNewRepQTDData(g5, newState) {
 
             qrf: item.TarfficTarget,
 
-            qrfDiff: item.TrafficActuals-item.TarfficTarget,
+            qrfDiff: item.TrafficActuals - item.TarfficTarget,
 
             type: item.new_or_repeat,
 
@@ -1945,7 +1911,7 @@ export function processUQFMGeoQTDData(data, newState) {
             ww: item.UQFMConvWW,
             type: item.geo_code,
         }
-       
+
         newState[6].details.geo.qtd.push(uqfm);
         newState[6].details.geo.week.push(uqfmWeek);
     }
@@ -2143,7 +2109,7 @@ export function processMKTGMarketQTDData(data, newState) {
         let netMu = {
             index: i,
             actuals: item.NetChangeMUActuals,
-            type: item.market_area_group,
+            type: item.market_area_code,
             qq: item.NetChangeMUQQTY,
             qrf: item.NetChangeMUTarget,
             qrfDiff: item.NetChangeMUVsQrfDiff,
@@ -2154,7 +2120,7 @@ export function processMKTGMarketQTDData(data, newState) {
         {
             index: i,
             actuals: item.CumuMUActuals,
-            marketArea: item.market_area_group,
+            marketArea: item.market_area_code,
             qq: item.CumuMUQQTY,
             qrf: item.CumuMUTarget,
             qrfDiff: item.CumuMUVsQrfDif,
@@ -2165,7 +2131,7 @@ export function processMKTGMarketQTDData(data, newState) {
 
         let netWeek = {
             index: i,
-            type: item.market_area_group,
+            type: item.market_area_code,
             actuals: item.NetChangeMUCW,
             qrf: item.NetChangeMUTargetCW,
             qrfDiff: item.NetChangeMUCWVsQrfDiff,
@@ -2176,7 +2142,7 @@ export function processMKTGMarketQTDData(data, newState) {
         let cumuWeek =
         {
             index: i,
-            type: item.market_area_group,
+            type: item.market_area_code,
             actuals: item.CumuMUCW,
             qrf: item.CumuMUTargetCW,
             qrfDiff: item.CumuMUCWVsQrfDiff,
@@ -2434,15 +2400,15 @@ export function processPMSSMarketQTDData(data, newState) {
             qq: item.PMSpendDiscoverQQTY,
             qrf: item.PMSpendDiscoverTarget,
             qrfDiff: item.PMSpendDiscoverVsQrfDiff,
-            type: item.market_area_group,
+            type: item.market_area_code,
             vsQrf: item.PMSpendDiscoverVsQrf,
             yy: item.PMSpendDiscoverYY
         }
         let pmWeek =
         {
             index: i,
-            type: item.market_area_group,
-            marketArea: item.market_area_group,
+            type: item.market_area_code,
+            marketArea: item.market_area_code,
             actuals: item.PMSpendDiscoverCW,
             qrf: item.PMSpendDiscoverTargetCW,
             qrfDiff: item.PMSpendDiscoverCWVsQrfDiff,
@@ -2452,7 +2418,7 @@ export function processPMSSMarketQTDData(data, newState) {
 
         let pmuqfm = {
             index: i,
-            type: item.market_area_group,
+            type: item.market_area_code,
             actuals: item.PMUQFMActuals,
             qq: item.PMUQFMQQTY,
             qrf: item.PMUQFMTarget,
@@ -2463,7 +2429,7 @@ export function processPMSSMarketQTDData(data, newState) {
         let pmuqfmWeek =
         {
             index: i,
-            type: item.market_area_group,
+            type: item.market_area_code,
             actuals: item.PMUQFMCW,
             qrf: item.PMUQFMTargetCW,
             qrfDiff: item.PMUQFMCWVsQrfDiff,
@@ -2525,1353 +2491,47 @@ export function processPMSSChannelQTDData(data, newState) {
             vsQrf: item.PMUQFMCWVsQrf,
             ww: item.PMUQFMWW,
         }
-        newState[7].details.market.qtd.push(pm);
-        newState[8].details.market.qtd.push(pmuqfm);
-        newState[7].details.market.week.push(pmWeek);
-        newState[8].details.market.week.push(pmuqfmWeek);
+        newState[7].details.channel.qtd.push(pm);
+        newState[8].details.channel.qtd.push(pmuqfm);
+        newState[7].details.channel.week.push(pmWeek);
+        newState[8].details.channel.week.push(pmuqfmWeek);
     }
 }
 //End  Paid Media spend and sourced
 
-export function processDiscoverSecondaryData(g1, g2, g5, newState) {
-
-    console.log(g2)
-    //  //Marketable universe
-    newState[5].value = g2.MarketableUniverseActual;
-    newState[5].targetFQ = g2.MarketableUniverseTargetFQ;
-    newState[5].target = g2.MarketableUniverseTarget;
-    newState[5].vsQrf = g2.MarketableUniverseVsQrf;
-
-    //   //UQFM Conversions
-    newState[6].value = g2.UQFMConversionActual;
-    newState[6].target = g2.UQFMConversionActual;
-    newState[6].vsQrf = g2.UQFMConversionActual;
-
-    // Paid Media Spend
-    newState[7].value = g1.PaidMediaSpendActual;
-    newState[7].target = g1.PaidMediaSpendTarget;
-    newState[7].targetFQ = g1.PaidMediaSpendTargetFQ;
-    newState[7].vsQrf = g1.PaidMediaSpendVsQrf;
-
-    //Paid Media Sourced UQFMS
-    newState[8].value = g2.PaidMediaSourcedUQFMSActual;
-    newState[8].targetFQ = g2.PaidMediaSourcedUQFMSTargetFQ;
-    newState[8].target = g2.PaidMediaSourcedUQFMSTarget;
-    newState[8].vsQrf = g2.PaidMediaSourcedUQFMSVsQRF;
-
-    //New UQFMS
-    newState[9].value = g2.NewUQFMSActual;
-    newState[9].targetFQ = g2.NewUQFMSTargetFQ;
-    newState[9].target = g2.NewUQFMSTarget;
-    newState[9].vsQrf = g2.NewUQFMSVsQRF;
-
-    //Bounce Rate
-    newState[9].value = g5.BounceRateActual;
-    newState[9].target = 0;
-    // newState[9].vsqrf = g5.BounceRateActual;
-
-}
-export function processDiscoverMultichartData(g1, g2, g5, newState) {
-
-    let weekG1Flag = g1.map(item => {
-        return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
-    })
-    let weekG2Flag = g2.map(item => {
-        return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
-    })
-    let weekG5Flag = g5.map(item => {
-        return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
-    })
-    // _.orderBy(weekFlag, weekNo, ['asc'])
-
-    let newG1 = _.orderBy(weekG1Flag, ['weekNo'], ['asc']);
-    let newG2 = _.orderBy(weekG2Flag, ['weekNo'], ['asc']);
-    let newG5 = _.orderBy(weekG5Flag, ['weekNo'], ['asc']);
-
-    let traffic = {
-        actual: [],
-        target: [],
-        lq: [],
-        ly: []
-    },
-        marketable = {
-            actual: [],
-            target: [],
-            lq: [],
-            ly: []
-        },
-        uqfm = {
-            actual: [],
-            target: [],
-            lq: [],
-            ly: []
-        },
-        paidMediaSpend = {
-            actual: [],
-            target: [],
-            lq: [],
-            ly: []
-        },
-        paidMediaSource = {
-            actual: [],
-            target: [],
-            lq: [],
-            ly: []
-        },
-        newUQFM = {
-            actual: [],
-            target: [],
-            lq: [],
-            ly: []
-        },
-        bounceRate = {
-            actual: [],
-            target: [],
-            lq: [],
-            ly: []
-        }
-
-
-    //Get Discover G1 Multichart values
-    for (let i = 0; i < g1.length; i++) {
-        let item = newG1[i];
-        paidMediaSpend.actual.push(item.PaidMediaSpendActual);
-        paidMediaSpend.target.push(item.PaidMediaSpendTargetFQ);
-        paidMediaSpend.ly.push(item.PaidMediaSpendLY);
-        paidMediaSpend.lq.push(item.PaidMediaSpendLQ);
-
-    };
-    //Get Discover G2 Multichart values
-    for (let i = 0; i < g2.length; i++) {
-        let item = newG2[i];
-        //Market
-        marketable.actual.push(item.MarketableUniverseActual);
-        marketable.target.push(item.MarketableUniverseTargetFQ);
-        marketable.ly.push(item.MarketableUniverseLY);
-        marketable.lq.push(item.MarketableUniverseLQ);
-        //UQFM
-        uqfm.actual.push(item.UQFMConversionActual);
-        uqfm.target.push(item.UQFMConversionTargetFQ);
-        uqfm.ly.push(item.UQFMConversionLY);
-        uqfm.lq.push(item.UQFMConversionLQ);
-
-        //Paid Sourced
-        paidMediaSource.actual.push(item.PaidMediaSourcedUQFMSActual);
-        paidMediaSource.target.push(item.PaidMediaSourcedUQFMSTargetFQ);
-        paidMediaSource.ly.push(item.PaidMediaSourcedUQFMSLY);
-        paidMediaSource.lq.push(item.PaidMediaSourcedUQFMSLQ);
-        //New UQFM
-        newUQFM.actual.push(item.NewUQFMSActual);
-        newUQFM.target.push(item.NewUQFMSTargetFQ);
-        newUQFM.ly.push(item.NewUQFMSLY);
-        newUQFM.lq.push(item.NewUQFMSLQ);
-
-
-    };
-    //Get Discover G5 Multichart values
-    for (let i = 0; i < g5.length; i++) {
-        let item = newG5[i];
-        //traffic
-        traffic.actual.push(item.TrafficActual);
-        traffic.target.push(item.TrafficTargetFQ);
-        traffic.ly.push(item.TrafficLY);
-        traffic.lq.push(item.TrafficLQ);
-        // Bounce
-        bounceRate.actual.push(item.BounceRateActual);
-        bounceRate.target.push(item.BounceRateTargetFQ);
-        bounceRate.ly.push(item.BounceRateLY);
-        bounceRate.lq.push(item.BounceRateLQ);
-
-    };
-    //Set Multichart Values
-    for (let i = 4; i < newState.length; i++) {
-        switch (i) {
-            case 4:
-                currentMulti = [traffic.actual, traffic.target, traffic.ly, traffic.lq];
-                break;
-            case 5:
-                currentMulti = [marketable.actual, marketable.target, marketable.ly, marketable.lq];
-                break;
-            case 6:
-                // currentMulti = [uqfm.actual, uqfm.target, uqfm.ly, uqfm.lq];
-                break;
-            case 7:
-                currentMulti = [paidMediaSpend.actual, paidMediaSpend.target, paidMediaSpend.ly, paidMediaSpend.lq];
-                break;
-            case 8:
-                currentMulti = [paidMediaSource.actual, paidMediaSource.target, paidMediaSource.ly, paidMediaSource.lq];
-                break;
-            case 9:
-                currentMulti = [newUQFM.actual, newUQFM.target, newUQFM.ly, newUQFM.lq];
-                break;
-            case 10:
-                // currentMulti = [bounceRate.actual, bounceRate.target, bounceRate.ly, bounceRate.lq];
-                break;
-            default:
-                break;
-        }
-        newState[i]['details'].multichart = currentMulti;
-    }
-}
-export function processDiscoverQTDData(g1, g2, g5, newState) {
-    for (let i = 4; i < newState.length; i++) {
-
-
-        switch (i) {
-            // Traffic
-            case 4:
-                newState[i].details.qtdw.qtd[0].value = g5.TrafficActual;
-                newState[i].details.qtdw.qtd[1].value = g5.TrafficTargetFQ;
-                newState[i].details.qtdw.qtd[2].value = g5.TrafficVsQrfDiff;
-                newState[i].details.qtdw.qtd[3].value = g5.TrafficVsQrf;
-                newState[i].details.qtdw.qtd[4].value = g5.TrafficQQTY;
-                newState[i].details.qtdw.qtd[5].value = g5.TrafficYY;
-
-                newState[i].details.qtdw.week[0].value = g5.TrafficCW;
-                newState[i].details.qtdw.week[1].value = g5.TrafficTargetCW;
-                newState[i].details.qtdw.week[2].value = g5.TrafficVsQrfDiffCW;
-                newState[i].details.qtdw.week[3].value = g5.TrafficVsQrfCW;
-                newState[i].details.qtdw.week[4].value = g5.TrafficWW;
-
-                newState[i].details.stats[0].value = g5.TrafficVsQrf;
-                newState[i].details.stats[1].value = g5.TrafficQQTY;
-                newState[i].details.stats[2].value = g5.TrafficQQLY;
-                newState[i].details.stats[3].value = g5.TrafficYY;
-                break;
-            // Marketable Universe
-            case 5:
-                newState[i].details.qtdw.qtd[0].value = g2.MarketableUniverseActual;
-                newState[i].details.qtdw.qtd[1].value = g2.MarketableUniverseTargetFQ;
-                newState[i].details.qtdw.qtd[2].value = g2.MarketableUniverseVsQrfDiff;
-                newState[i].details.qtdw.qtd[3].value = g2.MarketableUniverseVsQrf;
-                newState[i].details.qtdw.qtd[4].value = g2.MarketableUniverseQQTY;
-                newState[i].details.qtdw.qtd[5].value = g2.MarketableUniverseYY;
-
-                newState[i].details.qtdw.week[0].value = g2.MarketableUniverseCW;
-                newState[i].details.qtdw.week[1].value = g2.MarketableUniverseTargetCW;
-                newState[i].details.qtdw.week[2].value = g2.MarketableUniverseVsQrfDiffCW;
-                newState[i].details.qtdw.week[3].value = g2.MarketableUniverseVsQrfCW;
-                newState[i].details.qtdw.week[4].value = g2.MarketableUniverseWW;
-
-
-                newState[i].details.stats[0].value = g2.MarketableUniverseVsQrf;
-                newState[i].details.stats[1].value = g2.MarketableUniverseQQTY;
-                newState[i].details.stats[2].value = g2.MarketableUniverseQQLY;
-                newState[i].details.stats[3].value = g2.MarketableUniverseYY;
-                break;
-            // UqFm Conversion
-            case 6:
-                newState[i].details.qtdw.qtd[0].value = g2.UQFMConversionActual;
-                newState[i].details.qtdw.qtd[1].value = g2.UQFMConversionActual;
-                newState[i].details.qtdw.qtd[2].value = g2.UQFMConversionActual;
-                newState[i].details.qtdw.qtd[3].value = g2.UQFMConversionActual;
-                newState[i].details.qtdw.qtd[4].value = g2.UQFMConversionQQTY;
-                newState[i].details.qtdw.qtd[5].value = g2.UQFMConversionYY;
-
-                newState[i].details.qtdw.week[0].value = g2.UQFMConversionCw;
-                newState[i].details.qtdw.week[1].value = g2.UQFMConversionCw;
-                newState[i].details.qtdw.week[2].value = g2.UQFMConversionCw;
-                newState[i].details.qtdw.week[3].value = g2.UQFMConversionWW;
-                newState[i].details.qtdw.week[4].value = g2.UQFMConversionWW;
-
-                newState[i].details.stats[0].value = g2.UQFMConversionYY;
-                newState[i].details.stats[1].value = g2.UQFMConversionQQTY;
-                newState[i].details.stats[2].value = g2.UQFMConversionQQLY;
-                newState[i].details.stats[3].value = g2.UQFMConversionYY;
-                break;
-            // Paid Media Spend
-            case 7:
-                newState[i].details.qtdw.qtd[0].value = g1.PaidMediaSpendActual;
-                newState[i].details.qtdw.qtd[1].value = g1.PaidMediaSpendTarget;
-                newState[i].details.qtdw.qtd[2].value = g1.PaidMediaSpendActual;
-                newState[i].details.qtdw.qtd[3].value = g1.PaidMediaSpendVsQrf;
-                newState[i].details.qtdw.qtd[4].value = g1.PaidMediaSpendQQTY;
-                newState[i].details.qtdw.qtd[5].value = g1.PaidMediaSpendYY;
-
-                newState[i].details.qtdw.week[0].value = g1.PaidMediaSpendCW;
-                newState[i].details.qtdw.week[1].value = g1.PaidMediaSpendTargetCW;
-                newState[i].details.qtdw.week[2].value = g1.PaidMediaSpendCWVsQrfDiff;
-                newState[i].details.qtdw.week[3].value = g1.PaidMediaSpendCWVsQrf;
-                newState[i].details.qtdw.week[4].value = g1.PaidMediaSpendWW;
-
-                newState[i].details.stats[0].value = g1.PaidMediaSpendVsQrf;
-                newState[i].details.stats[1].value = g1.PaidMediaSpendQQTY;
-                newState[i].details.stats[2].value = g1.PaidMediaSpendQQLY;
-                newState[i].details.stats[3].value = g1.PaidMediaSpendYY;
-                break;
-            // Paid Media Sourced
-            case 8:
-                newState[i].details.qtdw.qtd[0].value = g2.PaidMediaSourcedUQFMSActual;
-                newState[i].details.qtdw.qtd[1].value = g2.PaidMediaSourcedUQFMSTargetFQ;
-                newState[i].details.qtdw.qtd[2].value = g2.PaidMediaSourcedUQFMSVsQrfDiff;
-                newState[i].details.qtdw.qtd[3].value = g2.PaidMediaSourcedUQFMSVsQRF;
-                newState[i].details.qtdw.qtd[4].value = g2.PaidMediaSourcedUQFMSQQTY;
-                newState[i].details.qtdw.qtd[5].value = g2.PaidMediaSourcedUQFMSYY;
-
-                newState[i].details.qtdw.week[0].value = g2.PaidMediaSourcedUQFMSCW;
-                newState[i].details.qtdw.week[1].value = g2.PaidMediaSourcedUQFMSTargetCW;
-                newState[i].details.qtdw.week[2].value = g2.PaidMediaSourcedUQFMSVsQrfDiffCW;
-                newState[i].details.qtdw.week[3].value = g2.PaidMediaSourcedUQFMSVsQRFCW;
-                newState[i].details.qtdw.week[4].value = g2.PaidMediaSourcedUQFMSWW;
-
-                newState[i].details.stats[0].value = g2.PaidMediaSourcedUQFMSVsQRF;
-                newState[i].details.stats[1].value = g2.PaidMediaSourcedUQFMSQQTY;
-                newState[i].details.stats[2].value = g2.PaidMediaSourcedUQFMSQQLY;
-                newState[i].details.stats[3].value = g2.PaidMediaSourcedUQFMSYY;
-                break;
-            // New UQFM
-            case 9:
-                newState[i].details.qtdw.qtd[0].value = g2.NewUQFMSActual;
-                newState[i].details.qtdw.qtd[1].value = g2.NewUQFMSTargetFQ;
-                newState[i].details.qtdw.qtd[2].value = g2.NewUQFMSVsQrfDiff;
-                newState[i].details.qtdw.qtd[3].value = g2.NewUQFMSVsQRF;
-                newState[i].details.qtdw.qtd[4].value = g2.NewUQFMSQQTY;
-                newState[i].details.qtdw.qtd[5].value = g2.NewUQFMSYY;
-
-                newState[i].details.qtdw.week[0].value = g2.NewUQFMSCW;
-                newState[i].details.qtdw.week[1].value = g2.NewUQFMSTargetCW;
-                newState[i].details.qtdw.week[2].value = g2.NewUQFMSQRFDiffCW;
-                newState[i].details.qtdw.week[3].value = g2.NewUQFMSVsQRFCW;
-                newState[i].details.qtdw.week[4].value = g2.NewUQFMSWW;
-
-                newState[i].details.stats[0].value = g2.NewUQFMSVsQRF;
-                newState[i].details.stats[1].value = g2.NewUQFMSQQTY;
-                newState[i].details.stats[2].value = g2.NewUQFMSQQLY;
-                newState[i].details.stats[3].value = g2.NewUQFMSYY;
-                break;
-            // Bounce Rate
-            case 10:
-                newState[i].details.qtdw.qtd[0].value = g5.BounceRateActual;
-                newState[i].details.qtdw.qtd[1].value = g5.BounceRateActual;
-                newState[i].details.qtdw.qtd[2].value = g5.BounceRateActual;
-                newState[i].details.qtdw.qtd[3].value = g5.BounceRateActual;
-                newState[i].details.qtdw.qtd[4].value = g5.BounceRateQQLY;
-                newState[i].details.qtdw.qtd[5].value = g5.BounceRateYY;
-
-                newState[i].details.qtdw.week[0].value = g5.BounceRateCW;
-                newState[i].details.qtdw.week[1].value = g5.BounceRateCW;
-                newState[i].details.qtdw.week[2].value = g5.BounceRateCW;
-                newState[i].details.qtdw.week[3].value = g5.BounceRateCW;
-                newState[i].details.qtdw.week[4].value = g5.BounceRateWW;
-
-                newState[i].details.stats[0].value = g5.BounceRateYY;
-                newState[i].details.stats[1].value = g5.BounceRateQQLY;
-                newState[i].details.stats[2].value = g5.BounceRateQQLY;
-                newState[i].details.stats[3].value = g5.BounceRateYY;
-                break;
-        }
-    }
-}
-export function processDiscoverGeoQTDData(g1, g2, g5, newState) {
-    console.log(g1, g2, g5)
-    //Clear old Values
-    newState[4].details.geo.qtd = [];
-    newState[5].details.geo.qtd = [];
-    newState[6].details.geo.qtd = [];
-    newState[7].details.geo.qtd = [];
-    newState[8].details.geo.qtd = [];
-    newState[9].details.geo.qtd = [];
-    newState[9].details.geo.qtd = [];
-    newState[4].details.geo.week = [];
-    newState[5].details.geo.week = [];
-    newState[6].details.geo.week = [];
-    newState[7].details.geo.week = [];
-    newState[8].details.geo.week = [];
-    newState[9].details.geo.week = [];
-    newState[9].details.geo.week = [];
-
-    for (let i = 0; i < g1.length; i++) {
-        let item = g1[i];
-        let paidmedia = {
-            index: i,
-            actuals: item.PaidMediaSpendActual,
-            marketArea: item.market_area_group,
-            qq: item.PaidMediaSpendQQTY,
-            qrf: item.PaidMediaSpendTarget,
-            qrfDiff: item.PaidMediaSpendVsQrfDiff,
-            type: item.geo_code,
-            vsQrf: item.PaidMediaSpendVsQrf,
-            yy: item.PaidMediaSpendYY
-        }
-        let weekPM =
-        {
-            index: i,
-            marketArea: item.market_area_group,
-            actuals: item.PaidMediaSpendCW,
-            qrf: item.PaidMediaSpendTargetCW,
-            qrfDiff: item.PaidMediaSpendVsQrfDiff,
-            vsQrf: item.PaidMediaSpendVsQrf,
-            ww: item.PaidMediaSpendWW,
-            type: item.geo_code,
-        }
-        newState[7].details.geo.qtd.push(paidmedia);
-        newState[7].details.geo.week.push(weekPM);
-
-    }
-
-    for (let i = 0; i < g2.length; i++) {
-        let item = g2[i];
-        //Market
-        let marketable = {
-            index: i,
-            actuals: item.MarketableUniverseActual,
-            marketArea: item.market_area_group,
-            qq: item.MarketableUniverseQQTY,
-            qrf: item.MarketableUniverseTargetFQ,
-            qrfDiff: item.MarketableUniverseVsQrfDiff,
-            type: item.geo_code,
-            vsQrf: item.MarketableUniverseVsQrf,
-            yy: item.MarketableUniverseYY
-        }
-        let marketPM =
-        {
-            index: i,
-            marketArea: item.market_area_group,
-            actuals: item.MarketableUniverseCW,
-            qrf: item.MarketableUniverseTargetCW,
-            qrfDiff: item.MarketableUniverseVsQrfDiffCW,
-            vsQrf: item.MarketableUniverseVsQrfCW,
-            ww: item.MarketableUniverseWW,
-            type: item.geo_code,
-        }
-        // New UQFM
-        let newUqfm = {
-            index: i,
-            actuals: item.NewUQFMSActual,
-            marketArea: item.market_area_group,
-            qq: item.NewUQFMSQQTY,
-            qrf: item.NewUQFMSTargetFQ,
-            qrfDiff: item.NewUQFMSVsQrfDiff,
-            type: item.geo_code,
-            vsQrf: item.NewUQFMSVsQRF,
-            yy: item.NewUQFMSYY
-        }
-        let newPM =
-        {
-            index: i,
-            marketArea: item.market_area_group,
-            actuals: item.NewUQFMSCW,
-            qrf: item.NewUQFMSTargetCW,
-            qrfDiff: item.NewUQFMSQRFDiffCW,
-            vsQrf: item.NewUQFMSVsQRFCW,
-            ww: item.NewUQFMSWW,
-            type: item.geo_code,
-        }
-        //Paid Media Sourced
-        let paid = {
-            index: i,
-            actuals: item.PaidMediaSourcedUQFMSActual,
-            marketArea: item.market_area_group,
-            qq: item.PaidMediaSourcedUQFMSQQTY,
-            qrf: item.PaidMediaSourcedUQFMSTargetFQ,
-            qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
-            type: item.geo_code,
-            vsQrf: item.PaidMediaSourcedUQFMSVsQRF,
-            yy: item.PaidMediaSourcedUQFMSYY
-        }
-        let paidPM =
-        {
-            index: i,
-            marketArea: item.market_area_group,
-            actuals: item.PaidMediaSourcedUQFMSCW,
-            qrf: item.PaidMediaSourcedUQFMSTargetCW,
-            qrfDiff: item.PaidMediaSourcedUQFMSQRFDiffCW,
-            vsQrf: item.PaidMediaSourcedUQFMSVsQRFCW,
-            ww: item.PaidMediaSourcedUQFMSWW,
-            type: item.geo_code,
-        }
-        //UQFM
-        let uqfm = {
-            index: i,
-            actuals: item.UQFMConversionActual,
-            marketArea: item.market_area_group,
-            qq: item.UQFMConversionQQTY,
-            qrf: item.UQFMActual,
-            qrfDiff: item.UQFMConversionActual,
-            type: item.geo_code,
-            vsQrf: item.UQFMConversionActual,
-            yy: item.UQFMConversionYY
-        }
-        let uqfmPM =
-        {
-            index: i,
-            marketArea: item.market_area_group,
-            actuals: item.UQFMConversionCW,
-            qrf: item.UQFMConversionCW,
-            qrfDiff: item.UQFMConversionWW,
-            vsQrf: item.UQFMConversionWW,
-            ww: item.UQFMConversionWW,
-            type: item.geo_code,
-        }
-
-        newState[5].details.geo.qtd.push(marketable);
-        newState[6].details.geo.qtd.push(uqfm);
-        newState[8].details.geo.qtd.push(paid);
-        newState[9].details.geo.qtd.push(newUqfm);
-
-        newState[5].details.geo.week.push(marketPM);
-        newState[6].details.geo.week.push(newPM);
-        newState[8].details.geo.week.push(paidPM);
-        newState[9].details.geo.week.push(uqfmPM);
-
-
-
-    }
-
-
-    for (let i = 0; i < g5.length; i++) {
-        let item = g5[i];
-        let traffic = {
-            index: i,
-            actuals: item.TrafficActual,
-            marketArea: item.market_area_group,
-            qq: item.TrafficQQTY,
-            qrf: item.TrafficTargetFQ,
-            qrfDiff: item.TrafficVsQrfDiff,
-            type: item.geo_code,
-            vsQrf: item.TrafficVsQrf,
-            yy: item.TrafficYY
-        }
-        let trafficPM =
-        {
-            index: i,
-            marketArea: item.market_area_group,
-            actuals: item.TrafficCW,
-            qrf: item.TrafficTargetCW,
-            qrfDiff: item.TrafficVsQrfDiffCW,
-            vsQrf: item.TrafficVsQrfCW,
-            ww: item.TrafficWW,
-            type: item.geo_code,
-        }
-        let bounce = {
-            index: i,
-            actuals: item.BounceRateActual,
-            marketArea: item.market_area_group,
-            qq: item.BounceRateActual,
-            qrf: item.BounceRateActual,
-            qrfDiff: item.BounceRateActual,
-            type: item.geo_code,
-            vsQrf: item.BounceRateYY,
-            yy: item.BounceRateYY
-        }
-        let bouncePM =
-        {
-            index: i,
-            marketArea: item.market_area_group,
-            actuals: item.BounceRateCW,
-            qrf: item.BounceRateCW,
-            qrfDiff: item.BounceRateWW,
-            vsQrf: item.BounceRateWW,
-            ww: item.BounceRateWW,
-            type: item.geo_code,
-        }
-        newState[4].details.geo.qtd.push(traffic);
-        newState[9].details.geo.qtd.push(bounce);
-        newState[4].details.geo.week.push(trafficPM);
-        newState[9].details.geo.week.push(bouncePM);
-    }
-}
-export function processDiscoverMarketQTDData(g1, g2, g5, newState) {
-    //Clear old Values
-    newState[4].details.market.qtd = [];
-    newState[5].details.market.qtd = [];
-    newState[6].details.market.qtd = [];
-    newState[7].details.market.qtd = [];
-    newState[8].details.market.qtd = [];
-    newState[9].details.market.qtd = [];
-    newState[9].details.market.qtd = [];
-    newState[4].details.market.week = [];
-    newState[5].details.market.week = [];
-    newState[6].details.market.week = [];
-    newState[7].details.market.week = [];
-    newState[8].details.market.week = [];
-    newState[9].details.market.week = [];
-    newState[9].details.market.week = [];
-
-    for (let i = 0; i < g1.length; i++) {
-        let item = g1[i];
-        let paidmedia = {
-            index: i,
-            actuals: item.PaidMediaSpendActual,
-            qq: item.PaidMediaSpendQQTY,
-            qrf: item.PaidMediaSpendTarget,
-            qrfDiff: item.PaidMediaSpendVsQrfDiff,
-            type: item.market_area_code,
-            vsQrf: item.PaidMediaSpendVsQrf,
-            yy: item.PaidMediaSpendYY
-        }
-        let weekPM =
-        {
-            index: i,
-            actuals: item.PaidMediaSpendCW,
-            qrf: item.PaidMediaSpendTargetCW,
-            qrfDiff: item.PaidMediaSpendVsQrfDiff,
-            vsQrf: item.PaidMediaSpendVsQrf,
-            ww: item.PaidMediaSpendWW,
-            type: item.market_area_code,
-        }
-        newState[7].details.market.qtd.push(paidmedia);
-        newState[7].details.market.week.push(weekPM);
-
-    }
-    for (let i = 0; i < g2.length; i++) {
-        let item = g2[i];
-        //Market
-        let marketable = {
-            index: i,
-            actuals: item.MarketableUniverseActual,
-            qq: item.MarketableUniverseQQTY,
-            qrf: item.MarketableUniverseTargetFQ,
-            qrfDiff: item.MarketableUniverseVsQrfDiff,
-            type: item.market_area_code,
-            vsQrf: item.MarketableUniverseVsQrf,
-            yy: item.MarketableUniverseYY
-        }
-        let marketPM =
-        {
-            index: i,
-            actuals: item.MarketableUniverseCW,
-            qrf: item.MarketableUniverseTargetCW,
-            qrfDiff: item.MarketableUniverseVsQrfDiffCW,
-            vsQrf: item.MarketableUniverseVsQrfCW,
-            ww: item.MarketableUniverseWW,
-            type: item.market_area_code,
-        }
-        // New UQFM
-        let newUqfm = {
-            index: i,
-            actuals: item.NewUQFMSActual,
-            qq: item.NewUQFMSQQTY,
-            qrf: item.NewUQFMSTargetFQ,
-            qrfDiff: item.NewUQFMSVsQrfDiff,
-            type: item.market_area_code,
-            vsQrf: item.NewUQFMSVsQRF,
-            yy: item.NewUQFMSYY
-        }
-        let newPM =
-        {
-            index: i,
-            actuals: item.NewUQFMSCW,
-            qrf: item.NewUQFMSTargetCW,
-            qrfDiff: item.NewUQFMSQRFDiffCW,
-            vsQrf: item.NewUQFMSVsQRFCW,
-            ww: item.NewUQFMSWW,
-            type: item.market_area_code,
-        }
-        //Paid Media Sourced
-        let paid = {
-            index: i,
-            actuals: item.PaidMediaSourcedUQFMSActual,
-            qq: item.PaidMediaSourcedUQFMSQQTY,
-            qrf: item.PaidMediaSourcedUQFMSTargetFQ,
-            qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
-            type: item.market_area_code,
-            vsQrf: item.PaidMediaSourcedUQFMSVsQRF,
-            yy: item.PaidMediaSourcedUQFMSYY
-        }
-        let paidPM =
-        {
-            index: i,
-            actuals: item.PaidMediaSourcedUQFMSCW,
-            qrf: item.PaidMediaSourcedUQFMSTargetCW,
-            qrfDiff: item.PaidMediaSourcedUQFMSQRFDiffCW,
-            vsQrf: item.PaidMediaSourcedUQFMSVsQRFCW,
-            ww: item.PaidMediaSourcedUQFMSWW,
-            type: item.market_area_code,
-        }
-        //UQFM
-        let uqfm = {
-            index: i,
-            actuals: item.UQFMConversionActual,
-            qq: item.UQFMConversionQQTY,
-            qrf: item.UQFMActual,
-            qrfDiff: item.UQFMConversionActual,
-            type: item.market_area_code,
-            vsQrf: item.UQFMConversionActual,
-            yy: item.UQFMConversionYY
-        }
-        let uqfmPM =
-        {
-            index: i,
-            actuals: item.UQFMConversionCW,
-            qrf: item.UQFMConversionCW,
-            qrfDiff: item.UQFMConversionWW,
-            vsQrf: item.UQFMConversionWW,
-            ww: item.UQFMConversionWW,
-            type: item.market_area_code,
-        }
-
-        newState[5].details.market.qtd.push(marketable);
-        newState[6].details.market.qtd.push(uqfm);
-        newState[8].details.market.qtd.push(paid);
-        newState[9].details.market.qtd.push(newUqfm);
-
-        newState[5].details.market.week.push(marketPM);
-        newState[6].details.market.week.push(newPM);
-        newState[8].details.market.week.push(paidPM);
-        newState[9].details.market.week.push(uqfmPM);
-
-
-
-    }
-    for (let i = 0; i < g5.length; i++) {
-        let item = g5[i];
-        let traffic = {
-            index: i,
-            actuals: item.TrafficActual,
-            qq: item.TrafficQQTY,
-            qrf: item.TrafficTargetFQ,
-            qrfDiff: item.TrafficVsQrfDiff,
-            type: item.market_area_code,
-            vsQrf: item.TrafficVsQrf,
-            yy: item.TrafficYY
-        }
-        let trafficPM =
-        {
-            index: i,
-            actuals: item.TrafficCW,
-            qrf: item.TrafficTargetCW,
-            qrfDiff: item.TrafficVsQrfDiffCW,
-            vsQrf: item.TrafficVsQrfCW,
-            ww: item.TrafficWW,
-            type: item.market_area_code,
-        }
-        let bounce = {
-            index: i,
-            actuals: item.BounceRateActual,
-            qq: item.BounceRateActual,
-            qrf: item.BounceRateActual,
-            qrfDiff: item.BounceRateActual,
-            type: item.market_area_code,
-            vsQrf: item.BounceRateYY,
-            yy: item.BounceRateYY
-        }
-        let bouncePM =
-        {
-            index: i,
-            actuals: item.BounceRateCW,
-            qrf: item.BounceRateCW,
-            qrfDiff: item.BounceRateWW,
-            vsQrf: item.BounceRateWW,
-            ww: item.BounceRateWW,
-            type: item.market_area_code,
-        }
-        newState[4].details.market.qtd.push(traffic);
-        newState[9].details.market.qtd.push(bounce);
-        newState[4].details.market.week.push(trafficPM);
-        newState[9].details.market.week.push(bouncePM);
-    }
-}
-export function processDiscoverSegmentQTDData(g1, g2, g5, newState) {
-    //Clear old Values
-    newState[4].details.segment.qtd = [];
-    newState[5].details.segment.qtd = [];
-    newState[6].details.segment.qtd = [];
-    newState[7].details.segment.qtd = [];
-    newState[8].details.segment.qtd = [];
-    newState[9].details.segment.qtd = [];
-    newState[9].details.segment.qtd = [];
-    newState[4].details.segment.week = [];
-    newState[5].details.segment.week = [];
-    newState[6].details.segment.week = [];
-    newState[7].details.segment.week = [];
-    newState[8].details.segment.week = [];
-    newState[9].details.segment.week = [];
-    newState[9].details.segment.week = [];
-
-    for (let i = 0; i < g1.length; i++) {
-        let item = g1[i];
-        let paidmedia = {
-            index: i,
-            actuals: item.PaidMediaSpendActual,
-            qq: item.PaidMediaSpendQQTY,
-            qrf: item.PaidMediaSpendTarget,
-            qrfDiff: item.PaidMediaSpendVsQrfDiff,
-            type: item.segment_pivot,
-            vsQrf: item.PaidMediaSpendVsQrf,
-            yy: item.PaidMediaSpendYY
-        }
-        let weekPM =
-        {
-            index: i,
-            actuals: item.PaidMediaSpendCW,
-            qrf: item.PaidMediaSpendTargetCW,
-            qrfDiff: item.PaidMediaSpendVsQrfDiff,
-            vsQrf: item.PaidMediaSpendVsQrf,
-            ww: item.PaidMediaSpendWW,
-            type: item.segment_pivot
-        }
-        newState[7].details.segment.qtd.push(paidmedia);
-        newState[7].details.segment.week.push(weekPM);
-
-    }
-    for (let i = 0; i < g2.length; i++) {
-        let item = g2[i];
-        //Market
-        let marketable = {
-            index: i,
-            actuals: item.MarketableUniverseActual,
-            qq: item.MarketableUniverseQQTY,
-            qrf: item.MarketableUniverseTargetFQ,
-            qrfDiff: item.MarketableUniverseVsQrfDiff,
-            type: item.segment_pivot,
-            vsQrf: item.MarketableUniverseVsQrf,
-            yy: item.MarketableUniverseYY
-        }
-        let marketPM =
-        {
-            index: i,
-            actuals: item.MarketableUniverseCW,
-            qrf: item.MarketableUniverseTargetCW,
-            qrfDiff: item.MarketableUniverseVsQrfDiffCW,
-            vsQrf: item.MarketableUniverseVsQrfCW,
-            ww: item.MarketableUniverseWW,
-            type: item.segment_pivot,
-        }
-        // New UQFM
-        let newUqfm = {
-            index: i,
-            actuals: item.NewUQFMSActual,
-            qq: item.NewUQFMSQQTY,
-            qrf: item.NewUQFMSTargetFQ,
-            qrfDiff: item.NewUQFMSVsQrfDiff,
-            type: item.segment_pivot,
-            vsQrf: item.NewUQFMSVsQRF,
-            yy: item.NewUQFMSYY
-        }
-        let newPM =
-        {
-            index: i,
-            actuals: item.NewUQFMSCW,
-            qrf: item.NewUQFMSTargetCW,
-            qrfDiff: item.NewUQFMSQRFDiffCW,
-            vsQrf: item.NewUQFMSVsQRFCW,
-            ww: item.NewUQFMSWW,
-            type: item.segment_pivot,
-        }
-        //Paid Media Sourced
-        let paid = {
-            index: i,
-            actuals: item.PaidMediaSourcedUQFMSActual,
-            qq: item.PaidMediaSourcedUQFMSQQTY,
-            qrf: item.PaidMediaSourcedUQFMSTargetFQ,
-            qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
-            type: item.segment_pivot,
-            vsQrf: item.PaidMediaSourcedUQFMSVsQRF,
-            yy: item.PaidMediaSourcedUQFMSYY
-        }
-        let paidPM =
-        {
-            index: i,
-            actuals: item.PaidMediaSourcedUQFMSCW,
-            qrf: item.PaidMediaSourcedUQFMSTargetCW,
-            qrfDiff: item.PaidMediaSourcedUQFMSQRFDiffCW,
-            vsQrf: item.PaidMediaSourcedUQFMSVsQRFCW,
-            ww: item.PaidMediaSourcedUQFMSWW,
-            type: item.segment_pivot,
-        }
-        //UQFM
-        let uqfm = {
-            index: i,
-            actuals: item.UQFMConversionActual,
-            qq: item.UQFMConversionQQTY,
-            qrf: item.UQFMActual,
-            qrfDiff: item.UQFMConversionActual,
-            type: item.segment_pivot,
-            vsQrf: item.UQFMConversionActual,
-            yy: item.UQFMConversionYY
-        }
-        let uqfmPM =
-        {
-            index: i,
-            actuals: item.UQFMConversionCW,
-            qrf: item.UQFMConversionCW,
-            qrfDiff: item.UQFMConversionWW,
-            vsQrf: item.UQFMConversionWW,
-            ww: item.UQFMConversionWW,
-            type: item.segment_pivot,
-        }
-
-        newState[5].details.segment.qtd.push(marketable);
-        newState[6].details.segment.qtd.push(uqfm);
-        newState[8].details.segment.qtd.push(paid);
-        newState[9].details.segment.qtd.push(newUqfm);
-
-        newState[5].details.segment.week.push(marketPM);
-        newState[6].details.segment.week.push(newPM);
-        newState[8].details.segment.week.push(paidPM);
-        newState[9].details.segment.week.push(uqfmPM);
-
-
-
-    }
-    for (let i = 0; i < g5.length; i++) {
-        let item = g5[i];
-        let traffic = {
-            index: i,
-            actuals: item.TrafficActual,
-            qq: item.TrafficQQTY,
-            qrf: item.TrafficTargetFQ,
-            qrfDiff: item.TrafficVsQrfDiff,
-            type: item.segment_pivot,
-            vsQrf: item.TrafficVsQrf,
-            yy: item.TrafficYY
-        }
-        let trafficPM =
-        {
-            index: i,
-            actuals: item.TrafficCW,
-            qrf: item.TrafficTargetCW,
-            qrfDiff: item.TrafficVsQrfDiffCW,
-            vsQrf: item.TrafficVsQrfCW,
-            ww: item.TrafficWW,
-            type: item.segment_pivot,
-        }
-        let bounce = {
-            index: i,
-            actuals: item.BounceRateActual,
-            qq: item.BounceRateActual,
-            qrf: item.BounceRateActual,
-            qrfDiff: item.BounceRateActual,
-            type: item.segment_pivot,
-            vsQrf: item.BounceRateYY,
-            yy: item.BounceRateYY
-        }
-        let bouncePM =
-        {
-            index: i,
-            actuals: item.BounceRateCW,
-            qrf: item.BounceRateCW,
-            qrfDiff: item.BounceRateWW,
-            vsQrf: item.BounceRateWW,
-            ww: item.BounceRateWW,
-            type: item.segment_pivot,
-        }
-        newState[4].details.segment.qtd.push(traffic);
-        newState[9].details.segment.qtd.push(bounce);
-        newState[4].details.segment.week.push(trafficPM);
-        newState[9].details.segment.week.push(bouncePM);
-    }
-}
-export function processDiscoverRouteQTDData(g1, g2, g5, newState) {
-
-    //Clear old Values
-    newState[4].details.route.qtd = [];
-    newState[5].details.route.qtd = [];
-    newState[6].details.route.qtd = [];
-    newState[7].details.route.qtd = [];
-    newState[8].details.route.qtd = [];
-    newState[9].details.route.qtd = [];
-    newState[9].details.route.qtd = [];
-    newState[4].details.route.week = [];
-    newState[5].details.route.week = [];
-    newState[6].details.route.week = [];
-    newState[7].details.route.week = [];
-    newState[8].details.route.week = [];
-    newState[9].details.route.week = [];
-    newState[9].details.route.week = [];
-
-    for (let i = 0; i < g1.length; i++) {
-        let item = g1[i];
-        let paidmedia = {
-            index: i,
-            actuals: item.PaidMediaSpendActual,
-            qq: item.PaidMediaSpendQQTY,
-            qrf: item.PaidMediaSpendTarget,
-            qrfDiff: item.PaidMediaSpendVsQrfDiff,
-            type: item.route_to_market,
-            vsQrf: item.PaidMediaSpendVsQrf,
-            yy: item.PaidMediaSpendYY
-        }
-        let weekPM =
-        {
-            index: i,
-            actuals: item.PaidMediaSpendCW,
-            qrf: item.PaidMediaSpendTargetCW,
-            qrfDiff: item.PaidMediaSpendVsQrfDiff,
-            vsQrf: item.PaidMediaSpendVsQrf,
-            ww: item.PaidMediaSpendWW,
-            type: item.route_to_market,
-        }
-        newState[7].details.route.qtd.push(paidmedia);
-        newState[7].details.route.week.push(weekPM);
-
-    }
-    for (let i = 0; i < g2.length; i++) {
-        let item = g2[i];
-        //Market
-        let marketable = {
-            index: i,
-            actuals: item.MarketableUniverseActual,
-            qq: item.MarketableUniverseQQTY,
-            qrf: item.MarketableUniverseTargetFQ,
-            qrfDiff: item.MarketableUniverseVsQrfDiff,
-            type: item.route_to_market,
-            vsQrf: item.MarketableUniverseVsQrf,
-            yy: item.MarketableUniverseYY
-        }
-        let marketPM =
-        {
-            index: i,
-            actuals: item.MarketableUniverseCW,
-            qrf: item.MarketableUniverseTargetCW,
-            qrfDiff: item.MarketableUniverseVsQrfDiffCW,
-            vsQrf: item.MarketableUniverseVsQrfCW,
-            ww: item.MarketableUniverseWW,
-            type: item.route_to_market,
-        }
-        // New UQFM
-        let newUqfm = {
-            index: i,
-            actuals: item.NewUQFMSActual,
-            qq: item.NewUQFMSQQTY,
-            qrf: item.NewUQFMSTargetFQ,
-            qrfDiff: item.NewUQFMSVsQrfDiff,
-            type: item.route_to_market,
-            vsQrf: item.NewUQFMSVsQRF,
-            yy: item.NewUQFMSYY
-        }
-        let newPM =
-        {
-            index: i,
-            actuals: item.NewUQFMSCW,
-            qrf: item.NewUQFMSTargetCW,
-            qrfDiff: item.NewUQFMSQRFDiffCW,
-            vsQrf: item.NewUQFMSVsQRFCW,
-            ww: item.NewUQFMSWW,
-            type: item.route_to_market,
-        }
-        //Paid Media Sourced
-        let paid = {
-            index: i,
-            actuals: item.PaidMediaSourcedUQFMSActual,
-            qq: item.PaidMediaSourcedUQFMSQQTY,
-            qrf: item.PaidMediaSourcedUQFMSTargetFQ,
-            qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
-            type: item.route_to_market,
-            vsQrf: item.PaidMediaSourcedUQFMSVsQRF,
-            yy: item.PaidMediaSourcedUQFMSYY
-        }
-        let paidPM =
-        {
-            index: i,
-            actuals: item.PaidMediaSourcedUQFMSCW,
-            qrf: item.PaidMediaSourcedUQFMSTargetCW,
-            qrfDiff: item.PaidMediaSourcedUQFMSQRFDiffCW,
-            vsQrf: item.PaidMediaSourcedUQFMSVsQRFCW,
-            ww: item.PaidMediaSourcedUQFMSWW,
-            type: item.route_to_market,
-        }
-        //UQFM
-        let uqfm = {
-            index: i,
-            actuals: item.UQFMConversionActual,
-            qq: item.UQFMConversionQQTY,
-            qrf: item.UQFMActual,
-            qrfDiff: item.UQFMConversionActual,
-            type: item.route_to_market,
-            vsQrf: item.UQFMConversionActual,
-            yy: item.UQFMConversionYY
-        }
-        let uqfmPM =
-        {
-            index: i,
-            actuals: item.UQFMConversionCW,
-            qrf: item.UQFMConversionCW,
-            qrfDiff: item.UQFMConversionWW,
-            vsQrf: item.UQFMConversionWW,
-            ww: item.UQFMConversionWW,
-            type: item.route_to_market,
-        }
-
-        newState[5].details.route.qtd.push(marketable);
-        newState[6].details.route.qtd.push(uqfm);
-        newState[8].details.route.qtd.push(paid);
-        newState[9].details.route.qtd.push(newUqfm);
-
-        newState[5].details.route.week.push(marketPM);
-        newState[6].details.route.week.push(newPM);
-        newState[8].details.route.week.push(paidPM);
-        newState[9].details.route.week.push(uqfmPM);
-
-
-
-    }
-    for (let i = 0; i < g5.length; i++) {
-        let item = g5[i];
-        let traffic = {
-            index: i,
-            actuals: item.TrafficActual,
-            qq: item.TrafficQQTY,
-            qrf: item.TrafficTargetFQ,
-            qrfDiff: item.TrafficVsQrfDiff,
-            type: item.route_to_market,
-            vsQrf: item.TrafficVsQrf,
-            yy: item.TrafficYY
-        }
-        let trafficPM =
-        {
-            index: i,
-            actuals: item.TrafficCW,
-            qrf: item.TrafficTargetCW,
-            qrfDiff: item.TrafficVsQrfDiffCW,
-            vsQrf: item.TrafficVsQrfCW,
-            ww: item.TrafficWW,
-            type: item.route_to_market,
-
-        }
-        let bounce = {
-            index: i,
-            actuals: item.BounceRateActual,
-            qq: item.BounceRateActual,
-            qrf: item.BounceRateActual,
-            qrfDiff: item.BounceRateActual,
-            type: item.route_to_market,
-            vsQrf: item.BounceRateYY,
-            yy: item.BounceRateYY
-        }
-        let bouncePM =
-        {
-            index: i,
-            actuals: item.BounceRateCW,
-            qrf: item.BounceRateCW,
-            qrfDiff: item.BounceRateWW,
-            vsQrf: item.BounceRateWW,
-            ww: item.BounceRateWW,
-            type: item.route_to_market,
-        }
-        newState[4].details.route.qtd.push(traffic);
-        newState[9].details.route.qtd.push(bounce);
-        newState[4].details.route.week.push(trafficPM);
-        newState[9].details.route.week.push(bouncePM);
-    }
-}
-export function processDiscoverProductQTDData(g1, g2, g5, newState) {
-    //Clear old Values
-    newState[4].details.product.qtd = [];
-    newState[5].details.product.qtd = [];
-    newState[6].details.product.qtd = [];
-    newState[7].details.product.qtd = [];
-    newState[8].details.product.qtd = [];
-    newState[9].details.product.qtd = [];
-    newState[9].details.product.qtd = [];
-    newState[4].details.product.week = [];
-    newState[5].details.product.week = [];
-    newState[6].details.product.week = [];
-    newState[7].details.product.week = [];
-    newState[8].details.product.week = [];
-    newState[9].details.product.week = [];
-    newState[9].details.product.week = [];
-
-    for (let i = 0; i < g1.length; i++) {
-        let item = g1[i];
-        let paidmedia = {
-            index: i,
-            actuals: item.PaidMediaSpendActual,
-            qq: item.PaidMediaSpendQQTY,
-            qrf: item.PaidMediaSpendTarget,
-            qrfDiff: item.PaidMediaSpendVsQrfDiff,
-            type: item.product_category,
-            vsQrf: item.PaidMediaSpendVsQrf,
-            yy: item.PaidMediaSpendYY
-        }
-        let weekPM =
-        {
-            index: i,
-            actuals: item.PaidMediaSpendCW,
-            qrf: item.PaidMediaSpendTargetCW,
-            qrfDiff: item.PaidMediaSpendVsQrfDiff,
-            vsQrf: item.PaidMediaSpendVsQrf,
-            ww: item.PaidMediaSpendWW,
-            type: item.product_category,
-        }
-        newState[7].details.product.qtd.push(paidmedia);
-        newState[7].details.product.week.push(weekPM);
-
-    }
-    for (let i = 0; i < g2.length; i++) {
-        let item = g2[i];
-        //Market
-        let marketable = {
-            index: i,
-            actuals: item.MarketableUniverseActual,
-            qq: item.MarketableUniverseQQTY,
-            qrf: item.MarketableUniverseTargetFQ,
-            qrfDiff: item.MarketableUniverseVsQrfDiff,
-            type: item.product_category,
-            vsQrf: item.MarketableUniverseVsQrf,
-            yy: item.MarketableUniverseYY
-        }
-        let marketPM =
-        {
-            index: i,
-            actuals: item.MarketableUniverseCW,
-            qrf: item.MarketableUniverseTargetCW,
-            qrfDiff: item.MarketableUniverseVsQrfDiffCW,
-            vsQrf: item.MarketableUniverseVsQrfCW,
-            ww: item.MarketableUniverseWW,
-            type: item.product_category,
-        }
-        // New UQFM
-        let newUqfm = {
-            index: i,
-            actuals: item.NewUQFMSActual,
-            qq: item.NewUQFMSQQTY,
-            qrf: item.NewUQFMSTargetFQ,
-            qrfDiff: item.NewUQFMSVsQrfDiff,
-            type: item.product_category,
-            vsQrf: item.NewUQFMSVsQRF,
-            yy: item.NewUQFMSYY
-        }
-        let newPM =
-        {
-            index: i,
-            actuals: item.NewUQFMSCW,
-            qrf: item.NewUQFMSTargetCW,
-            qrfDiff: item.NewUQFMSQRFDiffCW,
-            vsQrf: item.NewUQFMSVsQRFCW,
-            ww: item.NewUQFMSWW,
-            type: item.product_category,
-        }
-        //Paid Media Sourced
-        let paid = {
-            index: i,
-            actuals: item.PaidMediaSourcedUQFMSActual,
-            qq: item.PaidMediaSourcedUQFMSQQTY,
-            qrf: item.PaidMediaSourcedUQFMSTargetFQ,
-            qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
-            type: item.product_category,
-            vsQrf: item.PaidMediaSourcedUQFMSVsQRF,
-            yy: item.PaidMediaSourcedUQFMSYY
-        }
-        let paidPM =
-        {
-            index: i,
-            actuals: item.PaidMediaSourcedUQFMSCW,
-            qrf: item.PaidMediaSourcedUQFMSTargetCW,
-            qrfDiff: item.PaidMediaSourcedUQFMSQRFDiffCW,
-            vsQrf: item.PaidMediaSourcedUQFMSVsQRFCW,
-            ww: item.PaidMediaSourcedUQFMSWW,
-            type: item.product_category,
-        }
-        //UQFM
-        let uqfm = {
-            index: i,
-            actuals: item.UQFMConversionActual,
-            qq: item.UQFMConversionQQTY,
-            qrf: item.UQFMActual,
-            qrfDiff: item.UQFMConversionActual,
-            type: item.product_category,
-            vsQrf: item.UQFMConversionActual,
-            yy: item.UQFMConversionYY
-        }
-        let uqfmPM =
-        {
-            index: i,
-            actuals: item.UQFMConversionCW,
-            qrf: item.UQFMConversionCW,
-            qrfDiff: item.UQFMConversionWW,
-            vsQrf: item.UQFMConversionWW,
-            ww: item.UQFMConversionWW,
-            type: item.product_category,
-        }
-
-        newState[5].details.product.qtd.push(marketable);
-        newState[6].details.product.qtd.push(uqfm);
-        newState[8].details.product.qtd.push(paid);
-        newState[9].details.product.qtd.push(newUqfm);
-
-        newState[5].details.product.week.push(marketPM);
-        newState[6].details.product.week.push(newPM);
-        newState[8].details.product.week.push(paidPM);
-        newState[9].details.product.week.push(uqfmPM);
-
-
-
-    }
-    for (let i = 0; i < g5.length; i++) {
-        let item = g5[i];
-        let traffic = {
-            index: i,
-            actuals: item.TrafficActual,
-            qq: item.TrafficQQTY,
-            qrf: item.TrafficTargetFQ,
-            qrfDiff: item.TrafficVsQrfDiff,
-            type: item.product_category,
-            vsQrf: item.TrafficVsQrf,
-            yy: item.TrafficYY
-        }
-        let trafficPM =
-        {
-            index: i,
-            actuals: item.TrafficCW,
-            qrf: item.TrafficTargetCW,
-            qrfDiff: item.TrafficVsQrfDiffCW,
-            vsQrf: item.TrafficVsQrfCW,
-            ww: item.TrafficWW,
-            type: item.product_category,
-
-        }
-        let bounce = {
-            index: i,
-            actuals: item.BounceRateActual,
-            qq: item.BounceRateActual,
-            qrf: item.BounceRateActual,
-            qrfDiff: item.BounceRateActual,
-            type: item.product_category,
-            vsQrf: item.BounceRateYY,
-            yy: item.BounceRateYY
-        }
-        let bouncePM =
-        {
-            index: i,
-            actuals: item.BounceRateCW,
-            qrf: item.BounceRateCW,
-            qrfDiff: item.BounceRateWW,
-            vsQrf: item.BounceRateWW,
-            ww: item.BounceRateWW,
-            type: item.product_category,
-        }
-        newState[4].details.product.qtd.push(traffic);
-        newState[9].details.product.qtd.push(bounce);
-        newState[4].details.product.week.push(trafficPM);
-        newState[9].details.product.week.push(bouncePM);
-    }
-}
-
 /**Try**/
-export function processTrySecondaryData(g2, newState) {
+export function processTrySecondaryData(data, newState) {
 
-    console.log(g2)
     //  New QFMS
-    newState[11].value = g2.NewQFMSActual;
-    newState[11].target = g2.NewQFMSTargetFQ;
-    newState[11].vsQrf = g2.NewQFMSVsQrf;
-
+    newState[10].value = data.NewQFMSActual;
+    newState[10].targetFQ = data.NewQFMSTargetFQ;
+    newState[10].target = data.NewQFMsTarget;
+    newState[10].vsQrf = data.NewQFMsVsQrf;
     //   New UQFMS
-    newState[12].value = g2.NewUQFMSActual;
-    newState[12].target = g2.NewUQFMSTargetFQ;
-    newState[12].vsQrf = g2.NewUQFMSVsQrf;
-
+    newState[11].value = data.NewUQFMSActual;
+    newState[11].targetFQ = data.NewUQFMSTargetFQ;
+    newState[11].target = data.NewUQFMsTarget;
+    newState[11].vsQrf = data.NewUQFMsVsQrf;
     // Cumulative UQFMS
-    newState[13].value = g2.CumulativeUqfmsActual;
-    newState[13].target = g2.CumulativeUqfmsTargetFQ;
-    newState[13].vsQrf = g2.CumulativeUqfmsTargetFQ;
-
+    newState[12].value = data.CumUQFMsActual;
+    newState[12].targetFQ = data.CumUQFMsTargetFQ;
+    newState[12].target = data.CumUQFMsTarget;
+    newState[12].vsQrf = data.CumUQFMsVsQrf;
     //Cumulative QFMs
-    newState[14].value = g2.CumulativeQFMSActual;
-    newState[14].target = g2.CumulativeQFMSTargetFQ;
-    newState[14].vsQrf = g2.CumulativeQFMSVsQrf;
-
+    newState[13].value = data.CumQFMsActual;
+    newState[13].targetFQ = data.CumQFMsTargetFQ;
+    newState[13].target = data.CumQFMsTarget;
+    newState[13].vsQrf = data.CumQFMsVsQrf;
     //28 Day New UQFM to QFM
-    newState[16].value = g2.Day28NewUQFMActual;
-    newState[16].target = g2.Day28NewUQFMTargetFQ;
-    newState[16].vsQrf = g2.Day28NewUQFMTargetFQ;
-
+    newState[14].value = data.Day28NewUQFMActual;
+    newState[14].target = data.Day28NewUQFMTargetFQ;
+    newState[14].vsQrf = data.Day28NewUQFMVsQrf;
+    newState[14].target = data.Day28NewUQFMTarget;
     //Cum. UQFM to QFM
-    newState[17].value = g2.CumulativeUqfmToQFMActual;
-    newState[17].target = g2.CumulativeUqfmToQFMTargetFQ;
-    newState[17].vsqrf = g2.CumulativeUqfmToQFMTargetFQ;
+    newState[15].value = data.CumUQFMToQFMActual;
+    newState[15].target = data.CumUQFMToQFMTargetFQ;
+    newState[15].vsqrf = data.CumUQFMToQFMVsQrf;
+    newState[15].target = data.CumUQFMToQFMTarget;
 
 }
 export function processTryMultichartData(g2, newState) {
@@ -3885,43 +2545,37 @@ export function processTryMultichartData(g2, newState) {
 
     let newG2 = _.orderBy(weekG2Flag, ['weekNo'], ['asc']);
 
-    let traffic = {
+    let newQfm = {
         actual: [],
         target: [],
         lq: [],
         ly: []
     },
-        newQfm = {
-            actual: [],
-            target: [],
-            lq: [],
-            ly: []
-        },
         newUqfm = {
             actual: [],
             target: [],
             lq: [],
             ly: []
         },
-        cumulativeUqfm = {
+        cumuUQfm = {
             actual: [],
             target: [],
             lq: [],
             ly: []
         },
-        cumulativeQfm = {
+        cumuQfm = {
             actual: [],
             target: [],
             lq: [],
             ly: []
         },
-        day28New = {
+        day28 = {
             actual: [],
             target: [],
             lq: [],
             ly: []
         },
-        cumUqfm = {
+        cumuUQT = {
             actual: [],
             target: [],
             lq: [],
@@ -3939,55 +2593,55 @@ export function processTryMultichartData(g2, newState) {
         newQfm.ly.push(item.NewQFMSLY);
         newQfm.lq.push(item.NewQFMSLQ);
         //newUqfm
-        newUqfm.actual.push(item.NewUQFMSActual);
-        newUqfm.target.push(item.NewUQFMSTargetFQ);
-        newUqfm.ly.push(item.NewUQFMSLY);
-        newUqfm.lq.push(item.NewUQFMSLQ);
+        newUqfm.actual.push(item.NewUQFMsSActual);
+        newUqfm.target.push(item.NewUQFMsSTargetFQ);
+        newUqfm.ly.push(item.NewUQFMsSLY);
+        newUqfm.lq.push(item.NewUQFMsSLQ);
 
         //cumulativeUqfm
-        cumulativeUqfm.actual.push(item.CumulativeUqfmToQFMActual);
-        cumulativeUqfm.target.push(item.CumulativeUqfmToQFMTargetFQ);
-        cumulativeUqfm.ly.push(item.CumulativeUqfmToQFMLY);
-        cumulativeUqfm.lq.push(item.CumulativeUqfmToQFMLQ);
+        cumuUQfm.actual.push(item.CumUQFMsSActual);
+        cumuUQfm.target.push(item.CumUQFMsSTargetFQ);
+        cumuUQfm.ly.push(item.CumUQFMsSLY);
+        cumuUQfm.lq.push(item.CumUQFMsSLQ);
         //cumulativeQfm
-        cumulativeQfm.actual.push(item.CumulativeQFMSActual);
-        cumulativeQfm.target.push(item.CumulativeQFMSTargetFQ);
-        cumulativeQfm.ly.push(item.CumulativeQFMSLY);
-        cumulativeQfm.lq.push(item.CumulativeQFMSLQ);
+        cumuQfm.actual.push(item.CumQFMsSActual);
+        cumuQfm.target.push(item.CumQFMsSTargetFQ);
+        cumuQfm.ly.push(item.CumQFMsSLY);
+        cumuQfm.lq.push(item.CumQFMsSLQ);
         //day28New
-        day28New.actual.push(item.Day28NewUQFMActual);
-        day28New.target.push(item.Day28NewUQFMTargetFQ);
-        day28New.ly.push(item.Day28NewUQFMLY);
-        day28New.lq.push(item.Day28NewUQFMLQ);
+        day28.actual.push(item.Day28NewUQFMActual);
+        day28.target.push(item.Day28NewUQFMTargetFQ);
+        day28.ly.push(item.Day28NewUQFMLY);
+        day28.lq.push(item.Day28NewUQFMLQ);
         //cumUqfm
-        cumUqfm.actual.push(item.CumulativeUqfmsActual);
-        cumUqfm.target.push(item.CumulativeUqfmsTargetFQ);
-        cumUqfm.ly.push(item.CumulativeUqfmsLY);
-        cumUqfm.lq.push(item.CumulativeUqfmsLQ);
+        cumuUQT.actual.push(item.CumUQFMToQFMActual);
+        cumuUQT.target.push(item.CumulativeUqfmsTargetFQ);
+        cumuUQT.ly.push(item.CumUQFMToQFMLY);
+        cumuUQT.lq.push(item.CumUQFMToQFMLQ);
 
 
     };
 
     //Set Multichart Values
-    for (let i = 11; i < newState.length; i++) {
+    for (let i = 10; i < newState.length; i++) {
         switch (i) {
-            case 11:
+            case 10:
                 currentMulti = [newQfm.actual, newQfm.target, newQfm.ly, newQfm.lq];
                 break;
-            case 12:
+            case 11:
                 currentMulti = [newUqfm.actual, newUqfm.target, newUqfm.ly, newUqfm.lq];
                 break;
+            case 12:
+                currentMulti = [cumuUQfm.actual, cumuUQfm.target, cumuUQfm.ly, cumuUQfm.lq];
+                break;
             case 13:
-                currentMulti = [cumulativeUqfm.actual, cumulativeUqfm.target, cumulativeUqfm.ly, cumulativeUqfm.lq];
+                currentMulti = [cumuQfm.actual, cumuQfm.target, cumuQfm.ly, cumuQfm.lq];
                 break;
             case 14:
-                currentMulti = [cumulativeQfm.actual, cumulativeQfm.target, cumulativeQfm.ly, cumulativeQfm.lq];
+                currentMulti = [day28.actual, day28.target, day28.ly, day28.lq];
                 break;
-            case 16:
-                currentMulti = [day28New.actual, day28New.target, day28New.ly, day28New.lq];
-                break;
-            case 17:
-                currentMulti = [cumUqfm.actual, cumUqfm.target, cumUqfm.ly, cumUqfm.lq];
+            case 15:
+                currentMulti = [cumuUQT.actual, cumuUQT.target, cumuUQT.ly, cumuUQT.lq];
                 break;
             default:
                 break;
@@ -3995,433 +2649,659 @@ export function processTryMultichartData(g2, newState) {
         newState[i]['details'].multichart = currentMulti;
     }
 }
-export function processTryQTDData(g2, newState) {
-    for (let i = 11; i < newState.length; i++) {
-
-
+export function processTryQTDData(data, newState) {
+    for (let i = 10; i < newState.length; i++) {
         switch (i) {
-            // Traffic
+            case 10:
+                newState[i].details.qtdw.qtd[0].value = data.NewQFMsActuals;
+                newState[i].details.qtdw.qtd[1].value = data.NewQFMsTarget;
+                newState[i].details.qtdw.qtd[2].value = data.NewQFMsVsQrfDiff;
+                newState[i].details.qtdw.qtd[3].value = data.NewQFMsVsQrf;
+                newState[i].details.qtdw.qtd[4].value = data.NewQFMsQQTY;
+                newState[i].details.qtdw.qtd[5].value = data.NewQFMsYY;
+
+                newState[i].details.qtdw.week[0].value = data.NewQFMsCW;
+                newState[i].details.qtdw.week[1].value = data.NewQFMsTargetCW;
+                newState[i].details.qtdw.week[2].value = data.NewQFMsCWVsQrfDiff;
+                newState[i].details.qtdw.week[3].value = data.NewQFMsCWVsQrf;
+                newState[i].details.qtdw.week[4].value = data.NewQFMsWW;
+
+                newState[i].details.stats[0].value = data.NewQFMsVsQrf;
+                newState[i].details.stats[1].value = data.NewQFMsQQTY;
+                newState[i].details.stats[2].value = data.NewQFMsQQLY;
+                newState[i].details.stats[3].value = data.NewQFMsYY;
+                break;
             case 11:
-                newState[i].details.qtdw.qtd[0].value = g2.NewQFMSActual;
-                newState[i].details.qtdw.qtd[1].value = g2.NewQFMSTarget;
-                newState[i].details.qtdw.qtd[2].value = g2.NewQFMSVsQrfDiff;
-                newState[i].details.qtdw.qtd[3].value = g2.NewQFMSVsQrf;
-                newState[i].details.qtdw.qtd[4].value = g2.NewQFMSQQTY;
-                newState[i].details.qtdw.qtd[5].value = g2.NewQFMSYY;
+                newState[i].details.qtdw.qtd[0].value = data.NewUQFMsActuals;
+                newState[i].details.qtdw.qtd[1].value = data.NewUQFMsTarget;
+                newState[i].details.qtdw.qtd[2].value = data.NewUQFMsVsQrfDiff;
+                newState[i].details.qtdw.qtd[3].value = data.NewUQFMsVsQrf;
+                newState[i].details.qtdw.qtd[4].value = data.NewUQFMsQQTY;
+                newState[i].details.qtdw.qtd[5].value = data.NewUQFMsYY;
 
-                newState[i].details.qtdw.week[0].value = g2.NewQFMSCW;
-                newState[i].details.qtdw.week[1].value = g2.NewQFMSTargetCW;
-                newState[i].details.qtdw.week[2].value = g2.NewQFMSCWVsQrfDiff;
-                newState[i].details.qtdw.week[3].value = g2.NewQFMSCWVsQrf;
-                newState[i].details.qtdw.week[4].value = g2.NewQFMSWW;
+                newState[i].details.qtdw.week[0].value = data.NewUQFMsCW;
+                newState[i].details.qtdw.week[1].value = data.NewUQFMsTargetCW;
+                newState[i].details.qtdw.week[2].value = data.NewUQFMsCWVsQrfDiff;
+                newState[i].details.qtdw.week[3].value = data.NewUQFMsCWVsQrf;
+                newState[i].details.qtdw.week[4].value = data.NewUQFMsWW;
 
-                newState[i].details.stats[0].value = g2.NewQFMSVsQrf;
-                newState[i].details.stats[1].value = g2.NewQFMSQQTY;
-                newState[i].details.stats[2].value = g2.NewQFMSQQLY;
-                newState[i].details.stats[3].value = g2.NewQFMSYY;
+
+                newState[i].details.stats[0].value = data.NewUQFMsCWVsQrf;
+                newState[i].details.stats[1].value = data.NewUQFMsQQTY;
+                newState[i].details.stats[2].value = data.NewUQFMsQQLY;
+                newState[i].details.stats[3].value = data.NewUQFMsYY;
                 break;
-            // Marketable Universe
             case 12:
-                newState[i].details.qtdw.qtd[0].value = g2.NewUQFMSActual;
-                newState[i].details.qtdw.qtd[1].value = g2.NewUQFMSTarget;
-                newState[i].details.qtdw.qtd[2].value = g2.NewUQFMSVsQrfDiff;
-                newState[i].details.qtdw.qtd[3].value = g2.NewUQFMSVsQrf;
-                newState[i].details.qtdw.qtd[4].value = g2.NewUQFMSQQTY;
-                newState[i].details.qtdw.qtd[5].value = g2.NewUQFMSYY;
+                newState[i].details.qtdw.qtd[0].value = data.CumUQFMsActuals;
+                newState[i].details.qtdw.qtd[1].value = data.CumUQFMsTarget;
+                newState[i].details.qtdw.qtd[2].value = data.CumUQFMsVsQrfDiff;
+                newState[i].details.qtdw.qtd[3].value = data.CumUQFMsVsQrf;
+                newState[i].details.qtdw.qtd[4].value = data.CumUQFMsQQTY;
+                newState[i].details.qtdw.qtd[5].value = data.CumUQFMsYY;
 
-                newState[i].details.qtdw.week[0].value = g2.NewUQFMSCW;
-                newState[i].details.qtdw.week[1].value = g2.NewUQFMSTargetCW;
-                newState[i].details.qtdw.week[2].value = g2.NewUQFMSCWVsQrfDiff;
-                newState[i].details.qtdw.week[3].value = g2.NewUQFMSCWVsQrf;
-                newState[i].details.qtdw.week[4].value = g2.NewUQFMSWW;
+                newState[i].details.qtdw.week[0].value = data.CumUQFMsCW;
+                newState[i].details.qtdw.week[1].value = data.CumUQFMsTargetCW;
+                newState[i].details.qtdw.week[2].value = data.CumUQFMsCWVsQrfDiff;
+                newState[i].details.qtdw.week[3].value = data.CumUQFMsCWVsQrf;
+                newState[i].details.qtdw.week[4].value = data.CumUQFMsWW;
 
-
-                newState[i].details.stats[0].value = g2.NewUQFMSVsQrf;
-                newState[i].details.stats[1].value = g2.NewUQFMSQQTY;
-                newState[i].details.stats[2].value = g2.NewUQFMSQQLY;
-                newState[i].details.stats[3].value = g2.NewUQFMSYY;
+                newState[i].details.stats[0].value = data.CumUQFMsVsQrf;
+                newState[i].details.stats[1].value = data.CumUQFMsQQTY;
+                newState[i].details.stats[2].value = data.CumUQFMsQQLY;
+                newState[i].details.stats[3].value = data.CumUQFMsYY;
                 break;
-            // UqFm Conversion
             case 13:
-                newState[i].details.qtdw.qtd[0].value = g2.CumulativeUQFMSActual;
-                newState[i].details.qtdw.qtd[1].value = g2.CumulativeUQFMSTarget;
-                newState[i].details.qtdw.qtd[2].value = g2.CumulativeUQFMSVsQrfDiff;
-                newState[i].details.qtdw.qtd[3].value = g2.CumulativeUQFMSVsQrf;
-                newState[i].details.qtdw.qtd[4].value = g2.CumulativeUQFMSQQTY;
-                newState[i].details.qtdw.qtd[5].value = g2.CumulativeUQFMSYY;
+                newState[i].details.qtdw.qtd[0].value = data.CumQFMsActuals;
+                newState[i].details.qtdw.qtd[1].value = data.CumQFMsTarget;
+                newState[i].details.qtdw.qtd[2].value = data.CumQFMsVsQrfDiff;
+                newState[i].details.qtdw.qtd[3].value = data.CumQFMsVsQrf;
+                newState[i].details.qtdw.qtd[4].value = data.CumQFMsQQTY;
+                newState[i].details.qtdw.qtd[5].value = data.CumQFMsYY;
 
-                newState[i].details.qtdw.week[0].value = g2.CumulativeUQFMSTargetCW;
-                newState[i].details.qtdw.week[1].value = g2.CumulativeUQFMSTargetCW;
-                newState[i].details.qtdw.week[2].value = g2.CumulativeUQFMSTargetCW;
-                newState[i].details.qtdw.week[3].value = g2.CumulativeUQFMSTargetCW;
-                newState[i].details.qtdw.week[4].value = g2.CumulativeUQFMSTargetCW;
+                newState[i].details.qtdw.week[0].value = data.CumQFMsCW;
+                newState[i].details.qtdw.week[1].value = data.CumQFMsTargetCW;
+                newState[i].details.qtdw.week[2].value = data.CumQFMsCWVsQrfDiff;
+                newState[i].details.qtdw.week[3].value = data.CumQFMsCWVsQrf;
+                newState[i].details.qtdw.week[4].value = data.CumQFMsWW;
 
-                newState[i].details.stats[0].value = g2.CumulativeUQFMSVsQrf;
-                newState[i].details.stats[1].value = g2.CumulativeUQFMSQQTY;
-                newState[i].details.stats[2].value = g2.CumulativeUQFMSQQLY;
-                newState[i].details.stats[3].value = g2.CumulativeUQFMSYY;
+                newState[i].details.stats[0].value = data.CumQFMsVsQrf;
+                newState[i].details.stats[1].value = data.CumQFMsQQTY;
+                newState[i].details.stats[2].value = data.CumQFMsQQLY;
+                newState[i].details.stats[3].value = data.CumQFMsYY;
                 break;
-            // Paid Media Spend
             case 14:
-                newState[i].details.qtdw.qtd[0].value = g2.CumulativeQFMSActual;
-                newState[i].details.qtdw.qtd[1].value = g2.CumulativeQFMSTarget;
-                newState[i].details.qtdw.qtd[2].value = g2.CumulativeQFMSVsQrfDiff;
-                newState[i].details.qtdw.qtd[3].value = g2.CumulativeQFMSVsQrf;
-                newState[i].details.qtdw.qtd[4].value = g2.CumulativeQFMSQQTY;
-                newState[i].details.qtdw.qtd[5].value = g2.CumulativeQFMSYY;
+                newState[i].details.qtdw.qtd[0].value = data.Day28NewUQFMActual;
+                newState[i].details.qtdw.qtd[1].value = data.Day28NewUQFMTarget;
+                newState[i].details.qtdw.qtd[2].value = data.Day28NewUQFMVsQrfDiff;
+                newState[i].details.qtdw.qtd[3].value = data.Day28NewUQFMQQTY;
+                newState[i].details.qtdw.qtd[4].value = data.Day28NewUQFMVsQrf;
+                newState[i].details.qtdw.qtd[5].value = data.Day28NewUQFMYY;
 
-                newState[i].details.qtdw.week[0].value = g2.CumulativeQFMSTargetCW;
-                newState[i].details.qtdw.week[1].value = g2.CumulativeQFMSTargetCW;
-                newState[i].details.qtdw.week[2].value = g2.CumulativeQFMSTargetCW;
-                newState[i].details.qtdw.week[3].value = g2.CumulativeQFMSTargetCW;
-                newState[i].details.qtdw.week[4].value = g2.CumulativeQFMSTargetCW;
+                newState[i].details.qtdw.week[0].value = data.Day28NewUQFMCW;
+                newState[i].details.qtdw.week[1].value = data.Day28NewUQFMTargetCW;
+                newState[i].details.qtdw.week[2].value = data.Day28NewUQFMCWVsQrfDiff;
+                newState[i].details.qtdw.week[3].value = data.Day28NewUQFMCWVsQrf;
+                newState[i].details.qtdw.week[4].value = data.Day28NewUQFMWW;
 
-                newState[i].details.stats[0].value = g2.CumulativeQFMSVsQrf;
-                newState[i].details.stats[1].value = g2.CumulativeQFMSQQTY;
-                newState[i].details.stats[2].value = g2.CumulativeQFMSQQLY;
-                newState[i].details.stats[3].value = g2.CumulativeQFMSYY;
+                newState[i].details.stats[0].value = data.Day28NewUQFMVsQrf;
+                newState[i].details.stats[1].value = data.Day28NewUQFMQQTY;
+                newState[i].details.stats[2].value = data.Day28NewUQFMQQLY;
+                newState[i].details.stats[3].value = data.Day28NewUQFMYY;
                 break;
-            // Paid Media Sourced
-            case 16:
-                newState[i].details.qtdw.qtd[0].value = g2.Day28NewUQFMActual;
-                newState[i].details.qtdw.qtd[1].value = g2.Day28NewUQFMTarget;
-                newState[i].details.qtdw.qtd[2].value = g2.Day28NewUQFMVsQrfDiff;
-                newState[i].details.qtdw.qtd[3].value = g2.Day28NewUQFMQQTY;
-                newState[i].details.qtdw.qtd[4].value = g2.Day28NewUQFMQQTY;
-                newState[i].details.qtdw.qtd[5].value = g2.Day28NewUQFMYY;
+            case 15:
+                newState[i].details.qtdw.qtd[0].value = data.CumUQFMToQFMActual;
+                newState[i].details.qtdw.qtd[1].value = data.CumUQFMToQFMTarget;
+                newState[i].details.qtdw.qtd[2].value = data.CumUQFMToQFMVsQrfDiff;
+                newState[i].details.qtdw.qtd[3].value = data.CumUQFMToQFMQQTY;
+                newState[i].details.qtdw.qtd[4].value = data.CumUQFMToQFMVsQrf;
+                newState[i].details.qtdw.qtd[5].value = data.CumUQFMToQFMYY;
 
-                newState[i].details.qtdw.week[0].value = g2.Day28NewUQFMCW;
-                newState[i].details.qtdw.week[1].value = g2.Day28UNewQFMTargetCW;
-                newState[i].details.qtdw.week[2].value = g2.Day28NewUQFMCWVsQrfDiff;
-                newState[i].details.qtdw.week[3].value = g2.Day28NewUQFMQQTY;
-                newState[i].details.qtdw.week[4].value = g2.Day28NewUQFMWW;
+                newState[i].details.qtdw.week[0].value = data.CumUQFMToQFMCW;
+                newState[i].details.qtdw.week[1].value = data.CumUQFMToQFMTargetCW;
+                newState[i].details.qtdw.week[2].value = data.CumUQFMToQFMCWVsQrfDiff;
+                newState[i].details.qtdw.week[3].value = data.CumUQFMToQFMCWVsQrf;
+                newState[i].details.qtdw.week[4].value = data.CumUQFMToQFMWW;
 
-                newState[i].details.stats[0].value = g2.Day28NewUQFMQQTY;
-                newState[i].details.stats[1].value = g2.Day28NewUQFMQQTY;
-                newState[i].details.stats[2].value = g2.Day28NewUQFMQQLY;
-                newState[i].details.stats[3].value = g2.Day28NewUQFMYY;
-                break;
-            // New UQFM
-            case 17:
-                newState[i].details.qtdw.qtd[0].value = g2.CumulativeUqfmToQFMActual;
-                newState[i].details.qtdw.qtd[1].value = g2.CumulativeUqfmToQFMTarget;
-                newState[i].details.qtdw.qtd[2].value = g2.CumulativeUqfmToQFMVsQrfDiff;
-                // newState[i].details.qtdw.qtd[3].value = g2.NewUQFMSVsQRF;
-                // newState[i].details.qtdw.qtd[4].value = g2.NewUQFMSQQTY;
-                // newState[i].details.qtdw.qtd[5].value = g2.NewUQFMSYY;
-
-                // newState[i].details.qtdw.week[0].value = g2.NewUQFMSCW;
-                // newState[i].details.qtdw.week[1].value = g2.NewUQFMSTargetCW;
-                // newState[i].details.qtdw.week[2].value = g2.NewUQFMSQRFDiffCW;
-                // newState[i].details.qtdw.week[3].value = g2.NewUQFMSVsQRFCW;
-                // newState[i].details.qtdw.week[4].value = g2.NewUQFMSWW;
-
-                // newState[i].details.stats[0].value = g2.NewUQFMSVsQRF;
-                // newState[i].details.stats[1].value = g2.NewUQFMSQQTY;
-                // newState[i].details.stats[2].value = g2.NewUQFMSQQLY;
-                // newState[i].details.stats[3].value = g2.NewUQFMSYY;
+                newState[i].details.stats[0].value = data.CumUQFMToQFMVsQrf;
+                newState[i].details.stats[1].value = data.CumUQFMToQFMQQTY;
+                newState[i].details.stats[2].value = data.CumUQFMToQFMQQLY;
+                newState[i].details.stats[3].value = data.CumUQFMToQFMYY;
                 break;
         }
     }
 }
-// export function processTryGeoQTDData(g2, newState) {
-//     console.log(g2)
-//     //Clear old Values
-//     newState[11].details.geo.qtd = [];
-//     newState[12].details.geo.qtd = [];
-//     newState[13].details.geo.qtd = [];
-//     newState[14].details.geo.qtd = [];
-//     newState[16].details.geo.qtd = [];
-//     newState[17].details.geo.qtd = [];
-//     newState[11].details.geo.week = [];
-//     newState[12].details.geo.week = [];
-//     newState[13].details.geo.week = [];
-//     newState[14].details.geo.week = [];
-//     newState[16].details.geo.week = [];
-//     newState[17].details.geo.week = [];
+export function processTryGeoQTDData(data, newState) {
+    //Clear old Values
+    newState[10].details = { ...newState[10].details, geo: { qtd: [], week: [] } };
+    newState[11].details = { ...newState[11].details, geo: { qtd: [], week: [] } };
+    newState[12].details = { ...newState[12].details, geo: { qtd: [], week: [] } };
+    newState[13].details = { ...newState[13].details, geo: { qtd: [], week: [] } };
+    newState[14].details = { ...newState[14].details, geo: { qtd: [], week: [] } };
+    newState[15].details = { ...newState[15].details, geo: { qtd: [], week: [] } };
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        //New QFM
+        let newQFM = {
+            index: i,
+            actuals: item.NewQFMsActuals,
+            marketArea: item.market_area_group,
+            qq: item.NewQFMsQQTY,
+            qrf: item.NewQFMsTarget,
+            qrfDiff: item.NewQFMsVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewQFMsVsQrf,
+            yy: item.NewQFMsYY
+        }
+        let newQFMWeek =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.NewQFMsCW,
+            qrf: item.NewQFMsTargetCW,
+            qrfDiff: item.NewQFMsCWVsQrfDiff,
+            vsQrf: item.NewQFMsCWVsQrf,
+            ww: item.NewQFMsWW,
+            type: item.geo_code,
+        }
+        //New UQFM
+        let newUQFM = {
+            index: i,
+            actuals: item.NewUQFMsActuals,
+            marketArea: item.market_area_group,
+            qq: item.NewUQFMsQQTY,
+            qrf: item.NewUQFMsTarget,
+            qrfDiff: item.NewUQFMsVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewUQFMsVsQrf,
+            yy: item.NewUQFMsYY
+        }
+        let newUQFMWeek =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.NewUQFMsCW,
+            qrf: item.NewUQFMsTargetCW,
+            qrfDiff: item.NewUQFMsCWVsQrfDiff,
+            vsQrf: item.NewUQFMsCWVsQrf,
+            ww: item.NewUQFMsWW,
+            type: item.geo_code,
+        }
+        //Cumu UQFM
+        let cumuUQFM = {
+            index: i,
+            actuals: item.CumUQFMsActuals,
+            marketArea: item.market_area_group,
+            qq: item.CumUQFMsQQTY,
+            qrf: item.CumUQFMsTarget,
+            qrfDiff: item.CumUQFMsVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.CumUQFMsVsQrf,
+            yy: item.CumUQFMsYY
+        }
+        let cumuUQFMWeek =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.CumUQFMsCW,
+            qrf: item.CumUQFMsTargetCW,
+            qrfDiff: item.CumUQFMsCWVsQrfDiff,
+            vsQrf: item.CumUQFMsCWVsQrf,
+            ww: item.CumUQFMsWW,
+            type: item.geo_code,
+        }
+        //Cumu QFM
+        let cumuQFM = {
+            index: i,
+            actuals: item.CumQFMsActuals,
+            marketArea: item.market_area_group,
+            qq: item.CumQFMsQQTY,
+            qrf: item.CumQFMsTarget,
+            qrfDiff: item.CumQFMsVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.CumQFMsVsQrf,
+            yy: item.CumQFMsYY
+        }
+        let cumuQFMWeek =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.CumQFMsCW,
+            qrf: item.CumQFMsTargetCW,
+            qrfDiff: item.CumQFMsCWVsQrfDiff,
+            vsQrf: item.CumQFMsCWVsQrf,
+            ww: item.CumQFMsWW,
+            type: item.geo_code,
+        }
+        //Day 28
+        let day28 = {
+            index: i,
+            actuals: item.Day28NewUQFMActual,
+            marketArea: item.market_area_group,
+            qq: item.Day28NewUQFMQQTY,
+            qrf: item.Day28NewUQFMTarget,
+            qrfDiff: item.Day28NewUQFMVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.Day28NewUQFMVsQrf,
+            yy: item.Day28NewUQFMYY
+        }
+        let day28Week =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.Day28NewUQFMCW,
+            qrf: item.Day28NewUQFMTargetCW,
+            qrfDiff: item.Day28NewUQFMCWVsQrfDiff,
+            vsQrf: item.Day28NewUQFMCWVsQrf,
+            ww: item.Day28NewUQFMWW,
+            type: item.geo_code,
+        }
+        //Cumu UQFM to QFM
+        let cumuUTQ = {
+            index: i,
+            actuals: item.CumUQFMToQFMActual,
+            marketArea: item.market_area_group,
+            qq: item.CumUQFMToQFMQQTY,
+            qrf: item.CumUQFMToQFMTarget,
+            qrfDiff: item.CumUQFMToQFMVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.CumUQFMToQFMVsQrf,
+            yy: item.CumUQFMToQFMYY
+        }
+        let cumuUTQWeek =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.CumUQFMToQFMCW,
+            qrf: item.CumUQFMToQFMTargetCW,
+            qrfDiff: item.CumUQFMToQFMCWVsQrfDiff,
+            vsQrf: item.CumUQFMToQFMCWVsQrf,
+            ww: item.CumUQFMToQFMWW,
+            type: item.geo_code,
+        }
+
+        newState[10].details.geo.qtd.push(newQFM);
+        newState[10].details.geo.week.push(newQFMWeek);
+        newState[11].details.geo.qtd.push(newUQFM);
+        newState[11].details.geo.week.push(newUQFMWeek);
+        newState[12].details.geo.qtd.push(cumuUQFM);
+        newState[12].details.geo.week.push(cumuUQFMWeek);
+        newState[13].details.geo.qtd.push(cumuQFM);
+        newState[13].details.geo.week.push(cumuQFMWeek);
+        newState[14].details.geo.qtd.push(day28);
+        newState[14].details.geo.week.push(day28Week);
+        newState[15].details.geo.qtd.push(cumuUTQ);
+        newState[15].details.geo.week.push(cumuUTQWeek);
+
+    }
+}
+export function processTryMarketQTDData(data, newState) {
+    //Clear old Values
+    newState[10].details = { ...newState[10].details, market: { qtd: [], week: [] } };
+    newState[11].details = { ...newState[11].details, market: { qtd: [], week: [] } };
+    newState[12].details = { ...newState[12].details, market: { qtd: [], week: [] } };
+    newState[13].details = { ...newState[13].details, market: { qtd: [], week: [] } };
+    newState[14].details = { ...newState[14].details, market: { qtd: [], week: [] } };
+    newState[15].details = { ...newState[15].details, market: { qtd: [], week: [] } };
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        //New QFM
+        let newQFM = {
+            index: i,
+            actuals: item.NewQFMsActuals,
+            type: item.market_area_code,
+            qq: item.NewQFMsQQTY,
+            qrf: item.NewQFMsTarget,
+            qrfDiff: item.NewQFMsVsQrfDiff,
+            vsQrf: item.NewQFMsVsQrf,
+            yy: item.NewQFMsYY
+        }
+        let newQFMWeek =
+        {
+            index: i,
+            type: item.market_area_code,
+            actuals: item.NewQFMsCW,
+            qrf: item.NewQFMsTargetCW,
+            qrfDiff: item.NewQFMsCWVsQrfDiff,
+            vsQrf: item.NewQFMsCWVsQrf,
+            ww: item.NewQFMsWW,
+        }
+        //New UQFM
+        let newUQFM = {
+            index: i,
+            actuals: item.NewUQFMsActuals,
+            type: item.market_area_code,
+            qq: item.NewUQFMsQQTY,
+            qrf: item.NewUQFMsTarget,
+            qrfDiff: item.NewUQFMsVsQrfDiff,
+            vsQrf: item.NewUQFMsVsQrf,
+            yy: item.NewUQFMsYY
+        }
+        let newUQFMWeek =
+        {
+            index: i,
+            type: item.market_area_code,
+            actuals: item.NewUQFMsCW,
+            qrf: item.NewUQFMsTargetCW,
+            qrfDiff: item.NewUQFMsCWVsQrfDiff,
+            vsQrf: item.NewUQFMsCWVsQrf,
+            ww: item.NewUQFMsWW,
+        }
+        //Cumu UQFM
+        let cumuUQFM = {
+            index: i,
+            actuals: item.CumUQFMsActuals,
+            type: item.market_area_code,
+            qq: item.CumUQFMsQQTY,
+            qrf: item.CumUQFMsTarget,
+            qrfDiff: item.CumUQFMsVsQrfDiff,
+            vsQrf: item.CumUQFMsVsQrf,
+            yy: item.CumUQFMsYY
+        }
+        let cumuUQFMWeek =
+        {
+            index: i,
+            type: item.market_area_code,
+            actuals: item.CumUQFMsCW,
+            qrf: item.CumUQFMsTargetCW,
+            qrfDiff: item.CumUQFMsCWVsQrfDiff,
+            vsQrf: item.CumUQFMsCWVsQrf,
+            ww: item.CumUQFMsWW,
+        }
+        //Cumu QFM
+        let cumuQFM = {
+            index: i,
+            actuals: item.CumQFMsActuals,
+            type: item.market_area_code,
+            qq: item.CumQFMsQQTY,
+            qrf: item.CumQFMsTarget,
+            qrfDiff: item.CumQFMsVsQrfDiff,
+            vsQrf: item.CumQFMsVsQrf,
+            yy: item.CumQFMsYY
+        }
+        let cumuQFMWeek =
+        {
+            index: i,
+            type: item.market_area_code,
+            actuals: item.CumQFMsCW,
+            qrf: item.CumQFMsTargetCW,
+            qrfDiff: item.CumQFMsCWVsQrfDiff,
+            vsQrf: item.CumQFMsCWVsQrf,
+            ww: item.CumQFMsWW,
+        }
+        //Day 28
+        let day28 = {
+            index: i,
+            actuals: item.Day28NewUQFMActual,
+            type: item.market_area_code,
+            qq: item.Day28NewUQFMQQTY,
+            qrf: item.Day28NewUQFMTarget,
+            qrfDiff: item.Day28NewUQFMVsQrfDiff,
+            vsQrf: item.Day28NewUQFMVsQrf,
+            yy: item.Day28NewUQFMYY
+        }
+        let day28Week =
+        {
+            index: i,
+            type: item.market_area_code,
+            actuals: item.Day28NewUQFMCW,
+            qrf: item.Day28NewUQFMTargetCW,
+            qrfDiff: item.Day28NewUQFMCWVsQrfDiff,
+            vsQrf: item.Day28NewUQFMCWVsQrf,
+            ww: item.Day28NewUQFMWW,
+        }
+        //Cumu UQFM to QFM
+        let cumuUTQ = {
+            index: i,
+            actuals: item.CumUQFMToQFMActual,
+            type: item.market_area_code,
+            qq: item.CumUQFMToQFMQQTY,
+            qrf: item.CumUQFMToQFMTarget,
+            qrfDiff: item.CumUQFMToQFMVsQrfDiff,
+            vsQrf: item.CumUQFMToQFMVsQrf,
+            yy: item.CumUQFMToQFMYY
+        }
+        let cumuUTQWeek =
+        {
+            index: i,
+            type: item.market_area_code,
+            actuals: item.CumUQFMToQFMCW,
+            qrf: item.CumUQFMToQFMTargetCW,
+            qrfDiff: item.CumUQFMToQFMCWVsQrfDiff,
+            vsQrf: item.CumUQFMToQFMCWVsQrf,
+            ww: item.CumUQFMToQFMWW,
+        }
+
+        newState[10].details.market.qtd.push(newQFM);
+        newState[10].details.market.week.push(newQFMWeek);
+        newState[11].details.market.qtd.push(newUQFM);
+        newState[11].details.market.week.push(newUQFMWeek);
+        newState[12].details.market.qtd.push(cumuUQFM);
+        newState[12].details.market.week.push(cumuUQFMWeek);
+        newState[13].details.market.qtd.push(cumuQFM);
+        newState[13].details.market.week.push(cumuQFMWeek);
+        newState[14].details.market.qtd.push(day28);
+        newState[14].details.market.week.push(day28Week);
+        newState[15].details.market.qtd.push(cumuUTQ);
+        newState[15].details.market.week.push(cumuUTQWeek);
+
+    }
+}
+export function processTryProductQTDData(data, newState) {
+    //Clear old Values
+    newState[10].details = { ...newState[10].details, product: { qtd: [], week: [] } };
 
 
-//     for (let i = 0; i < g2.length; i++) {
-//         let item = g2[i];
-//         //NewQFM
-//         let newQFM = {
-//             index: i,
-//             actuals: item.NewQFMSActual,
-//             marketArea: item.market_area_code,
-//             qq: item.NewQFMSQQTY,
-//             qrf: item.NewQFMSTarget,
-//             qrfDiff: item.NewQFMSVsQrfDiff,
-//             type: item.geo_code,
-//             vsQrf: item.NewQFMSVsQrf,
-//             yy: item.NewQFMSYY
-//         }
-//         let newQFMWeek =
-//         {
-//             index: i,
-//             marketArea: item.market_area_code,
-//             actuals: item.NewQFMSCW,
-//             qrf: item.NewQFMSTargetCW,
-//             qrfDiff: item.NewQFMSCWVsQrfDiff,
-//             vsQrf: item.NewQFMSCWVsQrf,
-//             ww: item.NewQFMSWW,
-//             type: item.geo_code,
-//         }
-//New UQFM
-//         let newUQFM = {
-//             index: i,
-//             actuals: item.NewUQFMSActual,
-//             marketArea: item.market_area_code,
-//             qq: item.NewUQFMSQQTY,
-//             qrf: item.NewUQFMSTarget,
-//             qrfDiff: item.NewUQFMSVsQrfDiff,
-//             type: item.geo_code,
-//             vsQrf: item.NewUQFMSVsQrf,
-//             yy: item.NewUQFMSYY
-//         }
-//         let newUQFMWeek =
-//         {
-//             index: i,
-//             marketArea: item.market_area_code,
-//             actuals: item.NewUQFMSCW,
-//             qrf: item.NewUQFMSTargetCW,
-//             qrfDiff: item.NewUQFMSCWVsQrfDiff,
-//             vsQrf: item.NewUQFMSCWVsQrf,
-//             ww: item.NewUQFMSWW,
-//             type: item.geo_code,
-//         }
-
-//Cumulative UQFM
-//         let cumuUQFM = {
-//             index: i,
-//             actuals: item.CumulativeUQFMSActual,
-//             marketArea: item.market_area_code,
-//             qq: item.CumulativeUQFMSQQTY,
-//             qrf: item.CumulativeUQFMSTarget,
-//             qrfDiff: item.CumulativeUQFMSVsQrfDiff,
-//             type: item.geo_code,
-//             vsQrf: item.CumulativeUQFMSVsQrf,
-//             yy: item.CumulativeUQFMSYY
-//         }
-//         let cumuUQFMWeek =
-//         {
-//             index: i,
-//             marketArea: item.market_area_code,
-//             actuals: item.CumulativeUQFMSTargetCW,
-//             qrf: item.MarketableUniverseTargetCW,
-//             qrfDiff: item.MarketableUniverseVsQrfDiffCW,
-//             vsQrf: item.MarketableUniverseVsQrfCW,
-//             ww: item.MarketableUniverseWW,
-//             type: item.geo_code,
-//         }
-
-//Cumulative QFM
-//         let cumuQFM = {
-//             index: i,
-//             actuals: item.CumulativeQFMSActual,
-//             marketArea: item.market_area_code,
-//             qq: item.CumulativeQFMSQQTY,
-//             qrf: item.CumulativeQFMSTarget,
-//             qrfDiff: item.CumulativeQFMSVsQrfDiff,
-//             type: item.geo_code,
-//             vsQrf: item.CumulativeQFMSVsQrf,
-//             yy: item.CumulativeQFMSYY
-//         }
-//         let cumuQFMWeek =
-//         {
-//             index: i,
-//             marketArea: item.market_area_code,
-//             actuals: item.MarketableUniverseCW,
-//             qrf: item.CumulativeQFMSTargetCW,
-//             qrfDiff: item.MarketableUniverseVsQrfDiffCW,
-//             vsQrf: item.MarketableUniverseVsQrfCW,
-//             ww: item.MarketableUniverseWW,
-//             type: item.geo_code,
-//         }
-
-//day 28 New UQFM to QFM 
-//         let day28QFM = {
-//             index: i,
-//             actuals: item.Day28NewUQFMActual,
-//             marketArea: item.market_area_code,
-//             qq: item.Day28NewUQFMQQTY,
-//             qrf: item.Day28NewUQFMTarget,
-//             qrfDiff: item.Day28NewUQFMVsQrfDiff,
-//             type: item.geo_code,
-//             vsQrf: item.MarketableUniverseVsQrf,
-//             yy: item.Day28NewUQFMYY
-//         }
-//         let day28QFMWeek =
-//         {
-//             index: i,
-//             marketArea: item.market_area_code,
-//             actuals: item.Day28NewUQFMCW,
-//             qrf: item.Day28UNewQFMTargetCW,
-//             qrfDiff: item.Day28NewUQFMCWVsQrfDiff,
-//             vsQrf: item.Day28NewUQFMWW,
-//             ww: item.Day28NewUQFMWW,
-//             type: item.geo_code,
-//         }
-
-//      Cum UQFM to QFM 
-//         let cumuUQFMtoQFM = {
-//             index: i,
-//             actuals: item.MarketableUniverseActual,
-//             marketArea: item.market_area_code,
-//             qq: item.MarketableUniverseQQTY,
-//             qrf: item.MarketableUniverseTargetFQ,
-//             qrfDiff: item.MarketableUniverseVsQrfDiff,
-//             type: item.geo_code,
-//             vsQrf: item.MarketableUniverseVsQrf,
-//             yy: item.MarketableUniverseYY
-//         }
-//         let cumuUQFMtoQFMWeek =
-//         {
-//             index: i,
-//             marketArea: item.market_area_code,
-//             actuals: item.MarketableUniverseCW,
-//             qrf: item.MarketableUniverseTargetCW,
-//             qrfDiff: item.MarketableUniverseVsQrfDiffCW,
-//             vsQrf: item.MarketableUniverseVsQrfCW,
-//             ww: item.MarketableUniverseWW,
-//             type: item.geo_code,
-//         }
-//         newState[11].details.geo.qtd.push(newQFM);
-//         newState[12].details.geo.qtd.push(newUQFM);
-//         newState[13].details.geo.qtd.push(cumuUQFM);
-//         newState[14].details.geo.qtd.push(cumuQFM);
-//         newState[16].details.geo.qtd.push(day28QFM);
-//         newState[17].details.geo.qtd.push(cumuUQFMtoQFM);
-
-//         newState[11].details.geo.week.push(newQFMWeek);
-//         newState[12].details.geo.week.push(newUQFMWeek);
-//         newState[13].details.geo.week.push(cumuUQFMWeek);
-//         newState[14].details.geo.week.push(cumuQFMWeek);
-//         newState[16].details.geo.week.push(day28QFMWeek);
-//         newState[17].details.geo.week.push(cumuUQFMtoQFMWeek);
-//     }
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        //New QFM
+        for (let i = 0; i < data.length; i++) {
+            let item = data[i];
+            //New QFM
+            let newQFM = {
+                index: i,
+                actuals: item.NewQFMsActuals,
+                type: item.product_name,
+                qq: item.NewQFMsQQTY,
+                qrf: item.NewQFMsTarget,
+                qrfDiff: item.NewQFMsVsQrfDiff,
+                vsQrf: item.NewQFMsVsQrf,
+                yy: item.NewQFMsYY
+            }
+            let newQFMWeek =
+            {
+                index: i,
+                type: item.product_name,
+                actuals: item.NewQFMsCW,
+                qrf: item.NewQFMsTargetCW,
+                qrfDiff: item.NewQFMsCWVsQrfDiff,
+                vsQrf: item.NewQFMsCWVsQrf,
+                ww: item.NewQFMsWW,
+            }
 
 
-
-// }
-// export function processTryMarketQTDData(g2, newState) {
-//     //Clear old Values
-//     newState[4].details.market.qtd = [];
-//     newState[5].details.market.qtd = [];
-//     newState[6].details.market.qtd = [];
-//     newState[7].details.market.qtd = [];
-//     newState[8].details.market.qtd = [];
-//     newState[9].details.market.qtd = [];
-//     newState[9].details.market.qtd = [];
-//     newState[4].details.market.week = [];
-//     newState[5].details.market.week = [];
-//     newState[6].details.market.week = [];
-//     newState[7].details.market.week = [];
-//     newState[8].details.market.week = [];
-//     newState[9].details.market.week = [];
-//     newState[9].details.market.week = [];
+            newState[10].details.product.qtd.push(newQFM);
+            newState[10].details.product.week.push(newQFMWeek);
 
 
-//     for (let i = 0; i < g2.length; i++) {
-//         let item = g2[i];
-//         //Market
-//         let marketable = {
-//             index: i,
-//             actuals: item.MarketableUniverseActual,
-//             qq: item.MarketableUniverseQQTY,
-//             qrf: item.MarketableUniverseTargetFQ,
-//             qrfDiff: item.MarketableUniverseVsQrfDiff,
-//             type: item.market_area_code,
-//             vsQrf: item.MarketableUniverseVsQrf,
-//             yy: item.MarketableUniverseYY
-//         }
-//         let marketPM =
-//         {
-//             index: i,
-//             actuals: item.MarketableUniverseCW,
-//             qrf: item.MarketableUniverseTargetCW,
-//             qrfDiff: item.MarketableUniverseVsQrfDiffCW,
-//             vsQrf: item.MarketableUniverseVsQrfCW,
-//             ww: item.MarketableUniverseWW,
-//             type: item.market_area_code,
-//         }
-//         // New UQFM
-//         let newUqfm = {
-//             index: i,
-//             actuals: item.NewUQFMSActual,
-//             qq: item.NewUQFMSQQTY,
-//             qrf: item.NewUQFMSTargetFQ,
-//             qrfDiff: item.NewUQFMSVsQrfDiff,
-//             type: item.market_area_code,
-//             vsQrf: item.NewUQFMSVsQRF,
-//             yy: item.NewUQFMSYY
-//         }
-//         let newPM =
-//         {
-//             index: i,
-//             actuals: item.NewUQFMSCW,
-//             qrf: item.NewUQFMSTargetCW,
-//             qrfDiff: item.NewUQFMSQRFDiffCW,
-//             vsQrf: item.NewUQFMSVsQRFCW,
-//             ww: item.NewUQFMSWW,
-//             type: item.market_area_code,
-//         }
-//         //Paid Media Sourced
-//         let paid = {
-//             index: i,
-//             actuals: item.PaidMediaSourcedUQFMSActual,
-//             qq: item.PaidMediaSourcedUQFMSQQTY,
-//             qrf: item.PaidMediaSourcedUQFMSTargetFQ,
-//             qrfDiff: item.PaidMediaSourcedUQFMSVsQrfDiff,
-//             type: item.market_area_code,
-//             vsQrf: item.PaidMediaSourcedUQFMSVsQRF,
-//             yy: item.PaidMediaSourcedUQFMSYY
-//         }
-//         let paidPM =
-//         {
-//             index: i,
-//             actuals: item.PaidMediaSourcedUQFMSCW,
-//             qrf: item.PaidMediaSourcedUQFMSTargetCW,
-//             qrfDiff: item.PaidMediaSourcedUQFMSQRFDiffCW,
-//             vsQrf: item.PaidMediaSourcedUQFMSVsQRFCW,
-//             ww: item.PaidMediaSourcedUQFMSWW,
-//             type: item.market_area_code,
-//         }
-//         //UQFM
-//         let uqfm = {
-//             index: i,
-//             actuals: item.UQFMConversionActual,
-//             qq: item.UQFMConversionQQTY,
-//             qrf: item.UQFMActual,
-//             qrfDiff: item.UQFMConversionActual,
-//             type: item.market_area_code,
-//             vsQrf: item.UQFMConversionActual,
-//             yy: item.UQFMConversionYY
-//         }
-//         let uqfmPM =
-//         {
-//             index: i,
-//             actuals: item.UQFMConversionCW,
-//             qrf: item.UQFMConversionCW,
-//             qrfDiff: item.UQFMConversionWW,
-//             vsQrf: item.UQFMConversionWW,
-//             ww: item.UQFMConversionWW,
-//             type: item.market_area_code,
-//         }
+        }
+    }
+}
+export function processTrySignUpAppQTDData(data, newState) {
+    //Clear old Values
+    newState[11].details = { ...newState[11].details, signUpApp: { qtd: [], week: [] } };
+    newState[12].details = { ...newState[12].details, signUpApp: { qtd: [], week: [] } };
 
-//         newState[5].details.market.qtd.push(marketable);
-//         newState[6].details.market.qtd.push(uqfm);
-//         newState[8].details.market.qtd.push(paid);
-//         newState[9].details.market.qtd.push(newUqfm);
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        //New QFM
+        for (let i = 0; i < data.length; i++) {
+            let item = data[i];
+            //New UQFM
+            let newUQFM = {
+                index: i,
+                actuals: item.NewUQFMsActuals,
+                marketArea: item.signup_app,
+                type: item.signup_category,
+                qq: item.NewUQFMsQQTY,
+                qrf: item.NewUQFMsTarget,
+                qrfDiff: item.NewUQFMsVsQrfDiff,
+                vsQrf: item.NewUQFMsVsQrf,
+                yy: item.NewUQFMsYY
+            }
+            let newUQFMWeek =
+            {
+                index: i,
+                marketArea: item.signup_app,
+                type: item.signup_category,
+                actuals: item.NewUQFMsCW,
+                qrf: item.NewUQFMsTargetCW,
+                qrfDiff: item.NewUQFMsCWVsQrfDiff,
+                vsQrf: item.NewUQFMsCWVsQrf,
+                ww: item.NewUQFMsWW,
+            }
+            //Cumu UQFM
+            let cumuUQFM = {
+                index: i,
+                marketArea: item.signup_app,
+                type: item.signup_category,
+                actuals: item.CumUQFMsActuals,
+                qq: item.CumUQFMsQQTY,
+                qrf: item.CumUQFMsTarget,
+                qrfDiff: item.CumUQFMsVsQrfDiff,
+                vsQrf: item.CumUQFMsVsQrf,
+                yy: item.CumUQFMsYY
+            }
+            let cumuUQFMWeek =
+            {
+                index: i,
+                marketArea: item.signup_app,
+                type: item.signup_category,
+                actuals: item.CumUQFMsCW,
+                qrf: item.CumUQFMsTargetCW,
+                qrfDiff: item.CumUQFMsCWVsQrfDiff,
+                vsQrf: item.CumUQFMsCWVsQrf,
+                ww: item.CumUQFMsWW,
+            }
 
-//         newState[5].details.market.week.push(marketPM);
-//         newState[6].details.market.week.push(newPM);
-//         newState[8].details.market.week.push(paidPM);
-//         newState[9].details.market.week.push(uqfmPM);
+            newState[11].details.signUpApp.qtd.push(newUQFM);
+            newState[11].details.signUpApp.week.push(newUQFMWeek);
+            newState[12].details.signUpApp.qtd.push(cumuUQFM);
+            newState[12].details.signUpApp.week.push(cumuUQFMWeek);
 
+        }
+    }
+}
+export function processTrySignUpCatQTDData(data, newState) {
+    //Clear old Values
+    newState[10].details = { ...newState[10].details, signUpCat: { qtd: [], week: [] } };
 
+    newState[13].details = { ...newState[13].details, signUpCat: { qtd: [], week: [] } };
+    newState[14].details = { ...newState[14].details, signUpCat: { qtd: [], week: [] } };
+    newState[15].details = { ...newState[15].details, signUpCat: { qtd: [], week: [] } };
 
-//     }
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        //New QFM
+        for (let i = 0; i < data.length; i++) {
+            let item = data[i];
+            //New QFM
+            let newQFM = {
+                index: i,
+                actuals: item.NewQFMsActuals,
+                type: item.signup_category,
+                qq: item.NewQFMsQQTY,
+                qrf: item.NewQFMsTarget,
+                qrfDiff: item.NewQFMsVsQrfDiff,
+                vsQrf: item.NewQFMsVsQrf,
+                yy: item.NewQFMsYY
+            }
+            let newQFMWeek =
+            {
+                index: i,
+                type: item.signup_category,
+                actuals: item.NewQFMsCW,
+                qrf: item.NewQFMsTargetCW,
+                qrfDiff: item.NewQFMsCWVsQrfDiff,
+                vsQrf: item.NewQFMsCWVsQrf,
+                ww: item.NewQFMsWW,
+            }
 
-// }
+            //Cumu QFM
+            let cumuQFM = {
+                index: i,
+                actuals: item.CumQFMsActuals,
+                type: item.signup_category,
+                qq: item.CumQFMsQQTY,
+                qrf: item.CumQFMsTarget,
+                qrfDiff: item.CumQFMsVsQrfDiff,
+                vsQrf: item.CumQFMsVsQrf,
+                yy: item.CumQFMsYY
+            }
+            let cumuQFMWeek =
+            {
+                index: i,
+                type: item.signup_category,
+                actuals: item.CumQFMsCW,
+                qrf: item.CumQFMsTargetCW,
+                qrfDiff: item.CumQFMsCWVsQrfDiff,
+                vsQrf: item.CumQFMsCWVsQrf,
+                ww: item.CumQFMsWW,
+            }
+            //Day 28
+            let day28 = {
+                index: i,
+                actuals: item.Day28NewUQFMActual,
+                type: item.signup_category,
+                qq: item.Day28NewUQFMQQTY,
+                qrf: item.Day28NewUQFMTarget,
+                qrfDiff: item.Day28NewUQFMVsQrfDiff,
+                vsQrf: item.Day28NewUQFMVsQrf,
+                yy: item.Day28NewUQFMYY
+            }
+            let day28Week =
+            {
+                index: i,
+                type: item.signup_category,
+                actuals: item.Day28NewUQFMCW,
+                qrf: item.Day28NewUQFMTargetCW,
+                qrfDiff: item.Day28NewUQFMCWVsQrfDiff,
+                vsQrf: item.Day28NewUQFMCWVsQrf,
+                ww: item.Day28NewUQFMWW,
+            }
+            //Cumu UQFM to QFM
+            let cumuUTQ = {
+                index: i,
+                actuals: item.CumUQFMToQFMActual,
+                type: item.signup_category,
+                qq: item.CumUQFMToQFMQQTY,
+                qrf: item.CumUQFMToQFMTarget,
+                qrfDiff: item.CumUQFMToQFMVsQrfDiff,
+                vsQrf: item.CumUQFMToQFMVsQrf,
+                yy: item.CumUQFMToQFMYY
+            }
+            let cumuUTQWeek =
+            {
+                index: i,
+                type: item.signup_category,
+                actuals: item.CumUQFMToQFMCW,
+                qrf: item.CumUQFMToQFMTargetCW,
+                qrfDiff: item.CumUQFMToQFMCWVsQrfDiff,
+                vsQrf: item.CumUQFMToQFMCWVsQrf,
+                ww: item.CumUQFMToQFMWW,
+            }
 
+            newState[10].details.signUpCat.qtd.push(newQFM);
+            newState[10].details.signUpCat.week.push(newQFMWeek);
 
+            newState[13].details.signUpCat.qtd.push(cumuQFM);
+            newState[13].details.signUpCat.week.push(cumuQFMWeek);
+            newState[14].details.signUpCat.qtd.push(day28);
+            newState[14].details.signUpCat.week.push(day28Week);
+            newState[15].details.signUpCat.qtd.push(cumuUTQ);
+            newState[15].details.signUpCat.week.push(cumuUTQWeek);
+
+        }
+    }
+}

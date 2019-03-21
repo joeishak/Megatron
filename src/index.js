@@ -6,20 +6,17 @@ import Summary from 'Views/Summary/Summary.js';
 import registerServiceWorker from './registerServiceWorker';
 import { Security, ImplicitCallback, SecureRoute } from '@okta/okta-react';
 import { config as config } from './environmentParams';
-
 import Login from './auth/Login';
 
 function onAuthRequired({history}) {
 	history.push('/login');
 }
-
 const inStyles = {
 	root: {
 		height: '100%',
 		width: '100%'
 	}
 }
-
 ReactDOM.render(
 
 	<Root style={inStyles.root} >
@@ -33,7 +30,7 @@ ReactDOM.render(
 
 				<SecureRoute path="/summary" exact={true} component={Summary} />
 				<SecureRoute path="/" exact={true} component={Summary} />
-					<Route path="/login" render={() => ( <Login baseUrl="https://dev-575609.oktapreview.com"jish />)}
+				<Route path="/login" render={() => ( <Login baseUrl="https://dev-575609.oktapreview.com"jish />)}
              	/>
 				{/* <Route path="/login" render={() => ( <Login baseUrl="https://adobe.okta.com" />)}
              	/> */}

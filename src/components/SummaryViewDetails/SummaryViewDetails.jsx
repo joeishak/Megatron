@@ -88,6 +88,7 @@ class SummaryViewDetails extends Component {
     this.setState({ activeTimeMetric: e.target.innerHTML.toLowerCase() });
   }
   updateSingleValue = (e) => {
+    this.setState({singleValueSubmitted: true});
     console.log('Updating SingleValue', e);
     let copy = this.state.selectedFilters;
     if (this.state.selectedFilters.length === 0) {
@@ -117,6 +118,7 @@ class SummaryViewDetails extends Component {
 
   }
   updateMultiValue = (e, type) => {
+    this.setState({multiValueSubmitted: true});
     console.log('Updating MultiValue', e, type);
     let copy = this.state.selectedFilters;
     if (e.length === 0) {
@@ -182,7 +184,8 @@ class SummaryViewDetails extends Component {
     };
 
     console.log(this.state.selectedFilters);
-    Object.keys(newFilters).forEach(item => {
+    if(this.state.singleValueSubmitted || this.state.multiValueSubmitted){
+      Object.keys(newFilters).forEach(item => {
 
       switch (item) {
         case QUARTER:
@@ -244,20 +247,21 @@ class SummaryViewDetails extends Component {
 
     console.log(newFilters);
 
-    this.setState({ selectedFilters: [] })
+    this.setState({ selectedFilters: [],singleValueSubmitted:false,multiValueSubmitted: false })
 
     this.props.submitFilters(newFilters);
     //  this.props.getSummaryData(newFilters);
     // this.props.handleClose();
+  }
   }
   closeSingleValue(e) {
     console.log('Closing Single Value', this.state.selectedFilters);
   }
 
   closeMultiValue = (e) => {
-    console.log('Closing Multivalue', this.state.selectedFilters);
-    this.submitFilters({});
-
+    console.log('Closing Multivalue', this.state.selectedFilters,e);
+  
+      this.submitFilters({});
   }
   getSummaryFilters(activeItem) {
     let drillDownFilter;
@@ -324,7 +328,7 @@ class SummaryViewDetails extends Component {
         return (
           <div className="row">
             {/* Channel */}
-            <div className="col-md-6 col-lg-6">
+            <div className="col-md-4 col-lg-4">
               <SingleValueSelect
                 activeFilters={[]}
                 options={channelMU.availableFilters}
@@ -345,7 +349,7 @@ class SummaryViewDetails extends Component {
         return (
           <div className="row">
             {/* Channel */}
-            <div className="col-md-12 col-lg-12">
+            <div className="col-md-4 col-lg-4">
               <SingleValueSelect
                 activeFilters={[]}
                 options={channelPM.availableFilters}
@@ -361,7 +365,7 @@ class SummaryViewDetails extends Component {
         //Paid Media Sourced
         return (
           <div className="row">
-            <div className="col-md-12 col-lg-12">
+            <div className="col-md-4 col-lg-4">
               {/* Channel */}
               <SingleValueSelect
                 activeFilters={[]}
@@ -421,53 +425,6 @@ class SummaryViewDetails extends Component {
             />
           </div>
         </div>
-        );
-
-      //Try
-      case SUMMARY_FILTERS.TRY_NEW_QFMS:
-        return (
-          // New QFMS
-          <div className="row">
-            {/* Product Name */}
-            <div className="col-md-12 col-lg-12">
-              <SingleValueSelect
-                activeFilters={[]}
-                options={visits.availableFilters}
-                onValueChange={e => { console.log(e) }}
-                onMenuClose={e => { console.log(e) }}
-              />
-            </div>
-          </div>
-        );
-      case SUMMARY_FILTERS.TRY_NEW_UQFMS:
-        return (
-          // New UQFMS
-          <div className="row">
-            {/* Sign Up APP*/}
-            <div className="col-md-12 col-lg-12">
-              <SingleValueSelect
-                activeFilters={[]}
-                options={visits.availableFilters}
-                onValueChange={e => { console.log(e) }}
-                onMenuClose={e => { console.log(e) }}
-              />
-            </div>
-          </div>
-        );
-      case SUMMARY_FILTERS.TRY_CUMULATIVE_UQFMS:
-        return (
-          // Cumulative UQFMS
-          <div className="row">
-            {/* Sign Up APPP*/}
-            <div className="col-md-12 col-lg-12">
-              <SingleValueSelect
-                activeFilters={[]}
-                options={visits.availableFilters}
-                onValueChange={e => { console.log(e) }}
-                onMenuClose={e => { console.log(e) }}
-              />
-            </div>
-          </div>
         );
       //Buy
       case SUMMARY_FILTERS.BUY_CONVERSION:
