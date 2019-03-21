@@ -24,6 +24,22 @@ class PanelItemTableHeader extends Component {
                 return 'Segment';
             case DIMENSIONS.CONVERSION:
                 return 'Conversion'
+            case DIMENSIONS.SIGNAPP:
+                return 'Sign Up App'
+                case DIMENSIONS.SIGNCAT:
+                return 'Sign Up Category';
+            case DIMENSIONS.MOBILEVSDESKTOP:
+                return 'Mobile or  Desktop';
+            case DIMENSIONS.NEWVSREPEAT:
+                return 'New Or Repeat';
+            case DIMENSIONS.LTC: 
+                return 'Last Touch Channel';
+            case DIMENSIONS.WEBSEGMENT:
+                return 'Web Segment';
+            case DIMENSIONS.CHANNELPM:
+                return 'Channel';
+            case DIMENSIONS.CHANNELMU:
+                return 'Channel';
             default:
                 return 'Product';
         }

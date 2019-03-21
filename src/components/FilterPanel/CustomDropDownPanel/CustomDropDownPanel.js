@@ -113,7 +113,8 @@ class CustomDropDownPanel extends Component {
             NEWVSREPEAT,
             MOBILEVSDESKTOP,
             CONVERSION,
-            VISITS
+            VISITS,
+            SIGNCAT
         } = DIMENSIONS;
         // console.log('Submitting Filters . . . ');
         this.setState({ isButtonHighlighted: false })
@@ -139,6 +140,11 @@ class CustomDropDownPanel extends Component {
                     newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SEGMENT })) ?
                         [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
                         [...this.props.filters.segment.valueFilters];
+                    break;
+                case SIGNCAT:
+                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SIGNCAT })) ?
+                        [_.find(this.state.selectedFilters, (item => { return item.category === SIGNCAT }))] :
+                        [...this.props.filters.signupCategory.valueFilters];
                     break;
                 default:
                     let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category ===  item }));
@@ -248,10 +254,10 @@ class CustomDropDownPanel extends Component {
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Sign Up Source</p>
+                            <p> Sign Up</p>
                             <SingleValueSelect
-                                activeFilters={filters.segment.valueFilters}
-                                options={filters.segment.availableFilters}
+                                activeFilters={filters.signupCategory.valueFilters}
+                                options={filters.signupCategory.availableFilters}
                                 onValueChange={this.updateSingleValue}
                                 onMenuClose={this.closeSingleValue}
                             />

@@ -29,7 +29,7 @@ import {
   TABLET,
   LAPTOP
 } from "../../Constants/consts.js";
-import $ from 'jquery'; 
+import $ from 'jquery';
 
 // import { timingSafeEqual } from "crypto";
 class Summary extends Component {
@@ -104,13 +104,20 @@ class Summary extends Component {
     let primaryLoaded = this.props.summaryData.primary[this.props.activePrimaryCard].value !== prevProps.summaryData.primary[this.props.activePrimaryCard].value;
     let secondaryLoaded = this.props.summaryData.secondary[this.props.activeSecondaryCard].value !== prevProps.summaryData.secondary[this.props.activeSecondaryCard].value;
     if (this.props.NetNew.value !== prevProps.NetNew.value) {
+      console.log('Finance Changed');
       this.setState({ fetchingFinance: false });
     }
     if (this.props.Traffic.value !== prevProps.Traffic.value) {
-      this.setState({ fetchingTraffic: false });
+      console.log('Traffic Changed');
+      this.setState({ fetchingDiscoverTraffic: false });
     }
     if (this.props.Market.value !== prevProps.Market.value) {
-      this.setState({ fetchingMarketing: false });
+      console.log('Marketing Changed');
+      this.setState({ fetchingDiscoverMarketing: false });
+    }
+    if (this.props.NewQFM.value !== prevProps.NewQFM.value) {
+      console.log('Try Changed');
+      this.setState({ fetchingTry: false });
     }
     // console.log('Checking Filters (',filtersAreLoaded,'): 1. Previouly: ',prevProps.filters,'Currently: ',this.props.filters);
     // console.log('Checking Preferences (',this.props.preferences,'): 1. Previouly: ',prevProps.preferences,'Currently: ',this.props.preferences);
@@ -139,9 +146,9 @@ class Summary extends Component {
     // // //Initial App Loads on Finance Tab
     if (this.state.filtersAreLoaded === true && this.state.preferncesAreAddedToFilters === true && this.state.initialDataLoadIsComplete === false) {
       console.log('Both Preferences and Filters are loaded');
-      this.setState({ fetchingFinance: true })
       this.props.getFinanceSecondaryData(this.props.filters);
       this.props.getPrimaryData(this.props.filters);
+      this.setState({ fetchingFinance: true, financeHasLoaded: true })
       if (this.state.initialDataLoadIsComplete === false) {
         this.setState({ initialDataLoadIsComplete: true })
       }
@@ -150,21 +157,32 @@ class Summary extends Component {
     if (this.state.initialDataLoadIsComplete === true && (this.props.filters !== prevProps.filters)) {
       this.setState({ isLoading: true, filtersUpdated: true });
       this.props.getPrimaryData(this.props.filters);
+      this.setState({
+        financeHasLoaded: false,
+        discoverHasLoaded: false,
+        tryHasLoaded: false
+      });
+
+
       switch (this.props.activePrimaryCard) {
         case 0:
           console.log('Fetching Finance')
           this.setState({ fetchingFinance: true });
+          this.setState({ financeHasLoaded: true });
           this.props.getFinanceSecondaryData(this.props.filters);
           break;
         case 1:
           console.log('Fetching Discover')
-          this.setState({ fetchingTraffic: true, fetchingMarketing: true });
+          this.setState({ fetchingDiscoverMarketing: true, fetchingDiscoverTraffic: true });
+          this.setState({ discoverHasLoaded: true });
           this.props.getMarketingSecondaryData(this.props.filters);
           this.props.getTrafficSecondaryData(this.props.filters);
 
           break;
         case 2:
           console.log('Fetching Try')
+          this.setState({ fetchingTry: true });
+          this.setState({ tryHasLoaded: true });
           this.props.getTrySecondaryData(this.props.filters);
           break;
         case 3:
@@ -188,65 +206,168 @@ class Summary extends Component {
       this.setState({ userChangedCards: true, isLoading: true });
       switch (this.props.activePrimaryCard) {
         case 0:
-
           console.log('Fetching Finance')
-          this.props.getFinanceSecondaryData(this.props.filters);
+          if (!this.state.financeHasLoaded) {
+            this.props.getPrimaryData(this.props.filters);
+            this.props.getFinanceSecondaryData(this.props.filters);
+            this.setState({fetchingFinance: true, financeHasLoaded: true });
+
+          } else {
+            this.setState({
+              isLoading: false,
+              isInitiallyLoading: false,
+              secondaryLoaded: false,
+              userChangedCards: false
+            });
+            this.props.isFetching(false);
+          }
           break;
         case 1:
-          console.log('Fetching Discover')
-          this.setState({ fetchingTraffic: true, fetchingMarketing: true });
-          this.props.getTrafficSecondaryData(this.props.filters);
-          this.props.getMarketingSecondaryData(this.props.filters);
+          console.log('Fetching Discover', this.state.discoverHasLoaded)
+          if (!this.state.discoverHasLoaded) {
+            this.props.getPrimaryData(this.props.filters);
+            this.props.getTrafficSecondaryData(this.props.filters);
+            this.props.getMarketingSecondaryData(this.props.filters);
+
+            this.setState({ fetchingDiscoverTraffic: true, discoverHasLoaded: true, fet: true });
+
+          } else {
+            this.setState({
+              isLoading: false,
+              isInitiallyLoading: false,
+              secondaryLoaded: false,
+              userChangedCards: false
+            });
+            this.props.isFetching(false);
+          }
+
 
           break;
         case 2:
           console.log('Fetching Try')
-          this.props.getTrySecondaryData(this.props.filters);
+          if (!this.state.tryHasLoaded) {
+
+            this.props.getPrimaryData(this.props.filters);
+            this.props.getTrySecondaryData(this.props.filters);
+
+            this.setState({ fetchingTry: true });
+            this.setState({ tryHasLoaded: true });
+          } else {
+            this.setState({
+              isLoading: false,
+              isInitiallyLoading: false,
+              secondaryLoaded: false,
+              userChangedCards: false
+            });
+            this.props.isFetching(false);
+          }
+
           break;
         case 3:
           console.log('Fetching Buy')
-          this.props.getBuySecondaryData(this.props.filters);
+          // this.props.getBuySecondaryData(this.props.filters);
           break;
         case 4:
           console.log('Fetching Use')
-          this.props.getUseSecondaryData(this.props.filters);
+          // this.props.getUseSecondaryData(this.props.filters);
           break;
         case 5:
           console.log('Fetching Renew')
-          this.props.getRenewSecondaryData(this.props.filters);
+          // this.props.getRenewSecondaryData(this.props.filters);
           break;
         default:
           break;
       }
     }
 
-    //
-    if (appInitialLoadIsComplete && this.state.initialDataLoadIsComplete === true && this.state.primaryLoaded && this.state.secondaryLoaded) {
-      console.log('Setting Loaded to False in the First If');
+    //When the app initially finishes loading finance primary and secondary
+    if (this.state.primaryLoaded===true && this.state.secondaryLoaded===true) {
+      console.log('Setting Load to False in the primary vs secondary');
       this.setState({ isLoading: false, isInitiallyLoading: false });
       this.props.isFetching(false);
       this.setState({ primaryLoaded: false, secondaryLoaded: false });
-    } else if (appInitialLoadIsComplete && this.state.initialDataLoadIsComplete === true && this.state.userChangedCards && this.state.secondaryLoaded) {
-      console.log('Setting Loaded to False in the Second If');
-      this.setState({ isLoading: false, isInitiallyLoading: false });
-      this.props.isFetching(false);
-      this.setState({ secondaryLoaded: false, userChangedCards: false });
+
     }
-    else if (this.state.filtersUpdated && secondaryLoaded) {
-      console.log('Setting Loaded to False in the third If');
-      this.setState({ isLoading: false, isInitiallyLoading: false });
-      this.props.isFetching(false);
-    } else if (this.state.fetchingFinance === false && this.state.primaryLoaded && this.state.secondaryLoaded) {
-      console.log('Setting Loaded to False in the Fourth If');
-      this.setState({ isLoading: false, isInitiallyLoading: false });
-      this.props.isFetching(false);
-      this.setState({ fetchingFinance: true});
-    } else if (this.state.fetchingMarketing === false && this.state.fetchingTraffic===false) {
-      console.log('Setting Loaded to False in the fifth If');
-      this.setState({ isLoading: false, isInitiallyLoading: false });
-      this.props.isFetching(false);
-      this.setState({ fetchingTraffic: true, fetchingMarketing: true });
+    if (this.state.userChangedCards) {
+
+      switch (this.props.activePrimaryCard) {
+        case 0:
+          if (this.state.financeHasLoaded && this.state.fetchingFinance===false) {
+            this.setState({
+              isLoading: false,
+              isInitiallyLoading: false,
+              secondaryLoaded: false,
+              userChangedCards: false
+            });
+            this.props.isFetching(false);
+      this.setState({primaryLoaded: false, secondaryLoaded: false});
+          }
+          break;
+        case 1:
+          if (this.state.discoverHasLoaded && this.state.fetchingDiscoverMarketing===false && this.state.fetchingDiscoverTraffic===false) {
+            console.log('Setting off In Disocver');
+            this.setState({
+              isLoading: false,
+              isInitiallyLoading: false,
+              secondaryLoaded: false,
+              userChangedCards: false
+            });
+            this.props.isFetching(false);
+            this.setState({primaryLoaded: false, secondaryLoaded: false});
+
+          }
+          break;
+        case 2:
+          if (this.state.tryHasLoaded && this.state.fetchingTry === false) {
+            this.setState({
+              isLoading: false,
+              isInitiallyLoading: false,
+              secondaryLoaded: false,
+              userChangedCards: false
+            });
+            this.props.isFetching(false);
+      this.setState({primaryLoaded: false, secondaryLoaded: false});
+
+          }
+          break;
+        default:
+          break;
+      }
+      
+
     }
+    //When the app initially finishes loading discover primary and secondary
+    //When the app initially finishes loading try primary and secondary
+    // if (appInitialLoadIsComplete && this.state.initialDataLoadIsComplete === true && this.state.primaryLoaded && this.state.secondaryLoaded) {
+    //   console.log('Setting Loaded to False in the First If');
+    //   this.setState({ isLoading: false, isInitiallyLoading: false });
+    //   this.props.isFetching(false);
+    //   this.setState({ primaryLoaded: false, secondaryLoaded: false });
+    // } else if (appInitialLoadIsComplete && this.state.initialDataLoadIsComplete === true && this.state.userChangedCards && this.state.secondaryLoaded) {
+    //   console.log('Setting Loaded to False in the Second If');
+    //   this.setState({ isLoading: false, isInitiallyLoading: false });
+    //   this.props.isFetching(false);
+    //   this.setState({ secondaryLoaded: false, userChangedCards: false });
+    // }
+    // else if ( this.state.initialDataLoadIsComplete === true && this.state.filtersUpdated && secondaryLoaded ) {
+    //   console.log('Setting Loaded to False in the third If');
+    //   this.setState({ isLoading: false, isInitiallyLoading: false });
+    //   this.props.isFetching(false);
+    // } else if ( this.state.initialDataLoadIsComplete === true && this.state.fetchingFinance === false && this.state.primaryLoaded && this.state.secondaryLoaded) {
+    //   console.log('Setting Loaded to False in the Fourth If');
+    //   this.setState({ isLoading: false, isInitiallyLoading: false });
+    //   this.props.isFetching(false);
+    //   this.setState({ fetchingFinance: true});
+    // } else if ( this.state.initialDataLoadIsComplete === true && this.state.fetchingMarketing === false && this.state.fetchingTraffic===false) {
+    //   console.log('Setting Loaded to False in the fifth If');
+    //   this.setState({ isLoading: false, isInitiallyLoading: false });
+    //   this.props.isFetching(false);
+    //   this.setState({ fetchingTraffic: true, fetchingMarketing: true });
+    // } else if(  this.state.initialDataLoadIsComplete === true && this.state.primaryLoaded && this.state.secondaryLoaded && this.state.fetchingTry === false ){
+    //   this.setState({ isLoading: false, isInitiallyLoading: false });
+    //   this.props.isFetching(false);
+    //   this.setState({ fetchingTry: true });
+    // }
 
   }
   stopLoading() {
@@ -266,7 +387,7 @@ class Summary extends Component {
         break;
       case (2):
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(11);
+        this.props.updateActiveSecondaryCard(10);
         break;
       case (3):
         this.props.updateMultichartMetric(true);
@@ -363,9 +484,9 @@ class Summary extends Component {
 
   takeDomScreenshot = () => {
     console.log('taking screenshot of dom');
-        
+
     // Handle taking DOM screenshot
-    html2canvas(document.body, {allowTaint: true, taintTest: false, backgroundColor: '#1F1F1F', useCORS: false}).then(function(canvas) {
+    html2canvas(document.body, { allowTaint: true, taintTest: false, backgroundColor: '#1F1F1F', useCORS: false }).then(function (canvas) {
       // Export the canvas to its data URI representation
       const image = canvas.toDataURL("image/png");
       const date = new Date().toLocaleDateString();
@@ -386,7 +507,7 @@ class Summary extends Component {
     const feedbackDialog = this.props.feedbackIsOpen ? <FeedBackDialog /> : null;
 
     const isMobileOrTablet = utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet');
-    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails secondaryData={this.props.secondaryData}/>;
+    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails secondaryData={this.props.secondaryData} />;
     return (
       <div style={isMobileOrTablet ? { height: `${this.props.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
 
@@ -394,10 +515,10 @@ class Summary extends Component {
         {feedbackDialog}
 
         {/* Navigation*/}
-        <Navigation mobileFiltersIsShown = {this.props.mobileFiltersIsShown} onFeedbackChange={this.takeDomScreenshot}/>
+        <Navigation mobileFiltersIsShown={this.props.mobileFiltersIsShown} onFeedbackChange={this.takeDomScreenshot} />
         <FilterPanel
 
-        window={this.props.window} />
+          window={this.props.window} />
         {
           this.state.isLoading === true ? <LoadingScreen /> :
             (
@@ -405,7 +526,7 @@ class Summary extends Component {
                 {/* Data Preferences */}
                 <div>
                   <div>
-                    <CommentPanel user={this.props.user}/>
+                    <CommentPanel user={this.props.user} />
 
                     {/* Primary */}
 
@@ -435,8 +556,8 @@ function mapStateToProps(state) {
 
   // console.log("Filters Updated:",state.filters);
   console.log(state.summaryData.secondary);
-  console.log("Filters Updated:",state.filters);
-  console.log('SUMMARY JS STATE',  state);
+  console.log("Filters Updated:", state.filters);
+  console.log('SUMMARY JS STATE', state);
   return {
     authenticated: state.authenticated,
     statsDetails: state.summaryData.secondary[state.activeCards.secondary].details.stats,
@@ -462,6 +583,7 @@ function mapStateToProps(state) {
     NetNew: state.summaryData.secondary[0],
     Traffic: state.summaryData.secondary[4],
     Market: state.summaryData.secondary[5],
+    NewQFM: state.summaryData.secondary[10],
     commentsPackage: state.commentsPackage,
     feedbackIsOpen: state.isFeedBackDialogOpen
   };

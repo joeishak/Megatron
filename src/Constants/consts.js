@@ -15,6 +15,7 @@ export const DIMENSIONS = {
     VISITSTATUS: "visitstatus",
     SIGNSOURCE: "signupsource",
     SIGNAPP: "signupapp",
+    SIGNCAT: "signUpCat",
     PRODUCTCAT: "productcategory",
     WEBSEGMENT: "websegment",
     PVW: "pvw",
@@ -34,12 +35,8 @@ export const SUMMARY_FILTERS = {
     DISCOVER_MARKETABLE_UNIVERSE: 5,
     DISCOVER_PAID_MEDIA_SPEND: 7,
     DISCOVER_PAID_MEDIA_SOURCED: 8,
-    DISCOVER_NEW_UQFMS: 9,
-    DISCOVER_BOUNCE_RATE: 10,
+    DISCOVER_BOUNCE_RATE: 9,
 
-    TRY_NEW_QFMS: 11,
-    TRY_NEW_UQFMS: 12,
-    TRY_CUMULATIVE_UQFMS: 13,
 
     BUY_CONVERSION: 17,
     BUY_PAID_MEDIASPEND: 18,
