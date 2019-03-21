@@ -20,6 +20,8 @@ class MultiDimensionPanelItem extends Component {
             case 'qtd':
                 return (this.props.data.qtd.map(item => {
 
+                    // console.log('HERE',item);
+
                     if (this.props.type === DIMENSIONS.GEO ||this.props.type === DIMENSIONS.LTC  ) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
                             calculatedGeo = "";
@@ -119,6 +121,7 @@ class MultiDimensionPanelItem extends Component {
             case 'qtd':
                 return (this.props.data.qtd.map(item => {
 
+                    // console.log('HERE',item);
                     if (this.props.type === DIMENSIONS.GEO ||this.props.type === DIMENSIONS.ltc) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
                             calculatedGeo = "";

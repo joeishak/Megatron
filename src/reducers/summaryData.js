@@ -523,6 +523,7 @@ export function processFinancialQTD(newState, data) {
     }
 }
 export function processFinancialGeoQTD(newState, data) {
+
     //Clear old Values
     let item1 = [];
     let item2 = [];
@@ -584,13 +585,53 @@ export function processFinancialGeoQTD(newState, data) {
         item3.push(canc);
         item4.push(ren);
     }
-    newState[0].details.geo.qtd = item1;
-    newState[1].details.geo.qtd = item2;
-    newState[2].details.geo.qtd = item3;
-    newState[3].details.geo.qtd = item4;
+
+    newState[0].details.geo.qtd =  processQTDOrder(item1);
+    newState[1].details.geo.qtd =  processQTDOrder(item2);
+    newState[2].details.geo.qtd =  processQTDOrder(item3);
+    newState[3].details.geo.qtd =  processQTDOrder(item4);
 }
+
+/** Custom function to Reorder QTD Details with row always last */
+function processQTDOrder(data) {
+    let groupByMarketArea = _.groupBy(data, function(item) { return item.marketArea});
+    let rowsArr = groupByMarketArea.ROW;
+    let compiledArray = [];
+    let NewArr = [];
+    let removedRows = _.filter( Object.entries(groupByMarketArea), function(o) { 
+        return o[0] !== 'ROW'; 
+     });
+
+    for (let i = 0; i < removedRows.length; i++) {
+        let items = removedRows[i][1];
+        for (let j = 0; j < items.length; j++) {
+            NewArr.push(items[j]);
+        }
+    }
+
+    for (let k = 0; k < NewArr.length; k++) {
+        compiledArray.push(NewArr[k]);
+        let toFind = NewArr[k];
+        for (let a = 0; a < NewArr.length; a++) {
+            if (NewArr[a].type === toFind.type && NewArr[a] !== toFind) {
+                compiledArray.push(NewArr[a]);
+                NewArr.splice(a, 1);
+            }
+        }
+        for (let n = 0; n < rowsArr.length; n++) {
+            if (toFind.type === rowsArr[n].type) {
+                compiledArray.push(rowsArr[n]);
+                rowsArr.splice(n, 1);
+            }
+        }
+    }
+    // console.log(compiledArray.concat(rowsArr));
+    return compiledArray.concat(rowsArr);
+
+}
+
 export function processFinancialGeoWeek(newState, data) {
-    console.log(data);
+    // console.log(data);
     //Clear old Values
     let item1 = [];
     let item2 = [];
@@ -650,10 +691,10 @@ export function processFinancialGeoWeek(newState, data) {
         item3.push(canc);
         item4.push(ren);
     }
-    newState[0].details.geo.week = item1;
-    newState[1].details.geo.week = item2;
-    newState[2].details.geo.week = item3;
-    newState[3].details.geo.week = item4;
+    newState[0].details.geo.week = processQTDOrder(item1);
+    newState[1].details.geo.week = processQTDOrder(item2);
+    newState[2].details.geo.week = processQTDOrder(item3);
+    newState[3].details.geo.week = processQTDOrder(item4);
 }
 export function processFinancialMarketQTD(newState, data) {
 

@@ -128,7 +128,6 @@ class Summary extends Component {
     //Handle Boolean Test Results
     if (filtersAreLoaded) {
       console.log('Just Recieved filters');
-
       this.setState({ filtersAreLoaded: true });
     }
     if (this.state.filtersAreLoaded && preferencesAreLoaded && this.state.preferncesAreAddedToFilters === false) {

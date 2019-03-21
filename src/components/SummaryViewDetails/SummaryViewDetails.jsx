@@ -884,6 +884,7 @@ class SummaryViewDetails extends Component {
             </Workbook> */}
           </span>
 
+  
           <div className="stats-container-main">{this.props.activeItem.details.stats.map(item => {
             return (
               <div className="statsHeader" key={item.text}>
@@ -893,8 +894,8 @@ class SummaryViewDetails extends Component {
                 <div className="footer"> {item.text}</div>
               </div>
             )
-          }).reverse()
-          }</div>
+          })}</div>
+      
 
           <div className="chartContainer col-md-12">
             <KendoMultiChart color="white" deviceType="laptop"/>

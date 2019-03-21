@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from 'Root';
-import { HashRouter as Router, Route } from 'react-router-dom'; // Convert To HashRouter for IBApps Deployment
+import { BrowserRouter as Router, Route } from 'react-router-dom'; // Convert To HashRouter for IBApps Deployment
 import Summary from 'Views/Summary/Summary.js';
 import registerServiceWorker from './registerServiceWorker';
 import { Security, ImplicitCallback, SecureRoute } from '@okta/okta-react';
@@ -40,11 +40,11 @@ ReactDOM.render(
 
 				{/* <Route path="" exact={true} component={App} /> */}
 				{/* IBAPPS*/}
-				<Route path={`https://rtb.corp.adobe.com:8551/apps/rtbcallback/index.html`} component={ImplicitCallback} />
+				{/* <Route path={`https://rtb.corp.adobe.com:8551/apps/rtbcallback/index.html`} component={ImplicitCallback} /> */}
 				{/*  IIS*/}
 				{/* <Route path={`${process.env.PUBLIC_URL}` + '/implicit/callback/'} component={ImplicitCallback} /> */}
 				{/* // Localhost */}
-				{/* <Route path="/implicit/callback" component={ImplicitCallback} /> */}
+				<Route path="/implicit/callback" component={ImplicitCallback} />
 			</Security>
 
 		</Router>
