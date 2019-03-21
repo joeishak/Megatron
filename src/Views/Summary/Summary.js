@@ -202,14 +202,14 @@ class Summary extends Component {
     }
 
     if (this.props.activePrimaryCard !== prevProps.activePrimaryCard) {
-      this.setState({ userChangedCards: true, isLoading: true });
+      this.setState({ userChangedCards: true });
       switch (this.props.activePrimaryCard) {
         case 0:
           console.log('Fetching Finance')
           if (!this.state.financeHasLoaded) {
             this.props.getPrimaryData(this.props.filters);
             this.props.getFinanceSecondaryData(this.props.filters);
-            this.setState({fetchingFinance: true, financeHasLoaded: true });
+            this.setState({fetchingFinance: true, financeHasLoaded: true, isLoading: true });
 
           } else {
             this.setState({
@@ -228,7 +228,7 @@ class Summary extends Component {
             this.props.getTrafficSecondaryData(this.props.filters);
             this.props.getMarketingSecondaryData(this.props.filters);
 
-            this.setState({ fetchingDiscoverTraffic: true, discoverHasLoaded: true, fet: true });
+            this.setState({ fetchingDiscoverTraffic: true, discoverHasLoaded: true, fetchingDiscoverMarketing: true, isLoading: true });
 
           } else {
             this.setState({
@@ -249,7 +249,7 @@ class Summary extends Component {
             this.props.getPrimaryData(this.props.filters);
             this.props.getTrySecondaryData(this.props.filters);
 
-            this.setState({ fetchingTry: true });
+            this.setState({ fetchingTry: true, isLoading: true });
             this.setState({ tryHasLoaded: true });
           } else {
             this.setState({

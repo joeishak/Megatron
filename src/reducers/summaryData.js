@@ -66,8 +66,10 @@ export default function (state = {
             processFinancialMultichart(newState.secondary, action.payload[1].data);
             processFinancialUnitsMultichart(newState.secondary, action.payload[2].data);
             processFinancialQTD(newState.secondary, action.payload[3].data);
+
             processFinancialGeoQTD(newState.secondary, action.payload[4].data);
             processFinancialGeoWeek(newState.secondary, action.payload[4].data)
+
             processFinancialMarketQTD(newState.secondary, action.payload[5].data);
             processFinancialMarketWeek(newState.secondary, action.payload[5].data);
             processFinancialrouteQTD(newState.secondary, action.payload[7].data);
@@ -490,7 +492,7 @@ export function processFinancialQTD(newState, data) {
     }
 }
 export function processFinancialGeoQTD(newState, data) {
-
+    console.log('YO', data);
     //Clear old Values
     let item1 = [];
     let item2 = [];
@@ -502,7 +504,7 @@ export function processFinancialGeoQTD(newState, data) {
             index: i,
             actuals: item.NewActuals,
             units: item.NewUnitsActual,
-            type: item.market_area_group,
+            marketArea: item.market_area_group,
             qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
@@ -553,6 +555,7 @@ export function processFinancialGeoQTD(newState, data) {
         item4.push(ren);
     }
 
+    console.log('YO', item1);
     newState[0].details.geo.qtd =  processQTDOrder(item1);
     newState[1].details.geo.qtd =  processQTDOrder(item2);
     newState[2].details.geo.qtd =  processQTDOrder(item3);
@@ -561,20 +564,23 @@ export function processFinancialGeoQTD(newState, data) {
 
 /** Custom function to Reorder QTD Details with row always last */
 function processQTDOrder(data) {
+    console.log('YO',data);
     let groupByMarketArea = _.groupBy(data, function(item) { return item.marketArea});
+    let arr = Object.entries(groupByMarketArea);
     let rowsArr = groupByMarketArea.ROW;
     let compiledArray = [];
     let NewArr = [];
-    let removedRows = _.filter( Object.entries(groupByMarketArea), function(o) { 
+    let removedRows = _.filter(arr , function(o) { 
         return o[0] !== 'ROW'; 
      });
 
+     console.log('YO', removedRows);
     for (let i = 0; i < removedRows.length; i++) {
         let items = removedRows[i][1];
         for (let j = 0; j < items.length; j++) {
             NewArr.push(items[j]);
+            }
         }
-    }
 
     for (let k = 0; k < NewArr.length; k++) {
         compiledArray.push(NewArr[k]);
