@@ -594,6 +594,7 @@ function processQTDOrder(data) {
         for (let e = 0; e < data.length; e++) {
             if (data[e].marketArea === "ROW") {
                 hasRows = true;
+                break;
             }
         }
 
