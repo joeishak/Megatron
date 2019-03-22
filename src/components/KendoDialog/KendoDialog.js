@@ -546,7 +546,7 @@ function mapStateToProps(state) {
     return {
         dialogIsOpen: state.isDialogOpen,
         availableFilters: state.availableFilters,
-        activeFilters: state.activeFilters,
+        activeFilters: state.filters.combined,
         user: state.user,
         defaultView: state.preferences.defaultSummaryView,
         preferences: state.preferences,

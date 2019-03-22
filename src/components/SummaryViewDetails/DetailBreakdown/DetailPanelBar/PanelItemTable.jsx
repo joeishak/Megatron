@@ -12,9 +12,6 @@ class PanelItemTable extends Component {
             isJourney: this.props.activeSummary.index > 3
         }
     }
-    componentDidMount() {
-
-    }
 
     getDataContent(type) {
         switch (type) {
@@ -87,20 +84,30 @@ class PanelItemTable extends Component {
                     data={this.props.activeSummary.details.channel}
                     isJourney={this.state.isJourney}
                     type={DIMENSIONS.CHANNELMU} />
-            // case DIMENSIONS.SIGNAPP:
-            //     return <MultiDimensionPanelItem
-            //         timeMetric={this.props.timeMetric}
-            //         data={this.props.activeSummary.details.channel}
-            //         isJourney={this.state.isJourney}
-            //         type={DIMENSIONS.SIGNAPP} />
+
             case DIMENSIONS.SIGNCAT:
                 return <SingleDimensionPanelItem
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.signUpCat}
                     isJourney={this.state.isJourney}
                     type={DIMENSIONS.SIGNCAT} />
+            case DIMENSIONS.SIGNAPP:
+                return <MultiDimensionPanelItem
+                    activeSecondary={this.props.activeSecondary}
+                    timeMetric={this.props.timeMetric}
+                    data={this.props.activeSummary.details.signUpApp}
+                    isJourney={this.state.isJourney}
+                    type={DIMENSIONS.SIGNAPP} />
+            case DIMENSIONS.VISITS:
+                return <MultiDimensionPanelItem
+                    activeSecondary={this.props.activeSecondary}
+                    timeMetric={this.props.timeMetric}
+                    data={this.props.activeSummary.details.visits}
+                    isJourney={this.state.isJourney}
+                    type={DIMENSIONS.VISITS} />
             default:
                 return <MultiDimensionPanelItem
+                    activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.geo}
                     isJourney={this.state.isJourney}

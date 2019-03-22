@@ -1,5 +1,6 @@
 .secondaryCLContainer {
 	float: left;
+	position: relative;
 }
 
 .journeyBoxHover:hover {
@@ -19,7 +20,58 @@
 	box-sizing: border-box;
 }
 
-boxContentAmountGreen
+.renew-overlay {
+	height: 540px;
+	border: 2px solid #ffffff;
+	background-color: #3c3c3c;
+	position: absolute;
+	top: 135px;
+	left: 0;
+	z-index: 10;
+	width: 35px;
+}
+
+.renew-overlay-two {
+	height: 405px;
+	border: 2px solid #ffffff;
+	background-color: #3c3c3c;
+	position: absolute;
+	top: 675px;
+	left: 0;
+	z-index: 10;
+	width: 35px;
+}
+
+.renew-overlay-vertext {
+	transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	position: absolute; 
+	color: rgb(255, 255, 255);
+	font-size: 16px;
+	font-weight: 600;
+	text-align: center;
+	top: 250px;
+	left: -100px;
+	width: 230px;
+}
+
+
+.renew-overlay-vertext-two {
+	transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	position: absolute; 
+	color: rgb(255, 255, 255);
+	font-size: 16px;
+	font-weight: 600;
+	text-align: center;
+	top: 185px;
+	left: -100px;
+	width: 230px;
+}
+
+
 
 .journeyHeader {
 	height: 100%;
@@ -132,7 +184,7 @@ boxContentAmountGreen
 	font-weight: 200;
 	line-height: normal;
 	font-size: 15px;
-	padding-left: 30px;
+	padding-left: 45px;
 	padding-top: 14px;
 	color: #FFFFFF;
 	height: 100%;

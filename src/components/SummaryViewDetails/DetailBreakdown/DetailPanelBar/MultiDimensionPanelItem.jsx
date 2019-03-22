@@ -14,8 +14,6 @@ class MultiDimensionPanelItem extends Component {
         qtdColumnClass = 'qtdJourneyMarketColumn';
         weekColumnClass = 'weekJourneyMarketColumn';
 
-
-
         switch (this.props.timeMetric) {
             case 'qtd':
                 return (this.props.data.qtd.map(item => {
@@ -34,7 +32,7 @@ class MultiDimensionPanelItem extends Component {
                             {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
                         <div className={`${qtdColumnClass}` + " qtdMaHeader col"} >
-                            {item.marketArea || item.visit}
+                            {item.marketArea  }
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'units', value: item.actuals }, 'value')}
@@ -78,7 +76,7 @@ class MultiDimensionPanelItem extends Component {
                             {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
                         <div className={`${qtdColumnClass}` + " qtdMaHeader col"} >
-                            {item.marketArea || item.visit}
+                            {item.marketArea }
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'units', value: item.actuals }, 'value')}
@@ -119,6 +117,7 @@ class MultiDimensionPanelItem extends Component {
             case 'qtd':
                 return (this.props.data.qtd.map(item => {
 
+                    // console.log('HERE',item);
                     if (this.props.type === DIMENSIONS.GEO ||this.props.type === DIMENSIONS.ltc) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
                             calculatedGeo = "";
@@ -133,7 +132,7 @@ class MultiDimensionPanelItem extends Component {
                             {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
                         <div className={`${qtdColumnClass}` + " qtdMaHeader col"} >
-                            {item.marketArea || item.visit}
+                            {item.marketArea }
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'currency', value: item.actuals }, 'value')}
@@ -176,7 +175,7 @@ class MultiDimensionPanelItem extends Component {
                             {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
                         <div className={`${weekColumnClass}` + " weekMaHeader col"}>
-                            {item.marketArea || item.visit}
+                            {item.marketArea }
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'currency', value: item.actuals }, 'value')}
@@ -204,6 +203,7 @@ class MultiDimensionPanelItem extends Component {
         }
     }
     render() {
+        console.log('ACTIVE SECONDARY', this.props.activeSecondary)
         let MultiDimensionPanelItem = (this.props.isJourney === true) ? this.getMultiDimensionJourneyPanelItem() : this.getMultiDimensionPanelItem();
         return (MultiDimensionPanelItem)
     }

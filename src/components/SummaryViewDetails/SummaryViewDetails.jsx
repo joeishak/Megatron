@@ -223,13 +223,6 @@ class SummaryViewDetails extends Component {
             [...this.props.filters.CHANNELMU.valueFilters];
           console.log(' CHANNELMU', newFilters);
           break;
-        case CHANNELPM:
-          console.log("CHANNELPM", this.state.selectedFilters);
-          newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === CHANNELPM })) ? /* Then */
-            [_.find(this.state.selectedFilters, (item => { return item.category === CHANNELPM }))] : /* Else */
-            [...this.props.filters.CHANNELPM.valueFilters];
-          console.log(' CHANNELPM', newFilters);
-          break;
         default:
           let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category === item }));
           if (grouped.false !== this.state.selectedFilters.length) {
@@ -267,15 +260,6 @@ class SummaryViewDetails extends Component {
     let drillDownFilter;
     let { lastTouchChannel, convType, websegment, visits, channelMU,channelPM } = this.props.activeFilters;
     switch (activeItem) {
-      //finance
-      // case 0:
-      //   break;
-      // case 1:
-      //   break;
-      // case 2:
-      //   break;
-      // case 3:
-      //   break;
       //Discover 
       case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
         return (
@@ -292,7 +276,7 @@ class SummaryViewDetails extends Component {
               />
             </div>
             {/* Last Touch Channel */}
-            <div className="col-md-4 col-lg-4" style={{ paddingBottom: '10px' }}>
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
               <div>Last Touch Channel </div>
               <SingleValueSelect
                 activeFilters={[]}
@@ -329,10 +313,11 @@ class SummaryViewDetails extends Component {
           <div className="row">
             {/* Channel */}
             <div className="col-md-4 col-lg-4">
+              <div> Channel</div>
               <SingleValueSelect
                 activeFilters={[]}
                 options={channelMU.availableFilters}
-                defaultValue={[channelMU.availableFilters[0]]}
+                defaultValue={channelMU.availableFilters}
                 onValueChange={e => { this.updateSingleValue(e) }}
                 onMenuClose={e => { this.closeSingleValue(e) }}
               />
@@ -341,21 +326,17 @@ class SummaryViewDetails extends Component {
           </div>
         );
 
-      // case 6:
-      //   //UQFM
-      //   break;
       case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
         //Paid Media Spend
         return (
           <div className="row">
             {/* Channel */}
             <div className="col-md-4 col-lg-4">
-              <SingleValueSelect
-                activeFilters={[]}
+            <div> Channel</div>
+            <MultiValueSelect
                 options={channelPM.availableFilters}
-                defaultValue={[channelPM.availableFilters[0]]}
-                onValueChange={e => { this.updateSingleValue(e) }}
-                onMenuClose={e => { this.closeSingleValue(e) }}
+                onValueChange={(e) => { let type = DIMENSIONS.CHANNELPM; this.updateMultiValue(e, type) }}
+                onMenuClose={(e) => { this.closeMultiValue(e) }}
               />
             </div>
 
@@ -367,12 +348,11 @@ class SummaryViewDetails extends Component {
           <div className="row">
             <div className="col-md-4 col-lg-4">
               {/* Channel */}
-              <SingleValueSelect
-                activeFilters={[]}
+            <div> Channel</div>
+            <MultiValueSelect
                 options={channelPM.availableFilters}
-                defaultValue={[channelPM.availableFilters[0]]}
-                onValueChange={e => { this.updateSingleValue(e) }}
-                onMenuClose={e => { this.closeSingleValue(e) }}
+                onValueChange={(e) => { let type = DIMENSIONS.CHANNELPM; this.updateMultiValue(e, type) }}
+                onMenuClose={(e) => { this.closeMultiValue(e) }}
               />
             </div>
 
@@ -766,7 +746,7 @@ class SummaryViewDetails extends Component {
 
 
           <span className="excelSpan">
-            {/* <Workbook
+            <Workbook
               filename={`${activeItem.header}.xlsx`}
               element={
                 <button className="exportButton">
@@ -779,14 +759,14 @@ class SummaryViewDetails extends Component {
                   />
                 </button>
               }
-            > */}
-            {/* <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
+            > 
+             <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
                 <Workbook.Column label="Dimension" value="category" />
                 <Workbook.Column label="Filter Applied" value="value" />
 
               </Workbook.Sheet>
 
-              <Workbook.Sheet data={this.props.secondaryData[activeSecondary].details.geo.qtd || []} name="geo">
+              {/* <Workbook.Sheet data={this.props.secondaryData[activeSecondary].details.geo.qtd || []} name="geo">
                 <Workbook.Column label="Geo" value="type" />
                 <Workbook.Column label="MarketArea" value="marketArea" />
                 <Workbook.Column label="Actuals" value="actuals" />
@@ -836,22 +816,36 @@ class SummaryViewDetails extends Component {
                 <Workbook.Column label="vsQRF" value="vsQrf" />
                 <Workbook.Column label="Q/Q" value="qq" />
                 <Workbook.Column label="Y/Y" value="yy" />
-              </Workbook.Sheet>
+              </Workbook.Sheet> */}
 
-            </Workbook> */}
+            </Workbook>
           </span>
 
+  
           <div className="stats-container-main">{this.props.activeItem.details.stats.map(item => {
-            return (
-              <div className="statsHeader" key={item.text}>
-                <div className={(item.value <= 0) ? 'stats red' : 'stats green '}>
-                  {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
+
+            if (this.props.activeSecondary == 2) {
+              return (
+                <div className="statsHeader" key={item.text}>
+                  <div className={(item.value <= 0) ? 'stats green' : 'stats red '}>
+                    {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
+                  </div>
+                  <div className="footer"> {item.text}</div>
                 </div>
-                <div className="footer"> {item.text}</div>
-              </div>
-            )
-          }).reverse()
-          }</div>
+              )
+            } else {
+              return (
+                <div className="statsHeader" key={item.text}>
+                  <div className={(item.value <= 0) ? 'stats red' : 'stats green '}>
+                    {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
+                  </div>
+                  <div className="footer"> {item.text}</div>
+                </div>
+              )
+            }
+
+          })}</div>
+      
 
           <div className="chartContainer col-md-12">
             <KendoMultiChart color="white" deviceType="laptop"/>

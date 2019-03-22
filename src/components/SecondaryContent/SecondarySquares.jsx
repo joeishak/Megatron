@@ -41,6 +41,15 @@ class SecondarySquares extends Component {
     return retColor;
   }
 
+  getTitlePill(kpi) {
+    switch (kpi) {
+      case 33:
+        return <span style={{marginLeft: '2px', marginBottom: '2px'}} class="badge badge-light">Reseller</span>;
+      case 34:
+        return <span style={{marginLeft: '2px', marginBottom: '2px'}} class="badge badge-light">E&R</span>
+    }
+  }
+
   
   getLaptopContent() {
     // const isMobile = (this.props.deviceType.includes('mobile') ? true : false);
@@ -120,7 +129,7 @@ class SecondarySquares extends Component {
             </div>
           ) : null}
           <div className={secondaryBoxContent}>
-            <div>{this.props.item.header}</div>
+            <div>{this.props.item.header}{this.getTitlePill(this.props.item.index)}</div>
             {/* {console.log(this.props.item)} */}
             <div className={`  ${seconaryBoxContentAmount} ${utils.getLabelColor(this.props.item.value, this.props.item.target, this.props.item.index)}`} 
 >

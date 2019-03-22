@@ -288,6 +288,10 @@ class SecondaryContentList extends Component {
         onTouchEnd={e => this.stopResize(e)}
         onMouseUp={e => this.stopResize(e)}
       >
+      {this.props.activePrimary === 5 ?       
+      <span><div className="renew-overlay"><p className="renew-overlay-vertext">ADOBE.com Direct Sales</p></div>
+      <div className="renew-overlay-two"><p className="renew-overlay-vertext-two">Reseller and E-Tail / Retail</p></div></span> : null}
+
         {navigationTitle}
         {secondaryContentTop}
         {mobileBottom}

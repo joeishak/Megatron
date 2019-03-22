@@ -12,6 +12,9 @@ import {
     GET_TRAFFIC_SECONDARY_DATA,
     GET_MKTG_SECONDARY_DATA,
     GET_BUY_SECONDARY_DATA,
+    GET_BUY_TRAFFIC_SECONDARY_DATA,
+    GET_BUY_MKTG_SECONDARY_DATA,
+    GET_BUY_FINANCE_SECONDARY_DATA,
     GET_USE_SECONDARY_DATA,
     GET_RENEW_SECONDARY_DATA,
     DELETE_COMMENT,
@@ -37,7 +40,9 @@ export default function (state = {
     switch (action.type) {
         case GET_PRIMARY_DATA:
             console.log(action.payload);
+            //Make a Stringify copy of state
             newState = JSON.parse(JSON.stringify(state));
+            //Assign action  payload data to new state primary
             newState.primary[0].value = action.payload[0].data[0].NewARRActual;
             newState.primary[0].targetFQ = action.payload[0].data[0].NewARRTargetFQ;
             newState.primary[0].target = action.payload[0].data[0].NewARRTarget;
@@ -46,13 +51,12 @@ export default function (state = {
             newState.primary[1].target = action.payload[1].data[0].TrafficTarget;
             newState.primary[1].targetFQ = action.payload[1].data[0].TrafficTargetFQ;
             newState.primary[1].vsqrf = action.payload[1].data[0].TrafficVsQrf;
-
             newState.primary[2].value = action.payload[2].data[0].NewQFMSActual;
             newState.primary[2].target = action.payload[2].data[0].NewQFMsTarget;
             newState.primary[2].vsqrf = action.payload[2].data[0].NewQFMSVsQrf;
             newState.primary[2].targetFQ = action.payload[2].data[0].NewQFMSTargetFQ;
 
-
+            //Return a copy of newstate
             return { ...newState };
 
         case GET_FINANCE_SECONDARY_DATA:
@@ -66,8 +70,10 @@ export default function (state = {
             processFinancialMultichart(newState.secondary, action.payload[1].data);
             processFinancialUnitsMultichart(newState.secondary, action.payload[2].data);
             processFinancialQTD(newState.secondary, action.payload[3].data);
+
             processFinancialGeoQTD(newState.secondary, action.payload[4].data);
             processFinancialGeoWeek(newState.secondary, action.payload[4].data)
+
             processFinancialMarketQTD(newState.secondary, action.payload[5].data);
             processFinancialMarketWeek(newState.secondary, action.payload[5].data);
             processFinancialrouteQTD(newState.secondary, action.payload[7].data);
@@ -107,12 +113,12 @@ export default function (state = {
             newState = JSON.parse(JSON.stringify(state));
 
 
-            processMKTGSecondaryData(action.payload[0].data[0], newState.secondary);
-            processMKTGMultichartData(action.payload[1].data, newState.secondary);
-            processMKTGQTDData(action.payload[2].data[0], newState.secondary);
-            processMKTGGeoQTDData(action.payload[3].data, newState.secondary);
-            processMKTGMarketQTDData(action.payload[4].data, newState.secondary);
-            processMKTGChannelQTDData(action.payload[5].data, newState.secondary);
+            processMUSecondaryData(action.payload[0].data[0], newState.secondary);
+            processMUMultichartData(action.payload[1].data, newState.secondary);
+            processMUQTDData(action.payload[2].data[0], newState.secondary);
+            processMUGeoQTDData(action.payload[3].data, newState.secondary);
+            processMUMarketQTDData(action.payload[4].data, newState.secondary);
+            processMUChannelQTDData(action.payload[5].data, newState.secondary);
 
             processPMSSSecondaryData(action.payload[6].data[0], newState.secondary);
             processPMSSMultichartData(action.payload[7].data, newState.secondary);
@@ -124,7 +130,7 @@ export default function (state = {
             return { ...newState };
         case GET_TRY_SECONDARY_DATA:
             newState = JSON.parse(JSON.stringify(state));
-            console.log(action.payload);
+            console.log('Traffic Data ', action.payload);
 
             processTrySecondaryData(action.payload[0].data[0], newState.secondary);
             processTryMultichartData(action.payload[1].data, newState.secondary);
@@ -134,6 +140,24 @@ export default function (state = {
             processTryProductQTDData(action.payload[5].data, newState.secondary);
             processTrySignUpAppQTDData(action.payload[6].data, newState.secondary);
             processTrySignUpCatQTDData(action.payload[7].data, newState.secondary);
+            return { ...newState };
+        case GET_BUY_TRAFFIC_SECONDARY_DATA:
+            newState = JSON.parse(JSON.stringify(state));
+            console.log('bUY Traffic Data ', action.payload);
+
+
+            return { ...newState };
+        case GET_BUY_MKTG_SECONDARY_DATA:
+            newState = JSON.parse(JSON.stringify(state));
+            console.log('bUY MARKET Data ', action.payload);
+
+
+            return { ...newState };
+        case GET_BUY_FINANCE_SECONDARY_DATA:
+            newState = JSON.parse(JSON.stringify(state));
+            console.log('bUY FINANCE Data ', action.payload);
+
+
             return { ...newState };
         case ADD_NEW_PRIMARY_COMMENT:
             index = action.payload.square;
@@ -490,6 +514,7 @@ export function processFinancialQTD(newState, data) {
     }
 }
 export function processFinancialGeoQTD(newState, data) {
+    console.log('YO', data);
     //Clear old Values
     let item1 = [];
     let item2 = [];
@@ -552,14 +577,56 @@ export function processFinancialGeoQTD(newState, data) {
         item3.push(canc);
         item4.push(ren);
     }
-    console.log(item1);
-    newState[0].details.geo.qtd = item1;
-    newState[1].details.geo.qtd = item2;
-    newState[2].details.geo.qtd = item3;
-    newState[3].details.geo.qtd = item4;
+
+    newState[0].details.geo.qtd = processQTDOrder(item1);
+    newState[1].details.geo.qtd = processQTDOrder(item2);
+    newState[2].details.geo.qtd = processQTDOrder(item3);
+    newState[3].details.geo.qtd = processQTDOrder(item4);
 }
+
+/** Custom function to Reorder QTD Details with row always last */
+function processQTDOrder(data) {
+    // console.log('YO',data);
+    let groupByMarketArea = _.groupBy(data, function (item) { return item.marketArea });
+    let arr = Object.entries(groupByMarketArea);
+    let rowsArr = groupByMarketArea.ROW;
+    let compiledArray = [];
+    let NewArr = [];
+    let removedRows = _.filter(arr, function (o) {
+        return o[0] !== 'ROW';
+    });
+
+    //  console.log('YO', removedRows);
+    for (let i = 0; i < removedRows.length; i++) {
+        let items = removedRows[i][1];
+        for (let j = 0; j < items.length; j++) {
+            NewArr.push(items[j]);
+        }
+    }
+
+    for (let k = 0; k < NewArr.length; k++) {
+        compiledArray.push(NewArr[k]);
+        let toFind = NewArr[k];
+        for (let a = 0; a < NewArr.length; a++) {
+            if (NewArr[a].type === toFind.type && NewArr[a] !== toFind) {
+                compiledArray.push(NewArr[a]);
+                NewArr.splice(a, 1);
+            }
+        }
+        for (let n = 0; n < rowsArr.length; n++) {
+            if (toFind.type === rowsArr[n].type) {
+                compiledArray.push(rowsArr[n]);
+                rowsArr.splice(n, 1);
+            }
+        }
+    }
+    // console.log(compiledArray.concat(rowsArr));
+    return compiledArray.concat(rowsArr);
+
+}
+
 export function processFinancialGeoWeek(newState, data) {
-    console.log(data);
+    // console.log(data);
     //Clear old Values
     let item1 = [];
     let item2 = [];
@@ -619,10 +686,10 @@ export function processFinancialGeoWeek(newState, data) {
         item3.push(canc);
         item4.push(ren);
     }
-    newState[0].details.geo.week = item1;
-    newState[1].details.geo.week = item2;
-    newState[2].details.geo.week = item3;
-    newState[3].details.geo.week = item4;
+    newState[0].details.geo.week = processQTDOrder(item1);
+    newState[1].details.geo.week = processQTDOrder(item2);
+    newState[2].details.geo.week = processQTDOrder(item3);
+    newState[3].details.geo.week = processQTDOrder(item4);
 }
 export function processFinancialMarketQTD(newState, data) {
 
@@ -1153,13 +1220,13 @@ export function processFinancialProductWeek(newState, data) {
 export function processTrafficSecondaryData(g5, newState) {
     console.log(g5);
 
-    newState[4].value = g5.TrafficActual;
-    newState[4].target = g5.TrafficTarget;
-    newState[4].targetFQ = g5.TrafficTargetFQ;
-    newState[4].vsQrf = g5.TrafficVsQrf;
+    newState[5].value = g5.TrafficActual;
+    newState[5].target = g5.TrafficTarget;
+    newState[5].targetFQ = g5.TrafficTargetFQ;
+    newState[5].vsQrf = g5.TrafficVsQrf;
     //Bounce Rate
-    newState[9].value = g5.BounceRateActual;
-    newState[9].target = 0;
+    newState[5].value = g5.BounceRateActual;
+    newState[5].target = 0;
 
 }
 export function processTrafficMultichartData(g5, newState) {
@@ -1204,9 +1271,9 @@ export function processTrafficMultichartData(g5, newState) {
 
     };
     //Set Multichart Values
-    for (let i = 4; i < newState.length; i++) {
+    for (let i = 5; i < newState.length; i++) {
         switch (i) {
-            case 4:
+            case 5:
                 currentMulti = [traffic.actual, traffic.target, traffic.ly, traffic.lq];
                 break;
             case 9:
@@ -1221,7 +1288,7 @@ export function processTrafficMultichartData(g5, newState) {
 export function processTrafficQTDData(g5, newState) {
     console.log(g5);
 
-    for (let i = 4; i < newState.length; i++) {
+    for (let i = 5; i < newState.length; i++) {
 
         switch (i) {
             // Traffic
@@ -1270,9 +1337,9 @@ export function processTrafficQTDData(g5, newState) {
 export function processTrafficGeoQTDData(g5, newState) {
     console.log(g5)
     //Clear old Values
-    newState[4].details.geo.qtd = [];
+    newState[5].details.geo.qtd = [];
     newState[9].details.geo.qtd = [];
-    newState[4].details.geo.week = [];
+    newState[5].details.geo.week = [];
     newState[9].details.geo.week = [];
 
     for (let i = 0; i < g5.length; i++) {
@@ -1321,17 +1388,17 @@ export function processTrafficGeoQTDData(g5, newState) {
             ww: item.BounceRateWW,
             type: item.geo_code,
         }
-        newState[4].details.geo.qtd.push(traffic);
+        newState[5].details.geo.qtd.push(traffic);
         newState[9].details.geo.qtd.push(bounce);
-        newState[4].details.geo.week.push(trafficPM);
+        newState[5].details.geo.week.push(trafficPM);
         newState[9].details.geo.week.push(bouncePM);
     }
 }
 export function processTrafficMarketQTDData(g5, newState) {
     //Clear old Values
-    newState[4].details.market.qtd = [];
+    newState[5].details.market.qtd = [];
     newState[9].details.market.qtd = [];
-    newState[4].details.market.week = [];
+    newState[5].details.market.week = [];
     newState[9].details.market.week = [];
 
 
@@ -1377,19 +1444,19 @@ export function processTrafficMarketQTDData(g5, newState) {
             ww: item.BounceRateWW,
             type: item.market_area_code,
         }
-        newState[4].details.market.qtd.push(traffic);
+        newState[5].details.market.qtd.push(traffic);
         newState[9].details.market.qtd.push(bounce);
-        newState[4].details.market.week.push(trafficPM);
+        newState[5].details.market.week.push(trafficPM);
         newState[9].details.market.week.push(bouncePM);
     }
 
 }
 export function processTrafficWebSegmentQTDData(g5, newState) {
     //Clear old Values
-    newState[4].details.segment.qtd = [];
+    newState[5].details.segment.qtd = [];
 
     newState[9].details.segment.qtd = [];
-    newState[4].details.segment.week = [];
+    newState[5].details.segment.week = [];
 
     newState[9].details.segment.week = [];
 
@@ -1439,23 +1506,24 @@ export function processTrafficWebSegmentQTDData(g5, newState) {
             ww: item.BounceRateWW,
             type: item.web_segment,
         }
-        newState[4].details.segment.qtd.push(traffic);
+        newState[5].details.segment.qtd.push(traffic);
         newState[9].details.segment.qtd.push(bounce);
-        newState[4].details.segment.week.push(trafficPM);
+        newState[5].details.segment.week.push(trafficPM);
         newState[9].details.segment.week.push(bouncePM);
     }
 }
 export function processTrafficLTCQTDData(g5, newState) {
 
     //Clear old Values
-    newState[4].details = { ...newState[4].details, ltc: { qtd: [], week: [] } };
+    newState[5].details = { ...newState[5].details, ltc: { qtd: [], week: [] } };
     newState[9].details = { ...newState[9].details, ltc: { qtd: [], week: [] } };
 
     for (let i = 0; i < g5.length; i++) {
         let item = g5[i];
         let traffic = {
             index: i,
-            visit: item.visit_type,
+            type: item.visit_type,
+            marketArea: item.last_touch_channel,
             actuals: item.TrafficActuals,
             qq: item.TrafficQQTY,
             qrf: item.TarfficTarget,
@@ -1467,8 +1535,8 @@ export function processTrafficLTCQTDData(g5, newState) {
         let trafficPM =
         {
             index: i,
-            visit: item.visit_type,
-
+            type: item.visit_type,
+            marketArea: item.last_touch_channel,
             actuals: item.TrafficCW,
             qrf: item.TrafficTargetCW,
             qrfDiff: item.TrafficCWVsQrfDiff,
@@ -1478,8 +1546,8 @@ export function processTrafficLTCQTDData(g5, newState) {
         }
         let bounce = {
             index: i,
-            visit: item.visit_type,
-
+            marketArea: item.last_touch_channel,
+            type: item.visit_type,
             actuals: item.BounceRateActuals,
             qq: item.BounceRateQQTY,
             qrf: item.BounceRateTarget,
@@ -1491,8 +1559,8 @@ export function processTrafficLTCQTDData(g5, newState) {
         let bouncePM =
         {
             index: i,
-            visit: item.visit_type,
-
+            marketArea: item.last_touch_channel,
+            type: item.visit_type,
             actuals: item.BounceRateCW,
             qrf: item.BounceRateTargetCW,
             qrfDiff: item.BounceRateCWVsQrfDiff,
@@ -1500,9 +1568,9 @@ export function processTrafficLTCQTDData(g5, newState) {
             ww: item.BounceRateWW,
             type: item.last_touch_channel,
         }
-        newState[4].details.ltc.qtd.push(traffic);
+        newState[5].details.ltc.qtd.push(traffic);
         newState[9].details.ltc.qtd.push(bounce);
-        newState[4].details.ltc.week.push(trafficPM);
+        newState[5].details.ltc.week.push(trafficPM);
         newState[9].details.ltc.week.push(bouncePM);
     }
 }
@@ -1510,9 +1578,9 @@ export function processTrafficConvQTDData(g5, newState) {
     // console.log(g5);
     // console.log(newState);
     //Clear old Values
-    newState[4].details.conversion.qtd = [];
+    newState[5].details.conversion.qtd = [];
     newState[9].details.conversion.qtd = [];
-    newState[4].details.conversion.week = [];
+    newState[5].details.conversion.week = [];
     newState[9].details.conversion.week = [];
 
     for (let i = 0; i < g5.length; i++) {
@@ -1558,9 +1626,9 @@ export function processTrafficConvQTDData(g5, newState) {
             ww: item.BounceRateWW,
             type: item.conversion_type,
         }
-        newState[4].details.conversion.qtd.push(traffic);
-        newState[9].details.conversion.qtd.push(trafficPM);
-        newState[4].details.conversion.week.push(bounce);
+        newState[5].details.conversion.qtd.push(traffic);
+        newState[9].details.conversion.qtd.push(bounce);
+        newState[5].details.conversion.week.push(trafficPM);
         newState[9].details.conversion.week.push(bouncePM);
     }
 }
@@ -1568,7 +1636,7 @@ export function processTrafficMobDeskQTDData(g5, newState) {
 
     //Clear old Values
 
-    newState[4].details = { ...newState[4].details, mvd: { qtd: [], week: [] } };
+    newState[5].details = { ...newState[5].details, mvd: { qtd: [], week: [] } };
 
     newState[9].details = { ...newState[9].details, mvd: { qtd: [], week: [] } };
 
@@ -1656,11 +1724,11 @@ export function processTrafficMobDeskQTDData(g5, newState) {
 
         }
 
-        newState[4].details.mvd.qtd.push(traffic);
+        newState[5].details.mvd.qtd.push(traffic);
 
         newState[9].details.mvd.qtd.push(bounce);
 
-        newState[4].details.mvd.week.push(trafficPM);
+        newState[5].details.mvd.week.push(trafficPM);
 
         newState[9].details.mvd.week.push(bouncePM);
 
@@ -1671,7 +1739,7 @@ export function processTrafficNewRepQTDData(g5, newState) {
 
     //Clear old Values
 
-    newState[4].details = { ...newState[4].details, nvr: { qtd: [], week: [] } };
+    newState[5].details = { ...newState[5].details, nvr: { qtd: [], week: [] } };
 
     newState[9].details = { ...newState[9].details, nvr: { qtd: [], week: [] } };
 
@@ -1769,11 +1837,11 @@ export function processTrafficNewRepQTDData(g5, newState) {
 
         }
 
-        newState[4].details.nvr.qtd.push(traffic);
+        newState[5].details.nvr.qtd.push(traffic);
 
         newState[9].details.nvr.qtd.push(bounce);
 
-        newState[4].details.nvr.week.push(trafficPM);
+        newState[5].details.nvr.week.push(trafficPM);
 
         newState[9].details.nvr.week.push(bouncePM);
 
@@ -1887,7 +1955,7 @@ export function processUQFMMarketQTDData(data, newState) {
         let item = data[i];
         let uqfm = {
             index: i,
-            type: item.market_area_group,
+            type: item.market_area_coode,
             actuals: item.UQFMConvActuals,
             qq: item.UQFMConvQQTY,
             qrf: item.UQFMConvTarget,
@@ -1898,7 +1966,7 @@ export function processUQFMMarketQTDData(data, newState) {
         let uqfmWeek =
         {
             index: i,
-            type: item.market_area_group,
+            type: item.market_area_coode,
             actuals: item.UQFMConvCW,
             qrf: item.UQFMConvTargetCW,
             qrfDiff: item.UQFMConvCWVsQrfDiff,
@@ -1911,19 +1979,19 @@ export function processUQFMMarketQTDData(data, newState) {
 }
 //End UQFM
 
-//MKTG
-export function processMKTGSecondaryData(data, newState) {
+// Marketable  Universe
+export function processMUSecondaryData(data, newState) {
 
-    newState[5].value = data.NetChangeMUActual;
-    newState[5].target = data.NetChangeMUTarget;
-    newState[5].targetFQ = data.NetChangeMUTargetFQ;
-    newState[5].vsQrf = data.NetChangeMUVsQrf;
-    newState[5].cumulative.value = data.CumuMUActual;
-    newState[5].cumulative.target = data.CumuMUTarget;
-    newState[5].cumulative.targetFQ = data.CumuMUTargetFQ;
-    newState[5].cumulative.vsQrf = data.CumuMUVsQrf;
+    newState[4].value = data.NetChangeMUActual;
+    newState[4].target = data.NetChangeMUTarget;
+    newState[4].targetFQ = data.NetChangeMUTargetFQ;
+    newState[4].vsQrf = data.NetChangeMUVsQrf;
+    newState[4].cumulative.value = data.CumuMUActual;
+    newState[4].cumulative.target = data.CumuMUTarget;
+    newState[4].cumulative.targetFQ = data.CumuMUTargetFQ;
+    newState[4].cumulative.vsQrf = data.CumuMUVsQrf;
 }
-export function processMKTGMultichartData(data, newState) {
+export function processMUMultichartData(data, newState) {
     let weekFlag = data.map(item => {
         return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
     })
@@ -1958,52 +2026,52 @@ export function processMKTGMultichartData(data, newState) {
     };
     let currentMuMulti = [netMu.actual, netMu.target, netMu.ly, netMu.lq];
     let currentCumuMulti = [cumuMu.actual, cumuMu.target, cumuMu.ly, cumuMu.lq];
-    newState[5]['details'].multichart = currentMuMulti;
-    newState[5].cumulative.details.multichart = currentCumuMulti;
+    newState[4]['details'].multichart = currentMuMulti;
+    newState[4].cumulative.details.multichart = currentCumuMulti;
 
 }
-export function processMKTGQTDData(data, newState) {
-    newState[5].details.qtdw.qtd[0].value = data.NetChangeMUActuals;
-    newState[5].details.qtdw.qtd[1].value = data.NetChangeMUTarget;
-    newState[5].details.qtdw.qtd[2].value = data.NetChangeMUVsQrfDiff
-    newState[5].details.qtdw.qtd[3].value = data.NetChangeMUVsQrf;
-    newState[5].details.qtdw.qtd[4].value = data.NetChangeMUQQTY;
-    newState[5].details.qtdw.qtd[5].value = data.NetChangeMUYY;
+export function processMUQTDData(data, newState) {
+    newState[4].details.qtdw.qtd[0].value = data.NetChangeMUActuals;
+    newState[4].details.qtdw.qtd[1].value = data.NetChangeMUTarget;
+    newState[4].details.qtdw.qtd[2].value = data.NetChangeMUVsQrfDiff
+    newState[4].details.qtdw.qtd[3].value = data.NetChangeMUVsQrf;
+    newState[4].details.qtdw.qtd[4].value = data.NetChangeMUQQTY;
+    newState[4].details.qtdw.qtd[5].value = data.NetChangeMUYY;
 
-    newState[5].details.qtdw.week[0].value = data.NetChangeMUCW;
-    newState[5].details.qtdw.week[1].value = data.NetChangeMUTargetCW;
-    newState[5].details.qtdw.week[2].value = data.NetChangeMUCWVsQrfDiff;
-    newState[5].details.qtdw.week[3].value = data.NetChangeMUCWVsQrf;
-    newState[5].details.qtdw.week[4].value = data.NetChangeMUWW;
+    newState[4].details.qtdw.week[0].value = data.NetChangeMUCW;
+    newState[4].details.qtdw.week[1].value = data.NetChangeMUTargetCW;
+    newState[4].details.qtdw.week[2].value = data.NetChangeMUCWVsQrfDiff;
+    newState[4].details.qtdw.week[3].value = data.NetChangeMUCWVsQrf;
+    newState[4].details.qtdw.week[4].value = data.NetChangeMUWW;
 
-    newState[5].details.stats[0].value = data.NetChangeMUVsQrf;
-    newState[5].details.stats[1].value = data.NetChangeMUQQTY;
-    newState[5].details.stats[2].value = data.NetChangeMUQQLY;
-    newState[5].details.stats[3].value = data.NetChangeMUYY;
+    newState[4].details.stats[0].value = data.NetChangeMUVsQrf;
+    newState[4].details.stats[1].value = data.NetChangeMUQQTY;
+    newState[4].details.stats[2].value = data.NetChangeMUQQLY;
+    newState[4].details.stats[3].value = data.NetChangeMUYY;
 
-    newState[5].cumulative.details.qtdw.qtd[0].value = data.CumuMUActuals;
-    newState[5].cumulative.details.qtdw.qtd[1].value = data.CumuMUTarget;
-    newState[5].cumulative.details.qtdw.qtd[2].value = data.CumuMUVsQrfDiff;
-    newState[5].cumulative.details.qtdw.qtd[3].value = data.CumuMUVsQrf;
-    newState[5].cumulative.details.qtdw.qtd[4].value = data.CumuMUQQTY;
-    newState[5].cumulative.details.qtdw.qtd[5].value = data.CumuMUYY;
+    newState[4].cumulative.details.qtdw.qtd[0].value = data.CumuMUActuals;
+    newState[4].cumulative.details.qtdw.qtd[1].value = data.CumuMUTarget;
+    newState[4].cumulative.details.qtdw.qtd[2].value = data.CumuMUVsQrfDiff;
+    newState[4].cumulative.details.qtdw.qtd[3].value = data.CumuMUVsQrf;
+    newState[4].cumulative.details.qtdw.qtd[4].value = data.CumuMUQQTY;
+    newState[4].cumulative.details.qtdw.qtd[5].value = data.CumuMUYY;
 
-    newState[5].cumulative.details.qtdw.week[0].value = data.CumuMUCW;
-    newState[5].cumulative.details.qtdw.week[1].value = data.CumuMUTargetCW;
-    newState[5].cumulative.details.qtdw.week[2].value = data.CumuMUCWVsQrfDiff;
-    newState[5].cumulative.details.qtdw.week[3].value = data.CumuMUCWVsQrf;
-    newState[5].cumulative.details.qtdw.week[4].value = data.CumuMUWW;
+    newState[4].cumulative.details.qtdw.week[0].value = data.CumuMUCW;
+    newState[4].cumulative.details.qtdw.week[1].value = data.CumuMUTargetCW;
+    newState[4].cumulative.details.qtdw.week[2].value = data.CumuMUCWVsQrfDiff;
+    newState[4].cumulative.details.qtdw.week[3].value = data.CumuMUCWVsQrf;
+    newState[4].cumulative.details.qtdw.week[4].value = data.CumuMUWW;
 
-    newState[5].cumulative.details.stats[0].value = data.CumuMUVsQrf;
-    newState[5].cumulative.details.stats[1].value = data.CumuMUQQTY;
-    newState[5].cumulative.details.stats[2].value = data.CumuMUQQLY;
-    newState[5].cumulative.details.stats[3].value = data.CumuMUYY;
+    newState[4].cumulative.details.stats[0].value = data.CumuMUVsQrf;
+    newState[4].cumulative.details.stats[1].value = data.CumuMUQQTY;
+    newState[4].cumulative.details.stats[2].value = data.CumuMUQQLY;
+    newState[4].cumulative.details.stats[3].value = data.CumuMUYY;
 
 }
-export function processMKTGGeoQTDData(data, newState) {
+export function processMUGeoQTDData(data, newState) {
     //Clear old Values
-    newState[5].details = { ...newState[5].details, geo: { qtd: [], week: [] } };
-    newState[5].cumulative.details = { ...newState[5].cumulative.details, geo: { qtd: [], week: [] } };
+    newState[4].details = { ...newState[4].details, geo: { qtd: [], week: [] } };
+    newState[4].cumulative.details = { ...newState[4].cumulative.details, geo: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -2054,16 +2122,16 @@ export function processMKTGGeoQTDData(data, newState) {
             ww: item.CumuMUWW,
             type: item.geo_code,
         }
-        newState[5].details.geo.qtd.push(netMu);
-        newState[5].cumulative.details.geo.qtd.push(cumuMu);
-        newState[5].cumulative.details.geo.week.push(cumuWeek);
-        newState[5].details.geo.week.push(netWeek);
+        newState[4].details.geo.qtd.push(netMu);
+        newState[4].cumulative.details.geo.qtd.push(cumuMu);
+        newState[4].cumulative.details.geo.week.push(cumuWeek);
+        newState[4].details.geo.week.push(netWeek);
     }
 }
-export function processMKTGMarketQTDData(data, newState) {
+export function processMUMarketQTDData(data, newState) {
     //Clear old Values
-    newState[5].details = { ...newState[5].details, market: { qtd: [], week: [] } };
-    newState[5].cumulative.details = { ...newState[5].cumulative.details, market: { qtd: [], week: [] } };
+    newState[4].details = { ...newState[4].details, market: { qtd: [], week: [] } };
+    newState[4].cumulative.details = { ...newState[4].cumulative.details, market: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -2110,16 +2178,16 @@ export function processMKTGMarketQTDData(data, newState) {
             vsQrf: item.CumuMUCWVsQrf,
             ww: item.CumuMUWW,
         }
-        newState[5].details.market.qtd.push(netMu);
-        newState[5].cumulative.details.market.qtd.push(cumuMu);
-        newState[5].cumulative.details.market.week.push(cumuWeek);
-        newState[5].details.market.week.push(netWeek);
+        newState[4].details.market.qtd.push(netMu);
+        newState[4].cumulative.details.market.qtd.push(cumuMu);
+        newState[4].cumulative.details.market.week.push(cumuWeek);
+        newState[4].details.market.week.push(netWeek);
     }
 }
-export function processMKTGChannelQTDData(data, newState) {
+export function processMUChannelQTDData(data, newState) {
     //Clear old Values
-    newState[5].details = { ...newState[5].details, channel: { qtd: [], week: [] } };
-    newState[5].cumulative.details = { ...newState[5].cumulative.details, channel: { qtd: [], week: [] } };
+    newState[4].details = { ...newState[4].details, channel: { qtd: [], week: [] } };
+    newState[4].cumulative.details = { ...newState[4].cumulative.details, channel: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -2166,13 +2234,13 @@ export function processMKTGChannelQTDData(data, newState) {
             vsQrf: item.CumuMUCWVsQrf,
             ww: item.CumuMUWW,
         }
-        newState[5].details.channel.qtd.push(netMu);
-        newState[5].cumulative.details.channel.qtd.push(cumuMu);
-        newState[5].cumulative.details.channel.week.push(cumuWeek);
-        newState[5].details.channel.week.push(netWeek);
+        newState[4].details.channel.qtd.push(netMu);
+        newState[4].cumulative.details.channel.qtd.push(cumuMu);
+        newState[4].cumulative.details.channel.week.push(cumuWeek);
+        newState[4].details.channel.week.push(netWeek);
     }
 }
-//End MKTG Universe 
+//End Marketable Universe 
 
 //  Paid Media spend and sourced
 export function processPMSSSecondaryData(data, newState) {
@@ -2417,14 +2485,14 @@ export function processPMSSChannelQTDData(data, newState) {
             qq: item.PMSpendDiscoverQQTY,
             qrf: item.PMSpendDiscoverTarget,
             qrfDiff: item.PMSpendDiscoverVsQrfDiff,
-            type: item.channel,
+            type: item.PM_channel,
             vsQrf: item.PMSpendDiscoverVsQrf,
             yy: item.PMSpendDiscoverYY
         }
         let pmWeek =
         {
             index: i,
-            type: item.channel,
+            type: item.PM_channel,
             actuals: item.PMSpendDiscoverCW,
             qrf: item.PMSpendDiscoverTargetCW,
             qrfDiff: item.PMSpendDiscoverCWVsQrfDiff,
@@ -2434,7 +2502,7 @@ export function processPMSSChannelQTDData(data, newState) {
 
         let pmuqfm = {
             index: i,
-            type: item.channel,
+            type: item.PM_channel,
             actuals: item.PMUQFMActuals,
             qq: item.PMUQFMQQTY,
             qrf: item.PMUQFMTarget,
@@ -2445,7 +2513,7 @@ export function processPMSSChannelQTDData(data, newState) {
         let pmuqfmWeek =
         {
             index: i,
-            type: item.channel,
+            type: item.PM_channel,
             actuals: item.PMUQFMCW,
             qrf: item.PMUQFMTargetCW,
             qrfDiff: item.PMUQFMCWVsQrfDiff,
@@ -3050,218 +3118,212 @@ export function processTryMarketQTDData(data, newState) {
 }
 export function processTryProductQTDData(data, newState) {
     //Clear old Values
-    newState[10].details = { ...newState[10].details, product: { qtd: [], week: [] } };
+    newState[12].details = { ...newState[12].details, product: { qtd: [], week: [] } };
 
 
+
+    //New QFM
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         //New QFM
-        for (let i = 0; i < data.length; i++) {
-            let item = data[i];
-            //New QFM
-            let newQFM = {
-                index: i,
-                actuals: item.NewQFMsActuals,
-                type: item.product_name,
-                qq: item.NewQFMsQQTY,
-                qrf: item.NewQFMsTarget,
-                qrfDiff: item.NewQFMsVsQrfDiff,
-                vsQrf: item.NewQFMsVsQrf,
-                yy: item.NewQFMsYY
-            }
-            let newQFMWeek =
-            {
-                index: i,
-                type: item.product_name,
-                actuals: item.NewQFMsCW,
-                qrf: item.NewQFMsTargetCW,
-                qrfDiff: item.NewQFMsCWVsQrfDiff,
-                vsQrf: item.NewQFMsCWVsQrf,
-                ww: item.NewQFMsWW,
-            }
-
-
-            newState[10].details.product.qtd.push(newQFM);
-            newState[10].details.product.week.push(newQFMWeek);
-
-
+        let newQFM = {
+            index: i,
+            actuals: item.NewQFMsActuals,
+            type: item.product_name,
+            qq: item.NewQFMsQQTY,
+            qrf: item.NewQFMsTarget,
+            qrfDiff: item.NewQFMsVsQrfDiff,
+            vsQrf: item.NewQFMsVsQrf,
+            yy: item.NewQFMsYY
         }
+        let newQFMWeek =
+        {
+            index: i,
+            type: item.product_name,
+            actuals: item.NewQFMsCW,
+            qrf: item.NewQFMsTargetCW,
+            qrfDiff: item.NewQFMsCWVsQrfDiff,
+            vsQrf: item.NewQFMsCWVsQrf,
+            ww: item.NewQFMsWW,
+        }
+
+
+        newState[12].details.product.qtd.push(newQFM);
+        newState[12].details.product.week.push(newQFMWeek);
+
+
     }
 }
 export function processTrySignUpAppQTDData(data, newState) {
     //Clear old Values
+    newState[10].details = { ...newState[10].details, signUpApp: { qtd: [], week: [] } };
     newState[11].details = { ...newState[11].details, signUpApp: { qtd: [], week: [] } };
-    newState[12].details = { ...newState[12].details, signUpApp: { qtd: [], week: [] } };
 
+
+    //New QFM
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
-        //New QFM
-        for (let i = 0; i < data.length; i++) {
-            let item = data[i];
-            //New UQFM
-            let newUQFM = {
-                index: i,
-                actuals: item.NewUQFMsActuals,
-                marketArea: item.signup_app,
-                type: item.signup_category,
-                qq: item.NewUQFMsQQTY,
-                qrf: item.NewUQFMsTarget,
-                qrfDiff: item.NewUQFMsVsQrfDiff,
-                vsQrf: item.NewUQFMsVsQrf,
-                yy: item.NewUQFMsYY
-            }
-            let newUQFMWeek =
-            {
-                index: i,
-                marketArea: item.signup_app,
-                type: item.signup_category,
-                actuals: item.NewUQFMsCW,
-                qrf: item.NewUQFMsTargetCW,
-                qrfDiff: item.NewUQFMsCWVsQrfDiff,
-                vsQrf: item.NewUQFMsCWVsQrf,
-                ww: item.NewUQFMsWW,
-            }
-            //Cumu UQFM
-            let cumuUQFM = {
-                index: i,
-                marketArea: item.signup_app,
-                type: item.signup_category,
-                actuals: item.CumUQFMsActuals,
-                qq: item.CumUQFMsQQTY,
-                qrf: item.CumUQFMsTarget,
-                qrfDiff: item.CumUQFMsVsQrfDiff,
-                vsQrf: item.CumUQFMsVsQrf,
-                yy: item.CumUQFMsYY
-            }
-            let cumuUQFMWeek =
-            {
-                index: i,
-                marketArea: item.signup_app,
-                type: item.signup_category,
-                actuals: item.CumUQFMsCW,
-                qrf: item.CumUQFMsTargetCW,
-                qrfDiff: item.CumUQFMsCWVsQrfDiff,
-                vsQrf: item.CumUQFMsCWVsQrf,
-                ww: item.CumUQFMsWW,
-            }
-
-            newState[11].details.signUpApp.qtd.push(newUQFM);
-            newState[11].details.signUpApp.week.push(newUQFMWeek);
-            newState[12].details.signUpApp.qtd.push(cumuUQFM);
-            newState[12].details.signUpApp.week.push(cumuUQFMWeek);
-
+        //New UQFM
+        let newUQFM = {
+            index: i,
+            actuals: item.NewUQFMsActuals,
+            marketArea: item.signup_app,
+            type: item.signup_category,
+            qq: item.NewUQFMsQQTY,
+            qrf: item.NewUQFMsTarget,
+            qrfDiff: item.NewUQFMsVsQrfDiff,
+            vsQrf: item.NewUQFMsVsQrf,
+            yy: item.NewUQFMsYY
         }
+        let newUQFMWeek =
+        {
+            index: i,
+            marketArea: item.signup_app,
+            type: item.signup_category,
+            actuals: item.NewUQFMsCW,
+            qrf: item.NewUQFMsTargetCW,
+            qrfDiff: item.NewUQFMsCWVsQrfDiff,
+            vsQrf: item.NewUQFMsCWVsQrf,
+            ww: item.NewUQFMsWW,
+        }
+        //Cumu UQFM
+        let cumuUQFM = {
+            index: i,
+            marketArea: item.signup_app,
+            type: item.signup_category,
+            actuals: item.CumUQFMsActuals,
+            qq: item.CumUQFMsQQTY,
+            qrf: item.CumUQFMsTarget,
+            qrfDiff: item.CumUQFMsVsQrfDiff,
+            vsQrf: item.CumUQFMsVsQrf,
+            yy: item.CumUQFMsYY
+        }
+        let cumuUQFMWeek =
+        {
+            index: i,
+            marketArea: item.signup_app,
+            type: item.signup_category,
+            actuals: item.CumUQFMsCW,
+            qrf: item.CumUQFMsTargetCW,
+            qrfDiff: item.CumUQFMsCWVsQrfDiff,
+            vsQrf: item.CumUQFMsCWVsQrf,
+            ww: item.CumUQFMsWW,
+        }
+
+        newState[10].details.signUpApp.qtd.push(newUQFM);
+        newState[10].details.signUpApp.week.push(newUQFMWeek);
+        newState[11].details.signUpApp.qtd.push(cumuUQFM);
+        newState[11].details.signUpApp.week.push(cumuUQFMWeek);
+
     }
 }
 export function processTrySignUpCatQTDData(data, newState) {
     //Clear old Values
-    newState[10].details = { ...newState[10].details, signUpCat: { qtd: [], week: [] } };
+    newState[12].details = { ...newState[12].details, signUpCat: { qtd: [], week: [] } };
 
     newState[13].details = { ...newState[13].details, signUpCat: { qtd: [], week: [] } };
     newState[14].details = { ...newState[14].details, signUpCat: { qtd: [], week: [] } };
     newState[15].details = { ...newState[15].details, signUpCat: { qtd: [], week: [] } };
 
+
+    //New QFM
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         //New QFM
-        for (let i = 0; i < data.length; i++) {
-            let item = data[i];
-            //New QFM
-            let newQFM = {
-                index: i,
-                actuals: item.NewQFMsActuals,
-                type: item.signup_category,
-                qq: item.NewQFMsQQTY,
-                qrf: item.NewQFMsTarget,
-                qrfDiff: item.NewQFMsVsQrfDiff,
-                vsQrf: item.NewQFMsVsQrf,
-                yy: item.NewQFMsYY
-            }
-            let newQFMWeek =
-            {
-                index: i,
-                type: item.signup_category,
-                actuals: item.NewQFMsCW,
-                qrf: item.NewQFMsTargetCW,
-                qrfDiff: item.NewQFMsCWVsQrfDiff,
-                vsQrf: item.NewQFMsCWVsQrf,
-                ww: item.NewQFMsWW,
-            }
-
-            //Cumu QFM
-            let cumuQFM = {
-                index: i,
-                actuals: item.CumQFMsActuals,
-                type: item.signup_category,
-                qq: item.CumQFMsQQTY,
-                qrf: item.CumQFMsTarget,
-                qrfDiff: item.CumQFMsVsQrfDiff,
-                vsQrf: item.CumQFMsVsQrf,
-                yy: item.CumQFMsYY
-            }
-            let cumuQFMWeek =
-            {
-                index: i,
-                type: item.signup_category,
-                actuals: item.CumQFMsCW,
-                qrf: item.CumQFMsTargetCW,
-                qrfDiff: item.CumQFMsCWVsQrfDiff,
-                vsQrf: item.CumQFMsCWVsQrf,
-                ww: item.CumQFMsWW,
-            }
-            //Day 28
-            let day28 = {
-                index: i,
-                actuals: item.Day28NewUQFMActual,
-                type: item.signup_category,
-                qq: item.Day28NewUQFMQQTY,
-                qrf: item.Day28NewUQFMTarget,
-                qrfDiff: item.Day28NewUQFMVsQrfDiff,
-                vsQrf: item.Day28NewUQFMVsQrf,
-                yy: item.Day28NewUQFMYY
-            }
-            let day28Week =
-            {
-                index: i,
-                type: item.signup_category,
-                actuals: item.Day28NewUQFMCW,
-                qrf: item.Day28NewUQFMTargetCW,
-                qrfDiff: item.Day28NewUQFMCWVsQrfDiff,
-                vsQrf: item.Day28NewUQFMCWVsQrf,
-                ww: item.Day28NewUQFMWW,
-            }
-            //Cumu UQFM to QFM
-            let cumuUTQ = {
-                index: i,
-                actuals: item.CumUQFMToQFMActual,
-                type: item.signup_category,
-                qq: item.CumUQFMToQFMQQTY,
-                qrf: item.CumUQFMToQFMTarget,
-                qrfDiff: item.CumUQFMToQFMVsQrfDiff,
-                vsQrf: item.CumUQFMToQFMVsQrf,
-                yy: item.CumUQFMToQFMYY
-            }
-            let cumuUTQWeek =
-            {
-                index: i,
-                type: item.signup_category,
-                actuals: item.CumUQFMToQFMCW,
-                qrf: item.CumUQFMToQFMTargetCW,
-                qrfDiff: item.CumUQFMToQFMCWVsQrfDiff,
-                vsQrf: item.CumUQFMToQFMCWVsQrf,
-                ww: item.CumUQFMToQFMWW,
-            }
-
-            newState[10].details.signUpCat.qtd.push(newQFM);
-            newState[10].details.signUpCat.week.push(newQFMWeek);
-
-            newState[13].details.signUpCat.qtd.push(cumuQFM);
-            newState[13].details.signUpCat.week.push(cumuQFMWeek);
-            newState[14].details.signUpCat.qtd.push(day28);
-            newState[14].details.signUpCat.week.push(day28Week);
-            newState[15].details.signUpCat.qtd.push(cumuUTQ);
-            newState[15].details.signUpCat.week.push(cumuUTQWeek);
-
+        let newQFM = {
+            index: i,
+            actuals: item.NewQFMsActuals,
+            type: item.signup_category,
+            qq: item.NewQFMsQQTY,
+            qrf: item.NewQFMsTarget,
+            qrfDiff: item.NewQFMsVsQrfDiff,
+            vsQrf: item.NewQFMsVsQrf,
+            yy: item.NewQFMsYY
         }
+        let newQFMWeek =
+        {
+            index: i,
+            type: item.signup_category,
+            actuals: item.NewQFMsCW,
+            qrf: item.NewQFMsTargetCW,
+            qrfDiff: item.NewQFMsCWVsQrfDiff,
+            vsQrf: item.NewQFMsCWVsQrf,
+            ww: item.NewQFMsWW,
+        }
+
+        //Cumu QFM
+        let cumuQFM = {
+            index: i,
+            actuals: item.CumQFMsActuals,
+            type: item.signup_category,
+            qq: item.CumQFMsQQTY,
+            qrf: item.CumQFMsTarget,
+            qrfDiff: item.CumQFMsVsQrfDiff,
+            vsQrf: item.CumQFMsVsQrf,
+            yy: item.CumQFMsYY
+        }
+        let cumuQFMWeek =
+        {
+            index: i,
+            type: item.signup_category,
+            actuals: item.CumQFMsCW,
+            qrf: item.CumQFMsTargetCW,
+            qrfDiff: item.CumQFMsCWVsQrfDiff,
+            vsQrf: item.CumQFMsCWVsQrf,
+            ww: item.CumQFMsWW,
+        }
+        //Day 28
+        let day28 = {
+            index: i,
+            actuals: item.Day28NewUQFMActual,
+            type: item.signup_category,
+            qq: item.Day28NewUQFMQQTY,
+            qrf: item.Day28NewUQFMTarget,
+            qrfDiff: item.Day28NewUQFMVsQrfDiff,
+            vsQrf: item.Day28NewUQFMVsQrf,
+            yy: item.Day28NewUQFMYY
+        }
+        let day28Week =
+        {
+            index: i,
+            type: item.signup_category,
+            actuals: item.Day28NewUQFMCW,
+            qrf: item.Day28NewUQFMTargetCW,
+            qrfDiff: item.Day28NewUQFMCWVsQrfDiff,
+            vsQrf: item.Day28NewUQFMCWVsQrf,
+            ww: item.Day28NewUQFMWW,
+        }
+        //Cumu UQFM to QFM
+        let cumuUTQ = {
+            index: i,
+            actuals: item.CumUQFMToQFMActual,
+            type: item.signup_category,
+            qq: item.CumUQFMToQFMQQTY,
+            qrf: item.CumUQFMToQFMTarget,
+            qrfDiff: item.CumUQFMToQFMVsQrfDiff,
+            vsQrf: item.CumUQFMToQFMVsQrf,
+            yy: item.CumUQFMToQFMYY
+        }
+        let cumuUTQWeek =
+        {
+            index: i,
+            type: item.signup_category,
+            actuals: item.CumUQFMToQFMCW,
+            qrf: item.CumUQFMToQFMTargetCW,
+            qrfDiff: item.CumUQFMToQFMCWVsQrfDiff,
+            vsQrf: item.CumUQFMToQFMCWVsQrf,
+            ww: item.CumUQFMToQFMWW,
+        }
+
+        newState[12].details.signUpCat.qtd.push(newQFM);
+        newState[12].details.signUpCat.week.push(newQFMWeek);
+
+        newState[13].details.signUpCat.qtd.push(cumuQFM);
+        newState[13].details.signUpCat.week.push(cumuQFMWeek);
+        newState[14].details.signUpCat.qtd.push(day28);
+        newState[14].details.signUpCat.week.push(day28Week);
+        newState[15].details.signUpCat.qtd.push(cumuUTQ);
+        newState[15].details.signUpCat.week.push(cumuUTQWeek);
+
     }
 }
