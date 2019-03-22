@@ -370,7 +370,7 @@ class KendoDialog extends Component {
             'quarterFilterContainer': true,
         });
         let { filters } = this.props;
-        const filtersApplied = this.generateFilterList(this.props.activeFilters);
+        // const filtersApplied = this.generateFilterList(this.props.activeFilters);
         const defaultSum = this.state.selectedSummary || this.props.defaultSummaryView;
         const show = this.props.dialogIsOpen;
       const { GEO,

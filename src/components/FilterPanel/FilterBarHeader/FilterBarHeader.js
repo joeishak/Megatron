@@ -125,19 +125,30 @@ class FilterBarHeader extends Component {
        
         return(
             <div className="filterContainer container-fluid row">
-                <div className="pillsContainer col-10">
+                <div className="pillsContainer col-8">
                 { this.renderFilterPills()}
                 </div>
+
                 <div className="newFilterDiv col-2"> 
                     <span className="newFilterText" >{this.props.filterPanelIsOpen ? 'Hide Filters' : 'Add Filters'}</span> 
-                        <img src={addIcon} alt="" className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img>
+                    <img src={addIcon} alt="" className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img>
                 </div>
+
+                <div className="newFilterDiv col-2"> 
+                    <span class="badge badge-pill badge-primary" style={{marginTop: '7px', cursor: 'pointer'}} onClick={ e => {this.props.resetFilters(this.props.preferences)}}>Reset Filters</span>
+                    {/* <img src={addIcon} alt="" className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img> */}
+                </div>
+
             </div>
         )
     }
 }
 function mapStateToProps(state) {
-    return {filters: state.filters};
+
+    return {
+        filters: state.filters,
+        preferences: state.preferences,
+    };
   }
   
   export default connect(mapStateToProps,actions) (FilterBarHeader)

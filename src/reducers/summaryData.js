@@ -514,7 +514,7 @@ export function processFinancialQTD(newState, data) {
     }
 }
 export function processFinancialGeoQTD(newState, data) {
-    console.log('YO', data);
+    // console.log('YO', data);
     //Clear old Values
     let item1 = [];
     let item2 = [];
@@ -578,50 +578,56 @@ export function processFinancialGeoQTD(newState, data) {
         item4.push(ren);
     }
 
-    newState[0].details.geo.qtd = processQTDOrder(item1);
-    newState[1].details.geo.qtd = processQTDOrder(item2);
-    newState[2].details.geo.qtd = processQTDOrder(item3);
-    newState[3].details.geo.qtd = processQTDOrder(item4);
+    // console.log('YO', item1);
+    newState[0].details.geo.qtd =  processQTDOrder(item1);
+    newState[1].details.geo.qtd =  processQTDOrder(item2);
+    newState[2].details.geo.qtd =  processQTDOrder(item3);
+    newState[3].details.geo.qtd =  processQTDOrder(item4);
 }
 
 /** Custom function to Reorder QTD Details with row always last */
 function processQTDOrder(data) {
-    // console.log('YO',data);
-    let groupByMarketArea = _.groupBy(data, function (item) { return item.marketArea });
-    let arr = Object.entries(groupByMarketArea);
-    let rowsArr = groupByMarketArea.ROW;
-    let compiledArray = [];
-    let NewArr = [];
-    let removedRows = _.filter(arr, function (o) {
-        return o[0] !== 'ROW';
-    });
-
-    //  console.log('YO', removedRows);
-    for (let i = 0; i < removedRows.length; i++) {
-        let items = removedRows[i][1];
-        for (let j = 0; j < items.length; j++) {
-            NewArr.push(items[j]);
-        }
-    }
-
-    for (let k = 0; k < NewArr.length; k++) {
-        compiledArray.push(NewArr[k]);
-        let toFind = NewArr[k];
-        for (let a = 0; a < NewArr.length; a++) {
-            if (NewArr[a].type === toFind.type && NewArr[a] !== toFind) {
-                compiledArray.push(NewArr[a]);
-                NewArr.splice(a, 1);
+    if (data.length !== 0) {
+        // check if theres ROW records
+        let groupByMarketArea = _.groupBy(data, function(item) { return item.marketArea});
+        let arr = Object.entries(groupByMarketArea);
+        let rowsArr = groupByMarketArea.ROW;
+        let compiledArray = [];
+        let NewArr = [];
+        let removedRows = _.filter(arr , function(o) { 
+            return o[0] !== 'ROW'; 
+         });
+    
+        //  console.log('YO', removedRows);
+        for (let i = 0; i < removedRows.length; i++) {
+            let items = removedRows[i][1];
+            for (let j = 0; j < items.length; j++) {
+                NewArr.push(items[j]);
+                }
+            }
+    
+        for (let k = 0; k < NewArr.length; k++) {
+            compiledArray.push(NewArr[k]);
+            let toFind = NewArr[k];
+            for (let a = 0; a < NewArr.length; a++) {
+                if (NewArr[a].type === toFind.type && NewArr[a] !== toFind) {
+                    compiledArray.push(NewArr[a]);
+                    NewArr.splice(a, 1);
+                }
+            }
+            for (let n = 0; n < rowsArr.length; n++) {
+                if (toFind.type === rowsArr[n].type) {
+                    compiledArray.push(rowsArr[n]);
+                    rowsArr.splice(n, 1);
+                }
             }
         }
-        for (let n = 0; n < rowsArr.length; n++) {
-            if (toFind.type === rowsArr[n].type) {
-                compiledArray.push(rowsArr[n]);
-                rowsArr.splice(n, 1);
-            }
-        }
+        // console.log(compiledArray.concat(rowsArr));
+        return compiledArray.concat(rowsArr);
+    } else {
+        return [];
     }
-    // console.log(compiledArray.concat(rowsArr));
-    return compiledArray.concat(rowsArr);
+   
 
 }
 

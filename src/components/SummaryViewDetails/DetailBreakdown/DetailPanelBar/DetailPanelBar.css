@@ -267,8 +267,8 @@
 
 /* White panel on QTD Details */
 .k-panelbar, .k-item, .k-state-expanded, .k-link {
-    color: black !important;
-    background-color: #f4f4f4 !important;
+    color: rgb(243, 243, 243) !important;
+    background-color: #1f1f1f !important;
 }
 .geoTableContainer{
     padding:5px;
