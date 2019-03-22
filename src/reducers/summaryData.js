@@ -43,9 +43,9 @@ export default function (state = {
             //Make a Stringify copy of state
             newState = JSON.parse(JSON.stringify(state));
             //Assign action  payload data to new state primary
-            newState.primary[0].value = action.payload[0].data[0].NewARRActual;
-            newState.primary[0].targetFQ = action.payload[0].data[0].NewARRTargetFQ;
-            newState.primary[0].target = action.payload[0].data[0].NewARRTarget;
+            newState.primary[0].value = action.payload[0].data[0].noRowsArrActual;
+            newState.primary[0].targetFQ = action.payload[0].data[0].noRowsArrTargetFQ;
+            newState.primary[0].target = action.payload[0].data[0].noRowsArrTarget;
             newState.primary[0].vsqrf = action.payload[0].data[0].NewVsQrf;
             newState.primary[1].value = action.payload[1].data[0].TrafficActual;
             newState.primary[1].target = action.payload[1].data[0].TrafficTarget;
@@ -215,9 +215,9 @@ export default function (state = {
 // TODO: Move to Services
 export function processFinanceSecondaryData(g1, newState) {
     //Finance
-    newState[0].value = g1.data[0].NewARRActual;
-    newState[0].target = g1.data[0].NewARRTarget;
-    newState[0].targetFQ = g1.data[0].NewARRTargetFQ;
+    newState[0].value = g1.data[0].noRowsArrActual;
+    newState[0].target = g1.data[0].noRowsArrTarget;
+    newState[0].targetFQ = g1.data[0].noRowsArrTargetFQ;
     newState[0].vsQrf = g1.data[0].NewVsQrf;
     // //Gross New Arr
     newState[1].value = g1.data[0].GrossARRActual;
@@ -231,8 +231,8 @@ export function processFinanceSecondaryData(g1, newState) {
     newState[2].vsQrf = g1.data[0].CancelVsQrf;
     //   //Renewal
     newState[3].value = g1.data[0].RenewActuals;
-    newState[3].targetFQ = g1.data[0].RenewARRTargetFQ;
-    newState[3].target = g1.data[0].RenewARRTarget;
+    newState[3].targetFQ = g1.data[0].RenoRowsArrTargetFQ;
+    newState[3].target = g1.data[0].RenoRowsArrTarget;
     newState[3].vsQrf = g1.data[0].RenewVSQRF;
 }
 export function processFinancialMultichart(newState, data) {
@@ -270,10 +270,10 @@ export function processFinancialMultichart(newState, data) {
     //Get Financial Multichart values
     for (let i = 0; i < data.length; i++) {
         let item = newData[i];
-        netArr.actual.push(item.NewARRActual);
-        netArr.target.push(item.NewARRTargetFQ);
-        netArr.ly.push(item.NewARRLY);
-        netArr.lq.push(item.NewARRLQ);
+        netArr.actual.push(item.noRowsArrActual);
+        netArr.target.push(item.noRowsArrTargetFQ);
+        netArr.ly.push(item.noRowsArrLY);
+        netArr.lq.push(item.noRowsArrLQ);
         netCancellations.actual.push(item.CancelARRActual);
         netCancellations.target.push(item.CancelARRTargetFQ);
         netCancellations.ly.push(item.CancelARRLY);
@@ -282,10 +282,10 @@ export function processFinancialMultichart(newState, data) {
         grossArr.target.push(item.GrossARRTargetFQ);
         grossArr.ly.push(item.GrossARRLY);
         grossArr.lq.push(item.GrossARRLQ);
-        termRenewal.actual.push(item.RenewARRActual);
-        termRenewal.target.push(item.RenewARRTargetFQ);
-        termRenewal.ly.push(item.RenewARRLY);
-        termRenewal.lq.push(item.RenewARRLQ);
+        termRenewal.actual.push(item.RenoRowsArrActual);
+        termRenewal.target.push(item.RenoRowsArrTargetFQ);
+        termRenewal.ly.push(item.RenoRowsArrLY);
+        termRenewal.lq.push(item.RenoRowsArrLQ);
 
     };
     //Set Multichart Values
@@ -421,30 +421,30 @@ export function processFinancialQTD(newState, data) {
                         {
                             index: 5,
                             header: 'Vs Qrf',
-                            value: findata.NewARRVsQrf
+                            value: findata.noRowsArrVsQrf
                         },
                         {
                             index: 6,
                             header: 'Q/Q',
-                            value: findata.NewARRQQTY
+                            value: findata.noRowsArrQQTY
                         },
                         {
                             index: 7,
                             header: 'Y/Y',
-                            value: findata.NewARRYY
+                            value: findata.noRowsArrYY
                         }
                     ]
 
-                newState[i].details.qtdw.week[0].value = findata.NewARRCW
+                newState[i].details.qtdw.week[0].value = findata.noRowsArrCW
                 newState[i].details.qtdw.week[1].value = findata.NewUnitsCW;
-                newState[i].details.qtdw.week[2].value = findata.NewARRTargetCW
+                newState[i].details.qtdw.week[2].value = findata.noRowsArrTargetCW
                 newState[i].details.qtdw.week[3].value = findata.NewCWVsQrfDiff;
                 newState[i].details.qtdw.week[4].value = findata.NewCWVsQrf;
                 newState[i].details.qtdw.week[5].value = findata.NewWW;
-                newState[i].details.stats[0].value = findata.NewARRVsQrf;
-                newState[i].details.stats[1].value = findata.NewARRQQTY;
-                newState[i].details.stats[2].value = findata.NewARRQQLY;
-                newState[i].details.stats[3].value = findata.NewARRYY;
+                newState[i].details.stats[0].value = findata.noRowsArrVsQrf;
+                newState[i].details.stats[1].value = findata.noRowsArrQQTY;
+                newState[i].details.stats[2].value = findata.noRowsArrQQLY;
+                newState[i].details.stats[3].value = findata.noRowsArrYY;
                 break;
             // Gross New Arr
             case 1:
@@ -527,12 +527,12 @@ export function processFinancialGeoQTD(newState, data) {
             actuals: item.NewActuals,
             units: item.NewUnitsActual,
             marketArea: item.market_area_group,
-            qq: item.NewARRQQTY,
+            qq: item.noRowsArrQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.geo_code,
-            vsQrf: item.NewARRVsQrf,
-            yy: item.NewARRYY
+            vsQrf: item.noRowsArrVsQrf,
+            yy: item.noRowsArrYY
         }
         console.log(net);
         let gross = {
@@ -588,47 +588,60 @@ export function processFinancialGeoQTD(newState, data) {
 /** Custom function to Reorder QTD Details with row always last */
 function processQTDOrder(data) {
     if (data.length !== 0) {
-        // check if theres ROW records
-        let groupByMarketArea = _.groupBy(data, function(item) { return item.marketArea});
-        let arr = Object.entries(groupByMarketArea);
-        let rowsArr = groupByMarketArea.ROW;
-        let compiledArray = [];
-        let NewArr = [];
-        let removedRows = _.filter(arr , function(o) { 
-            return o[0] !== 'ROW'; 
-         });
-    
-        //  console.log('YO', removedRows);
-        for (let i = 0; i < removedRows.length; i++) {
-            let items = removedRows[i][1];
-            for (let j = 0; j < items.length; j++) {
-                NewArr.push(items[j]);
-                }
-            }
-    
-        for (let k = 0; k < NewArr.length; k++) {
-            compiledArray.push(NewArr[k]);
-            let toFind = NewArr[k];
-            for (let a = 0; a < NewArr.length; a++) {
-                if (NewArr[a].type === toFind.type && NewArr[a] !== toFind) {
-                    compiledArray.push(NewArr[a]);
-                    NewArr.splice(a, 1);
-                }
-            }
-            for (let n = 0; n < rowsArr.length; n++) {
-                if (toFind.type === rowsArr[n].type) {
-                    compiledArray.push(rowsArr[n]);
-                    rowsArr.splice(n, 1);
-                }
+
+        // Before re-ordering check if there are rows re-order
+        let hasRows = false;
+        for (let e = 0; e < data.length; e++) {
+            if (data[e].marketArea === "ROW") {
+                hasRows = true;
             }
         }
-        // console.log(compiledArray.concat(rowsArr));
-        return compiledArray.concat(rowsArr);
+
+        // if it contains rows re-order else then return the data
+        if (hasRows) {
+            let groupByMarketArea = _.groupBy(data, function(item) { return item.marketArea});
+            let arr = Object.entries(groupByMarketArea);
+            let rowsArr = groupByMarketArea.ROW;
+            let compiledArray = [];
+            let noRowsArr = [];
+            let removedRows = _.filter(arr , function(o) { 
+                return o[0] !== 'ROW'; 
+             });
+        
+            //  separate all non rows
+            for (let i = 0; i < removedRows.length; i++) {
+                let items = removedRows[i][1];
+                for (let j = 0; j < items.length; j++) {
+                    noRowsArr.push(items[j]);
+                    }
+                }
+        
+            for (let k = 0; k < noRowsArr.length; k++) {
+                compiledArray.push(noRowsArr[k]);
+                let toFind = noRowsArr[k];
+                for (let a = 0; a < noRowsArr.length; a++) {
+                    if (noRowsArr[a].type === toFind.type && noRowsArr[a] !== toFind) {
+                        compiledArray.push(noRowsArr[a]);
+                        noRowsArr.splice(a, 1);
+                    }
+                }
+                for (let n = 0; n < rowsArr.length; n++) {
+                    if (toFind.type === rowsArr[n].type) {
+                        compiledArray.push(rowsArr[n]);
+                        rowsArr.splice(n, 1);
+                    }
+                }
+            }
+
+            return compiledArray.concat(rowsArr);
+        } else {
+            return data;
+        }
+       
     } else {
         return [];
     }
    
-
 }
 
 export function processFinancialGeoWeek(newState, data) {
@@ -643,10 +656,10 @@ export function processFinancialGeoWeek(newState, data) {
         let item = data[i];
         let net = {
             index: i,
-            actuals: item.NewARRCW,
+            actuals: item.noRowsArrCW,
             units: item.NewUnitsCW,
             marketArea: item.market_area_group,
-            qrf: item.NewARRTargetCW,
+            qrf: item.noRowsArrTargetCW,
             qrfDiff: item.NewCWVsQrfDiff,
             type: item.geo_code,
             vsQrf: item.NewCWVsQrf,
@@ -711,11 +724,11 @@ export function processFinancialMarketQTD(newState, data) {
             actuals: item.NewActuals,
             units: item.NewUnitsActual,
             marketArea: item.market_area_code,
-            qq: item.NewARRQQTY,
+            qq: item.noRowsArrQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.market_area_code,
-            vsQrf: item.NewARRVsQrf,
+            vsQrf: item.noRowsArrVsQrf,
             yy: item.NewYY
         }
         let gross = {
@@ -774,10 +787,10 @@ export function processFinancialMarketWeek(newState, data) {
         let item = data[i];
         let net = {
             index: i,
-            actuals: item.NewARRCW,
+            actuals: item.noRowsArrCW,
             units: item.NewUnitsCW,
             marketArea: item.market_area_code,
-            qrf: item.NewARRTargetCW,
+            qrf: item.noRowsArrTargetCW,
             qrfDiff: item.NewCWVsQrfDiff,
             type: item.market_area_code,
             vsQrf: item.NewCWVsQrf,
@@ -842,11 +855,11 @@ export function processFinancialrouteQTD(newState, data) {
             actuals: item.NewActuals,
             units: item.NewUnitsActual,
             marketArea: item.market_area_code,
-            qq: item.NewARRQQTY,
+            qq: item.noRowsArrQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.route_to_market,
-            vsQrf: item.NewARRVsQrf,
+            vsQrf: item.noRowsArrVsQrf,
             yy: item.NewYY
         }
         let gross = {
@@ -905,10 +918,10 @@ export function processFinancialrouteWeek(newState, data) {
         let item = data[i];
         let net = {
             index: i,
-            actuals: item.NewARRCW,
+            actuals: item.noRowsArrCW,
             units: item.NewUnitsCW,
             marketArea: item.market_area_code,
-            qrf: item.NewARRTargetCW,
+            qrf: item.noRowsArrTargetCW,
             qrfDiff: item.NewCWVsQrfDiff,
             type: item.route_to_market,
             vsQrf: item.NewCWVsQrf,
@@ -973,11 +986,11 @@ export function processFinancialSegmentQTD(newState, data) {
             actuals: item.NewActuals,
             units: item.NewUnitsActual,
             marketArea: item.market_area_code,
-            qq: item.NewARRQQTY,
+            qq: item.noRowsArrQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.segment_pivot,
-            vsQrf: item.NewARRVsQrf,
+            vsQrf: item.noRowsArrVsQrf,
             yy: item.NewYY
         }
         let gross = {
@@ -1036,10 +1049,10 @@ export function processFinancialSegmentWeek(newState, data) {
         let item = data[i];
         let net = {
             index: i,
-            actuals: item.NewARRCW,
+            actuals: item.noRowsArrCW,
             units: item.NewUnitsCW,
             marketArea: item.market_area_code,
-            qrf: item.NewARRTargetCW,
+            qrf: item.noRowsArrTargetCW,
             qrfDiff: item.NewCWVsQrfDiff,
             type: item.segment_pivot,
             vsQrf: item.NewCWVsQrf,
@@ -1104,11 +1117,11 @@ export function processFinancialproductQTD(newState, data) {
             actuals: item.NewActuals,
             units: item.NewUnitsActual,
             marketArea: item.market_area_code,
-            qq: item.NewARRQQTY,
+            qq: item.noRowsArrQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.product_category,
-            vsQrf: item.NewARRVsQrf,
+            vsQrf: item.noRowsArrVsQrf,
             yy: item.NewYY
         }
         let gross = {
@@ -1167,10 +1180,10 @@ export function processFinancialProductWeek(newState, data) {
         let item = data[i];
         let net = {
             index: i,
-            actuals: item.NewARRCW,
+            actuals: item.noRowsArrCW,
             units: item.NewUnitsCW,
             marketArea: item.market_area_code,
-            qrf: item.NewARRTargetCW,
+            qrf: item.noRowsArrTargetCW,
             qrfDiff: item.NewCWVsQrfDiff,
             type: item.product_category,
             vsQrf: item.NewCWVsQrf,
