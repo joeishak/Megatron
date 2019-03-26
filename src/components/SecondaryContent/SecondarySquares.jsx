@@ -242,8 +242,8 @@ class SecondarySquares extends Component {
             <div
               className={`  ${seconaryBoxContentAmount} ${utils.getLabelColor(this.props.item.value, this.props.item.target, this.props.item.index)}`}
             >
-              {formattedValue} <span className={`QRF-Percent ` + this.props.item.details.stats[0].color}>
-                {utils.formatMetric({ valueType: 'percent', value: this.props.item.details.stats[0].value }, 'value')}</span>
+              {formattedValue} <span className={`QRF-Percent ` + this.props.item.details.stats[0].color}>(
+              {utils.formatMetric({ valueType: 'percent', value: this.props.item.details.stats[0].value }, 'value')})</span>
             </div>
             {/* {console.log(this.props.statsDetails)} */}
             <div className={boxBullet}>

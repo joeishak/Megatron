@@ -262,11 +262,11 @@ class SecondaryContentList extends Component {
               </div>
             </div>
 
-            <div className="slider-content">
+            {/* <div className="slider-content">
               <div className="sliderSquareContainerInner slider_box_inner">
                 <MobileViewDetails detailsData={this.props.data[this.props.activeJourneyCard].details.qtdw} valueType={this.props.data[this.props.activeJourneyCard].valueType}></MobileViewDetails>
               </div>
-            </div>
+            </div> */}
 
           </div>
 
