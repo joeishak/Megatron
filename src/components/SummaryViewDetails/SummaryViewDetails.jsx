@@ -123,11 +123,15 @@ class SummaryViewDetails extends Component {
     let copy = this.state.selectedFilters;
     if (e.length === 0) {
       _.remove(copy, item => { return item.category === type });
-      this.setState({ selectedFilters: [...copy] })
+      this.setState({ selectedFilters: [...copy] },()=>{
+        this.submitFilters({})
+      })
 
     } else {
       _.remove(copy, item => { return item.category === e[0].category });
-      this.setState({ selectedFilters: [...copy, ...e] });
+      this.setState({ selectedFilters: [...copy, ...e] },()=>{
+        this.submitFilters({})
+      });
     }
 
 
@@ -174,7 +178,6 @@ class SummaryViewDetails extends Component {
       route: [],
       subscription: [],
       geo: [],
-      //Traffic Filters
       lastTouchChannel: [],
       convType: [],
       websegment: [],
@@ -216,13 +219,13 @@ class SummaryViewDetails extends Component {
             [...this.props.filters.visits.valueFilters];
           console.log('New Filters', newFilters);
           break;
-        case CHANNELMU:
-          console.log("CHANNEL MU", this.state.selectedFilters);
-          newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === CHANNELMU })) ? /* Then */
-            [_.find(this.state.selectedFilters, (item => { return item.category === CHANNELMU }))] : /* Else */
-            [...this.props.filters.CHANNELMU.valueFilters];
-          console.log(' CHANNELMU', newFilters);
-          break;
+        // case CHANNELMU:
+        //   console.log("CHANNEL MU", this.state.selectedFilters);
+        //   newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === CHANNELMU })) ? /* Then */
+        //     [_.find(this.state.selectedFilters, (item => { return item.category === CHANNELMU }))] : /* Else */
+        //     [...this.props.filters.CHANNELMU.valueFilters];
+        //   console.log(' CHANNELMU', newFilters);
+        //   break;
         default:
           let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category === item }));
           if (grouped.false !== this.state.selectedFilters.length) {
@@ -242,7 +245,8 @@ class SummaryViewDetails extends Component {
 
     this.setState({ selectedFilters: [],singleValueSubmitted:false,multiValueSubmitted: false })
 
-    this.props.submitFilters(newFilters);
+    this.props.subFiltersSubmit(newFilters);
+    // this.props.submitFilters(newFilters);
     //  this.props.getSummaryData(newFilters);
     // this.props.handleClose();
   }
@@ -264,7 +268,7 @@ class SummaryViewDetails extends Component {
       case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
         return (
           <div className="row">
-            <div className="col-md-2 col-lg-2" style={{ paddingBottom: '10px' }}>
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
               {/* Visit Type */}
               <div>Visits</div>
               <SingleValueSelect
@@ -335,6 +339,7 @@ class SummaryViewDetails extends Component {
             <div className="col-md-4 col-lg-4">
             <div> Channel</div>
             <MultiValueSelect
+                
                 options={channelPM.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CHANNELPM; this.updateMultiValue(e, type) }}
                 onMenuClose={(e) => { this.closeMultiValue(e) }}
@@ -356,7 +361,6 @@ class SummaryViewDetails extends Component {
                 onMenuClose={(e) => { this.closeMultiValue(e) }}
               />
             </div>
-
           </div>
         );
      
@@ -718,149 +722,150 @@ class SummaryViewDetails extends Component {
         {/* First Row for Ttle Bar and Metric Filter */}
         <div className="row container-fluid titleBarHeader">
 
+        <div className="row">
+            <span className="col-md-2 col-lg-4 detailTitle2 ">
+              {activeItem.header}
+            </span>
+            
+          {this.props.activePrimary < 1 ?
 
+<div className="col-lg-2 col-md-3 flRight">
+  <div className=" multiChartMetricContainer ">
+    <div
+      onClick={this.updateMultiChartMetricFilter}
+      className={UnitStyles}>
+      UNITS
+    </div>
+    <div
+      onClick={this.updateMultiChartMetricFilter}
+      className={ArrStyles}>
+      ARR
+    </div>
+  </div>
+</div>
+:
+<span></span>}
+
+
+<span className="excelSpan">
+<Workbook
+  filename={`${activeItem.header}.xlsx`}
+  element={
+    <button className="exportButton">
+      <span>Export</span>
+      <img
+        alt=""
+        className="excelLogo"
+        style={{ height: "20px", width: "20px" }}
+        src={excelLogoGreen}
+      />
+    </button>
+  }
+> 
+ <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
+    <Workbook.Column label="Dimension" value="category" />
+    <Workbook.Column label="Filter Applied" value="value" />
+
+  </Workbook.Sheet>
+
+  {/* <Workbook.Sheet data={this.props.secondaryData[activeSecondary].details.geo.qtd || []} name="geo">
+    <Workbook.Column label="Geo" value="type" />
+    <Workbook.Column label="MarketArea" value="marketArea" />
+    <Workbook.Column label="Actuals" value="actuals" />
+    {this.props.activeSecondary < 3 ? <Workbook.Column label="Units" value="units" /> : null}
+    <Workbook.Column label="QRF" value="qrf" />
+    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+    <Workbook.Column label="vsQRF" value="vsQrf" />
+    <Workbook.Column label="Q/Q" value="qq" />
+    <Workbook.Column label="Y/Y" value="yy" />
+  </Workbook.Sheet>
+  <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd || []} name="Market Area">
+    <Workbook.Column label="Market Area" value="type" />
+    <Workbook.Column label="Actuals" value="actuals" />
+    {this.props.activeSecondary < 3 ? <Workbook.Column label="Units" value="units" /> : null}
+    <Workbook.Column label="QRF" value="qrf" />
+    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+    <Workbook.Column label="vsQRF" value="vsQrf" />
+    <Workbook.Column label="Q/Q" value="qq" />
+    <Workbook.Column label="Y/Y" value="yy" />
+  </Workbook.Sheet>
+  <Workbook.Sheet data={secondaryData[activeSecondary].details.segment.qtd || []} name="Segment Pivot">
+    <Workbook.Column label="Segment Pivot" value="type" />
+    <Workbook.Column label="Actuals" value="actuals" />
+    {this.props.activeSecondary < 3 ? <Workbook.Column label="Units" value="units" /> : null}
+    <Workbook.Column label="QRF" value="qrf" />
+    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+    <Workbook.Column label="vsQRF" value="vsQrf" />
+    <Workbook.Column label="Q/Q" value="qq" />
+    <Workbook.Column label="Y/Y" value="yy" />
+  </Workbook.Sheet>
+  <Workbook.Sheet data={secondaryData[activeSecondary].details.route.qtd || []} name="Route To Market">
+    <Workbook.Column label="Route To Market" value="type" />
+    <Workbook.Column label="Actuals" value="actuals" />
+    {this.props.activeSecondary < 3 ? <Workbook.Column label="Units" value="units" /> : null}
+    <Workbook.Column label="QRF" value="qrf" />
+    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+    <Workbook.Column label="vsQRF" value="vsQrf" />
+    <Workbook.Column label="Q/Q" value="qq" />
+    <Workbook.Column label="Y/Y" value="yy" />
+  </Workbook.Sheet>
+  <Workbook.Sheet data={secondaryData[activeSecondary].details.product.qtd || []} name="Product Names">
+    <Workbook.Column label="Product Name" value="type" />
+    <Workbook.Column label="Actuals" value="actuals" />
+    {this.props.activeSecondary < 3 ? <Workbook.Column label="Units" value="units" /> : null}
+    <Workbook.Column label="QRF" value="qrf" />
+    <Workbook.Column label="vsQRF" value="vsQrf" />
+    <Workbook.Column label="vsQRF" value="vsQrf" />
+    <Workbook.Column label="Q/Q" value="qq" />
+    <Workbook.Column label="Y/Y" value="yy" />
+  </Workbook.Sheet> */}
+
+</Workbook>
+</span>
+
+
+<div className="stats-container-main">{this.props.activeItem.details.stats.map(item => {
+
+if (this.props.activeSecondary == 2) {
+  return (
+    <div className="statsHeader" key={item.text}>
+      <div className={(item.value <= 0) ? 'stats green' : 'stats red '}>
+        {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
+      </div>
+      <div className="footer"> {item.text}</div>
+    </div>
+  )
+} else {
+  return (
+    <div className="statsHeader" key={item.text}>
+      <div className={(item.value <= 0) ? 'stats red' : 'stats green '}>
+        {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
+      </div>
+      <div className="footer"> {item.text}</div>
+    </div>
+  )
+}
+
+}).reverse()}</div>
+          </div>
 
           {/* FILTER */}
-          <div className="col-lg-8 col-md-8 summary-filter">
+          <div className="col-lg-12 col-md-12 summary-filter">
             {this.getSummaryFilters(this.props.activeSecondary)}
           </div>
 
 
-          {this.props.activePrimary < 1 ?
-
-            <div className="col-lg-2 col-md-3 flRight">
-              <div className=" multiChartMetricContainer ">
-                <div
-                  onClick={this.updateMultiChartMetricFilter}
-                  className={UnitStyles}>
-                  UNITS
-                </div>
-                <div
-                  onClick={this.updateMultiChartMetricFilter}
-                  className={ArrStyles}>
-                  ARR
-                </div>
-              </div>
-            </div>
-            :
-            <span></span>}
-
-
-          <span className="excelSpan">
-            <Workbook
-              filename={`${activeItem.header}.xlsx`}
-              element={
-                <button className="exportButton">
-                  <span>Export</span>
-                  <img
-                    alt=""
-                    className="excelLogo"
-                    style={{ height: "20px", width: "20px" }}
-                    src={excelLogoGreen}
-                  />
-                </button>
-              }
-            > 
-             <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
-                <Workbook.Column label="Dimension" value="category" />
-                <Workbook.Column label="Filter Applied" value="value" />
-
-              </Workbook.Sheet>
-
-              {/* <Workbook.Sheet data={this.props.secondaryData[activeSecondary].details.geo.qtd || []} name="geo">
-                <Workbook.Column label="Geo" value="type" />
-                <Workbook.Column label="MarketArea" value="marketArea" />
-                <Workbook.Column label="Actuals" value="actuals" />
-                {this.props.activeSecondary < 3 ? <Workbook.Column label="Units" value="units" /> : null}
-                <Workbook.Column label="QRF" value="qrf" />
-                <Workbook.Column label="QRFDIFF" value="qrfDiff" />
-                <Workbook.Column label="vsQRF" value="vsQrf" />
-                <Workbook.Column label="Q/Q" value="qq" />
-                <Workbook.Column label="Y/Y" value="yy" />
-              </Workbook.Sheet>
-              <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd || []} name="Market Area">
-                <Workbook.Column label="Market Area" value="type" />
-                <Workbook.Column label="Actuals" value="actuals" />
-                {this.props.activeSecondary < 3 ? <Workbook.Column label="Units" value="units" /> : null}
-                <Workbook.Column label="QRF" value="qrf" />
-                <Workbook.Column label="QRFDIFF" value="qrfDiff" />
-                <Workbook.Column label="vsQRF" value="vsQrf" />
-                <Workbook.Column label="Q/Q" value="qq" />
-                <Workbook.Column label="Y/Y" value="yy" />
-              </Workbook.Sheet>
-              <Workbook.Sheet data={secondaryData[activeSecondary].details.segment.qtd || []} name="Segment Pivot">
-                <Workbook.Column label="Segment Pivot" value="type" />
-                <Workbook.Column label="Actuals" value="actuals" />
-                {this.props.activeSecondary < 3 ? <Workbook.Column label="Units" value="units" /> : null}
-                <Workbook.Column label="QRF" value="qrf" />
-                <Workbook.Column label="QRFDIFF" value="qrfDiff" />
-                <Workbook.Column label="vsQRF" value="vsQrf" />
-                <Workbook.Column label="Q/Q" value="qq" />
-                <Workbook.Column label="Y/Y" value="yy" />
-              </Workbook.Sheet>
-              <Workbook.Sheet data={secondaryData[activeSecondary].details.route.qtd || []} name="Route To Market">
-                <Workbook.Column label="Route To Market" value="type" />
-                <Workbook.Column label="Actuals" value="actuals" />
-                {this.props.activeSecondary < 3 ? <Workbook.Column label="Units" value="units" /> : null}
-                <Workbook.Column label="QRF" value="qrf" />
-                <Workbook.Column label="QRFDIFF" value="qrfDiff" />
-                <Workbook.Column label="vsQRF" value="vsQrf" />
-                <Workbook.Column label="Q/Q" value="qq" />
-                <Workbook.Column label="Y/Y" value="yy" />
-              </Workbook.Sheet>
-              <Workbook.Sheet data={secondaryData[activeSecondary].details.product.qtd || []} name="Product Names">
-                <Workbook.Column label="Product Name" value="type" />
-                <Workbook.Column label="Actuals" value="actuals" />
-                {this.props.activeSecondary < 3 ? <Workbook.Column label="Units" value="units" /> : null}
-                <Workbook.Column label="QRF" value="qrf" />
-                <Workbook.Column label="vsQRF" value="vsQrf" />
-                <Workbook.Column label="vsQRF" value="vsQrf" />
-                <Workbook.Column label="Q/Q" value="qq" />
-                <Workbook.Column label="Y/Y" value="yy" />
-              </Workbook.Sheet> */}
-
-            </Workbook>
-          </span>
-
-  
-          <div className="stats-container-main">{this.props.activeItem.details.stats.map(item => {
-
-            if (this.props.activeSecondary == 2) {
-              return (
-                <div className="statsHeader" key={item.text}>
-                  <div className={(item.value <= 0) ? 'stats green' : 'stats red '}>
-                    {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
-                  </div>
-                  <div className="footer"> {item.text}</div>
-                </div>
-              )
-            } else {
-              return (
-                <div className="statsHeader" key={item.text}>
-                  <div className={(item.value <= 0) ? 'stats red' : 'stats green '}>
-                    {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
-                  </div>
-                  <div className="footer"> {item.text}</div>
-                </div>
-              )
-            }
-
-          })}</div>
       
 
           <div className="chartContainer col-md-12">
-            <KendoMultiChart color="white" deviceType="laptop"/>
+            <KendoMultiChart color="white" chartHeight={350} deviceType="laptop"/>
           </div>
         </div>
 
 
         {/* Second Row for Quarterly to Date title header */}
         <div className=" qtdTitleBarHeader container-fluid row">
-          <div className="col-md-2 col-lg-4">
-            <span className="detailTitle2 ">
-              {activeItem.header}
-            </span>
-          </div>
+         
           {/* {this.getQTDDetailFilters(activeItem)} */}
           {/* <div className="col-md-3 col-lg-2 ">
             <div className="flRight multiChartMetricContainer ">

@@ -6,6 +6,7 @@ import KendoBulletChart from "../KendoBullet/KendoBullet";
 import styles from "./SecondaryContent.css";
 import * as utils from "../../utilities.js";
 import classNames from "classnames";
+import { DIMENSIONS } from "../../Constants/consts";
 class SecondarySquares extends Component {
   // Need to Refactor
   componentDidUpdate(prevProps) { }
@@ -138,7 +139,7 @@ class SecondarySquares extends Component {
             <div className="vs-qrf-desktop">( {formattedQRF} vs QRF)</div>
             <div>
               <KendoBulletChart
-                width={175}
+                width={200}
                 cardIndex={this.props.item.index}
                 values={[this.props.item.value, this.props.item.target, this.props.item.targetFQ]}
                 valueType={this.props.item.valueType}

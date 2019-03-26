@@ -78,6 +78,7 @@
 
 .titleBarHeader{
     margin-top:15px;
+    height:50%;
 }
 
 /* Title for the detail Multi Chart */
@@ -110,6 +111,7 @@
 }
 .chartContainer{
     background-color: transparent;
+    height: 30%
 }
 /* Multi Chart Metric Container */
 .multiChartMetricContainer, .totalTimeMetricContainer{

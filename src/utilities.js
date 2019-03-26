@@ -199,6 +199,28 @@ let financeParams = [
     }
 ];
 
+let useParams = [
+    {
+        prompt: 'quarterFilters',
+        value: ''
+    },
+    {
+        prompt: 'geoFilters',
+        value: ''
+    },
+    {
+        prompt: 'maFilters',
+        value: ''
+    },
+    {
+        prompt: 'segmentFilters',
+        value: ''
+    },
+    {
+        prompt: 'subscriptionFilters',
+        value: ''
+    }
+]
 /**
  * 
  * @param {*} arrayList 
@@ -308,8 +330,11 @@ export function findIfFilterIsApplied(arr) {
 export function generateFilterParams(type, filterParams, allFilters, _activeParams) {
     switch (type) {
         case 1:
-            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+        filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+        filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+        filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+        filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+        filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
 
             break;
         //Try
@@ -321,17 +346,10 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
 
             break;
         case 3:
-            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+           
             break;
         case 4:
-            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
-            filterParams[4].value = getParamValues(_activeParams.product, allFilters.product);
+            
 
             break;
         //Traffic
@@ -373,6 +391,12 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[4].value = getParamValues(_activeParams.channelPM, allFilters.channelPM);
             break;
+        case 11: //Repeat User Mau
+        filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+        filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+        filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+        filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+        filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
         //Finance
         default:
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
@@ -540,17 +564,19 @@ export function initiateFilterDataRequests() {
 export function requestPrimaryData(allFilters, _parameters) {
     responseArray = [];
 
-    filterParams[1].value = _parameters.product.length > 0 ? _parameters.product[0].value : allFilters.product;
-    filterParams[2].value = _parameters.geo.length > 0 ? _parameters.geo[0].value : allFilters.geo;
-    filterParams[3].value = _parameters.subscription.length > 0 ? _parameters.subscription[0].value : allFilters.subscriptios;
-    filterParams[4].value = _parameters.market.length > 0 ? _parameters.market[0].value : allFilters.market;
-    filterParams[5].value = _parameters.route.length > 0 ? _parameters.route[0].value : allFilters.route;
+    // filterParams[1].value = _parameters.product.length > 0 ? _parameters.product[0].value : allFilters.product;
+    // filterParams[2].value = _parameters.geo.length > 0 ? _parameters.geo[0].value : allFilters.geo;
+    // filterParams[3].value = _parameters.subscription.length > 0 ? _parameters.subscription[0].value : allFilters.subscriptios;
+    // filterParams[4].value = _parameters.market.length > 0 ? _parameters.market[0].value : allFilters.market;
+    // filterParams[5].value = _parameters.route.length > 0 ? _parameters.route[0].value : allFilters.route;
 
     //Generate the filter list 
     console.log('Utils 556: ', allFilters, _parameters)
     generateFilterParams(2, tryParams, allFilters, _parameters);
     generateFilterParams(5, trafficParams, allFilters, _parameters);
     generateFilterParams(9, financeParams, allFilters, _parameters);
+    generateFilterParams(8, uqfmParams, allFilters, _parameters);
+   generateFilterParams(1, useParams,allFilters, _parameters);
 
 
     //turn each list into a string
@@ -575,15 +601,23 @@ export function requestPrimaryData(allFilters, _parameters) {
         return p;
 
     }, '');
-
-
+    let params6 = uqfmParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params10 = useParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+   
     // console.log(params1,params2,params3);
     //Primary 
     const primaryFinancial = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.FinancialG8ActualTargetPrimary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    console.log("FEtching Dsicover: ", Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficPrimary + params5 + '&json=1')
     const primaryDiscover = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficPrimary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -592,21 +626,21 @@ export function requestPrimaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    // //Secondary
-    // const primaryBuy = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.buyXDCID + Infoburst.summaryQueryNames.FinancialActualTargetSecondary + params5 + '&json=1', {
-    //     headers: headers,
-    //     responseType: 'text'
-    // });
-    // const primaryUse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.JourneysG2SecondaryActualTarget + params5 + '&json=1', {
-    //     headers: headers,
-    //     responseType: 'text'
-    // });
-    // const primaryRenew = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.JourneysG2SecondaryActualTarget + params5 + '&json=1', {
-    //     headers: headers,
-    //     responseType: 'text'
-    // });
+    //Secondary
+    const primaryBuy = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvSecondary + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const primaryUse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const primaryRenew = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.RenewUIPFPrimary + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
-    responseArray.push(primaryFinancial, primaryDiscover, primaryTry);
+    responseArray.push(primaryFinancial, primaryDiscover, primaryTry, primaryBuy, primaryUse, primaryRenew);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
@@ -672,7 +706,7 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(5, trafficParams, allFilters, _parameters);
     generateFilterParams(8, uqfmParams, allFilters, _parameters);
-
+  
     let params5 = trafficParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
@@ -1321,11 +1355,11 @@ export function postUserSettings(params) {
             "quarter": params.quarter,
             "segment": params.segment,
             "user": params.user,
-            "product": params.product,
-            "geo": params.geo,
-            "subscription": params.subscription,
-            "route": params.route,
-            "market": params.market
+            "products": params.product,
+            "geos": params.geo,
+            "subscriptions": params.subscription,
+            "routes": params.route,
+            "markets": params.market
         }
     }
 
@@ -1643,7 +1677,9 @@ export function getLabelColor(value, target, secondaryCardIndex) {
         }
     } else {
         if (target === 0) {
-            retColor = 'neutralBG';
+           
+                retColor = 'neutralBG';
+
         } else if (value >= target) {
             retColor = 'greenBG';
         } else {
@@ -1654,10 +1690,17 @@ export function getLabelColor(value, target, secondaryCardIndex) {
     return retColor;
 }
 
-export function getLabelColorPrimary(value, target) {
+export function getLabelColorPrimary(value, target, mobile) {
+    console.log(mobile)
     let retColor = "";
     if (target === 0) {
-        retColor = 'selectedCardFontColorNeutral';
+        if(mobile===true){
+            retColor = 'selectedMobileCardFontColorNeutral';
+
+        } else{
+            retColor = 'selectedCardFontColorNeutral';
+
+        }
     } else if (value >= target) {
         retColor = 'selectedCardFontColorGreen';
     } else {

@@ -159,7 +159,9 @@
 .selectedCardFontColorNeutral {
 	color: #3c3c3c !important;
 }
-
+.selectedMobileCardFontColorNeutral {
+	color:  #f4f4f4 !important;
+}
 /* dynamic */
 .selectedCardHeaderRed {
 	background-color: #ff0000 !important;

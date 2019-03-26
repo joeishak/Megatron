@@ -118,7 +118,7 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
                                     {this.getPanelContents(DIMENSIONS.WEBSEGMENT)}
                                 </ PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title={'Channel'}>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={'Last Touch Channel'}>
                                     {this.getPanelContents(DIMENSIONS.LTC)}
                                 </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion Type'>
@@ -163,9 +163,7 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
-                                    {this.getPanelContents(DIMENSIONS.MARKET)}
-                                </ PanelBarItem>
+                              
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Channel'>
                                     {this.getPanelContents(DIMENSIONS.CHANNELPM)}
                                 </ PanelBarItem>

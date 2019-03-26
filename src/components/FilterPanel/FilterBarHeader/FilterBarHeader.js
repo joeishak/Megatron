@@ -135,7 +135,7 @@ class FilterBarHeader extends Component {
                 </div>
 
                 <div className="newFilterDiv col-2"> 
-                    <span class="badge badge-pill badge-primary" style={{marginTop: '7px', cursor: 'pointer'}} onClick={ e => {this.props.resetFilters(this.props.preferences)}}>Reset Filters</span>
+                    <span className="badge badge-pill badge-primary" style={{marginTop: '7px', cursor: 'pointer'}} onClick={ e => {this.props.resetFilters(this.props.preferences)}}>Reset Filters</span>
                     {/* <img src={addIcon} alt="" className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img> */}
                 </div>
 

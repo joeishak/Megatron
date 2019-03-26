@@ -7,7 +7,9 @@
 .navContainer{
     margin-bottom: 0px !important;
 }
-
+nav.navContainer.navbar.navbar-default{
+    height:70px;
+}
 .navText {
     font-size: 16px; 
 }
@@ -44,7 +46,6 @@
 .navBrandLogo{
     padding-left: 40px;
     padding-right: 40px;
-    margin-bottom: 20px;
     margin-top: 10px;
 }
 
@@ -71,7 +72,6 @@
 
 .dropDownContainerBox {
     margin-right: 7px;
-    margin-top: 10px;
 }
 
 .selected {

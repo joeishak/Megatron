@@ -109,8 +109,8 @@ export function updateOKTAUser(user) {
  * @param {*} availableFilters
  * @param {*} settingId
  */
-export function updateUserSettings(activeFilters, user, availableFilters, settingId) {
-
+export function updateUserSettings(activeFilters, user) {
+    console.log(activeFilters);
     let stringGeo = activeFilters.geo;
     let stringproduct = activeFilters.product
     let stringroute = activeFilters.route;
@@ -174,7 +174,9 @@ export function getPrimaryData(filters) {
         convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
         //Try
         signupcat: Object.keys(filters.signupCategory.availableFilters).map(e => filters.signupCategory.availableFilters[e]),
-
+        //Buy
+        channelMU: Object.keys(filters.channelMU.availableFilters).map(e => filters.channelMU.availableFilters[e]),
+        channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
 
     }
     let _parameters = {
@@ -192,7 +194,8 @@ export function getPrimaryData(filters) {
         convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
         //Try
         signupcat: Object.keys(filters.signupCategory.valueFilters).map(e => filters.signupCategory.valueFilters[e]),
-
+        channelMU: Object.keys(filters.channelMU.valueFilters).map(e => filters.channelMU.valueFilters[e]),
+        channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
     };
 
     promiseArr = utils.requestPrimaryData(allFilters, _parameters);
