@@ -186,7 +186,7 @@ class PrimarySquare extends Component {
                   {/* Formatted Value $###.## (M / %)*/}
                   <span
                     className={`${responsiveValueText}  ${
-                      utils.getLabelColorPrimary(this.props.item.value, this.props.item.target)
+                      utils.getLabelColorPrimary(this.props.item.value, this.props.item.target,(isMobile|| isTablet))
                       // (this.props.item.value >= this.props.item.target) ? "selectedCardFontColorGreen": "selectedCardFontColorRed"
                       }`}
                   >
@@ -215,7 +215,7 @@ class PrimarySquare extends Component {
                     </div>
                     <div
                       className={`${responsiveValueText}  ${
-                        utils.getLabelColorPrimary(this.props.item.value, this.props.item.target)
+                        utils.getLabelColorPrimary(this.props.item.value, this.props.item.target,(isMobile|| isTablet))
                         // this.props.item.value >= this.props.item.target
                         //   ? "selectedCardFontColorGreen"
                         //   : " selectedCardFontColorRed"

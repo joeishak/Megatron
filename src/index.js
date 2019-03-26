@@ -30,10 +30,8 @@ ReactDOM.render(
 
 				<SecureRoute path="/summary" exact={true} component={Summary} />
 				<SecureRoute path="/" exact={true} component={Summary} />
-				<Route path="/login" render={() => ( <Login baseUrl="https://dev-575609.oktapreview.com"/>)}
-             	/>
-				{/* <Route path="/login" render={() => ( <Login baseUrl="https://adobe.okta.com" />)}
-             	/> */}
+				<Route path="/login" render={() => ( <Login baseUrl="https://dev-575609.oktapreview.com" />)}/>
+			 {/* <Route path="/login" render={() => ( <Login baseUrl="https://adobe.okta.com" />)}/>  */}
 
 				{/* <Route path="" exact={true} component={App} /> */}
 				{/* IBAPPS*/}

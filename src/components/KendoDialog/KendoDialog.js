@@ -208,7 +208,7 @@ class KendoDialog extends Component {
         let fin = this.convertFinId(this.state.financialsSummaryOptions);
         let journ = this.convertJournId(this.state.journeysSummaryViewOptions)
 
-        this.props.updateUserSettings(newFilters, this.props.user, this.props.availableFilters, this.props.preferences.settingId);
+        this.props.updateUserSettings(newFilters, this.props.user);
         this.setState({ savedClicked: true });
 
         setTimeout(() => this.closeDialog(), 1500);
@@ -545,7 +545,7 @@ function mapStateToProps(state) {
 
     return {
         dialogIsOpen: state.isDialogOpen,
-        availableFilters: state.availableFilters,
+        availableFilters: state.filters.combined,
         activeFilters: state.filters.combined,
         user: state.user,
         defaultView: state.preferences.defaultSummaryView,

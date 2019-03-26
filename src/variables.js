@@ -4865,11 +4865,7 @@ export const SecondaryData = [
                         header: 'Actuals',
                         value: 66.7
                     },
-                    {
-                        index: 3,
-                        header: 'Units',
-                        value: 66.7
-                    },
+                    
                     {
                         index: 3,
                         header: 'QRF',
@@ -5722,11 +5718,7 @@ export const SecondaryData = [
                         header: 'Actuals',
                         value: 66.7
                     },
-                    {
-                        index: 3,
-                        header: 'Units',
-                        value: 66.7
-                    },
+                    
                     {
                         index: 3,
                         header: 'QRF',
@@ -7704,11 +7696,6 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        header: 'Units',
-                        value: 66.7
-                    },
-                    {
-                        index: 3,
                         header: 'QRF',
                         value: 66.7
                     },
@@ -8135,11 +8122,6 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        header: 'Units',
-                        value: 66.7
-                    },
-                    {
-                        index: 3,
                         header: 'QRF',
                         value: 66.7
                     },
@@ -8562,11 +8544,6 @@ export const SecondaryData = [
                     {
                         index: 1,
                         header: 'Actuals',
-                        value: 66.7
-                    },
-                    {
-                        index: 3,
-                        header: 'Units',
                         value: 66.7
                     },
                     {

@@ -21,7 +21,7 @@ import MobileCommentBox from "../CommentPanel/MobileCommentBox";
 
 const navBarHeight = 50;
 const titleContainerHeight = 22;
-const secondaryRowHeight = 64;
+const secondaryRowHeight = 90;
 const containerPullBar = 25;
 
 class SecondaryContentList extends Component {

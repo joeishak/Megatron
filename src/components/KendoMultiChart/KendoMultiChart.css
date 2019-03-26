@@ -88,3 +88,8 @@
 .innerContent {
     padding: 10px;
 }
+.k-chart, .k-stockchart {
+   
+    height: 325px;
+}
+

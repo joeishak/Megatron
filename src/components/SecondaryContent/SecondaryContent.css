@@ -307,7 +307,7 @@
 /* Mobile */
 
 .mobileSecondaryBox {
-	height: 60px;
+	height: 90px;
 	background-color: #1f1f1f;
 	border: 2px solid #1f1f1f;
 
@@ -328,7 +328,7 @@
 	font-style: normal;
 	font-weight: bold;
 	line-height: normal;
-	/* font-size: 1.2em; */
+	font-size: 1.8em;
 	margin-bottom: -20px;
 	margin-right: 20px;
 	padding-top:10px;
@@ -338,7 +338,7 @@
 	float:left; 
 	padding-left: 10px;
 	color:white; 
-	font-size: 12px !important; 
+	font-size: 1.2 !important; 
 }
 
 .mobileSecondaryContanetAmountGreen {
@@ -447,13 +447,13 @@
 	font-family: Ubuntu;
 	font-style: normal;
 	line-height: normal;
-	/* font-size: 1.2em; */
-	color: white;
-	float: left;
 	padding-top: 10px;
 	padding-left: 10px;
-	width: 50%;
 	height: 100%;
+	width: 50% !important;
+	font-size: 1.8em;
+	float: left;
+	color: white;
 
 }
 

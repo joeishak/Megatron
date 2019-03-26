@@ -81,16 +81,40 @@ export default function (state = {
     switch (action.type) {
         case SUBMIT_FILTERS:
             copyOfState = JSON.parse(JSON.stringify(state));
-            console.log('FILTERS', action.payload);
+            // console.log('FILTERS', action.payload);
             copyOfState.combined.valueFilters = [];
             // For each key in action . payload
             // goes,market,product,quarter,route,segment,subscription
             Object.keys(action.payload).forEach(item => {
                 copyOfState[item].valueFilters = action.payload[item];
-                console.log(copyOfState[item], action.payload[item]);
+                // console.log(copyOfState[item], action.payload[item]);
                 copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters, ...action.payload[item]];
             });
-            return { ...copyOfState };
+            //If the length of the arrays vary, the user submitted a new filter
+            if(copyOfState.combined.valueFilters.length !== state.combined.valueFilters.length){
+                //then return the newest state
+                return { ...copyOfState };
+            }else { //The length of the arrays are the same
+                let lengthChecker = [];
+                //For each value in the new array, check to see if it exists in the old array
+                lengthChecker = copyOfState.combined.valueFilters.map(item => {
+                   return  _.find(state.combined.valueFilters,(filter=>{
+                        return filter.value===item.value && filter.category === filter.category
+                    }))
+                })
+                
+                console.log(lengthChecker);
+               let foundNewFilters = _.findIndex(lengthChecker,(item=>{
+                    return item === undefined;
+                }))
+
+                console.log(foundNewFilters);
+                if(foundNewFilters!==-1){
+                    return {...copyOfState}
+                }
+                return state;
+            }
+            // return state;
         case ADD_PREFERENCES_TO_ACTIVE_FILTERS:
             let copyOfState1 = JSON.parse(JSON.stringify(state))
             copyOfState = JSON.parse(JSON.stringify(state))
@@ -99,7 +123,7 @@ export default function (state = {
             copyOfState.websegment.valueFilters.push({ index: 187, category: WEBSEGMENT, value: 'DIGITAL MEDIA' });
             copyOfState.lastTouchChannel.valueFilters.push({ index: 129, category: LTC, value: 'ALL' });
             copyOfState.visits.valueFilters.push({ index: 111, category: VISITS, value: 'All Visits' });
-            copyOfState.channelMU.valueFilters.push({ index: 112, category: CHANNELMU, value: 'All' });
+            copyOfState.channelMU.valueFilters.push({ index: 112, category: CHANNELMU, value: 'ALL' });
 
 
             copyOfState.route.valueFilters = action.payload.routeFilters;
