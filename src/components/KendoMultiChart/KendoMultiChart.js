@@ -123,7 +123,7 @@ class KendoMultiChart extends Component {
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
     
         const sharedTooltipRender = (props) => {
-            console.log('Shared Props',props.points);
+            // console.log('Shared Props',props.points);
             // console.log('DEBUG', this.props.activeSecondary);
             const activeSecondary = this.props.activeSecondary;
             const { points } = props;

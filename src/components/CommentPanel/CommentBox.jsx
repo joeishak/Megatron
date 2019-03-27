@@ -72,12 +72,12 @@ class CommentBox extends Component {
             // Post Comment
             // this.props.addNewCommentToSecondaryMetric(this.props.currentMetric,comment);
             // Write to DB, Refresh the metrics from the DB, then refresh Comments count for the comment Indicators
-            console.log('checking user privelages...', this.props.user.Groups);
+            // console.log('checking user privelages...', this.props.user.Groups);
             //check if undefined and comin back from okta
 
             if (this.props.user.Groups !== undefined) {
                 isCommenter = this.props.user.Groups.includes('Commenters');
-                console.log('is commenter:', isCommenter);
+                // console.log('is commenter:', isCommenter);
             } else {
                 // theres no groups coming back from okta, post the comments
                 this.forceUpdate(() => {
@@ -92,7 +92,6 @@ class CommentBox extends Component {
 
             // check if commenter and only post commenter
             if (isCommenter !== null && isCommenter) {
-                console.log()
                 this.forceUpdate(() => {
                     this.props.isFetching(true);
                     utils.postComment(params);
@@ -116,7 +115,7 @@ class CommentBox extends Component {
             }
             if (this.props.user.Groups !== undefined) {
                 isCommenter = this.props.user.Groups.includes('Commenters');
-                console.log('is commenter:', isCommenter);
+                // console.log('is commenter:', isCommenter);
             } else {
                 // theres no groups for okta
                 this.forceUpdate(() => {
@@ -217,7 +216,7 @@ class CommentBox extends Component {
         // const reponsesIdArr = commentResponses.map(ele => { return ele.id });
     }
     onBodyCommentCommentClick = (e) => {
-        console.log('GO BACK');
+        // console.log('GO BACK');
         // this.setState({commentToBeRepliedTo: null, replyMessage: '', commentCommand: `Add Comment . . .`, commentingUser: false});
         // if (!this.props.commentsPackage.isLoading) {
         //     this.commentInput.focus();

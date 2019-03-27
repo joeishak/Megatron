@@ -30,17 +30,17 @@ export default function (state = firstState, action) {
     switch (action.type) {
         case SET_APP_SETTINGS:
             let newState1 = Object.assign({}, state);
-            console.log({
-                deviceType: action.payload.deviceType,
-                window: action.payload.settings.window,
-                views: {
-                    primaryIsVisible: true,
-                    secondaryIsVisible: false,
-                    navigationIsVisible: false,
-                    filterBoxIsVisible: false,
-                    commentBoxIsVisible: false,
-                }
-            });
+            // console.log({
+            //     deviceType: action.payload.deviceType,
+            //     window: action.payload.settings.window,
+            //     views: {
+            //         primaryIsVisible: true,
+            //         secondaryIsVisible: false,
+            //         navigationIsVisible: false,
+            //         filterBoxIsVisible: false,
+            //         commentBoxIsVisible: false,
+            //     }
+            // });
             return {
                 deviceType: action.payload.deviceType,
                 window: action.payload.settings.window,

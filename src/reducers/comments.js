@@ -26,7 +26,7 @@ export default function (state = { data: [], isLoading: true }, action) {
 
             return { data: comments, isLoading: false };
         case FETCHING_COMMENTS:
-            console.log(action.payload);
+            // console.log(action.payload);
             return { data: [], isLoading: action.payload }
         default:
             return state;

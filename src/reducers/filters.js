@@ -103,12 +103,12 @@ export default function (state = {
                     }))
                 })
                 
-                console.log(lengthChecker);
+                // console.log(lengthChecker);
                let foundNewFilters = _.findIndex(lengthChecker,(item=>{
                     return item === undefined;
                 }))
 
-                console.log(foundNewFilters);
+                // console.log(foundNewFilters);
                 if(foundNewFilters!==-1){
                     return {...copyOfState}
                 }
@@ -277,7 +277,7 @@ export default function (state = {
                     valueFilters: []
                 }
             }
-            console.log(obj);
+            // console.log(obj);
             return obj;
 
         case ADD_MULTI_FILTER:
@@ -285,7 +285,7 @@ export default function (state = {
             cat = action.payload.category;
             copyOfState.combined.valueFilters.push(action.payload);
 
-            console.log(copyOfState);
+            // console.log(copyOfState);
             switch (cat) {
                 case GEO:
                     copyOfState.geo.valueFilters = action.payload.quarter;
@@ -352,7 +352,7 @@ export default function (state = {
             copyOfState.combined.valueFilters = [{ index: 211, category: "quarter", value: defaultQuarter }, { index: 209, category: "segment", value: defaultSegment }];
             Object.keys(copyOfState).forEach(item => {
                 if (item !== 'combined') {
-                    console.log(copyOfState[item])
+                    // console.log(copyOfState[item])
                     if (copyOfState[item].valueFilters.length !== 0) {
                         copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters, ...copyOfState[item].valueFilters]
                     }

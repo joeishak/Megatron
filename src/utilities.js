@@ -614,6 +614,7 @@ export function requestPrimaryData(allFilters, _parameters) {
    
     // console.log(params1,params2,params3);
     //Primary 
+    console.log('Fetching Use',Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1');
     const primaryFinancial = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.FinancialG8ActualTargetPrimary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -627,7 +628,7 @@ export function requestPrimaryData(allFilters, _parameters) {
         responseType: 'text'
     });
     //Secondary
-    const primaryBuy = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvSecondary + params5 + '&json=1', {
+    const primaryBuy = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -645,7 +646,73 @@ export function requestPrimaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+export function requestDiscoverSecondary(allFilters, _parameters) {
+    responseArray = [];
 
+  
+    //Generate the filter list 
+    console.log('Utils 556: ', allFilters, _parameters)
+    generateFilterParams(5, trafficParams, allFilters, _parameters);
+    generateFilterParams(8, uqfmParams, allFilters, _parameters);
+    generateFilterParams(6, mktgParams, allFilters, _parameters);
+    generateFilterParams(7, pmssParams, allFilters, _parameters);
+
+    //turn each list into a string
+
+    console.log('MKTG Params before reduce', mktgParams);
+    console.log('PMSS Params before reduce', pmssParams);
+    let params7 = mktgParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params8 = pmssParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+ 
+
+    let params5 = trafficParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+
+    }, '');
+    
+    let params6 = uqfmParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+   
+   
+    // console.log(params1,params2,params3);
+    //Primary 
+    const mu = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUSecondary + params7 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const traffic = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const uqfm = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvSecondary + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Secondary
+    const pmss = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMSecondary + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    
+
+    responseArray.push(mu, traffic, uqfm, pmss);
+    let promiseArr = Promise.all(responseArray);
+
+    return promiseArr;
+}
 export function requestFinanceSecondaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -916,7 +983,7 @@ export function requestTrySecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-    console.log('params2', params2)
+    console.log('Try Params', params2)
 
 
     // Secondary
@@ -960,7 +1027,6 @@ export function requestTrySecondaryData(allFilters, _parameters) {
         TrySecondary, TryMutlichart, TryQTD, TryGeoQTD, TryMarketQTD,
         TryProdQTD, TrySignAppQTD, TrySignCatQTD
     );
-    console.log(responseArray);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
@@ -1177,10 +1243,10 @@ export async function addUserToDB(user) {
         responseType: 'text'
     })
         .then((res) => {
-            console.log('posting user: ', res);
+            // console.log('posting user: ', res);
         })
         .catch((err) => {
-            console.log('posting user error: ', err);
+            // console.log('posting user error: ', err);
 
         })
 }
@@ -1219,7 +1285,7 @@ export function fetchComments(metricId) {
             "metric": metricId
         }
     };
-    console.log(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' })
+    // console.log(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' })
 
     const res1 = axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' }).then((response) => {
 

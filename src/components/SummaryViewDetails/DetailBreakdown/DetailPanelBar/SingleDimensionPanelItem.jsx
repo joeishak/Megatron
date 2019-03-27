@@ -96,7 +96,7 @@ class SingleDimensionPanelItem extends Component {
         weekColumnClass = 'weekColumn';
         switch (this.props.timeMetric) {
             case 'qtd':
-            console.log('Multi', activeSecondary);
+            // console.log('Multi', activeSecondary);
                 return (this.props.data.qtd.map(item => {
 
                     return (<span key={item.index}>
@@ -130,7 +130,7 @@ class SingleDimensionPanelItem extends Component {
                     </span>)
                 }));
             case 'week':
-            console.log('Multi', activeSecondary);
+            // console.log('Multi', activeSecondary);
                 return (this.props.data.week.map(item => {
                     return (<span key={item.index}>
                         <div className={`${weekColumnClass}` + " weekGeoHeader col"}>
@@ -164,7 +164,7 @@ class SingleDimensionPanelItem extends Component {
         }
     }
     render() {
-        console.log('ACTIVE SECONDARY', this.props.activeSecondary)
+        // console.log('ACTIVE SECONDARY', this.props.activeSecondary)
 
         let activeSecondary = this.props.activeSecondary !== undefined ? this.props.activeSecondary : 0;
         let PanelItem = (this.props.isJourney === true) ? this.getSingleDimensionJourneyPanelItem(0) : this.getSingleDimensionPanelItem(activeSecondary)

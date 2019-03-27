@@ -37,7 +37,7 @@ export default   function(state = {},action) {
                 }
                     return newState;
         case UPDATE_USER_SETTINGS:
-        console.log(action.payload);
+        // console.log(action.payload);
         newState  = action.payload.data[0];
         newState.geoFilters = JSON.parse(newState.geoFilters)
         newState.productFilters = JSON.parse(newState.productFilters)

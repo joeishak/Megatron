@@ -59,11 +59,11 @@ class FeedBackDialog extends Component {
                 type: this.state.feedBackType,
                 feature: this.state.featureType
             }
-            console.log(feedback);
+            // console.log(feedback);
             this.props.updateFeedbackFormVisibility(false);
 
         } else {
-            console.log('INCOMPLETE');
+            // console.log('INCOMPLETE');
             this.setState({error: true});
         }
     }
@@ -185,7 +185,7 @@ class FeedBackDialog extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
+    // console.log(state);
     return {
         isFeedBackDialogOpen: state.isFeedBackDialogOpen,
         user: state.user

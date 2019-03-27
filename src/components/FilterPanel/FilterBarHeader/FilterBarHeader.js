@@ -38,7 +38,7 @@ class FilterBarHeader extends Component {
     //     return true;
     // }
     componentDidUpdate() {
-        console.log('HERE', this.props.filterPanelIsOpen)
+        // console.log('HERE', this.props.filterPanelIsOpen)
     }
 
    // Function that renders the Filter Pills

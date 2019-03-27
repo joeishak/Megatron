@@ -39,13 +39,13 @@ export default function (state = {
 }, action) {
     switch (action.type) {
         case GET_PRIMARY_DATA:
-            console.log(action.payload);
+            console.log('PRimary',action.payload);
             //Make a Stringify copy of state
             newState = JSON.parse(JSON.stringify(state));
             //Assign action  payload data to new state primary
-            newState.primary[0].value = action.payload[0].data[0].noRowsArrActual;
-            newState.primary[0].targetFQ = action.payload[0].data[0].noRowsArrTargetFQ;
-            newState.primary[0].target = action.payload[0].data[0].noRowsArrTarget;
+            newState.primary[0].value = action.payload[0].data[0].NewARRActual;
+            newState.primary[0].targetFQ = action.payload[0].data[0].NewARRTargetFQ;
+            newState.primary[0].target = action.payload[0].data[0].NewARRTarget;
             newState.primary[0].vsqrf = action.payload[0].data[0].NewVsQrf;
             newState.primary[1].value = action.payload[1].data[0].TrafficActual;
             newState.primary[1].target = action.payload[1].data[0].TrafficTarget;
@@ -55,21 +55,30 @@ export default function (state = {
             newState.primary[2].target = action.payload[2].data[0].NewQFMsTarget;
             newState.primary[2].vsqrf = action.payload[2].data[0].NewQFMsVsQrf;
             newState.primary[2].targetFQ = action.payload[2].data[0].NewQFMSTargetFQ;
-            newState.primary[3].value = action.payload[2].data[0].UQFMConvActual;
-            newState.primary[3].target = action.payload[2].data[0].UQFMConvTarget;
-            newState.primary[3].vsqrf = action.payload[2].data[0].UQFMConvVsQrf;
-            newState.primary[3].targetFQ = action.payload[2].data[0].UQFMConvTargetFQ;
-            newState.primary[4].value = action.payload[2].data[0].RepeatMAUActual;
-            newState.primary[4].target = action.payload[2].data[0].RepeatMAUTarget;
-            newState.primary[4].vsqrf = action.payload[2].data[0].RepeatMAUVsQRF;
-            newState.primary[4].targetFQ = action.payload[2].data[0].RepeatMAUVsQRF;
-            newState.primary[5].value = action.payload[2].data[0].NewQFMSActual;
-            newState.primary[5].target = action.payload[2].data[0].NewQFMsTarget;
-            newState.primary[5].vsqrf = action.payload[2].data[0].NewQFMsVsQrf;
-            newState.primary[5].targetFQ = action.payload[2].data[0].NewQFMSTargetFQ;
+            newState.primary[3].value = action.payload[3].data[0].ConversionActual;
+            newState.primary[3].target = action.payload[3].data[0].ConversionTarget;
+            newState.primary[3].vsqrf = action.payload[3].data[0].ConversionVsQrf;
+            newState.primary[3].targetFQ = action.payload[3].data[0].ConversionTargetFQ;
+            newState.primary[4].value = action.payload[4].data[0].RepeatMAUActual;
+            newState.primary[4].target = action.payload[4].data[0].RepeatMAUTarget;
+            newState.primary[4].vsqrf = action.payload[4].data[0].RepeatMAUVsQRF;
+            newState.primary[4].targetFQ = action.payload[4].data[0].RepeatMAUVsQRF;
+            newState.primary[5].value = action.payload[5].data[0].UIRateActual;
+            newState.primary[5].target = action.payload[5].data[0].UIRateTarget;
+            newState.primary[5].vsqrf = action.payload[5].data[0].UIRateVsQrf;
+            newState.primary[5].targetFQ = action.payload[5].data[0].UIRateTargetFQ;
             //Return a copy of newstate
             return { ...newState };
+        case GET_DISCOVER_SECONDARY_DATA:
+        newState = JSON.parse(JSON.stringify(state));
+        console.log('Recieved Discover Secondary', action.payload);
+        processTrafficSecondaryData(action.payload[1].data[0], newState.secondary);
+        processUQFMSecondaryData(action.payload[2].data[0], newState.secondary);
+        processMUSecondaryData(action.payload[0].data[0], newState.secondary);
+        processPMSSSecondaryData(action.payload[3].data[0], newState.secondary);
 
+
+            return  {...newState}
         case GET_FINANCE_SECONDARY_DATA:
             console.log(action.payload);
             newState = JSON.parse(JSON.stringify(state));
@@ -257,9 +266,9 @@ export default function (state = {
 // TODO: Move to Services
 export function processFinanceSecondaryData(g1, newState) {
     //Finance
-    newState[0].value = g1.data[0].noRowsArrActual;
-    newState[0].target = g1.data[0].noRowsArrTarget;
-    newState[0].targetFQ = g1.data[0].noRowsArrTargetFQ;
+    newState[0].value = g1.data[0].NewARRActual;
+    newState[0].target = g1.data[0].NewARRTarget;
+    newState[0].targetFQ = g1.data[0].NewARRTargetFQ;
     newState[0].vsQrf = g1.data[0].NewVsQrf;
     // //Gross New Arr
     newState[1].value = g1.data[0].GrossARRActual;
@@ -312,10 +321,10 @@ export function processFinancialMultichart(newState, data) {
     //Get Financial Multichart values
     for (let i = 0; i < data.length; i++) {
         let item = newData[i];
-        netArr.actual.push(item.noRowsArrActual);
-        netArr.target.push(item.noRowsArrTargetFQ);
-        netArr.ly.push(item.noRowsArrLY);
-        netArr.lq.push(item.noRowsArrLQ);
+        netArr.actual.push(item.NewARRActual);
+        netArr.target.push(item.NewARRTargetFQ);
+        netArr.ly.push(item.NewARRLY);
+        netArr.lq.push(item.NewARRLQ);
         netCancellations.actual.push(item.CancelARRActual);
         netCancellations.target.push(item.CancelARRTargetFQ);
         netCancellations.ly.push(item.CancelARRLY);
@@ -463,30 +472,30 @@ export function processFinancialQTD(newState, data) {
                         {
                             index: 5,
                             header: 'Vs Qrf',
-                            value: findata.noRowsArrVsQrf
+                            value: findata.NewARRVsQrf
                         },
                         {
                             index: 6,
                             header: 'Q/Q',
-                            value: findata.noRowsArrQQTY
+                            value: findata.NewARRQQTY
                         },
                         {
                             index: 7,
                             header: 'Y/Y',
-                            value: findata.noRowsArrYY
+                            value: findata.NewARRYY
                         }
                     ]
 
-                newState[i].details.qtdw.week[0].value = findata.noRowsArrCW
+                newState[i].details.qtdw.week[0].value = findata.NewARRCW
                 newState[i].details.qtdw.week[1].value = findata.NewUnitsCW;
-                newState[i].details.qtdw.week[2].value = findata.noRowsArrTargetCW
+                newState[i].details.qtdw.week[2].value = findata.NewARRTargetCW
                 newState[i].details.qtdw.week[3].value = findata.NewCWVsQrfDiff;
                 newState[i].details.qtdw.week[4].value = findata.NewCWVsQrf;
                 newState[i].details.qtdw.week[5].value = findata.NewWW;
-                newState[i].details.stats[0].value = findata.noRowsArrVsQrf;
-                newState[i].details.stats[1].value = findata.noRowsArrQQTY;
-                newState[i].details.stats[2].value = findata.noRowsArrQQLY;
-                newState[i].details.stats[3].value = findata.noRowsArrYY;
+                newState[i].details.stats[0].value = findata.NewARRVsQrf;
+                newState[i].details.stats[1].value = findata.NewARRQQLY;
+                newState[i].details.stats[2].value = findata.NewARRQQTY;
+                newState[i].details.stats[3].value = findata.NewARRYY;
                 break;
             // Gross New Arr
             case 1:
@@ -569,12 +578,12 @@ export function processFinancialGeoQTD(newState, data) {
             actuals: item.NewActuals,
             units: item.NewUnitsActual,
             marketArea: item.market_area_group,
-            qq: item.noRowsArrQQTY,
+            qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.geo_code,
-            vsQrf: item.noRowsArrVsQrf,
-            yy: item.noRowsArrYY
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
         }
         console.log(net);
         let gross = {
@@ -699,10 +708,10 @@ export function processFinancialGeoWeek(newState, data) {
         let item = data[i];
         let net = {
             index: i,
-            actuals: item.noRowsArrCW,
+            actuals: item.NewARRCW,
             units: item.NewUnitsCW,
             marketArea: item.market_area_group,
-            qrf: item.noRowsArrTargetCW,
+            qrf: item.NewARRTargetCW,
             qrfDiff: item.NewCWVsQrfDiff,
             type: item.geo_code,
             vsQrf: item.NewCWVsQrf,
@@ -2587,20 +2596,22 @@ export function processTrySecondaryData(data, newState) {
     //Cum. UQFM to QFM
     newState[15].value = data.CumUQFMToQFMActual;
     newState[15].targetFQ = data.CumUQFMToQFMTargetFQ;
-    newState[15].vsqrf = data.CumUQFMToQFMVsQrf;
+    newState[15].vsQrf = data.CumUQFMToQFMVsQrf;
     newState[15].target = data.CumUQFMToQFMTarget;
 
 }
 export function processTryMultichartData(g2, newState) {
 
-
+    console.log('Try G2, ', g2);
     let weekG2Flag = g2.map(item => {
-        return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
+        return { ...item, weekNo: parseInt(item.wkno) ? parseInt(item.wkno) : 1 }
     })
 
     // _.orderBy(weekFlag, weekNo, ['asc'])
+    console.log('Try WeekG2, ', weekG2Flag);
 
     let newG2 = _.orderBy(weekG2Flag, ['weekNo'], ['asc']);
+    console.log('Try newG2, ', newG2);
 
     let newQfm = {
         actual: [],
@@ -2669,12 +2680,13 @@ export function processTryMultichartData(g2, newState) {
         day28.lq.push(item.Day28NewUQFMLQ);
         //cumUqfm
         cumuUQT.actual.push(item.CumUQFMToQFMActual);
-        cumuUQT.target.push(item.CumQFMsSTargetFQ);
+        cumuUQT.target.push(item.CumUQFMToQFMTarget);
         cumuUQT.ly.push(item.CumUQFMToQFMLY);
         cumuUQT.lq.push(item.CumUQFMToQFMLQ);
     };
+    console.log(cumuUQT);
     //Set Multichart Values
-    for (let i = 10; i < newState.length; i++) {
+    for (let i = 10; i <= 15; i++) {
         switch (i) {
             case 10:
                 currentMulti = [newUqfm.actual, newUqfm.target, newUqfm.ly, newUqfm.lq];
@@ -2698,10 +2710,12 @@ export function processTryMultichartData(g2, newState) {
                 break;
         }
         newState[i]['details'].multichart = currentMulti;
+        console.log('Checking Mutltichart',newState[i]['details'].multichart);
     }
+    console.log(newState[15].details.multichart);
 }
 export function processTryQTDData(data, newState) {
-    for (let i = 10; i < newState.length; i++) {
+    for (let i = 10; i <= 15; i++) {
         switch (i) {
 
             case 10:

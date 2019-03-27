@@ -13,7 +13,7 @@ class MobileViewDetails extends Component {
     }
 
     formatData(detailsData) {
-        console.log(detailsData);
+        // console.log(detailsData);
         const headers = ['Actuals', 'Units', 'QRF', 'QRF Diff', 'Vs Qrf', 'Q/Q', 'Y/Y', 'W/W'];
         return headers.map(ele => {
             return new Object({

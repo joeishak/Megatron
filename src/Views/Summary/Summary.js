@@ -50,6 +50,12 @@ class Summary extends Component {
       isLoading: true,
       isInitiallyLoading: true,
       primaryLoaded: false,
+      financePrimaryLoaded: false,
+      trafficPrimaryLoaded: false,
+      tryPrimaryLoaded: false,
+      buyPrimaryLoaded: false,
+      usePrimaryLoaded: false,
+      renewPrimaryLoaded: false,
       secondaryLoaded: false,
       financeHasLoaded: false,
       trafficHasLoaded: false,
@@ -66,13 +72,12 @@ class Summary extends Component {
       fetchingBuyFinance: false,
       fetchingBuyMarket: false,
       fetchingBuyTraffic: false,
-
+      secondaryKpiChanged: false,
 
     };
 
     /*Bindings  */
     this.checkAuthentication = checkAuthentication.bind(this);
-    // this.login = this.login.bind(this);
     this.props.getIbHeartbeat();
   }
 
@@ -111,11 +116,32 @@ class Summary extends Component {
     let appInitialLoadIsComplete = this.props.NEwQTDW.qtd.length !== 0;
     let primaryLoaded = this.props.summaryData.primary[this.props.activePrimaryCard].value !== prevProps.summaryData.primary[this.props.activePrimaryCard].value;
     let secondaryLoaded = this.props.summaryData.secondary[this.props.activeSecondaryCard].value !== prevProps.summaryData.secondary[this.props.activeSecondaryCard].value;
+    //OKTA Check Users Authentication status
     this.checkAuthentication();
+    //When user loads get their settings from the DB
     if (this.props.user !== prevProps.user) {
       this.props.getUserSettings(this.props.user.sub);
     }
-
+    //Check if All Primaries are loaded
+    if (this.props.financePrimary.value !== prevProps.financePrimary.value) {
+      this.setState({ financePrimaryLoaded: true })
+    }
+    if (this.props.trafficPrimary.value !== prevProps.trafficPrimary.value) {
+      this.setState({ trafficPrimaryLoaded: true })
+    }
+    if (this.props.tryPrimary.value !== prevProps.tryPrimary.value) {
+      this.setState({ trafficPrimaryLoaded: true })
+    }
+    if (this.props.buyPrimary.value !== prevProps.buyPrimary.value) {
+      this.setState({ buyPrimaryLoaded: true })
+    }
+    if (this.props.usePrimary.value !== prevProps.usePrimary.value) {
+      this.setState({ usePrimaryLoaded: true })
+    }
+    if (this.props.renewPrimary.value !== prevProps.renewPrimary.value) {
+      this.setState({ renewPrimaryLoaded: true })
+    }
+    //Check if All sEcondaries are laoded
     if (this.props.NetNew.value !== prevProps.NetNew.value) {
       console.log('Finance Changed');
       this.setState({ fetchingFinance: false });
@@ -141,9 +167,16 @@ class Summary extends Component {
     if (this.props.Gross.value != prevProps.Gross.value) {
       this.setState({ fetchingBuyFinance: false })
     }
-    // console.log('Checking Filters (',filtersAreLoaded,'): 1. Previouly: ',prevProps.filters,'Currently: ',this.props.filters);
-    // console.log('Checking Preferences (',this.props.preferences,'): 1. Previouly: ',prevProps.preferences,'Currently: ',this.props.preferences);
-    // // console.log('Checking the Filterss Combined(',appIsReadyToRequestSummaryData,'): 1. Previouly: ',prevProps.filters.combined,'Currently: ',this.props.filters.combined);
+    //Details
+    if (this.props.Traffic.details.qtdw.qtd[0].value !== prevProps.Traffic.details.qtdw.qtd[0].value) {
+      console.log('Traffic Details Changed');
+      this.setState({ fetchingTrafficDetails: false });
+    }
+    //Details
+    if (this.props.Market.details.qtdw.qtd[0].value !== prevProps.Market.details.qtdw.qtd[0].value) {
+      console.log('Traffic Details Changed');
+      this.setState({ fetchingMUDetails: false });
+    }
     console.log('Checking Summary Data(', primaryLoaded, secondaryLoaded, '): 1. Previouly: ', this.props.summaryData, 'Currently: ', prevProps.summaryData);
 
 
@@ -159,12 +192,13 @@ class Summary extends Component {
       console.log('Just Recieved filters');
       this.setState({ filtersAreLoaded: true });
     }
+
     if (this.state.filtersAreLoaded && preferencesAreLoaded && this.state.preferncesAreAddedToFilters === false) {
       console.log('Just recieved the preferences');
       this.props.addPreferencesToActiveFilters(this.props.preferences);
       this.setState({ preferncesAreAddedToFilters: true })
     }
-    // // //Initial App Loads on Finance Tab
+    // When the app has all necessary data to make requests
     if (this.state.filtersAreLoaded === true && this.state.preferncesAreAddedToFilters === true && this.state.initialDataLoadIsComplete === false) {
       console.log('Both Preferences and Filters are loaded', this.props.activePrimaryCard);
       // this.props.getFinanceSecondaryData(this.props.filters);
@@ -217,12 +251,12 @@ class Summary extends Component {
       }
     }
 
-    //Main Filters Change
+    // When the app has already loaded and the filters change
     if (this.state.initialDataLoadIsComplete === true && (this.props.filters !== prevProps.filters)) {
       console.log(this.state.subFiltersChanged);
       this.setState({ filtersUpdated: true });
 
-      if (this.state.subFiltersChanged===true) {
+      if (this.state.subFiltersChanged === true) {
         switch (this.props.activeSecondaryCard) {
           case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
             console.log('Fetching TRAFFIC')
@@ -267,7 +301,7 @@ class Summary extends Component {
           default:
             break;
         }
-      } else if(this.state.subFiltersChanged === undefined) {
+      } else if (this.state.subFiltersChanged === undefined) {
         this.props.getPrimaryData(this.props.filters);
         this.setState({
           financeHasLoaded: false,
@@ -285,11 +319,13 @@ class Summary extends Component {
             break;
           case 1:
             console.log('Fetching Discover')
-            this.setState({ isLoading: true, fetchingDiscoverMarketing: true, fetchingDiscoverTraffic: true });
-            this.setState({ discoverHasLoaded: true });
+            this.props.updateActiveSecondaryCard(4);
             this.props.getMarketingSecondaryData(this.props.filters);
-            this.props.getTrafficSecondaryData(this.props.filters);
+            this.props.getDiscoverSecondary(this.props.filters);
 
+            this.setState({ discoverHasLoaded: true,isInitiallyLoading: true, fetchingDiscoverMarketing: true, isLoading: true });
+
+          this.prop
             break;
           case 2:
             console.log('Fetching Try')
@@ -321,7 +357,7 @@ class Summary extends Component {
 
     }
 
-  
+    // When the user switches primary cards
     if (this.props.activePrimaryCard !== prevProps.activePrimaryCard) {
       localStorage.activePrimary = this.props.activePrimaryCard;
 
@@ -347,11 +383,12 @@ class Summary extends Component {
         case 1:
           console.log('Fetching Discover', this.state.discoverHasLoaded)
           if (!this.state.discoverHasLoaded) {
-            this.props.getPrimaryData(this.props.filters);
-            this.props.getTrafficSecondaryData(this.props.filters);
+            // this.props.getPrimaryData(this.props.filters);
+            // this.props.getTrafficSecondaryData(this.props.filters);
             this.props.getMarketingSecondaryData(this.props.filters);
+            this.props.getDiscoverSecondary(this.props.filters);
 
-            this.setState({ fetchingDiscoverTraffic: true, discoverHasLoaded: true, fetchingDiscoverMarketing: true, isLoading: true });
+            this.setState({ discoverHasLoaded: true,isInitiallyLoading: true, fetchingDiscoverMarketing: true, isLoading: true });
 
           } else {
             this.setState({
@@ -417,15 +454,90 @@ class Summary extends Component {
           break;
       }
     }
+    // When the user switches secondary cards on Discover = 1
+    if (this.props.activePrimaryCard === 1 && this.props.activeSecondaryCard !== prevProps.activeSecondaryCard) {
+      let { activeSecondaryCard } = this.props;
+      switch (activeSecondaryCard) {
+        case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
+          //TODO: Request Traffic Data Only
+          //Set Requesting secondary kpi to true
+          //Set requesting traffic to true
+          //set is loading to true
+          //set traffic has loaded to true
+          if (!this.state.trafficHasLoaded) {
+            this.props.getTrafficSecondaryData(this.props.filters);
+            this.setState({ discoverHasLoaded: true,fetchingTrafficDetails: true, secondaryKpiChanged: true, trafficHasLoaded: true, isLoading: true });
 
+          } else {
+            this.setState({
+              isLoading: false,
+              trafficHasLoaded: false,
+              secondaryKpiChanged: false,
+              fetchingDiscoverTraffic: false
+            });
+            this.props.isFetching(false);
+          }
+          break;
+        // case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
+        //   //TODO: Request MU Data Only
+        //   //Set Requesting secondary kpi to true
+        //   //Set requesting traffic to true
+        //   //set is loading to true
+        //   //set traffic has loaded to true
+        //   if (!this.state.muHasLoaded) {
+        //     this.props.getBuyMarketSecondaryData(this.props.filters);
+        //     this.setState({ fetchingMUDetails: true, secondaryKpiChanged: true, muHasLoaded: true, isLoading: true });
+
+        //   } else {
+        //     this.setState({
+        //       isLoading: false,
+        //       muHasLoaded: false,
+        //       secondaryKpiChanged: false,
+        //       fetchingDiscoverMarketing: false
+        //     });
+        //     this.props.isFetching(false);
+        //   }
+        //   break;
+
+        default:
+
+          break;
+      }
+    }
+    /**Setting Load to False ... */
     //When the app initially finishes loading finance primary and secondary
-    if (this.state.primaryLoaded === true && this.state.secondaryLoaded === true) {
+    if (this.state.primaryLoaded === true && this.state.secondaryLoaded === true && this.state.isInitiallyLoading === true) {
       console.log('Setting Load to False in the primary vs secondary');
       this.setState({ isLoading: false, isInitiallyLoading: false });
       this.props.isFetching(false);
       this.setState({ primaryLoaded: false, secondaryLoaded: false });
 
+    } else if (this.state.secondaryLoaded === true && this.state.isInitiallyLoading === true && this.state.activePrimaryCard === 1) {
+      console.log('Discover Loading set to false here');
     }
+    //When the app has loaded but Discover is active card
+    if (this.state.discoverHasLoaded &&  this.state.isInitiallyLoading===true && this.state.fetchingDiscoverMarketing === false && this.state.fetchingDiscoverTraffic === false && this.state.secondaryKpiChanged ===false) {
+      console.log('Setting Loading to off in Discover tab');
+
+      this.setState({
+        isLoading: false,
+        isInitiallyLoading: false,
+        secondaryLoaded: false,
+        userChangedCards: false,
+        filtersUpdated: false,
+        primaryLoaded: false,
+        secondaryLoaded: false,
+        isInitiallyLoading: false,
+        muHasLoaded: true
+      });
+      this.props.isFetching(false);
+    }
+    if (this.state.secondaryKpiChanged === true) {
+      if (this.state.trafficHasLoaded && this.state.fetchingTrafficDetails === false) {
+        this.setState({ isLoading: false, trafficHasLoaded: false, secondaryKpiChanged: false });
+      } 
+    }
+    // has loaded and user changed primary cards
     if (this.state.userChangedCards || this.state.filtersUpdated) {
 
       //Entering 
@@ -444,7 +556,7 @@ class Summary extends Component {
           }
           break;
         case 1:
-          if (this.state.discoverHasLoaded && this.state.fetchingDiscoverMarketing === false && this.state.fetchingDiscoverTraffic === false) {
+          if (this.state.discoverHasLoaded && this.state.fetchingDiscoverMarketing === false && this.state.fetchingDiscoverSecondary === false) {
             console.log('Setting off In Disocver');
             this.setState({
               isLoading: false,
@@ -492,10 +604,8 @@ class Summary extends Component {
           break;
       }
 
-
     }
-
-    //End Loading if sub filters triggered the refresh
+    //When sub filters triggered the refresh
     if (this.state.subFiltersChanged === true && this.state.secondaryLoaded === true) {
       console.log('Sub Filter If 1')
       let { fetchingBuyMarket, fetchingBuyTraffic, fetchingTry,
@@ -512,197 +622,195 @@ class Summary extends Component {
       }
 
     }
-
-
   }
-  updateSecondaryLoading(newFilters) {
-    this.setState({ subFiltersChanged: true }, () => {
-      this.props.submitFilters(newFilters);
-    });
-  }
-  stopLoading() {
-    this.setState({ isLoading: false, isInitiallyLoading: false });
-    this.props.isFetching(false);
-  }
-  updateActivePrimary(index) {
-    this.props.updateActivePrimaryCard(index);
-    // this.setState({ isLoading: true });
-    switch (index) {
-      case (0):
-        this.props.updateActiveSecondaryCard(0);
-        break;
-      case (1):
-        this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(4);
-        break;
-      case (2):
-        this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(10);
-        break;
-      case (3):
-        this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(18);
-        break;
-      case (4):
-        this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(24);
-        break;
-      default:
-        this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(32);
-        break;
+    updateSecondaryLoading(newFilters) {
+      this.setState({ subFiltersChanged: true }, () => {
+        this.props.submitFilters(newFilters);
+      });
     }
-    if (
-      this.props.mobileIsPrimary === true && utils.includes(this.props.deviceType, 'laptop') === false
-    ) {
-      this.updateMobileView(PRIMARY, false);
-      this.updateMobileView(SECONDARY, true);
+    stopLoading() {
+      this.setState({ isLoading: false, isInitiallyLoading: false });
+      this.props.isFetching(false);
     }
-  }
-
-  updateActiveSecondary(index) {
-    this.props.isFetching(true);
-    this.props.fetchComments(index);
-    this.props.updateActiveSecondaryCard(index);
-  }
-
-  updateMobileView(updateComponent, toUpdateTo) {
-    //If the user is on Secondary
-    if (updateComponent === SECONDARY) {
-      // and the user wants to  goes back to primary
-      if (toUpdateTo === false) {
-        this.props.updateViewSetting(updateComponent, toUpdateTo);
-        this.props.updateViewSetting(PRIMARY, true);
+    updateActivePrimary(index) {
+      this.props.updateActivePrimaryCard(index);
+      // this.setState({ isLoading: true });
+      switch (index) {
+        case (0):
+          this.props.updateActiveSecondaryCard(0);
+          break;
+        case (1):
+          this.props.updateMultichartMetric(true);
+          this.props.updateActiveSecondaryCard(4);
+          break;
+        case (2):
+          this.props.updateMultichartMetric(true);
+          this.props.updateActiveSecondaryCard(10);
+          break;
+        case (3):
+          this.props.updateMultichartMetric(true);
+          this.props.updateActiveSecondaryCard(18);
+          break;
+        case (4):
+          this.props.updateMultichartMetric(true);
+          this.props.updateActiveSecondaryCard(24);
+          break;
+        default:
+          this.props.updateMultichartMetric(true);
+          this.props.updateActiveSecondaryCard(32);
+          break;
       }
-      // Else they are on primary
-    } else {
-      if (toUpdateTo === false) {
-        this.props.updateViewSetting(updateComponent, toUpdateTo);
-        this.props.updateViewSetting(SECONDARY, true);
+      if (
+        this.props.mobileIsPrimary === true && utils.includes(this.props.deviceType, 'laptop') === false
+      ) {
+        this.updateMobileView(PRIMARY, false);
+        this.updateMobileView(SECONDARY, true);
       }
     }
-  }
 
-  onCommentIconClick = (e, type, index) => {
-    this.props.isFetching(true);
-    this.props.showCommentBox();
-  };
+    updateActiveSecondary(index) {
+      this.props.isFetching(true);
+      this.props.fetchComments(index);
+      this.props.updateActiveSecondaryCard(index);
+    }
 
-  getPrimaryContent = () => {
-    return (
-      <PrimaryContentList
-        window={this.props.window}
-        onCommentIconClick={(e, type, index) => {
-          this.onCommentIconClick(e, type, index);
-        }}
-        toggleCommentary={this.props.toggleCommentary}
-        activeCard={this.props.activePrimaryCard}
-        data={this.props.primaryData}
-        enableChart={() => {
-          // console.log("hello world");
-        }}
-        selectedCard={(e, index) => {
-          this.updateActivePrimary(index);
-        }}
-        deviceType={this.props.deviceType}
-        mobilePrimaryIsActive={this.props.mobileIsPrimary}
-      />
-    );
-  };
-
-  getSecondaryContent = () => {
-    // console.log(this.props.statsDetails);
-    // Logic to render depending on App settings. this.props.appSettings.window.height and this.props.appSettings.window.width
-    return (
-      <SecondaryContentList
-        statsDetails={this.props.statsDetails}
-        data={this.props.secondaryData}
-        activeJourneyCard={this.props.activeSecondaryCard}
-        onJourneyCardClicked={(e, index) => { this.updateActiveSecondary(index); }}
-        onCommentIconClick={(e, type, index) => { this.onCommentIconClick(e, type, index); }}
-        toggleCommentary={this.props.toggleCommentary}
-        deviceType={this.props.deviceType}
-        activePrimary={this.props.activePrimaryCard}
-        mobileSecondaryIsActive={this.props.mobileIsSecondary}
-        primaryDataCategory={this.props.primaryData[this.props.activePrimaryCard].category}
-        updateMobileView={(component, updateTo) => { this.updateMobileView(component, updateTo); }}
-        window={this.props.window}
-        commentsPackage={this.props.commentsPackage}
-      />
-    );
-  };
-
-  takeDomScreenshot = () => {
-    console.log('taking screenshot of dom');
-
-    // Handle taking DOM screenshot
-    html2canvas(document.body, { allowTaint: true, taintTest: false, backgroundColor: '#1F1F1F', useCORS: false }).then(function (canvas) {
-      // Export the canvas to its data URI representation
-      const image = canvas.toDataURL("image/png");
-      const date = new Date().toLocaleDateString();
-      const fileName = 'RTBFeedbackCapture_' + date + '.png';
-      saveAs(image, fileName);
-    });
-
-    // Open Mail Client
-    let mail = document.createElement("a");
-    mail.href = "mailto:ocf-rtb-feedback@adobe.com?&subject=RTB%20Dashboard%20Feedback&body=Add the [RTBFeedbackCapture_MM_DD_YYY.png] file from the downloads";
-    mail.target = "_top";
-    mail.click();
-  }
-
-  render() {
-    const { user } = this.props;
-    const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
-    const feedbackDialog = this.props.feedbackIsOpen ? <FeedBackDialog /> : null;
-
-    const isMobileOrTablet = utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet');
-    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails subFiltersSubmit={(newFilters) => { this.updateSecondaryLoading(newFilters) }} secondaryData={this.props.secondaryData} />;
-    return (
-      <div style={isMobileOrTablet ? { height: `${this.props.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
-
-        {kdialog}
-        {feedbackDialog}
-
-        {/* Navigation*/}
-        <Navigation mobileFiltersIsShown={this.props.mobileFiltersIsShown} onFeedbackChange={this.takeDomScreenshot} />
-        <FilterPanel
-
-          window={this.props.window} />
-        {
-          this.state.isLoading === true ? <LoadingScreen /> :
-            (
-
-              <span>
-                {/* Data Preferences */}
-                <div>
-                  <div>
-                    <CommentPanel user={this.props.user} />
-
-                    {/* Primary */}
-
-                    {this.props.mobileFiltersIsShown ||
-                      this.props.mobileIsPrimary === false ? null : this.getPrimaryContent()}
-                    {(this.props.activePrimaryCard === 3 || this.props.activePrimaryCard === 4 || this.props.activePrimaryCard === 5) ?
-                      <div id="commingSoon">Coming Soon</div> :
-                      this.state.isLoading === true ? <LoadingScreen></LoadingScreen> :
-                        <span>
-                          {(this.state.mobileFiltersIsShown ? null : this.getSecondaryContent())}
-                          {summaryViewDetails}</span>
-                    }
-
-                    {/* {this.state.isFilterPageVisible && this.props.mobileIsPrimary ? null : null} */}
-
-                  </div>
-                </div>
-              </span>
-            )
+    updateMobileView(updateComponent, toUpdateTo) {
+      //If the user is on Secondary
+      if (updateComponent === SECONDARY) {
+        // and the user wants to  goes back to primary
+        if (toUpdateTo === false) {
+          this.props.updateViewSetting(updateComponent, toUpdateTo);
+          this.props.updateViewSetting(PRIMARY, true);
         }
+        // Else they are on primary
+      } else {
+        if (toUpdateTo === false) {
+          this.props.updateViewSetting(updateComponent, toUpdateTo);
+          this.props.updateViewSetting(SECONDARY, true);
+        }
+      }
+    }
 
-      </div>
-    );
+    onCommentIconClick = (e, type, index) => {
+      this.props.isFetching(true);
+      this.props.showCommentBox();
+    };
+
+    getPrimaryContent = () => {
+      return (
+        <PrimaryContentList
+          window={this.props.window}
+          onCommentIconClick={(e, type, index) => {
+            this.onCommentIconClick(e, type, index);
+          }}
+          toggleCommentary={this.props.toggleCommentary}
+          activeCard={this.props.activePrimaryCard}
+          data={this.props.primaryData}
+          enableChart={() => {
+            // console.log("hello world");
+          }}
+          selectedCard={(e, index) => {
+            this.updateActivePrimary(index);
+          }}
+          deviceType={this.props.deviceType}
+          mobilePrimaryIsActive={this.props.mobileIsPrimary}
+        />
+      );
+    };
+
+    getSecondaryContent = () => {
+      // console.log(this.props.statsDetails);
+      // Logic to render depending on App settings. this.props.appSettings.window.height and this.props.appSettings.window.width
+      return (
+        <SecondaryContentList
+          statsDetails={this.props.statsDetails}
+          data={this.props.secondaryData}
+          activeJourneyCard={this.props.activeSecondaryCard}
+          onJourneyCardClicked={(e, index) => { this.updateActiveSecondary(index); }}
+          onCommentIconClick={(e, type, index) => { this.onCommentIconClick(e, type, index); }}
+          toggleCommentary={this.props.toggleCommentary}
+          deviceType={this.props.deviceType}
+          activePrimary={this.props.activePrimaryCard}
+          mobileSecondaryIsActive={this.props.mobileIsSecondary}
+          primaryDataCategory={this.props.primaryData[this.props.activePrimaryCard].category}
+          updateMobileView={(component, updateTo) => { this.updateMobileView(component, updateTo); }}
+          window={this.props.window}
+          commentsPackage={this.props.commentsPackage}
+        />
+      );
+    };
+
+    takeDomScreenshot = () => {
+      console.log('taking screenshot of dom');
+
+      // Handle taking DOM screenshot
+      html2canvas(document.body, { allowTaint: true, taintTest: false, backgroundColor: '#1F1F1F', useCORS: false }).then(function (canvas) {
+        // Export the canvas to its data URI representation
+        const image = canvas.toDataURL("image/png");
+        const date = new Date().toLocaleDateString();
+        const fileName = 'RTBFeedbackCapture_' + date + '.png';
+        saveAs(image, fileName);
+      });
+
+      // Open Mail Client
+      let mail = document.createElement("a");
+      mail.href = "mailto:ocf-rtb-feedback@adobe.com?&subject=RTB%20Dashboard%20Feedback&body=Add the [RTBFeedbackCapture_MM_DD_YYY.png] file from the downloads";
+      mail.target = "_top";
+      mail.click();
+    }
+
+    render() {
+      const { user } = this.props;
+      const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
+      const feedbackDialog = this.props.feedbackIsOpen ? <FeedBackDialog /> : null;
+
+      const isMobileOrTablet = utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet');
+      const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails subFiltersSubmit={(newFilters) => { this.updateSecondaryLoading(newFilters) }} secondaryData={this.props.secondaryData} />;
+      return (
+        <div style={isMobileOrTablet ? { height: `${this.props.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
+
+          {kdialog}
+          {feedbackDialog}
+
+          {/* Navigation*/}
+          <Navigation mobileFiltersIsShown={this.props.mobileFiltersIsShown} onFeedbackChange={this.takeDomScreenshot} />
+          <FilterPanel
+
+            window={this.props.window} />
+          {
+            this.state.isLoading === true ? <LoadingScreen /> :
+              (
+
+                <span>
+                  {/* Data Preferences */}
+                  <div>
+                    <div>
+                      <CommentPanel user={this.props.user} />
+
+                      {/* Primary */}
+
+                      {this.props.mobileFiltersIsShown ||
+                        this.props.mobileIsPrimary === false ? null : this.getPrimaryContent()}
+                      {(this.props.activePrimaryCard === 3 || this.props.activePrimaryCard === 4 || this.props.activePrimaryCard === 5) ?
+                        <div id="commingSoon">Coming Soon</div> :
+                        this.state.isLoading === true ? <LoadingScreen></LoadingScreen> :
+                          <span>
+                            {(this.state.mobileFiltersIsShown ? null : this.getSecondaryContent())}
+                            {summaryViewDetails}</span>
+                      }
+
+                      {/* {this.state.isFilterPageVisible && this.props.mobileIsPrimary ? null : null} */}
+
+                    </div>
+                  </div>
+                </span>
+              )
+          }
+
+        </div>
+      );
+    }
   }
-}
 
 function mapStateToProps(state) {
 
@@ -731,6 +839,13 @@ function mapStateToProps(state) {
     summaryData: state.summaryData,
     mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible,
     filters: state.filters,
+    financePrimary: state.summaryData.primary[0],
+    trafficPrimary: state.summaryData.primary[1],
+    tryPrimary: state.summaryData.primary[2],
+    buyPrimary: state.summaryData.primary[3],
+    usePrimary: state.summaryData.primary[4],
+    renewPrimary: state.summaryData.primary[5],
+
     NEwQTDW: state.summaryData.secondary[0].details.qtdw,
     NetNew: state.summaryData.secondary[0],
     Traffic: state.summaryData.secondary[5],
