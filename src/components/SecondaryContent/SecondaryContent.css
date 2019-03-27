@@ -495,7 +495,7 @@
     height: 210px;
     width: 100%;
     background-color: #262125;
-	overflow-y: hidden ;
+		/* overflow-y: hidden ; */
 }
 
 .scrolling-wrapper {
@@ -508,10 +508,10 @@
 
 .slider-content {
     height: 210px;
-    width: 450px;
+		width: auto;
+		/* width: 450px; */
     flex: 0 0 auto;
 	overflow-y: hidden ;
-	/* border: 1px dotted red; */
 }
 
 .scrolling-wrapper::-webkit-scrollbar {
@@ -628,7 +628,7 @@
 	
 	.QRF-Percent {
 		padding-left: 5px !important;
-		font-size: 12px !important;
+		font-size: 0.75em !important;
 	}
 
 	.badge {
