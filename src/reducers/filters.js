@@ -349,6 +349,18 @@ export default function (state = {
             copyOfState.market.valueFilters = marketFilters
             copyOfState.product.valueFilters = productFilters
             copyOfState.route.valueFilters = routeFilters
+            copyOfState.channelPM.valueFilters = [];
+            copyOfState.channelMU.valueFilters = [];
+            copyOfState.convType.valueFilters = [];
+            copyOfState.visits.valueFilters = [];
+            copyOfState.lastTouchChannel.valueFilters = [];
+            copyOfState.websegment.valueFilters = [];
+
+            copyOfState.websegment.valueFilters.push({ index: 187, category: WEBSEGMENT, value: 'DIGITAL MEDIA' });
+            copyOfState.lastTouchChannel.valueFilters.push({ index: 129, category: LTC, value: 'ALL' });
+            copyOfState.visits.valueFilters.push({ index: 111, category: VISITS, value: 'All Visits' });
+            copyOfState.channelMU.valueFilters.push({ index: 112, category: CHANNELMU, value: 'ALL' });
+
             copyOfState.combined.valueFilters = [{ index: 211, category: "quarter", value: defaultQuarter }, { index: 209, category: "segment", value: defaultSegment }];
             Object.keys(copyOfState).forEach(item => {
                 if (item !== 'combined') {

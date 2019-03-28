@@ -36,13 +36,13 @@ class SingleDimensionPanelItem extends Component {
                             {item.type}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: 'units', value: item.actuals }, 'value')}
+                            {utils.formatMetric({ valueType: this.props.valueType, value: item.actuals }, 'value')}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: 'units', value: item.qrf }, 'value')}
+                            {utils.formatMetric({ valueType: this.props.valueType, value: item.qrf }, 'value')}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: 'units', value: item.qrfDiff }, 'value')}
+                            {utils.formatMetric({ valueType: this.props.valueType, value: item.qrfDiff }, 'value')}
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
@@ -65,13 +65,13 @@ class SingleDimensionPanelItem extends Component {
                             {item.type}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: 'units', value: item.actuals }, 'value')}
+                            {utils.formatMetric({ valueType: this.props.valueType, value: item.actuals }, 'value')}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: 'units', value: item.qrf }, 'value')}
+                            {utils.formatMetric({ valueType: this.props.valueType, value: item.qrf }, 'value')}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: 'units', value: item.qrfDiff }, 'value')}
+                            {utils.formatMetric({ valueType: this.props.valueType, value: item.qrfDiff }, 'value')}
                         </div>
                         <div className={(
                             item.vsQrf <= 0)

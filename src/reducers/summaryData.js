@@ -282,8 +282,8 @@ export function processFinanceSecondaryData(g1, newState) {
     newState[2].vsQrf = g1.data[0].CancelVsQrf;
     //   //Renewal
     newState[3].value = g1.data[0].RenewActuals;
-    newState[3].targetFQ = g1.data[0].RenoRowsArrTargetFQ;
-    newState[3].target = g1.data[0].RenoRowsArrTarget;
+    newState[3].targetFQ = g1.data[0].RenewARRTargetFQ;
+    newState[3].target = g1.data[0].RenewArrTarget;
     newState[3].vsQrf = g1.data[0].RenewVSQRF;
 }
 export function processFinancialMultichart(newState, data) {
@@ -1297,6 +1297,10 @@ export function processTrafficSecondaryData(g5, newState) {
     newState[5].vsQrf = g5.TrafficVsQrf;
     //Bounce Rate
     newState[9].value = g5.BounceRateActual;
+    newState[9].target = g5.BounceRateTarget;
+    newState[9].targetFQ = g5.BounceRateTargetFQ;
+    newState[9].vsQrf = g5.BounceRateVsQrf;
+
     newState[9].target = 0;
 
 }
@@ -1349,7 +1353,7 @@ export function processTrafficQTDData(g5, newState) {
             // Traffic
             case 5:
                 newState[i].details.qtdw.qtd[0].value = g5.TrafficActuals;
-                newState[i].details.qtdw.qtd[1].value = g5.TarfficTarget;
+                newState[i].details.qtdw.qtd[1].value = g5.TrafficTarget;
                 newState[i].details.qtdw.qtd[2].value = g5.TrafficVsQrfDiff
                 newState[i].details.qtdw.qtd[3].value = g5.TrafficVsQrf;
                 newState[i].details.qtdw.qtd[4].value = g5.TrafficQQTY;
@@ -1368,20 +1372,20 @@ export function processTrafficQTDData(g5, newState) {
                 break;
             // Bounce Rate
             case 9:
-                newState[i].details.qtdw.qtd[0].value = g5.BounceRateActual;
-                newState[i].details.qtdw.qtd[1].value = g5.BounceRateActual;
-                newState[i].details.qtdw.qtd[2].value = g5.BounceRateActual;
-                newState[i].details.qtdw.qtd[3].value = g5.BounceRateActual;
+                newState[i].details.qtdw.qtd[0].value = g5.BounceRateActuals;
+                newState[i].details.qtdw.qtd[1].value = g5.BounceRateTarget;
+                newState[i].details.qtdw.qtd[2].value = g5.BounceRateVsQrfDiff;
+                newState[i].details.qtdw.qtd[3].value = g5.BounceRateVsQrf;
                 newState[i].details.qtdw.qtd[4].value = g5.BounceRateQQLY;
                 newState[i].details.qtdw.qtd[5].value = g5.BounceRateYY;
 
                 newState[i].details.qtdw.week[0].value = g5.BounceRateCW;
-                newState[i].details.qtdw.week[1].value = g5.BounceRateCW;
-                newState[i].details.qtdw.week[2].value = g5.BounceRateCW;
-                newState[i].details.qtdw.week[3].value = g5.BounceRateCW;
+                newState[i].details.qtdw.week[1].value = g5.BounceRateTargetCW;
+                newState[i].details.qtdw.week[2].value = g5.BounceRateCWVsQrfDiff;
+                newState[i].details.qtdw.week[3].value = g5.BounceRateCWVsQrf;
                 newState[i].details.qtdw.week[4].value = g5.BounceRateWW;
 
-                newState[i].details.stats[0].value = g5.BounceRateYY;
+                newState[i].details.stats[0].value = g5.BounceRateVsQrf;
                 newState[i].details.stats[1].value = g5.BounceRateQQLY;
                 newState[i].details.stats[2].value = g5.BounceRateQQLY;
                 newState[i].details.stats[3].value = g5.BounceRateYY;
@@ -1404,8 +1408,8 @@ export function processTrafficGeoQTDData(g5, newState) {
             actuals: item.TrafficActuals,
             marketArea: item.market_area_group,
             qq: item.TrafficQQTY,
-            qrf: item.TarfficTarget,
-            qrfDiff: item.TrafficActuals - item.TarfficTarget,
+            qrf: item.TrafficTarget,
+            qrfDiff: item.TrafficActuals - item.TrafficTarget,
             type: item.geo_code,
             vsQrf: item.TrafficVsQrf,
             yy: item.TrafficYY
@@ -1463,8 +1467,8 @@ export function processTrafficMarketQTDData(g5, newState) {
             index: i,
             actuals: item.TrafficActuals,
             qq: item.TrafficQQTY,
-            qrf: item.TarfficTarget,
-            qrfDiff: item.TrafficActuals - item.TarfficTarget,
+            qrf: item.TrafficTarget,
+            qrfDiff: item.TrafficActuals - item.TrafficTarget,
             type: item.market_area_code,
             vsQrf: item.TrafficVsQrf,
             yy: item.TrafficYY
@@ -1522,8 +1526,8 @@ export function processTrafficWebSegmentQTDData(g5, newState) {
             actuals: item.TrafficActuals,
             marketArea: item.market_area_group,
             qq: item.TrafficQQTY,
-            qrf: item.TarfficTarget,
-            qrfDiff: item.TrafficActuals - item.TarfficTarget,
+            qrf: item.TrafficTarget,
+            qrfDiff: item.TrafficActuals - item.TrafficTarget,
             type: item.web_segment,
             vsQrf: item.TrafficVsQrf,
             yy: item.TrafficYY
@@ -1580,8 +1584,8 @@ export function processTrafficLTCQTDData(g5, newState) {
             marketArea: item.last_touch_channel,
             actuals: item.TrafficActuals,
             qq: item.TrafficQQTY,
-            qrf: item.TarfficTarget,
-            qrfDiff: item.TrafficActuals - item.TarfficTarget,
+            qrf: item.TrafficTarget,
+            qrfDiff: item.TrafficActuals - item.TrafficTarget,
             type: item.visit_type,
             vsQrf: item.TrafficVsQrf,
             yy: item.TrafficYY
@@ -1641,8 +1645,8 @@ export function processTrafficConvQTDData(g5, newState) {
             index: i,
             actuals: item.TrafficActuals,
             qq: item.TrafficQQTY,
-            qrf: item.TarfficTarget,
-            qrfDiff: item.TrafficActuals - item.TarfficTarget,
+            qrf: item.TrafficTarget,
+            qrfDiff: item.TrafficActuals - item.TrafficTarget,
             type: item.conversion_type,
             vsQrf: item.TrafficVsQrf,
             yy: item.TrafficYY
@@ -1706,9 +1710,9 @@ export function processTrafficMobDeskQTDData(g5, newState) {
 
             qq: item.TrafficQQTY,
 
-            qrf: item.TarfficTarget,
+            qrf: item.TrafficTarget,
 
-            qrfDiff: item.TrafficActuals - item.TarfficTarget,
+            qrfDiff: item.TrafficActuals - item.TrafficTarget,
 
             type: item.mobile_or_desktop,
 
@@ -1795,7 +1799,7 @@ export function processTrafficNewRepQTDData(g5, newState) {
 
             qq: item.TrafficQQTY,
 
-            qrf: item.TarfficTarget,
+            qrf: item.TrafficTarget,
 
             qrfDiff: item.TrafficActuals - item.TarfficTarget,
 

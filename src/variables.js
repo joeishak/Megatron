@@ -3467,27 +3467,27 @@ export const SecondaryData = [
                         value: 66.7
                     },
                     {
-                        index: 3,
+                        index: 2,
                         header: 'QRF',
                         value: 66.7
                     },
                     {
-                        index: 4,
+                        index: 3,
                         header: 'QRF Diff',
                         value: 66.7
                     },
                     {
-                        index: 5,
+                        index: 4,
                         header: 'Vs Qrf',
                         value: 66.7
                     },
                     {
-                        index: 6,
+                        index: 5,
                         header: 'Q/Q',
                         value: 66.7
                     },
                     {
-                        index: 7,
+                        index: 6,
                         header: 'Y/Y',
                         value: 66.7
                     }

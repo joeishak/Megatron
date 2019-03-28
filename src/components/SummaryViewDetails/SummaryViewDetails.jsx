@@ -14,6 +14,7 @@ import excelLogo from "../../assets/images/excel-logo.png";
 import excelLogoGreen from "../../assets/images/excel-logo-green.svg";
 import ExcelFormatter from "./ExcelFormatter";
 import DetailBreakdown from './DetailBreakdown/DetailBreakdown';
+import ExcelWorkbook from './ExcelWorkbook';
 import { SUMMARY_FILTERS, DIMENSIONS } from '../../Constants/consts.js';
 import * as _ from 'lodash';
 
@@ -747,8 +748,8 @@ class SummaryViewDetails extends Component {
               :
               <span></span>}
 
-
-            <span className="excelSpan">
+              <ExcelWorkbook activeItem={activeItem} activePrimary={activePrimary} filters={filters} secondaryData={secondaryData} activeSecondary={activeSecondary} />
+            {/* <span className="excelSpan">
               <Workbook
                 filename={`${activeItem.header}.xlsx`}
                 element={
@@ -769,7 +770,7 @@ class SummaryViewDetails extends Component {
 
                 </Workbook.Sheet>
 
-                {/* <Workbook.Sheet data={this.props.secondaryData[activeSecondary].details.geo.qtd || []} name="geo">
+                 <Workbook.Sheet data={this.props.secondaryData[activeSecondary].details.geo.qtd || []} name="geo">
     <Workbook.Column label="Geo" value="type" />
     <Workbook.Column label="MarketArea" value="marketArea" />
     <Workbook.Column label="Actuals" value="actuals" />
@@ -819,10 +820,10 @@ class SummaryViewDetails extends Component {
     <Workbook.Column label="vsQRF" value="vsQrf" />
     <Workbook.Column label="Q/Q" value="qq" />
     <Workbook.Column label="Y/Y" value="yy" />
-  </Workbook.Sheet> */}
+  </Workbook.Sheet>
 
               </Workbook>
-            </span>
+            </span> */}
 
 
             <div className="stats-container-main">{this.props.activeItem.details.stats.map(item => {

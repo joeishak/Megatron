@@ -459,6 +459,7 @@ class Summary extends Component {
       let { activeSecondaryCard } = this.props;
       switch (activeSecondaryCard) {
         case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
+        console.log('Fetching Traffic')
           //TODO: Request Traffic Data Only
           //Set Requesting secondary kpi to true
           //Set requesting traffic to true
@@ -471,13 +472,52 @@ class Summary extends Component {
           } else {
             this.setState({
               isLoading: false,
-              trafficHasLoaded: false,
               secondaryKpiChanged: false,
               fetchingDiscoverTraffic: false
             });
             this.props.isFetching(false);
           }
           break;
+          case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
+          console.log('Fetching Traffic')
+            //TODO: Request Traffic Data Only
+            //Set Requesting secondary kpi to true
+            //Set requesting traffic to true
+            //set is loading to true
+            //set traffic has loaded to true
+            if (!this.state.trafficHasLoaded) {
+              this.props.getTrafficSecondaryData(this.props.filters);
+              this.setState({ discoverHasLoaded: true,fetchingTrafficDetails: true, secondaryKpiChanged: true, trafficHasLoaded: true, isLoading: true });
+  
+            } else {
+              this.setState({
+                isLoading: false,
+                secondaryKpiChanged: false,
+                fetchingDiscoverTraffic: false
+              });
+              this.props.isFetching(false);
+            }
+            break;
+            case SUMMARY_FILTERS.DISCOVER_UQFM:
+            console.log('Fetching Traffic')
+              //TODO: Request Traffic Data Only
+              //Set Requesting secondary kpi to true
+              //Set requesting traffic to true
+              //set is loading to true
+              //set traffic has loaded to true
+              if (!this.state.trafficHasLoaded) {
+                this.props.getTrafficSecondaryData(this.props.filters);
+                this.setState({ discoverHasLoaded: true,fetchingTrafficDetails: true, secondaryKpiChanged: true, trafficHasLoaded: true, isLoading: true });
+    
+              } else {
+                this.setState({
+                  isLoading: false,
+                  secondaryKpiChanged: false,
+                  fetchingDiscoverTraffic: false
+                });
+                this.props.isFetching(false);
+              }
+              break;
         // case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
         //   //TODO: Request MU Data Only
         //   //Set Requesting secondary kpi to true
@@ -533,8 +573,9 @@ class Summary extends Component {
       this.props.isFetching(false);
     }
     if (this.state.secondaryKpiChanged === true) {
+      console.log('SEtting Load to False in  Secondary KPI Change');
       if (this.state.trafficHasLoaded && this.state.fetchingTrafficDetails === false) {
-        this.setState({ isLoading: false, trafficHasLoaded: false, secondaryKpiChanged: false });
+        this.setState({ isLoading: false,discoverHasLoaded: true, secondaryKpiChanged: false });
       } 
     }
     // has loaded and user changed primary cards

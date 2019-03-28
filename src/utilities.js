@@ -697,7 +697,7 @@ export function requestDiscoverSecondary(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    const uqfm = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvSecondary + params6 + '&json=1', {
+    const uqfm = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.uqfmXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvSecondary + params6 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -845,22 +845,22 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
     //Multichart
-    const uqfmMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvMutlichart + params6 + '&json=1', {
+    const uqfmMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.uqfmXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvMutlichart + params6 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //QTD
-    const uqfmQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvQTD + params6 + '&json=1', {
+    const uqfmQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.uqfmXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvQTD + params6 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Geo QTD
-    const uqfmGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvGeoQTD + params6 + '&json=1', {
+    const uqfmGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.uqfmXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvGeoQTD + params6 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Market QTD
-    const uqfmMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvMAQTD + params6 + '&json=1', {
+    const uqfmMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.uqfmXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvMAQTD + params6 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -1528,6 +1528,7 @@ export function renderUnits(value) {
         returnValue = abs;
     }
 
+
     if (isNegative) {
         return (-1 * returnValue)
             .toString() + suffix;
@@ -1592,6 +1593,7 @@ export function renderDollarValue(value) {
         return prefix + returnValue.toString() + suffix;
     }
 }
+//Check Logic Here
 export function formatPercentage(value) {
     let isNegative = (value < 0) ? true : false;
     let percentage = value;
@@ -1619,7 +1621,7 @@ export function formatPercentage(value) {
         }
     }
 
-    return (percentage * 100).toFixed(2) + '%';
+    return parseFloat(percentage * 100).toFixed(2) + '%';
 }
 
 export function formatMetric(item, type) {
@@ -1661,7 +1663,6 @@ export function formatMetric(item, type) {
 
     }
 }
-
 /**
  * Gets the device type depending on the screen size, Mobile
  */
