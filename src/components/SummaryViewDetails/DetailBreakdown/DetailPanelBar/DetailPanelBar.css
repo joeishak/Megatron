@@ -9,6 +9,42 @@
   background-color: #1f1f1f;
   width: 78.5%
 }
+.topHeaderBarWeek{
+    font-size: 15px;
+    background-color: #1f1f1f;
+    width: 76%
+  }
+.journeyTopHeaderBar{
+    font-size: 15px;
+    background-color: #1f1f1f;
+    width: 76%
+  }
+  .journeyTopHeaderBarWeek{
+    font-size: 15px;
+    background-color: #1f1f1f;
+    width: 75.5%
+  }
+.singleTopHeaderBar{
+    font-size: 15px;
+    background-color: #1f1f1f;
+    width: 88.5%
+  }
+  .singleTopHeaderBarWeek{
+    font-size: 15px;
+    background-color: #1f1f1f;
+    width: 86.2%
+  }
+
+  .journeySingleTopHeaderBar{
+    font-size: 15px;
+    background-color: #1f1f1f;
+    width: 86.5%
+  }
+  .journeySingleTopHeaderBarWeek{
+    font-size: 15px;
+    background-color: #1f1f1f;
+    width: 84%
+  }
 .pointer{
     cursor: pointer;
 }

@@ -90,14 +90,15 @@ class SummaryViewDetails extends Component {
   }
   updateSingleValue = (e) => {
     this.setState({ singleValueSubmitted: true });
-    // console.log('Updating SingleValue', e);
+    console.log('Updating SingleValue', e, 'Curren tState',this.state.selectedFilters);
     let copy = this.state.selectedFilters;
     if (this.state.selectedFilters.length === 0) {
+      console.log("Entering First If");
       this.setState({ selectedFilters: [e] }, () => {
         this.submitFilters({});
       })
     } else {
-
+      console.log("Entering Else");
       //Find any with the same category
       _.remove(copy, item => { return item.category === e.category });
       _.remove(copy, item => { return item.index === e.index });
@@ -125,13 +126,13 @@ class SummaryViewDetails extends Component {
     if (e.length === 0) {
       _.remove(copy, item => { return item.category === type });
       this.setState({ selectedFilters: [...copy] }, () => {
-        this.submitFilters({})
+        // this.submitFilters({})
       })
 
     } else {
       _.remove(copy, item => { return item.category === e[0].category });
       this.setState({ selectedFilters: [...copy, ...e] }, () => {
-        this.submitFilters({})
+        // this.submitFilters({})
       });
     }
 
@@ -146,7 +147,12 @@ class SummaryViewDetails extends Component {
     // //console.log(newArr);
     return newArr;
   }
-
+  setMenuToOpened(){
+    this.setState({menuIsOpen: true});
+  }
+  setMenuToClosed(){
+    this.setState({menuIsOpen: false});
+  }
   submitFilters = (e) => {
     //console.log('Submitting Filters . . . ');
     const { GEO,
@@ -188,7 +194,6 @@ class SummaryViewDetails extends Component {
     };
 
     //console.log(this.state.selectedFilters);
-    if (this.state.singleValueSubmitted || this.state.multiValueSubmitted) {
       Object.keys(newFilters).forEach(item => {
 
         switch (item) {
@@ -242,22 +247,21 @@ class SummaryViewDetails extends Component {
         }
       });
 
-      //console.log(newFilters);
+      console.log(newFilters);
 
-      this.setState({ selectedFilters: [], singleValueSubmitted: false, multiValueSubmitted: false })
+      this.setState({ selectedFilters: []})
 
       this.props.subFiltersSubmit(newFilters);
       // this.props.submitFilters(newFilters);
       //  this.props.getSummaryData(newFilters);
       // this.props.handleClose();
-    }
   }
   closeSingleValue(e) {
     //console.log('Closing Single Value', this.state.selectedFilters);
   }
 
   closeMultiValue = (e) => {
-    //console.log('Closing Multivalue', this.state.selectedFilters, e);
+    console.log('Closing Multivalue', this.state.selectedFilters, e);
 
     this.submitFilters({});
   }
@@ -272,11 +276,10 @@ class SummaryViewDetails extends Component {
           <div className="row">
             {/* Channel */}
             <div className="col-md-4 col-lg-4">
-              <div> Channel</div>
+              <div>{'Channel - ' + channelMU.valueFilters[0].value} </div>
               <SingleValueSelect
                 activeFilters={[]}
                 options={channelMU.availableFilters}
-                defaultValue={[channelMU.availableFilters[0]]}
                 onValueChange={e => { this.updateSingleValue(e) }}
                 onMenuClose={e => { this.closeSingleValue(e) }}
               />
@@ -290,22 +293,20 @@ class SummaryViewDetails extends Component {
           <div className="row">
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
               {/* Visit Type */}
-              <div>Visits</div>
+              <div>{'Visits - '+ visits.valueFilters[0].value}</div>
               <SingleValueSelect
                 activeFilters={[]}
                 options={visits.availableFilters}
-                defaultValue={[visits.availableFilters[0]]}
                 onValueChange={e => { this.updateSingleValue(e) }}
                 onMenuClose={e => { this.closeSingleValue(e) }}
               />
             </div>
             {/* Last Touch Channel */}
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div>Last Touch Channel </div>
+              <div> {'Last Touch Channel - '+ lastTouchChannel.valueFilters[0].value} </div>
               <SingleValueSelect
                 activeFilters={[]}
                 options={lastTouchChannel.availableFilters}
-                defaultValue={[lastTouchChannel.availableFilters[1]]}
                 onValueChange={e => { this.updateSingleValue(e) }}
                 onMenuClose={e => { this.closeSingleValue(e) }}
               />
@@ -314,18 +315,18 @@ class SummaryViewDetails extends Component {
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
               <div>Conversion </div>
               <MultiValueSelect
-
+                onClick={(e)=>{console.log('hi')}}
+                values = {convType.valueFilters}
                 options={convType.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
-                onMenuClose={(e) => { this.closeMultiValue(e) }}
+                onMenuClose={this.closeMultiValue}
               />
             </div>
-            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div>Web segment </div>
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' } }>
+              <div>{'Web Segment - ' + websegment.valueFilters[0].value }</div>
               <SingleValueSelect
                 activeFilters={[]}
                 options={websegment.availableFilters}
-                defaultValue={[websegment.availableFilters[8]]}
                 onValueChange={e => { this.updateSingleValue(e) }}
                 onMenuClose={e => { this.closeSingleValue(e) }}
               />
@@ -338,9 +339,8 @@ class SummaryViewDetails extends Component {
           <div className="row">
             {/* Channel */}
             <div className="col-md-4 col-lg-4">
-              <div> Channel</div>
+              <div> {'Channel- ' + channelPM.valueFilters[0].value}</div>
               <MultiValueSelect
-                defaultValue={[channelPM.availableFilters[0]]}
                 options={channelPM.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CHANNELPM; this.updateMultiValue(e, type) }}
                 onMenuClose={(e) => { this.closeMultiValue(e) }}
@@ -355,9 +355,8 @@ class SummaryViewDetails extends Component {
           <div className="row">
             <div className="col-md-4 col-lg-4">
               {/* Channel */}
-              <div> Channel</div>
+              <div> {'Channel - ' + channelPM.valueFilters[0].value}</div>
               <MultiValueSelect
-                defaultValue={[channelPM.availableFilters[0]]}
                 options={channelPM.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CHANNELPM; this.updateMultiValue(e, type) }}
                 onMenuClose={(e) => { this.closeMultiValue(e) }}
@@ -367,52 +366,50 @@ class SummaryViewDetails extends Component {
         );
 
       case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
-        return (
-          // Bounce Rate
-          <div className="row">
-            <div className="col-md-2 col-lg-2" style={{ paddingBottom: '10px' }}>
-              {/* Visit Type */}
-              <div>Visits</div>
-              <SingleValueSelect
-                activeFilters={[]}
-                options={visits.availableFilters}
-                defaultValue={[visits.availableFilters[0]]}
-                onValueChange={e => { this.updateSingleValue(e) }}
-                onMenuClose={e => { this.closeSingleValue(e) }}
-              />
-            </div>
-            {/* Last Touch Channel */}
-            <div className="col-md-4 col-lg-4" style={{ paddingBottom: '10px' }}>
-              <div>Last Touch Channel </div>
-              <SingleValueSelect
-                activeFilters={[]}
-                options={lastTouchChannel.availableFilters}
-                defaultValue={[lastTouchChannel.availableFilters[1]]}
-                onValueChange={e => { this.updateSingleValue(e) }}
-                onMenuClose={e => { this.closeSingleValue(e) }}
-              />
-            </div>
-            {/* Conversion Type */}
-            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div>Conversion </div>
-              <MultiValueSelect
-                options={convType.availableFilters}
-                onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
-                onMenuClose={(e) => { this.closeMultiValue(e) }}
-              />
-            </div>
-            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div>Web segment </div>
-              <SingleValueSelect
-                activeFilters={[]}
-                options={websegment.availableFilters}
-                defaultValue={[websegment.availableFilters[8]]}
-                onValueChange={e => { this.updateSingleValue(e) }}
-                onMenuClose={e => { this.closeSingleValue(e) }}
-              />
-            </div>
+      return (
+        //Bounce Rate
+        <div className="row">
+          <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+            {/* Visit Type */}
+            <div>{'Visits - '+ visits.valueFilters[0].value}</div>
+            <SingleValueSelect
+              activeFilters={[]}
+              options={visits.availableFilters}
+              onValueChange={e => { this.updateSingleValue(e) }}
+              onMenuClose={e => { this.closeSingleValue(e) }}
+            />
           </div>
-        );
+          {/* Last Touch Channel */}
+          <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+            <div> {'Last Touch Channel - '+ lastTouchChannel.valueFilters[0].value} </div>
+            <SingleValueSelect
+              activeFilters={[]}
+              options={lastTouchChannel.availableFilters}
+              onValueChange={e => { this.updateSingleValue(e) }}
+              onMenuClose={e => { this.closeSingleValue(e) }}
+            />
+          </div>
+          {/* Conversion Type */}
+          <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+            <div>Conversion </div>
+            <MultiValueSelect
+              onClick={(e)=>{console.log('hi')}}
+              options={convType.availableFilters}
+              onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
+              onMenuClose={this.closeMultiValue}
+            />
+          </div>
+          <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' } }>
+            <div>{'Web Segment - ' + websegment.valueFilters[0].value }</div>
+            <SingleValueSelect
+              activeFilters={[]}
+              options={websegment.availableFilters}
+              onValueChange={e => { this.updateSingleValue(e) }}
+              onMenuClose={e => { this.closeSingleValue(e) }}
+            />
+          </div>
+        </div>
+      );
       //Buy
       case SUMMARY_FILTERS.BUY_CONVERSION:
         return (
@@ -748,7 +745,7 @@ class SummaryViewDetails extends Component {
               :
               <span></span>}
 
-              <ExcelWorkbook activeItem={activeItem} activePrimary={activePrimary} filters={filters} secondaryData={secondaryData} activeSecondary={activeSecondary} />
+              <ExcelWorkbook /* activeItem={activeItem} activePrimary={activePrimary} filters={filters} secondaryData={secondaryData} activeSecondary={activeSecondary} */ />
             {/* <span className="excelSpan">
               <Workbook
                 filename={`${activeItem.header}.xlsx`}

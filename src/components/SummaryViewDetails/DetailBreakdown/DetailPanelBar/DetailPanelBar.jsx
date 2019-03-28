@@ -7,6 +7,7 @@ import styles from './DetailPanelBar.css';
 import '@progress/kendo-theme-default/dist/all.css';
 import { DIMENSIONS, SUMMARY_FILTERS } from '../../../../Constants/consts';
 import * as utils from "../../../../utilities.js";
+import SingleDimensionDetailPanelItemTimeHeader from './SingleDimensionDetailPanelItemTimeHeader';
 
 import DetailPanelItemTimeHeader from './DetailPanelItemTimeHeader';
 import PanelItemTableHeader from './PanelItemTableHeader';
@@ -29,34 +30,69 @@ class DetailPanelBar extends Component {
 
     /* Return Contents for */
     getPanelContents(type) {
-        return (
-            <div className='row'>
-                <div className='col-md-12 topPanelHeader'>
-                    {/* {this.getTopHeader()} */}
-                    <DetailPanelItemTimeHeader
-                        timeMetric={this.props.timeMetric}
-                    />
+        //If type is aMulti Dimension
+        if(type === DIMENSIONS.GEO || type ===DIMENSIONS.SIGNAPP){
+            return (
+                <div className='row'>
+                    <div className='col-md-12 topPanelHeader'>
+                        {/* {this.getTopHeader()} */}
+                        <DetailPanelItemTimeHeader
+                            timeMetric={this.props.timeMetric}
+                            isJourney={this.props.activeSecondary <=3 ? false : true}
+                        />
+                    </div>
+                    <div className='col-md-12'>
+                        {/* {this.getLowerHeader(type)} */}
+                        <PanelItemTableHeader
+                            qtdIsPercent={this.props.qtdIsPercent}
+                            timeMetric={this.props.timeMetric}
+                            activeSummary={this.props.activeSummary}
+                            type={type} />
+                    </div>
+                    <div className='col-md-12 geoTableContainer'>
+                        {/* {this.getTable(type)} */}
+                        <PanelItemTable
+                            activeSecondary={this.props.activeSecondary}
+                            qtdIsPercent={this.props.qtdIsPercent}
+                            type={type}
+                            activeSummary={this.props.activeSummary}
+                            timeMetric={this.props.timeMetric}
+                        />
+                    </div>
                 </div>
-                <div className='col-md-12'>
-                    {/* {this.getLowerHeader(type)} */}
-                    <PanelItemTableHeader
-                        qtdIsPercent={this.props.qtdIsPercent}
-                        timeMetric={this.props.timeMetric}
-                        activeSummary={this.props.activeSummary}
-                        type={type} />
+            );
+        } else{
+            return (
+                <div className='row'>
+                    <div className='col-md-12 topPanelHeader'>
+                        {/* {this.getTopHeader()} */}
+                        <SingleDimensionDetailPanelItemTimeHeader
+                            timeMetric={this.props.timeMetric}
+                            isJourney={this.props.activeSecondary <=3 ? false : true}
+                        />
+                    </div>
+                    <div className='col-md-12'>
+                        {/* {this.getLowerHeader(type)} */}
+                        <PanelItemTableHeader
+                            qtdIsPercent={this.props.qtdIsPercent}
+                            timeMetric={this.props.timeMetric}
+                            activeSummary={this.props.activeSummary}
+                            type={type} />
+                    </div>
+                    <div className='col-md-12 geoTableContainer'>
+                        {/* {this.getTable(type)} */}
+                        <PanelItemTable
+                            activeSecondary={this.props.activeSecondary}
+                            qtdIsPercent={this.props.qtdIsPercent}
+                            type={type}
+                            activeSummary={this.props.activeSummary}
+                            timeMetric={this.props.timeMetric}
+                        />
+                    </div>
                 </div>
-                <div className='col-md-12 geoTableContainer'>
-                    {/* {this.getTable(type)} */}
-                    <PanelItemTable
-                        activeSecondary={this.props.activeSecondary}
-                        qtdIsPercent={this.props.qtdIsPercent}
-                        type={type}
-                        activeSummary={this.props.activeSummary}
-                        timeMetric={this.props.timeMetric}
-                    />
-                </div>
-            </div>
-        );
+            );
+        }
+        
 
     }
 

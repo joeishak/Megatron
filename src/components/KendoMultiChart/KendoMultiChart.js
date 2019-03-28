@@ -46,10 +46,7 @@ class KendoMultiChart extends Component {
             if (this.props.activeMultichart[0][0] !== nextProps.activeMultichart[0][0]) {
                 return true;
             }
-            // if(this.props.activeUnits[0][0] !== nextProps.activeUnits[0][0] ){
-
-            //     return true;
-            // } 
+           
         }
         if (this.props.multichartMetric !== nextProps.multichartMetric) {
 
@@ -69,13 +66,12 @@ class KendoMultiChart extends Component {
             newArr = arr.map(item => {
                 if (this.props.multichartMetric === true) {
                     if (item) {
-                        return item.toFixed(1)
+                        return parseFloat(item).toFixed(4)
                     }
                 }
                 return item
             });
         }
-
         return newArr;
 
     }

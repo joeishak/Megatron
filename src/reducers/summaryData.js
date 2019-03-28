@@ -39,7 +39,7 @@ export default function (state = {
 }, action) {
     switch (action.type) {
         case GET_PRIMARY_DATA:
-            console.log('PRimary',action.payload);
+            console.log('Request For Primary Data: ',action.payload);
             //Make a Stringify copy of state
             newState = JSON.parse(JSON.stringify(state));
             //Assign action  payload data to new state primary
@@ -63,24 +63,22 @@ export default function (state = {
             newState.primary[4].target = action.payload[4].data[0].RepeatMAUTarget;
             newState.primary[4].vsqrf = action.payload[4].data[0].RepeatMAUVsQRF;
             newState.primary[4].targetFQ = action.payload[4].data[0].RepeatMAUVsQRF;
-            newState.primary[5].value = action.payload[5].data[0].UIRateActual;
-            newState.primary[5].target = action.payload[5].data[0].UIRateTarget;
-            newState.primary[5].vsqrf = action.payload[5].data[0].UIRateVsQrf;
-            newState.primary[5].targetFQ = action.payload[5].data[0].UIRateTargetFQ;
+            // newState.primary[5].value = action.payload[5].data[0].UIRateActual;
+            // newState.primary[5].target = action.payload[5].data[0].UIRateTarget;
+            // newState.primary[5].vsqrf = action.payload[5].data[0].UIRateVsQrf;
+            // newState.primary[5].targetFQ = action.payload[5].data[0].UIRateTargetFQ;
             //Return a copy of newstate
             return { ...newState };
         case GET_DISCOVER_SECONDARY_DATA:
         newState = JSON.parse(JSON.stringify(state));
-        console.log('Recieved Discover Secondary', action.payload);
+        console.log('Request For Discover Secondary Tiles Data: ',action.payload);
         processTrafficSecondaryData(action.payload[1].data[0], newState.secondary);
         processUQFMSecondaryData(action.payload[2].data[0], newState.secondary);
         processMUSecondaryData(action.payload[0].data[0], newState.secondary);
         processPMSSSecondaryData(action.payload[3].data[0], newState.secondary);
-
-
             return  {...newState}
         case GET_FINANCE_SECONDARY_DATA:
-            console.log(action.payload);
+            console.log('Request For Finance Secondary Details Data: ',action.payload);
             newState = JSON.parse(JSON.stringify(state));
             // financeSecondary, financeMultichart, financeUnitsMultichart,
             // financeQTDTotals, financeGeoQTD, financeMarketQTD,
@@ -106,7 +104,7 @@ export default function (state = {
             processFinancialProductWeek(newState.secondary, action.payload[8].data);
             return { ...newState };
         case GET_TRAFFIC_SECONDARY_DATA:
-            console.log('Received Traffic DAta: ', action.payload);
+            console.log('Request For Traffic + UQFM Conv Secondary Details Data: ',action.payload);
             newState = JSON.parse(JSON.stringify(state));
 
 
@@ -129,7 +127,7 @@ export default function (state = {
             processUQFMMarketQTDData(action.payload[14].data, newState.secondary);
             return { ...newState };
         case GET_MKTG_SECONDARY_DATA:
-            console.log('Recieved MKTG DAta: ', action.payload);
+            console.log('Request For Marketable Universe Secondary Details Data: ',action.payload);
             newState = JSON.parse(JSON.stringify(state));
 
 
@@ -150,7 +148,7 @@ export default function (state = {
             return { ...newState };
         case GET_TRY_SECONDARY_DATA:
             newState = JSON.parse(JSON.stringify(state));
-            console.log('Traffic Data ', action.payload);
+            console.log('Request For Try Secondary Details Data: ',action.payload);
 
             processTrySecondaryData(action.payload[0].data[0], newState.secondary);
             processTryMultichartData(action.payload[1].data, newState.secondary);
@@ -173,7 +171,8 @@ export default function (state = {
             return { ...newState };
         case GET_BUY_MKTG_SECONDARY_DATA:
             newState = JSON.parse(JSON.stringify(state));
-            console.log('bUY MARKET Data ', action.payload);
+            console.log('Request For Mktg Sourced + PM Sourced & Spend Secondary Details Data: ',action.payload);
+            
             processBuyMKTSourcedSecondary(action.payload[1].data[0], newState.secondary);
             processBuyMKTSourcedMultichart(action.payload[2].data, newState.secondary);
             processBuyMKTSourcedQTD(action.payload[3].data[0], newState.secondary);
@@ -193,7 +192,7 @@ export default function (state = {
             return { ...newState };
         case GET_BUY_FINANCE_SECONDARY_DATA:
             newState = JSON.parse(JSON.stringify(state));
-            console.log('bUY FINANCE Data ', action.payload);
+            console.log('Request For Buy Gross ARR Secondary Details Data: ',action.payload);
             processBuyGrossSecondaryData(action.payload[0], newState.secondary);
             processBuyGrossMultichart(newState.secondary, action.payload[1].data);
             processBuyGrossUnitsMultichart(newState.secondary, action.payload[2].data);
@@ -283,7 +282,7 @@ export function processFinanceSecondaryData(g1, newState) {
     //   //Renewal
     newState[3].value = g1.data[0].RenewActuals;
     newState[3].targetFQ = g1.data[0].RenewARRTargetFQ;
-    newState[3].target = g1.data[0].RenewArrTarget;
+    newState[3].target = g1.data[0].RenewARRTarget;
     newState[3].vsQrf = g1.data[0].RenewVSQRF;
 }
 export function processFinancialMultichart(newState, data) {
@@ -333,11 +332,10 @@ export function processFinancialMultichart(newState, data) {
         grossArr.target.push(item.GrossARRTargetFQ);
         grossArr.ly.push(item.GrossARRLY);
         grossArr.lq.push(item.GrossARRLQ);
-        termRenewal.actual.push(item.RenoRowsArrActual);
-        termRenewal.target.push(item.RenoRowsArrTargetFQ);
-        termRenewal.ly.push(item.RenoRowsArrLY);
-        termRenewal.lq.push(item.RenoRowsArrLQ);
-
+        termRenewal.actual.push(item.RenewARRActual);
+        termRenewal.target.push(item.RenewARRTargetFQ);
+        termRenewal.ly.push(item.RenewARRLY);
+        termRenewal.lq.push(item.RenewARRLQ);
     };
     //Set Multichart Values
     for (let i = 0; i < newState.length; i++) {
@@ -776,12 +774,12 @@ export function processFinancialMarketQTD(newState, data) {
             actuals: item.NewActuals,
             units: item.NewUnitsActual,
             marketArea: item.market_area_code,
-            qq: item.noRowsArrQQTY,
+            qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.market_area_code,
-            vsQrf: item.noRowsArrVsQrf,
-            yy: item.NewYY
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
         }
         let gross = {
             index: i,
@@ -839,10 +837,10 @@ export function processFinancialMarketWeek(newState, data) {
         let item = data[i];
         let net = {
             index: i,
-            actuals: item.noRowsArrCW,
+            actuals: item.NewARRCW,
             units: item.NewUnitsCW,
             marketArea: item.market_area_code,
-            qrf: item.noRowsArrTargetCW,
+            qrf: item.NewARRTargetCW,
             qrfDiff: item.NewCWVsQrfDiff,
             type: item.market_area_code,
             vsQrf: item.NewCWVsQrf,
@@ -907,12 +905,12 @@ export function processFinancialrouteQTD(newState, data) {
             actuals: item.NewActuals,
             units: item.NewUnitsActual,
             marketArea: item.market_area_code,
-            qq: item.noRowsArrQQTY,
+            qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.route_to_market,
-            vsQrf: item.noRowsArrVsQrf,
-            yy: item.NewYY
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
         }
         let gross = {
             index: i,
@@ -970,10 +968,10 @@ export function processFinancialrouteWeek(newState, data) {
         let item = data[i];
         let net = {
             index: i,
-            actuals: item.noRowsArrCW,
+            actuals: item.NewARRCW,
             units: item.NewUnitsCW,
             marketArea: item.market_area_code,
-            qrf: item.noRowsArrTargetCW,
+            qrf: item.NewARRTargetCW,
             qrfDiff: item.NewCWVsQrfDiff,
             type: item.route_to_market,
             vsQrf: item.NewCWVsQrf,
@@ -1038,12 +1036,12 @@ export function processFinancialSegmentQTD(newState, data) {
             actuals: item.NewActuals,
             units: item.NewUnitsActual,
             marketArea: item.market_area_code,
-            qq: item.noRowsArrQQTY,
+            qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.segment_pivot,
-            vsQrf: item.noRowsArrVsQrf,
-            yy: item.NewYY
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
         }
         let gross = {
             index: i,
@@ -1101,10 +1099,10 @@ export function processFinancialSegmentWeek(newState, data) {
         let item = data[i];
         let net = {
             index: i,
-            actuals: item.noRowsArrCW,
+            actuals: item.NewARRCW,
             units: item.NewUnitsCW,
             marketArea: item.market_area_code,
-            qrf: item.noRowsArrTargetCW,
+            qrf: item.NewARRTargetCW,
             qrfDiff: item.NewCWVsQrfDiff,
             type: item.segment_pivot,
             vsQrf: item.NewCWVsQrf,
@@ -1169,12 +1167,12 @@ export function processFinancialproductQTD(newState, data) {
             actuals: item.NewActuals,
             units: item.NewUnitsActual,
             marketArea: item.market_area_code,
-            qq: item.noRowsArrQQTY,
+            qq: item.NewARRQQTY,
             qrf: item.NewTarget,
             qrfDiff: item.NewVsQrfDiff,
             type: item.product_category,
-            vsQrf: item.noRowsArrVsQrf,
-            yy: item.NewYY
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
         }
         let gross = {
             index: i,
@@ -1232,10 +1230,10 @@ export function processFinancialProductWeek(newState, data) {
         let item = data[i];
         let net = {
             index: i,
-            actuals: item.noRowsArrCW,
+            actuals: item.NewARRCW,
             units: item.NewUnitsCW,
             marketArea: item.market_area_code,
-            qrf: item.noRowsArrTargetCW,
+            qrf: item.NewARRTargetCW,
             qrfDiff: item.NewCWVsQrfDiff,
             type: item.product_category,
             vsQrf: item.NewCWVsQrf,
@@ -2819,7 +2817,7 @@ export function processTryQTDData(data, newState) {
                 newState[i].details.stats[3].value = data.Day28NewUQFMYY;
                 break;
             case 15:
-                newState[i].details.qtdw.qtd[0].value = data.CumUQFMToQFMActual;
+                newState[i].details.qtdw.qtd[0].value = data.CumUQFMToQFMActuals;
                 newState[i].details.qtdw.qtd[1].value = data.CumUQFMToQFMTarget;
                 newState[i].details.qtdw.qtd[2].value = data.CumUQFMToQFMVsQrfDiff;
                 newState[i].details.qtdw.qtd[3].value = data.CumUQFMToQFMQQTY;
@@ -2969,7 +2967,7 @@ export function processTryGeoQTDData(data, newState) {
         //Cumu UQFM to QFM
         let cumuUTQ = {
             index: i,
-            actuals: item.CumUQFMToQFMActual,
+            actuals: item.CumUQFMToQFMActuals,
             marketArea: item.market_area_group,
             qq: item.CumUQFMToQFMQQTY,
             qrf: item.CumUQFMToQFMTarget,
@@ -3123,7 +3121,7 @@ export function processTryMarketQTDData(data, newState) {
         //Cumu UQFM to QFM
         let cumuUTQ = {
             index: i,
-            actuals: item.CumUQFMToQFMActual,
+            actuals: item.CumUQFMToQFMActuals,
             type: item.market_area_code,
             qq: item.CumUQFMToQFMQQTY,
             qrf: item.CumUQFMToQFMTarget,
@@ -3337,7 +3335,7 @@ export function processTrySignUpCatQTDData(data, newState) {
         //Cumu UQFM to QFM
         let cumuUTQ = {
             index: i,
-            actuals: item.CumUQFMToQFMActual,
+            actuals: item.CumUQFMToQFMActuals,
             type: item.signup_category,
             qq: item.CumUQFMToQFMQQTY,
             qrf: item.CumUQFMToQFMTarget,

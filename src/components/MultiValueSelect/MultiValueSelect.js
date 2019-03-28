@@ -5,19 +5,20 @@ import Select from 'react-select'
 let transformList = (objList) => {
 
     let newObjList = [];
-    if (objList !== undefined && objList !== []) {
-
-        // Iterate through each list of objects and convert
-        for (let i = 0; i < objList.length; i++) {
-            newObjList.push(
-                {
-                    index: objList[i].index,
-                    category: objList[i].category,
-                    value: objList[i].value,
-                    label: objList[i].value
-                })
+        if(objList !== undefined  && objList !== [] && objList.length!==0){
+            console.log('The length of the value filters: ',objList);
+            // Iterate through each list of objects and convert
+            for (let i = 0; i < objList.length; i++) {
+                newObjList.push(
+                    {
+                        index: objList[i].index,
+                        category: objList[i].category,
+                        value: objList[i].value,
+                        label: objList[i].value
+                    })
+            }
         }
-    }
+        
     return newObjList;
 };
 
@@ -51,6 +52,11 @@ const MultiValueSelect = ({ options, defaultValue, onValueChange, values, onMenu
                 // console.log('Menu Closed',e),
                 onMenuClose(e)
             }}
+            onMenuOpen={
+                (e)=>{
+                    console.log('Blurring');
+                }
+            }
             defaultValue={transformDefaultList(values)} onChange={onValueChange}
             theme={(theme) => ({
                 ...theme,

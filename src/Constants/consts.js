@@ -26,7 +26,8 @@ export const DIMENSIONS = {
     CONVERSION:"convType",
     VISITS: "visits",
     CHANNELMU: "channelMU",
-    CHANNELPM:"channelPM"
+    CHANNELPM:"channelPM",
+    NONDMSEGMENT: "nonDMSegment"
 
 
 };

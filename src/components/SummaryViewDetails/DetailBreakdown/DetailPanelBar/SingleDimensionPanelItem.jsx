@@ -119,7 +119,7 @@ class SingleDimensionPanelItem extends Component {
                             item.vsQrf <= 0)
                             ? `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'red')}`
                             : `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'green')}`}>
-                            {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
+                              {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'percent', value: item.qq }, 'value')}

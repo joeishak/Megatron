@@ -330,11 +330,11 @@ export function findIfFilterIsApplied(arr) {
 export function generateFilterParams(type, filterParams, allFilters, _activeParams) {
     switch (type) {
         case 1:
-        filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-        filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-        filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-        filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
-        filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
 
             break;
         //Try
@@ -346,10 +346,10 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
 
             break;
         case 3:
-           
+
             break;
         case 4:
-            
+
 
             break;
         //Traffic
@@ -392,11 +392,11 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[4].value = getParamValues(_activeParams.channelPM, allFilters.channelPM);
             break;
         case 11: //Repeat User Mau
-        filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-        filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-        filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-        filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
-        filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
         //Finance
         default:
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
@@ -553,11 +553,15 @@ export function initiateFilterDataRequests() {
         headers: headers,
         responseType: 'text'
     });
+    const NonDMSegment = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SegmentNonDMFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
 
     responseArray.push(quarterResponse, maResponse, productResponse, segementsResponse,
         subscriptionResponse, routeResponse, geoResponse, channelResponse, visitResponse,
         CloudTypeFilters, ConvTypeFilters, DiscoverVsBuyFilters, LastTouchChannelFilters,
-        MobileVsDesktopFilters, NewVsRepeatFilters, ProdNameFilters, SignupAppFilters, SignupCatFilters, WebSegFilters, ChannelMUFilters, ChannelPMFilters);
+        MobileVsDesktopFilters, NewVsRepeatFilters, ProdNameFilters, SignupAppFilters, SignupCatFilters, WebSegFilters, ChannelMUFilters, ChannelPMFilters,NonDMSegment);
     let promiseArr1 = Promise.all(responseArray);
     return promiseArr1;
 }
@@ -576,7 +580,7 @@ export function requestPrimaryData(allFilters, _parameters) {
     generateFilterParams(5, trafficParams, allFilters, _parameters);
     generateFilterParams(9, financeParams, allFilters, _parameters);
     generateFilterParams(8, uqfmParams, allFilters, _parameters);
-   generateFilterParams(1, useParams,allFilters, _parameters);
+    generateFilterParams(1, useParams, allFilters, _parameters);
 
 
     //turn each list into a string
@@ -611,10 +615,10 @@ export function requestPrimaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-   
+
     // console.log(params1,params2,params3);
     //Primary 
-    console.log('Fetching Use',Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1');
+    console.log('Fetching Use', Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1');
     const primaryFinancial = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.FinancialG8ActualTargetPrimary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -649,7 +653,7 @@ export function requestPrimaryData(allFilters, _parameters) {
 export function requestDiscoverSecondary(allFilters, _parameters) {
     responseArray = [];
 
-  
+
     //Generate the filter list 
     console.log('Utils 556: ', allFilters, _parameters)
     generateFilterParams(5, trafficParams, allFilters, _parameters);
@@ -671,7 +675,7 @@ export function requestDiscoverSecondary(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
- 
+
 
     let params5 = trafficParams.reduce((prev, param) => {
         let p = '';
@@ -679,14 +683,14 @@ export function requestDiscoverSecondary(allFilters, _parameters) {
         return p;
 
     }, '');
-    
+
     let params6 = uqfmParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-   
-   
+
+
     // console.log(params1,params2,params3);
     //Primary 
     const mu = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUSecondary + params7 + '&json=1', {
@@ -706,7 +710,7 @@ export function requestDiscoverSecondary(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    
+
 
     responseArray.push(mu, traffic, uqfm, pmss);
     let promiseArr = Promise.all(responseArray);
@@ -773,7 +777,7 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(5, trafficParams, allFilters, _parameters);
     generateFilterParams(8, uqfmParams, allFilters, _parameters);
-  
+
     let params5 = trafficParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
@@ -1085,8 +1089,8 @@ export function requestBuyMarketSecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(10, buyMktgParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
- 
-  
+
+
     let params5 = buyMktgParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
@@ -1595,38 +1599,43 @@ export function renderDollarValue(value) {
 }
 //Check Logic Here
 export function formatPercentage(value) {
-    let isNegative = (value < 0) ? true : false;
-    let percentage = value;
-    let absVal = Math.abs(percentage);
-    // Greater than or less than 100 
-    // set value to 100
-    if (absVal >= 100) {
-        if (isNegative) {
-            percentage = -100;
-        } else {
-            percentage = 100;
-        }
-    } else {
+    //convert to percentage
+    let percentage = (value === undefined) ? 0.00 : parseFloat(value * 100);
+    // console.log('debug', percentage) 
 
-        // if (value === 0 || value === undefined) {
-        //     return '0.00%';
-        // }
-
-        // percentage = value.toFixed(2);
-
-        if (parseFloat(value)) {
-            percentage = value;
-        } else {
-            percentage = 0;
-        }
-    }
-
-    return parseFloat(percentage * 100).toFixed(2) + '%';
+    // if (isNegative) {
+    //     percentage = value * 100;
+    //     console.log('debug', percentage)
+    // } else {
+    //     percentage = value * 100;
+    //     console.log('debug', percentage)
+    // }
+    // let isNegative = (value < 0) ? true : false;
+    // let percentage = value;
+    // let absVal = Math.abs(percentage);
+    // // Greater than or less than 100 
+    // // set value to 100
+    // if (absVal >= 100) {
+    //     if (isNegative) {
+    //         percentage = -100;
+    //     } else {
+    //         percentage = 100;
+    //     }
+    // } else {
+    //     if (parseFloat(value)) {
+    //         percentage = value;
+    //     } else {
+    //         percentage = 0;
+    //     }
+    // }
+    // const num =  (percentage * 100).toFixed(2);
+    // percentage = (num > 1) ? 1 : num;
+    // return (percentage * 100).toFixed(2) + '%';
+    console.log()
+    return (percentage).toFixed(2) + '%';
 }
 
 export function formatMetric(item, type) {
-
-
     if (type === 'value') {
 
         switch (item.valueType) {
@@ -1744,8 +1753,8 @@ export function getLabelColor(value, target, secondaryCardIndex) {
         }
     } else {
         if (target === 0) {
-           
-                retColor = 'neutralBG';
+
+            retColor = 'neutralBG';
 
         } else if (value >= target) {
             retColor = 'greenBG';
@@ -1761,10 +1770,10 @@ export function getLabelColorPrimary(value, target, mobile) {
     console.log(mobile)
     let retColor = "";
     if (target === 0) {
-        if(mobile===true){
+        if (mobile === true) {
             retColor = 'selectedMobileCardFontColorNeutral';
 
-        } else{
+        } else {
             retColor = 'selectedCardFontColorNeutral';
 
         }

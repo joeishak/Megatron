@@ -33,7 +33,8 @@ const { GEO,
     CONVERSION,
     VISITS,
     CHANNELMU,
-    CHANNELPM
+    CHANNELPM,
+    NONDMSEGMENT
 } = DIMENSIONS;
 export default function (state = {
 
@@ -76,12 +77,16 @@ export default function (state = {
     visits: {
         availableFilters: [],
         valueFilters: []
+    },
+    nonDMSegment: {
+        availableFilters: [],
+        valueFilters: []
     }
 }, action) {
     switch (action.type) {
         case SUBMIT_FILTERS:
             copyOfState = JSON.parse(JSON.stringify(state));
-            // console.log('FILTERS', action.payload);
+            console.log('FILTERS', action.payload);
             copyOfState.combined.valueFilters = [];
             // For each key in action . payload
             // goes,market,product,quarter,route,segment,subscription
@@ -91,39 +96,39 @@ export default function (state = {
                 copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters, ...action.payload[item]];
             });
             //If the length of the arrays vary, the user submitted a new filter
-            if(copyOfState.combined.valueFilters.length !== state.combined.valueFilters.length){
+            if (copyOfState.combined.valueFilters.length !== state.combined.valueFilters.length) {
                 //then return the newest state
+                console.log('New Filter Submitted');
                 return { ...copyOfState };
-            }else { //The length of the arrays are the same
+            } else { //The length of the arrays are the same
                 let lengthChecker = [];
                 //For each value in the new array, check to see if it exists in the old array
                 lengthChecker = copyOfState.combined.valueFilters.map(item => {
-                   return  _.find(state.combined.valueFilters,(filter=>{
-                        return filter.value===item.value && filter.category === filter.category
-                    }))
+                    return _.find(state.combined.valueFilters, (filter => {
+                        return filter.index === item.index}))
                 })
-                
-                // console.log(lengthChecker);
-               let foundNewFilters = _.findIndex(lengthChecker,(item=>{
+
+                console.log(lengthChecker);
+                let foundNewFilters = _.findIndex(lengthChecker, (item => {
                     return item === undefined;
                 }))
 
-                // console.log(foundNewFilters);
-                if(foundNewFilters!==-1){
-                    return {...copyOfState}
+                console.log(foundNewFilters);
+                if (foundNewFilters !== -1) {
+                    return { ...copyOfState }
                 }
                 return state;
             }
-            // return state;
+        // return state;
         case ADD_PREFERENCES_TO_ACTIVE_FILTERS:
             let copyOfState1 = JSON.parse(JSON.stringify(state))
             copyOfState = JSON.parse(JSON.stringify(state))
             copyOfState.quarter.valueFilters.push({ index: 211, category: QUARTER, value: '2019-Q2' });
             copyOfState.segment.valueFilters.push({ index: 209, category: SEGMENT, value: 'Digital Media' });
             copyOfState.websegment.valueFilters.push({ index: 187, category: WEBSEGMENT, value: 'DIGITAL MEDIA' });
-            copyOfState.lastTouchChannel.valueFilters.push({ index: 129, category: LTC, value: 'ALL' });
-            copyOfState.visits.valueFilters.push({ index: 111, category: VISITS, value: 'All Visits' });
-            copyOfState.channelMU.valueFilters.push({ index: 112, category: CHANNELMU, value: 'ALL' });
+            copyOfState.lastTouchChannel.valueFilters.push({ index: 134, category: LTC, value: 'ALL' });
+            copyOfState.visits.valueFilters.push({ index: 114, category: VISITS, value: 'All Visits' });
+            copyOfState.channelMU.valueFilters.push({ index: 213, category: CHANNELMU, value: 'ALL' });
 
 
             copyOfState.route.valueFilters = action.payload.routeFilters;
@@ -156,6 +161,8 @@ export default function (state = {
             let WebSegFilters = action.payload[18].data
             let chanMuFilters = action.payload[19].data
             let chanPmFilters = action.payload[20].data
+            let nonDMFilters = action.payload[21].data
+            console.log(action.payload);
 
 
             let newgeotate = processDropDownListFilterValue(GEO, geoFilter);
@@ -179,6 +186,7 @@ export default function (state = {
             let newWeb = processDropDownListFilterValue(WEBSEGMENT, WebSegFilters);
             let chanMU = processDropDownListFilterValue(CHANNELMU, chanMuFilters);
             let chanPM = processDropDownListFilterValue(CHANNELPM, chanPmFilters);
+            let segNonDM = processDropDownListFilterValue(NONDMSEGMENT, nonDMFilters);
 
 
 
@@ -188,7 +196,7 @@ export default function (state = {
 
             let arr = [...newquarterState, ...newgeotate, ...newMAState, ...newproducttate, ...newroutetate, ...newsegmentState, ...newsubscriptiontate,
             ...newChannelState, ...newVisitState, ...newCloud, ...newConv, ...newDiscBuy, ...newMobileDesk, ...newVsRepeat, ...newProdName, ...newSignApp,
-            ...newSignCat, ...newWeb, ...chanMU,...chanPM];
+            ...newSignCat, ...newWeb, ...chanMU, ...chanPM, segNonDM];
             let obj =
             {
                 combined: {
@@ -274,6 +282,10 @@ export default function (state = {
                 },
                 channelPM: {
                     availableFilters: chanPM,
+                    valueFilters: []
+                },
+                nonDMSegment: {
+                    availableFilters: segNonDM,
                     valueFilters: []
                 }
             }
@@ -616,6 +628,15 @@ function processDropDownListFilterValue(type, data) {
                     index: count++,
                     category: type,
                     value: item['channel']
+                }
+            });
+            return newArr;
+        case NONDMSEGMENT:
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['segment_pivot']
                 }
             });
             return newArr;

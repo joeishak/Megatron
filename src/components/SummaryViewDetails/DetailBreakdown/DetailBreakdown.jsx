@@ -132,10 +132,10 @@ class DetailBreakdown extends Component {
     let { activeTimeMetric, activeSummary, activeSecondary } = this.props;
     var qtdwColSizes = classNames({
       colContainer: true,
-      qtdSize: (activeTimeMetric === "qtd" && this.props.activePrimary === 1) ? true : false,
-      qtdFin: (activeTimeMetric === 'qtd' && this.props.activePrimary !== 1) ? true : false,
-      weekSize: (activeTimeMetric === "week" && this.props.activePrimary !== 1) ? true : false,
-      weekJourn: (activeTimeMetric === "week" && this.props.activePrimary === 1) ? true : false,
+      qtdSize: (activeTimeMetric === "qtd" && this.props.activePrimary >= 1) ? true : false,
+      qtdFin: (activeTimeMetric === 'qtd' && this.props.activePrimary < 1) ? true : false,
+      weekSize: (activeTimeMetric === "week" && this.props.activePrimary < 1) ? true : false,
+      weekJourn: (activeTimeMetric === "week" && this.props.activePrimary >= 1) ? true : false,
     });
     var qtdTotalTable = classNames({
       qtdTotalTable: true,
