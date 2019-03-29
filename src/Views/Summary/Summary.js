@@ -337,10 +337,35 @@ class Summary extends Component {
             break;
           case 1:
             console.log('Fetching Discover')
+            switch(this.activeSecondaryCard){
+              case 4: 
+              this.props.getMarketingSecondaryData(this.props.filters);
+              this.setState({ muHasLoaded: true,  isInitiallyLoading: true, fetchingDiscoverMarketing: true, isLoading: true });
+              break;
+              case 5: 
+              this.props.getTrafficSecondaryData(this.props.filters);
+              this.setState({ discoverHasLoaded: true, trafficHasLoaded: true, isInitiallyLoading: true,fetchingDiscoverTraffic: true,  isLoading: true });
+              case 6: 
+              this.props.getTrafficSecondaryData(this.props.filters);
+              this.setState({ discoverHasLoaded: true, trafficHasLoaded: true, isInitiallyLoading: true,fetchingDiscoverTraffic: true,  isLoading: true });
+              break;
+              case 7: 
+              this.props.getMarketingSecondaryData(this.props.filters);
+              this.setState({ muHasLoaded: true,  isInitiallyLoading: true, fetchingDiscoverMarketing: true, isLoading: true });
+              break;
+              case 8: 
+              this.props.getMarketingSecondaryData(this.props.filters);
+              this.setState({ muHasLoaded: true,  isInitiallyLoading: true, fetchingDiscoverMarketing: true, isLoading: true });
+              break;
+              case 9: 
+               this.props.getTrafficSecondaryData(this.props.filters);
+              this.setState({ discoverHasLoaded: true, trafficHasLoaded: true, isInitiallyLoading: true,fetchingDiscoverTraffic: true,  isLoading: true });
+              break;
+            }
             // this.props.updateActiveSecondaryCard(4);
                 this.props.getTrafficSecondaryData(this.props.filters);
                 this.props.getMarketingSecondaryData(this.props.filters);
-                this.setState({ discoverHasLoaded: true, isInitiallyLoading: true,fetchingDiscoverTraffic: true, fetchingDiscoverMarketing: true, isLoading: true });
+                this.setState({ discoverHasLoaded: true,muHasLoaded: true, trafficHasLoaded: true, isInitiallyLoading: true,fetchingDiscoverTraffic: true, fetchingDiscoverMarketing: true, isLoading: true });
             // this.props.getMarketingSecondaryData(this.props.filters);
             // this.props.getDiscoverSecondary(this.props.filters);
             // this.setState({ discoverHasLoaded: true, isInitiallyLoading: true, fetchingDiscoverMarketing: true, isLoading: true });

@@ -316,10 +316,10 @@ class SummaryViewDetails extends Component {
               <div>Conversion </div>
               <MultiValueSelect
                 onClick={(e)=>{console.log('hi')}}
-                values = {convType.valueFilters}
+                // values = {convType.valueFilters}
                 options={convType.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
-                onMenuClose={this.closeMultiValue}
+                onMenuClose={(e) => {this.closeMultiValue(e)}}
               />
             </div>
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' } }>
@@ -394,7 +394,7 @@ class SummaryViewDetails extends Component {
             <div>Conversion </div>
             <MultiValueSelect
                 onClick={(e)=>{console.log('hi')}}
-                values = {convType.valueFilters}
+                // values = {convType.valueFilters}
                 options={convType.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
                 onMenuClose={this.closeMultiValue}

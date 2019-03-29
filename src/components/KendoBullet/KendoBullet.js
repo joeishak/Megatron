@@ -91,6 +91,7 @@ class KendoBulletChart extends Component {
     const colorRender = () => {
       let color = '';
 
+  
       if (this.props.cardIndex !== undefined && this.props.cardIndex === 2) {
         if (this.props.values[1] === 0 ) {
           color = '#3C3C3C';
@@ -112,6 +113,7 @@ class KendoBulletChart extends Component {
       }
 
       return color;
+      
     }
 
     // const fqTarget = [this.props.values[0], this.props.values[1] - 500000];

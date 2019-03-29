@@ -215,7 +215,7 @@ class PrimarySquare extends Component {
                     </div>
                     <div
                       className={`${responsiveValueText}  ${
-                        utils.getLabelColorPrimary(this.props.item.value, this.props.item.target,(isMobile|| isTablet))
+                        (this.props.activeCard === 5) ? 'selectedCardFontColorGreen' : utils.getLabelColorPrimary(this.props.item.value, this.props.item.target,(isMobile|| isTablet))
                         // this.props.item.value >= this.props.item.target
                         //   ? "selectedCardFontColorGreen"
                         //   : " selectedCardFontColorRed"
