@@ -74,7 +74,7 @@
     font-style: normal;
     line-height: 30px;
     border: 1px solid #3c3c3c;
-    font-size: 15px;
+    font-size: 65%;
     text-align: center;
     width: 12.41%;
     color: white;
@@ -101,7 +101,7 @@
     font-family: Ubuntu;
     font-style: normal;
     line-height: 30px;
-    font-size: 15px;
+    font-size: 65%;
     text-align: center;
     width: 11.1%;
     color: white;
@@ -115,12 +115,13 @@
     right: 80.18%;
     top: 52.69%;
     bottom: 32.96%; */
+	white-space: nowrap;
     border: 1px solid #3c3c3c;
     float:left;
     font-family: Ubuntu;
     font-style: normal;
     line-height: 30px;
-    font-size: 15px;
+    font-size: 65%;
     text-align: center;
     width: 12.48%;
     color: white;
@@ -133,9 +134,12 @@
     color: white;
 
 }
+
 .qtdGeoHeader{
     text-align:  left !important;
     padding-left: 15px;
+    font-size: 65%;
+    white-space: nowrap;
 }
 .qtdMaHeader{
     text-align:  left !important;
@@ -153,7 +157,7 @@
        font-family: Ubuntu;
        font-style: normal;
        line-height: 30px;
-       font-size: 15px;
+       font-size: 65%;
        text-align: center;
        width: 14.28%;
        color: white;

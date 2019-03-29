@@ -23,6 +23,7 @@ const { GEO,
     VISITSTATUS,
     SIGNSOURCE,
     SIGNAPP,
+    SIGNCAT,
     PRODUCTCAT,
     WEBSEGMENT,
     PVW,
@@ -182,7 +183,7 @@ export default function (state = {
             let newVsRepeat = processDropDownListFilterValue(NEWVSREPEAT, NewVsRepeatFilters);
             let newProdName = processDropDownListFilterValue('prodName', ProdNameFilters);
             let newSignApp = processDropDownListFilterValue('signUpApp', SignupAppFilters);
-            let newSignCat = processDropDownListFilterValue('signUpCat', SignupCatFilters);
+            let newSignCat = processDropDownListFilterValue(SIGNCAT, SignupCatFilters);
             let newWeb = processDropDownListFilterValue(WEBSEGMENT, WebSegFilters);
             let chanMU = processDropDownListFilterValue(CHANNELMU, chanMuFilters);
             let chanPM = processDropDownListFilterValue(CHANNELPM, chanPmFilters);
@@ -363,11 +364,14 @@ export default function (state = {
             copyOfState.route.valueFilters = routeFilters
             copyOfState.channelPM.valueFilters = [];
             copyOfState.channelMU.valueFilters = [];
+            copyOfState.signupCategory.valueFilters = [];
+            copyOfState.nonDMSegment.valueFilters = [];
             copyOfState.convType.valueFilters = [];
             copyOfState.visits.valueFilters = [];
             copyOfState.lastTouchChannel.valueFilters = [];
             copyOfState.websegment.valueFilters = [];
 
+            
             copyOfState.websegment.valueFilters.push({ index: 187, category: WEBSEGMENT, value: 'DIGITAL MEDIA' });
             copyOfState.lastTouchChannel.valueFilters.push({ index: 129, category: LTC, value: 'ALL' });
             copyOfState.visits.valueFilters.push({ index: 111, category: VISITS, value: 'All Visits' });
@@ -382,7 +386,7 @@ export default function (state = {
                     }
                 }
             })
-            return copyOfState;
+            return {...copyOfState};
         case REMOVE_MULTI_FILTER:
             copyOfState = JSON.parse(JSON.stringify(state))
             cat = action.payload.category;
@@ -514,7 +518,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'signUpCat':
+        case SIGNCAT:
             newArr = newArr.map(item => {
                 return {
                     index: count++,

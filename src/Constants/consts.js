@@ -15,7 +15,7 @@ export const DIMENSIONS = {
     VISITSTATUS: "visitstatus",
     SIGNSOURCE: "signupsource",
     SIGNAPP: "signUpApp",
-    SIGNCAT: "signUpCat",
+    SIGNCAT: "signupCategory",
     PRODUCTCAT: "productcategory",
     WEBSEGMENT: "websegment",
     PVW: "pvw",
@@ -32,6 +32,10 @@ export const DIMENSIONS = {
 
 };
 export const SUMMARY_FILTERS = {
+    FINANCE_NET_NEW_ARR: 0,
+    FINANCE_GROSS_NEW_ARR: 1,
+    FINANCE_CANCEL_ARR: 2,
+    FINANCE_RENEW_ARR: 3,
     DISCOVER_MARKETABLE_UNIVERSE: 4,
     DISCOVER_TRAFFIC: 5,
     DISCOVER_UQFM: 6,

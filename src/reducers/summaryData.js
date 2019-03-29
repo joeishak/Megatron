@@ -7,6 +7,8 @@ import {
     FETCH_COMMENTS_COUNT,
     GET_PRIMARY_DATA,
     GET_FINANCE_SECONDARY_DATA,
+    GET_FINANCE_XDC1_SECONDARY_DATA,
+    GET_FINANCE_XDC2_SECONDARY_DATA,
     GET_DISCOVER_SECONDARY_DATA,
     GET_TRY_SECONDARY_DATA,
     GET_TRAFFIC_SECONDARY_DATA,
@@ -39,7 +41,7 @@ export default function (state = {
 }, action) {
     switch (action.type) {
         case GET_PRIMARY_DATA:
-            console.log('Request For Primary Data: ',action.payload);
+            console.log('Request For Primary Data: ', action.payload);
             //Make a Stringify copy of state
             newState = JSON.parse(JSON.stringify(state));
             //Assign action  payload data to new state primary
@@ -70,44 +72,80 @@ export default function (state = {
             //Return a copy of newstate
             return { ...newState };
         case GET_DISCOVER_SECONDARY_DATA:
-        newState = JSON.parse(JSON.stringify(state));
-        console.log('Request For Discover Secondary Tiles Data: ',action.payload);
-        processTrafficSecondaryData(action.payload[1].data[0], newState.secondary);
-        processUQFMSecondaryData(action.payload[2].data[0], newState.secondary);
-        processMUSecondaryData(action.payload[0].data[0], newState.secondary);
-        processPMSSSecondaryData(action.payload[3].data[0], newState.secondary);
-            return  {...newState}
+            newState = JSON.parse(JSON.stringify(state));
+            console.log('Request For Discover Secondary Tiles Data: ', action.payload);
+            processTrafficSecondaryData(action.payload[1].data[0], newState.secondary);
+            processUQFMSecondaryData(action.payload[2].data[0], newState.secondary);
+            processMUSecondaryData(action.payload[0].data[0], newState.secondary);
+            processPMSSSecondaryData(action.payload[3].data[0], newState.secondary);
+            return { ...newState }
         case GET_FINANCE_SECONDARY_DATA:
-            console.log('Request For Finance Secondary Details Data: ',action.payload);
+            console.log('Request For Finance Secondary Details Data: ', action.payload);
             newState = JSON.parse(JSON.stringify(state));
             // financeSecondary, financeMultichart, financeUnitsMultichart,
             // financeQTDTotals, financeGeoQTD, financeMarketQTD,
             // financeSegmentQTD, financeRouteQTD, financeProductQTD
 
-            processFinanceSecondaryData(action.payload[0], newState.secondary);
-            processFinancialMultichart(newState.secondary, action.payload[1].data);
-            processFinancialUnitsMultichart(newState.secondary, action.payload[2].data);
-            processFinancialQTD(newState.secondary, action.payload[3].data);
+            processXDC1FinanceSecondaryData(action.payload[0], newState.secondary);
+            processXDC2FinanceSecondaryData(action.payload[1], newState.secondary);
+            // processFinancialMultichart(newState.secondary, action.payload[1].data);
+            // processFinancialUnitsMultichart(newState.secondary, action.payload[2].data);
+            // processFinancialQTD(newState.secondary, action.payload[3].data);
 
-            processFinancialGeoQTD(newState.secondary, action.payload[4].data);
-            processFinancialGeoWeek(newState.secondary, action.payload[4].data)
+            // processFinancialGeoQTD(newState.secondary, action.payload[4].data);
+            // processFinancialGeoWeek(newState.secondary, action.payload[4].data)
 
-            processFinancialMarketQTD(newState.secondary, action.payload[5].data);
-            processFinancialMarketWeek(newState.secondary, action.payload[5].data);
-            processFinancialrouteQTD(newState.secondary, action.payload[7].data);
-            processFinancialrouteWeek(newState.secondary, action.payload[7].data)
+            // processFinancialMarketQTD(newState.secondary, action.payload[5].data);
+            // processFinancialMarketWeek(newState.secondary, action.payload[5].data);
+            // processFinancialrouteQTD(newState.secondary, action.payload[7].data);
+            // processFinancialrouteWeek(newState.secondary, action.payload[7].data)
 
-            processFinancialSegmentQTD(newState.secondary, action.payload[6].data);
-            processFinancialSegmentWeek(newState.secondary, action.payload[6].data);
+            // processFinancialSegmentQTD(newState.secondary, action.payload[6].data);
+            // processFinancialSegmentWeek(newState.secondary, action.payload[6].data);
 
-            processFinancialproductQTD(newState.secondary, action.payload[8].data);
-            processFinancialProductWeek(newState.secondary, action.payload[8].data);
+            // processFinancialproductQTD(newState.secondary, action.payload[8].data);
+            // processFinancialProductWeek(newState.secondary, action.payload[8].data);
             return { ...newState };
-        case GET_TRAFFIC_SECONDARY_DATA:
-            console.log('Request For Traffic + UQFM Conv Secondary Details Data: ',action.payload);
+        case GET_FINANCE_XDC1_SECONDARY_DATA:
+        console.log("Request for XDC 1 Finance: ",action.payload);
             newState = JSON.parse(JSON.stringify(state));
-
-
+            processXDC1FinanceSecondaryData(action.payload[0], newState.secondary);
+            processXDC1FinancialMultichart(newState.secondary, action.payload[1].data);
+            processXDC1FinancialUnitsMultichart(newState.secondary, action.payload[2].data);
+            processXDC1FinancialQTD(newState.secondary, action.payload[3].data);
+            processXDC1FinancialGeoQTD(newState.secondary, action.payload[4].data);
+            processXDC1FinancialGeoWeek(newState.secondary, action.payload[4].data)
+            processXDC1FinancialMarketQTD(newState.secondary, action.payload[5].data);
+            processXDC1FinancialMarketWeek(newState.secondary, action.payload[5].data);
+            processXDC1FinancialrouteQTD(newState.secondary, action.payload[7].data);
+            processXDC1FinancialrouteWeek(newState.secondary, action.payload[7].data)
+            processXDC1FinancialSegmentQTD(newState.secondary, action.payload[6].data);
+            processXDC1FinancialSegmentWeek(newState.secondary, action.payload[6].data);
+            processXDC1FinancialproductQTD(newState.secondary, action.payload[8].data);
+            processXDC1FinancialProductWeek(newState.secondary, action.payload[8].data);
+        return {...newState};
+        case GET_FINANCE_XDC2_SECONDARY_DATA:
+        console.log("Request for XDC 2 Finance: ",action.payload);
+            newState = JSON.parse(JSON.stringify(state));
+            processXDC2FinanceSecondaryData(action.payload[0], newState.secondary);
+            processXDC2FinancialMultichart(newState.secondary, action.payload[1].data);
+            processXDC2FinancialUnitsMultichart(newState.secondary, action.payload[2].data);
+            processXDC2FinancialQTD(newState.secondary, action.payload[3].data);
+            processXDC2FinancialGeoQTD(newState.secondary, action.payload[4].data);
+            processXDC2FinancialGeoWeek(newState.secondary, action.payload[4].data)
+            processXDC2FinancialMarketQTD(newState.secondary, action.payload[5].data);
+            processXDC2FinancialMarketWeek(newState.secondary, action.payload[5].data);
+            processXDC2FinancialrouteQTD(newState.secondary, action.payload[7].data);
+            processXDC2FinancialrouteWeek(newState.secondary, action.payload[7].data)
+            processXDC2FinancialSegmentQTD(newState.secondary, action.payload[6].data);
+            processXDC2FinancialSegmentWeek(newState.secondary, action.payload[6].data);
+            processXDC2FinancialproductQTD(newState.secondary, action.payload[8].data);
+            processXDC2FinancialProductWeek(newState.secondary, action.payload[8].data);
+            console.log('New State for XDC2',newState);
+        return {...newState};
+        case GET_TRAFFIC_SECONDARY_DATA:
+            console.log('Request For Traffic + UQFM Conv Secondary Details Data: ', action.payload);
+            newState = JSON.parse(JSON.stringify(state));
             processTrafficSecondaryData(action.payload[0].data[0], newState.secondary);
             processTrafficMultichartData(action.payload[1].data, newState.secondary);
             processTrafficQTDData(action.payload[2].data[0], newState.secondary);
@@ -127,7 +165,7 @@ export default function (state = {
             processUQFMMarketQTDData(action.payload[14].data, newState.secondary);
             return { ...newState };
         case GET_MKTG_SECONDARY_DATA:
-            console.log('Request For Marketable Universe Secondary Details Data: ',action.payload);
+            console.log('Request For Marketable Universe Secondary Details Data: ', action.payload);
             newState = JSON.parse(JSON.stringify(state));
 
 
@@ -148,7 +186,7 @@ export default function (state = {
             return { ...newState };
         case GET_TRY_SECONDARY_DATA:
             newState = JSON.parse(JSON.stringify(state));
-            console.log('Request For Try Secondary Details Data: ',action.payload);
+            console.log('Request For Try Secondary Details Data: ', action.payload);
 
             processTrySecondaryData(action.payload[0].data[0], newState.secondary);
             processTryMultichartData(action.payload[1].data, newState.secondary);
@@ -171,8 +209,8 @@ export default function (state = {
             return { ...newState };
         case GET_BUY_MKTG_SECONDARY_DATA:
             newState = JSON.parse(JSON.stringify(state));
-            console.log('Request For Mktg Sourced + PM Sourced & Spend Secondary Details Data: ',action.payload);
-            
+            console.log('Request For Mktg Sourced + PM Sourced & Spend Secondary Details Data: ', action.payload);
+
             processBuyMKTSourcedSecondary(action.payload[1].data[0], newState.secondary);
             processBuyMKTSourcedMultichart(action.payload[2].data, newState.secondary);
             processBuyMKTSourcedQTD(action.payload[3].data[0], newState.secondary);
@@ -192,7 +230,7 @@ export default function (state = {
             return { ...newState };
         case GET_BUY_FINANCE_SECONDARY_DATA:
             newState = JSON.parse(JSON.stringify(state));
-            console.log('Request For Buy Gross ARR Secondary Details Data: ',action.payload);
+            console.log('Request For Buy Gross ARR Secondary Details Data: ', action.payload);
             processBuyGrossSecondaryData(action.payload[0], newState.secondary);
             processBuyGrossMultichart(newState.secondary, action.payload[1].data);
             processBuyGrossUnitsMultichart(newState.secondary, action.payload[2].data);
@@ -261,6 +299,66 @@ export default function (state = {
         default:
             return state;
     }
+}
+
+/** Custom function to Reorder QTD Details with row always last */
+function processQTDOrder(data) {
+    if (data.length !== 0) {
+
+        // Before re-ordering check if there are rows re-order
+        let hasRows = false;
+        for (let e = 0; e < data.length; e++) {
+            if (data[e].marketArea === "ROW") {
+                hasRows = true;
+                break;
+            }
+        }
+
+        // if it contains rows re-order else then return the data
+        if (hasRows) {
+            let groupByMarketArea = _.groupBy(data, function (item) { return item.marketArea });
+            let arr = Object.entries(groupByMarketArea);
+            let rowsArr = groupByMarketArea.ROW;
+            let compiledArray = [];
+            let noRowsArr = [];
+            let removedRows = _.filter(arr, function (o) {
+                return o[0] !== 'ROW';
+            });
+
+            //  separate all non rows
+            for (let i = 0; i < removedRows.length; i++) {
+                let items = removedRows[i][1];
+                for (let j = 0; j < items.length; j++) {
+                    noRowsArr.push(items[j]);
+                }
+            }
+
+            for (let k = 0; k < noRowsArr.length; k++) {
+                compiledArray.push(noRowsArr[k]);
+                let toFind = noRowsArr[k];
+                for (let a = 0; a < noRowsArr.length; a++) {
+                    if (noRowsArr[a].type === toFind.type && noRowsArr[a] !== toFind) {
+                        compiledArray.push(noRowsArr[a]);
+                        noRowsArr.splice(a, 1);
+                    }
+                }
+                for (let n = 0; n < rowsArr.length; n++) {
+                    if (toFind.type === rowsArr[n].type) {
+                        compiledArray.push(rowsArr[n]);
+                        rowsArr.splice(n, 1);
+                    }
+                }
+            }
+
+            return compiledArray.concat(rowsArr);
+        } else {
+            return data;
+        }
+
+    } else {
+        return [];
+    }
+
 }
 // TODO: Move to Services
 export function processFinanceSecondaryData(g1, newState) {
@@ -634,65 +732,7 @@ export function processFinancialGeoQTD(newState, data) {
     newState[3].details.geo.qtd = processQTDOrder(item4);
 }
 
-/** Custom function to Reorder QTD Details with row always last */
-function processQTDOrder(data) {
-    if (data.length !== 0) {
 
-        // Before re-ordering check if there are rows re-order
-        let hasRows = false;
-        for (let e = 0; e < data.length; e++) {
-            if (data[e].marketArea === "ROW") {
-                hasRows = true;
-                break;
-            }
-        }
-
-        // if it contains rows re-order else then return the data
-        if (hasRows) {
-            let groupByMarketArea = _.groupBy(data, function(item) { return item.marketArea});
-            let arr = Object.entries(groupByMarketArea);
-            let rowsArr = groupByMarketArea.ROW;
-            let compiledArray = [];
-            let noRowsArr = [];
-            let removedRows = _.filter(arr , function(o) { 
-                return o[0] !== 'ROW'; 
-             });
-        
-            //  separate all non rows
-            for (let i = 0; i < removedRows.length; i++) {
-                let items = removedRows[i][1];
-                for (let j = 0; j < items.length; j++) {
-                    noRowsArr.push(items[j]);
-                    }
-                }
-        
-            for (let k = 0; k < noRowsArr.length; k++) {
-                compiledArray.push(noRowsArr[k]);
-                let toFind = noRowsArr[k];
-                for (let a = 0; a < noRowsArr.length; a++) {
-                    if (noRowsArr[a].type === toFind.type && noRowsArr[a] !== toFind) {
-                        compiledArray.push(noRowsArr[a]);
-                        noRowsArr.splice(a, 1);
-                    }
-                }
-                for (let n = 0; n < rowsArr.length; n++) {
-                    if (toFind.type === rowsArr[n].type) {
-                        compiledArray.push(rowsArr[n]);
-                        rowsArr.splice(n, 1);
-                    }
-                }
-            }
-
-            return compiledArray.concat(rowsArr);
-        } else {
-            return data;
-        }
-       
-    } else {
-        return [];
-    }
-   
-}
 
 export function processFinancialGeoWeek(newState, data) {
     // console.log(data);
@@ -1281,6 +1321,1845 @@ export function processFinancialProductWeek(newState, data) {
     }
     newState[0].details.product.week = item1;
     newState[1].details.product.week = item2;
+    newState[2].details.product.week = item3;
+    newState[3].details.product.week = item4;
+}
+//XDC1
+export function processXDC1FinanceSecondaryData(g1, newState) {
+    //Finance
+    newState[0].value = g1.data[0].NewARRActual;
+    newState[0].target = g1.data[0].NewARRTarget;
+    newState[0].targetFQ = g1.data[0].NewARRTargetFQ;
+    newState[0].vsQrf = g1.data[0].NewVsQrf;
+    // //Gross New Arr
+    newState[1].value = g1.data[0].GrossARRActual;
+    newState[1].targetFQ = g1.data[0].GrossARRTargetFQ;
+    newState[1].target = g1.data[0].GrossARRTarget;
+    newState[1].vsQrf = g1.data[0].GrossVsQrf;
+    // //  //Cacncellations
+    // newState[2].value = g1.data[0].CancelARRActual;
+    // newState[2].targetFQ = g1.data[0].CancelARRTargetFQ;
+    // newState[2].target = g1.data[0].CancelARRTarget;
+    // newState[2].vsQrf = g1.data[0].CancelVsQrf;
+    // //   //Renewal
+    // newState[3].value = g1.data[0].RenewActuals;
+    // newState[3].targetFQ = g1.data[0].RenewARRTargetFQ;
+    // newState[3].target = g1.data[0].RenewARRTarget;
+    // newState[3].vsQrf = g1.data[0].RenewVSQRF;
+}
+export function processXDC1FinancialMultichart(newState, data) {
+
+    let weekFlag = data.map(item => {
+        return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
+    })
+    
+    // _.orderBy(weekFlag, weekNo, ['asc'])
+
+    let newData = _.orderBy(weekFlag, ['weekNo'], ['asc']);
+    let netArr = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    },
+        netCancellations = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        },
+        grossArr = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        },
+        termRenewal = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        };
+    //Get Financial Multichart values
+    for (let i = 0; i < data.length; i++) {
+        let item = newData[i];
+        netArr.actual.push(item.NewARRActual);
+        netArr.target.push(item.NewARRTargetFQ);
+        netArr.ly.push(item.NewARRLY);
+        netArr.lq.push(item.NewARRLQ);
+        netCancellations.actual.push(item.CancelARRActual);
+        netCancellations.target.push(item.CancelARRTargetFQ);
+        netCancellations.ly.push(item.CancelARRLY);
+        netCancellations.lq.push(item.CancelARRLQ);
+        grossArr.actual.push(item.GrossARRActual);
+        grossArr.target.push(item.GrossARRTargetFQ);
+        grossArr.ly.push(item.GrossARRLY);
+        grossArr.lq.push(item.GrossARRLQ);
+        termRenewal.actual.push(item.RenewARRActual);
+        termRenewal.target.push(item.RenewARRTargetFQ);
+        termRenewal.ly.push(item.RenewARRLY);
+        termRenewal.lq.push(item.RenewARRLQ);
+    };
+    //Set Multichart Values
+    for (let i = 0; i <=2; i++) {
+        switch (i) {
+            case 0:
+                currentMulti = [netArr.actual, netArr.target, netArr.ly, netArr.lq];
+                break;
+            case 1:
+                currentMulti = [grossArr.actual, grossArr.target, grossArr.ly, grossArr.lq];
+                break;
+          
+            default:
+                break;
+        }
+        newState[i]['details'].multichart = currentMulti;
+    }
+}
+export function processXDC1FinancialUnitsMultichart(newState, data) {
+    let weekFlag = data.map(item => {
+        return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
+    })
+    // _.orderBy(weekFlag, weekNo, ['asc'])
+
+    let newData = _.orderBy(weekFlag, ['weekNo'], ['asc']);
+    let netUnits = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    },
+        netCancUnits = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        },
+        grossUnits = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        },
+        termUnits = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        };
+
+
+    // Units Multi multiChart
+    // Get Units
+    for (let i = 0; i < data.length; i++) {
+        let item = newData[i];
+        netUnits.actual.push(item.NewUnitsActual);
+        netUnits.target.push(item.NewUnitsTarget);
+        netUnits.ly.push(item.NewUnitsLY);
+        netUnits.lq.push(item.NeWUnitsLQ);
+        netCancUnits.actual.push(item.CancelUnitsActual);
+        netCancUnits.target.push(item.CancelUnitsTarget);
+        netCancUnits.ly.push(item.CancelUnitsLY);
+        netCancUnits.lq.push(item.CancelUnitsLQ);
+        grossUnits.actual.push(item.GrossUnitsActual);
+        grossUnits.target.push(item.GrossUnitsTarget);
+        grossUnits.ly.push(item.GrossUnitsLY);
+        grossUnits.lq.push(item.GrossUnitsLQ);
+        termUnits.actual.push(item.RenewUnitsActual);
+        termUnits.target.push(item.RenewUnitsTarget);
+        termUnits.ly.push(item.RenewUnitsLY);
+        termUnits.lq.push(item.RenewUnitsLQ);
+    };
+
+    // Set Units
+    for (let i = 0; i <= 2; i++) {
+        newMulti = []
+        switch (i) {
+            case 0:
+                newMulti = [netUnits.actual, netUnits.target, netUnits.ly, netUnits.lq];
+                break;
+            case 1:
+                newMulti = [grossUnits.actual, grossUnits.target, grossUnits.ly, grossUnits.lq];
+                break;
+            
+            default:
+                break;
+        }
+        newState[i]['details'].unitMultichart = newMulti;
+        // newState[i]['valueType'] = 'currency';
+    }
+}
+export function processXDC1FinancialQTD(newState, data) {
+    newState = Object.assign([], newState);
+    console.log(data)
+    // State Order: Actual, Units, QRF, QRFDiff, VSQrf, QQ, YY
+    for (let i = 0; i <=2; i++) {
+        let findata = data[0];
+        switch (i) {
+            // New New Arr
+            case 0:
+                newState[i].details.qtdw.qtd =
+                    [
+                        {
+                            index: 1,
+                            header: 'Actuals',
+                            value: findata.NewActuals
+                        },
+                        {
+                            index: 2,
+                            header: 'Units',
+                            value: findata.NewUnitsActual
+                        },
+                        {
+                            index: 3,
+                            header: 'QRF',
+                            value: findata.NewTarget
+                        },
+                        {
+                            index: 4,
+                            header: 'QRF Diff',
+                            value: findata.NewVsQrfDiff
+                        },
+                        {
+                            index: 5,
+                            header: 'Vs Qrf',
+                            value: findata.NewARRVsQrf
+                        },
+                        {
+                            index: 6,
+                            header: 'Q/Q',
+                            value: findata.NewARRQQTY
+                        },
+                        {
+                            index: 7,
+                            header: 'Y/Y',
+                            value: findata.NewARRYY
+                        }
+                    ]
+
+                newState[i].details.qtdw.week[0].value = findata.NewARRCW
+                newState[i].details.qtdw.week[1].value = findata.NewUnitsCW;
+                newState[i].details.qtdw.week[2].value = findata.NewARRTargetCW
+                newState[i].details.qtdw.week[3].value = findata.NewCWVsQrfDiff;
+                newState[i].details.qtdw.week[4].value = findata.NewCWVsQrf;
+                newState[i].details.qtdw.week[5].value = findata.NewWW;
+                newState[i].details.stats[0].value = findata.NewARRVsQrf;
+                newState[i].details.stats[1].value = findata.NewARRQQLY;
+                newState[i].details.stats[2].value = findata.NewARRQQTY;
+                newState[i].details.stats[3].value = findata.NewARRYY;
+                break;
+            // Gross New Arr
+            case 1:
+                newState[i].details.qtdw.qtd[0].value = findata.GrossActuals;
+                newState[i].details.qtdw.qtd[1].value = findata.GrossUnitsActual;
+                newState[i].details.qtdw.qtd[2].value = findata.GrossTarget;
+                newState[i].details.qtdw.qtd[3].value = findata.GrossVsQrfDiff;
+                newState[i].details.qtdw.qtd[4].value = findata.GrossARRVsQrf;
+                newState[i].details.qtdw.qtd[5].value = findata.GrossARRQQTY;
+                newState[i].details.qtdw.qtd[6].value = findata.GrossARRYY;
+                newState[i].details.qtdw.week[0].value = findata.GrossARRCW
+                newState[i].details.qtdw.week[1].value = findata.GrossUnitsCW;
+                newState[i].details.qtdw.week[2].value = findata.GrossARRTargetCW
+                newState[i].details.qtdw.week[3].value = findata.GrossCWVsQrfDiff;
+                newState[i].details.qtdw.week[4].value = findata.GrossCWVsQrf;
+                newState[i].details.qtdw.week[5].value = findata.GrossWW;
+                newState[i].details.stats[0].value = findata.GrossARRVsQrf;
+                newState[i].details.stats[1].value = findata.GrossARRQQTY;
+                newState[i].details.stats[2].value = findata.GrossARRQQLY;
+                newState[i].details.stats[3].value = findata.GrossARRYY;
+                break;
+            
+        }
+    }
+}
+export function processXDC1FinancialGeoQTD(newState, data) {
+    // console.log('YO', data);
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        console.log(net);
+        let gross = {
+            index: i,
+            actuals: item.GrossActuals,
+            marketArea: item.market_area_group,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.geo_code,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelActuals,
+            marketArea: item.market_area_group,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
+            type: item.geo_code,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelARRVsQrf,
+            yy: item.CancelARRYY
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalActuals,
+            marketArea: item.market_area_group,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
+            type: item.geo_code,
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
+        }
+
+        item1.push(net);
+        item2.push(gross);
+      
+    }
+
+    // console.log('YO', item1);
+    newState[0].details.geo.qtd = processQTDOrder(item1);
+    newState[1].details.geo.qtd = processQTDOrder(item2);
+    // newState[2].details.geo.qtd = processQTDOrder(item3);
+    // newState[3].details.geo.qtd = processQTDOrder(item4);
+}
+export function processXDC1FinancialGeoWeek(newState, data) {
+    // console.log(data);
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewUnitsCW,
+            marketArea: item.market_area_group,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossARRCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_group,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelARRCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_group,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.CancelCWVsQrf,
+            ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
+            marketArea: item.market_area_group,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
+        }
+
+        item1.push(net);
+        item2.push(gross);
+        item3.push(canc);
+        item4.push(ren);
+    }
+    newState[0].details.geo.week = processQTDOrder(item1);
+    newState[1].details.geo.week = processQTDOrder(item2);
+    // newState[2].details.geo.week = processQTDOrder(item3);
+    // newState[3].details.geo.week = processQTDOrder(item4);
+}
+export function processXDC1FinancialMarketQTD(newState, data) {
+
+    //Clear old Values
+    newState[0].details.market.qtd = [];
+    newState[1].details.market.qtd = [];
+   
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_code,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossActuals,
+            marketArea: item.market_area_code,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.market_area_code,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelActuals,
+            marketArea: item.market_area_code,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
+            type: item.market_area_code,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelARRVsQrf,
+            yy: item.CancelARRYY
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalActuals,
+            marketArea: item.market_area_code,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
+            type: item.market_area_code,
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
+        }
+
+        newState[0].details.market.qtd.push(net);
+        newState[1].details.market.qtd.push(gross);
+        // newState[2].details.market.qtd.push(canc);
+        // newState[3].details.market.qtd.push(ren);
+
+    }
+
+}
+export function processXDC1FinancialMarketWeek(newState, data) {
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossARRCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelARRCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.CancelCWVsQrf,
+            ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
+        }
+
+        item1.push(net);
+        item2.push(gross);
+        item3.push(canc);
+        item4.push(ren);
+    }
+    newState[0].details.market.week = item1;
+    newState[1].details.market.week = item2;
+    // newState[2].details.market.week = item3;
+    // newState[3].details.market.week = item4;
+}
+export function processXDC1FinancialrouteQTD(newState, data) {
+
+    //Clear old Values
+    newState[0].details.route.qtd = [];
+    newState[1].details.route.qtd = [];
+   
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_code,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossActuals,
+            marketArea: item.market_area_code,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.route_to_market,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelActuals,
+            marketArea: item.market_area_code,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
+            type: item.route_to_market,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelARRVsQrf,
+            yy: item.CancelARRYY
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalActuals,
+            marketArea: item.market_area_code,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
+            type: item.route_to_market,
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
+        }
+
+        newState[0].details.route.qtd.push(net);
+        newState[1].details.route.qtd.push(gross);
+        // newState[2].details.route.qtd.push(canc);
+        // newState[3].details.route.qtd.push(ren);
+
+    }
+
+}
+export function processXDC1FinancialrouteWeek(newState, data) {
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossARRCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelARRCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.CancelCWVsQrf,
+            ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
+        }
+
+        item1.push(net);
+        item2.push(gross);
+        item3.push(canc);
+        item4.push(ren);
+    }
+    newState[0].details.route.week = item1;
+    newState[1].details.route.week = item2;
+    // newState[2].details.route.week = item3;
+    // newState[3].details.route.week = item4;
+}
+export function processXDC1FinancialSegmentQTD(newState, data) {
+
+    //Clear old Values
+    newState[0].details.segment.qtd = [];
+    newState[1].details.segment.qtd = [];
+    newState[2].details.segment.qtd = [];
+    newState[3].details.segment.qtd = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_code,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossActuals,
+            marketArea: item.market_area_code,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.segment_pivot,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelActuals,
+            marketArea: item.market_area_code,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
+            type: item.segment_pivot,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelARRVsQrf,
+            yy: item.CancelARRYY
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalActuals,
+            marketArea: item.market_area_code,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
+            type: item.segment_pivot,
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
+        }
+
+        newState[0].details.segment.qtd.push(net);
+        newState[1].details.segment.qtd.push(gross);
+        // newState[2].details.segment.qtd.push(canc);
+        // newState[3].details.segment.qtd.push(ren);
+
+    }
+
+}
+export function processXDC1FinancialSegmentWeek(newState, data) {
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossARRCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelARRCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.CancelCWVsQrf,
+            ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
+        }
+
+        item1.push(net);
+        item2.push(gross);
+        item3.push(canc);
+        item4.push(ren);
+    }
+    newState[0].details.segment.week = item1;
+    newState[1].details.segment.week = item2;
+    
+}
+export function processXDC1FinancialproductQTD(newState, data) {
+
+    //Clear old Values
+    newState[0].details.product.qtd = [];
+    newState[1].details.product.qtd = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_code,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.product_category,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossActuals,
+            marketArea: item.market_area_code,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.product_category,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelActuals,
+            marketArea: item.market_area_code,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
+            type: item.product_category,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelARRVsQrf,
+            yy: item.CancelARRYY
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalActuals,
+            marketArea: item.market_area_code,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
+            type: item.product_category,
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
+        }
+
+        newState[0].details.product.qtd.push(net);
+        newState[1].details.product.qtd.push(gross);
+      
+
+    }
+
+}
+export function processXDC1FinancialProductWeek(newState, data) {
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.product_category,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossARRCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.product_category,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelARRCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.product_category,
+            vsQrf: item.CancelCWVsQrf,
+            ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
+            type: item.product_category,
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
+        }
+
+        item1.push(net);
+        item2.push(gross);
+        item3.push(canc);
+        item4.push(ren);
+    }
+    newState[0].details.product.week = item1;
+    newState[1].details.product.week = item2;
+  
+}
+//XDC2
+export function processXDC2FinanceSecondaryData(g1, newState) {
+    //Finance
+    // newState[0].value = g1.data[0].NewARRActual;
+    // newState[0].target = g1.data[0].NewARRTarget;
+    // newState[0].targetFQ = g1.data[0].NewARRTargetFQ;
+    // newState[0].vsQrf = g1.data[0].NewVsQrf;
+    // // //Gross New Arr
+    // newState[1].value = g1.data[0].GrossARRActual;
+    // newState[1].targetFQ = g1.data[0].GrossARRTargetFQ;
+    // newState[1].target = g1.data[0].GrossARRTarget;
+    // newState[1].vsQrf = g1.data[0].GrossVsQrf;
+    //  //Cacncellations
+    newState[2].value = g1.data[0].CancelARRActual;
+    newState[2].targetFQ = g1.data[0].CancelARRTargetFQ;
+    newState[2].target = g1.data[0].CancelARRTarget;
+    newState[2].vsQrf = g1.data[0].CancelVsQrf;
+    //   //Renewal
+    newState[3].value = g1.data[0].RenewActuals;
+    newState[3].targetFQ = g1.data[0].RenewARRTargetFQ;
+    newState[3].target = g1.data[0].RenewARRTarget;
+    newState[3].vsQrf = g1.data[0].RenewVSQRF;
+    console.log('New State AT the end of secondary',newState);
+}
+export function processXDC2FinancialMultichart(newState, data) {
+
+    let weekFlag = data.map(item => {
+        return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
+    })
+    // _.orderBy(weekFlag, weekNo, ['asc'])
+
+    let newData = _.orderBy(weekFlag, ['weekNo'], ['asc']);
+    let netArr = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    },
+        netCancellations = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        },
+        grossArr = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        },
+        termRenewal = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        };
+    //Get Financial Multichart values
+    for (let i = 0; i < data.length; i++) {
+        let item = newData[i];
+        netArr.actual.push(item.NewARRActual);
+        netArr.target.push(item.NewARRTargetFQ);
+        netArr.ly.push(item.NewARRLY);
+        netArr.lq.push(item.NewARRLQ);
+        netCancellations.actual.push(item.CancelARRActual);
+        netCancellations.target.push(item.CancelARRTargetFQ);
+        netCancellations.ly.push(item.CancelARRLY);
+        netCancellations.lq.push(item.CancelARRLQ);
+        grossArr.actual.push(item.GrossARRActual);
+        grossArr.target.push(item.GrossARRTargetFQ);
+        grossArr.ly.push(item.GrossARRLY);
+        grossArr.lq.push(item.GrossARRLQ);
+        termRenewal.actual.push(item.RenewARRActual);
+        termRenewal.target.push(item.RenewARRTargetFQ);
+        termRenewal.ly.push(item.RenewARRLY);
+        termRenewal.lq.push(item.RenewARRLQ);
+    };
+   
+                let canc = [netCancellations.actual, netCancellations.target, netCancellations.ly, netCancellations.lq];
+                let ren = [termRenewal.actual, termRenewal.target, termRenewal.ly, termRenewal.lq];
+        newState[2]['details'].multichart = canc;
+        newState[3]['details'].multichart = ren;
+
+}
+export function processXDC2FinancialUnitsMultichart(newState, data) {
+    let weekFlag = data.map(item => {
+        return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
+    })
+    // _.orderBy(weekFlag, weekNo, ['asc'])
+
+    let newData = _.orderBy(weekFlag, ['weekNo'], ['asc']);
+    let netUnits = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    },
+        netCancUnits = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        },
+        grossUnits = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        },
+        termUnits = {
+            actual: [],
+            target: [],
+            lq: [],
+            ly: []
+        };
+
+
+    // Units Multi multiChart
+    // Get Units
+    for (let i = 0; i < data.length; i++) {
+        let item = newData[i];
+        netUnits.actual.push(item.NewUnitsActual);
+        netUnits.target.push(item.NewUnitsTarget);
+        netUnits.ly.push(item.NewUnitsLY);
+        netUnits.lq.push(item.NeWUnitsLQ);
+        netCancUnits.actual.push(item.CancelUnitsActual);
+        netCancUnits.target.push(item.CancelUnitsTarget);
+        netCancUnits.ly.push(item.CancelUnitsLY);
+        netCancUnits.lq.push(item.CancelUnitsLQ);
+        grossUnits.actual.push(item.GrossUnitsActual);
+        grossUnits.target.push(item.GrossUnitsTarget);
+        grossUnits.ly.push(item.GrossUnitsLY);
+        grossUnits.lq.push(item.GrossUnitsLQ);
+        termUnits.actual.push(item.RenewUnitsActual);
+        termUnits.target.push(item.RenewUnitsTarget);
+        termUnits.ly.push(item.RenewUnitsLY);
+        termUnits.lq.push(item.RenewUnitsLQ);
+    };
+
+    // Set Units
+    for (let i = 2; i <=3; i++) {
+        newMulti = []
+        switch (i) {
+            case 2:
+                newMulti = [netCancUnits.actual, netCancUnits.target, netCancUnits.ly, netCancUnits.lq];
+                break;
+            case 3:
+                newMulti = [termUnits.actual, termUnits.target, termUnits.ly, termUnits.lq];
+                break;
+            default:
+                break;
+        }
+        newState[i]['details'].unitMultichart = newMulti;
+    }
+}
+export function processXDC2FinancialQTD(newState, data) {
+    newState = Object.assign([], newState);
+    console.log(data)
+    // State Order: Actual, Units, QRF, QRFDiff, VSQrf, QQ, YY
+    for (let i = 0; i < newState.length; i++) {
+        let findata = data[0];
+        switch (i) {
+            // New New Arr
+            // case 0:
+            //     newState[i].details.qtdw.qtd =
+            //         [
+            //             {
+            //                 index: 1,
+            //                 header: 'Actuals',
+            //                 value: findata.NewActuals
+            //             },
+            //             {
+            //                 index: 2,
+            //                 header: 'Units',
+            //                 value: findata.NewUnitsActual
+            //             },
+            //             {
+            //                 index: 3,
+            //                 header: 'QRF',
+            //                 value: findata.NewTarget
+            //             },
+            //             {
+            //                 index: 4,
+            //                 header: 'QRF Diff',
+            //                 value: findata.NewVsQrfDiff
+            //             },
+            //             {
+            //                 index: 5,
+            //                 header: 'Vs Qrf',
+            //                 value: findata.NewARRVsQrf
+            //             },
+            //             {
+            //                 index: 6,
+            //                 header: 'Q/Q',
+            //                 value: findata.NewARRQQTY
+            //             },
+            //             {
+            //                 index: 7,
+            //                 header: 'Y/Y',
+            //                 value: findata.NewARRYY
+            //             }
+            //         ]
+
+            //     newState[i].details.qtdw.week[0].value = findata.NewARRCW
+            //     newState[i].details.qtdw.week[1].value = findata.NewUnitsCW;
+            //     newState[i].details.qtdw.week[2].value = findata.NewARRTargetCW
+            //     newState[i].details.qtdw.week[3].value = findata.NewCWVsQrfDiff;
+            //     newState[i].details.qtdw.week[4].value = findata.NewCWVsQrf;
+            //     newState[i].details.qtdw.week[5].value = findata.NewWW;
+            //     newState[i].details.stats[0].value = findata.NewARRVsQrf;
+            //     newState[i].details.stats[1].value = findata.NewARRQQLY;
+            //     newState[i].details.stats[2].value = findata.NewARRQQTY;
+            //     newState[i].details.stats[3].value = findata.NewARRYY;
+            //     break;
+            // // Gross New Arr
+            // case 1:
+            //     newState[i].details.qtdw.qtd[0].value = findata.GrossActuals;
+            //     newState[i].details.qtdw.qtd[1].value = findata.GrossUnitsActual;
+            //     newState[i].details.qtdw.qtd[2].value = findata.GrossTarget;
+            //     newState[i].details.qtdw.qtd[3].value = findata.GrossVsQrfDiff;
+            //     newState[i].details.qtdw.qtd[4].value = findata.GrossARRVsQrf;
+            //     newState[i].details.qtdw.qtd[5].value = findata.GrossARRQQTY;
+            //     newState[i].details.qtdw.qtd[6].value = findata.GrossARRYY;
+            //     newState[i].details.qtdw.week[0].value = findata.GrossARRCW
+            //     newState[i].details.qtdw.week[1].value = findata.GrossUnitsCW;
+            //     newState[i].details.qtdw.week[2].value = findata.GrossARRTargetCW
+            //     newState[i].details.qtdw.week[3].value = findata.GrossCWVsQrfDiff;
+            //     newState[i].details.qtdw.week[4].value = findata.GrossCWVsQrf;
+            //     newState[i].details.qtdw.week[5].value = findata.GrossWW;
+            //     newState[i].details.stats[0].value = findata.GrossARRVsQrf;
+            //     newState[i].details.stats[1].value = findata.GrossARRQQTY;
+            //     newState[i].details.stats[2].value = findata.GrossARRQQLY;
+            //     newState[i].details.stats[3].value = findata.GrossARRYY;
+            //     break;
+            // Cancellations Arr
+            case 2:
+                newState[i].details.qtdw.qtd[0].value = findata.CancelActuals;
+                newState[i].details.qtdw.qtd[1].value = findata.CancelUnitsActual;
+                newState[i].details.qtdw.qtd[2].value = findata.CancelTarget;
+                newState[i].details.qtdw.qtd[3].value = findata.CancelVsQrfDiff;
+                newState[i].details.qtdw.qtd[4].value = findata.CancelARRVsQrf;
+                newState[i].details.qtdw.qtd[5].value = findata.CancelARRQQTY;
+                newState[i].details.qtdw.qtd[6].value = findata.CancelARRYY;
+                newState[i].details.qtdw.week[0].value = findata.CancelARRCW;
+                newState[i].details.qtdw.week[1].value = findata.CancelUnitsCW;
+                newState[i].details.qtdw.week[2].value = findata.CancelARRTargetCW
+                newState[i].details.qtdw.week[3].value = findata.CancelCWVsQrfDiff;
+                newState[i].details.qtdw.week[4].value = findata.CancelCWVsQrf;
+                newState[i].details.qtdw.week[5].value = findata.CancelWW;
+
+                newState[i].details.stats[0].value = findata.CancelARRVsQrf;
+                newState[i].details.stats[1].value = findata.CancelARRQQTY;
+                newState[i].details.stats[2].value = findata.CancelARRQQLY;
+                newState[i].details.stats[3].value = findata.CancelARRYY;
+
+
+                break;
+            // Renewals Arr
+            case 3:
+                newState[i].details.qtdw.qtd[0].value = findata.RenewalActuals;
+                newState[i].details.qtdw.qtd[1].value = findata.RenewalUnitsActual;
+                newState[i].details.qtdw.qtd[2].value = findata.RenewalTarget;
+                newState[i].details.qtdw.qtd[3].value = findata.RenewalVsQrfDiff;
+                newState[i].details.qtdw.qtd[4].value = findata.RenewalARRVsQrf;
+                newState[i].details.qtdw.qtd[5].value = findata.RenewalARRQQTY;
+                newState[i].details.qtdw.qtd[6].value = findata.RenewalARRYY;
+                newState[i].details.qtdw.week[0].value = findata.RenewalARRCW
+                newState[i].details.qtdw.week[1].value = findata.RenewalUnitsCW;
+                newState[i].details.qtdw.week[2].value = findata.RenewalARRTargetCW
+                newState[i].details.qtdw.week[3].value = findata.RenewalCWVsQrfDiff;
+                newState[i].details.qtdw.week[4].value = findata.RenewalCWVsQrf;
+                newState[i].details.qtdw.week[5].value = findata.RenewalWW;
+
+                newState[i].details.stats[0].value = findata.RenewalARRVsQrf;
+                newState[i].details.stats[1].value = findata.RenewalARRQQTY;
+                newState[i].details.stats[2].value = findata.RenewalARRQQLY;
+                newState[i].details.stats[3].value = findata.RenewalARRYY;
+                break;
+        }
+    }
+}
+export function processXDC2FinancialGeoQTD(newState, data) {
+    // console.log('YO', data);
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        console.log(net);
+        let gross = {
+            index: i,
+            actuals: item.GrossActuals,
+            marketArea: item.market_area_group,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.geo_code,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelActuals,
+            marketArea: item.market_area_group,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
+            type: item.geo_code,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelARRVsQrf,
+            yy: item.CancelARRYY
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalActuals,
+            marketArea: item.market_area_group,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
+            type: item.geo_code,
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
+        }
+
+        item1.push(net);
+        item2.push(gross);
+        item3.push(canc);
+        item4.push(ren);
+    }
+
+    // console.log('YO', item1);
+    // newState[0].details.geo.qtd = processQTDOrder(item1);
+    // newState[1].details.geo.qtd = processQTDOrder(item2);
+    newState[2].details.geo.qtd = processQTDOrder(item3);
+    newState[3].details.geo.qtd = processQTDOrder(item4);
+}
+export function processXDC2FinancialGeoWeek(newState, data) {
+    // console.log(data);
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewUnitsCW,
+            marketArea: item.market_area_group,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossARRCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_group,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelARRCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_group,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.CancelCWVsQrf,
+            ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
+            marketArea: item.market_area_group,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
+        }
+
+        item1.push(net);
+        item2.push(gross);
+        item3.push(canc);
+        item4.push(ren);
+    }
+    // newState[0].details.geo.week = processQTDOrder(item1);
+    // newState[1].details.geo.week = processQTDOrder(item2);
+    newState[2].details.geo.week = processQTDOrder(item3);
+    newState[3].details.geo.week = processQTDOrder(item4);
+}
+export function processXDC2FinancialMarketQTD(newState, data) {
+
+    //Clear old Values
+  
+    newState[2].details.market.qtd = [];
+    newState[3].details.market.qtd = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_code,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossActuals,
+            marketArea: item.market_area_code,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.market_area_code,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelActuals,
+            marketArea: item.market_area_code,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
+            type: item.market_area_code,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelARRVsQrf,
+            yy: item.CancelARRYY
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalActuals,
+            marketArea: item.market_area_code,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
+            type: item.market_area_code,
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
+        }
+
+        // newState[0].details.market.qtd.push(net);
+        // newState[1].details.market.qtd.push(gross);
+        newState[2].details.market.qtd.push(canc);
+        newState[3].details.market.qtd.push(ren);
+
+    }
+
+}
+export function processXDC2FinancialMarketWeek(newState, data) {
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossARRCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelARRCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.CancelCWVsQrf,
+            ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
+        }
+
+        item1.push(net);
+        item2.push(gross);
+        item3.push(canc);
+        item4.push(ren);
+    }
+    // newState[0].details.market.week = item1;
+    // newState[1].details.market.week = item2;
+    newState[2].details.market.week = item3;
+    newState[3].details.market.week = item4;
+}
+export function processXDC2FinancialrouteQTD(newState, data) {
+
+    //Clear old Values
+   
+    newState[2].details.route.qtd = [];
+    newState[3].details.route.qtd = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_code,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossActuals,
+            marketArea: item.market_area_code,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.route_to_market,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelActuals,
+            marketArea: item.market_area_code,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
+            type: item.route_to_market,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelARRVsQrf,
+            yy: item.CancelARRYY
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalActuals,
+            marketArea: item.market_area_code,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
+            type: item.route_to_market,
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
+        }
+
+        // newState[0].details.route.qtd.push(net);
+        // newState[1].details.route.qtd.push(gross);
+        newState[2].details.route.qtd.push(canc);
+        newState[3].details.route.qtd.push(ren);
+
+    }
+
+}
+export function processXDC2FinancialrouteWeek(newState, data) {
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossARRCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelARRCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.CancelCWVsQrf,
+            ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
+        }
+
+        item1.push(net);
+        item2.push(gross);
+        item3.push(canc);
+        item4.push(ren);
+    }
+    // newState[0].details.route.week = item1;
+    // newState[1].details.route.week = item2;
+    newState[2].details.route.week = item3;
+    newState[3].details.route.week = item4;
+}
+export function processXDC2FinancialSegmentQTD(newState, data) {
+
+    //Clear old Values
+    
+    newState[2].details.segment.qtd = [];
+    newState[3].details.segment.qtd = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_code,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossActuals,
+            marketArea: item.market_area_code,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.segment_pivot,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelActuals,
+            marketArea: item.market_area_code,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
+            type: item.segment_pivot,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelARRVsQrf,
+            yy: item.CancelARRYY
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalActuals,
+            marketArea: item.market_area_code,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
+            type: item.segment_pivot,
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
+        }
+
+        // newState[0].details.segment.qtd.push(net);
+        // newState[1].details.segment.qtd.push(gross);
+        newState[2].details.segment.qtd.push(canc);
+        newState[3].details.segment.qtd.push(ren);
+
+    }
+
+}
+export function processXDC2FinancialSegmentWeek(newState, data) {
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossARRCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelARRCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.CancelCWVsQrf,
+            ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
+        }
+
+        item1.push(net);
+        item2.push(gross);
+        item3.push(canc);
+        item4.push(ren);
+    }
+    // newState[0].details.segment.week = item1;
+    // newState[1].details.segment.week = item2;
+    newState[2].details.segment.week = item3;
+    newState[3].details.segment.week = item4;
+}
+export function processXDC2FinancialproductQTD(newState, data) {
+
+    //Clear old Values
+    
+    newState[2].details.product.qtd = [];
+    newState[3].details.product.qtd = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_code,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.product_category,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossActuals,
+            marketArea: item.market_area_code,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.product_category,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelActuals,
+            marketArea: item.market_area_code,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
+            type: item.product_category,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelARRVsQrf,
+            yy: item.CancelARRYY
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalActuals,
+            marketArea: item.market_area_code,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
+            type: item.product_category,
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
+        }
+
+        // newState[0].details.product.qtd.push(net);
+        // newState[1].details.product.qtd.push(gross);
+        newState[2].details.product.qtd.push(canc);
+        newState[3].details.product.qtd.push(ren);
+
+    }
+
+}
+export function processXDC2FinancialProductWeek(newState, data) {
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.product_category,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossARRCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.product_category,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelARRCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.product_category,
+            vsQrf: item.CancelCWVsQrf,
+            ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
+            type: item.product_category,
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
+        }
+
+        item1.push(net);
+        item2.push(gross);
+        item3.push(canc);
+        item4.push(ren);
+    }
+    // newState[0].details.product.week = item1;
+    // newState[1].details.product.week = item2;
     newState[2].details.product.week = item3;
     newState[3].details.product.week = item4;
 }
@@ -2712,7 +4591,7 @@ export function processTryMultichartData(g2, newState) {
                 break;
         }
         newState[i]['details'].multichart = currentMulti;
-        console.log('Checking Mutltichart',newState[i]['details'].multichart);
+        console.log('Checking Mutltichart', newState[i]['details'].multichart);
     }
     console.log(newState[15].details.multichart);
 }

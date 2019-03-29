@@ -28,6 +28,9 @@ export const GET_TRAFFIC_SECONDARY_DATA = "get_traffic_secondary_data";
 export const GET_MKTG_SECONDARY_DATA = 'get_marketing_secondary_data';
 export const GET_BUY_MKTG_SECONDARY_DATA = 'get_buy_marketing_secondary_data';
 export const GET_BUY_FINANCE_SECONDARY_DATA = 'get_buy_finance_secondary_data';
+export const GET_FINANCE_XDC1_SECONDARY_DATA = 'get_finance_xdc1_secondary_data';
+export const GET_FINANCE_XDC2_SECONDARY_DATA = 'get_finance_xdc2_secondary_data';
+
 export const GET_BUY_TRAFFIC_SECONDARY_DATA = 'get_buy_traffic_secondary_data';
 
 

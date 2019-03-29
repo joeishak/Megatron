@@ -72,7 +72,7 @@ class DetailBreakdown extends Component {
                     }
                   >
                     {(item.header === "Vs Qrf" || item.header === "Q/Q" || item.header === "Y/Y") ?
-                      <span className="contHeader"> {item.header} {this.props.qtdIsPercent ? '%' : '#'} </span> :
+                      <span className="contHeader"> {(item.header==="Vs Qrf") ? "VS QRF" : item.header} {this.props.qtdIsPercent ? '%' : '#'} </span> :
                       <span className="contHeader"> {item.header}</span>
                     }
 
@@ -113,7 +113,7 @@ class DetailBreakdown extends Component {
                       qtdwColSizes
                     }
                   >
-                    <span className="contHeader"> {item.header} </span>
+                    <span className="contHeader"> {(item.header==="Vs Qrf") ? "VS QRF" : item.header} </span>
                     <span className={`valHeader ` + (item.header === "Vs Qrf" ? ` ${this.getColor(activeSecondary, 'red')}` : " ")}>
                       {this.renderDollarValuePanelBarItems(item.value, item)} 
                     </span>

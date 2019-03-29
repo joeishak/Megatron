@@ -302,7 +302,7 @@ class SummaryViewDetails extends Component {
               />
             </div>
             {/* Last Touch Channel */}
-            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+            {/* <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
               <div> {'Last Touch Channel - '+ lastTouchChannel.valueFilters[0].value} </div>
               <SingleValueSelect
                 activeFilters={[]}
@@ -310,7 +310,7 @@ class SummaryViewDetails extends Component {
                 onValueChange={e => { this.updateSingleValue(e) }}
                 onMenuClose={e => { this.closeSingleValue(e) }}
               />
-            </div>
+            </div> */}
             {/* Conversion Type */}
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
               <div>Conversion </div>
@@ -339,7 +339,7 @@ class SummaryViewDetails extends Component {
           <div className="row">
             {/* Channel */}
             <div className="col-md-4 col-lg-4">
-              <div> {'Channel- ' + channelPM.valueFilters[0].value}</div>
+              <div> {'Channel'}</div>
               <MultiValueSelect
                 options={channelPM.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CHANNELPM; this.updateMultiValue(e, type) }}
@@ -355,7 +355,7 @@ class SummaryViewDetails extends Component {
           <div className="row">
             <div className="col-md-4 col-lg-4">
               {/* Channel */}
-              <div> {'Channel - ' + channelPM.valueFilters[0].value}</div>
+              <div> {'Channel '}</div>
               <MultiValueSelect
                 options={channelPM.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CHANNELPM; this.updateMultiValue(e, type) }}
@@ -380,7 +380,7 @@ class SummaryViewDetails extends Component {
             />
           </div>
           {/* Last Touch Channel */}
-          <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+          {/* <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
             <div> {'Last Touch Channel - '+ lastTouchChannel.valueFilters[0].value} </div>
             <SingleValueSelect
               activeFilters={[]}
@@ -388,16 +388,17 @@ class SummaryViewDetails extends Component {
               onValueChange={e => { this.updateSingleValue(e) }}
               onMenuClose={e => { this.closeSingleValue(e) }}
             />
-          </div>
+          </div> */}
           {/* Conversion Type */}
           <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
             <div>Conversion </div>
             <MultiValueSelect
-              onClick={(e)=>{console.log('hi')}}
-              options={convType.availableFilters}
-              onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
-              onMenuClose={this.closeMultiValue}
-            />
+                onClick={(e)=>{console.log('hi')}}
+                values = {convType.valueFilters}
+                options={convType.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
+                onMenuClose={this.closeMultiValue}
+              />
           </div>
           <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' } }>
             <div>{'Web Segment - ' + websegment.valueFilters[0].value }</div>

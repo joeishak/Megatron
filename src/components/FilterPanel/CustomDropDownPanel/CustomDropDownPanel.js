@@ -125,7 +125,10 @@ class CustomDropDownPanel extends Component {
             market: [],
             route: [],
             subscription: [],
-            geo: []
+            geo: [],
+            signupCategory:[],
+            nonDMSegment:[]
+
         };
         console.log(newFilters.QUARTER);
         Object.keys(newFilters).forEach(item => {
@@ -141,12 +144,9 @@ class CustomDropDownPanel extends Component {
                         [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
                         [...this.props.filters.segment.valueFilters];
                     break;
-                case SIGNCAT:
-                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SIGNCAT })) ?
-                        [_.find(this.state.selectedFilters, (item => { return item.category === SIGNCAT }))] :
-                        [...this.props.filters.signupCategory.valueFilters];
-                    break;
+                
                 default:
+                console.log('Grouping',this.state.selectedFilters);
                     let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category ===  item }));
                     console.log(grouped);
                     if (grouped.false !== this.state.selectedFilters.length) {
@@ -182,6 +182,7 @@ class CustomDropDownPanel extends Component {
             VISITSTATUS,
             SIGNSOURCE,
             SIGNAPP,
+            SIGNCAT,
             PRODUCTCAT,
             WEBSEGMENT,
             PVW,
@@ -255,12 +256,12 @@ class CustomDropDownPanel extends Component {
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p> Sign Up</p>
-                            <SingleValueSelect
-                                activeFilters={filters.signupCategory.valueFilters}
+                            <MultiValueSelect
                                 options={filters.signupCategory.availableFilters}
-                                onValueChange={this.updateSingleValue}
-                                onMenuClose={this.closeSingleValue}
+                                onValueChange={(e) => { let type = SIGNCAT; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
                             />
+                          
 
                         </div>
                     </div>
