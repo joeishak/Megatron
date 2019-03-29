@@ -23,6 +23,7 @@ class CustomDropDownPanel extends Component {
             showContainer: this.props.showContainer,
             selectedFilters: [...this.props.filters.quarter.valueFilters, ...this.props.filters.segment.valueFilters],
             activeDataFilters: [],
+            stringList: '',
         }
     }
 
@@ -91,6 +92,14 @@ class CustomDropDownPanel extends Component {
         // this.props.addValueToActiveMultiFilter(e);
     }
 
+    setSelectedMultiFilters = (filterList) => {
+        const stringListArray = filterList.map(filter => {
+            return filter.label;
+        });
+
+        const stringList = stringListArray.join(' - ');
+        this.setState({stringList: stringList});
+    }
     closed = (e) => {
         // console.log('Hello', this.state.selectedFilters);
     }
@@ -251,18 +260,18 @@ class CustomDropDownPanel extends Component {
             //         </div>
             //     );
             case 2:
+            // HERE
                 return (
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Sign Up</p>
+                            <p style={{whiteSpace: 'nowrap'}}> Sign Up - {this.state.stringList}</p>
                             <MultiValueSelect
                                 options={filters.signupCategory.availableFilters}
-                                onValueChange={(e) => { let type = SIGNCAT; this.updateMultiValue(e, type) }}
+                                onValueChange={(e) => { let type = SIGNCAT; this.updateMultiValue(e, type); this.setSelectedMultiFilters(e); }}
                                 onMenuClose={this.closeMultiValue}
                             />
                           
-
                         </div>
                     </div>
                 );

@@ -18,7 +18,7 @@ let transformList = (objList) => {
                     })
             }
         }
-        
+
     return newObjList;
 };
 
@@ -33,6 +33,8 @@ let transformDefaultList = (objList) => {
                 value: objList[0].value,
                 label: objList[0].value
             };
+
+
 
             return newObj;
         }
