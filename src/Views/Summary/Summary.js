@@ -58,6 +58,8 @@ class Summary extends Component {
       renewPrimaryLoaded: false,
       secondaryLoaded: false,
       financeHasLoaded: false,
+      financeXdc1HasLoaded: false,
+      financeXdc2HasLoaded: false,
       trafficHasLoaded: false,
       muHasLoaded: false,
       discoverHasLoaded: false,
@@ -66,6 +68,8 @@ class Summary extends Component {
       useHasLoaded: false,
       renewHasloaded: false,
       fetchingFinance: false,
+      fetchingFinanceXDC1: false,
+      fetchingFinanceXDC2: false,
       fetchingDiscoverTraffic: false,
       fetchingDiscoverMarketing: false,
       fetchingTry: false,
@@ -128,7 +132,7 @@ class Summary extends Component {
       this.setState({ trafficPrimaryLoaded: true })
     }
     if (this.props.tryPrimary.value !== prevProps.tryPrimary.value) {
-      this.setState({ trafficPrimaryLoaded: true })
+      this.setState({ tryPrimaryLoaded: true })
     }
     if (this.props.buyPrimary.value !== prevProps.buyPrimary.value) {
       this.setState({ buyPrimaryLoaded: true })
@@ -141,8 +145,12 @@ class Summary extends Component {
     }
     //Check if All sEcondaries are laoded
     if (this.props.NetNew.value !== prevProps.NetNew.value) {
+      console.log('Net Changed');
+      this.setState({ fetchingFinanceXDC1: false });
+    }
+    if (this.props.Cancel.value !== prevProps.Cancel.value) {
       console.log('Finance Changed');
-      this.setState({ fetchingFinance: false });
+      this.setState({ fetchingFinanceXDC2: false });
     }
     if (this.props.Traffic.value !== prevProps.Traffic.value) {
       console.log('Traffic Changed');
@@ -170,15 +178,22 @@ class Summary extends Component {
       console.log('Traffic Details Changed');
       this.setState({ fetchingTrafficDetails: false });
     }
-    //Details
     if (this.props.Market.details.qtdw.qtd[0].value !== prevProps.Market.details.qtdw.qtd[0].value) {
       console.log('Traffic Details Changed');
       this.setState({ fetchingMUDetails: false });
     }
+    // console.log(this.props.NetNew, prevProps.NetNew);
+
+    if (this.props.NetNew.details.qtdw.qtd[0].value !== prevProps.NetNew.details.qtdw.qtd[0].value) {
+      console.log('NetNew Details Changed');
+      this.setState({ fetchingNetNewDetails: false });
+    }
+    if (this.props.Cancel.details.qtdw.qtd[0].value !== prevProps.Cancel.details.qtdw.qtd[0].value) {
+      console.log('Cancel Details Changed');
+      this.setState({ fetchingCancelDetails: false });
+    }
     // console.log('Checking Summary Data(', primaryLoaded, secondaryLoaded, '): 1. Previouly: ', this.props.summaryData, 'Currently: ', prevProps.summaryData);
 
-
-    // console.log(this.props.filters);
     if (primaryLoaded) {
       this.setState({ primaryLoaded: true })
     }
@@ -190,7 +205,6 @@ class Summary extends Component {
       console.log('Just Recieved filters');
       this.setState({ filtersAreLoaded: true });
     }
-
     if (this.state.filtersAreLoaded && preferencesAreLoaded && this.state.preferncesAreAddedToFilters === false) {
       console.log('Just recieved the preferences');
       this.props.addPreferencesToActiveFilters(this.props.preferences);
@@ -203,11 +217,11 @@ class Summary extends Component {
       switch (this.props.activePrimaryCard) {
         case 0:
           console.log('Fetching Finance')
-          this.setState({ isLoading: true, fetchingFinance: true });
-          this.setState({ financeHasLoaded: true });
-          this.props.getFinanceSecondaryData(this.props.filters);
+          this.setState({ isLoading: true });
+          this.setState({ financeHasLoaded: true, fetchingFinanceXDC1: true, fetchingFinanceXDC2: true });
           this.props.getPrimaryData(this.props.filters);
-
+          this.props.getFinanceXDC1SecondaryData(this.props.filters);
+          this.props.getFinanceSecondaryData(this.props.filters);
           break;
         case 1:
           console.log('Fetching Discover')
@@ -245,12 +259,11 @@ class Summary extends Component {
         default:
           break;
       }
-      this.setState({ fetchingFinance: true, financeHasLoaded: true })
+      // this.setState({ fetchingFinance: true, financeHasLoaded: true })
       if (this.state.initialDataLoadIsComplete === false) {
         this.setState({ initialDataLoadIsComplete: true })
       }
     }
-
     // When the app has already loaded and the filters change
     if (this.state.initialDataLoadIsComplete === true && (this.props.filters !== prevProps.filters)) {
       console.log(this.state.subFiltersChanged);
@@ -301,10 +314,14 @@ class Summary extends Component {
           default:
             break;
         }
-      } else if (this.state.subFiltersChanged === undefined) {
+      } else if (this.state.subFiltersChanged === undefined || this.state.subFiltersChanged === false) {
         this.props.getPrimaryData(this.props.filters);
         this.setState({
           financeHasLoaded: false,
+          financeXdc1HasLoaded: false, 
+          financeXdc2HasLoaded: false, 
+          trafficHasLoaded: false, 
+          muHasLoaded: false,
           discoverHasLoaded: false,
           tryHasLoaded: false
         });
@@ -313,48 +330,19 @@ class Summary extends Component {
         switch (this.props.activePrimaryCard) {
           case 0:
             console.log('Fetching Finance')
-            this.setState({ isLoading: true, fetchingFinance: true });
-            this.setState({ financeHasLoaded: true });
-            this.props.getFinanceSecondaryData(this.props.filters);
+     
+                this.props.getFinanceXDC2SecondaryData(this.props.filters);
+                this.props.getFinanceXDC1SecondaryData(this.props.filters);
+                this.setState({ financeHasLoaded: true, isInitiallyLoading: true, fetchingFinanceXDC1: true,fetchingFinanceXDC2: true, isLoading: true });
             break;
           case 1:
             console.log('Fetching Discover')
             // this.props.updateActiveSecondaryCard(4);
-            switch (this.props.activeSecondaryCard) {
-              case 4:
-                this.props.getMarketingSecondaryData(this.props.filters);
-                this.setState({ discoverHasLoaded: true, isInitiallyLoading: true, fetchingDiscoverMarketing: true, isLoading: true });
-
-                break;
-              case 5:
                 this.props.getTrafficSecondaryData(this.props.filters);
-                this.setState({ discoverHasLoaded: true, isInitiallyLoading: true, fetchingDiscoverTraffic: true, isLoading: true });
-
-                break;
-              case 6:
-                this.props.getTrafficSecondaryData(this.props.filters);
-                this.setState({ discoverHasLoaded: true, isInitiallyLoading: true, fetchingDiscoverTraffic: true, isLoading: true });
-
-                break;
-              case 7:
                 this.props.getMarketingSecondaryData(this.props.filters);
-                this.setState({ discoverHasLoaded: true, isInitiallyLoading: true, fetchingDiscoverMarketing: true, isLoading: true });
-
-                break;
-              case 8:
-                this.props.getMarketingSecondaryData(this.props.filters);
-                this.setState({ discoverHasLoaded: true, isInitiallyLoading: true, fetchingDiscoverMarketing: true, isLoading: true });
-
-                break;
-              case 9:
-                this.props.getTrafficSecondaryData(this.props.filters);
-                this.setState({ discoverHasLoaded: true, isInitiallyLoading: true, fetchingDiscoverTraffic: true, isLoading: true });
-
-                break;
-            }
+                this.setState({ discoverHasLoaded: true, isInitiallyLoading: true,fetchingDiscoverTraffic: true, fetchingDiscoverMarketing: true, isLoading: true });
             // this.props.getMarketingSecondaryData(this.props.filters);
             // this.props.getDiscoverSecondary(this.props.filters);
-
             // this.setState({ discoverHasLoaded: true, isInitiallyLoading: true, fetchingDiscoverMarketing: true, isLoading: true });
 
             break;
@@ -387,7 +375,6 @@ class Summary extends Component {
       }
 
     }
-
     // When the user switches primary cards
     if (this.props.activePrimaryCard !== prevProps.activePrimaryCard) {
       localStorage.activePrimary = this.props.activePrimaryCard;
@@ -397,9 +384,11 @@ class Summary extends Component {
         case 0:
           console.log('Fetching Finance')
           if (!this.state.financeHasLoaded) {
-            this.props.getPrimaryData(this.props.filters);
-            this.props.getFinanceSecondaryData(this.props.filters);
-            this.setState({ fetchingFinance: true, financeHasLoaded: true, isLoading: true });
+            this.updateActiveSecondary(0);
+            // this.props.getPrimaryData(this.props.filters);
+            this.props.getFinanceXDC1SecondaryData(this.props.filters);
+            this.props.getFinanceXDC2SecondaryData(this.props.filters);
+            this.setState({  fetchingFinanceXDC1: true,fetchingFinanceXDC2:true, financeHasLoaded: true, isLoading: true });
 
           } else {
             this.setState({
@@ -416,10 +405,11 @@ class Summary extends Component {
           if (!this.state.discoverHasLoaded) {
             // this.props.getPrimaryData(this.props.filters);
             // this.props.getTrafficSecondaryData(this.props.filters);
+            // this.props.updateActiveSecondaryCard(4);
             this.props.getMarketingSecondaryData(this.props.filters);
             this.props.getDiscoverSecondary(this.props.filters);
 
-            this.setState({ discoverHasLoaded: true, isInitiallyLoading: true, fetchingDiscoverMarketing: true, isLoading: true });
+            this.setState({ discoverHasLoaded: true,isInitiallyLoading: true, fetchingDiscoverTraffic:true, fetchingDiscoverMarketing: true, isLoading: true });
 
           } else {
             this.setState({
@@ -486,9 +476,50 @@ class Summary extends Component {
       }
     }
     // When the user switches secondary cards on Discover = 1
-    if (this.props.activePrimaryCard === 1 && this.props.activeSecondaryCard !== prevProps.activeSecondaryCard) {
+    if ((this.props.activePrimaryCard === 0 || this.props.activePrimaryCard === 1) && this.props.activeSecondaryCard !== prevProps.activeSecondaryCard) {
       let { activeSecondaryCard } = this.props;
       switch (activeSecondaryCard) {
+        
+        case SUMMARY_FILTERS.FINANCE_CANCEL_ARR:
+          console.log('Fetching CANCEL')
+          //TODO: Request Traffic Data Only
+          //Set Requesting secondary kpi to true
+          //Set requesting traffic to true
+          //set is loading to true
+          //set traffic has loaded to true
+          if (!this.state.financeXdc2HasLoaded) {
+            this.props.getFinanceXDC2SecondaryData(this.props.filters);
+            this.setState({ financeHasLoaded: true, fetchingCancelDetails: true, secondaryKpiChanged: true, financeXdc2HasLoaded: true, isLoading: true });
+
+          } else {
+            this.setState({
+              isLoading: false,
+              secondaryKpiChanged: false,
+              fetchingFinanceXDC2: false
+            });
+            this.props.isFetching(false);
+          }
+          break;
+        case SUMMARY_FILTERS.FINANCE_RENEW_ARR:
+          console.log('Fetching RENEW')
+          //TODO: Request Traffic Data Only
+          //Set Requesting secondary kpi to true
+          //Set requesting traffic to true
+          //set is loading to true
+          //set traffic has loaded to true
+          if (!this.state.financeXdc2HasLoaded) {
+            this.props.getFinanceXDC2SecondaryData(this.props.filters);
+            this.setState({ financeHasLoaded: true, fetchingCancelDetails: true, secondaryKpiChanged: true, financeXdc2HasLoaded: true, isLoading: true });
+
+          } else {
+            this.setState({
+              isLoading: false,
+              secondaryKpiChanged: false,
+              fetchingFinanceXDC2: false
+            });
+            this.props.isFetching(false);
+          }
+          break;
         case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
           console.log('Fetching Traffic')
           //TODO: Request Traffic Data Only
@@ -575,19 +606,38 @@ class Summary extends Component {
           break;
       }
     }
+
+
     /**Setting Load to False ... */
     //When the app initially finishes loading finance primary and secondary
-    if (this.state.primaryLoaded === true && this.state.secondaryLoaded === true && this.state.isInitiallyLoading === true) {
+    if (this.props.activePrimaryCard === 0 && this.state.primaryLoaded === true && this.state.isInitiallyLoading === true && this.state.fetchingFinanceXDC1 === false && this.state.fetchingFinanceXDC2 === false ) {
       console.log('Setting Load to False in the primary vs secondary');
       this.setState({ isLoading: false, isInitiallyLoading: false });
       this.props.isFetching(false);
-      this.setState({ primaryLoaded: false, secondaryLoaded: false });
+      this.setState({ primaryLoaded: false, financeXdc1HasLoaded: true });
 
     } else if (this.state.secondaryLoaded === true && this.state.isInitiallyLoading === true && this.state.activePrimaryCard === 1) {
       console.log('Discover Loading set to false here');
     }
+    //When the app has loaded but Finance is active card
+    if (this.props.activePrimaryCard === 0 && this.state.financeHasLoaded && this.state.isInitiallyLoading === true &&  this.state.fetchingFinanceXDC2 === false && this.state.fetchingFinanceXDC1 === false && this.state.secondaryKpiChanged === false) {
+      console.log('Setting Loading to off in Finance tab');
+
+      this.setState({
+        isLoading: false,
+        isInitiallyLoading: false,
+        secondaryLoaded: false,
+        userChangedCards: false,
+        filtersUpdated: false,
+        primaryLoaded: false,
+        secondaryLoaded: false,
+        isInitiallyLoading: false,
+        muHasLoaded: true
+      });
+      this.props.isFetching(false);
+    }
     //When the app has loaded but Discover is active card
-    if (this.state.discoverHasLoaded && this.state.isInitiallyLoading === true && this.state.fetchingDiscoverMarketing === false && this.state.fetchingDiscoverTraffic === false && this.state.secondaryKpiChanged === false) {
+    if (this.props.activePrimaryCard === 1 && this.state.discoverHasLoaded && this.state.isInitiallyLoading === true && this.state.fetchingDiscoverMarketing === false && this.state.fetchingDiscoverTraffic === false && this.state.secondaryKpiChanged === false) {
       console.log('Setting Loading to off in Discover tab');
 
       this.setState({
@@ -604,24 +654,31 @@ class Summary extends Component {
       this.props.isFetching(false);
     }
     if (this.state.secondaryKpiChanged === true) {
-      console.log('SEtting Load to False in  Secondary KPI Change');
-      if (this.state.trafficHasLoaded && this.state.fetchingTrafficDetails === false) {
+      console.log('Setting Load to False in SEcondary KPI Change');
+      if(this.props.activePrimaryCard === 1 && this.state.trafficHasLoaded && this.state.fetchingTrafficDetails === false){
         this.setState({ isLoading: false, discoverHasLoaded: true, secondaryKpiChanged: false });
-      }
+
+      } else if (this.props.activePrimaryCard === 0 && this.state.financeHasLoaded && this.state.fetchingCancelDetails === false){
+      this.setState({ isLoading: false, financeHasLoaded: true, secondaryKpiChanged: false });
+      
+    }
     }
     // has loaded and user changed primary cards
     if (this.state.userChangedCards || this.state.filtersUpdated) {
-
       //Entering 
       switch (this.props.activePrimaryCard) {
         case 0:
-          if (this.state.financeHasLoaded && this.state.fetchingFinance === false) {
+          if (this.state.financeHasLoaded && this.state.fetchingFinanceXDC1 === false && this.state.fetchingFinanceXDC2 === false) {
+          console.log('Setting Load to False in subfilter change || change in cards');
             this.setState({
               isLoading: false,
               isInitiallyLoading: false,
               secondaryLoaded: false,
               userChangedCards: false,
-              filtersUpdated: false
+              filtersUpdated: false,
+              financeXdc1HasLoaded: true,
+              financeXdc2HasLoaded: true
+              
             });
             this.props.isFetching(false);
             this.setState({ primaryLoaded: false, secondaryLoaded: false });
@@ -629,7 +686,7 @@ class Summary extends Component {
           break;
         case 1:
           if (this.state.discoverHasLoaded && this.state.fetchingDiscoverMarketing === false && this.state.fetchingDiscoverSecondary === false) {
-            console.log('Setting off In Disocver');
+          console.log('Setting Load to False in subfilter change || change in cards');
             this.setState({
               isLoading: false,
               isInitiallyLoading: false,
@@ -911,6 +968,7 @@ function mapStateToProps(state) {
     mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible,
     filters: state.filters,
     financePrimary: state.summaryData.primary[0],
+
     trafficPrimary: state.summaryData.primary[1],
     tryPrimary: state.summaryData.primary[2],
     buyPrimary: state.summaryData.primary[3],
@@ -919,6 +977,7 @@ function mapStateToProps(state) {
 
     NEwQTDW: state.summaryData.secondary[0].details.qtdw,
     NetNew: state.summaryData.secondary[0],
+    Cancel: state.summaryData.secondary[2],
     Traffic: state.summaryData.secondary[5],
     Market: state.summaryData.secondary[4],
     NewQFM: state.summaryData.secondary[12],

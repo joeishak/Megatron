@@ -106,7 +106,7 @@ class PanelItemTableHeader extends Component {
                         QRF DIFF
                     </div>
                     <div onDoubleClick={this.updateVsQRF} className={`${qtdColumnClass} pointer header col`}>
-                        vs QRF {this.props.qtdIsPercent ? '%' : '#'}
+                        VS QRF {this.props.qtdIsPercent ? '%' : '#'}
                     </div>
                     <div onDoubleClick={this.updateQQ} className={`${qtdColumnClass} pointer  header col`}>
                         Q/Q {this.props.qtdIsPercent ? '%' : '#'}
@@ -139,7 +139,7 @@ class PanelItemTableHeader extends Component {
                         QRF DIFF
                 </div>
                     <div className={`${weekColumnClass} header  col`}>
-                        vs QRF
+                        VS QRF
                 </div>
                     <div className={`${weekColumnClass} header  col`}>
                         W/W

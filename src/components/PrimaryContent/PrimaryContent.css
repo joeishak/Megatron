@@ -329,6 +329,7 @@
 	font-size: 1.2em;
 	float: left;
 	color:white;
+	white-space: nowrap;
 
 }
 .mobilePrimContent{
@@ -339,6 +340,7 @@
 	font-size: 1.8em;
 	float: left;
 	color:white;
+	white-space: nowrap;
 
 }
 .mobileSelectedCard{

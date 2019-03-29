@@ -10,7 +10,7 @@ class DetailPanelItemTimeHeader extends Component {
                 default:
                     return (<div className=" topHeaderBarWeek weekDetailTitle col-md-11">Week</div>);
             }
-        } else{
+        } else {
             switch (this.props.timeMetric) {
                 case 'qtd':
                     return (<div className=" journeyTopHeaderBar qtdDetailTitle col-md-11">Quarterly To Date</div>);
