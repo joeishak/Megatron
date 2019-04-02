@@ -325,15 +325,18 @@
 	float: right;
 }
 .mobilePrimarySecondaryHeader{
-	width: 50% !important;
+	width: 40% !important;
 	font-size: 1.2em;
 	float: left;
 	color:white;
 	white-space: nowrap;
+	overflow-x: scroll;
 
 }
 .mobilePrimContent{
 	width: 100%;
+	overflow-x: hidden;
+
 }
 .secondaryCategory{
 	width: 50% !important;

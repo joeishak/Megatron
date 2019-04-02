@@ -99,7 +99,7 @@ export default function (state = {
             //If the length of the arrays vary, the user submitted a new filter
             if (copyOfState.combined.valueFilters.length !== state.combined.valueFilters.length) {
                 //then return the newest state
-                console.log('New Filter Submitted');
+                console.log('New Filter Submitted',copyOfState);
                 return { ...copyOfState };
             } else { //The length of the arrays are the same
                 let lengthChecker = [];

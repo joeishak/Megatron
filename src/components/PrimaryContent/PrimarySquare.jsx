@@ -199,7 +199,7 @@ class PrimarySquare extends Component {
                   <span className={responsiveBullet}>
                     <KendoBulletChart
                       isMobileOrTablet={isMobileOrTablet}
-                      width={200}
+                      width={160}
                       values={[this.props.item.value, this.props.item.target, this.props.item.targetFQ]}
                       valueType={this.props.item.valueType}
                       color="white"

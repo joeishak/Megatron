@@ -366,7 +366,6 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
-
             break;
         //Try
         case 2:
@@ -374,7 +373,6 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.signupcat, allFilters.signupcat);
-
             break;
         case 3:
             //Renew
@@ -386,7 +384,6 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[4].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
             filterParams[5].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             filterParams[6].value = getParamValues(_activeParams.product, allFilters.product);
-
             break;
         case 4:
 
@@ -669,8 +666,8 @@ export function requestPrimaryData(allFilters, _parameters) {
 
     // console.log(useParams, renewParams);
     // //Primary 
-    // console.log('Fetching Use', Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1');
-    // console.log('Fetching Renew', Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.RenewUIPFPrimary + params11 + '&json=1');
+    console.log('Fetching Use', Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1');
+    console.log('Fetching Renew', Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.RenewUIPFPrimary + params11 + '&json=1');
 
     const primaryFinancial = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetPrimary + params8 + '&json=1', {
         headers: headers,

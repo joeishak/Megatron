@@ -1008,7 +1008,7 @@ class Summary extends Component {
               console.log('Determining to set load off In MU Secondary KPI Change');
               // if (this.state.muHasLoaded === true && this.state.fetchingDiscoverTraffic === false && this.state.fetchingDiscoverMUDetails === false) {
              
-             if(this.props.muIsLoaded ){ console.log("MU Details Data Load Complete in Secondary KPIT Change: Loading OFF")
+             if(this.props.muIsLoaded && this.props.discoverSecondaryIsLoaded ){ console.log("MU Details Data Load Complete in Secondary KPIT Change: Loading OFF")
                 this.setState({
                   secondaryKpiChanged: false,
                   isLoading: false,

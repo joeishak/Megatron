@@ -265,7 +265,7 @@ class CustomDropDownPanel extends Component {
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p style={{whiteSpace: 'nowrap'}}> Sign Up - {this.state.stringList}</p>
+                            <p style={{whiteSpace: 'nowrap'}}> Sign Up Source - {this.state.stringList}</p>
                             <MultiValueSelect
                                 options={filters.signupCategory.availableFilters}
                                 onValueChange={(e) => { let type = SIGNCAT; this.updateMultiValue(e, type); this.setSelectedMultiFilters(e); }}
@@ -282,10 +282,10 @@ class CustomDropDownPanel extends Component {
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Segment</p>
+                            <p> Non DM Segment</p>
                             <SingleValueSelect
-                                activeFilters={filters.segment.valueFilters}
-                                options={filters.segment.availableFilters}
+                                activeFilters={filters.nonDMSegment.valueFilters}
+                                options={filters.nonDMSegment.availableFilters}
                                 onValueChange={this.updateSingleValue}
                                 onMenuClose={this.closeSingleValue}
                             />

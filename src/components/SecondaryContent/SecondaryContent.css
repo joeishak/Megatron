@@ -339,7 +339,9 @@
 	color:white; 
 	font-size: 1.2 !important; 
 }
-
+.mobileSecondaryContent{
+	overflow: hidden;
+}
 .mobileSecondaryContanetAmountGreen {
 	color: #0DB16E;
 	font-family: Ubuntu;
@@ -449,11 +451,12 @@
 	padding-top: 10px;
 	padding-left: 10px;
 	height: 100%;
-	width: 50% !important;
+	width: 40% !important;
 	font-size: 1.4em;
 	float: left;
 	color: white;
-	white-space: nowrap
+	white-space: nowrap;
+	overflow-x: scroll;
 }
 
 /* Primary Data Category Navigation and Title */
