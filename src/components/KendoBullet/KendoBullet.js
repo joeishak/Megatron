@@ -122,7 +122,7 @@ class KendoBulletChart extends Component {
 
     return (
       <div>
-        <Chart style={bulletStyle}>
+        <Chart zoomable={false} style={bulletStyle}>
           <ChartArea background="transparent" />
           <ChartSeries>
             <ChartSeriesItem type="bullet" color={colorRender} data={this.props.values} target={{ color: this.props.color }} />

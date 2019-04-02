@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { connect } from "react-redux";
+import * as actions from "actions";
 import SecondarySquares from "./SecondarySquares";
 import Playground from "../MobileComponents/Playground/Playground";
 import HorizontalSlider from "../MobileComponents/HorizontalSlider/HorizontalSlider.jsx";
@@ -50,7 +52,18 @@ class SecondaryContentList extends Component {
     ReactDOM.findDOMNode(this).addEventListener("touchend", this.stopResize);
     ReactDOM.findDOMNode(this).addEventListener("mouseleave", this.stopResize);
     ReactDOM.findDOMNode(this).addEventListener("touchcancel", this.stopResize);
-    this.setState({ activeCard: this.props.activeJourneyCard });
+    switch(this.props.activePrimary){
+      case 0: 
+      this.setState({ activeCard: 0 });
+      break;
+      case 1: 
+      this.setState({activeCard: 4});
+      break;
+      case 2: 
+      this.setState({activeCard: 10});
+      break;
+
+    }
 
 
   }
@@ -70,10 +83,9 @@ class SecondaryContentList extends Component {
       utils.includes(this.props.deviceType, 'tablet')) {
 
       if (this.props.activeJourneyCard !== prevProps.activeJourneyCard) {
-
+        console.log('Changing the order', this.props.activeJourneyCard);
         // console.log([this.props.data[this.props.activeJourneyCard], ...this.state.sortedData.filter(item => item.index !== this.props.activeJourneyCard)])
         this.setState({ sortedData: [this.props.data[this.props.activeJourneyCard], ...this.state.sortedData.filter(item => item.index !== this.props.activeJourneyCard)] })
-
       }
     }
 
@@ -143,7 +155,7 @@ class SecondaryContentList extends Component {
     this.props.updateMobileView(SECONDARY, false);
   };
 
-  onSecondaryCardClicked = (e) => {
+  onSecondaryCardClicked = (e,index) => {
     this.setState({ detailsClassState: 'slide-in-bottom' });
     this.setState({ clicked: true });
   }
@@ -201,7 +213,7 @@ class SecondaryContentList extends Component {
               key={item.index}
               item={item}
               activeJourneyCard={isActive}
-              onSecondaryCardClicked={e => this.onSecondaryCardClicked(e)}
+              onSecondaryCardClicked={e => this.onSecondaryCardClicked(e,item.index)}
               onJourneyCardClicked={(e, index) => {
                 this.props.onJourneyCardClicked(e, index);
               }}
@@ -300,4 +312,17 @@ class SecondaryContentList extends Component {
   }
 }
 
-export default SecondaryContentList;
+// export default SecondaryContentList;
+function mapStateToProps(state) {
+
+  return {
+    activeJourneyCard: state.activeCards.secondary,
+    activePrimary: state.activeCards.primary
+
+ 
+  };
+}
+export default connect(
+  mapStateToProps,
+  actions
+)(SecondaryContentList);

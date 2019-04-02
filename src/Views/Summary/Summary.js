@@ -246,8 +246,9 @@ class Summary extends Component {
     // When the app has already loaded and the filters change
     if (this.state.initialDataLoadIsComplete === undefined && (this.props.filters !== prevProps.filters)) {
       console.log(this.state.subFiltersChanged);
-
+     
       if (this.state.subFiltersChanged === true) {
+
         console.log("Sub Filters Changed");
         switch (this.props.activeSecondaryCard) {
           case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
@@ -293,6 +294,7 @@ class Summary extends Component {
       } else if (this.state.subFiltersChanged === undefined || this.state.subFiltersChanged === false) {
         this.setState({ filtersUpdated: true });
         // this.props.resetData();
+     
         this.props.updatePrimaryIsLoading(false);
         this.props.updateDiscoverSecondaryIsLoading(false);
         this.props.updateFinanceSecondaryIsLoading(false);
@@ -301,7 +303,6 @@ class Summary extends Component {
         this.props.updateTrafficSecondaryIsLoading(false);
         this.props.updateMuSecondaryIsLoading(false);
         this.props.updateTrySecondaryIsLoading(false);
-
 
         this.props.getPrimaryData(this.props.filters);
         this.setState({
@@ -866,7 +867,7 @@ class Summary extends Component {
               //When the user changes secondary cards
               if (this.state.secondaryKpiChanged === true) {
                 console.log('Setting Load to off In Secondary KPI Change');
-                if (this.props.financeXDC1IsLoaded) {
+                  if (this.state.financeXDC1HasLoaded === true && this.state.fetchingFinanceXDC1Details === false) {
                   console.log("XDC 1 Details Data Load Complete: Loading OFF")
                   this.setState({
                     secondaryKpiChanged: false,
@@ -1012,7 +1013,11 @@ class Summary extends Component {
                   secondaryKpiChanged: false,
                   isLoading: false,
                 });
-                this.props.updateMuSecondaryIsLoading(false);
+                // if(this.props.activePrimaryCard===1){
+                // this.props.updateMuSecondaryIsLoading(false);
+                // } else {
+                //   this.props.updateMuSecondaryIsLoading(true);
+                // }
 
                 if (this.state.fetchingDiscoverTrafficDetails === false && this.state.trafficHasLoaded === false) {
                   this.props.getTrafficSecondaryData(this.props.filters);
@@ -1035,7 +1040,7 @@ class Summary extends Component {
                     isLoading: false, primaryLoaded: false,
                     filtersUpdated: false
                   });
-                  this.props.updateMuSecondaryIsLoading(false);
+                  // this.props.updateMuSecondaryIsLoading(false);
                   if (this.state.fetchingDiscoverTrafficDetails === false) {
                     this.props.getTrafficSecondaryData(this.props.filters);
                     this.setState({ fetchingTrafficInBackground: true, trafficHasLoaded: true, fetchingDiscoverTrafficDetails: true, })
@@ -1050,7 +1055,7 @@ class Summary extends Component {
                   isLoading: false,
                   subFiltersChanged: false
                 });
-                this.props.updateMuSecondaryIsLoading(false);
+                // this.props.updateMuSecondaryIsLoading(false);
 
               }
             }
@@ -1066,7 +1071,7 @@ class Summary extends Component {
                   isLoading: false,
                   fetchingTrafficInBackground: false
                 });
-                this.props.updateTrafficSecondaryIsLoading(false);
+                // this.props.updateTrafficSecondaryIsLoading(false);
 
               }
             } // End User Changing Cards within Finance
@@ -1083,7 +1088,7 @@ class Summary extends Component {
                     isLoading: false, fetchingTrafficInBackground: true, primaryLoaded: false,
                     fetchingDiscoverTrafficDetails: true, muHasLoaded: true, filtersUpdated: false
                   });
-                  this.props.updateTrafficSecondaryIsLoading(false);
+                  // this.props.updateTrafficSecondaryIsLoading(false);
 
                   this.props.getMarketingSecondaryData(this.props.filters);
                 }
@@ -1096,7 +1101,7 @@ class Summary extends Component {
                   isLoading: false,
                   subFiltersChanged: false
                 });
-                this.props.updateTrafficSecondaryIsLoading(false);
+                // this.props.updateTrafficSecondaryIsLoading(false);
               }
             }
             break;
@@ -1131,7 +1136,7 @@ class Summary extends Component {
                     isLoading: false, fetchingTrafficInBackground: true, primaryLoaded: false,
                     fetchingDiscoverTrafficDetails: true, muHasLoaded: true, filtersUpdated: false
                   });
-                  this.props.updateTrafficSecondaryIsLoading(false);
+                  // this.props.updateTrafficSecondaryIsLoading(false);
 
                   this.props.getMarketingSecondaryData(this.props.filters);
                 }
@@ -1147,7 +1152,7 @@ class Summary extends Component {
                   secondaryKpiChanged: false,
                   isLoading: false,
                 });
-                this.props.updateMuSecondaryIsLoading(false);
+                // this.props.updateMuSecondaryIsLoading(false);
 
                 if (this.state.fetchingDiscoverTrafficDetails === false && this.state.trafficHasLoaded === false) {
                   this.props.getTrafficSecondaryData(this.props.filters);
@@ -1170,7 +1175,7 @@ class Summary extends Component {
                     isLoading: false, primaryLoaded: false,
                     filtersUpdated: false
                   });
-                  this.props.updateMuSecondaryIsLoading(false);
+                  // this.props.updateMuSecondaryIsLoading(false);
 
                   if (this.state.fetchingDiscoverTrafficDetails === false) {
                     this.props.getTrafficSecondaryData(this.props.filters);
@@ -1182,7 +1187,7 @@ class Summary extends Component {
               console.log('Determining Load to off In MU sub Filter Change', this.state);
               if (this.props.muIsLoaded) {
                 console.log('Setting Load to off In MU sub filter Change');
-                this.props.updateMuSecondaryIsLoading(false);
+                // this.props.updateMuSecondaryIsLoading(false);
 
                 this.setState({
                   isLoading: false,
@@ -1200,7 +1205,7 @@ class Summary extends Component {
                   secondaryKpiChanged: false,
                   isLoading: false,
                 });
-                this.props.updateMuSecondaryIsLoading(false);
+                // this.props.updateMuSecondaryIsLoading(false);
 
                 if (this.state.fetchingDiscoverTrafficDetails === false && this.state.trafficHasLoaded === false) {
                   this.props.getTrafficSecondaryData(this.props.filters);
@@ -1223,7 +1228,7 @@ class Summary extends Component {
                     isLoading: false, primaryLoaded: false,
                     filtersUpdated: false
                   });
-                  this.props.updateMuSecondaryIsLoading(false);
+                  // this.props.updateMuSecondaryIsLoading(false);
 
                 }
               }
@@ -1231,7 +1236,7 @@ class Summary extends Component {
               console.log('Determining Load to off In MU sub Filter Change', this.state);
               if (this.props.muIsLoaded && this.state.muHasLoaded === true) {
                 console.log('Setting Load to off In MU sub filter Change');
-                this.props.updateMuSecondaryIsLoading(false);
+                // this.props.updateMuSecondaryIsLoading(false);
 
                 this.setState({
                   isLoading: false,
@@ -1252,7 +1257,7 @@ class Summary extends Component {
                   fetchingTrafficInBackground: false
 
                 });
-                this.props.updateTrafficSecondaryIsLoading(false);
+                // this.props.updateTrafficSecondaryIsLoading(false);
 
               }
             } // End User Changing Cards within Finance
@@ -1269,7 +1274,7 @@ class Summary extends Component {
                     isLoading: false, fetchingTrafficInBackground: true, primaryLoaded: false,
                     fetchingDiscoverTrafficDetails: true, muHasLoaded: true, filtersUpdated: false
                   });
-                  this.props.updateTrafficSecondaryIsLoading(false);
+                  // this.props.updateTrafficSecondaryIsLoading(false);
 
                   this.props.getMarketingSecondaryData(this.props.filters);
                 }
@@ -1282,7 +1287,7 @@ class Summary extends Component {
                   isLoading: false,
                   subFiltersChanged: false
                 });
-                this.props.updateTrafficSecondaryIsLoading(false);
+                // this.props.updateTrafficSecondaryIsLoading(false);
 
               }
             }
@@ -1315,6 +1320,22 @@ class Summary extends Component {
   updateSecondaryLoading(newFilters) {
     this.setState({ subFiltersChanged: true })
     this.props.submitFilters(newFilters);
+    switch(this.props.activeSecondaryCard){
+      case 4: 
+      this.props.updateMuSecondaryIsLoading(false);
+      break;
+      case 5: 
+      this.props.updateTrafficSecondaryIsLoading(false);
+      case 7: 
+      this.props.updateMuSecondaryIsLoading(false);
+      break;
+      case 8:
+      this.props.updateMuSecondaryIsLoading(false);
+      break;
+      case 9: 
+      this.props.updateTrafficSecondaryIsLoading(false);
+      break;
+    }
   }
   stopLoading() {
     this.setState({ isLoading: false, isInitiallyLoading: false });
@@ -1413,7 +1434,7 @@ class Summary extends Component {
       <SecondaryContentList
         statsDetails={this.props.statsDetails}
         data={this.props.secondaryData}
-        activeJourneyCard={this.props.activeSecondaryCard}
+        // activeJourneyCard={this.props.activeSecondaryCard}
         onJourneyCardClicked={(e, index) => { this.updateActiveSecondary(index); }}
         onCommentIconClick={(e, type, index) => { this.onCommentIconClick(e, type, index); }}
         toggleCommentary={this.props.toggleCommentary}

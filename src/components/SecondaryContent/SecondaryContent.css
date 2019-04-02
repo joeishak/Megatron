@@ -329,9 +329,9 @@
 	line-height: normal;
 	font-size: 1.5em;
 	margin-bottom: -20px;
-	margin-right: 20px;
+	/* margin-right: 20px; */
 	padding-top:10px;
-	margin-left: 3.5%;
+	/* margin-left: 3.5%; */
 }
 .mobileSecondaryContentTarget { 
 	float:left; 
@@ -453,6 +453,7 @@
 	font-size: 1.4em;
 	float: left;
 	color: white;
+	white-space: nowrap
 }
 
 /* Primary Data Category Navigation and Title */

@@ -10,13 +10,13 @@ class DetailBreakdown extends Component {
   getColor(activeSecondary, originalColor) {
     switch (originalColor) {
         case 'red':
-            if (activeSecondary == 2) {
+            if (activeSecondary === 2) {
                 return 'greenBG'
             } else {
-                return 'sss'
+                return 'redBG'
             }
         default:
-        if (activeSecondary == 2) {
+        if (activeSecondary === 2) {
             return 'redBG'
         } else {
             return 'greenBG'

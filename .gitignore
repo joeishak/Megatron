@@ -88,3 +88,5 @@ typings/
 # .env
 
 environmentParams.js
+
+index.js
