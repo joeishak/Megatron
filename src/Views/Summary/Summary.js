@@ -46,38 +46,43 @@ class Summary extends Component {
         width: window.innerWidth
       },
       preferncesAreAddedToFilters: false,
-      initialDataLoadIsComplete: false,
+      initialDataLoadIsComplete: false, //Once the app initially requests all the necessary data to present dashboard for first time
       isLoading: true,
       isInitiallyLoading: true,
-      primaryLoaded: false,
+      //Primary Loaded - Request has been made
       financePrimaryLoaded: false,
       trafficPrimaryLoaded: false,
       tryPrimaryLoaded: false,
       buyPrimaryLoaded: false,
       usePrimaryLoaded: false,
       renewPrimaryLoaded: false,
-      secondaryLoaded: false,
-      financeHasLoaded: false,
-      financeXdc1HasLoaded: false,
-      financeXdc2HasLoaded: false,
+      //Secondary Loaded - Request Has Been Made
+      financeXDC1HasLoaded: false,
+      financeXDC2HasLoaded: false,
       trafficHasLoaded: false,
       muHasLoaded: false,
-      discoverHasLoaded: false,
       tryHasLoaded: false,
       buyHasLoaded: false,
       useHasLoaded: false,
       renewHasloaded: false,
-      fetchingFinance: false,
+      //While request is being Fetched
       fetchingFinanceXDC1: false,
       fetchingFinanceXDC2: false,
+      fetchingFinanceXDC1Details: false,
+      fetchingFinanceXDC2Details: false,
       fetchingDiscoverTraffic: false,
       fetchingDiscoverMarketing: false,
+      fetchingDiscoverTrafficDetails: false,
+      fetchingDiscoverMUDetails: false,
       fetchingTry: false,
       fetchingBuyFinance: false,
       fetchingBuyMarket: false,
       fetchingBuyTraffic: false,
+      //Data/Filters Management booleans 
+      filtersChanged: false,
+      subFiltersChanged: false,
       secondaryKpiChanged: false,
-
+      userChangedCards: false
     };
 
     /*Bindings  */
@@ -145,12 +150,12 @@ class Summary extends Component {
     }
     //Check if All sEcondaries are laoded
     if (this.props.NetNew.value !== prevProps.NetNew.value) {
-      console.log('Net Changed');
+      console.log('XDC 1 Secondary Changed');
       this.setState({ fetchingFinanceXDC1: false });
     }
     if (this.props.Cancel.value !== prevProps.Cancel.value) {
-      console.log('Finance Changed');
-      this.setState({ fetchingFinanceXDC2: false });
+      console.log('XDC2 Secondary  Changed');
+      this.setState({ fetchingFinanceXDC2: false, financeXDC2HasLoaded: true });
     }
     if (this.props.Traffic.value !== prevProps.Traffic.value) {
       console.log('Traffic Changed');
@@ -160,7 +165,15 @@ class Summary extends Component {
       console.log('Marketing Changed');
       this.setState({ fetchingDiscoverMarketing: false });
     }
-    if (this.props.NewQFM.value !== prevProps.NewQFM.value) {
+    if (this.props.PaidSourced.value !== prevProps.PaidSourced.value) {
+      console.log('PaidSourced Changed');
+      this.setState({ fetchingDiscoverMarketing: false });
+    }
+    if (this.props.PaidSpend.value !== prevProps.PaidSpend.value) {
+      console.log('PaidSpend Changed');
+      this.setState({ fetchingDiscoverMarketing: false });
+    }
+    if (this.props.NewUQFM.value !== prevProps.NewUQFM.value) {
       console.log('Try Changed');
       this.setState({ fetchingTry: false });
     }
@@ -176,21 +189,29 @@ class Summary extends Component {
     //Details
     if (this.props.Traffic.details.qtdw.qtd[0].value !== prevProps.Traffic.details.qtdw.qtd[0].value) {
       console.log('Traffic Details Changed');
-      this.setState({ fetchingTrafficDetails: false });
+      this.setState({ fetchingDiscoverTrafficDetails: false });
     }
     if (this.props.Market.details.qtdw.qtd[0].value !== prevProps.Market.details.qtdw.qtd[0].value) {
-      console.log('Traffic Details Changed');
-      this.setState({ fetchingMUDetails: false });
+      console.log('MArket Details Changed');
+      this.setState({ fetchingDiscoverMUDetails: false });
+    }
+    if (this.props.PaidSpend.details.qtdw.qtd[0].value !== prevProps.PaidSpend.details.qtdw.qtd[0].value) {
+      console.log('PaidSpend Details Changed');
+      this.setState({ fetchingDiscoverMUDetails: false });
+    }
+    if (this.props.PaidSourced.details.qtdw.qtd[0].value !== prevProps.PaidSourced.details.qtdw.qtd[0].value) {
+      console.log('PaidSourced Details Changed');
+      this.setState({ fetchingDiscoverMUDetails: false });
     }
     // console.log(this.props.NetNew, prevProps.NetNew);
 
     if (this.props.NetNew.details.qtdw.qtd[0].value !== prevProps.NetNew.details.qtdw.qtd[0].value) {
-      console.log('NetNew Details Changed');
-      this.setState({ fetchingNetNewDetails: false });
+      console.log('XDC 1 Details Changed');
+      this.setState({ fetchingFinanceXDC1Details: false });
     }
     if (this.props.Cancel.details.qtdw.qtd[0].value !== prevProps.Cancel.details.qtdw.qtd[0].value) {
-      console.log('Cancel Details Changed');
-      this.setState({ fetchingCancelDetails: false });
+      console.log('XDC 2 Details Changed');
+      this.setState({ fetchingFinanceXDC2Details: false });
     }
     // console.log('Checking Summary Data(', primaryLoaded, secondaryLoaded, '): 1. Previouly: ', this.props.summaryData, 'Currently: ', prevProps.summaryData);
 
@@ -204,6 +225,7 @@ class Summary extends Component {
     if (filtersAreLoaded) {
       console.log('Just Recieved filters');
       this.setState({ filtersAreLoaded: true });
+      this.setState({ previouslyLoadedFilters: this.props.filters.combined.valueFitlers })
     }
     if (this.state.filtersAreLoaded && preferencesAreLoaded && this.state.preferncesAreAddedToFilters === false) {
       console.log('Just recieved the preferences');
@@ -211,65 +233,22 @@ class Summary extends Component {
       this.setState({ preferncesAreAddedToFilters: true })
     }
     // When the app has all necessary data to make requests
-    if (this.state.filtersAreLoaded === true && this.state.preferncesAreAddedToFilters === true && this.state.initialDataLoadIsComplete === false) {
+    if (this.state.filtersAreLoaded === true &&
+      this.state.preferncesAreAddedToFilters === true &&
+      this.state.initialDataLoadIsComplete === false) {
       console.log('Both Preferences and Filters are loaded', this.props.activePrimaryCard);
-
-      switch (this.props.activePrimaryCard) {
-        case 0:
-          console.log('Fetching Finance')
-          this.setState({ isLoading: true });
-          this.setState({ financeHasLoaded: true, fetchingFinanceXDC1: true, fetchingFinanceXDC2: true });
-          this.props.getPrimaryData(this.props.filters);
-          this.props.getFinanceXDC1SecondaryData(this.props.filters);
-          this.props.getFinanceSecondaryData(this.props.filters);
-          break;
-        case 1:
-          console.log('Fetching Discover')
-          this.setState({ isLoading: true, fetchingDiscoverMarketing: true, fetchingDiscoverTraffic: true });
-          this.setState({ discoverHasLoaded: true });
-          this.props.getMarketingSecondaryData(this.props.filters);
-          this.props.getTrafficSecondaryData(this.props.filters);
-          this.props.getPrimaryData(this.props.filters);
-
-          break;
-        case 2:
-          console.log('Fetching Try')
-          this.setState({ isLoading: true, fetchingTry: true });
-          this.setState({ tryHasLoaded: true });
-          this.props.getTrySecondaryData(this.props.filters);
-          this.props.getPrimaryData(this.props.filters);
-          break;
-        case 3:
-          console.log('Fetching Buy')
-          this.setState({ isLoading: true, fetchingBuyFinance: true, fetchingBuyTraffic: true, fetchingBuyMarket: true });
-          this.setState({ buyHasLoaded: true });
-          this.props.getBuyFinanceSecondaryData(this.props.filters);
-          this.props.getBuyTrafficSecondaryData(this.props.filters);
-          this.props.getBuyMarketSecondaryData(this.props.filters);
-
-          break;
-        case 4:
-          console.log('Fetching Use')
-          // this.props.getUseSecondaryData(this.props.filters);
-          break;
-        case 5:
-          console.log('Fetching Renew')
-          // this.props.getRenewSecondaryData(this.props.filters);
-          break;
-        default:
-          break;
-      }
-      // this.setState({ fetchingFinance: true, financeHasLoaded: true })
-      if (this.state.initialDataLoadIsComplete === false) {
-        this.setState({ initialDataLoadIsComplete: true })
-      }
+      console.log('Fetching Finance')
+      this.setState({ isLoading: true, financeXDC1HasLoaded: true, fetchingFinanceXDC1Details: true, fetchingFinanceXDC2: true, financeXDC2HasLoaded: true, initialDataLoadIsComplete: true });
+      this.props.getPrimaryData(this.props.filters);
+      this.props.getFinanceXDC1SecondaryData(this.props.filters);
+      this.props.getFinanceSecondaryData(this.props.filters);
     }
     // When the app has already loaded and the filters change
-    if (this.state.initialDataLoadIsComplete === true && (this.props.filters !== prevProps.filters)) {
+    if (this.state.initialDataLoadIsComplete === undefined && (this.props.filters !== prevProps.filters)) {
       console.log(this.state.subFiltersChanged);
-      this.setState({ filtersUpdated: true });
 
       if (this.state.subFiltersChanged === true) {
+        console.log("Sub Filters Changed");
         switch (this.props.activeSecondaryCard) {
           case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
             console.log('Fetching TRAFFIC')
@@ -279,29 +258,26 @@ class Summary extends Component {
             break;
           case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
             console.log('Fetching mu')
-            this.setState({ isLoading: true, fetchingDiscoverMarketing: true });
-            this.setState({ muHasLoaded: true });
+            this.props.updateMuSecondaryIsLoading(false);
             this.props.getMarketingSecondaryData(this.props.filters);
+            this.setState({ isLoading: true, muHasLoaded: true, fetchingDiscoverMUDetails: true });
+
             break;
           case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
             console.log('Fetching mu')
-            this.setState({ isLoading: true, fetchingDiscoverMarketing: true });
-            this.setState({ muHasLoaded: true });
+            this.setState({ isLoading: true, muHasLoaded: true, fetchingDiscoverMUDetails: true });
             this.props.getMarketingSecondaryData(this.props.filters);
             break;
           case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
             console.log('Fetching mu')
-            this.setState({ isLoading: true, fetchingDiscoverMarketing: true });
-            this.setState({ muHasLoaded: true });
+            this.setState({ isLoading: true, muHasLoaded: true, fetchingDiscoverMUDetails: true });
             this.props.getMarketingSecondaryData(this.props.filters);
             break;
           case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
             console.log('Fetching Buy')
             console.log('Fetching TRAFFIC')
-            this.setState({ isLoading: true, fetchingDiscoverTraffic: true });
-            this.setState({ trafficHasLoaded: true });
+            this.setState({ isLoading: true, trafficHasLoaded: true, fetchingDiscoverTraffic: true });
             this.props.getTrafficSecondaryData(this.props.filters);
-            break;
             break;
           case 4:
             console.log('Fetching Use')
@@ -315,208 +291,306 @@ class Summary extends Component {
             break;
         }
       } else if (this.state.subFiltersChanged === undefined || this.state.subFiltersChanged === false) {
+        this.setState({ filtersUpdated: true });
+        // this.props.resetData();
+        this.props.updatePrimaryIsLoading(false);
+        this.props.updateDiscoverSecondaryIsLoading(false);
+        this.props.updateFinanceSecondaryIsLoading(false);
+        this.props.updateFinanceXDC1IsLoading(false);
+        this.props.updateFinanceXDC2IsLoading(false);
+        this.props.updateTrafficSecondaryIsLoading(false);
+        this.props.updateMuSecondaryIsLoading(false);
+        this.props.updateTrySecondaryIsLoading(false);
+
+
         this.props.getPrimaryData(this.props.filters);
         this.setState({
-          financeHasLoaded: false,
-          financeXdc1HasLoaded: false, 
-          financeXdc2HasLoaded: false, 
-          trafficHasLoaded: false, 
+          trafficHasLoaded: false,
           muHasLoaded: false,
-          discoverHasLoaded: false,
-          tryHasLoaded: false
+          trafficHasLoaded: false,
+          tryHasLoaded: false,
+          financeXDC1HasLoaded: false,
+          financeXDC2HasLoaded: false,
+          fetchingDiscoverMUDetails: undefined,
+          // fetchingDiscoverTrafficDetails: undefined, 
+          fetchingFinanceXDC1Details: undefined,
+          fetchingFinanceXDC2Details: undefined,
         });
+        console.log("Global Filters Changed");
 
 
-        switch (this.props.activePrimaryCard) {
-          case 0:
-            console.log('Fetching Finance')
-     
-                this.props.getFinanceXDC2SecondaryData(this.props.filters);
-                this.props.getFinanceXDC1SecondaryData(this.props.filters);
-                this.setState({ financeHasLoaded: true, isInitiallyLoading: true, fetchingFinanceXDC1: true,fetchingFinanceXDC2: true, isLoading: true });
-            break;
-          case 1:
-            console.log('Fetching Discover')
-            switch(this.activeSecondaryCard){
-              case 4: 
-              this.props.getMarketingSecondaryData(this.props.filters);
-              this.setState({ muHasLoaded: true,  isInitiallyLoading: true, fetchingDiscoverMarketing: true, isLoading: true });
-              break;
-              case 5: 
-              this.props.getTrafficSecondaryData(this.props.filters);
-              this.setState({ discoverHasLoaded: true, trafficHasLoaded: true, isInitiallyLoading: true,fetchingDiscoverTraffic: true,  isLoading: true });
-              case 6: 
-              this.props.getTrafficSecondaryData(this.props.filters);
-              this.setState({ discoverHasLoaded: true, trafficHasLoaded: true, isInitiallyLoading: true,fetchingDiscoverTraffic: true,  isLoading: true });
-              break;
-              case 7: 
-              this.props.getMarketingSecondaryData(this.props.filters);
-              this.setState({ muHasLoaded: true,  isInitiallyLoading: true, fetchingDiscoverMarketing: true, isLoading: true });
-              break;
-              case 8: 
-              this.props.getMarketingSecondaryData(this.props.filters);
-              this.setState({ muHasLoaded: true,  isInitiallyLoading: true, fetchingDiscoverMarketing: true, isLoading: true });
-              break;
-              case 9: 
-               this.props.getTrafficSecondaryData(this.props.filters);
-              this.setState({ discoverHasLoaded: true, trafficHasLoaded: true, isInitiallyLoading: true,fetchingDiscoverTraffic: true,  isLoading: true });
-              break;
-            }
-            // this.props.updateActiveSecondaryCard(4);
-                this.props.getTrafficSecondaryData(this.props.filters);
-                this.props.getMarketingSecondaryData(this.props.filters);
-                this.setState({ discoverHasLoaded: true,muHasLoaded: true, trafficHasLoaded: true, isInitiallyLoading: true,fetchingDiscoverTraffic: true, fetchingDiscoverMarketing: true, isLoading: true });
-            // this.props.getMarketingSecondaryData(this.props.filters);
-            // this.props.getDiscoverSecondary(this.props.filters);
-            // this.setState({ discoverHasLoaded: true, isInitiallyLoading: true, fetchingDiscoverMarketing: true, isLoading: true });
+        switch (this.props.activeSecondaryCard) {
+          case SUMMARY_FILTERS.FINANCE_NET_NEW_ARR:
+            console.log('Fetching XDC 1', this.state.financeXDC1HasLoaded)
+            // Request XDC1 Data Only
+            //Set Requesting secondary kpi to true
+            //Set requesting traffic to true
+            //set is loading to true
+            //set traffic has loaded to true
+            this.props.getFinanceXDC1SecondaryData(this.props.filters);
+            this.props.getFinanceSecondaryData(this.props.filters);
+            this.setState({
+              financeXDC1HasLoaded: true,
+              financeXDC2HasLoaded: true,
+              fetchingFinanceXDC1Details: true,
+              fetchingFinanceXDC2: true,
+              isLoading: true
+            });
 
             break;
-          case 2:
+          case SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR:
+            console.log('Fetching XDC 1')
+            // Request XDC1 Data Only
+            //Set Requesting secondary kpi to true
+            //Set requesting traffic to true
+            //set is loading to true
+            //set traffic has loaded to true
+            this.props.getFinanceXDC1SecondaryData(this.props.filters);
+            this.props.getFinanceSecondaryData(this.props.filters);
+            this.setState({
+              financeXDC1HasLoaded: true,
+              financeXDC2HasLoaded: true,
+              fetchingFinanceXDC1Details: true,
+              fetchingFinanceXDC2: true,
+              isLoading: true
+            });
+            break;
+          case SUMMARY_FILTERS.FINANCE_CANCEL_ARR:
+            console.log('Fetching XDC 2')
+            // Request Traffic Data Only
+            //Set Requesting secondary kpi to true
+            //Set requesting traffic to true
+            //set is loading to true
+            //set traffic has loaded to true
+            this.props.getFinanceXDC2SecondaryData(this.props.filters);
+            this.props.getFinanceSecondaryData(this.props.filters);
+            this.setState({
+              financeXDC1HasLoaded: true,
+              financeXDC2HasLoaded: true,
+              fetchingFinanceXDC2Details: true,
+              fetchingFinanceXDC1: true,
+              isLoading: true
+            });
+            break;
+          case SUMMARY_FILTERS.FINANCE_RENEW_ARR:
+            console.log('Fetching RENEW')
+            // Request Traffic Data Only
+            //Set Requesting secondary kpi to true
+            //Set requesting traffic to true
+            //set is loading to true
+            //set traffic has loaded to true
+            this.props.getFinanceXDC2SecondaryData(this.props.filters);
+            this.props.getFinanceSecondaryData(this.props.filters);
+            this.setState({
+              financeXDC1HasLoaded: true,
+              financeXDC2HasLoaded: true,
+              fetchingFinanceXDC2Details: true,
+              fetchingFinanceXDC1: true,
+              isLoading: true
+            });
+            break;
+          case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
+            console.log('Fetching Traffic')
+
+            this.props.getTrafficSecondaryData(this.props.filters);
+            this.props.getDiscoverSecondary(this.props.filters);
+            this.setState({
+              trafficHasLoaded: true,
+              fetchingDiscoverTrafficDetails: true,
+              muHasLoaded: true,
+              fetchingDiscoverMarketing: true,
+              isLoading: true
+            });
+            break;
+          case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
+            console.log('Fetching Bouncd')
+
+            this.props.getTrafficSecondaryData(this.props.filters);
+            this.props.getDiscoverSecondary(this.props.filters);
+            this.setState({
+              trafficHasLoaded: true,
+              fetchingDiscoverTrafficDetails: true,
+              muHasLoaded: true,
+              fetchingDiscoverMarketing: true,
+              isLoading: true
+            });
+
+            break;
+          case SUMMARY_FILTERS.DISCOVER_UQFM:
+            console.log('Fetching UQFM')
+
+            this.props.getTrafficSecondaryData(this.props.filters);
+            this.props.getDiscoverSecondary(this.props.filters);
+            this.setState({
+              trafficHasLoaded: true,
+              fetchingDiscoverTrafficDetails: true,
+              muHasLoaded: true,
+              fetchingDiscoverMarketing: true,
+              isLoading: true
+            });
+
+            break;
+          case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
+            console.log('Fetching MU')
+            this.props.getMarketingSecondaryData(this.props.filters);
+            this.props.getDiscoverSecondary(this.props.filters);
+            this.setState({
+              trafficHasLoaded: true,
+              fetchingDiscoverMUDetails: true,
+              muHasLoaded: true,
+              fetchingDiscoverTraffic: true,
+              isLoading: true
+            });
+
+            break;
+          case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
+            console.log('Fetching Paid Media Sourced')
+            this.props.getMarketingSecondaryData(this.props.filters);
+            this.props.getDiscoverSecondary(this.props.filters);
+            this.setState({
+              trafficHasLoaded: true,
+              fetchingDiscoverMUDetails: true,
+              muHasLoaded: true,
+              fetchingDiscoverTraffic: true,
+              isLoading: true
+            });
+            break;
+          case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
+            console.log('Fetching Paid Media Spend')
+            this.props.getMarketingSecondaryData(this.props.filters);
+            this.props.getDiscoverSecondary(this.props.filters);
+            this.setState({
+              trafficHasLoaded: true,
+              fetchingDiscoverMUDetails: true,
+              muHasLoaded: true,
+              fetchingDiscoverTraffic: true,
+              isLoading: true
+            });
+            break;
+          case SUMMARY_FILTERS.TRY_NEW_UQFM:
             console.log('Fetching Try')
-            this.setState({ isLoading: true, fetchingTry: true });
-            this.setState({ tryHasLoaded: true });
             this.props.getTrySecondaryData(this.props.filters);
-            break;
-          case 3:
-            console.log('Fetching Buy')
-            this.setState({ isLoading: true, fetchingBuyFinance: true, fetchingBuyTraffic: true, fetchingBuyMarket: true });
-            this.setState({ buyHasLoaded: true });
-            this.props.getBuyFinanceSecondaryData(this.props.filters);
-            this.props.getBuyTrafficSecondaryData(this.props.filters);
-            this.props.getBuyMarketSecondaryData(this.props.filters);
-
-            break;
-          case 4:
-            console.log('Fetching Use')
-            // this.props.getUseSecondaryData(this.props.filters);
-            break;
-          case 5:
-            console.log('Fetching Renew')
-            // this.props.getRenewSecondaryData(this.props.filters);
+            this.setState({
+              tryHasLoaded: true,
+              fetchingTry: true,
+              isLoading: true,
+              isInitiallyLoading: true,
+            });
             break;
           default:
+
             break;
         }
       }
 
     }
-    // When the user switches primary cards
-    if (this.props.activePrimaryCard !== prevProps.activePrimaryCard) {
-      localStorage.activePrimary = this.props.activePrimaryCard;
 
-      this.setState({ userChangedCards: true });
-      switch (this.props.activePrimaryCard) {
-        case 0:
-          console.log('Fetching Finance')
-          if (!this.state.financeHasLoaded) {
-            this.updateActiveSecondary(0);
-            // this.props.getPrimaryData(this.props.filters);
-            this.props.getFinanceXDC1SecondaryData(this.props.filters);
-            this.props.getFinanceXDC2SecondaryData(this.props.filters);
-            this.setState({  fetchingFinanceXDC1: true,fetchingFinanceXDC2:true, financeHasLoaded: true, isLoading: true });
-
-          } else {
-            this.setState({
-              isLoading: false,
-              isInitiallyLoading: false,
-              secondaryLoaded: false,
-              userChangedCards: false
-            });
-            this.props.isFetching(false);
-          }
-          break;
-        case 1:
-          console.log('Fetching Discover', this.state.discoverHasLoaded)
-          if (!this.state.discoverHasLoaded) {
-            // this.props.getPrimaryData(this.props.filters);
-            // this.props.getTrafficSecondaryData(this.props.filters);
-            // this.props.updateActiveSecondaryCard(4);
-            this.props.getMarketingSecondaryData(this.props.filters);
-            this.props.getDiscoverSecondary(this.props.filters);
-
-            this.setState({ discoverHasLoaded: true,isInitiallyLoading: true, fetchingDiscoverTraffic:true, fetchingDiscoverMarketing: true, isLoading: true });
-
-          } else {
-            this.setState({
-              isLoading: false,
-              isInitiallyLoading: false,
-              secondaryLoaded: false,
-              userChangedCards: false
-            });
-            this.props.isFetching(false);
-          }
-
-
-          break;
-        case 2:
-          console.log('Fetching Try')
-          if (!this.state.tryHasLoaded) {
-
-            this.props.getPrimaryData(this.props.filters);
-            this.props.getTrySecondaryData(this.props.filters);
-
-            this.setState({ fetchingTry: true, isLoading: true });
-            this.setState({ tryHasLoaded: true });
-          } else {
-            this.setState({
-              isLoading: false,
-              isInitiallyLoading: false,
-              secondaryLoaded: false,
-              userChangedCards: false
-            });
-            this.props.isFetching(false);
-          }
-
-          break;
-        case 3:
-          console.log('Fetching Buy')
-          if (!this.state.buyHasLoaded) {
-
-            this.props.getPrimaryData(this.props.filters);
-            this.props.getBuyFinanceSecondaryData(this.props.filters);
-            this.props.getBuyMarketSecondaryData(this.props.filters);
-            this.props.getBuyTrafficSecondaryData(this.props.filters);
-
-            this.setState({ buyHasLoaded: true,/*  isLoading: true, */ fetchingBuyFinance: true, fetchingBuyMarket: true, fetchingBuyTraffic: true });
-          } else {
-            this.setState({
-              isLoading: false,
-              isInitiallyLoading: false,
-              secondaryLoaded: false,
-              userChangedCards: false
-            });
-            this.props.isFetching(false);
-          }
-          break;
-        case 4:
-          console.log('Fetching Use')
-          // this.props.getUseSecondaryData(this.props.filters);
-          break;
-        case 5:
-          console.log('Fetching Renew')
-          // this.props.getRenewSecondaryData(this.props.filters);
-          break;
-        default:
-          break;
-      }
-    }
-    // When the user switches secondary cards on Discover = 1
-    if ((this.props.activePrimaryCard === 0 || this.props.activePrimaryCard === 1) && this.props.activeSecondaryCard !== prevProps.activeSecondaryCard) {
+    // When the user switches secondary 
+    if (/* this.state.userChangedCards === false && */ this.props.activeSecondaryCard !== prevProps.activeSecondaryCard) {
+      console.log('User Switching Secondary Cards');
       let { activeSecondaryCard } = this.props;
       switch (activeSecondaryCard) {
-        
-        case SUMMARY_FILTERS.FINANCE_CANCEL_ARR:
-          console.log('Fetching CANCEL')
-          //TODO: Request Traffic Data Only
+        case SUMMARY_FILTERS.FINANCE_NET_NEW_ARR:
+          console.log('Fetching XDC 1')
+          // Request XDC1 Data Only
           //Set Requesting secondary kpi to true
           //Set requesting traffic to true
           //set is loading to true
           //set traffic has loaded to true
-          if (!this.state.financeXdc2HasLoaded) {
-            this.props.getFinanceXDC2SecondaryData(this.props.filters);
-            this.setState({ financeHasLoaded: true, fetchingCancelDetails: true, secondaryKpiChanged: true, financeXdc2HasLoaded: true, isLoading: true });
+          if (!this.state.financeXDC1HasLoaded) {
+            console.log('XDC 1 Has  Not Been Loaded')
+            this.props.getFinanceXDC1SecondaryData(this.props.filters);
+            if (this.state.financeXDC2HasLoaded === undefined) {
+              this.props.getFinanceSecondaryData(this.props.filters);
+            }
+            this.setState({
+              financeXDC1HasLoaded: true,
+              fetchingFinanceXDC1Details: true,
+              fetchingFinanceXDC2: true,
+              secondaryKpiChanged: true,
+              isLoading: true,
 
+            });
+
+          } else if (this.state.financeXDCLoadingInBackground === true) {
+            console.log('App loading finance xdc in background');
+            this.setState({
+              financeXDC1HasLoaded: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
           } else {
+            console.log('XDC 1 Already Loaded')
+            this.setState({
+              isLoading: false,
+              secondaryKpiChanged: false,
+              fetchingFinanceXDC1: false
+            });
+            this.props.isFetching(false);
+          }
+          break;
+        case SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR:
+          console.log('Fetching XDC 1')
+          // Request XDC1 Data Only
+          //Set Requesting secondary kpi to true
+          //Set requesting traffic to true
+          //set is loading to true
+          //set traffic has loaded to true
+          if (!this.state.financeXDC1HasLoaded) {
+            console.log('XDC 1 Has  Not Been Loaded')
+            this.props.getFinanceXDC1SecondaryData(this.props.filters);
+
+            this.setState({
+              financeXDC1HasLoaded: true,
+              fetchingFinanceXDC1Details: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
+
+          } else if (this.state.financeXDCLoadingInBackground === true) {
+            console.log('App loading finance xdc in background');
+            this.setState({
+              financeXDC1HasLoaded: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
+          } else {
+            console.log('XDC 1 Already Loaded')
+            this.setState({
+              isLoading: false,
+              secondaryKpiChanged: false,
+              fetchingFinanceXDC1: false
+            });
+            this.props.isFetching(false);
+          }
+          break;
+        case SUMMARY_FILTERS.FINANCE_CANCEL_ARR:
+          console.log('Fetching XDC 2')
+          // Request Traffic Data Only
+          //Set Requesting secondary kpi to true
+          //Set requesting traffic to true
+          //set is loading to true
+          //set traffic has loaded to true
+
+          if (!this.state.financeXDC2HasLoaded) {
+            console.log('XDC 2 Has  Not Been Loaded')
+            this.props.getFinanceXDC2SecondaryData(this.props.filters);
+            this.setState({
+              financeXDC2HasLoaded: true,
+              fetchingFinanceXDC2Details: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
+
+          } else if (this.state.financeXDCLoadingInBackground === true) {
+            console.log('App loading finance xdc in background');
+            this.setState({
+              financeXDC2HasLoaded: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
+          } else {
+            console.log('XDC 2 Already Loaded')
             this.setState({
               isLoading: false,
               secondaryKpiChanged: false,
@@ -527,16 +601,29 @@ class Summary extends Component {
           break;
         case SUMMARY_FILTERS.FINANCE_RENEW_ARR:
           console.log('Fetching RENEW')
-          //TODO: Request Traffic Data Only
+          // Request Traffic Data Only
           //Set Requesting secondary kpi to true
           //Set requesting traffic to true
           //set is loading to true
           //set traffic has loaded to true
-          if (!this.state.financeXdc2HasLoaded) {
+          if (!this.state.financeXDC2HasLoaded) {
             this.props.getFinanceXDC2SecondaryData(this.props.filters);
-            this.setState({ financeHasLoaded: true, fetchingCancelDetails: true, secondaryKpiChanged: true, financeXdc2HasLoaded: true, isLoading: true });
+            this.setState({
+              financeXDC2HasLoaded: true,
+              fetchingFinanceXDC2Details: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
 
+          } else if (this.state.financeXDCLoadingInBackground === true) {
+            console.log('App loading finane xdc in background');
+            this.setState({
+              financeXDC2HasLoaded: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
           } else {
+            console.log('XDC 2 Already Loaded')
             this.setState({
               isLoading: false,
               secondaryKpiChanged: false,
@@ -547,16 +634,26 @@ class Summary extends Component {
           break;
         case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
           console.log('Fetching Traffic')
-          //TODO: Request Traffic Data Only
-          //Set Requesting secondary kpi to true
-          //Set requesting traffic to true
-          //set is loading to true
-          //set traffic has loaded to true
-          if (!this.state.trafficHasLoaded) {
-            this.props.getTrafficSecondaryData(this.props.filters);
-            this.setState({ discoverHasLoaded: true, fetchingTrafficDetails: true, secondaryKpiChanged: true, trafficHasLoaded: true, isLoading: true });
 
+          if (!this.state.trafficHasLoaded) {
+            console.log('Traffic Has  Not Been Loaded')
+            this.props.getTrafficSecondaryData(this.props.filters);
+            this.setState({
+              trafficHasLoaded: true,
+              fetchingTrafficDetails: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
+
+          } else if (this.state.fetchingTrafficInBackground === true) {
+            console.log('App loading traffic xdc in background');
+            this.setState({
+              trafficHasLoaded: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
           } else {
+            console.log('Traffic Already Loaded')
             this.setState({
               isLoading: false,
               secondaryKpiChanged: false,
@@ -566,17 +663,27 @@ class Summary extends Component {
           }
           break;
         case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
-          console.log('Fetching Traffic')
-          //TODO: Request Traffic Data Only
-          //Set Requesting secondary kpi to true
-          //Set requesting traffic to true
-          //set is loading to true
-          //set traffic has loaded to true
-          if (!this.state.trafficHasLoaded) {
-            this.props.getTrafficSecondaryData(this.props.filters);
-            this.setState({ discoverHasLoaded: true, fetchingTrafficDetails: true, secondaryKpiChanged: true, trafficHasLoaded: true, isLoading: true });
+          console.log('Fetching Bouncd')
 
+          if (!this.state.trafficHasLoaded) {
+            console.log('Traffic Has  Not Been Loaded')
+            this.props.getTrafficSecondaryData(this.props.filters);
+            this.setState({
+              trafficHasLoaded: true,
+              fetchingTrafficDetails: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
+
+          } else if (this.state.fetchingTrafficInBackground === true) {
+            console.log('App loading traffic xdc in background');
+            this.setState({
+              trafficHasLoaded: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
           } else {
+            console.log('Traffic Already Loaded')
             this.setState({
               isLoading: false,
               secondaryKpiChanged: false,
@@ -586,17 +693,27 @@ class Summary extends Component {
           }
           break;
         case SUMMARY_FILTERS.DISCOVER_UQFM:
-          console.log('Fetching Traffic')
-          //TODO: Request Traffic Data Only
-          //Set Requesting secondary kpi to true
-          //Set requesting traffic to true
-          //set is loading to true
-          //set traffic has loaded to true
-          if (!this.state.trafficHasLoaded) {
-            this.props.getTrafficSecondaryData(this.props.filters);
-            this.setState({ discoverHasLoaded: true, fetchingTrafficDetails: true, secondaryKpiChanged: true, trafficHasLoaded: true, isLoading: true });
+          console.log('Fetching UQFM')
 
+          if (!this.state.trafficHasLoaded) {
+            console.log('Traffic Has  Not Been Loaded')
+            this.props.getTrafficSecondaryData(this.props.filters);
+            this.setState({
+              trafficHasLoaded: true,
+              fetchingTrafficDetails: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
+
+          } else if (this.state.fetchingTrafficInBackground === true) {
+            console.log('App loading traffic xdc in background');
+            this.setState({
+              trafficHasLoaded: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
           } else {
+            console.log('Traffic Already Loaded')
             this.setState({
               isLoading: false,
               secondaryKpiChanged: false,
@@ -605,26 +722,127 @@ class Summary extends Component {
             this.props.isFetching(false);
           }
           break;
-        // case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
-        //   //TODO: Request MU Data Only
-        //   //Set Requesting secondary kpi to true
-        //   //Set requesting traffic to true
-        //   //set is loading to true
-        //   //set traffic has loaded to true
-        //   if (!this.state.muHasLoaded) {
-        //     this.props.getBuyMarketSecondaryData(this.props.filters);
-        //     this.setState({ fetchingMUDetails: true, secondaryKpiChanged: true, muHasLoaded: true, isLoading: true });
+        case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
+          console.log('Fetching MU')
+          if (!this.state.muHasLoaded) {
+            console.log('MU Has  Not Been Loaded')
+            this.props.getMarketingSecondaryData(this.props.filters);
+            if (this.state.trafficHasLoaded === false) {
+              this.props.getDiscoverSecondary(this.props.filters);
+            }
+            this.setState({
+              muHasLoaded: true,
+              fetchingDiscoverMUDetails: true,
+              fetchingDiscoverTraffic: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
+          } else if (this.state.fetchingTrafficInBackground === true) {
+            console.log('App loading traffic xdc in background');
+            this.setState({
+              muHasLoaded: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
+          } else {
+            console.log('MU Already Loaded')
+            this.setState({
+              isLoading: false,
+              secondaryKpiChanged: false,
+              fetchingDiscoverMarketing: false
+            });
+            this.props.isFetching(false);
+          }
+          break;
+        case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
+          console.log('Fetching Paid Media Sourced')
 
-        //   } else {
-        //     this.setState({
-        //       isLoading: false,
-        //       muHasLoaded: false,
-        //       secondaryKpiChanged: false,
-        //       fetchingDiscoverMarketing: false
-        //     });
-        //     this.props.isFetching(false);
-        //   }
-        //   break;
+          if (!this.state.muHasLoaded) {
+            console.log('MU Has  Not Been Loaded')
+            this.props.getMarketingSecondaryData(this.props.filters);
+
+            this.setState({
+              muHasLoaded: true,
+              fetchingDiscoverMUDetails: true,
+              trafficHasLoaded: true,
+              fetchingDiscoverTraffic: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
+
+          } else if (this.state.fetchingTrafficInBackground === true) {
+            console.log('App loading traffic xdc in background');
+            this.setState({
+              muHasLoaded: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
+          } else {
+            console.log('MU Already Loaded')
+            this.setState({
+              isLoading: false,
+              secondaryKpiChanged: false,
+              fetchingDiscoverMarketing: false
+            });
+            this.props.isFetching(false);
+          }
+          break;
+        case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
+          console.log('Fetching Paid Media Spend')
+
+          if (!this.state.muHasLoaded) {
+            console.log('MU Has  Not Been Loaded')
+            this.props.getMarketingSecondaryData(this.props.filters);
+
+            this.setState({
+              muHasLoaded: true,
+              fetchingDiscoverMUDetails: true,
+              fetchingDiscoverTraffic: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
+
+          } else if (this.state.fetchingTrafficInBackground === true) {
+            console.log('App loading traffic xdc in background');
+            this.setState({
+              muHasLoaded: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
+          } else {
+            console.log('MU Already Loaded')
+            this.setState({
+              isLoading: false,
+              secondaryKpiChanged: false,
+              fetchingDiscoverMarketing: false
+            });
+            this.props.isFetching(false);
+          }
+          break;
+        case SUMMARY_FILTERS.TRY_NEW_UQFM:
+          console.log('Fetching Try')
+
+          if (!this.state.tryHasLoaded) {
+            console.log('Try Has  Not Been Loaded')
+            this.props.getTrySecondaryData(this.props.filters);
+            this.setState({
+              tryHasLoaded: true,
+              fetchingTry: true,
+              secondaryKpiChanged: true,
+              isLoading: true
+            });
+
+          } else {
+            console.log('Try Already Loaded')
+            this.setState({
+              isLoading: false,
+              secondaryKpiChanged: false,
+              fetchingTry: false,
+              isInitiallyLoading: true,
+            });
+            this.props.isFetching(false);
+          }
+          break;
 
         default:
 
@@ -634,153 +852,469 @@ class Summary extends Component {
 
 
     /**Setting Load to False ... */
-    //When the app initially finishes loading finance primary and secondary
-    if (this.props.activePrimaryCard === 0 && this.state.primaryLoaded === true && this.state.isInitiallyLoading === true && this.state.fetchingFinanceXDC1 === false && this.state.fetchingFinanceXDC2 === false ) {
-      console.log('Setting Load to False in the primary vs secondary');
-      this.setState({ isLoading: false, isInitiallyLoading: false });
-      this.props.isFetching(false);
-      this.setState({ primaryLoaded: false, financeXdc1HasLoaded: true });
+    switch (this.props.activePrimaryCard) {
+      case 0:
+        // When the initial load is complete
+        console.log('Determining to set load to off in Finance');
+        if (this.props.primaryIsLoaded && this.props.financeSecondaryIsLoaded && this.state.initialDataLoadIsComplete === true) {
+          console.log("Initial Data Load complete: Loading OFF")
+          this.setState({ initialDataLoadIsComplete: undefined, isLoading: false, financeXDCLoadingInBackground: true, fetchingFinanceXDC2Details: true, financeXDC2HasLoaded: true });
+          this.props.getFinanceXDC2SecondaryData(this.props.filters);
+        } else {
+          switch (this.props.activeSecondaryCard) {
+            case 0:
+              //When the user changes secondary cards
+              if (this.state.secondaryKpiChanged === true) {
+                console.log('Setting Load to off In Secondary KPI Change');
+                if (this.props.financeXDC1IsLoaded) {
+                  console.log("XDC 1 Details Data Load Complete: Loading OFF")
+                  this.setState({
+                    secondaryKpiChanged: false,
+                    isLoading: false
+                  });
+                  if (this.state.financeXDC2HasLoaded === false && this.state.fetchingFinanceXDC2Details === undefined) {
+                    this.props.getFinanceXDC2SecondaryData(this.props.filters);
+                    this.setState({ financeXDCLoadingInBackground: true, fetchingFinanceXDC2Details: true, financeXDC2HasLoaded: true, })
+                  }
+                }
+              } // End User Changing Cards within Finance
+              //When the user changes filters
+              else if (this.state.filtersUpdated) {
+                console.log('Filters Updated Finance');
+                if (this.state.financeXDC1HasLoaded === true &&
+                  this.state.financeXDC2HasLoaded === true) {
+                  console.log('Determining to set load to off in Finance filter Change');
+                  if (this.props.primaryIsLoaded && this.props.financeXDC1IsLoaded && this.props.financeSecondaryIsLoaded) {
+                    console.log('SEtting Loading to off in Finance Filters Change');
+                    this.setState({
+                      isLoading: false, financeXDCLoadingInBackground: true, primaryLoaded: false,
+                      fetchingFinanceXDC2Details: true, financeXDC2HasLoaded: true, filtersUpdated: false
+                    });
+                    this.props.getFinanceXDC2SecondaryData(this.props.filters);
+                    this.props.updateFinanceSecondaryIsLoading(false);
+                    this.props.updateFinanceXDC1IsLoading(false);
 
-    } else if (this.state.secondaryLoaded === true && this.state.isInitiallyLoading === true && this.state.activePrimaryCard === 1) {
-      console.log('Discover Loading set to false here');
-    }
-    //When the app has loaded but Finance is active card
-    if (this.props.activePrimaryCard === 0 && this.state.financeHasLoaded && this.state.isInitiallyLoading === true &&  this.state.fetchingFinanceXDC2 === false && this.state.fetchingFinanceXDC1 === false && this.state.secondaryKpiChanged === false) {
-      console.log('Setting Loading to off in Finance tab');
+                  }
+                }
+              }
 
-      this.setState({
-        isLoading: false,
-        isInitiallyLoading: false,
-        secondaryLoaded: false,
-        userChangedCards: false,
-        filtersUpdated: false,
-        primaryLoaded: false,
-        secondaryLoaded: false,
-        isInitiallyLoading: false,
-        muHasLoaded: true
-      });
-      this.props.isFetching(false);
-    }
-    //When the app has loaded but Discover is active card
-    if (this.props.activePrimaryCard === 1 && this.state.discoverHasLoaded && this.state.isInitiallyLoading === true && this.state.fetchingDiscoverMarketing === false && this.state.fetchingDiscoverTraffic === false && this.state.secondaryKpiChanged === false) {
-      console.log('Setting Loading to off in Discover tab');
+              break;
+            case 1:
+              //When the user changes secondary cards
+              if (this.state.secondaryKpiChanged === true) {
+                console.log('Setting Load to off In Secondary KPI Change');
+                if (this.state.financeXDC1HasLoaded === true && this.state.fetchingFinanceXDC1Details === false) {
+                  console.log("XDC 1 Details Data Load Complete: Loading OFF")
+                  this.setState({
+                    secondaryKpiChanged: false,
+                    isLoading: false
+                  });
+                }
+              } // End User Changing Cards within Finance
+              //When the user changes filters
+              else if (this.state.filtersUpdated) {
+                console.log('Filters Updated Finance');
+                if (this.state.financeXDC1HasLoaded === true &&
+                  this.state.financeXDC2HasLoaded === true) {
+                  console.log('Determining to set load to off in Finance filter Change');
+                  if (this.props.primaryIsLoaded && this.props.financeXDC1IsLoaded && this.props.financeSecondaryIsLoaded) {
+                    console.log('SEtting Loading to off in Finance Filters Change');
+                    this.setState({
+                      isLoading: false, financeXDCLoadingInBackground: true, primaryLoaded: false,
+                      fetchingFinanceXDC2Details: true, financeXDC2HasLoaded: true, filtersUpdated: false
+                    });
+                    this.props.getFinanceXDC2SecondaryData(this.props.filters);
+                    this.props.updateFinanceSecondaryIsLoading(false);
+                    this.props.updateFinanceXDC1IsLoading(false);
 
-      this.setState({
-        isLoading: false,
-        isInitiallyLoading: false,
-        secondaryLoaded: false,
-        userChangedCards: false,
-        filtersUpdated: false,
-        primaryLoaded: false,
-        secondaryLoaded: false,
-        isInitiallyLoading: false,
-        muHasLoaded: true
-      });
-      this.props.isFetching(false);
-    }
-    if (this.state.secondaryKpiChanged === true) {
-      console.log('Setting Load to False in SEcondary KPI Change');
-      if(this.props.activePrimaryCard === 1 && this.state.trafficHasLoaded && this.state.fetchingTrafficDetails === false){
-        this.setState({ isLoading: false, discoverHasLoaded: true, secondaryKpiChanged: false });
-
-      } else if (this.props.activePrimaryCard === 0 && this.state.financeHasLoaded && this.state.fetchingCancelDetails === false){
-      this.setState({ isLoading: false, financeHasLoaded: true, secondaryKpiChanged: false });
-      
-    }
-    }
-    // has loaded and user changed primary cards
-    if (this.state.userChangedCards || this.state.filtersUpdated) {
-      //Entering 
-      switch (this.props.activePrimaryCard) {
-        case 0:
-          if (this.state.financeHasLoaded && this.state.fetchingFinanceXDC1 === false && this.state.fetchingFinanceXDC2 === false) {
-          console.log('Setting Load to False in subfilter change || change in cards');
-            this.setState({
-              isLoading: false,
-              isInitiallyLoading: false,
-              secondaryLoaded: false,
-              userChangedCards: false,
-              filtersUpdated: false,
-              financeXdc1HasLoaded: true,
-              financeXdc2HasLoaded: true
-              
-            });
-            this.props.isFetching(false);
-            this.setState({ primaryLoaded: false, secondaryLoaded: false });
+                  }
+                }
+              }
+              break;
+            case 2:
+              //When the user changes secondary cards
+              if (this.state.secondaryKpiChanged === true) {
+                console.log('Setting Load to off In Secondary KPI Change');
+                if (this.state.financeXDC2HasLoaded === true && this.state.fetchingFinanceXDC2Details === false) {
+                  console.log("XDC 2 Details Data Load Complete: Loading OFF")
+                  this.setState({
+                    secondaryKpiChanged: false,
+                    isLoading: false,
+                  });
+                }
+              } // End User Changing Cards within Finance
+              //When the user changes filters
+              else if (this.state.filtersUpdated) {
+                console.log('Filters Updated Finance');
+                if (this.state.financeXDC1HasLoaded === true &&
+                  this.state.financeXDC2HasLoaded === true) {
+                  console.log('Determining to set load to off in Finance filter Change');
+                  if (this.props.primaryIsLoaded && this.props.financeXDC2IsLoaded && this.props.financeSecondaryIsLoaded) {
+                    console.log('SEtting Loading to off in Finance Filters Change');
+                    this.setState({
+                      isLoading: false, financeXDCLoadingInBackground: true, primaryLoaded: false,
+                      fetchingFinanceXDC1Details: true, financeXDC1HasLoaded: true, filtersUpdated: false
+                    });
+                    this.props.getFinanceXDC1SecondaryData(this.props.filters);
+                    this.props.updateFinanceSecondaryIsLoading(false);
+                    this.props.updateFinanceXDC2IsLoading(false);
+                  }
+                }
+              }
+              break;
+            case 3:
+              //When the user changes secondary cards
+              if (this.state.secondaryKpiChanged === true) {
+                console.log('Setting Load to off In Secondary KPI Change');
+                if (this.state.financeXDC2HasLoaded === true && this.state.fetchingFinanceXDC2Details === false) {
+                  console.log("XDC 2 Details Data Load Complete: Loading OFF")
+                  this.setState({
+                    secondaryKpiChanged: false,
+                    isLoading: false,
+                    financeXDCLoadingInBackground: false
+                  });
+                }
+              } // End User Changing Cards within Finance
+              //When the user changes filters
+              else if (this.state.filtersUpdated) {
+                console.log('Filters Updated Finance');
+                if (this.state.financeXDC1HasLoaded === true &&
+                  this.state.financeXDC2HasLoaded === true) {
+                  console.log('Determining to set load to off in Finance filter Change');
+                  if (this.props.primaryIsLoaded && this.props.financeXDC2IsLoaded && this.props.financeSecondaryIsLoaded) {
+                    console.log('SEtting Loading to off in Finance Filters Change');
+                    this.setState({
+                      isLoading: false, financeXDCLoadingInBackground: true, primaryLoaded: false,
+                      fetchingFinanceXDC1Details: true, financeXDC1HasLoaded: true, filtersUpdated: false
+                    });
+                    this.props.getFinanceXDC1SecondaryData(this.props.filters);
+                    this.props.updateFinanceSecondaryIsLoading(false);
+                    this.props.updateFinanceXDC2IsLoading(false);
+                  }
+                }
+              }
+              break;
           }
-          break;
-        case 1:
-          if (this.state.discoverHasLoaded && this.state.fetchingDiscoverMarketing === false && this.state.fetchingDiscoverSecondary === false) {
-          console.log('Setting Load to False in subfilter change || change in cards');
-            this.setState({
-              isLoading: false,
-              isInitiallyLoading: false,
-              secondaryLoaded: false,
-              userChangedCards: false,
-              filtersUpdated: false
-
-            });
-            this.props.isFetching(false);
-            this.setState({ primaryLoaded: false, secondaryLoaded: false });
-
-          }
-          break;
-        case 2:
-          if (this.state.tryHasLoaded && this.state.fetchingTry === false) {
-            this.setState({
-              isLoading: false,
-              isInitiallyLoading: false,
-              secondaryLoaded: false,
-              userChangedCards: false,
-              filtersUpdated: false
-
-            });
-            this.props.isFetching(false);
-            this.setState({ primaryLoaded: false, secondaryLoaded: false });
-
-          }
-          break;
-        case 3:
-          if (this.state.buyHasLoaded && this.state.fetchingBuyFinance === false && this.state.fetchingBuyMarket === false && this.state.fetchingBuyTraffic === false) {
-            console.log('Setting off In Disocver');
-            this.setState({
-              isLoading: false,
-              isInitiallyLoading: false,
-              secondaryLoaded: false,
-              userChangedCards: false
-            });
-            this.props.isFetching(false);
-            this.setState({ primaryLoaded: false, secondaryLoaded: false });
-
-          }
-          break;
-        default:
-          break;
-      }
-
-    }
-    //When sub filters triggered the refresh
-    if (this.state.subFiltersChanged === true && this.state.secondaryLoaded === true) {
-      console.log('Sub Filter If 1')
-      let { fetchingBuyMarket, fetchingBuyTraffic, fetchingTry,
-        financeHasLoaded, muHasLoaded, tryHasLoaded, trafficHasLoaded } = this.state;
-      if (fetchingBuyMarket === false || fetchingBuyTraffic === false || fetchingTry === false) {
-        console.log('Sub Filter If 2')
-        if (financeHasLoaded || muHasLoaded || tryHasLoaded || trafficHasLoaded) {
-          console.log('Sub Filter If 3')
-          this.setState({
-            isLoading: false,
-            subFiltersChanged: undefined,
-          })
         }
-      }
+        break;
+      case 1:
+        console.log('Determining to set load to off in Discover');
+        //When the User switches to discover from another tab
+        switch (this.props.activeSecondaryCard) {
+          case 4:
 
+            if (this.state.secondaryKpiChanged === true) {
+              console.log('Determining to set load off In MU Secondary KPI Change');
+              // if (this.state.muHasLoaded === true && this.state.fetchingDiscoverTraffic === false && this.state.fetchingDiscoverMUDetails === false) {
+             
+             if(this.props.muIsLoaded ){ console.log("MU Details Data Load Complete in Secondary KPIT Change: Loading OFF")
+                this.setState({
+                  secondaryKpiChanged: false,
+                  isLoading: false,
+                });
+                this.props.updateMuSecondaryIsLoading(false);
+
+                if (this.state.fetchingDiscoverTrafficDetails === false && this.state.trafficHasLoaded === false) {
+                  this.props.getTrafficSecondaryData(this.props.filters);
+                  this.setState({ fetchingTrafficInBackground: true, trafficHasLoaded: true, fetchingDiscoverTrafficDetails: true, })
+
+                }
+
+              }
+            } // End User Changing Cards within Finance
+            //When the user changes filters
+            else if (this.state.filtersUpdated) {
+              console.log('Filters Updated MU');
+              if (this.state.muHasLoaded === true &&
+                this.state.trafficHasLoaded === true) {
+                console.log('Determining to set load to off in MU filter Change');
+                if (this.state.primaryLoaded === true && this.state.fetchingDiscoverTraffic === false &&
+                  this.state.fetchingDiscoverMUDetails === false && this.state.secondaryKpiChanged === false) {
+                  console.log('SEtting Loading to off in MU Filters Change');
+                  this.setState({
+                    isLoading: false, primaryLoaded: false,
+                    filtersUpdated: false
+                  });
+                  this.props.updateMuSecondaryIsLoading(false);
+                  if (this.state.fetchingDiscoverTrafficDetails === false) {
+                    this.props.getTrafficSecondaryData(this.props.filters);
+                    this.setState({ fetchingTrafficInBackground: true, trafficHasLoaded: true, fetchingDiscoverTrafficDetails: true, })
+                  }
+                }
+              }
+            } else if (this.state.subFiltersChanged) {
+              console.log('Determining Load to off In MU sub Filter Change', this.state);
+              if (this.props.muIsLoaded && this.state.muHasLoaded === true) {
+                console.log('Setting Load to off In MU sub filter Change');
+                this.setState({
+                  isLoading: false,
+                  subFiltersChanged: false
+                });
+                this.props.updateMuSecondaryIsLoading(false);
+
+              }
+            }
+            break;
+          case 5:
+            // When the app loads the details for Traffic 
+            if (this.state.secondaryKpiChanged === true) {
+              console.log('Setting Load to off In Secondary KPI Change');
+           if (this.props.trafficIsLoaded) {
+                console.log("Traffic Details Data Load Complete: Loading OFF")
+                this.setState({
+                  secondaryKpiChanged: false,
+                  isLoading: false,
+                  fetchingTrafficInBackground: false
+                });
+                this.props.updateTrafficSecondaryIsLoading(false);
+
+              }
+            } // End User Changing Cards within Finance
+            //When the user changes filters
+            else if (this.state.filtersUpdated) {
+              console.log('Filters Updated Finance');
+              if (this.state.muHasLoaded === true &&
+                this.state.trafficHasLoaded === true) {
+                console.log('Determining to set load to off in Traffic filter Change');
+                if (this.state.primaryLoaded === true && this.state.fetchingDiscoverMarketing === false &&
+                  this.state.fetchingDiscoverTrafficDetails === false) {
+                  console.log('SEtting Loading to off in Traffic Filters Change');
+                  this.setState({
+                    isLoading: false, fetchingTrafficInBackground: true, primaryLoaded: false,
+                    fetchingDiscoverTrafficDetails: true, muHasLoaded: true, filtersUpdated: false
+                  });
+                  this.props.updateTrafficSecondaryIsLoading(false);
+
+                  this.props.getMarketingSecondaryData(this.props.filters);
+                }
+              }
+            } else if (this.state.subFiltersChanged) {
+              console.log('Determining Load to off In Trafic sub Filter Change', this.state);
+              if (this.props.trafficIsLoaded && this.state.trafficHasLoaded === true) {
+                console.log('Setting Load to off In Trafic sub filter Change');
+                this.setState({
+                  isLoading: false,
+                  subFiltersChanged: false
+                });
+                this.props.updateTrafficSecondaryIsLoading(false);
+              }
+            }
+            break;
+          case 6:
+            // When the app loads the details for Traffic 
+            if (this.state.secondaryKpiChanged === true) {
+              console.log('Setting Load to off In Secondary KPI Change');
+              if (this.state.trafficHasLoaded === true && this.state.fetchingDiscoverTrafficDetails === false) {
+                console.log("Traffic Details Data Load Complete: Loading OFF")
+                this.setState({
+                  secondaryKpiChanged: false,
+                  isLoading: false,
+                  fetchingTrafficInBackground: false
+                });
+                if (this.state.fetchingDiscoverTrafficDetails === false && this.state.trafficHasLoaded === false) {
+                  this.props.getTrafficSecondaryData(this.props.filters);
+                  this.setState({ fetchingTrafficInBackground: true, trafficHasLoaded: true, fetchingDiscoverTrafficDetails: true, })
+
+                }
+              }
+            } // End User Changing Cards within Finance
+            //When the user changes filters
+            else if (this.state.filtersUpdated) {
+              console.log('Filters Updated Finance');
+              if (this.state.muHasLoaded === true &&
+                this.state.trafficHasLoaded === true) {
+                console.log('Determining to set load to off in Traffic filter Change');
+                if (this.state.primaryLoaded === true && this.state.fetchingDiscoverMarketing === false &&
+                  this.state.fetchingDiscoverTrafficDetails === false) {
+                  console.log('SEtting Loading to off in Traffic Filters Change');
+                  this.setState({
+                    isLoading: false, fetchingTrafficInBackground: true, primaryLoaded: false,
+                    fetchingDiscoverTrafficDetails: true, muHasLoaded: true, filtersUpdated: false
+                  });
+                  this.props.updateTrafficSecondaryIsLoading(false);
+
+                  this.props.getMarketingSecondaryData(this.props.filters);
+                }
+              }
+            }
+            break;
+          case 7:
+            if (this.state.secondaryKpiChanged === true) {
+              console.log('Setting Load to off In Secondary KPI Change');
+              if (this.state.muHasLoaded === true && this.state.fetchingDiscoverMUDetails === false) {
+                console.log("MU Details Data Load Complete: Loading OFF")
+                this.setState({
+                  secondaryKpiChanged: false,
+                  isLoading: false,
+                });
+                this.props.updateMuSecondaryIsLoading(false);
+
+                if (this.state.fetchingDiscoverTrafficDetails === false && this.state.trafficHasLoaded === false) {
+                  this.props.getTrafficSecondaryData(this.props.filters);
+                  this.setState({ fetchingTrafficInBackground: true, trafficHasLoaded: true, fetchingDiscoverTrafficDetails: true, })
+
+                }
+
+              }
+            } // End User Changing Cards within Finance
+            //When the user changes filters
+            else if (this.state.filtersUpdated) {
+              console.log('Filters Updated Finance');
+              if (this.state.muHasLoaded === true &&
+                this.state.trafficHasLoaded === true) {
+                console.log('Determining to set load to off in MU filter Change');
+                if (this.state.primaryLoaded === true && this.state.fetchingDiscoverTraffic === false &&
+                  this.state.fetchingDiscoverMUDetails === false) {
+                  console.log('SEtting Loading to off in MU Filters Change');
+                  this.setState({
+                    isLoading: false, primaryLoaded: false,
+                    filtersUpdated: false
+                  });
+                  this.props.updateMuSecondaryIsLoading(false);
+
+                  if (this.state.fetchingDiscoverTrafficDetails === false) {
+                    this.props.getTrafficSecondaryData(this.props.filters);
+                    this.setState({ fetchingTrafficInBackground: true, trafficHasLoaded: true, fetchingDiscoverTrafficDetails: true, })
+                  }
+                }
+              }
+            } else if (this.state.subFiltersChanged) {
+              console.log('Determining Load to off In MU sub Filter Change', this.state);
+              if (this.props.muIsLoaded) {
+                console.log('Setting Load to off In MU sub filter Change');
+                this.props.updateMuSecondaryIsLoading(false);
+
+                this.setState({
+                  isLoading: false,
+                  subFiltersChanged: false
+                });
+              }
+            }
+            break;
+          case 8:
+            if (this.state.secondaryKpiChanged === true) {
+              console.log('Setting Load to off In Secondary KPI Change');
+                if (this.state.muHasLoaded === true && this.state.fetchingDiscoverMUDetails === false) {
+                console.log("MU Details Data Load Complete: Loading OFF")
+                this.setState({
+                  secondaryKpiChanged: false,
+                  isLoading: false,
+                });
+                this.props.updateMuSecondaryIsLoading(false);
+
+                if (this.state.fetchingDiscoverTrafficDetails === false && this.state.trafficHasLoaded === false) {
+                  this.props.getTrafficSecondaryData(this.props.filters);
+                  this.setState({ fetchingTrafficInBackground: true, trafficHasLoaded: true, fetchingDiscoverTrafficDetails: true, })
+
+                }
+
+              }
+            } // End User Changing Cards within Finance
+            //When the user changes filters
+            else if (this.state.filtersUpdated) {
+              console.log('Filters Updated Finance');
+              if (this.state.muHasLoaded === true &&
+                this.state.trafficHasLoaded === true) {
+                console.log('Determining to set load to off in MU filter Change');
+                if (this.state.primaryLoaded === true && this.state.fetchingDiscoverTraffic === false &&
+                  this.state.fetchingDiscoverMUDetails === false) {
+                  console.log('SEtting Loading to off in MU Filters Change');
+                  this.setState({
+                    isLoading: false, primaryLoaded: false,
+                    filtersUpdated: false
+                  });
+                  this.props.updateMuSecondaryIsLoading(false);
+
+                }
+              }
+            } else if (this.state.subFiltersChanged) {
+              console.log('Determining Load to off In MU sub Filter Change', this.state);
+              if (this.props.muIsLoaded && this.state.muHasLoaded === true) {
+                console.log('Setting Load to off In MU sub filter Change');
+                this.props.updateMuSecondaryIsLoading(false);
+
+                this.setState({
+                  isLoading: false,
+                  subFiltersChanged: false
+                });
+              }
+            }
+            break;
+          case 9:
+            // When the app loads the details for Traffic 
+            if (this.state.secondaryKpiChanged === true) {
+              console.log('Setting Load to off In Secondary KPI Change');
+               if (this.state.trafficHasLoaded === true && this.state.fetchingDiscoverTrafficDetails === false) {
+                console.log("Traffic Details Data Load Complete: Loading OFF")
+                this.setState({
+                  secondaryKpiChanged: false,
+                  isLoading: false,
+                  fetchingTrafficInBackground: false
+
+                });
+                this.props.updateTrafficSecondaryIsLoading(false);
+
+              }
+            } // End User Changing Cards within Finance
+            //When the user changes filters
+            else if (this.state.filtersUpdated) {
+              console.log('Filters Updated Finance');
+              if (this.state.muHasLoaded === true &&
+                this.state.trafficHasLoaded === true) {
+                console.log('Determining to set load to off in Traffic filter Change');
+                if (this.state.primaryLoaded === true && this.state.fetchingDiscoverMarketing === false &&
+                  this.state.fetchingDiscoverTrafficDetails === false) {
+                  console.log('SEtting Loading to off in Traffic Filters Change');
+                  this.setState({
+                    isLoading: false, fetchingTrafficInBackground: true, primaryLoaded: false,
+                    fetchingDiscoverTrafficDetails: true, muHasLoaded: true, filtersUpdated: false
+                  });
+                  this.props.updateTrafficSecondaryIsLoading(false);
+
+                  this.props.getMarketingSecondaryData(this.props.filters);
+                }
+              }
+            } else if (this.state.subFiltersChanged) {
+              console.log('Determining Load to off In Trafic sub Filter Change', this.state);
+              if ((this.props.Bounce.details.qtdw.qtd[0].value !== prevProps.Bounce.details.qtdw.qtd[0].value) && this.state.trafficHasLoaded === true) {
+                console.log('Setting Load to off In Trafic sub filter Change');
+                this.setState({
+                  isLoading: false,
+                  subFiltersChanged: false
+                });
+                this.props.updateTrafficSecondaryIsLoading(false);
+
+              }
+            }
+            break;
+        }
+        break;
+      case 2:
+        console.log('Determining to set load to off in Try');
+        if (this.state.secondaryKpiChanged === true && this.props.tryIsLoaded) {
+          this.setState({ secondaryKpiChanged: false, isLoading: false })
+        } else if (this.state.filtersUpdated) {
+          console.log('Filters Updated Finance');
+          if (this.state.tryHasLoaded === true) {
+            console.log('Determining to set load to off in Try filter Change');
+            if (this.props.tryIsLoaded) {
+              console.log('SEtting Loading to off in Try Filters Change');
+              this.props.updateTrySecondaryIsLoading(false);
+              this.setState({
+                isLoading: false, primaryLoaded: false,
+                filtersUpdated: false
+              });
+
+            }
+          }
+        }
+        break;
     }
+
   }
   updateSecondaryLoading(newFilters) {
-    this.setState({ subFiltersChanged: true }, () => {
-      this.props.submitFilters(newFilters);
-    });
+    this.setState({ subFiltersChanged: true })
+    this.props.submitFilters(newFilters);
   }
   stopLoading() {
     this.setState({ isLoading: false, isInitiallyLoading: false });
@@ -928,13 +1462,13 @@ class Summary extends Component {
 
         {/* Navigation*/}
         <Navigation mobileFiltersIsShown={this.props.mobileFiltersIsShown} onFeedbackChange={this.takeDomScreenshot} />
+        <FilterPanel window={this.props.window} />
 
         {
           this.state.isLoading === true ? <LoadingScreen /> :
             (
 
               <span>
-                <FilterPanel window={this.props.window} />
                 {/* Data Preferences */}
                 <div>
                   <div>
@@ -967,9 +1501,9 @@ class Summary extends Component {
 
 function mapStateToProps(state) {
 
-  // console.log("Filters Updated:",state.filters);
-  // console.log(state.summaryData.secondary);
   console.log("Filters Updated:", state.filters);
+  // console.log(state.summaryData.secondary);
+  // console.log("Filters Updated:", state.filters);
   // console.log('SUMMARY JS STATE', state);
   return {
     authenticated: state.authenticated,
@@ -1005,12 +1539,25 @@ function mapStateToProps(state) {
     Cancel: state.summaryData.secondary[2],
     Traffic: state.summaryData.secondary[5],
     Market: state.summaryData.secondary[4],
-    NewQFM: state.summaryData.secondary[12],
+    Bounce: state.summaryData.secondary[9],
+    UQFM: state.summaryData.secondary[6],
+    PaidSpend: state.summaryData.secondary[7],
+    PaidSourced: state.summaryData.secondary[8],
+    NewUQFM: state.summaryData.secondary[10],
     Conv: state.summaryData.secondary[18],
     PaidMedia: state.summaryData.secondary[16],
     Gross: state.summaryData.secondary[19],
     commentsPackage: state.commentsPackage,
-    feedbackIsOpen: state.isFeedBackDialogOpen
+    feedbackIsOpen: state.isFeedBackDialogOpen,
+    dataIsReset: state.summaryData.dataIsReset,
+    primaryIsLoaded: state.summaryData.primaryIsLoaded,
+    discoverSecondaryIsLoaded: state.summaryData.discoverSecondaryIsLoaded,
+    financeSecondaryIsLoaded: state.summaryData.financeSecondaryIsLoaded,
+    financeXDC1IsLoaded: state.summaryData.financeXDC1IsLoaded,
+    financeXDC2IsLoaded: state.summaryData.financeXDC2IsLoaded,
+    trafficIsLoaded: state.summaryData.trafficIsLoaded,
+    muIsLoaded: state.summaryData.muIsLoaded,
+    tryIsLoaded: state.summaryData.tryIsLoaded
   };
 }
 export default connect(

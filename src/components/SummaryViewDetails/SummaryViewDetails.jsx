@@ -225,13 +225,13 @@ class SummaryViewDetails extends Component {
               [...this.props.filters.visits.valueFilters];
             //console.log('New Filters', newFilters);
             break;
-          // case CHANNELMU:
-          //   console.log("CHANNEL MU", this.state.selectedFilters);
-          //   newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === CHANNELMU })) ? /* Then */
-          //     [_.find(this.state.selectedFilters, (item => { return item.category === CHANNELMU }))] : /* Else */
-          //     [...this.props.filters.CHANNELMU.valueFilters];
-          //   console.log(' CHANNELMU', newFilters);
-          //   break;
+          case CHANNELMU:
+            console.log("CHANNEL MU", this.state.selectedFilters);
+            newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === CHANNELMU })) ? /* Then */
+              [_.find(this.state.selectedFilters, (item => { return item.category === CHANNELMU }))] : /* Else */
+              [...this.props.filters.channelMU.valueFilters];
+            console.log(' CHANNELMU', newFilters);
+            break;
           default:
             let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category === item }));
             if (grouped.false !== this.state.selectedFilters.length) {
@@ -249,7 +249,7 @@ class SummaryViewDetails extends Component {
 
       console.log(newFilters);
 
-      this.setState({ selectedFilters: []})
+      // this.setState({ selectedFilters: []})
 
       this.props.subFiltersSubmit(newFilters);
       // this.props.submitFilters(newFilters);

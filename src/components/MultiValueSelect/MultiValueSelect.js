@@ -6,7 +6,7 @@ let transformList = (objList) => {
 
     let newObjList = [];
         if(objList !== undefined  && objList !== [] && objList.length!==0){
-            console.log('The length of the value filters: ',objList);
+            // console.log('The length of the value filters: ',objList);
             // Iterate through each list of objects and convert
             for (let i = 0; i < objList.length; i++) {
                 newObjList.push(

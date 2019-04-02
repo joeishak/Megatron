@@ -20,6 +20,15 @@ import {
     GET_USE_SECONDARY_DATA,
     GET_RENEW_SECONDARY_DATA,
     DELETE_COMMENT,
+    RESET_DATA,
+    UPDATE_PRIMARY_IS_LOADING,
+    UPDATE_DISCOVER_SECONDARY_IS_LOADING,
+    UPDATE_FINANCE_SECONDARY_IS_LOADING,
+    UPDATE_TRY_IS_LOADING,
+    UPDATE_TRAFFIC_IS_LOADING,
+    UPDATE_MU_IS_LOADING,
+    UPDATE_FINANCE_XDC_1_IS_LOADING ,
+UPDATE_FINANCE_XDC_2_IS_LOADING ,
     // FETCH_COMMENTS
 } from 'actions/types';
 import _ from 'lodash'
@@ -40,6 +49,51 @@ export default function (state = {
     secondary: SecondaryData
 }, action) {
     switch (action.type) {
+        case UPDATE_PRIMARY_IS_LOADING: 
+        return {
+            ...state, primaryIsLoaded: action.payload
+        }
+        case UPDATE_DISCOVER_SECONDARY_IS_LOADING: 
+        return {
+            ...state, discoverSecondaryIsLoaded: action.payload
+        }
+        case UPDATE_FINANCE_SECONDARY_IS_LOADING: 
+        return {
+            ...state, financeSecondaryIsLoaded: action.payload
+        }
+        case UPDATE_TRAFFIC_IS_LOADING:
+        return {
+            ...state, trafficIsLoaded: action.payload
+        }
+        case UPDATE_FINANCE_XDC_1_IS_LOADING:
+        return {
+            ...state, financeXDC1IsLoaded: action.payload
+        }
+        case UPDATE_FINANCE_XDC_2_IS_LOADING:
+        return {
+            ...state, financeXDC2IsLoaded: action.payload
+        }
+        case UPDATE_MU_IS_LOADING: 
+        return {
+            ...state, muIsLoaded: action.payload
+        }
+        case UPDATE_TRY_IS_LOADING:
+        return {
+            ...state, tryIsLoaded: action.payload
+        }
+
+        case RESET_DATA: 
+            return {
+                    ...state,
+                    primaryIsLoaded: false, 
+                    discoverSecondaryIsLoaded: false, 
+                    financeSecondaryIsLoaded: false, 
+                    financeXDC1IsLoaded: false, 
+                    financeXDC2IsLoaded: false, 
+                    trafficIsLoaded: false, 
+                    muIsLoaded: false, 
+                    tryIsLoaded: false
+                }
         case GET_PRIMARY_DATA:
             console.log('Request For Primary Data: ', action.payload);
             //Make a Stringify copy of state
@@ -61,16 +115,16 @@ export default function (state = {
             newState.primary[3].target = action.payload[3].data[0].ConversionTarget;
             newState.primary[3].vsqrf = action.payload[3].data[0].ConversionVsQrf;
             newState.primary[3].targetFQ = action.payload[3].data[0].ConversionTargetFQ;
-            // newState.primary[4].value = action.payload[4].data[0].RepeatMAUActual;
-            // newState.primary[4].target = action.payload[4].data[0].RepeatMAUTarget;
-            // newState.primary[4].vsqrf = action.payload[4].data[0].RepeatMAUVsQRF;
-            // newState.primary[4].targetFQ = action.payload[4].data[0].RepeatMAUVsQRF;
-            // newState.primary[5].value = action.payload[5].data[0].UIRateActual;
-            // newState.primary[5].target = action.payload[5].data[0].UIRateTarget;
-            // newState.primary[5].vsqrf = action.payload[5].data[0].UIRateVsQrf;
-            // newState.primary[5].targetFQ = action.payload[5].data[0].UIRateTargetFQ;
+            newState.primary[4].value = action.payload[4].data[0].RepeatMAUActual;
+            newState.primary[4].target = action.payload[4].data[0].RepeatMAUTarget;
+            newState.primary[4].vsqrf = action.payload[4].data[0].RepeatMAUVsQRF;
+            newState.primary[4].targetFQ = action.payload[4].data[0].RepeatMAUVsQRF;
+            newState.primary[5].value = action.payload[5].data[0].UIRateActual;
+            newState.primary[5].target = action.payload[5].data[0].UIRateTarget;
+            newState.primary[5].vsqrf = action.payload[5].data[0].UIRateVsQrf;
+            newState.primary[5].targetFQ = action.payload[5].data[0].UIRateTargetFQ;
             //Return a copy of newstate
-            return { ...newState };
+            return { ...newState, primaryIsLoaded: true };
         case GET_DISCOVER_SECONDARY_DATA:
             newState = JSON.parse(JSON.stringify(state));
             console.log('Request For Discover Secondary Tiles Data: ', action.payload);
@@ -78,7 +132,7 @@ export default function (state = {
             processUQFMSecondaryData(action.payload[2].data[0], newState.secondary);
             processMUSecondaryData(action.payload[0].data[0], newState.secondary);
             processPMSSSecondaryData(action.payload[3].data[0], newState.secondary);
-            return { ...newState }
+            return { ...newState, discoverSecondaryIsLoaded: true }
         case GET_FINANCE_SECONDARY_DATA:
             console.log('Request For Finance Secondary Details Data: ', action.payload);
             newState = JSON.parse(JSON.stringify(state));
@@ -105,7 +159,7 @@ export default function (state = {
 
             // processFinancialproductQTD(newState.secondary, action.payload[8].data);
             // processFinancialProductWeek(newState.secondary, action.payload[8].data);
-            return { ...newState };
+            return { ...newState, financeSecondaryIsLoaded: true };
         case GET_FINANCE_XDC1_SECONDARY_DATA:
         console.log("Request for XDC 1 Finance: ",action.payload);
             newState = JSON.parse(JSON.stringify(state));
@@ -123,7 +177,7 @@ export default function (state = {
             processXDC1FinancialSegmentWeek(newState.secondary, action.payload[6].data);
             processXDC1FinancialproductQTD(newState.secondary, action.payload[8].data);
             processXDC1FinancialProductWeek(newState.secondary, action.payload[8].data);
-        return {...newState};
+        return {...newState, financeXDC1IsLoaded: true};
         case GET_FINANCE_XDC2_SECONDARY_DATA:
         console.log("Request for XDC 2 Finance: ",action.payload);
             newState = JSON.parse(JSON.stringify(state));
@@ -142,7 +196,7 @@ export default function (state = {
             processXDC2FinancialproductQTD(newState.secondary, action.payload[8].data);
             processXDC2FinancialProductWeek(newState.secondary, action.payload[8].data);
             console.log('New State for XDC2',newState);
-        return {...newState};
+        return {...newState, financeXDC2IsLoaded: true};
         case GET_TRAFFIC_SECONDARY_DATA:
             console.log('Request For Traffic + UQFM Conv Secondary Details Data: ', action.payload);
             newState = JSON.parse(JSON.stringify(state));
@@ -163,7 +217,7 @@ export default function (state = {
             processUQFMQTDData(action.payload[12].data[0], newState.secondary);
             processUQFMGeoQTDData(action.payload[13].data, newState.secondary);
             processUQFMMarketQTDData(action.payload[14].data, newState.secondary);
-            return { ...newState };
+            return { ...newState, trafficIsLoaded: true };
         case GET_MKTG_SECONDARY_DATA:
             console.log('Request For Marketable Universe Secondary Details Data: ', action.payload);
             newState = JSON.parse(JSON.stringify(state));
@@ -183,7 +237,7 @@ export default function (state = {
             processPMSSMarketQTDData(action.payload[10].data, newState.secondary);
             processPMSSChannelQTDData(action.payload[11].data, newState.secondary);
 
-            return { ...newState };
+            return { ...newState, muIsLoaded: true };
         case GET_TRY_SECONDARY_DATA:
             newState = JSON.parse(JSON.stringify(state));
             console.log('Request For Try Secondary Details Data: ', action.payload);
@@ -196,7 +250,7 @@ export default function (state = {
             processTryProductQTDData(action.payload[5].data, newState.secondary);
             processTrySignUpAppQTDData(action.payload[6].data, newState.secondary);
             processTrySignUpCatQTDData(action.payload[7].data, newState.secondary);
-            return { ...newState };
+            return { ...newState, tryIsLoaded: true };
         case GET_BUY_TRAFFIC_SECONDARY_DATA:
             newState = JSON.parse(JSON.stringify(state));
             console.log('bUY Traffic Data ', action.payload);
@@ -206,7 +260,7 @@ export default function (state = {
             processBuyUQFMGeoQTDData(action.payload[3].data, newState.secondary);
             processBuyUQFMMarketQTDData(action.payload[4].data, newState.secondary);
 
-            return { ...newState };
+            return { ...newState, dataIsReset: false };
         case GET_BUY_MKTG_SECONDARY_DATA:
             newState = JSON.parse(JSON.stringify(state));
             console.log('Request For Mktg Sourced + PM Sourced & Spend Secondary Details Data: ', action.payload);
@@ -227,7 +281,7 @@ export default function (state = {
             processBuyPMSSMarketQTDData(action.payload[10].data, newState.secondary);
             processBuyPMSSChannelQTDData(action.payload[11].data, newState.secondary);
 
-            return { ...newState };
+            return { ...newState, dataIsReset: false };
         case GET_BUY_FINANCE_SECONDARY_DATA:
             newState = JSON.parse(JSON.stringify(state));
             console.log('Request For Buy Gross ARR Secondary Details Data: ', action.payload);
@@ -246,10 +300,10 @@ export default function (state = {
             processBuyGrossproductQTD(newState.secondary, action.payload[8].data);
             processBuyGrossProductWeek(newState.secondary, action.payload[8].data);
 
-            return { ...newState };
+            return { ...newState , dataIsReset: false};
         case ADD_NEW_PRIMARY_COMMENT:
             index = action.payload.square;
-            copyOfState = Object.assign({}, state);
+            copyOfState = JSON.parse(JSON.stringify(state));
             let newComments = copyOfState.primary[index].comments.map(item => {
                 return item
             })
@@ -258,44 +312,44 @@ export default function (state = {
         // CAse for adding a reply to a previous comment
         case ADD_NEW_PRIMARY_REPLY:
             index = action.payload.square;
-            copyOfState = Object.assign({}, state);
+            copyOfState = JSON.parse(JSON.stringify(state));
             commentIndex = Number(action.payload.comment)
             copyOfState.primary[index].comments[commentIndex].replies.push(action.payload.reply);
             return { ...copyOfState };
         case ADD_NEW_SECONDARY_COMMENT:
             index = action.payload.square;
-            copyOfState = Object.assign({}, state);
+            copyOfState =JSON.parse(JSON.stringify(state));
             copyOfState.secondary[index].comments.push(action.payload.comment);
             return { ...copyOfState };
         // CAse for adding a reply to a previous comment
         case ADD_NEW_SECONDARY_REPLY:
             index = action.payload.square;
-            copyOfState = Object.assign({}, state);
+            copyOfState = JSON.parse(JSON.stringify(state));
             commentIndex = Number(action.payload.comment)
             copyOfState.secondary[index].comments[commentIndex].replies.push(action.payload.reply);
             return { ...copyOfState };
         case FETCH_COMMENTS_COUNT:
-            copyOfState = Object.assign({}, state);
+            copyOfState = JSON.parse(JSON.stringify(state));
             const commentsCount = action.payload;
-            console.log(commentsCount);
+            // console.log(commentsCount);
             for (let i = 0; i < commentsCount.length; i++) {
                 copyOfState.secondary[commentsCount[i].metricId].comments.push(commentsCount[i].commentCount);
             }
 
             return { ...copyOfState };
         case DELETE_COMMENT:
-            copyOfState = Object.assign([], state);
+            copyOfState = JSON.parse(JSON.stringify(state));
             let { commentId, activeSquareID } = action.payload;
-            console.log(copyOfState.secondary[activeSquareID]);
+            // console.log(copyOfState.secondary[activeSquareID]);
             copyOfState.secondary[activeSquareID] = {
                 ...copyOfState.secondary[activeSquareID],
                 comments: copyOfState.secondary[activeSquareID].comments.filter(comment => {
                     comment.id !== commentId
                 })
             }
-            console.log(copyOfState.secondary[activeSquareID].comments);
+            // console.log(copyOfState.secondary[activeSquareID].comments);
 
-            return copyOfState;
+            return {...copyOfState};
         default:
             return state;
     }
@@ -536,7 +590,7 @@ export function processFinancialUnitsMultichart(newState, data) {
 }
 export function processFinancialQTD(newState, data) {
     newState = Object.assign([], newState);
-    console.log(data)
+    // console.log(data)
     // State Order: Actual, Units, QRF, QRFDiff, VSQrf, QQ, YY
     for (let i = 0; i < newState.length; i++) {
         let findata = data[0];
@@ -681,7 +735,7 @@ export function processFinancialGeoQTD(newState, data) {
             vsQrf: item.NewARRVsQrf,
             yy: item.NewARRYY
         }
-        console.log(net);
+        // console.log(net);
         let gross = {
             index: i,
             actuals: item.GrossActuals,
@@ -1491,7 +1545,7 @@ export function processXDC1FinancialUnitsMultichart(newState, data) {
 }
 export function processXDC1FinancialQTD(newState, data) {
     newState = Object.assign([], newState);
-    console.log(data)
+    // console.log(data)
     // State Order: Actual, Units, QRF, QRFDiff, VSQrf, QQ, YY
     for (let i = 0; i <=2; i++) {
         let findata = data[0];
@@ -1593,7 +1647,7 @@ export function processXDC1FinancialGeoQTD(newState, data) {
             vsQrf: item.NewARRVsQrf,
             yy: item.NewARRYY
         }
-        console.log(net);
+        // console.log(net);
         let gross = {
             index: i,
             actuals: item.GrossActuals,
@@ -2248,7 +2302,7 @@ export function processXDC2FinanceSecondaryData(g1, newState) {
     newState[3].targetFQ = g1.data[0].RenewARRTargetFQ;
     newState[3].target = g1.data[0].RenewARRTarget;
     newState[3].vsQrf = g1.data[0].RenewVSQRF;
-    console.log('New State AT the end of secondary',newState);
+    // console.log('New State AT the end of secondary',newState);
 }
 export function processXDC2FinancialMultichart(newState, data) {
 
@@ -2382,7 +2436,7 @@ export function processXDC2FinancialUnitsMultichart(newState, data) {
 }
 export function processXDC2FinancialQTD(newState, data) {
     newState = Object.assign([], newState);
-    console.log(data)
+    // console.log(data)
     // State Order: Actual, Units, QRF, QRFDiff, VSQrf, QQ, YY
     for (let i = 0; i < newState.length; i++) {
         let findata = data[0];
@@ -2527,7 +2581,7 @@ export function processXDC2FinancialGeoQTD(newState, data) {
             vsQrf: item.NewARRVsQrf,
             yy: item.NewARRYY
         }
-        console.log(net);
+        // console.log(net);
         let gross = {
             index: i,
             actuals: item.GrossActuals,
@@ -3166,7 +3220,7 @@ export function processXDC2FinancialProductWeek(newState, data) {
 /**Discover**/
 //Traffic
 export function processTrafficSecondaryData(g5, newState) {
-    console.log(g5, newState);
+    // console.log(g5, newState);
 
     newState[5].value = g5.TrafficActual;
     newState[5].target = g5.TrafficTarget;
@@ -3222,7 +3276,7 @@ export function processTrafficMultichartData(g5, newState) {
     newState[9]['details'].multichart = bounceMulti;
 }
 export function processTrafficQTDData(g5, newState) {
-    console.log(g5, newState);
+    // console.log(g5, newState);
 
     for (let i = 5; i < newState.length; i++) {
 
@@ -3271,7 +3325,7 @@ export function processTrafficQTDData(g5, newState) {
     }
 }
 export function processTrafficGeoQTDData(g5, newState) {
-    console.log(g5)
+    // console.log(g5)
     //Clear old Values
     newState[5].details.geo.qtd = [];
     newState[9].details.geo.qtd = [];

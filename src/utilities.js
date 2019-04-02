@@ -360,7 +360,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
     switch (type) {
         case 1:
             //Use
-            console.log(allFilters);
+            // console.log(allFilters);
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
@@ -378,7 +378,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             break;
         case 3:
             //Renew
-            console.log(allFilters);
+            // console.log(allFilters);
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
@@ -404,7 +404,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             break;
         //Marketable Universe - Discover
         case 6:
-            console.log('Gen PArams ', _activeParams, allFilters);
+            // console.log('Gen PArams ', _activeParams, allFilters);
             filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
@@ -478,19 +478,23 @@ export function getAllFilters(allFilters, availableFilters) {
  */
 export function getParamValues(activeParams, allFilters) {
     let paramValue;
-    console.log(activeParams, allFilters);
+    // console.log(activeParams, allFilters);
     if (activeParams.length === 0) {
         // Add all the values from allFilters except for All Data to the Param Value
         paramValue = [];
         allFilters.forEach(item => {
-            paramValue.push(item.value);
+            if (item.value !== '#N/A') {
+                paramValue.push(item.value);
+            } else paramValue.push('%23N%2FA');
         })
         paramValue = convertFilterList(paramValue);
         return paramValue;
     } else {
         paramValue = [];
         activeParams.forEach(item => {
-            paramValue.push(item.value);
+            if (item.value !== '#N/A') {
+                paramValue.push(item.value);
+            } else paramValue.push('%23N%2FA');
         })
         paramValue = convertFilterList(paramValue);
         return paramValue;
@@ -616,7 +620,7 @@ export function requestPrimaryData(allFilters, _parameters) {
     // filterParams[5].value = _parameters.route.length > 0 ? _parameters.route[0].value : allFilters.route;
 
     //Generate the filter list 
-    console.log('Utils 556: ', allFilters, _parameters)
+    // console.log('Utils 556: ', allFilters, _parameters)
     generateFilterParams(2, tryParams, allFilters, _parameters);
     generateFilterParams(5, trafficParams, allFilters, _parameters);
     generateFilterParams(9, financeParams, allFilters, _parameters);
@@ -624,7 +628,7 @@ export function requestPrimaryData(allFilters, _parameters) {
     generateFilterParams(1, useParams, allFilters, _parameters);
     generateFilterParams(3, renewParams, allFilters, _parameters);
 
-   
+
     //turn each list into a string
 
     let params2 = tryParams.reduce((prev, param) => {
@@ -663,10 +667,10 @@ export function requestPrimaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    console.log(useParams, renewParams);
-    //Primary 
-    console.log('Fetching Use', Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1');
-    console.log('Fetching Renew', Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.RenewUIPFPrimary + params11 + '&json=1');
+    // console.log(useParams, renewParams);
+    // //Primary 
+    // console.log('Fetching Use', Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1');
+    // console.log('Fetching Renew', Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.RenewUIPFPrimary + params11 + '&json=1');
 
     const primaryFinancial = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetPrimary + params8 + '&json=1', {
         headers: headers,
@@ -704,7 +708,7 @@ export function requestDiscoverSecondary(allFilters, _parameters) {
 
 
     //Generate the filter list 
-    console.log('Utils 556: ', allFilters, _parameters)
+    // console.log('Utils 556: ', allFilters, _parameters)
     generateFilterParams(5, trafficParams, allFilters, _parameters);
     generateFilterParams(8, uqfmParams, allFilters, _parameters);
     generateFilterParams(6, mktgParams, allFilters, _parameters);
@@ -712,8 +716,8 @@ export function requestDiscoverSecondary(allFilters, _parameters) {
 
     //turn each list into a string
 
-    console.log('MKTG Params before reduce', mktgParams);
-    console.log('PMSS Params before reduce', pmssParams);
+    // console.log('MKTG Params before reduce', mktgParams);
+    // console.log('PMSS Params before reduce', pmssParams);
     let params7 = mktgParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
@@ -944,7 +948,7 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    console.log("Traffic Network Request: ", Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1');
+    // console.log("Traffic Network Request: ", Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1');
     // Traffic  & Bounce
     const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
         headers: headers,
@@ -996,7 +1000,7 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
-    console.log("UQFM Network Request: ", Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvSecondary + params6 + '&json=1');
+    // console.log("UQFM Network Request: ", Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvSecondary + params6 + '&json=1');
 
     // UQFM
     const uqfmSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvSecondary + params6 + '&json=1', {
@@ -1042,12 +1046,12 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
 }
 
 export function requestMKTGSecondaryData(allFilters, _parameters) {
-    console.log('requesting marketing data');
+    // console.log('requesting marketing data');
     responseArray = [];
     generateFilterParams(6, mktgParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
-    console.log('MKTG Params before reduce', mktgParams);
-    console.log('PMSS Params before reduce', pmssParams);
+    // console.log('MKTG Params before reduce', mktgParams);
+    // console.log('PMSS Params before reduce', pmssParams);
     let params5 = mktgParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
@@ -1058,7 +1062,7 @@ export function requestMKTGSecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-    console.log("MU NEtwork request:", Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUSecondary + params5 + '&json=1');
+    // console.log("MU NEtwork request:", Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUSecondary + params5 + '&json=1');
     //Marketing
     const mktgSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUSecondary + params5 + '&json=1', {
         headers: headers,
@@ -1205,7 +1209,7 @@ export function requestBuyTrafficSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    console.log("UQFM Network Request: ", Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvSecondary + params6 + '&json=1');
+    // console.log("UQFM Network Request: ", Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvSecondary + params6 + '&json=1');
 
     // UQFM
     const uqfmSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvSecondary + params6 + '&json=1', {
@@ -1240,7 +1244,7 @@ export function requestBuyTrafficSecondaryData(allFilters, _parameters) {
     return promiseArr;
 }
 export function requestBuyMarketSecondaryData(allFilters, _parameters) {
-    console.log('requesting marketing data');
+    // console.log('requesting marketing data');
     responseArray = [];
     generateFilterParams(10, buyMktgParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
@@ -1287,7 +1291,7 @@ export function requestBuyMarketSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
-    console.log("Paid Media Spend and Source NEtwork request:", Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMSecondary + params6 + '&json=1');
+    // console.log("Paid Media Spend and Source NEtwork request:", Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMSecondary + params6 + '&json=1');
     //Paid Media Sourced and Spend
     const pmssSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyPMSpendSecondary + params6 + '&json=1', {
         headers: headers,

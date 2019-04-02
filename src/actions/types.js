@@ -16,8 +16,8 @@ export const GET_USER_SETTINGS = 'get_user_settings';
 export const UPDATE_DIALOG_VISIBILITY = "update_dialog_visibility";
 export const UPDATE_FEEDBACKFORM_DIALOG_VISIBILITY = 'update_feedbackform_dialog_visibility';
 // All Data
-
-export const GET_SUMMARY_DATA = " get_summary_data";
+export const RESET_DATA = "reset_data";
+export const GET_SUMMARY_DATA = "get_summary_data";
 export const GET_PRIMARY_DATA = "get_primary_data";
 export const GET_FINANCE_SECONDARY_DATA = "get_finance_secondary_data";
 export const GET_DISCOVER_SECONDARY_DATA = "get_discover_secondary_data";
@@ -30,6 +30,16 @@ export const GET_BUY_MKTG_SECONDARY_DATA = 'get_buy_marketing_secondary_data';
 export const GET_BUY_FINANCE_SECONDARY_DATA = 'get_buy_finance_secondary_data';
 export const GET_FINANCE_XDC1_SECONDARY_DATA = 'get_finance_xdc1_secondary_data';
 export const GET_FINANCE_XDC2_SECONDARY_DATA = 'get_finance_xdc2_secondary_data';
+
+export const UPDATE_PRIMARY_IS_LOADING              = 'update_primary_is_loading';
+export const UPDATE_DISCOVER_SECONDARY_IS_LOADING   = 'update_discover_secondary_is_loading';
+export const UPDATE_FINANCE_SECONDARY_IS_LOADING            = 'update_finance_secondary_is_loading';
+export const UPDATE_FINANCE_XDC_1_IS_LOADING             ='update_finance_xdc_1_is_loading';
+export const UPDATE_FINANCE_XDC_2_IS_LOADING             ='update_finance_xdc_2_is_loading';
+
+export const UPDATE_TRY_IS_LOADING                      = 'update_try_is_loading';
+export const UPDATE_TRAFFIC_IS_LOADING              = 'update_traffic_is_loading';
+export const UPDATE_MU_IS_LOADING                       = 'update_mu_is_loading';
 
 export const GET_BUY_TRAFFIC_SECONDARY_DATA = 'get_buy_traffic_secondary_data';
 

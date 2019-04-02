@@ -14,7 +14,7 @@ class ExcelWorkbook extends Component {
     }
     getFinanceWorkBook() {
         let { activeItem, filters, activeSecondary, secondaryData } = this.props;
-        console.log('THE ACTIVE ITEM IS',secondaryData[activeSecondary])
+        // console.log('THE ACTIVE ITEM IS',secondaryData[activeSecondary])
             return (
             <Workbook
                 filename={`${activeItem.header}.xlsx`}

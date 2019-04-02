@@ -8,6 +8,7 @@ import {
     SET_APP_SETTINGS,
     SET_VIEW_APP_SETTINGS,
     GET_SUMMARY_DATA,
+    RESET_DATA,
     GET_PRIMARY_DATA,
     GET_FINANCE_SECONDARY_DATA,
     GET_FINANCE_XDC1_SECONDARY_DATA,
@@ -22,6 +23,14 @@ import {
     GET_BUY_TRAFFIC_SECONDARY_DATA,
     GET_USE_SECONDARY_DATA,
     GET_RENEW_SECONDARY_DATA,
+    UPDATE_PRIMARY_IS_LOADING,
+    UPDATE_DISCOVER_SECONDARY_IS_LOADING,
+    UPDATE_FINANCE_SECONDARY_IS_LOADING,
+    UPDATE_TRY_IS_LOADING,
+    UPDATE_TRAFFIC_IS_LOADING,
+    UPDATE_MU_IS_LOADING,
+    UPDATE_FINANCE_XDC_1_IS_LOADING ,
+UPDATE_FINANCE_XDC_2_IS_LOADING ,
     UPDATE_DIALOG_VISIBILITY,
     UPDATE_FEEDBACKFORM_DIALOG_VISIBILITY,
     GENERATE_FILTER_DATA,
@@ -82,7 +91,12 @@ export function changeAuth(isLoggedIn) {
         payload: isLoggedIn
     }
 }
-
+export function resetData() {
+    return {
+        type: RESET_DATA,
+        payload: null
+    }
+}
 export function getUserSettings(sub) {
     let res = utils.requestUserSettings(sub);
     return {
@@ -201,7 +215,7 @@ export function getPrimaryData(filters) {
         channelMU: Object.keys(filters.channelMU.valueFilters).map(e => filters.channelMU.valueFilters[e]),
         channelPM: Object.keys(filters.channelPM.valueFilters).map(e => filters.channelPM.valueFilters[e]),
         nonDMSegment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
-    
+
     };
 
     promiseArr = utils.requestPrimaryData(allFilters, _parameters);
@@ -404,7 +418,7 @@ export function getMarketingSecondaryData(filters) {
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         //Traffic
         channelMU: Object.keys(filters.channelMU.valueFilters).map(e => filters.channelMU.valueFilters[e]),
-        channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
+        channelPM: Object.keys(filters.channelPM.valueFilters).map(e => filters.channelPM.valueFilters[e]),
     };
 
 
@@ -617,6 +631,55 @@ export function updateFeedbackFormVisibility(isFeedbackFormVisible) {
     return {
         type: UPDATE_FEEDBACKFORM_DIALOG_VISIBILITY,
         payload: isFeedbackFormVisible
+    }
+}
+export function updatePrimaryIsLoading(isLoading) {
+    return {
+        type: UPDATE_PRIMARY_IS_LOADING,
+        payload: isLoading,
+    }
+}
+
+
+export function updateDiscoverSecondaryIsLoading(isLoading) {
+    return {
+        type: UPDATE_DISCOVER_SECONDARY_IS_LOADING,
+        payload: isLoading,
+    }
+}
+export function updateFinanceSecondaryIsLoading(isLoading) {
+    return {
+        type: UPDATE_FINANCE_SECONDARY_IS_LOADING,
+        payload: isLoading,
+    }
+}
+export function updateTrySecondaryIsLoading(isLoading) {
+    return {
+        type: UPDATE_TRY_IS_LOADING,
+        payload: isLoading,
+    }
+}
+export function updateTrafficSecondaryIsLoading(isLoading) {
+    return {
+        type: UPDATE_TRAFFIC_IS_LOADING,
+        payload: isLoading,
+    }
+}
+export function updateMuSecondaryIsLoading(isLoading) {
+    return {
+        type: UPDATE_MU_IS_LOADING,
+        payload: isLoading,
+    }
+}
+export function updateFinanceXDC1IsLoading(isLoading) {
+    return {
+        type: UPDATE_FINANCE_XDC_1_IS_LOADING,
+        payload: isLoading,
+    }
+}export function updateFinanceXDC2IsLoading(isLoading) {
+    return {
+        type: UPDATE_FINANCE_XDC_2_IS_LOADING,
+        payload: isLoading,
     }
 }
 
