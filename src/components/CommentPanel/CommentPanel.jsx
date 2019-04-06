@@ -8,7 +8,7 @@ import addIcon from '../../assets/images/add-icon-black.svg';
 import CommentPanelHeader from './CommentPanelHeader';
 import CommentPanelDate from './CommentPanelDate';
 import CommentBox from './CommentBox';
-import CommentControls from './CommentControls';
+// import CommentControls from './CommentControls';
 class CommentPanel extends Component {
     constructor(props){
         super(props);

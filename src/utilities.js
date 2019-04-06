@@ -1472,8 +1472,9 @@ export function fetchComments(metricId) {
         }
 
     });
-    // console.log(res1);
-    return res1;
+    let responseARr = Promise.all([res1]);
+    
+    return responseARr;
 }
 
 export function fetchCommentsCount() {
@@ -1484,13 +1485,15 @@ export function fetchCommentsCount() {
         "params": {}
     };
 
-    return axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' }).then((res) => {
+    let post =  axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' }).then((res) => {
         // console.log(res.data);
         return res.data;
     });
+
+    return Promise.all([post]);
 }
 
-export function postComment(params) {
+export function postComment(params, metric) {
     // INSERT INTO Comments values('@userId', @metricId, CONVERT(datetime,'@postDateTime'), '@comment');
     let body = {
         "conn": `${Infoburst.appXDCID}`,
@@ -1504,17 +1507,54 @@ export function postComment(params) {
         }
     }
 
-    return axios.post(Infoburst.dbQuery, body, {
+    let fetchBody = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'fetchComments',
+        "columnNames": 'true',
+        "params": {
+            "metric": metric
+        }
+    };
+   let post =  axios.post(Infoburst.dbQuery, body, {
         headers: headers,
         responseType: 'text'
     }).then((res) => {
         console.log(res);
-        return res;
+        const res1 = axios.post(Infoburst.dbQuery, fetchBody, { headers: headers, responseType: 'text' }).then((response) => {
+
+            if (response !== []) {
+    
+                const commentIdsArray = response.data.map(ele => { return ele.id; });
+                const params = convertFilterListForDBQuery(commentIdsArray);
+                let responseBody = {
+                    "conn": `${Infoburst.appXDCID}`,
+                    "qry": 'fetchReplies',
+                    "columnNames": 'true',
+                    "params": {
+                        "params": params
+                    }
+                };
+                const replies = axios.post(Infoburst.dbQuery, responseBody, { headers: headers, responseType: 'text' }).then((res) => {
+                    const commentsComplete = { comment: response.data, replies: res.data };
+                    return commentsComplete;
+                });
+    
+                return replies;
+            } else {
+                return [];
+            }
+    
+        });
+        
+        return res1;
     });
+
+    return Promise.all([post]);
+
 }
 
 
-export function postReply(params) {
+export function postReply(params,metric) {
     let body = {
         "conn": `${Infoburst.appXDCID}`,
         "qry": 'postReply',
@@ -1526,13 +1566,49 @@ export function postReply(params) {
             "comment": params.comment
         }
     }
-
-    return axios.post(Infoburst.dbQuery, body, {
+    let fetchBody = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'fetchComments',
+        "columnNames": 'true',
+        "params": {
+            "metric": metric
+        }
+    };
+    let post =  axios.post(Infoburst.dbQuery, body, {
         headers: headers,
         responseType: 'text'
     }).then((res) => {
-        return res;
+        console.log(res);
+        const res1 = axios.post(Infoburst.dbQuery, fetchBody, { headers: headers, responseType: 'text' }).then((response) => {
+
+            if (response !== []) {
+    
+                const commentIdsArray = response.data.map(ele => { return ele.id; });
+                const params = convertFilterListForDBQuery(commentIdsArray);
+                let responseBody = {
+                    "conn": `${Infoburst.appXDCID}`,
+                    "qry": 'fetchReplies',
+                    "columnNames": 'true',
+                    "params": {
+                        "params": params
+                    }
+                };
+                const replies = axios.post(Infoburst.dbQuery, responseBody, { headers: headers, responseType: 'text' }).then((res) => {
+                    const commentsComplete = { comment: response.data, replies: res.data };
+                    return commentsComplete;
+                });
+    
+                return replies;
+            } else {
+                return [];
+            }
+    
+        });
+        
+        return res1;
     });
+    return Promise.all([post]);
+
 }
 
 
@@ -1547,13 +1623,15 @@ export function removeComment(params) {
     }
 
     console.log(body);
-    return axios.post(Infoburst.dbQuery, body, {
+    let post = axios.post(Infoburst.dbQuery, body, {
         headers: headers
     }).then((res) => {
         console.log(res);
 
         return res;
     });
+    return Promise.all([post]);
+
 }
 
 export function requestUserSettings(sub) {

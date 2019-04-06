@@ -125,6 +125,10 @@ class Summary extends Component {
     let secondaryLoaded = this.props.summaryData.secondary[this.props.activeSecondaryCard].value !== prevProps.summaryData.secondary[this.props.activeSecondaryCard].value;
     //OKTA Check Users Authentication status
     this.checkAuthentication();
+    // if (this.props.NetNew.comments !== undefined) {
+    //   this.props.fetchCommentsCount();
+
+    // }
     //When user loads get their settings from the DB
     if (this.props.user !== prevProps.user) {
       this.props.getUserSettings(this.props.user.sub);
@@ -246,7 +250,7 @@ class Summary extends Component {
     // When the app has already loaded and the filters change
     if (this.state.initialDataLoadIsComplete === undefined && (this.props.filters !== prevProps.filters)) {
       console.log(this.state.subFiltersChanged);
-     
+
       if (this.state.subFiltersChanged === true) {
 
         console.log("Sub Filters Changed");
@@ -294,7 +298,7 @@ class Summary extends Component {
       } else if (this.state.subFiltersChanged === undefined || this.state.subFiltersChanged === false) {
         this.setState({ filtersUpdated: true });
         // this.props.resetData();
-     
+
         this.props.updatePrimaryIsLoading(false);
         this.props.updateDiscoverSecondaryIsLoading(false);
         this.props.updateFinanceSecondaryIsLoading(false);
@@ -867,7 +871,7 @@ class Summary extends Component {
               //When the user changes secondary cards
               if (this.state.secondaryKpiChanged === true) {
                 console.log('Setting Load to off In Secondary KPI Change');
-                  if (this.state.financeXDC1HasLoaded === true && this.state.fetchingFinanceXDC1Details === false) {
+                if (this.state.financeXDC1HasLoaded === true && this.state.fetchingFinanceXDC1Details === false) {
                   console.log("XDC 1 Details Data Load Complete: Loading OFF")
                   this.setState({
                     secondaryKpiChanged: false,
@@ -1007,8 +1011,9 @@ class Summary extends Component {
             if (this.state.secondaryKpiChanged === true) {
               console.log('Determining to set load off In MU Secondary KPI Change');
               // if (this.state.muHasLoaded === true && this.state.fetchingDiscoverTraffic === false && this.state.fetchingDiscoverMUDetails === false) {
-             
-             if(this.props.muIsLoaded && this.props.discoverSecondaryIsLoaded ){ console.log("MU Details Data Load Complete in Secondary KPIT Change: Loading OFF")
+
+              if (this.props.muIsLoaded && this.props.discoverSecondaryIsLoaded) {
+                console.log("MU Details Data Load Complete in Secondary KPIT Change: Loading OFF")
                 this.setState({
                   secondaryKpiChanged: false,
                   isLoading: false,
@@ -1064,7 +1069,7 @@ class Summary extends Component {
             // When the app loads the details for Traffic 
             if (this.state.secondaryKpiChanged === true) {
               console.log('Setting Load to off In Secondary KPI Change');
-           if (this.props.trafficIsLoaded) {
+              if (this.props.trafficIsLoaded) {
                 console.log("Traffic Details Data Load Complete: Loading OFF")
                 this.setState({
                   secondaryKpiChanged: false,
@@ -1199,7 +1204,7 @@ class Summary extends Component {
           case 8:
             if (this.state.secondaryKpiChanged === true) {
               console.log('Setting Load to off In Secondary KPI Change');
-                if (this.state.muHasLoaded === true && this.state.fetchingDiscoverMUDetails === false) {
+              if (this.state.muHasLoaded === true && this.state.fetchingDiscoverMUDetails === false) {
                 console.log("MU Details Data Load Complete: Loading OFF")
                 this.setState({
                   secondaryKpiChanged: false,
@@ -1249,7 +1254,7 @@ class Summary extends Component {
             // When the app loads the details for Traffic 
             if (this.state.secondaryKpiChanged === true) {
               console.log('Setting Load to off In Secondary KPI Change');
-               if (this.state.trafficHasLoaded === true && this.state.fetchingDiscoverTrafficDetails === false) {
+              if (this.state.trafficHasLoaded === true && this.state.fetchingDiscoverTrafficDetails === false) {
                 console.log("Traffic Details Data Load Complete: Loading OFF")
                 this.setState({
                   secondaryKpiChanged: false,
@@ -1320,21 +1325,21 @@ class Summary extends Component {
   updateSecondaryLoading(newFilters) {
     this.setState({ subFiltersChanged: true })
     this.props.submitFilters(newFilters);
-    switch(this.props.activeSecondaryCard){
-      case 4: 
-      this.props.updateMuSecondaryIsLoading(false);
-      break;
-      case 5: 
-      this.props.updateTrafficSecondaryIsLoading(false);
-      case 7: 
-      this.props.updateMuSecondaryIsLoading(false);
-      break;
+    switch (this.props.activeSecondaryCard) {
+      case 4:
+        this.props.updateMuSecondaryIsLoading(false);
+        break;
+      case 5:
+        this.props.updateTrafficSecondaryIsLoading(false);
+      case 7:
+        this.props.updateMuSecondaryIsLoading(false);
+        break;
       case 8:
-      this.props.updateMuSecondaryIsLoading(false);
-      break;
-      case 9: 
-      this.props.updateTrafficSecondaryIsLoading(false);
-      break;
+        this.props.updateMuSecondaryIsLoading(false);
+        break;
+      case 9:
+        this.props.updateTrafficSecondaryIsLoading(false);
+        break;
     }
   }
   stopLoading() {

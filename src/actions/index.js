@@ -29,8 +29,8 @@ import {
     UPDATE_TRY_IS_LOADING,
     UPDATE_TRAFFIC_IS_LOADING,
     UPDATE_MU_IS_LOADING,
-    UPDATE_FINANCE_XDC_1_IS_LOADING ,
-UPDATE_FINANCE_XDC_2_IS_LOADING ,
+    UPDATE_FINANCE_XDC_1_IS_LOADING,
+    UPDATE_FINANCE_XDC_2_IS_LOADING,
     UPDATE_DIALOG_VISIBILITY,
     UPDATE_FEEDBACKFORM_DIALOG_VISIBILITY,
     GENERATE_FILTER_DATA,
@@ -676,7 +676,7 @@ export function updateFinanceXDC1IsLoading(isLoading) {
         type: UPDATE_FINANCE_XDC_1_IS_LOADING,
         payload: isLoading,
     }
-}export function updateFinanceXDC2IsLoading(isLoading) {
+} export function updateFinanceXDC2IsLoading(isLoading) {
     return {
         type: UPDATE_FINANCE_XDC_2_IS_LOADING,
         payload: isLoading,
@@ -874,13 +874,14 @@ export function addNewReplyToPrimaryMetricComment(activeSquareID, commentId, rep
  * @param {} activeSquareID
  * @param {*} comment
  */
-export function addNewCommentToSecondaryMetric(activeSquareID, comment) {
+export function addNewCommentToSecondaryMetric(params, metric) {
+
+
+    let response =  utils.postComment(params, metric);
+
     return {
-        type: ADD_NEW_SECONDARY_COMMENT,
-        payload: {
-            square: activeSquareID,
-            comment: comment
-        }
+        type: FETCH_COMMENTS,
+        payload: response
     }
 }
 
@@ -890,15 +891,13 @@ export function addNewCommentToSecondaryMetric(activeSquareID, comment) {
  * @param {*} commentId
  * @param {*} reply
  */
-export function addNewReplyToSecondaryMetric(activeSquareID, commentId, reply) {
-    return {
-        type: ADD_NEW_SECONDARY_REPLY,
-        payload: {
-            square: activeSquareID,
-            comment: commentId,
-            reply: reply
-        }
-    }
+export function addNewReplyToSecondaryMetric(params, metric){
+let response =  utils.postReply(params, metric);
+
+return {
+    type: FETCH_COMMENTS,
+    payload: response
+}
 
 }
 

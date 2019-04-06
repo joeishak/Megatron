@@ -80,24 +80,25 @@ class CommentBox extends Component {
                 // console.log('is commenter:', isCommenter);
             } else {
                 // theres no groups coming back from okta, post the comments
-                this.forceUpdate(() => {
+                // this.forceUpdate(() => {
                     this.props.isFetching(true);
-                    utils.postComment(params);
-                    this.props.fetchComments(this.props.currentMetric);
+                    this.props.addNewCommentToSecondaryMetric(params, this.props.currentMetric);
+                    // utils.postComment(params);
+                    // this.props.fetchComments(this.props.currentMetric);
                     this.props.fetchCommentsCount();
-                })
+                // })
 
                 this.setState({ replyMessage: '' })
             }
 
             // check if commenter and only post commenter
             if (isCommenter !== null && isCommenter) {
-                this.forceUpdate(() => {
-                    this.props.isFetching(true);
-                    utils.postComment(params);
-                    this.props.fetchComments(this.props.currentMetric);
-                    this.props.fetchCommentsCount();
-                });
+                this.props.isFetching(true);
+                this.props.addNewCommentToSecondaryMetric(params, this.props.currentMetric);
+                // utils.postComment(params);
+                // this.props.fetchComments(this.props.currentMetric);
+                this.props.fetchCommentsCount();
+            // })
 
                 this.setState({ replyMessage: '' })
             } else {
@@ -118,13 +119,17 @@ class CommentBox extends Component {
                 // console.log('is commenter:', isCommenter);
             } else {
                 // theres no groups for okta
-                this.forceUpdate(() => {
-                    this.props.isFetching(true);
-                    utils.postReply(params);
-                    this.props.fetchComments(this.props.currentMetric);
-                    this.props.fetchCommentsCount();
-                });
-
+                // this.forceUpdate(() => {
+                //     this.props.isFetching(true);
+                //     utils.postReply(params);
+                //     this.props.fetchComments(this.props.currentMetric);
+                //     this.props.fetchCommentsCount();
+                // });
+                this.props.isFetching(true);
+                this.props.addNewReplyToSecondaryMetric(params, this.props.currentMetric);
+                // utils.postComment(params);
+                // this.props.fetchComments(this.props.currentMetric);
+                this.props.fetchCommentsCount();
                 this.setState({
                     commentToBeRepliedTo: null,
                     replyMessage: '',
@@ -134,13 +139,17 @@ class CommentBox extends Component {
             }
 
             if (isCommenter !== null && isCommenter) {
-                this.forceUpdate(() => {
-                    this.props.isFetching(true);
-                    utils.postReply(params);
-                    this.props.fetchComments(this.props.currentMetric);
-                    this.props.fetchCommentsCount();
-                });
-
+                // this.forceUpdate(() => {
+                //     this.props.isFetching(true);
+                //     utils.postReply(params);
+                //     this.props.fetchComments(this.props.currentMetric);
+                //     this.props.fetchCommentsCount();
+                // });
+                this.props.isFetching(true);
+                this.props.addNewReplyToSecondaryMetric(params, this.props.currentMetric);
+                // utils.postComment(params);
+                // this.props.fetchComments(this.props.currentMetric);
+                this.props.fetchCommentsCount();
                 this.setState({
                     commentToBeRepliedTo: null,
                     replyMessage: '',

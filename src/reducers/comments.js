@@ -4,8 +4,9 @@ import * as utils from '../utilities';
 export default function (state = { data: [], isLoading: true }, action) {
     switch (action.type) {
         case FETCH_COMMENTS:
-            const replies = action.payload.replies;
-            const comments = action.payload.comment.map(ele => {
+        console.log(action.payload);
+            const replies = action.payload[0].replies;
+            const comments = action.payload[0].comment.map(ele => {
                 return {
                     comment: ele.comment,
                     id: ele.id,

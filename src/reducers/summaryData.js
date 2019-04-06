@@ -330,8 +330,8 @@ export default function (state = {
             return { ...copyOfState };
         case FETCH_COMMENTS_COUNT:
             copyOfState = JSON.parse(JSON.stringify(state));
-            const commentsCount = action.payload;
-            // console.log(commentsCount);
+            const commentsCount = action.payload[0];
+            console.log(commentsCount);
             for (let i = 0; i < commentsCount.length; i++) {
                 copyOfState.secondary[commentsCount[i].metricId].comments.push(commentsCount[i].commentCount);
             }
