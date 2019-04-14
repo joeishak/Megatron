@@ -1598,8 +1598,8 @@ export function processXDC1FinancialQTD(newState, data) {
                 newState[i].details.qtdw.week[4].value = findata.NewCWVsQrf;
                 newState[i].details.qtdw.week[5].value = findata.NewWW;
                 newState[i].details.stats[0].value = findata.NewARRVsQrf;
-                newState[i].details.stats[1].value = findata.NewARRQQLY;
-                newState[i].details.stats[2].value = findata.NewARRQQTY;
+                newState[i].details.stats[1].value = findata.NewARRQQTY;
+                newState[i].details.stats[2].value = findata.NewARRQQLY;
                 newState[i].details.stats[3].value = findata.NewARRYY;
                 break;
             // Gross New Arr

@@ -25,6 +25,7 @@ class CustomDropDownPanel extends Component {
         }
     }
 
+   
     updateSingleValue = (e) => {
         // console.log('Updating SingleValue',e);
         let copy = this.state.selectedFilters;
@@ -200,7 +201,7 @@ class CustomDropDownPanel extends Component {
                                 options={filters.route.availableFilters}
                                 onValueChange={(e) => { let type = ROUTE; this.updateMultiValue(e, type) }}
                                 onMenuClose={this.closeMultiValue}
-                                // values={this.props.filters.route.valueFilters}
+                            
                             />
                         </div>
                         <div className={quarterFilterContainer + ' col-lg-3'} >
