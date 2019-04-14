@@ -50,12 +50,12 @@ class Summary extends Component {
       isLoading: true,
       isInitiallyLoading: true,
       //Primary Loaded - Request has been made
-      financePrimaryLoaded: false,
-      trafficPrimaryLoaded: false,
-      tryPrimaryLoaded: false,
-      buyPrimaryLoaded: false,
-      usePrimaryLoaded: false,
-      renewPrimaryLoaded: false,
+      // financePrimaryLoaded: false,
+      // trafficPrimaryLoaded: false,
+      // tryPrimaryLoaded: false,
+      // buyPrimaryLoaded: false,
+      // usePrimaryLoaded: false,
+      // renewPrimaryLoaded: false,
       //Secondary Loaded - Request Has Been Made
       financeXDC1HasLoaded: false,
       financeXDC2HasLoaded: false,
@@ -247,6 +247,7 @@ class Summary extends Component {
       this.props.getFinanceXDC1SecondaryData(this.props.filters);
       this.props.getFinanceSecondaryData(this.props.filters);
     }
+
     // When the app has already loaded and the filters change
     if (this.state.initialDataLoadIsComplete === undefined && (this.props.filters !== prevProps.filters)) {
       console.log(this.state.subFiltersChanged);
@@ -259,33 +260,33 @@ class Summary extends Component {
             console.log('Fetching TRAFFIC')
             this.setState({ isLoading: true, fetchingDiscoverTraffic: true });
             this.setState({ trafficHasLoaded: true });
-            this.props.getTrafficSecondaryData(this.props.filters);
+            this.props.getFilteredTrafficSecondaryData(this.props.filters);
             break;
           case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
-            console.log('Fetching mu')
+            console.log('Fetching mu');
             this.props.updateMuSecondaryIsLoading(false);
-            this.props.getMarketingSecondaryData(this.props.filters);
+            this.props.getFilteredMarketingSecondaryData(this.props.filters);
             this.setState({ isLoading: true, muHasLoaded: true, fetchingDiscoverMUDetails: true });
 
             break;
           case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
-            console.log('Fetching mu')
+            console.log('Fetching mu');
             this.setState({ isLoading: true, muHasLoaded: true, fetchingDiscoverMUDetails: true });
-            this.props.getMarketingSecondaryData(this.props.filters);
+            this.props.getFilteredMarketingSecondaryData(this.props.filters);
             break;
           case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
-            console.log('Fetching mu')
+            console.log('Fetching mu');
             this.setState({ isLoading: true, muHasLoaded: true, fetchingDiscoverMUDetails: true });
-            this.props.getMarketingSecondaryData(this.props.filters);
+            this.props.getFilteredMarketingSecondaryData(this.props.filters);
             break;
           case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
-            console.log('Fetching Buy')
-            console.log('Fetching TRAFFIC')
+            console.log('Fetching Buy');
+            console.log('Fetching TRAFFIC');
             this.setState({ isLoading: true, trafficHasLoaded: true, fetchingDiscoverTraffic: true });
-            this.props.getTrafficSecondaryData(this.props.filters);
+            this.props.getFilteredTrafficSecondaryData(this.props.filters);
             break;
           case 4:
-            console.log('Fetching Use')
+            console.log('Fetching Use');
             // this.props.getUseSecondaryData(this.props.filters);
             break;
           case 5:
@@ -332,8 +333,8 @@ class Summary extends Component {
             //Set requesting traffic to true
             //set is loading to true
             //set traffic has loaded to true
-            this.props.getFinanceXDC1SecondaryData(this.props.filters);
-            this.props.getFinanceSecondaryData(this.props.filters);
+            this.props.getFilteredFinanceXDC1SecondaryData(this.props.filters);
+            this.props.getFilteredFinanceSecondaryData(this.props.filters);
             this.setState({
               financeXDC1HasLoaded: true,
               financeXDC2HasLoaded: true,
@@ -350,8 +351,8 @@ class Summary extends Component {
             //Set requesting traffic to true
             //set is loading to true
             //set traffic has loaded to true
-            this.props.getFinanceXDC1SecondaryData(this.props.filters);
-            this.props.getFinanceSecondaryData(this.props.filters);
+            this.props.getFilteredFinanceXDC1SecondaryData(this.props.filters);
+            this.props.getFilteredFinanceSecondaryData(this.props.filters);
             this.setState({
               financeXDC1HasLoaded: true,
               financeXDC2HasLoaded: true,
@@ -367,8 +368,8 @@ class Summary extends Component {
             //Set requesting traffic to true
             //set is loading to true
             //set traffic has loaded to true
-            this.props.getFinanceXDC2SecondaryData(this.props.filters);
-            this.props.getFinanceSecondaryData(this.props.filters);
+            this.props.getFilteredFinanceXDC2SecondaryData(this.props.filters);
+            this.props.getFilteredFinanceSecondaryData(this.props.filters);
             this.setState({
               financeXDC1HasLoaded: true,
               financeXDC2HasLoaded: true,
@@ -384,8 +385,8 @@ class Summary extends Component {
             //Set requesting traffic to true
             //set is loading to true
             //set traffic has loaded to true
-            this.props.getFinanceXDC2SecondaryData(this.props.filters);
-            this.props.getFinanceSecondaryData(this.props.filters);
+            this.props.getFilteredFinanceXDC2SecondaryData(this.props.filters);
+            this.props.getFilteredFinanceSecondaryData(this.props.filters);
             this.setState({
               financeXDC1HasLoaded: true,
               financeXDC2HasLoaded: true,
@@ -397,8 +398,8 @@ class Summary extends Component {
           case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
             console.log('Fetching Traffic')
 
-            this.props.getTrafficSecondaryData(this.props.filters);
-            this.props.getDiscoverSecondary(this.props.filters);
+            this.props.getFilteredTrafficSecondaryData(this.props.filters);
+            this.props.getFilteredDiscoverSecondary(this.props.filters);
             this.setState({
               trafficHasLoaded: true,
               fetchingDiscoverTrafficDetails: true,
@@ -410,8 +411,8 @@ class Summary extends Component {
           case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
             console.log('Fetching Bouncd')
 
-            this.props.getTrafficSecondaryData(this.props.filters);
-            this.props.getDiscoverSecondary(this.props.filters);
+            this.props.getFilteredTrafficSecondaryData(this.props.filters);
+            this.props.getFilteredDiscoverSecondary(this.props.filters);
             this.setState({
               trafficHasLoaded: true,
               fetchingDiscoverTrafficDetails: true,
@@ -424,8 +425,8 @@ class Summary extends Component {
           case SUMMARY_FILTERS.DISCOVER_UQFM:
             console.log('Fetching UQFM')
 
-            this.props.getTrafficSecondaryData(this.props.filters);
-            this.props.getDiscoverSecondary(this.props.filters);
+            this.props.getFilteredTrafficSecondaryData(this.props.filters);
+            this.props.getFilteredDiscoverSecondary(this.props.filters);
             this.setState({
               trafficHasLoaded: true,
               fetchingDiscoverTrafficDetails: true,
@@ -437,8 +438,8 @@ class Summary extends Component {
             break;
           case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
             console.log('Fetching MU')
-            this.props.getMarketingSecondaryData(this.props.filters);
-            this.props.getDiscoverSecondary(this.props.filters);
+            this.props.getFilteredMarketingSecondaryData(this.props.filters);
+            this.props.getFilteredDiscoverSecondary(this.props.filters);
             this.setState({
               trafficHasLoaded: true,
               fetchingDiscoverMUDetails: true,
@@ -450,8 +451,8 @@ class Summary extends Component {
             break;
           case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
             console.log('Fetching Paid Media Sourced')
-            this.props.getMarketingSecondaryData(this.props.filters);
-            this.props.getDiscoverSecondary(this.props.filters);
+            this.props.getFilteredMarketingSecondaryData(this.props.filters);
+            this.props.getFilteredDiscoverSecondary(this.props.filters);
             this.setState({
               trafficHasLoaded: true,
               fetchingDiscoverMUDetails: true,
@@ -462,8 +463,8 @@ class Summary extends Component {
             break;
           case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
             console.log('Fetching Paid Media Spend')
-            this.props.getMarketingSecondaryData(this.props.filters);
-            this.props.getDiscoverSecondary(this.props.filters);
+            this.props.getFilteredMarketingSecondaryData(this.props.filters);
+            this.props.getFilteredDiscoverSecondary(this.props.filters);
             this.setState({
               trafficHasLoaded: true,
               fetchingDiscoverMUDetails: true,
@@ -474,7 +475,7 @@ class Summary extends Component {
             break;
           case SUMMARY_FILTERS.TRY_NEW_UQFM:
             console.log('Fetching Try')
-            this.props.getTrySecondaryData(this.props.filters);
+            this.props.getFilteredTrySecondaryData(this.props.filters);
             this.setState({
               tryHasLoaded: true,
               fetchingTry: true,
@@ -1488,13 +1489,14 @@ class Summary extends Component {
 
         {/* Navigation*/}
         <Navigation mobileFiltersIsShown={this.props.mobileFiltersIsShown} onFeedbackChange={this.takeDomScreenshot} />
-        <FilterPanel window={this.props.window} />
+        <FilterPanel activeCard={this.props.activePrimaryCard} window={this.props.window} />
 
         {
           this.state.isLoading === true ? <LoadingScreen /> :
             (
 
               <span>
+
                 {/* Data Preferences */}
                 <div>
                   <div>

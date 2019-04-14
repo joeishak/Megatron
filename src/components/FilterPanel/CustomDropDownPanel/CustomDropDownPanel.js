@@ -27,17 +27,7 @@ class CustomDropDownPanel extends Component {
         }
     }
 
-    componentDidUpdate() {
-        // console.log('UPDATING');
-        // console.log(this.props.filters);
-        // // console.log('Updated Filters. . .', this.state.selectedFilters);
-        // if(this.props.filters.quarter.valueFilters.length!==0){
-        //     this.setState({selectedFilters: [...this.state.selectedFilters, ...this.props.filters.quarter.valueFilters]})
-        // }
-        // if(this.props.filters.segment.valueFilters.length!==0){
-        //     this.setState({selectedFilters: [...this.state.selectedFilters, ...this.props.filters.segment.valueFilters]})
-        // }
-    }
+   
     updateSingleValue = (e) => {
         // console.log('Updating SingleValue',e);
         let copy = this.state.selectedFilters;
@@ -213,6 +203,7 @@ class CustomDropDownPanel extends Component {
                                 options={filters.route.availableFilters}
                                 onValueChange={(e) => { let type = ROUTE; this.updateMultiValue(e, type) }}
                                 onMenuClose={this.closeMultiValue}
+                                values={filters.route.valueFilters}
                             />
                         </div>
                         <div className={quarterFilterContainer + ' col-lg-3'} >

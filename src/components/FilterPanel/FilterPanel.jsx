@@ -16,7 +16,7 @@ class FilterPanel extends Component{
 
         this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
     }
-
+   
     /* Event Handler for the Filter Box to open the filter panel with the drop downs */
     openDialogFilterPanel() {
         // Opening the panel
