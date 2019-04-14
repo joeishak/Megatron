@@ -1488,7 +1488,7 @@ class Summary extends Component {
 
         {/* Navigation*/}
         <Navigation mobileFiltersIsShown={this.props.mobileFiltersIsShown} onFeedbackChange={this.takeDomScreenshot} />
-        <FilterPanel window={this.props.window} />
+        <FilterPanel window={this.props.window} activePrimary={this.props.activePrimaryCard}/>
 
         {
           this.state.isLoading === true ? <LoadingScreen /> :

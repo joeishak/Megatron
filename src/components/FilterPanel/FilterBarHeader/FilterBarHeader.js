@@ -54,29 +54,29 @@ class FilterBarHeader extends Component {
             filterBarArr.push(item);
         });
         }
-        if(filters.product.valueFilters.length!==0){
-        filters.product.valueFilters.forEach(item=>{
-            filterBarArr.push(item);
-        });
-        }
-        if(filters.subscription.valueFilters.length!==0){
-        filters.subscription.valueFilters.forEach(item=>{
-            filterBarArr.push(item);
-        });
-        }
+        // if(filters.product.valueFilters.length!==0){
+        // filters.product.valueFilters.forEach(item=>{
+        //     filterBarArr.push(item);
+        // });
+        // }
+        // if(filters.subscription.valueFilters.length!==0){
+        // filters.subscription.valueFilters.forEach(item=>{
+        //     filterBarArr.push(item);
+        // });
+        // }
         if(filters.market.valueFilters.length!==0){
         filters.market.valueFilters.forEach(item=>{
             filterBarArr.push(item);
         });
         }
-        if(filters.route.valueFilters.length!==0){
-        filters.route.valueFilters.forEach(item=>{
-            filterBarArr.push(item);
-        });
-        }
-        filters.segment.valueFilters.forEach(item=>{
-            filterBarArr.push(item);
-        });
+        // if(filters.route.valueFilters.length!==0){
+        // filters.route.valueFilters.forEach(item=>{
+        //     filterBarArr.push(item);
+        // });
+        // }
+        // filters.segment.valueFilters.forEach(item=>{
+        //     filterBarArr.push(item);
+        // });
         if(filterBarArr.length>0) {
             // Return this 
         return(

@@ -502,100 +502,100 @@ export function initiateFilterDataRequests() {
 
     responseArray = [];
     promiseArr = [];
-    const maResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.MarketFilters, {
+    const maResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.MarketFilters, {
         headers: headers,
         responseType: 'text'
     })
-    const segementsResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SegmentFilters, {
+    const segementsResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SegmentFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const subscriptionResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SubscriptionFilters, {
+    const subscriptionResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SubscriptionFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const routeResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.RouteFilters, {
+    const routeResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.RouteFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const quarterResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.QuarterFilters, {
+    const quarterResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.QuarterFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const productResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ProductFilters, {
+    const productResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ProductFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const geoResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.GeoFilters, {
+    const geoResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.GeoFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const channelResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ChannelFilters, {
+    const channelResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ChannelFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const visitResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.VisitFilters, {
-        headers: headers,
-        responseType: 'text'
-    });
-
-    const CloudTypeFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.CloudTypeFilters, {
+    const visitResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.VisitFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const ConvTypeFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ConvTypeFilters, {
-        headers: headers,
-        responseType: 'text'
-    });
-    const DiscoverVsBuyFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.DiscoverVsBuyFilters, {
+    const CloudTypeFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.CloudTypeFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const LastTouchChannelFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.LastTouchChannelFilters, {
+    const ConvTypeFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ConvTypeFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverVsBuyFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.DiscoverVsBuyFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const MobileVsDesktopFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.MobileVsDesktopFilters, {
-        headers: headers,
-        responseType: 'text'
-    });
-    const NewVsRepeatFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.NewVsRepeatFilters, {
-        headers: headers,
-        responseType: 'text'
-    });
-    const ProdNameFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ProdNameFilters, {
+    const LastTouchChannelFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.LastTouchChannelFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const SignupAppFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SignupAppFilters, {
+    const MobileVsDesktopFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.MobileVsDesktopFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    const NewVsRepeatFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.NewVsRepeatFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    const ProdNameFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ProdNameFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const SignupCatFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SignupCatFilters, {
+    const SignupAppFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SignupAppFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const WebSegFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.WebSegFilters, {
+    const SignupCatFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SignupCatFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const ChannelMUFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ChannelMUFilters, {
+    const WebSegFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.WebSegFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const ChannelPMFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ChannelPMFilters, {
+    const ChannelMUFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ChannelMUFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const NonDMSegment = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SegmentNonDMFilters, {
+
+    const ChannelPMFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ChannelPMFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    const NonDMSegment = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SegmentNonDMFilters, {
         headers: headers,
         responseType: 'text'
     });
@@ -607,6 +607,8 @@ export function initiateFilterDataRequests() {
     let promiseArr1 = Promise.all(responseArray);
     return promiseArr1;
 }
+
+//
 export function requestPrimaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -666,31 +668,31 @@ export function requestPrimaryData(allFilters, _parameters) {
 
     // console.log(useParams, renewParams);
     // //Primary 
-    console.log('Fetching Use', Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1');
-    console.log('Fetching Renew', Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.RenewUIPFPrimary + params11 + '&json=1');
+    console.log('Fetching Use', Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1');
+    console.log('Fetching Renew', Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.RenewUIPFPrimary + params11 + '&json=1');
 
-    const primaryFinancial = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetPrimary + params8 + '&json=1', {
+    const primaryFinancial = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetPrimary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const primaryDiscover = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficPrimary + params5 + '&json=1', {
+    const primaryDiscover = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficPrimary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const primaryTry = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryActualTargetPrimary + params2 + '&json=1', {
+    const primaryTry = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryActualTargetPrimary + params2 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Secondary
-    const primaryBuy = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
+    const primaryBuy = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const primaryUse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1', {
+    const primaryUse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const primaryRenew = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.RenewUIPFPrimary + params11 + '&json=1', {
+    const primaryRenew = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.RenewUIPFPrimary + params11 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -767,6 +769,8 @@ export function requestDiscoverSecondary(allFilters, _parameters) {
 
     return promiseArr;
 }
+
+//
 export function requestFinanceSecondaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -779,11 +783,11 @@ export function requestFinanceSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    const financeSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
+    const financeSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const finance2Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
+    const finance2Secondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -821,6 +825,8 @@ export function requestFinanceSecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+
+//
 export function requestFinanceXdc1SecondaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -874,6 +880,8 @@ export function requestFinanceXdc1SecondaryData(allFilters, _parameters) {
     let promiseArr = Promise.all(responseArray);
     return promiseArr;
 }
+
+
 export function requestFinanceXdc2SecondaryData(allFilters, _parameters) {
     responseArray = [];
 

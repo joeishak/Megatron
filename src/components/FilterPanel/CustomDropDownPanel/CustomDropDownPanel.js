@@ -6,12 +6,10 @@ import classNames from 'classnames';
 import * as actions from 'actions';
 import styles from './CustomDropDownPanel.css';
 import { Button } from '@progress/kendo-react-buttons';
-import KendoDropDownList from '../../KendoDropDownList/KendoDropDownList'
 import SingleValueSelect from '../../SingleValueSelect/SingleValueSelect';
 import MultiValueSelect from '../../MultiValueSelect/MultiValueSelect';
 import { DIMENSIONS } from '../../../Constants/consts';
 import * as _ from 'lodash';
-import { writeSync } from 'fs';
 
 class CustomDropDownPanel extends Component {
     //When the component is constructed
@@ -21,23 +19,12 @@ class CustomDropDownPanel extends Component {
         this.state = {
             isButtonHighlighted: false,
             showContainer: this.props.showContainer,
-            selectedFilters: [...this.props.filters.quarter.valueFilters, ...this.props.filters.segment.valueFilters],
+            selectedFilters: [...this.props.filters.combined.valueFilters],
             activeDataFilters: [],
             stringList: '',
         }
     }
 
-    componentDidUpdate() {
-        // console.log('UPDATING');
-        // console.log(this.props.filters);
-        // // console.log('Updated Filters. . .', this.state.selectedFilters);
-        // if(this.props.filters.quarter.valueFilters.length!==0){
-        //     this.setState({selectedFilters: [...this.state.selectedFilters, ...this.props.filters.quarter.valueFilters]})
-        // }
-        // if(this.props.filters.segment.valueFilters.length!==0){
-        //     this.setState({selectedFilters: [...this.state.selectedFilters, ...this.props.filters.segment.valueFilters]})
-        // }
-    }
     updateSingleValue = (e) => {
         // console.log('Updating SingleValue',e);
         let copy = this.state.selectedFilters;
@@ -60,9 +47,12 @@ class CustomDropDownPanel extends Component {
         this.setState({ isButtonHighlighted: true });
 
     }
+
     updateMultiValue = (e, type) => {
-        // console.log('Updating MultiValue',e,type);
+
+
         let copy = this.state.selectedFilters;
+        
         if (e.length === 0) {
             _.remove(copy, item => { return item.category === type });
             this.setState({ selectedFilters: [...copy] })
@@ -73,10 +63,10 @@ class CustomDropDownPanel extends Component {
         }
 
         this.setState({ isButtonHighlighted: true });
-
-
     }
+
     componentWillUnmount() {
+        console.log('here');
         this.setState({ selectedFilters: [] })
     }
     closeSingleValue = (e) => {
@@ -89,20 +79,9 @@ class CustomDropDownPanel extends Component {
         if (!_.find(this.state.selectedFilters, (item => { return item.index === e.index }))) {
             this.setState({ selectedFilters: [...this.state.selectedFilters, e] })
         }
-        // this.props.addValueToActiveMultiFilter(e);
     }
 
-    setSelectedMultiFilters = (filterList) => {
-        const stringListArray = filterList.map(filter => {
-            return filter.label;
-        });
 
-        const stringList = stringListArray.join(' - ');
-        this.setState({stringList: stringList});
-    }
-    closed = (e) => {
-        // console.log('Hello', this.state.selectedFilters);
-    }
     submitFilters = (e) => {
       const { GEO,
             MARKET,
@@ -175,12 +154,13 @@ class CustomDropDownPanel extends Component {
         });
 
 
-        this.setState({ selectedFilters: [] })
-        console.log(newFilters);
+        // this.setState({ selectedFilters: [] })
+        // console.log(newFilters);
         this.props.submitFilters(newFilters);
         this.props.handleClose();
     }
     getGlobalSubFilters(filters, quarterFilterContainer) {
+
         const { GEO,
             MARKET,
             PRODUCT,
@@ -202,22 +182,31 @@ class CustomDropDownPanel extends Component {
             CONVERSION,
             VISITS
         } = DIMENSIONS;
+
+        // console.log('here',this.props.summaryData.primary[this.props.activeCards.primary].index );
         switch (this.props.summaryData.primary[this.props.activeCards.primary].index) {
+
+            /** Financial Perf Tab */
             case 0:
+            // const selectedRoute = this.props.filters.route.valueFilters
+            // //     console.log('testing', selectedRoute );
                 return (
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-3'} >
                             <p>  Route To Market</p>
                             <MultiValueSelect
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === ROUTE})}
                                 options={filters.route.availableFilters}
                                 onValueChange={(e) => { let type = ROUTE; this.updateMultiValue(e, type) }}
                                 onMenuClose={this.closeMultiValue}
+                                // values={this.props.filters.route.valueFilters}
                             />
                         </div>
                         <div className={quarterFilterContainer + ' col-lg-3'} >
                             <p> Segment</p>
                             <SingleValueSelect
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === SEGMENT})}
                                 activeFilters={filters.segment.valueFilters}
                                 options={filters.segment.availableFilters}
                                 onValueChange={this.updateSingleValue}
@@ -228,6 +217,7 @@ class CustomDropDownPanel extends Component {
                         <div className={quarterFilterContainer + ' col-lg-3'} >
                             <p> Subscription Offering</p>
                             <MultiValueSelect
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === SUBSCRIPTION})}
                                 options={filters.subscription.availableFilters}
                                 onValueChange={(e) => { let type = SUBSCRIPTION; this.updateMultiValue(e, type) }}
                                 onMenuClose={this.closeMultiValue}
@@ -259,16 +249,21 @@ class CustomDropDownPanel extends Component {
             //             </div>
             //         </div>
             //     );
+            /** Try Tab */
             case 2:
-            // HERE
+                // const selectedSignUp = this.props.filters.signupCategory.valueFilters
+                // console.log('testing', selectedSignUp);
                 return (
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
+                        <div className={quarterFilterContainer + ' col-lg-6'} >
+                            {/* <p style={{whiteSpace: 'nowrap'}}> Sign Up Source - {this.state.stringList}</p> this.setSelectedMultiFilters(selected); */}
+                 
                             <p style={{whiteSpace: 'nowrap'}}> Sign Up Source - {this.state.stringList}</p>
                             <MultiValueSelect
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === SIGNCAT})}
                                 options={filters.signupCategory.availableFilters}
-                                onValueChange={(e) => { let type = SIGNCAT; this.updateMultiValue(e, type); this.setSelectedMultiFilters(e); }}
+                                onValueChange={(e) => { let type = SIGNCAT; this.updateMultiValue(e, type);  }}
                                 onMenuClose={this.closeMultiValue}
                             />
                           
@@ -330,9 +325,11 @@ class CustomDropDownPanel extends Component {
         }
     }
     render() {
+        // console.log('here rendering')
         const { filters } = this.props;
         const {primary} = this.props.activeCards;
         const isGlowing = this.state.isButtonHighlighted ? 'myGlower' : '';
+
       const { GEO,
             MARKET,
             PRODUCT,
@@ -398,6 +395,8 @@ class CustomDropDownPanel extends Component {
                         values={_.groupBy(this.state.selectedFilters, (item => { return item.category === MARKET }))}
                     />
                 </div>
+
+                <button onClick={e => {this.forceUpdate(); console.log('forceUpdating')}}></button>
                 {/* <div className={quarterFilterContainer + ' col-lg-3'} >
                     <p>  Route To Market</p>
                     <MultiValueSelect
@@ -432,6 +431,7 @@ class CustomDropDownPanel extends Component {
                         onMenuClose={this.closeMultiValue}
                     />
                 </div> */}
+                {/* {console.log('here', filters, quarterFilterContainer)} */}
                 {this.getGlobalSubFilters(filters, quarterFilterContainer)}
                 <div className={quarterFilterContainer + ' col-lg-12'}>
                     <input className={`button ` + isGlowing} type={'button'} onClick={this.submitFilters} value="Submit" />
@@ -443,6 +443,10 @@ class CustomDropDownPanel extends Component {
     }
 }
 function mapStateToProps(state) {
-    return { filters: state.filters, summaryData: state.summaryData, activeCards: state.activeCards };
+    return { 
+        filters: state.filters, 
+        summaryData: state.summaryData, 
+        activeCards: state.activeCards 
+    };
 }
 export default connect(mapStateToProps, actions)(CustomDropDownPanel)

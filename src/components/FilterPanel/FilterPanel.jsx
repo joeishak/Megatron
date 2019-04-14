@@ -46,6 +46,7 @@ class FilterPanel extends Component{
             handleClose={this.openDialogFilterPanel}
             showContainer={this.state.filterPanelIsOpen}
             showSlide={this.state.showDropDowns}
+            activePrimary={this.props.activePrimary}
           />
           </div>;
         return(

@@ -39,11 +39,11 @@ let transformDefaultList = (objList) => {
 }
 
 // Render Component
-const SingleValueSelect = ({ options, activeFilters, defaultValue, onValueChange, onMenuClose }) => {
+const SingleValueSelect = ({ options, _value, defaultValue, onValueChange, onMenuClose }) => {
     return (
         <Select
             className="blackText"
-            // value={transformList(activeFilters)}
+            value={_value}
             options={transformList(options)}
             closeMenuOnSelect={true}
             onMenuClose={(e) => {
