@@ -85,19 +85,22 @@ class CommentBox extends Component {
                     this.props.addNewCommentToSecondaryMetric(params, this.props.currentMetric);
                     // utils.postComment(params);
                     // this.props.fetchComments(this.props.currentMetric);
-                    this.props.fetchCommentsCount();
+                    // this.props.fetchCommentsCount(this.props.currentMetric);
                 // })
-
+                // this.forceUpdate()
                 this.setState({ replyMessage: '' })
             }
 
             // check if commenter and only post commenter
             if (isCommenter !== null && isCommenter) {
-                this.props.isFetching(true);
-                this.props.addNewCommentToSecondaryMetric(params, this.props.currentMetric);
-                // utils.postComment(params);
-                // this.props.fetchComments(this.props.currentMetric);
-                this.props.fetchCommentsCount();
+                // this.forceUpdate(() => {
+                    this.props.isFetching(true);
+                    this.props.addNewCommentToSecondaryMetric(params, this.props.currentMetric);
+                    // utils.postComment(params);
+                    // this.props.fetchComments(this.props.currentMetric);
+                    // this.props.fetchCommentsCount(this.props.currentMetric);
+                // })
+
             // })
 
                 this.setState({ replyMessage: '' })
@@ -123,13 +126,13 @@ class CommentBox extends Component {
                 //     this.props.isFetching(true);
                 //     utils.postReply(params);
                 //     this.props.fetchComments(this.props.currentMetric);
-                //     this.props.fetchCommentsCount();
+                //     this.props.fetchCommentsCount(this.props.currentMetric);
                 // });
                 this.props.isFetching(true);
                 this.props.addNewReplyToSecondaryMetric(params, this.props.currentMetric);
                 // utils.postComment(params);
                 // this.props.fetchComments(this.props.currentMetric);
-                this.props.fetchCommentsCount();
+                // this.props.fetchCommentsCount(this.props.currentMetric);
                 this.setState({
                     commentToBeRepliedTo: null,
                     replyMessage: '',
@@ -143,13 +146,13 @@ class CommentBox extends Component {
                 //     this.props.isFetching(true);
                 //     utils.postReply(params);
                 //     this.props.fetchComments(this.props.currentMetric);
-                //     this.props.fetchCommentsCount();
+                //     this.props.fetchCommentsCount(this.props.currentMetric);
                 // });
                 this.props.isFetching(true);
                 this.props.addNewReplyToSecondaryMetric(params, this.props.currentMetric);
                 // utils.postComment(params);
                 // this.props.fetchComments(this.props.currentMetric);
-                this.props.fetchCommentsCount();
+                // this.props.fetchCommentsCount(this.props.currentMetric);
                 this.setState({
                     commentToBeRepliedTo: null,
                     replyMessage: '',
@@ -165,7 +168,7 @@ class CommentBox extends Component {
             //     this.props.isFetching(true);
             //     utils.postReply(params);
             //     this.props.fetchComments(this.props.currentMetric);
-            //     this.props.fetchCommentsCount();
+            //     this.props.fetchCommentsCount(this.props.currentMetric);
             // });
 
             // this.setState({
@@ -216,11 +219,9 @@ class CommentBox extends Component {
         // alert('DELETE COMMENT');
         this.props.isFetching(true);
 
-        utils.removeComment({
-            id: commentId
-        })
-        this.props.fetchComments(this.props.currentMetric);
-        this.props.fetchCommentsCount();
+        this.props.removeComment(commentId,this.props.currentMetric        )
+        // this.props.fetchComments(this.props.currentMetric,this.props.currentMetric);
+        this.props.fetchCommentsCount(this.props.currentMetric);
         // this.props.removeComment(commentId, this.props.currentMetric);
         // const reponsesIdArr = commentResponses.map(ele => { return ele.id });
     }
@@ -257,36 +258,29 @@ class CommentBox extends Component {
                             </div>
                             <div className='mainCommentContent'>
                                 {comment.comment}
-                                <a id={comment.id} className='replyArrow' onMouseEnter={e => this.handleCommentMouseEnter(e, comment.userName)}
-                                    onMouseLeave={e => this.handleCommentMouseLeave(e, comment.userName)} onClick={e => this.setAddCommentFocus(e, comment.userName)}></a>
+                                {/* <a id={comment.id} className='replyArrow' onMouseEnter={e => this.handleCommentMouseEnter(e, comment.userName)}
+                                    onMouseLeave={e => this.handleCommentMouseLeave(e, comment.userName)} onClick={e => this.setAddCommentFocus(e, comment.userName)}></a> */}
                             </div>
-                            <div className='repliesContainer'>
+                           {/* <div className='repliesContainer'>
                                 <div className='repliesArrowContainer'>
                                     <span className='repliesArrow'>
                                     </span>
                                 </div>
-                                <div className='repliesList'>
+                                 <div className='repliesList'>
                                     {(comment.replies !== undefined) ? comment.replies.map(reply => {
-                                        // console.log(this.props.user.name);
                                         return (
                                             <div key={reply.id} className='reply'>
-                                                {/* Reply Header */}
                                                 <div className='userReplyingHeader'>
-                                                    {/* Reply Comment User Icon */}
-                                                    {/* <div className='commentUserIcon' /> */}
                                                     <img src={profilePic} className="profilePictures" />
-                                                    {/* Reply Comment User Name */}
                                                     <span className='commentUserName' onMouseEnter={e => { this.onCommentReplyDeleteEntered(e, reply.id, this.props.user.name) }}
                                                         onMouseLeave={e => { this.onCommentReplyDeleteLeave(e, reply.id) }}>
                                                         {(this.state.isHovered.id === reply.id && this.state.isHovered.userName === reply.userName) ?
                                                             <span style={{ color: 'red' }} onClick={e => { this.onReplyDeleted(e, reply.id) }} className="comment-delete">DELETE RESPONSE</span>
                                                             : reply.userName}
                                                     </span>
-                                                    {/* Reply Comment User Date */}
                                                     <span className='commentTime'>
                                                         {this.state.isHovered.id === reply.id && this.state.isHovered.userName === reply.userName ? '' : reply.time}</span>
                                                 </div>
-                                                {/* Reply Content */}
                                                 <div className='replyContent'>
                                                     {reply.comment}
                                                 </div>
@@ -294,8 +288,8 @@ class CommentBox extends Component {
                                         )
                                     }) : null}
 
-                                </div>
-                            </div>
+                                </div> 
+                            </div>*/}
                         </div>)
                 }) : null}
 

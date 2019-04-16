@@ -12,21 +12,28 @@ import SingleDimensionDetailPanelItemTimeHeader from './SingleDimensionDetailPan
 import DetailPanelItemTimeHeader from './DetailPanelItemTimeHeader';
 import PanelItemTableHeader from './PanelItemTableHeader';
 import PanelItemTable from './PanelItemTable';
+import Loading from '../../../../Views/Loading/Loading';
 class DetailPanelBar extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
+            isLoading: false,
         }
         this.getPanelContents = this.getPanelContents.bind(this);
 
     }
 
-    shouldComponentUpdate(nextProps) {
-        return true;
+   componentDidUpdate(prevProps){
+       if(this.props.activeSecondary !== prevProps.activeSecondary){
+        this.setState({isLoading: true},()=>{
+            setTimeout(()=>{
+                this.setState({isLoading:false})
+            },100)
+        });
     }
-
+   }
 
     /* Return Contents for */
     getPanelContents(type) {
@@ -41,7 +48,7 @@ class DetailPanelBar extends Component {
                             isJourney={this.props.activeSecondary <=3 ? false : true}
                         />
                     </div>
-                    <div className='col-md-12'>
+                    <div className=''>
                         {/* {this.getLowerHeader(type)} */}
                         <PanelItemTableHeader
                             qtdIsPercent={this.props.qtdIsPercent}
@@ -49,7 +56,7 @@ class DetailPanelBar extends Component {
                             activeSummary={this.props.activeSummary}
                             type={type} />
                     </div>
-                    <div className='col-md-12 geoTableContainer'>
+                    <div className=' geoTableContainer'>
                         {/* {this.getTable(type)} */}
                         <PanelItemTable
                             activeSecondary={this.props.activeSecondary}
@@ -71,7 +78,7 @@ class DetailPanelBar extends Component {
                             isJourney={this.props.activeSecondary <=3 ? false : true}
                         />
                     </div>
-                    <div className='col-md-12'>
+                    <div className=''>
                         {/* {this.getLowerHeader(type)} */}
                         <PanelItemTableHeader
                             qtdIsPercent={this.props.qtdIsPercent}
@@ -79,7 +86,7 @@ class DetailPanelBar extends Component {
                             activeSummary={this.props.activeSummary}
                             type={type} />
                     </div>
-                    <div className='col-md-12 geoTableContainer'>
+                    <div className='geoTableContainer'>
                         {/* {this.getTable(type)} */}
                         <PanelItemTable
                             activeSecondary={this.props.activeSecondary}
@@ -340,25 +347,98 @@ class DetailPanelBar extends Component {
                 }
 
 
-            case 3:
-                return (
-                    <PanelBar >
-                        <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
-                            {this.getPanelContents(DIMENSIONS.GEO)}
-                        </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
-                            {this.getPanelContents(DIMENSIONS.MARKET)}
-                        </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
-                            {this.getPanelContents(DIMENSIONS.SEGMENT)}
-                        </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title={'Last Touch Channel'}>
-                            {this.getPanelContents(LTC)}
-                        </ PanelBarItem>
-
-
-                    </PanelBar>
-                )
+                case 3:
+                //Disocver
+                switch (this.props.activeSecondary) {
+                 case SUMMARY_FILTERS.BUY_PAID_MEDIASPEND:
+                     return (
+                         <PanelBar >
+                             <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                                 {this.getPanelContents(DIMENSIONS.GEO)}
+                             </ PanelBarItem>
+                             <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                                 {this.getPanelContents(DIMENSIONS.MARKET)}
+                             </ PanelBarItem>
+                             <PanelBarItem className="panelItemTitle" expanded={false} title='Channel'>
+                                 {this.getPanelContents(DIMENSIONS.CHANNELPM)}
+                             </ PanelBarItem>
+                         </PanelBar>
+                     )
+                 case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
+                     return (
+                         <PanelBar >
+                         <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                             {this.getPanelContents(DIMENSIONS.GEO)}
+                         </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                             {this.getPanelContents(DIMENSIONS.MARKET)}
+                         </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='Channel'>
+                             {this.getPanelContents(DIMENSIONS.CHANNELPM)}
+                         </ PanelBarItem>
+                     </PanelBar>
+                     )
+                 case SUMMARY_FILTERS.BUY_CONVERSION:
+                 return (
+                     <PanelBar >
+                         <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                             {this.getPanelContents(DIMENSIONS.GEO)}
+                         </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                             {this.getPanelContents(DIMENSIONS.MARKET)}
+                         </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
+                             {this.getPanelContents(DIMENSIONS.WEBSEGMENT)}
+                         </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title={'Channel'}>
+                             {this.getPanelContents(DIMENSIONS.LTC)}
+                         </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion'>
+                             {this.getPanelContents(DIMENSIONS.CONVERSION)}
+                         </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='Mobile Vs Desktop'>
+                             {this.getPanelContents(DIMENSIONS.MOBILEVSDESKTOP)}
+                         </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='New Vs Repeat'>
+                             {this.getPanelContents(DIMENSIONS.NEWVSREPEAT)}
+                         </ PanelBarItem>
+                     </PanelBar>
+                 )
+                 case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
+                 return (
+                     <PanelBar >
+                         <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                             {this.getPanelContents(DIMENSIONS.GEO)}
+                         </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                             {this.getPanelContents(DIMENSIONS.MARKET)}
+                         </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
+                             {this.getPanelContents(DIMENSIONS.ROUTE)}
+                         </PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title={'Segment'}>
+                             {this.getPanelContents(DIMENSIONS.SEGMENT)}
+                         </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='Product Category'>
+                             {this.getPanelContents(DIMENSIONS.PRODUCT)}
+                         </PanelBarItem>
+                     </PanelBar>
+                 )
+                 case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
+                     return (
+                         <PanelBar >
+                             <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                                 {this.getPanelContents(DIMENSIONS.GEO)}
+                             </ PanelBarItem>
+                             <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                                 {this.getPanelContents(DIMENSIONS.MARKET)}
+                             </ PanelBarItem>
+                             <PanelBarItem className="panelItemTitle" expanded={false} title='Channel'>
+                                 {this.getPanelContents(DIMENSIONS.CHANNELPM)}
+                             </ PanelBarItem>
+                         </PanelBar>
+                     )
+             }
             case 4:
                 switch (this.props.activeSecondary) {
                     case 24:
@@ -701,7 +781,7 @@ class DetailPanelBar extends Component {
     }
     render() {
         return (<div className={'panel-wrapper'}>
-            {this.getDynamicPanelBar()}
+            {this.state.isLoading ? <Loading /> : this.getDynamicPanelBar()}
         </div>)
     }
 }

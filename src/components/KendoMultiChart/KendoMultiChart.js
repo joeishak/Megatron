@@ -78,14 +78,14 @@ class KendoMultiChart extends Component {
 
     getTooltipType = (seriesType) => {
         switch (seriesType) {
-            case 'Actual':
+            case 'Actuals':
                 return 'tooltipActual';
-            case 'Target':
+            case 'Targets':
                 return 'tooltipTarget';
-            case 'Last Year':
-                return 'tooltipLastYear';
             case 'Last Quarter':
                 return 'tooltipLastQuarter';
+            case 'Last Year':
+                return 'tooltipLastYear';
         }
     }
 
@@ -138,7 +138,7 @@ class KendoMultiChart extends Component {
                                     <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div>
                                     <b className="series-name">{point.series.name}</b> :
                                 <div className="tooltipValue">
-                                        {(point.series.name === 'Actual' ?
+                                        {(point.series.name === 'Actuals' ?
                                             <b className={`'series-value' + ${textColor}`}>{utils.formatMetric({ valueType: this.props.valueType, value: point.value }, 'target')}</b> :
                                             <b className="series-value">{utils.formatMetric({ valueType: this.props.valueType, value: point.value }, 'target')}
                                             </b>)}
@@ -160,7 +160,7 @@ class KendoMultiChart extends Component {
                                     <div className={`actualMarker ${this.getTooltipType(point.series.name)}`}></div>
                                     <b className="series-name">{point.series.name}</b> :
                                     <div className="tooltipValue">
-                                        {(point.series.name === 'Actual' ?
+                                        {(point.series.name === 'Actuals' ?
                                             <b className={`'series-value' + ${textColor}`}>{utils.formatMetric({ valueType: 'units', value: point.value }, 'value')}</b> :
                                             <b className="series-value">{utils.formatMetric({ valueType: 'units', value: point.value }, 'value')}
                                             </b>)}

@@ -86,9 +86,6 @@ class SecondarySquares extends Component {
     const seconaryBoxContentAmount = classNames({ journeysAmount: isLaptop });
     const boxContentTarget = classNames({ secondaryTarget: isLaptop });
 
-    
-
-
     return (
       <div className={secondaryBoxHover} key={this.props.item.index}>
         <div
@@ -115,9 +112,7 @@ class SecondarySquares extends Component {
               <img
                 alt=""
                 src={
-                  this.props.item.comments.length !== 0
-                    ? commentIconOn
-                    : commentIconOff
+                  commentIconOff
                 }
                 onClick={e =>
                   this.props.onCommentIconClick(
@@ -222,9 +217,7 @@ class SecondarySquares extends Component {
               <img
                 alt=""
                 src={
-                  this.props.item.comments.length !== 0
-                    ? commentIconOn
-                    : commentIconOff
+                   commentIconOff
                 }
                 onClick={e =>
                   this.props.onCommentIconClick(

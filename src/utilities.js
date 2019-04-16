@@ -114,6 +114,10 @@ let buyMktgParams = [
     {
         prompt: 'channelPMFilters',
         value: ''
+    },
+    {
+        prompt: 'productFilters',
+        value: ''
     }
 ];
 let uqfmParams = [
@@ -198,6 +202,33 @@ let financeParams = [
         value: ''
     }
 ];
+let buyGrossParams = [
+    {
+        prompt: 'quarterFilters',
+        value: ''
+    },
+    {
+        prompt: 'geoFilters',
+        value: ''
+    },
+    {
+        prompt: 'maFilters',
+        value: ''
+    },
+    {
+        prompt: 'routeFilters',
+        value: ''
+    },
+    {
+        prompt: 'segmentFilters',
+        value: ''
+    },
+    {
+        prompt: 'PVWFilters',
+        value: ''
+    }
+];
+
 let renewParams = [
     {
         prompt: 'quarterFilters',
@@ -222,11 +253,8 @@ let renewParams = [
     {
         prompt: 'subscriptionFilters',
         value: ''
-    },
-    {
-        prompt: 'productFilters',
-        value: ''
     }
+    
 ];
 let useParams = [
     {
@@ -360,7 +388,6 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
     switch (type) {
         case 1:
             //Use
-            // console.log(allFilters);
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
@@ -376,15 +403,14 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             break;
         case 3:
             //Renew
-            // console.log(allFilters);
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.route, allFilters.routeTomarket);
             filterParams[4].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
             filterParams[5].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
-            filterParams[6].value = getParamValues(_activeParams.product, allFilters.product);
             break;
+        // Renew
         case 4:
 
 
@@ -421,12 +447,15 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             break;
+        // case 9 = Finance = Default
         case 10: /* Buy Market */
             filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[4].value = getParamValues(_activeParams.channelPM, allFilters.channelPM);
+            filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
+
             break;
         case 11: //Repeat User Mau
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
@@ -435,7 +464,15 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             break;
-        //Finance
+        case 12:  // Buy Gross 
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.route, allFilters.routeTomarket);
+            filterParams[4].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[5].value = getParamValues(_activeParams.pvw, allFilters.pvw);
+
+            break;
         default:
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
@@ -502,108 +539,112 @@ export function initiateFilterDataRequests() {
 
     responseArray = [];
     promiseArr = [];
-    const maResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.MarketFilters, {
+    const maResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.MarketFilters, {
         headers: headers,
         responseType: 'text'
     })
-    const segementsResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SegmentFilters, {
+    const segementsResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SegmentFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const subscriptionResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SubscriptionFilters, {
+    const subscriptionResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SubscriptionFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const routeResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.RouteFilters, {
+    const routeResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.RouteFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const quarterResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.QuarterFilters, {
+    const quarterResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.QuarterFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const productResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ProductFilters, {
+    const productResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ProductFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const geoResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.GeoFilters, {
+    const geoResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.GeoFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const channelResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ChannelFilters, {
+    const channelResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ChannelFilters, {
         headers: headers,
         responseType: 'text'
     });
-    const visitResponse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.VisitFilters, {
-        headers: headers,
-        responseType: 'text'
-    });
-
-    const CloudTypeFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.CloudTypeFilters, {
+    const visitResponse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.VisitFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const ConvTypeFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ConvTypeFilters, {
-        headers: headers,
-        responseType: 'text'
-    });
-    const DiscoverVsBuyFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.DiscoverVsBuyFilters, {
+    const CloudTypeFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.CloudTypeFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const LastTouchChannelFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.LastTouchChannelFilters, {
+    const ConvTypeFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ConvTypeFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverVsBuyFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.DiscoverVsBuyFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const MobileVsDesktopFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.MobileVsDesktopFilters, {
-        headers: headers,
-        responseType: 'text'
-    });
-    const NewVsRepeatFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.NewVsRepeatFilters, {
-        headers: headers,
-        responseType: 'text'
-    });
-    const ProdNameFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ProdNameFilters, {
+    const LastTouchChannelFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.LastTouchChannelFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const SignupAppFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SignupAppFilters, {
+    const MobileVsDesktopFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.MobileVsDesktopFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    const NewVsRepeatFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.NewVsRepeatFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    const ProdNameFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ProdNameFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const SignupCatFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SignupCatFilters, {
+    const SignupAppFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SignupAppFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const WebSegFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.WebSegFilters, {
+    const SignupCatFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SignupCatFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const ChannelMUFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ChannelMUFilters, {
+    const WebSegFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.WebSegFilters, {
         headers: headers,
         responseType: 'text'
     });
 
-    const ChannelPMFilters = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ChannelPMFilters, {
-        headers: headers,
-        responseType: 'text'
-    });
-    const NonDMSegment = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SegmentNonDMFilters, {
+    const ChannelMUFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ChannelMUFilters, {
         headers: headers,
         responseType: 'text'
     });
 
+    const ChannelPMFilters = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.ChannelPMFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    const NonDMSegment = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.SegmentNonDMFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    const PVW = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.PVWFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
     responseArray.push(quarterResponse, maResponse, productResponse, segementsResponse,
         subscriptionResponse, routeResponse, geoResponse, channelResponse, visitResponse,
         CloudTypeFilters, ConvTypeFilters, DiscoverVsBuyFilters, LastTouchChannelFilters,
-        MobileVsDesktopFilters, NewVsRepeatFilters, ProdNameFilters, SignupAppFilters, SignupCatFilters, WebSegFilters, ChannelMUFilters, ChannelPMFilters, NonDMSegment);
+        MobileVsDesktopFilters, NewVsRepeatFilters, ProdNameFilters, SignupAppFilters, SignupCatFilters,
+         WebSegFilters, ChannelMUFilters, ChannelPMFilters, NonDMSegment,PVW);
     let promiseArr1 = Promise.all(responseArray);
     return promiseArr1;
 }
@@ -669,9 +710,9 @@ export function requestPrimaryData(allFilters, _parameters) {
     // console.log(useParams, renewParams);
     // //Primary 
     console.log('Fetching Use', Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1');
-    console.log('Fetching Renew', Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.RenewUIPFPrimary + params11 + '&json=1');
+    console.log('Fetching Renew', Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.RenewUIPFPrimary + params11 + '&json=1');
 
-    const primaryFinancial = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetPrimary + params8 + '&json=1', {
+    const primaryFinancial = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetPrimary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -692,7 +733,7 @@ export function requestPrimaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    const primaryRenew = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.RenewUIPFPrimary + params11 + '&json=1', {
+    const primaryRenew = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.RenewUIPFPrimary + params11 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -782,11 +823,11 @@ export function requestFinanceSecondaryData(allFilters, _parameters) {
     }, '');
 
     console.log('Params 8', params8);
-    const financeSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
+    const financeSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const finance2Secondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
+    const finance2Secondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -836,39 +877,39 @@ export function requestFinanceXdc1SecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    const financeSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
+    const financeSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8Multichart + params8 + '&json=1', {
+    const financeMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8Multichart + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeUnitsMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8Units + params8 + '&json=1', {
+    const financeUnitsMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8Units + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8QTD + params8 + '&json=1', {
+    const financeQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8QTD + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8GeoQtd + params8 + '&json=1', {
+    const financeGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8GeoQtd + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8MarketQTD + params8 + '&json=1', {
+    const financeMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8MarketQTD + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8SegmentQTD + params8 + '&json=1', {
+    const financeSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8SegmentQTD + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeRouteQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8RouteQTD + params8 + '&json=1', {
+    const financeRouteQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8RouteQTD + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeProductQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8ProductQTD + params8 + '&json=1', {
+    const financeProductQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8ProductQTD + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -889,39 +930,39 @@ export function requestFinanceXdc2SecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    const financeSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
+    const financeSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC2ID + Infoburst.summaryQueryNames.FinancialG8Multichart + params8 + '&json=1', {
+    const financeMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8Multichart + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeUnitsMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC2ID + Infoburst.summaryQueryNames.FinancialG8Units + params8 + '&json=1', {
+    const financeUnitsMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8Units + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC2ID + Infoburst.summaryQueryNames.FinancialG8QTD + params8 + '&json=1', {
+    const financeQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8QTD + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC2ID + Infoburst.summaryQueryNames.FinancialG8GeoQtd + params8 + '&json=1', {
+    const financeGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8GeoQtd + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC2ID + Infoburst.summaryQueryNames.FinancialG8MarketQTD + params8 + '&json=1', {
+    const financeMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8MarketQTD + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC2ID + Infoburst.summaryQueryNames.FinancialG8SegmentQTD + params8 + '&json=1', {
+    const financeSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8SegmentQTD + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeRouteQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC2ID + Infoburst.summaryQueryNames.FinancialG8RouteQTD + params8 + '&json=1', {
+    const financeRouteQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8RouteQTD + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeProductQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.financeXDC2ID + Infoburst.summaryQueryNames.FinancialG8ProductQTD + params8 + '&json=1', {
+    const financeProductQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ProductQTD + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -1194,55 +1235,142 @@ export function requestTrySecondaryData(allFilters, _parameters) {
 
 }
 export function requestBuySecondaryData(allFilters, _parameters) {
+    responseArray = [];
+    generateFilterParams(10, buyMktgParams, allFilters, _parameters);
+    generateFilterParams(9, financeParams, allFilters, _parameters);
+    generateFilterParams(5, trafficParams, allFilters, _parameters);
+    generateFilterParams(7, pmssParams, allFilters, _parameters);
 
+
+
+    let params5 = trafficParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params6 = buyMktgParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params7 = financeParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params8 = pmssParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    // Traffic  & Bounce
+    const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    //Marketing
+    const mktgSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMarketSourceARRSecondary + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    const pmssSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyPMSpendSecondary + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    const financeSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params7 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    responseArray.push(DiscoverG5Secondary, mktgSecondary, pmssSecondary,
+        financeSecondary
+    );
+    let promiseArr = Promise.all(responseArray);
+
+    return promiseArr;
 }
 export function requestBuyTrafficSecondaryData(allFilters, _parameters) {
     responseArray = [];
-    generateFilterParams(8, uqfmParams, allFilters, _parameters);
+    generateFilterParams(5, trafficParams, allFilters, _parameters);
 
 
-    let params6 = uqfmParams.reduce((prev, param) => {
+    let params5 = trafficParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
 
-    // console.log("UQFM Network Request: ", Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvSecondary + params6 + '&json=1');
-
-    // UQFM
-    const uqfmSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvSecondary + params6 + '&json=1', {
+    // console.log("Traffic Network Request: ", Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1');
+    // Traffic  & Bounce
+    const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Multichart
-    const uqfmMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvMutlichart + params6 + '&json=1', {
+    const DiscoverG5Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficMutlichart + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //QTD
-    const uqfmQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvQTD + params6 + '&json=1', {
+    const DiscoverG5QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Geo QTD
-    const uqfmGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvGeoQTD + params6 + '&json=1', {
+    const DiscoverG5GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficGeoQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Market QTD
-    const uqfmMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.DiscoverUQFMConvMAQTD + params6 + '&json=1', {
+    const DiscoverG5MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficMAQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    // Web Segment QTD
+    const DiscoverG5SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficWebSegQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Last touch channelQTD 
+    const DiscoverGLTCQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficLTCQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Conversion Type QTD
+    const DiscoverG5ConvQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficConvTypeQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Mobile Vs Desktop QTD
+    const DiscoverMobDesk = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficMobDeskQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //NEw Vs Repeat QTD
+    const DiscoverNewRep = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficNewRepQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     responseArray.push(
-        uqfmSecondary, uqfmMultichart, uqfmQTD, uqfmGeoQTD, uqfmMarketQTD,
+        DiscoverG5Secondary,
+        DiscoverG5Multichart,
+        DiscoverG5QTD,
+        DiscoverG5GeoQTD,
+        DiscoverG5MarketQTD,
+        DiscoverG5SegmentQTD,
+        DiscoverGLTCQTD,
+        DiscoverG5ConvQTD,
+        DiscoverMobDesk,
+        DiscoverNewRep,
     );
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
 }
 export function requestBuyMarketSecondaryData(allFilters, _parameters) {
-    // console.log('requesting marketing data');
+    console.log('requesting marketing data',_parameters);
     responseArray = [];
     generateFilterParams(10, buyMktgParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
@@ -1258,6 +1386,10 @@ export function requestBuyMarketSecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
+
+    console.log('MKTG Params before reduce', buyMktgParams);
+    console.log('PMSS Params before reduce', pmssParams);
+
     //Marketing
     const mktgSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMarketSourceARRSecondary + params5 + '&json=1', {
         headers: headers,
@@ -1335,52 +1467,52 @@ export function requestBuyFinanceSecondaryData(allFilters, _parameters) {
     responseArray = [];
 
 
-    generateFilterParams(9, financeParams, allFilters, _parameters);
+    generateFilterParams(12, buyGrossParams, allFilters, _parameters);
 
-    let params8 = financeParams.reduce((prev, param) => {
+    let params8 = buyGrossParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
 
-    const financeSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
+    const financeSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.BuyGrossActualTargetSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8Multichart + params8 + '&json=1', {
+    const financeMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.BuyGrossMultichart + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeUnitsMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8Units + params8 + '&json=1', {
+    // const financeUnitsMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.BuyGrossUnits + params8 + '&json=1', {
+    //     headers: headers,
+    //     responseType: 'text'
+    // });
+    const financeQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.BuyGrossQTD + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDC11ID + Infoburst.summaryQueryNames.FinancialG8QTD + params8 + '&json=1', {
+    const financeGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.BuyGrossGeoQtd + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8GeoQtd + params8 + '&json=1', {
+    const financeMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.BuyGrossMarketQTD + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8MarketQTD + params8 + '&json=1', {
+    const financeSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.BuyGrossSegmentQTD + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8SegmentQTD + params8 + '&json=1', {
+    const financeRouteQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.BuyGrossRouteQTD + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeRouteQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8RouteQTD + params8 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
-    const financeProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDC1ID + Infoburst.summaryQueryNames.FinancialG8ProductQTD + params8 + '&json=1', {
+    const financeProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.BuyGrossProductQTD + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
 
-    responseArray.push(financeSecondary, financeMultichart, financeUnitsMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, financeProductQTD);
+    responseArray.push(financeSecondary, financeMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, financeProductQTD);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
@@ -1452,20 +1584,20 @@ export function filterPrimaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    const primaryDiscover = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficPrimary + params5 + '&json=1', {
+    const primaryDiscover = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficPrimary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const primaryTry = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryActualTargetPrimary + params2 + '&json=1', {
+    const primaryTry = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryActualTargetPrimary + params2 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Secondary
-    const primaryBuy = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
+    const primaryBuy = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const primaryUse = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1', {
+    const primaryUse = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -1563,7 +1695,7 @@ export function filterFinanceSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    const finance2Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
+    const finance2Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -1613,7 +1745,7 @@ export function filterFinanceXdc1SecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    
+
     const financeSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -1725,7 +1857,7 @@ export function filterTrafficSecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-    console.log('Traffic Params',params5, 'uqfm params',params6);
+    console.log('Traffic Params', params5, 'uqfm params', params6);
 
     // console.log("Traffic Network filter: ", Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1');
     // Traffic  & Bounce
@@ -1842,7 +1974,7 @@ export function filterMKTGSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    console.log('MKtble Univ Params',params5, 'Paid Media SS params',params6);
+    console.log('MKtble Univ Params', params5, 'Paid Media SS params', params6);
 
     // console.log("MU NEtwork request:", Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUSecondary + params5 + '&json=1');
     //Marketing
@@ -2257,8 +2389,20 @@ export function fetchComments(metricId) {
         }
 
     });
-    let responseARr = Promise.all([res1]);
-    
+
+    let body1 = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'fetchCommentsCount',
+        "columnNames": 'true',
+        "params": {}
+    };
+
+    let post = axios.post(Infoburst.dbQuery, body1, { headers: headers, responseType: 'text' }).then((res) => {
+        // console.log(res.data);
+        return res.data;
+    });
+    let responseARr = Promise.all([res1, post]);
+
     return responseARr;
 }
 
@@ -2270,7 +2414,7 @@ export function fetchCommentsCount() {
         "params": {}
     };
 
-    let post =  axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' }).then((res) => {
+    let post = axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' }).then((res) => {
         // console.log(res.data);
         return res.data;
     });
@@ -2300,7 +2444,7 @@ export function postComment(params, metric) {
             "metric": metric
         }
     };
-   let post =  axios.post(Infoburst.dbQuery, body, {
+    let post = axios.post(Infoburst.dbQuery, body, {
         headers: headers,
         responseType: 'text'
     }).then((res) => {
@@ -2308,7 +2452,7 @@ export function postComment(params, metric) {
         const res1 = axios.post(Infoburst.dbQuery, fetchBody, { headers: headers, responseType: 'text' }).then((response) => {
 
             if (response !== []) {
-    
+
                 const commentIdsArray = response.data.map(ele => { return ele.id; });
                 const params = convertFilterListForDBQuery(commentIdsArray);
                 let responseBody = {
@@ -2323,23 +2467,33 @@ export function postComment(params, metric) {
                     const commentsComplete = { comment: response.data, replies: res.data };
                     return commentsComplete;
                 });
-    
+
                 return replies;
             } else {
                 return [];
             }
-    
+
         });
-        
+
         return res1;
     });
+    let body1 = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'fetchCommentsCount',
+        "columnNames": 'true',
+        "params": {}
+    };
 
-    return Promise.all([post]);
+    let post1 = axios.post(Infoburst.dbQuery, body1, { headers: headers, responseType: 'text' }).then((res) => {
+        // console.log(res.data);
+        return res.data;
+    });
+    return Promise.all([post, post1]);
 
 }
 
 
-export function postReply(params,metric) {
+export function postReply(params, metric) {
     let body = {
         "conn": `${Infoburst.appXDCID}`,
         "qry": 'postReply',
@@ -2359,7 +2513,7 @@ export function postReply(params,metric) {
             "metric": metric
         }
     };
-    let post =  axios.post(Infoburst.dbQuery, body, {
+    let post = axios.post(Infoburst.dbQuery, body, {
         headers: headers,
         responseType: 'text'
     }).then((res) => {
@@ -2367,7 +2521,7 @@ export function postReply(params,metric) {
         const res1 = axios.post(Infoburst.dbQuery, fetchBody, { headers: headers, responseType: 'text' }).then((response) => {
 
             if (response !== []) {
-    
+
                 const commentIdsArray = response.data.map(ele => { return ele.id; });
                 const params = convertFilterListForDBQuery(commentIdsArray);
                 let responseBody = {
@@ -2382,14 +2536,14 @@ export function postReply(params,metric) {
                     const commentsComplete = { comment: response.data, replies: res.data };
                     return commentsComplete;
                 });
-    
+
                 return replies;
             } else {
                 return [];
             }
-    
+
         });
-        
+
         return res1;
     });
     return Promise.all([post]);
@@ -2397,7 +2551,7 @@ export function postReply(params,metric) {
 }
 
 
-export function removeComment(params) {
+export function removeComment(params, metric) {
     let body = {
         "conn": `${Infoburst.appXDCID}`,
         "qry": 'deleteComment',
@@ -2406,16 +2560,64 @@ export function removeComment(params) {
             "id": parseInt(params.id)
         }
     }
-
+    let fetchBody = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'fetchComments',
+        "columnNames": 'true',
+        "params": {
+            "metric": metric
+        }
+    };
     console.log(body);
     let post = axios.post(Infoburst.dbQuery, body, {
         headers: headers
     }).then((res) => {
-        console.log(res);
 
-        return res;
+
+
+
+    }).catch(error => {
+        const res1 = axios.post(Infoburst.dbQuery, fetchBody, { headers: headers, responseType: 'text' }).then((response) => {
+
+            if (response !== []) {
+
+                const commentIdsArray = response.data.map(ele => { return ele.id; });
+                const params = convertFilterListForDBQuery(commentIdsArray);
+                let responseBody = {
+                    "conn": `${Infoburst.appXDCID}`,
+                    "qry": 'fetchReplies',
+                    "columnNames": 'true',
+                    "params": {
+                        "params": params
+                    }
+                };
+                const replies = axios.post(Infoburst.dbQuery, responseBody, { headers: headers, responseType: 'text' }).then((res) => {
+                    const commentsComplete = { comment: response.data, replies: res.data };
+                    return commentsComplete;
+                });
+
+                return replies;
+            } else {
+                return [];
+            }
+
+        });
+
+        return res1;
     });
-    return Promise.all([post]);
+
+    let body1 = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'fetchCommentsCount',
+        "columnNames": 'true',
+        "params": {}
+    };
+
+    let post1 = axios.post(Infoburst.dbQuery, body1, { headers: headers, responseType: 'text' }).then((res) => {
+        // console.log(res.data);
+        return res.data;
+    });
+    return Promise.all([post, post1]);
 
 }
 

@@ -79,9 +79,9 @@ class KendoBulletChart extends Component {
       const { value } = point;
       return (
         <span>
-          Target:  {formattedTarget}
+           Actuals:  {formattedValue}
           <br />
-          Actual:  {formattedValue}
+          Targets:  {formattedTarget}
           <br />
           FQ Target: {formattedTargetFQ || 0}
         </span>

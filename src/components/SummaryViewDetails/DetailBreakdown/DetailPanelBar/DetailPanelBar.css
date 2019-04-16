@@ -7,7 +7,7 @@
 .topHeaderBar{
   font-size: 15px;
   background-color: #1f1f1f;
-  width: 78.5%
+  width: 77.8%
 }
 .topHeaderBarWeek{
     font-size: 15px;
@@ -17,7 +17,7 @@
 .journeyTopHeaderBar{
     font-size: 15px;
     background-color: #1f1f1f;
-    width: 76%
+    width: 75%
   }
   .journeyTopHeaderBarWeek{
     font-size: 15px;
@@ -59,6 +59,7 @@
     height: 30px;
     background-color: #1f1f1f;
     color: white;
+    padding:0px;
 }
 .allLowerHeaderBar{
     width:100%;
@@ -143,6 +144,7 @@
 }
 .qtdMaHeader{
     text-align:  left !important;
+    padding-left: 15px;
 }
 
 .weekColumn{
@@ -244,6 +246,7 @@
 }
 .topPanelHeader{
     background-color: #1f1f1f;
+    padding: 0px;
 }
 .rightTopHeaderBar{
     float:left;
@@ -311,7 +314,7 @@
     background-color: #1f1f1f !important;
 }
 .geoTableContainer{
-    padding:5px;
+    /* padding:5px; */
 }
 
 .k-content {

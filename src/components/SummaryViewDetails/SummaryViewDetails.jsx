@@ -214,7 +214,55 @@ class SummaryViewDetails extends Component {
     } else {
       this.setState({pmStringList: '*'})
     }
-    
+    case SUMMARY_FILTERS.BUY_PAID_MEDIASPEND:
+    console.log(this.props.filters.convType);
+    filterList = this.props.filters.channelPM.valueFilters.map(filter => {
+      return filter.value;
+    })
+    if (filterList.length !== 0 && this.props.filters.channelPM.availableFilters.length !== filterList.length) {
+      stringList = filterList.join(' - ');
+      console.log(stringList);
+      this.setState({
+        pmStringList: stringList
+      });
+
+    } else {
+      this.setState({ pmStringList: '*' })
+    }
+
+    break;
+  case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
+  console.log(this.props.filters.convType);
+  filterList = this.props.filters.channelPM.valueFilters.map(filter => {
+    return filter.value;
+  })
+  if (filterList.length !== 0 && this.props.filters.channelPM.availableFilters.length !== filterList.length) {
+    stringList = filterList.join(' - ');
+    console.log(stringList);
+    this.setState({
+      pmStringList: stringList
+    });
+
+  } else {
+    this.setState({ pmStringList: '*' })
+  }
+
+    break;
+    case SUMMARY_FILTERS.BUY_CONVERSION:
+  console.log(this.props.filters.convType);
+  filterList = this.props.filters.convType.valueFilters.map(filter => {
+    return filter.value;
+  })
+  if (filterList.length !== 0 && this.props.filters.convType.availableFilters.length !== filterList.length) {
+    stringList = filterList.join(' - ');
+    console.log(stringList);
+    this.setState({
+      trafficStringList: stringList
+    });
+
+  } else {
+    this.setState({ trafficStringList: '*' })
+  }
     break;
       default: break;
     }
@@ -423,7 +471,7 @@ closeMultiValue = (e) => {
 }
 getSummaryFilters(activeItem) {
   let drillDownFilter;
-  let { lastTouchChannel, convType, websegment, visits, channelMU, channelPM } = this.props.activeFilters;
+  let { lastTouchChannel, convType, websegment, segment, product, pvw, visits, channelMU, channelPM } = this.props.activeFilters;
   switch (activeItem) {
 
     case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
@@ -572,31 +620,44 @@ getSummaryFilters(activeItem) {
       return (
         //Conversion
         <div className="row">
-          {/* Web segment */}
-          <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
+        <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+            {/* Visit Type */}
+            <div>{'Visits - ' + visits.valueFilters[0].value}</div>
             <SingleValueSelect
               activeFilters={[]}
-              options={lastTouchChannel.availableFilters}
-              onValueChange={e => { console.log() }}
-              onMenuClose={e => { console.log() }}
+              options={visits.availableFilters}
+              onValueChange={e => { this.updateSingleValue(e) }}
+              onMenuClose={e => { this.closeSingleValue(e) }}
             />
           </div>
           {/* Last Touch Channel */}
-          <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
-            <SingleValueSelect
-              activeFilters={[]}
-              options={lastTouchChannel.availableFilters}
-              onValueChange={e => { console.log() }}
-              onMenuClose={e => { console.log() }}
+          {/* <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              <div> {'Last Touch Channel - '+ lastTouchChannel.valueFilters[0].value} </div>
+              <SingleValueSelect
+                activeFilters={[]}
+                options={lastTouchChannel.availableFilters}
+                onValueChange={e => { this.updateSingleValue(e) }}
+                onMenuClose={e => { this.closeSingleValue(e) }}
+              />
+            </div> */}
+          {/* Conversion Type */}
+          <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+            <div>Conversion - {this.state.trafficStringList}</div>
+            <MultiValueSelect
+              onClick={(e) => { console.log('hi') }}
+              // values = {convType.valueFilters}
+              options={convType.availableFilters}
+              onValueChange={(e) => { let type = DIMENSIONS.CONVERSION;this.updateMultiValue(e, type) }}
+              onMenuClose={(e) => { this.closeMultiValue(e) }}
             />
           </div>
-          {/* Visit Status */}
-          <div className="col-md-12 col-lg-12" style={{ paddingBottom: '10px' }}>
+          <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+            <div>{'Web Segment - ' + websegment.valueFilters[0].value}</div>
             <SingleValueSelect
               activeFilters={[]}
-              options={lastTouchChannel.availableFilters}
-              onValueChange={e => { console.log() }}
-              onMenuClose={e => { console.log() }}
+              options={websegment.availableFilters}
+              onValueChange={e => { this.updateSingleValue(e) }}
+              onMenuClose={e => { this.closeSingleValue(e) }}
             />
           </div>
         </div>
@@ -605,13 +666,14 @@ getSummaryFilters(activeItem) {
       return (
         // Paid Media Spend
         <div className="row">
-          {/* Channel*/}
-          <div className="col-md-12 col-lg-12">
-            <SingleValueSelect
-              activeFilters={[]}
-              options={visits.availableFilters}
-              onValueChange={e => { console.log() }}
-              onMenuClose={e => { console.log() }}
+        {/* Channel*/}
+        <div className="col-md-4 col-lg-4">
+            {/* Channel */}
+            <div> Channel -  {this.state.pmStringList}</div>
+            <MultiValueSelect
+              options={channelPM.availableFilters}
+              onValueChange={(e) => { let type = DIMENSIONS.CHANNELPM; this.updateMultiValue(e, type) }}
+              onMenuClose={(e) => { this.closeMultiValue(e) }}
             />
           </div>
         </div>
@@ -621,23 +683,24 @@ getSummaryFilters(activeItem) {
         // Marketing Sourced ARR
         <div className="row">
           {/* segment*/}
-          <div className="col-md-6 col-lg-6">
+          <div className="col-md-3 col-lg-3">
             <SingleValueSelect
               activeFilters={[]}
-              options={visits.availableFilters}
+              options={segment.availableFilters}
               onValueChange={e => { console.log() }}
               onMenuClose={e => { console.log() }}
             />
           </div>
           {/* Product Category*/}
-          <div className="col-md-6 col-lg-6">
+          <div className="col-md-3 col-lg-3">
             <SingleValueSelect
               activeFilters={[]}
-              options={visits.availableFilters}
+              options={product.availableFilters}
               onValueChange={e => { console.log() }}
               onMenuClose={e => { console.log() }}
             />
           </div>
+          
         </div>
       );
     case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
@@ -648,7 +711,7 @@ getSummaryFilters(activeItem) {
           <div className="col-md-12 col-lg-12">
             <SingleValueSelect
               activeFilters={[]}
-              options={visits.availableFilters}
+              options={pvw.availableFilters}
               onValueChange={e => { console.log() }}
               onMenuClose={e => { console.log() }}
             />
@@ -664,7 +727,7 @@ getSummaryFilters(activeItem) {
           <div className="col-md-12 col-lg-12">
             <SingleValueSelect
               activeFilters={[]}
-              options={visits.availableFilters}
+              options={pvw.availableFilters}
               onValueChange={e => { console.log() }}
               onMenuClose={e => { console.log() }}
             />

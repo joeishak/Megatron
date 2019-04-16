@@ -19,7 +19,9 @@ class CustomDropDownPanel extends Component {
         this.state = {
             isButtonHighlighted: false,
             showContainer: this.props.showContainer,
-            selectedFilters: [...this.props.filters.combined.valueFilters],
+            selectedFilters: [...this.props.filters.quarter.valueFilters,
+                            ...this.props.filters.geo.valueFilters,
+                            ...this.props.filters.market.valueFilters],
             activeDataFilters: [],
             stringList: '',
         }
@@ -397,7 +399,7 @@ class CustomDropDownPanel extends Component {
                     />
                 </div>
 
-                <button onClick={e => {this.forceUpdate(); console.log('forceUpdating')}}></button>
+                {/* <button onClick={e => {this.forceUpdate(); console.log('forceUpdating')}}></button> */}
                 {/* <div className={quarterFilterContainer + ' col-lg-3'} >
                     <p>  Route To Market</p>
                     <MultiValueSelect

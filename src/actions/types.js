@@ -5,6 +5,8 @@ export const REMOVE_MULTI_FILTER = "remove_multi_filter";
 export const RESET_FILTERS = "reset_filter";
 export const ADD_PREFERENCES_TO_ACTIVE_FILTERS = "add_preferences_to_active_filters";
 export const SUBMIT_FILTERS = "submit_filters";
+export const SUBMIT_SUB_FILTERS = "submit_sub_filters";
+
 // Authentication
 export const CHANGE_AUTH = 'change_auth';
 // User
@@ -40,6 +42,9 @@ export const UPDATE_FINANCE_XDC_2_IS_LOADING             ='update_finance_xdc_2_
 export const UPDATE_TRY_IS_LOADING                      = 'update_try_is_loading';
 export const UPDATE_TRAFFIC_IS_LOADING              = 'update_traffic_is_loading';
 export const UPDATE_MU_IS_LOADING                       = 'update_mu_is_loading';
+export const UPDATE_BUY_CONVERSION_IS_LOADING              = 'update_buy_conversion_is_loading';
+export const UPDATE_BUY_MARKET_IS_LOADING                       = 'update_buy_market_is_loading';
+export const UPDATE_BUY_GROSS_IS_LOADING            = 'update_buy_gross_is_loading';
 
 export const GET_BUY_TRAFFIC_SECONDARY_DATA = 'get_buy_traffic_secondary_data';
 

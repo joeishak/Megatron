@@ -147,7 +147,7 @@ class MultiDimensionPanelItem extends Component {
                     }
 
                     prevGeo = item.type;
-                    return (<span key={marketCount++}>
+                    return (<div key={marketCount++}>
                         <div className={`${qtdColumnClass}` + " qtdGeoHeader col"}>
                             {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
@@ -179,7 +179,7 @@ class MultiDimensionPanelItem extends Component {
                         <div className={`${qtdColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'percent', value: item.yy }, 'value')}
                         </div>
-                    </span>)
+                    </div>)
                 }));
             default:
             // console.log('Multi', activeSecondary);

@@ -12,6 +12,7 @@ let newState = undefined;
 export default   function(state = {},action) {
     switch(action.type) {
         case GET_USER_SETTINGS:
+        console.log('Getting User Settings',action.payload);
                 newState  = action.payload.data[0];
 
                 if(newState.geoFilters !== ""){
@@ -35,7 +36,7 @@ export default   function(state = {},action) {
                     newState.marketFilters = JSON.parse(newState.marketFilters)
 
                 }
-                    return newState;
+                    return {...newState, preferencesAreLoaded: true};
         case UPDATE_USER_SETTINGS:
         // console.log(action.payload);
         newState  = action.payload.data[0];

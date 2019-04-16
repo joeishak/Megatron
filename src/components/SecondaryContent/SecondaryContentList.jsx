@@ -6,6 +6,8 @@ import SecondarySquares from "./SecondarySquares";
 import Playground from "../MobileComponents/Playground/Playground";
 import HorizontalSlider from "../MobileComponents/HorizontalSlider/HorizontalSlider.jsx";
 import 'hammerjs';
+import commentIconOn from "../../assets/images/comments-on.svg";
+import commentIconOff from "../../assets/images/comments-off.svg";
 import closeBtn from '../../assets/images/close-btn.svg';
 import MobileMultiChart from '../../components/MobileComponents/Playground/components/MobileMultiChart/MobileMultiChart.jsx';
 import MobileViewDetails from '../../components/MobileComponents/Playground/components/MobileViewDetails/MobileViewDetails.jsx'
@@ -52,16 +54,16 @@ class SecondaryContentList extends Component {
     ReactDOM.findDOMNode(this).addEventListener("touchend", this.stopResize);
     ReactDOM.findDOMNode(this).addEventListener("mouseleave", this.stopResize);
     ReactDOM.findDOMNode(this).addEventListener("touchcancel", this.stopResize);
-    switch(this.props.activePrimary){
-      case 0: 
-      this.setState({ activeCard: 0 });
-      break;
-      case 1: 
-      this.setState({activeCard: 4});
-      break;
-      case 2: 
-      this.setState({activeCard: 10});
-      break;
+    switch (this.props.activePrimary) {
+      case 0:
+        this.setState({ activeCard: 0 });
+        break;
+      case 1:
+        this.setState({ activeCard: 4 });
+        break;
+      case 2:
+        this.setState({ activeCard: 10 });
+        break;
 
     }
 
@@ -75,20 +77,37 @@ class SecondaryContentList extends Component {
     });
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     let copy = Object.assign([], this.props.data);
 
 
     if (utils.includes(this.props.deviceType, 'mobile') ||
       utils.includes(this.props.deviceType, 'tablet')) {
+      console.log('I am changing');
 
       if (this.props.activeJourneyCard !== prevProps.activeJourneyCard) {
         console.log('Changing the order', this.props.activeJourneyCard);
-        // console.log([this.props.data[this.props.activeJourneyCard], ...this.state.sortedData.filter(item => item.index !== this.props.activeJourneyCard)])
-        this.setState({ sortedData: [this.props.data[this.props.activeJourneyCard], ...this.state.sortedData.filter(item => item.index !== this.props.activeJourneyCard)] })
+        // console.log(this.props.data);
+        console.log('Changing the order',[this.props.data[this.props.activeJourneyCard], ...this.props.data.filter(item => item.index !== this.props.activeJourneyCard)])
+        this.setState({ sortedData: [copy[this.props.activeJourneyCard], ...copy.filter(item => item.index !== this.props.activeJourneyCard)] })
       }
     }
+    if(this.state.sortedData !== prevState.sortedData){
+      console.log('Updating Secondary');
+      switch (this.props.activePrimary) {
+        case 0:
+          this.setState({ activeCard: this.props.activeJourneyCard });
+          break;
+        case 1:
+          this.setState({ activeCard: this.props.activeJourneyCard });
+          break;
+        case 2:
+          this.setState({ activeCard: this.props.activeJourneyCard });
+          break;
 
+      }
+    }
+  
 
   }
   isTouchDevice() {
@@ -155,9 +174,10 @@ class SecondaryContentList extends Component {
     this.props.updateMobileView(SECONDARY, false);
   };
 
-  onSecondaryCardClicked = (e,index) => {
+  onSecondaryCardClicked = (e, index) => {
     this.setState({ detailsClassState: 'slide-in-bottom' });
     this.setState({ clicked: true });
+    this.setState({ sortedData: [] })
   }
 
   onDetailMenuClose = (e) => {
@@ -189,7 +209,7 @@ class SecondaryContentList extends Component {
           </div>
         ) : null;
 
-    let data = (isMobileAndTablet === true) ? this.state.sortedData : this.props.data;
+    let data = /* (isMobileAndTablet === true) ? this.state.sortedData :  */this.props.data;
 
 
     let numberOfSecondarySquares = 0;
@@ -205,6 +225,8 @@ class SecondaryContentList extends Component {
           ? true
           : false;
         if (this.props.activePrimary === item.category) {
+   
+
           return (
             <SecondarySquares
               window={this.props.window}
@@ -212,8 +234,9 @@ class SecondaryContentList extends Component {
               statsDetails={this.props.statsDetails}
               key={item.index}
               item={item}
+              comments={this.props.commentsPackage.comments}
               activeJourneyCard={isActive}
-              onSecondaryCardClicked={e => this.onSecondaryCardClicked(e,item.index)}
+              onSecondaryCardClicked={e => this.onSecondaryCardClicked(e, item.index)}
               onJourneyCardClicked={(e, index) => {
                 this.props.onJourneyCardClicked(e, index);
               }}
@@ -300,9 +323,9 @@ class SecondaryContentList extends Component {
         onTouchEnd={e => this.stopResize(e)}
         onMouseUp={e => this.stopResize(e)}
       >
-      {this.props.activePrimary === 5 ?       
-      <span><div className="renew-overlay"><p className="renew-overlay-vertext">ADOBE.com Direct Sales</p></div>
-      <div className="renew-overlay-two"><p className="renew-overlay-vertext-two">Reseller and E-Tail / Retail</p></div></span> : null}
+        {this.props.activePrimary === 5 ?
+          <span><div className="renew-overlay"><p className="renew-overlay-vertext">ADOBE.com Direct Sales</p></div>
+            <div className="renew-overlay-two"><p className="renew-overlay-vertext-two">Reseller and E-Tail / Retail</p></div></span> : null}
 
         {navigationTitle}
         {secondaryContentTop}
@@ -317,9 +340,10 @@ function mapStateToProps(state) {
 
   return {
     activeJourneyCard: state.activeCards.secondary,
-    activePrimary: state.activeCards.primary
+    activePrimary: state.activeCards.primary,
+    comments: state.commentsPackage.comments
 
- 
+
   };
 }
 export default connect(
