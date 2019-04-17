@@ -46,7 +46,6 @@ class KendoMultiChart extends Component {
             if (this.props.activeMultichart[0][0] !== nextProps.activeMultichart[0][0]) {
                 return true;
             }
-           
         }
         if (this.props.multichartMetric !== nextProps.multichartMetric) {
 
@@ -56,6 +55,10 @@ class KendoMultiChart extends Component {
             return true;
         }
         if (this.props.activeMultichart !== nextProps.activeMultichart) {
+            if(this.props.activeMultichart[0][0] === nextProps.activeMultichart[0][0]){
+                return false
+            }
+            console.log('Refreshing Multichart');
             return true;
         }
         return false;
@@ -109,7 +112,6 @@ class KendoMultiChart extends Component {
                 case 'border':
                     if (activeSecondary == 2) { return '#FF0000' } else { return '#0DB16E' }
             }
-
         }
     }
 
@@ -174,7 +176,6 @@ class KendoMultiChart extends Component {
             }
         }
 
-
         // Y axis Values
         const labelContentRender = (props) => {
             if (this.props.multichartMetric === true) {
@@ -196,10 +197,7 @@ class KendoMultiChart extends Component {
                 <ChartLegendItem visual={legendRender} />
             </ChartLegend> : <ChartLegend visible={false} />
 
-
         const ChartContainer = () => (
-    
-
             <Chart pannable={false} zoomable={false} renderAs={'canvas'}>
                 {chartLegend}
                 <ChartTooltip shared={true} render={sharedTooltipRender} />
@@ -220,18 +218,19 @@ class KendoMultiChart extends Component {
                     </ChartCategoryAxisItem>
                 </ChartCategoryAxis>
                 <ChartSeries >
-                    <ChartSeriesItem name='Actual' type="column" gap={2} width='20px' spacing={0.25} data={this.formatDataValues(chartData[0])} color={this.props.color} visible={this.state.seriesVisible} >
+                    <ChartSeriesItem name='Actuals' type="column" gap={2} width='20px' spacing={0.25} data={this.formatDataValues(chartData[0])} color={this.props.color} visible={this.state.seriesVisible} >
                         <ChartSeriesItemTooltip render={this.tooltipRender} background="#3c3c3c" />
                     </ChartSeriesItem>
-                    <ChartSeriesItem name='Target' type="bar" zIndex={0} spacing={0.25} data={this.formatDataValues(chartData[1])} color='#0E9CC6'>
+                    <ChartSeriesItem name='Targets' type="bar" zIndex={0} spacing={0.25} data={this.formatDataValues(chartData[1])} color='#0E9CC6'>
                         <ChartSeriesItemTooltip background="#3c3c3c" />
                     </ChartSeriesItem>
-                    <ChartSeriesItem name='Last Year' type="line" style="smooth" width={5} data={this.formatDataValues(chartData[2])} color='#DFDE43'  >
+                    <ChartSeriesItem name='Last Quarter' type="line" style="smooth" width={5} data={this.formatDataValues(chartData[3])} color='#DFDE43'  >
                         <ChartSeriesItemTooltip background="#3c3c3c" />
                     </ChartSeriesItem>
-                    <ChartSeriesItem name='Last Quarter' type="line" style="smooth" width={5} data={this.formatDataValues(chartData[3])} color='purple'  >
+                    <ChartSeriesItem name='Last Year' type="line" style="smooth" width={5} data={this.formatDataValues(chartData[2])} color='purple'  >
                         <ChartSeriesItemTooltip background="#3c3c3c" />
                     </ChartSeriesItem>
+                 
                 </ChartSeries>
                 }
 

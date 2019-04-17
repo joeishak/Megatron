@@ -108,7 +108,7 @@ export default function (state = {
             if (copyOfState.combined.valueFilters.length !== state.combined.valueFilters.length) {
                 //then return the newest state
                 console.log('New Filter Submitted',copyOfState);
-                return { ...copyOfState, globalFiltersSubmitted: true };
+                return { ...copyOfState, isDefaultFilters: false, globalFiltersSubmitted: true };
             } else { //The length of the arrays are the same
                 let lengthChecker = [];
                 //For each value in the new array, check to see if it exists in the old array
@@ -427,7 +427,7 @@ export default function (state = {
             copyOfState.visits.valueFilters.push({ index: 111, category: VISITS, value: 'All Visits' });
             copyOfState.channelMU.valueFilters.push({ index: 112, category: CHANNELMU, value: 'ALL' });
 
-            copyOfState.combined.valueFilters = [{ index: 211, category: "quarter", value: defaultQuarter }, { index: 209, category: "segment", value: defaultSegment }];
+            copyOfState.combined.valueFilters = [/* { index: 211, category: "quarter", value: defaultQuarter }, { index: 209, category: "segment", value: defaultSegment } */];
             Object.keys(copyOfState).forEach(item => {
                 if (item !== 'combined') {
                     // console.log(copyOfState[item])
@@ -441,7 +441,7 @@ export default function (state = {
                   
                 }
             })
-            return {...copyOfState, isDefaultFilters: true,filtersAreDefault: true};
+            return {...copyOfState, isDefaultFilters: true, filtersAreDefault: true};
         case REMOVE_MULTI_FILTER:
             copyOfState = JSON.parse(JSON.stringify(state))
             cat = action.payload.category;
@@ -601,15 +601,7 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
-        case 'pvw':
-            newArr = newArr.map(item => {
-                return {
-                    index: count++,
-                    category: type,
-                    value: item['pvw']
-                }
-            });
-            return newArr;
+     
         case 'category':
             newArr = newArr.map(item => {
                 return {

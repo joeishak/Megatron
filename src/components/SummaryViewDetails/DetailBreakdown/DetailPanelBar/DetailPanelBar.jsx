@@ -30,15 +30,16 @@ class DetailPanelBar extends Component {
         this.setState({isLoading: true},()=>{
             setTimeout(()=>{
                 this.setState({isLoading:false})
-            },100)
+            },.001)
         });
     }
    }
 
     /* Return Contents for */
     getPanelContents(type) {
+        console.log(type);
         //If type is aMulti Dimension
-        if(type === DIMENSIONS.GEO || type ===DIMENSIONS.SIGNAPP){
+        if(type === DIMENSIONS.GEO || type ===DIMENSIONS.SIGNAPP || type === DIMENSIONS.LTC){
             return (
                 <div className='row'>
                     <div className='col-md-12 topPanelHeader'>
@@ -426,17 +427,23 @@ class DetailPanelBar extends Component {
                  )
                  case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
                      return (
-                         <PanelBar >
-                             <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
-                                 {this.getPanelContents(DIMENSIONS.GEO)}
-                             </ PanelBarItem>
-                             <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
-                                 {this.getPanelContents(DIMENSIONS.MARKET)}
-                             </ PanelBarItem>
-                             <PanelBarItem className="panelItemTitle" expanded={false} title='Channel'>
-                                 {this.getPanelContents(DIMENSIONS.CHANNELPM)}
-                             </ PanelBarItem>
-                         </PanelBar>
+                        <PanelBar >
+                         <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                             {this.getPanelContents(DIMENSIONS.GEO)}
+                         </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                             {this.getPanelContents(DIMENSIONS.MARKET)}
+                         </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='Route To Market'>
+                             {this.getPanelContents(DIMENSIONS.ROUTE)}
+                         </PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title={'Segment'}>
+                             {this.getPanelContents(DIMENSIONS.SEGMENT)}
+                         </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='Product Category'>
+                             {this.getPanelContents(DIMENSIONS.PRODUCT)}
+                         </PanelBarItem>
+                     </PanelBar>
                      )
              }
             case 4:
@@ -781,13 +788,14 @@ class DetailPanelBar extends Component {
     }
     render() {
         return (<div className={'panel-wrapper'}>
-            {this.state.isLoading ? <Loading /> : this.getDynamicPanelBar()}
+            {this.state.isLoading ? null : this.getDynamicPanelBar()}
         </div>)
     }
 }
 
 function mapStateToProps(state) {
     return {
+
         activeSummary: state.summaryData.secondary[state.activeCards.secondary],
         activeGeo: state.summaryData.secondary[state.activeCards.secondary].details.geo.qtd,
         activePrimary: state.activeCards.primary,

@@ -11570,7 +11570,7 @@ export const SecondaryData = [
                 }
             ]
         },
-        valueType: 'Units'
+        valueType: 'units'
     },
     /* Use */
     {

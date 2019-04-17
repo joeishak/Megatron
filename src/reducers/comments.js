@@ -26,15 +26,15 @@ export default function (state = { data: [],comments:[[],[],[],[]], isLoading: t
                     userName: ele.firstName + ' ' + ele.lastName
                 }
             });
-            let commentsCount = action.payload[1];
+            let commentsCount = action.payload[0].allComments;
             copyOfState.comments =[];
             console.log(commentsCount);
             let found = false;
             for (let i = 0; i <= 34; i++) {
                 for(let j = 0 ; j < commentsCount.length; j++){
-                    console.log('I am comparing comments count id of : ',commentsCount[j].metricId,'against : ',i);
+                    // console.log('I am comparing comments count id of : ',commentsCount[j].metricId,'against : ',i);
                     if(i === commentsCount[j].metricId){
-                    console.log('I am checking if  : ',commentsCount[j].metricId,'exists : ',copyOfState.comments[commentsCount[j].metricId]);
+                    // console.log('I am checking if  : ',commentsCount[j].metricId,'exists : ',copyOfState.comments[commentsCount[j].metricId]);
                         found = true;
                             copyOfState.comments.push([commentsCount[j].commentCount]);
                     } 
@@ -48,8 +48,9 @@ export default function (state = { data: [],comments:[[],[],[],[]], isLoading: t
                 }
                 
             }
+            console.log('Got comments Fetch', copyOfState)
 
-            return {...copyOfState, data: comments,isLoading: false };
+            return {comments: copyOfState.comments, data: comments,isLoading: false };
         case FETCHING_COMMENTS:
             // console.log(action.payload);
             return { ...state,data: [], isLoading: action.payload }

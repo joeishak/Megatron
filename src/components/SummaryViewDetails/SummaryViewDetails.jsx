@@ -136,8 +136,85 @@ class SummaryViewDetails extends Component {
     } else {
       this.setState({pmStringList: '*'})
     }
-    
+    case SUMMARY_FILTERS.BUY_PAID_MEDIASPEND:
+    console.log(this.props.filters.convType);
+      filterList = this.props.filters.channelPM.valueFilters.map(filter => {
+        return filter.value;
+      })
+      if (filterList.length !== 0 && this.props.filters.channelPM.availableFilters.length !== filterList.length) {
+        stringList = filterList.join(' - ');
+        console.log(stringList);
+        this.setState({
+          pmStringList: stringList
+        });
+       
+  } else {
+    this.setState({pmStringList: '*'})
+  }
+  case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
+  console.log(this.props.filters.product);
+    filterList = this.props.filters.product.valueFilters.map(filter => {
+      return filter.value;
+    })
+    if (filterList.length !== 0 && this.props.filters.product.availableFilters.length !== filterList.length) {
+      stringList = filterList.join(' - ');
+      console.log(stringList);
+      this.setState({
+        productStringList: stringList
+      });
+     
+} else {
+  this.setState({productStringList: '*'})
+}
     break;
+    case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
+    console.log(this.props.filters.pvw);
+      filterList = this.props.filters.pvw.valueFilters.map(filter => {
+        return filter.value;
+      })
+      if (filterList.length !== 0 && this.props.filters.pvw.availableFilters.length !== filterList.length) {
+        stringList = filterList.join(' - ');
+        console.log(stringList);
+        this.setState({
+          pvwStringList: stringList
+        });
+       
+  } else {
+    this.setState({pvwStringList: '*'})
+  }
+      break;
+      case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
+    console.log(this.props.filters.pvw);
+      filterList = this.props.filters.pvw.valueFilters.map(filter => {
+        return filter.value;
+      })
+      if (filterList.length !== 0 && this.props.filters.pvw.availableFilters.length !== filterList.length) {
+        stringList = filterList.join(' - ');
+        console.log(stringList);
+        this.setState({
+          pvwStringList: stringList
+        });
+       
+  } else {
+    this.setState({pvwStringList: '*'})
+  } 
+  case SUMMARY_FILTERS.BUY_CONVERSION:
+  console.log(this.props.filters.convType);
+    filterList = this.props.filters.convType.valueFilters.map(filter => {
+      return filter.value;
+    })
+    if (filterList.length !== 0 && this.props.filters.convType.availableFilters.length !== filterList.length) {
+      stringList = filterList.join(' - ');
+      console.log(stringList);
+      this.setState({
+        trafficStringList:stringList
+      });
+     
+} else {
+  this.setState({trafficStringList: '*'})
+}
+break;
+      break;
       default: break;
     }
 
@@ -158,7 +235,7 @@ class SummaryViewDetails extends Component {
             stringList = filterList.join(' - ');
             console.log(stringList);
             this.setState({
-              trafficStringList: stringList
+              trafficStringList:stringList
             });
            
       } else {
@@ -174,7 +251,7 @@ class SummaryViewDetails extends Component {
             stringList = filterList.join(' - ');
             console.log(stringList);
             this.setState({
-              trafficStringList: stringList
+              trafficStringList:stringList
             });
            
       } else {
@@ -216,54 +293,83 @@ class SummaryViewDetails extends Component {
     }
     case SUMMARY_FILTERS.BUY_PAID_MEDIASPEND:
     console.log(this.props.filters.convType);
-    filterList = this.props.filters.channelPM.valueFilters.map(filter => {
+      filterList = this.props.filters.channelPM.valueFilters.map(filter => {
+        return filter.value;
+      })
+      if (filterList.length !== 0 && this.props.filters.channelPM.availableFilters.length !== filterList.length) {
+        stringList = filterList.join(' - ');
+        console.log(stringList);
+        this.setState({
+          pmStringList: stringList
+        });
+       
+  } else {
+    this.setState({pmStringList: '*'})
+  }
+  case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
+  console.log(this.props.filters.product);
+    filterList = this.props.filters.product.valueFilters.map(filter => {
       return filter.value;
     })
-    if (filterList.length !== 0 && this.props.filters.channelPM.availableFilters.length !== filterList.length) {
+    if (filterList.length !== 0 && this.props.filters.product.availableFilters.length !== filterList.length) {
       stringList = filterList.join(' - ');
       console.log(stringList);
       this.setState({
-        pmStringList: stringList
+        productStringList: stringList
       });
-
-    } else {
-      this.setState({ pmStringList: '*' })
-    }
-
+     
+} else {
+  this.setState({productStringList: '*'})
+}
     break;
-  case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
-  console.log(this.props.filters.convType);
-  filterList = this.props.filters.channelPM.valueFilters.map(filter => {
-    return filter.value;
-  })
-  if (filterList.length !== 0 && this.props.filters.channelPM.availableFilters.length !== filterList.length) {
-    stringList = filterList.join(' - ');
-    console.log(stringList);
-    this.setState({
-      pmStringList: stringList
-    });
-
+    case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
+    console.log(this.props.filters.pvw);
+      filterList = this.props.filters.pvw.valueFilters.map(filter => {
+        return filter.value;
+      })
+      if (filterList.length !== 0 && this.props.filters.pvw.availableFilters.length !== filterList.length) {
+        stringList = filterList.join(' - ');
+        console.log(stringList);
+        this.setState({
+          pvwStringList: stringList
+        });
+       
   } else {
-    this.setState({ pmStringList: '*' })
+    this.setState({pvwStringList: '*'})
   }
-
-    break;
-    case SUMMARY_FILTERS.BUY_CONVERSION:
-  console.log(this.props.filters.convType);
-  filterList = this.props.filters.convType.valueFilters.map(filter => {
-    return filter.value;
-  })
-  if (filterList.length !== 0 && this.props.filters.convType.availableFilters.length !== filterList.length) {
-    stringList = filterList.join(' - ');
-    console.log(stringList);
-    this.setState({
-      trafficStringList: stringList
-    });
-
+      break;
+      case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
+    console.log(this.props.filters.pvw);
+      filterList = this.props.filters.pvw.valueFilters.map(filter => {
+        return filter.value;
+      })
+      if (filterList.length !== 0 && this.props.filters.pvw.availableFilters.length !== filterList.length) {
+        stringList = filterList.join(' - ');
+        console.log(stringList);
+        this.setState({
+          pvwStringList: stringList
+        });
+       
   } else {
-    this.setState({ trafficStringList: '*' })
-  }
-    break;
+    this.setState({pvwStringList: '*'})
+  } 
+  case SUMMARY_FILTERS.BUY_CONVERSION:
+  console.log(this.props.filters.convType);
+    filterList = this.props.filters.convType.valueFilters.map(filter => {
+      return filter.value;
+    })
+    if (filterList.length !== 0 && this.props.filters.convType.availableFilters.length !== filterList.length) {
+      stringList = filterList.join(' - ');
+      console.log(stringList);
+      this.setState({
+        trafficStringList:stringList
+      });
+     
+} else {
+  this.setState({trafficStringList: '*'})
+}
+break;
+      break;
       default: break;
     }
   }
@@ -394,7 +500,8 @@ submitFilters = (e) => {
     websegment: [],
     visits: [],
     channelMU: [],
-    channelPM: []
+    channelPM: [],
+    pvw:[]
   };
 
   //console.log(this.state.selectedFilters);
@@ -667,7 +774,7 @@ getSummaryFilters(activeItem) {
         // Paid Media Spend
         <div className="row">
         {/* Channel*/}
-        <div className="col-md-4 col-lg-4">
+        <div className="col-md-4 col-lg-4" style={{ paddingBottom: '10px' }}>
             {/* Channel */}
             <div> Channel -  {this.state.pmStringList}</div>
             <MultiValueSelect
@@ -683,21 +790,23 @@ getSummaryFilters(activeItem) {
         // Marketing Sourced ARR
         <div className="row">
           {/* segment*/}
-          <div className="col-md-3 col-lg-3">
-            <SingleValueSelect
+          <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+          <div>{'Segment - ' + segment.valueFilters[0].value}</div>
+
+          <SingleValueSelect
               activeFilters={[]}
               options={segment.availableFilters}
-              onValueChange={e => { console.log() }}
-              onMenuClose={e => { console.log() }}
+              onValueChange={e => { this.updateSingleValue(e) }}
+              onMenuClose={e => { this.closeSingleValue(e) }}
             />
           </div>
           {/* Product Category*/}
-          <div className="col-md-3 col-lg-3">
-            <SingleValueSelect
-              activeFilters={[]}
+          <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+          <div> Product -  {this.state.productStringList}</div>
+            <MultiValueSelect
               options={product.availableFilters}
-              onValueChange={e => { console.log() }}
-              onMenuClose={e => { console.log() }}
+              onValueChange={(e) => { let type = DIMENSIONS.PRODUCT; this.updateMultiValue(e, type) }}
+              onMenuClose={(e) => { this.closeMultiValue(e) }}
             />
           </div>
           
@@ -708,12 +817,13 @@ getSummaryFilters(activeItem) {
         // Gross New ARR
         <div className="row">
           {/* PVW*/}
-          <div className="col-md-12 col-lg-12">
-            <SingleValueSelect
-              activeFilters={[]}
+          <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }} >
+
+          <div> PVW -  {this.state.pvwStringList}</div>
+          <MultiValueSelect
               options={pvw.availableFilters}
-              onValueChange={e => { console.log() }}
-              onMenuClose={e => { console.log() }}
+              onValueChange={(e) => { let type = DIMENSIONS.PVW; this.updateMultiValue(e, type) }}
+              onMenuClose={(e) => { this.closeMultiValue(e) }}
             />
           </div>
 
@@ -724,12 +834,12 @@ getSummaryFilters(activeItem) {
         // Gross New Units
         <div className="row">
           {/* PVW*/}
-          <div className="col-md-12 col-lg-12">
-            <SingleValueSelect
-              activeFilters={[]}
+          <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+          <div> PVW -  {this.state.pvwStringList}</div>
+          <MultiValueSelect
               options={pvw.availableFilters}
-              onValueChange={e => { console.log() }}
-              onMenuClose={e => { console.log() }}
+              onValueChange={(e) => { let type = DIMENSIONS.PVW; this.updateMultiValue(e, type) }}
+              onMenuClose={(e) => { this.closeMultiValue(e) }}
             />
           </div>
 

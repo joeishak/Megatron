@@ -219,9 +219,9 @@ class CommentBox extends Component {
         // alert('DELETE COMMENT');
         this.props.isFetching(true);
 
-        this.props.removeComment(commentId,this.props.currentMetric        )
+        this.props.removeComment(commentId,this.props.currentMetric  )
         // this.props.fetchComments(this.props.currentMetric,this.props.currentMetric);
-        this.props.fetchCommentsCount(this.props.currentMetric);
+        // this.props.fetchCommentsCount(this.props.currentMetric);
         // this.props.removeComment(commentId, this.props.currentMetric);
         // const reponsesIdArr = commentResponses.map(ele => { return ele.id });
     }

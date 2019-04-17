@@ -6107,6 +6107,7 @@ export function processBuyGrossGeoQTD(newState, data) {
 
 /** Custom function to Reorder QTD Details with row always last */
 function processQTDOrder(data) {
+    console.log('Processing QTD Order: ',data);
     if (data.length !== 0) {
         // check if theres ROW records
         let groupByMarketArea = _.groupBy(data, function (item) { return item.marketArea });
@@ -6176,32 +6177,34 @@ export function processBuyGrossGeoWeek(newState, data) {
         
         let grossUnits = {
             index: i,
-            actuals: item.GrossARRCW,
+            actuals: item.GrossUnitsCW,
             units: item.GrossUnitsCW,
             marketArea: item.market_area_group,
-            qrf: item.GrossARRTargetCW,
-            qrfDiff: item.GrossCWVsQrfDiff,
+            qrf: item.GrossUnitsTargetCW,
+            qrfDiff: item.GrossUnitsCWVsQrfDiff,
             type: item.geo_code,
-            vsQrf: item.GrossCWVsQrf,
-            ww: item.GrossWW
+            vsQrf: item.GrossUnitsCWVsQrf,
+            ww: item.GrossUnitsWW
         }
 
         item2.push(gross);
+        item3.push(grossUnits);
     }
     newState[19].details.geo.week = processQTDOrder(item2);
+    newState[20].details.geo.week = processQTDOrder(item3);
+
 }
 export function processBuyGrossMarketQTD(newState, data) {
 
-    //Clear old Values
-
-    newState[19].details.market.qtd = [];
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
 
         let gross = {
             index: i,
-            actuals: item.GrossActuals,
-            marketArea: item.market_area_code,
             qq: item.GrossARRQQTY,
             qrf: item.GrossTarget,
             qrfDiff: item.GrossVsQrfDiff,
@@ -6210,16 +6213,33 @@ export function processBuyGrossMarketQTD(newState, data) {
             vsQrf: item.GrossARRVsQrf,
             yy: item.GrossARRYY
         }
+        let grossUnits = {
+            index: i,
+            actuals: item.GrossUnitsActuals,
+            qq: item.GrossUnitsARRQQTY,
+            qrf: item.GrossUnitsTarget,
+            qrfDiff: item.GrossUnitsVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.GrossUnitsARRVsQrf,
+            yy: item.GrossUnitsARRYY
+        }
 
 
-        newState[19].details.market.qtd.push(gross);
+        item1.push(grossUnits);
+        item2.push(gross);
 
     }
+
+    // console.log('YO', item1);
+    newState[19].details.market.qtd = item2;
+    newState[20].details.market.qtd = item1;
 
 }
 export function processBuyGrossMarketWeek(newState, data) {
     //Clear old Values
     let item2 = [];
+    let item3 = [];
+    let item4 = [];
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -6228,30 +6248,43 @@ export function processBuyGrossMarketWeek(newState, data) {
             index: i,
             actuals: item.GrossARRCW,
             units: item.GrossUnitsCW,
-            marketArea: item.market_area_code,
             qrf: item.GrossARRTargetCW,
             qrfDiff: item.GrossCWVsQrfDiff,
             type: item.market_area_code,
             vsQrf: item.GrossCWVsQrf,
             ww: item.GrossWW
         }
-
+        
+        let grossUnits = {
+            index: i,
+            actuals: item.GrossUnitsCW,
+            units: item.GrossUnitsCW,
+            qrf: item.GrossUnitsTargetCW,
+            qrfDiff: item.GrossUnitsCWVsQrfDiff,
+            type: item.market_area_code,
+            vsQrf: item.GrossUnitsCWVsQrf,
+            ww: item.GrossUnitsWW
+        }
 
         item2.push(gross);
+        item3.push(grossUnits);
     }
-    newState[19].details.market.week = item2;
+    newState[19].details.market.week =item2;
+    newState[20].details.market.week =item3;
 }
 export function processBuyGrossrouteQTD(newState, data) {
 
-    //Clear old Values
-    newState[19].details.route.qtd = [];
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
 
         let gross = {
             index: i,
             actuals: item.GrossActuals,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qq: item.GrossARRQQTY,
             qrf: item.GrossTarget,
             qrfDiff: item.GrossVsQrfDiff,
@@ -6260,16 +6293,34 @@ export function processBuyGrossrouteQTD(newState, data) {
             vsQrf: item.GrossARRVsQrf,
             yy: item.GrossARRYY
         }
+        let grossUnits = {
+            index: i,
+            actuals: item.GrossUnitsActuals,
+            marketArea: item.market_area_group,
+            qq: item.GrossUnitsARRQQTY,
+            qrf: item.GrossUnitsTarget,
+            qrfDiff: item.GrossUnitsVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.GrossUnitsARRVsQrf,
+            yy: item.GrossUnitsARRYY
+        }
 
 
-        newState[19].details.route.qtd.push(gross);
+        item1.push(grossUnits);
+        item2.push(gross);
 
     }
+
+    // console.log('YO', item1);
+    newState[19].details.route.qtd = item2;
+    newState[20].details.route.qtd = item1;
 
 }
 export function processBuyGrossrouteWeek(newState, data) {
     //Clear old Values
     let item2 = [];
+    let item3 = [];
+    let item4 = [];
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -6278,30 +6329,45 @@ export function processBuyGrossrouteWeek(newState, data) {
             index: i,
             actuals: item.GrossARRCW,
             units: item.GrossUnitsCW,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qrf: item.GrossARRTargetCW,
             qrfDiff: item.GrossCWVsQrfDiff,
             type: item.route_to_market,
             vsQrf: item.GrossCWVsQrf,
             ww: item.GrossWW
         }
-
+        
+        let grossUnits = {
+            index: i,
+            actuals: item.GrossUnitsCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_group,
+            qrf: item.GrossUnitsTargetCW,
+            qrfDiff: item.GrossUnitsCWVsQrfDiff,
+            type: item.route_to_market,
+            vsQrf: item.GrossUnitsCWVsQrf,
+            ww: item.GrossUnitsWW
+        }
 
         item2.push(gross);
+        item3.push(grossUnits);
     }
     newState[19].details.route.week = item2;
+    newState[20].details.route.week = item3;
 }
 export function processBuyGrossSegmentQTD(newState, data) {
 
-    //Clear old Values
-    newState[19].details.segment.qtd = [];
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
 
         let gross = {
             index: i,
             actuals: item.GrossActuals,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qq: item.GrossARRQQTY,
             qrf: item.GrossTarget,
             qrfDiff: item.GrossVsQrfDiff,
@@ -6310,15 +6376,34 @@ export function processBuyGrossSegmentQTD(newState, data) {
             vsQrf: item.GrossARRVsQrf,
             yy: item.GrossARRYY
         }
+        let grossUnits = {
+            index: i,
+            actuals: item.GrossUnitsActuals,
+            marketArea: item.market_area_group,
+            qq: item.GrossUnitsARRQQTY,
+            qrf: item.GrossUnitsTarget,
+            qrfDiff: item.GrossUnitsVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.GrossUnitsARRVsQrf,
+            yy: item.GrossUnitsARRYY
+        }
 
-        newState[19].details.segment.qtd.push(gross);
+
+        item1.push(grossUnits);
+        item2.push(gross);
 
     }
+
+    // console.log('YO', item1);
+    newState[19].details.segment.qtd = item2;
+    newState[20].details.segment.qtd = item1;
 
 }
 export function processBuyGrossSegmentWeek(newState, data) {
     //Clear old Values
     let item2 = [];
+    let item3 = [];
+    let item4 = [];
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -6327,32 +6412,46 @@ export function processBuyGrossSegmentWeek(newState, data) {
             index: i,
             actuals: item.GrossARRCW,
             units: item.GrossUnitsCW,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qrf: item.GrossARRTargetCW,
             qrfDiff: item.GrossCWVsQrfDiff,
             type: item.segment_pivot,
             vsQrf: item.GrossCWVsQrf,
             ww: item.GrossWW
         }
-
+        
+        let grossUnits = {
+            index: i,
+            actuals: item.GrossUnitsCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_group,
+            qrf: item.GrossUnitsTargetCW,
+            qrfDiff: item.GrossUnitsCWVsQrfDiff,
+            type: item.segment_pivot,
+            vsQrf: item.GrossUnitsCWVsQrf,
+            ww: item.GrossUnitsWW
+        }
 
         item2.push(gross);
-
+        item3.push(grossUnits);
     }
     newState[19].details.segment.week = item2;
+    newState[20].details.segment.week = item3;
 
 }
 export function processBuyGrossproductQTD(newState, data) {
 
-    //Clear old Values
-    newState[19].details.product.qtd = [];
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
 
         let gross = {
             index: i,
             actuals: item.GrossActuals,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qq: item.GrossARRQQTY,
             qrf: item.GrossTarget,
             qrfDiff: item.GrossVsQrfDiff,
@@ -6361,18 +6460,34 @@ export function processBuyGrossproductQTD(newState, data) {
             vsQrf: item.GrossARRVsQrf,
             yy: item.GrossARRYY
         }
+        let grossUnits = {
+            index: i,
+            actuals: item.GrossUnitsActuals,
+            marketArea: item.market_area_group,
+            qq: item.GrossUnitsARRQQTY,
+            qrf: item.GrossUnitsTarget,
+            qrfDiff: item.GrossUnitsVsQrfDiff,
+            type: item.product_category,
+            vsQrf: item.GrossUnitsARRVsQrf,
+            yy: item.GrossUnitsARRYY
+        }
 
 
-        newState[19].details.product.qtd.push(gross);
-
+        item1.push(grossUnits);
+        item2.push(gross);
 
     }
+
+    // console.log('YO', item1);
+    newState[19].details.product.qtd = item2;
+    newState[20].details.product.qtd = item1;
 
 }
 export function processBuyGrossProductWeek(newState, data) {
     //Clear old Values
     let item2 = [];
-
+    let item3 = [];
+    let item4 = [];
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -6381,17 +6496,30 @@ export function processBuyGrossProductWeek(newState, data) {
             index: i,
             actuals: item.GrossARRCW,
             units: item.GrossUnitsCW,
-            marketArea: item.market_area_code,
+            marketArea: item.market_area_group,
             qrf: item.GrossARRTargetCW,
             qrfDiff: item.GrossCWVsQrfDiff,
             type: item.product_category,
             vsQrf: item.GrossCWVsQrf,
             ww: item.GrossWW
         }
+        
+        let grossUnits = {
+            index: i,
+            actuals: item.GrossUnitsCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_group,
+            qrf: item.GrossUnitsTargetCW,
+            qrfDiff: item.GrossUnitsCWVsQrfDiff,
+            type: item.product_category,
+            vsQrf: item.GrossUnitsCWVsQrf,
+            ww: item.GrossUnitsWW
+        }
 
         item2.push(gross);
-
+        item3.push(grossUnits);
     }
     newState[19].details.product.week = item2;
+    newState[20].details.product.week = item3;
 
 }

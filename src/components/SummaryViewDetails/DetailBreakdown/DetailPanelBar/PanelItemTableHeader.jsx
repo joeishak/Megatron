@@ -25,7 +25,7 @@ class PanelItemTableHeader extends Component {
             case DIMENSIONS.CONVERSION:
                 return 'Conversion'
             case DIMENSIONS.SIGNAPP:
-                return 'Sign Up App'
+                return 'Sign Up Source'
                 case DIMENSIONS.SIGNCAT:
                 return 'Sign Up Category';
             case DIMENSIONS.MOBILEVSDESKTOP:
@@ -57,12 +57,14 @@ class PanelItemTableHeader extends Component {
     }
     getLowerHeader(type) {
 
-        let isGeo = type === DIMENSIONS.GEO;
+        let isGeo = type === DIMENSIONS.GEO 
+        let isLTC =  type === DIMENSIONS.LTC 
+        let isSignApp = type === DIMENSIONS.SIGNAPP;
         let qtdColumnClass, weekColumnClass;
         let isJourney = this.props.activeSummary.index > 3
         if (isJourney) {
             // Journeys
-            if (isGeo) {
+            if (isGeo || isLTC || isSignApp) {
                 qtdColumnClass = 'qtdJourneyMarketColumn';
                 weekColumnClass = 'weekJourneyMarketColumn';
             } else {
@@ -82,8 +84,11 @@ class PanelItemTableHeader extends Component {
 
         let MAColumn = (isGeo) ? <div className={`${qtdColumnClass}  header qtdMaHeader col`}>
             Market Area
+           </div> : (isLTC) ? <div className={`${qtdColumnClass}  header qtdMaHeader col`}>
+            Visits
+           </div> : (isSignApp) ? <div className={`${qtdColumnClass}  header qtdMaHeader col`}>
+            Sign Up App
            </div> : <span></span>
-
         switch (this.props.timeMetric) {
             case 'qtd':
                 return (<div className="lowerHeaderBar ">

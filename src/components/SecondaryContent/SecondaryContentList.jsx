@@ -234,7 +234,7 @@ class SecondaryContentList extends Component {
               statsDetails={this.props.statsDetails}
               key={item.index}
               item={item}
-              comments={this.props.commentsPackage.comments}
+              // comments={this.props.commentsPackage}
               activeJourneyCard={isActive}
               onSecondaryCardClicked={e => this.onSecondaryCardClicked(e, item.index)}
               onJourneyCardClicked={(e, index) => {

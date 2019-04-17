@@ -25,6 +25,7 @@ class MultiDimensionPanelItem extends Component {
 
     getMultiDimensionJourneyPanelItem(activeSecondary) {
 
+        console.log(this.props.type);
         let calculatedGeo, prevGeo;
         let marketCount = 0;
         let qtdColumnClass, weekColumnClass;
@@ -80,7 +81,7 @@ class MultiDimensionPanelItem extends Component {
             default:
                 return (this.props.data.week.map(item => {
 
-                    if (this.props.type === DIMENSIONS.GEO ||this.props.type === DIMENSIONS.LTC) {
+                    if (this.props.type === DIMENSIONS.GEO ||this.props.type === DIMENSIONS.LTC || this.props.type === DIMENSIONS.SIGNAPP) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
                             calculatedGeo = "";
                         } else if (calculatedGeo === undefined || item.type !== calculatedGeo) {
@@ -138,7 +139,7 @@ class MultiDimensionPanelItem extends Component {
                 return (this.props.data.qtd.map(item => {
 
                     // console.log('HERE',item);
-                    if (this.props.type === DIMENSIONS.GEO ||this.props.type === DIMENSIONS.ltc) {
+                    if (this.props.type === DIMENSIONS.GEO  ) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
                             calculatedGeo = "";
                         } else if (calculatedGeo === undefined || item.type !== calculatedGeo) {
@@ -224,7 +225,7 @@ class MultiDimensionPanelItem extends Component {
         }
     }
     render() {
-        // console.log('ACTIVE SECONDARY', this.props.activeSecondary)
+        console.log('ACTIVE SECONDARY', this.props.activeSecondary)
         let activeSecondary = this.props.activeSecondary !== undefined ? this.props.activeSecondary : 0;
         let MultiDimensionPanelItem = (this.props.isJourney === true) ? this.getMultiDimensionJourneyPanelItem(activeSecondary) : this.getMultiDimensionPanelItem(activeSecondary);
         return (MultiDimensionPanelItem)

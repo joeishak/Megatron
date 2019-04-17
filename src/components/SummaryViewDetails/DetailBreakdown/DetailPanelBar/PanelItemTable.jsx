@@ -63,7 +63,7 @@ class PanelItemTable extends Component {
                     activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.ltc}
-                    isJourney={this.state.isJourney}
+                    isJourney={true}
                     type={DIMENSIONS.LTC}
                     valueType={this.props.activeSummary.valueType}
                     />
@@ -136,7 +136,7 @@ class PanelItemTable extends Component {
                     activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.signUpApp}
-                    isJourney={this.state.isJourney}
+                    isJourney={true}
                     type={DIMENSIONS.SIGNAPP} 
                     valueType={this.props.activeSummary.valueType}
                     />
