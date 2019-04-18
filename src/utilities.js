@@ -410,7 +410,6 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[4].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
             filterParams[5].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             break;
-        // Renew
         case 4:
 
 
@@ -1491,6 +1490,104 @@ export function requestBuyFinanceSecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+export function requestUseSecondaryData(allFilters, _parameters) {
+    responseArray = [];
+
+
+    generateFilterParams(1, useParams, allFilters, _parameters);
+
+    let params8 = useParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
+    console.log(params8);
+    const useSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseSecondary + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const useMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseMultichart + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    const useQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const useGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseGeoQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const useMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseMAQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const useSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseSegQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const useSubsQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseSubsOfferQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+   
+    responseArray.push(useSecondary,useMultichart,useQTDTotals,useGeoQTD,useMarketQTD,useSegmentQTD,useSubsQTD);
+    let promiseArr = Promise.all(responseArray);
+
+    return promiseArr;
+}
+
+export function requestRenewSecondaryData(allFilters, _parameters) {
+    responseArray = [];
+
+
+    generateFilterParams(3, renewParams, allFilters, _parameters);
+
+    let params8 = useParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
+    console.log(params8);
+    const renewSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMultiChartQuery + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    const renewQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewGeoQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMAQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSegmentsQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewProductQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewProductCategoryQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+   
+    responseArray.push(renewSecondary,renewMultichart,renewQTDTotals,renewGeoQTD,renewMarketQTD,renewSegmentQTD,renewProductQTD);
+    let promiseArr = Promise.all(responseArray);
+
+    return promiseArr;
+}
+
 
 export function filterPrimaryData(allFilters, _parameters) {
     responseArray = [];
@@ -2307,6 +2404,104 @@ export function filterBuyFinanceSecondaryData(allFilters, _parameters) {
     });
 
     responseArray.push(financeSecondary, financeMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, financeProductQTD);
+    let promiseArr = Promise.all(responseArray);
+
+    return promiseArr;
+}
+
+export function filterUseSecondaryData(allFilters, _parameters) {
+    responseArray = [];
+
+
+    generateFilterParams(1, useParams, allFilters, _parameters);
+
+    let params8 = useParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
+    console.log(params8);
+    const useSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseSecondary + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const useMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseMultichart + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    const useQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const useGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseGeoQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const useMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseMAQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const useSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseSegQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const useSubsQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseSubsOfferQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    responseArray.push(useSecondary,useMultichart,useQTDTotals,useGeoQTD,useMarketQTD,useSegmentQTD,useSubsQTD);
+
+    let promiseArr = Promise.all(responseArray);
+
+    return promiseArr;
+}
+
+export function filterRenewSecondaryData(allFilters, _parameters) {
+    responseArray = [];
+
+
+    generateFilterParams(3, renewParams, allFilters, _parameters);
+
+    let params8 = useParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
+    console.log(params8);
+    const renewSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMultiChartQuery + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    const renewQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewGeoQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMAQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSegmentsQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewProductCategoryQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+   
+    responseArray.push(renewSecondary,renewMultichart,renewQTDTotals,renewGeoQTD,renewMarketQTD,renewSegmentQTD,renewProductQTD);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;

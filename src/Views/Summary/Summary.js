@@ -106,6 +106,8 @@ class Summary extends Component {
       trafficIsLoaded,
       muIsLoaded,
       tryIsLoaded,
+      useIsLoaded,
+      renewIsLoaded,
       buySecondaryIsLoaded,
       preferencesAreAdded,
       preferencesAreLoaded,
@@ -187,6 +189,9 @@ class Summary extends Component {
         this.props.updateBuyConversionIsLoading(false);
         this.props.updateBuyMarketIsLoading(false);
         this.props.updateBuyGrossIsLoading(false);
+        this.props.updateUseIsLoading(false);
+        this.props.updateRenewIsLoading(false);
+
         if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_NET_NEW_ARR ||
           activeSecondaryCard === SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR) {
 
@@ -236,7 +241,7 @@ class Summary extends Component {
             }
 
         }
-        else if (activeSecondaryCard === SUMMARY_FILTERS.TRY_NEW_UQFM) {
+        else if (activeSecondaryCard >= SUMMARY_FILTERS.TRY_NEW_UQFM || activeSecondaryCard <=SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM) {
           console.log('Getting Try');
           this.props.getFilteredTrySecondaryData(this.props.filters);
         }
@@ -272,6 +277,27 @@ class Summary extends Component {
               this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
               this.props.getFilteredBuySecondaryData(this.props.filters);
             }  
+        }
+        else if (activeSecondaryCard >= SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX || activeSecondaryCard <=SUMMARY_FILTERS.USE_WK4_WAU_RATE) {
+          console.log('Getting Use');
+          if (isDefaultFilters) {
+            this.props.getUseSecondaryData(this.props.filters);
+
+          } else {
+            this.props.getFilteredUseSecondaryData(this.props.filters);
+
+          } 
+        }
+        else if (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL || activeSecondaryCard <=SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL) {
+          console.log('Getting Try');
+         
+          if (isDefaultFilters) {
+            this.props.getRenewSecondaryData(this.props.filters);
+
+          } else {
+            this.props.getFilteredRenewSecondaryData(this.props.filters);
+
+          } 
         }
       }
     }
@@ -487,7 +513,30 @@ class Summary extends Component {
 
         }
       }
+      else if (activeSecondaryCard === SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX) {
+        if (!tryIsLoaded) {
+          if (isDefaultFilters) {
+            this.props.getUseSecondaryData(this.props.filters);
 
+          } else {
+            this.props.getFilteredUseSecondaryData(this.props.filters);
+
+          }
+          // this.setState({ isLoading: true });
+        }
+      }
+      else if (activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL) {
+        if (!renewIsLoaded) {
+          if (isDefaultFilters) {
+            this.props.getRenewSecondaryData(this.props.filters);
+
+          } else {
+            this.props.getFilteredRenewSecondaryData(this.props.filters);
+
+          }
+          // this.setState({ isLoading: true });
+        }
+      }
     }
     /**Setting Load to False ... */
     switch (this.props.activePrimaryCard) {
@@ -778,6 +827,24 @@ class Summary extends Component {
 
         }
         break;
+      case 4: 
+      if (this.state.secondaryKpiChanged === true || this.state.filtersUpdated === true) {
+        if (useIsLoaded === true) {
+
+          this.setState({ isLoading: false, secondaryKpiChanged: false, filtersUpdated: false });
+
+        }
+      }
+      break;
+      case 5: 
+      if (this.state.secondaryKpiChanged === true || this.state.filtersUpdated === true) {
+        if (renewIsLoaded === true) {
+
+          this.setState({ isLoading: false, secondaryKpiChanged: false, filtersUpdated: false });
+
+        }
+      }
+      break;
     }
   }
   updateSecondaryLoading(newFilters) {
@@ -837,11 +904,11 @@ class Summary extends Component {
         break;
       case (4):
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(24);
+        this.props.updateActiveSecondaryCard(21);
         break;
       default:
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(32);
+        this.props.updateActiveSecondaryCard(27);
         break;
     }
     if (
@@ -1043,6 +1110,8 @@ function mapStateToProps(state) {
     buySecondaryIsLoaded: state.summaryData.buySecondaryIsLoaded,
     buyConversionIsLoaded: state.summaryData.buyConversionIsLoaded,
     tryIsLoaded: state.summaryData.tryIsLoaded,
+    useIsLoaded: state.summaryData.useIsLoaded,
+    renewIsLoaded: state.summaryData.renewIsLoaded,
 
     filtersAreLoaded: state.filters.filtersAreLoaded,
     globalFiltersSubmitted: state.filters.globalFiltersSubmitted,

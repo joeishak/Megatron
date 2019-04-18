@@ -45,6 +45,8 @@ export const UPDATE_MU_IS_LOADING                       = 'update_mu_is_loading'
 export const UPDATE_BUY_CONVERSION_IS_LOADING              = 'update_buy_conversion_is_loading';
 export const UPDATE_BUY_MARKET_IS_LOADING                       = 'update_buy_market_is_loading';
 export const UPDATE_BUY_GROSS_IS_LOADING            = 'update_buy_gross_is_loading';
+export const UPDATE_USE_IS_LOADING   = 'update_use_is_loading';
+export const UPDATE_RENEW_IS_LOADING  ='update_renew_is_loading'   ; 
 
 export const GET_BUY_TRAFFIC_SECONDARY_DATA = 'get_buy_traffic_secondary_data';
 

@@ -5,6 +5,8 @@ import {
     ADD_NEW_SECONDARY_REPLY,
     GET_SUMMARY_DATA,
     // FETCH_COMMENTS_COUNT,
+    UPDATE_USE_IS_LOADING,
+    UPDATE_RENEW_IS_LOADING,
     GET_PRIMARY_DATA,
     GET_FINANCE_SECONDARY_DATA,
     GET_FINANCE_XDC1_SECONDARY_DATA,
@@ -21,8 +23,8 @@ import {
     GET_RENEW_SECONDARY_DATA,
     DELETE_COMMENT,
     RESET_DATA,
-    UPDATE_BUY_CONVERSION_IS_LOADING ,
-    UPDATE_BUY_MARKET_IS_LOADING,     
+    UPDATE_BUY_CONVERSION_IS_LOADING,
+    UPDATE_BUY_MARKET_IS_LOADING,
     UPDATE_BUY_GROSS_IS_LOADING,
     UPDATE_PRIMARY_IS_LOADING,
     UPDATE_DISCOVER_SECONDARY_IS_LOADING,
@@ -30,8 +32,8 @@ import {
     UPDATE_TRY_IS_LOADING,
     UPDATE_TRAFFIC_IS_LOADING,
     UPDATE_MU_IS_LOADING,
-    UPDATE_FINANCE_XDC_1_IS_LOADING ,
-UPDATE_FINANCE_XDC_2_IS_LOADING ,
+    UPDATE_FINANCE_XDC_1_IS_LOADING,
+    UPDATE_FINANCE_XDC_2_IS_LOADING,
     // FETCH_COMMENTS
 } from 'actions/types';
 import _ from 'lodash'
@@ -52,63 +54,70 @@ export default function (state = {
     secondary: SecondaryData,
 }, action) {
     switch (action.type) {
-        case UPDATE_PRIMARY_IS_LOADING: 
-        return {
-            ...state, primaryIsLoaded: action.payload
-        }
-        case UPDATE_DISCOVER_SECONDARY_IS_LOADING: 
-        return {
-            ...state, discoverSecondaryIsLoaded: action.payload
-        }
-        case UPDATE_FINANCE_SECONDARY_IS_LOADING: 
-        return {
-            ...state, financeSecondaryIsLoaded: action.payload
-        }
-        case UPDATE_TRAFFIC_IS_LOADING:
-        return {
-            ...state, trafficIsLoaded: action.payload
-        }
-        case UPDATE_FINANCE_XDC_1_IS_LOADING:
-        return {
-            ...state, financeXDC1IsLoaded: action.payload
-        }
-        case UPDATE_FINANCE_XDC_2_IS_LOADING:
-        return {
-            ...state, financeXDC2IsLoaded: action.payload
-        }
-        case UPDATE_MU_IS_LOADING: 
-        return {
-            ...state, muIsLoaded: action.payload
-        }
-        case UPDATE_TRY_IS_LOADING:
-        return {
-            ...state, tryIsLoaded: action.payload
-        }
-        case UPDATE_BUY_CONVERSION_IS_LOADING:
-        return {
-            ...state, buyConversionIsLoaded: action.payload
-        }
-        case UPDATE_BUY_GROSS_IS_LOADING: 
-        return {
-            ...state, buyGrossIsLoaded: action.payload
-        }
-        case UPDATE_BUY_MARKET_IS_LOADING:
-        return {
-            ...state, buyMarketIsLoaded: action.payload
-        }
-
-        case RESET_DATA: 
+        case UPDATE_PRIMARY_IS_LOADING:
             return {
-                    ...state,
-                    primaryIsLoaded: false, 
-                    discoverSecondaryIsLoaded: false, 
-                    financeSecondaryIsLoaded: false, 
-                    financeXDC1IsLoaded: false, 
-                    financeXDC2IsLoaded: false, 
-                    trafficIsLoaded: false, 
-                    muIsLoaded: false, 
-                    tryIsLoaded: false
-                }
+                ...state, primaryIsLoaded: action.payload
+            }
+        case UPDATE_DISCOVER_SECONDARY_IS_LOADING:
+            return {
+                ...state, discoverSecondaryIsLoaded: action.payload
+            }
+        case UPDATE_FINANCE_SECONDARY_IS_LOADING:
+            return {
+                ...state, financeSecondaryIsLoaded: action.payload
+            }
+        case UPDATE_TRAFFIC_IS_LOADING:
+            return {
+                ...state, trafficIsLoaded: action.payload
+            }
+        case UPDATE_FINANCE_XDC_1_IS_LOADING:
+            return {
+                ...state, financeXDC1IsLoaded: action.payload
+            }
+        case UPDATE_FINANCE_XDC_2_IS_LOADING:
+            return {
+                ...state, financeXDC2IsLoaded: action.payload
+            }
+        case UPDATE_MU_IS_LOADING:
+            return {
+                ...state, muIsLoaded: action.payload
+            }
+        case UPDATE_TRY_IS_LOADING:
+            return {
+                ...state, tryIsLoaded: action.payload
+            }
+        case UPDATE_BUY_CONVERSION_IS_LOADING:
+            return {
+                ...state, buyConversionIsLoaded: action.payload
+            }
+        case UPDATE_BUY_GROSS_IS_LOADING:
+            return {
+                ...state, buyGrossIsLoaded: action.payload
+            }
+        case UPDATE_BUY_MARKET_IS_LOADING:
+            return {
+                ...state, buyMarketIsLoaded: action.payload
+            }
+        case UPDATE_RENEW_IS_LOADING:
+            return {
+                ...state, renewIsLoaded: action.payload
+            }
+        case UPDATE_USE_IS_LOADING:
+            return {
+                ...state, useIsLoaded: action.payload
+            }
+        case RESET_DATA:
+            return {
+                ...state,
+                primaryIsLoaded: false,
+                discoverSecondaryIsLoaded: false,
+                financeSecondaryIsLoaded: false,
+                financeXDC1IsLoaded: false,
+                financeXDC2IsLoaded: false,
+                trafficIsLoaded: false,
+                muIsLoaded: false,
+                tryIsLoaded: false
+            }
         case GET_PRIMARY_DATA:
             console.log('Request For Primary Data: ', action.payload);
             //Make a Stringify copy of state
@@ -151,32 +160,12 @@ export default function (state = {
         case GET_FINANCE_SECONDARY_DATA:
             console.log('Request For Finance Secondary Details Data: ', action.payload);
             newState = JSON.parse(JSON.stringify(state));
-            // financeSecondary, financeMultichart, financeUnitsMultichart,
-            // financeQTDTotals, financeGeoQTD, financeMarketQTD,
-            // financeSegmentQTD, financeRouteQTD, financeProductQTD
-
             processXDC1FinanceSecondaryData(action.payload[0], newState.secondary);
             processXDC2FinanceSecondaryData(action.payload[1], newState.secondary);
-            // processFinancialMultichart(newState.secondary, action.payload[1].data);
-            // processFinancialUnitsMultichart(newState.secondary, action.payload[2].data);
-            // processFinancialQTD(newState.secondary, action.payload[3].data);
 
-            // processFinancialGeoQTD(newState.secondary, action.payload[4].data);
-            // processFinancialGeoWeek(newState.secondary, action.payload[4].data)
-
-            // processFinancialMarketQTD(newState.secondary, action.payload[5].data);
-            // processFinancialMarketWeek(newState.secondary, action.payload[5].data);
-            // processFinancialrouteQTD(newState.secondary, action.payload[7].data);
-            // processFinancialrouteWeek(newState.secondary, action.payload[7].data)
-
-            // processFinancialSegmentQTD(newState.secondary, action.payload[6].data);
-            // processFinancialSegmentWeek(newState.secondary, action.payload[6].data);
-
-            // processFinancialproductQTD(newState.secondary, action.payload[8].data);
-            // processFinancialProductWeek(newState.secondary, action.payload[8].data);
             return { ...newState, financeSecondaryIsLoaded: true };
         case GET_FINANCE_XDC1_SECONDARY_DATA:
-        console.log("Request for XDC 1 Finance: ",action.payload);
+            console.log("Request for XDC 1 Finance: ", action.payload);
             newState = JSON.parse(JSON.stringify(state));
             processXDC1FinanceSecondaryData(action.payload[0], newState.secondary);
             processXDC1FinancialMultichart(newState.secondary, action.payload[1].data);
@@ -192,9 +181,9 @@ export default function (state = {
             processXDC1FinancialSegmentWeek(newState.secondary, action.payload[6].data);
             processXDC1FinancialproductQTD(newState.secondary, action.payload[8].data);
             processXDC1FinancialProductWeek(newState.secondary, action.payload[8].data);
-        return {...newState, financeXDC1IsLoaded: true};
+            return { ...newState, financeXDC1IsLoaded: true };
         case GET_FINANCE_XDC2_SECONDARY_DATA:
-        console.log("Request for XDC 2 Finance: ",action.payload);
+            console.log("Request for XDC 2 Finance: ", action.payload);
             newState = JSON.parse(JSON.stringify(state));
             processXDC2FinanceSecondaryData(action.payload[0], newState.secondary);
             processXDC2FinancialMultichart(newState.secondary, action.payload[1].data);
@@ -210,8 +199,8 @@ export default function (state = {
             processXDC2FinancialSegmentWeek(newState.secondary, action.payload[6].data);
             processXDC2FinancialproductQTD(newState.secondary, action.payload[8].data);
             processXDC2FinancialProductWeek(newState.secondary, action.payload[8].data);
-            console.log('New State for XDC2',newState);
-        return {...newState, financeXDC2IsLoaded: true};
+            console.log('New State for XDC2', newState);
+            return { ...newState, financeXDC2IsLoaded: true };
         case GET_TRAFFIC_SECONDARY_DATA:
             console.log('Request For Traffic + UQFM Conv Secondary Details Data: ', action.payload);
             newState = JSON.parse(JSON.stringify(state));
@@ -266,116 +255,87 @@ export default function (state = {
             processTrySignUpAppQTDData(action.payload[6].data, newState.secondary);
             processTrySignUpCatQTDData(action.payload[7].data, newState.secondary);
             return { ...newState, tryIsLoaded: true };
-            case GET_BUY_SECONDARY_DATA:
-            console.log('Request for Buy Secondary Data: ',action.payload);
-                newState = JSON.parse(JSON.stringify(state));
-                processBuyMKTSourcedSecondary(action.payload[1].data[0], newState.secondary);
-                processBuyPMSSSecondaryData(action.payload[2].data[0], newState.secondary);
-                processBuyGrossSecondaryData(action.payload[3].data[0], newState.secondary);
-                processBuyConversionSecondaryData(action.payload[0].data[0], newState.secondary);
-    
-                return {...newState,buySecondaryIsLoaded: true};
-            case GET_BUY_TRAFFIC_SECONDARY_DATA:
-                newState = JSON.parse(JSON.stringify(state));
-                console.log('Request For Buy Conversion Data ', action.payload);
-                processBuyConversionSecondaryData(action.payload[0].data[0], newState.secondary);
-                processBuyConversionMultichartData(action.payload[1].data, newState.secondary);
-                processBuyConversionQTDData(action.payload[2].data[0], newState.secondary);
-                processBuyConversionGeoQTDData(action.payload[3].data, newState.secondary);
-                processBuyConversionMarketQTDData(action.payload[4].data, newState.secondary);
-                processBuyConversionWebSegmentQTDData(action.payload[5].data, newState.secondary);
-                processBuyConversionLTCQTDData(action.payload[6].data, newState.secondary);
-                processBuyConversionConvQTDData(action.payload[7].data, newState.secondary);
-                processBuyConversionMobDeskQTDData(action.payload[8].data, newState.secondary);
-                processBuyConversionNewRepQTDData(action.payload[9].data, newState.secondary);
-    
-                return { ...newState, buyConversionIsLoaded: true };
-            case GET_BUY_MKTG_SECONDARY_DATA:
-                newState = JSON.parse(JSON.stringify(state));
-                console.log('Request For Mktg Sourced + PM Sourced & Spend Secondary Details Data: ', action.payload);
-    
-                processBuyMKTSourcedSecondary(action.payload[0].data[0], newState.secondary);
-                processBuyMKTSourcedMultichart(action.payload[1].data, newState.secondary);
-                processBuyMKTSourcedQTD(action.payload[2].data[0], newState.secondary);
-                processBuyMKTSourcedGeoQTD(action.payload[3].data, newState.secondary);
-                processBuyMKTSourcedMAQTD(action.payload[4].data, newState.secondary);
-                processBuyMKTSourcedChannelQTD(action.payload[5].data, newState.secondary);
-                processBuyPMSSSecondaryData(action.payload[6].data[0], newState.secondary);
-    
-                processBuyPMSSMultichartData(action.payload[7].data, newState.secondary);
-                processBuyPMSSQTDData(action.payload[8].data[0], newState.secondary);
-                processBuyPMSSGeoQTDData(action.payload[9].data, newState.secondary);
-                processBuyPMSSMarketQTDData(action.payload[10].data, newState.secondary);
-                processBuyPMSSChannelQTDData(action.payload[11].data, newState.secondary);
-    
-                return { ...newState, buyMarketIsLoaded: true };
-            case GET_BUY_FINANCE_SECONDARY_DATA:
-                newState = JSON.parse(JSON.stringify(state));
-                console.log('Request For Buy Gross ARR Secondary Details Data: ', action.payload);
-                processBuyGrossSecondaryData(action.payload[0].data[0], newState.secondary);
-                processBuyGrossMultichart(newState.secondary, action.payload[1].data);
-                processBuyGrossQTD(newState.secondary, action.payload[2].data);
-                processBuyGrossGeoQTD(newState.secondary, action.payload[3].data);
-                processBuyGrossGeoWeek(newState.secondary, action.payload[3].data)
-                processBuyGrossMarketQTD(newState.secondary, action.payload[4].data);
-                processBuyGrossMarketWeek(newState.secondary, action.payload[4].data);
-                processBuyGrossrouteQTD(newState.secondary, action.payload[6].data);
-                processBuyGrossrouteWeek(newState.secondary, action.payload[6].data)
-                processBuyGrossSegmentQTD(newState.secondary, action.payload[5].data);
-                processBuyGrossSegmentWeek(newState.secondary, action.payload[5].data);
-                processBuyGrossproductQTD(newState.secondary, action.payload[7].data);
-                processBuyGrossProductWeek(newState.secondary, action.payload[7].data);
-    
-                return { ...newState, buyGrossIsLoaded: true };
-        case ADD_NEW_PRIMARY_COMMENT:
-            index = action.payload.square;
-            copyOfState = JSON.parse(JSON.stringify(state));
-            let newComments = copyOfState.primary[index].comments.map(item => {
-                return item
-            })
-            newComments.push(action.payload.comment);
-            return { ...copyOfState, comments: newComments };
-        // CAse for adding a reply to a previous comment
-        case ADD_NEW_PRIMARY_REPLY:
-            index = action.payload.square;
-            copyOfState = JSON.parse(JSON.stringify(state));
-            commentIndex = Number(action.payload.comment)
-            copyOfState.primary[index].comments[commentIndex].replies.push(action.payload.reply);
-            return { ...copyOfState };
-        case ADD_NEW_SECONDARY_COMMENT:
-            index = action.payload.square;
-            copyOfState =JSON.parse(JSON.stringify(state));
-            copyOfState.secondary[index].comments.push(action.payload.comment);
-            return { ...copyOfState };
-        // CAse for adding a reply to a previous comment
-        case ADD_NEW_SECONDARY_REPLY:
-            index = action.payload.square;
-            copyOfState = JSON.parse(JSON.stringify(state));
-            commentIndex = Number(action.payload.comment)
-            copyOfState.secondary[index].comments[commentIndex].replies.push(action.payload.reply);
-            return { ...copyOfState };
-        // case FETCH_COMMENTS_COUNT:
-        //     copyOfState = JSON.parse(JSON.stringify(state));
-        //     const commentsCount = action.payload[0];
-        //     console.log(commentsCount);
-        //     for (let i = 0; i < commentsCount.length; i++) {
-        //         copyOfState.secondary[commentsCount[i].metricId].comments.push(commentsCount[i].commentCount);
-        //     }
+        case GET_BUY_SECONDARY_DATA:
+            console.log('Request for Buy Secondary Data: ', action.payload);
+            newState = JSON.parse(JSON.stringify(state));
+            processBuyMKTSourcedSecondary(action.payload[1].data[0], newState.secondary);
+            processBuyPMSSSecondaryData(action.payload[2].data[0], newState.secondary);
+            processBuyGrossSecondaryData(action.payload[3].data[0], newState.secondary);
+            processBuyConversionSecondaryData(action.payload[0].data[0], newState.secondary);
 
-        //     return { ...copyOfState };
-        case DELETE_COMMENT:
-            copyOfState = JSON.parse(JSON.stringify(state));
-            let { commentId, activeSquareID } = action.payload;
-            // console.log(copyOfState.secondary[activeSquareID]);
-            copyOfState.secondary[activeSquareID] = {
-                ...copyOfState.secondary[activeSquareID],
-                comments: copyOfState.secondary[activeSquareID].comments.filter(comment => {
-                    comment.id !== commentId
-                })
-            }
-            // console.log(copyOfState.secondary[activeSquareID].comments);
+            return { ...newState, buySecondaryIsLoaded: true };
+        case GET_BUY_TRAFFIC_SECONDARY_DATA:
+            newState = JSON.parse(JSON.stringify(state));
+            console.log('Request For Buy Conversion Data ', action.payload);
+            processBuyConversionSecondaryData(action.payload[0].data[0], newState.secondary);
+            processBuyConversionMultichartData(action.payload[1].data, newState.secondary);
+            processBuyConversionQTDData(action.payload[2].data[0], newState.secondary);
+            processBuyConversionGeoQTDData(action.payload[3].data, newState.secondary);
+            processBuyConversionMarketQTDData(action.payload[4].data, newState.secondary);
+            processBuyConversionWebSegmentQTDData(action.payload[5].data, newState.secondary);
+            processBuyConversionLTCQTDData(action.payload[6].data, newState.secondary);
+            processBuyConversionConvQTDData(action.payload[7].data, newState.secondary);
+            processBuyConversionMobDeskQTDData(action.payload[8].data, newState.secondary);
+            processBuyConversionNewRepQTDData(action.payload[9].data, newState.secondary);
 
-            return {...copyOfState};
+            return { ...newState, buyConversionIsLoaded: true };
+        case GET_BUY_MKTG_SECONDARY_DATA:
+            newState = JSON.parse(JSON.stringify(state));
+            console.log('Request For Mktg Sourced + PM Sourced & Spend Secondary Details Data: ', action.payload);
+
+            processBuyMKTSourcedSecondary(action.payload[0].data[0], newState.secondary);
+            processBuyMKTSourcedMultichart(action.payload[1].data, newState.secondary);
+            processBuyMKTSourcedQTD(action.payload[2].data[0], newState.secondary);
+            processBuyMKTSourcedGeoQTD(action.payload[3].data, newState.secondary);
+            processBuyMKTSourcedMAQTD(action.payload[4].data, newState.secondary);
+            processBuyMKTSourcedChannelQTD(action.payload[5].data, newState.secondary);
+            processBuyPMSSSecondaryData(action.payload[6].data[0], newState.secondary);
+
+            processBuyPMSSMultichartData(action.payload[7].data, newState.secondary);
+            processBuyPMSSQTDData(action.payload[8].data[0], newState.secondary);
+            processBuyPMSSGeoQTDData(action.payload[9].data, newState.secondary);
+            processBuyPMSSMarketQTDData(action.payload[10].data, newState.secondary);
+            processBuyPMSSChannelQTDData(action.payload[11].data, newState.secondary);
+
+            return { ...newState, buyMarketIsLoaded: true };
+        case GET_BUY_FINANCE_SECONDARY_DATA:
+            newState = JSON.parse(JSON.stringify(state));
+            console.log('Request For Buy Gross ARR Secondary Details Data: ', action.payload);
+            processBuyGrossSecondaryData(action.payload[0].data[0], newState.secondary);
+            processBuyGrossMultichart(newState.secondary, action.payload[1].data);
+            processBuyGrossQTD(newState.secondary, action.payload[2].data);
+            processBuyGrossGeoQTD(newState.secondary, action.payload[3].data);
+            processBuyGrossGeoWeek(newState.secondary, action.payload[3].data)
+            processBuyGrossMarketQTD(newState.secondary, action.payload[4].data);
+            processBuyGrossMarketWeek(newState.secondary, action.payload[4].data);
+            processBuyGrossrouteQTD(newState.secondary, action.payload[6].data);
+            processBuyGrossrouteWeek(newState.secondary, action.payload[6].data)
+            processBuyGrossSegmentQTD(newState.secondary, action.payload[5].data);
+            processBuyGrossSegmentWeek(newState.secondary, action.payload[5].data);
+            processBuyGrossproductQTD(newState.secondary, action.payload[7].data);
+            processBuyGrossProductWeek(newState.secondary, action.payload[7].data);
+
+            return { ...newState, buyGrossIsLoaded: true };
+        case GET_USE_SECONDARY_DATA:
+            console.log('Request For Use   Secondary Details Data: ', action.payload);
+            // processUseSecondaryData(action.payload[0].data[0], newState.secondary);
+            // processUseMultichartData(action.payload[1].data, newState.secondary);
+            // processUseQTDData(action.payload[2].data[0], newState.secondary);
+            // processUseGeoQTDData(action.payload[3].data, newState.secondary);
+            // processUseMarketQTDData(action.payload[4].data, newState.secondary);
+            // processUseSegmentQTDData(action.payload[5].data, newState.secondary);
+            // processUseSSubscriptionQTDData(action.payload[6].data, newState.secondary);
+            return state;
+        case GET_RENEW_SECONDARY_DATA:
+            console.log('Request For Renew  Secondary Details Data: ', action.payload);
+            // processRenewSecondaryData(action.payload[0].data[0], newState.secondary);
+            // processRenewMultichartData(action.payload[1].data, newState.secondary);
+            // processRenewQTDData(action.payload[2].data[0], newState.secondary);
+            // processRenewGeoQTDData(action.payload[3].data, newState.secondary);
+            // processRenewMarketQTDData(action.payload[4].data, newState.secondary);
+            // processRenewProductQTDData(action.payload[5].data, newState.secondary);
+            // processRenewSegmentQTDData(action.payload[6].data, newState.secondary);
+            return state;
         default:
             return state;
     }
@@ -1432,7 +1392,7 @@ export function processXDC1FinancialMultichart(newState, data) {
     let weekFlag = data.map(item => {
         return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
     })
-    
+
     // _.orderBy(weekFlag, weekNo, ['asc'])
 
     let newData = _.orderBy(weekFlag, ['weekNo'], ['asc']);
@@ -1481,7 +1441,7 @@ export function processXDC1FinancialMultichart(newState, data) {
         termRenewal.lq.push(item.RenewARRLQ);
     };
     //Set Multichart Values
-    for (let i = 0; i <=2; i++) {
+    for (let i = 0; i <= 2; i++) {
         switch (i) {
             case 0:
                 currentMulti = [netArr.actual, netArr.target, netArr.ly, netArr.lq];
@@ -1489,7 +1449,7 @@ export function processXDC1FinancialMultichart(newState, data) {
             case 1:
                 currentMulti = [grossArr.actual, grossArr.target, grossArr.ly, grossArr.lq];
                 break;
-          
+
             default:
                 break;
         }
@@ -1561,7 +1521,7 @@ export function processXDC1FinancialUnitsMultichart(newState, data) {
             case 1:
                 newMulti = [grossUnits.actual, grossUnits.target, grossUnits.ly, grossUnits.lq];
                 break;
-            
+
             default:
                 break;
         }
@@ -1573,7 +1533,7 @@ export function processXDC1FinancialQTD(newState, data) {
     newState = Object.assign([], newState);
     // console.log(data)
     // State Order: Actual, Units, QRF, QRFDiff, VSQrf, QQ, YY
-    for (let i = 0; i <=2; i++) {
+    for (let i = 0; i <= 2; i++) {
         let findata = data[0];
         switch (i) {
             // New New Arr
@@ -1648,7 +1608,7 @@ export function processXDC1FinancialQTD(newState, data) {
                 newState[i].details.stats[2].value = findata.GrossARRQQLY;
                 newState[i].details.stats[3].value = findata.GrossARRYY;
                 break;
-            
+
         }
     }
 }
@@ -1713,7 +1673,7 @@ export function processXDC1FinancialGeoQTD(newState, data) {
 
         item1.push(net);
         item2.push(gross);
-      
+
     }
 
     // console.log('YO', item1);
@@ -1793,7 +1753,7 @@ export function processXDC1FinancialMarketQTD(newState, data) {
     //Clear old Values
     newState[0].details.market.qtd = [];
     newState[1].details.market.qtd = [];
-   
+
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         let net = {
@@ -1923,7 +1883,7 @@ export function processXDC1FinancialrouteQTD(newState, data) {
     //Clear old Values
     newState[0].details.route.qtd = [];
     newState[1].details.route.qtd = [];
-   
+
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         let net = {
@@ -2176,7 +2136,7 @@ export function processXDC1FinancialSegmentWeek(newState, data) {
     }
     newState[0].details.segment.week = item1;
     newState[1].details.segment.week = item2;
-    
+
 }
 export function processXDC1FinancialproductQTD(newState, data) {
 
@@ -2237,7 +2197,7 @@ export function processXDC1FinancialproductQTD(newState, data) {
 
         newState[0].details.product.qtd.push(net);
         newState[1].details.product.qtd.push(gross);
-      
+
 
     }
 
@@ -2304,7 +2264,7 @@ export function processXDC1FinancialProductWeek(newState, data) {
     }
     newState[0].details.product.week = item1;
     newState[1].details.product.week = item2;
-  
+
 }
 //XDC2
 export function processXDC2FinanceSecondaryData(g1, newState) {
@@ -2382,11 +2342,11 @@ export function processXDC2FinancialMultichart(newState, data) {
         termRenewal.ly.push(item.RenewARRLY);
         termRenewal.lq.push(item.RenewARRLQ);
     };
-   
-                let canc = [netCancellations.actual, netCancellations.target, netCancellations.ly, netCancellations.lq];
-                let ren = [termRenewal.actual, termRenewal.target, termRenewal.ly, termRenewal.lq];
-        newState[2]['details'].multichart = canc;
-        newState[3]['details'].multichart = ren;
+
+    let canc = [netCancellations.actual, netCancellations.target, netCancellations.ly, netCancellations.lq];
+    let ren = [termRenewal.actual, termRenewal.target, termRenewal.ly, termRenewal.lq];
+    newState[2]['details'].multichart = canc;
+    newState[3]['details'].multichart = ren;
 
 }
 export function processXDC2FinancialUnitsMultichart(newState, data) {
@@ -2445,7 +2405,7 @@ export function processXDC2FinancialUnitsMultichart(newState, data) {
     };
 
     // Set Units
-    for (let i = 2; i <=3; i++) {
+    for (let i = 2; i <= 3; i++) {
         newMulti = []
         switch (i) {
             case 2:
@@ -2726,7 +2686,7 @@ export function processXDC2FinancialGeoWeek(newState, data) {
 export function processXDC2FinancialMarketQTD(newState, data) {
 
     //Clear old Values
-  
+
     newState[2].details.market.qtd = [];
     newState[3].details.market.qtd = [];
     for (let i = 0; i < data.length; i++) {
@@ -2856,7 +2816,7 @@ export function processXDC2FinancialMarketWeek(newState, data) {
 export function processXDC2FinancialrouteQTD(newState, data) {
 
     //Clear old Values
-   
+
     newState[2].details.route.qtd = [];
     newState[3].details.route.qtd = [];
     for (let i = 0; i < data.length; i++) {
@@ -2986,7 +2946,7 @@ export function processXDC2FinancialrouteWeek(newState, data) {
 export function processXDC2FinancialSegmentQTD(newState, data) {
 
     //Clear old Values
-    
+
     newState[2].details.segment.qtd = [];
     newState[3].details.segment.qtd = [];
     for (let i = 0; i < data.length; i++) {
@@ -3116,7 +3076,7 @@ export function processXDC2FinancialSegmentWeek(newState, data) {
 export function processXDC2FinancialproductQTD(newState, data) {
 
     //Clear old Values
-    
+
     newState[2].details.product.qtd = [];
     newState[3].details.product.qtd = [];
     for (let i = 0; i < data.length; i++) {
@@ -6011,8 +5971,8 @@ export function processBuyGrossMultichart(newState, data) {
 
     };
 
-    
-    
+
+
 
     newState[19]['details'].multichart = [grossArr.actual, grossArr.target, grossArr.ly, grossArr.lq];
     newState[20]['details'].multichart = [grossUnitsArr.actual, grossUnitsArr.target, grossUnitsArr.ly, grossUnitsArr.lq];
@@ -6049,7 +6009,7 @@ export function processBuyGrossQTD(newState, data) {
     newState[20].details.qtdw.qtd[5].value = data[0].GrossUnitsARRYY;
     newState[20].details.qtdw.week[0].value = data[0].GrossUnitsARRCW
     newState[20].details.qtdw.week[1].value = data[0].GrossUnitsUnitsCW;
-    newState[20].details.qtdw.week[2].value = data[0].GrossUnitsARRTargetCW
+    newState[20].details.qtdw.week[2].value = data[0].GrossUnitsARRTargetCW;
     newState[20].details.qtdw.week[3].value = data[0].GrossUnitsCWVsQrfDiff;
     newState[20].details.qtdw.week[4].value = data[0].GrossUnitsCWVsQrf;
     newState[20].details.qtdw.week[5].value = data[0].GrossUnitsWW;
@@ -6107,7 +6067,7 @@ export function processBuyGrossGeoQTD(newState, data) {
 
 /** Custom function to Reorder QTD Details with row always last */
 function processQTDOrder(data) {
-    console.log('Processing QTD Order: ',data);
+    console.log('Processing QTD Order: ', data);
     if (data.length !== 0) {
         // check if theres ROW records
         let groupByMarketArea = _.groupBy(data, function (item) { return item.marketArea });
@@ -6174,7 +6134,7 @@ export function processBuyGrossGeoWeek(newState, data) {
             vsQrf: item.GrossCWVsQrf,
             ww: item.GrossWW
         }
-        
+
         let grossUnits = {
             index: i,
             actuals: item.GrossUnitsCW,
@@ -6254,7 +6214,7 @@ export function processBuyGrossMarketWeek(newState, data) {
             vsQrf: item.GrossCWVsQrf,
             ww: item.GrossWW
         }
-        
+
         let grossUnits = {
             index: i,
             actuals: item.GrossUnitsCW,
@@ -6269,8 +6229,8 @@ export function processBuyGrossMarketWeek(newState, data) {
         item2.push(gross);
         item3.push(grossUnits);
     }
-    newState[19].details.market.week =item2;
-    newState[20].details.market.week =item3;
+    newState[19].details.market.week = item2;
+    newState[20].details.market.week = item3;
 }
 export function processBuyGrossrouteQTD(newState, data) {
 
@@ -6336,7 +6296,7 @@ export function processBuyGrossrouteWeek(newState, data) {
             vsQrf: item.GrossCWVsQrf,
             ww: item.GrossWW
         }
-        
+
         let grossUnits = {
             index: i,
             actuals: item.GrossUnitsCW,
@@ -6419,7 +6379,7 @@ export function processBuyGrossSegmentWeek(newState, data) {
             vsQrf: item.GrossCWVsQrf,
             ww: item.GrossWW
         }
-        
+
         let grossUnits = {
             index: i,
             actuals: item.GrossUnitsCW,
@@ -6503,7 +6463,7 @@ export function processBuyGrossProductWeek(newState, data) {
             vsQrf: item.GrossCWVsQrf,
             ww: item.GrossWW
         }
-        
+
         let grossUnits = {
             index: i,
             actuals: item.GrossUnitsCW,
@@ -6521,5 +6481,1334 @@ export function processBuyGrossProductWeek(newState, data) {
     }
     newState[19].details.product.week = item2;
     newState[20].details.product.week = item3;
+
+}
+
+export function processUseSecondaryData(data, newState) {
+    newState[21].value = 0;
+    newState[21].targetFQ = 0;
+    newState[21].target = 0;
+    newState[21].vsQrf = 0;
+
+    newState[22].value = 0;
+    newState[22].targetFQ = 0;
+    newState[22].target = 0;
+    newState[22].vsQrf = 0;
+
+    newState[23].value = 0;
+    newState[23].targetFQ = 0;
+    newState[23].target = 0;
+    newState[23].vsQrf = 0;
+
+    newState[24].value = 0;
+    newState[24].targetFQ = 0;
+    newState[24].target = 0;
+    newState[24].vsQrf = 0;
+
+    newState[25].value = 0;
+    newState[25].targetFQ = 0;
+    newState[25].target = 0;
+    newState[25].vsQrf = 0;
+
+    newState[26].value = 0;
+    newState[26].targetFQ = 0;
+    newState[26].target = 0;
+    newState[26].vsQrf = 0;
+}
+export function processUseMultichartData(data, newState) {
+
+    let weekFlag = data.map(item => {
+        return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
+    })
+    // _.orderBy(weekFlag, weekNo, ['asc'])
+
+    let newData = _.orderBy(weekFlag, ['weekNo'], ['asc']);
+
+    let ei = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+    let pum = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+    let rum = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+    let pus = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+    let wk0 = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+    let wk4 = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+    //Get Financial Multichart values
+    for (let i = 0; i < data.length; i++) {
+        let item = newData[i];
+        ei.actual.push(0);
+        ei.target.push(0);
+        ei.ly.push(0);
+        ei.lq.push(0);
+        pum.actual.push(0);
+        pum.target.push(0);
+        pum.ly.push(0);
+        pum.lq.push(0);
+        rum.actual.push(0);
+        rum.target.push(0);
+        rum.ly.push(0);
+        rum.lq.push(0);
+        pus.actual.push(0);
+        pus.target.push(0);
+        pus.ly.push(0);
+        pus.lq.push(0);
+
+        wk0.actual.push(0);
+        wk0.target.push(0);
+        wk0.ly.push(0);
+        wk0.lq.push(0);
+
+        wk4.actual.push(0);
+        wk4.target.push(0);
+        wk4.ly.push(0);
+        wk4.lq.push(0);
+    };
+
+
+
+
+    newState[21]['details'].multichart = [ei.actual, ei.target, ei.ly, ei.lq];
+    newState[22]['details'].multichart = [pum.actual, pum.target, pum.ly, pum.lq];
+    newState[23]['details'].multichart = [rum.actual, rum.target, rum.ly, rum.lq];
+    newState[24]['details'].multichart = [pus.actual, pus.target, pus.ly, pus.lq];
+    newState[25]['details'].multichart = [wk0.actual, wk0.target, wk0.ly, wk0.lq];
+    newState[27]['details'].multichart = [wk4.actual, wk4.target, wk4.ly, wk4.lq];
+
+}
+export function processUseQTDData(data, newState) {
+    newState[21].details.qtdw.qtd[0].value =0;
+    newState[21].details.qtdw.qtd[1].value =0;
+    newState[21].details.qtdw.qtd[2].value =0;
+    newState[21].details.qtdw.qtd[3].value =0;
+    newState[21].details.qtdw.qtd[4].value =0;
+    newState[21].details.qtdw.qtd[5].value =0;
+    newState[21].details.qtdw.week[0].value = 0;
+    newState[21].details.qtdw.week[1].value = 0;
+    newState[21].details.qtdw.week[2].value = 0;
+    newState[21].details.qtdw.week[3].value = 0;
+    newState[21].details.qtdw.week[4].value = 0;
+    newState[21].details.qtdw.week[5].value = 0;
+    newState[21].details.stats[0].value = 0;
+    newState[21].details.stats[1].value = 0;
+    newState[21].details.stats[2].value = 0;
+    newState[21].details.stats[3].value = 0;
+
+    newState[22].details.qtdw.qtd[0].value =0;
+    newState[22].details.qtdw.qtd[1].value =0;
+    newState[22].details.qtdw.qtd[2].value =0;
+    newState[22].details.qtdw.qtd[3].value =0;
+    newState[22].details.qtdw.qtd[4].value =0;
+    newState[22].details.qtdw.qtd[5].value =0;
+    newState[22].details.qtdw.week[0].value = 0;
+    newState[22].details.qtdw.week[1].value = 0;
+    newState[22].details.qtdw.week[2].value = 0;
+    newState[22].details.qtdw.week[3].value = 0;
+    newState[22].details.qtdw.week[4].value = 0;
+    newState[22].details.qtdw.week[5].value = 0;
+    newState[22].details.stats[0].value = 0;
+    newState[22].details.stats[1].value = 0;
+    newState[22].details.stats[2].value = 0;
+    newState[22].details.stats[3].value = 0;
+
+    newState[23].details.qtdw.qtd[0].value =0;
+    newState[23].details.qtdw.qtd[1].value =0;
+    newState[23].details.qtdw.qtd[2].value =0;
+    newState[23].details.qtdw.qtd[3].value =0;
+    newState[23].details.qtdw.qtd[4].value =0;
+    newState[23].details.qtdw.qtd[5].value =0;
+    newState[23].details.qtdw.week[0].value = 0;
+    newState[23].details.qtdw.week[1].value = 0;
+    newState[23].details.qtdw.week[2].value = 0;
+    newState[23].details.qtdw.week[3].value = 0;
+    newState[23].details.qtdw.week[4].value = 0;
+    newState[23].details.qtdw.week[5].value = 0;
+    newState[23].details.stats[0].value = 0;
+    newState[23].details.stats[1].value = 0;
+    newState[23].details.stats[2].value = 0;
+    newState[23].details.stats[3].value = 0;
+
+    newState[24].details.qtdw.qtd[0].value =0;
+    newState[24].details.qtdw.qtd[1].value =0;
+    newState[24].details.qtdw.qtd[2].value =0;
+    newState[24].details.qtdw.qtd[3].value =0;
+    newState[24].details.qtdw.qtd[4].value =0;
+    newState[24].details.qtdw.qtd[5].value =0;
+    newState[24].details.qtdw.week[0].value = 0;
+    newState[24].details.qtdw.week[1].value = 0;
+    newState[24].details.qtdw.week[2].value = 0;
+    newState[24].details.qtdw.week[3].value = 0;
+    newState[24].details.qtdw.week[4].value = 0;
+    newState[24].details.qtdw.week[5].value = 0;
+    newState[24].details.stats[0].value = 0;
+    newState[24].details.stats[1].value = 0;
+    newState[24].details.stats[2].value = 0;
+    newState[24].details.stats[3].value = 0;
+    
+    newState[25].details.qtdw.qtd[0].value =0;
+    newState[25].details.qtdw.qtd[1].value =0;
+    newState[25].details.qtdw.qtd[2].value =0;
+    newState[25].details.qtdw.qtd[3].value =0;
+    newState[25].details.qtdw.qtd[4].value =0;
+    newState[25].details.qtdw.qtd[5].value =0;
+    newState[25].details.qtdw.week[0].value = 0;
+    newState[25].details.qtdw.week[1].value = 0;
+    newState[25].details.qtdw.week[2].value = 0;
+    newState[25].details.qtdw.week[3].value = 0;
+    newState[25].details.qtdw.week[4].value = 0;
+    newState[25].details.qtdw.week[5].value = 0;
+    newState[25].details.stats[0].value = 0;
+    newState[25].details.stats[1].value = 0;
+    newState[25].details.stats[2].value = 0;
+    newState[25].details.stats[3].value = 0;
+
+    newState[26].details.qtdw.qtd[0].value =0;
+    newState[26].details.qtdw.qtd[1].value =0;
+    newState[26].details.qtdw.qtd[2].value =0;
+    newState[26].details.qtdw.qtd[3].value =0;
+    newState[26].details.qtdw.qtd[4].value =0;
+    newState[26].details.qtdw.qtd[5].value =0;
+    newState[26].details.qtdw.week[0].value = 0;
+    newState[26].details.qtdw.week[1].value = 0;
+    newState[26].details.qtdw.week[2].value = 0;
+    newState[26].details.qtdw.week[3].value = 0;
+    newState[26].details.qtdw.week[4].value = 0;
+    newState[26].details.qtdw.week[5].value = 0;
+    newState[26].details.stats[0].value = 0;
+    newState[26].details.stats[1].value = 0;
+    newState[26].details.stats[2].value = 0;
+    newState[26].details.stats[3].value = 0;
+}
+export function processUseGeoQTDData(data, newState) {
+
+    let item1 = [], item1Week,
+     item2 = [],item2Week,
+     item3 = [],item3Week,
+     item4 = [],item4Week,
+     item5 = [],item5Week,
+     item6 = [], item6Week;
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let ei = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        let eiWeek = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+
+        let pum = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        let pumWeek = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+
+        let rum = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        let rumWeek = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+
+        let pus = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        let pusWeek = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+
+        let wk0 = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        let wk0Week = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+
+        let wk4 = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        let wk4Week = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        item1.push(ei);
+        item1Week.push(eiWeek);
+
+        item2.push(pum);
+        item2Week.push(pumWeek);
+
+        item3.push(rum);
+        item3Week.push(rumWeek);
+
+        item4.push(pus);
+        item4Week.push(pusWeek);
+
+        item5.push(wk0);
+        item5Week.push(eiWeek);
+
+        item6.push(wk4);
+        item6Week.push(wk4Week);
+
+
+    }
+
+    newState[21].details.geo.qtd = processQTDOrder(item1);
+    newState[21].details.geo.week = processQTDOrder(item1Week);
+
+    newState[22].details.geo.qtd = processQTDOrder(item2);
+    newState[22].details.geo.week = processQTDOrder(item2Week);
+
+    newState[23].details.geo.qtd = processQTDOrder(item3);
+    newState[23].details.geo.week = processQTDOrder(item3Week);
+
+    newState[24].details.geo.qtd = processQTDOrder(item4);
+    newState[24].details.geo.week = processQTDOrder(item4Week);
+
+    newState[25].details.geo.qtd = processQTDOrder(item5);
+    newState[25].details.geo.week = processQTDOrder(item5Week);
+
+    newState[26].details.geo.qtd = processQTDOrder(item6);
+    newState[26].details.geo.week = processQTDOrder(item6Week);
+
+}
+export function processUseMarketQTDData(data, newState) {
+    let item1 = [], item1Week,
+    item2 = [],item2Week,
+    item3 = [],item3Week,
+    item4 = [],item4Week,
+    item5 = [],item5Week,
+    item6 = [], item6Week;
+
+   for (let i = 0; i < data.length; i++) {
+       let item = data[i];
+       let ei = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.market_area_code,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let eiWeek = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.market_area_code,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+
+       let pum = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.market_area_code,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let pumWeek = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.market_area_code,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+
+       let rum = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.market_area_code,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let rumWeek = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.market_area_code,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+
+       let pus = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.market_area_code,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let pusWeek = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.market_area_code,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+
+       let wk0 = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.market_area_code,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let wk0Week = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.market_area_code,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+
+       let wk4 = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.market_area_code,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let wk4Week = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.market_area_code,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       item1.push(ei);
+       item1Week.push(eiWeek);
+
+       item2.push(pum);
+       item2Week.push(pumWeek);
+
+       item3.push(rum);
+       item3Week.push(rumWeek);
+
+       item4.push(pus);
+       item4Week.push(pusWeek);
+
+       item5.push(wk0);
+       item5Week.push(eiWeek);
+
+       item6.push(wk4);
+       item6Week.push(wk4Week);
+
+
+   }
+
+   newState[21].details.market.qtd = processQTDOrder(item1);
+   newState[21].details.market.week = processQTDOrder(item1Week);
+
+   newState[22].details.market.qtd = processQTDOrder(item2);
+   newState[22].details.market.week = processQTDOrder(item2Week);
+
+   newState[23].details.market.qtd = processQTDOrder(item3);
+   newState[23].details.market.week = processQTDOrder(item3Week);
+
+   newState[24].details.market.qtd = processQTDOrder(item4);
+   newState[24].details.market.week = processQTDOrder(item4Week);
+
+   newState[25].details.market.qtd = processQTDOrder(item5);
+   newState[25].details.market.week = processQTDOrder(item5Week);
+
+   newState[26].details.market.qtd = processQTDOrder(item6);
+   newState[26].details.market.week = processQTDOrder(item6Week);
+}
+export function processUseSubscriptionQTDData(data, newState) {
+    let item1 = [], item1Week,
+    item2 = [],item2Week,
+    item3 = [],item3Week,
+    item4 = [],item4Week,
+    item5 = [],item5Week,
+    item6 = [], item6Week;
+
+   for (let i = 0; i < data.length; i++) {
+       let item = data[i];
+       let ei = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.subscription_offering,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let eiWeek = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.subscription_offering,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+
+       let pum = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.subscription_offering,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let pumWeek = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.subscription_offering,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+
+       let rum = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.subscription_offering,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let rumWeek = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.subscription_offering,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+
+       let pus = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.subscription_offering,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let pusWeek = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.subscription_offering,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+
+       let wk0 = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.subscription_offering,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let wk0Week = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.subscription_offering,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+
+       let wk4 = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.subscription_offering,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let wk4Week = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.subscription_offering,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       item1.push(ei);
+       item1Week.push(eiWeek);
+
+       item2.push(pum);
+       item2Week.push(pumWeek);
+
+       item3.push(rum);
+       item3Week.push(rumWeek);
+
+       item4.push(pus);
+       item4Week.push(pusWeek);
+
+       item5.push(wk0);
+       item5Week.push(eiWeek);
+
+       item6.push(wk4);
+       item6Week.push(wk4Week);
+
+
+   }
+
+   newState[21].details.subscription.qtd = processQTDOrder(item1);
+   newState[21].details.subscription.week = processQTDOrder(item1Week);
+
+   newState[22].details.subscription.qtd = processQTDOrder(item2);
+   newState[22].details.subscription.week = processQTDOrder(item2Week);
+
+   newState[23].details.subscription.qtd = processQTDOrder(item3);
+   newState[23].details.subscription.week = processQTDOrder(item3Week);
+
+   newState[24].details.subscription.qtd = processQTDOrder(item4);
+   newState[24].details.subscription.week = processQTDOrder(item4Week);
+
+   newState[25].details.subscription.qtd = processQTDOrder(item5);
+   newState[25].details.subscription.week = processQTDOrder(item5Week);
+
+   newState[26].details.subscription.qtd = processQTDOrder(item6);
+   newState[26].details.subscription.week = processQTDOrder(item6Week);
+}
+export function processUseSegmentQTDData(data, newState) {
+    let item1 = [], item1Week,
+    item2 = [],item2Week,
+    item3 = [],item3Week,
+    item4 = [],item4Week,
+    item5 = [],item5Week,
+    item6 = [], item6Week;
+
+   for (let i = 0; i < data.length; i++) {
+       let item = data[i];
+       let ei = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.segment_pivot,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let eiWeek = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.segment_pivot,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+
+       let pum = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.segment_pivot,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let pumWeek = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.segment_pivot,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+
+       let rum = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.segment_pivot,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let rumWeek = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.segment_pivot,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+
+       let pus = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.segment_pivot,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let pusWeek = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.segment_pivot,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+
+       let wk0 = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.segment_pivot,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let wk0Week = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.segment_pivot,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+
+       let wk4 = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.subscription_offering,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       let wk4Week = {
+           index: i,
+           actuals: item.NewActuals,
+           units: item.NewUnitsActual,
+           marketArea: item.market_area_group,
+           qq: item.NewARRQQTY,
+           qrf: item.NewTarget,
+           qrfDiff: item.NewVsQrfDiff,
+           type: item.subscription_offering,
+           vsQrf: item.NewARRVsQrf,
+           yy: item.NewARRYY
+       }
+       item1.push(ei);
+       item1Week.push(eiWeek);
+
+       item2.push(pum);
+       item2Week.push(pumWeek);
+
+       item3.push(rum);
+       item3Week.push(rumWeek);
+
+       item4.push(pus);
+       item4Week.push(pusWeek);
+
+       item5.push(wk0);
+       item5Week.push(eiWeek);
+
+       item6.push(wk4);
+       item6Week.push(wk4Week);
+
+
+   }
+
+   newState[21].details.segment.qtd = processQTDOrder(item1);
+   newState[21].details.segment.week = processQTDOrder(item1Week);
+
+   newState[22].details.segment.qtd = processQTDOrder(item2);
+   newState[22].details.segment.week = processQTDOrder(item2Week);
+
+   newState[23].details.segment.qtd = processQTDOrder(item3);
+   newState[23].details.segment.week = processQTDOrder(item3Week);
+
+   newState[24].details.segment.qtd = processQTDOrder(item4);
+   newState[24].details.segment.week = processQTDOrder(item4Week);
+
+   newState[25].details.segment.qtd = processQTDOrder(item5);
+   newState[25].details.segment.week = processQTDOrder(item5Week);
+
+   newState[26].details.segment.qtd = processQTDOrder(item6);
+   newState[26].details.segment.week = processQTDOrder(item6Week);
+}
+
+
+export function processRenewSecondaryData(data, newState) {
+    newState[27].value = 0;
+    newState[27].targetFQ = 0;
+    newState[27].target = 0;
+    newState[27].vsQrf = 0;
+
+    newState[28].value = 0;
+    newState[28].targetFQ = 0;
+    newState[28].target = 0;
+    newState[28].vsQrf = 0;
+
+    newState[29].value = 0;
+    newState[29].targetFQ = 0;
+    newState[29].target = 0;
+    newState[29].vsQrf = 0;
+
+    newState[30].value = 0;
+    newState[30].targetFQ = 0;
+    newState[30].target = 0;
+    newState[30].vsQrf = 0;
+
+    newState[31].value = 0;
+    newState[31].targetFQ = 0;
+    newState[31].target = 0;
+    newState[31].vsQrf = 0;
+
+    newState[32].value = 0;
+    newState[32].targetFQ = 0;
+    newState[32].target = 0;
+    newState[32].vsQrf = 0;
+
+    newState[33].value = 0;
+    newState[33].targetFQ = 0;
+    newState[33].target = 0;
+    newState[33].vsQrf = 0;
+
+    newState[34].value = 0;
+    newState[34].targetFQ = 0;
+    newState[34].target = 0;
+    newState[34].vsQrf = 0;
+}
+export function processRenewMultichartData(data, newState) {
+    let weekFlag = data.map(item => {
+        return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
+    })
+    // _.orderBy(weekFlag, weekNo, ['asc'])
+
+    let newData = _.orderBy(weekFlag, ['weekNo'], ['asc']);
+
+    let rCancel = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+    let rCancelAdobe = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+    let qtrFin = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+    let qtrUI = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+    let qtrPF = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+    let cancelResell = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+    let eot = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+    let qtrFinRetail = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+    //Get Financial Multichart values
+    for (let i = 0; i < data.length; i++) {
+        let item = newData[i];
+        rCancel.actual.push(0);
+        rCancel.target.push(0);
+        rCancel.ly.push(0);
+        rCancel.lq.push(0);
+        rCancelAdobe.actual.push(0);
+        rCancelAdobe.target.push(0);
+        rCancelAdobe.ly.push(0);
+        rCancelAdobe.lq.push(0);
+        qtrFin.actual.push(0);
+        qtrFin.target.push(0);
+        qtrFin.ly.push(0);
+        qtrFin.lq.push(0);
+        qtrUI.actual.push(0);
+        qtrUI.target.push(0);
+        qtrUI.ly.push(0);
+        qtrUI.lq.push(0);
+
+        qtrPF.actual.push(0);
+        qtrPF.target.push(0);
+        qtrPF.ly.push(0);
+        qtrPF.lq.push(0);
+
+        cancelResell.actual.push(0);
+        cancelResell.target.push(0);
+        cancelResell.ly.push(0);
+        cancelResell.lq.push(0);
+
+        eot.actual.push(0);
+        eot.target.push(0);
+        eot.ly.push(0);
+        eot.lq.push(0);
+
+        qtrFinRetail.actual.push(0);
+        qtrFinRetail.target.push(0);
+        qtrFinRetail.ly.push(0);
+        qtrFinRetail.lq.push(0);
+    };
+
+
+
+
+    newState[27]['details'].multichart = [rCancel.actual, rCancel.target, rCancel.ly, rCancel.lq];
+    newState[28]['details'].multichart = [rCancelAdobe.actual, rCancelAdobe.target, rCancelAdobe.ly, rCancelAdobe.lq];
+    newState[29]['details'].multichart = [qtrFin.actual, qtrFin.target, qtrFin.ly, qtrFin.lq];
+    newState[30]['details'].multichart = [qtrUI.actual, qtrUI.target, qtrUI.ly, qtrUI.lq];
+    newState[31]['details'].multichart = [qtrPF.actual, qtrPF.target, qtrPF.ly, qtrPF.lq];
+    newState[32]['details'].multichart = [cancelResell.actual, cancelResell.target, cancelResell.ly, cancelResell.lq];
+    newState[33]['details'].multichart = [eot.actual, eot.target, eot.ly, eot.lq];
+    newState[34]['details'].multichart = [qtrFinRetail.actual, qtrFinRetail.target, qtrFinRetail.ly, qtrFinRetail.lq];
+
+}
+export function processRenewQTDData(data, newState) {
+    newState[27].details.qtdw.qtd[0].value =0;
+    newState[27].details.qtdw.qtd[1].value =0;
+    newState[27].details.qtdw.qtd[2].value =0;
+    newState[27].details.qtdw.qtd[3].value =0;
+    newState[27].details.qtdw.qtd[4].value =0;
+    newState[27].details.qtdw.qtd[5].value =0;
+    newState[27].details.qtdw.week[0].value = 0;
+    newState[27].details.qtdw.week[1].value = 0;
+    newState[27].details.qtdw.week[2].value = 0;
+    newState[27].details.qtdw.week[3].value = 0;
+    newState[27].details.qtdw.week[4].value = 0;
+    newState[27].details.qtdw.week[5].value = 0;
+    newState[27].details.stats[0].value = 0;
+    newState[27].details.stats[1].value = 0;
+    newState[27].details.stats[2].value = 0;
+    newState[27].details.stats[3].value = 0;
+
+    newState[28].details.qtdw.qtd[0].value =0;
+    newState[28].details.qtdw.qtd[1].value =0;
+    newState[28].details.qtdw.qtd[2].value =0;
+    newState[28].details.qtdw.qtd[3].value =0;
+    newState[28].details.qtdw.qtd[4].value =0;
+    newState[28].details.qtdw.qtd[5].value =0;
+    newState[28].details.qtdw.week[0].value = 0;
+    newState[28].details.qtdw.week[1].value = 0;
+    newState[28].details.qtdw.week[2].value = 0;
+    newState[28].details.qtdw.week[3].value = 0;
+    newState[28].details.qtdw.week[4].value = 0;
+    newState[28].details.qtdw.week[5].value = 0;
+    newState[28].details.stats[0].value = 0;
+    newState[28].details.stats[1].value = 0;
+    newState[28].details.stats[2].value = 0;
+    newState[28].details.stats[3].value = 0;
+
+    newState[29].details.qtdw.qtd[0].value =0;
+    newState[29].details.qtdw.qtd[1].value =0;
+    newState[29].details.qtdw.qtd[2].value =0;
+    newState[29].details.qtdw.qtd[3].value =0;
+    newState[29].details.qtdw.qtd[4].value =0;
+    newState[29].details.qtdw.qtd[5].value =0;
+    newState[29].details.qtdw.week[0].value = 0;
+    newState[29].details.qtdw.week[1].value = 0;
+    newState[29].details.qtdw.week[2].value = 0;
+    newState[29].details.qtdw.week[3].value = 0;
+    newState[29].details.qtdw.week[4].value = 0;
+    newState[29].details.qtdw.week[5].value = 0;
+    newState[29].details.stats[0].value = 0;
+    newState[29].details.stats[1].value = 0;
+    newState[29].details.stats[2].value = 0;
+    newState[29].details.stats[3].value = 0;
+
+    newState[30].details.qtdw.qtd[0].value =0;
+    newState[30].details.qtdw.qtd[1].value =0;
+    newState[30].details.qtdw.qtd[2].value =0;
+    newState[30].details.qtdw.qtd[3].value =0;
+    newState[30].details.qtdw.qtd[4].value =0;
+    newState[30].details.qtdw.qtd[5].value =0;
+    newState[30].details.qtdw.week[0].value = 0;
+    newState[30].details.qtdw.week[1].value = 0;
+    newState[30].details.qtdw.week[2].value = 0;
+    newState[30].details.qtdw.week[3].value = 0;
+    newState[30].details.qtdw.week[4].value = 0;
+    newState[30].details.qtdw.week[5].value = 0;
+    newState[30].details.stats[0].value = 0;
+    newState[30].details.stats[1].value = 0;
+    newState[30].details.stats[2].value = 0;
+    newState[30].details.stats[3].value = 0;
+    
+    newState[31].details.qtdw.qtd[0].value =0;
+    newState[31].details.qtdw.qtd[1].value =0;
+    newState[31].details.qtdw.qtd[2].value =0;
+    newState[31].details.qtdw.qtd[3].value =0;
+    newState[31].details.qtdw.qtd[4].value =0;
+    newState[31].details.qtdw.qtd[5].value =0;
+    newState[31].details.qtdw.week[0].value = 0;
+    newState[31].details.qtdw.week[1].value = 0;
+    newState[31].details.qtdw.week[2].value = 0;
+    newState[31].details.qtdw.week[3].value = 0;
+    newState[31].details.qtdw.week[4].value = 0;
+    newState[31].details.qtdw.week[5].value = 0;
+    newState[31].details.stats[0].value = 0;
+    newState[31].details.stats[1].value = 0;
+    newState[31].details.stats[2].value = 0;
+    newState[31].details.stats[3].value = 0;
+
+    newState[32].details.qtdw.qtd[0].value =0;
+    newState[32].details.qtdw.qtd[1].value =0;
+    newState[32].details.qtdw.qtd[2].value =0;
+    newState[32].details.qtdw.qtd[3].value =0;
+    newState[32].details.qtdw.qtd[4].value =0;
+    newState[32].details.qtdw.qtd[5].value =0;
+    newState[32].details.qtdw.week[0].value = 0;
+    newState[32].details.qtdw.week[1].value = 0;
+    newState[32].details.qtdw.week[2].value = 0;
+    newState[32].details.qtdw.week[3].value = 0;
+    newState[32].details.qtdw.week[4].value = 0;
+    newState[32].details.qtdw.week[5].value = 0;
+    newState[32].details.stats[0].value = 0;
+    newState[32].details.stats[1].value = 0;
+    newState[32].details.stats[2].value = 0;
+    newState[32].details.stats[3].value = 0;
+
+    newState[33].details.qtdw.qtd[0].value =0;
+    newState[33].details.qtdw.qtd[1].value =0;
+    newState[33].details.qtdw.qtd[2].value =0;
+    newState[33].details.qtdw.qtd[3].value =0;
+    newState[33].details.qtdw.qtd[4].value =0;
+    newState[33].details.qtdw.qtd[5].value =0;
+    newState[33].details.qtdw.week[0].value = 0;
+    newState[33].details.qtdw.week[1].value = 0;
+    newState[33].details.qtdw.week[2].value = 0;
+    newState[33].details.qtdw.week[3].value = 0;
+    newState[33].details.qtdw.week[4].value = 0;
+    newState[33].details.qtdw.week[5].value = 0;
+    newState[33].details.stats[0].value = 0;
+    newState[33].details.stats[1].value = 0;
+    newState[33].details.stats[2].value = 0;
+    newState[33].details.stats[3].value = 0;
+
+    newState[34].details.qtdw.qtd[0].value =0;
+    newState[34].details.qtdw.qtd[1].value =0;
+    newState[34].details.qtdw.qtd[2].value =0;
+    newState[34].details.qtdw.qtd[3].value =0;
+    newState[34].details.qtdw.qtd[4].value =0;
+    newState[34].details.qtdw.qtd[5].value =0;
+    newState[34].details.qtdw.week[0].value = 0;
+    newState[34].details.qtdw.week[1].value = 0;
+    newState[34].details.qtdw.week[2].value = 0;
+    newState[34].details.qtdw.week[3].value = 0;
+    newState[34].details.qtdw.week[4].value = 0;
+    newState[34].details.qtdw.week[5].value = 0;
+    newState[34].details.stats[0].value = 0;
+    newState[34].details.stats[1].value = 0;
+    newState[34].details.stats[2].value = 0;
+    newState[34].details.stats[3].value = 0;
+}
+export function processRenewGeoQTDData(data, newState) {
+
+}
+export function processRenewMarketQTDData(data, newState) {
+
+}
+export function processRenewProductQTDData(data, newState) {
+
+}
+export function processRenewSegmentQTDData(data, newState) {
 
 }
