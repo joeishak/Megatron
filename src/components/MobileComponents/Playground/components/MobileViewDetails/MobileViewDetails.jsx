@@ -5,12 +5,12 @@ import * as utils from '../../../../../utilities.js';
 class MobileViewDetails extends Component {
 
 
-    shouldComponentUpdate(nextProps) {
-        if (this.props.detailsData !== nextProps.detailsData) {
-            return true;
-        }
-        return false;
-    }
+    // shouldComponentUpdate(nextProps) {
+    //     if (this.props.detailsData !== nextProps.detailsData) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     formatData(detailsData) {
         // console.log(detailsData);

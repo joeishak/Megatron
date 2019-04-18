@@ -310,7 +310,7 @@ class SecondarySquares extends Component {
     });
 
     return (
-      <div className={secondaryBoxHover} key={this.props.item.index} onClick={e => this.props.onSecondaryCardClicked(e)}>
+      <div className={secondaryBoxHover} key={this.props.item.index} onClick={(e) =>   this.props.onSecondaryCardClicked(e,this.props.item.index)}>
         <div
           className={`${secondaryBox}  ${
             this.props.activeJourneyCard === true

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from 'Root';
-import { HashRouter as Router, Route } from 'react-router-dom'; // Convert To HashRouter for IBApps Deployment
+import { BrowserRouter as Router, Route } from 'react-router-dom'; // Convert To HashRouter for IBApps Deployment
 import Summary from 'Views/Summary/Summary.js';
 import registerServiceWorker from './registerServiceWorker';
 import { Security, ImplicitCallback, SecureRoute } from '@okta/okta-react';
@@ -9,8 +9,10 @@ import { config as config } from './environmentParams';
 import Login from './auth/Login';
 
 function onAuthRequired({ history }) {
+
 	history.push('/login');
 }
+
 const inStyles = {
 	root: {
 		height: '100%',
@@ -32,19 +34,24 @@ ReactDOM.render(
 				<SecureRoute path="/" exact={true} component={Summary} />
 				{/* <Route path="/login" render={() => ( <Login baseUrl="https://dev-575609.oktapreview.com" />)}/> */}
 				<Route path="/login" render={() => (<Login baseUrl="https://adobe.okta.com" />)} />
-
 				{/* <Route path="" exact={true} component={App} /> */}
 				{/* IBAPPS*/}
-				<Route path={`https://rtb-dev.corp.adobe.com:8551/apps/rtbcallback/index.html`} component={ImplicitCallback} />
+				{/* <Route path={`https://rtb-dev.corp.adobe.com:8551/apps/rtbcallback/index.html`} component={ImplicitCallback} /> */}
 				{/*  IIS*/}
-				{/* <Route path={`${process.env.PUBLIC_URL}`} component={ImplicitCallback} /> */}
+				<Route path={`${process.env.PUBLIC_URL}`} component={ImplicitCallback} />
 				{/* // Localhost */}
 				{/* <Route path="/implicit/callback" component={ImplicitCallback} /> */}
 			</Security>
 		</Router>
 
+
+
 	</Root>
 
+
+
 	, document.querySelector('#root'));
+
+
 
 registerServiceWorker();

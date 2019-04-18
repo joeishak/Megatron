@@ -6004,19 +6004,18 @@ export function processBuyGrossQTD(newState, data) {
     newState[20].details.qtdw.qtd[0].value = data[0].GrossUnitsActuals;
     newState[20].details.qtdw.qtd[1].value = data[0].GrossUnitsTarget;
     newState[20].details.qtdw.qtd[2].value = data[0].GrossUnitsVsQrfDiff;
-    newState[20].details.qtdw.qtd[3].value = data[0].GrossUnitsARRVsQrf;
-    newState[20].details.qtdw.qtd[4].value = data[0].GrossUnitsARRQQTY;
-    newState[20].details.qtdw.qtd[5].value = data[0].GrossUnitsARRYY;
-    newState[20].details.qtdw.week[0].value = data[0].GrossUnitsARRCW
-    newState[20].details.qtdw.week[1].value = data[0].GrossUnitsUnitsCW;
-    newState[20].details.qtdw.week[2].value = data[0].GrossUnitsARRTargetCW;
-    newState[20].details.qtdw.week[3].value = data[0].GrossUnitsCWVsQrfDiff;
-    newState[20].details.qtdw.week[4].value = data[0].GrossUnitsCWVsQrf;
-    newState[20].details.qtdw.week[5].value = data[0].GrossUnitsWW;
-    newState[20].details.stats[0].value = data[0].GrossUnitsARRVsQrf;
-    newState[20].details.stats[1].value = data[0].GrossUnitsARRQQTY;
-    newState[20].details.stats[2].value = data[0].GrossUnitsARRQQLY;
-    newState[20].details.stats[3].value = data[0].GrossUnitsARRYY;
+    newState[20].details.qtdw.qtd[3].value = data[0].GrossUnitsVsQrf;
+    newState[20].details.qtdw.qtd[4].value = data[0].GrossUnitsQQLY;
+    newState[20].details.qtdw.qtd[5].value = data[0].GrossUnitsYY;
+    newState[20].details.qtdw.week[0].value = data[0].GrossUnitsCW
+    newState[20].details.qtdw.week[1].value = data[0].GrossUnitsTargetCW;
+    newState[20].details.qtdw.week[2].value = data[0].GrossUnitsCWVsQrfDiff;
+    newState[20].details.qtdw.week[3].value = data[0].GrossUnitsCWVsQrf;
+    newState[20].details.qtdw.week[4].value = data[0].GrossUnitsWW;
+    newState[20].details.stats[0].value = data[0].GrossUnitsVsQrf;
+    newState[20].details.stats[1].value = data[0].GrossUnitsQQTY;
+    newState[20].details.stats[2].value = data[0].GrossUnitsQQLY;
+    newState[20].details.stats[3].value = data[0].GrossUnitsYY;
 
 }
 export function processBuyGrossGeoQTD(newState, data) {
@@ -6045,12 +6044,12 @@ export function processBuyGrossGeoQTD(newState, data) {
             index: i,
             actuals: item.GrossUnitsActuals,
             marketArea: item.market_area_group,
-            qq: item.GrossUnitsARRQQTY,
+            qq: item.GrossUnitsQQTY,
             qrf: item.GrossUnitsTarget,
             qrfDiff: item.GrossUnitsVsQrfDiff,
             type: item.geo_code,
-            vsQrf: item.GrossUnitsARRVsQrf,
-            yy: item.GrossUnitsARRYY
+            vsQrf: item.GrossUnitsVsQrf,
+            yy: item.GrossUnitsYY
         }
 
 
@@ -6176,12 +6175,12 @@ export function processBuyGrossMarketQTD(newState, data) {
         let grossUnits = {
             index: i,
             actuals: item.GrossUnitsActuals,
-            qq: item.GrossUnitsARRQQTY,
+            qq: item.GrossUnitsQQTY,
             qrf: item.GrossUnitsTarget,
             qrfDiff: item.GrossUnitsVsQrfDiff,
             type: item.market_area_code,
-            vsQrf: item.GrossUnitsARRVsQrf,
-            yy: item.GrossUnitsARRYY
+            vsQrf: item.GrossUnitsVsQrf,
+            yy: item.GrossUnitsYY
         }
 
 
@@ -6257,12 +6256,12 @@ export function processBuyGrossrouteQTD(newState, data) {
             index: i,
             actuals: item.GrossUnitsActuals,
             marketArea: item.market_area_group,
-            qq: item.GrossUnitsARRQQTY,
+            qq: item.GrossUnitsQQTY,
             qrf: item.GrossUnitsTarget,
             qrfDiff: item.GrossUnitsVsQrfDiff,
             type: item.route_to_market,
-            vsQrf: item.GrossUnitsARRVsQrf,
-            yy: item.GrossUnitsARRYY
+            vsQrf: item.GrossUnitsVsQrf,
+            yy: item.GrossUnitsYY
         }
 
 
@@ -6340,12 +6339,12 @@ export function processBuyGrossSegmentQTD(newState, data) {
             index: i,
             actuals: item.GrossUnitsActuals,
             marketArea: item.market_area_group,
-            qq: item.GrossUnitsARRQQTY,
+            qq: item.GrossUnitsQQTY,
             qrf: item.GrossUnitsTarget,
             qrfDiff: item.GrossUnitsVsQrfDiff,
             type: item.segment_pivot,
-            vsQrf: item.GrossUnitsARRVsQrf,
-            yy: item.GrossUnitsARRYY
+            vsQrf: item.GrossUnitsVsQrf,
+            yy: item.GrossUnitsYY
         }
 
 
@@ -6424,12 +6423,12 @@ export function processBuyGrossproductQTD(newState, data) {
             index: i,
             actuals: item.GrossUnitsActuals,
             marketArea: item.market_area_group,
-            qq: item.GrossUnitsARRQQTY,
+            qq: item.GrossUnitsQQTY,
             qrf: item.GrossUnitsTarget,
             qrfDiff: item.GrossUnitsVsQrfDiff,
             type: item.product_category,
-            vsQrf: item.GrossUnitsARRVsQrf,
-            yy: item.GrossUnitsARRYY
+            vsQrf: item.GrossUnitsVsQrf,
+            yy: item.GrossUnitsYY
         }
 
 
@@ -6485,35 +6484,35 @@ export function processBuyGrossProductWeek(newState, data) {
 }
 
 export function processUseSecondaryData(data, newState) {
-    newState[21].value = 0;
-    newState[21].targetFQ = 0;
-    newState[21].target = 0;
-    newState[21].vsQrf = 0;
+    newState[21].value = data.CEIActual;
+    newState[21].targetFQ = data.CEITarget;
+    newState[21].target = data.CEITarget;
+    newState[21].vsQrf = data.CEIVsQrf;
 
-    newState[22].value = 0;
-    newState[22].targetFQ = 0;
-    newState[22].target = 0;
-    newState[22].vsQrf = 0;
+    newState[22].value = data.PaidMAUActual;
+    newState[22].targetFQ = data.PaidMAUTarget;
+    newState[22].target = data.PaidMAUTarget;
+    newState[22].vsQrf = data.PaidMAUVsQrf;
 
-    newState[23].value = 0;
-    newState[23].targetFQ = 0;
-    newState[23].target = 0;
-    newState[23].vsQrf = 0;
+    newState[23].value = data.RepeatMAUActual;
+    newState[23].targetFQ = data.RepeatMAUTarget;
+    newState[23].target = data.RepeatMAUTarget;
+    newState[23].vsQrf = data.RepeatMAUVsQrf;
 
-    newState[24].value = 0;
-    newState[24].targetFQ = 0;
-    newState[24].target = 0;
-    newState[24].vsQrf = 0;
+    newState[24].value = data.PaidUserDownloadActual;
+    newState[24].targetFQ = data.PaidUserDownloadTarget;
+    newState[24].target = data.PaidUserDownloadTarget;
+    newState[24].vsQrf = data.PaidUserDownloadVsQrf;
 
-    newState[25].value = 0;
-    newState[25].targetFQ = 0;
-    newState[25].target = 0;
-    newState[25].vsQrf = 0;
+    newState[25].value = data.Week00WAUActual;
+    newState[25].targetFQ = data.Week00WAUTarget;
+    newState[25].target = data.Week00WAUTarget;
+    newState[25].vsQrf = data.Week00WAUVsQrf;
 
-    newState[26].value = 0;
-    newState[26].targetFQ = 0;
-    newState[26].target = 0;
-    newState[26].vsQrf = 0;
+    newState[26].value = data.Week04WAUActual;
+    newState[26].targetFQ = data.Week04WAUTarget;
+    newState[26].target = data.Week04WAUTarget;
+    newState[26].vsQrf = data.Week04WAUVsQrf;
 }
 export function processUseMultichartData(data, newState) {
 
@@ -6544,21 +6543,18 @@ export function processUseMultichartData(data, newState) {
         lq: [],
         ly: []
     }
-
     let pus = {
         actual: [],
         target: [],
         lq: [],
         ly: []
     }
-
     let wk0 = {
         actual: [],
         target: [],
         lq: [],
         ly: []
     }
-
     let wk4 = {
         actual: [],
         target: [],
@@ -6569,32 +6565,30 @@ export function processUseMultichartData(data, newState) {
     //Get Financial Multichart values
     for (let i = 0; i < data.length; i++) {
         let item = newData[i];
-        ei.actual.push(0);
-        ei.target.push(0);
-        ei.ly.push(0);
-        ei.lq.push(0);
-        pum.actual.push(0);
-        pum.target.push(0);
-        pum.ly.push(0);
-        pum.lq.push(0);
-        rum.actual.push(0);
-        rum.target.push(0);
-        rum.ly.push(0);
-        rum.lq.push(0);
-        pus.actual.push(0);
-        pus.target.push(0);
-        pus.ly.push(0);
-        pus.lq.push(0);
-
-        wk0.actual.push(0);
-        wk0.target.push(0);
-        wk0.ly.push(0);
-        wk0.lq.push(0);
-
-        wk4.actual.push(0);
-        wk4.target.push(0);
-        wk4.ly.push(0);
-        wk4.lq.push(0);
+        ei.actual.push(item.CEIActual);
+        ei.target.push(item.CEITarget);
+        ei.ly.push(item.CEIQQLY);
+        ei.lq.push(item.CEIQQTY);
+        pum.actual.push(item.PaidMAUActual);
+        pum.target.push(item.PaidMAUTarget);
+        pum.ly.push(item.PaidMAUQQLY);
+        pum.lq.push(item.PaidMAUQQTY);
+        rum.actual.push(item.RepeatMAUActual);
+        rum.target.push(item.RepeatMAUTarget);
+        rum.ly.push(item.RepeatMAUQQLY);
+        rum.lq.push(item.RepeatMAUQQTY);
+        pus.actual.push(item.PaidUserDownloadActual);
+        pus.target.push(item.PaidUserDownloadTarget);
+        pus.ly.push(item.PaidUserDownloadQQLY);
+        pus.lq.push(item.PaidUserDownloadQQTY);
+        wk0.actual.push(item.Week00WAUActual);
+        wk0.target.push(item.Week00WAUTarget);
+        wk0.ly.push(item.Week00WAUQQLY);
+        wk0.lq.push(item.Week00WAUQQTY);
+        wk4.actual.push(item.Week04WAUActual);
+        wk4.target.push(item.Week04WAUTarget);
+        wk4.ly.push(item.Week04WAUQQLY);
+        wk4.lq.push(item.Week04WAUQQTY);
     };
 
 
@@ -6609,107 +6603,108 @@ export function processUseMultichartData(data, newState) {
 
 }
 export function processUseQTDData(data, newState) {
-    newState[21].details.qtdw.qtd[0].value =0;
-    newState[21].details.qtdw.qtd[1].value =0;
-    newState[21].details.qtdw.qtd[2].value =0;
-    newState[21].details.qtdw.qtd[3].value =0;
-    newState[21].details.qtdw.qtd[4].value =0;
-    newState[21].details.qtdw.qtd[5].value =0;
-    newState[21].details.qtdw.week[0].value = 0;
-    newState[21].details.qtdw.week[1].value = 0;
-    newState[21].details.qtdw.week[2].value = 0;
-    newState[21].details.qtdw.week[3].value = 0;
-    newState[21].details.qtdw.week[4].value = 0;
-    newState[21].details.qtdw.week[5].value = 0;
-    newState[21].details.stats[0].value = 0;
-    newState[21].details.stats[1].value = 0;
-    newState[21].details.stats[2].value = 0;
-    newState[21].details.stats[3].value = 0;
+   
+    newState[21].details.qtdw.qtd[0].value =data[0].CEIActual;
+    newState[21].details.qtdw.qtd[1].value =data[0].CEITarget;
+    newState[21].details.qtdw.qtd[2].value =data[0].CEIVsQRFDiff;
+    newState[21].details.qtdw.qtd[3].value =data[0].CEIVsQrf;
+    newState[21].details.qtdw.qtd[4].value =data[0].CEIQQTY;
+    newState[21].details.qtdw.qtd[5].value =data[0].CEIYY;
+    newState[21].details.qtdw.week[0].value = data[0].CEIActual;
+    newState[21].details.qtdw.week[1].value = data[0].CEITarget;
+    newState[21].details.qtdw.week[2].value = data[0].CEIVsQRFDiff;
+    newState[21].details.qtdw.week[3].value = data[0].CEIVsQrf;
+    newState[21].details.qtdw.week[4].value = data[0].CEIYY;
+    newState[21].details.qtdw.week[5].value = data[0].CEIWW;
+    newState[21].details.stats[0].value =  data[0].CEIVsQrf;
+    newState[21].details.stats[1].value =  data[0].CEIQQTY;
+    newState[21].details.stats[2].value =  data[0].CEIQQLY;
+    newState[21].details.stats[3].value =  data[0].CEIYY;
 
-    newState[22].details.qtdw.qtd[0].value =0;
-    newState[22].details.qtdw.qtd[1].value =0;
-    newState[22].details.qtdw.qtd[2].value =0;
-    newState[22].details.qtdw.qtd[3].value =0;
-    newState[22].details.qtdw.qtd[4].value =0;
-    newState[22].details.qtdw.qtd[5].value =0;
-    newState[22].details.qtdw.week[0].value = 0;
-    newState[22].details.qtdw.week[1].value = 0;
-    newState[22].details.qtdw.week[2].value = 0;
-    newState[22].details.qtdw.week[3].value = 0;
-    newState[22].details.qtdw.week[4].value = 0;
-    newState[22].details.qtdw.week[5].value = 0;
-    newState[22].details.stats[0].value = 0;
-    newState[22].details.stats[1].value = 0;
-    newState[22].details.stats[2].value = 0;
-    newState[22].details.stats[3].value = 0;
+    newState[22].details.qtdw.qtd[0].value = data[0].PaidMAUActual;
+    newState[22].details.qtdw.qtd[1].value = data[0].PaidMAUTarget;
+    newState[22].details.qtdw.qtd[2].value = data[0].PaidMAUVsQRFDiff;
+    newState[22].details.qtdw.qtd[3].value = data[0].PaidMAUVsQrf;
+    newState[22].details.qtdw.qtd[4].value = data[0].PaidMAUQQTY;
+    newState[22].details.qtdw.qtd[5].value = data[0].PaidMAUYY;
+    newState[22].details.qtdw.week[0].value =  data[0].PaidMAUActual;
+    newState[22].details.qtdw.week[1].value =  data[0].PaidMAUTarget;
+    newState[22].details.qtdw.week[2].value =  data[0].PaidMAUVsQRFDiff;
+    newState[22].details.qtdw.week[3].value =  data[0].PaidMAUVsQrf;
+    newState[22].details.qtdw.week[4].value =  data[0].PaidMAUQQTY;
+    newState[22].details.qtdw.week[5].value =  data[0].PaidMAUWW;
+    newState[22].details.stats[0].value =  data[0].PaidMAUVsQrf;
+    newState[22].details.stats[1].value =  data[0].PaidMAUQQTY;
+    newState[22].details.stats[2].value =  data[0].PaidMAUQQLY;
+    newState[22].details.stats[3].value =  data[0].PaidMAUYY;
 
-    newState[23].details.qtdw.qtd[0].value =0;
-    newState[23].details.qtdw.qtd[1].value =0;
-    newState[23].details.qtdw.qtd[2].value =0;
-    newState[23].details.qtdw.qtd[3].value =0;
-    newState[23].details.qtdw.qtd[4].value =0;
-    newState[23].details.qtdw.qtd[5].value =0;
-    newState[23].details.qtdw.week[0].value = 0;
-    newState[23].details.qtdw.week[1].value = 0;
-    newState[23].details.qtdw.week[2].value = 0;
-    newState[23].details.qtdw.week[3].value = 0;
-    newState[23].details.qtdw.week[4].value = 0;
-    newState[23].details.qtdw.week[5].value = 0;
-    newState[23].details.stats[0].value = 0;
-    newState[23].details.stats[1].value = 0;
-    newState[23].details.stats[2].value = 0;
-    newState[23].details.stats[3].value = 0;
+    newState[23].details.qtdw.qtd[0].value = data[0].PaidUserDownloadActual;
+    newState[23].details.qtdw.qtd[1].value = data[0].PaidUserDownloadTarget;
+    newState[23].details.qtdw.qtd[2].value = data[0].PaidUserDownloadVsQRFDiff;
+    newState[23].details.qtdw.qtd[3].value = data[0].PaidUserDownloadVsQrf;
+    newState[23].details.qtdw.qtd[4].value = data[0].PaidUserDownloadQQTY;
+    newState[23].details.qtdw.qtd[5].value = data[0].PaidUserDownloadYY;
+    newState[23].details.qtdw.week[0].value =  data[0].PaidUserDownloadActual;
+    newState[23].details.qtdw.week[1].value =  data[0].PaidUserDownloadTarget;
+    newState[23].details.qtdw.week[2].value =  data[0].PaidUserDownloadVsQRFDiff;
+    newState[23].details.qtdw.week[3].value =  data[0].PaidUserDownloadVsQrf;
+    newState[23].details.qtdw.week[4].value =  data[0].PaidUserDownloadQQTY;
+    newState[23].details.qtdw.week[5].value =  data[0].PaidUserDownloadWW;
+    newState[23].details.stats[0].value =  data[0].PaidUserDownloadVsQrf;
+    newState[23].details.stats[1].value =  data[0].PaidUserDownloadQQTY;
+    newState[23].details.stats[2].value =  data[0].PaidUserDownloadQQLY;
+    newState[23].details.stats[3].value =  data[0].PaidUserDownloadYY;
 
-    newState[24].details.qtdw.qtd[0].value =0;
-    newState[24].details.qtdw.qtd[1].value =0;
-    newState[24].details.qtdw.qtd[2].value =0;
-    newState[24].details.qtdw.qtd[3].value =0;
-    newState[24].details.qtdw.qtd[4].value =0;
-    newState[24].details.qtdw.qtd[5].value =0;
-    newState[24].details.qtdw.week[0].value = 0;
-    newState[24].details.qtdw.week[1].value = 0;
-    newState[24].details.qtdw.week[2].value = 0;
-    newState[24].details.qtdw.week[3].value = 0;
-    newState[24].details.qtdw.week[4].value = 0;
-    newState[24].details.qtdw.week[5].value = 0;
-    newState[24].details.stats[0].value = 0;
-    newState[24].details.stats[1].value = 0;
-    newState[24].details.stats[2].value = 0;
-    newState[24].details.stats[3].value = 0;
+    newState[24].details.qtdw.qtd[0].value = data[0].RepeatMAUActual;
+    newState[24].details.qtdw.qtd[1].value = data[0].RepeatMAUTarget;
+    newState[24].details.qtdw.qtd[2].value = data[0].RepeatMAUVsQRFDiff;
+    newState[24].details.qtdw.qtd[3].value = data[0].RepeatMAUVsQrf;
+    newState[24].details.qtdw.qtd[4].value = data[0].RepeatMAUQQTY;
+    newState[24].details.qtdw.qtd[5].value = data[0].RepeatMAUYY;
+    newState[24].details.qtdw.week[0].value =  data[0].RepeatMAUActual;
+    newState[24].details.qtdw.week[1].value =  data[0].RepeatMAUTarget;
+    newState[24].details.qtdw.week[2].value =  data[0].RepeatMAUVsQRFDiff;
+    newState[24].details.qtdw.week[3].value =  data[0].RepeatMAUQQTY;
+    newState[24].details.qtdw.week[4].value =  data[0].RepeatMAUVsQrf;
+    newState[24].details.qtdw.week[5].value =  data[0].RepeatMAUWW;
+    newState[24].details.stats[0].value =  data[0].RepeatMAUVsQrf;
+    newState[24].details.stats[1].value =  data[0].RepeatMAUQQTY;
+    newState[24].details.stats[2].value =  data[0].RepeatMAUQQLY;
+    newState[24].details.stats[3].value =  data[0].RepeatMAUYY;
     
-    newState[25].details.qtdw.qtd[0].value =0;
-    newState[25].details.qtdw.qtd[1].value =0;
-    newState[25].details.qtdw.qtd[2].value =0;
-    newState[25].details.qtdw.qtd[3].value =0;
-    newState[25].details.qtdw.qtd[4].value =0;
-    newState[25].details.qtdw.qtd[5].value =0;
-    newState[25].details.qtdw.week[0].value = 0;
-    newState[25].details.qtdw.week[1].value = 0;
-    newState[25].details.qtdw.week[2].value = 0;
-    newState[25].details.qtdw.week[3].value = 0;
-    newState[25].details.qtdw.week[4].value = 0;
-    newState[25].details.qtdw.week[5].value = 0;
-    newState[25].details.stats[0].value = 0;
-    newState[25].details.stats[1].value = 0;
-    newState[25].details.stats[2].value = 0;
-    newState[25].details.stats[3].value = 0;
+    newState[25].details.qtdw.qtd[0].value = data[0].Week00WAUActual;
+    newState[25].details.qtdw.qtd[1].value = data[0].Week00WAUTarget;
+    newState[25].details.qtdw.qtd[2].value = data[0].Week00WAUVsQRFDiff;
+    newState[25].details.qtdw.qtd[3].value = data[0].Week00WAUVsQrf;
+    newState[25].details.qtdw.qtd[4].value = data[0].Week00WAUQQTY;
+    newState[25].details.qtdw.qtd[5].value = data[0].Week00WAUYY;
+    newState[25].details.qtdw.week[0].value =  data[0].Week00WAUTarget;
+    newState[25].details.qtdw.week[1].value =  data[0].Week00WAUVsQRFDiff;
+    newState[25].details.qtdw.week[2].value =  data[0].Week00WAUVsQRFDiff;
+    newState[25].details.qtdw.week[3].value =  data[0].Week00WAUVsQrf;
+    newState[25].details.qtdw.week[4].value =  data[0].Week00WAUQQTY;
+    newState[25].details.qtdw.week[5].value =  data[0].Week00WAUWW;
+    newState[25].details.stats[0].value =  data[0].Week00WAUVsQrf;
+    newState[25].details.stats[1].value =  data[0].Week00WAUQQTY;
+    newState[25].details.stats[2].value =  data[0].Week00WAUQQLY;
+    newState[25].details.stats[3].value =  data[0].Week00WAUYY;
 
-    newState[26].details.qtdw.qtd[0].value =0;
-    newState[26].details.qtdw.qtd[1].value =0;
-    newState[26].details.qtdw.qtd[2].value =0;
-    newState[26].details.qtdw.qtd[3].value =0;
-    newState[26].details.qtdw.qtd[4].value =0;
-    newState[26].details.qtdw.qtd[5].value =0;
-    newState[26].details.qtdw.week[0].value = 0;
-    newState[26].details.qtdw.week[1].value = 0;
-    newState[26].details.qtdw.week[2].value = 0;
-    newState[26].details.qtdw.week[3].value = 0;
-    newState[26].details.qtdw.week[4].value = 0;
-    newState[26].details.qtdw.week[5].value = 0;
-    newState[26].details.stats[0].value = 0;
-    newState[26].details.stats[1].value = 0;
-    newState[26].details.stats[2].value = 0;
-    newState[26].details.stats[3].value = 0;
+    newState[26].details.qtdw.qtd[0].value = data[0].Week04WAUActual;
+    newState[26].details.qtdw.qtd[1].value = data[0].Week04WAUTarget;
+    newState[26].details.qtdw.qtd[2].value = data[0].Week04WAUVsQRFDiff;
+    newState[26].details.qtdw.qtd[3].value = data[0].Week04WAUVsQrf;
+    newState[26].details.qtdw.qtd[4].value = data[0].Week04WAUQQTY;
+    newState[26].details.qtdw.qtd[5].value = data[0].Week04WAUYY;
+    newState[26].details.qtdw.week[0].value =  data[0].Week04WAUActual;
+    newState[26].details.qtdw.week[1].value =  data[0].Week04WAUTarget;
+    newState[26].details.qtdw.week[2].value =  data[0].Week04WAUVsQRFDiff;
+    newState[26].details.qtdw.week[3].value =  data[0].Week04WAUVsQrf;
+    newState[26].details.qtdw.week[4].value =  data[0].Week04WAUQQTY;
+    newState[26].details.qtdw.week[5].value =  data[0].Week04WAUWW;
+    newState[26].details.stats[0].value =  data[0].Week04WAUVsQrf;
+    newState[26].details.stats[1].value =  data[0].Week04WAUQQTY;
+    newState[26].details.stats[2].value =  data[0].Week04WAUQQLY;
+    newState[26].details.stats[3].value =  data[0].Week04WAUYY;
 }
 export function processUseGeoQTDData(data, newState) {
 

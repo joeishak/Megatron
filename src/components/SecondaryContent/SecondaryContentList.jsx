@@ -79,34 +79,40 @@ class SecondaryContentList extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     let copy = Object.assign([], this.props.data);
+      // if(this.props.activeSecondary !== prevProps.activeSecondary){
+      //     this.setState({isLoading: true},()=>{
+      //         setTimeout(()=>{
+      //             this.setState({isLoading:false})
+      //         },.001)
+      //     });
+      // }
 
+    // if (utils.includes(this.props.deviceType, 'mobile') ||
+    //   utils.includes(this.props.deviceType, 'tablet')) {
+    //   console.log('I am changing');
 
-    if (utils.includes(this.props.deviceType, 'mobile') ||
-      utils.includes(this.props.deviceType, 'tablet')) {
-      console.log('I am changing');
+    //   if (this.props.activeJourneyCard !== prevProps.activeJourneyCard) {
+    //     console.log('Changing the order', this.props.activeJourneyCard);
+    //     // console.log(this.props.data);
+    //     console.log('Changing the order',[this.props.data[this.props.activeJourneyCard], ...this.props.data.filter(item => item.index !== this.props.activeJourneyCard)])
+    //     this.setState({ sortedData: [copy[this.props.activeJourneyCard], ...copy.filter(item => item.index !== this.props.activeJourneyCard)] })
+    //   }
+    // }
+    // if(this.state.sortedData !== prevState.sortedData){
+    //   console.log('Updating Secondary');
+    //   switch (this.props.activePrimary) {
+    //     case 0:
+    //       this.setState({ activeCard: this.props.activeJourneyCard });
+    //       break;
+    //     case 1:
+    //       this.setState({ activeCard: this.props.activeJourneyCard });
+    //       break;
+    //     case 2:
+    //       this.setState({ activeCard: this.props.activeJourneyCard });
+    //       break;
 
-      if (this.props.activeJourneyCard !== prevProps.activeJourneyCard) {
-        console.log('Changing the order', this.props.activeJourneyCard);
-        // console.log(this.props.data);
-        console.log('Changing the order',[this.props.data[this.props.activeJourneyCard], ...this.props.data.filter(item => item.index !== this.props.activeJourneyCard)])
-        this.setState({ sortedData: [copy[this.props.activeJourneyCard], ...copy.filter(item => item.index !== this.props.activeJourneyCard)] })
-      }
-    }
-    if(this.state.sortedData !== prevState.sortedData){
-      console.log('Updating Secondary');
-      switch (this.props.activePrimary) {
-        case 0:
-          this.setState({ activeCard: this.props.activeJourneyCard });
-          break;
-        case 1:
-          this.setState({ activeCard: this.props.activeJourneyCard });
-          break;
-        case 2:
-          this.setState({ activeCard: this.props.activeJourneyCard });
-          break;
-
-      }
-    }
+    //   }
+    // }
   
 
   }
@@ -175,9 +181,13 @@ class SecondaryContentList extends Component {
   };
 
   onSecondaryCardClicked = (e, index) => {
+    console.log('Secondary Card Clicked',index);
     this.setState({ detailsClassState: 'slide-in-bottom' });
     this.setState({ clicked: true });
     this.setState({ sortedData: [] })
+    this.props.onJourneyCardClicked(e,index);
+    
+
   }
 
   onDetailMenuClose = (e) => {
@@ -187,7 +197,7 @@ class SecondaryContentList extends Component {
       this.setState({ detailsClassState: '' });
     }, 200);
     this.setState({ sortedData: this.props.data });
-    this.props.onJourneyCardClicked(e, this.state.activeCard);
+    // this.props.onJourneyCardClicked(e, this.props.activeJourneyCard);
 
   }
 
@@ -236,7 +246,7 @@ class SecondaryContentList extends Component {
               item={item}
               // comments={this.props.commentsPackage}
               activeJourneyCard={isActive}
-              onSecondaryCardClicked={e => this.onSecondaryCardClicked(e, item.index)}
+              onSecondaryCardClicked={(e,index) => this.onSecondaryCardClicked(e, index)}
               onJourneyCardClicked={(e, index) => {
                 this.props.onJourneyCardClicked(e, index);
               }}
@@ -292,8 +302,7 @@ class SecondaryContentList extends Component {
           <div className="scrolling-wrapper">
             <div className="slider-content">
               <div className="sliderSquareContainerInner slider_box_inner">
-                <MobileViewDetails detailsData={this.props.data[this.props.activeJourneyCard].details.qtdw} valueType={this.props.data[this.props.activeJourneyCard].valueType}></MobileViewDetails>
-
+                <MobileViewDetails detailsData={this.props.detailsData} valueType={this.props.valueType}></MobileViewDetails>
               </div>
             </div>
 

@@ -2,7 +2,7 @@
   "name": "practice",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rtb-dev.corp.adobe.com:8551/apps/rtbalpha/",
+  "homepage": "https://rtb-dev.corp.adobe.com",
   "dependencies": {
     "@okta/okta-react": "^1.2.0",
     "@okta/okta-signin-widget": "^2.17.0",

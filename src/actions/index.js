@@ -560,7 +560,7 @@ export function getFilteredBuyMarketSecondaryData(filters) {
         //Traffic
         channelMU: Object.keys(filters.channelMU.valueFilters).map(e => filters.channelMU.valueFilters[e]),
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
-        channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
+        channelPM: Object.keys(filters.channelPM.valueFilters).map(e => filters.channelPM.valueFilters[e]),
     };
 
     // console.log(filters);

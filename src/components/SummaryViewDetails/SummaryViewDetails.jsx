@@ -819,7 +819,7 @@ getSummaryFilters(activeItem) {
           {/* PVW*/}
           <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }} >
 
-          <div> PVW -  {this.state.pvwStringList}</div>
+          <div> Phone VS Web -  {this.state.pvwStringList}</div>
           <MultiValueSelect
               options={pvw.availableFilters}
               onValueChange={(e) => { let type = DIMENSIONS.PVW; this.updateMultiValue(e, type) }}
@@ -835,7 +835,7 @@ getSummaryFilters(activeItem) {
         <div className="row">
           {/* PVW*/}
           <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-          <div> PVW -  {this.state.pvwStringList}</div>
+          <div> Phone VS Web -  {this.state.pvwStringList}</div>
           <MultiValueSelect
               options={pvw.availableFilters}
               onValueChange={(e) => { let type = DIMENSIONS.PVW; this.updateMultiValue(e, type) }}

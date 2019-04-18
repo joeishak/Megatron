@@ -11198,11 +11198,6 @@ export const SecondaryData = [
                     },
                     {
                         index: 3,
-                        header: 'Units',
-                        value: 66.7
-                    },
-                    {
-                        index: 3,
                         header: 'QRF',
                         value: 66.7
                     },

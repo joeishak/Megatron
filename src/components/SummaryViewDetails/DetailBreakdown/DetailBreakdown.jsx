@@ -36,7 +36,7 @@ class DetailBreakdown extends Component {
     }
   }
   renderQuarterlyToDateTableHeader() {
-    if (this.props.activePrimary === 0) {
+    if (this.props.activePrimary === 0 || this.props.activeSecondary === 19) {
       switch (this.props.activeTimeMetric) {
         case "qtd":
           return (
@@ -133,8 +133,8 @@ class DetailBreakdown extends Component {
     var qtdwColSizes = classNames({
       colContainer: true,
       qtdSize: (activeTimeMetric === "qtd" && this.props.activePrimary >= 1) ? true : false,
-      qtdFin: (activeTimeMetric === 'qtd' && this.props.activePrimary < 1) ? true : false,
-      weekSize: (activeTimeMetric === "week" && this.props.activePrimary < 1) ? true : false,
+      qtdFin: (activeTimeMetric === 'qtd' && ( this.props.activePrimary < 1 || this.props.activeSecondary === 19)) ? true : false,
+      weekSize: (activeTimeMetric === "week" && (this.props.activePrimary < 1 || this.props.activeSecondary === 19)) ? true : false,
       weekJourn: (activeTimeMetric === "week" && this.props.activePrimary >= 1) ? true : false,
     });
     var qtdTotalTable = classNames({

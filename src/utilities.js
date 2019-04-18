@@ -1545,7 +1545,7 @@ export function requestRenewSecondaryData(allFilters, _parameters) {
 
     generateFilterParams(3, renewParams, allFilters, _parameters);
 
-    let params8 = useParams.reduce((prev, param) => {
+    let params8 = renewParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
@@ -2464,7 +2464,7 @@ export function filterRenewSecondaryData(allFilters, _parameters) {
 
     generateFilterParams(3, renewParams, allFilters, _parameters);
 
-    let params8 = useParams.reduce((prev, param) => {
+    let params8 = renewParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;

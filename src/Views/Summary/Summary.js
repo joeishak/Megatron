@@ -921,7 +921,7 @@ class Summary extends Component {
 
   updateActiveSecondary(index) {
     // this.props.isFetching(true);
-    // this.props.fetchComments(index);
+    this.props.fetchComments(index);
     this.props.updateActiveSecondaryCard(index);
   }
 
@@ -978,9 +978,10 @@ class Summary extends Component {
         utils.includes(this.props.deviceType, 'tablet') ? [this.props.secondaryData[this.props.activeSecondaryCard], ...this.props.secondaryData.filter(item => item.index !== this.props.activeSecondaryCard)] : this.props.secondaryData
     return (
       <SecondaryContentList
-        statsDetails={this.props.statsDetails}
+        statsDetails={this.props.secondaryData[this.props.activeSecondaryCard].details.stats}
+        detailsData={this.props.secondaryData[this.props.activeSecondaryCard].details.qtdw}
+        valueType={this.props.secondaryData[this.props.activeSecondaryCard].valueType}
         data={sortedData}
-        // activeJourneyCard={this.props.activeSecondaryCard}
         onJourneyCardClicked={(e, index) => { this.updateActiveSecondary(index); }}
         onCommentIconClick={(e, type, index) => { this.onCommentIconClick(e, type, index); }}
         toggleCommentary={this.props.toggleCommentary}
@@ -1075,7 +1076,6 @@ function mapStateToProps(state) {
   // console.log('SUMMARY JS STATE', state);
   return {
     authenticated: state.authenticated,
-    statsDetails: state.summaryData.secondary[state.activeCards.secondary].details.stats,
     dialogIsOpen: state.isDialogOpen,
     detailIsOpen: state.detailsIsOpen,
     availableFilters: state.availableFilters,
