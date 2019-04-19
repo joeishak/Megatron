@@ -46,12 +46,16 @@ export const UPDATE_BUY_CONVERSION_IS_LOADING              = 'update_buy_convers
 export const UPDATE_BUY_MARKET_IS_LOADING                       = 'update_buy_market_is_loading';
 export const UPDATE_BUY_GROSS_IS_LOADING            = 'update_buy_gross_is_loading';
 export const UPDATE_USE_IS_LOADING   = 'update_use_is_loading';
-export const UPDATE_RENEW_IS_LOADING  ='update_renew_is_loading'   ; 
-
+export const UPDATE_RENEW_CANCEL_IS_LOADING  ='update_renew_cancel_is_loading'; 
+export const UPDATE_RENEW_IS_LOADING  ='update_renew_is_loading'; 
+export const UPDATE_RENEW_DETAILS_IS_LOADING  ='update_renew_detail_is_loading'; 
+export const GET_RENEW_SECONDARY_DATA = "get_renew_secondary_data";
+export const GET_RENEW_DETAILS_DATA = "get_renew_detail_data";
+export const GET_RENEW_CANCEL_DATA = "get_renew_detail_data";
 export const GET_BUY_TRAFFIC_SECONDARY_DATA = 'get_buy_traffic_secondary_data';
 
 
-export const GET_RENEW_SECONDARY_DATA = "get_renew_secondary_data";
+
 export const GET_SECONDARY_DATA = "get_secondary_data";
 export const GET_SECONDARY_DETAIL_DATA = 'get_secondary_detail_data'
 // Data for the Filters

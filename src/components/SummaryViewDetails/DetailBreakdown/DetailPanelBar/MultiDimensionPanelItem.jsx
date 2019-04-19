@@ -91,10 +91,10 @@ class MultiDimensionPanelItem extends Component {
 
                     prevGeo = item.type;
                     return (<span key={marketCount++}>
-                        <div className={`${qtdColumnClass}` + " qtdGeoHeader col"}>
+                        <div className={`${weekColumnClass}` + " qtdGeoHeader col"}>
                             {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
-                        <div className={`${qtdColumnClass}` + " qtdMaHeader col"} >
+                        <div className={`${weekColumnClass}` + " qtdMaHeader col"} >
                             {item.marketArea }
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>

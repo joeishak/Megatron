@@ -6,7 +6,12 @@ import {
     GET_SUMMARY_DATA,
     // FETCH_COMMENTS_COUNT,
     UPDATE_USE_IS_LOADING,
+    UPDATE_RENEW_CANCEL_IS_LOADING,
     UPDATE_RENEW_IS_LOADING,
+    UPDATE_RENEW_DETAILS_IS_LOADING,
+    GET_RENEW_SECONDARY_DATA,
+    GET_RENEW_DETAILS_DATA,
+    GET_RENEW_CANCEL_DATA,
     GET_PRIMARY_DATA,
     GET_FINANCE_SECONDARY_DATA,
     GET_FINANCE_XDC1_SECONDARY_DATA,
@@ -20,7 +25,6 @@ import {
     GET_BUY_MKTG_SECONDARY_DATA,
     GET_BUY_FINANCE_SECONDARY_DATA,
     GET_USE_SECONDARY_DATA,
-    GET_RENEW_SECONDARY_DATA,
     DELETE_COMMENT,
     RESET_DATA,
     UPDATE_BUY_CONVERSION_IS_LOADING,
@@ -102,6 +106,14 @@ export default function (state = {
             return {
                 ...state, renewIsLoaded: action.payload
             }
+        case UPDATE_RENEW_DETAILS_IS_LOADING:
+            return {
+                ...state, renewDetailsIsLoaded: action.payload
+            }
+        case UPDATE_RENEW_CANCEL_IS_LOADING:
+            return {
+                ...state, renewCancelIsLoaded: action.payload
+            }
         case UPDATE_USE_IS_LOADING:
             return {
                 ...state, useIsLoaded: action.payload
@@ -116,7 +128,12 @@ export default function (state = {
                 financeXDC2IsLoaded: false,
                 trafficIsLoaded: false,
                 muIsLoaded: false,
-                tryIsLoaded: false
+                tryIsLoaded: false,
+                buyGrossIsLoaded: false,
+                buyMarketIsLoaded: false,
+                buyConversionIsLoaded: false,
+                useIsLoaded: false,
+                renewIsLoaded: false,
             }
         case GET_PRIMARY_DATA:
             console.log('Request For Primary Data: ', action.payload);
@@ -143,10 +160,10 @@ export default function (state = {
             newState.primary[4].target = action.payload[4].data[0].RepeatMAUTarget;
             newState.primary[4].vsqrf = action.payload[4].data[0].RepeatMAUVsQRF;
             newState.primary[4].targetFQ = action.payload[4].data[0].RepeatMAUTargetFQ;
-            newState.primary[5].value = action.payload[5].data[0].UIRateActual;
-            newState.primary[5].target = action.payload[5].data[0].UIRateTarget;
-            newState.primary[5].vsqrf = action.payload[5].data[0].UIRateVsQrf;
-            newState.primary[5].targetFQ = action.payload[5].data[0].UIRateTargetFQ;
+            // newState.primary[5].value = action.payload[5].data[0].UIRateActual;
+            // newState.primary[5].target = action.payload[5].data[0].UIRateTarget;
+            // newState.primary[5].vsqrf = action.payload[5].data[0].UIRateVsQrf;
+            // newState.primary[5].targetFQ = action.payload[5].data[0].UIRateTargetFQ;
             //Return a copy of newstate
             return { ...newState, primaryIsLoaded: true };
         case GET_DISCOVER_SECONDARY_DATA:
@@ -318,16 +335,17 @@ export default function (state = {
             return { ...newState, buyGrossIsLoaded: true };
         case GET_USE_SECONDARY_DATA:
             console.log('Request For Use   Secondary Details Data: ', action.payload);
-            // processUseSecondaryData(action.payload[0].data[0], newState.secondary);
-            // processUseMultichartData(action.payload[1].data, newState.secondary);
-            // processUseQTDData(action.payload[2].data[0], newState.secondary);
-            // processUseGeoQTDData(action.payload[3].data, newState.secondary);
-            // processUseMarketQTDData(action.payload[4].data, newState.secondary);
-            // processUseSegmentQTDData(action.payload[5].data, newState.secondary);
-            // processUseSSubscriptionQTDData(action.payload[6].data, newState.secondary);
-            return state;
+            processUseSecondaryData(action.payload[0].data[0], newState.secondary);
+            processUseMultichartData(action.payload[1].data, newState.secondary);
+            processUseQTDData(action.payload[2].data, newState.secondary);
+            processUseGeoQTDData(action.payload[3].data, newState.secondary);
+            processUseMarketQTDData(action.payload[4].data, newState.secondary);
+            processUseSegmentQTDData(action.payload[5].data, newState.secondary);
+            processUseSubscriptionQTDData(action.payload[6].data, newState.secondary);
+            return { ...newState, useIsLoaded: true };
         case GET_RENEW_SECONDARY_DATA:
             console.log('Request For Renew  Secondary Details Data: ', action.payload);
+            // 0-6 = Renew XDC , 7-15 = Finance2XDC
             // processRenewSecondaryData(action.payload[0].data[0], newState.secondary);
             // processRenewMultichartData(action.payload[1].data, newState.secondary);
             // processRenewQTDData(action.payload[2].data[0], newState.secondary);
@@ -335,6 +353,20 @@ export default function (state = {
             // processRenewMarketQTDData(action.payload[4].data, newState.secondary);
             // processRenewProductQTDData(action.payload[5].data, newState.secondary);
             // processRenewSegmentQTDData(action.payload[6].data, newState.secondary);
+            // processRenewCancelSecondaryData(action.payload[0], newState.secondary);
+
+            // processRenewCancelMultichart(newState.secondary, action.payload[7].data);
+            // processRenewCancelQTD(newState.secondary, action.payload[8].data);
+            // processRenewCancelGeoQTD(newState.secondary, action.payload[9].data);
+            // processRenewCancelGeoWeek(newState.secondary, action.payload[9].data)
+            // processRenewCancelMarketQTD(newState.secondary, action.payload[10].data);
+            // processRenewCancelMarketWeek(newState.secondary, action.payload[10].data);
+            // processRenewCancelrouteQTD(newState.secondary, action.payload[11].data);
+            // processRenewCancelrouteWeek(newState.secondary, action.payload[11].data)
+            // processRenewCancelSegmentQTD(newState.secondary, action.payload[12].data);
+            // processRenewCancelSegmentWeek(newState.secondary, action.payload[12].data);
+            // processRenewCancelproductQTD(newState.secondary, action.payload[13].data);
+            // processRenewCancelProductWeek(newState.secondary, action.payload[13].data);
             return state;
         default:
             return state;
@@ -5789,9 +5821,9 @@ export function processBuyPMSSMultichartData(data, newState) {
         let item = newData[i];
         //traffic
         pm.actual.push(item.PMSpendBuyActual);
-        pm.target.push(item.PMSpendBuyLQ);
+        pm.target.push(item.PMSpendBuyTarget);
         pm.ly.push(item.PMSpendBuyLY);
-        pm.lq.push(item.PMSpendBuyTarget);
+        pm.lq.push(item.PMSpendBuyLQ);
     };
 
     currentMulti = [pm.actual, pm.target, pm.ly, pm.lq];
@@ -5990,11 +6022,10 @@ export function processBuyGrossQTD(newState, data) {
     newState[19].details.qtdw.qtd[4].value = data[0].GrossARRQQTY;
     newState[19].details.qtdw.qtd[5].value = data[0].GrossARRYY;
     newState[19].details.qtdw.week[0].value = data[0].GrossARRCW
-    newState[19].details.qtdw.week[1].value = data[0].GrossUnitsCW;
-    newState[19].details.qtdw.week[2].value = data[0].GrossARRTargetCW
-    newState[19].details.qtdw.week[3].value = data[0].GrossCWVsQrfDiff;
-    newState[19].details.qtdw.week[4].value = data[0].GrossCWVsQrf;
-    newState[19].details.qtdw.week[5].value = data[0].GrossWW;
+    newState[19].details.qtdw.week[1].value = data[0].GrossARRTargetCW
+    newState[19].details.qtdw.week[2].value = data[0].GrossCWVsQrfDiff;
+    newState[19].details.qtdw.week[3].value = data[0].GrossCWVsQrf;
+    newState[19].details.qtdw.week[4].value = data[0].GrossWW;
     newState[19].details.stats[0].value = data[0].GrossARRVsQrf;
     newState[19].details.stats[1].value = data[0].GrossARRQQTY;
     newState[19].details.stats[2].value = data[0].GrossARRQQLY;
@@ -6164,6 +6195,7 @@ export function processBuyGrossMarketQTD(newState, data) {
 
         let gross = {
             index: i,
+            actuals: item.GrossActuals,
             qq: item.GrossARRQQTY,
             qrf: item.GrossTarget,
             qrfDiff: item.GrossVsQrfDiff,
@@ -6567,59 +6599,59 @@ export function processUseMultichartData(data, newState) {
         let item = newData[i];
         ei.actual.push(item.CEIActual);
         ei.target.push(item.CEITarget);
-        ei.ly.push(item.CEIQQLY);
-        ei.lq.push(item.CEIQQTY);
+        ei.ly.push(item.CEILY);
+        ei.lq.push(item.CEILQ);
         pum.actual.push(item.PaidMAUActual);
         pum.target.push(item.PaidMAUTarget);
-        pum.ly.push(item.PaidMAUQQLY);
-        pum.lq.push(item.PaidMAUQQTY);
+        pum.ly.push(item.PaidMAULY);
+        pum.lq.push(item.PaidMAULQ);
         rum.actual.push(item.RepeatMAUActual);
         rum.target.push(item.RepeatMAUTarget);
-        rum.ly.push(item.RepeatMAUQQLY);
-        rum.lq.push(item.RepeatMAUQQTY);
+        rum.ly.push(item.RepeatMAULY);
+        rum.lq.push(item.RepeatMAULQ);
         pus.actual.push(item.PaidUserDownloadActual);
         pus.target.push(item.PaidUserDownloadTarget);
-        pus.ly.push(item.PaidUserDownloadQQLY);
-        pus.lq.push(item.PaidUserDownloadQQTY);
+        pus.ly.push(item.PaidUserDownloadLY);
+        pus.lq.push(item.PaidUserDownloadLQ);
         wk0.actual.push(item.Week00WAUActual);
         wk0.target.push(item.Week00WAUTarget);
-        wk0.ly.push(item.Week00WAUQQLY);
-        wk0.lq.push(item.Week00WAUQQTY);
+        wk0.ly.push(item.Week00WAULY);
+        wk0.lq.push(item.Week00WAULQ);
         wk4.actual.push(item.Week04WAUActual);
         wk4.target.push(item.Week04WAUTarget);
-        wk4.ly.push(item.Week04WAUQQLY);
-        wk4.lq.push(item.Week04WAUQQTY);
+        wk4.ly.push(item.Week04WAULY);
+        wk4.lq.push(item.Week04WAULQ);
     };
 
 
 
+    console.log('Multichart', ei, pum, rum, pus, wk0, wk4)
 
     newState[21]['details'].multichart = [ei.actual, ei.target, ei.ly, ei.lq];
     newState[22]['details'].multichart = [pum.actual, pum.target, pum.ly, pum.lq];
     newState[23]['details'].multichart = [rum.actual, rum.target, rum.ly, rum.lq];
     newState[24]['details'].multichart = [pus.actual, pus.target, pus.ly, pus.lq];
     newState[25]['details'].multichart = [wk0.actual, wk0.target, wk0.ly, wk0.lq];
-    newState[27]['details'].multichart = [wk4.actual, wk4.target, wk4.ly, wk4.lq];
+    newState[26]['details'].multichart = [wk4.actual, wk4.target, wk4.ly, wk4.lq];
 
 }
 export function processUseQTDData(data, newState) {
-   
-    newState[21].details.qtdw.qtd[0].value =data[0].CEIActual;
-    newState[21].details.qtdw.qtd[1].value =data[0].CEITarget;
-    newState[21].details.qtdw.qtd[2].value =data[0].CEIVsQRFDiff;
-    newState[21].details.qtdw.qtd[3].value =data[0].CEIVsQrf;
-    newState[21].details.qtdw.qtd[4].value =data[0].CEIQQTY;
-    newState[21].details.qtdw.qtd[5].value =data[0].CEIYY;
+
+    newState[21].details.qtdw.qtd[0].value = data[0].CEIActual;
+    newState[21].details.qtdw.qtd[1].value = data[0].CEITarget;
+    newState[21].details.qtdw.qtd[2].value = data[0].CEIVsQRFDiff;
+    newState[21].details.qtdw.qtd[3].value = data[0].CEIVsQrf;
+    newState[21].details.qtdw.qtd[4].value = data[0].CEIQQTY;
+    newState[21].details.qtdw.qtd[5].value = data[0].CEIYY;
     newState[21].details.qtdw.week[0].value = data[0].CEIActual;
     newState[21].details.qtdw.week[1].value = data[0].CEITarget;
     newState[21].details.qtdw.week[2].value = data[0].CEIVsQRFDiff;
     newState[21].details.qtdw.week[3].value = data[0].CEIVsQrf;
-    newState[21].details.qtdw.week[4].value = data[0].CEIYY;
-    newState[21].details.qtdw.week[5].value = data[0].CEIWW;
-    newState[21].details.stats[0].value =  data[0].CEIVsQrf;
-    newState[21].details.stats[1].value =  data[0].CEIQQTY;
-    newState[21].details.stats[2].value =  data[0].CEIQQLY;
-    newState[21].details.stats[3].value =  data[0].CEIYY;
+    newState[21].details.qtdw.week[4].value = data[0].CEIWW;
+    newState[21].details.stats[0].value = data[0].CEIVsQrf;
+    newState[21].details.stats[1].value = data[0].CEIQQTY;
+    newState[21].details.stats[2].value = data[0].CEIQQLY;
+    newState[21].details.stats[3].value = data[0].CEIYY;
 
     newState[22].details.qtdw.qtd[0].value = data[0].PaidMAUActual;
     newState[22].details.qtdw.qtd[1].value = data[0].PaidMAUTarget;
@@ -6627,16 +6659,15 @@ export function processUseQTDData(data, newState) {
     newState[22].details.qtdw.qtd[3].value = data[0].PaidMAUVsQrf;
     newState[22].details.qtdw.qtd[4].value = data[0].PaidMAUQQTY;
     newState[22].details.qtdw.qtd[5].value = data[0].PaidMAUYY;
-    newState[22].details.qtdw.week[0].value =  data[0].PaidMAUActual;
-    newState[22].details.qtdw.week[1].value =  data[0].PaidMAUTarget;
-    newState[22].details.qtdw.week[2].value =  data[0].PaidMAUVsQRFDiff;
-    newState[22].details.qtdw.week[3].value =  data[0].PaidMAUVsQrf;
-    newState[22].details.qtdw.week[4].value =  data[0].PaidMAUQQTY;
-    newState[22].details.qtdw.week[5].value =  data[0].PaidMAUWW;
-    newState[22].details.stats[0].value =  data[0].PaidMAUVsQrf;
-    newState[22].details.stats[1].value =  data[0].PaidMAUQQTY;
-    newState[22].details.stats[2].value =  data[0].PaidMAUQQLY;
-    newState[22].details.stats[3].value =  data[0].PaidMAUYY;
+    newState[22].details.qtdw.week[0].value = data[0].PaidMAUActual;
+    newState[22].details.qtdw.week[1].value = data[0].PaidMAUTarget;
+    newState[22].details.qtdw.week[2].value = data[0].PaidMAUVsQRFDiff;
+    newState[22].details.qtdw.week[3].value = data[0].PaidMAUVsQrf;
+    newState[22].details.qtdw.week[4].value = data[0].PaidMAUWW;
+    newState[22].details.stats[0].value = data[0].PaidMAUVsQrf;
+    newState[22].details.stats[1].value = data[0].PaidMAUQQTY;
+    newState[22].details.stats[2].value = data[0].PaidMAUQQLY;
+    newState[22].details.stats[3].value = data[0].PaidMAUYY;
 
     newState[23].details.qtdw.qtd[0].value = data[0].PaidUserDownloadActual;
     newState[23].details.qtdw.qtd[1].value = data[0].PaidUserDownloadTarget;
@@ -6644,16 +6675,15 @@ export function processUseQTDData(data, newState) {
     newState[23].details.qtdw.qtd[3].value = data[0].PaidUserDownloadVsQrf;
     newState[23].details.qtdw.qtd[4].value = data[0].PaidUserDownloadQQTY;
     newState[23].details.qtdw.qtd[5].value = data[0].PaidUserDownloadYY;
-    newState[23].details.qtdw.week[0].value =  data[0].PaidUserDownloadActual;
-    newState[23].details.qtdw.week[1].value =  data[0].PaidUserDownloadTarget;
-    newState[23].details.qtdw.week[2].value =  data[0].PaidUserDownloadVsQRFDiff;
-    newState[23].details.qtdw.week[3].value =  data[0].PaidUserDownloadVsQrf;
-    newState[23].details.qtdw.week[4].value =  data[0].PaidUserDownloadQQTY;
-    newState[23].details.qtdw.week[5].value =  data[0].PaidUserDownloadWW;
-    newState[23].details.stats[0].value =  data[0].PaidUserDownloadVsQrf;
-    newState[23].details.stats[1].value =  data[0].PaidUserDownloadQQTY;
-    newState[23].details.stats[2].value =  data[0].PaidUserDownloadQQLY;
-    newState[23].details.stats[3].value =  data[0].PaidUserDownloadYY;
+    newState[23].details.qtdw.week[0].value = data[0].PaidUserDownloadActual;
+    newState[23].details.qtdw.week[1].value = data[0].PaidUserDownloadTarget;
+    newState[23].details.qtdw.week[2].value = data[0].PaidUserDownloadVsQRFDiff;
+    newState[23].details.qtdw.week[3].value = data[0].PaidUserDownloadVsQrf;
+    newState[23].details.qtdw.week[4].value = data[0].PaidUserDownloadWW;
+    newState[23].details.stats[0].value = data[0].PaidUserDownloadVsQrf;
+    newState[23].details.stats[1].value = data[0].PaidUserDownloadQQTY;
+    newState[23].details.stats[2].value = data[0].PaidUserDownloadQQLY;
+    newState[23].details.stats[3].value = data[0].PaidUserDownloadYY;
 
     newState[24].details.qtdw.qtd[0].value = data[0].RepeatMAUActual;
     newState[24].details.qtdw.qtd[1].value = data[0].RepeatMAUTarget;
@@ -6661,33 +6691,31 @@ export function processUseQTDData(data, newState) {
     newState[24].details.qtdw.qtd[3].value = data[0].RepeatMAUVsQrf;
     newState[24].details.qtdw.qtd[4].value = data[0].RepeatMAUQQTY;
     newState[24].details.qtdw.qtd[5].value = data[0].RepeatMAUYY;
-    newState[24].details.qtdw.week[0].value =  data[0].RepeatMAUActual;
-    newState[24].details.qtdw.week[1].value =  data[0].RepeatMAUTarget;
-    newState[24].details.qtdw.week[2].value =  data[0].RepeatMAUVsQRFDiff;
-    newState[24].details.qtdw.week[3].value =  data[0].RepeatMAUQQTY;
-    newState[24].details.qtdw.week[4].value =  data[0].RepeatMAUVsQrf;
-    newState[24].details.qtdw.week[5].value =  data[0].RepeatMAUWW;
-    newState[24].details.stats[0].value =  data[0].RepeatMAUVsQrf;
-    newState[24].details.stats[1].value =  data[0].RepeatMAUQQTY;
-    newState[24].details.stats[2].value =  data[0].RepeatMAUQQLY;
-    newState[24].details.stats[3].value =  data[0].RepeatMAUYY;
-    
+    newState[24].details.qtdw.week[0].value = data[0].RepeatMAUActual;
+    newState[24].details.qtdw.week[1].value = data[0].RepeatMAUTarget;
+    newState[24].details.qtdw.week[2].value = data[0].RepeatMAUVsQRFDiff;
+    newState[24].details.qtdw.week[3].value = data[0].RepeatMAUQQTY;
+    newState[24].details.qtdw.week[4].value = data[0].RepeatMAUWW;
+    newState[24].details.stats[0].value = data[0].RepeatMAUVsQrf;
+    newState[24].details.stats[1].value = data[0].RepeatMAUQQTY;
+    newState[24].details.stats[2].value = data[0].RepeatMAUQQLY;
+    newState[24].details.stats[3].value = data[0].RepeatMAUYY;
+
     newState[25].details.qtdw.qtd[0].value = data[0].Week00WAUActual;
     newState[25].details.qtdw.qtd[1].value = data[0].Week00WAUTarget;
     newState[25].details.qtdw.qtd[2].value = data[0].Week00WAUVsQRFDiff;
     newState[25].details.qtdw.qtd[3].value = data[0].Week00WAUVsQrf;
     newState[25].details.qtdw.qtd[4].value = data[0].Week00WAUQQTY;
     newState[25].details.qtdw.qtd[5].value = data[0].Week00WAUYY;
-    newState[25].details.qtdw.week[0].value =  data[0].Week00WAUTarget;
-    newState[25].details.qtdw.week[1].value =  data[0].Week00WAUVsQRFDiff;
-    newState[25].details.qtdw.week[2].value =  data[0].Week00WAUVsQRFDiff;
-    newState[25].details.qtdw.week[3].value =  data[0].Week00WAUVsQrf;
-    newState[25].details.qtdw.week[4].value =  data[0].Week00WAUQQTY;
-    newState[25].details.qtdw.week[5].value =  data[0].Week00WAUWW;
-    newState[25].details.stats[0].value =  data[0].Week00WAUVsQrf;
-    newState[25].details.stats[1].value =  data[0].Week00WAUQQTY;
-    newState[25].details.stats[2].value =  data[0].Week00WAUQQLY;
-    newState[25].details.stats[3].value =  data[0].Week00WAUYY;
+    newState[25].details.qtdw.week[0].value = data[0].Week00WAUTarget;
+    newState[25].details.qtdw.week[1].value = data[0].Week00WAUVsQRFDiff;
+    newState[25].details.qtdw.week[2].value = data[0].Week00WAUVsQRFDiff;
+    newState[25].details.qtdw.week[3].value = data[0].Week00WAUVsQrf;
+    newState[25].details.qtdw.week[4].value = data[0].Week00WAUWW;
+    newState[25].details.stats[0].value = data[0].Week00WAUVsQrf;
+    newState[25].details.stats[1].value = data[0].Week00WAUQQTY;
+    newState[25].details.stats[2].value = data[0].Week00WAUQQLY;
+    newState[25].details.stats[3].value = data[0].Week00WAUYY;
 
     newState[26].details.qtdw.qtd[0].value = data[0].Week04WAUActual;
     newState[26].details.qtdw.qtd[1].value = data[0].Week04WAUTarget;
@@ -6695,176 +6723,168 @@ export function processUseQTDData(data, newState) {
     newState[26].details.qtdw.qtd[3].value = data[0].Week04WAUVsQrf;
     newState[26].details.qtdw.qtd[4].value = data[0].Week04WAUQQTY;
     newState[26].details.qtdw.qtd[5].value = data[0].Week04WAUYY;
-    newState[26].details.qtdw.week[0].value =  data[0].Week04WAUActual;
-    newState[26].details.qtdw.week[1].value =  data[0].Week04WAUTarget;
-    newState[26].details.qtdw.week[2].value =  data[0].Week04WAUVsQRFDiff;
-    newState[26].details.qtdw.week[3].value =  data[0].Week04WAUVsQrf;
-    newState[26].details.qtdw.week[4].value =  data[0].Week04WAUQQTY;
-    newState[26].details.qtdw.week[5].value =  data[0].Week04WAUWW;
-    newState[26].details.stats[0].value =  data[0].Week04WAUVsQrf;
-    newState[26].details.stats[1].value =  data[0].Week04WAUQQTY;
-    newState[26].details.stats[2].value =  data[0].Week04WAUQQLY;
-    newState[26].details.stats[3].value =  data[0].Week04WAUYY;
+    newState[26].details.qtdw.week[0].value = data[0].Week04WAUActual;
+    newState[26].details.qtdw.week[1].value = data[0].Week04WAUTarget;
+    newState[26].details.qtdw.week[2].value = data[0].Week04WAUVsQRFDiff;
+    newState[26].details.qtdw.week[3].value = data[0].Week04WAUVsQrf;
+    newState[26].details.qtdw.week[4].value = data[0].Week04WAUWW;
+    newState[26].details.stats[0].value = data[0].Week04WAUVsQrf;
+    newState[26].details.stats[1].value = data[0].Week04WAUQQTY;
+    newState[26].details.stats[2].value = data[0].Week04WAUQQLY;
+    newState[26].details.stats[3].value = data[0].Week04WAUYY;
 }
 export function processUseGeoQTDData(data, newState) {
 
-    let item1 = [], item1Week,
-     item2 = [],item2Week,
-     item3 = [],item3Week,
-     item4 = [],item4Week,
-     item5 = [],item5Week,
-     item6 = [], item6Week;
+    let item1 = [], item1Week = [],
+        item2 = [], item2Week = [],
+        item3 = [], item3Week = [],
+        item4 = [], item4Week = [],
+        item5 = [], item5Week = [],
+        item6 = [], item6Week = [];
+
+
+
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         let ei = {
             index: i,
-            actuals: item.NewActuals,
-            units: item.NewUnitsActual,
+            actuals: item.CEIActual,
             marketArea: item.market_area_group,
-            qq: item.NewARRQQTY,
-            qrf: item.NewTarget,
-            qrfDiff: item.NewVsQrfDiff,
+            qq: item.CEIQQTY,
+            qrf: item.CEITarget,
+            qrfDiff: item.CEIVsQRFDiff,
             type: item.geo_code,
-            vsQrf: item.NewARRVsQrf,
-            yy: item.NewARRYY
+            vsQrf: item.CEIVsQrf,
+            yy: item.CEIYY
         }
         let eiWeek = {
             index: i,
-            actuals: item.NewActuals,
-            units: item.NewUnitsActual,
+            actuals: 0,
             marketArea: item.market_area_group,
-            qq: item.NewARRQQTY,
-            qrf: item.NewTarget,
-            qrfDiff: item.NewVsQrfDiff,
+            qrf: 0,
+            qrfDiff: 0,
             type: item.geo_code,
-            vsQrf: item.NewARRVsQrf,
-            yy: item.NewARRYY
+            vsQrf: 0,
+            ww: item.CEIWW
         }
 
         let pum = {
             index: i,
-            actuals: item.NewActuals,
-            units: item.NewUnitsActual,
+            actuals: item.PaidMAUActual,
             marketArea: item.market_area_group,
-            qq: item.NewARRQQTY,
-            qrf: item.NewTarget,
-            qrfDiff: item.NewVsQrfDiff,
+            qq: item.PaidMAUQQTY,
+            qrf: item.PaidMAUTarget,
+            qrfDiff: item.PaidMAUVsQRFDiff,
             type: item.geo_code,
-            vsQrf: item.NewARRVsQrf,
-            yy: item.NewARRYY
+            vsQrf: item.PaidMAUVsQrf,
+            yy: item.PaidMAUYY
         }
         let pumWeek = {
             index: i,
-            actuals: item.NewActuals,
-            units: item.NewUnitsActual,
+            actuals: 0,
             marketArea: item.market_area_group,
-            qq: item.NewARRQQTY,
-            qrf: item.NewTarget,
-            qrfDiff: item.NewVsQrfDiff,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
             type: item.geo_code,
-            vsQrf: item.NewARRVsQrf,
-            yy: item.NewARRYY
+            vsQrf: 0,
+            yy: item.PaidMAUWW
         }
 
         let rum = {
             index: i,
-            actuals: item.NewActuals,
-            units: item.NewUnitsActual,
+            actuals: item.RepeatMAUActual,
             marketArea: item.market_area_group,
-            qq: item.NewARRQQTY,
-            qrf: item.NewTarget,
-            qrfDiff: item.NewVsQrfDiff,
+            qq: item.RepeatMAUQQTY,
+            qrf: item.RepeatMAUTarget,
+            qrfDiff: item.RepeatMAUVsQRFDiff,
             type: item.geo_code,
-            vsQrf: item.NewARRVsQrf,
-            yy: item.NewARRYY
+            vsQrf: item.RepeatMAUVsQrf,
+            yy: item.RepeatMAUYY
         }
         let rumWeek = {
             index: i,
-            actuals: item.NewActuals,
-            units: item.NewUnitsActual,
+            actuals: 0,
             marketArea: item.market_area_group,
-            qq: item.NewARRQQTY,
-            qrf: item.NewTarget,
-            qrfDiff: item.NewVsQrfDiff,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
             type: item.geo_code,
-            vsQrf: item.NewARRVsQrf,
-            yy: item.NewARRYY
+            vsQrf: 0,
+            yy: item.RepeatMAUWW
         }
 
         let pus = {
             index: i,
-            actuals: item.NewActuals,
-            units: item.NewUnitsActual,
+            actuals: item.PaidUserDownloadActual,
             marketArea: item.market_area_group,
-            qq: item.NewARRQQTY,
-            qrf: item.NewTarget,
-            qrfDiff: item.NewVsQrfDiff,
+            qq: item.PaidUserDownloadQQTY,
+            qrf: item.PaidUserDownloadTarget,
+            qrfDiff: item.PaidUserDownloadVsQRFDiff,
             type: item.geo_code,
-            vsQrf: item.NewARRVsQrf,
-            yy: item.NewARRYY
+            vsQrf: item.PaidUserDownloadVsQrf,
+            yy: item.PaidUserDownloadYY
         }
         let pusWeek = {
             index: i,
-            actuals: item.NewActuals,
-            units: item.NewUnitsActual,
+            actuals: 0,
             marketArea: item.market_area_group,
-            qq: item.NewARRQQTY,
-            qrf: item.NewTarget,
-            qrfDiff: item.NewVsQrfDiff,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
             type: item.geo_code,
-            vsQrf: item.NewARRVsQrf,
-            yy: item.NewARRYY
+            vsQrf: 0,
+            yy: item.PaidUserDownloadWW
         }
 
         let wk0 = {
             index: i,
-            actuals: item.NewActuals,
-            units: item.NewUnitsActual,
+            actuals: item.Week00WAUActual,
+
             marketArea: item.market_area_group,
-            qq: item.NewARRQQTY,
-            qrf: item.NewTarget,
-            qrfDiff: item.NewVsQrfDiff,
+            qq: item.Week00WAUQQTY,
+            qrf: item.Week00WAUTarget,
+            qrfDiff: item.Week00WAUVsQRFDiff,
             type: item.geo_code,
-            vsQrf: item.NewARRVsQrf,
-            yy: item.NewARRYY
+            vsQrf: item.Week00WAUVsQrf,
+            yy: item.Week00WAUYY
         }
         let wk0Week = {
             index: i,
-            actuals: item.NewActuals,
-            units: item.NewUnitsActual,
+            actuals: 0,
             marketArea: item.market_area_group,
-            qq: item.NewARRQQTY,
-            qrf: item.NewTarget,
-            qrfDiff: item.NewVsQrfDiff,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
             type: item.geo_code,
-            vsQrf: item.NewARRVsQrf,
-            yy: item.NewARRYY
+            vsQrf: 0,
+            yy: item.Week00WAUWW
         }
 
         let wk4 = {
             index: i,
-            actuals: item.NewActuals,
-            units: item.NewUnitsActual,
+            actuals: item.Week04WAUActual,
+
             marketArea: item.market_area_group,
-            qq: item.NewARRQQTY,
-            qrf: item.NewTarget,
-            qrfDiff: item.NewVsQrfDiff,
+            qq: item.Week04WAUQQTY,
+            qrf: item.Week04WAUTarget,
+            qrfDiff: item.Week04WAUVsQRFDiff,
             type: item.geo_code,
-            vsQrf: item.NewARRVsQrf,
-            yy: item.NewARRYY
+            vsQrf: item.Week04WAUVsQrf,
+            yy: item.Week04WAUYY
         }
         let wk4Week = {
             index: i,
-            actuals: item.NewActuals,
-            units: item.NewUnitsActual,
+            actuals: 0,
+
             marketArea: item.market_area_group,
-            qq: item.NewARRQQTY,
-            qrf: item.NewTarget,
-            qrfDiff: item.NewVsQrfDiff,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
             type: item.geo_code,
-            vsQrf: item.NewARRVsQrf,
-            yy: item.NewARRYY
+            vsQrf: 0,
+            yy: item.Week04WAUWW
         }
         item1.push(ei);
         item1Week.push(eiWeek);
@@ -6907,598 +6927,526 @@ export function processUseGeoQTDData(data, newState) {
 
 }
 export function processUseMarketQTDData(data, newState) {
-    let item1 = [], item1Week,
-    item2 = [],item2Week,
-    item3 = [],item3Week,
-    item4 = [],item4Week,
-    item5 = [],item5Week,
-    item6 = [], item6Week;
+    let item1 = [], item1Week = [],
+        item2 = [], item2Week = [],
+        item3 = [], item3Week = [],
+        item4 = [], item4Week = [],
+        item5 = [], item5Week = [],
+        item6 = [], item6Week = [];
 
-   for (let i = 0; i < data.length; i++) {
-       let item = data[i];
-       let ei = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.market_area_code,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let eiWeek = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.market_area_code,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let ei = {
+            index: i,
+            actuals: item.CEIActual,
+            qq: item.CEIQQTY,
+            qrf: item.CEITarget,
+            qrfDiff: item.CEIVsQRFDiff,
+            type: item.market_area_code,
+            vsQrf: item.CEIVsQrf,
+            yy: item.CEIYY
+        }
+        let eiWeek = {
+            index: i,
+            actuals: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.market_area_code,
+            vsQrf: 0,
+            ww: item.CEIWW
+        }
 
-       let pum = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.market_area_code,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let pumWeek = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.market_area_code,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
+        let pum = {
+            index: i,
+            actuals: item.PaidMAUActual,
+            qq: item.PaidMAUQQTY,
+            qrf: item.PaidMAUTarget,
+            qrfDiff: item.PaidMAUVsQRFDiff,
+            type: item.market_area_code,
+            vsQrf: item.PaidMAUVsQrf,
+            yy: item.PaidMAUYY
+        }
+        let pumWeek = {
+            index: i,
+            actuals: 0,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.market_area_code,
+            vsQrf: 0,
+            yy: item.PaidMAUWW
+        }
 
-       let rum = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.market_area_code,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let rumWeek = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.market_area_code,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
+        let rum = {
+            index: i,
+            actuals: item.RepeatMAUActual,
+            qq: item.RepeatMAUQQTY,
+            qrf: item.RepeatMAUTarget,
+            qrfDiff: item.RepeatMAUVsQRFDiff,
+            type: item.market_area_code,
+            vsQrf: item.RepeatMAUVsQrf,
+            yy: item.RepeatMAUYY
+        }
+        let rumWeek = {
+            index: i,
+            actuals: 0,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.market_area_code,
+            vsQrf: 0,
+            yy: item.RepeatMAUWW
+        }
 
-       let pus = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.market_area_code,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let pusWeek = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.market_area_code,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
+        let pus = {
+            index: i,
+            actuals: item.PaidUserDownloadActual,
+            qq: item.PaidUserDownloadQQTY,
+            qrf: item.PaidUserDownloadTarget,
+            qrfDiff: item.PaidUserDownloadVsQRFDiff,
+            type: item.market_area_code,
+            vsQrf: item.PaidUserDownloadVsQrf,
+            yy: item.PaidUserDownloadYY
+        }
+        let pusWeek = {
+            index: i,
+            actuals: 0,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.market_area_code,
+            vsQrf: 0,
+            yy: item.PaidUserDownloadWW
+        }
 
-       let wk0 = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.market_area_code,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let wk0Week = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.market_area_code,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
+        let wk0 = {
+            index: i,
+            actuals: item.Week00WAUActual,
+            marketArea: item.market_area_group,
+            qq: item.Week00WAUQQTY,
+            qrf: item.Week00WAUTarget,
+            qrfDiff: item.Week00WAUVsQRFDiff,
+            type: item.market_area_code,
+            vsQrf: item.Week00WAUVsQrf,
+            yy: item.Week00WAUYY
+        }
+        let wk0Week = {
+            index: i,
+            actuals: 0,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.market_area_code,
+            vsQrf: 0,
+            yy: item.Week00WAUWW
+        }
 
-       let wk4 = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.market_area_code,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let wk4Week = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.market_area_code,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       item1.push(ei);
-       item1Week.push(eiWeek);
+        let wk4 = {
+            index: i,
+            actuals: item.Week04WAUActual,
+            qq: item.Week04WAUQQTY,
+            qrf: item.Week04WAUTarget,
+            qrfDiff: item.Week04WAUVsQRFDiff,
+            type: item.market_area_code,
+            vsQrf: item.Week04WAUVsQrf,
+            yy: item.Week04WAUYY
+        }
+        let wk4Week = {
+            index: i,
+            actuals: 0,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.market_area_code,
+            vsQrf: 0,
+            yy: item.Week04WAUWW
+        }
+        item1.push(ei);
+        item1Week.push(eiWeek);
 
-       item2.push(pum);
-       item2Week.push(pumWeek);
+        item2.push(pum);
+        item2Week.push(pumWeek);
 
-       item3.push(rum);
-       item3Week.push(rumWeek);
+        item3.push(rum);
+        item3Week.push(rumWeek);
 
-       item4.push(pus);
-       item4Week.push(pusWeek);
+        item4.push(pus);
+        item4Week.push(pusWeek);
 
-       item5.push(wk0);
-       item5Week.push(eiWeek);
+        item5.push(wk0);
+        item5Week.push(eiWeek);
 
-       item6.push(wk4);
-       item6Week.push(wk4Week);
+        item6.push(wk4);
+        item6Week.push(wk4Week);
 
 
-   }
+    }
 
-   newState[21].details.market.qtd = processQTDOrder(item1);
-   newState[21].details.market.week = processQTDOrder(item1Week);
+    newState[21].details.market.qtd = item1;
+    newState[21].details.market.week = item1Week;
 
-   newState[22].details.market.qtd = processQTDOrder(item2);
-   newState[22].details.market.week = processQTDOrder(item2Week);
+    newState[22].details.market.qtd = item2;
+    newState[22].details.market.week = item2Week;
 
-   newState[23].details.market.qtd = processQTDOrder(item3);
-   newState[23].details.market.week = processQTDOrder(item3Week);
+    newState[23].details.market.qtd = item3;
+    newState[23].details.market.week = item3Week;
 
-   newState[24].details.market.qtd = processQTDOrder(item4);
-   newState[24].details.market.week = processQTDOrder(item4Week);
+    newState[24].details.market.qtd = item4;
+    newState[24].details.market.week = item4Week;
 
-   newState[25].details.market.qtd = processQTDOrder(item5);
-   newState[25].details.market.week = processQTDOrder(item5Week);
+    newState[25].details.market.qtd = item5;
+    newState[25].details.market.week = item5Week;
 
-   newState[26].details.market.qtd = processQTDOrder(item6);
-   newState[26].details.market.week = processQTDOrder(item6Week);
+    newState[26].details.market.qtd = item6;
+    newState[26].details.market.week = item6Week;
 }
 export function processUseSubscriptionQTDData(data, newState) {
-    let item1 = [], item1Week,
-    item2 = [],item2Week,
-    item3 = [],item3Week,
-    item4 = [],item4Week,
-    item5 = [],item5Week,
-    item6 = [], item6Week;
+    let item1 = [], item1Week = [],
+        item2 = [], item2Week = [],
+        item3 = [], item3Week = [],
+        item4 = [], item4Week = [],
+        item5 = [], item5Week = [],
+        item6 = [], item6Week = [];
 
-   for (let i = 0; i < data.length; i++) {
-       let item = data[i];
-       let ei = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.subscription_offering,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let eiWeek = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.subscription_offering,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let ei = {
+            index: i,
+            actuals: item.CEIActual,
+            qq: item.CEIQQTY,
+            qrf: item.CEITarget,
+            qrfDiff: item.CEIVsQRFDiff,
+            type: item.subscription_offering,
+            vsQrf: item.CEIVsQrf,
+            yy: item.CEIYY
+        }
+        let eiWeek = {
+            index: i,
+            actuals: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.subscription_offering,
+            vsQrf: 0,
+            ww: item.CEIWW
+        }
 
-       let pum = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.subscription_offering,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let pumWeek = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.subscription_offering,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
+        let pum = {
+            index: i,
+            actuals: item.PaidMAUActual,
+            qq: item.PaidMAUQQTY,
+            qrf: item.PaidMAUTarget,
+            qrfDiff: item.PaidMAUVsQRFDiff,
+            type: item.subscription_offering,
+            vsQrf: item.PaidMAUVsQrf,
+            yy: item.PaidMAUYY
+        }
+        let pumWeek = {
+            index: i,
+            actuals: 0,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.subscription_offering,
+            vsQrf: 0,
+            yy: item.PaidMAUWW
+        }
 
-       let rum = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.subscription_offering,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let rumWeek = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.subscription_offering,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
+        let rum = {
+            index: i,
+            actuals: item.RepeatMAUActual,
+            qq: item.RepeatMAUQQTY,
+            qrf: item.RepeatMAUTarget,
+            qrfDiff: item.RepeatMAUVsQRFDiff,
+            type: item.subscription_offering,
+            vsQrf: item.RepeatMAUVsQrf,
+            yy: item.RepeatMAUYY
+        }
+        let rumWeek = {
+            index: i,
+            actuals: 0,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.subscription_offering,
+            vsQrf: 0,
+            yy: item.RepeatMAUWW
+        }
 
-       let pus = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.subscription_offering,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let pusWeek = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.subscription_offering,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
+        let pus = {
+            index: i,
+            actuals: item.PaidUserDownloadActual,
+            qq: item.PaidUserDownloadQQTY,
+            qrf: item.PaidUserDownloadTarget,
+            qrfDiff: item.PaidUserDownloadVsQRFDiff,
+            type: item.subscription_offering,
+            vsQrf: item.PaidUserDownloadVsQrf,
+            yy: item.PaidUserDownloadYY
+        }
+        let pusWeek = {
+            index: i,
+            actuals: 0,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.subscription_offering,
+            vsQrf: 0,
+            yy: item.PaidUserDownloadWW
+        }
 
-       let wk0 = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.subscription_offering,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let wk0Week = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.subscription_offering,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
+        let wk0 = {
+            index: i,
+            actuals: item.Week00WAUActual,
+            marketArea: item.market_area_group,
+            qq: item.Week00WAUQQTY,
+            qrf: item.Week00WAUTarget,
+            qrfDiff: item.Week00WAUVsQRFDiff,
+            type: item.subscription_offering,
+            vsQrf: item.Week00WAUVsQrf,
+            yy: item.Week00WAUYY
+        }
+        let wk0Week = {
+            index: i,
+            actuals: 0,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.subscription_offering,
+            vsQrf: 0,
+            yy: item.Week00WAUWW
+        }
 
-       let wk4 = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.subscription_offering,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let wk4Week = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.subscription_offering,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       item1.push(ei);
-       item1Week.push(eiWeek);
+        let wk4 = {
+            index: i,
+            actuals: item.Week04WAUActual,
+            qq: item.Week04WAUQQTY,
+            qrf: item.Week04WAUTarget,
+            qrfDiff: item.Week04WAUVsQRFDiff,
+            type: item.subscription_offering,
+            vsQrf: item.Week04WAUVsQrf,
+            yy: item.Week04WAUYY
+        }
+        let wk4Week = {
+            index: i,
+            actuals: 0,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.subscription_offering,
+            vsQrf: 0,
+            yy: item.Week04WAUWW
+        }
+        item1.push(ei);
+        item1Week.push(eiWeek);
 
-       item2.push(pum);
-       item2Week.push(pumWeek);
+        item2.push(pum);
+        item2Week.push(pumWeek);
 
-       item3.push(rum);
-       item3Week.push(rumWeek);
+        item3.push(rum);
+        item3Week.push(rumWeek);
 
-       item4.push(pus);
-       item4Week.push(pusWeek);
+        item4.push(pus);
+        item4Week.push(pusWeek);
 
-       item5.push(wk0);
-       item5Week.push(eiWeek);
+        item5.push(wk0);
+        item5Week.push(eiWeek);
 
-       item6.push(wk4);
-       item6Week.push(wk4Week);
+        item6.push(wk4);
+        item6Week.push(wk4Week);
 
 
-   }
+    }
 
-   newState[21].details.subscription.qtd = processQTDOrder(item1);
-   newState[21].details.subscription.week = processQTDOrder(item1Week);
+    newState[21].details.subscription.qtd = item1;
+    newState[21].details.subscription.week = item1Week;
 
-   newState[22].details.subscription.qtd = processQTDOrder(item2);
-   newState[22].details.subscription.week = processQTDOrder(item2Week);
+    newState[22].details.subscription.qtd = item2;
+    newState[22].details.subscription.week = item2Week;
 
-   newState[23].details.subscription.qtd = processQTDOrder(item3);
-   newState[23].details.subscription.week = processQTDOrder(item3Week);
+    newState[23].details.subscription.qtd = item3;
+    newState[23].details.subscription.week = item3Week;
 
-   newState[24].details.subscription.qtd = processQTDOrder(item4);
-   newState[24].details.subscription.week = processQTDOrder(item4Week);
+    newState[24].details.subscription.qtd = item4;
+    newState[24].details.subscription.week = item4Week;
 
-   newState[25].details.subscription.qtd = processQTDOrder(item5);
-   newState[25].details.subscription.week = processQTDOrder(item5Week);
+    newState[25].details.subscription.qtd = item5;
+    newState[25].details.subscription.week = item5Week;
 
-   newState[26].details.subscription.qtd = processQTDOrder(item6);
-   newState[26].details.subscription.week = processQTDOrder(item6Week);
+    newState[26].details.subscription.qtd = item6;
+    newState[26].details.subscription.week = item6Week;
 }
 export function processUseSegmentQTDData(data, newState) {
-    let item1 = [], item1Week,
-    item2 = [],item2Week,
-    item3 = [],item3Week,
-    item4 = [],item4Week,
-    item5 = [],item5Week,
-    item6 = [], item6Week;
+    let item1 = [], item1Week = [],
+        item2 = [], item2Week = [],
+        item3 = [], item3Week = [],
+        item4 = [], item4Week = [],
+        item5 = [], item5Week = [],
+        item6 = [], item6Week = [];
 
-   for (let i = 0; i < data.length; i++) {
-       let item = data[i];
-       let ei = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.segment_pivot,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let eiWeek = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.segment_pivot,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let ei = {
+            index: i,
+            actuals: item.CEIActual,
+            qq: item.CEIQQTY,
+            qrf: item.CEITarget,
+            qrfDiff: item.CEIVsQRFDiff,
+            type: item.segment_pivot,
+            vsQrf: item.CEIVsQrf,
+            yy: item.CEIYY
+        }
+        let eiWeek = {
+            index: i,
+            actuals: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.segment_pivot,
+            vsQrf: 0,
+            ww: item.CEIWW
+        }
 
-       let pum = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.segment_pivot,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let pumWeek = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.segment_pivot,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
+        let pum = {
+            index: i,
+            actuals: item.PaidMAUActual,
+            qq: item.PaidMAUQQTY,
+            qrf: item.PaidMAUTarget,
+            qrfDiff: item.PaidMAUVsQRFDiff,
+            type: item.segment_pivot,
+            vsQrf: item.PaidMAUVsQrf,
+            yy: item.PaidMAUYY
+        }
+        let pumWeek = {
+            index: i,
+            actuals: 0,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.segment_pivot,
+            vsQrf: 0,
+            yy: item.PaidMAUWW
+        }
 
-       let rum = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.segment_pivot,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let rumWeek = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.segment_pivot,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
+        let rum = {
+            index: i,
+            actuals: item.RepeatMAUActual,
+            qq: item.RepeatMAUQQTY,
+            qrf: item.RepeatMAUTarget,
+            qrfDiff: item.RepeatMAUVsQRFDiff,
+            type: item.segment_pivot,
+            vsQrf: item.RepeatMAUVsQrf,
+            yy: item.RepeatMAUYY
+        }
+        let rumWeek = {
+            index: i,
+            actuals: 0,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.segment_pivot,
+            vsQrf: 0,
+            yy: item.RepeatMAUWW
+        }
 
-       let pus = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.segment_pivot,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let pusWeek = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.segment_pivot,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
+        let pus = {
+            index: i,
+            actuals: item.PaidUserDownloadActual,
+            qq: item.PaidUserDownloadQQTY,
+            qrf: item.PaidUserDownloadTarget,
+            qrfDiff: item.PaidUserDownloadVsQRFDiff,
+            type: item.segment_pivot,
+            vsQrf: item.PaidUserDownloadVsQrf,
+            yy: item.PaidUserDownloadYY
+        }
+        let pusWeek = {
+            index: i,
+            actuals: 0,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.segment_pivot,
+            vsQrf: 0,
+            yy: item.PaidUserDownloadWW
+        }
 
-       let wk0 = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.segment_pivot,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let wk0Week = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.segment_pivot,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
+        let wk0 = {
+            index: i,
+            actuals: item.Week00WAUActual,
+            marketArea: item.market_area_group,
+            qq: item.Week00WAUQQTY,
+            qrf: item.Week00WAUTarget,
+            qrfDiff: item.Week00WAUVsQRFDiff,
+            type: item.segment_pivot,
+            vsQrf: item.Week00WAUVsQrf,
+            yy: item.Week00WAUYY
+        }
+        let wk0Week = {
+            index: i,
+            actuals: 0,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.segment_pivot,
+            vsQrf: 0,
+            yy: item.Week00WAUWW
+        }
 
-       let wk4 = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.subscription_offering,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       let wk4Week = {
-           index: i,
-           actuals: item.NewActuals,
-           units: item.NewUnitsActual,
-           marketArea: item.market_area_group,
-           qq: item.NewARRQQTY,
-           qrf: item.NewTarget,
-           qrfDiff: item.NewVsQrfDiff,
-           type: item.subscription_offering,
-           vsQrf: item.NewARRVsQrf,
-           yy: item.NewARRYY
-       }
-       item1.push(ei);
-       item1Week.push(eiWeek);
+        let wk4 = {
+            index: i,
+            actuals: item.Week04WAUActual,
+            qq: item.Week04WAUQQTY,
+            qrf: item.Week04WAUTarget,
+            qrfDiff: item.Week04WAUVsQRFDiff,
+            type: item.segment_pivot,
+            vsQrf: item.Week04WAUVsQrf,
+            yy: item.Week04WAUYY
+        }
+        let wk4Week = {
+            index: i,
+            actuals: 0,
+            qq: 0,
+            qrf: 0,
+            qrfDiff: 0,
+            type: item.segment_pivot,
+            vsQrf: 0,
+            yy: item.Week04WAUWW
+        }
+        item1.push(ei);
+        item1Week.push(eiWeek);
 
-       item2.push(pum);
-       item2Week.push(pumWeek);
+        item2.push(pum);
+        item2Week.push(pumWeek);
 
-       item3.push(rum);
-       item3Week.push(rumWeek);
+        item3.push(rum);
+        item3Week.push(rumWeek);
 
-       item4.push(pus);
-       item4Week.push(pusWeek);
+        item4.push(pus);
+        item4Week.push(pusWeek);
 
-       item5.push(wk0);
-       item5Week.push(eiWeek);
+        item5.push(wk0);
+        item5Week.push(eiWeek);
 
-       item6.push(wk4);
-       item6Week.push(wk4Week);
+        item6.push(wk4);
+        item6Week.push(wk4Week);
 
 
-   }
+    }
 
-   newState[21].details.segment.qtd = processQTDOrder(item1);
-   newState[21].details.segment.week = processQTDOrder(item1Week);
+    newState[21].details.segment.qtd = item1;
+    newState[21].details.segment.week = item1Week;
 
-   newState[22].details.segment.qtd = processQTDOrder(item2);
-   newState[22].details.segment.week = processQTDOrder(item2Week);
+    newState[22].details.segment.qtd = item2;
+    newState[22].details.segment.week = item2Week;
 
-   newState[23].details.segment.qtd = processQTDOrder(item3);
-   newState[23].details.segment.week = processQTDOrder(item3Week);
+    newState[23].details.segment.qtd = item3;
+    newState[23].details.segment.week = item3Week;
 
-   newState[24].details.segment.qtd = processQTDOrder(item4);
-   newState[24].details.segment.week = processQTDOrder(item4Week);
+    newState[24].details.segment.qtd = item4;
+    newState[24].details.segment.week = item4Week;
 
-   newState[25].details.segment.qtd = processQTDOrder(item5);
-   newState[25].details.segment.week = processQTDOrder(item5Week);
+    newState[25].details.segment.qtd = item5;
+    newState[25].details.segment.week = item5Week;
 
-   newState[26].details.segment.qtd = processQTDOrder(item6);
-   newState[26].details.segment.week = processQTDOrder(item6Week);
+    newState[26].details.segment.qtd = item6;
+    newState[26].details.segment.week = item6Week;
 }
 
 
@@ -7659,12 +7607,12 @@ export function processRenewMultichartData(data, newState) {
 
 }
 export function processRenewQTDData(data, newState) {
-    newState[27].details.qtdw.qtd[0].value =0;
-    newState[27].details.qtdw.qtd[1].value =0;
-    newState[27].details.qtdw.qtd[2].value =0;
-    newState[27].details.qtdw.qtd[3].value =0;
-    newState[27].details.qtdw.qtd[4].value =0;
-    newState[27].details.qtdw.qtd[5].value =0;
+    newState[27].details.qtdw.qtd[0].value = 0;
+    newState[27].details.qtdw.qtd[1].value = 0;
+    newState[27].details.qtdw.qtd[2].value = 0;
+    newState[27].details.qtdw.qtd[3].value = 0;
+    newState[27].details.qtdw.qtd[4].value = 0;
+    newState[27].details.qtdw.qtd[5].value = 0;
     newState[27].details.qtdw.week[0].value = 0;
     newState[27].details.qtdw.week[1].value = 0;
     newState[27].details.qtdw.week[2].value = 0;
@@ -7676,12 +7624,12 @@ export function processRenewQTDData(data, newState) {
     newState[27].details.stats[2].value = 0;
     newState[27].details.stats[3].value = 0;
 
-    newState[28].details.qtdw.qtd[0].value =0;
-    newState[28].details.qtdw.qtd[1].value =0;
-    newState[28].details.qtdw.qtd[2].value =0;
-    newState[28].details.qtdw.qtd[3].value =0;
-    newState[28].details.qtdw.qtd[4].value =0;
-    newState[28].details.qtdw.qtd[5].value =0;
+    newState[28].details.qtdw.qtd[0].value = 0;
+    newState[28].details.qtdw.qtd[1].value = 0;
+    newState[28].details.qtdw.qtd[2].value = 0;
+    newState[28].details.qtdw.qtd[3].value = 0;
+    newState[28].details.qtdw.qtd[4].value = 0;
+    newState[28].details.qtdw.qtd[5].value = 0;
     newState[28].details.qtdw.week[0].value = 0;
     newState[28].details.qtdw.week[1].value = 0;
     newState[28].details.qtdw.week[2].value = 0;
@@ -7693,12 +7641,12 @@ export function processRenewQTDData(data, newState) {
     newState[28].details.stats[2].value = 0;
     newState[28].details.stats[3].value = 0;
 
-    newState[29].details.qtdw.qtd[0].value =0;
-    newState[29].details.qtdw.qtd[1].value =0;
-    newState[29].details.qtdw.qtd[2].value =0;
-    newState[29].details.qtdw.qtd[3].value =0;
-    newState[29].details.qtdw.qtd[4].value =0;
-    newState[29].details.qtdw.qtd[5].value =0;
+    newState[29].details.qtdw.qtd[0].value = 0;
+    newState[29].details.qtdw.qtd[1].value = 0;
+    newState[29].details.qtdw.qtd[2].value = 0;
+    newState[29].details.qtdw.qtd[3].value = 0;
+    newState[29].details.qtdw.qtd[4].value = 0;
+    newState[29].details.qtdw.qtd[5].value = 0;
     newState[29].details.qtdw.week[0].value = 0;
     newState[29].details.qtdw.week[1].value = 0;
     newState[29].details.qtdw.week[2].value = 0;
@@ -7710,12 +7658,12 @@ export function processRenewQTDData(data, newState) {
     newState[29].details.stats[2].value = 0;
     newState[29].details.stats[3].value = 0;
 
-    newState[30].details.qtdw.qtd[0].value =0;
-    newState[30].details.qtdw.qtd[1].value =0;
-    newState[30].details.qtdw.qtd[2].value =0;
-    newState[30].details.qtdw.qtd[3].value =0;
-    newState[30].details.qtdw.qtd[4].value =0;
-    newState[30].details.qtdw.qtd[5].value =0;
+    newState[30].details.qtdw.qtd[0].value = 0;
+    newState[30].details.qtdw.qtd[1].value = 0;
+    newState[30].details.qtdw.qtd[2].value = 0;
+    newState[30].details.qtdw.qtd[3].value = 0;
+    newState[30].details.qtdw.qtd[4].value = 0;
+    newState[30].details.qtdw.qtd[5].value = 0;
     newState[30].details.qtdw.week[0].value = 0;
     newState[30].details.qtdw.week[1].value = 0;
     newState[30].details.qtdw.week[2].value = 0;
@@ -7726,13 +7674,13 @@ export function processRenewQTDData(data, newState) {
     newState[30].details.stats[1].value = 0;
     newState[30].details.stats[2].value = 0;
     newState[30].details.stats[3].value = 0;
-    
-    newState[31].details.qtdw.qtd[0].value =0;
-    newState[31].details.qtdw.qtd[1].value =0;
-    newState[31].details.qtdw.qtd[2].value =0;
-    newState[31].details.qtdw.qtd[3].value =0;
-    newState[31].details.qtdw.qtd[4].value =0;
-    newState[31].details.qtdw.qtd[5].value =0;
+
+    newState[31].details.qtdw.qtd[0].value = 0;
+    newState[31].details.qtdw.qtd[1].value = 0;
+    newState[31].details.qtdw.qtd[2].value = 0;
+    newState[31].details.qtdw.qtd[3].value = 0;
+    newState[31].details.qtdw.qtd[4].value = 0;
+    newState[31].details.qtdw.qtd[5].value = 0;
     newState[31].details.qtdw.week[0].value = 0;
     newState[31].details.qtdw.week[1].value = 0;
     newState[31].details.qtdw.week[2].value = 0;
@@ -7744,12 +7692,12 @@ export function processRenewQTDData(data, newState) {
     newState[31].details.stats[2].value = 0;
     newState[31].details.stats[3].value = 0;
 
-    newState[32].details.qtdw.qtd[0].value =0;
-    newState[32].details.qtdw.qtd[1].value =0;
-    newState[32].details.qtdw.qtd[2].value =0;
-    newState[32].details.qtdw.qtd[3].value =0;
-    newState[32].details.qtdw.qtd[4].value =0;
-    newState[32].details.qtdw.qtd[5].value =0;
+    newState[32].details.qtdw.qtd[0].value = 0;
+    newState[32].details.qtdw.qtd[1].value = 0;
+    newState[32].details.qtdw.qtd[2].value = 0;
+    newState[32].details.qtdw.qtd[3].value = 0;
+    newState[32].details.qtdw.qtd[4].value = 0;
+    newState[32].details.qtdw.qtd[5].value = 0;
     newState[32].details.qtdw.week[0].value = 0;
     newState[32].details.qtdw.week[1].value = 0;
     newState[32].details.qtdw.week[2].value = 0;
@@ -7761,12 +7709,12 @@ export function processRenewQTDData(data, newState) {
     newState[32].details.stats[2].value = 0;
     newState[32].details.stats[3].value = 0;
 
-    newState[33].details.qtdw.qtd[0].value =0;
-    newState[33].details.qtdw.qtd[1].value =0;
-    newState[33].details.qtdw.qtd[2].value =0;
-    newState[33].details.qtdw.qtd[3].value =0;
-    newState[33].details.qtdw.qtd[4].value =0;
-    newState[33].details.qtdw.qtd[5].value =0;
+    newState[33].details.qtdw.qtd[0].value = 0;
+    newState[33].details.qtdw.qtd[1].value = 0;
+    newState[33].details.qtdw.qtd[2].value = 0;
+    newState[33].details.qtdw.qtd[3].value = 0;
+    newState[33].details.qtdw.qtd[4].value = 0;
+    newState[33].details.qtdw.qtd[5].value = 0;
     newState[33].details.qtdw.week[0].value = 0;
     newState[33].details.qtdw.week[1].value = 0;
     newState[33].details.qtdw.week[2].value = 0;
@@ -7778,12 +7726,12 @@ export function processRenewQTDData(data, newState) {
     newState[33].details.stats[2].value = 0;
     newState[33].details.stats[3].value = 0;
 
-    newState[34].details.qtdw.qtd[0].value =0;
-    newState[34].details.qtdw.qtd[1].value =0;
-    newState[34].details.qtdw.qtd[2].value =0;
-    newState[34].details.qtdw.qtd[3].value =0;
-    newState[34].details.qtdw.qtd[4].value =0;
-    newState[34].details.qtdw.qtd[5].value =0;
+    newState[34].details.qtdw.qtd[0].value = 0;
+    newState[34].details.qtdw.qtd[1].value = 0;
+    newState[34].details.qtdw.qtd[2].value = 0;
+    newState[34].details.qtdw.qtd[3].value = 0;
+    newState[34].details.qtdw.qtd[4].value = 0;
+    newState[34].details.qtdw.qtd[5].value = 0;
     newState[34].details.qtdw.week[0].value = 0;
     newState[34].details.qtdw.week[1].value = 0;
     newState[34].details.qtdw.week[2].value = 0;
