@@ -180,6 +180,7 @@ class CustomDropDownPanel extends Component {
             PVW,
             CATEGORY,
             LTC,
+            NONDMSEGMENT,
             NEWVSREPEAT,
             MOBILEVSDESKTOP,
             CONVERSION,
@@ -280,14 +281,13 @@ class CustomDropDownPanel extends Component {
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Non DM Segment</p>
-                            <SingleValueSelect
-                                activeFilters={filters.nonDMSegment.valueFilters}
+                            <p> Segments</p>
+                            <MultiValueSelect
                                 options={filters.nonDMSegment.availableFilters}
-                                onValueChange={this.updateSingleValue}
-                                onMenuClose={this.closeSingleValue}
+                                onValueChange={(e) => { let type = NONDMSEGMENT; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === NONDMSEGMENT})}
                             />
-
                         </div>
                         <div className={quarterFilterContainer + ' col-lg-5'} >
                             <p> Subscription Offering</p>
@@ -295,6 +295,7 @@ class CustomDropDownPanel extends Component {
                                 options={filters.subscription.availableFilters}
                                 onValueChange={(e) => { let type = SUBSCRIPTION; this.updateMultiValue(e, type) }}
                                 onMenuClose={this.closeMultiValue}
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === SUBSCRIPTION})}
                             />
                         </div>
                     </div>
@@ -304,12 +305,12 @@ class CustomDropDownPanel extends Component {
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
-                            <p> Segment</p>
-                            <SingleValueSelect
-                                activeFilters={filters.segment.valueFilters}
-                                options={filters.segment.availableFilters}
-                                onValueChange={this.updateSingleValue}
-                                onMenuClose={this.closeSingleValue}
+                            <p> Segments</p>
+                             <MultiValueSelect
+                                options={filters.nonDMSegment.availableFilters}
+                                onValueChange={(e) => { let type = NONDMSEGMENT; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === NONDMSEGMENT})}
                             />
 
                         </div>
@@ -319,6 +320,8 @@ class CustomDropDownPanel extends Component {
                                 options={filters.subscription.availableFilters}
                                 onValueChange={(e) => { let type = SUBSCRIPTION; this.updateMultiValue(e, type) }}
                                 onMenuClose={this.closeMultiValue}
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === SUBSCRIPTION})}
+
                             />
                         </div>
                     </div>

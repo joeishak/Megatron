@@ -7,13 +7,15 @@ class SingleDimensionPanelItem extends Component {
     getColor(activeSecondary, originalColor) {
         switch (originalColor) {
             case 'red':
-                if (activeSecondary == 2) {
+                if (activeSecondary == 2 || activeSecondary === 27 || activeSecondary ===28 ||
+                    activeSecondary === 32) {
                     return 'greenBG';
                 } else {
                     return 'redBG';
                 }
             default:
-            if (activeSecondary == 2) {
+            if (activeSecondary == 2 || activeSecondary === 27 || activeSecondary ===28 ||
+                activeSecondary === 32) {
                 return 'redBG';
             } else {
                 return 'greenBG';
@@ -46,8 +48,8 @@ class SingleDimensionPanelItem extends Component {
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
-                            ? `${qtdColumnClass}` + " col redBG"
-                            : `${qtdColumnClass}` + " col greenBG"}>
+                            ? `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'red')}`
+                            : `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'green')}`}>
                             {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
@@ -75,8 +77,8 @@ class SingleDimensionPanelItem extends Component {
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
-                            ? `${weekColumnClass}` + " col redBG"
-                            : `${weekColumnClass}` + " col greenBG"}>
+                            ? `${weekColumnClass}` + " col " + `${this.getColor(activeSecondary, 'red')}`
+                            : `${weekColumnClass}` + " col " + `${this.getColor(activeSecondary, 'green')}`}>
                             {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>

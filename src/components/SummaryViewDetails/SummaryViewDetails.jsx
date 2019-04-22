@@ -845,70 +845,6 @@ getSummaryFilters(activeItem) {
 
         </div>
       );
-
-    //Use
-    case SUMMARY_FILTERS.USE_PAID_USER_SUCCESS:
-      // 27
-      return (
-        // Gross New Units
-        <div className="row">
-
-          <div className="col-md-6 col-lg-6">
-            <SingleValueSelect
-              activeFilters={[]}
-              options={visits.availableFilters}
-              onValueChange={e => { console.log() }}
-              onMenuClose={e => { console.log() }}
-            />
-          </div>
-
-          <div className="col-md-6 col-lg-6">
-            <SingleValueSelect
-              activeFilters={[]}
-              options={visits.availableFilters}
-              onValueChange={e => { console.log() }}
-              onMenuClose={e => { console.log() }}
-            />
-          </div>
-
-        </div>
-      );
-    //Renew
-    case SUMMARY_FILTERS.USE_WK0_WAU_RATE:
-      // 28
-      return (
-        // Wk 0 WAU Rate
-        <div className="row">
-          {/* Category*/}
-          <div className="col-md-12 col-lg-12">
-            <SingleValueSelect
-              activeFilters={[]}
-              options={visits.availableFilters}
-              onValueChange={e => { console.log() }}
-              onMenuClose={e => { console.log() }}
-            />
-          </div>
-
-        </div>
-      );
-
-    case SUMMARY_FILTERS.USE_WK4WAU_RATE:
-      // 29
-      return (
-        // Wk 4 WAU Rate
-        <div className="row">
-          {/* Category*/}
-          <div className="col-md-12 col-lg-12">
-            <SingleValueSelect
-              activeFilters={[]}
-              options={visits.availableFilters}
-              onValueChange={e => { console.log() }}
-              onMenuClose={e => { console.log() }}
-            />
-          </div>
-
-        </div>
-      );
     default:
       break;
   }
@@ -1161,7 +1097,8 @@ render() {
 
           <div className="stats-container-main">{this.props.activeItem.details.stats.map(item => {
 
-            if (this.props.activeSecondary == 2) {
+            if (this.props.activeSecondary === 2 || this.props.activeSecondary === 27 || this.props.activeSecondary ===28 ||
+              this.props.activeSecondary ===32) {
               return (
                 <div className="statsHeader" key={item.text}>
                   <div className={(item.value <= 0) ? 'stats green' : 'stats red '}>

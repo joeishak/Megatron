@@ -97,20 +97,26 @@ class KendoMultiChart extends Component {
             case 'red':
                 switch (type) {
                     case 'bg':
-                        if (activeSecondary == 2) { return 'ttBGGreen' } else { return 'ttBGRed' }
+                        if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 ||
+                            activeSecondary === 32) { return 'ttBGGreen' } else { return 'ttBGRed' }
                     case  'txt':
-                        if (activeSecondary == 2) { return 'textGreen' } else { return 'textRed' }
+                        if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 ||
+                            activeSecondary === 32) { return 'textGreen' } else { return 'textRed' }
                     case 'border':
-                        if (activeSecondary == 2) { return '#0DB16E' } else { return '#FF0000' }
+                        if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 ||
+                            activeSecondary === 32) { return '#0DB16E' } else { return '#FF0000' }
                 }
             default:
             switch (type) {
                 case 'bg':
-                    if (activeSecondary == 2) { return 'ttBGRed' } else { return 'ttBGGreen' }
+                    if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 ||
+                        activeSecondary === 32) { return 'ttBGRed' } else { return 'ttBGGreen' }
                 case  'txt':
-                    if (activeSecondary == 2) { return 'textRed' } else { return 'textGreen' }
+                    if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 ||
+                        activeSecondary === 32) { return 'textRed' } else { return 'textGreen' }
                 case 'border':
-                    if (activeSecondary == 2) { return '#FF0000' } else { return '#0DB16E' }
+                    if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 ||
+                        activeSecondary === 32) { return '#FF0000' } else { return '#0DB16E' }
             }
         }
     }

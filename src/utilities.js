@@ -329,6 +329,29 @@ let renewParamsERetail = [
     }
 
 ];
+let renewParamsReseller = [
+    {
+        prompt: 'quarterFilters',
+        value: ''
+    },
+    {
+        prompt: 'geoFilters',
+        value: ''
+    },
+    {
+        prompt: 'maFilters',
+        value: ''
+    },
+    {
+        prompt: 'segment_NonDMFilters',
+        value: ''
+    },
+    {
+        prompt: 'subscriptionFilters',
+        value: ''
+    }
+
+];
 let renewParams = [
     {
         prompt: 'quarterFilters',
@@ -1512,7 +1535,16 @@ export function requestBuyMarketSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-
+   // Channel QTD
+   const mktgSegment = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMKTGSourcedARRSegmentQTD + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+   // Channel QTD
+   const mktgProd  = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMarektingSourceARRProdQTD + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
     // console.log("Paid Media Spend and Source NEtwork request:", Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMSecondary + params6 + '&json=1');
     //Paid Media Sourced and Spend
     const pmssSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyPMSpendSecondary + params6 + '&json=1', {
@@ -1549,7 +1581,8 @@ export function requestBuyMarketSecondaryData(allFilters, _parameters) {
 
     responseArray.push(
         mktgSecondary, mktgMultichart, mktgQTD, mktgGeo, mktgMarket, mktgChannelMu
-        , pmssSecondary, pmssMultichart, pmssQTD, pmssGeo, pmssMarket, pmssChannelMu
+        , pmssSecondary, pmssMultichart, pmssQTD, pmssGeo, pmssMarket, pmssChannelMu ,  mktgProd,
+         mktgSegment
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -1613,7 +1646,6 @@ export function requestBuyFinanceSecondaryData(allFilters, _parameters) {
 export function requestUseSecondaryData(allFilters, _parameters) {
     responseArray = [];
 
-
     generateFilterParams(1, useParams, allFilters, _parameters);
 
     let params8 = useParams.reduce((prev, param) => {
@@ -1660,13 +1692,15 @@ export function requestUseSecondaryData(allFilters, _parameters) {
 }
 export function requestRenewCancelSecondaryData(allFilters, _parameters) {
     responseArray = [];
+    resetRenewParams();
     generateFilterParams(9, financeParams, allFilters, _parameters);
     generateFilterParams(14, cancelAdobeParams, allFilters, _parameters);
     generateFilterParams(14, cancelRetailParams, allFilters, _parameters);
 
+
     cancelRetailParams.push( {
         prompt: 'routeFilters',
-        value: `'E-TAIL/RETAIL'`
+        value: `'E-TAIL/RETAIL','RESELLER'`
     })
     cancelAdobeParams.push(  {
         prompt: 'routeFilters',
@@ -1795,10 +1829,12 @@ export function requestRenewCancelSecondaryData(allFilters, _parameters) {
 }
 export function requestRenewDetailsSecondaryData(allFilters, _parameters) {
     responseArray = [];
+    resetRenewParams();
 
     generateFilterParams(13, renewParamsERetail, allFilters, _parameters);
 
     generateFilterParams(4, renewParamsAdobeCom, allFilters, _parameters);
+    generateFilterParams(13, renewParamsReseller, allFilters, _parameters);
 
     renewParamsERetail.push( {
         prompt: 'routeFilters',
@@ -1809,14 +1845,21 @@ export function requestRenewDetailsSecondaryData(allFilters, _parameters) {
         prompt: 'routeFilters',
         value: `'ADOBE.COM/CC.COM'`
     });
-   
+    renewParamsReseller.push(  {
+        prompt: 'routeFilters',
+        value: `'RESELLER'`
+    });
     let params8 = renewParamsERetail.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
     
- 
+    let params6 = renewParamsReseller.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
     
     let params5 = renewParamsAdobeCom.reduce((prev, param) => {
         let p = '';
@@ -1824,84 +1867,116 @@ export function requestRenewDetailsSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
+  //Etail Renew
+  const renewEtailSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewEtailMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMultiChartQuery + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
 
-    
-    //Renew Adobe Com
+const renewEtailQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFQTD + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewEtailGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFGeoQTD + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewEtailMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMAQTD + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewEtailSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSegmentsQTD + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+// const renewEtailSubsQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSubsOfferQTD + params5 + '&json=1', {
+//     headers: headers,
+//     responseType: 'text'
+// });
+responseArray.push(renewEtailSecondary, renewEtailMultichart, renewEtailQTDTotals, renewEtailGeoQTD, renewEtailMarketQTD, renewEtailSegmentQTD);
+
+//Renew  RESELLER
   
-    const renewSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params8 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
-    const renewMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMultiChartQuery + params8 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
+const renewSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params8 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMultiChartQuery + params8 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
 
-    const renewQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewQTD + params8 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
-    const renewGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewGeoQTD + params8 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
-    const renewMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMAQTD + params8 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
-    const renewSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSegmentsQTD + params8 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
-    const renewProductQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewProductCategoryQTD + params8 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
-    responseArray.push(renewSecondary, renewMultichart, renewQTDTotals, renewGeoQTD, renewMarketQTD, renewSegmentQTD, renewProductQTD);
+const renewQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewQTD + params8 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewGeoQTD + params8 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMAQTD + params8 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSegmentsQTD + params8 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+// const renewProductQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewProductCategoryQTD + params8 + '&json=1', {
+//     headers: headers,
+//     responseType: 'text'
+// });
+responseArray.push(renewSecondary, renewMultichart, renewQTDTotals, renewGeoQTD, renewMarketQTD, renewSegmentQTD);
+const renewResellerSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params6 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewResellerMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMultiChartQuery + params6 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
 
-    //Etail Renew
-    const renewEtailSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params5 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
-    const renewEtailMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMultiChartQuery + params5 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
+const renewResellerQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFQTD + params6 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewResellerGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFGeoQTD + params6 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewResellerMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMAQTD + params6 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewResellerSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSegmentsQTD + params6 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
 
-    const renewEtailQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewQTD + params5 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
-    const renewEtailGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewGeoQTD + params5 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
-    const renewEtailMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMAQTD + params5 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
-    const renewEtailSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSegmentsQTD + params5 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
-    const renewEtailProductQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewProductCategoryQTD + params5 + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
-    responseArray.push(renewEtailSecondary, renewEtailMultichart, renewEtailQTDTotals, renewEtailGeoQTD, renewEtailMarketQTD, renewEtailSegmentQTD, renewEtailProductQTD);
+responseArray.push(renewResellerSecondary, renewResellerMultichart, renewResellerQTDTotals, renewResellerGeoQTD, renewResellerMarketQTD, renewResellerSegmentQTD);
+    
+    
+
+  
+    
+
     let promiseArr = Promise.all(responseArray);
-
     return promiseArr;
 }
 
 export function requestRenewSecondaryData(allFilters, _parameters) {
     responseArray = [];
+    resetRenewParams();
+
     generateFilterParams(9, financeParams, allFilters, _parameters);
     generateFilterParams(14, cancelAdobeParams, allFilters, _parameters);
     generateFilterParams(14, cancelRetailParams, allFilters, _parameters);
     generateFilterParams(13, renewParamsERetail, allFilters, _parameters);
-
+    generateFilterParams(13, renewParamsReseller, allFilters, _parameters);
     generateFilterParams(4, renewParamsAdobeCom, allFilters, _parameters);
 
     renewParamsERetail.push( {
@@ -1913,24 +1988,32 @@ export function requestRenewSecondaryData(allFilters, _parameters) {
         prompt: 'routeFilters',
         value: `'ADOBE.COM/CC.COM'`
     });
-   
+    renewParamsReseller.push(  {
+        prompt: 'routeFilters',
+        value: `'RESELLER'`
+    });
  
     cancelRetailParams.push( {
         prompt: 'routeFilters',
-        value: `'E-TAIL/RETAIL'`
+        value: `'E-TAIL/RETAIL','RESELLER'`
     })
     cancelAdobeParams.push(  {
         prompt: 'routeFilters',
         value: `'ADOBE.COM/CC.COM'`
     });
 
+
     let params9 = financeParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-
     let params7 = cancelAdobeParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params5 = renewParamsAdobeCom.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
@@ -1945,39 +2028,203 @@ export function requestRenewSecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-    
-    let params5 = renewParamsAdobeCom.reduce((prev, param) => {
+
+    let params10 = renewParamsReseller.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
 
-    const cancelEtailSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params6 + '&json=1', {
+    //All Routes
+    const cancelSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params9 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
+    //Adobe . Com
+
     const cancelAdobeSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params7 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const financeSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params9 + '&json=1', {
+    const renewUIPFSecondaryAdobe = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const renewEtailSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params5 + '&json=1', {
+    //Resller Etail And Retail
+    const cancelEtailResellerSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params6 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const renewSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params8 + '&json=1', {
+    const renewSecondaryResller = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params10 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    responseArray.push(cancelEtailSecondary, cancelAdobeSecondary, financeSecondary, renewEtailSecondary, renewSecondary);
+    const renewUIPFSecondaryEtail = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    
+    
+
+
+    responseArray.push(cancelSecondary, cancelAdobeSecondary, renewUIPFSecondaryAdobe, cancelEtailResellerSecondary,  renewSecondaryResller, renewUIPFSecondaryEtail);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
 }
+export function resetRenewParams() {
+    renewParamsReseller = [
+       {
+           prompt: 'quarterFilters',
+           value: ''
+       },
+       {
+           prompt: 'geoFilters',
+           value: ''
+       },
+       {
+           prompt: 'maFilters',
+           value: ''
+       },
+       {
+           prompt: 'segment_NonDMFilters',
+           value: ''
+       },
+       {
+           prompt: 'subscriptionFilters',
+           value: ''
+       }
+   
+   ];  
+cancelAdobeParams = [
+   {
+       prompt: 'quarterFilters',
+       value: ''
+   },
+   {
+       prompt: 'geoFilters',
+       value: ''
+   },
+   {
+       prompt: 'maFilters',
+       value: ''
+   },
+   
+   {
+       prompt: 'segmentFilters',
+       value: ''
+   },
+   {
+       prompt: 'subscriptionFilters',
+       value: ''
+   },
+   {
+       prompt: 'productFilters',
+       value: ''
+   }
+];
+cancelRetailParams = [
+   {
+       prompt: 'quarterFilters',
+       value: ''
+   },
+   {
+       prompt: 'geoFilters',
+       value: ''
+   },
+   {
+       prompt: 'maFilters',
+       value: ''
+   },
+   {
+       prompt: 'segmentFilters',
+       value: ''
+   },
+   {
+       prompt: 'subscriptionFilters',
+       value: ''
+   },
+   {
+       prompt: 'productFilters',
+       value: ''
+   }
+];
+renewParamsAdobeCom = [
+   {
+       prompt: 'quarterFilters',
+       value: ''
+   },
+   {
+       prompt: 'geoFilters',
+       value: ''
+   },
+   {
+       prompt: 'maFilters',
+       value: ''
+   },
+   {
+       prompt: 'segment_NonDMFilters',
+       value: ''
+   },
+   {
+       prompt: 'subscriptionFilters',
+       value: ''
+   }
 
+];
+renewParamsERetail = [
+   {
+       prompt: 'quarterFilters',
+       value: ''
+   },
+   {
+       prompt: 'geoFilters',
+       value: ''
+   },
+   {
+       prompt: 'maFilters',
+       value: ''
+   },
+   
+   {
+       prompt: 'segment_NonDMFilters',
+       value: ''
+   },
+   {
+       prompt: 'subscriptionFilters',
+       value: ''
+   }
+
+];
+renewParams = [
+   {
+       prompt: 'quarterFilters',
+       value: ''
+   },
+   {
+       prompt: 'geoFilters',
+       value: ''
+   },
+   {
+       prompt: 'maFilters',
+       value: ''
+   },
+   {
+       prompt: 'routeFilters',
+       value: ''
+   },
+   {
+       prompt: 'segment_NonDMFilters',
+       value: ''
+   },
+   {
+       prompt: 'subscriptionFilters',
+       value: ''
+   }
+
+];
+}
 
 export function filterPrimaryData(allFilters, _parameters) {
     responseArray = [];
@@ -2755,6 +3002,16 @@ export function filterBuyMarketSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
+       // Channel QTD
+   const mktgSegment = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMKTGSourcedARRSegmentQTD + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+   // Channel QTD
+   const mktgProd   = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMarektingSourceARRProdQTD + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
     // console.log("Paid Media Spend and Source NEtwork request:", Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMSecondary + params6 + '&json=1');
     //Paid Media Sourced and Spend
     const pmssSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyPMSpendSecondary + params6 + '&json=1', {
@@ -2791,7 +3048,8 @@ export function filterBuyMarketSecondaryData(allFilters, _parameters) {
 
     responseArray.push(
         mktgSecondary, mktgMultichart, mktgQTD, mktgGeo, mktgMarket, mktgChannelMu
-        , pmssSecondary, pmssMultichart, pmssQTD, pmssGeo, pmssMarket, pmssChannelMu
+        , pmssSecondary, pmssMultichart, pmssQTD, pmssGeo, pmssMarket, pmssChannelMu,
+        mktgProd, mktgSegment
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -2902,59 +3160,388 @@ export function filterUseSecondaryData(allFilters, _parameters) {
     return promiseArr;
 }
 
-export function filterRenewSecondaryData(allFilters, _parameters) {
+export function filterRenewCancelSecondaryData(allFilters, _parameters) {
     responseArray = [];
+    resetRenewParams();
+    generateFilterParams(9, financeParams, allFilters, _parameters);
+    generateFilterParams(14, cancelAdobeParams, allFilters, _parameters);
+    generateFilterParams(14, cancelRetailParams, allFilters, _parameters);
 
+    cancelRetailParams.push( {
+        prompt: 'routeFilters',
+        value: `'E-TAIL/RETAIL','RESELLER'`
+    })
+    cancelAdobeParams.push(  {
+        prompt: 'routeFilters',
+        value: `'ADOBE.COM/CC.COM'`
+    });
 
-    generateFilterParams(3, renewParams, allFilters, _parameters);
-
-    let params8 = renewParams.reduce((prev, param) => {
+    let params9 = financeParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
 
-    console.log(params8);
-    const renewSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params8 + '&json=1', {
+    let params7 = cancelAdobeParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params6 = cancelRetailParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
+    // Blank Renew Calls for Cancellations
+ 
+    const financeSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params9 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const renewMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMultiChartQuery + params8 + '&json=1', {
+    const financeMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8Multichart + params9 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
 
-    const renewQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewQTD + params8 + '&json=1', {
+    const financeQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8QTD + params9 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const renewGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewGeoQTD + params8 + '&json=1', {
+    const financeGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8GeoQtd + params9 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const renewMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMAQTD + params8 + '&json=1', {
+    const financeMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8MarketQTD + params9 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const renewSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSegmentsQTD + params8 + '&json=1', {
+    const financeSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8SegmentQTD + params9 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
-    const renewProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewProductCategoryQTD + params8 + '&json=1', {
+  
+    const financeProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ProductQTD + params9 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    responseArray.push(financeSecondary, financeMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeProductQTD);
+
+    // AdobeCom Cancellations
+ 
+    const cancelAdobeSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params7 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const cancelAdobeMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8Multichart + params7 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
 
-    responseArray.push(renewSecondary, renewMultichart, renewQTDTotals, renewGeoQTD, renewMarketQTD, renewSegmentQTD, renewProductQTD);
+    const cancelAdobeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8QTD + params7 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const cancelAdobeGeo = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8GeoQtd + params7 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const cancelAdobeMarket = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8MarketQTD + params7 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const cancelAdobeSegment = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8SegmentQTD + params7 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const cancelAdobeProduct = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ProductQTD + params7 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    responseArray.push(cancelAdobeSecondary, cancelAdobeMultichart, cancelAdobeQTD, cancelAdobeGeo, cancelAdobeMarket,cancelAdobeSegment,cancelAdobeProduct);
+
+    //Etail Retail Cancellations
+    const cancelEtailSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const cancelEtailMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8Multichart + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    const cancelEtailQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8QTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const cancelEtailGeo = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8GeoQtd + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const cancelEtailMarket = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8MarketQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const cancelEtailSegment = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8SegmentQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const cancelEtailProduct = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ProductQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    responseArray.push(cancelEtailSecondary, cancelEtailMultichart, cancelEtailQTD, cancelEtailGeo, cancelEtailMarket,cancelEtailSegment,cancelEtailProduct);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
 }
-export function filterRenewCancelSecondaryData(allFilters, _parameters) {
-    responseArray = [];
-}
 export function filterRenewDetailsSecondaryData(allFilters, _parameters) {
     responseArray = [];
+    resetRenewParams();
+
+    generateFilterParams(13, renewParamsERetail, allFilters, _parameters);
+
+    generateFilterParams(4, renewParamsAdobeCom, allFilters, _parameters);
+    generateFilterParams(13, renewParamsReseller, allFilters, _parameters);
+
+    renewParamsERetail.push( {
+        prompt: 'routeFilters',
+        value: `'E-TAIL/RETAIL'`
+    })
+   
+    renewParamsAdobeCom.push(  {
+        prompt: 'routeFilters',
+        value: `'ADOBE.COM/CC.COM'`
+    });
+    renewParamsReseller.push(  {
+        prompt: 'routeFilters',
+        value: `'RESELLER'`
+    });
+    let params8 = renewParamsERetail.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    
+    let params6 = renewParamsReseller.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    
+    let params5 = renewParamsAdobeCom.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
+  //Etail Renew
+  const renewEtailSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewEtailMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMultiChartQuery + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+
+const renewEtailQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFQTD + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewEtailGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFGeoQTD + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewEtailMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMAQTD + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewEtailSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSegmentsQTD + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+// const renewEtailSubsQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSubsOfferQTD + params5 + '&json=1', {
+//     headers: headers,
+//     responseType: 'text'
+// });
+responseArray.push(renewEtailSecondary, renewEtailMultichart, renewEtailQTDTotals, renewEtailGeoQTD, renewEtailMarketQTD, renewEtailSegmentQTD);
+
+//Renew  RESELLER
+  
+const renewSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params8 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMultiChartQuery + params8 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+
+const renewQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewQTD + params8 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewGeoQTD + params8 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMAQTD + params8 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSegmentsQTD + params8 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+// const renewProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewProductCategoryQTD + params8 + '&json=1', {
+//     headers: headers,
+//     responseType: 'text'
+// });
+responseArray.push(renewSecondary, renewMultichart, renewQTDTotals, renewGeoQTD, renewMarketQTD, renewSegmentQTD);
+const renewResellerSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params6 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewResellerMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMultiChartQuery + params6 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+
+const renewResellerQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFQTD + params6 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewResellerGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFGeoQTD + params6 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewResellerMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMAQTD + params6 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const renewResellerSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSegmentsQTD + params6 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+
+responseArray.push(renewResellerSecondary, renewResellerMultichart, renewResellerQTDTotals, renewResellerGeoQTD, renewResellerMarketQTD, renewResellerSegmentQTD);
+    
+    
+
+  
+    
+
+    let promiseArr = Promise.all(responseArray);
+    return promiseArr;
+}
+
+
+export function filterRenewSecondaryData(allFilters, _parameters) {
+    responseArray = [];
+    resetRenewParams();
+
+    generateFilterParams(9, financeParams, allFilters, _parameters);
+    generateFilterParams(14, cancelAdobeParams, allFilters, _parameters);
+    generateFilterParams(14, cancelRetailParams, allFilters, _parameters);
+    generateFilterParams(13, renewParamsERetail, allFilters, _parameters);
+    generateFilterParams(13, renewParamsReseller, allFilters, _parameters);
+    generateFilterParams(4, renewParamsAdobeCom, allFilters, _parameters);
+
+    renewParamsERetail.push( {
+        prompt: 'routeFilters',
+        value: `'E-TAIL/RETAIL'`
+    })
+   
+    renewParamsAdobeCom.push(  {
+        prompt: 'routeFilters',
+        value: `'ADOBE.COM/CC.COM'`
+    });
+    renewParamsReseller.push(  {
+        prompt: 'routeFilters',
+        value: `'RESELLER'`
+    });
+ 
+    cancelRetailParams.push( {
+        prompt: 'routeFilters',
+        value: `'E-TAIL/RETAIL','RESELLER'`
+    })
+    cancelAdobeParams.push(  {
+        prompt: 'routeFilters',
+        value: `'ADOBE.COM/CC.COM'`
+    });
+
+
+    let params9 = financeParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params7 = cancelAdobeParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params5 = renewParamsAdobeCom.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params6 = cancelRetailParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params8 = renewParamsERetail.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
+    let params10 = renewParamsReseller.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
+    //All Routes
+    const cancelSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params9 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Adobe . Com
+
+    const cancelAdobeSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params7 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewUIPFSecondaryAdobe = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Resller Etail And Retail
+    const cancelEtailResellerSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewSecondaryResller = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewUIPFSecondaryEtail = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    
+    
+
+
+    responseArray.push(cancelSecondary, cancelAdobeSecondary, renewUIPFSecondaryAdobe, cancelEtailResellerSecondary,  renewSecondaryResller, renewUIPFSecondaryEtail);
+    let promiseArr = Promise.all(responseArray);
+
+    return promiseArr;
 }
 export async function addUserToDB(user) {
     responseArray = [];
@@ -3631,7 +4218,8 @@ export function getDateFormat(_date) {
 export function getLabelColor(value, target, secondaryCardIndex) {
     let retColor = "";
 
-    if (secondaryCardIndex === 2) {
+    if (secondaryCardIndex === 2 || secondaryCardIndex === 27 || secondaryCardIndex ===28 ||
+        secondaryCardIndex === 32) {
         if (target === 0) {
             retColor = 'neutralBG';
         } else if (value >= target) {

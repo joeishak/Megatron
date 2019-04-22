@@ -194,6 +194,9 @@ class Summary extends Component {
         this.props.updateBuyGrossIsLoading(false);
         this.props.updateUseIsLoading(false);
         this.props.updateRenewIsLoading(false);
+        this.props.updateRenewCancelIsLoading(false);
+        this.props.updateRenewDetailsIsLoading(false);
+
 
         if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_NET_NEW_ARR ||
           activeSecondaryCard === SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR) {
@@ -281,7 +284,7 @@ class Summary extends Component {
             this.props.getFilteredBuySecondaryData(this.props.filters);
           }
         }
-        else if (activeSecondaryCard >= SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX && activeSecondaryCard <= SUMMARY_FILTERS.USE_WK4_WAU_RATE) {
+        else if (activeSecondaryCard >= SUMMARY_FILTERS.USE_PAID_USER_SUCCESS && activeSecondaryCard <= SUMMARY_FILTERS.USE_REPEAT_USER_MAU) {
           console.log('Getting Use');
           if (isDefaultFilters) {
             this.props.getUseSecondaryData(this.props.filters);
@@ -291,13 +294,29 @@ class Summary extends Component {
 
           }
         }
-        else if (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL) {
-          console.log('Getting Try');
-
+        else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
+        || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
           if (isDefaultFilters) {
+            console.log('Making request for Cancel')
+            this.props.getRenewCancelSecondaryData(this.props.filters);
             this.props.getRenewSecondaryData(this.props.filters);
 
           } else {
+            this.props.getFilteredRenewCancelSecondaryData(this.props.filters);
+            this.props.getFilteredRenewSecondaryData(this.props.filters);
+
+          }
+        }
+        else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_PF)
+        || (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL)) {
+          if (isDefaultFilters) {
+            console.log('Making request for Renew')
+            // debugger;
+            this.props.getRenewDetailsSecondaryData(this.props.filters);
+            this.props.getRenewSecondaryData(this.props.filters);
+
+          } else {
+            this.props.getFilteredRenewDetailsSecondaryData(this.props.filters);
             this.props.getFilteredRenewSecondaryData(this.props.filters);
 
           }
@@ -392,7 +411,7 @@ class Summary extends Component {
               this.props.getTrafficSecondaryData(this.props.filters);
               this.props.getDiscoverSecondary(this.props.filters);
             } else {
-              this.props.getFiltereTrafficSecondaryData(this.props.filters);
+              this.props.getFilteredTrafficSecondaryData(this.props.filters);
               this.props.getFilteredDiscoverSecondary(this.props.filters);
             }
 
@@ -516,7 +535,7 @@ class Summary extends Component {
 
         }
       }
-      else if (activeSecondaryCard === SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX) {
+      else if (activeSecondaryCard === SUMMARY_FILTERS.USE_PAID_USER_SUCCESS) {
         if (!useIsLoaded) {
           if (isDefaultFilters) {
             this.props.getUseSecondaryData(this.props.filters);
@@ -532,26 +551,33 @@ class Summary extends Component {
         || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
         if (!renewCancelIsLoaded) {
           if (isDefaultFilters) {
-            // this.props.getRenewCancelSecondaryData(this.props.filters);
+            console.log('Making request for Cancel')
+            this.props.getRenewCancelSecondaryData(this.props.filters);
+            this.props.getRenewSecondaryData(this.props.filters);
 
           } else {
-            // this.props.getFilteredRenewCancelSecondaryData(this.props.filters);
+            this.props.getFilteredRenewCancelSecondaryData(this.props.filters);
+            this.props.getFilteredRenewSecondaryData(this.props.filters);
 
           }
-          // this.setState({ isLoading: true });
+          this.setState({ isLoading: true });
         }
       }
       else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_PF)
         || (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL)) {
         if (!renewDetailsIsLoaded) {
           if (isDefaultFilters) {
-            // this.props.getRenewDetailsSecondaryData(this.props.filters);
+            console.log('Making request for Renew')
+            // debugger;
+            this.props.getRenewDetailsSecondaryData(this.props.filters);
+            this.props.getRenewSecondaryData(this.props.filters);
 
           } else {
-            // this.props.getFilteredRenewDetailsSecondaryData(this.props.filters);
+            this.props.getFilteredRenewDetailsSecondaryData(this.props.filters);
+            this.props.getFilteredRenewSecondaryData(this.props.filters);
 
           }
-          // this.setState({ isLoading: true });
+          this.setState({ isLoading: true });
         }
       }
     }
@@ -857,9 +883,11 @@ class Summary extends Component {
 
         if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
           || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
+            console.log('Detereming to set load to off in Renew');
           if (this.state.secondaryKpiChanged === true) {
+            console.log('Detereming to set load to off in Renew SEc KPI Change', renewCancelIsLoaded, renewIsLoaded);
             if (renewCancelIsLoaded === true && renewIsLoaded === true) {
-
+              console.log('Set load to off in Renew SEc KPI Change');
               this.setState({ isLoading: false, secondaryKpiChanged: false });
               if (renewDetailsIsLoaded === false) {
                 this.setState({ requestingRemainingRenewData: true });
@@ -945,48 +973,48 @@ class Summary extends Component {
       case 9:
         this.props.updateTrafficSecondaryIsLoading(false);
         break;
-      case 16:
+      case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
         this.props.updateBuyMarketIsLoading(false);
         break;
-      case 17:
+      case SUMMARY_FILTERS.BUY_PAID_MEDIASPEND:
         this.props.updateBuyMarketIsLoading(false);
         break;
-      case 18:
+      case SUMMARY_FILTERS.BUY_CONVERSION:
         this.props.updateBuyConversionIsLoading(false);
         break;
-      case 19:
+      case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
         this.props.updateBuyGrossIsLoading(false);
         break;
-      case 20:
+      case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
         this.props.updateBuyGrossIsLoading(false);
         break;
-      case 27:
-        this.props.updateRenewCancelIsLoading(false);
-        break;
-      case 27:
-        this.props.updateRenewCancelIsLoading(false);
-        break;
-      case 28:
-        this.props.updateRenewCancelIsLoading(false);
-        break;
-      case 29:
-        this.props.updateRenewDetailsIsLoading(false);
-        break;
-      case 30:
-        this.props.updateRenewDetailsIsLoading(false);
-        break;
-      case 31:
-        this.props.updateRenewDetailsIsLoading(false);
-        break;
-      case 32:
-        this.props.updateRenewCancelIsLoading(false);
-        break;
-      case 33:
-        this.props.updateRenewDetailsIsLoading(false);
-        break;
-      case 34:
-        this.props.updateRenewDetailsIsLoading(false);
-        break;
+      // case 27:
+      //   this.props.updateRenewCancelIsLoading(false);
+      //   break;
+      // case 27:
+      //   this.props.updateRenewCancelIsLoading(false);
+      //   break;
+      // case 28:
+      //   this.props.updateRenewCancelIsLoading(false);
+      //   break;
+      // case 29:
+      //   this.props.updateRenewDetailsIsLoading(false);
+      //   break;
+      // case 30:
+      //   this.props.updateRenewDetailsIsLoading(false);
+      //   break;
+      // case 31:
+      //   this.props.updateRenewDetailsIsLoading(false);
+      //   break;
+      // case 32:
+      //   this.props.updateRenewCancelIsLoading(false);
+      //   break;
+      // case 33:
+      //   this.props.updateRenewDetailsIsLoading(false);
+      //   break;
+      // case 34:
+      //   this.props.updateRenewDetailsIsLoading(false);
+      //   break;
     }
   }
 

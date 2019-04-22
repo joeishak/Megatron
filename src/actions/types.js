@@ -51,7 +51,7 @@ export const UPDATE_RENEW_IS_LOADING  ='update_renew_is_loading';
 export const UPDATE_RENEW_DETAILS_IS_LOADING  ='update_renew_detail_is_loading'; 
 export const GET_RENEW_SECONDARY_DATA = "get_renew_secondary_data";
 export const GET_RENEW_DETAILS_DATA = "get_renew_detail_data";
-export const GET_RENEW_CANCEL_DATA = "get_renew_detail_data";
+export const GET_RENEW_CANCEL_DATA = "get_renew_cancel_data";
 export const GET_BUY_TRAFFIC_SECONDARY_DATA = 'get_buy_traffic_secondary_data';
 
 

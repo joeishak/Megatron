@@ -334,7 +334,7 @@ class SecondaryContentList extends Component {
       >
         {this.props.activePrimary === 5 && utils.includes(this.props.deviceType, 'laptop') ?
           <span><div className="renew-overlay"><p className="renew-overlay-vertext">ADOBE.com Direct Sales</p></div>
-            <div className="renew-overlay-two"><p className="renew-overlay-vertext-two">Reseller and E-Tail / Retail</p></div></span> : null}
+            <div className="renew-overlay-two"><p className="renew-overlay-vertext-two">Reseller and E-Tail / Retail</p></div></span> : null }
 
         {this.props.activePrimary === 4 && utils.includes(this.props.deviceType, 'laptop')?
       <span><div className="use-overlay"><p className="use-overlay-vertext">Inactive Paid Users</p></div>

@@ -40,6 +40,8 @@ class PanelItemTableHeader extends Component {
                 return 'Channel';
             case DIMENSIONS.CHANNELMU:
                 return 'Channel';
+            case DIMENSIONS.SUBSCRIPTION:
+                return 'Subscription'
             default:
                 return 'Product';
         }
