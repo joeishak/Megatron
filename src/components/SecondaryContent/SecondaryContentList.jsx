@@ -332,9 +332,13 @@ class SecondaryContentList extends Component {
         onTouchEnd={e => this.stopResize(e)}
         onMouseUp={e => this.stopResize(e)}
       >
-        {this.props.activePrimary === 5 ?
+        {this.props.activePrimary === 5 && utils.includes(this.props.deviceType, 'laptop') ?
           <span><div className="renew-overlay"><p className="renew-overlay-vertext">ADOBE.com Direct Sales</p></div>
             <div className="renew-overlay-two"><p className="renew-overlay-vertext-two">Reseller and E-Tail / Retail</p></div></span> : null}
+
+        {this.props.activePrimary === 4 && utils.includes(this.props.deviceType, 'laptop')?
+      <span><div className="use-overlay"><p className="use-overlay-vertext">Inactive Paid Users</p></div>
+        <div className="use-overlay-two"><p className="use-overlay-vertext-two">New Paid Users</p></div></span> : null}
 
         {navigationTitle}
         {secondaryContentTop}
@@ -346,8 +350,9 @@ class SecondaryContentList extends Component {
 
 // export default SecondaryContentList;
 function mapStateToProps(state) {
-
+  console.log(state);
   return {
+    deviceType: state.appSettings.deviceType,
     activeJourneyCard: state.activeCards.secondary,
     activePrimary: state.activeCards.primary,
     comments: state.commentsPackage.comments

@@ -1051,6 +1051,11 @@ render() {
       {/* First Row for Ttle Bar and Metric Filter */}
       <div className="row container-fluid titleBarHeader">
 
+          {this.props.activePrimary === 4 ? 
+          <div className="row" >
+            <h3>Cumulative Paid Members</h3>
+          </div> : null}
+
         <div className="row">
           <span className="col-md-2 col-lg-4 detailTitle2 ">
             {activeItem.header}
