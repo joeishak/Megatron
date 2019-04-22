@@ -922,6 +922,20 @@ getQTDDetailFilters(activeItem) {
   }
 }
 
+getOneWeekBehindMarker(activeSecondary, type) {
+  return activeSecondary === 4 || 
+  activeSecondary === 7 || 
+  activeSecondary === 8 || 
+  activeSecondary === 19 ||
+  activeSecondary === 20 ||
+  activeSecondary === 21 ||
+  activeSecondary === 22 ||
+  activeSecondary === 23 ||
+  activeSecondary === 24 ||
+  activeSecondary === 25 ||
+  activeSecondary === 26 ? (type === 'marker'? '*' : 'One Week Behind') : null;
+}
+
 closeSummary() {
   this.props.updateMultichartMetric(true);
   this.props.hideSummaryDetails();
@@ -994,8 +1008,9 @@ render() {
 
         <div className="row">
           <span className="col-md-2 col-lg-4 detailTitle2 ">
-            {activeItem.header}
+            {activeItem.header} {this.getOneWeekBehindMarker(this.props.activeSecondary, 'marker')}
           </span>
+          <span style={{'margin-left': '10px'}}>{this.getOneWeekBehindMarker(this.props.activeSecondary, 'message')}</span>
 
           {this.props.activePrimary < 1 ?
 
