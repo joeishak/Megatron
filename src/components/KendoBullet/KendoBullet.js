@@ -92,7 +92,8 @@ class KendoBulletChart extends Component {
       let color = '';
 
   
-      if (this.props.cardIndex !== undefined && this.props.cardIndex === 2) {
+      if (this.props.cardIndex !== undefined && this.props.cardIndex === 2 || this.props.cardIndex === 27 ||
+        this.props.cardIndex === 28 || this.props.cardIndex ===32) {
         if (this.props.values[1] === 0 ) {
           color = '#3C3C3C';
         } else if (this.props.values[0] <= this.props.values[1]) {

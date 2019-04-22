@@ -28,13 +28,13 @@ class MobileViewDetails extends Component {
     findValueType(toFind) {
         switch(toFind) {
             case 'Actuals':
-                return 'currency';
+                return this.props.valueType;
             case 'Units':
                 return 'units';
             case 'QRF':
-                return 'currency';
+                return  this.props.valueType;
             case 'QRF Diff':
-                return 'currency';
+                return  this.props.valueType;
             case 'Vs Qrf':
                 return 'percent'
             case 'Q/Q':

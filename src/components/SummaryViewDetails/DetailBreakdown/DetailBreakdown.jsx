@@ -10,18 +10,17 @@ class DetailBreakdown extends Component {
   getColor(activeSecondary, originalColor) {
     switch (originalColor) {
         case 'red':
-            if (activeSecondary === 2) {
+            if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 || activeSecondary ===32) {
                 return 'greenBG'
             } else {
                 return 'redBG'
             }
         default:
-        if (activeSecondary === 2) {
+        if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 || activeSecondary ===32) {
             return 'redBG'
         } else {
             return 'greenBG'
         }
-
     }
   }
   renderDollarValuePanelBarItems(value, item) {
@@ -36,15 +35,28 @@ class DetailBreakdown extends Component {
     }
   }
   renderQuarterlyToDateTableHeader() {
-    if (this.props.activePrimary === 0 ) {
-      switch (this.props.activeTimeMetric) {
-        case "qtd":
-          return (
-            <div className=" qtdDetailTitle col-md-11">Quarterly To Date</div>
-          );
-        default:
-          return <div className=" qtdDetailTitle col-md-11">Week</div>;
-      }
+    if (this.props.activePrimary === 0 || this.props.activePrimary ===5 ) {
+      if(this.props.activeSecondary <= 3 || this.props.activeSecondary === 27 ||
+        this.props.activeSecondary === 28 || this.props.activeSecondary === 32){
+          switch (this.props.activeTimeMetric) {
+            case "qtd":
+              return (
+                <div className=" qtdDetailTitle col-md-11">Quarterly To Date</div>
+              );
+            default:
+              return <div className=" qtdDetailTitle col-md-11">Week</div>;
+          }
+        } else {
+          switch (this.props.activeTimeMetric) {
+            case "qtd":
+              return (
+                <div className=" qtdJourneyDetailTitle col-md-11">Quarterly To Date</div>
+              );
+            default:
+              return <div className=" qtdJourneyDetailTitle col-md-11">Week</div>;
+          }
+        }
+    
     } else {
       switch (this.props.activeTimeMetric) {
         case "qtd":
@@ -55,7 +67,6 @@ class DetailBreakdown extends Component {
           return <div className=" qtdJourneyDetailTitle col-md-11">Week</div>;
       }
     }
-
   }
   renderQuarterlyToDate(qtdwColSizes, qtdTotalTable, activeSecondary) {
     switch (this.props.activeTimeMetric) {
@@ -132,10 +143,14 @@ class DetailBreakdown extends Component {
     let { activeTimeMetric, activeSummary, activeSecondary } = this.props;
     var qtdwColSizes = classNames({
       colContainer: true,
-      qtdSize: (activeTimeMetric === "qtd" && this.props.activePrimary >= 1) ? true : false,
-      qtdFin: (activeTimeMetric === 'qtd' && ( this.props.activePrimary < 1 )) ? true : false,
-      weekSize: (activeTimeMetric === "week" && (this.props.activePrimary < 1 )) ? true : false,
-      weekJourn: (activeTimeMetric === "week" && this.props.activePrimary >= 1) ? true : false,
+      qtdSize: (activeTimeMetric === "qtd" && this.props.activePrimary >= 1 && this.props.activeSecondary !== 27 &&
+      this.props.activeSecondary !== 28 && this.props.activeSecondary !== 32) ? true : false,
+      qtdFin: (activeTimeMetric === 'qtd' && ( this.props.activePrimary < 1  || this.props.activeSecondary === 27 ||
+        this.props.activeSecondary === 28 || this.props.activeSecondary === 32) ) ? true : false,
+      weekSize: (activeTimeMetric === "week" && (this.props.activePrimary < 1 || this.props.activeSecondary === 27 ||
+        this.props.activeSecondary === 28 || this.props.activeSecondary === 32)) ? true : false,
+      weekJourn: (activeTimeMetric === "week" && this.props.activePrimary >= 1 && this.props.activeSecondary !== 27 &&
+      this.props.activeSecondary !== 28 && this.props.activeSecondary !== 32) ? true : false,
     });
     var qtdTotalTable = classNames({
       qtdTotalTable: true,

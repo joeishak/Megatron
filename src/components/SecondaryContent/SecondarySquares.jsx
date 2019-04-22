@@ -320,7 +320,7 @@ class SecondarySquares extends Component {
           onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index)}
         >
           <div
-            className={`${secondaryBoxHeader} `}
+            className={`${secondaryBoxHeader} `} 
           >
             {/* <div className={this.props.item.css[2]}><p className="journeyHeaderTitle ">{this.props.item.title}</p></div> */}
           </div>
