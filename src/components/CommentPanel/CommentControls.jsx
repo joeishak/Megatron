@@ -6,11 +6,6 @@ import * as actions from 'actions';
 import ImageUploader from 'react-images-upload';
 import styles from './CommentBox.css';
 import addIcon from '../../assets/images/add-icon-black.svg';
-// profile pictures
-import rick from '../../assets/images/rick.png';
-import shaun from '../../assets/images/shaun.png';
-import morty from '../../assets/images/morty.png';
-import amit from '../Navigation/assets/images/amit-profile.png';
 import profilePic from '../../assets/images/user.png';
 import CommentPanelHeader from './CommentPanelHeader';
 import CommentPanelDate from './CommentPanelDate';
