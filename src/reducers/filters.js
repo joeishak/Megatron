@@ -86,7 +86,7 @@ export default function (state = {
     },
     filtersAreLoaded: false,
     preferencesAreAdded: false,
-
+    isDefaultFilters: true,
     globalFiltersSubmitted: false, 
     subFiltersSubmitted: false,
     resetFilters: false,
@@ -124,7 +124,7 @@ export default function (state = {
 
                 console.log(foundNewFilters);
                 if (foundNewFilters !== -1) {
-                    return { ...copyOfState }
+                    return { ...copyOfState,isDefaultFilters: false, }
                 }
                 return state;
             }

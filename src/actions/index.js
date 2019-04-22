@@ -375,7 +375,6 @@ export function getFilteredTrafficSecondaryData(filters) {
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
-        segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
         //MArketing
@@ -383,13 +382,10 @@ export function getFilteredTrafficSecondaryData(filters) {
         visits: Object.keys(filters.visits.availableFilters).map(e => filters.visits.availableFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.availableFilters).map(e => filters.lastTouchChannel.availableFilters[e]),
         convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e])
-
-
     }
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
         quarter: Object.keys(filters.quarter.valueFilters).map(e => filters.quarter.valueFilters[e]),
-        segment: Object.keys(filters.segment.valueFilters).map(e => filters.segment.valueFilters[e]),
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
@@ -399,7 +395,6 @@ export function getFilteredTrafficSecondaryData(filters) {
         visits: Object.keys(filters.visits.valueFilters).map(e => filters.visits.valueFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.valueFilters).map(e => filters.lastTouchChannel.valueFilters[e]),
         convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e])
-
     };
     // console.log(filters);
     promiseArr = utils.filterTrafficSecondaryData(allFilters, _parameters);
@@ -585,7 +580,6 @@ export function getFilteredBuyTrafficSecondaryData(filters) {
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
-        segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
         //MArketing
@@ -599,7 +593,6 @@ export function getFilteredBuyTrafficSecondaryData(filters) {
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
         quarter: Object.keys(filters.quarter.valueFilters).map(e => filters.quarter.valueFilters[e]),
-        segment: Object.keys(filters.segment.valueFilters).map(e => filters.segment.valueFilters[e]),
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
@@ -932,7 +925,6 @@ export function getTrafficSecondaryData(filters) {
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
-        segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
         //MArketing
@@ -946,7 +938,6 @@ export function getTrafficSecondaryData(filters) {
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
         quarter: Object.keys(filters.quarter.valueFilters).map(e => filters.quarter.valueFilters[e]),
-        segment: Object.keys(filters.segment.valueFilters).map(e => filters.segment.valueFilters[e]),
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
@@ -1138,7 +1129,6 @@ export function getBuyTrafficSecondaryData(filters) {
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
-        segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
         //MArketing
@@ -1152,7 +1142,6 @@ export function getBuyTrafficSecondaryData(filters) {
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
         quarter: Object.keys(filters.quarter.valueFilters).map(e => filters.quarter.valueFilters[e]),
-        segment: Object.keys(filters.segment.valueFilters).map(e => filters.segment.valueFilters[e]),
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),

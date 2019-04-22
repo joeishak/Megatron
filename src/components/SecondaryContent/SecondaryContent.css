@@ -40,18 +40,18 @@
 }
 
 .use-overlay {
-	height: 270px;
+	height: 267px;
 	border: 2px solid #ffffff;
 	background-color: #3c3c3c;
 	position: absolute;
-	top: 135px;
+	top:543px;
 	left: 0;
 	z-index: 10;
 	width: 35px;
 }
 
 .renew-overlay-two {
-	height: 405px;
+	height: 407px;
 	border: 2px solid #ffffff;
 	background-color: #3c3c3c;
 	position: absolute;
@@ -62,11 +62,11 @@
 }
 
 .use-overlay-two {
-	height: 405px;
+	height: 402px;
 	border: 2px solid #ffffff;
 	background-color: #3c3c3c;
 	position: absolute;
-	top: 405px;
+	top: 0px;
 	left: 0;
 	z-index: 10;
 	width: 35px;

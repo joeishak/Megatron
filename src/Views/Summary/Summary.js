@@ -449,9 +449,11 @@ class Summary extends Component {
 
           if (!buyConversionIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
             if (isDefaultFilters) {
+              console.log('Requesting data after all remaining data was requested');
               this.props.getBuyTrafficSecondaryData(this.props.filters);
               this.props.getBuySecondaryData(this.props.filters);
-            } else {
+            } else { 
+              console.log('Requesting filtered data after all remaining data was requested');
               this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
               this.props.getFilteredBuySecondaryData(this.props.filters);
             }
@@ -460,9 +462,11 @@ class Summary extends Component {
           }
         } else if (!buyConversionIsLoaded) {
           if (isDefaultFilters) {
+            console.log('Requesting data before all remaining data was requested');
             this.props.getBuyTrafficSecondaryData(this.props.filters);
             this.props.getBuySecondaryData(this.props.filters);
           } else {
+            console.log('Requesting filtered data before all remaining data was requested');
             this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
             this.props.getFilteredBuySecondaryData(this.props.filters);
           }
@@ -510,9 +514,12 @@ class Summary extends Component {
 
           if (!buyGrossIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
             if (isDefaultFilters) {
+            console.log('Requesting data before all remaining data was requested');
               this.props.getBuyFinanceSecondaryData(this.props.filters);
               this.props.getBuySecondaryData(this.props.filters);
             } else {
+            console.log('Requesting filtered data before all remaining data was requested');
+
               this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
               this.props.getFilteredBuySecondaryData(this.props.filters);
             }
@@ -521,9 +528,13 @@ class Summary extends Component {
           }
         } else if (!buyGrossIsLoaded) {
           if (isDefaultFilters) {
+            console.log('Requesting data before all remaining data was requested');
+
             this.props.getBuyFinanceSecondaryData(this.props.filters);
             this.props.getBuySecondaryData(this.props.filters);
           } else {
+            console.log('Requesting data before all remaining data was requested');
+
             this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
             this.props.getFilteredBuySecondaryData(this.props.filters);
           }
@@ -964,6 +975,7 @@ class Summary extends Component {
         break;
       case 5:
         this.props.updateTrafficSecondaryIsLoading(false);
+        this.props.updateBuyConversionIsLoading(false);
       case 7:
         this.props.updateMuSecondaryIsLoading(false);
         break;
@@ -972,6 +984,9 @@ class Summary extends Component {
         break;
       case 9:
         this.props.updateTrafficSecondaryIsLoading(false);
+        this.props.updateBuyConversionIsLoading(false);
+
+
         break;
       case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
         this.props.updateBuyMarketIsLoading(false);
@@ -981,6 +996,8 @@ class Summary extends Component {
         break;
       case SUMMARY_FILTERS.BUY_CONVERSION:
         this.props.updateBuyConversionIsLoading(false);
+        this.props.updateTrafficSecondaryIsLoading(false);
+
         break;
       case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
         this.props.updateBuyGrossIsLoading(false);
