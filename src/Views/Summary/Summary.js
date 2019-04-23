@@ -1060,7 +1060,7 @@ class Summary extends Component {
         break;
       default:
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(27);
+        this.props.updateActiveSecondaryCard(28);
         break;
     }
     if (

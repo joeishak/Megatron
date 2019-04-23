@@ -338,6 +338,7 @@ class SecondaryContentList extends Component {
 
         {this.props.activePrimary === 4 && utils.includes(this.props.deviceType, 'laptop')?
       <span><div className="use-overlay"><p className="use-overlay-vertext">Inactive Paid Users</p></div>
+      <div className="use-overlay-three"><p className="use-overlay-vertext-three">Engaged</p></div>
         <div className="use-overlay-two"><p className="use-overlay-vertext-two">New Paid Users</p></div></span> : null}
 
         {navigationTitle}

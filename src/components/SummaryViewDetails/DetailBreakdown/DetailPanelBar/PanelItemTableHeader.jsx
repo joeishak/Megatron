@@ -29,11 +29,11 @@ class PanelItemTableHeader extends Component {
                 case DIMENSIONS.SIGNCAT:
                 return 'Sign Up Category';
             case DIMENSIONS.MOBILEVSDESKTOP:
-                return 'Mobile or  Desktop';
+                return 'Mobile vs  Desktop';
             case DIMENSIONS.NEWVSREPEAT:
-                return 'New Or Repeat';
+                return 'New vs Repeat';
             case DIMENSIONS.LTC: 
-                return 'Last Touch Channel';
+                return 'Visits';
             case DIMENSIONS.WEBSEGMENT:
                 return 'Web Segment';
             case DIMENSIONS.CHANNELPM:
@@ -87,7 +87,7 @@ class PanelItemTableHeader extends Component {
         let MAColumn = (isGeo) ? <div className={`${qtdColumnClass}  header qtdMaHeader col`}>
             Market Area
            </div> : (isLTC) ? <div className={`${qtdColumnClass}  header qtdMaHeader col`}>
-            Visits
+            Last Touch Channel
            </div> : (isSignApp) ? <div className={`${qtdColumnClass}  header qtdMaHeader col`}>
             Sign Up App
            </div> : <span></span>
@@ -127,9 +127,8 @@ class PanelItemTableHeader extends Component {
                     <div className={`${weekColumnClass} header weekGeoHeader  col`}>
                         {this.getLowerHeaderCategory(type)}
                     </div>
-                    {(type === DIMENSIONS.GEO) ? <div className={`${weekColumnClass} header weekMaHeader  col`}>
-                        Market Area
-                </div> : <span></span>}
+                    {MAColumn}
+
                     <div className={`${weekColumnClass} header  col`}>
                         Actuals
                 </div>

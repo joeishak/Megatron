@@ -148,7 +148,7 @@ class SecondarySquares extends Component {
             <div className="vs-qrf-desktop">( {formattedQRF} vs QRF)</div>
             <div>
               <KendoBulletChart
-                width={200}
+                width="90%"
                 cardIndex={this.props.item.index}
                 values={[this.props.item.value, this.props.item.target, this.props.item.targetFQ]}
                 valueType={this.props.item.valueType}

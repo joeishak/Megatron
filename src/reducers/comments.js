@@ -30,7 +30,7 @@ export default function (state = { data: [],comments:[[],[],[],[]], isLoading: t
             copyOfState.comments =[];
             console.log(commentsCount);
             let found = false;
-            for (let i = 0; i <= 34; i++) {
+            for (let i = 0; i <= 35; i++) {
                 for(let j = 0 ; j < commentsCount.length; j++){
                     // console.log('I am comparing comments count id of : ',commentsCount[j].metricId,'against : ',i);
                     if(i === commentsCount[j].metricId){

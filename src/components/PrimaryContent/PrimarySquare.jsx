@@ -73,7 +73,8 @@ class PrimarySquare extends Component {
       center: true
     });
     const responsiveSquareSize = classNames({
-      "col-sm-12 col-md-2 col-lg-2 ": isLaptop,
+      "col-sm-12 col-md-2 col-lg-2 ": isLaptop /* && (this.props.activeCard !== 3) */ ? true: false,
+      // " buyPrimaryCard": isLaptop && (this.props.activeCard === 3) ? true: false,
       "col-xs-12 ": isMobile || isTablet ? true : false
     });
     const responsiveSumChartSquare = classNames({
@@ -143,7 +144,7 @@ class PrimarySquare extends Component {
       <div>
         {/* Desktop View */}
         <div
-          className={responsiveSquareSize}
+          className={responsiveSquareSize  }
           onClick={this.props.enableChart}
           key={this.props.item.index}
         >

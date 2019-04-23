@@ -40,7 +40,8 @@ ReactDOM.render(
 				{/*  IIS*/}
 				{/* <Route path={`${process.env.PUBLIC_URL}`} component={ImplicitCallback} /> */}
 				{/* // Localhost */}
-				<Route path="/implicit/callback" component={ImplicitCallback} />
+				<Route  path="/implicit/callback" component={ImplicitCallback} />
+			 
 			</Security>
 		</Router>
 

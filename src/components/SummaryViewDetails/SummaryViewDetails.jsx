@@ -5,6 +5,7 @@ import styles from "./SummaryViewDetails.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as utils from "../../utilities.js";
 import classNames from "classnames";
+
 import "@progress/kendo-theme-default/dist/all.css";
 import MultiValueSelect from '../MultiValueSelect/MultiValueSelect';
 import SingleValueSelect from '../SingleValueSelect/SingleValueSelect';
@@ -1112,8 +1113,9 @@ render() {
 
           <div className="stats-container-main">{this.props.activeItem.details.stats.map(item => {
 
-            if (this.props.activeSecondary === 2 || this.props.activeSecondary === 27 || this.props.activeSecondary ===28 ||
-              this.props.activeSecondary ===32) {
+            if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
+              activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
+              activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
               return (
                 <div className="statsHeader" key={item.text}>
                   <div className={(item.value <= 0) ? 'stats green' : 'stats red '}>

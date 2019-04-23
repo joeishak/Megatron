@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import * as utils from "../../../../utilities.js";
+import {SUMMARY_FILTERS} from '../../../../Constants/consts';
 
 class SingleDimensionPanelItem extends Component {
 
     getColor(activeSecondary, originalColor) {
         switch (originalColor) {
             case 'red':
-                if (activeSecondary == 2 || activeSecondary === 27 || activeSecondary ===28 ||
-                    activeSecondary === 32) {
+                if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
+                    activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
+                    activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
                     return 'greenBG';
                 } else {
                     return 'redBG';
                 }
             default:
-            if (activeSecondary == 2 || activeSecondary === 27 || activeSecondary ===28 ||
-                activeSecondary === 32) {
+            if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
+                activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
+                activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
                 return 'redBG';
             } else {
                 return 'greenBG';

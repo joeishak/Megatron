@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from 'actions';
 import styles from './KendoMultiChart.css';
 import * as utils from '../../utilities.js';
+import {SUMMARY_FILTERS} from '../../Constants/consts';
 
 import {
     Chart,
@@ -97,26 +98,32 @@ class KendoMultiChart extends Component {
             case 'red':
                 switch (type) {
                     case 'bg':
-                        if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 ||
-                            activeSecondary === 32) { return 'ttBGGreen' } else { return 'ttBGRed' }
+                        if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
+                            activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
+                            activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) { return 'ttBGGreen' } else { return 'ttBGRed' }
                     case  'txt':
-                        if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 ||
-                            activeSecondary === 32) { return 'textGreen' } else { return 'textRed' }
+                        if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
+                            activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
+                            activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) { return 'textGreen' } else { return 'textRed' }
                     case 'border':
-                        if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 ||
-                            activeSecondary === 32) { return '#0DB16E' } else { return '#FF0000' }
+                        if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
+                            activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
+                            activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) { return '#0DB16E' } else { return '#FF0000' }
                 }
             default:
             switch (type) {
                 case 'bg':
-                    if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 ||
-                        activeSecondary === 32) { return 'ttBGRed' } else { return 'ttBGGreen' }
+                    if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
+                        activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
+                        activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) { return 'ttBGRed' } else { return 'ttBGGreen' }
                 case  'txt':
-                    if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 ||
-                        activeSecondary === 32) { return 'textRed' } else { return 'textGreen' }
+                    if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
+                        activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
+                        activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) { return 'textRed' } else { return 'textGreen' }
                 case 'border':
-                    if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 ||
-                        activeSecondary === 32) { return '#FF0000' } else { return '#0DB16E' }
+                    if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
+                        activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
+                        activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) { return '#FF0000' } else { return '#0DB16E' }
             }
         }
     }

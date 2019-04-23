@@ -1,3 +1,4 @@
+
 .secondaryCLContainer {
 	float: left;
 	position: relative;
@@ -40,11 +41,11 @@
 }
 
 .use-overlay {
-	height: 267px;
+	height: 272px;
 	border: 2px solid #ffffff;
 	background-color: #3c3c3c;
 	position: absolute;
-	top:543px;
+	top:673px;
 	left: 0;
 	z-index: 10;
 	width: 35px;
@@ -62,7 +63,7 @@
 }
 
 .use-overlay-two {
-	height: 402px;
+	height: 541px;
 	border: 2px solid #ffffff;
 	background-color: #3c3c3c;
 	position: absolute;
@@ -71,7 +72,16 @@
 	z-index: 10;
 	width: 35px;
 }
-
+.use-overlay-three {
+	height: 135px;
+	border: 2px solid #ffffff;
+	background-color: #3c3c3c;
+	position: absolute;
+	top: 541px;
+	left: 0;
+	z-index: 10;
+	width: 35px;
+}
 .renew-overlay-vertext {
 	transform: rotate(-90deg);
 	-ms-transform: rotate(-90deg);
@@ -128,6 +138,19 @@
 	width: 230px;
 }
 
+.use-overlay-vertext-three {
+	transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	position: absolute; 
+	color: rgb(255, 255, 255);
+	font-size: 16px;
+	font-weight: 600;
+	text-align: center;
+	top: 185px;
+	left: -100px;
+	width: 230px;
+}
 
 
 
@@ -697,3 +720,72 @@
 		background-color: #f4f4f4 !important;
 		color: black;
 	}
+
+/*
+  iPad Pro 10.5 inch, 1112px
+*/
+ 
+@media only screen and (max-width: 1116px) and (min-width: 1025px){
+  .journeyContent {
+    font-family: Ubuntu;
+    font-style: normal; 
+    line-height: normal;
+    font-size: 9px;
+    padding-left: 45px;
+    padding-top: 14px;
+    color: #FFFFFF;
+    height: 100%;
+    cursor: pointer;
+    font-weight: 400 !important;
+  }
+  
+     .journeysAmount{
+    font-weight: bolder;
+   }
+}
+ 
+/*
+  iPad Pro 11.5 inch, 1194px
+*/
+ 
+@media only screen and (max-width: 1198px) and (min-width: 1117px){
+  .journeyContent {
+    font-family: Ubuntu;
+    font-style: normal; 
+    line-height: normal;
+    font-size: 10px;
+    padding-left: 45px;
+    padding-top: 14px;
+    color: #FFFFFF;
+    height: 100%;
+    cursor: pointer;
+    font-weight: 400 !important;
+  }
+  
+     .journeysAmount{
+    font-weight: bolder;
+   }
+}
+ 
+/*
+  iPad Pro 12.9 inch,1366px
+*/
+ 
+@media only screen and (max-width: 1370px) and (min-width: 1199px){
+  .journeyContent {
+    font-family: Ubuntu;
+    font-style: normal; 
+    line-height: normal;
+    font-size: 12px;
+    padding-left: 45px;
+    padding-top: 14px;
+    color: #FFFFFF;
+    height: 100%;
+    cursor: pointer;
+    font-weight: 400 !important;
+  }
+  
+     .journeysAmount{
+    font-weight: bolder;
+   }
+}

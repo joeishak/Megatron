@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 import * as utils from '../../utilities.js'
+
+import {SUMMARY_FILTERS} from '../../Constants/consts';
 import {
   Chart,
   ChartTooltip,
@@ -92,8 +94,9 @@ class KendoBulletChart extends Component {
       let color = '';
 
   
-      if (this.props.cardIndex !== undefined && this.props.cardIndex === 2 || this.props.cardIndex === 27 ||
-        this.props.cardIndex === 28 || this.props.cardIndex ===32) {
+      if (this.props.cardIndex !== undefined && this.props.cardIndex === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || this.props.cardIndex === SUMMARY_FILTERS.RENEW_CANCEL ||
+        this.props.cardIndex === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || this.props.cardIndex ===SUMMARY_FILTERS.RENEW_QTR_PF ||
+        this.props.cardIndex === SUMMARY_FILTERS.RENEW_QTR_UI || this.props.cardIndex ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
         if (this.props.values[1] === 0 ) {
           color = '#3C3C3C';
         } else if (this.props.values[0] <= this.props.values[1]) {

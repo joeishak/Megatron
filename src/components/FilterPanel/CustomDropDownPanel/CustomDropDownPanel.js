@@ -27,7 +27,11 @@ class CustomDropDownPanel extends Component {
         }
     }
 
-   
+   componentDidMount(){
+    this.setState({ selectedFilters: [...this.props.filters.nonDMSegment.valueFilters.map(item=>{
+        return {...item, label: item.value}
+    })] })
+   }
     updateSingleValue = (e) => {
         // console.log('Updating SingleValue',e);
         let copy = this.state.selectedFilters;
@@ -280,7 +284,7 @@ class CustomDropDownPanel extends Component {
                 return (
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
+                        <div className={quarterFilterContainer + ' col-lg-6'} >
                             <p> Segments</p>
                             <MultiValueSelect
                                 options={filters.nonDMSegment.availableFilters}
@@ -289,7 +293,7 @@ class CustomDropDownPanel extends Component {
                                 value={_.filter(this.state.selectedFilters, item=> {return item.category === NONDMSEGMENT})}
                             />
                         </div>
-                        <div className={quarterFilterContainer + ' col-lg-5'} >
+                        <div className={quarterFilterContainer + ' col-lg-6'} >
                             <p> Subscription Offering</p>
                             <MultiValueSelect
                                 options={filters.subscription.availableFilters}
@@ -304,7 +308,7 @@ class CustomDropDownPanel extends Component {
                 return (
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
-                        <div className={quarterFilterContainer + ' col-lg-2'} >
+                        <div className={quarterFilterContainer + ' col-lg-6'} >
                             <p> Segments</p>
                              <MultiValueSelect
                                 options={filters.nonDMSegment.availableFilters}
@@ -314,7 +318,7 @@ class CustomDropDownPanel extends Component {
                             />
 
                         </div>
-                        <div className={quarterFilterContainer + ' col-lg-5'} >
+                        <div className={quarterFilterContainer + ' col-lg-6'} >
                             <p> Subscription Offering</p>
                             <MultiValueSelect
                                 options={filters.subscription.availableFilters}
@@ -442,8 +446,6 @@ class CustomDropDownPanel extends Component {
                 <div className={quarterFilterContainer + ' col-lg-12'}>
                     <input className={`button ` + isGlowing} type={'button'} onClick={this.submitFilters} value="Submit" />
                 </div>
-
-
             </div>
         )
     }

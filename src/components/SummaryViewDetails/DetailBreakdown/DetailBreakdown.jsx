@@ -2,6 +2,7 @@ import * as utils from '../../../utilities';
 import React, { Component } from "react";
 import classNames from "classnames";
 import ExcelFormatter from "../ExcelFormatter";
+import {SUMMARY_FILTERS} from '../../../Constants/consts';
 
 import DetailTotalBar from './DetailTotal';
 import DetailPanelBar from './DetailPanelBar/DetailPanelBar';
@@ -10,13 +11,17 @@ class DetailBreakdown extends Component {
   getColor(activeSecondary, originalColor) {
     switch (originalColor) {
         case 'red':
-            if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 || activeSecondary ===32) {
+            if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
+              activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
+              activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
                 return 'greenBG'
             } else {
                 return 'redBG'
             }
         default:
-        if (activeSecondary === 2 || activeSecondary === 27 || activeSecondary ===28 || activeSecondary ===32) {
+        if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
+          activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
+          activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
             return 'redBG'
         } else {
             return 'greenBG'
@@ -35,9 +40,10 @@ class DetailBreakdown extends Component {
     }
   }
   renderQuarterlyToDateTableHeader() {
+    let {activeSecondary } = this.props;
     if (this.props.activePrimary === 0 || this.props.activePrimary ===5 ) {
-      if(this.props.activeSecondary <= 3 || this.props.activeSecondary === 27 ||
-        this.props.activeSecondary === 28 || this.props.activeSecondary === 32){
+      if(activeSecondary <= SUMMARY_FILTERS.FINANCE_RENEW_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
+        activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E){
           switch (this.props.activeTimeMetric) {
             case "qtd":
               return (
@@ -143,14 +149,14 @@ class DetailBreakdown extends Component {
     let { activeTimeMetric, activeSummary, activeSecondary } = this.props;
     var qtdwColSizes = classNames({
       colContainer: true,
-      qtdSize: (activeTimeMetric === "qtd" && this.props.activePrimary >= 1 && this.props.activeSecondary !== 27 &&
-      this.props.activeSecondary !== 28 && this.props.activeSecondary !== 32) ? true : false,
-      qtdFin: (activeTimeMetric === 'qtd' && ( this.props.activePrimary < 1  || this.props.activeSecondary === 27 ||
-        this.props.activeSecondary === 28 || this.props.activeSecondary === 32) ) ? true : false,
-      weekSize: (activeTimeMetric === "week" && (this.props.activePrimary < 1 || this.props.activeSecondary === 27 ||
-        this.props.activeSecondary === 28 || this.props.activeSecondary === 32)) ? true : false,
-      weekJourn: (activeTimeMetric === "week" && this.props.activePrimary >= 1 && this.props.activeSecondary !== 27 &&
-      this.props.activeSecondary !== 28 && this.props.activeSecondary !== 32) ? true : false,
+      qtdSize: (activeTimeMetric === "qtd" && this.props.activePrimary >= 1 && this.props.activeSecondary !== SUMMARY_FILTERS.RENEW_CANCEL &&
+      this.props.activeSecondary !== SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM && this.props.activeSecondary !== SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) ? true : false,
+      qtdFin: (activeTimeMetric === 'qtd' && ( this.props.activePrimary < 1  || activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
+        activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM ||  activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) ) ? true : false,
+      weekSize: (activeTimeMetric === "week" && (this.props.activePrimary < 1 || activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
+        activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM ||  activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E)) ? true : false,
+      weekJourn: (activeTimeMetric === "week" && this.props.activePrimary >= 1 && this.props.activeSecondary !== SUMMARY_FILTERS.RENEW_CANCEL &&
+      this.props.activeSecondary !== SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM && this.props.activeSecondary !== SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) ? true : false,
     });
     var qtdTotalTable = classNames({
       qtdTotalTable: true,

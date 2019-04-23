@@ -394,7 +394,7 @@ class DetailPanelBar extends Component {
                          <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
                              {this.getPanelContents(DIMENSIONS.WEBSEGMENT)}
                          </ PanelBarItem>
-                         <PanelBarItem className="panelItemTitle" expanded={false} title={'Channel'}>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title={'Last Touch Channel'}>
                              {this.getPanelContents(DIMENSIONS.LTC)}
                          </ PanelBarItem>
                          <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion'>
@@ -489,6 +489,24 @@ class DetailPanelBar extends Component {
                             </PanelBar>
                         )
                     case SUMMARY_FILTERS.USE_PAID_USER_SUCCESS:
+                        return (
+                            <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                                    {this.getPanelContents(DIMENSIONS.GEO)}
+                                </ PanelBarItem>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                                    {this.getPanelContents(DIMENSIONS.MARKET)}
+                                </ PanelBarItem>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={'Segment'}>
+                                    {this.getPanelContents(DIMENSIONS.SEGMENT)}
+                                </ PanelBarItem>
+
+                                <PanelBarItem className="panelItemTitle" expanded={false} title='Subscription Offering'>
+                                    {this.getPanelContents(DIMENSIONS.SUBSCRIPTION)}
+                                </PanelBarItem>
+                            </PanelBar>
+                        )
+                        case SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>

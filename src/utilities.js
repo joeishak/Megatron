@@ -5,7 +5,7 @@ import {
 import axios from 'axios';
 import * as actions from 'actions';
 import { dispatch } from 'rxjs/internal/observable/range';
-import { DIMENSIONS } from './Constants/consts';
+import { DIMENSIONS, SUMMARY_FILTERS } from './Constants/consts';
 
 
 
@@ -530,7 +530,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.route, allFilters.routeTomarket);
-            filterParams[4].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
+            filterParams[4].value = getParamValues(_activeParams.segment, allFilters.nonDMSegment);
             filterParams[5].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             break;
         case 4:
@@ -538,7 +538,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
+            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             break;
         //Traffic
@@ -603,7 +603,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
+            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             break;
         // cancel Adobe / Etail 
@@ -4218,8 +4218,9 @@ export function getDateFormat(_date) {
 export function getLabelColor(value, target, secondaryCardIndex) {
     let retColor = "";
 
-    if (secondaryCardIndex === 2 || secondaryCardIndex === 27 || secondaryCardIndex ===28 ||
-        secondaryCardIndex === 32) {
+    if (secondaryCardIndex === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || secondaryCardIndex === SUMMARY_FILTERS.RENEW_CANCEL ||
+        secondaryCardIndex === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || secondaryCardIndex ===SUMMARY_FILTERS.RENEW_QTR_PF ||
+        secondaryCardIndex === SUMMARY_FILTERS.RENEW_QTR_UI || secondaryCardIndex ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
         if (target === 0) {
             retColor = 'neutralBG';
         } else if (value >= target) {
