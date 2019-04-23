@@ -49,7 +49,7 @@ function mapStateToProps(state) {
     return {
         commentBoxIsOpen: state.commentBoxIsOpen,
         currentMetric: state.activeCards.secondary,
-        commentBoxHeader: state.summaryData.secondary[state.activeCards.secondary].header
+        commentBoxHeader: state.summaryData.secondary[state.activeCards.secondary].header,
     };
   }
   

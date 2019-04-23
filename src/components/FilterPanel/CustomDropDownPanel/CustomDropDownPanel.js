@@ -285,7 +285,7 @@ class CustomDropDownPanel extends Component {
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-6'} >
-                            <p> Segments</p>
+                            <p> Segments {this.props.filters.isDefaultFilters === true ? '- Exluding PDF Services & Sign' : ''}</p>
                             <MultiValueSelect
                                 options={filters.nonDMSegment.availableFilters}
                                 onValueChange={(e) => { let type = NONDMSEGMENT; this.updateMultiValue(e, type) }}
@@ -309,7 +309,7 @@ class CustomDropDownPanel extends Component {
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-6'} >
-                            <p> Segments</p>
+                            <p> Segments  {this.props.filters.isDefaultFilters === true ? '- Exluding PDF Services & Sign' : ''} </p>
                              <MultiValueSelect
                                 options={filters.nonDMSegment.availableFilters}
                                 onValueChange={(e) => { let type = NONDMSEGMENT; this.updateMultiValue(e, type) }}
@@ -454,7 +454,8 @@ function mapStateToProps(state) {
     return { 
         filters: state.filters, 
         summaryData: state.summaryData, 
-        activeCards: state.activeCards 
+        activeCards: state.activeCards ,
+
     };
 }
 export default connect(mapStateToProps, actions)(CustomDropDownPanel)

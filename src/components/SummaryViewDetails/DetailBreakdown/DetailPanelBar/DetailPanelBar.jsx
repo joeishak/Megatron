@@ -591,7 +591,9 @@ class DetailPanelBar extends Component {
                     <PanelBarItem className="panelItemTitle" expanded={false} title={'Segment'}>
                         {this.getPanelContents(DIMENSIONS.SEGMENT)}
                     </ PanelBarItem>
-
+                    <PanelBarItem className="panelItemTitle" expanded={false} title={'Product'}>
+                        {this.getPanelContents(DIMENSIONS.PRODUCT)}
+                    </ PanelBarItem>
             
                 </PanelBar>
             )
