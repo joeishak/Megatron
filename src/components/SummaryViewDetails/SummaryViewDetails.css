@@ -436,6 +436,11 @@
     /* border: 1px solid red; */
 }
 
+.oneWeekBehind {
+    width: max-content;
+    float: left;
+    padding: 20px;
+}
 
 /*
 iPad Pro 10.5 inch , 1112px
