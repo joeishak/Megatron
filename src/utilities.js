@@ -1832,7 +1832,6 @@ export function requestRenewDetailsSecondaryData(allFilters, _parameters) {
     resetRenewParams();
 
     generateFilterParams(13, renewParamsERetail, allFilters, _parameters);
-
     generateFilterParams(4, renewParamsAdobeCom, allFilters, _parameters);
     generateFilterParams(13, renewParamsReseller, allFilters, _parameters);
 
@@ -1867,7 +1866,7 @@ export function requestRenewDetailsSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-  //Etail Renew
+  //Adobe.com
   const renewEtailSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params5 + '&json=1', {
     headers: headers,
     responseType: 'text'
@@ -1901,58 +1900,59 @@ responseArray.push(renewEtailSecondary, renewEtailMultichart, renewEtailQTDTotal
 
 //Renew  RESELLER
   
-const renewSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params8 + '&json=1', {
+const renewSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params6 + '&json=1', {
     headers: headers,
     responseType: 'text'
 });
-const renewMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMultiChartQuery + params8 + '&json=1', {
+const renewMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMultiChartQuery + params6 + '&json=1', {
     headers: headers,
     responseType: 'text'
 });
 
-const renewQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewQTD + params8 + '&json=1', {
+const renewQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewQTD + params6 + '&json=1', {
     headers: headers,
     responseType: 'text'
 });
-const renewGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewGeoQTD + params8 + '&json=1', {
+const renewGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewGeoQTD + params6 + '&json=1', {
     headers: headers,
     responseType: 'text'
 });
-const renewMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMAQTD + params8 + '&json=1', {
+const renewMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMAQTD + params6 + '&json=1', {
     headers: headers,
     responseType: 'text'
 });
-const renewSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSegmentsQTD + params8 + '&json=1', {
+const renewSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSegmentsQTD + params6 + '&json=1', {
     headers: headers,
     responseType: 'text'
 });
-// const renewProductQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewProductCategoryQTD + params8 + '&json=1', {
+// const renewProductQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewProductCategoryQTD + params6 + '&json=1', {
 //     headers: headers,
 //     responseType: 'text'
 // });
 responseArray.push(renewSecondary, renewMultichart, renewQTDTotals, renewGeoQTD, renewMarketQTD, renewSegmentQTD);
-const renewResellerSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params6 + '&json=1', {
+console.log('Requesting Renew Details with paramas',params6)
+const renewResellerSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params8 + '&json=1', {
     headers: headers,
     responseType: 'text'
 });
-const renewResellerMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMultiChartQuery + params6 + '&json=1', {
+const renewResellerMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMultiChartQuery + params8 + '&json=1', {
     headers: headers,
     responseType: 'text'
 });
 
-const renewResellerQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFQTD + params6 + '&json=1', {
+const renewResellerQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFQTD + params8 + '&json=1', {
     headers: headers,
     responseType: 'text'
 });
-const renewResellerGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFGeoQTD + params6 + '&json=1', {
+const renewResellerGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFGeoQTD + params8 + '&json=1', {
     headers: headers,
     responseType: 'text'
 });
-const renewResellerMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMAQTD + params6 + '&json=1', {
+const renewResellerMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMAQTD + params8 + '&json=1', {
     headers: headers,
     responseType: 'text'
 });
-const renewResellerSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSegmentsQTD + params6 + '&json=1', {
+const renewResellerSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSegmentsQTD + params8 + '&json=1', {
     headers: headers,
     responseType: 'text'
 });
@@ -2001,6 +2001,7 @@ export function requestRenewSecondaryData(allFilters, _parameters) {
         prompt: 'routeFilters',
         value: `'ADOBE.COM/CC.COM'`
     });
+
 
 
     let params9 = financeParams.reduce((prev, param) => {
@@ -2055,6 +2056,7 @@ export function requestRenewSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    console.log('Requesting use secondary EOT Reseller with these params', params10);
     const renewSecondaryResller = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params10 + '&json=1', {
         headers: headers,
         responseType: 'text'

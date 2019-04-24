@@ -577,3 +577,14 @@ img {
 .container-primary {
 	padding: 10px;
 }
+
+
+.secondaryHeader{
+	font-size: 14px;
+}
+
+@media  (max-width: 1114px) and (min-width: 1110px){
+	.secondaryHeader{
+			font-size: 13px;
+}
+}

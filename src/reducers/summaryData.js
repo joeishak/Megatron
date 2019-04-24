@@ -383,7 +383,7 @@ export default function (state = {
             newState = JSON.parse(JSON.stringify(state));
 
             console.log('Request For Renew  Details   Data: ', action.payload);
-            processRenewDetailSecondaryData(action.payload[0], newState.secondary, action.payload[6], action.payload[12]);
+            // processRenewDetailSecondaryData(action.payload[0], newState.secondary, action.payload[6], action.payload[12]);
             processRenewMultichartData(action.payload[1].data, newState.secondary, action.payload[7].data, action.payload[13].data);
             processRenewQTDData(action.payload[2].data[0], newState.secondary, action.payload[8].data[0], action.payload[14].data[0]);
             processRenewGeoQTDData(action.payload[3].data, newState.secondary, action.payload[9].data, action.payload[15].data);
@@ -9268,6 +9268,7 @@ export function processRenewSecondaryData(data, newState) {
     newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].target = data[3].data[0].CancelARRTarget;
     newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].vsQrf = data[3].data[0].CancelVsQrf;
 
+    
     newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].value = data[4].data[0].EOTRateActual;
     newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].targetFQ = data[4].data[0].EOTRateTargetFQ;
     newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].target = data[4].data[0].EOTRateTarget;
