@@ -1011,7 +1011,14 @@ render() {
           <span className="col-md-2 col-lg-4 detailTitle2 ">
             {activeItem.header} {this.getOneWeekBehindMarker(this.props.activeSecondary, 'marker')}
           </span>
-          <span style={{'margin-left': '10px'}}>{this.getOneWeekBehindMarker(this.props.activeSecondary, 'message')}</span>
+
+          <span class="col-md-2 col-lg-4"> 
+            <div className="oneWeekBehind">
+            {this.getOneWeekBehindMarker(this.props.activeSecondary, 'message')}
+            </div>
+          </span>
+
+
 
           {this.props.activePrimary < 1 ?
 
