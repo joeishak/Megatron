@@ -10,6 +10,7 @@ import "@progress/kendo-theme-default/dist/all.css";
 // Custom Components
 import commentIconOn from "../../assets/images/comments-on.svg";
 import commentIconOff from "../../assets/images/comments-off.svg";
+
 import LoadingScreen from "../Loading/Loading.jsx";
 import Navigation from "components/Navigation/Navigation";
 import FilterPanel from "components/FilterPanel/FilterPanel";
@@ -83,6 +84,7 @@ class Summary extends Component {
     this.props.fetchComments(this.props.activeSecondaryCard);
     // Get all the comments count
 
+    this.props.getUpdatedAsOfDateAndQuarter();
     this.props.generateFilterData(this.props.preferences);
 
     window.addEventListener("resize", this.resize.bind(this));
@@ -129,12 +131,10 @@ class Summary extends Component {
       this.props.getUserSettings(this.props.user.sub);
     }
     if (filtersAreLoaded && preferencesAreLoaded && preferencesAreAdded === false) {
-      console.log('Just Recieved filters');
       this.props.addPreferencesToActiveFilters(this.props.preferences);
     }
     if (preferencesAreAdded &&
       this.state.initialDataLoadIsComplete === false) {
-      console.log('User Preferences were added to the active filters. Requesting primary and finance. . .');
       this.props.getPrimaryData(this.props.filters);
       this.props.getFinanceXDC1SecondaryData(this.props.filters);
       this.props.getFinanceSecondaryData(this.props.filters);
@@ -144,6 +144,7 @@ class Summary extends Component {
       });
 
     }
+    //MAke calls if the user switches filters
     if (this.state.initialDataLoadIsComplete === undefined && (this.props.filters !== prevProps.filters)) {
 
       if (this.state.subFiltersChanged) {
@@ -248,7 +249,6 @@ class Summary extends Component {
 
         }
         else if (activeSecondaryCard >= SUMMARY_FILTERS.TRY_NEW_UQFM && activeSecondaryCard <= SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM) {
-          console.log('Getting Try');
           this.props.getFilteredTrySecondaryData(this.props.filters);
         }
         else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
@@ -285,7 +285,6 @@ class Summary extends Component {
           }
         }
         else if (activeSecondaryCard >= SUMMARY_FILTERS.USE_PAID_USER_SUCCESS && activeSecondaryCard <= SUMMARY_FILTERS.USE_REPEAT_USER_MAU) {
-          console.log('Getting Use');
           if (isDefaultFilters) {
             this.props.getUseSecondaryData(this.props.filters);
 
@@ -295,9 +294,8 @@ class Summary extends Component {
           }
         }
         else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
-        || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
+          || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
           if (isDefaultFilters) {
-            console.log('Making request for Cancel')
             this.props.getRenewCancelSecondaryData(this.props.filters);
             this.props.getRenewSecondaryData(this.props.filters);
 
@@ -308,9 +306,8 @@ class Summary extends Component {
           }
         }
         else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_PF)
-        || (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL)) {
+          || (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL)) {
           if (isDefaultFilters) {
-            console.log('Making request for Renew')
             // debugger;
             this.props.getRenewDetailsSecondaryData(this.props.filters);
             this.props.getRenewSecondaryData(this.props.filters);
@@ -323,6 +320,7 @@ class Summary extends Component {
         }
       }
     }
+    //Make calls if the user switches cards
     if (userChangedCards) {
       this.setState({ secondaryKpiChanged: true });
       //Finance
@@ -449,11 +447,9 @@ class Summary extends Component {
 
           if (!buyConversionIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
             if (isDefaultFilters) {
-              console.log('Requesting data after all remaining data was requested');
               this.props.getBuyTrafficSecondaryData(this.props.filters);
               this.props.getBuySecondaryData(this.props.filters);
-            } else { 
-              console.log('Requesting filtered data after all remaining data was requested');
+            } else {
               this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
               this.props.getFilteredBuySecondaryData(this.props.filters);
             }
@@ -462,11 +458,9 @@ class Summary extends Component {
           }
         } else if (!buyConversionIsLoaded) {
           if (isDefaultFilters) {
-            console.log('Requesting data before all remaining data was requested');
             this.props.getBuyTrafficSecondaryData(this.props.filters);
             this.props.getBuySecondaryData(this.props.filters);
           } else {
-            console.log('Requesting filtered data before all remaining data was requested');
             this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
             this.props.getFilteredBuySecondaryData(this.props.filters);
           }
@@ -514,11 +508,9 @@ class Summary extends Component {
 
           if (!buyGrossIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
             if (isDefaultFilters) {
-            console.log('Requesting data before all remaining data was requested');
               this.props.getBuyFinanceSecondaryData(this.props.filters);
               this.props.getBuySecondaryData(this.props.filters);
             } else {
-            console.log('Requesting filtered data before all remaining data was requested');
 
               this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
               this.props.getFilteredBuySecondaryData(this.props.filters);
@@ -528,12 +520,10 @@ class Summary extends Component {
           }
         } else if (!buyGrossIsLoaded) {
           if (isDefaultFilters) {
-            console.log('Requesting data before all remaining data was requested');
 
             this.props.getBuyFinanceSecondaryData(this.props.filters);
             this.props.getBuySecondaryData(this.props.filters);
           } else {
-            console.log('Requesting data before all remaining data was requested');
 
             this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
             this.props.getFilteredBuySecondaryData(this.props.filters);
@@ -562,7 +552,6 @@ class Summary extends Component {
         || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
         if (!renewCancelIsLoaded) {
           if (isDefaultFilters) {
-            console.log('Making request for Cancel')
             this.props.getRenewCancelSecondaryData(this.props.filters);
             this.props.getRenewSecondaryData(this.props.filters);
 
@@ -578,7 +567,6 @@ class Summary extends Component {
         || (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL)) {
         if (!renewDetailsIsLoaded) {
           if (isDefaultFilters) {
-            console.log('Making request for Renew')
             // debugger;
             this.props.getRenewDetailsSecondaryData(this.props.filters);
             this.props.getRenewSecondaryData(this.props.filters);
@@ -596,9 +584,7 @@ class Summary extends Component {
     switch (this.props.activePrimaryCard) {
       case 0:
         // When the initial load is complete
-        console.log('Determining to set load to off in Finance');
         if (primaryIsLoaded && financeSecondaryIsLoaded && financeXDC1IsLoaded && this.state.initialDataLoadIsComplete === true) {
-          console.log("Initial Data Load complete: Loading OFF")
           this.setState({
             initialDataLoadIsComplete: undefined,
             isLoading: false,
@@ -612,7 +598,6 @@ class Summary extends Component {
             if (this.state.secondaryKpiChanged === true) {
 
               if (financeXDC1IsLoaded === true && financeSecondaryIsLoaded === true) {
-                console.log('Secondary Card finishing loading')
                 this.setState({
                   secondaryKpiChanged: false,
                   isLoading: false
@@ -633,7 +618,6 @@ class Summary extends Component {
             } else if (this.state.filtersUpdated === true) {
 
               if (primaryIsLoaded === true && (financeXDC1IsLoaded === true && financeSecondaryIsLoaded === true)) {
-                console.log('Setting Load to off In Finance Filter Update');
                 this.setState({
                   isLoading: false,
                   requestingRemainingFinanceData: true,
@@ -841,7 +825,6 @@ class Summary extends Component {
           if (this.state.secondaryKpiChanged === true) {
             if (buyGrossIsLoaded === true && buySecondaryIsLoaded === true) {
 
-              console.log('SEtting Load to off in BUY Gross KPI Change')
               this.setState({ isLoading: false, secondaryKpiChanged: false });
               if (buyMarketIsLoaded === false || buyConversionIsLoaded === false) {
                 this.setState({ requestingRemainingDiscoverData: true });
@@ -855,7 +838,6 @@ class Summary extends Component {
           } else if (this.state.filtersUpdated === true) {
             // Market Filters loaded
             if (buyGrossIsLoaded === true && primaryIsLoaded === true && buySecondaryIsLoaded) {
-              console.log('SEtting Load to off in BUY Gross Filters Update')
 
               this.setState({ isLoading: false, filtersUpdated: false });
               if (buyMarketIsLoaded === false || buyConversionIsLoaded === false) {
@@ -869,7 +851,6 @@ class Summary extends Component {
             }
           } else if (this.state.subFiltersChanged) {
             if (buyGrossIsLoaded === true) {
-              console.log('SEtting Load to off in BUY Gross sub Filter Change')
 
               this.setState({
                 isLoading: false,
@@ -894,11 +875,8 @@ class Summary extends Component {
 
         if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
           || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
-            console.log('Detereming to set load to off in Renew');
           if (this.state.secondaryKpiChanged === true) {
-            console.log('Detereming to set load to off in Renew SEc KPI Change', renewCancelIsLoaded, renewIsLoaded);
             if (renewCancelIsLoaded === true && renewIsLoaded === true) {
-              console.log('Set load to off in Renew SEc KPI Change');
               this.setState({ isLoading: false, secondaryKpiChanged: false });
               if (renewDetailsIsLoaded === false) {
                 this.setState({ requestingRemainingRenewData: true });
@@ -1110,7 +1088,6 @@ class Summary extends Component {
         activeCard={this.props.activePrimaryCard}
         data={this.props.primaryData}
         enableChart={() => {
-          // console.log("hello world");
         }}
         selectedCard={(e, index) => {
           this.updateActivePrimary(index);
@@ -1122,7 +1099,6 @@ class Summary extends Component {
   };
 
   getSecondaryContent = () => {
-    // console.log(this.props.statsDetails);
     // Logic to render depending on App settings. this.props.appSettings.window.height and this.props.appSettings.window.width
 
     let sortedData =
@@ -1144,12 +1120,12 @@ class Summary extends Component {
         updateMobileView={(component, updateTo) => { this.updateMobileView(component, updateTo); }}
         window={this.props.window}
         commentsPackage={this.props.commentsPackage}
+        resetSecondaryList= {(index)=>this.updateActivePrimary(index)}
       />
     );
   };
 
   takeDomScreenshot = () => {
-    console.log('taking screenshot of dom');
 
     // Handle taking DOM screenshot
     html2canvas(document.body, { allowTaint: true, taintTest: false, backgroundColor: '#1F1F1F', useCORS: false }).then(function (canvas) {
@@ -1214,69 +1190,67 @@ class Summary extends Component {
               </span>
             )
         }
-
-      </div>
-    );
-  }
-}
-
+ 
+        </div>
+        );
+      }
+    }
+    
 function mapStateToProps(state) {
 
-  console.log(state);
-  // console.log(state.summaryData.secondary);
-  // console.log("Filters Updated:", state.filters);
-  // console.log('SUMMARY JS STATE', state);
-  return {
-    authenticated: state.authenticated,
-    dialogIsOpen: state.isDialogOpen,
-    detailIsOpen: state.detailsIsOpen,
-    availableFilters: state.availableFilters,
-    user: state.user,
-    preferences: state.preferences,
-    primaryData: state.summaryData.primary,
-    activePrimaryCard: state.activeCards.primary,
-    activeSecondaryCard: state.activeCards.secondary,
-    secondaryData: state.summaryData.secondary,
-    appSettings: state.appSettings,
-    deviceType: state.appSettings.deviceType,
-    toggleCommentary: state.toggleCommentaryBox,
-    window: state.appSettings.window,
-    mobileIsPrimary: state.appSettings.views.primaryIsVisible,
-    mobileIsSecondary: state.appSettings.views.secondaryIsVisible,
-    summaryData: state.summaryData,
-    mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible,
-    filters: state.filters,
+          console.log(state);
 
-    commentsPackage: state.commentsPackage,
-    feedbackIsOpen: state.isFeedBackDialogOpen,
-    dataIsReset: state.summaryData.dataIsReset,
-    primaryIsLoaded: state.summaryData.primaryIsLoaded,
-    discoverSecondaryIsLoaded: state.summaryData.discoverSecondaryIsLoaded,
-    financeSecondaryIsLoaded: state.summaryData.financeSecondaryIsLoaded,
-    financeXDC1IsLoaded: state.summaryData.financeXDC1IsLoaded,
-    financeXDC2IsLoaded: state.summaryData.financeXDC2IsLoaded,
-    trafficIsLoaded: state.summaryData.trafficIsLoaded,
-    muIsLoaded: state.summaryData.muIsLoaded,
-    buyGrossIsLoaded: state.summaryData.buyGrossIsLoaded,
-    buyMarketIsLoaded: state.summaryData.buyMarketIsLoaded,
-    buySecondaryIsLoaded: state.summaryData.buySecondaryIsLoaded,
-    buyConversionIsLoaded: state.summaryData.buyConversionIsLoaded,
-    tryIsLoaded: state.summaryData.tryIsLoaded,
-    useIsLoaded: state.summaryData.useIsLoaded,
-    renewIsLoaded: state.summaryData.renewIsLoaded,
-    renewCancelIsLoaded: state.summaryData.renewCancelIsLoaded,
-    renewDetailsIsLoaded: state.summaryData.renewDetailsIsLoaded,
-    filtersAreLoaded: state.filters.filtersAreLoaded,
-    globalFiltersSubmitted: state.filters.globalFiltersSubmitted,
-    subFiltersSubmitted: state.filters.subFiltersSubmitted,
-    resetFilters: state.filters.resetFilters,
-    filtersAreDefault: state.filters.filtersAreDefault,
-    preferencesAreAdded: state.filters.preferencesAreAdded,
-    preferencesAreLoaded: state.preferences.preferencesAreLoaded,
-    isDefaultFilters: state.filters.isDefaultFilters
-  };
-}
-export default connect(
-  mapStateToProps,
-  actions
-)(withAuth(Summary));
+        return {
+          authenticated: state.authenticated,
+        dialogIsOpen: state.isDialogOpen,
+        detailIsOpen: state.detailsIsOpen,
+        availableFilters: state.availableFilters,
+        user: state.user,
+        preferences: state.preferences,
+        primaryData: state.summaryData.primary,
+        activePrimaryCard: state.activeCards.primary,
+        activeSecondaryCard: state.activeCards.secondary,
+        secondaryData: state.summaryData.secondary,
+        appSettings: state.appSettings,
+        deviceType: state.appSettings.deviceType,
+        toggleCommentary: state.toggleCommentaryBox,
+        window: state.appSettings.window,
+        mobileIsPrimary: state.appSettings.views.primaryIsVisible,
+        mobileIsSecondary: state.appSettings.views.secondaryIsVisible,
+        summaryData: state.summaryData,
+        mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible,
+        filters: state.filters,
+    
+        commentsPackage: state.commentsPackage,
+        feedbackIsOpen: state.isFeedBackDialogOpen,
+        dataIsReset: state.summaryData.dataIsReset,
+        primaryIsLoaded: state.summaryData.primaryIsLoaded,
+        discoverSecondaryIsLoaded: state.summaryData.discoverSecondaryIsLoaded,
+        financeSecondaryIsLoaded: state.summaryData.financeSecondaryIsLoaded,
+        financeXDC1IsLoaded: state.summaryData.financeXDC1IsLoaded,
+        financeXDC2IsLoaded: state.summaryData.financeXDC2IsLoaded,
+        trafficIsLoaded: state.summaryData.trafficIsLoaded,
+        muIsLoaded: state.summaryData.muIsLoaded,
+        buyGrossIsLoaded: state.summaryData.buyGrossIsLoaded,
+        buyMarketIsLoaded: state.summaryData.buyMarketIsLoaded,
+        buySecondaryIsLoaded: state.summaryData.buySecondaryIsLoaded,
+        buyConversionIsLoaded: state.summaryData.buyConversionIsLoaded,
+        tryIsLoaded: state.summaryData.tryIsLoaded,
+        useIsLoaded: state.summaryData.useIsLoaded,
+        renewIsLoaded: state.summaryData.renewIsLoaded,
+        renewCancelIsLoaded: state.summaryData.renewCancelIsLoaded,
+        renewDetailsIsLoaded: state.summaryData.renewDetailsIsLoaded,
+        filtersAreLoaded: state.filters.filtersAreLoaded,
+        globalFiltersSubmitted: state.filters.globalFiltersSubmitted,
+        subFiltersSubmitted: state.filters.subFiltersSubmitted,
+        resetFilters: state.filters.resetFilters,
+        filtersAreDefault: state.filters.filtersAreDefault,
+        preferencesAreAdded: state.filters.preferencesAreAdded,
+        preferencesAreLoaded: state.preferences.preferencesAreLoaded,
+        isDefaultFilters: state.filters.isDefaultFilters
+      };
+    }
+    export default connect(
+      mapStateToProps,
+      actions
+    )(withAuth(Summary));

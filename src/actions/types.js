@@ -98,3 +98,7 @@ export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 //Feedback
 export const ADD_FEEDBACK = 'add_feedback';
+
+
+//Update Dates for Week and Refresh
+export const GET_UPDATED_AS_OF_DATE_AND_QUARTER = 'get_updated_as_of_date_and_quarter'; 

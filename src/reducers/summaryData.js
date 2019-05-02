@@ -344,7 +344,7 @@ export default function (state = {
             return { ...newState, buyGrossIsLoaded: true };
         case GET_USE_SECONDARY_DATA:
             console.log('Request For Use   Secondary Details Data: ', action.payload);
-            processUseSecondaryData(action.payload[0].data[0], newState.secondary);
+            processUseSecondaryData(action.payload[0].data[0], newState.secondary, action.payload[7].data[0]);
             processUseMultichartData(action.payload[1].data, newState.secondary);
             processUseQTDData(action.payload[2].data, newState.secondary);
             processUseGeoQTDData(action.payload[3].data, newState.secondary);
@@ -389,6 +389,7 @@ export default function (state = {
             processRenewGeoQTDData(action.payload[3].data, newState.secondary, action.payload[9].data, action.payload[15].data);
             processRenewMarketQTDData(action.payload[4].data, newState.secondary, action.payload[10].data, action.payload[16].data);
             processRenewSegmentQTDData(action.payload[5].data, newState.secondary, action.payload[11].data, action.payload[17].data);
+            processRenewProductQTDData(action.payload[18].data, newState.secondary, action.payload[19].data);
 
 
             return { ...newState, renewDetailsIsLoaded: true };
@@ -4791,11 +4792,11 @@ export function processTryQTDData(data, newState) {
                 newState[i].details.stats[3].value = data.CumQFMsYY;
                 break;
             case 14:
-                newState[i].details.qtdw.qtd[0].value = data.Day28NewUQFMActual;
+                newState[i].details.qtdw.qtd[0].value = data.Day28NewUQFMActuals;
                 newState[i].details.qtdw.qtd[1].value = data.Day28NewUQFMTarget;
                 newState[i].details.qtdw.qtd[2].value = data.Day28NewUQFMVsQrfDiff;
-                newState[i].details.qtdw.qtd[3].value = data.Day28NewUQFMQQTY;
-                newState[i].details.qtdw.qtd[4].value = data.Day28NewUQFMVsQrf;
+                newState[i].details.qtdw.qtd[3].value = data.Day28NewUQFMVsQrf;
+                newState[i].details.qtdw.qtd[4].value = data.Day28NewUQFMQQTY;
                 newState[i].details.qtdw.qtd[5].value = data.Day28NewUQFMYY;
 
                 newState[i].details.qtdw.week[0].value = data.Day28NewUQFMCW;
@@ -4937,7 +4938,7 @@ export function processTryGeoQTDData(data, newState) {
         //Day 28
         let day28 = {
             index: i,
-            actuals: item.Day28NewUQFMActual,
+            actuals: item.Day28NewUQFMActuals,
             marketArea: item.market_area_group,
             qq: item.Day28NewUQFMQQTY,
             qrf: item.Day28NewUQFMTarget,
@@ -5106,7 +5107,7 @@ export function processTryMarketQTDData(data, newState) {
         //Day 28
         let day28 = {
             index: i,
-            actuals: item.Day28NewUQFMActual,
+            actuals: item.Day28NewUQFMActuals,
             type: item.market_area_code,
             qq: item.Day28NewUQFMQQTY,
             qrf: item.Day28NewUQFMTarget,
@@ -5320,7 +5321,7 @@ export function processTrySignUpCatQTDData(data, newState) {
         //Day 28
         let day28 = {
             index: i,
-            actuals: item.Day28NewUQFMActual,
+            actuals: item.Day28NewUQFMActuals,
             type: item.signup_category,
             qq: item.Day28NewUQFMQQTY,
             qrf: item.Day28NewUQFMTarget,
@@ -6643,40 +6644,52 @@ export function processBuyGrossProductWeek(newState, data) {
 
 }
 
-export function processUseSecondaryData(data, newState) {
+export function processUseSecondaryData(data, newState, cumuData) {
     newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].value = data.CEIActual;
     newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].targetFQ = data.CEITargetFQ;
     newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].target = data.CEITarget;
     newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].vsQrf = data.CEIVsQrf;
+    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].cumuMembers = cumuData.CumuPaidMembersActual;
 
     newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].value = data.PaidMAUActual;
     newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].targetFQ = data.PaidMAUTargetFQ;
     newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].target = data.PaidMAUTarget;
     newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].vsQrf = data.PaidMAUVsQrf;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].cumuMembers = cumuData.CumuPaidMembersActual;
 
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].value = data.RepeatMAUActual;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].targetFQ = data.RepeatMAUTargetFQ;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].target = data.RepeatMAUTarget;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].vsQrf = data.RepeatMAUVsQRF;
+    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].cumuMembers = cumuData.CumuPaidMembersActual;
 
     newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].value = data.PaidUserDownloadActual;
     newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].targetFQ = data.PaidUserDownloadTarget;
     newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].target = data.PaidUserDownloadTarget;
     newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].vsQrf = data.PaidUserDownloadVsQrf;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].cumuMembers = cumuData.CumuPaidMembersActual;
+
+
     newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].value = data.PaidUserLaunchActual;
     newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].targetFQ = data.PaidUserLaunchTargetFQ;
     newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].target = data.PaidUserLaunchTarget;
     newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].vsQrf = data.PaidUserLaunchVsQRF;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].cumuMembers = cumuData.CumuPaidMembersActual;
+
 
     newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].value = data.Week00WAUActual;
     newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].targetFQ = data.Week00WAUTargetFQ;
     newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].target = data.Week00WAUTarget;
     newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].vsQrf = data.Week00WAUVsQrf;
+    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].cumuMembers = cumuData.CumuPaidMembersActual;
+
 
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].value = data.Week04WAUActual;
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].targetFQ = data.Week04WAUTargetFQ;
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].target = data.Week04WAUTarget;
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].vsQrf = data.Week04WAUVsQRF;
+    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].cumuMembers = cumuData.CumuPaidMembersActual;
+
 }
 export function processUseMultichartData(data, newState) {
 
@@ -6912,12 +6925,13 @@ export function processUseGeoQTDData(data, newState) {
         }
         let eiWeek = {
             index: i,
-            actuals: 0,
+            actuals: item.CEIActual,
             marketArea: item.market_area_group,
-            qrf: 0,
-            qrfDiff: 0,
+            qq: item.CEIQQTY,
+            qrf: item.CEITarget,
+            qrfDiff: item.CEIVsQRFDiff,
             type: item.geo_code,
-            vsQrf: 0,
+            vsQrf: item.CEIVsQrf,
             ww: item.CEIWW
         }
 
@@ -6934,14 +6948,14 @@ export function processUseGeoQTDData(data, newState) {
         }
         let pumWeek = {
             index: i,
-            actuals: 0,
+            actuals: item.PaidMAUActual,
             marketArea: item.market_area_group,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            qq: item.PaidMAUQQTY,
+            qrf: item.PaidMAUTarget,
+            qrfDiff: item.PaidMAUVsQRFDiff,
             type: item.geo_code,
-            vsQrf: 0,
-            yy: item.PaidMAUWW
+            vsQrf: item.PaidMAUVsQrf,
+            ww: item.PaidMAUWW
         }
 
         let rum = {
@@ -6957,14 +6971,14 @@ export function processUseGeoQTDData(data, newState) {
         }
         let rumWeek = {
             index: i,
-            actuals: 0,
+            actuals: item.RepeatMAUActual,
             marketArea: item.market_area_group,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            qq: item.RepeatMAUQQTY,
+            qrf: item.RepeatMAUTarget,
+            qrfDiff: item.RepeatMAUVsQRFDiff,
             type: item.geo_code,
-            vsQrf: 0,
-            yy: item.RepeatMAUWW
+            vsQrf: item.RepeatMAUVsQrf,
+            ww: item.RepeatMAUWW
         }
 
         let pus = {
@@ -6980,14 +6994,14 @@ export function processUseGeoQTDData(data, newState) {
         }
         let pusWeek = {
             index: i,
-            actuals: 0,
+            actuals: item.PaidUserDownloadActual,
             marketArea: item.market_area_group,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            qq: item.PaidUserDownloadQQTY,
+            qrf: item.PaidUserDownloadTarget,
+            qrfDiff: item.PaidUserDownloadVsQRFDiff,
             type: item.geo_code,
-            vsQrf: 0,
-            yy: item.PaidUserDownloadWW
+            vsQrf: item.PaidUserDownloadVsQrf,
+            ww: item.PaidUserDownloadWW
         }
         let pusl = {
             index: i,
@@ -7003,14 +7017,14 @@ export function processUseGeoQTDData(data, newState) {
 
         let puslWeek = {
             index: i,
-            actuals: 0,
+            actuals: item.PaidUserLaucnhActual,
             marketArea: item.market_area_group,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            qq: item.PaidUserLaucnhQQTY,
+            qrf: item.PaidUserLaucnhTarget,
+            qrfDiff: item.PaidUserLaucnhVsQRFDiff,
             type: item.geo_code,
-            vsQrf: 0,
-            yy: item.PaidUserLaucnhWW
+            vsQrf: item.PaidUserLaucnhVsQrf,
+            ww: item.PaidUserLaucnhWW
         }
         let wk0 = {
             index: i,
@@ -7025,16 +7039,15 @@ export function processUseGeoQTDData(data, newState) {
         }
         let wk0Week = {
             index: i,
-            actuals: 0,
+            actuals: item.Week00WAUActual,
             marketArea: item.market_area_group,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            qq: item.Week00WAUQQTY,
+            qrf: item.Week00WAUTarget,
+            qrfDiff: item.Week00WAUVsQRFDiff,
             type: item.geo_code,
-            vsQrf: 0,
-            yy: item.Week00WAUWW
+            vsQrf: item.Week00WAUVsQrf,
+            ww: item.Week00WAUWW
         }
-
         let wk4 = {
             index: i,
             actuals: item.Week04WAUActual,
@@ -7048,14 +7061,14 @@ export function processUseGeoQTDData(data, newState) {
         }
         let wk4Week = {
             index: i,
-            actuals: 0,
+            actuals: item.Week04WAUActual,
             marketArea: item.market_area_group,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            qq: item.Week04WAUQQTY,
+            qrf: item.Week04WAUTarget,
+            qrfDiff: item.Week04WAUVsQRFDiff,
             type: item.geo_code,
-            vsQrf: 0,
-            yy: item.Week04WAUWW
+            vsQrf: item.Week04WAUVsQrf,
+            ww: item.Week04WAUWW
         }
         item1.push(ei);
         item1Week.push(eiWeek);
@@ -7117,6 +7130,7 @@ export function processUseMarketQTDData(data, newState) {
         let ei = {
             index: i,
             actuals: item.CEIActual,
+            marketArea: item.market_area_group,
             qq: item.CEIQQTY,
             qrf: item.CEITarget,
             qrfDiff: item.CEIVsQRFDiff,
@@ -7126,17 +7140,20 @@ export function processUseMarketQTDData(data, newState) {
         }
         let eiWeek = {
             index: i,
-            actuals: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.CEIActual,
+            marketArea: item.market_area_group,
+            qq: item.CEIQQTY,
+            qrf: item.CEITarget,
+            qrfDiff: item.CEIVsQRFDiff,
             type: item.market_area_code,
-            vsQrf: 0,
+            vsQrf: item.CEIVsQrf,
             ww: item.CEIWW
         }
 
         let pum = {
             index: i,
             actuals: item.PaidMAUActual,
+            marketArea: item.market_area_group,
             qq: item.PaidMAUQQTY,
             qrf: item.PaidMAUTarget,
             qrfDiff: item.PaidMAUVsQRFDiff,
@@ -7146,18 +7163,20 @@ export function processUseMarketQTDData(data, newState) {
         }
         let pumWeek = {
             index: i,
-            actuals: 0,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.PaidMAUActual,
+            marketArea: item.market_area_group,
+            qq: item.PaidMAUQQTY,
+            qrf: item.PaidMAUTarget,
+            qrfDiff: item.PaidMAUVsQRFDiff,
             type: item.market_area_code,
-            vsQrf: 0,
-            yy: item.PaidMAUWW
+            vsQrf: item.PaidMAUVsQrf,
+            ww: item.PaidMAUWW
         }
 
         let rum = {
             index: i,
             actuals: item.RepeatMAUActual,
+            marketArea: item.market_area_group,
             qq: item.RepeatMAUQQTY,
             qrf: item.RepeatMAUTarget,
             qrfDiff: item.RepeatMAUVsQRFDiff,
@@ -7167,18 +7186,20 @@ export function processUseMarketQTDData(data, newState) {
         }
         let rumWeek = {
             index: i,
-            actuals: 0,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.RepeatMAUActual,
+            marketArea: item.market_area_group,
+            qq: item.RepeatMAUQQTY,
+            qrf: item.RepeatMAUTarget,
+            qrfDiff: item.RepeatMAUVsQRFDiff,
             type: item.market_area_code,
-            vsQrf: 0,
-            yy: item.RepeatMAUWW
+            vsQrf: item.RepeatMAUVsQrf,
+            ww: item.RepeatMAUWW
         }
 
         let pus = {
             index: i,
             actuals: item.PaidUserDownloadActual,
+            marketArea: item.market_area_group,
             qq: item.PaidUserDownloadQQTY,
             qrf: item.PaidUserDownloadTarget,
             qrfDiff: item.PaidUserDownloadVsQRFDiff,
@@ -7188,13 +7209,14 @@ export function processUseMarketQTDData(data, newState) {
         }
         let pusWeek = {
             index: i,
-            actuals: 0,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.PaidUserDownloadActual,
+            marketArea: item.market_area_group,
+            qq: item.PaidUserDownloadQQTY,
+            qrf: item.PaidUserDownloadTarget,
+            qrfDiff: item.PaidUserDownloadVsQRFDiff,
             type: item.market_area_code,
-            vsQrf: 0,
-            yy: item.PaidUserDownloadWW
+            vsQrf: item.PaidUserDownloadVsQrf,
+            ww: item.PaidUserDownloadWW
         }
         let pusl = {
             index: i,
@@ -7207,17 +7229,18 @@ export function processUseMarketQTDData(data, newState) {
             vsQrf: item.PaidUserLaucnhVsQrf,
             yy: item.PaidUserLaucnhYY
         }
-         let puslWeek = {
-                index: i,
-                actuals: 0,
-                marketArea: item.market_area_group,
-                qq: 0,
-                qrf: 0,
-                qrfDiff: 0,
-                type: item.market_area_code,
-                vsQrf: 0,
-                yy: item.PaidUserLaucnhWW
-            }
+
+        let puslWeek = {
+            index: i,
+            actuals: item.PaidUserLaucnhActual,
+            marketArea: item.market_area_group,
+            qq: item.PaidUserLaucnhQQTY,
+            qrf: item.PaidUserLaucnhTarget,
+            qrfDiff: item.PaidUserLaucnhVsQRFDiff,
+            type: item.market_area_code,
+            vsQrf: item.PaidUserLaucnhVsQrf,
+            ww: item.PaidUserLaucnhWW
+        }
         let wk0 = {
             index: i,
             actuals: item.Week00WAUActual,
@@ -7231,18 +7254,19 @@ export function processUseMarketQTDData(data, newState) {
         }
         let wk0Week = {
             index: i,
-            actuals: 0,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.Week00WAUActual,
+            marketArea: item.market_area_group,
+            qq: item.Week00WAUQQTY,
+            qrf: item.Week00WAUTarget,
+            qrfDiff: item.Week00WAUVsQRFDiff,
             type: item.market_area_code,
-            vsQrf: 0,
-            yy: item.Week00WAUWW
+            vsQrf: item.Week00WAUVsQrf,
+            ww: item.Week00WAUWW
         }
-
         let wk4 = {
             index: i,
             actuals: item.Week04WAUActual,
+            marketArea: item.market_area_group,
             qq: item.Week04WAUQQTY,
             qrf: item.Week04WAUTarget,
             qrfDiff: item.Week04WAUVsQRFDiff,
@@ -7252,13 +7276,14 @@ export function processUseMarketQTDData(data, newState) {
         }
         let wk4Week = {
             index: i,
-            actuals: 0,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.Week04WAUActual,
+            marketArea: item.market_area_group,
+            qq: item.Week04WAUQQTY,
+            qrf: item.Week04WAUTarget,
+            qrfDiff: item.Week04WAUVsQRFDiff,
             type: item.market_area_code,
-            vsQrf: 0,
-            yy: item.Week04WAUWW
+            vsQrf: item.Week04WAUVsQrf,
+            ww: item.Week04WAUWW
         }
         item1.push(ei);
         item1Week.push(eiWeek);
@@ -7319,6 +7344,7 @@ export function processUseSubscriptionQTDData(data, newState) {
         let ei = {
             index: i,
             actuals: item.CEIActual,
+            marketArea: item.market_area_group,
             qq: item.CEIQQTY,
             qrf: item.CEITarget,
             qrfDiff: item.CEIVsQRFDiff,
@@ -7328,17 +7354,20 @@ export function processUseSubscriptionQTDData(data, newState) {
         }
         let eiWeek = {
             index: i,
-            actuals: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.CEIActual,
+            marketArea: item.market_area_group,
+            qq: item.CEIQQTY,
+            qrf: item.CEITarget,
+            qrfDiff: item.CEIVsQRFDiff,
             type: item.subscription_offering,
-            vsQrf: 0,
+            vsQrf: item.CEIVsQrf,
             ww: item.CEIWW
         }
 
         let pum = {
             index: i,
             actuals: item.PaidMAUActual,
+            marketArea: item.market_area_group,
             qq: item.PaidMAUQQTY,
             qrf: item.PaidMAUTarget,
             qrfDiff: item.PaidMAUVsQRFDiff,
@@ -7348,18 +7377,20 @@ export function processUseSubscriptionQTDData(data, newState) {
         }
         let pumWeek = {
             index: i,
-            actuals: 0,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.PaidMAUActual,
+            marketArea: item.market_area_group,
+            qq: item.PaidMAUQQTY,
+            qrf: item.PaidMAUTarget,
+            qrfDiff: item.PaidMAUVsQRFDiff,
             type: item.subscription_offering,
-            vsQrf: 0,
-            yy: item.PaidMAUWW
+            vsQrf: item.PaidMAUVsQrf,
+            ww: item.PaidMAUWW
         }
 
         let rum = {
             index: i,
             actuals: item.RepeatMAUActual,
+            marketArea: item.market_area_group,
             qq: item.RepeatMAUQQTY,
             qrf: item.RepeatMAUTarget,
             qrfDiff: item.RepeatMAUVsQRFDiff,
@@ -7369,18 +7400,20 @@ export function processUseSubscriptionQTDData(data, newState) {
         }
         let rumWeek = {
             index: i,
-            actuals: 0,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.RepeatMAUActual,
+            marketArea: item.market_area_group,
+            qq: item.RepeatMAUQQTY,
+            qrf: item.RepeatMAUTarget,
+            qrfDiff: item.RepeatMAUVsQRFDiff,
             type: item.subscription_offering,
-            vsQrf: 0,
-            yy: item.RepeatMAUWW
+            vsQrf: item.RepeatMAUVsQrf,
+            ww: item.RepeatMAUWW
         }
 
         let pus = {
             index: i,
             actuals: item.PaidUserDownloadActual,
+            marketArea: item.market_area_group,
             qq: item.PaidUserDownloadQQTY,
             qrf: item.PaidUserDownloadTarget,
             qrfDiff: item.PaidUserDownloadVsQRFDiff,
@@ -7390,16 +7423,16 @@ export function processUseSubscriptionQTDData(data, newState) {
         }
         let pusWeek = {
             index: i,
-            actuals: 0,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.PaidUserDownloadActual,
+            marketArea: item.market_area_group,
+            qq: item.PaidUserDownloadQQTY,
+            qrf: item.PaidUserDownloadTarget,
+            qrfDiff: item.PaidUserDownloadVsQRFDiff,
             type: item.subscription_offering,
-            vsQrf: 0,
-            yy: item.PaidUserDownloadWW
+            vsQrf: item.PaidUserDownloadVsQrf,
+            ww: item.PaidUserDownloadWW
         }
-
-       let pusl = {
+        let pusl = {
             index: i,
             actuals: item.PaidUserLaucnhActual,
             marketArea: item.market_area_group,
@@ -7410,17 +7443,18 @@ export function processUseSubscriptionQTDData(data, newState) {
             vsQrf: item.PaidUserLaucnhVsQrf,
             yy: item.PaidUserLaucnhYY
         }
-         let   puslWeek = {
-                index: i,
-                actuals: 0,
-                marketArea: item.market_area_group,
-                qq: 0,
-                qrf: 0,
-                qrfDiff: 0,
-                type: item.subscription_offering,
-                vsQrf: 0,
-                yy: item.PaidUserLaucnhWW
-            }
+
+        let puslWeek = {
+            index: i,
+            actuals: item.PaidUserLaucnhActual,
+            marketArea: item.market_area_group,
+            qq: item.PaidUserLaucnhQQTY,
+            qrf: item.PaidUserLaucnhTarget,
+            qrfDiff: item.PaidUserLaucnhVsQRFDiff,
+            type: item.subscription_offering,
+            vsQrf: item.PaidUserLaucnhVsQrf,
+            ww: item.PaidUserLaucnhWW
+        }
         let wk0 = {
             index: i,
             actuals: item.Week00WAUActual,
@@ -7434,18 +7468,19 @@ export function processUseSubscriptionQTDData(data, newState) {
         }
         let wk0Week = {
             index: i,
-            actuals: 0,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.Week00WAUActual,
+            marketArea: item.market_area_group,
+            qq: item.Week00WAUQQTY,
+            qrf: item.Week00WAUTarget,
+            qrfDiff: item.Week00WAUVsQRFDiff,
             type: item.subscription_offering,
-            vsQrf: 0,
-            yy: item.Week00WAUWW
+            vsQrf: item.Week00WAUVsQrf,
+            ww: item.Week00WAUWW
         }
-
         let wk4 = {
             index: i,
             actuals: item.Week04WAUActual,
+            marketArea: item.market_area_group,
             qq: item.Week04WAUQQTY,
             qrf: item.Week04WAUTarget,
             qrfDiff: item.Week04WAUVsQRFDiff,
@@ -7455,13 +7490,14 @@ export function processUseSubscriptionQTDData(data, newState) {
         }
         let wk4Week = {
             index: i,
-            actuals: 0,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.Week04WAUActual,
+            marketArea: item.market_area_group,
+            qq: item.Week04WAUQQTY,
+            qrf: item.Week04WAUTarget,
+            qrfDiff: item.Week04WAUVsQRFDiff,
             type: item.subscription_offering,
-            vsQrf: 0,
-            yy: item.Week04WAUWW
+            vsQrf: item.Week04WAUVsQrf,
+            ww: item.Week04WAUWW
         }
         item1.push(ei);
         item1Week.push(eiWeek);
@@ -7521,26 +7557,30 @@ export function processUseSegmentQTDData(data, newState) {
         let ei = {
             index: i,
             actuals: item.CEIActual,
+            marketArea: item.market_area_group,
             qq: item.CEIQQTY,
             qrf: item.CEITarget,
             qrfDiff: item.CEIVsQRFDiff,
             type: item.segment_pivot,
             vsQrf: item.CEIVsQrf,
             yy: item.CEIYY
-        };
+        }
         let eiWeek = {
             index: i,
-            actuals: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.CEIActual,
+            marketArea: item.market_area_group,
+            qq: item.CEIQQTY,
+            qrf: item.CEITarget,
+            qrfDiff: item.CEIVsQRFDiff,
             type: item.segment_pivot,
-            vsQrf: 0,
+            vsQrf: item.CEIVsQrf,
             ww: item.CEIWW
-        };
+        }
 
         let pum = {
             index: i,
             actuals: item.PaidMAUActual,
+            marketArea: item.market_area_group,
             qq: item.PaidMAUQQTY,
             qrf: item.PaidMAUTarget,
             qrfDiff: item.PaidMAUVsQRFDiff,
@@ -7550,18 +7590,20 @@ export function processUseSegmentQTDData(data, newState) {
         }
         let pumWeek = {
             index: i,
-            actuals: 0,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.PaidMAUActual,
+            marketArea: item.market_area_group,
+            qq: item.PaidMAUQQTY,
+            qrf: item.PaidMAUTarget,
+            qrfDiff: item.PaidMAUVsQRFDiff,
             type: item.segment_pivot,
-            vsQrf: 0,
-            yy: item.PaidMAUWW
+            vsQrf: item.PaidMAUVsQrf,
+            ww: item.PaidMAUWW
         }
 
         let rum = {
             index: i,
             actuals: item.RepeatMAUActual,
+            marketArea: item.market_area_group,
             qq: item.RepeatMAUQQTY,
             qrf: item.RepeatMAUTarget,
             qrfDiff: item.RepeatMAUVsQRFDiff,
@@ -7571,18 +7613,20 @@ export function processUseSegmentQTDData(data, newState) {
         }
         let rumWeek = {
             index: i,
-            actuals: 0,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.RepeatMAUActual,
+            marketArea: item.market_area_group,
+            qq: item.RepeatMAUQQTY,
+            qrf: item.RepeatMAUTarget,
+            qrfDiff: item.RepeatMAUVsQRFDiff,
             type: item.segment_pivot,
-            vsQrf: 0,
-            yy: item.RepeatMAUWW
+            vsQrf: item.RepeatMAUVsQrf,
+            ww: item.RepeatMAUWW
         }
 
         let pus = {
             index: i,
             actuals: item.PaidUserDownloadActual,
+            marketArea: item.market_area_group,
             qq: item.PaidUserDownloadQQTY,
             qrf: item.PaidUserDownloadTarget,
             qrfDiff: item.PaidUserDownloadVsQRFDiff,
@@ -7592,13 +7636,14 @@ export function processUseSegmentQTDData(data, newState) {
         }
         let pusWeek = {
             index: i,
-            actuals: 0,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.PaidUserDownloadActual,
+            marketArea: item.market_area_group,
+            qq: item.PaidUserDownloadQQTY,
+            qrf: item.PaidUserDownloadTarget,
+            qrfDiff: item.PaidUserDownloadVsQRFDiff,
             type: item.segment_pivot,
-            vsQrf: 0,
-            yy: item.PaidUserDownloadWW
+            vsQrf: item.PaidUserDownloadVsQrf,
+            ww: item.PaidUserDownloadWW
         }
         let pusl = {
             index: i,
@@ -7611,17 +7656,18 @@ export function processUseSegmentQTDData(data, newState) {
             vsQrf: item.PaidUserLaucnhVsQrf,
             yy: item.PaidUserLaucnhYY
         }
-       let  puslWeek = {
+
+        let puslWeek = {
             index: i,
-            actuals: 0,
+            actuals: item.PaidUserLaucnhActual,
             marketArea: item.market_area_group,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            qq: item.PaidUserLaucnhQQTY,
+            qrf: item.PaidUserLaucnhTarget,
+            qrfDiff: item.PaidUserLaucnhVsQRFDiff,
             type: item.segment_pivot,
-            vsQrf: 0,
-            yy: item.PaidUserLaucnhWW
-        };
+            vsQrf: item.PaidUserLaucnhVsQrf,
+            ww: item.PaidUserLaucnhWW
+        }
         let wk0 = {
             index: i,
             actuals: item.Week00WAUActual,
@@ -7635,18 +7681,19 @@ export function processUseSegmentQTDData(data, newState) {
         }
         let wk0Week = {
             index: i,
-            actuals: 0,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.Week00WAUActual,
+            marketArea: item.market_area_group,
+            qq: item.Week00WAUQQTY,
+            qrf: item.Week00WAUTarget,
+            qrfDiff: item.Week00WAUVsQRFDiff,
             type: item.segment_pivot,
-            vsQrf: 0,
-            yy: item.Week00WAUWW
+            vsQrf: item.Week00WAUVsQrf,
+            ww: item.Week00WAUWW
         }
-
         let wk4 = {
             index: i,
             actuals: item.Week04WAUActual,
+            marketArea: item.market_area_group,
             qq: item.Week04WAUQQTY,
             qrf: item.Week04WAUTarget,
             qrfDiff: item.Week04WAUVsQRFDiff,
@@ -7656,13 +7703,14 @@ export function processUseSegmentQTDData(data, newState) {
         }
         let wk4Week = {
             index: i,
-            actuals: 0,
-            qq: 0,
-            qrf: 0,
-            qrfDiff: 0,
+            actuals: item.Week04WAUActual,
+            marketArea: item.market_area_group,
+            qq: item.Week04WAUQQTY,
+            qrf: item.Week04WAUTarget,
+            qrfDiff: item.Week04WAUVsQRFDiff,
             type: item.segment_pivot,
-            vsQrf: 0,
-            yy: item.Week04WAUWW
+            vsQrf: item.Week04WAUVsQrf,
+            ww: item.Week04WAUWW
         }
         item1.push(ei);
         item1Week.push(eiWeek);
@@ -8680,27 +8728,27 @@ export function processRenewGeoQTDData(data, newState, Reseller, Etail) {
 
         let eotItem = {
             index: i,
-            actuals: reseller.EOTActual,
+            actuals: reseller.EOTRateActuals,
             marketArea: reseller.market_area_group,
-            qq: reseller.EOTQQTY,
-            qrf: reseller.EOTTarget,
-            qrfDiff: reseller.EOTvsQrfDiff,
+            qq: reseller.EOTRateQQTY,
+            qrf: reseller.EOTRateTarget,
+            qrfDiff: reseller.EOTRateVsQrfDiff,
             type: reseller.geo_code,
             units: reseller.CancelUnitsActual,
-            vsQrf: reseller.EOTVsQrf,
-            yy: reseller.EOTYY
+            vsQrf: reseller.EOTRatevsQrf,
+            yy: reseller.EOTRateYY
         }
         eot.push(eotItem);
 
         let eotWeekItem = {
             index: i,
-            actuals: reseller.EOTCW,
+            actuals: reseller.EOTRateCW,
             marketArea: reseller.market_area_group,
-            qrf: reseller.EOTTargetCW,
-            qrfDiff: reseller.EOTCWVsQrfDiff,
+            qrf: reseller.EOTRateTargetCW,
+            qrfDiff: reseller.EOTRateCWVsQrfDiff,
             type: reseller.geo_code,
-            vsQrf: reseller.EOTCWVsQrf,
-            ww: reseller.EOTWW
+            vsQrf: reseller.EOTRateCWVsQrf,
+            ww: reseller.EOTRateWW
         }
         eotWeek.push(eotWeekItem);
 
@@ -8756,7 +8804,6 @@ export function processRenewMarketQTDData(data, newState, Reseller, Etail) {
         qtrPf = [], qtrPfWeek = [],
         eot = [], eotWeek = [],
         qtrFinEtail = [], qtrFinEtailWeek = []
-
 
     for (let i = 0; i < data.length; i++) {
         let adobeData = data[i],
@@ -8849,28 +8896,30 @@ export function processRenewMarketQTDData(data, newState, Reseller, Etail) {
 
 
 
-        // TODO: Use correct fields for EOT
+      
         let eotItem = {
             index: i,
-            actuals: reseller.EOTActual,
-            qq: reseller.EOTQQTY,
-            qrf: reseller.EOTTarget,
-            qrfDiff: reseller.EOTvsQrfDiff,
+            actuals: reseller.EOTRateActuals,
+            marketArea: reseller.market_area_group,
+            qq: reseller.EOTRateQQTY,
+            qrf: reseller.EOTRateTarget,
+            qrfDiff: reseller.EOTRateVsQrfDiff,
             type: reseller.market_area_code,
             units: reseller.CancelUnitsActual,
-            vsQrf: reseller.EOTVsQrf,
-            yy: reseller.EOTYY
+            vsQrf: reseller.EOTRatevsQrf,
+            yy: reseller.EOTRateYY
         }
         eot.push(eotItem);
 
         let eotWeekItem = {
             index: i,
-            actuals: reseller.EOTCW,
-            qrf: reseller.EOTTargetCW,
-            qrfDiff: reseller.EOTCWVsQrfDiff,
+            actuals: reseller.EOTRateCW,
+            marketArea: reseller.market_area_group,
+            qrf: reseller.EOTRateTargetCW,
+            qrfDiff: reseller.EOTRateCWVsQrfDiff,
             type: reseller.market_area_code,
-            vsQrf: reseller.EOTCWVsQrf,
-            ww: reseller.EOTWW
+            vsQrf: reseller.EOTRateCWVsQrf,
+            ww: reseller.EOTRateWW
         }
         eotWeek.push(eotWeekItem);
 
@@ -8912,6 +8961,7 @@ export function processRenewMarketQTDData(data, newState, Reseller, Etail) {
 
 
     }
+    
     newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.market.qtd = qtrFin;
     newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.market.week = qtrFinWeek;
     newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.market.qtd = qtrUi;
@@ -8923,7 +8973,8 @@ export function processRenewMarketQTDData(data, newState, Reseller, Etail) {
     newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.market.qtd = qtrFinEtail;
     newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.market.week = qtrFinEtailWeek;
 }
-export function processRenewProductQTDData(data, newState, Reseller, Etail) {
+export function processRenewProductQTDData(data, newState, Etail) {
+    console.log('Processing Product Renew QTD: ', data, Etail)
     let qtrFin = [], qtrFinWeek = [],
         qtrUi = [], qtrUiWeek = [],
         qtrPf = [], qtrPfWeek = [],
@@ -8932,9 +8983,7 @@ export function processRenewProductQTDData(data, newState, Reseller, Etail) {
 
 
     for (let i = 0; i < data.length; i++) {
-        let adobeData = data[i],
-            reseller = Reseller[i],
-            etail = Etail[i];
+        let adobeData = data[i];
 
         let finAdobe = {
             index: i,
@@ -9009,30 +9058,13 @@ export function processRenewProductQTDData(data, newState, Reseller, Etail) {
         }
         qtrPfWeek.push(pfWeek);
 
-        // TODO: Use correct fields for EOT
-        let eotItem = {
-            index: i,
-            actuals: reseller.EOTActual,
-            qq: reseller.EOTQQTY,
-            qrf: reseller.EOTTarget,
-            qrfDiff: reseller.EOTvsQrfDiff,
-            type: reseller.product_category,
-            units: reseller.CancelUnitsActual,
-            vsQrf: reseller.EOTVsQrf,
-            yy: reseller.EOTYY
-        }
-        eot.push(eotItem);
 
-        let eotWeekItem = {
-            index: i,
-            actuals: reseller.EOTCW,
-            qrf: reseller.EOTTargetCW,
-            qrfDiff: reseller.EOTCWVsQrfDiff,
-            type: reseller.product_category,
-            vsQrf: reseller.EOTCWVsQrf,
-            ww: reseller.EOTWW
-        }
-        eotWeek.push(eotWeekItem);
+
+
+    }
+    for (let i = 0; i < Etail.length; i++) {
+        let
+            etail = Etail[i];
 
 
 
@@ -9062,17 +9094,16 @@ export function processRenewProductQTDData(data, newState, Reseller, Etail) {
         }
         qtrFinEtailWeek.push(finEtailWeek);
     }
-
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.geo.qtd = qtrFin;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.geo.week = qtrFinWeek;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.geo.qtd = qtrUi;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.geo.week = qtrUiWeek;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.geo.qtd = qtrPf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.geo.week = qtrPfWeek;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.geo.qtd = eot;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.geo.week = eotWeek;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.geo.qtd = qtrFinEtail;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.geo.week = qtrFinEtailWeek;
+    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.product.qtd = qtrFin;
+    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.product.week = qtrFinWeek;
+    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.product.qtd = qtrUi;
+    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.product.week = qtrUiWeek;
+    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.product.qtd = qtrPf;
+    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.product.week = qtrPfWeek;
+    // newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.product.qtd = eot;
+    // newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.product.week = eotWeek;
+    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.product.qtd = qtrFinEtail;
+    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.product.week = qtrFinEtailWeek;
 }
 export function processRenewSegmentQTDData(data, newState, Reseller, Etail) {
     let qtrFin = [], qtrFinWeek = [],
@@ -9166,27 +9197,30 @@ export function processRenewSegmentQTDData(data, newState, Reseller, Etail) {
         let reseller = Reseller[i];
 
         // TODO: Use correct fields for EOT
+       
         let eotItem = {
             index: i,
-            actuals: reseller.EOTActual,
-            qq: reseller.EOTQQTY,
-            qrf: reseller.EOTTarget,
-            qrfDiff: reseller.EOTvsQrfDiff,
+            actuals: reseller.EOTRateActuals,
+            marketArea: reseller.market_area_group,
+            qq: reseller.EOTRateQQTY,
+            qrf: reseller.EOTRateTarget,
+            qrfDiff: reseller.EOTRateVsQrfDiff,
             type: reseller.segment_pivot,
             units: reseller.CancelUnitsActual,
-            vsQrf: reseller.EOTVsQrf,
-            yy: reseller.EOTYY
+            vsQrf: reseller.EOTRatevsQrf,
+            yy: reseller.EOTRateYY
         }
         eot.push(eotItem);
 
         let eotWeekItem = {
             index: i,
-            actuals: reseller.EOTCW,
-            qrf: reseller.EOTTargetCW,
-            qrfDiff: reseller.EOTCWVsQrfDiff,
+            actuals: reseller.EOTRateCW,
+            marketArea: reseller.market_area_group,
+            qrf: reseller.EOTRateTargetCW,
+            qrfDiff: reseller.EOTRateCWVsQrfDiff,
             type: reseller.segment_pivot,
-            vsQrf: reseller.EOTCWVsQrf,
-            ww: reseller.EOTWW
+            vsQrf: reseller.EOTRateCWVsQrf,
+            ww: reseller.EOTRateWW
         }
         eotWeek.push(eotWeekItem);
 

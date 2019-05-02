@@ -95,19 +95,16 @@ export default function (state = {
     switch (action.type) {
         case SUBMIT_FILTERS:
             copyOfState = JSON.parse(JSON.stringify(state));
-            console.log('FILTERS', action.payload);
             copyOfState.combined.valueFilters = [];
             // For each key in action . payload
             // goes,market,product,quarter,route,segment,subscription
             Object.keys(action.payload).forEach(item => {
                 copyOfState[item].valueFilters = action.payload[item];
-                // console.log(copyOfState[item], action.payload[item]);
                 copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters, ...action.payload[item]];
             });
             //If the length of the arrays vary, the user submitted a new filter
             if (copyOfState.combined.valueFilters.length !== state.combined.valueFilters.length) {
                 //then return the newest state
-                console.log('New Filter Submitted',copyOfState);
                 return { ...copyOfState, isDefaultFilters: false, globalFiltersSubmitted: true };
             } else { //The length of the arrays are the same
                 let lengthChecker = [];
@@ -117,12 +114,10 @@ export default function (state = {
                         return filter.index === item.index}))
                 })
 
-                console.log(lengthChecker);
                 let foundNewFilters = _.findIndex(lengthChecker, (item => {
                     return item === undefined;
                 }))
 
-                console.log(foundNewFilters);
                 if (foundNewFilters !== -1) {
                     return { ...copyOfState,isDefaultFilters: false, }
                 }
@@ -130,19 +125,16 @@ export default function (state = {
             }
             case SUBMIT_SUB_FILTERS:
             copyOfState = JSON.parse(JSON.stringify(state));
-            console.log('FILTERS', action.payload);
             copyOfState.combined.valueFilters = [];
             // For each key in action . payload
             // goes,market,product,quarter,route,segment,subscription
             Object.keys(action.payload).forEach(item => {
                 copyOfState[item].valueFilters = action.payload[item];
-                // console.log(copyOfState[item], action.payload[item]);
                 copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters, ...action.payload[item]];
             });
             //If the length of the arrays vary, the user submitted a new filter
             if (copyOfState.combined.valueFilters.length !== state.combined.valueFilters.length) {
                 //then return the newest state
-                console.log('New Filter Submitted',copyOfState);
                 return { ...copyOfState,isDefaultFilters: false, subFiltersSubmitted: true };
             } else { //The length of the arrays are the same
                 let lengthChecker = [];
@@ -152,12 +144,10 @@ export default function (state = {
                         return filter.index === item.index}))
                 })
 
-                console.log(lengthChecker);
                 let foundNewFilters = _.findIndex(lengthChecker, (item => {
                     return item === undefined;
                 }))
 
-                console.log(foundNewFilters);
                 if (foundNewFilters !== -1) {
                     return { ...copyOfState,isDefaultFilters: false }
                 }
@@ -174,24 +164,18 @@ export default function (state = {
             copyOfState.visits.valueFilters.push({ index: 114, category: VISITS, value: 'All Visits' });
             copyOfState.channelMU.valueFilters.push({ index: 213, category: CHANNELMU, value: 'ALL' });
             copyOfState.nonDMSegment.valueFilters.push(
-                { index: 228, category: NONDMSEGMENT, value: 'ACROBAT' },
                 { index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
                 { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
                 { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
-                { index: 232, category: NONDMSEGMENT, value: 'DC' },
                 { index: 233, category: NONDMSEGMENT, value: 'HED' },
+                { index: 232, category: NONDMSEGMENT, value: 'K12+EEA' },
                 { index: 234, category: NONDMSEGMENT, value: 'INDIVIDUAL' },
-                { index: 235, category: NONDMSEGMENT, value: 'K12+EEA' },
                 { index: 236, category: NONDMSEGMENT, value: 'OTHER' },
                 { index: 237, category: NONDMSEGMENT, value: 'PHOTOGRAPHY' },
-                { index: 238, category: NONDMSEGMENT, value: 'SPARK' },
                 { index: 239, category: NONDMSEGMENT, value: 'STOCK' },
                 { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
                 { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
-                { index: 242, category: NONDMSEGMENT, value: 'UNGROUPED' },
                 { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },
-                { index: 244, category: NONDMSEGMENT, value: 'WINBACK' },
-                { index: 245, category: NONDMSEGMENT, value: 'XD' },
                 );
 
 
@@ -225,7 +209,6 @@ export default function (state = {
             let chanPmFilters = action.payload[20].data
             let nonDMFilters = action.payload[21].data
             let pvw = action.payload[22].data
-            console.log(action.payload);
 
 
             let newgeotate = processDropDownListFilterValue(GEO, geoFilter);
@@ -356,7 +339,6 @@ export default function (state = {
                     valueFilters: []
                 }
             }
-            // console.log(obj);
             return {...newState,...obj, isDefaultFilters: true, filtersAreLoaded: true};
 
         case ADD_MULTI_FILTER:
@@ -364,7 +346,6 @@ export default function (state = {
             cat = action.payload.category;
             copyOfState.combined.valueFilters.push(action.payload);
 
-            // console.log(copyOfState);
             switch (cat) {
                 case GEO:
                     copyOfState.geo.valueFilters = action.payload.quarter;
@@ -455,7 +436,21 @@ export default function (state = {
             copyOfState.visits.valueFilters = [];
             copyOfState.lastTouchChannel.valueFilters = [];
             copyOfState.websegment.valueFilters = [];
-
+            copyOfState.nonDMSegment.valueFilters.push([]);
+            copyOfState.nonDMSegment.valueFilters.push(
+                { index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
+                { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
+                { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
+                { index: 233, category: NONDMSEGMENT, value: 'HED' },
+                { index: 232, category: NONDMSEGMENT, value: 'K12+EEA' },
+                { index: 234, category: NONDMSEGMENT, value: 'INDIVIDUAL' },
+                { index: 236, category: NONDMSEGMENT, value: 'OTHER' },
+                { index: 237, category: NONDMSEGMENT, value: 'PHOTOGRAPHY' },
+                { index: 239, category: NONDMSEGMENT, value: 'STOCK' },
+                { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
+                { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
+                { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },
+                );
             
             copyOfState.websegment.valueFilters.push({ index: 187, category: WEBSEGMENT, value: 'DIGITAL MEDIA' });
             copyOfState.lastTouchChannel.valueFilters.push({ index: 129, category: LTC, value: 'ALL' });
@@ -465,7 +460,6 @@ export default function (state = {
             copyOfState.combined.valueFilters = [/* { index: 211, category: "quarter", value: defaultQuarter }, { index: 209, category: "segment", value: defaultSegment } */];
             Object.keys(copyOfState).forEach(item => {
                 if (item !== 'combined') {
-                    // console.log(copyOfState[item])
                     if(copyOfState[item].valueFilters){
                         if(Array.isArray(copyOfState[item].valueFilters)){
                             if (copyOfState[item].valueFilters.length !== 0) {

@@ -138,9 +138,9 @@ class KendoMultiChart extends Component {
             // console.log('DEBUG', this.props.activeSecondary);
             const activeSecondary = this.props.activeSecondary;
             const { points } = props;
-            let bgColor = ( (points) ? (points[0].value - points[1].value) > 0 ? `${this.getColor(activeSecondary, 'green', 'bg')}` : `${this.getColor(activeSecondary, 'red', 'bg')}` : '');
-            let textColor = ( (points) ? (points[0].value - points[1].value) > 0 ? `${this.getColor(activeSecondary, 'green', 'txt')}` : `${this.getColor(activeSecondary, 'red', 'txt')}` : '');
-            let borderColor = ( (points) ? (points[0].value - points[1].value) > 0 ?`${this.getColor(activeSecondary, 'green', 'border')}` :`${this.getColor(activeSecondary, 'red', 'border')}` : '');
+            let bgColor = ( (points[0] && points[1]) ? (points[0].value - points[1].value) > 0 ? `${this.getColor(activeSecondary, 'green', 'bg')}` : `${this.getColor(activeSecondary, 'red', 'bg')}` : '');
+            let textColor = ( (points[0] && points[1]) ? (points[0].value - points[1].value) > 0 ? `${this.getColor(activeSecondary, 'green', 'txt')}` : `${this.getColor(activeSecondary, 'red', 'txt')}` : '');
+            let borderColor = ( (points[0] && points[1]) ? (points[0].value - points[1].value) > 0 ?`${this.getColor(activeSecondary, 'green', 'border')}` :`${this.getColor(activeSecondary, 'red', 'border')}` : '');
             const title = props.categoryText;
 
             if (this.props.multichartMetric === true) {

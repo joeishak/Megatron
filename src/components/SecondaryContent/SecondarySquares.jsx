@@ -58,9 +58,9 @@ class SecondarySquares extends Component {
   getTitlePill(kpi) {
     switch (kpi) {
       case 34:
-        return <span style={{marginLeft: '2px', marginBottom: '2px', fontSize: '10px !important'}} className="badge badge-light">Reseller</span>;
+        return <span style={{'margin-left': '2px', marginBottom: '2px', fontSize: '10px !important'}} className="badge badge-light">Reseller</span>;
       case 35:
-        return <span style={{marginLeft: '2px', marginBottom: '2px'}} className="badge badge-light">E&R</span>
+        return <span style={{'margin-left': '2px', marginBottom: '2px'}} className="badge badge-light">E&R</span>
     }
   }
 

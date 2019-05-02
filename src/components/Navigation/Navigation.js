@@ -146,6 +146,7 @@ class Navigation extends Component {
           updateCommentsNav={this.updateCommentsNav}
           onFilterToggled={(e) => { this.onFilterToggled(e) }}
           onFeedbackClick={ (e) => this.props.onFeedbackChange(e) }
+          currentRefreshData = {this.props.currentRefreshData}
         />
       </Navbar>
     );
@@ -158,7 +159,8 @@ function maptStateToProps(state) {
     commentBoxIsOpen: state.commentBoxIsOpen,
     toggleCommentaryOn: state.toggleCommentaryBox,
     user: state.user,
-    deviceType: state.appSettings.deviceType
+    deviceType: state.appSettings.deviceType,
+    currentRefreshData: state.currentRefreshDates,
   };
 }
 

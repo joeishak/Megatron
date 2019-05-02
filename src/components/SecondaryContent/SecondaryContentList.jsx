@@ -79,13 +79,13 @@ class SecondaryContentList extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     let copy = Object.assign([], this.props.data);
-      // if(this.props.activeSecondary !== prevProps.activeSecondary){
-      //     this.setState({isLoading: true},()=>{
-      //         setTimeout(()=>{
-      //             this.setState({isLoading:false})
-      //         },.001)
-      //     });
-      // }
+    // if(this.props.activeSecondary !== prevProps.activeSecondary){
+    //     this.setState({isLoading: true},()=>{
+    //         setTimeout(()=>{
+    //             this.setState({isLoading:false})
+    //         },.001)
+    //     });
+    // }
 
     // if (utils.includes(this.props.deviceType, 'mobile') ||
     //   utils.includes(this.props.deviceType, 'tablet')) {
@@ -113,7 +113,7 @@ class SecondaryContentList extends Component {
 
     //   }
     // }
-  
+
 
   }
   isTouchDevice() {
@@ -181,12 +181,12 @@ class SecondaryContentList extends Component {
   };
 
   onSecondaryCardClicked = (e, index) => {
-    console.log('Secondary Card Clicked',index);
+    console.log('Secondary Card Clicked', index);
     this.setState({ detailsClassState: 'slide-in-bottom' });
     this.setState({ clicked: true });
     this.setState({ sortedData: [] })
-    this.props.onJourneyCardClicked(e,index);
-    
+    this.props.onJourneyCardClicked(e, index);
+
 
   }
 
@@ -197,10 +197,10 @@ class SecondaryContentList extends Component {
       this.setState({ detailsClassState: '' });
     }, 200);
     this.setState({ sortedData: this.props.data });
+    this.props.resetSecondaryList(this.props.activePrimary)
     // this.props.onJourneyCardClicked(e, this.props.activeJourneyCard);
 
   }
-
 
   render() {
     let isMobileAndTablet =
@@ -235,7 +235,7 @@ class SecondaryContentList extends Component {
           ? true
           : false;
         if (this.props.activePrimary === item.category) {
-   
+
 
           return (
             <SecondarySquares
@@ -246,7 +246,7 @@ class SecondaryContentList extends Component {
               item={item}
               // comments={this.props.commentsPackage}
               activeJourneyCard={isActive}
-              onSecondaryCardClicked={(e,index) => this.onSecondaryCardClicked(e, index)}
+              onSecondaryCardClicked={(e, index) => this.onSecondaryCardClicked(e, index)}
               onJourneyCardClicked={(e, index) => {
                 this.props.onJourneyCardClicked(e, index);
               }}
@@ -332,15 +332,15 @@ class SecondaryContentList extends Component {
         onTouchEnd={e => this.stopResize(e)}
         onMouseUp={e => this.stopResize(e)}
       >
-        {this.props.activePrimary === 5 && utils.includes(this.props.deviceType, 'laptop') ?
+        {this.props.activePrimary === 5 && ((this.props.mobileSecondaryIsActive && !this.state.clicked) || utils.includes(this.props.deviceType, 'laptop')) ?
+
           <span><div className="renew-overlay"><p className="renew-overlay-vertext">ADOBE.com Direct Sales</p></div>
-            <div className="renew-overlay-two"><p className="renew-overlay-vertext-two">Reseller and E-Tail / Retail</p></div></span> : null }
+            <div className="renew-overlay-two"><p className="renew-overlay-vertext-two">Reseller and E-Tail / Retail</p></div></span> : null}
 
-        {this.props.activePrimary === 4 && utils.includes(this.props.deviceType, 'laptop')?
-      <span><div className="use-overlay"><p className="use-overlay-vertext">Inactive Paid Users</p></div>
-      <div className="use-overlay-three"><p className="use-overlay-vertext-three">Engaged</p></div>
-        <div className="use-overlay-two"><p className="use-overlay-vertext-two">New Paid Users</p></div></span> : null}
-
+        {this.props.activePrimary === 4 && ((this.props.mobileSecondaryIsActive && !this.state.clicked) || utils.includes(this.props.deviceType, 'laptop')) ?
+          <span><div className="use-overlay"><p className="use-overlay-vertext">Inactive Paid Users</p></div>
+            <div className="use-overlay-three"><p className="use-overlay-vertext-three">Engaged</p></div>
+            <div className="use-overlay-two"><p className="use-overlay-vertext-two">New Paid Users</p></div></span> : null}
         {navigationTitle}
         {secondaryContentTop}
         {mobileBottom}

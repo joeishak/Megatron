@@ -16,6 +16,7 @@ import summaryDataReducer from 'reducers/summaryData.js';
 import commentsReducer from 'reducers/comments.js';
 import filtersReducer from 'reducers/filters.js';
 import feedbackDialogReducer from 'reducers/feedback.js';
+import currentRefreshDateReducer from 'reducers/currentRefreshDates.js';
 
 export default combineReducers({
     auth: authReducer,
@@ -34,5 +35,6 @@ export default combineReducers({
     summaryData: summaryDataReducer,
     filters: filtersReducer,
     commentsPackage: commentsReducer,
-    isFeedBackDialogOpen: feedbackDialogReducer
+    isFeedBackDialogOpen: feedbackDialogReducer,
+    currentRefreshDates: currentRefreshDateReducer
 });

@@ -530,7 +530,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.route, allFilters.routeTomarket);
-            filterParams[4].value = getParamValues(_activeParams.segment, allFilters.nonDMSegment);
+            filterParams[4].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[5].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             break;
         case 4:
@@ -538,7 +538,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             break;
         //Traffic
@@ -603,7 +603,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             break;
         // cancel Adobe / Etail 
@@ -611,7 +611,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
             break;
@@ -660,18 +660,26 @@ export function getParamValues(activeParams, allFilters) {
         // Add all the values from allFilters except for All Data to the Param Value
         paramValue = [];
         allFilters.forEach(item => {
-            if (item.value !== '#N/A') {
+            if (item.value !== '#N/A' && item.value !== 'K12+EEA') {
                 paramValue.push(item.value);
-            } else paramValue.push('%23N%2FA');
+            } else if(item.value ==='#N/A' ){
+                paramValue.push('%23N%2FA');
+            } else if(item.value === 'K12+EEA'){
+                paramValue.push('K12%2BEEA')
+            }
         })
         paramValue = convertFilterList(paramValue);
         return paramValue;
     } else {
         paramValue = [];
         activeParams.forEach(item => {
-            if (item.value !== '#N/A') {
+            if (item.value !== '#N/A' && item.value !== 'K12+EEA') {
                 paramValue.push(item.value);
-            } else paramValue.push('%23N%2FA');
+            } else if(item.value ==='#N/A' ){
+                paramValue.push('%23N%2FA');
+            } else if(item.value === 'K12+EEA'){
+                paramValue.push('K12%2BEEA')
+            }
         })
         paramValue = convertFilterList(paramValue);
         return paramValue;
@@ -791,10 +799,10 @@ export function initiateFilterDataRequests() {
     let promiseArr1 = Promise.all(responseArray);
     return promiseArr1;
 }
-
-//
+ //
 export function requestPrimaryData(allFilters, _parameters) {
     responseArray = [];
+    resetRenewParams();
 
     // filterParams[1].value = _parameters.product.length > 0 ? _parameters.product[0].value : allFilters.product;
     // filterParams[2].value = _parameters.geo.length > 0 ? _parameters.geo[0].value : allFilters.geo;
@@ -809,11 +817,14 @@ export function requestPrimaryData(allFilters, _parameters) {
     generateFilterParams(9, financeParams, allFilters, _parameters);
     generateFilterParams(8, uqfmParams, allFilters, _parameters);
     generateFilterParams(1, useParams, allFilters, _parameters);
-    generateFilterParams(3, renewParams, allFilters, _parameters);
+    generateFilterParams(4, renewParamsAdobeCom, allFilters, _parameters);
 
 
     //turn each list into a string
-
+    renewParamsAdobeCom.push(  {
+        prompt: 'routeFilters',
+        value: `'ADOBE.COM/CC.COM'`
+    });
     let params2 = tryParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
@@ -844,7 +855,7 @@ export function requestPrimaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-    let params11 = renewParams.reduce((prev, param) => {
+    let params11 = renewParamsAdobeCom.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
@@ -1684,8 +1695,12 @@ export function requestUseSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-
-    responseArray.push(useSecondary, useMultichart, useQTDTotals, useGeoQTD, useMarketQTD, useSegmentQTD, useSubsQTD);
+    const UseCumuMembers = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseCumuMembersActual + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    
+    responseArray.push(useSecondary, useMultichart, useQTDTotals, useGeoQTD, useMarketQTD, useSegmentQTD, useSubsQTD,UseCumuMembers);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
@@ -1725,7 +1740,7 @@ export function requestRenewCancelSecondaryData(allFilters, _parameters) {
     }, '');
 
     // Blank Renew Calls for Cancellations
- 
+    console.log('Renew Cancel All Routes PArams', params9);
     const financeSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params9 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -1892,10 +1907,10 @@ const renewEtailSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst
     headers: headers,
     responseType: 'text'
 });
-// const renewEtailSubsQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSubsOfferQTD + params5 + '&json=1', {
-//     headers: headers,
-//     responseType: 'text'
-// });
+const renewEtailSubsQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFProdQTD + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
 responseArray.push(renewEtailSecondary, renewEtailMultichart, renewEtailQTDTotals, renewEtailGeoQTD, renewEtailMarketQTD, renewEtailSegmentQTD);
 
 //Renew  RESELLER
@@ -1956,8 +1971,11 @@ const renewResellerSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infobu
     headers: headers,
     responseType: 'text'
 });
-
-responseArray.push(renewResellerSecondary, renewResellerMultichart, renewResellerQTDTotals, renewResellerGeoQTD, renewResellerMarketQTD, renewResellerSegmentQTD);
+const renewResellerProductQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFProdQTD + params8 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+responseArray.push(renewResellerSecondary, renewResellerMultichart, renewResellerQTDTotals, renewResellerGeoQTD, renewResellerMarketQTD, renewResellerSegmentQTD,renewEtailSubsQTD,renewResellerProductQTD);
     
     
 
@@ -2036,6 +2054,7 @@ export function requestRenewSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
+    console.log(params9);
     //All Routes
     const cancelSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params9 + '&json=1', {
         headers: headers,
@@ -2244,7 +2263,7 @@ export function filterPrimaryData(allFilters, _parameters) {
     generateFilterParams(9, financeParams, allFilters, _parameters);
     generateFilterParams(8, uqfmParams, allFilters, _parameters);
     generateFilterParams(1, useParams, allFilters, _parameters);
-    generateFilterParams(3, renewParams, allFilters, _parameters);
+    generateFilterParams(4, renewParamsAdobeCom, allFilters, _parameters);
 
 
     //turn each list into a string
@@ -2279,17 +2298,13 @@ export function filterPrimaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-    let params11 = renewParams.reduce((prev, param) => {
+    let params11 = renewParamsAdobeCom.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
 
-    // console.log(useParams, renewParams);
-    // //Primary 
-    console.log('Fetching Use', Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1');
-    console.log('Fetching Renew', Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.RenewUIPFPrimary + params11 + '&json=1');
-
+  
     const primaryFinancial = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetPrimary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -2409,35 +2424,7 @@ export function filterFinanceSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    // const financeUnitsMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.FinancialG8Units + params8 + '&json=1', {
-    //     headers: headers,
-    //     responseType: 'text'
-    // });
-    // const financeQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.FinancialG8QTD + params8 + '&json=1', {
-    //     headers: headers,
-    //     responseType: 'text'
-    // });
-    // const financeGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.FinancialG8GeoQtd + params8 + '&json=1', {
-    //     headers: headers,
-    //     responseType: 'text'
-    // });
-    // const financeMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.FinancialG8MarketQTD + params8 + '&json=1', {
-    //     headers: headers,
-    //     responseType: 'text'
-    // });
-    // const financeSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.FinancialG8SegmentQTD + params8 + '&json=1', {
-    //     headers: headers,
-    //     responseType: 'text'
-    // });
-    // const financeRouteQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.FinancialG8RouteQTD + params8 + '&json=1', {
-    //     headers: headers,
-    //     responseType: 'text'
-    // });
-    // const financeProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.financeXDCID + Infoburst.summaryQueryNames.FinancialG8ProductQTD + params8 + '&json=1', {
-    //     headers: headers,
-    //     responseType: 'text'
-    // });
-
+ 
     responseArray.push(financeSecondary, finance2Secondary);
     let promiseArr = Promise.all(responseArray);
 
@@ -3155,7 +3142,12 @@ export function filterUseSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    responseArray.push(useSecondary, useMultichart, useQTDTotals, useGeoQTD, useMarketQTD, useSegmentQTD, useSubsQTD);
+    const UseCumuMembers = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseCumuMembersActual + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    
+    responseArray.push(useSecondary, useMultichart, useQTDTotals, useGeoQTD, useMarketQTD, useSegmentQTD, useSubsQTD,UseCumuMembers);
 
     let promiseArr = Promise.all(responseArray);
 
@@ -4245,21 +4237,55 @@ export function getLabelColor(value, target, secondaryCardIndex) {
     return retColor;
 }
 
-export function getLabelColorPrimary(value, target, mobile) {
+export function getLabelColorPrimary(value, target, mobile, index) {
     console.log(mobile)
     let retColor = "";
-    if (target === 0) {
-        if (mobile === true) {
-            retColor = 'selectedMobileCardFontColorNeutral';
-
+    if(index!==5){
+        if (target === 0) {
+            if (mobile === true) {
+                retColor = 'selectedMobileCardFontColorNeutral';
+    
+            } else {
+                retColor = 'selectedCardFontColorNeutral';
+    
+            }
+        } else if (value >= target) {
+            retColor = 'selectedCardFontColorGreen';
         } else {
-            retColor = 'selectedCardFontColorNeutral';
-
+            retColor = 'selectedCardFontColorRed';
         }
-    } else if (value >= target) {
-        retColor = 'selectedCardFontColorGreen';
-    } else {
-        retColor = 'selectedCardFontColorRed';
+    } else{
+        if (target === 0) {
+            if (mobile === true) {
+                retColor = 'selectedMobileCardFontColorNeutral';
+    
+            } else {
+                retColor = 'selectedCardFontColorNeutral';
+    
+            }
+        } else if (value <= target) {
+            retColor = 'selectedCardFontColorGreen';
+        } else {
+            retColor = 'selectedCardFontColorRed';
+        }
     }
+   
     return retColor;
 }
+
+export function retrieveUpdatedAndQuarter(){
+    responseArray = [];
+
+
+
+  let updatedData =   axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.updateXDC + Infoburst.summaryQueryNames.UpdateAsOfDate + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    responseArray.push(updatedData);
+    promiseArr = Promise.all(responseArray);
+    return promiseArr;
+
+}
+

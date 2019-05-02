@@ -8,7 +8,7 @@ import feedbackIcon from "../../assets/images/feedback.png";
 import userIcon from "./user-icon.svg";
 
 const UserNav = ({ isLaptop, onDataPreferencesSelcted, logout, filterIcon,
-  toggleCommentaryOn, onFeedbackClick, onFilterToggled, username, updateCommentsNav }) => {
+  toggleCommentaryOn, onFeedbackClick, onFilterToggled, username, updateCommentsNav, currentRefreshData }) => {
 
   return (
     isLaptop === true ?
@@ -54,22 +54,35 @@ const UserNav = ({ isLaptop, onDataPreferencesSelcted, logout, filterIcon,
               />{" "}
             </div>
             <div className="flLeft">
-    
-                  <img
-                  alt=""
-                  className="feedbackIcon"
-                  src={feedbackIcon}
-                  onClick={onFeedbackClick}
-                />
-  
-            </div>
 
+              <img
+                alt=""
+                className="feedbackIcon"
+                src={feedbackIcon}
+                onClick={onFeedbackClick}
+              />
+
+            </div>
+            <div className="flLeft" style={{ paddingTop: '10px', paddingLeft: '10px' }}>
+
+              Updated On {currentRefreshData.updatedAsOf}
+              <div style={{ borderRadius: '50px', backgroundColor: '#3c3c3c', textAlign: 'center', color: 'white' }}>
+                {currentRefreshData.currentQuarterWeek}
+              </div>
+            </div>
           </div>
         </span>
-      </Navbar.Collapse> :
+      </Navbar.Collapse > :
 
       //Mobile View
       <div className="filterIconContainer">
+        <div className="flLeft" style={{ paddingTop: '10px', width:'100px', paddingLeft: '10px' }}>
+
+          <div style={{ borderRadius: '50px', backgroundColor: '#3c3c3c', textAlign: 'center',padding:'5px', color: 'white' }}>
+            {currentRefreshData.currentQuarterWeek}
+          </div>
+
+        </div>
         <img
           className="filterIcon"
           src={filterIcon}

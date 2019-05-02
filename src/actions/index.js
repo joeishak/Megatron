@@ -70,7 +70,8 @@ import {
     FETCH_COMMENTS,
     FETCH_COMMENTS_COUNT,
     DELETE_COMMENT,
-    ADD_FEEDBACK
+    ADD_FEEDBACK,
+    GET_UPDATED_AS_OF_DATE_AND_QUARTER,
 
 } from 'actions/types';
 import * as utils from '../utilities';
@@ -643,17 +644,17 @@ export function getFilteredRenewSecondaryData(filters) {
         quarter: Object.keys(filters.quarter.availableFilters).map(e => filters.quarter.availableFilters[e]),
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
-        // segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
-        product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         segment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
+        product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
+        nonDMSegment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e])
     }
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
         quarter: Object.keys(filters.quarter.valueFilters).map(e => filters.quarter.valueFilters[e]),
-        // segment: Object.keys(filters.segment.valueFilters).map(e => filters.segment.valueFilters[e]),
         segment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
+        nonDMSegment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
@@ -674,7 +675,7 @@ export function getFilteredRenewDetailsSecondaryData(filters) {
         quarter: Object.keys(filters.quarter.availableFilters).map(e => filters.quarter.availableFilters[e]),
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
-        segment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
+        nonDMSegment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
         // segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
@@ -683,7 +684,7 @@ export function getFilteredRenewDetailsSecondaryData(filters) {
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
         quarter: Object.keys(filters.quarter.valueFilters).map(e => filters.quarter.valueFilters[e]),
-        segment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
+        nonDMSegment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         // segment: Object.keys(filters.segment.valueFilters).map(e => filters.segment.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
@@ -706,8 +707,8 @@ export function getFilteredRenewCancelSecondaryData(filters) {
         quarter: Object.keys(filters.quarter.availableFilters).map(e => filters.quarter.availableFilters[e]),
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
+        nonDMSegment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
         segment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
-        // segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e])
@@ -715,9 +716,9 @@ export function getFilteredRenewCancelSecondaryData(filters) {
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
         quarter: Object.keys(filters.quarter.valueFilters).map(e => filters.quarter.valueFilters[e]),
-        segment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
+        nonDMSegment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
-        // segment: Object.keys(filters.segment.valueFilters).map(e => filters.segment.valueFilters[e]),
+        segment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
         route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
@@ -1192,7 +1193,7 @@ export function getRenewDetailsSecondaryData(filters) {
         quarter: Object.keys(filters.quarter.availableFilters).map(e => filters.quarter.availableFilters[e]),
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
-        segment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
+        nonDMSegment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
         // segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
@@ -1201,7 +1202,7 @@ export function getRenewDetailsSecondaryData(filters) {
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
         quarter: Object.keys(filters.quarter.valueFilters).map(e => filters.quarter.valueFilters[e]),
-        segment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
+        nonDMSegment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         // segment: Object.keys(filters.segment.valueFilters).map(e => filters.segment.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
@@ -1224,8 +1225,8 @@ export function getRenewCancelSecondaryData(filters) {
         quarter: Object.keys(filters.quarter.availableFilters).map(e => filters.quarter.availableFilters[e]),
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
+        nonDMSegment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
         segment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
-        // segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e])
@@ -1233,9 +1234,9 @@ export function getRenewCancelSecondaryData(filters) {
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
         quarter: Object.keys(filters.quarter.valueFilters).map(e => filters.quarter.valueFilters[e]),
-        segment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
+        nonDMSegment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
-        // segment: Object.keys(filters.segment.valueFilters).map(e => filters.segment.valueFilters[e]),
+        segment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
         route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
@@ -1256,8 +1257,8 @@ export function getRenewSecondaryData(filters) {
         quarter: Object.keys(filters.quarter.availableFilters).map(e => filters.quarter.availableFilters[e]),
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
+        nonDMSegment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
         segment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
-        // segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e])
@@ -1265,9 +1266,9 @@ export function getRenewSecondaryData(filters) {
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
         quarter: Object.keys(filters.quarter.valueFilters).map(e => filters.quarter.valueFilters[e]),
-        segment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
+        nonDMSegment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
-        // segment: Object.keys(filters.segment.valueFilters).map(e => filters.segment.valueFilters[e]),
+        segment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
         route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
@@ -1694,3 +1695,13 @@ export function isFetching(state) {
     }
 }
 
+
+
+export function getUpdatedAsOfDateAndQuarter() {
+
+    let response =  utils.retrieveUpdatedAndQuarter()
+    return {
+        type: GET_UPDATED_AS_OF_DATE_AND_QUARTER,
+        payload: response
+    }
+}

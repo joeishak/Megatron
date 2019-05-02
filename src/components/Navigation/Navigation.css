@@ -188,6 +188,7 @@ nav.navContainer.navbar.navbar-default{
 }
 
 .filterIconContainer {
+    
     float: right;
 }
 
@@ -222,6 +223,15 @@ nav.navContainer.navbar.navbar-default{
     padding-right: 10px;
     display: inline !important;
 }
+
+@media only screen and (max-width: 418px){
+    .navBrandLogo{
+        padding-left: 0px;
+        padding-right: 40px;
+        /* margin-top: 10px; */
+    }
+    }
+
 @media only screen and (min-width: 765px) {
     .fitlerIconMobile {
        display: none;

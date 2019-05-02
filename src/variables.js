@@ -4677,7 +4677,7 @@ export const SecondaryData = [
     {
         index: 7,
         category: 1,
-        header: '$PM Spend - Discover',
+        header: 'PM Spend - Discover',
         value: .746,
         target: .97766,
         comments: [
@@ -5100,7 +5100,7 @@ export const SecondaryData = [
                 }
             ]
         },
-        valueType: 'units'
+        valueType: 'currency'
     },
     {
         index: 8,
@@ -10617,7 +10617,7 @@ export const SecondaryData = [
     {
         index: 19,
         category: 3,
-        header: '$PM Spend - Buy',
+        header: 'PM Spend - Buy',
         value: 6800000,
         target: 19400000,
         comments: [
@@ -11038,7 +11038,7 @@ export const SecondaryData = [
                 }
             ]
         },
-        valueType: 'units'
+        valueType: 'currency'
 
     },
     {
@@ -15700,7 +15700,7 @@ export const SecondaryData = [
                 }
             ]
         },
-        valueType: 'units'
+        valueType: 'currency'
 
     },
     {
@@ -16227,7 +16227,7 @@ export const SecondaryData = [
                 }
             ]
         },
-        valueType: 'units'
+        valueType: 'currency'
     },
     {
         index: 30,

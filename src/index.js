@@ -32,15 +32,15 @@ ReactDOM.render(
 
 				<SecureRoute path="/summary" exact={true} component={Summary} />
 				<SecureRoute path="/" exact={true} component={Summary} />
-				{/* <Route path="/login" render={() => ( <Login baseUrl="https://dev-575609.oktapreview.com" />)}/> */}
-				<Route path="/login" render={() => (<Login baseUrl="https://adobe.okta.com" />)} />
+				<Route path="/login" render={() => ( <Login baseUrl="https://dev-575609.oktapreview.com" />)}/>
+				{/* <Route path="/login" render={() => (<Login baseUrl="https://adobe.okta.com" />)} /> */}
 				{/* <Route path="" exact={true} component={App} /> */}
 				{/* IBAPPS*/}
 				{/* <Route path={`https://rtb-dev.corp.adobe.com:8551/apps/rtbcallback/index.html`} component={ImplicitCallback} /> */}
-				{/*  IIS*/}
-				<Route path={`${process.env.PUBLIC_URL}`} component={ImplicitCallback} />
+				 {/* IIS */}
+				{/* <Route path={`${process.env.PUBLIC_URL}`} component={ImplicitCallback} /> */}
 				{/* // Localhost */}
-				{/* <Route  path="/implicit/callback" component={ImplicitCallback} /> */}
+				<Route  path="/implicit/callback" component={ImplicitCallback} />
 			 
 			</Security>
 		</Router>

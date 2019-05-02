@@ -13,35 +13,66 @@ class PrimarySquare extends Component {
   // Need to Refactor
   getColor(value, target, type, header) {
     // console.log('value', value);
-    // console.log('target', target);
     let retColor = "";
-    if (type === "financial") {
-      if (target === 0) {
-        retColor = 'selectedCardHeaderNeutral'
-      } else if (value >= target) {
-        retColor = "selectedCardHeaderGreen";
-      } else {
-        retColor = "selectedCardHeaderRed";
+    console.log('Renew Primary Color',this.props.item.index);
+    if(this.props.item.index !==5){
+      if (type === "financial") {
+        if (target === 0) {
+          retColor = 'selectedCardHeaderNeutral'
+        } else if (value >= target) {
+          retColor = "selectedCardHeaderGreen";
+        } else {
+          retColor = "selectedCardHeaderRed";
+        }
+      } else if (type === "journey" && header === false) {
+        if (value >= target) {
+          retColor = "journeyBoxAlertGreen";
+        } else {
+          retColor = "journeyBoxAlert";
+        }
+      } else if (type === "journey" && header !== false) {
+        if (value >= target) {
+          retColor = "journeyHeaderAlertGreen";
+        } else {
+          retColor = "journeyHeaderAlert";
+        }
+      } else if (type === "donut") {
+        if (value < target) {
+          retColor = "#FF0000";
+        } else {
+          retColor = "#0DB16E";
+        }
       }
-    } else if (type === "journey" && header === false) {
-      if (value >= target) {
-        retColor = "journeyBoxAlertGreen";
-      } else {
-        retColor = "journeyBoxAlert";
-      }
-    } else if (type === "journey" && header !== false) {
-      if (value >= target) {
-        retColor = "journeyHeaderAlertGreen";
-      } else {
-        retColor = "journeyHeaderAlert";
-      }
-    } else if (type === "donut") {
-      if (value < target) {
-        retColor = "#FF0000";
-      } else {
-        retColor = "#0DB16E";
+    } else{
+      if (type === "financial") {
+        if (target === 0) {
+          retColor = 'selectedCardHeaderNeutral'
+        } else if (value <= target) {
+          retColor = "selectedCardHeaderGreen";
+        } else {
+          retColor = "selectedCardHeaderRed";
+        }
+      } else if (type === "journey" && header === false) {
+        if (value <= target) {
+          retColor = "journeyBoxAlertGreen";
+        } else {
+          retColor = "journeyBoxAlert";
+        }
+      } else if (type === "journey" && header !== false) {
+        if (value <= target) {
+          retColor = "journeyHeaderAlertGreen";
+        } else {
+          retColor = "journeyHeaderAlert";
+        }
+      } else if (type === "donut") {
+        if (value > target) {
+          retColor = "#FF0000";
+        } else {
+          retColor = "#0DB16E";
+        }
       }
     }
+   
 
     return retColor;
   }
@@ -187,7 +218,7 @@ class PrimarySquare extends Component {
                   {/* Formatted Value $###.## (M / %)*/}
                   <span
                     className={`${responsiveValueText}  ${
-                      utils.getLabelColorPrimary(this.props.item.value, this.props.item.target,(isMobile|| isTablet))
+                      utils.getLabelColorPrimary(this.props.item.value, this.props.item.target,(isMobile|| isTablet), this.props.item.index)
                       // (this.props.item.value >= this.props.item.target) ? "selectedCardFontColorGreen": "selectedCardFontColorRed"
                       }`}
                   >
@@ -198,15 +229,25 @@ class PrimarySquare extends Component {
                   </span>
                   {/* Bullet Chart */}
                   <span className={responsiveBullet}>
-                    <KendoBulletChart
+                  {(this.props.item.index === 5)?  <KendoBulletChart
                       isMobileOrTablet={isMobileOrTablet}
                       width={160}
-                      values={[this.props.item.value, this.props.item.target, this.props.item.targetFQ]}
+                      values={[this.props.item.target, this.props.item.value, this.props.item.targetFQ]}
                       valueType={this.props.item.valueType}
                       color="white"
                       fqTarget={this.props.item.targetFQ}
                       key={this.props.item.index}
-                    />
+                    /> :
+                    <KendoBulletChart
+                    isMobileOrTablet={isMobileOrTablet}
+                    width={160}
+                    values={[this.props.item.value, this.props.item.target, this.props.item.targetFQ]}
+                    valueType={this.props.item.valueType}
+                    color="white"
+                    fqTarget={this.props.item.targetFQ}
+                    key={this.props.item.index}
+                  />}
+                   
                   </span>
                 </div>
               ) : (
@@ -216,7 +257,7 @@ class PrimarySquare extends Component {
                     </div>
                     <div
                       className={`${responsiveValueText}  ${
-                        (this.props.activeCard === 5) ? 'selectedCardFontColorGreen' : utils.getLabelColorPrimary(this.props.item.value, this.props.item.target,(isMobile|| isTablet))
+                        (this.props.activeCard === 5) ? 'selectedCardFontColorGreen' : utils.getLabelColorPrimary(this.props.item.value, this.props.item.target,(isMobile|| isTablet),this.props.item.index)
                         // this.props.item.value >= this.props.item.target
                         //   ? "selectedCardFontColorGreen"
                         //   : " selectedCardFontColorRed"
@@ -227,14 +268,24 @@ class PrimarySquare extends Component {
                     </div>
                     ( {(formattedQRF)} vs QRF)
                     <div>
-                      <KendoBulletChart
-                        values={[this.props.item.value, this.props.item.target, this.props.item.targetFQ]}
-                        valueType={this.props.item.valueType}
-                        color="#3c3c3c"
-                        targetColor="black"
-                        fqTarget={this.props.item.targetFQ}
-                        key={this.props.item.index}
-                      />
+                    {(this.props.item.index === 5)?  <KendoBulletChart
+                      isMobileOrTablet={isMobileOrTablet}
+                      width={160}
+                      values={[this.props.item.target, this.props.item.value, this.props.item.targetFQ]}
+                      valueType={this.props.item.valueType}
+                      color="black"
+                      fqTarget={this.props.item.targetFQ}
+                      key={this.props.item.index}
+                    /> :
+                    <KendoBulletChart
+                    isMobileOrTablet={isMobileOrTablet}
+                    width={160}
+                    values={[this.props.item.value, this.props.item.target, this.props.item.targetFQ]}
+                    valueType={this.props.item.valueType}
+                    color="black"
+                    fqTarget={this.props.item.targetFQ}
+                    key={this.props.item.index}
+                  />}
                     </div>
                     {/* Formatted Target $###.## (M / %)*/}
                     <div className={responsiveTarget}>
