@@ -949,3 +949,163 @@
 		
 	}	
 }
+
+
+@media screen and (max-width:375px)
+{
+ 
+    .mobileSecondaryContent{
+        overflow: hidden;
+        padding-left: 20px;
+        
+    }   
+ 
+.renew-overlay {
+    height: 382px;
+    border: 2px solid #ffffff;
+    background-color: #3c3c3c;
+    position: absolute;
+    top: 140px;
+    left: 0;
+    z-index: 10;
+    width: 30px;
+}
+ 
+.renew-overlay-two {
+    height: 282px ; /*407px;*/
+    border: 2px solid #ffffff;
+    background-color: #3c3c3c;
+    position: absolute;
+    top: 520px;  /* 675px */
+    left: 0;
+    z-index: 10;
+    width: 30px;
+}
+.renew-overlay-vertext {
+    transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    top: 180px ;/*250px;*/
+    left: -100px;
+    width: 230px;
+}
+.renew-overlay-vertext-two {
+    transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    top: 130px ; /*185px; */
+    left: -100px;
+    width: 230px;
+}
+/*Use Overlay */
+.use-overlay {
+    height: 190px;
+    border: 2px solid #ffffff;
+    background-color: #3c3c3c;
+    position: absolute;
+    top:516px;
+    left: 0;
+    z-index: 10;
+    width: 30px;
+}
+.use-overlay-two {
+    height: 372px;
+    border: 2px solid #ffffff;
+    background-color: #3c3c3c;
+    position: absolute;
+    top: 52px;
+    left: 0;
+    z-index: 10;
+    width: 30px;
+}
+.use-overlay-three {
+    height: 96px;
+    border: 2px solid #ffffff;
+    background-color: #3c3c3c;
+    position: absolute;
+    top: 422px;
+    left: 0;
+    z-index: 10;
+    width: 30px;
+}
+ 
+.use-overlay-vertext {
+    transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    top: 80px;
+    left: -100px;
+    width: 230px;
+}
+ 
+.use-overlay-vertext-two {
+    transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    top: 185px;
+    left: -100px;
+    width: 230px;
+}
+.use-overlay-vertext-three {
+    transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    top: 40px;
+    left: -100px;
+    width: 230px;
+}
+.secondaryBoxHeaderTitle {
+	font-family: Ubuntu;
+	font-style: normal;
+	line-height: normal;
+	padding-top: 10px;
+	padding-left: 10px;
+	height: 100%;
+	width: 50% !important;
+	font-size: 1.2em;
+	float: left;
+	color: white;
+	white-space: nowrap;
+	overflow-x: scroll;
+}
+
+
+.mobileSecondaryBoxContentAmount {
+float: right;
+color: red;
+font-family: Ubuntu;
+font-style: normal;
+font-weight: bold;
+line-height: normal;
+font-size: 1.2em;
+margin-bottom: -20px;
+/* margin-right: 20px; */
+padding-top:10px;
+/* margin-left: 3.5%; */
+}
+}

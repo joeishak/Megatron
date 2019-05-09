@@ -140,7 +140,7 @@ class Navigation extends Component {
           isLaptop={isLaptop}
           onDataPreferencesSelcted={(e) => { this.onDataPreferencesSelcted(e) }}
           username={this.processLoggedUser(this.props.user || " ")}
-          logout={() => { this.props.auth.logout("/summary"); }}
+          logout={() => { this.props.auth.logout("/"); }}
           filterIcon={filterIcon}
           toggleCommentaryOn={this.props.toggleCommentaryOn}
           updateCommentsNav={this.updateCommentsNav}

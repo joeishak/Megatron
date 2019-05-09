@@ -561,11 +561,11 @@
 	transform: skew(0deg, -9deg);
   }
 
-img {
+ img {
 	margin-top: 2px;
 	height: 24px;
 
-}
+} 
 
 .emptyIcon {
 	float: right;

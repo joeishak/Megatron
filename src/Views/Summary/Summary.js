@@ -15,6 +15,7 @@ import LoadingScreen from "../Loading/Loading.jsx";
 import Navigation from "components/Navigation/Navigation";
 import FilterPanel from "components/FilterPanel/FilterPanel";
 import CommentPanel from "components/CommentPanel/CommentPanel";
+import ReactPiwik from 'react-piwik';
 
 // import Playground from "../../components/MobileComponents/Playground/Playground.jsx";
 import SummaryViewDetails from "components/SummaryViewDetails/SummaryViewDetails";
@@ -127,7 +128,13 @@ class Summary extends Component {
     } = this.props;
     let userChangedCards = activeSecondaryCard !== prevProps.activeSecondaryCard;
 
+    if(activePrimaryCard !== prevProps.activePrimaryCard){
+      console.log('Sending data to piwik');
+      ReactPiwik.push(['setCustomVariable',3,'primaryKPI',this.props.primaryData[activePrimaryCard].category,'page']);
+      
+    }
     if (user !== prevProps.user) {
+      ReactPiwik.push(['setUserId', `${user.given_name +' ' +  user.family_name}(${user.email.split('@')[0]})`]);
       this.props.getUserSettings(this.props.user.sub);
     }
     if (filtersAreLoaded && preferencesAreLoaded && preferencesAreAdded === false) {

@@ -4278,7 +4278,7 @@ export function retrieveUpdatedAndQuarter(){
 
 
 
-  let updatedData =   axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.updateXDC + Infoburst.summaryQueryNames.UpdateAsOfDate + '&json=1', {
+  let updatedData =   axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.UpdatedDate + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
