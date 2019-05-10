@@ -12,10 +12,10 @@ import { createBrowserHistory } from 'history';
 
 const history = createBrowserHistory();
 const piwik = new ReactPiwik(PIWIK_CONFIG);
-function onAuthRequired({ history }) {
+// function onAuthRequired({ history }) {
 
-	history.push('/login');
-}
+// 	history.push('/login');
+// }
 
 const inStyles = {
 	root: {
@@ -31,12 +31,12 @@ ReactDOM.render(
 				issuer={config.oidc.issuer}
 				client_id={config.oidc.clientId}
 				redirect_uri={config.oidc.redirectUri}
-				onAuthRequired={onAuthRequired}
+				// onAuthRequired={onAuthRequired}
 				scope={config.oidc.scope}>
 
 				{/* <SecureRoute path="/summary" exact={true} component={Summary} /> */}
-				<SecureRoute path="/" exact={true} component={Summary} />
-				<Route path="/login" render={() => (<Login baseUrl="https://dev-575609.oktapreview.com" />)} />
+				<Route path="/" exact={true} component={Summary} />
+				{/* <Route path="/login" render={() => (<Login baseUrl="https://dev-575609.oktapreview.com" />)} /> */}
 				{/* <Route path="/login" render={() => (<Login baseUrl="https://adobe.okta.com" />)} /> */}
 				{/* <Route path="" exact={true} component={App} /> */}
 				{/* IBAPPS*/}

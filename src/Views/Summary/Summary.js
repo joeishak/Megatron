@@ -78,7 +78,8 @@ class Summary extends Component {
   }
 
   componentDidMount() {
-    this.checkAuthentication();
+   
+    // this.checkAuthentication();
     this.props.isFetching(true);
     // this.props.fetchCommentsCount(this.props.activeSecondaryCard);
 
@@ -96,7 +97,11 @@ class Summary extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    this.checkAuthentication();
+  this.checkAuthentication();
+
+  if (this.state.authenticated === false) {
+    this.props.auth.login("/")
+  }
 
     // let filtersAreLoaded = Object(this.props.filters).hasOwnProperty('combined') && Object(prevProps.filters).hasOwnProperty('combined') === false;
     let { activePrimaryCard, activeSecondaryCard,
@@ -1131,6 +1136,9 @@ class Summary extends Component {
       />
     );
   };
+  async login() {
+    this.props.auth.login('/');
+  }
 
   takeDomScreenshot = () => {
 
@@ -1158,8 +1166,11 @@ class Summary extends Component {
     const isMobileOrTablet = utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet');
     const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails subFiltersSubmit={(newFilters) => { this.updateSecondaryLoading(newFilters) }} secondaryData={this.props.secondaryData} />;
     return (
-      <div style={isMobileOrTablet ? { height: `${this.props.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
 
+     
+     <div style={isMobileOrTablet ? { height: `${this.props.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
+         { this.state.authenticated && (
+           <span>
         {kdialog}
         {feedbackDialog}
 
@@ -1197,7 +1208,8 @@ class Summary extends Component {
               </span>
             )
         }
- 
+ </span>)}
+
         </div>
         );
       }
