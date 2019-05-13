@@ -2,7 +2,6 @@
   "name": "practice",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://joeishak.github.io/megatron/",
   "dependencies": {
     "@okta/okta-react": "^1.2.0",
     "@okta/okta-signin-widget": "^2.17.0",
