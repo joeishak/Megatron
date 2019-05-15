@@ -222,9 +222,7 @@ class KendoDialog extends Component {
     onMoueLeaveHandler = () => {
     }
 
-    removeFilter(filterToRemove) {
-        this.props.removeMultiFilter(filterToRemove);
-    }
+  
     generateFilterList = (filterList) => {
 
         let filterObjectList = Object.keys(filterList).map((ele) => { return filterList[ele]; });
@@ -484,22 +482,7 @@ class KendoDialog extends Component {
 
 
                                 </div>
-                                {/* 
-                                Filters List
-                                <div className="contentpad filterListItems">
-                                    <p>Filters Applied:</p>
-
-                                    <ul className="filterList">
-                                        {filtersApplied.map((item) => {
-                                            return <li key={this.state.filterListCount++} onClick={(e) => this.removeFilter(item)}
-                                                onMouseEnter={this.onMouseEnterHandler}
-                                                onMouseLeave={this.onMoueLeaveHandler}
-                                                className="miniMultiFilter">
-                                                {item.value}
-                                            </li>
-                                        })}
-                                    </ul>
-                                </div> */}
+                               
 
                             </div>
 

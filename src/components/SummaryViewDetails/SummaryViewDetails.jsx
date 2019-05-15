@@ -793,10 +793,6 @@ class SummaryViewDetails extends Component {
       activeSecondary === 26 ? (type === 'marker' ? '*' : 'One Week Behind') : null;
   }
 
-  closeSummary() {
-    this.props.updateMultichartMetric(true);
-    this.props.hideSummaryDetails();
-  }
   render() {
     let { activeFilters, activePrimary, secondaryData, activeSecondary, filters, activeItem } = this.props;
     // let activeItem = secondaryData[this.props.activeSecondary];
@@ -848,12 +844,7 @@ class SummaryViewDetails extends Component {
     let statsCounts = 0;
     return (
       <div className="sumViewContainer">
-        {/* Bread Crumbs */}
-        {/* <span className='breadCrumb' onClick={this.closeSummary.bind(this)}>
-              {this.state.summaryType} Summary > </span>
-              <span>  {activeItem.header}
-            </span>
-            <br/> */}
+       
 
         {/* First Row for Ttle Bar and Metric Filter */}
         <div className="row container-fluid titleBarHeader">
@@ -896,7 +887,7 @@ class SummaryViewDetails extends Component {
               :
               <span></span>}
 
-            {this.props.isLoading === true ? null : <ExcelWorkbook />}
+            {this.props.isLoading === true ? null : <ExcelWorkbook activeItem={this.props.secondaryData[this.props.activeSecondary]}/>}
 
 
 

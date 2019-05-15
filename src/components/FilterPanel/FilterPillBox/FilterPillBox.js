@@ -15,18 +15,13 @@ class FilterPillBox extends Component {
         }
 
         //Binding functions to this
-        this.removeFilter = this.removeFilter.bind(this);
     }
 
-    //Function that calls the action which removes the specified multifilter according to the index
-    removeFilter() {
-        this.props.removeMultiFilter(this.props.data);
-        // this.props.getFilteredIBEDAta(this.props.activeFilters,this.props.availableFilters)
-    }
+   
     render() {
         return (
 
-            <span className="filterText" >{this.state.value}{/* <span className="xButton" onClick={this.removeFilter}>x</span> */}</span>
+            <span className="filterText" >{this.state.value}</span>
 
         )
     }

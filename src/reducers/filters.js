@@ -1,6 +1,5 @@
 import {
     ADD_MULTI_FILTER,
-    REMOVE_MULTI_FILTER,
     GENERATE_FILTER_DATA,
     ADD_PREFERENCES_TO_ACTIVE_FILTERS,
     RESET_FILTERS,
@@ -471,44 +470,7 @@ export default function (state = {
                 }
             })
             return {...copyOfState, isDefaultFilters: true, filtersAreDefault: true};
-        case REMOVE_MULTI_FILTER:
-            copyOfState = JSON.parse(JSON.stringify(state))
-            cat = action.payload.category;
-            _.remove(copyOfState.combined.valueFilters, item => { return item.index === action.payload.index });
-
-            switch (cat) {
-                case GEO:
-                    _.remove(copyOfState.geo.valueFilters, item => { return item.index === action.payload.index });
-
-                    break;
-                case QUARTER:
-                    _.remove(copyOfState.quarter.valueFilters, item => { return item.index === action.payload.index });
-                    copyOfState.quarter.valueFilters = [action.payload]
-                    break;
-                case SUBSCRIPTION:
-                    _.remove(copyOfState.subscription.valueFilters, item => { return item.index === action.payload.index });
-
-                    break;
-                case SEGMENT:
-                    _.remove(copyOfState.segment.valueFilters, item => { return item.index === action.payload.index });
-                    copyOfState.segment.valueFilters = [action.payload]
-
-                    break;
-                case MARKET:
-                    _.remove(copyOfState.market.valueFilters, item => { return item.index === action.payload.index });
-
-                    break;
-                case PRODUCT:
-                    _.remove(copyOfState.product.valueFilters, item => { return item.index === action.payload.index });
-
-                    break;
-                case ROUTE:
-                    _.remove(copyOfState.route.valueFilters, item => { return item.index === action.payload.index });
-                    break;
-                default:
-                    return state;
-            }
-            return copyOfState;
+        
         default:
             return state;
     }

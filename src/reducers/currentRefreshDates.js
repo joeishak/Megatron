@@ -5,7 +5,6 @@ export default function (state = {
 }, action) {
     switch (action.type) {
         case GET_UPDATED_AS_OF_DATE_AND_QUARTER:
-            console.log('Updated of Date',action.payload);
             let { wkname, as_of_date } = action.payload[0].data[0];
             return { updatedAsOf: as_of_date, currentQuarterWeek: wkname };
         default:

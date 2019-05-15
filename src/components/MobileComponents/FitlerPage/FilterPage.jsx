@@ -26,10 +26,7 @@ class FilterPage extends Component {
             activeDataFilters: [],
         }
     }
-    //Remove a filter from the top portion list
-    removeFilter(filterToRemove) {
-        this.props.removeMultiFilter(filterToRemove);
-    }
+  
     closeSingleValue = (e) => {
         // console.log('Closing Single Value',e);
     }
@@ -193,7 +190,7 @@ class FilterPage extends Component {
                 <div className="filterMobilePillsContainer">
                     <ul className="filterListMobile">
                         {filters.combined.valueFilters.map((item) => {
-                            return <li key={item.index} /* onClick={(e) => this.removeFilter(item)} */ className="filterListMobileLi">{item.value}</li>
+                            return <li key={item.index}  className="filterListMobileLi">{item.value}</li>
                         })}
                     </ul>
                 </div>

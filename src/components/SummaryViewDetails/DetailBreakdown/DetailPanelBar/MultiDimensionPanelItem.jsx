@@ -29,7 +29,6 @@ class MultiDimensionPanelItem extends Component {
 
     getMultiDimensionJourneyPanelItem(activeSecondary) {
 
-        console.log(this.props.type);
         let calculatedGeo, prevGeo;
         let marketCount = 0;
         let qtdColumnClass, weekColumnClass;
@@ -229,7 +228,6 @@ class MultiDimensionPanelItem extends Component {
         }
     }
     render() {
-        console.log('ACTIVE SECONDARY', this.props.activeSecondary)
         let activeSecondary = this.props.activeSecondary !== undefined ? this.props.activeSecondary : 0;
         let MultiDimensionPanelItem = (this.props.isJourney === true) ? this.getMultiDimensionJourneyPanelItem(activeSecondary) : this.getMultiDimensionPanelItem(activeSecondary);
         return (MultiDimensionPanelItem)

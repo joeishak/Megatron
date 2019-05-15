@@ -181,7 +181,6 @@ class SecondaryContentList extends Component {
   };
 
   onSecondaryCardClicked = (e, index) => {
-    console.log('Secondary Card Clicked', index);
     this.setState({ detailsClassState: 'slide-in-bottom' });
     this.setState({ clicked: true });
     this.setState({ sortedData: [] })
@@ -351,7 +350,6 @@ class SecondaryContentList extends Component {
 
 // export default SecondaryContentList;
 function mapStateToProps(state) {
-  console.log(state);
   return {
     deviceType: state.appSettings.deviceType,
     activeJourneyCard: state.activeCards.secondary,

@@ -15,13 +15,15 @@ class ExcelWorkbook extends Component {
         };
 
     }
-    componentDidUpdate(prevProps){
-    
+    componentDidMount() {
+    }
+  
+    componentDidUpdate(prevProps) {
+
     }
     getFinanceWorkBook() {
         let { activeItem, filters, activeSecondary, secondaryData } = this.props;
-        console.log('THE ACTIVE ITEM IS',secondaryData[activeSecondary])
-            return (
+        return (
             <Workbook
                 filename={`${activeItem.header}.xlsx`}
                 element={
@@ -39,32 +41,32 @@ class ExcelWorkbook extends Component {
                 <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
                     <Workbook.Column label="Dimension" value="category" />
                     <Workbook.Column label="Filter Applied" value="value" />
-               </Workbook.Sheet>
-                 <Workbook.Sheet data={activeItem.details.geo.qtd } name="geo">
-                    <Workbook.Column label="Geo" value="type"  /> 
+                </Workbook.Sheet>
+                 <Workbook.Sheet data={activeItem.details.geo.qtd} name="geo">
+                    <Workbook.Column label="Geo" value="type" />
                     <Workbook.Column label="MarketArea" value="marketArea" />
                     <Workbook.Column label="Actuals" value="actuals" />
-                    {activeSecondary <= 3 ? <Workbook.Column label="Units" value="units" /> : null}
+                    {activeSecondary <4 ? <Workbook.Column label="Units" value="units" /> : null}
                     <Workbook.Column label="QRF" value="qrf" />
                     <Workbook.Column label="QRFDIFF" value="qrfDiff" />
                     <Workbook.Column label="vsQRF" value="vsQrf" />
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd } name="Market Area">
+               <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd} name="Market Area">
                     <Workbook.Column label="Market Area" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
-                    {activeSecondary <= 3 ? <Workbook.Column label="Units" value="units" /> : null}
+                    {activeSecondary < 4 ? <Workbook.Column label="Units" value="units" /> : null}
                     <Workbook.Column label="QRF" value="qrf" />
                     <Workbook.Column label="QRFDIFF" value="qrfDiff" />
                     <Workbook.Column label="vsQRF" value="vsQrf" />
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.segment.qtd } name="Segment Pivot">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.segment.qtd} name="Segment Pivot">
                     <Workbook.Column label="Segment Pivot" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
-                    {activeSecondary <=3 ? <Workbook.Column label="Units" value="units" /> : null}
+                    {activeSecondary < 4 ? <Workbook.Column label="Units" value="units" /> : null}
                     <Workbook.Column label="QRF" value="qrf" />
                     <Workbook.Column label="QRFDIFF" value="qrfDiff" />
                     <Workbook.Column label="vsQRF" value="vsQrf" />
@@ -74,17 +76,17 @@ class ExcelWorkbook extends Component {
                 <Workbook.Sheet data={secondaryData[activeSecondary].details.route.qtd || []} name="Route To Market">
                     <Workbook.Column label="Route To Market" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
-                    {activeSecondary < 3 ? <Workbook.Column label="Units" value="units" /> : null}
+                    {activeSecondary < 4 ? <Workbook.Column label="Units" value="units" /> : null}
                     <Workbook.Column label="QRF" value="qrf" />
                     <Workbook.Column label="QRFDIFF" value="qrfDiff" />
                     <Workbook.Column label="vsQRF" value="vsQrf" />
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={this.props.secondaryData[this.props.activeSecondary].details.product.qtd } name="Product Names">
-                    <Workbook.Column label="Product Name" value={row=> row.type || ""} />
+                <Workbook.Sheet data={this.props.secondaryData[this.props.activeSecondary].details.product.qtd} name="Product Names">
+                    <Workbook.Column label="Product Name" value={row => row.type || ""} />
                     <Workbook.Column label="Actuals" value="actuals" />
-                    {activeSecondary <= 3 ? <Workbook.Column label="Units" value="units" /> : null}
+                    {activeSecondary < 4 ? <Workbook.Column label="Units" value="units" /> : null}
                     <Workbook.Column label="QRF" value="qrf" />
                     <Workbook.Column label="vsQRF" value="vsQrf" />
                     <Workbook.Column label="vsQRF" value="vsQrf" />
@@ -94,7 +96,7 @@ class ExcelWorkbook extends Component {
             </Workbook>
         )
 
-      
+
     }
 
     getDiscoverTrafficWorkbook() {
@@ -119,7 +121,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Filter Applied" value="value" />
 
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd } name="geo">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd} name="geo">
                     <Workbook.Column label="Geo" value="type" />
                     <Workbook.Column label="MarketArea" value="marketArea" />
                     <Workbook.Column label="Actuals" value="actuals" />
@@ -129,7 +131,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd } name="Market Area">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd} name="Market Area">
                     <Workbook.Column label="Market Area" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
@@ -138,7 +140,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.segment.qtd } name="Web Segment">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.segment.qtd} name="Web Segment">
                     <Workbook.Column label="Segment Pivot" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
@@ -147,7 +149,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.ltc.qtd } name="Last Touch Channel">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.ltc.qtd} name="Last Touch Channel">
                     <Workbook.Column label="Last Touch Channel" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
@@ -156,7 +158,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.conversion.qtd } name="Conversion Type">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.conversion.qtd} name="Conversion Type">
                     <Workbook.Column label="Conversion Type" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
@@ -208,7 +210,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Filter Applied" value="value" />
 
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd } name="geo">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd} name="geo">
                     <Workbook.Column label="Geo" value="type" />
                     <Workbook.Column label="MarketArea" value="marketArea" />
                     <Workbook.Column label="Actuals" value="actuals" />
@@ -218,7 +220,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.channel.qtd } name="Channel">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.channel.qtd} name="Channel">
                     <Workbook.Column label="Channel" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
@@ -227,7 +229,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-               
+
             </Workbook>
         )
     }
@@ -253,7 +255,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Filter Applied" value="value" />
 
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd } name="geo">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd} name="geo">
                     <Workbook.Column label="Geo" value="type" />
                     <Workbook.Column label="MarketArea" value="marketArea" />
                     <Workbook.Column label="Actuals" value="actuals" />
@@ -263,7 +265,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd } name="Market Area">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd} name="Market Area">
                     <Workbook.Column label="Market Area" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
@@ -272,7 +274,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.channel.qtd } name="Channel">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.channel.qtd} name="Channel">
                     <Workbook.Column label="Channel" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
@@ -281,7 +283,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-               
+
             </Workbook>
         )
     }
@@ -307,7 +309,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Filter Applied" value="value" />
 
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd } name="geo">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd} name="geo">
                     <Workbook.Column label="Geo" value="type" />
                     <Workbook.Column label="MarketArea" value="marketArea" />
                     <Workbook.Column label="Actuals" value="actuals" />
@@ -317,7 +319,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd } name="Market Area">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd} name="Market Area">
                     <Workbook.Column label="Market Area" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
@@ -326,8 +328,8 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.signUpCat.qtd } name="Sign Up Source">
-                <Workbook.Column label="Market Area" value="type" />
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.signUpCat.qtd} name="Sign Up Source">
+                    <Workbook.Column label="Market Area" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
                     <Workbook.Column label="QRFDIFF" value="qrfDiff" />
@@ -335,7 +337,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                  
+
             </Workbook>
         )
     }
@@ -361,7 +363,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Filter Applied" value="value" />
 
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd } name="geo">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd} name="geo">
                     <Workbook.Column label="Geo" value="type" />
                     <Workbook.Column label="MarketArea" value="marketArea" />
                     <Workbook.Column label="Actuals" value="actuals" />
@@ -371,7 +373,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd } name="Market Area">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd} name="Market Area">
                     <Workbook.Column label="Market Area" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
@@ -380,7 +382,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.product.qtd } name="Product">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.product.qtd} name="Product">
                     <Workbook.Column label="Product" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
@@ -389,7 +391,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.signUpCat.qtd } name="Sign Up Source">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.signUpCat.qtd} name="Sign Up Source">
                     <Workbook.Column label="Sign Up Source" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
@@ -401,7 +403,7 @@ class ExcelWorkbook extends Component {
             </Workbook>
         )
     }
-    getNewCumuUQFMWorkbook(){
+    getNewCumuUQFMWorkbook() {
         let { activeItem, filters, activeSecondary, secondaryData } = this.props;
         return (
             <Workbook
@@ -423,7 +425,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Filter Applied" value="value" />
 
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd } name="geo">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd} name="geo">
                     <Workbook.Column label="Geo" value="type" />
                     <Workbook.Column label="MarketArea" value="marketArea" />
                     <Workbook.Column label="Actuals" value="actuals" />
@@ -433,7 +435,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.signUpApp.qtd } name="Sign Up Source">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.signUpApp.qtd} name="Sign Up Source">
                     <Workbook.Column label="Sign Up Source" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
@@ -445,7 +447,7 @@ class ExcelWorkbook extends Component {
             </Workbook>
         )
     }
-    getDiscoverUQFMWorkbook(){
+    getDiscoverUQFMWorkbook() {
         let { activeItem, filters, activeSecondary, secondaryData } = this.props;
         return (
             <Workbook
@@ -467,7 +469,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Filter Applied" value="value" />
 
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd } name="geo">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd} name="geo">
                     <Workbook.Column label="Geo" value="type" />
                     <Workbook.Column label="MarketArea" value="marketArea" />
                     <Workbook.Column label="Actuals" value="actuals" />
@@ -477,7 +479,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd } name="Market Area">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd} name="Market Area">
                     <Workbook.Column label="Market Area" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
@@ -511,7 +513,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Filter Applied" value="value" />
 
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd } name="geo">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd} name="geo">
                     <Workbook.Column label="Geo" value="type" />
                     <Workbook.Column label="MarketArea" value="marketArea" />
                     <Workbook.Column label="Actuals" value="actuals" />
@@ -521,8 +523,468 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.channel.qtd } name="Channel">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.channel.qtd} name="Channel">
                     <Workbook.Column label="Channel" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+
+            </Workbook>
+        )
+    }
+    getUseWorkbook(){
+        let { activeItem, filters, activeSecondary, secondaryData } = this.props;
+        return (
+            <Workbook
+                filename={`${activeItem.header}.xlsx`}
+                element={
+                    <button className="exportButton">
+                        <span>Export</span>
+                        <img
+                            alt=""
+                            className="excelLogo"
+                            style={{ height: "20px", width: "20px" }}
+                            src={excelLogoGreen}
+                        />
+                    </button>
+                }
+            >
+                <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
+                    <Workbook.Column label="Dimension" value="category" />
+                    <Workbook.Column label="Filter Applied" value="value" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd} name="geo">
+                    <Workbook.Column label="Geo" value="type" />
+                    <Workbook.Column label="MarketArea" value="marketArea" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd} name="Market Area">
+                    <Workbook.Column label="Market Area" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.segment.qtd} name="Segment Pivot">
+                    <Workbook.Column label="Segment Pivot" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.subscription.qtd || []} name="Subscription Offering">
+                    <Workbook.Column label="Subscription Offering" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+            </Workbook>
+        )
+
+
+    }
+    getBuyMktgSourcedWorkbook(){
+        let { activeItem, filters, activeSecondary, secondaryData } = this.props;
+        return (
+            <Workbook
+                filename={`${activeItem.header}.xlsx`}
+                element={
+                    <button className="exportButton">
+                        <span>Export</span>
+                        <img
+                            alt=""
+                            className="excelLogo"
+                            style={{ height: "20px", width: "20px" }}
+                            src={excelLogoGreen}
+                        />
+                    </button>
+                }
+            >
+                <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
+                    <Workbook.Column label="Dimension" value="category" />
+                    <Workbook.Column label="Filter Applied" value="value" />
+                </Workbook.Sheet>
+                 <Workbook.Sheet data={activeItem.details.geo.qtd} name="geo">
+                    <Workbook.Column label="Geo" value="type" />
+                    <Workbook.Column label="MarketArea" value="marketArea" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+               <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd} name="Market Area">
+                    <Workbook.Column label="Market Area" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.segment.qtd} name="Segment Pivot">
+                    <Workbook.Column label="Segment Pivot" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.channel.qtd || []} name="Channel">
+                    <Workbook.Column label="Channel" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={this.props.secondaryData[this.props.activeSecondary].details.product.qtd} name="Product Names">
+                    <Workbook.Column label="Product Name" value={row => row.type || ""} />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+            </Workbook>
+        )
+    }
+    getBuyGrossWorkBook() {
+        let { activeItem, filters, activeSecondary, secondaryData } = this.props;
+        return (
+            <Workbook
+                filename={`${activeItem.header}.xlsx`}
+                element={
+                    <button className="exportButton">
+                        <span>Export</span>
+                        <img
+                            alt=""
+                            className="excelLogo"
+                            style={{ height: "20px", width: "20px" }}
+                            src={excelLogoGreen}
+                        />
+                    </button>
+                }
+            >
+                <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
+                    <Workbook.Column label="Dimension" value="category" />
+                    <Workbook.Column label="Filter Applied" value="value" />
+                </Workbook.Sheet>
+                 <Workbook.Sheet data={activeItem.details.geo.qtd} name="geo">
+                    <Workbook.Column label="Geo" value="type" />
+                    <Workbook.Column label="MarketArea" value="marketArea" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+               <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd} name="Market Area">
+                    <Workbook.Column label="Market Area" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.segment.qtd} name="Segment Pivot">
+                    <Workbook.Column label="Segment Pivot" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.route.qtd || []} name="Route To Market">
+                    <Workbook.Column label="Route To Market" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={this.props.secondaryData[this.props.activeSecondary].details.product.qtd} name="Product Names">
+                    <Workbook.Column label="Product Name" value={row => row.type || ""} />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+            </Workbook>
+        )
+
+
+    }
+    getGeneralRenewWorkbook(){
+        let { activeItem, filters, activeSecondary, secondaryData } = this.props;
+        return (
+            <Workbook
+                filename={`${activeItem.header}.xlsx`}
+                element={
+                    <button className="exportButton">
+                        <span>Export</span>
+                        <img
+                            alt=""
+                            className="excelLogo"
+                            style={{ height: "20px", width: "20px" }}
+                            src={excelLogoGreen}
+                        />
+                    </button>
+                }
+            >
+                <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
+                    <Workbook.Column label="Dimension" value="category" />
+                    <Workbook.Column label="Filter Applied" value="value" />
+                </Workbook.Sheet>
+                 <Workbook.Sheet data={activeItem.details.geo.qtd} name="geo">
+                    <Workbook.Column label="Geo" value="type" />
+                    <Workbook.Column label="MarketArea" value="marketArea" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+               <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd} name="Market Area">
+                    <Workbook.Column label="Market Area" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.segment.qtd} name="Segment Pivot">
+                    <Workbook.Column label="Segment Pivot" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.channel.qtd || []} name="Channel">
+                    <Workbook.Column label="Channel" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={this.props.secondaryData[this.props.activeSecondary].details.product.qtd} name="Product Names">
+                    <Workbook.Column label="Product Name" value={row => row.type || ""} />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+            </Workbook>
+        )
+    }
+    getBuyGrossWorkBook() {
+        let { activeItem, filters, activeSecondary, secondaryData } = this.props;
+        return (
+            <Workbook
+                filename={`${activeItem.header}.xlsx`}
+                element={
+                    <button className="exportButton">
+                        <span>Export</span>
+                        <img
+                            alt=""
+                            className="excelLogo"
+                            style={{ height: "20px", width: "20px" }}
+                            src={excelLogoGreen}
+                        />
+                    </button>
+                }
+            >
+                <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
+                    <Workbook.Column label="Dimension" value="category" />
+                    <Workbook.Column label="Filter Applied" value="value" />
+                </Workbook.Sheet>
+                 <Workbook.Sheet data={activeItem.details.geo.qtd} name="geo">
+                    <Workbook.Column label="Geo" value="type" />
+                    <Workbook.Column label="MarketArea" value="marketArea" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+               <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd} name="Market Area">
+                    <Workbook.Column label="Market Area" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.segment.qtd} name="Segment Pivot">
+                    <Workbook.Column label="Segment Pivot" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.route.qtd || []} name="Route To Market">
+                    <Workbook.Column label="Route To Market" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={this.props.secondaryData[this.props.activeSecondary].details.product.qtd} name="Product Names">
+                    <Workbook.Column label="Product Name" value={row => row.type || ""} />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+            </Workbook>
+        )
+    }
+
+    getGeneralRenewWorkbook() {
+        let { activeItem, filters, activeSecondary, secondaryData } = this.props;
+        return (
+            <Workbook
+                filename={`${activeItem.header}.xlsx`}
+                element={
+                    <button className="exportButton">
+                        <span>Export</span>
+                        <img
+                            alt=""
+                            className="excelLogo"
+                            style={{ height: "20px", width: "20px" }}
+                            src={excelLogoGreen}
+                        />
+                    </button>
+                }
+            >
+                <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
+                    <Workbook.Column label="Dimension" value="category" />
+                    <Workbook.Column label="Filter Applied" value="value" />
+                </Workbook.Sheet>
+                 <Workbook.Sheet data={activeItem.details.geo.qtd} name="geo">
+                    <Workbook.Column label="Geo" value="type" />
+                    <Workbook.Column label="MarketArea" value="marketArea" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+               <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd} name="Market Area">
+                    <Workbook.Column label="Market Area" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.segment.qtd} name="Segment Pivot">
+                    <Workbook.Column label="Segment Pivot" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={this.props.secondaryData[this.props.activeSecondary].details.product.qtd} name="Product Names">
+                    <Workbook.Column label="Product Name" value={row => row.type || ""} />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+            </Workbook>
+        )
+    }
+    getRenewEOTWorkbook() {
+        let { activeItem, filters, activeSecondary, secondaryData } = this.props;
+        return (
+            <Workbook
+                filename={`${activeItem.header}.xlsx`}
+                element={
+                    <button className="exportButton">
+                        <span>Export</span>
+                        <img
+                            alt=""
+                            className="excelLogo"
+                            style={{ height: "20px", width: "20px" }}
+                            src={excelLogoGreen}
+                        />
+                    </button>
+                }
+            >
+                <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
+                    <Workbook.Column label="Dimension" value="category" />
+                    <Workbook.Column label="Filter Applied" value="value" />
+                </Workbook.Sheet>
+                 <Workbook.Sheet data={activeItem.details.geo.qtd} name="geo">
+                    <Workbook.Column label="Geo" value="type" />
+                    <Workbook.Column label="MarketArea" value="marketArea" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+               <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd} name="Market Area">
+                    <Workbook.Column label="Market Area" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.segment.qtd} name="Segment Pivot">
+                    <Workbook.Column label="Segment Pivot" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
                     <Workbook.Column label="QRFDIFF" value="qrfDiff" />
@@ -538,7 +1000,7 @@ class ExcelWorkbook extends Component {
 
         if (primary === 0) {
             return this.getFinanceWorkBook();
-        } 
+        }
         else if (primary === 2) {
             if (secondary === SUMMARY_FILTERS.TRY_CUMU_UQFM || secondary === SUMMARY_FILTERS.TRY_NEW_UQFM) {
                 return this.getNewCumuUQFMWorkbook();
@@ -547,18 +1009,18 @@ class ExcelWorkbook extends Component {
             } else {
                 return this.getNewQFMWorkbook();
             }
+        }
+        else if(primary === 4){
+            return this.getUseWorkbook();
         } 
-        // else if(primary === 4){
-        //     return this.getUseWorkbook();
-        // } 
-        // else if(primary ===5){
-        
-        //     if(secondary!== SUMMARY_FILTERS.RENEW_EOT_RESELLER){
-        //         this.getGeneralRenewWorkbook();
-        //     }else {
-        //         this.getRenewEOTWorkbook();
-        //     }
-        // }
+        else if(primary === 5){
+
+            if(secondary !== SUMMARY_FILTERS.RENEW_EOT_RESELLER){
+                return this.getGeneralRenewWorkbook();
+            }else {
+               return  this.getRenewEOTWorkbook();
+            }
+        }
         else {
             switch (secondary) {
                 case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
@@ -567,24 +1029,25 @@ class ExcelWorkbook extends Component {
                     return this.getDiscoverPMSpendWorkbook();
                 case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
                     return this.getDiscoverMUWorkbook();
+                case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND: 
+                    return this.getDiscoverPMSpendWorkbook();
                 case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
                     return this.getDiscoverPMSourcedWorkbook();
                 case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
                     return this.getDiscoverTrafficWorkbook();
                 case SUMMARY_FILTERS.DISCOVER_UQFM:
                     return this.getDiscoverUQFMWorkbook();
-                    // Create Functions for these
-                // case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
-                // console.log('Fetching Gross ARR Buy Workbook');
-                //     return this.getFinanceWorkBook();
-                // case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
-                //     return this.getFinanceWorkBook();
-                // case SUMMARY_FILTERS.BUY_CONVERSION:
-                //     return this.getDiscoverTrafficWorkbook();
-                // case SUMMARY_FILTERS.BUY_PAID_MEDIASPEND:
-                //     return this.getBuyPaidMediaSpendWorkbook();
-                // case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
-                //     return this.getBuyMarketingSourcedWorkbook();
+                // Create Functions for these
+                case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
+                   return this.getBuyGrossWorkBook();
+                case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
+                    return this.getBuyGrossWorkBook();
+                case SUMMARY_FILTERS.BUY_CONVERSION:
+                    return this.getDiscoverTrafficWorkbook();
+                case SUMMARY_FILTERS.BUY_PAID_MEDIASPEND:
+                    return this.getBuyPaidMediaSpendWorkbook();
+                case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
+                    return this.getBuyMktgSourcedWorkbook();
 
 
 
@@ -594,10 +1057,10 @@ class ExcelWorkbook extends Component {
     }
     render() {
         let { activeItem, filters, activeSecondary, activePrimary, secondaryData } = this.props;
-        let AdobeWorkbook =  this.getCurrentWorkbook(activePrimary,activeSecondary);
+        let AdobeWorkbook = this.getCurrentWorkbook(activePrimary, activeSecondary);
         return (
             <span className="excelSpan">
-                { AdobeWorkbook}
+                {AdobeWorkbook}
             </span>
 
 
@@ -606,34 +1069,34 @@ class ExcelWorkbook extends Component {
 }
 function mapStateToProps(state) {
     return {
-      previousViewWasJourneys: state.switchFilter,
-      activePrimary: state.activeCards.primary,
-      activeSecondary: state.activeCards.secondary,
-      activeItem: state.summaryData.secondary[state.activeCards.secondary],
-      activeFilters: state.filters,
-      availableFilters: state.availableFilters,
-      qtdwData: state.summaryData.secondary[state.activeCards.secondary].details.qtdw,
-      summaryData: state.adobeData,
-      secondaryData: state.summaryData.secondary,
-      multichartIsArr: state.multichartIsArr,
-      filters: state.filters,
-      financeXDC1IsLoaded: state.summaryData.financeXDC1IsLoaded,
-      financeXDC2IsLoaded: state.summaryData.financeXDC2IsLoaded,
-      trafficIsLoaded: state.summaryData.trafficIsLoaded,
-      muIsLoaded: state.summaryData.muIsLoaded,
-      buyGrossIsLoaded: state.summaryData.buyGrossIsLoaded,
-      buyMarketIsLoaded: state.summaryData.buyMarketIsLoaded,
-      buyConversionIsLoaded: state.summaryData.buyConversionIsLoaded,
-      tryIsLoaded: state.summaryData.tryIsLoaded,
-      useIsLoaded: state.summaryData.useIsLoaded,
-      renewIsLoaded: state.summaryData.renewIsLoaded,
-      renewCancelIsLoaded: state.summaryData.renewCancelIsLoaded,
-      renewDetailsIsLoaded: state.summaryData.renewDetailsIsLoaded,
+        previousViewWasJourneys: state.switchFilter,
+        activePrimary: state.activeCards.primary,
+        activeSecondary: state.activeCards.secondary,
+        // activeItem: state.summaryData.secondary[state.activeCards.secondary],
+        activeFilters: state.filters,
+        availableFilters: state.availableFilters,
+        qtdwData: state.summaryData.secondary[state.activeCards.secondary].details.qtdw,
+        summaryData: state.adobeData,
+        secondaryData: state.summaryData.secondary,
+        multichartIsArr: state.multichartIsArr,
+        filters: state.filters,
+        financeXDC1IsLoaded: state.summaryData.financeXDC1IsLoaded,
+        financeXDC2IsLoaded: state.summaryData.financeXDC2IsLoaded,
+        trafficIsLoaded: state.summaryData.trafficIsLoaded,
+        muIsLoaded: state.summaryData.muIsLoaded,
+        buyGrossIsLoaded: state.summaryData.buyGrossIsLoaded,
+        buyMarketIsLoaded: state.summaryData.buyMarketIsLoaded,
+        buyConversionIsLoaded: state.summaryData.buyConversionIsLoaded,
+        tryIsLoaded: state.summaryData.tryIsLoaded,
+        useIsLoaded: state.summaryData.useIsLoaded,
+        renewIsLoaded: state.summaryData.renewIsLoaded,
+        renewCancelIsLoaded: state.summaryData.renewCancelIsLoaded,
+        renewDetailsIsLoaded: state.summaryData.renewDetailsIsLoaded,
     };
-  }
-  
-  export default connect(
+}
+
+export default connect(
     mapStateToProps,
     actions
-  )(ExcelWorkbook);
-  
+)(ExcelWorkbook);
+

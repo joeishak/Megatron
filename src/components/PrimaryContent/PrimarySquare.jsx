@@ -14,7 +14,6 @@ class PrimarySquare extends Component {
   getColor(value, target, type, header) {
     // console.log('value', value);
     let retColor = "";
-    console.log('Renew Primary Color',this.props.item.index);
     if(this.props.item.index !==5){
       if (type === "financial") {
         if (target === 0) {

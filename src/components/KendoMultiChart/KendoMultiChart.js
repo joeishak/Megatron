@@ -59,7 +59,6 @@ class KendoMultiChart extends Component {
             if(this.props.activeMultichart[0][0] === nextProps.activeMultichart[0][0]){
                 return false
             }
-            console.log('Refreshing Multichart');
             return true;
         }
         return false;
