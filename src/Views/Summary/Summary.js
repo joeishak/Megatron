@@ -1028,7 +1028,6 @@ class Summary extends Component {
 
   updateActivePrimary(index) {
     this.props.updateActivePrimaryCard(index);
-    // this.setState({ isLoading: true });
     switch (index) {
       case (0):
         this.props.updateActiveSecondaryCard(0);
@@ -1063,8 +1062,7 @@ class Summary extends Component {
   }
 
   updateActiveSecondary(index) {
-    // this.props.isFetching(true);
-    this.setState({isLoading: true});
+
     this.props.fetchComments(index);
     this.props.updateActiveSecondaryCard(index);
   }

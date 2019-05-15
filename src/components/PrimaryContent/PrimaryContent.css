@@ -257,8 +257,8 @@
 
 }
 .laptopPrimaryRow {
-	padding-left: 5% !important;
-	padding-right: 5% !important;
+	/* padding-left: 5% !important;
+	padding-right: 5% !important; */
 	height: 210px;
 }
 .laptopSecondaryHeader{
@@ -270,8 +270,8 @@
 }
 
 .laptopPrimaryRow {
-	padding-left: 3% !important;
-	padding-right: 3% !important;
+	padding-left: 0% !important;
+	padding-right: 0% !important;
 }
 .laptopSecondaryHeader {
 	font-size: 1.1em;

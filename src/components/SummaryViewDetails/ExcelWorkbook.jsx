@@ -41,7 +41,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Filter Applied" value="value" />
                </Workbook.Sheet>
                  <Workbook.Sheet data={activeItem.details.geo.qtd } name="geo">
-                    <Workbook.Column label="Geo" /* value="type" */ value={row => console.log(secondaryData[activeSecondary].details.geo.qtd)}/> 
+                    <Workbook.Column label="Geo" value="type"  /> 
                     <Workbook.Column label="MarketArea" value="marketArea" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     {activeSecondary <= 3 ? <Workbook.Column label="Units" value="units" /> : null}
@@ -52,7 +52,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
                 <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd } name="Market Area">
-                    {/* <Workbook.Column label="Market Area" value="type" /> */}
+                    <Workbook.Column label="Market Area" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     {activeSecondary <= 3 ? <Workbook.Column label="Units" value="units" /> : null}
                     <Workbook.Column label="QRF" value="qrf" />
@@ -62,7 +62,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
                 <Workbook.Sheet data={secondaryData[activeSecondary].details.segment.qtd } name="Segment Pivot">
-                    {/* <Workbook.Column label="Segment Pivot" value="type" /> */}
+                    <Workbook.Column label="Segment Pivot" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     {activeSecondary <=3 ? <Workbook.Column label="Units" value="units" /> : null}
                     <Workbook.Column label="QRF" value="qrf" />
@@ -574,9 +574,9 @@ class ExcelWorkbook extends Component {
                 case SUMMARY_FILTERS.DISCOVER_UQFM:
                     return this.getDiscoverUQFMWorkbook();
                     // Create Functions for these
-                case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
-                console.log('Fetching Gross ARR Buy Workbook');
-                    return this.getFinanceWorkBook();
+                // case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
+                // console.log('Fetching Gross ARR Buy Workbook');
+                //     return this.getFinanceWorkBook();
                 // case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
                 //     return this.getFinanceWorkBook();
                 // case SUMMARY_FILTERS.BUY_CONVERSION:

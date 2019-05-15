@@ -145,6 +145,7 @@
 .qtdMaHeader{
     text-align:  left !important;
     padding-left: 15px;
+    white-space: nowrap;
 }
 
 .weekColumn{

@@ -11,10 +11,6 @@ import "@progress/kendo-theme-default/dist/all.css";
 import MultiValueSelect from '../MultiValueSelect/MultiValueSelect';
 import SingleValueSelect from '../SingleValueSelect/SingleValueSelect';
 import KendoMultiChart from "../KendoMultiChart/KendoMultiChart";
-import Workbook from "react-excel-workbook";
-import excelLogo from "../../assets/images/excel-logo.png";
-import excelLogoGreen from "../../assets/images/excel-logo-green.svg";
-import ExcelFormatter from "./ExcelFormatter";
 import DetailBreakdown from './DetailBreakdown/DetailBreakdown';
 import ExcelWorkbook from './ExcelWorkbook';
 import { SUMMARY_FILTERS, DIMENSIONS } from '../../Constants/consts.js';
@@ -872,7 +868,7 @@ class SummaryViewDetails extends Component {
               {activeItem.header} {this.getOneWeekBehindMarker(this.props.activeSecondary, 'marker')}
             </span>
 
-            <span className="col-md-2 col-lg-4">
+            <span style={{width:'100px'}}>
               <div className="oneWeekBehind">
                 {this.getOneWeekBehindMarker(this.props.activeSecondary, 'message')}
               </div>

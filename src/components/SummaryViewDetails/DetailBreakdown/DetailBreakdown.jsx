@@ -1,7 +1,6 @@
 import * as utils from '../../../utilities';
 import React, { Component } from "react";
 import classNames from "classnames";
-import ExcelFormatter from "../ExcelFormatter";
 import {SUMMARY_FILTERS} from '../../../Constants/consts';
 
 import DetailPanelBar from './DetailPanelBar/DetailPanelBar';
@@ -114,10 +113,7 @@ class DetailBreakdown extends Component {
           </div>
         );
       case "week":
-        let formatter = new ExcelFormatter(
-          this.props.activeSummary.details.qtdw.week
-        );
-        formatter.formatDataForExcel();
+
         return (
           <div className={qtdTotalTable + " col-md-11"}>
             {this.props.activeSummary.details.qtdw.week
