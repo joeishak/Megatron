@@ -125,6 +125,7 @@ class SecondarySquares extends Component {
             <div className={commentsIcon}>
               <img
                 alt=""
+                style={{height: '17px'}}
                 src={
                   this.props.comments.comments[this.props.item.index].length === 0 ?  commentIconOff : commentIconOn
                 }

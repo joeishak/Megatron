@@ -311,7 +311,7 @@
 
 .secondaryTarget{
 	padding-bottom: 15px;
-	margin-top:10px;
+	/* margin-top:10px; */
 }
 .journeyKendoGraph {
 	height: auto;
@@ -361,6 +361,7 @@
 }
 
 .vs-qrf-desktop {
+	text-align:right;
 	margin-top: 10px !important;
 }
 

@@ -20,14 +20,13 @@
     overflow: wrap;
     float:left;
     padding-top:12px;
-    padding-left: 20px;
 }
 
 .newFilterDiv{
     float: right;
     color: #ffffff;
     padding-top:6px;
-    padding-right:20px;
+    padding-right:5px;
 }
 
 .newFilterText{

@@ -22,7 +22,7 @@ class CompanyHeader extends Component {
     return (<span>
       {isLaptop ?
         <Navbar.Brand className="navBrandLogo">
-          <div href="#brand" style={{ width: 380 }}>
+          <div href="#brand" style={{ width: 450 }}>
             {logos}
             <span className="nav-brand-header">DMe - GTM Run The Business</span>
           </div>

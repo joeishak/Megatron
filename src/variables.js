@@ -9062,6 +9062,7 @@ export const SecondaryData = [
                         vsQrf: -.0495,
                         qq: -20.00,
                         yy: -.0733,
+                        marketArea: 'US',
                         type: 'AMER'
                     }
                 ],
@@ -9073,6 +9074,7 @@ export const SecondaryData = [
                         qrfDiff: -3.48,
                         vsQrf: -.0495,
                         ww: -20.00,
+                        marketArea: 'US',
                         type: 'AMER'
                     }
                 ],

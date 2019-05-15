@@ -133,6 +133,7 @@ class Summary extends Component {
     } = this.props;
     let userChangedCards = activeSecondaryCard !== prevProps.activeSecondaryCard;
 
+    // For when the user changes primary cards on top 1/6
     if(activePrimaryCard !== prevProps.activePrimaryCard){
       console.log('Sending data to piwik');
       ReactPiwik.push(['setCustomVariable',3,'primaryKPI',this.props.primaryData[activePrimaryCard].category,'page']);
@@ -854,7 +855,7 @@ class Summary extends Component {
               this.setState({ isLoading: false, filtersUpdated: false });
               if (buyMarketIsLoaded === false || buyConversionIsLoaded === false) {
                 this.setState({ requestingRemainingDiscoverData: true });
-                this.props.getBuyFinanceSecondaryData(this.props.filters);
+                this.props.getBuyTrafficSecondaryData(this.props.filters);
                 this.props.getBuyMarketSecondaryData(this.props.filters);
 
               } else {
@@ -957,7 +958,7 @@ class Summary extends Component {
     }
   }
   updateSecondaryLoading(newFilters) {
-    this.setState({ subFiltersChanged: true })
+    this.setState({ subFiltersChanged: true})
     this.props.submitFilters(newFilters);
     switch (this.props.activeSecondaryCard) {
       case 4:
@@ -1063,6 +1064,7 @@ class Summary extends Component {
 
   updateActiveSecondary(index) {
     // this.props.isFetching(true);
+    this.setState({isLoading: true});
     this.props.fetchComments(index);
     this.props.updateActiveSecondaryCard(index);
   }
@@ -1164,7 +1166,7 @@ class Summary extends Component {
     const feedbackDialog = this.props.feedbackIsOpen ? <FeedBackDialog /> : null;
 
     const isMobileOrTablet = utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet');
-    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails subFiltersSubmit={(newFilters) => { this.updateSecondaryLoading(newFilters) }} secondaryData={this.props.secondaryData} />;
+    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails isLoading={this.state.isLoading} subFiltersSubmit={(newFilters) => { this.updateSecondaryLoading(newFilters) }} secondaryData={this.props.secondaryData} />;
     return (
 
      

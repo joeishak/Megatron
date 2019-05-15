@@ -5,16 +5,22 @@ import Workbook from "react-excel-workbook";
 import { DIMENSIONS, SUMMARY_FILTERS } from '../../Constants/consts';
 import { connect } from "react-redux";
 import * as actions from "actions";
+import LoadingScreen from '../../Views/Loading/Loading.jsx';
 class ExcelWorkbook extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            isLoading: true,
+        };
 
+    }
+    componentDidUpdate(prevProps){
+    
     }
     getFinanceWorkBook() {
         let { activeItem, filters, activeSecondary, secondaryData } = this.props;
-        // console.log('THE ACTIVE ITEM IS',secondaryData[activeSecondary])
+        console.log('THE ACTIVE ITEM IS',secondaryData[activeSecondary])
             return (
             <Workbook
                 filename={`${activeItem.header}.xlsx`}
@@ -33,9 +39,9 @@ class ExcelWorkbook extends Component {
                 <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
                     <Workbook.Column label="Dimension" value="category" />
                     <Workbook.Column label="Filter Applied" value="value" />
-                </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd } name="geo">
-                    <Workbook.Column label="Geo" value="type" />
+               </Workbook.Sheet>
+                 <Workbook.Sheet data={activeItem.details.geo.qtd } name="geo">
+                    <Workbook.Column label="Geo" /* value="type" */ value={row => console.log(secondaryData[activeSecondary].details.geo.qtd)}/> 
                     <Workbook.Column label="MarketArea" value="marketArea" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     {activeSecondary <= 3 ? <Workbook.Column label="Units" value="units" /> : null}
@@ -44,9 +50,9 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="vsQRF" value="vsQrf" />
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
-                </Workbook.Sheet> 
+                </Workbook.Sheet>
                 <Workbook.Sheet data={secondaryData[activeSecondary].details.market.qtd } name="Market Area">
-                    <Workbook.Column label="Market Area" value="type" />
+                    {/* <Workbook.Column label="Market Area" value="type" /> */}
                     <Workbook.Column label="Actuals" value="actuals" />
                     {activeSecondary <= 3 ? <Workbook.Column label="Units" value="units" /> : null}
                     <Workbook.Column label="QRF" value="qrf" />
@@ -56,7 +62,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
                 <Workbook.Sheet data={secondaryData[activeSecondary].details.segment.qtd } name="Segment Pivot">
-                    <Workbook.Column label="Segment Pivot" value="type" />
+                    {/* <Workbook.Column label="Segment Pivot" value="type" /> */}
                     <Workbook.Column label="Actuals" value="actuals" />
                     {activeSecondary <=3 ? <Workbook.Column label="Units" value="units" /> : null}
                     <Workbook.Column label="QRF" value="qrf" />
@@ -65,7 +71,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.route.qtd } name="Route To Market">
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.route.qtd || []} name="Route To Market">
                     <Workbook.Column label="Route To Market" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     {activeSecondary < 3 ? <Workbook.Column label="Units" value="units" /> : null}
@@ -483,11 +489,57 @@ class ExcelWorkbook extends Component {
             </Workbook>
         )
     }
+    getBuyPaidMediaSpendWorkbook() {
+        let { activeItem, filters, activeSecondary, secondaryData } = this.props;
+        return (
+            <Workbook
+                filename={`${activeItem.header}.xlsx`}
+                element={
+                    <button className="exportButton">
+                        <span>Export</span>
+                        <img
+                            alt=""
+                            className="excelLogo"
+                            style={{ height: "20px", width: "20px" }}
+                            src={excelLogoGreen}
+                        />
+                    </button>
+                }
+            >
+                <Workbook.Sheet data={filters.combined.valueFilters} name="Filters">
+                    <Workbook.Column label="Dimension" value="category" />
+                    <Workbook.Column label="Filter Applied" value="value" />
+
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.geo.qtd } name="geo">
+                    <Workbook.Column label="Geo" value="type" />
+                    <Workbook.Column label="MarketArea" value="marketArea" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+                <Workbook.Sheet data={secondaryData[activeSecondary].details.channel.qtd } name="Channel">
+                    <Workbook.Column label="Channel" value="type" />
+                    <Workbook.Column label="Actuals" value="actuals" />
+                    <Workbook.Column label="QRF" value="qrf" />
+                    <Workbook.Column label="QRFDIFF" value="qrfDiff" />
+                    <Workbook.Column label="vsQRF" value="vsQrf" />
+                    <Workbook.Column label="Q/Q" value="qq" />
+                    <Workbook.Column label="Y/Y" value="yy" />
+                </Workbook.Sheet>
+               
+            </Workbook>
+        )
+    }
     getCurrentWorkbook(primary, secondary) {
 
         if (primary === 0) {
             return this.getFinanceWorkBook();
-        } else if (primary === 2) {
+        } 
+        else if (primary === 2) {
             if (secondary === SUMMARY_FILTERS.TRY_CUMU_UQFM || secondary === SUMMARY_FILTERS.TRY_NEW_UQFM) {
                 return this.getNewCumuUQFMWorkbook();
             } else if (secondary === SUMMARY_FILTERS.TRY_CUMU_QFM || secondary === SUMMARY_FILTERS.TRY_DAY_28 || secondary === SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM) {
@@ -495,7 +547,19 @@ class ExcelWorkbook extends Component {
             } else {
                 return this.getNewQFMWorkbook();
             }
-        } else {
+        } 
+        // else if(primary === 4){
+        //     return this.getUseWorkbook();
+        // } 
+        // else if(primary ===5){
+        
+        //     if(secondary!== SUMMARY_FILTERS.RENEW_EOT_RESELLER){
+        //         this.getGeneralRenewWorkbook();
+        //     }else {
+        //         this.getRenewEOTWorkbook();
+        //     }
+        // }
+        else {
             switch (secondary) {
                 case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
                     return this.getDiscoverTrafficWorkbook();
@@ -509,6 +573,20 @@ class ExcelWorkbook extends Component {
                     return this.getDiscoverTrafficWorkbook();
                 case SUMMARY_FILTERS.DISCOVER_UQFM:
                     return this.getDiscoverUQFMWorkbook();
+                    // Create Functions for these
+                case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
+                console.log('Fetching Gross ARR Buy Workbook');
+                    return this.getFinanceWorkBook();
+                // case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
+                //     return this.getFinanceWorkBook();
+                // case SUMMARY_FILTERS.BUY_CONVERSION:
+                //     return this.getDiscoverTrafficWorkbook();
+                // case SUMMARY_FILTERS.BUY_PAID_MEDIASPEND:
+                //     return this.getBuyPaidMediaSpendWorkbook();
+                // case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
+                //     return this.getBuyMarketingSourcedWorkbook();
+
+
 
             }
         }
@@ -516,10 +594,10 @@ class ExcelWorkbook extends Component {
     }
     render() {
         let { activeItem, filters, activeSecondary, activePrimary, secondaryData } = this.props;
-        let AdobeWorkbook = this.getCurrentWorkbook(activePrimary,activeSecondary);
+        let AdobeWorkbook =  this.getCurrentWorkbook(activePrimary,activeSecondary);
         return (
             <span className="excelSpan">
-                {AdobeWorkbook}
+                { AdobeWorkbook}
             </span>
 
 
@@ -538,7 +616,19 @@ function mapStateToProps(state) {
       summaryData: state.adobeData,
       secondaryData: state.summaryData.secondary,
       multichartIsArr: state.multichartIsArr,
-      filters: state.filters
+      filters: state.filters,
+      financeXDC1IsLoaded: state.summaryData.financeXDC1IsLoaded,
+      financeXDC2IsLoaded: state.summaryData.financeXDC2IsLoaded,
+      trafficIsLoaded: state.summaryData.trafficIsLoaded,
+      muIsLoaded: state.summaryData.muIsLoaded,
+      buyGrossIsLoaded: state.summaryData.buyGrossIsLoaded,
+      buyMarketIsLoaded: state.summaryData.buyMarketIsLoaded,
+      buyConversionIsLoaded: state.summaryData.buyConversionIsLoaded,
+      tryIsLoaded: state.summaryData.tryIsLoaded,
+      useIsLoaded: state.summaryData.useIsLoaded,
+      renewIsLoaded: state.summaryData.renewIsLoaded,
+      renewCancelIsLoaded: state.summaryData.renewCancelIsLoaded,
+      renewDetailsIsLoaded: state.summaryData.renewDetailsIsLoaded,
     };
   }
   

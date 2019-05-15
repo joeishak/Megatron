@@ -9,7 +9,7 @@ import {
 import styles from "./Navigation.css";
 
 
-import logo from "../../assets/images/adobe-logo-nav-1.svg";
+import logo from "../../assets/images/adobe-logo-nav.png";
 import userIcon from "./user-icon.svg";
 import filterUnselected from "./assets/filter-unselected.svg";
 import filterSelected from "./assets/filter-selected.svg";

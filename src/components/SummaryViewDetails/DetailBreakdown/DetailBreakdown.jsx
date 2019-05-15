@@ -4,7 +4,6 @@ import classNames from "classnames";
 import ExcelFormatter from "../ExcelFormatter";
 import {SUMMARY_FILTERS} from '../../../Constants/consts';
 
-import DetailTotalBar from './DetailTotal';
 import DetailPanelBar from './DetailPanelBar/DetailPanelBar';
 class DetailBreakdown extends Component {
 

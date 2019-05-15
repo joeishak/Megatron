@@ -44,15 +44,18 @@ nav.navContainer.navbar.navbar-default{
 }
 
 .navBrandLogo{
-    padding-left: 40px;
+    /* padding-left: 35px; */
     padding-right: 40px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .imgLogo {
     margin-top: 3px;
+    height:50px;
 }
-
+.navbar-collapse{
+    padding-right: 0px;
+}
 .navItem{
     margin-top: 5px;
     padding-left: 5px;
@@ -199,6 +202,10 @@ nav.navContainer.navbar.navbar-default{
     .flRight {
         padding-right: 20px;
     }
+    .navbar-brand{
+        padding-top:10px !important;
+    }
+
 }
 
 @media only screen and (max-width: 765px) {
@@ -213,29 +220,54 @@ nav.navContainer.navbar.navbar-default{
         margin-bottom: 0px !important;
     }
     .imgLogo {
-        margin-top: 15px !important;
+        margin-top: 17px !important;
+            height: 35px;
     }
     .navBrandLogo, .navbar-brand {
         margin-top: -20px;
+        padding-left:0px !important;
+    }
+    .currentQuarter{
+        padding-top: 10px !important;
     }
 }
 .navbar-brand > img {
     padding-right: 10px;
     display: inline !important;
 }
+.navbar-brand {
+    /* padding-left:35px ; */
+    padding-top:10px ;
 
+}
+
+.currentQuarter{
+    padding-top: '10px';
+     width:'100px';
+    padding-left: '10px';
+}
 @media only screen and (max-width: 418px){
     .navBrandLogo{
         padding-left: 0px;
         padding-right: 40px;
         /* margin-top: 10px; */
     }
-    }
 
+    }
+    @media only screen and (max-width: 1024px){
+        .currentQuarter{
+            padding-top: 20px;
+        }
+     
+        }
 @media only screen and (min-width: 765px) {
     .fitlerIconMobile {
        display: none;
     }
+    .filterIcon{
+        height:50px;
+    }
+  
 }
 
 .navbar, .navbar-header {

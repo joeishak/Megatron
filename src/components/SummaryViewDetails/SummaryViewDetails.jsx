@@ -900,7 +900,7 @@ class SummaryViewDetails extends Component {
               :
               <span></span>}
 
-            <ExcelWorkbook />
+            {this.props.isLoading === true ? null : <ExcelWorkbook />}
 
 
 

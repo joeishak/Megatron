@@ -75,7 +75,7 @@ class KendoBulletChart extends Component {
     const formattedValue = utils.formatMetric({ valueType: this.props.valueType, value: this.props.values[0] }, 'value');
     const formattedTarget = utils.formatMetric({ valueType: this.props.valueType, value: this.props.values[1] }, 'target');
     const formattedTargetFQ = utils.formatMetric({ valueType: this.props.valueType, value: this.props.values[2] }, 'target');
-    const bulletStyle = this.props.isMobileOrTablet ? { height: 36, width: this.props.width, float: 'right' } : { height: 36, width: this.props.width };
+    const bulletStyle = this.props.isMobileOrTablet ? { height: 36, width: this.props.width, float: 'right' } : { height: 36, width: this.props.width , display: 'inline-block'};
 
     const tooltipRender = ({ point }) => {
       const { value } = point;

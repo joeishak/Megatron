@@ -65,7 +65,7 @@ const UserNav = ({ isLaptop, onDataPreferencesSelcted, logout, filterIcon,
             </div>
             <div className="flLeft" style={{ paddingTop: '10px', paddingLeft: '10px' }}>
 
-              Updated On {currentRefreshData.updatedAsOf}
+              Updated On {currentRefreshData.updatedAsOf.slice(5,7) + '/' + currentRefreshData.updatedAsOf.slice(8,10) }
               <div style={{ borderRadius: '50px', backgroundColor: '#3c3c3c', textAlign: 'center', color: 'white' }}>
                 {currentRefreshData.currentQuarterWeek}
               </div>
@@ -76,7 +76,7 @@ const UserNav = ({ isLaptop, onDataPreferencesSelcted, logout, filterIcon,
 
       //Mobile View
       <div className="filterIconContainer">
-        <div className="flLeft" style={{ paddingTop: '10px', width:'100px', paddingLeft: '10px' }}>
+        <div className="flLeft currentQuarter" style={{  }}>
 
           <div style={{ borderRadius: '50px', backgroundColor: '#3c3c3c', textAlign: 'center',padding:'5px', color: 'white' }}>
             {currentRefreshData.currentQuarterWeek}
