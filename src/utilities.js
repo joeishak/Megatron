@@ -436,6 +436,12 @@ export function removeAllDataValueFromFilterArray(obj) {
 
     return obj;
 }
+
+export function getCurrentQuarter(){
+    var today = new Date();
+    var quarter = Math.floor((today.getMonth() + 3) / 3);
+    return `${today.getFullYear()}-Q${quarter}`;
+}
 /**
  *
  * @param {*} arr

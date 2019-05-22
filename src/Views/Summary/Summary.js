@@ -976,8 +976,6 @@ class Summary extends Component {
       case 9:
         this.props.updateTrafficSecondaryIsLoading(false);
         this.props.updateBuyConversionIsLoading(false);
-
-
         break;
       case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
         this.props.updateBuyMarketIsLoading(false);
@@ -996,33 +994,6 @@ class Summary extends Component {
       case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
         this.props.updateBuyGrossIsLoading(false);
         break;
-      // case 27:
-      //   this.props.updateRenewCancelIsLoading(false);
-      //   break;
-      // case 27:
-      //   this.props.updateRenewCancelIsLoading(false);
-      //   break;
-      // case 28:
-      //   this.props.updateRenewCancelIsLoading(false);
-      //   break;
-      // case 29:
-      //   this.props.updateRenewDetailsIsLoading(false);
-      //   break;
-      // case 30:
-      //   this.props.updateRenewDetailsIsLoading(false);
-      //   break;
-      // case 31:
-      //   this.props.updateRenewDetailsIsLoading(false);
-      //   break;
-      // case 32:
-      //   this.props.updateRenewCancelIsLoading(false);
-      //   break;
-      // case 33:
-      //   this.props.updateRenewDetailsIsLoading(false);
-      //   break;
-      // case 34:
-      //   this.props.updateRenewDetailsIsLoading(false);
-      //   break;
     }
   }
 
@@ -1191,13 +1162,13 @@ class Summary extends Component {
 
                     {/* Primary */}
 
-                    {this.props.mobileFiltersIsShown ||
-                      this.props.mobileIsPrimary === false ? null : this.getPrimaryContent()}
+                    {this.props.mobileFiltersIsShown 
+                    ? null :    this.props.mobileIsPrimary === true ? this.getPrimaryContent() : null}
                     {/* (this.props.activePrimaryCard === 4 || this.props.activePrimaryCard === 5) ?
                       <div id="commingSoon">Coming Soon</div> : */
                       this.state.isLoading === true ? <LoadingScreen></LoadingScreen> :
                         <span>
-                          {(this.state.mobileFiltersIsShown ? null : this.getSecondaryContent())}
+                          {isMobileOrTablet === false ? this.getSecondaryContent() : (this.props.mobileFiltersIsShown ? null : this.getSecondaryContent())}
                           {summaryViewDetails}</span>
                     }
 

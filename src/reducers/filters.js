@@ -9,6 +9,8 @@ import {
 import { DIMENSIONS } from '../Constants/consts';
 import _ from 'lodash';
 
+import * as utils from '../utilities.js';
+
 let count = 0;
 let defaultState = [];
 let copyOfState;
@@ -154,9 +156,11 @@ export default function (state = {
             }
         // return state;
         case ADD_PREFERENCES_TO_ACTIVE_FILTERS:
+            let quarter = utils.getCurrentQuarter();
+            console.log('Current Quarter ', quarter);
             let copyOfState1 = JSON.parse(JSON.stringify(state))
             copyOfState = JSON.parse(JSON.stringify(state))
-            copyOfState.quarter.valueFilters.push({ index: 211, category: QUARTER, value: '2019-Q2' });
+            copyOfState.quarter.valueFilters.push({ index: 211, category: QUARTER, value: quarter });
             copyOfState.segment.valueFilters.push({ index: 209, category: SEGMENT, value: 'Digital Media' });
             copyOfState.websegment.valueFilters.push({ index: 187, category: WEBSEGMENT, value: 'DIGITAL MEDIA'});
             copyOfState.lastTouchChannel.valueFilters.push({ index: 134, category: LTC, value: 'ALL' });
