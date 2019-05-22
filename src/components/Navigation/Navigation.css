@@ -284,5 +284,6 @@ img:hover {
     cursor: pointer;
 }
 
-
-
+.nav-brand-header{
+    color: blue;
+}

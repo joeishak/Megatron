@@ -22,7 +22,9 @@ class FilterPage extends Component {
         // Initialize state
         this.state = {
             showContainer: this.props.showContainer,
-            selectedFilters: [],
+            selectedFilters: [...this.props.filters.quarter.valueFilters,
+                ...this.props.filters.geo.valueFilters,
+                ...this.props.filters.market.valueFilters],
             activeDataFilters: [],
         }
     }
@@ -45,10 +47,7 @@ class FilterPage extends Component {
         return _.pull(allDataRemoved, undefined);
     }
 
-    // when a drop down is selected
-    updateActiveFiltersHandler = (e) => {
-        this.props.addValueToActiveMultiFilter(e.target.value);
-    }
+   
     updateSingleValue = (e) => {
         // console.log('Updating SingleValue',e);
         let copy = this.state.selectedFilters;
@@ -87,8 +86,80 @@ class FilterPage extends Component {
     }
 
     submitFilters = (e) => {
-        // console.log('Submitting Filters . . . ');
-      const { GEO,
+        const { GEO,
+              MARKET,
+              PRODUCT,
+              SEGMENT,
+              SUBSCRIPTION,
+              QUARTER,
+              ROUTE,
+              VISITSTATUS,
+              SIGNSOURCE,
+              SIGNAPP,
+              PRODUCTCAT,
+              WEBSEGMENT,
+              PVW,
+              CATEGORY,
+              LTC,
+              NEWVSREPEAT,
+              MOBILEVSDESKTOP,
+              CONVERSION,
+              VISITS,
+              SIGNCAT
+          } = DIMENSIONS;
+          this.setState({ isButtonHighlighted: false })
+          let newFilters = {
+              quarter: [],
+              segment: [],
+              product: [],
+              market: [],
+              route: [],
+              subscription: [],
+              geo: [],
+              signupCategory:[],
+              nonDMSegment:[]
+  
+          };
+          Object.keys(newFilters).forEach(item => {
+              switch (item) {
+                  case QUARTER:
+                      newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === QUARTER })) ? /* Then */
+                          [_.find(this.state.selectedFilters, (item => { return item.category === QUARTER }))] : /* Else */
+                          [...this.props.filters.quarter.valueFilters];
+                      break;
+                  case SEGMENT:
+                      newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SEGMENT })) ?
+                          [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
+                          [...this.props.filters.segment.valueFilters];
+                      break;
+                  
+                  default:
+                      let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category ===  item }));
+                      if (grouped.false !== this.state.selectedFilters.length) {
+                          if (grouped.true !== undefined) {
+                              newFilters[item] = grouped.true
+                          } else {
+                              newFilters[item] = [];
+                          }
+                      } else {
+                          newFilters[item] = [];
+                      }
+                      break;
+              }
+  
+          });
+  
+  
+   
+          this.props.submitFilters(newFilters);
+        //   this.props.handleClose();
+        this.props.updateViewSetting(MOBILE_FILTER_PAGE, false);
+
+      }
+  
+    getGlobalSubFilters(filters, quarterFilterContainer) {
+
+        const { GEO,
             MARKET,
             PRODUCT,
             SEGMENT,
@@ -98,65 +169,158 @@ class FilterPage extends Component {
             VISITSTATUS,
             SIGNSOURCE,
             SIGNAPP,
+            SIGNCAT,
             PRODUCTCAT,
             WEBSEGMENT,
             PVW,
             CATEGORY,
             LTC,
+            NONDMSEGMENT,
             NEWVSREPEAT,
             MOBILEVSDESKTOP,
             CONVERSION,
             VISITS
         } = DIMENSIONS;
-        let newFilters = {
-            quarter: [],
-            segment: [],
-            product: [],
-            market: [],
-            route: [],
-            subscription: [],
-            geo: []
-        };
 
-        Object.keys(newFilters).forEach(item => {
+        switch (this.props.summaryData.primary[this.props.activeCards.primary].index) {
 
-            switch (item) {
-                case QUARTER:
-                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === QUARTER })) ? /* Then */
-                        [_.find(this.state.selectedFilters, (item => { return item.category === QUARTER }))] : /* Else */
-                        [...this.props.filters.quarter.valueFilters];
-                    break;
-                case SEGMENT:
-                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SEGMENT })) ?
-                        [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
-                        [...this.props.filters.segment.valueFilters];
-                    break;
-                default:
-                    let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category === item }));
-                    // console.log(grouped);
-                    if (grouped.false !== this.state.selectedFilters.length) {
+            /** Financial Perf Tab */
+            case 0:
+            // const selectedRoute = this.props.filters.route.valueFilters
+                return (
+                    <div className="globalSecondaryContainer col-lg-12 ">
+                        <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
+                        <div className={ 'col-sm-12'} >
+                            <p>  Route To Market</p>
+                            <MultiValueSelect
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === ROUTE})}
+                                options={filters.route.availableFilters}
+                                onValueChange={(e) => { let type = ROUTE; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
+                            
+                            />
+                        </div>
+                        <div className={' col-sm-12'} >
+                            <p> Segment</p>
+                            <SingleValueSelect
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === SEGMENT})}
+                                activeFilters={filters.segment.valueFilters}
+                                options={filters.segment.availableFilters}
+                                onValueChange={this.updateSingleValue}
+                                onMenuClose={this.closeSingleValue}
+                            />
 
-                        if (grouped.true !== undefined) {
-                            newFilters[item] = grouped.true
-                        } else {
-                            newFilters[item] = [];
-                        }
-                    } else {
-                        newFilters[item] = [];
-                    }
-                    break;
-            }
+                        </div>
+                        <div className={ ' col-sm-12'} >
+                            <p> Subscription Offering</p>
+                            <MultiValueSelect
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === SUBSCRIPTION})}
+                                options={filters.subscription.availableFilters}
+                                onValueChange={(e) => { let type = SUBSCRIPTION; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
+                            />
+                        </div>
+                        <div className={' col-sm-12'} >
+                            <p> Product Category</p>
+                            <MultiValueSelect
+                                options={filters.product.availableFilters}
+                                onValueChange={(e) => { let type = PRODUCT; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
+                            />
+                        </div>
+                    </div>
+                );
+            // case 1:
+            //     return (
+            //         <div className="col-lg-12 globalPrimaryKPIFilters">
+            //             <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
+            //             <div className={quarterFilterContainer + ' col-lg-2'} >
+            //                 <p> Web Segment</p>
+            //                 <SingleValueSelect
+            //                     activeFilters={filters.websegment.valueFilters}
+            //                     options={filters.websegment.availableFilters}
+            //                     onValueChange={this.updateSingleValue}
+            //                     onMenuClose={this.closeSingleValue}
+            //                 />
 
-        });
+            //             </div>
+            //         </div>
+            //     );
+            /** Try Tab */
+            case 2:
+                // const selectedSignUp = this.props.filters.signupCategory.valueFilters
+                return (
+                    <div className="globalSecondaryContainer col-lg-12 ">
+                        <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
+                        <div className={'col-sm-12'} >
+                            {/* <p style={{whiteSpace: 'nowrap'}}> Sign Up Source - {this.state.stringList}</p> this.setSelectedMultiFilters(selected); */}
+                 
+                            <p style={{whiteSpace: 'nowrap'}}> Sign Up Source - {this.state.stringList}</p>
+                            <MultiValueSelect
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === SIGNCAT})}
+                                options={filters.signupCategory.availableFilters}
+                                onValueChange={(e) => { let type = SIGNCAT; this.updateMultiValue(e, type);  }}
+                                onMenuClose={this.closeMultiValue}
+                            />
+                          
+                        </div>
+                    </div>
+                );
+            case 3:
+                break;
+            case 4:
+                return (
+                    <div className="globalSecondaryContainer col-lg-12 ">
+                        <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
+                        <div className={'col-sm-12'} >
+                            <p> Segments {this.props.filters.isDefaultFilters === true ? '- Excluding PDF Services & Sign' : ''}</p>
+                            <MultiValueSelect
+                                options={filters.nonDMSegment.availableFilters}
+                                onValueChange={(e) => { let type = NONDMSEGMENT; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === NONDMSEGMENT})}
+                            />
+                        </div>
+                        <div className={'col-sm-12'} >
+                            <p> Subscription Offering</p>
+                            <MultiValueSelect
+                                options={filters.subscription.availableFilters}
+                                onValueChange={(e) => { let type = SUBSCRIPTION; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === SUBSCRIPTION})}
+                            />
+                        </div>
+                    </div>
+                );
+            case 5:
+                return (
+                    <div className=" globalSecondaryContainer col-lg-12 ">
+                        <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
+                        <div className={'col-sm-12'} >
+                            <p> Segments  {this.props.filters.isDefaultFilters === true ? '- Excluding PDF Services & Sign' : ''} </p>
+                             <MultiValueSelect
+                                options={filters.nonDMSegment.availableFilters}
+                                onValueChange={(e) => { let type = NONDMSEGMENT; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === NONDMSEGMENT})}
+                            />
 
+                        </div>
+                        <div className={'col-sm-12'} >
+                            <p> Subscription Offering</p>
+                            <MultiValueSelect
+                                options={filters.subscription.availableFilters}
+                                onValueChange={(e) => { let type = SUBSCRIPTION; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
+                                value={_.filter(this.state.selectedFilters, item=> {return item.category === SUBSCRIPTION})}
 
-        this.setState({ selectedFilters: [] })
-        // this.props.handleClose();
-        this.props.updateViewSetting(MOBILE_FILTER_PAGE, false);
-
-        this.props.submitFilters(newFilters);
-        //  this.props.getSummaryData(newFilters);
-
+                            />
+                        </div>
+                    </div>
+                );
+            default:
+                break;
+        }
     }
     render() {
         let { filters } = this.props;
@@ -187,13 +351,13 @@ class FilterPage extends Component {
         return (
             <div className="filterMobileContainer" >
 
-                <div className="filterMobilePillsContainer">
+                {/* <div className="filterMobilePillsContainer">
                     <ul className="filterListMobile">
                         {filters.combined.valueFilters.map((item) => {
                             return <li key={item.index}  className="filterListMobileLi">{item.value}</li>
                         })}
                     </ul>
-                </div>
+                </div> */}
 
                 <div className="filterMobileDropDownContainer">
                     <div className="dropdowns contentpad">
@@ -207,14 +371,17 @@ class FilterPage extends Component {
                                     options={filters.quarter.availableFilters}
                                     onValueChange={this.updateSingleValue}
                                     onMenuClose={this.closeSingleValue}
-                                />                                        </div>
+                                    value={_.filter(this.state.selectedFilters, (item => { return item.category === QUARTER }))}
+                                />                     
+                                            </div>
                             <div className="col-xs-12 col-sm-6 col-md-4 ">
                                 <p>Geo</p>
                                 {/* <KendoDropDownList  data={this.props.availableFilters.geo}/> */}
                                 <MultiValueSelect
                                     options={filters.geo.availableFilters}
-                                    onValueChange={(e) => { let type = 'geo'; this.updateMultiValue(e, type) }}
+                                    onValueChange={(e) => { let type = GEO; this.updateMultiValue(e, type) }}
                                     onMenuClose={this.closeMultiValue}
+                                    value={_.filter(this.state.selectedFilters, (item => { return item.category === GEO }))}
                                 />                                        </div>
                             <div className="col-xs-12 col-sm-6 col-md-4">
                                 <p>Market Area</p>
@@ -223,8 +390,9 @@ class FilterPage extends Component {
                                     options={filters.market.availableFilters}
                                     onValueChange={(e) => { let type = MARKET; this.updateMultiValue(e, type) }}
                                     onMenuClose={this.closeMultiValue}
-                                    values={_.groupBy(this.state.selectedFilters, (item => { return item.category === MARKET }))}
+                                    values={_.filter(this.state.selectedFilters, (item => { return item.category === MARKET }))}
                                 />                                        </div>
+                        {this.getGlobalSubFilters(filters, quarterFilterContainer)}
 
                             <div className={'col-xs-12 col-sm-6 col-md-6'}>
                                 <Button className="button" primary={true} onClick={this.submitFilters} look="flat">Submit</Button>
@@ -254,9 +422,13 @@ class FilterPage extends Component {
         )
     }
 }
-
 function mapStateToProps(state) {
-    return {}
+    return { 
+        filters: state.filters, 
+        summaryData: state.summaryData, 
+        activeCards: state.activeCards ,
+
+    };
 }
 
 export default connect(mapStateToProps, actions)(FilterPage);
