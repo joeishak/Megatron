@@ -25,7 +25,9 @@ class KendoDialog extends Component {
             savedClicked: undefined,
             onFilterHover: false,
             filterListCount: 0,
-            selectedFilters: [],
+            selectedFilters: [...this.props.preferences.defaultQuarter,
+            ...this.props.preferences.marketFilters,
+            ...this.props.preferences.geoFilters],
             activeDataFilters: [],
         };
 
@@ -37,11 +39,12 @@ class KendoDialog extends Component {
 
     }
 
-
-
     componentDidMount() {
-        // window.addEventListener("resize", this.resize.bind(this));
-        // this.resize();
+        this.setState({
+            selectedFilters: [...this.props.preferences.nondmsegments.map(item => {
+                return { ...item, label: item.value }
+            })]
+        })
         this.open();
     }
 
@@ -154,7 +157,8 @@ class KendoDialog extends Component {
             NEWVSREPEAT,
             MOBILEVSDESKTOP,
             CONVERSION,
-            VISITS
+            VISITS,
+            NONDMSEGMENT
         } = DIMENSIONS;
         let newFilters = {
             quarter: [],
@@ -163,7 +167,9 @@ class KendoDialog extends Component {
             market: [],
             route: [],
             subscription: [],
-            geo: []
+            geo: [],
+            signupCategory: [],
+            nonDMSegment: []
         };
 
         Object.keys(newFilters).forEach(item => {
@@ -201,7 +207,7 @@ class KendoDialog extends Component {
         this.setState({ selectedFilters: [] })
 
         this.props.submitFilters(newFilters);
-
+        console.log('New Filters Dialog', newFilters);
         //Preferences
         let view = (this.state.selectedSummary === 'Financial') ? 'Financial' : 'Journey';
 
@@ -222,7 +228,7 @@ class KendoDialog extends Component {
     onMoueLeaveHandler = () => {
     }
 
-  
+
     generateFilterList = (filterList) => {
 
         let filterObjectList = Object.keys(filterList).map((ele) => { return filterList[ele]; });
@@ -363,6 +369,121 @@ class KendoDialog extends Component {
         // this.props.handleClose();
 
     }
+    getGlobalSubFilters(filters) {
+        const { GEO,
+            MARKET,
+            PRODUCT,
+            SEGMENT,
+            SUBSCRIPTION,
+            QUARTER,
+            ROUTE,
+            VISITSTATUS,
+            SIGNSOURCE,
+            SIGNAPP,
+            PRODUCTCAT,
+            WEBSEGMENT,
+            PVW,
+            CATEGORY,
+            LTC,
+            NEWVSREPEAT,
+            MOBILEVSDESKTOP,
+            CONVERSION,
+            VISITS
+        } = DIMENSIONS;
+        return (
+            <div>
+                <div>
+                    <h4 className="dialog-sub-category col-lg-12">Financial Performance</h4>
+                </div>
+                <div className={'dialog-dropdown col-lg-6'} >
+                    <p>  Route To Market</p>
+                    <MultiValueSelect
+                        options={filters.route.availableFilters}
+                        onValueChange={(e) => { let type = ROUTE; this.updateMultiValue(e, type) }}
+                        onMenuClose={this.closeMultiValue}
+                        value={_.filter(this.state.selectedFilters, item => { return item.category === ROUTE })}
+
+                    />
+                </div>
+                <div className={'dialog-dropdown col-lg-6'} >
+                    <p> Segment</p>
+                    <SingleValueSelect
+                        activeFilters={filters.segment.valueFilters}
+                        options={filters.segment.availableFilters}
+                        onValueChange={this.updateSingleValue}
+                        onMenuClose={this.closeSingleValue}
+                    />
+
+                </div>
+                <div className={'dialog-dropdown col-lg-6'} >
+                    <p> Subscription Offering</p>
+                    <MultiValueSelect
+                        options={filters.subscription.availableFilters}
+                        onValueChange={(e) => { let type = SUBSCRIPTION; this.updateMultiValue(e, type) }}
+                        onMenuClose={this.closeMultiValue}
+                    />
+                </div>
+                <div className={'dialog-dropdown col-lg-6'} >
+                    <p> Product Name</p>
+                    <MultiValueSelect
+                        options={filters.product.availableFilters}
+                        onValueChange={(e) => { let type = PRODUCT; this.updateMultiValue(e, type) }}
+                        onMenuClose={this.closeMultiValue}
+                    />
+                </div>
+                <br />
+                <div>
+                    <h4 className="dialog-sub-category col-lg-6">Try</h4>
+                </div>
+                <div className={'dialog-dropdown col-lg-12'} >
+                    <p> Sign Up Source</p>
+                    <MultiValueSelect
+                        options={filters.signupCategory.availableFilters}
+                        onValueChange={(e) => { let type = PRODUCT; this.updateMultiValue(e, type) }}
+                        onMenuClose={this.closeMultiValue}
+                    />
+                </div>
+                <div>
+                    <h4 className="dialog-sub-category col-lg-12">Use & Renew</h4>
+                </div>
+                <div className={'dialog-dropdown col-lg-6'} >
+                    <p> Segments</p>
+                    <MultiValueSelect
+                        options={filters.nonDMSegment.availableFilters}
+                        onValueChange={(e) => { let type = PRODUCT; this.updateMultiValue(e, type) }}
+                        onMenuClose={this.closeMultiValue}
+                    />
+                </div>
+                <div className={'dialog-dropdown col-lg-6'} >
+                    <p> Subscription Offering</p>
+                    <MultiValueSelect
+                        options={filters.subscription.availableFilters}
+                        onValueChange={(e) => { let type = PRODUCT; this.updateMultiValue(e, type) }}
+                        onMenuClose={this.closeMultiValue}
+                    />
+                </div>
+                {/* <div>
+                    <h4 className="dialog-sub-category col-lg-12">Renew</h4>
+                </div>
+                <div className={'dialog-dropdown col-lg-6'} >
+                    <p> Segments</p>
+                    <MultiValueSelect
+                        options={filters.nonDMSegment.availableFilters}
+                        onValueChange={(e) => { let type = PRODUCT; this.updateMultiValue(e, type) }}
+                        onMenuClose={this.closeMultiValue}
+                    />
+                </div>
+                <div className={'dialog-dropdown col-lg-6'} >
+                    <p>Subscription Offerings</p>
+                    <MultiValueSelect
+                        options={filters.subscription.availableFilters}
+                        onValueChange={(e) => { let type = PRODUCT; this.updateMultiValue(e, type) }}
+                        onMenuClose={this.closeMultiValue}
+                    />
+                </div> */}
+            </div>
+        )
+    }
     render() {
         var quarterFilterContainer = classNames({
             'quarterFilterContainer': true,
@@ -371,7 +492,7 @@ class KendoDialog extends Component {
         // const filtersApplied = this.generateFilterList(this.props.activeFilters);
         const defaultSum = this.state.selectedSummary || this.props.defaultSummaryView;
         const show = this.props.dialogIsOpen;
-      const { GEO,
+        const { GEO,
             MARKET,
             PRODUCT,
             SEGMENT,
@@ -404,10 +525,18 @@ class KendoDialog extends Component {
                                 {/* Filters */}
                                 <p className="dialogTitles">Filters</p>
                                 <p>Select which filters (if any) you would like applied:</p>
+
+                                <div className="filterPillsContainer">
+                                    <ul className="filterList">
+                                        {filters.combined.valueFilters.filter(item => item.category === QUARTER || item.category === MARKET || item.category === GEO).map((item) => {
+                                            return <li key={item.index} className="filterListLi">{item.value}</li>
+                                        })}
+                                    </ul>
+                                </div>
                                 <div className="dropdowns contentpad">
                                     {/* first row */}
                                     <div className="row dropRow">
-                                        <div className={' col-lg-2'} >
+                                        <div className={'dialog-dropdown col-lg-2'} >
                                             <p> Quarter</p>
                                             <SingleValueSelect
                                                 activeFilters={filters.quarter.valueFilters}
@@ -416,21 +545,15 @@ class KendoDialog extends Component {
                                                 onMenuClose={this.closeSingleValue}
                                             />
                                         </div>
-                                        <div className={' col-lg-5'} >
+                                        <div className={'dialog-dropdown col-lg-5'} >
                                             <p> Geo</p>
-                                            {/* <ReactSelect
-                        updateFilter={this.updateActiveFiltersHandler}
-                        defaultValue={this.props.activeFilters.geo[0]}
-                        onClose={(e) => { this.closed(e) }}
-                        options={this.props.availableFilters.geo}></ReactSelect> */}
                                             <MultiValueSelect
                                                 options={filters.geo.availableFilters}
                                                 onValueChange={(e) => { let type = 'geo'; this.updateMultiValue(e, type) }}
                                                 onMenuClose={this.closeMultiValue}
                                             />
-
                                         </div>
-                                        <div className={' col-lg-5'} >
+                                        <div className={'dialog-dropdown col-lg-5'} >
                                             <p> Market Area</p>
                                             <MultiValueSelect
                                                 options={filters.market.availableFilters}
@@ -439,54 +562,22 @@ class KendoDialog extends Component {
                                                 values={_.groupBy(this.state.selectedFilters, (item => { return item.category === MARKET }))}
                                             />
                                         </div>
-                                        <div className={' col-lg-9'} >
-                                            <p>  Route To Market</p>
-                                            <MultiValueSelect
-                                                options={filters.route.availableFilters}
-                                                onValueChange={(e) => { let type = ROUTE; this.updateMultiValue(e, type) }}
-                                                onMenuClose={this.closeMultiValue}
-                                            />
-                                        </div>
-                                        <div className={' col-lg-5'} >
-                                            <p> Segment</p>
-                                            <SingleValueSelect
-                                                activeFilters={filters.segment.valueFilters}
-                                                options={filters.segment.availableFilters}
-                                                onValueChange={this.updateSingleValue}
-                                                onMenuClose={this.closeSingleValue}
-                                            />
-
-                                        </div>
-                                        <div className={' col-lg-6'} >
-                                            <p> Subscription Offering</p>
-                                            <MultiValueSelect
-                                                options={filters.subscription.availableFilters}
-                                                onValueChange={(e) => { let type = SUBSCRIPTION; this.updateMultiValue(e, type) }}
-                                                onMenuClose={this.closeMultiValue}
-                                            />
-                                        </div>
-                                        <div className={' col-lg-12'} >
-                                            <p> Product Name</p>
-                                            <MultiValueSelect
-                                                options={filters.product.availableFilters}
-                                                onValueChange={(e) => { let type = PRODUCT; this.updateMultiValue(e, type) }}
-                                                onMenuClose={this.closeMultiValue}
-                                            />
-                                        </div>
+                                        {this.getGlobalSubFilters(filters)}
                                     </div>
-
-
-                                    <div className="col-lg-6 col-md-6">
-                                        <a id="filter-reset" onClick={this.handleResetFiltersClick}>Re-set all filters</a>
-                                    </div>
-
-
                                 </div>
-                               
+
+
+                                <div className="col-lg-6 col-md-6">
+                                    <a id="filter-reset" onClick={this.handleResetFiltersClick}>Re-set all filters</a>
+                                </div>
+
 
                             </div>
 
+
                         </div>
+
+                        {/* </div> */}
 
                         {/* Save Button */}
                         <button className="saveButton" onClick={this.saveChanges}>Save Changes</button>

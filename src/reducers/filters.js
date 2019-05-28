@@ -157,35 +157,33 @@ export default function (state = {
         // return state;
         case ADD_PREFERENCES_TO_ACTIVE_FILTERS:
             let quarter = utils.getCurrentQuarter();
-            console.log('Current Quarter ', quarter);
+            console.log('Current Quarter ', action.payload);
             let copyOfState1 = JSON.parse(JSON.stringify(state))
+            let nonDmSegs = action.payload.nondmsegments;
             copyOfState = JSON.parse(JSON.stringify(state))
-            copyOfState.quarter.valueFilters.push({ index: 211, category: QUARTER, value: quarter });
-            copyOfState.segment.valueFilters.push({ index: 209, category: SEGMENT, value: 'Digital Media' });
+            copyOfState.quarter.valueFilters=[{ index: 211, category: QUARTER, value: action.payload.defaultQuarter }];
+            copyOfState.segment.valueFilters.push({ index: 209, category: SEGMENT, value: action.payload.defaultQuarter });
+            copyOfState.market.valueFilters = action.payload.marketFilters;
+            copyOfState.geo.valueFilters = action.payload.geoFilters;
+            copyOfState.route.valueFilters = action.payload.routeFilters;
+            copyOfState.subscription.valueFilters = action.payload.subscriptionFilters;
+            copyOfState.signupCategory.valueFilters = action.payload.signupsource;
+
             copyOfState.websegment.valueFilters.push({ index: 187, category: WEBSEGMENT, value: 'DIGITAL MEDIA'});
             copyOfState.lastTouchChannel.valueFilters.push({ index: 134, category: LTC, value: 'ALL' });
             copyOfState.visits.valueFilters.push({ index: 114, category: VISITS, value: 'All Visits' });
             copyOfState.channelMU.valueFilters.push({ index: 213, category: CHANNELMU, value: 'ALL' });
-            copyOfState.nonDMSegment.valueFilters.push(
-                { index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
-                { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
-                { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
-                { index: 233, category: NONDMSEGMENT, value: 'HED' },
-                { index: 232, category: NONDMSEGMENT, value: 'K12+EEA' },
-                { index: 234, category: NONDMSEGMENT, value: 'INDIVIDUAL' },
-                { index: 236, category: NONDMSEGMENT, value: 'OTHER' },
-                { index: 237, category: NONDMSEGMENT, value: 'PHOTOGRAPHY' },
-                { index: 239, category: NONDMSEGMENT, value: 'STOCK' },
-                { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
-                { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
-                { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },
-                );
-
-
+            copyOfState.nonDMSegment.valueFilters= nonDmSegs;
             copyOfState.combined.valueFilters = [...copyOfState.quarter.valueFilters, ...copyOfState.segment.valueFilters, ...copyOfState.route.valueFilters || {},
             ...copyOfState.market.valueFilters || {}, ...copyOfState.product.valueFilters || {}, ...copyOfState.subscription.valueFilters || {}, ...copyOfState.geo.valueFilters || {},
             ...copyOfState.nonDMSegment.valueFilters || {}]
-            return {...copyOfState, preferencesAreAdded: true};
+   
+          let isDefault = copyOfState.quarter.valueFilters[0].value===state.quarter.valueFilters[0].value
+            && copyOfState.segment.valueFilters[0].valueFilters===state.segment.valueFilters[0].valueFilters &&
+            copyOfState.geo.valueFilters.length  === 0 && copyOfState.market.valueFilters.length === 0 && copyOfState.subscription.valueFilters.length === 0 
+            && copyOfState.route.valueFilters.length ===0 && copyOfState.signupCategory.valueFilters.length === 0 && copyOfState.nonDMSegment.valueFilters.length === 12;
+            console.log('Filters ARe Default',isDefault,nonDmSegs );
+            return {...copyOfState, preferencesAreAdded: true, filtersAreDefault: isDefault};
         case GENERATE_FILTER_DATA:
          let newState = JSON.parse(JSON.stringify(state))
 
@@ -196,7 +194,6 @@ export default function (state = {
             let subscriptionFilter = action.payload[4].data;
             let routeFilter = action.payload[5].data;
             let geoFilter = action.payload[6].data;
-            // let channelFilters = action.payload[7].data;
             let visitFilters = action.payload[8].data;
             let CloudTypeFilters = action.payload[9].data
             let ConvTypeFilters = action.payload[10].data
@@ -258,7 +255,7 @@ export default function (state = {
                 },
                 quarter: {
                     availableFilters: newquarterState,
-                    valueFilters: []
+                    valueFilters: [{ index: 211, category: QUARTER, value: newquarterState[0].value }]
                 },
                 geo: {
                     availableFilters: newgeotate,
@@ -270,7 +267,7 @@ export default function (state = {
                 },
                 segment: {
                     availableFilters: newsegmentState,
-                    valueFilters: []
+                    valueFilters: [{ index: 209, category: SEGMENT, value: 'DIGITAL MEDIA' }]
                 },
                 subscription: {
                     availableFilters: newsubscriptiontate,
@@ -335,7 +332,18 @@ export default function (state = {
                 },
                 nonDMSegment: {
                     availableFilters: segNonDM,
-                    valueFilters: []
+                    valueFilters: [{ index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
+                    { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
+                    { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
+                    { index: 233, category: NONDMSEGMENT, value: 'HED' },
+                    { index: 232, category: NONDMSEGMENT, value: 'K12+EEA' },
+                    { index: 234, category: NONDMSEGMENT, value: 'INDIVIDUAL' },
+                    { index: 236, category: NONDMSEGMENT, value: 'OTHER' },
+                    { index: 237, category: NONDMSEGMENT, value: 'PHOTOGRAPHY' },
+                    { index: 239, category: NONDMSEGMENT, value: 'STOCK' },
+                    { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
+                    { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
+                    { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },]
                 },
                 pvw: {
                     availableFilters: pvwFilters,
@@ -415,45 +423,37 @@ export default function (state = {
             copyOfState.channelPM.valueFilters = [];
             copyOfState.channelMU.valueFilters = [];
             copyOfState.signupCategory.valueFilters = [];
-            copyOfState.nonDMSegment.valueFilters  =[
-                { index: 228, category: NONDMSEGMENT, value: 'ACROBAT' },
-                { index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
-                { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
-                { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
-                { index: 232, category: NONDMSEGMENT, value: 'DC' },
-                { index: 233, category: NONDMSEGMENT, value: 'HED' },
-                { index: 234, category: NONDMSEGMENT, value: 'INDIVIDUAL' },
-                { index: 235, category: NONDMSEGMENT, value: 'K12+EEA' },
-                { index: 236, category: NONDMSEGMENT, value: 'OTHER' },
-                { index: 237, category: NONDMSEGMENT, value: 'PHOTOGRAPHY' },
-                { index: 238, category: NONDMSEGMENT, value: 'SPARK' },
-                { index: 239, category: NONDMSEGMENT, value: 'STOCK' },
-                { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
-                { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
-                { index: 242, category: NONDMSEGMENT, value: 'UNGROUPED' },
-                { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },
-                { index: 244, category: NONDMSEGMENT, value: 'WINBACK' },
-                { index: 245, category: NONDMSEGMENT, value: 'XD' }
-                ];
+            copyOfState.nonDMSegment.valueFilters  =[{ index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
+            { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
+            { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
+            { index: 233, category: NONDMSEGMENT, value: 'HED' },
+            { index: 232, category: NONDMSEGMENT, value: 'K12+EEA' },
+            { index: 234, category: NONDMSEGMENT, value: 'INDIVIDUAL' },
+            { index: 236, category: NONDMSEGMENT, value: 'OTHER' },
+            { index: 237, category: NONDMSEGMENT, value: 'PHOTOGRAPHY' },
+            { index: 239, category: NONDMSEGMENT, value: 'STOCK' },
+            { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
+            { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
+            { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },];
             copyOfState.convType.valueFilters = [];
             copyOfState.visits.valueFilters = [];
             copyOfState.lastTouchChannel.valueFilters = [];
             copyOfState.websegment.valueFilters = [];
-            copyOfState.nonDMSegment.valueFilters.push([]);
-            copyOfState.nonDMSegment.valueFilters.push(
-                { index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
-                { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
-                { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
-                { index: 233, category: NONDMSEGMENT, value: 'HED' },
-                { index: 232, category: NONDMSEGMENT, value: 'K12+EEA' },
-                { index: 234, category: NONDMSEGMENT, value: 'INDIVIDUAL' },
-                { index: 236, category: NONDMSEGMENT, value: 'OTHER' },
-                { index: 237, category: NONDMSEGMENT, value: 'PHOTOGRAPHY' },
-                { index: 239, category: NONDMSEGMENT, value: 'STOCK' },
-                { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
-                { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
-                { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },
-                );
+            // copyOfState.nonDMSegment.valueFilters.push([]);
+            // copyOfState.nonDMSegment.valueFilters.push(
+            //     { index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
+            //     { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
+            //     { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
+            //     { index: 233, category: NONDMSEGMENT, value: 'HED' },
+            //     { index: 232, category: NONDMSEGMENT, value: 'K12+EEA' },
+            //     { index: 234, category: NONDMSEGMENT, value: 'INDIVIDUAL' },
+            //     { index: 236, category: NONDMSEGMENT, value: 'OTHER' },
+            //     { index: 237, category: NONDMSEGMENT, value: 'PHOTOGRAPHY' },
+            //     { index: 239, category: NONDMSEGMENT, value: 'STOCK' },
+            //     { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
+            //     { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
+            //     { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },
+            //     );
             
             copyOfState.websegment.valueFilters.push({ index: 187, category: WEBSEGMENT, value: 'DIGITAL MEDIA' });
             copyOfState.lastTouchChannel.valueFilters.push({ index: 129, category: LTC, value: 'ALL' });

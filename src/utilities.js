@@ -3543,7 +3543,8 @@ export function filterRenewSecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
-export async function addUserToDB(user) {
+export async function addUserToDB(user,quarter,segment,nondm) {
+    console.log(nondm);
     responseArray = [];
     promiseArr = [];
     let body = {
@@ -3551,23 +3552,30 @@ export async function addUserToDB(user) {
         "qry": 'NewUser',
         "columnNames": 'true',
         "params": {
-            "sub": user.sub,
-            "fName": user.given_name,
-            "lName": user.family_name,
-            "email": user.email
+            "userId": user.sub,
+            "fname": `${user.given_name}`,
+            "lname": `${user.family_name}`,
+            "email": `'${user.email}'`,
+            "quarter": `${quarter}`,
+            "segment":`${segment}`,
+            "nonDmSegments":`${nondm}`
+
         }
     }
-    axios.post(Infoburst.dbQuery, body, {
+    responseArray = axios.post(Infoburst.dbQuery, body, {
         headers: headers,
         responseType: 'text'
     })
         .then((res) => {
-            // console.log('posting user: ', res);
+            console.log("Posted User to DB",res);
+      return res;
         })
         .catch((err) => {
             // console.log('posting user error: ', err);
 
         })
+        let responseARr = Promise.all([responseArray]);
+        return responseARr;
 }
 
 export function includes(container, value) {
@@ -3885,6 +3893,7 @@ export function requestUserSettings(sub) {
 }
 
 export function postUserSettings(params) {
+    console.log('Params',params);
     let body = {
         "conn": `${Infoburst.appXDCID}`,
         "qry": 'UpdateSettings',
@@ -3897,7 +3906,10 @@ export function postUserSettings(params) {
             "geos": params.geo,
             "subscriptions": params.subscription,
             "routes": params.route,
-            "markets": params.market
+            "markets": params.market,
+            "nonDmSegment": params.nonDMSegment,
+            "signupsource": params.signupCategory
+
         }
     }
 

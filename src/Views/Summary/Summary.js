@@ -87,7 +87,7 @@ class Summary extends Component {
     // Get all the comments count
 
     this.props.getUpdatedAsOfDateAndQuarter();
-    this.props.generateFilterData(this.props.preferences);
+    // this.props.generateFilterData(this.props.preferences);
 
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
@@ -101,7 +101,8 @@ class Summary extends Component {
 
   if (this.state.authenticated === false) {
     this.props.auth.login("/")
-  }
+  } else{
+
 
     // let filtersAreLoaded = Object(this.props.filters).hasOwnProperty('combined') && Object(prevProps.filters).hasOwnProperty('combined') === false;
     let { activePrimaryCard, activeSecondaryCard,
@@ -130,19 +131,24 @@ class Summary extends Component {
       buyGrossIsLoaded,
       buyMarketIsLoaded,
       buyConversionIsLoaded,
+      filters
     } = this.props;
+
+    console.log('Checking ',this.props.user.sub && filtersAreLoaded !== prevProps.filtersAreLoaded )
+    if (this.props.user.sub && filtersAreLoaded !== prevProps.filtersAreLoaded ) {
+      console.log('SETTING PIWIK USER',user,filters,`${user.given_name +' ' +  user.family_name}(${user.email.split('@')[0]})`);
+      ReactPiwik.push(['setUserId', `${user.given_name +' ' +  user.family_name}(${user.email.split('@')[0]})`]);
+      this.props.updateOKTAUser(user,filters.quarter.valueFilters[0].value, filters.segment.valueFilters[0].value, JSON.stringify(filters.nonDMSegment.valueFilters));  
+    }
     let userChangedCards = activeSecondaryCard !== prevProps.activeSecondaryCard;
 
     // For when the user changes primary cards on top 1/6
     if(activePrimaryCard !== prevProps.activePrimaryCard){
       console.log('Sending data to piwik');
       ReactPiwik.push(['setCustomVariable',3,'primaryKPI',this.props.primaryData[activePrimaryCard].category,'page']);
-      
     }
-    if (user !== prevProps.user) {
-      ReactPiwik.push(['setUserId', `${user.given_name +' ' +  user.family_name}(${user.email.split('@')[0]})`]);
-      this.props.getUserSettings(this.props.user.sub);
-    }
+    
+
     if (filtersAreLoaded && preferencesAreLoaded && preferencesAreAdded === false) {
       this.props.addPreferencesToActiveFilters(this.props.preferences);
     }
@@ -956,6 +962,7 @@ class Summary extends Component {
         }
         break;
     }
+  }
   }
   updateSecondaryLoading(newFilters) {
     this.setState({ subFiltersChanged: true})

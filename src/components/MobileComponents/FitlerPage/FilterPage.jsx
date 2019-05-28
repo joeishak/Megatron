@@ -115,7 +115,7 @@ class FilterPage extends Component {
                 return (
                     <div className="col-lg-12 mobilePrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
-                        <div className={' col-xs-12 col-sm-12'} >
+                        <div className={'mobileDropDownStyle col-xs-12 col-sm-12'} >
                             <p>  Route To Market</p>
                             <MultiValueSelect
                                 value={_.filter(this.state.selectedFilters, item => { return item.category === ROUTE })}
@@ -125,7 +125,7 @@ class FilterPage extends Component {
 
                             />
                         </div>
-                        <div className={' col-xs-12 col-sm-12'} >
+                        <div className={'mobileDropDownStyle col-xs-12 col-sm-12'} >
                             <p> Segment - {filters.segment.valueFilters[0].value}</p>
                             <SingleValueSelect
                                 value={_.filter(this.state.selectedFilters, item => { return item.category === SEGMENT })}
@@ -136,7 +136,7 @@ class FilterPage extends Component {
                             />
 
                         </div>
-                        <div className={' col-xs-12 col-sm-12'} >
+                        <div className={'mobileDropDownStyle col-xs-12 col-sm-12'} >
                             <p> Subscription Offering</p>
                             <MultiValueSelect
                                 value={_.filter(this.state.selectedFilters, item => { return item.category === SUBSCRIPTION })}
@@ -145,7 +145,7 @@ class FilterPage extends Component {
                                 onMenuClose={this.closeMultiValue}
                             />
                         </div>
-                        <div className={' col-xs-12 col-sm-12'} >
+                        <div className={'mobileDropDownStyle col-xs-12 col-sm-12'} >
                             <p> Product Category</p>
                             <MultiValueSelect
                                 options={filters.product.availableFilters}
@@ -163,7 +163,7 @@ class FilterPage extends Component {
                 return (
                     <div className="col-lg-12 mobilePrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
-                        <div className={' col-xs-12 col-sm-12'} >
+                        <div className={'mobileDropDownStyle col-xs-12 col-sm-12'} >
 
                             <p style={{ whiteSpace: 'nowrap' }}> Sign Up Source </p>
                             <MultiValueSelect
@@ -182,7 +182,7 @@ class FilterPage extends Component {
                 return (
                     <div className="col-lg-12 mobilePrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
-                        <div className={' col-xs-12 col-sm-12'} >
+                        <div className={'mobileDropDownStyle col-xs-12 col-sm-12'} >
                             <p> Segments {this.props.filters.isDefaultFilters === true ? '- Excluding PDF Services & Sign' : ''}</p>
                             <MultiValueSelect
                                 options={filters.nonDMSegment.availableFilters}
@@ -206,7 +206,7 @@ class FilterPage extends Component {
                 return (
                     <div className="col-lg-12 mobilePrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
-                        <div className={' col-xs-12 col-sm-12'} >
+                        <div className={'mobileDropDownStyle col-xs-12 col-sm-12'} >
                             <p> Segments  {this.props.filters.isDefaultFilters === true ? '- Excluding PDF Services & Sign' : ''} </p>
                             <MultiValueSelect
                                 options={filters.nonDMSegment.availableFilters}
@@ -216,7 +216,7 @@ class FilterPage extends Component {
                             />
 
                         </div>
-                        <div className={' col-xs-12 col-sm-12'} >
+                        <div className={'mobileDropDownStyle col-xs-12 col-sm-12'} >
                             <p> Subscription Offering</p>
                             <MultiValueSelect
                                 options={filters.subscription.availableFilters}

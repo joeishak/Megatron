@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import Root from 'Root';
 import { Router, Route } from 'react-router-dom'; // Convert To HashRouter for IBApps Deployment
 import Summary from 'Views/Summary/Summary.js';
-import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker, { unregister } from './registerServiceWorker';
+
 import { Security, ImplicitCallback, SecureRoute } from '@okta/okta-react';
 import { config as config, PIWIK_CONFIG } from './environmentParams';
 import Login from './auth/Login';
@@ -55,4 +56,5 @@ ReactDOM.render(
 
 
 
-registerServiceWorker();
+// registerServiceWorker();
+// unregister();

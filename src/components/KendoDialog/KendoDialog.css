@@ -194,6 +194,7 @@
 .filterList {
     display: inline;
     list-style: none;
+    padding:0px;
 }
 
 .filterList li {
@@ -265,3 +266,16 @@
 }
 
 
+.dialog-dropdown{
+padding:0px;
+padding-right:10px;
+margin-bottom: 10px;
+}
+
+.dialog-sub-category{
+    width:100%;
+    padding:0px;
+    font-weight:bold;
+    margin:0px;
+
+}

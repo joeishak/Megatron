@@ -115,14 +115,22 @@ export function getUserSettings(sub) {
         payload: res
     }
 }
-/***
- * Update User In Database From Okta
- */
-export function updateOKTAUser(user) {
-    utils.addUserToDB(user);
+
+export function addUser(user){
+    console.log(user);
     return {
         type: UPDATE_OKTA_USER,
         payload: user
+    }
+}
+/***
+ * Update User In Database From Okta
+ */
+export function updateOKTAUser(user, quarter, segment, nondm) {
+    let usersResponse = utils.addUserToDB(user,quarter,segment,nondm);
+    return {
+        type: GET_USER_SETTINGS,
+        payload: usersResponse
     }
 }
 
@@ -151,7 +159,9 @@ export function updateUserSettings(activeFilters, user) {
         product: JSON.stringify(stringproduct),
         subscription: JSON.stringify(stringSubscription),
         route: JSON.stringify(stringroute),
-        market: JSON.stringify(stringmarket)
+        market: JSON.stringify(stringmarket),
+        nonDMSegment: JSON.stringify(activeFilters.nonDMSegment),
+        signupCategory: JSON.stringify(activeFilters.signupCategory)
     }
     let res = utils.postUserSettings(params);
     return {
@@ -1419,7 +1429,7 @@ export function addPreferencesToActiveFilters(prefs) {
         payload: prefs
     }
 }
-SUBMIT_SUB_FILTERS
+
 export function submitSubFilters(newFilters) {
     return {
         type: SUBMIT_SUB_FILTERS,

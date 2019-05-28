@@ -9,40 +9,51 @@ import {
 
 let newState = undefined;
 
-export default   function(state = {},action) {
-    switch(action.type) {
+export default function (state = {}, action) {
+    switch (action.type) {
         case GET_USER_SETTINGS:
-                newState  = action.payload.data[0];
+            console.log(action.payload);
+            newState = action.payload[0].data[0];
 
-                if(newState.geoFilters !== ""){
-                    newState.geoFilters = JSON.parse(newState.geoFilters)
-                }
-                if(newState.productFilters !== ""){
-                    newState.productFilters = JSON.parse(newState.productFilters)
-                }
-                if(newState.routeFilters!== ""){
-                    newState.routeFilters = JSON.parse(newState.routeFilters)
+            if (newState.geoFilters !== "") {
+                newState.geoFilters = JSON.parse(newState.geoFilters)
+            }
+            if (newState.productFilters !== "") {
+                newState.productFilters = JSON.parse(newState.productFilters)
+            }
+            if (newState.routeFilters !== "") {
+                newState.routeFilters = JSON.parse(newState.routeFilters)
 
-                }
-                if (newState.routeFilters !== ""){
+            }
+          
+            if (newState.subscriptionFilters !== "") {
+                newState.subscriptionFilters = JSON.parse(newState.subscriptionFilters)
 
-                }
-                if(newState.subscriptionFilters!== ""){
-                    newState.subscriptionFilters = JSON.parse(newState.subscriptionFilters)
+            }
+            if (newState.marketFilters !== "") {
+                newState.marketFilters = JSON.parse(newState.marketFilters)
 
-                }
-                if(newState.marketFilters !== ""){
-                    newState.marketFilters = JSON.parse(newState.marketFilters)
+            }
+            if (newState.nondmsegments !== "") {
+                newState.nondmsegments = JSON.parse(newState.nondmsegments)/* )) */;
 
-                }
-                    return {...newState, preferencesAreLoaded: true};
+            }
+            if (newState.signupsource !== "") {
+                newState.signupsource = JSON.parse(newState.signupsource)/* )) */;
+
+            }
+            return { ...newState, preferencesAreLoaded: true };
         case UPDATE_USER_SETTINGS:
-        newState  = action.payload.data[0];
-        newState.geoFilters = JSON.parse(newState.geoFilters)
-        newState.productFilters = JSON.parse(newState.productFilters)
-        newState.routeFilters = JSON.parse(newState.routeFilters)
-        newState.subscriptionFilters = JSON.parse(newState.subscriptionFilters)
-        newState.marketFilters = JSON.parse(newState.marketFilters)
+            console.log('Preference Filters',action.payload);
+            newState = action.payload.data[0];
+            newState.geoFilters = JSON.parse(newState.geoFilters)
+            newState.productFilters = JSON.parse(newState.productFilters)
+            newState.routeFilters = JSON.parse(newState.routeFilters)
+            newState.subscriptionFilters = JSON.parse(newState.subscriptionFilters)
+            newState.marketFilters = JSON.parse(newState.marketFilters)
+            newState.nondmsegments = JSON.parse(newState.nondmsegments);
+            newState.signupsource = JSON.parse(newState.signupsource)
+
 
             return newState;
 
