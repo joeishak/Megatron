@@ -350,7 +350,7 @@ export default function (state = {
                     valueFilters: []
                 }
             }
-            return {...newState,...obj, isDefaultFilters: true, filtersAreLoaded: true};
+            return {...newState,...obj, defaultState: obj, isDefaultFilters: true, filtersAreLoaded: true};
 
         case ADD_MULTI_FILTER:
             copyOfState = JSON.parse(JSON.stringify(state))
@@ -411,50 +411,23 @@ export default function (state = {
 
             return copyOfState;
         case RESET_FILTERS:
-            let { defaultQuarter, defaultSegment, subscriptionFilters, geoFilters, marketFilters, productFilters, routeFilters } = action.payload;
+            let { defaultQuarter, defaultSegment, subscriptionFilters, geoFilters, marketFilters, productFilters, routeFilters,signupsource,nondmsegments } = action.payload;
             copyOfState = JSON.parse(JSON.stringify(state))
             copyOfState.geo.valueFilters = []
             copyOfState.quarter.valueFilters = [{ index: 211, category: "quarter", value: defaultQuarter }];
             copyOfState.subscription.valueFilters = subscriptionFilters;
             copyOfState.segment.valueFilters = [{ index: 209, category: "segment", value: defaultSegment }];
-            copyOfState.market.valueFilters = []
-            copyOfState.product.valueFilters = []
-            copyOfState.route.valueFilters = []
+            copyOfState.market.valueFilters = marketFilters;
+            copyOfState.product.valueFilters = productFilters;
+            copyOfState.route.valueFilters = routeFilters;
             copyOfState.channelPM.valueFilters = [];
             copyOfState.channelMU.valueFilters = [];
-            copyOfState.signupCategory.valueFilters = [];
-            copyOfState.nonDMSegment.valueFilters  =[{ index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
-            { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
-            { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
-            { index: 233, category: NONDMSEGMENT, value: 'HED' },
-            { index: 232, category: NONDMSEGMENT, value: 'K12+EEA' },
-            { index: 234, category: NONDMSEGMENT, value: 'INDIVIDUAL' },
-            { index: 236, category: NONDMSEGMENT, value: 'OTHER' },
-            { index: 237, category: NONDMSEGMENT, value: 'PHOTOGRAPHY' },
-            { index: 239, category: NONDMSEGMENT, value: 'STOCK' },
-            { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
-            { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
-            { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },];
+            copyOfState.signupCategory.valueFilters = signupsource;
+            copyOfState.nonDMSegment.valueFilters  =nondmsegments;
             copyOfState.convType.valueFilters = [];
             copyOfState.visits.valueFilters = [];
             copyOfState.lastTouchChannel.valueFilters = [];
             copyOfState.websegment.valueFilters = [];
-            // copyOfState.nonDMSegment.valueFilters.push([]);
-            // copyOfState.nonDMSegment.valueFilters.push(
-            //     { index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
-            //     { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
-            //     { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
-            //     { index: 233, category: NONDMSEGMENT, value: 'HED' },
-            //     { index: 232, category: NONDMSEGMENT, value: 'K12+EEA' },
-            //     { index: 234, category: NONDMSEGMENT, value: 'INDIVIDUAL' },
-            //     { index: 236, category: NONDMSEGMENT, value: 'OTHER' },
-            //     { index: 237, category: NONDMSEGMENT, value: 'PHOTOGRAPHY' },
-            //     { index: 239, category: NONDMSEGMENT, value: 'STOCK' },
-            //     { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
-            //     { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
-            //     { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },
-            //     );
-            
             copyOfState.websegment.valueFilters.push({ index: 187, category: WEBSEGMENT, value: 'DIGITAL MEDIA' });
             copyOfState.lastTouchChannel.valueFilters.push({ index: 129, category: LTC, value: 'ALL' });
             copyOfState.visits.valueFilters.push({ index: 111, category: VISITS, value: 'All Visits' });
@@ -480,7 +453,13 @@ export default function (state = {
     }
 }
 
+function resetToDefaults(){
 
+}
+
+function resetToPreferences(){
+
+}
 function processDropDownListFilterValue(type, data) {
 
     let newArr = _.uniq(data);

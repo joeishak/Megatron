@@ -127,6 +127,7 @@ export function addUser(user){
  * Update User In Database From Okta
  */
 export function updateOKTAUser(user, quarter, segment, nondm) {
+    console.log('Submitting NON DM',nondm);
     let usersResponse = utils.addUserToDB(user,quarter,segment,nondm);
     return {
         type: GET_USER_SETTINGS,
@@ -1457,10 +1458,10 @@ export function addValueToActiveMultiFilter(filter) {
 
 export function resetFilters(preferences) {
     console.log(preferences);
-    let { defaultQuarter, defaultSegment, geoFilters, marketFilters, subscriptionFilters, productFilters, routeFilters } = preferences;
+    let { defaultQuarter, defaultSegment, geoFilters, marketFilters, subscriptionFilters, productFilters, routeFilters,signupsource,nondmsegments } = preferences;
     return {
         type: RESET_FILTERS,
-        payload: { defaultQuarter, defaultSegment, geoFilters, marketFilters, subscriptionFilters, productFilters, routeFilters }
+        payload: { defaultQuarter, defaultSegment, geoFilters, marketFilters, subscriptionFilters, productFilters, routeFilters,signupsource,nondmsegments }
     }
 }
 /**

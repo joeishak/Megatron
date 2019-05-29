@@ -25,9 +25,12 @@ class KendoDialog extends Component {
             savedClicked: undefined,
             onFilterHover: false,
             filterListCount: 0,
-            selectedFilters: [...this.props.preferences.defaultQuarter,
-            ...this.props.preferences.marketFilters,
-            ...this.props.preferences.geoFilters],
+            selectedFilters: [
+            ...this.props.preferences.subscriptionFilters,
+            ...this.props.preferences.signupsource,
+            ...this.props.preferences.nondmsegments,
+            ...this.props.preferences.productFilters,
+            ...this.props.preferences.routeFilters],
             activeDataFilters: [],
         };
 
@@ -40,10 +43,20 @@ class KendoDialog extends Component {
     }
 
     componentDidMount() {
+        // this.setState({
+        //     selectedFilters: [...this.props.preferences.nondmsegments.map(item => {
+        //         return { ...item, label: item.value }
+        //     })]
+        // })
         this.setState({
-            selectedFilters: [...this.props.preferences.nondmsegments.map(item => {
-                return { ...item, label: item.value }
-            })]
+            selectedFilters: [
+                ...this.props.preferences.subscriptionFilters,
+                ...this.props.preferences.signupsource,
+                ...   this.props.filters.nonDMSegment.valueFilters.map(item=>{
+                    return {...item, label: item.value}
+                }),
+                ...this.props.preferences.productFilters,
+                ...this.props.preferences.routeFilters]
         })
         this.open();
     }
@@ -91,9 +104,7 @@ class KendoDialog extends Component {
 
     }
 
-    updateActiveFiltersHandler = (e) => {
-        this.props.addValueToActiveMultiFilter(e);
-    }
+ 
 
     convertFinId(id) {
 
@@ -240,7 +251,20 @@ class KendoDialog extends Component {
         return _.pull(allDataRemoved, undefined);
     }
     handleResetFiltersClick() {
-        this.props.resetFilters(this.props.preferences);
+        // this.props.resetFilters(this.props.preferences);
+        let newFilters = {
+            quarter: this.props.filters.defaultState.quarter.valueFilters,
+            segment: this.props.filters.defaultState.segment.valueFilters,
+            product: this.props.filters.defaultState.product.valueFilters,
+            market: this.props.filters.defaultState.market.valueFilters,
+            route: this.props.filters.defaultState.route.valueFilters,
+            subscription:this.props.filters.defaultState.subscription.valueFilters,
+            geo: this.props.filters.defaultState.geo.valueFilters,
+            signupCategory: this.props.filters.defaultState.signupCategory.valueFilters,
+            nonDMSegment: this.props.filters.defaultState.nonDMSegment.valueFilters
+        };
+        this.props.updateUserSettings(newFilters, this.props.user);
+        this.props.submitFilters(newFilters);
     }
 
     updateSingleValue = (e) => {
@@ -264,7 +288,6 @@ class KendoDialog extends Component {
 
     }
     updateMultiValue = (e, type) => {
-        // console.log('Updating MultiValue',e,type);
         let copy = this.state.selectedFilters;
         if (e.length === 0) {
             _.remove(copy, item => { return item.category === type });
@@ -277,23 +300,17 @@ class KendoDialog extends Component {
 
         }
 
-
     }
-    componentWillUnmount() {
-        this.setState({ selectedFilters: [] })
-    }
+    // componentWillUnmount() {
+    //     this.setState({ selectedFilters: [] })
+    // }
     closeSingleValue = (e) => {
         // console.log('Closing Single Value',e);
     }
     closeMultiValue = (e) => {
         // console.log('Closing Multivalue',e);
     }
-    updateActiveFiltersHandler = (e) => {
-        if (!_.find(this.state.selectedFilters, (item => { return item.index === e.index }))) {
-            this.setState({ selectedFilters: [...this.state.selectedFilters, e] })
-        }
-        // this.props.addValueToActiveMultiFilter(e);
-    }
+  
 
     closed = (e) => {
         // console.log('Hello', this.state.selectedFilters);
@@ -362,7 +379,7 @@ class KendoDialog extends Component {
         });
 
 
-        this.setState({ selectedFilters: [] })
+        // this.setState({ selectedFilters: [] })
 
         this.props.submitFilters(newFilters);
         //  this.props.getSummaryData(newFilters);
@@ -378,7 +395,7 @@ class KendoDialog extends Component {
             QUARTER,
             ROUTE,
             VISITSTATUS,
-            SIGNSOURCE,
+            SIGNCAT,
             SIGNAPP,
             PRODUCTCAT,
             WEBSEGMENT,
@@ -388,8 +405,10 @@ class KendoDialog extends Component {
             NEWVSREPEAT,
             MOBILEVSDESKTOP,
             CONVERSION,
-            VISITS
+            VISITS,
+            NONDMSEGMENT
         } = DIMENSIONS;
+        console.log('Kendo Filters',this.state.selectedFilters);
         return (
             <div>
                 <div>
@@ -406,12 +425,13 @@ class KendoDialog extends Component {
                     />
                 </div>
                 <div className={'dialog-dropdown col-lg-6'} >
-                    <p> Segment</p>
+                    <p> Segment - {filters.segment.valueFilters[0].value} </p>
                     <SingleValueSelect
                         activeFilters={filters.segment.valueFilters}
                         options={filters.segment.availableFilters}
                         onValueChange={this.updateSingleValue}
                         onMenuClose={this.closeSingleValue}
+
                     />
 
                 </div>
@@ -421,6 +441,8 @@ class KendoDialog extends Component {
                         options={filters.subscription.availableFilters}
                         onValueChange={(e) => { let type = SUBSCRIPTION; this.updateMultiValue(e, type) }}
                         onMenuClose={this.closeMultiValue}
+                        value={_.filter(this.state.selectedFilters, item => { return item.category === SUBSCRIPTION })}
+
                     />
                 </div>
                 <div className={'dialog-dropdown col-lg-6'} >
@@ -429,6 +451,8 @@ class KendoDialog extends Component {
                         options={filters.product.availableFilters}
                         onValueChange={(e) => { let type = PRODUCT; this.updateMultiValue(e, type) }}
                         onMenuClose={this.closeMultiValue}
+                        value={_.filter(this.state.selectedFilters, item => { return item.category === PRODUCT })}
+
                     />
                 </div>
                 <br />
@@ -439,8 +463,10 @@ class KendoDialog extends Component {
                     <p> Sign Up Source</p>
                     <MultiValueSelect
                         options={filters.signupCategory.availableFilters}
-                        onValueChange={(e) => { let type = PRODUCT; this.updateMultiValue(e, type) }}
+                        onValueChange={(e) => { let type = SIGNCAT; this.updateMultiValue(e, type) }}
                         onMenuClose={this.closeMultiValue}
+                        value={_.filter(this.state.selectedFilters, item => { return item.category === SIGNCAT })}
+
                     />
                 </div>
                 <div>
@@ -450,18 +476,20 @@ class KendoDialog extends Component {
                     <p> Segments</p>
                     <MultiValueSelect
                         options={filters.nonDMSegment.availableFilters}
-                        onValueChange={(e) => { let type = PRODUCT; this.updateMultiValue(e, type) }}
+                        onValueChange={(e) => { let type = NONDMSEGMENT; this.updateMultiValue(e, type) }}
                         onMenuClose={this.closeMultiValue}
+                        value={_.filter(this.state.selectedFilters, item => { return item.category === NONDMSEGMENT })}
+
                     />
                 </div>
-                <div className={'dialog-dropdown col-lg-6'} >
+                {/* <div className={'dialog-dropdown col-lg-6'} >
                     <p> Subscription Offering</p>
                     <MultiValueSelect
                         options={filters.subscription.availableFilters}
                         onValueChange={(e) => { let type = PRODUCT; this.updateMultiValue(e, type) }}
                         onMenuClose={this.closeMultiValue}
                     />
-                </div>
+                </div> */}
                 {/* <div>
                     <h4 className="dialog-sub-category col-lg-12">Renew</h4>
                 </div>
@@ -568,7 +596,7 @@ class KendoDialog extends Component {
 
 
                                 <div className="col-lg-6 col-md-6">
-                                    <a id="filter-reset" onClick={this.handleResetFiltersClick}>Re-set all filters</a>
+                                    <a id="filter-reset" onClick={this.handleResetFiltersClick}>Re-set all Preferences</a>
                                 </div>
 
 
@@ -624,7 +652,8 @@ function mapStateToProps(state) {
         user: state.user,
         defaultView: state.preferences.defaultSummaryView,
         preferences: state.preferences,
-        filters: state.filters
+        filters: state.filters,
+        user:state.user
     }
 }
 export default connect(mapStateToProps, actions)(KendoDialog);

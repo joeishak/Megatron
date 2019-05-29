@@ -14,7 +14,6 @@ export default function (state = {}, action) {
         case GET_USER_SETTINGS:
             console.log(action.payload);
             newState = action.payload[0].data[0];
-
             if (newState.geoFilters !== "") {
                 newState.geoFilters = JSON.parse(newState.geoFilters)
             }
@@ -23,24 +22,18 @@ export default function (state = {}, action) {
             }
             if (newState.routeFilters !== "") {
                 newState.routeFilters = JSON.parse(newState.routeFilters)
-
             }
-          
             if (newState.subscriptionFilters !== "") {
                 newState.subscriptionFilters = JSON.parse(newState.subscriptionFilters)
-
             }
             if (newState.marketFilters !== "") {
                 newState.marketFilters = JSON.parse(newState.marketFilters)
-
             }
             if (newState.nondmsegments !== "") {
                 newState.nondmsegments = JSON.parse(newState.nondmsegments)/* )) */;
-
             }
             if (newState.signupsource !== "") {
                 newState.signupsource = JSON.parse(newState.signupsource)/* )) */;
-
             }
             return { ...newState, preferencesAreLoaded: true };
         case UPDATE_USER_SETTINGS:
