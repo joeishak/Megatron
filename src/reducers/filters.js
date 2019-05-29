@@ -442,7 +442,6 @@ export default function (state = {
                             }
                         }
                     }
-                  
                 }
             })
             return {...copyOfState, isDefaultFilters: false, filtersAreDefault: false};
