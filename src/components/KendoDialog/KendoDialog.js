@@ -48,13 +48,15 @@ class KendoDialog extends Component {
         //         return { ...item, label: item.value }
         //     })]
         // })
+        let a = this.props.preferences.nondmsegments.map(item=>{
+            return {...item, label: item.value}
+        });
+        console.log('Componen Did Mount',a);
         this.setState({
             selectedFilters: [
                 ...this.props.preferences.subscriptionFilters,
                 ...this.props.preferences.signupsource,
-                ...   this.props.filters.nonDMSegment.valueFilters.map(item=>{
-                    return {...item, label: item.value}
-                }),
+               ...a,
                 ...this.props.preferences.productFilters,
                 ...this.props.preferences.routeFilters]
         })
@@ -265,6 +267,9 @@ class KendoDialog extends Component {
         };
         this.props.updateUserSettings(newFilters, this.props.user);
         this.props.submitFilters(newFilters);
+        this.setState({ savedClicked: true });
+
+        setTimeout(() => this.closeDialog(), 1500);
     }
 
     updateSingleValue = (e) => {
@@ -472,7 +477,7 @@ class KendoDialog extends Component {
                 <div>
                     <h4 className="dialog-sub-category col-lg-12">Use & Renew</h4>
                 </div>
-                <div className={'dialog-dropdown col-lg-6'} >
+                <div className={'dialog-dropdown col-lg-12'} >
                     <p> Segments</p>
                     <MultiValueSelect
                         options={filters.nonDMSegment.availableFilters}

@@ -413,7 +413,7 @@ export default function (state = {
         case RESET_FILTERS:
             let { defaultQuarter, defaultSegment, subscriptionFilters, geoFilters, marketFilters, productFilters, routeFilters,signupsource,nondmsegments } = action.payload;
             copyOfState = JSON.parse(JSON.stringify(state))
-            copyOfState.geo.valueFilters = []
+            copyOfState.geo.valueFilters = geoFilters;
             copyOfState.quarter.valueFilters = [{ index: 211, category: "quarter", value: defaultQuarter }];
             copyOfState.subscription.valueFilters = subscriptionFilters;
             copyOfState.segment.valueFilters = [{ index: 209, category: "segment", value: defaultSegment }];
@@ -432,7 +432,6 @@ export default function (state = {
             copyOfState.lastTouchChannel.valueFilters.push({ index: 129, category: LTC, value: 'ALL' });
             copyOfState.visits.valueFilters.push({ index: 111, category: VISITS, value: 'All Visits' });
             copyOfState.channelMU.valueFilters.push({ index: 112, category: CHANNELMU, value: 'ALL' });
-
             copyOfState.combined.valueFilters = [/* { index: 211, category: "quarter", value: defaultQuarter }, { index: 209, category: "segment", value: defaultSegment } */];
             Object.keys(copyOfState).forEach(item => {
                 if (item !== 'combined') {
@@ -446,7 +445,7 @@ export default function (state = {
                   
                 }
             })
-            return {...copyOfState, isDefaultFilters: true, filtersAreDefault: true};
+            return {...copyOfState, isDefaultFilters: false, filtersAreDefault: false};
         
         default:
             return state;
