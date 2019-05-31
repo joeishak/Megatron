@@ -439,13 +439,6 @@ class SummaryViewDetails extends Component {
       CHANNELPM
     } = DIMENSIONS;
     let newFilters = {
-      quarter: [],
-      segment: [],
-      product: [],
-      market: [],
-      route: [],
-      subscription: [],
-      geo: [],
       lastTouchChannel: [],
       convType: [],
       websegment: [],

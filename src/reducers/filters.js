@@ -85,6 +85,10 @@ export default function (state = {
         availableFilters: [],
         valueFilters: []
     },
+    signupCategory: {
+        availableFilters: [],
+        valueFilters: []
+    },
     filtersAreLoaded: false,
     preferencesAreAdded: false,
     isDefaultFilters: true,

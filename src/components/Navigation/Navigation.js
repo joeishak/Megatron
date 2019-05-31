@@ -7,7 +7,7 @@ import {
   MOBILE_FILTER_PAGE
 } from "../../Constants/consts.js";
 import styles from "./Navigation.css";
-
+import ReactPiwik from 'react-piwik';
 
 import logo from "../../assets/images/adobe-logo-nav.png";
 import userIcon from "./user-icon.svg";
@@ -140,13 +140,16 @@ class Navigation extends Component {
           isLaptop={isLaptop}
           onDataPreferencesSelcted={(e) => { this.onDataPreferencesSelcted(e) }}
           username={this.processLoggedUser(this.props.user || " ")}
-          logout={() => { this.props.auth.logout("/"); }}
+          logout={() => {
+            ReactPiwik.push(['resetUserId']);
+            this.props.auth.logout("/");
+          }}
           filterIcon={filterIcon}
           toggleCommentaryOn={this.props.toggleCommentaryOn}
           updateCommentsNav={this.updateCommentsNav}
           onFilterToggled={(e) => { this.onFilterToggled(e) }}
-          onFeedbackClick={ (e) => this.props.onFeedbackChange(e) }
-          currentRefreshData = {this.props.currentRefreshData}
+          onFeedbackClick={(e) => this.props.onFeedbackChange(e)}
+          currentRefreshData={this.props.currentRefreshData}
         />
       </Navbar>
     );

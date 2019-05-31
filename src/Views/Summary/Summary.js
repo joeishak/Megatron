@@ -78,7 +78,7 @@ class Summary extends Component {
   }
 
   componentDidMount() {
-   
+
     // this.checkAuthentication();
     this.props.isFetching(true);
     // this.props.fetchCommentsCount(this.props.activeSecondaryCard);
@@ -96,15 +96,13 @@ class Summary extends Component {
 
   }
 
+  componentWillUnmount(){
+  }
   componentDidUpdate(prevProps, prevState) {
-  this.checkAuthentication();
+    // console.warn('Pushing the test case for PIWIK', ReactPiwik);
+    // ReactPiwik.push(['setUserId', null]);
+    // ReactPiwik.push(['setUserId', 'Rakesh Grewal (rgrewal) ']);
 
-  if (this.state.authenticated === false) {
-    this.props.auth.login("/")
-  } else{
-
-
-    // let filtersAreLoaded = Object(this.props.filters).hasOwnProperty('combined') && Object(prevProps.filters).hasOwnProperty('combined') === false;
     let { activePrimaryCard, activeSecondaryCard,
       primaryIsLoaded,
       user,
@@ -134,220 +132,106 @@ class Summary extends Component {
       filters
     } = this.props;
 
-    console.log('Checking ',this.props.user.sub && filtersAreLoaded !== prevProps.filtersAreLoaded )
-    if (this.props.user.sub && filtersAreLoaded !== prevProps.filtersAreLoaded ) {
-      console.log('SETTING PIWIK USER',user,filters,`${user.given_name +' ' +  user.family_name}(${user.email.split('@')[0]})`);
-      ReactPiwik.push(['setUserId', `${user.given_name +' ' +  user.family_name}(${user.email.split('@')[0]})`]);
-      this.props.updateOKTAUser(user,filters.quarter.valueFilters[0].value, filters.segment.valueFilters[0].value, JSON.stringify(filters.nonDMSegment.valueFilters));  
-    }
-    let userChangedCards = activeSecondaryCard !== prevProps.activeSecondaryCard;
+    this.checkAuthentication();
 
-    // For when the user changes primary cards on top 1/6
-    if(activePrimaryCard !== prevProps.activePrimaryCard){
-      console.log('Sending data to piwik');
-      ReactPiwik.push(['setCustomVariable',3,'primaryKPI',this.props.primaryData[activePrimaryCard].category,'page']);
-    }
-    
+    if (this.state.authenticated === false) {
+      this.props.auth.login("/")
+    } else {
 
-    if (filtersAreLoaded && preferencesAreLoaded && preferencesAreAdded === false) {
-      this.props.addPreferencesToActiveFilters(this.props.preferences);
-    }
-    if (preferencesAreAdded &&
-      this.state.initialDataLoadIsComplete === false) {
-      this.props.getPrimaryData(this.props.filters);
-      this.props.getFinanceXDC1SecondaryData(this.props.filters);
-      this.props.getFinanceSecondaryData(this.props.filters);
-      this.setState({
-        isLoading: true,
-        initialDataLoadIsComplete: true
-      });
+      if (this.props.user.sub) {
 
-    }
-    //MAke calls if the user switches filters
-    if (this.state.initialDataLoadIsComplete === undefined && (this.props.filters !== prevProps.filters)) {
+          console.groupCollapsed('Sending AUTH To Piwik');
+          console.log('SETTING PIWIK USER', user, filters, `${user.given_name + ' ' + user.family_name}(${user.email.split('@')[0]})`);
+          ReactPiwik.push(['setUserId', `${user.given_name + ' ' + user.family_name}(${user.email.split('@')[0]})`]);
+          console.groupEnd()
 
-      if (this.state.subFiltersChanged) {
-        if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND) {
-          this.setState({ isLoading: true });
-          this.props.getFilteredMarketingSecondaryData(this.props.filters);
-        }
-        else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_TRAFFIC ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_UQFM) {
-          this.setState({ isLoading: true });
-          this.props.getFilteredTrafficSecondaryData(this.props.filters);
-        }
-        else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
-          this.setState({ isLoading: true });
-          this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
-        }
-        else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
-          activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND) {
-          this.setState({ isLoading: true });
-          this.props.getFilteredBuyMarketSecondaryData(this.props.filters);
-        }
-        else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWARR ||
-          activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWUNITS) {
-          this.setState({ isLoading: true });
-          this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
-        }
-      } else {
-        if (isDefaultFilters) {
-          this.props.getPrimaryData(this.props.filters);
-        } else {
-          this.props.getFilteredPrimaryData(this.props.filters);
-        }
-
-        this.setState({ isLoading: true, filtersUpdated: true });
-        this.props.updatePrimaryIsLoading(false);
-        this.props.updateDiscoverSecondaryIsLoading(false);
-        this.props.updateFinanceSecondaryIsLoading(false);
-        this.props.updateFinanceXDC1IsLoading(false);
-        this.props.updateFinanceXDC2IsLoading(false);
-        this.props.updateTrafficSecondaryIsLoading(false);
-        this.props.updateMuSecondaryIsLoading(false);
-        this.props.updateTrySecondaryIsLoading(false);
-        this.props.updateBuyConversionIsLoading(false);
-        this.props.updateBuyMarketIsLoading(false);
-        this.props.updateBuyGrossIsLoading(false);
-        this.props.updateUseIsLoading(false);
-        this.props.updateRenewIsLoading(false);
-        this.props.updateRenewCancelIsLoading(false);
-        this.props.updateRenewDetailsIsLoading(false);
-
-
-        if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_NET_NEW_ARR ||
-          activeSecondaryCard === SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR) {
-
-          if (isDefaultFilters) {
-            this.props.getFinanceXDC1SecondaryData(this.props.filters);
-            this.props.getFinanceSecondaryData(this.props.filters);
-          } else {
-            this.props.getFilteredFinanceXDC1SecondaryData(this.props.filters);
-            this.props.getFilteredFinanceSecondaryData(this.props.filters);
-          }
-
-        }
-        else if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_CANCEL_ARR ||
-          activeSecondaryCard === SUMMARY_FILTERS.FINANCE_RENEW_ARR) {
-
-          if (isDefaultFilters) {
-            this.props.getFinanceXDC2SecondaryData(this.props.filters);
-            this.props.getFinanceSecondaryData(this.props.filters);
-          } else {
-            this.props.getFilteredFinanceXDC2SecondaryData(this.props.filters);
-            this.props.getFilteredFinanceSecondaryData(this.props.filters);
-          }
-        }
-        else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND) {
-
-          if (isDefaultFilters) {
-            this.props.getMarketingSecondaryData(this.props.filters);
-            this.props.getDiscoverSecondary(this.props.filters);
-          } else {
-            this.props.getFilteredMarketingSecondaryData(this.props.filters);
-            this.props.getFilteredDiscoverSecondary(this.props.filters);
-          }
-
-        }
-        else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_TRAFFIC ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_UQFM) {
-
-          if (isDefaultFilters) {
-            this.props.getTrafficSecondaryData(this.props.filters);
-            this.props.getDiscoverSecondary(this.props.filters);
-          } else {
-            this.props.getFilteredTrafficSecondaryData(this.props.filters);
-            this.props.getFilteredDiscoverSecondary(this.props.filters);
-          }
-
-        }
-        else if (activeSecondaryCard >= SUMMARY_FILTERS.TRY_NEW_UQFM && activeSecondaryCard <= SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM) {
-          this.props.getFilteredTrySecondaryData(this.props.filters);
-        }
-        else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
-          this.setState({ isLoading: true });
-
-          if (isDefaultFilters) {
-            this.props.getBuyTrafficSecondaryData(this.props.filters);
-            this.props.getBuySecondaryData(this.props.filters);
-          } else {
-            this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
-            this.props.getFilteredBuySecondaryData(this.props.filters);
-          }
-        }
-        else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
-          activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND) {
-
-          if (isDefaultFilters) {
-            this.props.getBuyMarketSecondaryData(this.props.filters);
-            this.props.getBuySecondaryData(this.props.filters);
-          } else {
-            this.props.getFilteredBuyMarketSecondaryData(this.props.filters);
-            this.props.getFilteredBuySecondaryData(this.props.filters);
-          }
-        }
-        else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWARR ||
-          activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWUNITS) {
-
-          if (isDefaultFilters) {
-            this.props.getBuyFinanceSecondaryData(this.props.filters);
-            this.props.getBuySecondaryData(this.props.filters);
-          } else {
-            this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
-            this.props.getFilteredBuySecondaryData(this.props.filters);
-          }
-        }
-        else if (activeSecondaryCard >= SUMMARY_FILTERS.USE_PAID_USER_SUCCESS && activeSecondaryCard <= SUMMARY_FILTERS.USE_REPEAT_USER_MAU) {
-          if (isDefaultFilters) {
-            this.props.getUseSecondaryData(this.props.filters);
-
-          } else {
-            this.props.getFilteredUseSecondaryData(this.props.filters);
-
-          }
-        }
-        else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
-          || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
-          if (isDefaultFilters) {
-            this.props.getRenewCancelSecondaryData(this.props.filters);
-            this.props.getRenewSecondaryData(this.props.filters);
-
-          } else {
-            this.props.getFilteredRenewCancelSecondaryData(this.props.filters);
-            this.props.getFilteredRenewSecondaryData(this.props.filters);
-
-          }
-        }
-        else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_PF)
-          || (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL)) {
-          if (isDefaultFilters) {
-            // debugger;
-            this.props.getRenewDetailsSecondaryData(this.props.filters);
-            this.props.getRenewSecondaryData(this.props.filters);
-
-          } else {
-            this.props.getFilteredRenewDetailsSecondaryData(this.props.filters);
-            this.props.getFilteredRenewSecondaryData(this.props.filters);
-
-          }
-        }
+      
       }
-    }
-    //Make calls if the user switches cards
-    if (userChangedCards) {
-      this.setState({ secondaryKpiChanged: true });
-      //Finance
-      if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_NET_NEW_ARR ||
-        activeSecondaryCard === SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR) {
-        if (this.state.requestingRemainingFinanceData === false) {
 
-          if (!financeXDC1IsLoaded /* || this.state.requestingRemainingFinanceData === true */) {
+      if (this.props.user.sub !== null && filtersAreLoaded !== prevProps.filtersAreLoaded) {
+        this.props.updateOKTAUser(user, filters.quarter.valueFilters[0].value, filters.segment.valueFilters[0].value, JSON.stringify(filters.nonDMSegment.valueFilters));
+      }
+      let userChangedCards = activeSecondaryCard !== prevProps.activeSecondaryCard;
+
+      // For when the user changes primary cards on top 1/6
+      if (activePrimaryCard !== prevProps.activePrimaryCard) {
+        console.log('Sending data to piwik');
+        ReactPiwik.push(['trackEvent', 3, 'primaryKPI', this.props.primaryData[activePrimaryCard].category, 'page']);
+      }
+
+
+      if (filtersAreLoaded && preferencesAreLoaded && preferencesAreAdded === false) {
+        this.props.addPreferencesToActiveFilters(this.props.preferences);
+      }
+      if (preferencesAreAdded &&
+        this.state.initialDataLoadIsComplete === false) {
+        this.props.getPrimaryData(this.props.filters);
+        this.props.getFinanceXDC1SecondaryData(this.props.filters);
+        this.props.getFinanceSecondaryData(this.props.filters);
+        this.setState({
+          isLoading: true,
+          initialDataLoadIsComplete: true
+        });
+
+      }
+      //MAke calls if the user switches filters
+      if (this.state.initialDataLoadIsComplete === undefined && (this.props.filters !== prevProps.filters)) {
+
+        if (this.state.subFiltersChanged) {
+          if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
+            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
+            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND) {
+            this.setState({ isLoading: true });
+            this.props.getFilteredMarketingSecondaryData(this.props.filters);
+          }
+          else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_TRAFFIC ||
+            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE ||
+            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_UQFM) {
+            this.setState({ isLoading: true });
+            this.props.getFilteredTrafficSecondaryData(this.props.filters);
+          }
+          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
+            this.setState({ isLoading: true });
+            this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
+          }
+          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
+            activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND) {
+            this.setState({ isLoading: true });
+            this.props.getFilteredBuyMarketSecondaryData(this.props.filters);
+          }
+          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWARR ||
+            activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWUNITS) {
+            this.setState({ isLoading: true });
+            this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
+          }
+        } else {
+          if (isDefaultFilters) {
+            this.props.getPrimaryData(this.props.filters);
+          } else {
+            this.props.getFilteredPrimaryData(this.props.filters);
+          }
+
+          this.setState({ isLoading: true, filtersUpdated: true });
+          this.props.updatePrimaryIsLoading(false);
+          this.props.updateDiscoverSecondaryIsLoading(false);
+          this.props.updateFinanceSecondaryIsLoading(false);
+          this.props.updateFinanceXDC1IsLoading(false);
+          this.props.updateFinanceXDC2IsLoading(false);
+          this.props.updateTrafficSecondaryIsLoading(false);
+          this.props.updateMuSecondaryIsLoading(false);
+          this.props.updateTrySecondaryIsLoading(false);
+          this.props.updateBuyConversionIsLoading(false);
+          this.props.updateBuyMarketIsLoading(false);
+          this.props.updateBuyGrossIsLoading(false);
+          this.props.updateUseIsLoading(false);
+          this.props.updateRenewIsLoading(false);
+          this.props.updateRenewCancelIsLoading(false);
+          this.props.updateRenewDetailsIsLoading(false);
+
+
+          if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_NET_NEW_ARR ||
+            activeSecondaryCard === SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR) {
+
             if (isDefaultFilters) {
               this.props.getFinanceXDC1SecondaryData(this.props.filters);
               this.props.getFinanceSecondaryData(this.props.filters);
@@ -356,43 +240,22 @@ class Summary extends Component {
               this.props.getFilteredFinanceSecondaryData(this.props.filters);
             }
 
-            this.setState({ isLoading: true });
           }
-        } else if (!financeXDC1IsLoaded) {
-          if (isDefaultFilters) {
-            this.props.getFinanceXDC1SecondaryData(this.props.filters);
-            this.props.getFinanceSecondaryData(this.props.filters);
-          } else {
-            this.props.getFilteredFinanceXDC1SecondaryData(this.props.filters);
-            this.props.getFilteredFinanceSecondaryData(this.props.filters);
+          else if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_CANCEL_ARR ||
+            activeSecondaryCard === SUMMARY_FILTERS.FINANCE_RENEW_ARR) {
+
+            if (isDefaultFilters) {
+              this.props.getFinanceXDC2SecondaryData(this.props.filters);
+              this.props.getFinanceSecondaryData(this.props.filters);
+            } else {
+              this.props.getFilteredFinanceXDC2SecondaryData(this.props.filters);
+              this.props.getFilteredFinanceSecondaryData(this.props.filters);
+            }
           }
-          this.setState({ isLoading: true });
+          else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
+            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
+            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND) {
 
-        } else {
-          this.setState({ isLoading: false });
-
-        }
-
-      }
-      else if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_CANCEL_ARR ||
-        activeSecondaryCard === SUMMARY_FILTERS.FINANCE_RENEW_ARR) {
-        if (!financeXDC2IsLoaded /* || this.state.requestingRemainingFinanceData === true */) {
-          if (isDefaultFilters) {
-            this.props.getFinanceXDC2SecondaryData(this.props.filters);
-
-          } else {
-            this.props.getFilteredFinanceXDC2SecondaryData(this.props.filters);
-          }
-
-          this.setState({ isLoading: true });
-        }
-      }
-      else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
-        activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
-        activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND) {
-        if (this.state.requestingRemainingDiscoverData === false) {
-
-          if (!muIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
             if (isDefaultFilters) {
               this.props.getMarketingSecondaryData(this.props.filters);
               this.props.getDiscoverSecondary(this.props.filters);
@@ -401,29 +264,11 @@ class Summary extends Component {
               this.props.getFilteredDiscoverSecondary(this.props.filters);
             }
 
-            this.setState({ isLoading: true });
           }
-        } else if (!muIsLoaded) {
-          if (isDefaultFilters) {
-            this.props.getMarketingSecondaryData(this.props.filters);
-            this.props.getDiscoverSecondary(this.props.filters);
-          } else {
-            this.props.getFilteredMarketingSecondaryData(this.props.filters);
-            this.props.getFilteredDiscoverSecondary(this.props.filters);
-          }
-          this.setState({ isLoading: true });
+          else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_TRAFFIC ||
+            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE ||
+            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_UQFM) {
 
-        } else {
-          this.setState({ isLoading: false });
-
-        }
-      }
-      else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_TRAFFIC ||
-        activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE ||
-        activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_UQFM) {
-        if (this.state.requestingRemainingDiscoverData === false) {
-
-          if (!trafficIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
             if (isDefaultFilters) {
               this.props.getTrafficSecondaryData(this.props.filters);
               this.props.getDiscoverSecondary(this.props.filters);
@@ -432,39 +277,218 @@ class Summary extends Component {
               this.props.getFilteredDiscoverSecondary(this.props.filters);
             }
 
+          }
+          else if (activeSecondaryCard >= SUMMARY_FILTERS.TRY_NEW_UQFM && activeSecondaryCard <= SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM) {
+            this.props.getFilteredTrySecondaryData(this.props.filters);
+          }
+          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
+            this.setState({ isLoading: true });
+
+            if (isDefaultFilters) {
+              this.props.getBuyTrafficSecondaryData(this.props.filters);
+              this.props.getBuySecondaryData(this.props.filters);
+            } else {
+              this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
+              this.props.getFilteredBuySecondaryData(this.props.filters);
+            }
+          }
+          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
+            activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND) {
+
+            if (isDefaultFilters) {
+              this.props.getBuyMarketSecondaryData(this.props.filters);
+              this.props.getBuySecondaryData(this.props.filters);
+            } else {
+              this.props.getFilteredBuyMarketSecondaryData(this.props.filters);
+              this.props.getFilteredBuySecondaryData(this.props.filters);
+            }
+          }
+          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWARR ||
+            activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWUNITS) {
+
+            if (isDefaultFilters) {
+              this.props.getBuyFinanceSecondaryData(this.props.filters);
+              this.props.getBuySecondaryData(this.props.filters);
+            } else {
+              this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
+              this.props.getFilteredBuySecondaryData(this.props.filters);
+            }
+          }
+          else if (activeSecondaryCard >= SUMMARY_FILTERS.USE_PAID_USER_SUCCESS && activeSecondaryCard <= SUMMARY_FILTERS.USE_REPEAT_USER_MAU) {
+            if (isDefaultFilters) {
+              this.props.getUseSecondaryData(this.props.filters);
+
+            } else {
+              this.props.getFilteredUseSecondaryData(this.props.filters);
+
+            }
+          }
+          else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
+            || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
+            if (isDefaultFilters) {
+              this.props.getRenewCancelSecondaryData(this.props.filters);
+              this.props.getRenewSecondaryData(this.props.filters);
+
+            } else {
+              this.props.getFilteredRenewCancelSecondaryData(this.props.filters);
+              this.props.getFilteredRenewSecondaryData(this.props.filters);
+
+            }
+          }
+          else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_PF)
+            || (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL)) {
+            if (isDefaultFilters) {
+              // debugger;
+              this.props.getRenewDetailsSecondaryData(this.props.filters);
+              this.props.getRenewSecondaryData(this.props.filters);
+
+            } else {
+              this.props.getFilteredRenewDetailsSecondaryData(this.props.filters);
+              this.props.getFilteredRenewSecondaryData(this.props.filters);
+
+            }
+          }
+        }
+      }
+      //Make calls if the user switches cards
+      if (userChangedCards) {
+        ReactPiwik.push(['trackEvent', 3, 'secondaryKPI', this.props.secondaryData[activeSecondaryCard].header, 'page']);
+
+        this.setState({ secondaryKpiChanged: true });
+        //Finance
+        if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_NET_NEW_ARR ||
+          activeSecondaryCard === SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR) {
+          if (this.state.requestingRemainingFinanceData === false) {
+
+            if (!financeXDC1IsLoaded /* || this.state.requestingRemainingFinanceData === true */) {
+              if (isDefaultFilters) {
+                this.props.getFinanceXDC1SecondaryData(this.props.filters);
+                this.props.getFinanceSecondaryData(this.props.filters);
+              } else {
+                this.props.getFilteredFinanceXDC1SecondaryData(this.props.filters);
+                this.props.getFilteredFinanceSecondaryData(this.props.filters);
+              }
+
+              this.setState({ isLoading: true });
+            }
+          } else if (!financeXDC1IsLoaded) {
+            if (isDefaultFilters) {
+              this.props.getFinanceXDC1SecondaryData(this.props.filters);
+              this.props.getFinanceSecondaryData(this.props.filters);
+            } else {
+              this.props.getFilteredFinanceXDC1SecondaryData(this.props.filters);
+              this.props.getFilteredFinanceSecondaryData(this.props.filters);
+            }
+            this.setState({ isLoading: true });
+
+          } else {
+            this.setState({ isLoading: false });
+
+          }
+
+        }
+        else if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_CANCEL_ARR ||
+          activeSecondaryCard === SUMMARY_FILTERS.FINANCE_RENEW_ARR) {
+          if (!financeXDC2IsLoaded /* || this.state.requestingRemainingFinanceData === true */) {
+            if (isDefaultFilters) {
+              this.props.getFinanceXDC2SecondaryData(this.props.filters);
+
+            } else {
+              this.props.getFilteredFinanceXDC2SecondaryData(this.props.filters);
+            }
+
             this.setState({ isLoading: true });
           }
-        } else if (!trafficIsLoaded) {
-          if (isDefaultFilters) {
-            this.props.getTrafficSecondaryData(this.props.filters);
-            this.props.getDiscoverSecondary(this.props.filters);
-          } else {
-            this.props.getFilteredTrafficSecondaryData(this.props.filters);
-            this.props.getFilteredDiscoverSecondary(this.props.filters);
-          }
-          this.setState({ isLoading: true });
-
-        } else {
-          this.setState({ isLoading: false });
-
         }
-      }
-      else if (activeSecondaryCard === SUMMARY_FILTERS.TRY_NEW_UQFM) {
-        if (!tryIsLoaded) {
-          if (isDefaultFilters) {
-            this.props.getTrySecondaryData(this.props.filters);
+        else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
+          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
+          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND) {
+          if (this.state.requestingRemainingDiscoverData === false) {
+
+            if (!muIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
+              if (isDefaultFilters) {
+                this.props.getMarketingSecondaryData(this.props.filters);
+                this.props.getDiscoverSecondary(this.props.filters);
+              } else {
+                this.props.getFilteredMarketingSecondaryData(this.props.filters);
+                this.props.getFilteredDiscoverSecondary(this.props.filters);
+              }
+
+              this.setState({ isLoading: true });
+            }
+          } else if (!muIsLoaded) {
+            if (isDefaultFilters) {
+              this.props.getMarketingSecondaryData(this.props.filters);
+              this.props.getDiscoverSecondary(this.props.filters);
+            } else {
+              this.props.getFilteredMarketingSecondaryData(this.props.filters);
+              this.props.getFilteredDiscoverSecondary(this.props.filters);
+            }
+            this.setState({ isLoading: true });
 
           } else {
-            this.props.getFilteredTrySecondaryData(this.props.filters);
+            this.setState({ isLoading: false });
 
           }
-          this.setState({ isLoading: true });
         }
-      }
-      else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
-        if (this.state.requestingRemainingBuyData === false) {
+        else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_TRAFFIC ||
+          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE ||
+          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_UQFM) {
+          if (this.state.requestingRemainingDiscoverData === false) {
 
-          if (!buyConversionIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
+            if (!trafficIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
+              if (isDefaultFilters) {
+                this.props.getTrafficSecondaryData(this.props.filters);
+                this.props.getDiscoverSecondary(this.props.filters);
+              } else {
+                this.props.getFilteredTrafficSecondaryData(this.props.filters);
+                this.props.getFilteredDiscoverSecondary(this.props.filters);
+              }
+
+              this.setState({ isLoading: true });
+            }
+          } else if (!trafficIsLoaded) {
+            if (isDefaultFilters) {
+              this.props.getTrafficSecondaryData(this.props.filters);
+              this.props.getDiscoverSecondary(this.props.filters);
+            } else {
+              this.props.getFilteredTrafficSecondaryData(this.props.filters);
+              this.props.getFilteredDiscoverSecondary(this.props.filters);
+            }
+            this.setState({ isLoading: true });
+
+          } else {
+            this.setState({ isLoading: false });
+
+          }
+        }
+        else if (activeSecondaryCard === SUMMARY_FILTERS.TRY_NEW_UQFM) {
+          if (!tryIsLoaded) {
+            if (isDefaultFilters) {
+              this.props.getTrySecondaryData(this.props.filters);
+
+            } else {
+              this.props.getFilteredTrySecondaryData(this.props.filters);
+
+            }
+            this.setState({ isLoading: true });
+          }
+        }
+        else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
+          if (this.state.requestingRemainingBuyData === false) {
+
+            if (!buyConversionIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
+              if (isDefaultFilters) {
+                this.props.getBuyTrafficSecondaryData(this.props.filters);
+                this.props.getBuySecondaryData(this.props.filters);
+              } else {
+                this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
+                this.props.getFilteredBuySecondaryData(this.props.filters);
+              }
+
+              this.setState({ isLoading: true });
+            }
+          } else if (!buyConversionIsLoaded) {
             if (isDefaultFilters) {
               this.props.getBuyTrafficSecondaryData(this.props.filters);
               this.props.getBuySecondaryData(this.props.filters);
@@ -474,28 +498,28 @@ class Summary extends Component {
             }
 
             this.setState({ isLoading: true });
-          }
-        } else if (!buyConversionIsLoaded) {
-          if (isDefaultFilters) {
-            this.props.getBuyTrafficSecondaryData(this.props.filters);
-            this.props.getBuySecondaryData(this.props.filters);
+
           } else {
-            this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
-            this.props.getFilteredBuySecondaryData(this.props.filters);
+            this.setState({ isLoading: false });
+
           }
-
-          this.setState({ isLoading: true });
-
-        } else {
-          this.setState({ isLoading: false });
-
         }
-      }
-      else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
-        activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND) {
-        if (this.state.requestingRemainingBuyData === false) {
+        else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
+          activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND) {
+          if (this.state.requestingRemainingBuyData === false) {
 
-          if (!buyMarketIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
+            if (!buyMarketIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
+              if (isDefaultFilters) {
+                this.props.getBuyMarketSecondaryData(this.props.filters);
+                this.props.getBuySecondaryData(this.props.filters);
+              } else {
+                this.props.getFilteredBuyMarketSecondaryData(this.props.filters);
+                this.props.getFilteredBuySecondaryData(this.props.filters);
+              }
+
+              this.setState({ isLoading: true });
+            }
+          } else if (!buyMarketIsLoaded) {
             if (isDefaultFilters) {
               this.props.getBuyMarketSecondaryData(this.props.filters);
               this.props.getBuySecondaryData(this.props.filters);
@@ -503,30 +527,32 @@ class Summary extends Component {
               this.props.getFilteredBuyMarketSecondaryData(this.props.filters);
               this.props.getFilteredBuySecondaryData(this.props.filters);
             }
-
             this.setState({ isLoading: true });
-          }
-        } else if (!buyMarketIsLoaded) {
-          if (isDefaultFilters) {
-            this.props.getBuyMarketSecondaryData(this.props.filters);
-            this.props.getBuySecondaryData(this.props.filters);
+
           } else {
-            this.props.getFilteredBuyMarketSecondaryData(this.props.filters);
-            this.props.getFilteredBuySecondaryData(this.props.filters);
+            this.setState({ isLoading: false });
+
           }
-          this.setState({ isLoading: true });
-
-        } else {
-          this.setState({ isLoading: false });
-
         }
-      }
-      else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWARR ||
-        activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWUNITS) {
-        if (this.state.requestingRemainingBuyData === false) {
+        else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWARR ||
+          activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWUNITS) {
+          if (this.state.requestingRemainingBuyData === false) {
 
-          if (!buyGrossIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
+            if (!buyGrossIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
+              if (isDefaultFilters) {
+                this.props.getBuyFinanceSecondaryData(this.props.filters);
+                this.props.getBuySecondaryData(this.props.filters);
+              } else {
+
+                this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
+                this.props.getFilteredBuySecondaryData(this.props.filters);
+              }
+
+              this.setState({ isLoading: true });
+            }
+          } else if (!buyGrossIsLoaded) {
             if (isDefaultFilters) {
+
               this.props.getBuyFinanceSecondaryData(this.props.filters);
               this.props.getBuySecondaryData(this.props.filters);
             } else {
@@ -536,436 +562,423 @@ class Summary extends Component {
             }
 
             this.setState({ isLoading: true });
-          }
-        } else if (!buyGrossIsLoaded) {
-          if (isDefaultFilters) {
-
-            this.props.getBuyFinanceSecondaryData(this.props.filters);
-            this.props.getBuySecondaryData(this.props.filters);
-          } else {
-
-            this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
-            this.props.getFilteredBuySecondaryData(this.props.filters);
-          }
-
-          this.setState({ isLoading: true });
-
-        } else {
-          this.setState({ isLoading: false });
-
-        }
-      }
-      else if (activeSecondaryCard === SUMMARY_FILTERS.USE_PAID_USER_SUCCESS) {
-        if (!useIsLoaded) {
-          if (isDefaultFilters) {
-            this.props.getUseSecondaryData(this.props.filters);
 
           } else {
-            this.props.getFilteredUseSecondaryData(this.props.filters);
-
-          }
-          this.setState({ isLoading: true });
-        }
-      }
-      else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
-        || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
-        if (!renewCancelIsLoaded) {
-          if (isDefaultFilters) {
-            this.props.getRenewCancelSecondaryData(this.props.filters);
-            this.props.getRenewSecondaryData(this.props.filters);
-
-          } else {
-            this.props.getFilteredRenewCancelSecondaryData(this.props.filters);
-            this.props.getFilteredRenewSecondaryData(this.props.filters);
-
-          }
-          this.setState({ isLoading: true });
-        }
-      }
-      else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_PF)
-        || (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL)) {
-        if (!renewDetailsIsLoaded) {
-          if (isDefaultFilters) {
-            // debugger;
-            this.props.getRenewDetailsSecondaryData(this.props.filters);
-            this.props.getRenewSecondaryData(this.props.filters);
-
-          } else {
-            this.props.getFilteredRenewDetailsSecondaryData(this.props.filters);
-            this.props.getFilteredRenewSecondaryData(this.props.filters);
-
-          }
-          this.setState({ isLoading: true });
-        }
-      }
-    }
-    /**Setting Load to False ... */
-    switch (this.props.activePrimaryCard) {
-      case 0:
-        // When the initial load is complete
-        if (primaryIsLoaded && financeSecondaryIsLoaded && financeXDC1IsLoaded && this.state.initialDataLoadIsComplete === true) {
-          this.setState({
-            initialDataLoadIsComplete: undefined,
-            isLoading: false,
-            requestingRemainingFinanceData: true,
-          });
-          this.props.getFinanceXDC2SecondaryData(this.props.filters);
-        } else {
-          //Stop Loading in either New New Or Gros New ARR
-          if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_NET_NEW_ARR ||
-            activeSecondaryCard === SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR) {
-            if (this.state.secondaryKpiChanged === true) {
-
-              if (financeXDC1IsLoaded === true && financeSecondaryIsLoaded === true) {
-                this.setState({
-                  secondaryKpiChanged: false,
-                  isLoading: false
-
-                });
-                if (financeXDC2IsLoaded === false) {
-                  this.setState({
-                    requestingRemainingFinanceData: true,
-                  });
-                  this.props.getFinanceXDC2SecondaryData(this.props.filters);
-                } else {
-                  this.setState({
-                    requestingRemainingFinanceData: false,
-                  });
-                }
-              }
-
-            } else if (this.state.filtersUpdated === true) {
-
-              if (primaryIsLoaded === true && (financeXDC1IsLoaded === true && financeSecondaryIsLoaded === true)) {
-                this.setState({
-                  isLoading: false,
-                  requestingRemainingFinanceData: true,
-                  filtersUpdated: false
-                });
-                this.props.getFilteredFinanceXDC2SecondaryData(this.props.filters);
-              }
-            }
-          }
-          //Stop Loading in either Cancellatiosn or Renewal
-          else {
-            if (this.state.secondaryKpiChanged === true) {
-              if (financeXDC2IsLoaded === true && financeSecondaryIsLoaded === true) {
-                this.setState({
-                  secondaryKpiChanged: false,
-                  isLoading: false
-                });
-                if (financeXDC1IsLoaded === false) {
-                  this.setState({
-                    requestingRemainingFinanceData: true,
-                  });
-                  this.props.getFinanceXDC1SecondaryData(this.props.filters);
-                } else {
-                  this.setState({
-                    requestingRemainingFinanceData: false,
-                  });
-                }
-              }
-            } else if (this.state.filtersUpdated === true) {
-              if (primaryIsLoaded === true && (financeXDC2IsLoaded === true && financeSecondaryIsLoaded === true)) {
-                this.setState({
-                  isLoading: false,
-                  requestingRemainingFinanceData: true,
-                  filtersUpdated: false
-                });
-                this.props.getFilteredFinanceXDC1SecondaryData(this.props.filters);
-              }
-            }
-          }
-
-        }
-        break;
-      case 1:
-        if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND) {
-          if (this.state.secondaryKpiChanged === true) {
-            if (muIsLoaded === true && discoverSecondaryIsLoaded === true) {
-
-              this.setState({ isLoading: false, secondaryKpiChanged: false });
-              if (trafficIsLoaded === false) {
-                this.setState({ requestingRemainingDiscoverData: true });
-                this.props.getTrafficSecondaryData(this.props.filters)
-              } else {
-                this.setState({ requestingRemainingDiscoverData: false });
-              }
-            }
-          } else if (this.state.filtersUpdated === true) {
-            // Market Filters loaded
-            if (muIsLoaded && primaryIsLoaded === true && discoverSecondaryIsLoaded) {
-              this.setState({ isLoading: false, filtersUpdated: false });
-              if (trafficIsLoaded === false) {
-                this.setState({ requestingRemainingDiscoverData: true });
-                this.props.getFilteredTrafficSecondaryData(this.props.filters)
-              } else {
-                this.setState({ requestingRemainingDiscoverData: false });
-              }
-            }
-          } else if (this.state.subFiltersChanged) {
-            if (muIsLoaded) {
-              this.setState({
-                isLoading: false,
-                subFiltersChanged: false
-              });
-            }
-          }
-
-        }
-        else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_TRAFFIC ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_UQFM) {
-
-          if (this.state.secondaryKpiChanged === true) {
-            if (trafficIsLoaded === true && discoverSecondaryIsLoaded === true) {
-
-              this.setState({ isLoading: false, secondaryKpiChanged: false });
-              if (muIsLoaded === false) {
-                this.setState({ requestingRemainingDiscoverData: true });
-                this.props.getFilteredMarketingSecondaryData(this.props.filters)
-              } else {
-                this.setState({ requestingRemainingDiscoverData: false });
-              }
-            }
-          } else if (this.state.filtersUpdated === true) {
-            // Traffic Filters loaded
-            if (trafficIsLoaded && primaryIsLoaded === true && discoverSecondaryIsLoaded) {
-              this.setState({ isLoading: false, filtersUpdated: false });
-              if (muIsLoaded === false) {
-                this.setState({ requestingRemainingDiscoverData: true });
-                this.props.getFilteredMarketingSecondaryData(this.props.filters)
-              } else {
-                this.setState({ requestingRemainingDiscoverData: false });
-              }
-            }
-          } else if (this.state.subFiltersChanged) {
-            if (trafficIsLoaded) {
-              this.setState({
-                isLoading: false,
-                subFiltersChanged: false
-              });
-            }
-          }
-
-        }
-        break;
-
-      case 2:
-        if (this.state.secondaryKpiChanged === true || this.state.filtersUpdated === true) {
-          if (tryIsLoaded === true) {
-
-            this.setState({ isLoading: false, secondaryKpiChanged: false, filtersUpdated: false });
+            this.setState({ isLoading: false });
 
           }
         }
-        break;
-      case 3:
-        if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
-          if (this.state.secondaryKpiChanged === true) {
-            if (buyConversionIsLoaded === true && buySecondaryIsLoaded === true) {
+        else if (activeSecondaryCard === SUMMARY_FILTERS.USE_PAID_USER_SUCCESS) {
+          if (!useIsLoaded) {
+            if (isDefaultFilters) {
+              this.props.getUseSecondaryData(this.props.filters);
 
-              this.setState({ isLoading: false, secondaryKpiChanged: false });
-              if (buyGrossIsLoaded === false || buyConversionIsLoaded === false) {
-                this.setState({ requestingRemainingDiscoverData: true });
-                this.props.getBuyFinanceSecondaryData(this.props.filters);
-                this.props.getBuyMarketSecondaryData(this.props.filters);
+            } else {
+              this.props.getFilteredUseSecondaryData(this.props.filters);
 
-              } else {
-                this.setState({ requestingRemainingDiscoverData: false });
-              }
             }
-          } else if (this.state.filtersUpdated === true) {
-            // Market Filters loaded
-            if (buyConversionIsLoaded && primaryIsLoaded === true && buySecondaryIsLoaded) {
-              this.setState({ isLoading: false, filtersUpdated: false });
-              if (buyGrossIsLoaded === false || buyConversionIsLoaded === false) {
-                this.setState({ requestingRemainingDiscoverData: true });
-                this.props.getBuyFinanceSecondaryData(this.props.filters);
-                this.props.getBuyMarketSecondaryData(this.props.filters);
-
-              } else {
-                this.setState({ requestingRemainingDiscoverData: false });
-              }
-            }
-          } else if (this.state.subFiltersChanged) {
-            if (buyConversionIsLoaded) {
-              this.setState({
-                isLoading: false,
-                subFiltersChanged: false
-              });
-            }
-          }
-
-        }
-        else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
-          activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND) {
-
-          if (this.state.secondaryKpiChanged === true) {
-            if (buyMarketIsLoaded === true && buySecondaryIsLoaded === true) {
-
-              this.setState({ isLoading: false, secondaryKpiChanged: false });
-              if (buyGrossIsLoaded === false || buyConversionIsLoaded === false) {
-                this.setState({ requestingRemainingDiscoverData: true });
-                this.props.getBuyFinanceSecondaryData(this.props.filters);
-                this.props.getBuyTrafficSecondaryData(this.props.filters);
-
-              } else {
-                this.setState({ requestingRemainingDiscoverData: false });
-              }
-            }
-          } else if (this.state.filtersUpdated === true) {
-            if (buyMarketIsLoaded === true && primaryIsLoaded === true && buySecondaryIsLoaded === true) {
-              this.setState({ isLoading: false, filtersUpdated: false });
-              if (buyGrossIsLoaded === false || buyConversionIsLoaded === false) {
-                this.setState({ requestingRemainingDiscoverData: true });
-                this.props.getBuyFinanceSecondaryData(this.props.filters);
-                this.props.getBuyTrafficSecondaryData(this.props.filters);
-
-              } else {
-                this.setState({ requestingRemainingDiscoverData: false });
-              }
-            }
-          } else if (this.state.subFiltersChanged) {
-            if (buyMarketIsLoaded === true) {
-              this.setState({
-                isLoading: false,
-                subFiltersChanged: false
-              });
-            }
-          }
-
-        }
-        else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWUNITS ||
-          activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWARR) {
-
-          if (this.state.secondaryKpiChanged === true) {
-            if (buyGrossIsLoaded === true && buySecondaryIsLoaded === true) {
-
-              this.setState({ isLoading: false, secondaryKpiChanged: false });
-              if (buyMarketIsLoaded === false || buyConversionIsLoaded === false) {
-                this.setState({ requestingRemainingDiscoverData: true });
-                this.props.getBuyMarketSecondaryData(this.props.filters);
-                this.props.getBuyTrafficSecondaryData(this.props.filters);
-
-              } else {
-                this.setState({ requestingRemainingDiscoverData: false });
-              }
-            }
-          } else if (this.state.filtersUpdated === true) {
-            // Market Filters loaded
-            if (buyGrossIsLoaded === true && primaryIsLoaded === true && buySecondaryIsLoaded) {
-
-              this.setState({ isLoading: false, filtersUpdated: false });
-              if (buyMarketIsLoaded === false || buyConversionIsLoaded === false) {
-                this.setState({ requestingRemainingDiscoverData: true });
-                this.props.getBuyTrafficSecondaryData(this.props.filters);
-                this.props.getBuyMarketSecondaryData(this.props.filters);
-
-              } else {
-                this.setState({ requestingRemainingDiscoverData: false });
-              }
-            }
-          } else if (this.state.subFiltersChanged) {
-            if (buyGrossIsLoaded === true) {
-
-              this.setState({
-                isLoading: false,
-                subFiltersChanged: false
-              });
-            }
-          }
-
-        }
-        break;
-      case 4:
-        if (this.state.secondaryKpiChanged === true || this.state.filtersUpdated === true) {
-          if (useIsLoaded === true) {
-
-            this.setState({ isLoading: false, secondaryKpiChanged: false, filtersUpdated: false });
-
+            this.setState({ isLoading: true });
           }
         }
-        break;
-      case 5:
-
-
-        if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
+        else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
           || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
-          if (this.state.secondaryKpiChanged === true) {
-            if (renewCancelIsLoaded === true && renewIsLoaded === true) {
-              this.setState({ isLoading: false, secondaryKpiChanged: false });
-              if (renewDetailsIsLoaded === false) {
-                this.setState({ requestingRemainingRenewData: true });
-                this.props.getRenewDetailsSecondaryData(this.props.filters);
+          if (!renewCancelIsLoaded) {
+            if (isDefaultFilters) {
+              this.props.getRenewCancelSecondaryData(this.props.filters);
+              this.props.getRenewSecondaryData(this.props.filters);
 
+            } else {
+              this.props.getFilteredRenewCancelSecondaryData(this.props.filters);
+              this.props.getFilteredRenewSecondaryData(this.props.filters);
 
-              } else {
-                this.setState({ requestingRemainingRenewData: false });
-              }
             }
-          } else if (this.state.filtersUpdated === true) {
-            // Market Filters loaded
-            if (renewCancelIsLoaded && primaryIsLoaded === true && renewIsLoaded) {
-              this.setState({ isLoading: false, filtersUpdated: false });
-              if (renewDetailsIsLoaded === false) {
-                this.setState({ requestingRemainingRenewData: true });
-                this.props.getRenewDetailsSecondaryData(this.props.filters);
-
-
-              } else {
-                this.setState({ requestingRemainingRenewData: false });
-              }
-            }
-          } else if (this.state.subFiltersChanged) {
-            if (renewCancelIsLoaded) {
-              this.setState({
-                isLoading: false,
-                subFiltersChanged: false
-              });
-            }
+            this.setState({ isLoading: true });
           }
         }
         else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_PF)
           || (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL)) {
-          if (this.state.secondaryKpiChanged === true) {
-            if (renewDetailsIsLoaded === true && renewIsLoaded === true) {
-              this.setState({ isLoading: false, secondaryKpiChanged: false });
-              if (renewCancelIsLoaded === false) {
-                this.setState({ requestingRemainingRenewData: true });
-                this.props.getRenewCancelSecondaryData(this.props.filters);
+          if (!renewDetailsIsLoaded) {
+            if (isDefaultFilters) {
+              // debugger;
+              this.props.getRenewDetailsSecondaryData(this.props.filters);
+              this.props.getRenewSecondaryData(this.props.filters);
 
-                this.setState({ requestingRemainingRenewData: false });
+            } else {
+              this.props.getFilteredRenewDetailsSecondaryData(this.props.filters);
+              this.props.getFilteredRenewSecondaryData(this.props.filters);
+
+            }
+            this.setState({ isLoading: true });
+          }
+        }
+      }
+      /**Setting Load to False ... */
+      switch (this.props.activePrimaryCard) {
+        case 0:
+          // When the initial load is complete
+          if (primaryIsLoaded && financeSecondaryIsLoaded && financeXDC1IsLoaded && this.state.initialDataLoadIsComplete === true) {
+            this.setState({
+              initialDataLoadIsComplete: undefined,
+              isLoading: false,
+              requestingRemainingFinanceData: true,
+            });
+            this.props.getFinanceXDC2SecondaryData(this.props.filters);
+          } else {
+            //Stop Loading in either New New Or Gros New ARR
+            if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_NET_NEW_ARR ||
+              activeSecondaryCard === SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR) {
+              if (this.state.secondaryKpiChanged === true) {
+
+                if (financeXDC1IsLoaded === true && financeSecondaryIsLoaded === true) {
+                  this.setState({
+                    secondaryKpiChanged: false,
+                    isLoading: false
+
+                  });
+                  if (financeXDC2IsLoaded === false) {
+                    this.setState({
+                      requestingRemainingFinanceData: true,
+                    });
+                    this.props.getFinanceXDC2SecondaryData(this.props.filters);
+                  } else {
+                    this.setState({
+                      requestingRemainingFinanceData: false,
+                    });
+                  }
+                }
+
+              } else if (this.state.filtersUpdated === true) {
+
+                if (primaryIsLoaded === true && (financeXDC1IsLoaded === true && financeSecondaryIsLoaded === true)) {
+                  this.setState({
+                    isLoading: false,
+                    requestingRemainingFinanceData: true,
+                    filtersUpdated: false
+                  });
+                  this.props.getFilteredFinanceXDC2SecondaryData(this.props.filters);
+                }
               }
             }
-          } else if (this.state.filtersUpdated === true) {
-            if (renewDetailsIsLoaded === true && primaryIsLoaded === true && renewIsLoaded === true) {
-              this.setState({ isLoading: false, filtersUpdated: false });
-              if (renewCancelIsLoaded === false) {
-                this.setState({ requestingRemainingRenewData: true });
-                this.props.getRenewCancelSecondaryData(this.props.filters);
-              } else {
-                this.setState({ requestingRemainingRenewData: false });
+            //Stop Loading in either Cancellatiosn or Renewal
+            else {
+              if (this.state.secondaryKpiChanged === true) {
+                if (financeXDC2IsLoaded === true && financeSecondaryIsLoaded === true) {
+                  this.setState({
+                    secondaryKpiChanged: false,
+                    isLoading: false
+                  });
+                  if (financeXDC1IsLoaded === false) {
+                    this.setState({
+                      requestingRemainingFinanceData: true,
+                    });
+                    this.props.getFinanceXDC1SecondaryData(this.props.filters);
+                  } else {
+                    this.setState({
+                      requestingRemainingFinanceData: false,
+                    });
+                  }
+                }
+              } else if (this.state.filtersUpdated === true) {
+                if (primaryIsLoaded === true && (financeXDC2IsLoaded === true && financeSecondaryIsLoaded === true)) {
+                  this.setState({
+                    isLoading: false,
+                    requestingRemainingFinanceData: true,
+                    filtersUpdated: false
+                  });
+                  this.props.getFilteredFinanceXDC1SecondaryData(this.props.filters);
+                }
               }
             }
-          } else if (this.state.subFiltersChanged) {
-            if (renewDetailsIsLoaded === true) {
-              this.setState({
-                isLoading: false,
-                subFiltersChanged: false
-              });
+
+          }
+          break;
+        case 1:
+          if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
+            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
+            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND) {
+            if (this.state.secondaryKpiChanged === true) {
+              if (muIsLoaded === true && discoverSecondaryIsLoaded === true) {
+
+                this.setState({ isLoading: false, secondaryKpiChanged: false });
+                if (trafficIsLoaded === false) {
+                  this.setState({ requestingRemainingDiscoverData: true });
+                  this.props.getTrafficSecondaryData(this.props.filters)
+                } else {
+                  this.setState({ requestingRemainingDiscoverData: false });
+                }
+              }
+            } else if (this.state.filtersUpdated === true) {
+              // Market Filters loaded
+              if (muIsLoaded && primaryIsLoaded === true && discoverSecondaryIsLoaded) {
+                this.setState({ isLoading: false, filtersUpdated: false });
+                if (trafficIsLoaded === false) {
+                  this.setState({ requestingRemainingDiscoverData: true });
+                  this.props.getFilteredTrafficSecondaryData(this.props.filters)
+                } else {
+                  this.setState({ requestingRemainingDiscoverData: false });
+                }
+              }
+            } else if (this.state.subFiltersChanged) {
+              if (muIsLoaded) {
+                this.setState({
+                  isLoading: false,
+                  subFiltersChanged: false
+                });
+              }
+            }
+
+          }
+          else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_TRAFFIC ||
+            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE ||
+            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_UQFM) {
+
+            if (this.state.secondaryKpiChanged === true) {
+              if (trafficIsLoaded === true && discoverSecondaryIsLoaded === true) {
+
+                this.setState({ isLoading: false, secondaryKpiChanged: false });
+                if (muIsLoaded === false) {
+                  this.setState({ requestingRemainingDiscoverData: true });
+                  this.props.getFilteredMarketingSecondaryData(this.props.filters)
+                } else {
+                  this.setState({ requestingRemainingDiscoverData: false });
+                }
+              }
+            } else if (this.state.filtersUpdated === true) {
+              // Traffic Filters loaded
+              if (trafficIsLoaded && primaryIsLoaded === true && discoverSecondaryIsLoaded) {
+                this.setState({ isLoading: false, filtersUpdated: false });
+                if (muIsLoaded === false) {
+                  this.setState({ requestingRemainingDiscoverData: true });
+                  this.props.getFilteredMarketingSecondaryData(this.props.filters)
+                } else {
+                  this.setState({ requestingRemainingDiscoverData: false });
+                }
+              }
+            } else if (this.state.subFiltersChanged) {
+              if (trafficIsLoaded) {
+                this.setState({
+                  isLoading: false,
+                  subFiltersChanged: false
+                });
+              }
+            }
+
+          }
+          break;
+
+        case 2:
+          if (this.state.secondaryKpiChanged === true || this.state.filtersUpdated === true) {
+            if (tryIsLoaded === true) {
+
+              this.setState({ isLoading: false, secondaryKpiChanged: false, filtersUpdated: false });
+
             }
           }
+          break;
+        case 3:
+          if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
+            if (this.state.secondaryKpiChanged === true) {
+              if (buyConversionIsLoaded === true && buySecondaryIsLoaded === true) {
 
-        }
-        break;
+                this.setState({ isLoading: false, secondaryKpiChanged: false });
+                if (buyGrossIsLoaded === false || buyConversionIsLoaded === false) {
+                  this.setState({ requestingRemainingDiscoverData: true });
+                  this.props.getBuyFinanceSecondaryData(this.props.filters);
+                  this.props.getBuyMarketSecondaryData(this.props.filters);
+
+                } else {
+                  this.setState({ requestingRemainingDiscoverData: false });
+                }
+              }
+            } else if (this.state.filtersUpdated === true) {
+              // Market Filters loaded
+              if (buyConversionIsLoaded && primaryIsLoaded === true && buySecondaryIsLoaded) {
+                this.setState({ isLoading: false, filtersUpdated: false });
+                if (buyGrossIsLoaded === false || buyConversionIsLoaded === false) {
+                  this.setState({ requestingRemainingDiscoverData: true });
+                  this.props.getBuyFinanceSecondaryData(this.props.filters);
+                  this.props.getBuyMarketSecondaryData(this.props.filters);
+
+                } else {
+                  this.setState({ requestingRemainingDiscoverData: false });
+                }
+              }
+            } else if (this.state.subFiltersChanged) {
+              if (buyConversionIsLoaded) {
+                this.setState({
+                  isLoading: false,
+                  subFiltersChanged: false
+                });
+              }
+            }
+
+          }
+          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
+            activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND) {
+
+            if (this.state.secondaryKpiChanged === true) {
+              if (buyMarketIsLoaded === true && buySecondaryIsLoaded === true) {
+
+                this.setState({ isLoading: false, secondaryKpiChanged: false });
+                if (buyGrossIsLoaded === false || buyConversionIsLoaded === false) {
+                  this.setState({ requestingRemainingDiscoverData: true });
+                  this.props.getBuyFinanceSecondaryData(this.props.filters);
+                  this.props.getBuyTrafficSecondaryData(this.props.filters);
+
+                } else {
+                  this.setState({ requestingRemainingDiscoverData: false });
+                }
+              }
+            } else if (this.state.filtersUpdated === true) {
+              if (buyMarketIsLoaded === true && primaryIsLoaded === true && buySecondaryIsLoaded === true) {
+                this.setState({ isLoading: false, filtersUpdated: false });
+                if (buyGrossIsLoaded === false || buyConversionIsLoaded === false) {
+                  this.setState({ requestingRemainingDiscoverData: true });
+                  this.props.getBuyFinanceSecondaryData(this.props.filters);
+                  this.props.getBuyTrafficSecondaryData(this.props.filters);
+
+                } else {
+                  this.setState({ requestingRemainingDiscoverData: false });
+                }
+              }
+            } else if (this.state.subFiltersChanged) {
+              if (buyMarketIsLoaded === true) {
+                this.setState({
+                  isLoading: false,
+                  subFiltersChanged: false
+                });
+              }
+            }
+
+          }
+          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWUNITS ||
+            activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWARR) {
+
+            if (this.state.secondaryKpiChanged === true) {
+              if (buyGrossIsLoaded === true && buySecondaryIsLoaded === true) {
+
+                this.setState({ isLoading: false, secondaryKpiChanged: false });
+                if (buyMarketIsLoaded === false || buyConversionIsLoaded === false) {
+                  this.setState({ requestingRemainingDiscoverData: true });
+                  this.props.getBuyMarketSecondaryData(this.props.filters);
+                  this.props.getBuyTrafficSecondaryData(this.props.filters);
+
+                } else {
+                  this.setState({ requestingRemainingDiscoverData: false });
+                }
+              }
+            } else if (this.state.filtersUpdated === true) {
+              // Market Filters loaded
+              if (buyGrossIsLoaded === true && primaryIsLoaded === true && buySecondaryIsLoaded) {
+
+                this.setState({ isLoading: false, filtersUpdated: false });
+                if (buyMarketIsLoaded === false || buyConversionIsLoaded === false) {
+                  this.setState({ requestingRemainingDiscoverData: true });
+                  this.props.getBuyTrafficSecondaryData(this.props.filters);
+                  this.props.getBuyMarketSecondaryData(this.props.filters);
+
+                } else {
+                  this.setState({ requestingRemainingDiscoverData: false });
+                }
+              }
+            } else if (this.state.subFiltersChanged) {
+              if (buyGrossIsLoaded === true) {
+
+                this.setState({
+                  isLoading: false,
+                  subFiltersChanged: false
+                });
+              }
+            }
+
+          }
+          break;
+        case 4:
+          if (this.state.secondaryKpiChanged === true || this.state.filtersUpdated === true) {
+            if (useIsLoaded === true) {
+
+              this.setState({ isLoading: false, secondaryKpiChanged: false, filtersUpdated: false });
+
+            }
+          }
+          break;
+        case 5:
+
+
+          if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
+            || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
+            if (this.state.secondaryKpiChanged === true) {
+              if (renewCancelIsLoaded === true && renewIsLoaded === true) {
+                this.setState({ isLoading: false, secondaryKpiChanged: false });
+                if (renewDetailsIsLoaded === false) {
+                  this.setState({ requestingRemainingRenewData: true });
+                  this.props.getRenewDetailsSecondaryData(this.props.filters);
+
+
+                } else {
+                  this.setState({ requestingRemainingRenewData: false });
+                }
+              }
+            } else if (this.state.filtersUpdated === true) {
+              // Market Filters loaded
+              if (renewCancelIsLoaded && primaryIsLoaded === true && renewIsLoaded) {
+                this.setState({ isLoading: false, filtersUpdated: false });
+                if (renewDetailsIsLoaded === false) {
+                  this.setState({ requestingRemainingRenewData: true });
+                  this.props.getRenewDetailsSecondaryData(this.props.filters);
+
+
+                } else {
+                  this.setState({ requestingRemainingRenewData: false });
+                }
+              }
+            } else if (this.state.subFiltersChanged) {
+              if (renewCancelIsLoaded) {
+                this.setState({
+                  isLoading: false,
+                  subFiltersChanged: false
+                });
+              }
+            }
+          }
+          else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_PF)
+            || (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL)) {
+            if (this.state.secondaryKpiChanged === true) {
+              if (renewDetailsIsLoaded === true && renewIsLoaded === true) {
+                this.setState({ isLoading: false, secondaryKpiChanged: false });
+                if (renewCancelIsLoaded === false) {
+                  this.setState({ requestingRemainingRenewData: true });
+                  this.props.getRenewCancelSecondaryData(this.props.filters);
+
+                  this.setState({ requestingRemainingRenewData: false });
+                }
+              }
+            } else if (this.state.filtersUpdated === true) {
+              if (renewDetailsIsLoaded === true && primaryIsLoaded === true && renewIsLoaded === true) {
+                this.setState({ isLoading: false, filtersUpdated: false });
+                if (renewCancelIsLoaded === false) {
+                  this.setState({ requestingRemainingRenewData: true });
+                  this.props.getRenewCancelSecondaryData(this.props.filters);
+                } else {
+                  this.setState({ requestingRemainingRenewData: false });
+                }
+              }
+            } else if (this.state.subFiltersChanged) {
+              if (renewDetailsIsLoaded === true) {
+                this.setState({
+                  isLoading: false,
+                  subFiltersChanged: false
+                });
+              }
+            }
+
+          }
+          break;
+      }
     }
   }
-  }
   updateSecondaryLoading(newFilters) {
-    this.setState({ subFiltersChanged: true})
+    this.setState({ subFiltersChanged: true })
     this.props.submitFilters(newFilters);
     switch (this.props.activeSecondaryCard) {
       case 4:
@@ -1110,7 +1123,7 @@ class Summary extends Component {
         updateMobileView={(component, updateTo) => { this.updateMobileView(component, updateTo); }}
         window={this.props.window}
         commentsPackage={this.props.commentsPackage}
-        resetSecondaryList= {(index)=>this.updateActivePrimary(index)}
+        resetSecondaryList={(index) => this.updateActivePrimary(index)}
       />
     );
   };
@@ -1145,109 +1158,109 @@ class Summary extends Component {
     const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails isLoading={this.state.isLoading} subFiltersSubmit={(newFilters) => { this.updateSecondaryLoading(newFilters) }} secondaryData={this.props.secondaryData} />;
     return (
 
-     
-     <div style={isMobileOrTablet ? { height: `${this.props.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
-         { this.state.authenticated && (
-           <span>
-        {kdialog}
-        {feedbackDialog}
 
-        {/* Navigation*/}
-        <Navigation mobileFiltersIsShown={this.props.mobileFiltersIsShown} onFeedbackChange={this.takeDomScreenshot} />
-        <FilterPanel window={this.props.window} activePrimary={this.props.activePrimaryCard} />
+      <div style={isMobileOrTablet ? { height: `${this.props.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
+        {this.state.authenticated && (
+          <span>
+            {kdialog}
+            {feedbackDialog}
 
-        {
-          this.state.isLoading === true ? <LoadingScreen /> :
-            (
+            {/* Navigation*/}
+            <Navigation mobileFiltersIsShown={this.props.mobileFiltersIsShown} onFeedbackChange={this.takeDomScreenshot} />
+            <FilterPanel window={this.props.window} activePrimary={this.props.activePrimaryCard} />
 
-              <span>
+            {
+              this.state.isLoading === true ? <LoadingScreen /> :
+                (
 
-                {/* Data Preferences */}
-                <div>
-                  <div>
-                    <CommentPanel user={this.props.user} />
+                  <span>
 
-                    {/* Primary */}
+                    {/* Data Preferences */}
+                    <div>
+                      <div>
+                        <CommentPanel user={this.props.user} />
 
-                    {this.props.mobileFiltersIsShown 
-                    ? null :    this.props.mobileIsPrimary === true ? this.getPrimaryContent() : null}
-                    {/* (this.props.activePrimaryCard === 4 || this.props.activePrimaryCard === 5) ?
+                        {/* Primary */}
+
+                        {this.props.mobileFiltersIsShown
+                          ? null : this.props.mobileIsPrimary === true ? this.getPrimaryContent() : null}
+                        {/* (this.props.activePrimaryCard === 4 || this.props.activePrimaryCard === 5) ?
                       <div id="commingSoon">Coming Soon</div> : */
-                      this.state.isLoading === true ? <LoadingScreen></LoadingScreen> :
-                        <span>
-                          {isMobileOrTablet === false ? this.getSecondaryContent() : (this.props.mobileFiltersIsShown ? null : this.getSecondaryContent())}
-                          {summaryViewDetails}</span>
-                    }
+                          this.state.isLoading === true ? <LoadingScreen></LoadingScreen> :
+                            <span>
+                              {isMobileOrTablet === false ? this.getSecondaryContent() : (this.props.mobileFiltersIsShown ? null : this.getSecondaryContent())}
+                              {summaryViewDetails}</span>
+                        }
 
-                    {/* {this.state.isFilterPageVisible && this.props.mobileIsPrimary ? null : null} */}
+                        {/* {this.state.isFilterPageVisible && this.props.mobileIsPrimary ? null : null} */}
 
-                  </div>
-                </div>
-              </span>
-            )
-        }
- </span>)}
+                      </div>
+                    </div>
+                  </span>
+                )
+            }
+          </span>)}
 
-        </div>
-        );
-      }
-    }
-    
+      </div>
+    );
+  }
+}
+
 function mapStateToProps(state) {
 
-          console.log(state);
+  console.log(state);
 
-        return {
-          authenticated: state.authenticated,
-        dialogIsOpen: state.isDialogOpen,
-        detailIsOpen: state.detailsIsOpen,
-        availableFilters: state.availableFilters,
-        user: state.user,
-        preferences: state.preferences,
-        primaryData: state.summaryData.primary,
-        activePrimaryCard: state.activeCards.primary,
-        activeSecondaryCard: state.activeCards.secondary,
-        secondaryData: state.summaryData.secondary,
-        appSettings: state.appSettings,
-        deviceType: state.appSettings.deviceType,
-        toggleCommentary: state.toggleCommentaryBox,
-        window: state.appSettings.window,
-        mobileIsPrimary: state.appSettings.views.primaryIsVisible,
-        mobileIsSecondary: state.appSettings.views.secondaryIsVisible,
-        summaryData: state.summaryData,
-        mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible,
-        filters: state.filters,
-    
-        commentsPackage: state.commentsPackage,
-        feedbackIsOpen: state.isFeedBackDialogOpen,
-        dataIsReset: state.summaryData.dataIsReset,
-        primaryIsLoaded: state.summaryData.primaryIsLoaded,
-        discoverSecondaryIsLoaded: state.summaryData.discoverSecondaryIsLoaded,
-        financeSecondaryIsLoaded: state.summaryData.financeSecondaryIsLoaded,
-        financeXDC1IsLoaded: state.summaryData.financeXDC1IsLoaded,
-        financeXDC2IsLoaded: state.summaryData.financeXDC2IsLoaded,
-        trafficIsLoaded: state.summaryData.trafficIsLoaded,
-        muIsLoaded: state.summaryData.muIsLoaded,
-        buyGrossIsLoaded: state.summaryData.buyGrossIsLoaded,
-        buyMarketIsLoaded: state.summaryData.buyMarketIsLoaded,
-        buySecondaryIsLoaded: state.summaryData.buySecondaryIsLoaded,
-        buyConversionIsLoaded: state.summaryData.buyConversionIsLoaded,
-        tryIsLoaded: state.summaryData.tryIsLoaded,
-        useIsLoaded: state.summaryData.useIsLoaded,
-        renewIsLoaded: state.summaryData.renewIsLoaded,
-        renewCancelIsLoaded: state.summaryData.renewCancelIsLoaded,
-        renewDetailsIsLoaded: state.summaryData.renewDetailsIsLoaded,
-        filtersAreLoaded: state.filters.filtersAreLoaded,
-        globalFiltersSubmitted: state.filters.globalFiltersSubmitted,
-        subFiltersSubmitted: state.filters.subFiltersSubmitted,
-        resetFilters: state.filters.resetFilters,
-        filtersAreDefault: state.filters.filtersAreDefault,
-        preferencesAreAdded: state.filters.preferencesAreAdded,
-        preferencesAreLoaded: state.preferences.preferencesAreLoaded,
-        isDefaultFilters: state.filters.isDefaultFilters
-      };
-    }
-    export default connect(
-      mapStateToProps,
-      actions
-    )(withAuth(Summary));
+  return {
+    authenticated: state.authenticated,
+    dialogIsOpen: state.isDialogOpen,
+    detailIsOpen: state.detailsIsOpen,
+    availableFilters: state.availableFilters,
+    user: state.user,
+    preferences: state.preferences,
+    primaryData: state.summaryData.primary,
+    activePrimaryCard: state.activeCards.primary,
+    activeSecondaryCard: state.activeCards.secondary,
+    secondaryData: state.summaryData.secondary,
+    appSettings: state.appSettings,
+    deviceType: state.appSettings.deviceType,
+    toggleCommentary: state.toggleCommentaryBox,
+    window: state.appSettings.window,
+    mobileIsPrimary: state.appSettings.views.primaryIsVisible,
+    mobileIsSecondary: state.appSettings.views.secondaryIsVisible,
+    summaryData: state.summaryData,
+    mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible,
+    filters: state.filters,
+
+    commentsPackage: state.commentsPackage,
+    feedbackIsOpen: state.isFeedBackDialogOpen,
+    dataIsReset: state.summaryData.dataIsReset,
+    primaryIsLoaded: state.summaryData.primaryIsLoaded,
+    discoverSecondaryIsLoaded: state.summaryData.discoverSecondaryIsLoaded,
+    financeSecondaryIsLoaded: state.summaryData.financeSecondaryIsLoaded,
+    financeXDC1IsLoaded: state.summaryData.financeXDC1IsLoaded,
+    financeXDC2IsLoaded: state.summaryData.financeXDC2IsLoaded,
+    trafficIsLoaded: state.summaryData.trafficIsLoaded,
+    muIsLoaded: state.summaryData.muIsLoaded,
+    buyGrossIsLoaded: state.summaryData.buyGrossIsLoaded,
+    buyMarketIsLoaded: state.summaryData.buyMarketIsLoaded,
+    buySecondaryIsLoaded: state.summaryData.buySecondaryIsLoaded,
+    buyConversionIsLoaded: state.summaryData.buyConversionIsLoaded,
+    tryIsLoaded: state.summaryData.tryIsLoaded,
+    useIsLoaded: state.summaryData.useIsLoaded,
+    renewIsLoaded: state.summaryData.renewIsLoaded,
+    renewCancelIsLoaded: state.summaryData.renewCancelIsLoaded,
+    renewDetailsIsLoaded: state.summaryData.renewDetailsIsLoaded,
+    filtersAreLoaded: state.filters.filtersAreLoaded,
+    globalFiltersSubmitted: state.filters.globalFiltersSubmitted,
+    subFiltersSubmitted: state.filters.subFiltersSubmitted,
+    resetFilters: state.filters.resetFilters,
+    filtersAreDefault: state.filters.filtersAreDefault,
+    preferencesAreAdded: state.filters.preferencesAreAdded,
+    preferencesAreLoaded: state.preferences.preferencesAreLoaded,
+    isDefaultFilters: state.filters.isDefaultFilters
+  };
+}
+export default connect(
+  mapStateToProps,
+  actions
+)(withAuth(Summary));

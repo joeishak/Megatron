@@ -28,7 +28,9 @@ class KendoDialog extends Component {
             selectedFilters: [
             ...this.props.preferences.subscriptionFilters,
             ...this.props.preferences.signupsource,
-            ...this.props.preferences.nondmsegments,
+            ...this.props.preferences.nondmsegments.map(item=>{
+                return {...item, label: item.value}
+            }),
             ...this.props.preferences.productFilters,
             ...this.props.preferences.routeFilters],
             activeDataFilters: [],
@@ -43,15 +45,10 @@ class KendoDialog extends Component {
     }
 
     componentDidMount() {
-        // this.setState({
-        //     selectedFilters: [...this.props.preferences.nondmsegments.map(item => {
-        //         return { ...item, label: item.value }
-        //     })]
-        // })
+ 
         let a = this.props.preferences.nondmsegments.map(item=>{
             return {...item, label: item.value}
         });
-        console.log('Componen Did Mount',a);
         this.setState({
             selectedFilters: [
                 ...this.props.preferences.subscriptionFilters,
