@@ -774,7 +774,6 @@ class FilterPage extends Component {
                                     onValueChange={this.updateSingleValue}
                                     onMenuClose={this.closeSingleValue}
                                     value={_.filter(this.state.selectedFilters, item => { return item.category === QUARTER })}
-
                                 />                                        </div>
                             <div className="col-xs-12 col-sm-12 col-md-12 defaultFilters">
                                 <p>Geo</p>
@@ -784,7 +783,6 @@ class FilterPage extends Component {
                                     onValueChange={(e) => { let type = 'geo'; this.updateMultiValue(e, type) }}
                                     onMenuClose={this.closeMultiValue}
                                     value={_.filter(this.state.selectedFilters, item => { return item.category === GEO })}
-
                                 />                                        </div>
                             <div className="col-xs-12 col-sm-12 col-md-12 defaultFilters">
                                 <p>Market Area</p>
@@ -794,7 +792,6 @@ class FilterPage extends Component {
                                     onValueChange={(e) => { let type = MARKET; this.updateMultiValue(e, type) }}
                                     onMenuClose={this.closeMultiValue}
                                     value={_.filter(this.state.selectedFilters, item => { return item.category === MARKET })}
-
                                 />                                        </div>
                             {this.getGlobalSubFilters(filters, quarterFilterContainer)}
                                 {this.getSummaryFilters(this.props.activeCards.secondary)}
@@ -802,15 +799,10 @@ class FilterPage extends Component {
                                 <button className="mobileButton" type='button'  onClick={this.submitFilters} >Submit</button>
                             </div>
                         </div>
-
                         <div className="row dropRow">
-
-
                         </div>
                         {/* third row */}
                         <div className="row dropRow">
-
-
                         </div>
                         {/* fourth row */}
                         <div className="row dropRow">

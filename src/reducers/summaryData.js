@@ -383,15 +383,13 @@ export default function (state = {
             newState = JSON.parse(JSON.stringify(state));
 
             console.log('Request For Renew  Details   Data: ', action.payload);
-            // processRenewDetailSecondaryData(action.payload[0], newState.secondary, action.payload[6], action.payload[12]);
+            processRenewDetailSecondaryData(action.payload[0], newState.secondary, action.payload[6], action.payload[12]);
             processRenewMultichartData(action.payload[1].data, newState.secondary, action.payload[7].data, action.payload[13].data);
             processRenewQTDData(action.payload[2].data[0], newState.secondary, action.payload[8].data[0], action.payload[14].data[0]);
             processRenewGeoQTDData(action.payload[3].data, newState.secondary, action.payload[9].data, action.payload[15].data);
             processRenewMarketQTDData(action.payload[4].data, newState.secondary, action.payload[10].data, action.payload[16].data);
             processRenewSegmentQTDData(action.payload[5].data, newState.secondary, action.payload[11].data, action.payload[17].data);
             processRenewProductQTDData(action.payload[18].data, newState.secondary, action.payload[19].data);
-
-
             return { ...newState, renewDetailsIsLoaded: true };
 
         default:
@@ -6663,18 +6661,17 @@ export function processUseSecondaryData(data, newState, cumuData) {
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].vsQrf = data.RepeatMAUVsQRF;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].cumuMembers = cumuData.CumuPaidMembersActual;
 
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].value = data.PaidUserDownloadActual;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].targetFQ = data.PaidUserDownloadTarget;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].target = data.PaidUserDownloadTarget;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].vsQrf = data.PaidUserDownloadVsQrf;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].cumuMembers = cumuData.CumuPaidMembersActual;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].value = data.PaidUserDownloadActual;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].targetFQ = data.PaidUserDownloadTarget;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].target = data.PaidUserDownloadTarget;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].vsQrf = data.PaidUserDownloadVsQrf;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].cumuMembers = cumuData.CumuPaidMembersActual;
 
-
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].value = data.PaidUserLaunchActual;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].targetFQ = data.PaidUserLaunchTargetFQ;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].target = data.PaidUserLaunchTarget;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].vsQrf = data.PaidUserLaunchVsQRF;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].cumuMembers = cumuData.CumuPaidMembersActual;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].value = data.PaidUserLaunchActual;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].targetFQ = data.PaidUserLaunchTargetFQ;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].target = data.PaidUserLaunchTarget;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].vsQrf = data.PaidUserLaunchVsQRF;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].cumuMembers = cumuData.CumuPaidMembersActual;
 
 
     newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].value = data.Week00WAUActual;
@@ -6786,8 +6783,8 @@ export function processUseMultichartData(data, newState) {
     newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX]['details'].multichart = [ei.actual, ei.target, ei.ly, ei.lq];
     newState[SUMMARY_FILTERS.USE_PAID_USER_MAU]['details'].multichart = [pum.actual, pum.target, pum.ly, pum.lq];
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU]['details'].multichart = [rum.actual, rum.target, rum.ly, rum.lq];
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED]['details'].multichart = [pus.actual, pus.target, pus.ly, pus.lq];
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES]['details'].multichart = [pusl.actual, pusl.target, pusl.ly, pusl.lq];
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS]['details'].multichart = [pus.actual, pus.target, pus.ly, pus.lq];
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES]['details'].multichart = [pusl.actual, pusl.target, pusl.ly, pusl.lq];
     newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE]['details'].multichart = [wk0.actual, wk0.target, wk0.ly, wk0.lq];
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE]['details'].multichart = [wk4.actual, wk4.target, wk4.ly, wk4.lq];
 
@@ -6824,36 +6821,36 @@ export function processUseQTDData(data, newState) {
     newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.stats[1].value = data[0].PaidMAUQQTY;
     newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.stats[2].value = data[0].PaidMAUQQLY;
     newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.stats[3].value = data[0].PaidMAUYY;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[0].value = data[0].PaidUserDownloadActual;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[1].value = data[0].PaidUserDownloadTarget;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[2].value = data[0].PaidUserDownloadVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[3].value = data[0].PaidUserDownloadVsQrf;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[4].value = data[0].PaidUserDownloadQQTY;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[5].value = data[0].PaidUserDownloadYY;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.week[0].value = data[0].PaidUserDownloadActual;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.week[1].value = data[0].PaidUserDownloadTarget;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.week[2].value = data[0].PaidUserDownloadVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.week[3].value = data[0].PaidUserDownloadVsQrf;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.week[4].value = data[0].PaidUserDownloadWW;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.stats[0].value = data[0].PaidUserDownloadVsQrf;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.stats[1].value = data[0].PaidUserDownloadQQTY;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.stats[2].value = data[0].PaidUserDownloadQQLY;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.stats[3].value = data[0].PaidUserDownloadYY;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.qtdw.qtd[0].value = data[0].PaidUserLaunchActual;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.qtdw.qtd[1].value = data[0].PaidUserLaunchTarget;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.qtdw.qtd[2].value = data[0].PaidUserLaunchVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.qtdw.qtd[3].value = data[0].PaidUserLaunchVsQrf;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.qtdw.qtd[4].value = data[0].PaidUserLaunchQQTY;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.qtdw.qtd[5].value = data[0].PaidUserLaunchYY;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.qtdw.week[0].value = data[0].PaidUserLaunchActual;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.qtdw.week[1].value = data[0].PaidUserLaunchTarget;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.qtdw.week[2].value = data[0].PaidUserLaunchVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.qtdw.week[3].value = data[0].PaidUserLaunchVsQrf;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.qtdw.week[4].value = data[0].PaidUserLaunchWW;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.stats[0].value = data[0].PaidUserLaunchVsQrf;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.stats[1].value = data[0].PaidUserLaunchQQTY;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.stats[2].value = data[0].PaidUserLaunchQQLY;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.stats[3].value = data[0].PaidUserLaunchYY;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.qtd[0].value = data[0].PaidUserDownloadActual;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.qtd[1].value = data[0].PaidUserDownloadTarget;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.qtd[2].value = data[0].PaidUserDownloadVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.qtd[3].value = data[0].PaidUserDownloadVsQrf;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.qtd[4].value = data[0].PaidUserDownloadQQTY;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.qtd[5].value = data[0].PaidUserDownloadYY;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.week[0].value = data[0].PaidUserDownloadActual;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.week[1].value = data[0].PaidUserDownloadTarget;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.week[2].value = data[0].PaidUserDownloadVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.week[3].value = data[0].PaidUserDownloadVsQrf;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.week[4].value = data[0].PaidUserDownloadWW;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.stats[0].value = data[0].PaidUserDownloadVsQrf;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.stats[1].value = data[0].PaidUserDownloadQQTY;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.stats[2].value = data[0].PaidUserDownloadQQLY;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.stats[3].value = data[0].PaidUserDownloadYY;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.qtd[0].value = data[0].PaidUserLaunchActual;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.qtd[1].value = data[0].PaidUserLaunchTarget;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.qtd[2].value = data[0].PaidUserLaunchVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.qtd[3].value = data[0].PaidUserLaunchVsQrf;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.qtd[4].value = data[0].PaidUserLaunchQQTY;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.qtd[5].value = data[0].PaidUserLaunchYY;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.week[0].value = data[0].PaidUserLaunchActual;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.week[1].value = data[0].PaidUserLaunchTarget;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.week[2].value = data[0].PaidUserLaunchVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.week[3].value = data[0].PaidUserLaunchVsQrf;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.week[4].value = data[0].PaidUserLaunchWW;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.stats[0].value = data[0].PaidUserLaunchVsQrf;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.stats[1].value = data[0].PaidUserLaunchQQTY;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.stats[2].value = data[0].PaidUserLaunchQQLY;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.stats[3].value = data[0].PaidUserLaunchYY;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.qtd[0].value = data[0].RepeatMAUActual;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.qtd[1].value = data[0].RepeatMAUTarget;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.qtd[2].value = data[0].RepeatMAUVsQRFDiff;
@@ -7102,12 +7099,12 @@ export function processUseGeoQTDData(data, newState) {
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.geo.qtd = processQTDOrder(item3);
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.geo.week = processQTDOrder(item3Week);
 
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.geo.qtd = processQTDOrder(item4);
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.geo.week = processQTDOrder(item4Week);
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.geo.qtd = processQTDOrder(item4);
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.geo.week = processQTDOrder(item4Week);
 
 
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.geo.qtd = processQTDOrder(item7);
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.geo.week = processQTDOrder(item7Week);
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.geo.qtd = processQTDOrder(item7);
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.geo.week = processQTDOrder(item7Week);
 
     newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.geo.qtd = processQTDOrder(item5);
     newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.geo.week = processQTDOrder(item5Week);
@@ -7317,12 +7314,12 @@ export function processUseMarketQTDData(data, newState) {
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.market.qtd = item3;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.market.week = item3Week;
 
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.market.qtd = item4;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.market.week = item4Week;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.market.qtd = item4;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.market.week = item4Week;
 
 
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.market.qtd = item7;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.market.week = item7Week;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.market.qtd = item7;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.market.week = item7Week;
 
     newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.market.qtd = item5;
     newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.market.week = item5Week;
@@ -7530,12 +7527,12 @@ export function processUseSubscriptionQTDData(data, newState) {
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.subscription.qtd = item3;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.subscription.week = item3Week;
 
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.subscription.qtd = item4;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.subscription.week = item4Week;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.subscription.qtd = item4;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.subscription.week = item4Week;
 
 
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.subscription.qtd = item7;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.subscription.week = item7Week;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.subscription.qtd = item7;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.subscription.week = item7Week;
 
     newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.subscription.qtd = item5;
     newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.subscription.week = item5Week;
@@ -7743,11 +7740,11 @@ export function processUseSegmentQTDData(data, newState) {
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.segment.qtd = item3;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.segment.week = item3Week;
 
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.segment.qtd = item4;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.segment.week = item4Week;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.segment.qtd = item4;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.segment.week = item4Week;
 
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.segment.qtd = item7;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES].details.segment.week = item7Week;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.segment.qtd = item7;
+    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.segment.week = item7Week;
 
     newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.segment.qtd = item5;
     newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.segment.week = item5Week;

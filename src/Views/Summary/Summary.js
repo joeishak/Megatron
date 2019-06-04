@@ -73,7 +73,6 @@ class Summary extends Component {
 
     /*Bindings  */
     this.checkAuthentication = checkAuthentication.bind(this);
-    this.props.getIbHeartbeat();
   }
   /***
    * Calls the action setAppSettings which updates the viewport size in redux
@@ -104,6 +103,8 @@ class Summary extends Component {
     window.addEventListener("resize", this.resize.bind(this));
     // Call this.resize to instanstiate
     this.resize();
+    this.props.getIbHeartbeat();
+
   }
 
   /***
@@ -111,7 +112,7 @@ class Summary extends Component {
    */
   componentDidUpdate(prevProps, prevState) {
 
-    // Extract props into variables from connected state props
+    // Extract props into variables from connected redux state props
     let { activePrimaryCard, activeSecondaryCard,
       primaryIsLoaded,
       user,
@@ -398,7 +399,7 @@ class Summary extends Component {
             }
           }
           // If the user is on a USE KPI
-          else if (activeSecondaryCard >= SUMMARY_FILTERS.USE_PERCENT_ACTIVATED && activeSecondaryCard <= SUMMARY_FILTERS.USE_REPEAT_USER_MAU) {
+          else if (activeSecondaryCard >= SUMMARY_FILTERS.USE_PAID_USER_SUCCESS && activeSecondaryCard <= SUMMARY_FILTERS.USE_REPEAT_USER_MAU) {
             // If filters are default
             if (isDefaultFilters) {
               // Call Action to get USE from cache-memory
@@ -736,18 +737,18 @@ class Summary extends Component {
           }
         }
         // If the user changed cards to Finance Net New or Gros New ARR
-        // else if (activeSecondaryCard === SUMMARY_FILTERS.USE_PERCENT_ACTIVATED) {
-        //   if (!useIsLoaded) {
-        //     if (isDefaultFilters) {
-        //       this.props.getUseSecondaryData(this.props.filters);
+        else if (activeSecondaryCard === SUMMARY_FILTERS.USE_PERCENT_ACTIVATED) {
+          if (!useIsLoaded) {
+            if (isDefaultFilters) {
+              this.props.getUseSecondaryData(this.props.filters);
 
-        //     } else {
-        //       this.props.getFilteredUseSecondaryData(this.props.filters);
+            } else {
+              this.props.getFilteredUseSecondaryData(this.props.filters);
 
-        //     }
-        //     this.setState({ isLoading: true });
-        //   }
-        // }
+            }
+            this.setState({ isLoading: true });
+          }
+        }
         // If the user changed cards to Renew Finance
         else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
           || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
@@ -1247,7 +1248,7 @@ class Summary extends Component {
         break;
       case (4):
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.USE_PERCENT_ACTIVATED);
+        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.USE_PAID_USER_SUCCESS);
         break;
       default:
         this.props.updateMultichartMetric(true);

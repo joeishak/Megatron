@@ -83,7 +83,7 @@ export const PrimaryData = [
     }
 
 ]
-export const StagedSecondaryData = [
+export const SecondaryData = [
     /* Finance */
     {
         index: 0,
@@ -18978,7 +18978,7 @@ export const StagedSecondaryData = [
     }
 ]
 
-export const SecondaryData = [
+export const StagedSecondaryData = [
     /* Finance */
     {
         index: 0,
