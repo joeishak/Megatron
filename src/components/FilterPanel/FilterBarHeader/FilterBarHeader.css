@@ -46,7 +46,7 @@
 
 /* Animate when clicking and closing */
 .newFilterButton-selected{
-    -webkit-transform: rotate(135deg);
+    -webkit-transform: rotate(360deg);
     -webkit-transition-duration: .5s;
     background-color: #1573e6;
     border: #1573e6;
@@ -54,7 +54,7 @@
 }
 
 .newFilterButton-close{
-    -webkit-transform: rotate(-180deg);
+    -webkit-transform: rotate(-360deg);
     -webkit-transition-duration: .5s;
     cursor: pointer;
 }

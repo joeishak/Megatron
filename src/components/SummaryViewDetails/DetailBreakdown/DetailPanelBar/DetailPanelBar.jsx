@@ -487,7 +487,7 @@ class DetailPanelBar extends Component {
                                 </PanelBarItem>
                             </PanelBar>
                         )
-                    case SUMMARY_FILTERS.USE_PAID_USER_SUCCESS:
+                    case SUMMARY_FILTERS.USE_PERCENT_ACTIVATED:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -505,7 +505,7 @@ class DetailPanelBar extends Component {
                                 </PanelBarItem>
                             </PanelBar>
                         )
-                        case SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES:
+                        case SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>

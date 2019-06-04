@@ -79,18 +79,8 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 import { dispatch } from 'rxjs/internal/observable/pairs';
 
 // HTTP Variables
-
 let promiseArr = [];
 
-let filterParams = [
-    { prompt: 'quarterFilters', value: '' },
-    { prompt: 'productFilters', value: '' },
-    { prompt: 'geoFilters', value: '' },
-    { prompt: 'subscriptionFilters', value: '' },
-    { prompt: 'maFilters', value: '' },
-    { prompt: 'routeFilters', value: '' },
-    { prompt: 'segmentFilters', value: '' }
-];
 /**
  * Change the state of Authentication for the user.
  *
@@ -102,12 +92,22 @@ export function changeAuth(isLoggedIn) {
         payload: isLoggedIn
     }
 }
+
+/**
+ * Reset the data back to users preferences.
+ *
+ */
 export function resetData() {
     return {
         type: RESET_DATA,
         payload: null
     }
 }
+
+/**
+ * Submit a request for user preferences.
+ *
+ */
 export function getUserSettings(sub) {
     let res = utils.requestUserSettings(sub);
     return {
@@ -115,7 +115,10 @@ export function getUserSettings(sub) {
         payload: res
     }
 }
-
+/**
+ * Adds the retrieved user to the Redux State.
+ *
+ */
 export function addUser(user){
     console.log(user);
     return {
@@ -127,7 +130,6 @@ export function addUser(user){
  * Update User In Database From Okta
  */
 export function updateOKTAUser(user, quarter, segment, nondm) {
-    console.log('Submitting NON DM',nondm);
     let usersResponse = utils.addUserToDB(user,quarter,segment,nondm);
     return {
         type: GET_USER_SETTINGS,
@@ -147,11 +149,13 @@ export function updateOKTAUser(user, quarter, segment, nondm) {
  */
 export function updateUserSettings(activeFilters, user) {
     console.log(activeFilters);
+    // Assign new variables that wont modify state
     let stringGeo = activeFilters.geo;
     let stringproduct = activeFilters.product
     let stringroute = activeFilters.route;
     let stringmarket = activeFilters.market;
     let stringSubscription = activeFilters.subscription;
+    // Create a parameter object for InfoBurst
     let params = {
         quarter: activeFilters.quarter[0].value,
         segment: activeFilters.segment[0].value,
@@ -185,7 +189,10 @@ export function setAppSettings(settings) {
     }
 }
 
-
+/**
+ * Updates the app settings that denote what component is showing for different view ports
+ * @param {*} param0 
+ */
 export function setViewAppSettings({ component, isShowing }) {
 
 
@@ -194,6 +201,13 @@ export function setViewAppSettings({ component, isShowing }) {
         payload: { component, isShowing }
     }
 }
+
+/**
+ * Organizes the filters pertaining only to Primary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredPrimaryData(filters) {
     console.log('Filters:', filters);
     let allFilters = {
@@ -245,8 +259,12 @@ export function getFilteredPrimaryData(filters) {
         payload: promiseArr
     }
 }
-
-//DISOCVER SECONDARY
+/**
+ * Organizes the filters pertaining only to Discover Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredDiscoverSecondary(filters) {
     console.log('Filters:', filters);
     let allFilters = {
@@ -294,7 +312,12 @@ export function getFilteredDiscoverSecondary(filters) {
         payload: promiseArr
     }
 }
-/** Finance **/
+/**
+ * Organizes the filters pertaining only to Finance filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredFinanceSecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -323,6 +346,13 @@ export function getFilteredFinanceSecondaryData(filters) {
         payload: promiseArr
     }
 }
+
+/**
+ * Organizes the filters pertaining only to Finance Net NEw and Gross New Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredFinanceXDC1SecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -351,6 +381,13 @@ export function getFilteredFinanceXDC1SecondaryData(filters) {
         payload: promiseArr
     }
 }
+
+/**
+ * Organizes the filters pertaining only to Finance Cancellations and Renewal Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredFinanceXDC2SecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -379,7 +416,12 @@ export function getFilteredFinanceXDC2SecondaryData(filters) {
         payload: promiseArr
     }
 }
-/** Traffic **/
+/**
+ * Organizes the filters pertaining only to Traffic, and Bounce Rate Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredTrafficSecondaryData(filters) {
     console.log('Filters:', filters);
     let allFilters = {
@@ -416,6 +458,13 @@ export function getFilteredTrafficSecondaryData(filters) {
         payload: promiseArr
     }
 }
+
+/**
+ * Organizes the filters pertaining only to Discover Marketing Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredMarketingSecondaryData(filters) {
     console.log('Filters:', filters);
 
@@ -447,7 +496,13 @@ export function getFilteredMarketingSecondaryData(filters) {
         payload: promiseArr
     }
 }
-/** Try **/
+
+/**
+ * Organizes the filters pertaining only to Try Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredTrySecondaryData(filters) {
     console.log(filters);
     let allFilters = {
@@ -473,6 +528,14 @@ export function getFilteredTrySecondaryData(filters) {
         payload: promiseArr
     }
 }
+
+
+/**
+ * Organizes the filters pertaining only to Buy Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredBuySecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -519,6 +582,14 @@ export function getFilteredBuySecondaryData(filters) {
         payload: promiseArr
     }
 }
+
+
+/**
+ * Organizes the filters pertaining only to Buy Gross New ARR and Subs Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredBuyFinanceSecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -553,6 +624,13 @@ export function getFilteredBuyFinanceSecondaryData(filters) {
         payload: promiseArr
     }
 }
+
+/**
+ * Organizes the filters pertaining only to Buy Marketing Sourced ARR and Paid Media Spend Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredBuyMarketSecondaryData(filters) {
     let allFilters = {
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
@@ -585,6 +663,13 @@ export function getFilteredBuyMarketSecondaryData(filters) {
         payload: promiseArr
     }
 }
+
+/**
+ * Organizes the filters pertaining only to Buy Gross A Conversions Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredBuyTrafficSecondaryData(filters) {
     console.log('Filters:', filters);
     let allFilters = {
@@ -624,6 +709,13 @@ export function getFilteredBuyTrafficSecondaryData(filters) {
         payload: promiseArr
     }
 }
+
+/**
+ * Organizes the filters pertaining only to Use Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredUseSecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -649,6 +741,13 @@ export function getFilteredUseSecondaryData(filters) {
         payload: promiseArr
     }
 }
+
+/**
+ * Organizes the filters pertaining only to Renew Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredRenewSecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -680,6 +779,13 @@ export function getFilteredRenewSecondaryData(filters) {
         payload: promiseArr
     }
 }
+
+/**
+ * Organizes the filters pertaining only to Renew Details for QTR and PF Rate Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredRenewDetailsSecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -711,6 +817,12 @@ export function getFilteredRenewDetailsSecondaryData(filters) {
         payload: promiseArr
     }
 }
+/**
+ * Organizes the filters pertaining only to Renew Details for Cancellations Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFilteredRenewCancelSecondaryData(filters) {
 
     // console.log(filters);
@@ -743,7 +855,12 @@ export function getFilteredRenewCancelSecondaryData(filters) {
         payload: promiseArr
     }
 }
-
+/**
+ * Organizes the filters pertaining only to Primary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getPrimaryData(filters) {
     console.log('Filters:', filters);
     let allFilters = {
@@ -796,7 +913,12 @@ export function getPrimaryData(filters) {
     }
 }
 
-//DISOCVER SECONDARY
+/**
+ * Organizes the filters pertaining only to Discover Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getDiscoverSecondary(filters) {
     console.log('Filters:', filters);
     let allFilters = {
@@ -844,7 +966,12 @@ export function getDiscoverSecondary(filters) {
         payload: promiseArr
     }
 }
-/** Finance **/
+/**
+ * Organizes the filters pertaining only to Finance filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFinanceSecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -873,6 +1000,13 @@ export function getFinanceSecondaryData(filters) {
         payload: promiseArr
     }
 }
+
+/**
+ * Organizes the filters pertaining only to Finance Net NEw and Gross New Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFinanceXDC1SecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -901,6 +1035,12 @@ export function getFinanceXDC1SecondaryData(filters) {
         payload: promiseArr
     }
 }
+/**
+ * Organizes the filters pertaining only to Finance Cancellations and Renewal Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getFinanceXDC2SecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -929,7 +1069,12 @@ export function getFinanceXDC2SecondaryData(filters) {
         payload: promiseArr
     }
 }
-/** Traffic **/
+/**
+ * Organizes the filters pertaining only to Traffic, and Bounce Rate Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getTrafficSecondaryData(filters) {
     console.log('Filters:', filters);
     let allFilters = {
@@ -969,6 +1114,12 @@ export function getTrafficSecondaryData(filters) {
         payload: promiseArr
     }
 }
+/**
+ * Organizes the filters pertaining only to Discover Marketing Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getMarketingSecondaryData(filters) {
     console.log('Filters:', filters);
 
@@ -1000,7 +1151,12 @@ export function getMarketingSecondaryData(filters) {
         payload: promiseArr
     }
 }
-/** Try **/
+/**
+ * Organizes the filters pertaining only to Try Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getTrySecondaryData(filters) {
     console.log(filters);
     let allFilters = {
@@ -1026,7 +1182,12 @@ export function getTrySecondaryData(filters) {
         payload: promiseArr
     }
 }
-/**Buy */
+/**
+ * Organizes the filters pertaining only to Buy Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getBuySecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -1070,6 +1231,12 @@ export function getBuySecondaryData(filters) {
         payload: promiseArr
     }
 }
+/**
+ * Organizes the filters pertaining only to Buy Gross New ARR and Subs Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getBuyFinanceSecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -1103,6 +1270,13 @@ export function getBuyFinanceSecondaryData(filters) {
         payload: promiseArr
     }
 }
+
+/**
+ * Organizes the filters pertaining only to Buy Marketing Sourced ARR and Paid Media Spend Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getBuyMarketSecondaryData(filters) {
     let allFilters = {
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
@@ -1134,6 +1308,13 @@ export function getBuyMarketSecondaryData(filters) {
         payload: promiseArr
     }
 }
+
+/**
+ * Organizes the filters pertaining only to Use Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getBuyTrafficSecondaryData(filters) {
     console.log('Filters:', filters);
     let allFilters = {
@@ -1173,6 +1354,12 @@ export function getBuyTrafficSecondaryData(filters) {
         payload: promiseArr
     }
 }
+/**
+ * Organizes the filters pertaining only to Use Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getUseSecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -1198,6 +1385,13 @@ export function getUseSecondaryData(filters) {
         payload: promiseArr
     }
 }
+
+/**
+ * Organizes the filters pertaining only to Renew Details for QTR and PF Rate Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getRenewDetailsSecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -1229,6 +1423,12 @@ export function getRenewDetailsSecondaryData(filters) {
         payload: promiseArr
     }
 }
+/**
+ * Organizes the filters pertaining only to Renew Details for Cancellations Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getRenewCancelSecondaryData(filters) {
 
     // console.log(filters);
@@ -1261,7 +1461,12 @@ export function getRenewCancelSecondaryData(filters) {
         payload: promiseArr
     }
 }
-
+/**
+ * Organizes the filters pertaining only to Renew Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
 export function getRenewSecondaryData(filters) {
     // console.log(filters);
     let allFilters = {
@@ -1293,6 +1498,7 @@ export function getRenewSecondaryData(filters) {
         payload: promiseArr
     }
 }
+
 /**
  * Update the visibility of the Modal Dialog Box
  *
@@ -1304,13 +1510,18 @@ export function updateDialogVisibility(isDialogVisible) {
         payload: isDialogVisible
     }
 }
-
+/** TODO: REMOVE ALL INSTANCeS */
 export function updateFeedbackFormVisibility(isFeedbackFormVisible) {
     return {
         type: UPDATE_FEEDBACKFORM_DIALOG_VISIBILITY,
         payload: isFeedbackFormVisible
     }
 }
+
+/**
+ * To update whether the application is still loading the primary data
+ * @param {*} isLoading 
+ */
 export function updatePrimaryIsLoading(isLoading) {
     return {
         type: UPDATE_PRIMARY_IS_LOADING,
@@ -1318,37 +1529,64 @@ export function updatePrimaryIsLoading(isLoading) {
     }
 }
 
-
+/**
+ * To update whether the application is still loading the Discover SEcondary KPIs data
+ * @param {*} isLoading 
+ */
 export function updateDiscoverSecondaryIsLoading(isLoading) {
     return {
         type: UPDATE_DISCOVER_SECONDARY_IS_LOADING,
         payload: isLoading,
     }
 }
+
+/**
+ * To update whether the application is still loading the Finance SEcondary KPIs data
+ * @param {*} isLoading 
+ */
 export function updateFinanceSecondaryIsLoading(isLoading) {
     return {
         type: UPDATE_FINANCE_SECONDARY_IS_LOADING,
         payload: isLoading,
     }
 }
+
+/**
+ * To update whether the application is still loading the Try SEcondary KPIs data
+ * @param {*} isLoading 
+ */
 export function updateTrySecondaryIsLoading(isLoading) {
     return {
         type: UPDATE_TRY_IS_LOADING,
         payload: isLoading,
     }
 }
+
+/**
+ * To update whether the application is still loading the Traffic and Bounce Rate SEcondary KPIs data
+ * @param {*} isLoading 
+ */
 export function updateTrafficSecondaryIsLoading(isLoading) {
     return {
         type: UPDATE_TRAFFIC_IS_LOADING,
         payload: isLoading,
     }
 }
+/**
+ * To update whether the application is still loading the Marketable Universe and Paid Media  SEcondary KPIs data
+ * @param {*} isLoading 
+ */
 export function updateMuSecondaryIsLoading(isLoading) {
     return {
         type: UPDATE_MU_IS_LOADING,
         payload: isLoading,
     }
 }
+
+/**
+ * To update whether the application is still loading the Finance NEt New and Gross New  SEcondary KPIs data
+ * @param {*} isLoading 
+ */
 export function updateFinanceXDC1IsLoading(isLoading) {
     return {
         type: UPDATE_FINANCE_XDC_1_IS_LOADING,
@@ -1356,44 +1594,72 @@ export function updateFinanceXDC1IsLoading(isLoading) {
     }
 }
 
+/**
+ * To update whether the application is still loading the  Buy Gross New  SEcondary KPIs data
+ * @param {*} isLoading 
+ */
 export function updateBuyGrossIsLoading(isLoading) {
     return {
         type: UPDATE_BUY_GROSS_IS_LOADING,
         payload: isLoading,
     }
 }
+
+/**
+ * To update whether the application is still loading the  Buy Marketing and Paid Media  SEcondary KPIs data
+ * @param {*} isLoading 
+ */
 export function updateBuyMarketIsLoading(isLoading) {
     return {
         type: UPDATE_BUY_MARKET_IS_LOADING,
         payload: isLoading,
     }
 }
+/**
+ * To update whether the application is still loading the  Buy Gross New Conversion  SEcondary KPIs data
+ * @param {*} isLoading 
+ */
 export function updateBuyConversionIsLoading(isLoading) {
     return {
         type: UPDATE_BUY_CONVERSION_IS_LOADING,
         payload: isLoading,
     }
 }
-
+/**
+ * To update whether the application is still loading the  Use  SEcondary KPIs data
+ * @param {*} isLoading 
+ */
 export function updateUseIsLoading(isLoading) {
     return {
         type: UPDATE_USE_IS_LOADING,
         payload: isLoading,
     }
 }
+/**
+ * To update whether the application is still loading the Renew  SEcondary KPIs data
+ * @param {*} isLoading 
+ */
 export function updateRenewIsLoading(isLoading) {
     return {
         type: UPDATE_RENEW_IS_LOADING,
         payload: isLoading,
     }
 }
+
+/**
+ * To update whether the application is still loading the  Renew Details   data
+ * @param {*} isLoading 
+ */
 export function updateRenewDetailsIsLoading(isLoading) {
     return {
         type: UPDATE_RENEW_DETAILS_IS_LOADING,
         payload: isLoading,
     }
 }
-
+/**
+ * To update whether the application is still loading the  Renew Cancel Details data
+ * @param {*} isLoading 
+ */
 export function updateRenewCancelIsLoading(isLoading) {
     return {
         type: UPDATE_RENEW_CANCEL_IS_LOADING,
@@ -1401,7 +1667,10 @@ export function updateRenewCancelIsLoading(isLoading) {
     }
 }
 
-
+/**
+ * To update whether the application is still loading the  Finance Renew & Cancel Details data
+ * @param {*} isLoading 
+ */
 export function updateFinanceXDC2IsLoading(isLoading) {
     return {
         type: UPDATE_FINANCE_XDC_2_IS_LOADING,
@@ -1424,6 +1693,10 @@ export function generateFilterData() {
 }
 
 
+/**
+ * Adds the users preferences to the active filters
+ * @param {*} prefs 
+ */
 export function addPreferencesToActiveFilters(prefs) {
     return {
         type: ADD_PREFERENCES_TO_ACTIVE_FILTERS,
@@ -1431,12 +1704,21 @@ export function addPreferencesToActiveFilters(prefs) {
     }
 }
 
+/**
+ * Submits the chosens sub filters to active filters
+ * @param {*} newFilters 
+ */
 export function submitSubFilters(newFilters) {
     return {
         type: SUBMIT_SUB_FILTERS,
         payload: newFilters
     }
 }
+
+/**
+ * Submits the chosen global filters to active filters
+ * @param {*} newFilters 
+ */
 export function submitFilters(newFilters) {
     return {
         type: SUBMIT_FILTERS,
@@ -1456,6 +1738,10 @@ export function addValueToActiveMultiFilter(filter) {
     }
 }
 
+/**
+ * Resets the active filters to default preferences
+ * @param {} preferences 
+ */
 export function resetFilters(preferences) {
     console.log(preferences);
     let { defaultQuarter, defaultSegment, geoFilters, marketFilters, subscriptionFilters, productFilters, routeFilters,signupsource,nondmsegments } = preferences;
@@ -1464,6 +1750,7 @@ export function resetFilters(preferences) {
         payload: { defaultQuarter, defaultSegment, geoFilters, marketFilters, subscriptionFilters, productFilters, routeFilters,signupsource,nondmsegments }
     }
 }
+
 /**
 * Remove a value to the active filters for the multi filter
 *
@@ -1631,7 +1918,11 @@ export function addNewReplyToSecondaryMetric(params, metric) {
     }
 
 }
-
+/**
+ * Remove the comment from a specific KPI Square
+ * @param {*} commentId 
+ * @param {*} activeSquareID 
+ */
 export function removeComment(commentId, activeSquareID) {
 
     let response = utils.removeComment({
@@ -1690,7 +1981,10 @@ export const fetchComments = (metricId) => {
 }
 
 
-
+/**
+ * Fetch the total number of comments for ametric. Used for the yellow comment identifier
+ * @param {*} metric 
+ */
 export function fetchCommentsCount(metric) {
     const res = utils.fetchCommentsCount();
     return {
@@ -1699,6 +1993,10 @@ export function fetchCommentsCount(metric) {
     }
 }
 
+/**
+ * Denote whether dashboard is still loading the comments for a metric
+ * @param {*} state 
+ */
 export function isFetching(state) {
     return {
         type: 'FETCHING_COMMENTS',
@@ -1707,7 +2005,9 @@ export function isFetching(state) {
 }
 
 
-
+/**
+ * Retrieve the latest quarter and date the dashboards data was refreshed
+ */
 export function getUpdatedAsOfDateAndQuarter() {
 
     let response =  utils.retrieveUpdatedAndQuarter()

@@ -5,6 +5,8 @@ import  classNames from 'classnames';
 
 // Custom Components and Styles
 import addIcon from '../../../assets/images/add-icon-white.svg';
+import checkIcon from '../../../assets/images/check.svg';
+
 import * as actions from 'actions';
 import FilterPillBox from '../FilterPillBox/FilterPillBox.js';
 import styles from './FilterBarHeader.css';
@@ -107,7 +109,7 @@ class FilterBarHeader extends Component {
                 filterPanelIsClosed: true});
         } else{
             this.setState({
-                filterButtonTitle: 'Hide Filters',
+                filterButtonTitle: 'Submit Filters',
                 addNewFilterActive:true,
                 closeNewFilterActive: false,
                 filterPanelIsOpen: true, 
@@ -130,8 +132,11 @@ class FilterBarHeader extends Component {
                 </div>
 
                 <div className="newFilterDiv col-2"> 
-                    <span className="newFilterText" >{this.props.filterPanelIsOpen ? 'Hide Filters' : 'Add Filters'}</span> 
-                    <img src={addIcon} alt="" className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img>
+                    <span className="newFilterText" >{this.props.filterPanelIsOpen ? 'Submit Filters' : 'Add Filters'}</span> 
+                    {this.props.filterPanelIsOpen ? 
+                        <img src={checkIcon} alt="" className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img> :
+                        <img src={addIcon} alt="" className={newFilterButtonClass} onClick={this.changeFilterPanelStatus}></img>}
+                    
                 </div>
 
                 <div className="newFilterDiv col-2"> 

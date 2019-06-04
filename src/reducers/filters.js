@@ -1,3 +1,4 @@
+// Import Types
 import {
     ADD_MULTI_FILTER,
     GENERATE_FILTER_DATA,
@@ -6,15 +7,20 @@ import {
     SUBMIT_FILTERS,
     SUBMIT_SUB_FILTERS
 } from 'actions/types';
+// Import Dimensions
 import { DIMENSIONS } from '../Constants/consts';
+// Import Lodash
 import _ from 'lodash';
-
+// Import Utilities
 import * as utils from '../utilities.js';
 
+
+// Reducer Variables
 let count = 0;
 let defaultState = [];
 let copyOfState;
 let cat;
+// Extract Variables from Dimensions
 const { GEO,
     MARKET,
     PRODUCT,
@@ -39,6 +45,8 @@ const { GEO,
     CHANNELPM,
     NONDMSEGMENT
 } = DIMENSIONS;
+
+// Reducer Function with a default state set for filters
 export default function (state = {
 
     market: {
@@ -85,6 +93,10 @@ export default function (state = {
         availableFilters: [],
         valueFilters: []
     },
+    signupCategory: {
+        availableFilters: [],
+        valueFilters: []
+    },
     filtersAreLoaded: false,
     preferencesAreAdded: false,
     isDefaultFilters: true,
@@ -94,13 +106,18 @@ export default function (state = {
     filtersAreDefault: false
 }, action) {
     switch (action.type) {
+        // Submit sub and global filters to 
         case SUBMIT_FILTERS:
+            // Make a copy of state
             copyOfState = JSON.parse(JSON.stringify(state));
+            // Reset the combined value filters
             copyOfState.combined.valueFilters = [];
             // For each key in action . payload
             // goes,market,product,quarter,route,segment,subscription
             Object.keys(action.payload).forEach(item => {
+                // Set the value filter for the item which matches this key
                 copyOfState[item].valueFilters = action.payload[item];
+                // Set the value filter for the combined filters
                 copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters, ...action.payload[item]];
             });
             //If the length of the arrays vary, the user submitted a new filter
@@ -115,51 +132,28 @@ export default function (state = {
                         return filter.index === item.index}))
                 })
 
+                // Find any new values
                 let foundNewFilters = _.findIndex(lengthChecker, (item => {
                     return item === undefined;
                 }))
 
+                // If there are new values
                 if (foundNewFilters !== -1) {
+                    // Return state with isDefaultFilters set to false
                     return { ...copyOfState,isDefaultFilters: false, }
-                }
+                } else
+                // Return state
                 return state;
             }
-            case SUBMIT_SUB_FILTERS:
-            copyOfState = JSON.parse(JSON.stringify(state));
-            copyOfState.combined.valueFilters = [];
-            // For each key in action . payload
-            // goes,market,product,quarter,route,segment,subscription
-            Object.keys(action.payload).forEach(item => {
-                copyOfState[item].valueFilters = action.payload[item];
-                copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters, ...action.payload[item]];
-            });
-            //If the length of the arrays vary, the user submitted a new filter
-            if (copyOfState.combined.valueFilters.length !== state.combined.valueFilters.length) {
-                //then return the newest state
-                return { ...copyOfState,isDefaultFilters: false, subFiltersSubmitted: true };
-            } else { //The length of the arrays are the same
-                let lengthChecker = [];
-                //For each value in the new array, check to see if it exists in the old array
-                lengthChecker = copyOfState.combined.valueFilters.map(item => {
-                    return _.find(state.combined.valueFilters, (filter => {
-                        return filter.index === item.index}))
-                })
 
-                let foundNewFilters = _.findIndex(lengthChecker, (item => {
-                    return item === undefined;
-                }))
-
-                if (foundNewFilters !== -1) {
-                    return { ...copyOfState,isDefaultFilters: false }
-                }
-                return state;
-            }
-        // return state;
         case ADD_PREFERENCES_TO_ACTIVE_FILTERS:
+            // Get the current quarter from Utilities Function
             let quarter = utils.getCurrentQuarter();
             console.log('Current Quarter ', action.payload);
+            // Make a copy of state
             let copyOfState1 = JSON.parse(JSON.stringify(state))
             let nonDmSegs = action.payload.nondmsegments;
+            // Set state value filters to preferences
             copyOfState = JSON.parse(JSON.stringify(state))
             copyOfState.quarter.valueFilters=[{ index: 211, category: QUARTER, value: action.payload.defaultQuarter }];
             copyOfState.segment.valueFilters.push({ index: 209, category: SEGMENT, value: action.payload.defaultQuarter });
@@ -168,16 +162,17 @@ export default function (state = {
             copyOfState.route.valueFilters = action.payload.routeFilters;
             copyOfState.subscription.valueFilters = action.payload.subscriptionFilters;
             copyOfState.signupCategory.valueFilters = action.payload.signupsource;
-
+            // Set other filters to default state
             copyOfState.websegment.valueFilters.push({ index: 187, category: WEBSEGMENT, value: 'DIGITAL MEDIA'});
             copyOfState.lastTouchChannel.valueFilters.push({ index: 134, category: LTC, value: 'ALL' });
             copyOfState.visits.valueFilters.push({ index: 114, category: VISITS, value: 'All Visits' });
             copyOfState.channelMU.valueFilters.push({ index: 213, category: CHANNELMU, value: 'ALL' });
             copyOfState.nonDMSegment.valueFilters= nonDmSegs;
+            // Create the combined values filters
             copyOfState.combined.valueFilters = [...copyOfState.quarter.valueFilters, ...copyOfState.segment.valueFilters, ...copyOfState.route.valueFilters || {},
             ...copyOfState.market.valueFilters || {}, ...copyOfState.product.valueFilters || {}, ...copyOfState.subscription.valueFilters || {}, ...copyOfState.geo.valueFilters || {},
             ...copyOfState.nonDMSegment.valueFilters || {}]
-   
+            // Perform a check on all filter dimensions to determine if filters are in a default State
           let isDefault = copyOfState.quarter.valueFilters[0].value===state.quarter.valueFilters[0].value
             && copyOfState.segment.valueFilters[0].valueFilters===state.segment.valueFilters[0].valueFilters &&
             copyOfState.geo.valueFilters.length  === 0 && copyOfState.market.valueFilters.length === 0 && copyOfState.subscription.valueFilters.length === 0 
@@ -185,8 +180,10 @@ export default function (state = {
             console.log('Filters ARe Default',isDefault,nonDmSegs );
             return {...copyOfState, preferencesAreAdded: true, filtersAreDefault: isDefault};
         case GENERATE_FILTER_DATA:
+            // Make a copy of state
          let newState = JSON.parse(JSON.stringify(state))
 
+            // Map InfoBurst Promise with all filters to variables
             let quarterFilter = action.payload[0].data;
             let marketFilter = action.payload[1].data;
             let productFilter = action.payload[2].data;
@@ -210,7 +207,7 @@ export default function (state = {
             let nonDMFilters = action.payload[21].data
             let pvw = action.payload[22].data
 
-
+            // Call processDropDownList on all filters
             let newgeotate = processDropDownListFilterValue(GEO, geoFilter);
             let newMAState = processDropDownListFilterValue(MARKET, marketFilter);
             let newproducttate = processDropDownListFilterValue(PRODUCT, productFilter);
@@ -219,7 +216,6 @@ export default function (state = {
             let newsubscriptiontate = processDropDownListFilterValue(SUBSCRIPTION, subscriptionFilter);
             let newquarterState = processDropDownListFilterValue(QUARTER, quarterFilter);
             let newVisitState = processDropDownListFilterValue(VISITS, visitFilters);
-
             let newCloud = processDropDownListFilterValue('cloud', CloudTypeFilters);
             let newConv = processDropDownListFilterValue(CONVERSION, ConvTypeFilters);
             let newDiscBuy = processDropDownListFilterValue('discoverbuy', DiscoverVsBuyFilters);
@@ -239,10 +235,11 @@ export default function (state = {
 
 
 
-
+            // Create the combined value filters
             let arr = [...newquarterState, ...newgeotate, ...newMAState, ...newproducttate, ...newroutetate, ...newsegmentState, ...newsubscriptiontate,
             ...newChannelState, ...newVisitState, ...newCloud, ...newConv, ...newDiscBuy, ...newMobileDesk, ...newVsRepeat, ...newProdName, ...newSignApp,
             ...newSignCat, ...newWeb, ...chanMU, ...chanPM, segNonDM, ...pvwFilters];
+            // Create the filters state object
             let obj =
             {
                 combined: {
@@ -350,69 +347,16 @@ export default function (state = {
                     valueFilters: []
                 }
             }
+
+            // Return Filters State
             return {...newState,...obj, defaultState: obj, isDefaultFilters: true, filtersAreLoaded: true};
 
-        case ADD_MULTI_FILTER:
-            copyOfState = JSON.parse(JSON.stringify(state))
-            cat = action.payload.category;
-            copyOfState.combined.valueFilters.push(action.payload);
-
-            switch (cat) {
-                case GEO:
-                    copyOfState.geo.valueFilters = action.payload.quarter;
-                    break;
-                case QUARTER:
-                    _.remove(copyOfState.quarter.valueFilters = action.payload.quarter);
-
-
-                    copyOfState.quarter.valueFilters = [action.payload];
-                    if (copyOfState.combined.valueFilters.length > 0) {
-                        copyOfState.combined.valueFilters.splice(0, 0, action.payload);
-
-                    } else {
-                        copyOfState.combined.valueFilters.push(action.payload);
-
-                    }
-
-                    break;
-                case SUBSCRIPTION:
-                    _.remove(copyOfState.subscription.valueFilters, item => { return item.value === action.payload.value });
-
-                    copyOfState.subscription.valueFilters.push(action.payload);
-                    break;
-                case SEGMENT:
-                    _.remove(copyOfState.segment.valueFilters, item => { return item.value === action.payload.value });
-                    _.remove(copyOfState.combined.valueFilters, item => { return item.category === SEGMENT });
-                    copyOfState.segment.valueFilters = [action.payload];
-                    if (copyOfState.combined.valueFilters.length > 0) {
-                        copyOfState.combined.valueFilters.splice(1, 0, action.payload);
-                    } else {
-                        copyOfState.combined.valueFilters.push(action.payload);
-                    }
-                    break;
-                case MARKET:
-                    _.remove(copyOfState.market.valueFilters, item => { return item.value === action.payload.value });
-
-                    copyOfState.market.valueFilters.push(action.payload);
-                    break;
-                case PRODUCT:
-                    _.remove(copyOfState.product.valueFilters, item => { return item.value === action.payload.value });
-
-                    copyOfState.product.valueFilters.push(action.payload);
-                    break;
-                case ROUTE:
-                    _.remove(copyOfState.route.valueFilters, item => { return item.value === action.payload.value });
-
-                    copyOfState.route.valueFilters.push(action.payload);
-                    break;
-                default:
-                    break;
-            }
-
-            return copyOfState;
         case RESET_FILTERS:
+            // Extract Preferences from Payload
             let { defaultQuarter, defaultSegment, subscriptionFilters, geoFilters, marketFilters, productFilters, routeFilters,signupsource,nondmsegments } = action.payload;
+            // Make a copy of State
             copyOfState = JSON.parse(JSON.stringify(state))
+            // Set filter group value filters to corresponding preference/ default state
             copyOfState.geo.valueFilters = geoFilters;
             copyOfState.quarter.valueFilters = [{ index: 211, category: "quarter", value: defaultQuarter }];
             copyOfState.subscription.valueFilters = subscriptionFilters;
@@ -433,17 +377,24 @@ export default function (state = {
             copyOfState.visits.valueFilters.push({ index: 111, category: VISITS, value: 'All Visits' });
             copyOfState.channelMU.valueFilters.push({ index: 112, category: CHANNELMU, value: 'ALL' });
             copyOfState.combined.valueFilters = [/* { index: 211, category: "quarter", value: defaultQuarter }, { index: 209, category: "segment", value: defaultSegment } */];
+            // For Each key in filters
             Object.keys(copyOfState).forEach(item => {
+                // if the item is not combined
                 if (item !== 'combined') {
+                    // if the item has a valueFilters child
                     if(copyOfState[item].valueFilters){
+                        // If the valueFilters child is an array
                         if(Array.isArray(copyOfState[item].valueFilters)){
+                            // If the array has elements and is not empty
                             if (copyOfState[item].valueFilters.length !== 0) {
+                                // Add each of those elements to the combined filter values
                                 copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters, ...copyOfState[item].valueFilters]
                             }
                         }
                     }
                 }
             })
+            // Return State
             return {...copyOfState, isDefaultFilters: false, filtersAreDefault: false};
         
         default:
@@ -451,13 +402,13 @@ export default function (state = {
     }
 }
 
-function resetToDefaults(){
-
-}
-
-function resetToPreferences(){
-
-}
+/**
+ * Function that creates the filter value object
+ * A filter value object has 3 children: value, index, and category
+ * The function accepts the type === category and the data === value
+ * @param {*} type 
+ * @param {*} data 
+ */
 function processDropDownListFilterValue(type, data) {
 
     let newArr = _.uniq(data);
@@ -468,7 +419,8 @@ function processDropDownListFilterValue(type, data) {
                 return {
                     index: count++,
                     category: type,
-                    value: item['geo_code']
+                    value: item['geo_code'],
+                    label: item['geo_code']
                 }
             });
             return newArr;
@@ -680,9 +632,3 @@ function processDropDownListFilterValue(type, data) {
 
 
 }
-// let newLastTouchState = processDropDownListFilterValue('lastTouch', lastTouch);
-// let newSignUpAppState = processDropDownListFilterValue('signUpApp', signUpApp);
-// let newProductCategoryState = processDropDownListFilterValue('productCategory', productCategory);
-// let newPVWState = processDropDownListFilterValue('pvw', pvw);
-// let newCategoryState = processDropDownListFilterValue('category', category);
-// let newWebsegmentState = processDropDownListFilterValue('websegment', websegment);

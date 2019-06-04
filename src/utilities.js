@@ -3652,7 +3652,6 @@ export function fetchComments(metricId) {
 
     });
 
-    console.log(res1);
     let responseARr = Promise.all([res1]);
 
     return responseARr;

@@ -1,0 +1,126 @@
+filename, language, JavaScript, XML, CSS, JavaScript React, comment, blank, total
+Constants\consts.js, JavaScript, 110, 0, 0, 0, 1, 0, 111
+Root.js, JavaScript, 21, 0, 0, 0, 0, 2, 23
+Views\Loading\Loading.css, CSS, 0, 0, 19, 0, 0, 1, 20
+Views\Loading\Loading.jsx, JavaScript React, 0, 0, 0, 13, 0, 2, 15
+Views\Summary\Summary.css, CSS, 0, 0, 35, 0, 2, 7, 44
+Views\Summary\Summary.js, JavaScript, 1063, 0, 0, 0, 47, 157, 1267
+__tests__\integrations.test.js, JavaScript, 33, 0, 0, 0, 0, 6, 39
+actions\__tests__\index.test.js, JavaScript, 2, 0, 0, 0, 0, 2, 4
+actions\types.js, JavaScript, 77, 0, 0, 0, 17, 11, 105
+assets\images\add-icon-black.svg, XML, 0, 20, 0, 0, 1, 1, 22
+assets\images\add-icon-white.svg, XML, 0, 20, 0, 0, 1, 1, 22
+assets\images\adobe-logo-nav-1.svg, XML, 0, 59, 0, 0, 1, 1, 61
+assets\images\adobe-logo-nav.svg, XML, 0, 41, 0, 0, 1, 1, 43
+assets\images\close-btn.svg, XML, 0, 16, 0, 0, 1, 1, 18
+assets\images\comments-off.svg, XML, 0, 10, 0, 0, 1, 1, 12
+assets\images\comments-on.svg, XML, 0, 10, 0, 0, 1, 1, 12
+assets\images\excel-logo-black.svg, XML, 0, 59, 0, 0, 1, 1, 61
+assets\images\excel-logo-green.svg, XML, 0, 59, 0, 0, 1, 1, 61
+assets\images\reply-active.svg, XML, 0, 39, 0, 0, 1, 1, 41
+assets\images\reply.svg, XML, 0, 39, 0, 0, 1, 1, 41
+auth\Login.js, JavaScript, 43, 0, 0, 0, 1, 7, 51
+auth\signInWidget.js, JavaScript, 21, 0, 0, 0, 2, 9, 32
+components\CommentPanel\CommentBox.css, CSS, 0, 0, 210, 0, 18, 24, 252
+components\CommentPanel\CommentBox.jsx, JavaScript React, 0, 0, 0, 204, 98, 20, 322
+components\CommentPanel\CommentControls.jsx, JavaScript React, 0, 0, 0, 133, 3, 24, 160
+components\CommentPanel\CommentPanel.jsx, JavaScript React, 0, 0, 0, 52, 1, 7, 60
+components\CommentPanel\CommentPanelDate.jsx, JavaScript React, 0, 0, 0, 12, 0, 3, 15
+components\CommentPanel\CommentPanelHeader.jsx, JavaScript React, 0, 0, 0, 14, 0, 3, 17
+components\CommentPanel\MobileCommentBox.jsx, JavaScript React, 0, 0, 0, 86, 0, 16, 102
+components\FeedbackDialog\FeedBack.css, CSS, 0, 0, 20, 0, 0, 4, 24
+components\FeedbackDialog\FeedBack.jsx, JavaScript React, 0, 0, 0, 145, 6, 44, 195
+components\FilterPanel\CustomDropDownPanel\CustomDropDownPanel.css, CSS, 0, 0, 172, 0, 20, 33, 225
+components\FilterPanel\CustomDropDownPanel\CustomDropDownPanel.js, JavaScript, 393, 0, 0, 0, 13, 49, 455
+components\FilterPanel\FilterBarHeader\FilterBarHeader.css, CSS, 0, 0, 54, 0, 4, 19, 77
+components\FilterPanel\FilterBarHeader\FilterBarHeader.js, JavaScript, 102, 0, 0, 0, 34, 18, 154
+components\FilterPanel\FilterPanel.jsx, JavaScript React, 0, 0, 0, 58, 4, 3, 65
+components\FilterPanel\FilterPillBox\FilterPillBox.css, CSS, 0, 0, 34, 0, 1, 10, 45
+components\FilterPanel\FilterPillBox\FilterPillBox.js, JavaScript, 22, 0, 0, 0, 5, 7, 34
+components\KendoBullet\KendoBullet.js, JavaScript, 127, 0, 0, 0, 2, 27, 156
+components\KendoDialog\Components\ReactSelect.js, JavaScript, 41, 0, 0, 0, 7, 9, 57
+components\KendoDialog\KendoDialog.css, CSS, 0, 0, 211, 0, 15, 55, 281
+components\KendoDialog\KendoDialog.js, JavaScript, 529, 0, 0, 0, 48, 85, 662
+components\KendoDialog\data-pref-close-icon.svg, XML, 0, 11, 0, 0, 1, 1, 13
+components\KendoDropDownList\KendoDropDownList.css, CSS, 0, 0, 3, 0, 0, 0, 3
+components\KendoDropDownList\KendoDropDownList.js, JavaScript, 40, 0, 0, 0, 7, 7, 54
+components\KendoMultiChart\KendoMultiChart.css, CSS, 0, 0, 77, 0, 1, 18, 96
+components\KendoMultiChart\KendoMultiChart.js, JavaScript, 239, 0, 0, 0, 9, 25, 273
+components\MobileComponents\FitlerPage\FilterPage.css, CSS, 0, 0, 84, 0, 0, 12, 96
+components\MobileComponents\FitlerPage\FilterPage.jsx, JavaScript React, 0, 0, 0, 647, 37, 63, 747
+components\MobileComponents\FitlerPage\components\DropDownFilter.css, CSS, 0, 0, 14, 0, 0, 3, 17
+components\MobileComponents\FitlerPage\components\DropDownFilter.jsx, JavaScript React, 0, 0, 0, 24, 0, 5, 29
+components\MobileComponents\HorizontalSlider\HorizontalSlider.css, CSS, 0, 0, 23, 0, 0, 6, 29
+components\MobileComponents\HorizontalSlider\HorizontalSlider.jsx, JavaScript React, 0, 0, 0, 41, 0, 8, 49
+components\MobileComponents\HorizontalSlider\components\SliderSquare.css, CSS, 0, 0, 78, 0, 3, 17, 98
+components\MobileComponents\HorizontalSlider\components\SliderSquare.jsx, JavaScript React, 0, 0, 0, 48, 4, 6, 58
+components\MobileComponents\Playground\Playground.css, CSS, 0, 0, 10, 0, 4, 2, 16
+components\MobileComponents\Playground\Playground.jsx, JavaScript React, 0, 0, 0, 123, 49, 40, 212
+components\MobileComponents\Playground\components\MobileMultiChart\MobileMultiChart.css, CSS, 0, 0, 4, 0, 1, 0, 5
+components\MobileComponents\Playground\components\MobileMultiChart\MobileMultiChart.jsx, JavaScript React, 0, 0, 0, 14, 1, 5, 20
+components\MobileComponents\Playground\components\MobileViewDetails\MobileViewDetails.css, CSS, 0, 0, 38, 0, 0, 9, 47
+components\MobileComponents\Playground\components\MobileViewDetails\MobileViewDetails.jsx, JavaScript React, 0, 0, 0, 75, 7, 20, 102
+components\MultiValueSelect\MultiValueSelect.css, CSS, 0, 0, 4, 0, 0, 0, 4
+components\MultiValueSelect\MultiValueSelect.js, JavaScript, 72, 0, 0, 0, 2, 17, 91
+components\Navigation\CompanyHeader.js, JavaScript, 33, 0, 0, 0, 0, 6, 39
+components\Navigation\Navigation.css, CSS, 0, 0, 178, 0, 69, 42, 289
+components\Navigation\Navigation.js, JavaScript, 138, 0, 0, 0, 16, 19, 173
+components\Navigation\UserNav.js, JavaScript, 82, 0, 0, 0, 2, 12, 96
+components\Navigation\assets\filter-selected.svg, XML, 0, 29, 0, 0, 1, 1, 31
+components\Navigation\assets\filter-unselected.svg, XML, 0, 29, 0, 0, 1, 1, 31
+components\Navigation\assets\images\comment-icon-off.svg, XML, 0, 10, 0, 0, 1, 1, 12
+components\Navigation\assets\images\comment-icon-on.svg, XML, 0, 10, 0, 0, 1, 1, 12
+components\Navigation\user-icon.svg, XML, 0, 12, 0, 0, 1, 1, 14
+components\PrimaryContent\PrimaryContent.css, CSS, 0, 0, 348, 0, 157, 85, 590
+components\PrimaryContent\PrimaryContentList.jsx, JavaScript React, 0, 0, 0, 46, 18, 6, 70
+components\PrimaryContent\PrimarySquare.jsx, JavaScript React, 0, 0, 0, 294, 5, 12, 311
+components\SecondaryContent\SecondaryContent.css, CSS, 0, 0, 884, 0, 110, 118, 1112
+components\SecondaryContent\SecondaryContentList.jsx, JavaScript React, 0, 0, 0, 273, 42, 51, 366
+components\SecondaryContent\SecondarySquares.jsx, JavaScript React, 0, 0, 0, 371, 8, 21, 400
+components\SingleValueSelect\SingleValueSelect.css, CSS, 0, 0, 4, 0, 0, 0, 4
+components\SingleValueSelect\SingleValueSelect.js, JavaScript, 56, 0, 0, 0, 4, 8, 68
+components\SummaryViewDetails\DetailBreakdown\DetailBreakdown.jsx, JavaScript React, 0, 0, 0, 178, 2, 8, 188
+components\SummaryViewDetails\DetailBreakdown\DetailPanelBar\DetailPanelBar.css, CSS, 0, 0, 296, 0, 39, 25, 360
+components\SummaryViewDetails\DetailBreakdown\DetailPanelBar\DetailPanelBar.jsx, JavaScript React, 0, 0, 0, 599, 7, 26, 632
+components\SummaryViewDetails\DetailBreakdown\DetailPanelBar\DetailPanelItemTimeHeader.jsx, JavaScript React, 0, 0, 0, 27, 0, 4, 31
+components\SummaryViewDetails\DetailBreakdown\DetailPanelBar\MultiDimensionPanelItem.jsx, JavaScript React, 0, 0, 0, 209, 5, 23, 237
+components\SummaryViewDetails\DetailBreakdown\DetailPanelBar\PanelItemTable.jsx, JavaScript React, 0, 0, 0, 176, 0, 8, 184
+components\SummaryViewDetails\DetailBreakdown\DetailPanelBar\PanelItemTableHeader.jsx, JavaScript React, 0, 0, 0, 152, 2, 9, 163
+components\SummaryViewDetails\DetailBreakdown\DetailPanelBar\SingleDimensionDetailPanelItemTimeHeader.jsx, JavaScript React, 0, 0, 0, 27, 0, 4, 31
+components\SummaryViewDetails\DetailBreakdown\DetailPanelBar\SingleDimensionPanelItem.jsx, JavaScript React, 0, 0, 0, 166, 4, 10, 180
+components\SummaryViewDetails\ExcelWorkbook.jsx, JavaScript React, 0, 0, 0, 1058, 9, 36, 1103
+components\SummaryViewDetails\SummaryViewDetails.css, CSS, 0, 0, 362, 0, 68, 57, 487
+components\SummaryViewDetails\SummaryViewDetails.jsx, JavaScript React, 0, 0, 0, 880, 36, 97, 1013
+components\__test__\App.test.js, JavaScript, 15, 0, 0, 0, 0, 6, 21
+components\__test__\CommentBox.test.js, JavaScript, 34, 0, 0, 0, 0, 19, 53
+components\__test__\CommentList.test.js, JavaScript, 21, 0, 0, 0, 0, 8, 29
+components\requireAuth.js, JavaScript, 26, 0, 0, 0, 0, 10, 36
+helper.js, JavaScript, 24, 0, 0, 0, 2, 4, 30
+logo.svg, XML, 0, 7, 0, 0, 0, 1, 8
+middlewares\async.js, JavaScript, 9, 0, 0, 0, 3, 7, 19
+middlewares\stateSchema.js, JavaScript, 31, 0, 0, 0, 1, 0, 32
+middlewares\stateValidator.js, JavaScript, 8, 0, 0, 0, 0, 2, 10
+reducers\__tests__\comments.test.js, JavaScript, 14, 0, 0, 0, 0, 4, 18
+reducers\activeCards.js, JavaScript, 17, 0, 0, 0, 7, 2, 26
+reducers\appSettings.js, JavaScript, 57, 0, 0, 0, 8, 4, 69
+reducers\auth.js, JavaScript, 9, 0, 0, 0, 3, 1, 13
+reducers\commentBoxVisible.js, JavaScript, 9, 0, 0, 0, 3, 1, 13
+reducers\comments.js, JavaScript, 52, 0, 0, 0, 27, 5, 84
+reducers\currentRefreshDates.js, JavaScript, 13, 0, 0, 0, 6, 2, 21
+reducers\dialog.js, JavaScript, 11, 0, 0, 0, 3, 1, 15
+reducers\excelData.js, JavaScript, 11, 0, 0, 0, 3, 2, 16
+reducers\feedback.js, JavaScript, 11, 0, 0, 0, 2, 0, 13
+reducers\filters.js, JavaScript, 555, 0, 0, 0, 50, 30, 635
+reducers\healthAndHeartbeat.js, JavaScript, 9, 0, 0, 0, 3, 0, 12
+reducers\multichartIsArr.js, JavaScript, 10, 0, 0, 0, 4, 1, 15
+reducers\summaryData.js, JavaScript, 7998, 0, 0, 0, 399, 916, 9313
+reducers\summaryDetails.js, JavaScript, 14, 0, 0, 0, 4, 2, 20
+reducers\toggleCommentary.js, JavaScript, 9, 0, 0, 0, 3, 2, 14
+reducers\user.js, JavaScript, 9, 0, 0, 0, 0, 1, 10
+reducers\userSettings.js, JavaScript, 48, 0, 0, 0, 2, 7, 57
+registerServiceWorker.js, JavaScript, 70, 0, 0, 0, 37, 11, 118
+setupTests.js, JavaScript, 3, 0, 0, 0, 0, 1, 4
+styles\styles.css, CSS, 0, 0, 19, 0, 18, 6, 43
+utilities.js, JavaScript, 3185, 0, 0, 0, 677, 447, 4309
+variables.js, JavaScript, 39023, 0, 0, 0, 12, 143, 39178
+Total, -, 54549, 480, 3181, 6145, 2371, 3277, 70003

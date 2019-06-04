@@ -79,18 +79,21 @@
     
 }
 .quarterFilterContainer-open{
-    display:inline-block;
+    margin-right: 0px;
+    display: inline-block;
     margin-bottom: 20px;
     height: 60px;
+    margin-left: 15px;
+    padding: 0px;
 }
 .quarterFilterContainer-closed{
     height: 0px;
     /* display:none; */
 }
 .globalPrimaryKPIFilters{
-margin-top: 20px;
+/* margin-top: 20px; */
 color: white;
-font-weight: bold;
+/* font-weight: bold; */
 border-top: 1px white dashed;
 padding-top: 15px;
 }
@@ -221,5 +224,19 @@ padding-top: 15px;
 }
 
 .css-xp4uvy, .css-1492t68 {
+    color: white !important;
+}
+
+.picky__input{
+    background: #131313 !important;
+    font-weight:normal !important;
+}
+.picky__dropdown .option, .picky__dropdown li{
+    background: #131313 !important;
+    font-weight:normal !important;
+    color: white !important;
+}
+
+.picky{
     color: white !important;
 }

@@ -27,7 +27,7 @@ const inStyles = {
 ReactDOM.render(
 
 	<Root style={inStyles.root} >
-		<Router history={piwik.connectToHistory(history)}>
+		<Router history={/* piwik.connectToHistory( */history/* ) */}>
 			<Security
 				issuer={config.oidc.issuer}
 				client_id={config.oidc.clientId}

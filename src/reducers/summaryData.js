@@ -383,15 +383,13 @@ export default function (state = {
             newState = JSON.parse(JSON.stringify(state));
 
             console.log('Request For Renew  Details   Data: ', action.payload);
-            // processRenewDetailSecondaryData(action.payload[0], newState.secondary, action.payload[6], action.payload[12]);
+            processRenewDetailSecondaryData(action.payload[0], newState.secondary, action.payload[6], action.payload[12]);
             processRenewMultichartData(action.payload[1].data, newState.secondary, action.payload[7].data, action.payload[13].data);
             processRenewQTDData(action.payload[2].data[0], newState.secondary, action.payload[8].data[0], action.payload[14].data[0]);
             processRenewGeoQTDData(action.payload[3].data, newState.secondary, action.payload[9].data, action.payload[15].data);
             processRenewMarketQTDData(action.payload[4].data, newState.secondary, action.payload[10].data, action.payload[16].data);
             processRenewSegmentQTDData(action.payload[5].data, newState.secondary, action.payload[11].data, action.payload[17].data);
             processRenewProductQTDData(action.payload[18].data, newState.secondary, action.payload[19].data);
-
-
             return { ...newState, renewDetailsIsLoaded: true };
 
         default:
@@ -6669,7 +6667,6 @@ export function processUseSecondaryData(data, newState, cumuData) {
     newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].vsQrf = data.PaidUserDownloadVsQrf;
     newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].cumuMembers = cumuData.CumuPaidMembersActual;
 
-
     newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].value = data.PaidUserLaunchActual;
     newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].targetFQ = data.PaidUserLaunchTargetFQ;
     newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].target = data.PaidUserLaunchTarget;
@@ -7843,7 +7840,6 @@ export function processRenewCancelMultichart(newState, data, AdobeData, EtailDat
     newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E]['details'].multichart = cancE;
 
 }
-
 export function processRenewCancelQTD(newState, findata, AdobeData, EtailData) {
     newState = Object.assign([], newState);
     newState[SUMMARY_FILTERS.RENEW_CANCEL].details.qtdw.qtd[0].value = findata.CancelActuals;
@@ -8167,7 +8163,6 @@ export function processRenewCancelMarketWeek(newState, data, AdobeData, EtailDat
     newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.market.week = item2;
     newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.market.week = item3;
 }
-
 export function processRenewCancelSegmentQTD(newState, data, AdobeData, EtailData) {
     //Clear old Values
     let item1 = [];
@@ -9270,7 +9265,6 @@ export function processRenewSegmentQTDData(data, newState, Reseller, Etail) {
     newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.segment.qtd = qtrFinEtail;
     newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.segment.week = qtrFinEtailWeek;
 }
-
 export function processRenewSecondaryData(data, newState) {
     newState[SUMMARY_FILTERS.RENEW_CANCEL].value = data[0].data[0].CancelARRActual;
     newState[SUMMARY_FILTERS.RENEW_CANCEL].targetFQ = data[0].data[0].CancelARRTargetFQ;

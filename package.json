@@ -31,6 +31,8 @@
     "react-dom": "^16.8.4",
     "react-excel-workbook": "0.0.4",
     "react-images-upload": "^1.2.3",
+    "react-multiselect-checkboxes": "^0.1.1",
+    "react-picky": "^4.4.5",
     "react-piwik": "^1.6.0",
     "react-redux": "^5.1.0",
     "react-router-dom": "^4.3.1",

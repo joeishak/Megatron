@@ -22,18 +22,108 @@ class FilterPage extends Component {
         // Initialize state
         this.state = {
             showContainer: this.props.showContainer,
-            selectedFilters: [...this.props.filters.combined.valueFilters.map(item => {
-                return { ...item, label: item.value }
-            })],
+            selectedFilters: [
+                ...this.props.filters.subscription.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.signupCategory.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.nonDMSegment.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.product.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.route.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.geo.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.market.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.quarter.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.segment.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                })],
             activeDataFilters: [],
         }
     }
     componentDidMount() {
         this.setState({
-            selectedFilters: [...this.props.filters.combined.valueFilters.map(item => {
-                return { ...item, label: item.value }
-            })]
+            selectedFilters: [
+                ...this.props.filters.subscription.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.signupCategory.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.nonDMSegment.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.product.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.route.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.geo.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.market.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.quarter.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.segment.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                })]
         })
+    }
+    componentDidUpdate(prevProps) {
+        if (this.props.filters.preferencesAreAdded !== prevProps.filters.preferencesAreAdded) {
+            this.setState({ loading: true }, () => {
+                setTimeout(() => {
+                    this.setState({ loading: false })
+                }, 1);
+            })
+            this.setState({
+                selectedFilters: [
+                    ...this.props.filters.subscription.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.signupCategory.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.nonDMSegment.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.product.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.route.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.geo.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.market.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.quarter.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.segment.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    })]
+            })
+        }
+
     }
     updateSingleValue = (e) => {
         // console.log('Updating SingleValue',e);
@@ -683,6 +773,7 @@ class FilterPage extends Component {
                                     options={filters.quarter.availableFilters}
                                     onValueChange={this.updateSingleValue}
                                     onMenuClose={this.closeSingleValue}
+                                    value={_.filter(this.state.selectedFilters, item => { return item.category === QUARTER })}
                                 />                                        </div>
                             <div className="col-xs-12 col-sm-12 col-md-12 defaultFilters">
                                 <p>Geo</p>
@@ -692,7 +783,6 @@ class FilterPage extends Component {
                                     onValueChange={(e) => { let type = 'geo'; this.updateMultiValue(e, type) }}
                                     onMenuClose={this.closeMultiValue}
                                     value={_.filter(this.state.selectedFilters, item => { return item.category === GEO })}
-
                                 />                                        </div>
                             <div className="col-xs-12 col-sm-12 col-md-12 defaultFilters">
                                 <p>Market Area</p>
@@ -702,23 +792,17 @@ class FilterPage extends Component {
                                     onValueChange={(e) => { let type = MARKET; this.updateMultiValue(e, type) }}
                                     onMenuClose={this.closeMultiValue}
                                     value={_.filter(this.state.selectedFilters, item => { return item.category === MARKET })}
-
                                 />                                        </div>
                             {this.getGlobalSubFilters(filters, quarterFilterContainer)}
                                 {this.getSummaryFilters(this.props.activeCards.secondary)}
                             <div className={'col-xs-12 col-sm-12 col-md-12 '}>
-                                <Button className="button" primary={true} onClick={this.submitFilters} look="flat">Submit</Button>
+                                <button className="mobileButton" type='button'  onClick={this.submitFilters} >Submit</button>
                             </div>
                         </div>
-
                         <div className="row dropRow">
-
-
                         </div>
                         {/* third row */}
                         <div className="row dropRow">
-
-
                         </div>
                         {/* fourth row */}
                         <div className="row dropRow">
