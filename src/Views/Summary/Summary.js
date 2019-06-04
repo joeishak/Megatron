@@ -821,7 +821,6 @@ class Summary extends Component {
                   this.setState({
                     secondaryKpiChanged: false,
                     isLoading: false
-
                   });
                   // If finance XDC 2 has not loaded
                   if (financeXDC2IsLoaded === false) {
@@ -838,7 +837,6 @@ class Summary extends Component {
                     });
                   }
                 }
-
               } // Else if filters were updated
               else if (this.state.filtersUpdated === true) {
                 // And primary data is loaded, finance xdc1 is loaded and secondary Finance is loaded
@@ -860,17 +858,23 @@ class Summary extends Component {
             else {
               // If the user switched secondary cards
               if (this.state.secondaryKpiChanged === true) {
+                // if financexdc is loaded and finance secondary is loaded is true
                 if (financeXDC2IsLoaded === true && financeSecondaryIsLoaded === true) {
+                  // Set local state secondaryKPI changed and isLoading to false
                   this.setState({
                     secondaryKpiChanged: false,
                     isLoading: false
                   });
+                  // if finance xdc 1 has not loaded
                   if (financeXDC1IsLoaded === false) {
+                    // Set local state requestingREmaining data to true
                     this.setState({
                       requestingRemainingFinanceData: true,
                     });
+                    // Call action to get finance XDC 1 SEcondary data
                     this.props.getFinanceXDC1SecondaryData(this.props.filters);
                   } else {
+                    //Set local state requestingRemainingFinance Data to false
                     this.setState({
                       requestingRemainingFinanceData: false,
                     });
@@ -878,17 +882,21 @@ class Summary extends Component {
                 }
               }// Else if filters were updated
               else if (this.state.filtersUpdated === true) {
+                // And primary data is loaded, finance xdc1 is loaded and secondary Finance is loaded
                 if (primaryIsLoaded === true && (financeXDC2IsLoaded === true && financeSecondaryIsLoaded === true)) {
+                  // Set local state isLoading to false, 
+                  // requestRemainingFinanceData to true
+                  // filtersUpdated to false
                   this.setState({
                     isLoading: false,
                     requestingRemainingFinanceData: true,
                     filtersUpdated: false
                   });
+                  // Get Filtered Finance XDC 1 Data in Background
                   this.props.getFilteredFinanceXDC1SecondaryData(this.props.filters);
                 }
               }
             }
-
           }
           break;
         // On Discover Primary
@@ -1369,7 +1377,7 @@ class Summary extends Component {
 
             {/* Navigation*/}
             <Navigation mobileFiltersIsShown={this.props.mobileFiltersIsShown} onFeedbackChange={this.takeDomScreenshot} />
-            <FilterPanel window={this.props.window} activePrimary={this.props.activePrimaryCard} />
+            <FilterPanel isMobileOrTablet={isMobileOrTablet} window={this.props.window} activePrimary={this.props.activePrimaryCard} />
 
             {
               this.state.isLoading === true ? <LoadingScreen /> :
@@ -1388,7 +1396,7 @@ class Summary extends Component {
                           ? null : this.props.mobileIsPrimary === true ? this.getPrimaryContent() : null}
                         {/* (this.props.activePrimaryCard === 4 || this.props.activePrimaryCard === 5) ?
                       <div id="commingSoon">Coming Soon</div> : */
-                          this.state.isLoading === true ? <LoadingScreen></LoadingScreen> :
+                          this.state.isLoading === true ? <LoadingScreen /> :
                             <span>
                               {isMobileOrTablet === false ? this.getSecondaryContent() : (this.props.mobileFiltersIsShown ? null : this.getSecondaryContent())}
                               {summaryViewDetails}</span>

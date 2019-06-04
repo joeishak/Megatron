@@ -94,3 +94,11 @@
   .mobileDropDownStyle{
     margin-bottom:10px;
   } 
+
+  .mobileButton{
+      color: white !important;
+      background: transparent;
+      text-align:center;
+      border: 1px solid white !important;
+      width:100%;
+  }

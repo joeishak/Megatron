@@ -420,7 +420,8 @@ function processDropDownListFilterValue(type, data) {
                 return {
                     index: count++,
                     category: type,
-                    value: item['geo_code']
+                    value: item['geo_code'],
+                    label: item['geo_code']
                 }
             });
             return newArr;

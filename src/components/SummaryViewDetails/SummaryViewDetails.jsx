@@ -51,7 +51,31 @@ class SummaryViewDetails extends Component {
         }
       ],
       qtdIsPercent: true,
-      selectedFilters: [],
+      selectedFilters: [
+        ...this.props.filters.visits.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.convType.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.websegment.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.channelMU.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.channelPM.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.pvw.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.segment.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.product.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        })],
       activeDataFilters: [],
       stringList: '',
 
@@ -67,6 +91,33 @@ class SummaryViewDetails extends Component {
   componentDidMount() {
     let filterList;
     let stringList;
+    this.setState({
+      selectedFilters: [
+        ...this.props.filters.visits.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.convType.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.websegment.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.channelMU.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.channelPM.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.pvw.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.segment.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.product.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        })]
+    })
     switch (this.props.activeSecondary) {
       case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
         filterList = this.props.filters.convType.valueFilters.map(filter => {
@@ -333,6 +384,40 @@ class SummaryViewDetails extends Component {
         default: break;
       }
     }
+    if (this.props.filters.preferencesAreAdded !== prevProps.filters.preferencesAreAdded) {
+      this.setState({ loading: true }, () => {
+        setTimeout(() => {
+          this.setState({ loading: false })
+        }, 1);
+      })
+      this.setState({
+        selectedFilters: [
+          ...this.props.filters.visits.valueFilters.map(item => {
+            return { ...item, label: item.value }
+          }),
+          ...this.props.filters.convType.valueFilters.map(item => {
+            return { ...item, label: item.value }
+          }),
+          ...this.props.filters.websegment.valueFilters.map(item => {
+            return { ...item, label: item.value }
+          }),
+          ...this.props.filters.channelMU.valueFilters.map(item => {
+            return { ...item, label: item.value }
+          }),
+          ...this.props.filters.channelPM.valueFilters.map(item => {
+            return { ...item, label: item.value }
+          }),
+          ...this.props.filters.pvw.valueFilters.map(item => {
+            return { ...item, label: item.value }
+          }),
+          ...this.props.filters.segment.valueFilters.map(item => {
+            return { ...item, label: item.value }
+          }),
+          ...this.props.filters.product.valueFilters.map(item => {
+            return { ...item, label: item.value }
+          })]
+      })
+    }
   }
   updateQTDPercentageFilter = (e) => {
     let metric = e.target.innerHTML.toLowerCase();
@@ -510,6 +595,31 @@ class SummaryViewDetails extends Component {
   }
   getSummaryFilters(activeItem) {
     let drillDownFilter;
+
+    const { GEO,
+      MARKET,
+      PRODUCT,
+      SEGMENT,
+      SUBSCRIPTION,
+      QUARTER,
+      ROUTE,
+      VISITSTATUS,
+      SIGNSOURCE,
+      SIGNAPP,
+      SIGNCAT,
+      PRODUCTCAT,
+      CHANNELMU,
+      WEBSEGMENT,
+      PVW,
+      CATEGORY,
+      LTC,
+      NONDMSEGMENT,
+      NEWVSREPEAT,
+      MOBILEVSDESKTOP,
+      CONVERSION,
+      VISITS
+    } = DIMENSIONS;
+
     let { lastTouchChannel, convType, websegment, segment, product, pvw, visits, channelMU, channelPM } = this.props.activeFilters;
     switch (activeItem) {
 
@@ -519,12 +629,13 @@ class SummaryViewDetails extends Component {
           <div className="row">
             {/* Channel */}
             <div className="col-md-4 col-lg-4">
-              <div>{'Channel - ' + channelMU.valueFilters[0].value} </div>
+              <div>Channel </div>
               <SingleValueSelect
                 activeFilters={[]}
                 options={channelMU.availableFilters}
                 onValueChange={e => { this.updateSingleValue(e) }}
                 onMenuClose={e => { this.closeSingleValue(e) }}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === CHANNELMU })}
               />
             </div>
 
@@ -536,31 +647,34 @@ class SummaryViewDetails extends Component {
           <div className="row">
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
               {/* Visit Type */}
-              <div>{'Visits - ' + visits.valueFilters[0].value}</div>
+              <div>Visits</div>
               <SingleValueSelect
                 activeFilters={[]}
                 options={visits.availableFilters}
                 onValueChange={e => { this.updateSingleValue(e) }}
                 onMenuClose={e => { this.closeSingleValue(e) }}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === VISITS })}
               />
             </div>
             {/* Conversion Type */}
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div>Conversion - {this.state.trafficStringList}</div>
+              <div>Conversion </div>
+
               <MultiValueSelect
-                // values = {convType.valueFilters}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CONVERSION })}
                 options={convType.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
-                onMenuClose={(e) => { this.closeMultiValue(e) }}
+                onMenuClose={this.closeMultiValue}
               />
             </div>
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div>{'Web Segment - ' + websegment.valueFilters[0].value}</div>
+              <div>Web Segment</div>
               <SingleValueSelect
                 activeFilters={[]}
                 options={websegment.availableFilters}
                 onValueChange={e => { this.updateSingleValue(e) }}
                 onMenuClose={e => { this.closeSingleValue(e) }}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === WEBSEGMENT })}
               />
             </div>
           </div>
@@ -571,11 +685,12 @@ class SummaryViewDetails extends Component {
           <div className="row">
             {/* Channel */}
             <div className="col-md-4 col-lg-4">
-              <div> Channel -  {this.state.pmStringList}</div>
+              <div> Channel</div>
               <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CHANNELPM })}
                 options={channelPM.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CHANNELPM; this.updateMultiValue(e, type) }}
-                onMenuClose={(e) => { this.closeMultiValue(e) }}
+                onMenuClose={this.closeMultiValue}
               />
             </div>
 
@@ -587,11 +702,12 @@ class SummaryViewDetails extends Component {
           <div className="row">
             <div className="col-md-4 col-lg-4">
               {/* Channel */}
-              <div> Channel -  {this.state.pmStringList}</div>
+              <div> Channel </div>
               <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CHANNELPM })}
                 options={channelPM.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CHANNELPM; this.updateMultiValue(e, type) }}
-                onMenuClose={(e) => { this.closeMultiValue(e) }}
+                onMenuClose={this.closeMultiValue}
               />
             </div>
           </div>
@@ -603,41 +719,34 @@ class SummaryViewDetails extends Component {
           <div className="row">
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
               {/* Visit Type */}
-              <div>{'Visits - ' + visits.valueFilters[0].value}</div>
+              <div>Visits</div>
               <SingleValueSelect
                 activeFilters={[]}
                 options={visits.availableFilters}
                 onValueChange={e => { this.updateSingleValue(e) }}
                 onMenuClose={e => { this.closeSingleValue(e) }}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === VISITS })}
               />
             </div>
-            {/* Last Touch Channel */}
-            {/* <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-            <div> {'Last Touch Channel - '+ lastTouchChannel.valueFilters[0].value} </div>
-            <SingleValueSelect
-              activeFilters={[]}
-              options={lastTouchChannel.availableFilters}
-              onValueChange={e => { this.updateSingleValue(e) }}
-              onMenuClose={e => { this.closeSingleValue(e) }}
-            />
-          </div> */}
             {/* Conversion Type */}
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div>Conversion -  {this.state.trafficStringList}</div>
+              <div>Conversion</div>
+
               <MultiValueSelect
-                // values = {convType.valueFilters}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CONVERSION })}
                 options={convType.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
                 onMenuClose={this.closeMultiValue}
               />
             </div>
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div>{'Web Segment - ' + websegment.valueFilters[0].value}</div>
+              <div>Web Segment</div>
               <SingleValueSelect
                 activeFilters={[]}
                 options={websegment.availableFilters}
                 onValueChange={e => { this.updateSingleValue(e) }}
                 onMenuClose={e => { this.closeSingleValue(e) }}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === WEBSEGMENT })}
               />
             </div>
           </div>
@@ -649,41 +758,34 @@ class SummaryViewDetails extends Component {
           <div className="row">
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
               {/* Visit Type */}
-              <div>{'Visits - ' + visits.valueFilters[0].value}</div>
+              <div>Visits</div>
               <SingleValueSelect
                 activeFilters={[]}
                 options={visits.availableFilters}
                 onValueChange={e => { this.updateSingleValue(e) }}
                 onMenuClose={e => { this.closeSingleValue(e) }}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === VISITS })}
               />
             </div>
-            {/* Last Touch Channel */}
-            {/* <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div> {'Last Touch Channel - '+ lastTouchChannel.valueFilters[0].value} </div>
-              <SingleValueSelect
-                activeFilters={[]}
-                options={lastTouchChannel.availableFilters}
-                onValueChange={e => { this.updateSingleValue(e) }}
-                onMenuClose={e => { this.closeSingleValue(e) }}
-              />
-            </div> */}
             {/* Conversion Type */}
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div>Conversion - {this.state.trafficStringList}</div>
-              <MultiValueSelect
+              <div>Conversion</div>
 
+              <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CONVERSION })}
                 options={convType.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
-                onMenuClose={(e) => { this.closeMultiValue(e) }}
+                onMenuClose={this.closeMultiValue}
               />
             </div>
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div>{'Web Segment - ' + websegment.valueFilters[0].value}</div>
+              <div>Web Segment</div>
               <SingleValueSelect
                 activeFilters={[]}
                 options={websegment.availableFilters}
                 onValueChange={e => { this.updateSingleValue(e) }}
                 onMenuClose={e => { this.closeSingleValue(e) }}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === WEBSEGMENT })}
               />
             </div>
           </div>
@@ -695,11 +797,12 @@ class SummaryViewDetails extends Component {
             {/* Channel*/}
             <div className="col-md-4 col-lg-4" style={{ paddingBottom: '10px' }}>
               {/* Channel */}
-              <div> Channel -  {this.state.pmStringList}</div>
+              <div>Channel</div>
               <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CHANNELPM })}
                 options={channelPM.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CHANNELPM; this.updateMultiValue(e, type) }}
-                onMenuClose={(e) => { this.closeMultiValue(e) }}
+                onMenuClose={this.closeMultiValue}
               />
             </div>
           </div>
@@ -710,54 +813,57 @@ class SummaryViewDetails extends Component {
           <div className="row">
             {/* segment*/}
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div>{'Segment - ' + segment.valueFilters[0].value}</div>
+              <div>Segment</div>
 
               <SingleValueSelect
-                activeFilters={[]}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === SEGMENT })}
+                activeFilters={segment.valueFilters}
                 options={segment.availableFilters}
-                onValueChange={e => { this.updateSingleValue(e) }}
-                onMenuClose={e => { this.closeSingleValue(e) }}
+                onValueChange={this.updateSingleValue}
+                onMenuClose={this.closeSingleValue}
               />
             </div>
             {/* Product Category*/}
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div> Product -  {this.state.productStringList}</div>
+              <div> Product </div>
               <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.PRODUCT })}
                 options={product.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.PRODUCT; this.updateMultiValue(e, type) }}
-                onMenuClose={(e) => { this.closeMultiValue(e) }}
+                onMenuClose={this.closeMultiValue}
               />
             </div>
 
           </div>
         );
-        case SUMMARY_FILTERS.BUY_LTV_ROI:
-          return (
-            // Marketing Sourced ARR
-            <div className="row">
-              {/* segment*/}
-              <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-                <div>{'Segment - ' + segment.valueFilters[0].value}</div>
-  
-                <SingleValueSelect
-                  activeFilters={[]}
-                  options={segment.availableFilters}
-                  onValueChange={e => { this.updateSingleValue(e) }}
-                  onMenuClose={e => { this.closeSingleValue(e) }}
-                />
-              </div>
-              {/* Product Category*/}
-              <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-                <div> Product -  {this.state.productStringList}</div>
-                <MultiValueSelect
-                  options={product.availableFilters}
-                  onValueChange={(e) => { let type = DIMENSIONS.PRODUCT; this.updateMultiValue(e, type) }}
-                  onMenuClose={(e) => { this.closeMultiValue(e) }}
-                />
-              </div>
-  
+      case SUMMARY_FILTERS.BUY_LTV_ROI:
+        return (
+          // Marketing Sourced ARR
+          <div className="row">
+            {/* segment*/}
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              <div>Segment</div>
+              <SingleValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === SEGMENT })}
+                activeFilters={segment.valueFilters}
+                options={segment.availableFilters}
+                onValueChange={this.updateSingleValue}
+                onMenuClose={this.closeSingleValue}
+              />
             </div>
-          );
+            {/* Product Category*/}
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              <div> Product</div>
+              <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.PRODUCT })}
+                options={product.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.PRODUCT; this.updateMultiValue(e, type) }}
+                onMenuClose={this.closeMultiValue}
+              />
+            </div>
+
+          </div>
+        );
       case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
         return (
           // Gross New ARR
@@ -765,11 +871,12 @@ class SummaryViewDetails extends Component {
             {/* PVW*/}
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }} >
 
-              <div> Phone VS Web -  {this.state.pvwStringList}</div>
+              <div> Phone VS Web</div>
               <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.PVW })}
                 options={pvw.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.PVW; this.updateMultiValue(e, type) }}
-                onMenuClose={(e) => { this.closeMultiValue(e) }}
+                onMenuClose={this.closeMultiValue}
               />
             </div>
 
@@ -781,11 +888,12 @@ class SummaryViewDetails extends Component {
           <div className="row">
             {/* PVW*/}
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div> Phone VS Web -  {this.state.pvwStringList}</div>
+              <div> Phone VS Web</div>
               <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.PVW })}
                 options={pvw.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.PVW; this.updateMultiValue(e, type) }}
-                onMenuClose={(e) => { this.closeMultiValue(e) }}
+                onMenuClose={this.closeMultiValue}
               />
             </div>
 
@@ -801,7 +909,7 @@ class SummaryViewDetails extends Component {
 
   getOneWeekBehindMarker(activeSecondary, type) {
     return activeSecondary === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
-      activeSecondary ===  SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND||
+      activeSecondary === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND ||
       activeSecondary === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
       activeSecondary === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND ||
       activeSecondary === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
@@ -864,7 +972,7 @@ class SummaryViewDetails extends Component {
     let statsCounts = 0;
     return (
       <div className="sumViewContainer">
-       
+
 
         {/* First Row for Ttle Bar and Metric Filter */}
         <div className="row container-fluid titleBarHeader">
@@ -879,7 +987,7 @@ class SummaryViewDetails extends Component {
               {activeItem.header} {this.getOneWeekBehindMarker(this.props.activeSecondary, 'marker')}
             </span>
 
-            <span style={{width:'100px'}}>
+            <span style={{ width: '100px' }}>
               <div className="oneWeekBehind">
                 {this.getOneWeekBehindMarker(this.props.activeSecondary, 'message')}
               </div>
@@ -907,7 +1015,7 @@ class SummaryViewDetails extends Component {
               :
               <span></span>}
 
-            {this.props.isLoading === true ? null : <ExcelWorkbook activeItem={this.props.secondaryData[this.props.activeSecondary]}/>}
+            {this.props.isLoading === true ? null : <ExcelWorkbook activeItem={this.props.secondaryData[this.props.activeSecondary]} />}
 
 
 
@@ -982,7 +1090,7 @@ class SummaryViewDetails extends Component {
           activeTimeMetric={this.state.activeTimeMetric}
           background="white" />
 
-        <div  className="iconfooter">
+        <div className="iconfooter">
           <img className='rtbIconFooter' src={rtbIcon} />
         </div>
       </div>

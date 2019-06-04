@@ -4,6 +4,8 @@ import  classNames from 'classnames';
 import * as actions from 'actions';
 import FilterBarHeader from './FilterBarHeader/FilterBarHeader.js';
 import FilterPage from "../MobileComponents/FitlerPage/FilterPage.jsx";
+import * as _ from 'lodash';
+import { DIMENSIONS } from '../../Constants/consts';
 
 import CustomDropDownPanel from './CustomDropDownPanel/CustomDropDownPanel.js';
 class FilterPanel extends Component{
@@ -11,19 +13,173 @@ class FilterPanel extends Component{
         super(props);
         this.state={
             filterPanelIsOpen: false,
-            showDropDowns: false
+            showDropDowns: false,
+            selectedFilters: [
+                ...this.props.filters.subscription.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.signupCategory.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.nonDMSegment.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.product.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.route.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.geo.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.market.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.quarter.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.segment.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                })],
         };
 
         this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
     }
-   
+    componentDidMount(){
+        this.setState({
+            selectedFilters: [
+                ...this.props.filters.subscription.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.signupCategory.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.nonDMSegment.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.product.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.route.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.geo.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.market.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.quarter.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.segment.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                })]
+        })
+    }
+    componentDidUpdate(prevProps) {
+
+        console.log('Setting Select Filters in Component Did Update', this.state.selectedFilters);
+
+        // if (this.props.showContainer !== prevProps.showContainer) {
+        //     console.log('Opening the container');
+        //     this.setState({ loading: true }, () => {
+        //         setTimeout(() => {
+        //             this.setState({ loading: false })
+        //         }, 1);
+        //     })
+        // }
+        if (this.props.filters.preferencesAreAdded !== prevProps.filters.preferencesAreAdded) {
+            this.setState({ loading: true }, () => {
+                setTimeout(() => {
+                    this.setState({ loading: false })
+                }, 1);
+            })
+            this.setState({
+                selectedFilters: [
+                    ...this.props.filters.subscription.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.signupCategory.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.nonDMSegment.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.product.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.route.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.geo.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.market.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.quarter.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.segment.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    })]
+            })
+        }
+
+    }
+    updateSingleValue = (e) => {
+        // console.log('Updating SingleValue',e);
+        let copy = this.state.selectedFilters;
+        if (this.state.selectedFilters.length === 0) {
+            this.setState({ selectedFilters: [e] })
+        } else {
+
+            //Find any with the same category
+            _.remove(copy, item => { return item.category === e.category });
+            _.remove(copy, item => { return item.index === e.index });
+            if (copy.length === 0) {
+                this.setState({ selectedFilters: [e] })
+            } else {
+                this.setState({ selectedFilters: [...copy, e] })
+
+            }
+
+        }
+
+        this.setState({ isButtonHighlighted: true });
+
+    }
+
+    updateMultiValue = (e, type) => {
+
+
+        console.log('Picky', e);
+        let copy = this.state.selectedFilters;
+
+        if (e.length === 0) {
+            _.remove(copy, item => { return item.category === type });
+            this.setState({ selectedFilters: [...copy] })
+
+        } else {
+            _.remove(copy, item => { return item.category === e[0].category });
+            this.setState({ selectedFilters: [...copy, ...e] })
+        }
+
+        this.setState({ isButtonHighlighted: true });
+    }
     /* Event Handler for the Filter Box to open the filter panel with the drop downs */
     openDialogFilterPanel() {
+       
+
         // Opening the panel
         if (this.state.filterPanelIsOpen===false) {
         this.setState({ showDropDowns: true });
         this.setState({ filterPanelIsOpen: true });
         } else {
+            console.log('Toggling Panel',this.state.selectedFilters)
+            this.submitFilters()
         /* Closing the Panel */
         this.setState({ showDropDowns: false });
         // this.setState({filterPanelIsOpen: false});
@@ -32,23 +188,95 @@ class FilterPanel extends Component{
         }, 300);
         }
     }
+    submitFilters = (e) => {
+        const { GEO,
+            MARKET,
+            PRODUCT,
+            SEGMENT,
+            SUBSCRIPTION,
+            QUARTER,
+            ROUTE,
+            VISITSTATUS,
+            SIGNSOURCE,
+            SIGNAPP,
+            PRODUCTCAT,
+            WEBSEGMENT,
+            PVW,
+            CATEGORY,
+            LTC,
+            NEWVSREPEAT,
+            MOBILEVSDESKTOP,
+            CONVERSION,
+            VISITS,
+            SIGNCAT
+        } = DIMENSIONS;
+        this.setState({ isButtonHighlighted: false })
+        let newFilters = {
+            quarter: [],
+            segment: [],
+            product: [],
+            market: [],
+            route: [],
+            subscription: [],
+            geo: [],
+            signupCategory: [],
+            nonDMSegment: []
+
+        };
+        Object.keys(newFilters).forEach(item => {
+            switch (item) {
+                case QUARTER:
+                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === QUARTER })) ? /* Then */
+                        [_.find(this.state.selectedFilters, (item => { return item.category === QUARTER }))] : /* Else */
+                        [...this.props.filters.quarter.valueFilters];
+                    break;
+                case SEGMENT:
+                    newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SEGMENT })) ?
+                        [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
+                        [...this.props.filters.segment.valueFilters];
+                    break;
+
+                default:
+                    let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category === item }));
+                    if (grouped.false !== this.state.selectedFilters.length) {
+                        if (grouped.true !== undefined) {
+                            newFilters[item] = grouped.true
+                        } else {
+                            newFilters[item] = [];
+                        }
+                    } else {
+                        newFilters[item] = [];
+                    }
+                    break;
+            }
+
+        });
+
+
+
+        this.props.submitFilters(newFilters);
+        // this.props.handleClose();
+    }
     render(){
         let {activeFilters,filters, availableFilters, mobileFiltersIsShown,window} = this.props;
-        const filtersPage = this.props.mobileFiltersIsShown ? (
+        const filtersPage = this.props.mobileFiltersIsShown===true ? (
             <FilterPage
               windowHeight={window.height}
               filters={filters}
               availableFilters={availableFilters}
             />
-          ) :  <div>
+          ) : this.props.isMobileOrTablet===false? <div>
           <FilterBarHeader handleNewFilterClick={this.openDialogFilterPanel} filterPanelIsOpen={this.state.filterPanelIsOpen} />
           <CustomDropDownPanel
+            updateSingleValue={this.updateSingleValue}
+            updateMultiValue={(e,type) => {  this.updateMultiValue(e, type) }}
             handleClose={this.openDialogFilterPanel}
             showContainer={this.state.filterPanelIsOpen}
             showSlide={this.state.showDropDowns}
             activePrimary={this.props.activePrimary}
+            selectedFilters={this.state.selectedFilters}
           />
-          </div>;
+          </div>:null;
         return(
            filtersPage
         )
