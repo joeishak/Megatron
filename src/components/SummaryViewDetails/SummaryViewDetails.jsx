@@ -731,6 +731,33 @@ class SummaryViewDetails extends Component {
 
           </div>
         );
+        case SUMMARY_FILTERS.BUY_LTV_ROI:
+          return (
+            // Marketing Sourced ARR
+            <div className="row">
+              {/* segment*/}
+              <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+                <div>{'Segment - ' + segment.valueFilters[0].value}</div>
+  
+                <SingleValueSelect
+                  activeFilters={[]}
+                  options={segment.availableFilters}
+                  onValueChange={e => { this.updateSingleValue(e) }}
+                  onMenuClose={e => { this.closeSingleValue(e) }}
+                />
+              </div>
+              {/* Product Category*/}
+              <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+                <div> Product -  {this.state.productStringList}</div>
+                <MultiValueSelect
+                  options={product.availableFilters}
+                  onValueChange={(e) => { let type = DIMENSIONS.PRODUCT; this.updateMultiValue(e, type) }}
+                  onMenuClose={(e) => { this.closeMultiValue(e) }}
+                />
+              </div>
+  
+            </div>
+          );
       case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
         return (
           // Gross New ARR
@@ -773,17 +800,17 @@ class SummaryViewDetails extends Component {
 
 
   getOneWeekBehindMarker(activeSecondary, type) {
-    return activeSecondary === 4 ||
-      activeSecondary === 7 ||
-      activeSecondary === 8 ||
-      activeSecondary === 19 ||
-      activeSecondary === 20 ||
-      activeSecondary === 21 ||
-      activeSecondary === 22 ||
-      activeSecondary === 23 ||
-      activeSecondary === 24 ||
-      activeSecondary === 25 ||
-      activeSecondary === 26 ? (type === 'marker' ? '*' : 'One Week Behind') : null;
+    return activeSecondary === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
+      activeSecondary ===  SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND||
+      activeSecondary === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
+      activeSecondary === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND ||
+      activeSecondary === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
+      activeSecondary === SUMMARY_FILTERS.USE_PERCENT_ACTIVATED ||
+      activeSecondary === SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES ||
+      activeSecondary === SUMMARY_FILTERS.USE_WK0_WAU_RATE ||
+      activeSecondary === SUMMARY_FILTERS.USE_WK4_WAU_RATE ||
+      activeSecondary === SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX ||
+      activeSecondary === SUMMARY_FILTERS.USE_PAID_USER_MAU ? (type === 'marker' ? '*' : 'One Week Behind') : null;
   }
 
   render() {
@@ -931,7 +958,7 @@ class SummaryViewDetails extends Component {
 
           <div className="col-md-2 col-lg-2 flRight">
             <div className=" totalTimeMetricContainer">
-              <span >
+              <span>
                 <div onClick={this.updateQtdMetricFilter} className={QTDStyles}>
                   QTD
                   </div>

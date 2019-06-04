@@ -1,10 +1,10 @@
+// Import Types
 import { GET_IBHEARTBEAT } from 'actions/types';
-// import parser from 'fast-xml-parser';
-
+// Reducer function with a default empty array state
 export default function(state = [],action) {
     switch(action.type) {
+        // Retrieves the InfoBurst System Details to confirm IBE is live
         case GET_IBHEARTBEAT:
-            // let data =  parser.parse(action.payload.data);
             return action.payload;
         default: 
             return state;

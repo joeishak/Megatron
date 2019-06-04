@@ -1,3 +1,4 @@
+/** TODO: Remove feedback Reducer, this is being handled in the Summary.js now */
 import {
     UPDATE_FEEDBACKFORM_DIALOG_VISIBILITY
 } from 'actions/types';

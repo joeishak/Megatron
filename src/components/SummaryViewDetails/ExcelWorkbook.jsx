@@ -585,7 +585,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
                 </Workbook.Sheet>
-                <Workbook.Sheet data={secondaryData[activeSecondary].details.subscription.qtd || []} name="Subscription Offering">
+                {/* <Workbook.Sheet data={secondaryData[activeSecondary].details.subscription.qtd || []} name="Subscription Offering">
                     <Workbook.Column label="Subscription Offering" value="type" />
                     <Workbook.Column label="Actuals" value="actuals" />
                     <Workbook.Column label="QRF" value="qrf" />
@@ -593,7 +593,7 @@ class ExcelWorkbook extends Component {
                     <Workbook.Column label="vsQRF" value="vsQrf" />
                     <Workbook.Column label="Q/Q" value="qq" />
                     <Workbook.Column label="Y/Y" value="yy" />
-                </Workbook.Sheet>
+                </Workbook.Sheet> */}
             </Workbook>
         )
 

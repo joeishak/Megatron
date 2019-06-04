@@ -9,6 +9,9 @@
 # production
 /build
 
+# VS Counter
+.VSCodeCounter
+
 # misc
 .DS_Store
 .env.local

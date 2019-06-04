@@ -355,8 +355,6 @@ function mapStateToProps(state) {
     activeJourneyCard: state.activeCards.secondary,
     activePrimary: state.activeCards.primary,
     comments: state.commentsPackage.comments
-
-
   };
 }
 export default connect(

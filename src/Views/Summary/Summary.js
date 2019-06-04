@@ -1,30 +1,37 @@
+//Import React and Component
 import React, { Component } from "react";
+// Import connect for react redux store
 import { connect } from "react-redux";
+// Import all actions from actions/index.js
 import * as actions from "actions";
+// Import all utilities from utilities.js
 import * as utils from "../../utilities.js";
+// Import Summary.css Styles
 import styles from "./Summary.css";
+// Import Bootstrap styles from min.css
 import "bootstrap/dist/css/bootstrap.min.css";
+// Import withAuth Higher Order Component from OKTA-React
 import { withAuth } from "@okta/okta-react";
+// Import helper to check authentication
 import { checkAuthentication } from "../../helper";
+// Import KENDO Theme Default
 import "@progress/kendo-theme-default/dist/all.css";
-// Custom Components
-import commentIconOn from "../../assets/images/comments-on.svg";
-import commentIconOff from "../../assets/images/comments-off.svg";
-
+// Import Custom Components
 import LoadingScreen from "../Loading/Loading.jsx";
 import Navigation from "components/Navigation/Navigation";
 import FilterPanel from "components/FilterPanel/FilterPanel";
 import CommentPanel from "components/CommentPanel/CommentPanel";
 import ReactPiwik from 'react-piwik';
-
-// import Playground from "../../components/MobileComponents/Playground/Playground.jsx";
 import SummaryViewDetails from "components/SummaryViewDetails/SummaryViewDetails";
 import KendoDialog from "../../components/KendoDialog/KendoDialog";
 import FeedBackDialog from "../../components/FeedbackDialog/FeedBack";
 import PrimaryContentList from "../../components/PrimaryContent/PrimaryContentList.jsx";
 import SecondaryContentList from "../../components/SecondaryContent/SecondaryContentList.jsx";
+// Import html2canvas for Feedback button to take picture of dashboard
 import html2canvas from 'html2canvas';
+// Import file saver for File Explorer Dialog
 import { saveAs } from 'file-saver';
+// Import Constants
 import {
   PRIMARY,
   SECONDARY,
@@ -34,10 +41,11 @@ import {
   DIMENSIONS,
   SUMMARY_FILTERS
 } from "../../Constants/consts.js";
-import $ from 'jquery';
 
-// import { timingSafeEqual } from "crypto";
+// Class Summary - Single Page APP - Main Entry Point
 class Summary extends Component {
+  // Constructor that initializes state, binds the
+  // checkAuthentication function, and retrieves the IBE Hearbeat
   constructor(props) {
     super(props);
 
@@ -48,7 +56,8 @@ class Summary extends Component {
         height: window.innerHeight,
         width: window.innerWidth
       },
-      initialDataLoadIsComplete: false, //Once the app initially requests all the necessary data to present dashboard for first time
+      //Once the app initially requests all the necessary data to present dashboard for first time
+      initialDataLoadIsComplete: false,
       isLoading: true,
       //For when the app loads data in the background
       requestingRemainingFinanceData: false,
@@ -66,43 +75,43 @@ class Summary extends Component {
     this.checkAuthentication = checkAuthentication.bind(this);
     this.props.getIbHeartbeat();
   }
-
+  /***
+   * Calls the action setAppSettings which updates the viewport size in redux
+   */
   resize() {
+    // Create a new object with window dimensions
     const appSettings = {
       window: {
         height: window.innerHeight,
         width: window.innerWidth
       }
     };
+    // Call action to set the app settings 
     this.props.setAppSettings(appSettings);
   }
 
+  /***
+   * Lifecyle Hook for when the component mounts, only called once when the dashboard loads initially
+   */
   componentDidMount() {
-
-    // this.checkAuthentication();
+    // Call Action to let dashboard know comments are being fetched for Net New ARR
     this.props.isFetching(true);
-    // this.props.fetchCommentsCount(this.props.activeSecondaryCard);
-
+    // Call action to get all the comments 
     this.props.fetchComments(this.props.activeSecondaryCard);
-    // Get all the comments count
-
+    // Call action to get the updated as of date and quarter for dashboard data refresh
     this.props.getUpdatedAsOfDateAndQuarter();
-    // this.props.generateFilterData(this.props.preferences);
-
+    // Add event listener for when the dashboard is resized
     window.addEventListener("resize", this.resize.bind(this));
+    // Call this.resize to instanstiate
     this.resize();
-
-
-
   }
 
-  componentWillUnmount(){
-  }
+  /***
+   * Lifecycle Hook for when component updates.
+   */
   componentDidUpdate(prevProps, prevState) {
-    // console.warn('Pushing the test case for PIWIK', ReactPiwik);
-    // ReactPiwik.push(['setUserId', null]);
-    // ReactPiwik.push(['setUserId', 'Rakesh Grewal (rgrewal) ']);
 
+    // Extract props into variables from connected state props
     let { activePrimaryCard, activeSecondaryCard,
       primaryIsLoaded,
       user,
@@ -131,87 +140,129 @@ class Summary extends Component {
       buyConversionIsLoaded,
       filters
     } = this.props;
-
+    // Call Helper to check the state of the users authentication
     this.checkAuthentication();
-
+    // If the user has been denied authentication
     if (this.state.authenticated === false) {
+      // Return the user back to the login screen
       this.props.auth.login("/")
+      // Otherwise the user was authenticated
     } else {
-
+      // If the users properties in Redux State are not empty and subID exists
       if (this.props.user.sub) {
+        // Push the setUserId event to Matomo with the users given name (John) + users family name (Doe) and their LDAP name (jdoe)
+        console.groupCollapsed('Sending AUTH To Piwik');
+        console.log('SETTING PIWIK USER', user, filters, `${user.given_name + ' ' + user.family_name}(${user.email.split('@')[0]})`);
+        ReactPiwik.push(['setUserId', `${user.given_name + ' ' + user.family_name}(${user.email.split('@')[0]})`]);
+        console.groupEnd()
 
-          console.groupCollapsed('Sending AUTH To Piwik');
-          console.log('SETTING PIWIK USER', user, filters, `${user.given_name + ' ' + user.family_name}(${user.email.split('@')[0]})`);
-          ReactPiwik.push(['setUserId', `${user.given_name + ' ' + user.family_name}(${user.email.split('@')[0]})`]);
-          console.groupEnd()
 
-      
       }
-
+      // If the user details exist in Redux, and the filtersAreLoaded prop changes
       if (this.props.user.sub !== null && filtersAreLoaded !== prevProps.filtersAreLoaded) {
+        // Call the action to update the user and preferences in InfoBurst/ GTMPOC Database
         this.props.updateOKTAUser(user, filters.quarter.valueFilters[0].value, filters.segment.valueFilters[0].value, JSON.stringify(filters.nonDMSegment.valueFilters));
       }
+      // Declare a variable to denote whether user has changes cards
       let userChangedCards = activeSecondaryCard !== prevProps.activeSecondaryCard;
 
       // For when the user changes primary cards on top 1/6
       if (activePrimaryCard !== prevProps.activePrimaryCard) {
         console.log('Sending data to piwik');
+        // Push the trackEvent to Matomo, with the text primaryKPI and the category of the KPI they have chosen (Finance, Discover, etc etc)
         ReactPiwik.push(['trackEvent', 3, 'primaryKPI', this.props.primaryData[activePrimaryCard].category, 'page']);
       }
 
-
+      // If the filters and preferences are loaded, and the preferences have not yet been added to filters
       if (filtersAreLoaded && preferencesAreLoaded && preferencesAreAdded === false) {
+        // Call the action to add the prefernces to active Filters in REdux
         this.props.addPreferencesToActiveFilters(this.props.preferences);
-      }
+      }// End if for adding filters to preferences
+
+
+      // Once the preferences are added, and the initialDataLoad has not been completed
       if (preferencesAreAdded &&
         this.state.initialDataLoadIsComplete === false) {
+        // Begin requesting data
+        // Call Action to request Primary Data passing in current filters
         this.props.getPrimaryData(this.props.filters);
+        // Call Action to request Finance NEt New and Gross NEw data passing in current filters
         this.props.getFinanceXDC1SecondaryData(this.props.filters);
+        // Call Action to request secondary KPI data for Cancellations and Renewal
         this.props.getFinanceSecondaryData(this.props.filters);
+        // Set state for isLoading to true, which shows the spinner, 
+        // and initialDataLoadComplete to true, since the request for data has been made
         this.setState({
           isLoading: true,
           initialDataLoadIsComplete: true
         });
 
-      }
-      //MAke calls if the user switches filters
-      if (this.state.initialDataLoadIsComplete === undefined && (this.props.filters !== prevProps.filters)) {
+      } // End If for preferences loading and requesting beginning data
 
+      //If calls if the user switches filters and the initialDataLoadComplete  === undefined 
+      // InitialDataLoadComplete of undefined means the user is submitting filters are the load 
+      // has finish and the dashboard showed the first state
+      if (this.state.initialDataLoadIsComplete === undefined && (this.props.filters !== prevProps.filters)) {
+        // If the user changed subfilters
         if (this.state.subFiltersChanged) {
+          // If the user is on Discover (Marketable Universe, Padi Media Spend, or Sourced)
+          // Market XDC
           if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
             activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
             activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND) {
+            // Set the local state for isLoading to true
             this.setState({ isLoading: true });
+            // Call action to request filtered Market XDC
             this.props.getFilteredMarketingSecondaryData(this.props.filters);
           }
+          // Else If the user is on Discover (Traffic, Bounce) or UQFM
+          // Traffic / UQFM XDC
           else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_TRAFFIC ||
             activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE ||
             activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_UQFM) {
+            // Set the local state for isLoading to true
             this.setState({ isLoading: true });
+            // Call action to request filtered Traffic XDC
             this.props.getFilteredTrafficSecondaryData(this.props.filters);
           }
+          // Else If the user is on Buy Conversion
+          // Traffic 
           else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
+            // Set the local state for isLoading to true
             this.setState({ isLoading: true });
+            // Call action to request filtered Traffic XDC
             this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
           }
+          // Else If the user is on Discover (Traffic, Bounce) or UQFM
+          // Traffic / UQFM XDC
           else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
             activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND) {
             this.setState({ isLoading: true });
             this.props.getFilteredBuyMarketSecondaryData(this.props.filters);
           }
+          // Else If the user is on Discover (Traffic, Bounce) or UQFM
+          // Traffic / UQFM XDC
           else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWARR ||
             activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWUNITS) {
             this.setState({ isLoading: true });
             this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
           }
-        } else {
+
+        } // End If for Sub Filter submit
+        // Else the user submitted Global Filters
+        else {
+          // If filters are default
           if (isDefaultFilters) {
+            // Request primary data from cache
             this.props.getPrimaryData(this.props.filters);
+            //  Else filters are not default
           } else {
+            // Request primary date from XDC async
             this.props.getFilteredPrimaryData(this.props.filters);
           }
-
+          // Set local state isLoading to true and filtersUpdated to true
           this.setState({ isLoading: true, filtersUpdated: true });
+          // Reset all booleans in REdux to denote that no data has been loaded
           this.props.updatePrimaryIsLoading(false);
           this.props.updateDiscoverSecondaryIsLoading(false);
           this.props.updateFinanceSecondaryIsLoading(false);
@@ -228,439 +279,586 @@ class Summary extends Component {
           this.props.updateRenewCancelIsLoading(false);
           this.props.updateRenewDetailsIsLoading(false);
 
-
+          // If the user is on Finance Net New ARR or Gros New ARR 
           if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_NET_NEW_ARR ||
             activeSecondaryCard === SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR) {
-
+            // If filters are default
             if (isDefaultFilters) {
+              // Call Action to get Finance XDC1 Data and Finance Secondary Data from XDC 2 from cache-memory
               this.props.getFinanceXDC1SecondaryData(this.props.filters);
               this.props.getFinanceSecondaryData(this.props.filters);
+
             } else {
+              // Call Action to get Finance XDC1 Data and Finance Secondary Data from XDC 2 from asynchronous XDC
               this.props.getFilteredFinanceXDC1SecondaryData(this.props.filters);
               this.props.getFilteredFinanceSecondaryData(this.props.filters);
             }
 
           }
+          // If the user is on Finance Cancellations or Renewal
           else if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_CANCEL_ARR ||
             activeSecondaryCard === SUMMARY_FILTERS.FINANCE_RENEW_ARR) {
-
+            // If filters are default
             if (isDefaultFilters) {
+              // Call Action to get Finance XDC 2 Data and Finance Secondary Data from XDC 1 from cache-memory
               this.props.getFinanceXDC2SecondaryData(this.props.filters);
               this.props.getFinanceSecondaryData(this.props.filters);
             } else {
+              // Call Action to get Finance XDC 2 Data and Finance Secondary Data from XDC 1 from asynchronous XDC
               this.props.getFilteredFinanceXDC2SecondaryData(this.props.filters);
               this.props.getFilteredFinanceSecondaryData(this.props.filters);
             }
           }
+          // If the user is on Discover MArketable or Paid Media(s)
           else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
             activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
             activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND) {
-
+            // If filters are default
             if (isDefaultFilters) {
+              // Call Action to get Market XDC from cache-memory
               this.props.getMarketingSecondaryData(this.props.filters);
               this.props.getDiscoverSecondary(this.props.filters);
             } else {
+              // Call Action to get Market XDC from  asynchronous XDC
               this.props.getFilteredMarketingSecondaryData(this.props.filters);
               this.props.getFilteredDiscoverSecondary(this.props.filters);
             }
 
           }
+          // If the user is on Discover Traffic, UQFM or Bounce
           else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_TRAFFIC ||
             activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE ||
             activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_UQFM) {
 
+            // If filters are default
             if (isDefaultFilters) {
+              // Call Action to get Discover Traffic, Bounce, and UQFM from cache-memory
               this.props.getTrafficSecondaryData(this.props.filters);
               this.props.getDiscoverSecondary(this.props.filters);
             } else {
+              // Call Action to get Discover Traffic, Bounce, and UQFM from asynchronous XDC
               this.props.getFilteredTrafficSecondaryData(this.props.filters);
               this.props.getFilteredDiscoverSecondary(this.props.filters);
             }
 
           }
+          // If the user is on Try
           else if (activeSecondaryCard >= SUMMARY_FILTERS.TRY_NEW_UQFM && activeSecondaryCard <= SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM) {
-            this.props.getFilteredTrySecondaryData(this.props.filters);
-          }
-          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
-            this.setState({ isLoading: true });
-
+            // If filters are default
             if (isDefaultFilters) {
+              // Call Action to get Try from cache-memory
+              this.props.getTrySecondaryData(this.props.filters);
+            }
+            else {
+              // Call Action to get Try from asynchronous XDC
+              this.props.getFilteredTrySecondaryData(this.props.filters);
+            }
+          }
+          // If the user is on Buy Conversion 
+          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
+            // If filters are default
+            if (isDefaultFilters) {
+              // Call Action to get Traffic Conversion  from cache-memory
               this.props.getBuyTrafficSecondaryData(this.props.filters);
               this.props.getBuySecondaryData(this.props.filters);
             } else {
+              // Call Action to Traffic Conversion asynchronous XDC
               this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
               this.props.getFilteredBuySecondaryData(this.props.filters);
             }
           }
+          // If the user is on Buy MArketables, or Paid Media(s)
           else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
             activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND) {
 
+            // If filters are default
             if (isDefaultFilters) {
+              // Call Action to get Buy Marketable Universe, Paid Media(S) from cache-memory
               this.props.getBuyMarketSecondaryData(this.props.filters);
               this.props.getBuySecondaryData(this.props.filters);
             } else {
+              // Call Action to get Buy  Marketable Universe, Paid Media(S) from asynchronous XDC
               this.props.getFilteredBuyMarketSecondaryData(this.props.filters);
               this.props.getFilteredBuySecondaryData(this.props.filters);
             }
           }
+          // If the user is on Buy Gross New or Subs 
           else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWARR ||
             activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWUNITS) {
 
+            // If filters are default
             if (isDefaultFilters) {
+              // Call Action to get Buy Gross New or Subs  from cache-memory
               this.props.getBuyFinanceSecondaryData(this.props.filters);
               this.props.getBuySecondaryData(this.props.filters);
             } else {
+              // Call Action to get Buy Gross New or Subs  from asynchronous XDC
               this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
               this.props.getFilteredBuySecondaryData(this.props.filters);
             }
           }
-          else if (activeSecondaryCard >= SUMMARY_FILTERS.USE_PAID_USER_SUCCESS && activeSecondaryCard <= SUMMARY_FILTERS.USE_REPEAT_USER_MAU) {
+          // If the user is on a USE KPI
+          else if (activeSecondaryCard >= SUMMARY_FILTERS.USE_PERCENT_ACTIVATED && activeSecondaryCard <= SUMMARY_FILTERS.USE_REPEAT_USER_MAU) {
+            // If filters are default
             if (isDefaultFilters) {
+              // Call Action to get USE from cache-memory
               this.props.getUseSecondaryData(this.props.filters);
 
             } else {
+              // Call Action to get USE from asynchronous XDC
               this.props.getFilteredUseSecondaryData(this.props.filters);
 
             }
           }
+          // If the user is on Renew Cancellations
           else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
             || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
+            // If filters are default
             if (isDefaultFilters) {
+              // Call Action to get Renew Cancellations from cache-memory
               this.props.getRenewCancelSecondaryData(this.props.filters);
               this.props.getRenewSecondaryData(this.props.filters);
 
             } else {
+              // Call Action to get Renew Cancellations from asynchronous XDC
               this.props.getFilteredRenewCancelSecondaryData(this.props.filters);
               this.props.getFilteredRenewSecondaryData(this.props.filters);
 
             }
           }
+          // If the user is on Renew QTR or PF, EOT, and Fin
           else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_PF)
             || (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL)) {
+            // If filters are default
             if (isDefaultFilters) {
-              // debugger;
+              // Call Action to get Renew QTR or PF, EOT, and Fin from cache-memory
               this.props.getRenewDetailsSecondaryData(this.props.filters);
               this.props.getRenewSecondaryData(this.props.filters);
 
             } else {
+              // Call Action to get Renew QTR or PF, EOT, and Fin from asynchronous XDC
               this.props.getFilteredRenewDetailsSecondaryData(this.props.filters);
               this.props.getFilteredRenewSecondaryData(this.props.filters);
 
             }
           }
-        }
-      }
-      //Make calls if the user switches cards
+        } // End Else for Global filter Submit
+      } // End if for Filter Submission
+
+      // If the user switches cards
       if (userChangedCards) {
+        // Set trackEvent in Matomo for secondaryKPI to this kpi header
         ReactPiwik.push(['trackEvent', 3, 'secondaryKPI', this.props.secondaryData[activeSecondaryCard].header, 'page']);
 
+        // Set local state secondaryKpiChanged to true
         this.setState({ secondaryKpiChanged: true });
-        //Finance
+        // If the user changed cards to Finance Net New or Gros New ARR
         if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_NET_NEW_ARR ||
           activeSecondaryCard === SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR) {
-          if (this.state.requestingRemainingFinanceData === false) {
 
+          // Check if the state variable requestRemainingData  === false
+          if (this.state.requestingRemainingFinanceData === false) {
+            // if false, app may not have requested this data 
+            // if finance xdc1 is not loaded
             if (!financeXDC1IsLoaded /* || this.state.requestingRemainingFinanceData === true */) {
+              // And Filters are default
               if (isDefaultFilters) {
+                // Call action to get Finance XDC 1 Data from in memory cache
                 this.props.getFinanceXDC1SecondaryData(this.props.filters);
                 this.props.getFinanceSecondaryData(this.props.filters);
-              } else {
+              }
+              else {
+                // Call action to get Finance XDC 1 Data from async xdc
                 this.props.getFilteredFinanceXDC1SecondaryData(this.props.filters);
                 this.props.getFilteredFinanceSecondaryData(this.props.filters);
               }
-
+              // Set local loading state to true
               this.setState({ isLoading: true });
             }
-          } else if (!financeXDC1IsLoaded) {
+          }
+          // If finance XDC 1 is not loaded
+          else if (!financeXDC1IsLoaded) {
+            // And Filters are default
+
             if (isDefaultFilters) {
+              // Call action to get Finance XDC 1 Data from in memory cache
               this.props.getFinanceXDC1SecondaryData(this.props.filters);
               this.props.getFinanceSecondaryData(this.props.filters);
             } else {
+              // Call action to get Finance XDC 1 Data from async xdc
               this.props.getFilteredFinanceXDC1SecondaryData(this.props.filters);
               this.props.getFilteredFinanceSecondaryData(this.props.filters);
             }
+            // Set local loading state to true
             this.setState({ isLoading: true });
 
-          } else {
-            this.setState({ isLoading: false });
-
           }
-
+          // else finance xdc1 is loaded
+          else {
+            // Set local loading state to false
+            this.setState({ isLoading: false });
+          }
         }
+        // If the user changed cards to Finance Cancellations and Renewal
         else if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_CANCEL_ARR ||
           activeSecondaryCard === SUMMARY_FILTERS.FINANCE_RENEW_ARR) {
-          if (!financeXDC2IsLoaded /* || this.state.requestingRemainingFinanceData === true */) {
+          // If finance XDC2 has not laoded
+          if (!financeXDC2IsLoaded) {
+            // And Filters are default
             if (isDefaultFilters) {
+              // Call action to get Finance XDC 2 Data from in memory cache
               this.props.getFinanceXDC2SecondaryData(this.props.filters);
-
             } else {
+              // Call action to get Finance XDC 2 Data from async xdc
               this.props.getFilteredFinanceXDC2SecondaryData(this.props.filters);
             }
-
+            // Set local loading state to true
             this.setState({ isLoading: true });
           }
         }
+        // If the user changed cards to Discover Marketable and Paid Media (S)
         else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
           activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
           activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND) {
+          // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingDiscoverData === false) {
-
-            if (!muIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
+            // If Market XDC has not laoded
+            if (!muIsLoaded) {
+              // And Filters are default
               if (isDefaultFilters) {
+                // Call action to get Market XDC from in memory cache
                 this.props.getMarketingSecondaryData(this.props.filters);
                 this.props.getDiscoverSecondary(this.props.filters);
               } else {
+                // Call action to get Market XDC Data from async xdc
                 this.props.getFilteredMarketingSecondaryData(this.props.filters);
                 this.props.getFilteredDiscoverSecondary(this.props.filters);
               }
-
+              // Set local loading state to true
               this.setState({ isLoading: true });
             }
+            // Else If Market XDC has not laoded
           } else if (!muIsLoaded) {
+            // And Filters are default
             if (isDefaultFilters) {
+              // Call action to get Market XDC from in memory cache
               this.props.getMarketingSecondaryData(this.props.filters);
               this.props.getDiscoverSecondary(this.props.filters);
             } else {
+              // Call action to get Market XDC Data from async xdc
               this.props.getFilteredMarketingSecondaryData(this.props.filters);
               this.props.getFilteredDiscoverSecondary(this.props.filters);
             }
+            // Set local loading state to true
             this.setState({ isLoading: true });
-
           } else {
+            // Set local loading state to false
             this.setState({ isLoading: false });
 
           }
         }
+        // If the user changed cards to Discover Traffic, Bounce and UQFM
         else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_TRAFFIC ||
           activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE ||
           activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_UQFM) {
+          // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingDiscoverData === false) {
-
-            if (!trafficIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
+            // And Traffic has not loaded
+            if (!trafficIsLoaded) {
+              // And Filters are default
               if (isDefaultFilters) {
+                // Call action to get Traffic XDC from in memory cache
                 this.props.getTrafficSecondaryData(this.props.filters);
                 this.props.getDiscoverSecondary(this.props.filters);
               } else {
+                // Call action to get Traffic XDC Data from async xdc
                 this.props.getFilteredTrafficSecondaryData(this.props.filters);
                 this.props.getFilteredDiscoverSecondary(this.props.filters);
               }
-
+              // Set local loading state to true
               this.setState({ isLoading: true });
             }
-          } else if (!trafficIsLoaded) {
+          } //Else if traffic not loaded
+          else if (!trafficIsLoaded) {
+            // And Filters are default
             if (isDefaultFilters) {
+              // Call action to get Traffic XDC from in memory cache
               this.props.getTrafficSecondaryData(this.props.filters);
               this.props.getDiscoverSecondary(this.props.filters);
             } else {
+              // Call action to get Traffic XDC Data from async xdc
               this.props.getFilteredTrafficSecondaryData(this.props.filters);
               this.props.getFilteredDiscoverSecondary(this.props.filters);
             }
+            // Set local loading state to true
             this.setState({ isLoading: true });
-
           } else {
+            // Set local loading state to false
             this.setState({ isLoading: false });
-
           }
         }
+        // If the user changed cards to Try
         else if (activeSecondaryCard === SUMMARY_FILTERS.TRY_NEW_UQFM) {
+          // If try is not loaded
           if (!tryIsLoaded) {
+            // And Filters are default
             if (isDefaultFilters) {
+              // Call action to get Try XDC from in memory cache
               this.props.getTrySecondaryData(this.props.filters);
-
             } else {
+              // Call action to get Try XDC Data from async xdc
               this.props.getFilteredTrySecondaryData(this.props.filters);
-
             }
+            // Set local loading state to true
             this.setState({ isLoading: true });
           }
         }
+        // If the user changed cards to Buy Conversion
         else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
-          if (this.state.requestingRemainingBuyData === false) {
 
+          // Check if the state variable requestRemainingData  === false
+          if (this.state.requestingRemainingBuyData === false) {
+            // And Conversion has not loaded
             if (!buyConversionIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
+              // And Filters are default
               if (isDefaultFilters) {
+                // Call action to get Conversion XDC from in memory cache
                 this.props.getBuyTrafficSecondaryData(this.props.filters);
                 this.props.getBuySecondaryData(this.props.filters);
               } else {
+                // Call action to get Conversion XDC from in memory cache
                 this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
                 this.props.getFilteredBuySecondaryData(this.props.filters);
               }
-
+              // Set local loading state to true
               this.setState({ isLoading: true });
             }
           } else if (!buyConversionIsLoaded) {
+            // And Filters are default
             if (isDefaultFilters) {
+              // Call action to get Conversion XDC from in memory cache
               this.props.getBuyTrafficSecondaryData(this.props.filters);
               this.props.getBuySecondaryData(this.props.filters);
             } else {
+              // Call action to get Conversion XDC from in memory cache
               this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
               this.props.getFilteredBuySecondaryData(this.props.filters);
             }
-
+            // Set local loading state to true
             this.setState({ isLoading: true });
 
           } else {
+            // Set local loading state to false
             this.setState({ isLoading: false });
 
           }
         }
+        // If the user changed cards to Buy Marketing
         else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
           activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND) {
+          // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingBuyData === false) {
-
+            // And Buy MArket has not loaded
             if (!buyMarketIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
+              // And Filters are default
               if (isDefaultFilters) {
+                // Call action to get Market XDC from in memory cache
                 this.props.getBuyMarketSecondaryData(this.props.filters);
                 this.props.getBuySecondaryData(this.props.filters);
               } else {
+                // Call action to get Market XDC from in memory cache
                 this.props.getFilteredBuyMarketSecondaryData(this.props.filters);
                 this.props.getFilteredBuySecondaryData(this.props.filters);
               }
-
+              // Set local loading state to true
               this.setState({ isLoading: true });
             }
+            // else Buy MArket has not loaded
           } else if (!buyMarketIsLoaded) {
+            // And Filters are default
             if (isDefaultFilters) {
+              // Call action to get Market XDC from in memory cache
               this.props.getBuyMarketSecondaryData(this.props.filters);
               this.props.getBuySecondaryData(this.props.filters);
             } else {
+              // Call action to get Market XDC from in memory cache
               this.props.getFilteredBuyMarketSecondaryData(this.props.filters);
               this.props.getFilteredBuySecondaryData(this.props.filters);
             }
+            // Set local loading state to true
             this.setState({ isLoading: true });
 
           } else {
+            // Set local loading state to false
             this.setState({ isLoading: false });
 
           }
         }
+        // If the user changed cards to Buy Gross Units or ARR
         else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWARR ||
           activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWUNITS) {
+          // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingBuyData === false) {
 
+            // And Buy Gross has not loaded
             if (!buyGrossIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
+              // And Filters are default
               if (isDefaultFilters) {
+                // Call action to get Finance XDC from in memory cache
                 this.props.getBuyFinanceSecondaryData(this.props.filters);
                 this.props.getBuySecondaryData(this.props.filters);
               } else {
-
+                // Call action to get Finance XDC from in memory cache
                 this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
                 this.props.getFilteredBuySecondaryData(this.props.filters);
               }
-
+              // Set local loading state to true
               this.setState({ isLoading: true });
             }
           } else if (!buyGrossIsLoaded) {
+            // And Filters are default
             if (isDefaultFilters) {
-
+              // Call action to get Finance XDC from in memory cache
               this.props.getBuyFinanceSecondaryData(this.props.filters);
               this.props.getBuySecondaryData(this.props.filters);
             } else {
-
+              // Call action to get Finance XDC from in memory cache
               this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
               this.props.getFilteredBuySecondaryData(this.props.filters);
             }
-
+            // Set local loading state to true
             this.setState({ isLoading: true });
 
           } else {
+            // Set local loading state to false
             this.setState({ isLoading: false });
 
           }
         }
-        else if (activeSecondaryCard === SUMMARY_FILTERS.USE_PAID_USER_SUCCESS) {
-          if (!useIsLoaded) {
-            if (isDefaultFilters) {
-              this.props.getUseSecondaryData(this.props.filters);
+        // If the user changed cards to Finance Net New or Gros New ARR
+        // else if (activeSecondaryCard === SUMMARY_FILTERS.USE_PERCENT_ACTIVATED) {
+        //   if (!useIsLoaded) {
+        //     if (isDefaultFilters) {
+        //       this.props.getUseSecondaryData(this.props.filters);
 
-            } else {
-              this.props.getFilteredUseSecondaryData(this.props.filters);
+        //     } else {
+        //       this.props.getFilteredUseSecondaryData(this.props.filters);
 
-            }
-            this.setState({ isLoading: true });
-          }
-        }
+        //     }
+        //     this.setState({ isLoading: true });
+        //   }
+        // }
+        // If the user changed cards to Renew Finance
         else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
           || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
+          // If Renew Cancel has not loaded
           if (!renewCancelIsLoaded) {
+            // And Filters are default
             if (isDefaultFilters) {
+              // Call action to get Renew XDC from in memory cache
               this.props.getRenewCancelSecondaryData(this.props.filters);
               this.props.getRenewSecondaryData(this.props.filters);
 
             } else {
+              // Call action to get Renew XDC from in memory cache
               this.props.getFilteredRenewCancelSecondaryData(this.props.filters);
               this.props.getFilteredRenewSecondaryData(this.props.filters);
 
             }
+            // Set local loading state to true
             this.setState({ isLoading: true });
           }
         }
+        // If the user changed cards to Renew Details
         else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_PF)
           || (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL)) {
+          // If Renew Details has not loaded
           if (!renewDetailsIsLoaded) {
+            // And Filters are default
             if (isDefaultFilters) {
               // debugger;
+              // Call action to get Renew Details XDC from in memory cache
               this.props.getRenewDetailsSecondaryData(this.props.filters);
               this.props.getRenewSecondaryData(this.props.filters);
-
             } else {
+              // Call action to get Renew Details XDC from in memory cache
               this.props.getFilteredRenewDetailsSecondaryData(this.props.filters);
               this.props.getFilteredRenewSecondaryData(this.props.filters);
-
             }
+            // Set local loading state to true
             this.setState({ isLoading: true });
           }
         }
       }
+
       /**Setting Load to False ... */
       switch (this.props.activePrimaryCard) {
+        // On Finance Primary
         case 0:
           // When the initial load is complete
           if (primaryIsLoaded && financeSecondaryIsLoaded && financeXDC1IsLoaded && this.state.initialDataLoadIsComplete === true) {
+            // Set Local state for initialDataLoadIsComplete to undefined telling the dashboard it has loaded initially,
+            // isLoading to false telling the dashboard to take the loading screen away
+            // requestRemainingFinanceData to true telling dashboard data is loading in the background
             this.setState({
               initialDataLoadIsComplete: undefined,
               isLoading: false,
               requestingRemainingFinanceData: true,
             });
+            // Call action to get Finance 2 XDC detail data
             this.props.getFinanceXDC2SecondaryData(this.props.filters);
-          } else {
+          } // Else when the user switches cards or submits filters
+          else {
             //Stop Loading in either New New Or Gros New ARR
             if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_NET_NEW_ARR ||
               activeSecondaryCard === SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR) {
+              // If the user switched secondary cards
               if (this.state.secondaryKpiChanged === true) {
-
+                // and if finance xdc1 is loaded, and the finance secondary data is loaded
                 if (financeXDC1IsLoaded === true && financeSecondaryIsLoaded === true) {
+                  // Set localstate for secondaryKpiChanged to false, 
+                  // and isLoading to false
                   this.setState({
                     secondaryKpiChanged: false,
                     isLoading: false
 
                   });
+                  // If finance XDC 2 has not loaded
                   if (financeXDC2IsLoaded === false) {
+                    // Set Local state for initialDataLoadIsComplete to undefined telling the dashboard it has loaded initially,
                     this.setState({
                       requestingRemainingFinanceData: true,
                     });
+                    // Call action to get Finance 2 XDC detail data
                     this.props.getFinanceXDC2SecondaryData(this.props.filters);
                   } else {
+                    // Set Local state requestRemainingFinanceData to false telling dashboard data has loaded the data
                     this.setState({
                       requestingRemainingFinanceData: false,
                     });
                   }
                 }
 
-              } else if (this.state.filtersUpdated === true) {
-
+              } // Else if filters were updated
+              else if (this.state.filtersUpdated === true) {
+                // And primary data is loaded, finance xdc1 is loaded and secondary Finance is loaded
                 if (primaryIsLoaded === true && (financeXDC1IsLoaded === true && financeSecondaryIsLoaded === true)) {
+                  // Set local state isLoading to false, 
+                  // requestRemainingFinanceData to true
+                  // filtersUpdated to false
                   this.setState({
                     isLoading: false,
                     requestingRemainingFinanceData: true,
                     filtersUpdated: false
                   });
+                  // Get Filtered Finance XDC 2 Data in Background
                   this.props.getFilteredFinanceXDC2SecondaryData(this.props.filters);
                 }
               }
             }
-            //Stop Loading in either Cancellatiosn or Renewal
+            //Stop Loading in either Cancellation or Renewal
             else {
+              // If the user switched secondary cards
               if (this.state.secondaryKpiChanged === true) {
                 if (financeXDC2IsLoaded === true && financeSecondaryIsLoaded === true) {
                   this.setState({
@@ -678,7 +876,8 @@ class Summary extends Component {
                     });
                   }
                 }
-              } else if (this.state.filtersUpdated === true) {
+              }// Else if filters were updated
+              else if (this.state.filtersUpdated === true) {
                 if (primaryIsLoaded === true && (financeXDC2IsLoaded === true && financeSecondaryIsLoaded === true)) {
                   this.setState({
                     isLoading: false,
@@ -692,6 +891,7 @@ class Summary extends Component {
 
           }
           break;
+        // On Discover Primary
         case 1:
           if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
             activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
@@ -766,6 +966,7 @@ class Summary extends Component {
           }
           break;
 
+        // On Try Primary
         case 2:
           if (this.state.secondaryKpiChanged === true || this.state.filtersUpdated === true) {
             if (tryIsLoaded === true) {
@@ -775,6 +976,7 @@ class Summary extends Component {
             }
           }
           break;
+        // On Buy Primary
         case 3:
           if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
             if (this.state.secondaryKpiChanged === true) {
@@ -893,6 +1095,7 @@ class Summary extends Component {
 
           }
           break;
+        // On Use Primary
         case 4:
           if (this.state.secondaryKpiChanged === true || this.state.filtersUpdated === true) {
             if (useIsLoaded === true) {
@@ -902,9 +1105,8 @@ class Summary extends Component {
             }
           }
           break;
+        // On Renew Primary
         case 5:
-
-
           if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
             || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
             if (this.state.secondaryKpiChanged === true) {
@@ -981,19 +1183,19 @@ class Summary extends Component {
     this.setState({ subFiltersChanged: true })
     this.props.submitFilters(newFilters);
     switch (this.props.activeSecondaryCard) {
-      case 4:
+      case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
         this.props.updateMuSecondaryIsLoading(false);
         break;
-      case 5:
+      case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
         this.props.updateTrafficSecondaryIsLoading(false);
         this.props.updateBuyConversionIsLoading(false);
-      case 7:
+      case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
         this.props.updateMuSecondaryIsLoading(false);
         break;
-      case 8:
+      case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
         this.props.updateMuSecondaryIsLoading(false);
         break;
-      case 9:
+      case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
         this.props.updateTrafficSecondaryIsLoading(false);
         this.props.updateBuyConversionIsLoading(false);
         break;
@@ -1021,27 +1223,27 @@ class Summary extends Component {
     this.props.updateActivePrimaryCard(index);
     switch (index) {
       case (0):
-        this.props.updateActiveSecondaryCard(0);
+        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.FINANCE_NET_NEW_ARR);
         break;
       case (1):
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(4);
+        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE);
         break;
       case (2):
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(10);
+        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.TRY_NEW_UQFM);
         break;
       case (3):
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(16);
+        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.BUY_GROSS_NEWARR);
         break;
       case (4):
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(21);
+        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.USE_PERCENT_ACTIVATED);
         break;
       default:
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(28);
+        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.RENEW_CANCEL);
         break;
     }
     if (
