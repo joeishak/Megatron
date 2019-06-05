@@ -27,18 +27,20 @@ class MultiDimensionPanelItem extends Component {
         }
     }
 
+
     getMultiDimensionJourneyPanelItem(activeSecondary) {
 
         let calculatedGeo, prevGeo;
         let marketCount = 0;
         let qtdColumnClass, weekColumnClass;
+
         // Journeys
         qtdColumnClass = 'qtdJourneyMarketColumn';
         weekColumnClass = 'weekJourneyMarketColumn';
 
         switch (this.props.timeMetric) {
             case 'qtd':
-                return (this.props.data.qtd.map(item => {
+                let journeyQTD =  (this.props.data.qtd.map(item => {
 
                     if (this.props.type === DIMENSIONS.GEO || this.props.type === DIMENSIONS.SIGNAPP  || this.props.type === DIMENSIONS.LTC  ) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
@@ -79,8 +81,12 @@ class MultiDimensionPanelItem extends Component {
                         <div className={`${qtdColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'percent', value: item.yy }, 'value')}
                         </div>
-                    </span>)
+                    </span>
+                    )
                 }));
+                
+                console.log('Journey QTD',journeyQTD);
+                return journeyQTD;
             default:
                 return (this.props.data.week.map(item => {
 
@@ -128,7 +134,7 @@ class MultiDimensionPanelItem extends Component {
         let calculatedGeo, prevGeo;
         let marketCount = 0;
         let qtdColumnClass, weekColumnClass;
-
+        let actuals, qrf,qrfdiff,vsqrf,qq,yy,ww =0;
 
         // Financial
         qtdColumnClass = 'qtdMarketColumn';
@@ -141,6 +147,14 @@ class MultiDimensionPanelItem extends Component {
             // console.log('Multi', activeSecondary);
                 return (this.props.data.qtd.map(item => {
 
+                    // Accumulate
+                    actuals +=item.actuals;
+                    units += item.units;
+                    qrf += item.qrf;
+                    qrfdiff += item.qrfDiff;
+                    vsqrf += item.vsQrf;
+                    qq += item.qq;
+                    yy+= item.yy;
                     // console.log('HERE',item);
                     if (this.props.type === DIMENSIONS.GEO  ) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {

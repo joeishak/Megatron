@@ -10,7 +10,7 @@
 /build
 
 # VS Counter
-.VSCodeCounter
+/.VSCodeCounter
 
 # misc
 .DS_Store
