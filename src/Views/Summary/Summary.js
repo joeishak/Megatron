@@ -737,7 +737,7 @@ class Summary extends Component {
           }
         }
         // If the user changed cards to Finance Net New or Gros New ARR
-        else if (activeSecondaryCard === SUMMARY_FILTERS.USE_PERCENT_ACTIVATED) {
+        else if (activeSecondaryCard === SUMMARY_FILTERS.USE_PAID_USER_SUCCESS) {
           if (!useIsLoaded) {
             if (isDefaultFilters) {
               this.props.getUseSecondaryData(this.props.filters);

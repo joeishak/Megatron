@@ -381,7 +381,6 @@ export default function (state = {
             return { ...newState, renewCancelIsLoaded: true };
         case GET_RENEW_DETAILS_DATA:
             newState = JSON.parse(JSON.stringify(state));
-
             console.log('Request For Renew  Details   Data: ', action.payload);
             processRenewDetailSecondaryData(action.payload[0], newState.secondary, action.payload[6], action.payload[12]);
             processRenewMultichartData(action.payload[1].data, newState.secondary, action.payload[7].data, action.payload[13].data);
@@ -391,7 +390,6 @@ export default function (state = {
             processRenewSegmentQTDData(action.payload[5].data, newState.secondary, action.payload[11].data, action.payload[17].data);
             processRenewProductQTDData(action.payload[18].data, newState.secondary, action.payload[19].data);
             return { ...newState, renewDetailsIsLoaded: true };
-
         default:
             return state;
     }
@@ -827,9 +825,6 @@ export function processFinancialGeoQTD(newState, data) {
     newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.geo.qtd = processQTDOrder(item3);
     newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.geo.qtd = processQTDOrder(item4);
 }
-
-
-
 export function processFinancialGeoWeek(newState, data) {
     // console.log(data);
     //Clear old Values
