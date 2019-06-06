@@ -1,5 +1,3 @@
-import Select from 'react-select';
-import makeAnimated from 'react-select/lib/animated';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
@@ -54,30 +52,8 @@ class MultiValueSelect extends Component {
             }
         }
     }
-
-
     render() {
         return (
-            // <Select
-            //     className="blackText"
-            //     options={this.transformList(this.props.options)}
-            //     value={this.props.value}
-            //     closeMenuOnSelect={false}
-            //     isMulti
-            //     components={makeAnimated()}
-            //     onMenuClose={(e) => { this.props.onMenuClose(e)}}
-            //     onChange={(e) => this.props.onValueChange(e)}
-            //     theme={(theme) => ({
-            //         ...theme,
-            //         borderRadius: 3,
-            //         colors: {
-            //         ...theme.colors,
-            //           primary25: '#3C3C3C',
-            //           primary: '#2978D9',
-            //           primary50: 'darkgray'
-            //         },
-            //       })}
-            // />
             <Picky
                 className='pickyDropDown'
                 value={this.props.value}

@@ -12,6 +12,7 @@ class FilterPanel extends Component{
     constructor(props){
         super(props);
         this.state={
+            // Controls whether the Custom Drop Down Panel should show
             filterPanelIsOpen: false,
             showDropDowns: false,
             selectedFilters: [
@@ -44,8 +45,8 @@ class FilterPanel extends Component{
                 })],
         };
 
-        this.openDialogFilterPanel = this.openDialogFilterPanel.bind(this);
     }
+ 
     componentDidMount(){
         this.setState({
             selectedFilters: [
@@ -82,15 +83,7 @@ class FilterPanel extends Component{
 
         console.log('Setting Select Filters in Component Did Update', this.state.selectedFilters);
 
-        // if (this.props.showContainer !== prevProps.showContainer) {
-        //     console.log('Opening the container');
-        //     this.setState({ loading: true }, () => {
-        //         setTimeout(() => {
-        //             this.setState({ loading: false })
-        //         }, 1);
-        //     })
-        // }
-        if (this.props.filters.preferencesAreAdded !== prevProps.filters.preferencesAreAdded) {
+        if (this.props.filters !== prevProps.filters) {
             this.setState({ loading: true }, () => {
                 setTimeout(() => {
                     this.setState({ loading: false })
@@ -170,9 +163,7 @@ class FilterPanel extends Component{
         this.setState({ isButtonHighlighted: true });
     }
     /* Event Handler for the Filter Box to open the filter panel with the drop downs */
-    openDialogFilterPanel() {
-       
-
+    openDialogFilterPanel = () => {
         // Opening the panel
         if (this.state.filterPanelIsOpen===false) {
         this.setState({ showDropDowns: true });
@@ -265,7 +256,7 @@ class FilterPanel extends Component{
               filters={filters}
               availableFilters={availableFilters}
             />
-          ) : this.props.isMobileOrTablet===false? <div>
+          ) : this.props.isMobileOrTablet===false ? <div>
           <FilterBarHeader handleNewFilterClick={this.openDialogFilterPanel} filterPanelIsOpen={this.state.filterPanelIsOpen} />
           <CustomDropDownPanel
             updateSingleValue={this.updateSingleValue}
@@ -275,6 +266,7 @@ class FilterPanel extends Component{
             showSlide={this.state.showDropDowns}
             activePrimary={this.props.activePrimary}
             selectedFilters={this.state.selectedFilters}
+            isMobileOrTablet={this.props.isMobileOrTablet}
           />
           </div>:null;
         return(

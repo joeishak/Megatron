@@ -8,10 +8,8 @@
 
 # production
 /build
-
-# VS Counter
+# code counter
 /.VSCodeCounter
-
 # misc
 .DS_Store
 .env.local

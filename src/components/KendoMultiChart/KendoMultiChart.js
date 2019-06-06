@@ -128,13 +128,11 @@ class KendoMultiChart extends Component {
     }
 
     render() {
-        // console.log('DEBUG', this.props.activeSecondary);
         const chartData = (this.props.multichartMetric === true ? this.props.activeMultichart : this.props.activeUnits);
         const categories = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13'];
     
         const sharedTooltipRender = (props) => {
-            // console.log('Shared Props',props.points);
-            // console.log('DEBUG', this.props.activeSecondary);
+ 
             const activeSecondary = this.props.activeSecondary;
             const { points } = props;
             let bgColor = ( (points[0] && points[1]) ? (points[0].value - points[1].value) > 0 ? `${this.getColor(activeSecondary, 'green', 'bg')}` : `${this.getColor(activeSecondary, 'red', 'bg')}` : '');
@@ -187,7 +185,6 @@ class KendoMultiChart extends Component {
                 )
             }
         }
-
         // Y axis Values
         const labelContentRender = (props) => {
             if (this.props.multichartMetric === true) {
@@ -197,13 +194,11 @@ class KendoMultiChart extends Component {
                 return utils.formatMetric({ valueType: 'units', value: props.value }, 'value');
             }
         }
-
         // legend labels
         const legendRender = (props) => {
             const customVisual = props.createVisual();
             return customVisual;
         }
-
         const chartLegend = this.props.deviceType === 'laptop' ?
             <ChartLegend position='bottom' labels={{ color: this.props.color }} >
                 <ChartLegendItem visual={legendRender} />

@@ -451,6 +451,8 @@ class Summary extends Component {
         // Set trackEvent in Matomo for secondaryKPI to this kpi header
         ReactPiwik.push(['trackEvent', 3, 'secondaryKPI', this.props.secondaryData[activeSecondaryCard].header, 'page']);
 
+        this.props.isFetching();
+        this.props.fetchComments(activeSecondaryCard);
         // Set local state secondaryKpiChanged to true
         this.setState({ secondaryKpiChanged: true });
         // If the user changed cards to Finance Net New or Gros New ARR

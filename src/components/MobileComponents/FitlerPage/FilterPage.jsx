@@ -767,7 +767,6 @@ class FilterPage extends Component {
                         <div className="row dropRow">
                             <div className="col-xs-12 col-sm-12 col-md-12 defaultFilters ">
                                 <p>Quarter</p>
-                                {/* <KendoDropDownList  data={this.props.availableFilters.quarter}/> */}
                                 <SingleValueSelect
                                     activeFilters={filters.quarter.valueFilters}
                                     options={filters.quarter.availableFilters}
@@ -777,7 +776,6 @@ class FilterPage extends Component {
                                 />                                        </div>
                             <div className="col-xs-12 col-sm-12 col-md-12 defaultFilters">
                                 <p>Geo</p>
-                                {/* <KendoDropDownList  data={this.props.availableFilters.geo}/> */}
                                 <MultiValueSelect
                                     options={filters.geo.availableFilters}
                                     onValueChange={(e) => { let type = 'geo'; this.updateMultiValue(e, type) }}
@@ -786,7 +784,6 @@ class FilterPage extends Component {
                                 />                                        </div>
                             <div className="col-xs-12 col-sm-12 col-md-12 defaultFilters">
                                 <p>Market Area</p>
-                                {/* <KendoDropDownList  data={this.props.availableFilters.marketAreas} /> */}
                                 <MultiValueSelect
                                     options={filters.market.availableFilters}
                                     onValueChange={(e) => { let type = MARKET; this.updateMultiValue(e, type) }}

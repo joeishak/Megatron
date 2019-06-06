@@ -77,45 +77,7 @@ class SecondaryContentList extends Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    let copy = Object.assign([], this.props.data);
-    // if(this.props.activeSecondary !== prevProps.activeSecondary){
-    //     this.setState({isLoading: true},()=>{
-    //         setTimeout(()=>{
-    //             this.setState({isLoading:false})
-    //         },.001)
-    //     });
-    // }
-
-    // if (utils.includes(this.props.deviceType, 'mobile') ||
-    //   utils.includes(this.props.deviceType, 'tablet')) {
-    //   console.log('I am changing');
-
-    //   if (this.props.activeJourneyCard !== prevProps.activeJourneyCard) {
-    //     console.log('Changing the order', this.props.activeJourneyCard);
-    //     // console.log(this.props.data);
-    //     console.log('Changing the order',[this.props.data[this.props.activeJourneyCard], ...this.props.data.filter(item => item.index !== this.props.activeJourneyCard)])
-    //     this.setState({ sortedData: [copy[this.props.activeJourneyCard], ...copy.filter(item => item.index !== this.props.activeJourneyCard)] })
-    //   }
-    // }
-    // if(this.state.sortedData !== prevState.sortedData){
-    //   console.log('Updating Secondary');
-    //   switch (this.props.activePrimary) {
-    //     case 0:
-    //       this.setState({ activeCard: this.props.activeJourneyCard });
-    //       break;
-    //     case 1:
-    //       this.setState({ activeCard: this.props.activeJourneyCard });
-    //       break;
-    //     case 2:
-    //       this.setState({ activeCard: this.props.activeJourneyCard });
-    //       break;
-
-    //   }
-    // }
-
-
-  }
+  
   isTouchDevice() {
     return "ontouchstart" in document.documentElement;
   }
@@ -197,7 +159,6 @@ class SecondaryContentList extends Component {
     }, 200);
     this.setState({ sortedData: this.props.data });
     this.props.resetSecondaryList(this.props.activePrimary)
-    // this.props.onJourneyCardClicked(e, this.props.activeJourneyCard);
 
   }
 
@@ -218,7 +179,7 @@ class SecondaryContentList extends Component {
           </div>
         ) : null;
 
-    let data = /* (isMobileAndTablet === true) ? this.state.sortedData :  */this.props.data;
+    let data = this.props.data;
 
 
     let numberOfSecondarySquares = 0;
@@ -243,7 +204,6 @@ class SecondaryContentList extends Component {
               statsDetails={this.props.statsDetails}
               key={item.index}
               item={item}
-              // comments={this.props.commentsPackage}
               activeJourneyCard={isActive}
               onSecondaryCardClicked={(e, index) => this.onSecondaryCardClicked(e, index)}
               onJourneyCardClicked={(e, index) => {
@@ -304,17 +264,8 @@ class SecondaryContentList extends Component {
                 <MobileViewDetails detailsData={this.props.detailsData} valueType={this.props.valueType}></MobileViewDetails>
               </div>
             </div>
-
-            {/* <div className="slider-content">
-              <div className="sliderSquareContainerInner slider_box_inner">
-                <MobileViewDetails detailsData={this.props.data[this.props.activeJourneyCard].details.qtdw} valueType={this.props.data[this.props.activeJourneyCard].valueType}></MobileViewDetails>
-              </div>
-            </div> */}
-
           </div>
-
         </div>
-
         {/* Commnets */}
         <div style={{ paddingLeft: '9px', paddingRight: '9px' }}>
           <h6>Comments</h6>
@@ -348,7 +299,6 @@ class SecondaryContentList extends Component {
   }
 }
 
-// export default SecondaryContentList;
 function mapStateToProps(state) {
   return {
     deviceType: state.appSettings.deviceType,

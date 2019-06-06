@@ -21,35 +21,11 @@ class SummaryViewDetails extends Component {
     super(props);
     /* Initializing local state */
     this.state = {
-      summaryType: this.props.previousViewWasJourneys
-        ? "Journeys"
-        : "Financials",
+
       header: "Net New ARR",
       activeMetric: "arr",
       activeTimeMetric: "qtd",
-      excelTestData: [
-        {
-          Actuals: 66.7,
-          Units: 55,
-          QRF: 66.7,
-          QRFDiff: 43434.2,
-          QQ: 23.5,
-          YY: 84.22
-        }
-      ],
-      excelTestGeo: [
-        {
-          geo: "Amer",
-          marketArea: "US",
-          actuals: 66.5,
-          units: 55.3,
-          Qrf: 22.3,
-          QRFDiff: 44.5,
-          vsQrf: 666.5,
-          QQ: 233,
-          YY: 94.2
-        }
-      ],
+
       qtdIsPercent: true,
       selectedFilters: [
         ...this.props.filters.visits.valueFilters.map(item => {
@@ -81,11 +57,7 @@ class SummaryViewDetails extends Component {
 
     };
 
-    /*Bindings  */
-    this.updateMultiChartMetricFilter = this.updateMultiChartMetricFilter.bind(
-      this
-    );
-    this.updateQtdMetricFilter = this.updateQtdMetricFilter.bind(this);
+
 
   }
   componentDidMount() {
@@ -118,306 +90,14 @@ class SummaryViewDetails extends Component {
           return { ...item, label: item.value }
         })]
     })
-    switch (this.props.activeSecondary) {
-      case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
-        filterList = this.props.filters.convType.valueFilters.map(filter => {
-          return filter.value;
-        })
-        if (filterList.length !== 0 && this.props.filters.convType.availableFilters.length !== filterList.length) {
-          stringList = filterList.join(' - ');
-          this.setState({
-            trafficStringList: stringList
-          });
 
-        } else {
-          this.setState({ trafficStringList: '*' })
-        }
-        break;
-      case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
-        filterList = this.props.filters.convType.valueFilters.map(filter => {
-          return filter.value;
-        })
-        if (filterList.length !== 0 && this.props.filters.convType.availableFilters.length !== filterList.length) {
-          stringList = filterList.join(' - ');
-          this.setState({
-            trafficStringList: stringList
-          });
-
-        } else {
-          this.setState({ trafficStringList: '*' })
-        }
-
-        break;
-      case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
-        filterList = this.props.filters.channelPM.valueFilters.map(filter => {
-          return filter.value;
-        })
-        if (filterList.length !== 0 && this.props.filters.channelPM.availableFilters.length !== filterList.length) {
-          stringList = filterList.join(' - ');
-          this.setState({
-            pmStringList: stringList
-          });
-
-        } else {
-          this.setState({ pmStringList: '*' })
-        }
-
-        break;
-      case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
-        filterList = this.props.filters.channelPM.valueFilters.map(filter => {
-          return filter.value;
-        })
-        if (filterList.length !== 0 && this.props.filters.channelPM.availableFilters.length !== filterList.length) {
-          stringList = filterList.join(' - ');
-          this.setState({
-            pmStringList: stringList
-          });
-
-        } else {
-          this.setState({ pmStringList: '*' })
-        }
-      case SUMMARY_FILTERS.BUY_PAID_MEDIASPEND:
-        filterList = this.props.filters.channelPM.valueFilters.map(filter => {
-          return filter.value;
-        })
-        if (filterList.length !== 0 && this.props.filters.channelPM.availableFilters.length !== filterList.length) {
-          stringList = filterList.join(' - ');
-          this.setState({
-            pmStringList: stringList
-          });
-
-        } else {
-          this.setState({ pmStringList: '*' })
-        }
-      case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
-        filterList = this.props.filters.product.valueFilters.map(filter => {
-          return filter.value;
-        })
-        if (filterList.length !== 0 && this.props.filters.product.availableFilters.length !== filterList.length) {
-          stringList = filterList.join(' - ');
-          this.setState({
-            productStringList: stringList
-          });
-
-        } else {
-          this.setState({ productStringList: '*' })
-        }
-        break;
-      case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
-        filterList = this.props.filters.pvw.valueFilters.map(filter => {
-          return filter.value;
-        })
-        if (filterList.length !== 0 && this.props.filters.pvw.availableFilters.length !== filterList.length) {
-          stringList = filterList.join(' - ');
-          this.setState({
-            pvwStringList: stringList
-          });
-
-        } else {
-          this.setState({ pvwStringList: '*' })
-        }
-        break;
-      case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
-        filterList = this.props.filters.pvw.valueFilters.map(filter => {
-          return filter.value;
-        })
-        if (filterList.length !== 0 && this.props.filters.pvw.availableFilters.length !== filterList.length) {
-          stringList = filterList.join(' - ');
-          this.setState({
-            pvwStringList: stringList
-          });
-
-        } else {
-          this.setState({ pvwStringList: '*' })
-        }
-      case SUMMARY_FILTERS.BUY_CONVERSION:
-        filterList = this.props.filters.convType.valueFilters.map(filter => {
-          return filter.value;
-        })
-        if (filterList.length !== 0 && this.props.filters.convType.availableFilters.length !== filterList.length) {
-          stringList = filterList.join(' - ');
-          this.setState({
-            trafficStringList: stringList
-          });
-
-        } else {
-          this.setState({ trafficStringList: '*' })
-        }
-        break;
-        break;
-      default: break;
-    }
 
   }
   componentDidUpdate(prevProps) {
 
     let filterList;
     let stringList;
-    if (this.props.activeSecondary !== prevProps.activeSecondary) {
-      switch (this.props.activeSecondary) {
-        case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
-          filterList = this.props.filters.convType.valueFilters.map(filter => {
-            return filter.value;
-          })
-          if (filterList.length !== 0 && this.props.filters.convType.availableFilters.length !== filterList.length) {
-            stringList = filterList.join(' - ');
-            this.setState({
-              trafficStringList: stringList
-            });
 
-          } else {
-            this.setState({ trafficStringList: '*' })
-          }
-          break;
-        case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
-          filterList = this.props.filters.convType.valueFilters.map(filter => {
-            return filter.value;
-          })
-          if (filterList.length !== 0 && this.props.filters.convType.availableFilters.length !== filterList.length) {
-            stringList = filterList.join(' - ');
-            this.setState({
-              trafficStringList: stringList
-            });
-
-          } else {
-            this.setState({ trafficStringList: '*' })
-          }
-
-          break;
-        case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
-          filterList = this.props.filters.channelPM.valueFilters.map(filter => {
-            return filter.value;
-          })
-          if (filterList.length !== 0 && this.props.filters.channelPM.availableFilters.length !== filterList.length) {
-            stringList = filterList.join(' - ');
-            this.setState({
-              pmStringList: stringList
-            });
-
-          } else {
-            this.setState({ pmStringList: '*' })
-          }
-
-          break;
-        case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
-          filterList = this.props.filters.channelPM.valueFilters.map(filter => {
-            return filter.value;
-          })
-          if (filterList.length !== 0 && this.props.filters.channelPM.availableFilters.length !== filterList.length) {
-            stringList = filterList.join(' - ');
-            this.setState({
-              pmStringList: stringList
-            });
-
-          } else {
-            this.setState({ pmStringList: '*' })
-          }
-        case SUMMARY_FILTERS.BUY_PAID_MEDIASPEND:
-          filterList = this.props.filters.channelPM.valueFilters.map(filter => {
-            return filter.value;
-          })
-          if (filterList.length !== 0 && this.props.filters.channelPM.availableFilters.length !== filterList.length) {
-            stringList = filterList.join(' - ');
-            this.setState({
-              pmStringList: stringList
-            });
-
-          } else {
-            this.setState({ pmStringList: '*' })
-          }
-        case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
-          filterList = this.props.filters.product.valueFilters.map(filter => {
-            return filter.value;
-          })
-          if (filterList.length !== 0 && this.props.filters.product.availableFilters.length !== filterList.length) {
-            stringList = filterList.join(' - ');
-            this.setState({
-              productStringList: stringList
-            });
-
-          } else {
-            this.setState({ productStringList: '*' })
-          }
-          break;
-        case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
-          filterList = this.props.filters.pvw.valueFilters.map(filter => {
-            return filter.value;
-          })
-          if (filterList.length !== 0 && this.props.filters.pvw.availableFilters.length !== filterList.length) {
-            stringList = filterList.join(' - ');
-            this.setState({
-              pvwStringList: stringList
-            });
-
-          } else {
-            this.setState({ pvwStringList: '*' })
-          }
-          break;
-        case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
-          filterList = this.props.filters.pvw.valueFilters.map(filter => {
-            return filter.value;
-          })
-          if (filterList.length !== 0 && this.props.filters.pvw.availableFilters.length !== filterList.length) {
-            stringList = filterList.join(' - ');
-            this.setState({
-              pvwStringList: stringList
-            });
-
-          } else {
-            this.setState({ pvwStringList: '*' })
-          }
-        case SUMMARY_FILTERS.BUY_CONVERSION:
-          filterList = this.props.filters.convType.valueFilters.map(filter => {
-            return filter.value;
-          })
-          if (filterList.length !== 0 && this.props.filters.convType.availableFilters.length !== filterList.length) {
-            stringList = filterList.join(' - ');
-            this.setState({
-              trafficStringList: stringList
-            });
-
-          } else {
-            this.setState({ trafficStringList: '*' })
-          }
-          break;
-          break;
-        default: break;
-      }
-    }
-    if (this.props.filters.preferencesAreAdded !== prevProps.filters.preferencesAreAdded) {
-      this.setState({ loading: true }, () => {
-        setTimeout(() => {
-          this.setState({ loading: false })
-        }, 1);
-      })
-      this.setState({
-        selectedFilters: [
-          ...this.props.filters.visits.valueFilters.map(item => {
-            return { ...item, label: item.value }
-          }),
-          ...this.props.filters.convType.valueFilters.map(item => {
-            return { ...item, label: item.value }
-          }),
-          ...this.props.filters.websegment.valueFilters.map(item => {
-            return { ...item, label: item.value }
-          }),
-          ...this.props.filters.channelMU.valueFilters.map(item => {
-            return { ...item, label: item.value }
-          }),
-          ...this.props.filters.channelPM.valueFilters.map(item => {
-            return { ...item, label: item.value }
-          }),
-          ...this.props.filters.pvw.valueFilters.map(item => {
-            return { ...item, label: item.value }
-          }),
-          ...this.props.filters.segment.valueFilters.map(item => {
-            return { ...item, label: item.value }
-          }),
-          ...this.props.filters.product.valueFilters.map(item => {
-            return { ...item, label: item.value }
-          })]
-      })
-    }
   }
   updateQTDPercentageFilter = (e) => {
     let metric = e.target.innerHTML.toLowerCase();
@@ -428,7 +108,7 @@ class SummaryViewDetails extends Component {
     }
     // Either be 'units' or 'arr'
   }
-  updateMultiChartMetricFilter(e) {
+  updateMultiChartMetricFilter = (e) => {
     let metric = e.target.innerHTML.toLowerCase();
     if (metric === "arr") {
       this.props.updateMultichartMetric(true);
@@ -438,7 +118,7 @@ class SummaryViewDetails extends Component {
     // Either be 'units' or 'arr'
     this.setState({ activeMetric: e.target.innerHTML.toLowerCase() });
   }
-  updateQtdMetricFilter(e) {
+  updateQtdMetricFilter = (e) => {
     //Either be 'qtd', 'week' or 'all'
     this.setState({ activeTimeMetric: e.target.innerHTML.toLowerCase() });
   }
@@ -465,10 +145,6 @@ class SummaryViewDetails extends Component {
       }
 
     }
-
-
-    // this.setState({ isButtonHighlighted: true });
-
   }
   updateMultiValue = (e, type) => {
     this.setState({ multiValueSubmitted: true });
@@ -477,16 +153,11 @@ class SummaryViewDetails extends Component {
       _.remove(copy, item => { return item.category === type });
       this.setState({ selectedFilters: [...copy] }, () => {
       })
-
     } else {
       _.remove(copy, item => { return item.category === e[0].category });
       this.setState({ selectedFilters: [...copy, ...e] }, () => {
       });
     }
-
-
-
-
   }
   getExcelFilters(activeFilters) {
     let newArr;
@@ -590,7 +261,6 @@ class SummaryViewDetails extends Component {
   }
 
   closeMultiValue = (e) => {
-
     this.submitFilters({});
   }
   getSummaryFilters(activeItem) {
@@ -620,7 +290,7 @@ class SummaryViewDetails extends Component {
       VISITS
     } = DIMENSIONS;
 
-    let { lastTouchChannel, convType, websegment, segment, product, pvw, visits, channelMU, channelPM } = this.props.activeFilters;
+    let { lastTouchChannel, convType, websegment, segment, product, pvw, visits, channelMU, channelPM } = this.props.filters;
     switch (activeItem) {
 
       case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
@@ -932,14 +602,6 @@ class SummaryViewDetails extends Component {
       arrMetric: true,
       activeMetric: this.props.multichartIsArr ? true : false
     });
-    var PercentageStyles = classNames({
-      unitMetric: true,
-      activeMetric: this.state.qtdIsPercent ? true : false
-    });
-    var NumberStyles = classNames({
-      arrMetric: true,
-      activeMetric: this.state.qtdIsPercent ? false : true
-    });
     var QTDStyles = classNames({
       qtdMetric: true,
       activeTimeMetric: this.state.activeTimeMetric === "qtd" ? true : false
@@ -948,32 +610,9 @@ class SummaryViewDetails extends Component {
       weekMetric: true,
       activeTimeMetric: this.state.activeTimeMetric === "week" ? true : false
     });
-    var AllStyles = classNames({
-      allMetric: true,
-      activeTimeMetric: this.state.activeTimeMetric === "all" ? true : false
-    });
-    var qtdwColSizes = classNames({
-      colContainer: true,
-      qtdSize: this.state.activeTimeMetric === "qtd" ? true : false,
-      weekSize: this.state.activeTimeMetric === "week" ? true : false,
-      halfSize: this.state.activeTimeMetric === "all" ? true : false
-    });
-    var qtdTotalTable = classNames({
-      qtdTotalTable: true,
-      normalTableSize:
-        this.state.activeTimeMetric === "week" ||
-          this.state.activeTimeMetric === "qtd"
-          ? true
-          : false,
-      halfTableSize: this.state.activeTimeMetric === "all" ? true : false
-    });
-    let qtdCounts = 0;
-    let geoCounts = 0;
-    let statsCounts = 0;
+
     return (
       <div className="sumViewContainer">
-
-
         {/* First Row for Ttle Bar and Metric Filter */}
         <div className="row container-fluid titleBarHeader">
 
@@ -992,23 +631,19 @@ class SummaryViewDetails extends Component {
                 {this.getOneWeekBehindMarker(this.props.activeSecondary, 'message')}
               </div>
             </span>
-
-
-
             {this.props.activePrimary < 1 ?
-
               <div className="col-lg-2 col-md-3 flRight">
                 <div className=" multiChartMetricContainer ">
                   <div
                     onClick={this.updateMultiChartMetricFilter}
                     className={ArrStyles}>
                     ARR
-    </div>
+                </div>
                   <div
                     onClick={this.updateMultiChartMetricFilter}
                     className={UnitStyles}>
                     UNITS
-    </div>
+                  </div>
 
                 </div>
               </div>
@@ -1016,11 +651,7 @@ class SummaryViewDetails extends Component {
               <span></span>}
 
             {this.props.isLoading === true ? null : <ExcelWorkbook activeItem={this.props.secondaryData[this.props.activeSecondary]} />}
-
-
-
             <div className="stats-container-main">{this.props.activeItem.details.stats.map(item => {
-
               if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
                 activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary === SUMMARY_FILTERS.RENEW_QTR_PF ||
                 activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
@@ -1042,28 +673,18 @@ class SummaryViewDetails extends Component {
                   </div>
                 )
               }
-
             }).reverse()}</div>
           </div>
-
           {/* FILTER */}
           <div className="col-lg-12 col-md-12 summary-filter">
             {this.getSummaryFilters(this.props.activeSecondary)}
           </div>
-
-
-
-
           <div className="chartContainer col-md-12">
             <KendoMultiChart color="white" chartHeight={350} deviceType="laptop" />
           </div>
         </div>
-
-
         {/* Second Row for Quarterly to Date title header */}
         <div className=" qtdTitleBarHeader container-fluid row">
-
-
           <div className="col-md-2 col-lg-2 flRight">
             <div className=" totalTimeMetricContainer">
               <span>
@@ -1076,12 +697,7 @@ class SummaryViewDetails extends Component {
               </span>
             </div>
           </div>
-
-
-
         </div>
-
-
         <DetailBreakdown
           activeSecondary={this.props.activeSecondary}
           qtdIsPercent={this.state.qtdIsPercent}
@@ -1089,7 +705,6 @@ class SummaryViewDetails extends Component {
           activePrimary={activePrimary}
           activeTimeMetric={this.state.activeTimeMetric}
           background="white" />
-
         <div className="iconfooter">
           <img className='rtbIconFooter' src={rtbIcon} />
         </div>
@@ -1104,10 +719,7 @@ function mapStateToProps(state) {
     activePrimary: state.activeCards.primary,
     activeSecondary: state.activeCards.secondary,
     activeItem: state.summaryData.secondary[state.activeCards.secondary],
-    activeFilters: state.filters,
-    availableFilters: state.availableFilters,
     qtdwData: state.summaryData.secondary[state.activeCards.secondary].details.qtdw,
-    summaryData: state.adobeData,
     secondaryData: state.summaryData.secondary,
     multichartIsArr: state.multichartIsArr,
     filters: state.filters

@@ -8,26 +8,6 @@ import {
 import * as utils from '../../utilities';
 class PrimaryContentList extends Component {
 
-    componentDidUpdate(prevProps) {
-    }
-    // shouldComponentUpdate(nextProps){
-    //     if(this.props.toggleCommentary !== nextProps.toggleCommentary){
-    //         return true;
-    //     }
-    //      if(this.props.data[0] !== nextProps.data[0]){
-    //         return true;
-    //     }
-    //  if(this.props.activeCard !== nextProps.activeCard){
-    //         return true;
-    //     }
-    //     if(this.props.deviceType !== nextProps.deviceType ){
-    //         return true;
-    //     }
-    //  if (this.props.mobilePrimaryIsActive !== nextProps.mobilePrimaryIsActive){
-    //         return true;
-    //     }
-    //     return false;
-    // }
     render() {
         const isMobile = utils.includes(this.props.deviceType, 'mobile') ? true : false;
         const isLaptop = utils.includes(this.props.deviceType, 'laptop') ? true : false;

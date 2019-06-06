@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Dialog } from '@progress/kendo-react-dialogs';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
-import '@progress/kendo-ui';
+// import '@progress/kendo-ui';
 import styles from './KendoDialog.css';
 import $ from 'jquery';
 import * as _ from 'lodash'
@@ -56,8 +56,6 @@ class KendoDialog extends Component {
             activeDataFilters: [],
         };
 
-        this.closeDialog = this.closeDialog.bind(this)
-        this.handleResetFiltersClick = this.handleResetFiltersClick.bind(this);
         $('.content').kendoWindow({
             animation: true
         })
@@ -104,9 +102,6 @@ class KendoDialog extends Component {
 
     componentDidUpdate(prevProps) {
 
-        console.log('Setting Select Filters in Component Did Update', this.state.selectedFilters);
-
-   
         if (this.props.filters.preferencesAreAdded !== prevProps.filters.preferencesAreAdded) {
             this.setState({ loading: true }, () => {
                 setTimeout(() => {
@@ -146,47 +141,14 @@ class KendoDialog extends Component {
         }
 
     }
-    // resize() {
-    // }
-
-    open() {
+    open = () =>{
         $("[data-role='window']").each(function (index) {
             $(this).data('kendoWindow').open()
         });
     }
-    closeDialog() {
+    closeDialog = () => {
         this.props.updateDialogVisibility(false);
         this.setState({ savedClicked: undefined });
-    }
-
-    onItemChecked(e) {
-        e.preventDefault()
-
-
-
-        //TODO:  3 Different Actions for updating the defaultSummary, defaultFinKpi and defaultJournKpi
-        if (e.target.name === 'summaryViewOptions') {
-            switch (e.target.id) {
-                case "Financials":
-                    this.props.updateDefaultSummaryPreference('Financial');
-                    this.setState({ selectedSummary: 'Financial' });
-                    break;
-                case "Journeys":
-                    this.props.updateDefaultSummaryPreference('Journey');
-                    this.setState({ selectedSummary: 'Journey' });
-                    break;
-                default:
-                    break;
-
-            }
-        } else if (e.target.name === 'financialsSummaryOptions') {
-            this.setState({ financialsSummaryOptions: e.target.id });
-            // this.props.updateDefaultFinKpiPreference(this.convertFinId(e.target.id));
-        } else if (e.target.name === 'journeysSummaryViewOptions') {
-            this.setState({ journeysSummaryViewOptions: e.target.id })
-            // this.props.updateDefaultJournKpiPreference(this.convertJournId(e.target.id));
-        }
-
     }
 
 
@@ -301,29 +263,11 @@ class KendoDialog extends Component {
 
 
         this.setState({ selectedFilters: [] })
-
         this.props.submitFilters(newFilters);
-        console.log('New Filters Dialog', newFilters);
-        //Preferences
-        let view = (this.state.selectedSummary === 'Financial') ? 'Financial' : 'Journey';
-
-        let fin = this.convertFinId(this.state.financialsSummaryOptions);
-        let journ = this.convertJournId(this.state.journeysSummaryViewOptions)
-
         this.props.updateUserSettings(newFilters, this.props.user);
         this.setState({ savedClicked: true });
-
         setTimeout(() => this.closeDialog(), 1500);
     }
-
-    // Entered
-    onMouseEnterHandler = () => {
-    }
-
-    //Left
-    onMoueLeaveHandler = () => {
-    }
-
 
     generateFilterList = (filterList) => {
 
@@ -335,8 +279,7 @@ class KendoDialog extends Component {
         });
         return _.pull(allDataRemoved, undefined);
     }
-    handleResetFiltersClick() {
-        // this.props.resetFilters(this.props.preferences);
+    handleResetFiltersClick = () => {
         let newFilters = {
             quarter: this.props.filters.defaultState.quarter.valueFilters,
             segment: this.props.filters.defaultState.segment.valueFilters,
@@ -389,20 +332,11 @@ class KendoDialog extends Component {
         }
 
     }
-    // componentWillUnmount() {
-    //     this.setState({ selectedFilters: [] })
-    // }
-    closeSingleValue = (e) => {
+  
+    closeDrowDown = (e) => {
         // console.log('Closing Single Value',e);
     }
-    closeMultiValue = (e) => {
-        // console.log('Closing Multivalue',e);
-    }
-
-
-    closed = (e) => {
-        // console.log('Hello', this.state.selectedFilters);
-    }
+   
     submitFilters = (e) => {
         // console.log('Submitting Filters . . . ');
         const { GEO,
@@ -508,7 +442,7 @@ class KendoDialog extends Component {
                         value={_.filter(this.state.selectedFilters, item => { return item.category === ROUTE })}
                         options={filters.route.availableFilters}
                         onValueChange={(e) => { let type = ROUTE; this.updateMultiValue(e, type) }}
-                        onMenuClose={this.closeMultiValue}
+                        onMenuClose={this.closeDropDown}
 
                     />
                 </div>
@@ -519,7 +453,7 @@ class KendoDialog extends Component {
                         activeFilters={filters.segment.valueFilters}
                         options={filters.segment.availableFilters}
                         onValueChange={this.updateSingleValue}
-                        onMenuClose={this.closeSingleValue}
+                        onMenuClose={this.closeDropDown}
                     />
 
                 </div>
@@ -529,7 +463,7 @@ class KendoDialog extends Component {
                         value={_.filter(this.state.selectedFilters, item => { return item.category === SUBSCRIPTION })}
                         options={filters.subscription.availableFilters}
                         onValueChange={(e) => { let type = SUBSCRIPTION; this.updateMultiValue(e, type) }}
-                        onMenuClose={this.closeMultiValue}
+                        onMenuClose={this.closeDropDown}
                     />
                 </div>
                 <div className={'dialog-dropdown col-lg-6'} >
@@ -537,7 +471,7 @@ class KendoDialog extends Component {
                     <MultiValueSelect
                         options={filters.product.availableFilters}
                         onValueChange={(e) => { let type = PRODUCT; this.updateMultiValue(e, type) }}
-                        onMenuClose={this.closeMultiValue}
+                        onMenuClose={this.closeDropDown}
                         value={_.filter(this.state.selectedFilters, item => { return item.category === PRODUCT })}
 
                     />
@@ -552,7 +486,7 @@ class KendoDialog extends Component {
                         value={_.filter(this.state.selectedFilters, item => { return item.category === SIGNCAT })}
                         options={filters.signupCategory.availableFilters}
                         onValueChange={(e) => { let type = SIGNCAT; this.updateMultiValue(e, type); }}
-                        onMenuClose={this.closeMultiValue}
+                        onMenuClose={this.closeDropDown}
                     />
                 </div>
                 <div>
@@ -563,7 +497,7 @@ class KendoDialog extends Component {
                     <MultiValueSelect
                         options={filters.nonDMSegment.availableFilters}
                         onValueChange={(e) => { let type = NONDMSEGMENT; this.updateMultiValue(e, type) }}
-                        onMenuClose={this.closeMultiValue}
+                        onMenuClose={this.closeDropDown}
                         value={_.filter(this.state.selectedFilters, item => { return item.category === NONDMSEGMENT })}
                     />
                 </div>
@@ -575,36 +509,15 @@ class KendoDialog extends Component {
             'quarterFilterContainer': true,
         });
         let { filters } = this.props;
-        // const filtersApplied = this.generateFilterList(this.props.activeFilters);
-        const defaultSum = this.state.selectedSummary || this.props.defaultSummaryView;
         const show = this.props.dialogIsOpen;
         const { GEO,
             MARKET,
-            PRODUCT,
-            SEGMENT,
-            SUBSCRIPTION,
             QUARTER,
-            ROUTE,
-            VISITSTATUS,
-            SIGNSOURCE,
-            SIGNAPP,
-            PRODUCTCAT,
-            WEBSEGMENT,
-            PVW,
-            CATEGORY,
-            LTC,
-            NEWVSREPEAT,
-            MOBILEVSDESKTOP,
-            CONVERSION,
-            VISITS
         } = DIMENSIONS;
         const kendoDialog = show ? (
             <div className="content ">
-
-
                 <div className="desktopDialog">
                     <Dialog width={939} height={626} title={`Data Preferences for ${this.props.user.name} `} onClose={this.closeDialog}>
-
                         {/* All the Contents */}
                         <div className="container-fluid">
                             <div className="col-lg-12 col-md-12">
@@ -628,7 +541,7 @@ class KendoDialog extends Component {
                                                 activeFilters={filters.quarter.valueFilters}
                                                 options={filters.quarter.availableFilters}
                                                 onValueChange={this.updateSingleValue}
-                                                onMenuClose={this.closeSingleValue}
+                                                onMenuClose={this.closeDropDown}
                                                 value={_.filter(this.state.selectedFilters, (item => { return item.category === QUARTER }))}
 
                                             />
@@ -638,7 +551,7 @@ class KendoDialog extends Component {
                                             <MultiValueSelect
                                                 options={filters.geo.availableFilters}
                                                 onValueChange={(e) => { let type = GEO; this.updateMultiValue(e, type) }}
-                                                onMenuClose={this.closeMultiValue}
+                                                onMenuClose={this.closeDropDown}
                                                 value={_.filter(this.state.selectedFilters, (item => { return item.category === GEO }))}
                                             />
                                         </div>
@@ -647,55 +560,37 @@ class KendoDialog extends Component {
                                             <MultiValueSelect
                                                 options={filters.market.availableFilters}
                                                 onValueChange={(e) => { let type = MARKET; this.updateMultiValue(e, type) }}
-                                                onMenuClose={this.closeMultiValue}
+                                                onMenuClose={this.closeDropDown}
                                                 value={_.filter(this.state.selectedFilters, (item => { return item.category === MARKET }))}
                                             />
                                         </div>
                                         {this.getGlobalSubFilters(filters)}
                                     </div>
                                 </div>
-
-
                                 <div className="col-lg-6 col-md-6">
                                     <a id="filter-reset" onClick={this.handleResetFiltersClick}>Re-set all Preferences</a>
                                 </div>
-
-
                             </div>
-
-
                         </div>
-
-                        {/* </div> */}
-
                         {/* Save Button */}
                         <button className="saveButton" onClick={this.saveChanges}>Save Changes</button>
                     </Dialog>
                 </div>
                 <div className="mobileDialog">
                     <Dialog width={window.innerWidth - 19} height={window.innerHeight} title={`Data Preferences`} onClose={this.closeDialog}>
-
-
                     </Dialog>
                 </div>
             </div>) : null;
-
         const savedPrompt = show ? (
             <div className="content">
                 <Dialog width={939} height={626} title={`Data Preferences for ${this.props.user.name} `} onClose={this.closeDialog}>
-
                     <div className="container-fluid savedContainer">
                         <LoadingScreen></LoadingScreen>
                     </div>
-
                 </Dialog>
             </div>
-
         ) : null;
-
-
         const screenView = this.state.savedClicked ? savedPrompt : kendoDialog;
-
         return (
             <div className="dialogContainer fluid">
                 {screenView}

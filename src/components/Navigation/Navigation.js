@@ -8,27 +8,22 @@ import {
 } from "../../Constants/consts.js";
 import styles from "./Navigation.css";
 import ReactPiwik from 'react-piwik';
-
 import logo from "../../assets/images/adobe-logo-nav.png";
 import userIcon from "./user-icon.svg";
 import filterUnselected from "./assets/filter-unselected.svg";
 import filterSelected from "./assets/filter-selected.svg";
 import commentIconOff from "./assets/images/comment-icon-off.svg";
 import commentIconOn from "./assets/images/comment-icon-on.svg";
-
 import * as utils from '../../utilities';
-
 // Redux
 import { connect } from "react-redux";
 import * as actions from "actions";
-
 // HTML 2 canvas
 import html2canvas from 'html2canvas';
-
-
-
 import CompanyHeader from './CompanyHeader.js';
 import UserNav from './UserNav.js';
+
+
 class Navigation extends Component {
   //When the component is constructed
   constructor(props) {
@@ -44,21 +39,16 @@ class Navigation extends Component {
     };
     //Binding functions to this
     this.checkAuthentication = checkAuthentication.bind(this);
-    this.showLogo = this.showLogo.bind(this);
-    this.updateCommentsNav = this.updateCommentsNav.bind(this);
     this.showLogo();
   }
-
   async componentDidMount() {
     this.checkAuthentication();
   }
-
   async componentDidUpdate() {
     this.checkAuthentication();
   }
   onFilterToggled = e => {
-    // const toggleState = !this.state.isFilterPageVisible;
-    // this.setState({ isFilterPageVisible: toggleState });
+   
     this.props.updateViewSetting(MOBILE_FILTER_PAGE, !this.props.mobileFiltersIsShown);
   };
   // Function to show the logo after 1 second
@@ -69,38 +59,11 @@ class Navigation extends Component {
       });
     }, 1000);
   };
-  //Event handler for setting the active tab
-  // Dictates the style for the chosen tab
-  selectedNavItem(e, tab) {
-    e.preventDefault();
-    switch (tab) {
-      case "tab1":
-        // do something
-        this.setState({ activeTab: "tab1" });
-        break;
-      case "tab2":
-        // do something
-        this.setState({ activeTab: "tab2" });
-        break;
-      case "tab3":
-        // do something
-        this.setState({ activeTab: "tab3" });
-        break;
-      case "tab4":
-        // do something
-        this.setState({ activeTab: "tab4" });
-        break;
-      default:
-        // do something
-        this.setState({ activeTab: "" });
-        break;
-    }
-  }
 
   onDataPreferencesSelcted() {
     this.props.updateDialogVisibility(true);
   }
-  updateCommentsNav() {
+  updateCommentsNav = () => {
     let toggle = this.props.toggleCommentaryOn;
     this.props.toggleCommentBox(!toggle);
   }
@@ -159,7 +122,6 @@ class Navigation extends Component {
 function maptStateToProps(state) {
   return {
     dialogIsOpen: state.dialogIsOpen,
-    commentBoxIsOpen: state.commentBoxIsOpen,
     toggleCommentaryOn: state.toggleCommentaryBox,
     user: state.user,
     deviceType: state.appSettings.deviceType,

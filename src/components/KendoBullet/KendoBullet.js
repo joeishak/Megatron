@@ -38,37 +38,6 @@ class KendoBulletChart extends Component {
     return false;
   }
 
-  renderUnits(value) {
-    let returnValue = '';
-    value = parseInt(value)
-    if (value > 1000 && value <= 999999) {
-      value = (value / 1000).toFixed(1);
-      returnValue = value.toString() + ' K';
-    } else if (value > 1000000 && value <= 999999999) {
-      value = (value / 1000000).toFixed(1);
-      returnValue = value.toString() + ' M';
-    } else if (value > 1000000000 && value <= 999999999999) {
-      value = (value / 1000000000).toFixed(1);
-      returnValue = value.toString() + ' B';
-    } else if (value > 1000000000 && value <= 999999999999999) {
-      value = (parseInt(value) / 1000000000000).toFixed(1);
-      returnValue = value.toString() + ' T';
-    } else {
-      return value.toString();
-    }
-    return returnValue;
-  }
-
-  renderValue = (type, value) => {
-    switch (type) {
-      case 'currency':
-        return '$ ' + this.renderUnits(value);
-      case 'units':
-        return this.renderUnits(value);
-      case 'percent':
-        return (value / 100).toFixed(2).toString() + ' %';
-    }
-  }
 
   render() {
 
@@ -92,8 +61,6 @@ class KendoBulletChart extends Component {
 
     const colorRender = () => {
       let color = '';
-
-  
       if (this.props.cardIndex !== undefined && this.props.cardIndex === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || this.props.cardIndex === SUMMARY_FILTERS.RENEW_CANCEL ||
         this.props.cardIndex === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || this.props.cardIndex ===SUMMARY_FILTERS.RENEW_QTR_PF ||
         this.props.cardIndex === SUMMARY_FILTERS.RENEW_QTR_UI || this.props.cardIndex ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
@@ -115,14 +82,8 @@ class KendoBulletChart extends Component {
         }
   
       }
-
       return color;
-      
     }
-
-    // const fqTarget = [this.props.values[0], this.props.values[1] - 500000];
-
-    // {console.log(this.props.values)}
 
     return (
       <div>

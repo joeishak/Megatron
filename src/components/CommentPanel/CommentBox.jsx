@@ -24,14 +24,10 @@ class CommentBox extends Component {
             isCommentHovered: {
                 userName: '',
                 id: 999
-            }
+            },
+            isLoading: false,
 
         }
-        this.handleKeyPress = this.handleKeyPress.bind(this);
-        this.updateValue = this.updateValue.bind(this);
-        this.onDrop = this.onDrop.bind(this);
-        this.setAddCommentFocus = this.setAddCommentFocus.bind(this);
-        // this.grabProfilePic = this.grabProfilePic.bind(this);
     }
     componentDidMount() {
         this.props.isFetching(true);
@@ -40,15 +36,15 @@ class CommentBox extends Component {
             this.commentInput.focus();
         }
     }
-    componentDidUpdate() {
-        if (!this.props.commentsPackage.isLoading) {
+    componentDidUpdate(prevProps) {
+        if (this.props.commentsPackage.isLoading === false) {
             this.commentInput.focus();
         }
     }
-    handleCommentMouseEnter(e, userName) {
+    handleCommentMouseEnter = (e, userName) => {
         this.setState({ commentCommand: `Respond to ${userName} . . .` });
     }
-    handleCommentMouseLeave(e, userName) {
+    handleCommentMouseLeave = (e, userName) => {
         this.state.commentingUser ?
             this.setState({ commentCommand: `Responding to ${userName} . . .` }) :
             this.setState({ commentCommand: 'Add A Comment . . .' });
@@ -59,7 +55,7 @@ class CommentBox extends Component {
             this.commentInput.focus();
         }
     }
-    handleKeyPress(e) {
+    handleKeyPress = (e)  => {
 
         if (e.key === 'Enter' && this.state.commentToBeRepliedTo === null) {
             let isCommenter = null;
@@ -81,27 +77,17 @@ class CommentBox extends Component {
             } else {
                 // theres no groups coming back from okta, post the comments
                 // this.forceUpdate(() => {
-                    this.props.isFetching(true);
-                    this.props.addNewCommentToSecondaryMetric(params, this.props.currentMetric);
-                    // utils.postComment(params);
-                    // this.props.fetchComments(this.props.currentMetric);
-                    // this.props.fetchCommentsCount(this.props.currentMetric);
-                // })
-                // this.forceUpdate()
+                this.props.isFetching(true);
+                this.props.addNewCommentToSecondaryMetric(params, this.props.currentMetric);
+               
                 this.setState({ replyMessage: '' })
             }
 
             // check if commenter and only post commenter
             if (isCommenter !== null && isCommenter) {
                 // this.forceUpdate(() => {
-                    this.props.isFetching(true);
-                    this.props.addNewCommentToSecondaryMetric(params, this.props.currentMetric);
-                    // utils.postComment(params);
-                    // this.props.fetchComments(this.props.currentMetric);
-                    // this.props.fetchCommentsCount(this.props.currentMetric);
-                // })
-
-            // })
+                this.props.isFetching(true);
+                this.props.addNewCommentToSecondaryMetric(params, this.props.currentMetric);
 
                 this.setState({ replyMessage: '' })
             } else {
@@ -121,18 +107,10 @@ class CommentBox extends Component {
                 isCommenter = this.props.user.Groups.includes('Commenters');
                 // console.log('is commenter:', isCommenter);
             } else {
-                // theres no groups for okta
-                // this.forceUpdate(() => {
-                //     this.props.isFetching(true);
-                //     utils.postReply(params);
-                //     this.props.fetchComments(this.props.currentMetric);
-                //     this.props.fetchCommentsCount(this.props.currentMetric);
-                // });
+               
                 this.props.isFetching(true);
                 this.props.addNewReplyToSecondaryMetric(params, this.props.currentMetric);
-                // utils.postComment(params);
-                // this.props.fetchComments(this.props.currentMetric);
-                // this.props.fetchCommentsCount(this.props.currentMetric);
+                
                 this.setState({
                     commentToBeRepliedTo: null,
                     replyMessage: '',
@@ -142,17 +120,10 @@ class CommentBox extends Component {
             }
 
             if (isCommenter !== null && isCommenter) {
-                // this.forceUpdate(() => {
-                //     this.props.isFetching(true);
-                //     utils.postReply(params);
-                //     this.props.fetchComments(this.props.currentMetric);
-                //     this.props.fetchCommentsCount(this.props.currentMetric);
-                // });
+                
                 this.props.isFetching(true);
                 this.props.addNewReplyToSecondaryMetric(params, this.props.currentMetric);
-                // utils.postComment(params);
-                // this.props.fetchComments(this.props.currentMetric);
-                // this.props.fetchCommentsCount(this.props.currentMetric);
+                
                 this.setState({
                     commentToBeRepliedTo: null,
                     replyMessage: '',
@@ -162,28 +133,13 @@ class CommentBox extends Component {
             } else {
                 // user cannot reply
             }
-
-
-            // this.forceUpdate(() => {
-            //     this.props.isFetching(true);
-            //     utils.postReply(params);
-            //     this.props.fetchComments(this.props.currentMetric);
-            //     this.props.fetchCommentsCount(this.props.currentMetric);
-            // });
-
-            // this.setState({
-            //     commentToBeRepliedTo :null,
-            //     replyMessage:'',
-            //     commentCommand: 'Add Comment . . .',
-            //     commentingUser: false
-            // });
         }
     }
-    updateValue(e) {
+    updateValue = (e) => {
         // Set the state for the comment box
         this.setState({ replyMessage: e.target.value })
     }
-    onDrop(picture) {
+    onDrop = (picture) => {
         this.setState({ pictures: this.state.pictures.concat(picture) });
     }
     mouseEnter = (e, userName) => {
@@ -196,14 +152,7 @@ class CommentBox extends Component {
             this.setState({ commentCommand: 'Add A Comment . . .' });
         this.forceUpdate();
     }
-    onCommentReplyDeleteEntered = (e, _id, _userName) => {
-        e.preventDefault();
-        this.setState({ isHovered: { userName: _userName, id: _id } });
-    }
-    onCommentReplyDeleteLeave = (e, id) => {
-        e.preventDefault();
-        this.setState({ isHovered: { userName: '', id: 999 } });
-    }
+    
     onCommentDeleteEntered = (e, _id, _userName) => {
         e.preventDefault();
         this.setState({ isCommentHovered: { userName: _userName, id: _id } });
@@ -212,32 +161,16 @@ class CommentBox extends Component {
         e.preventDefault();
         this.setState({ isCommentHovered: { userName: '', id: 999 } });
     }
-    onReplyDeleted = (e, replyId) => {
-        alert('DELETE:');
-    }
+  
     onCommentDeleted = (e, commentId, commentResponses) => {
-        // alert('DELETE COMMENT');
         this.props.isFetching(true);
+        this.props.removeComment(commentId, this.props.currentMetric)
+        
+    }
 
-        this.props.removeComment(commentId,this.props.currentMetric  )
-        // this.props.fetchComments(this.props.currentMetric,this.props.currentMetric);
-        // this.props.fetchCommentsCount(this.props.currentMetric);
-        // this.props.removeComment(commentId, this.props.currentMetric);
-        // const reponsesIdArr = commentResponses.map(ele => { return ele.id });
-    }
-    onBodyCommentCommentClick = (e) => {
-        // console.log('GO BACK');
-        // this.setState({commentToBeRepliedTo: null, replyMessage: '', commentCommand: `Add Comment . . .`, commentingUser: false});
-        // if (!this.props.commentsPackage.isLoading) {
-        //     this.commentInput.focus();
-        // }
-    }
     render() {
         let { commentsPackage } = this.props;
-
-        // console.log('IS LOADING',commentsPackage.isLoading);
-
-        let componentsData = commentsPackage.isLoading ? <LoadingScreen></LoadingScreen> : <span><div className='commentsContainer' onClick={e => { this.onBodyCommentCommentClick(e) }}>
+        let componentsData = commentsPackage.isLoading || this.state.isLoading ? <LoadingScreen></LoadingScreen> : <span><div className='commentsContainer' >
             {(commentsPackage.data !== undefined) ?
                 commentsPackage.data.map(comment => {
                     return (
@@ -258,43 +191,11 @@ class CommentBox extends Component {
                             </div>
                             <div className='mainCommentContent'>
                                 {comment.comment}
-                                {/* <a id={comment.id} className='replyArrow' onMouseEnter={e => this.handleCommentMouseEnter(e, comment.userName)}
-                                    onMouseLeave={e => this.handleCommentMouseLeave(e, comment.userName)} onClick={e => this.setAddCommentFocus(e, comment.userName)}></a> */}
-                            </div>
-                           {/* <div className='repliesContainer'>
-                                <div className='repliesArrowContainer'>
-                                    <span className='repliesArrow'>
-                                    </span>
-                                </div>
-                                 <div className='repliesList'>
-                                    {(comment.replies !== undefined) ? comment.replies.map(reply => {
-                                        return (
-                                            <div key={reply.id} className='reply'>
-                                                <div className='userReplyingHeader'>
-                                                    <img src={profilePic} className="profilePictures" />
-                                                    <span className='commentUserName' onMouseEnter={e => { this.onCommentReplyDeleteEntered(e, reply.id, this.props.user.name) }}
-                                                        onMouseLeave={e => { this.onCommentReplyDeleteLeave(e, reply.id) }}>
-                                                        {(this.state.isHovered.id === reply.id && this.state.isHovered.userName === reply.userName) ?
-                                                            <span style={{ color: 'red' }} onClick={e => { this.onReplyDeleted(e, reply.id) }} className="comment-delete">DELETE RESPONSE</span>
-                                                            : reply.userName}
-                                                    </span>
-                                                    <span className='commentTime'>
-                                                        {this.state.isHovered.id === reply.id && this.state.isHovered.userName === reply.userName ? '' : reply.time}</span>
-                                                </div>
-                                                <div className='replyContent'>
-                                                    {reply.comment}
-                                                </div>
-                                            </div>
-                                        )
-                                    }) : null}
-
-                                </div> 
-                            </div>*/}
+                                 </div>
+                           
                         </div>)
                 }) : null}
-
         </div>
-
             <div className='commentResponseFooter'>
                 <input ref={(input) => { this.commentInput = input; }} className='replyTextInput' type="text" onChange={this.updateValue} value={this.state.replyMessage} onKeyPress={this.handleKeyPress} placeholder={this.state.commentCommand} />
                 <ImageUploader
@@ -309,12 +210,9 @@ class CommentBox extends Component {
         return (componentsData)
     }
 }
-
 function mapStateToProps(state) {
-    //  console.log(state);
     return {
         currentMetric: state.activeCards.secondary,
-        // commentsPackage: state.summaryData.secondary[state.activeCards.secondary].comments,
         commentsPackage: state.commentsPackage
     }
 }

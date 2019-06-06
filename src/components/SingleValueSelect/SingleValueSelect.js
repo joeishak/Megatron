@@ -1,5 +1,4 @@
 import React from 'react'
-import Select from 'react-select'
 import * as styles from './SingleValueSelect.css';
 import Picky from "react-picky";
 
@@ -43,27 +42,7 @@ let transformDefaultList = (objList) => {
 // Render Component
 const SingleValueSelect = ({ options, value, defaultValue, onValueChange, onMenuClose }) => {
     return (
-        // <Select
-        //     className="blackText"
-        //     value={_value}
-        //     options={transformList(options)}
-        //     closeMenuOnSelect={true}
-        //     onMenuClose={(e) => {
-        //         // console.log('Menu Closed',e),
-        //         onMenuClose(e)
-        //     }}
-        //     defaultValue={transformDefaultList(defaultValue)} onChange={onValueChange}
-        //     theme={(theme) => ({
-        //         ...theme,
-        //         borderRadius: 3,
-        //         colors: {
-        //         ...theme.colors,
-        //           primary25: '#3C3C3C',
-        //           primary: '#2978D9',
-        //           primary50: 'gray'
-        //         },
-        //       })}
-        // />
+       
         <Picky
             className='pickyDropDown'
             value={value}
@@ -71,7 +50,6 @@ const SingleValueSelect = ({ options, value, defaultValue, onValueChange, onMenu
             onChange={(e) => onValueChange(e)}
             valueKey="index"
             labelKey="value"
-            // multiple={true}
             includeSelectAll={true}
             includeFilter={true}
             dropdownHeight={200}

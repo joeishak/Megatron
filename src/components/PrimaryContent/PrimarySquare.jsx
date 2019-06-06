@@ -10,6 +10,7 @@ class PrimarySquare extends Component {
   constructor(props) {
     super(props);
   }
+  
   // Need to Refactor
   getColor(value, target, type, header) {
     // console.log('value', value);
@@ -83,7 +84,6 @@ class PrimarySquare extends Component {
     const isTablet = utils.includes(this.props.deviceType, 'tablet') ? true : false;
     const isMobileOrTablet = utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet');
 
-    // {utils.getDeviceType(this.props.window)}
     const formattedValue = utils.formatMetric(
       { valueType: this.props.item.valueType, value: this.props.item.value },
       "value"
@@ -103,8 +103,7 @@ class PrimarySquare extends Component {
       center: true
     });
     const responsiveSquareSize = classNames({
-      "col-sm-12 col-md-2 col-lg-2 ": isLaptop /* && (this.props.activeCard !== 3) */ ? true: false,
-      // " buyPrimaryCard": isLaptop && (this.props.activeCard === 3) ? true: false,
+      "col-sm-12 col-md-2 col-lg-2 ": isLaptop  ? true: false,
       "col-xs-12 ": isMobile || isTablet ? true : false
     });
     const responsiveSumChartSquare = classNames({
@@ -180,12 +179,10 @@ class PrimarySquare extends Component {
         >
           {/* Card */}
           <div
-            className={`${responsiveSumChartSquare}  ${
-              this.props.item.css[1]
-              } ${this.props.activeCard ? responsiveSelectedCard : ""}`}
+            className={`${responsiveSumChartSquare}  ${this.props.activeCard ? responsiveSelectedCard : ""}`}
             onClick={e => this.props.selectedCard(e, this.props.item.index)}
           >
-            <div className={`sumChartContent  ${this.props.item.css[1]}`}>
+            <div className={`sumChartContent  `}>
 
               {isMobile || isTablet ? null : (
                 <div
@@ -218,7 +215,6 @@ class PrimarySquare extends Component {
                   <span
                     className={`${responsiveValueText}  ${
                       utils.getLabelColorPrimary(this.props.item.value, this.props.item.target,(isMobile|| isTablet), this.props.item.index)
-                      // (this.props.item.value >= this.props.item.target) ? "selectedCardFontColorGreen": "selectedCardFontColorRed"
                       }`}
                   >
                     {formattedValue}
@@ -257,9 +253,7 @@ class PrimarySquare extends Component {
                     <div
                       className={`${responsiveValueText}  ${
                         (this.props.activeCard === 5) ? 'selectedCardFontColorGreen' : utils.getLabelColorPrimary(this.props.item.value, this.props.item.target,(isMobile|| isTablet),this.props.item.index)
-                        // this.props.item.value >= this.props.item.target
-                        //   ? "selectedCardFontColorGreen"
-                        //   : " selectedCardFontColorRed"
+                    
                         } `}
                     >
                       {formattedValue}<br />
@@ -286,7 +280,6 @@ class PrimarySquare extends Component {
                     key={this.props.item.index}
                   />}
                     </div>
-                    {/* Formatted Target $###.## (M / %)*/}
                     <div className={responsiveTarget}>
                       Target: {formattedTarget}
                     </div>
