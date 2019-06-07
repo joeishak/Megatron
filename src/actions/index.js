@@ -47,6 +47,7 @@ import {
     ADD_MULTI_FILTER,
     RESET_FILTERS,
     SUBMIT_FILTERS,
+    RESET_FILTERS_TO_DEFAULT_STATE,
     SUBMIT_SUB_FILTERS,
     REMOVE_MULTI_FILTER,
     SHOW_SUMMARY_VIEW_DETAILS,
@@ -1750,7 +1751,19 @@ export function resetFilters(preferences) {
         payload: { defaultQuarter, defaultSegment, geoFilters, marketFilters, subscriptionFilters, productFilters, routeFilters,signupsource,nondmsegments }
     }
 }
-
+/**
+ * Resets the active filters to default state
+ * @param {} preferences 
+ */
+export function resetFiltersToDefaultState() {
+    // console.log(preferences);
+    // let { defaultQuarter, defaultSegment, geoFilters, marketFilters, subscriptionFilters, productFilters, routeFilters,signupsource,nondmsegments } = preferences;
+    return {
+        type: RESET_FILTERS_TO_DEFAULT_STATE,
+        payload: {}
+    }
+}
+RESET_FILTERS_TO_DEFAULT_STATE
 /**
 * Remove a value to the active filters for the multi filter
 *

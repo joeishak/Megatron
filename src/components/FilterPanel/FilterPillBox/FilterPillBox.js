@@ -11,7 +11,7 @@ class FilterPillBox extends Component {
         super(props);
         // Initialize state
         this.state = {
-            value: this.props.data.value
+            // value: this.props.data.value
         }
 
         //Binding functions to this
@@ -21,7 +21,7 @@ class FilterPillBox extends Component {
     render() {
         return (
 
-            <span className="filterText" >{this.state.value}</span>
+            <span className="filterText" >{this.props.data.value}</span>
 
         )
     }

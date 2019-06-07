@@ -242,7 +242,7 @@ let cancelAdobeParams = [
         prompt: 'maFilters',
         value: ''
     },
-    
+
     {
         prompt: 'segmentFilters',
         value: ''
@@ -318,7 +318,7 @@ let renewParamsERetail = [
         prompt: 'maFilters',
         value: ''
     },
-    
+
     {
         prompt: 'segment_NonDMFilters',
         value: ''
@@ -401,297 +401,70 @@ let useParams = [
         value: ''
     }
 ]
-/**
- * 
- * @param {*} arrayList 
- */
-export function convertFilterList(arrayList) {
-    return "'" + arrayList.join("', '") + "' ";
-}
-/**
- * 
- */
-export function removeAllDataValueFromFilterArray(obj) {
-    _.remove(obj.quarter, (item) => {
-        return item.value === "All Data"
-    })
-    _.remove(obj.product, (item) => {
-        return item.value === "All Data"
-    })
-    _.remove(obj.segements, (item) => {
-        return item.value === "All Data"
-    })
-    _.remove(obj.subscriptionOfferings, (item) => {
-        return item.value === "All Data"
-    })
-    _.remove(obj.marketAreas, (item) => {
-        return item.value === "All Data"
-    })
-    _.remove(obj.geo, (item) => {
-        return item.value === "All Data"
-    })
-    _.remove(obj.routeTomarket, (item) => {
-        return item.value === "All Data"
-    })
 
-    return obj;
-}
-
-export function getCurrentQuarter(){
-    var today = new Date();
-    var quarter = Math.floor((today.getMonth() + 3) / 3);
-    return `${today.getFullYear()}-Q${quarter}`;
+/** Utility function that makes a call to Infoburst to determine if InfoBurst is accepting requests */
+/**
+ * @name getHeartbeat
+ * @description Utility function that makes a call to Infoburst to determine if InfoBurst is accepting requests
+ * @param none
+ * @returns Promise
+ */
+export function getHeartbeat() {
+    return axios.get(Infoburst.sysInfo, {
+        headers: headers,
+        responseType: 'text'
+    });
 }
 /**
- *
- * @param {*} arr
+ * @name addUserToDB
+ * @description Utility function that makes a post request to Infoburst GTMPOC Database Connection.
+ * Calls query 'NewUser' which is a procedure that adds an OKTA User with the settings default state for quarter, segment, and non dm segment filters to the User and Settings Tables.
+* @param {User} user 
+ * @param {Object} quarter 
+ * @param {Object} segment 
+ * @param {Array} nondm 
+ * @returns Promise Array containing the OKTA information for this user.
  */
-export function findIfFilterIsApplied(arr) {
-    const { GEO,
-        MARKET,
-        PRODUCT,
-        SEGMENT,
-        SUBSCRIPTION,
-        QUARTER,
-        ROUTE,
-        VISITSTATUS,
-        SIGNSOURCE,
-        SIGNAPP,
-        PRODUCTCAT,
-        WEBSEGMENT,
-        PVW,
-        CATEGORY,
-        LTC,
-        NEWVSREPEAT,
-        MOBILEVSDESKTOP,
-        CONVERSION,
-        VISITS
-    } = DIMENSIONS;
-    let filtersApplied = {
-        quarter: false,
-        geo: false,
-        product: false,
-        route: false,
-        segment: false,
-        subscription: false,
-        market: false
-    };
-    for (let i = 0; i < arr.length; i++) {
-        let item = arr[i]
-        switch (item.category) {
-            case QUARTER:
-                filtersApplied.quarter = true;
-                break;
-            case 'productNames':
-                filtersApplied.product = true;
-                break;
-            case 'geo':
-                filtersApplied.geo = true;
-                break;
-            case 'subscriptionOfferings':
-                filtersApplied.subscription = true;
-                break;
-            case 'marketAreas':
-                filtersApplied.market = true;
-                break;
-            case 'routeTomarket':
-                filtersApplied.route = true;
-                break;
-            case SEGMENT:
-                filtersApplied.segment = true;
-                break;
-            default:
-                break;
+export async function addUserToDB(user, quarter, segment, nondm) {
+    console.log(nondm);
+    responseArray = [];
+    promiseArr = [];
+    let body = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'NewUser',
+        "columnNames": 'true',
+        "params": {
+            "userId": user.sub,
+            "fname": `${user.given_name}`,
+            "lname": `${user.family_name}`,
+            "email": `'${user.email}'`,
+            "quarter": `${quarter}`,
+            "segment": `${segment}`,
+            "nonDmSegments": `${nondm}`
+
         }
     }
-    return filtersApplied;
-}
-/**
- *
- * @param {Array} filterParams
- * @param {Object} filtersApplied
- * @param {Object} allFilters
- * @param {Array} _activeParams
- */
-export function generateFilterParams(type, filterParams, allFilters, _activeParams) {
-    switch (type) {
-        case 1:
-            //Use
-            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
-            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
-            break;
-        //Try
-        case 2:
-            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.signupcat, allFilters.signupcat);
-            break;
-        case 3:
-            //Renew
-            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.route, allFilters.routeTomarket);
-            filterParams[4].value = getParamValues(_activeParams.segment, allFilters.segment);
-            filterParams[5].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
-            break;
-        case 4:
-            //  Renew AdobeCom
-            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
-            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
-            break;
-        //Traffic
-        case 5:
-            filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.websegment, allFilters.websegment);
-            filterParams[4].value = getParamValues(_activeParams.visits, allFilters.visits);
-            filterParams[5].value = getParamValues(_activeParams.lastTouchChannel, allFilters.lastTouchChannel);
-            filterParams[6].value = getParamValues(_activeParams.convType, allFilters.convType);
-            break;
-        //Marketable Universe - Discover
-        case 6:
-            // console.log('Gen PArams ', _activeParams, allFilters);
-            filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.channelMU, allFilters.channelMU);
-            break;
-        //PMSS - Discover
-        case 7:
-            filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.channelPM, allFilters.channelPM);
-            break;
-        //UQFM - Discover
-        case 8:
-            filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            break;
-        // case 9 = Finance = Default
-        case 10: /* Buy Market */
-            filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
-            filterParams[4].value = getParamValues(_activeParams.channelPM, allFilters.channelPM);
-            filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
-
-            break;
-        case 11: //Repeat User Mau
-            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
-            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
-            break;
-        case 12:  // Buy Gross 
-            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.route, allFilters.routeTomarket);
-            filterParams[4].value = getParamValues(_activeParams.segment, allFilters.segment);
-            filterParams[5].value = getParamValues(_activeParams.pvw, allFilters.pvw);
-
-            break;
-        case 13:
-            //  Renew ERetail
-            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
-            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
-            break;
-        // cancel Adobe / Etail 
-        case 14:
-            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
-            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
-            filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
-            break;
-     
-        default:
-            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
-            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
-            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.route, allFilters.routeTomarket);
-            filterParams[4].value = getParamValues(_activeParams.segment, allFilters.segment);
-            filterParams[5].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
-            filterParams[6].value = getParamValues(_activeParams.product, allFilters.product);
-
-            break;
-    }
-}
-
-/**
- *
- * @param {*} allFilters
- * @param {*} availableFilters
- */
-
-//  Object.keys(obj).map(e => obj[e])
-export function getAllFilters(allFilters, availableFilters) {
-    allFilters = {
-        quarter: Object.keys(availableFilters.quarter).map(e => availableFilters.quarter[e]),
-        geo: Object.keys(availableFilters.geo).map(e => availableFilters.geo[e]),
-        marketAreas: Object.keys(availableFilters.marketAreas).map(e => availableFilters.marketAreas[e]),
-        product: Object.keys(availableFilters.product).map(e => availableFilters.product[e]),
-        segment: Object.keys(availableFilters.segment).map(e => availableFilters.segment[e]),
-        subscriptionOfferings: Object.keys(availableFilters.subscriptionOfferings).map(e => availableFilters.subscriptionOfferings[e]),
-        routeTomarket: Object.keys(availableFilters.routeTomarket).map(e => availableFilters.routeTomarket[e]),
-    }
-}
-
-/**
- *
- * @param {*} activeParams
- * @param {*} allFilters
- */
-export function getParamValues(activeParams, allFilters) {
-    let paramValue;
-    // console.log(activeParams, allFilters);
-    if (activeParams.length === 0) {
-        // Add all the values from allFilters except for All Data to the Param Value
-        paramValue = [];
-        allFilters.forEach(item => {
-            if (item.value !== '#N/A' && item.value !== 'K12+EEA') {
-                paramValue.push(item.value);
-            } else if(item.value ==='#N/A' ){
-                paramValue.push('%23N%2FA');
-            } else if(item.value === 'K12+EEA'){
-                paramValue.push('K12%2BEEA')
-            }
+    responseArray = axios.post(Infoburst.dbQuery, body, {
+        headers: headers,
+        responseType: 'text'
+    })
+        .then((res) => {
+            console.log("Posted User to DB", res);
+            return res;
         })
-        paramValue = convertFilterList(paramValue);
-        return paramValue;
-    } else {
-        paramValue = [];
-        activeParams.forEach(item => {
-            if (item.value !== '#N/A' && item.value !== 'K12+EEA') {
-                paramValue.push(item.value);
-            } else if(item.value ==='#N/A' ){
-                paramValue.push('%23N%2FA');
-            } else if(item.value === 'K12+EEA'){
-                paramValue.push('K12%2BEEA')
-            }
+        .catch((err) => {
+            // console.log('posting user error: ', err);
+
         })
-        paramValue = convertFilterList(paramValue);
-        return paramValue;
-    }
+    let responseARr = Promise.all([responseArray]);
+    return responseARr;
 }
 
+/**
+ * @name initiateFilterDataRequests
+ * @description Utility function that makes a call request to Infoburst FILTERS XDC In Memory Cache for all possible filter values.
+ * @returns Promise Array containing all the filter values.
+ */
 export function initiateFilterDataRequests() {
 
     responseArray = [];
@@ -805,29 +578,26 @@ export function initiateFilterDataRequests() {
     let promiseArr1 = Promise.all(responseArray);
     return promiseArr1;
 }
- //
+/**
+ * @name requestPrimaryData
+ * @description Utility function that makes a call request to  Infoburst FinanceTune1, Traffic, Use, Buy  Try, And Renew XDC's In Memory Cache for all Primary KPI values of actuals, targets (QRF), vsQrf, and FQTarget.
+ * @param  {Array} allFilters
+ * @param {Array} _parameters
+ * @returns Promise Array containing all 6 objects. Each containing values for the Primary KPI.
+ */
 export function requestPrimaryData(allFilters, _parameters) {
     responseArray = [];
     resetRenewParams();
 
-    // filterParams[1].value = _parameters.product.length > 0 ? _parameters.product[0].value : allFilters.product;
-    // filterParams[2].value = _parameters.geo.length > 0 ? _parameters.geo[0].value : allFilters.geo;
-    // filterParams[3].value = _parameters.subscription.length > 0 ? _parameters.subscription[0].value : allFilters.subscriptios;
-    // filterParams[4].value = _parameters.market.length > 0 ? _parameters.market[0].value : allFilters.market;
-    // filterParams[5].value = _parameters.route.length > 0 ? _parameters.route[0].value : allFilters.route;
-
     //Generate the filter list 
-    // console.log('Utils 556: ', allFilters, _parameters)
     generateFilterParams(2, tryParams, allFilters, _parameters);
     generateFilterParams(5, trafficParams, allFilters, _parameters);
     generateFilterParams(9, financeParams, allFilters, _parameters);
     generateFilterParams(8, uqfmParams, allFilters, _parameters);
     generateFilterParams(1, useParams, allFilters, _parameters);
     generateFilterParams(4, renewParamsAdobeCom, allFilters, _parameters);
-
-
     //turn each list into a string
-    renewParamsAdobeCom.push(  {
+    renewParamsAdobeCom.push({
         prompt: 'routeFilters',
         value: `'ADOBE.COM/CC.COM'`
     });
@@ -837,14 +607,12 @@ export function requestPrimaryData(allFilters, _parameters) {
         return p;
 
     }, '');
-
     let params5 = trafficParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
 
     }, '');
-
     let params8 = financeParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
@@ -866,11 +634,6 @@ export function requestPrimaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-
-    // console.log(useParams, renewParams);
-    // //Primary 
-    console.log('Fetching Use', Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseRepeatMAUPrimary + params10 + '&json=1');
-    console.log('Fetching Renew', Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.RenewUIPFPrimary + params11 + '&json=1');
 
     const primaryFinancial = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetPrimary + params8 + '&json=1', {
         headers: headers,
@@ -903,6 +666,13 @@ export function requestPrimaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+/**
+ * @name requestDiscoverSecondary
+ * @description Utility function that makes a call request to  Infoburst  Traffic,UQFM, & Market XDC's In Memory Cache for all Secondary KPI values of actuals, targets (QRF), vsQrf, and FQTarget.
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Discover Secondary KPIs.
+ */
 export function requestDiscoverSecondary(allFilters, _parameters) {
     responseArray = [];
 
@@ -970,6 +740,13 @@ export function requestDiscoverSecondary(allFilters, _parameters) {
 
     return promiseArr;
 }
+/**
+ * @name requestFinanceSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  FinanceTune1 and FinanceTune2 XDC's In Memory Cache for all Secondary KPI values of actuals, targets (QRF), vsQrf, and FQTarget.
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Finance Secondary KPIs.
+ */
 export function requestFinanceSecondaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -998,6 +775,13 @@ export function requestFinanceSecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+/**
+ * @name requestFinanceXdc1SecondaryData
+ * @description Utility function that makes a call request to  Infoburst  FinanceTune1   XDC's In Memory Cache for all Net New and Gross New ARR Details  values .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Finance Net New and Gross New ARR Details.
+ */
 export function requestFinanceXdc1SecondaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -1051,6 +835,13 @@ export function requestFinanceXdc1SecondaryData(allFilters, _parameters) {
     let promiseArr = Promise.all(responseArray);
     return promiseArr;
 }
+/**
+ * @name requestFinanceXdc2SecondaryData
+ * @description Utility function that makes a call request to  Infoburst  FinanceTune2   XDC's In Memory Cache for all Cancellations and Renewal@ FP ARR Details  values .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Finance Cancellations and Renewal@ FP ARR Details.
+ */
 export function requestFinanceXdc2SecondaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -1105,6 +896,13 @@ export function requestFinanceXdc2SecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+/**
+ * @name requestTrafficSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Traffic and UQFM   XDC's In Memory Cache for all Traffic, Bounce Rate and UQFM Details  values .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Discover Traffic, Bounce Rate and UQFM Details.
+ */
 export function requestTrafficSecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(5, trafficParams, allFilters, _parameters);
@@ -1216,6 +1014,13 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+/**
+ * @name requestMKTGSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Market   XDC's In Memory Cache for all Marketable U, Paid Media (s) Details  values .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Discover MU, Paid Media Spend and Sourced Details.
+ */
 export function requestMKTGSecondaryData(allFilters, _parameters) {
     // console.log('requesting marketing data');
     responseArray = [];
@@ -1307,6 +1112,13 @@ export function requestMKTGSecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+/**
+ * @name requestTrySecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Try   XDC's In Memory Cache for all Try KPI  Details  values .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Try KPI Details.
+ */
 export function requestTrySecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(2, tryParams, allFilters, _parameters);
@@ -1366,6 +1178,13 @@ export function requestTrySecondaryData(allFilters, _parameters) {
     return promiseArr;
 
 }
+/**
+ * @name requestBuySecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Traffic, Market and Finance   XDC's In Memory Cache for all Buy Secondary KPI  values .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Buy Secondary KPI value.
+ */
 export function requestBuySecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(10, buyMktgParams, allFilters, _parameters);
@@ -1423,6 +1242,13 @@ export function requestBuySecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+/**
+ * @name requestBuyTrafficSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Traffic  XDC's In Memory Cache for Gross Conversion KPI details .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Buy Conversion KPI Details
+ */
 export function requestBuyTrafficSecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(5, trafficParams, allFilters, _parameters);
@@ -1501,6 +1327,13 @@ export function requestBuyTrafficSecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+/**
+ * @name requestBuyMarketSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Market  XDC's In Memory Cache for Mktg Sourced and PAid Media Spend KPI details .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Buy Mktg Sourced and PAid Media Spend KPI Details
+ */
 export function requestBuyMarketSecondaryData(allFilters, _parameters) {
     console.log('requesting marketing data', _parameters);
     responseArray = [];
@@ -1552,16 +1385,16 @@ export function requestBuyMarketSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-   // Channel QTD
-   const mktgSegment = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMKTGSourcedARRSegmentQTD + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-   // Channel QTD
-   const mktgProd  = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMarektingSourceARRProdQTD + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
+    // Channel QTD
+    const mktgSegment = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMKTGSourcedARRSegmentQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    // Channel QTD
+    const mktgProd = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMarektingSourceARRProdQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
     // console.log("Paid Media Spend and Source NEtwork request:", Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMSecondary + params6 + '&json=1');
     //Paid Media Sourced and Spend
     const pmssSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyPMSpendSecondary + params6 + '&json=1', {
@@ -1598,13 +1431,20 @@ export function requestBuyMarketSecondaryData(allFilters, _parameters) {
 
     responseArray.push(
         mktgSecondary, mktgMultichart, mktgQTD, mktgGeo, mktgMarket, mktgChannelMu
-        , pmssSecondary, pmssMultichart, pmssQTD, pmssGeo, pmssMarket, pmssChannelMu ,  mktgProd,
-         mktgSegment
+        , pmssSecondary, pmssMultichart, pmssQTD, pmssGeo, pmssMarket, pmssChannelMu, mktgProd,
+        mktgSegment
     );
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
 }
+/**
+ * @name requestBuyFinanceSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  FinanceTune1  XDC's In Memory Cache for Gross New ARR And Subs KPI details .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Buy Gross New ARR And Subs KPI Details
+ */
 export function requestBuyFinanceSecondaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -1660,6 +1500,13 @@ export function requestBuyFinanceSecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+/**
+ * @name requestUseSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Use  XDC's In Memory Cache for all Use KPIs details .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Use KPIs Details
+ */
 export function requestUseSecondaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -1705,12 +1552,19 @@ export function requestUseSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    
-    responseArray.push(useSecondary, useMultichart, useQTDTotals, useGeoQTD, useMarketQTD, useSegmentQTD, useSubsQTD,UseCumuMembers);
+
+    responseArray.push(useSecondary, useMultichart, useQTDTotals, useGeoQTD, useMarketQTD, useSegmentQTD, useSubsQTD, UseCumuMembers);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
 }
+/**
+ * @name requestRenewCancelSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  FinanceTune2  XDC's In Memory Cache for all Cancellation KPIs details .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the FinanceTune2  Cancellations KPIs Details
+ */
 export function requestRenewCancelSecondaryData(allFilters, _parameters) {
     responseArray = [];
     resetRenewParams();
@@ -1719,11 +1573,11 @@ export function requestRenewCancelSecondaryData(allFilters, _parameters) {
     generateFilterParams(14, cancelRetailParams, allFilters, _parameters);
 
 
-    cancelRetailParams.push( {
+    cancelRetailParams.push({
         prompt: 'routeFilters',
         value: `'E-TAIL/RETAIL','RESELLER'`
     })
-    cancelAdobeParams.push(  {
+    cancelAdobeParams.push({
         prompt: 'routeFilters',
         value: `'ADOBE.COM/CC.COM'`
     });
@@ -1772,7 +1626,7 @@ export function requestRenewCancelSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-  
+
     const financeProductQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ProductQTD + params9 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -1780,7 +1634,7 @@ export function requestRenewCancelSecondaryData(allFilters, _parameters) {
     responseArray.push(financeSecondary, financeMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeProductQTD);
 
     // AdobeCom Cancellations
- 
+
     const cancelAdobeSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params7 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -1810,7 +1664,7 @@ export function requestRenewCancelSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    responseArray.push(cancelAdobeSecondary, cancelAdobeMultichart, cancelAdobeQTD, cancelAdobeGeo, cancelAdobeMarket,cancelAdobeSegment,cancelAdobeProduct);
+    responseArray.push(cancelAdobeSecondary, cancelAdobeMultichart, cancelAdobeQTD, cancelAdobeGeo, cancelAdobeMarket, cancelAdobeSegment, cancelAdobeProduct);
 
     //Etail Retail Cancellations
     const cancelEtailSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params6 + '&json=1', {
@@ -1843,12 +1697,21 @@ export function requestRenewCancelSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
-    responseArray.push(cancelEtailSecondary, cancelEtailMultichart, cancelEtailQTD, cancelEtailGeo, cancelEtailMarket,cancelEtailSegment,cancelEtailProduct);
+    responseArray.push(cancelEtailSecondary, cancelEtailMultichart, cancelEtailQTD, cancelEtailGeo, cancelEtailMarket, cancelEtailSegment, cancelEtailProduct);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
 }
+/**
+ * @name requestRenewDetailsSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Renew  XDC's In Memory Cache for all QTR and EOT  KPIs details .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Renew  QTR and EOT KPIs Details
+ */
 export function requestRenewDetailsSecondaryData(allFilters, _parameters) {
+    console.log('HITTING THE CACHE MODE');
+
     responseArray = [];
     resetRenewParams();
 
@@ -1856,16 +1719,16 @@ export function requestRenewDetailsSecondaryData(allFilters, _parameters) {
     generateFilterParams(4, renewParamsAdobeCom, allFilters, _parameters);
     generateFilterParams(13, renewParamsReseller, allFilters, _parameters);
 
-    renewParamsERetail.push( {
+    renewParamsERetail.push({
         prompt: 'routeFilters',
         value: `'E-TAIL/RETAIL'`
     })
-   
-    renewParamsAdobeCom.push(  {
+
+    renewParamsAdobeCom.push({
         prompt: 'routeFilters',
         value: `'ADOBE.COM/CC.COM'`
     });
-    renewParamsReseller.push(  {
+    renewParamsReseller.push({
         prompt: 'routeFilters',
         value: `'RESELLER'`
     });
@@ -1874,124 +1737,121 @@ export function requestRenewDetailsSecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-    
+
     let params6 = renewParamsReseller.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-    
+
     let params5 = renewParamsAdobeCom.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
 
-  //Adobe.com
-  const renewEtailSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewEtailMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMultiChartQuery + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
+    //Adobe.com
+    const renewEtailSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewEtailMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMultiChartQuery + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
-const renewEtailQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFQTD + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewEtailGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFGeoQTD + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewEtailMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMAQTD + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewEtailSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSegmentsQTD + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewEtailSubsQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFProdQTD + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-responseArray.push(renewEtailSecondary, renewEtailMultichart, renewEtailQTDTotals, renewEtailGeoQTD, renewEtailMarketQTD, renewEtailSegmentQTD);
+    const renewEtailQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewEtailGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFGeoQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewEtailMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMAQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewEtailSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSegmentsQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewEtailSubsQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFProdQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    responseArray.push(renewEtailSecondary, renewEtailMultichart, renewEtailQTDTotals, renewEtailGeoQTD, renewEtailMarketQTD, renewEtailSegmentQTD);
 
-//Renew  RESELLER
-  
-const renewSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params6 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMultiChartQuery + params6 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
+    //Renew  RESELLER
 
-const renewQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewQTD + params6 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewGeoQTD + params6 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMAQTD + params6 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSegmentsQTD + params6 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-// const renewProductQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewProductCategoryQTD + params6 + '&json=1', {
-//     headers: headers,
-//     responseType: 'text'
-// });
-responseArray.push(renewSecondary, renewMultichart, renewQTDTotals, renewGeoQTD, renewMarketQTD, renewSegmentQTD);
-console.log('Requesting Renew Details with paramas',params6)
-const renewResellerSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params8 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewResellerMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMultiChartQuery + params8 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
+    const renewSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMultiChartQuery + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
-const renewResellerQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFQTD + params8 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewResellerGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFGeoQTD + params8 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewResellerMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMAQTD + params8 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewResellerSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSegmentsQTD + params8 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewResellerProductQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFProdQTD + params8 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-responseArray.push(renewResellerSecondary, renewResellerMultichart, renewResellerQTDTotals, renewResellerGeoQTD, renewResellerMarketQTD, renewResellerSegmentQTD,renewEtailSubsQTD,renewResellerProductQTD);
-    
-    
-
-  
-    
+    const renewQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewGeoQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMAQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSegmentsQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+ 
+    responseArray.push(renewSecondary, renewMultichart, renewQTDTotals, renewGeoQTD, renewMarketQTD, renewSegmentQTD);
+    console.log('Requesting Renew Details with paramas', params6)
+    const renewResellerSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewResellerMultichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMultiChartQuery + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewResellerQTDTotals = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewResellerGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFGeoQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewResellerMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMAQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewResellerSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSegmentsQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewResellerProductQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFProdQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    responseArray.push(renewResellerSecondary, renewResellerMultichart, renewResellerQTDTotals, renewResellerGeoQTD, renewResellerMarketQTD, renewResellerSegmentQTD, renewEtailSubsQTD, renewResellerProductQTD);
 
     let promiseArr = Promise.all(responseArray);
     return promiseArr;
 }
-
+/**
+ * @name requestRenewSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  FinanceTune2 and Renew  XDC's In Memory Cache for all Renew Secondary Card Values.
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Renew  Seccondary Card Values
+ */
 export function requestRenewSecondaryData(allFilters, _parameters) {
     responseArray = [];
     resetRenewParams();
@@ -2003,25 +1863,25 @@ export function requestRenewSecondaryData(allFilters, _parameters) {
     generateFilterParams(13, renewParamsReseller, allFilters, _parameters);
     generateFilterParams(4, renewParamsAdobeCom, allFilters, _parameters);
 
-    renewParamsERetail.push( {
+    renewParamsERetail.push({
         prompt: 'routeFilters',
         value: `'E-TAIL/RETAIL'`
     })
-   
-    renewParamsAdobeCom.push(  {
+
+    renewParamsAdobeCom.push({
         prompt: 'routeFilters',
         value: `'ADOBE.COM/CC.COM'`
     });
-    renewParamsReseller.push(  {
+    renewParamsReseller.push({
         prompt: 'routeFilters',
         value: `'RESELLER'`
     });
- 
-    cancelRetailParams.push( {
+
+    cancelRetailParams.push({
         prompt: 'routeFilters',
         value: `'E-TAIL/RETAIL','RESELLER'`
     })
-    cancelAdobeParams.push(  {
+    cancelAdobeParams.push({
         prompt: 'routeFilters',
         value: `'ADOBE.COM/CC.COM'`
     });
@@ -2091,168 +1951,22 @@ export function requestRenewSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
-    
-    
 
 
-    responseArray.push(cancelSecondary, cancelAdobeSecondary, renewUIPFSecondaryAdobe, cancelEtailResellerSecondary,  renewSecondaryResller, renewUIPFSecondaryEtail);
+
+
+    responseArray.push(cancelSecondary, cancelAdobeSecondary, renewUIPFSecondaryAdobe, cancelEtailResellerSecondary, renewSecondaryResller, renewUIPFSecondaryEtail);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
 }
-export function resetRenewParams() {
-    renewParamsReseller = [
-       {
-           prompt: 'quarterFilters',
-           value: ''
-       },
-       {
-           prompt: 'geoFilters',
-           value: ''
-       },
-       {
-           prompt: 'maFilters',
-           value: ''
-       },
-       {
-           prompt: 'segment_NonDMFilters',
-           value: ''
-       },
-       {
-           prompt: 'subscriptionFilters',
-           value: ''
-       }
-   
-   ];  
-cancelAdobeParams = [
-   {
-       prompt: 'quarterFilters',
-       value: ''
-   },
-   {
-       prompt: 'geoFilters',
-       value: ''
-   },
-   {
-       prompt: 'maFilters',
-       value: ''
-   },
-   
-   {
-       prompt: 'segmentFilters',
-       value: ''
-   },
-   {
-       prompt: 'subscriptionFilters',
-       value: ''
-   },
-   {
-       prompt: 'productFilters',
-       value: ''
-   }
-];
-cancelRetailParams = [
-   {
-       prompt: 'quarterFilters',
-       value: ''
-   },
-   {
-       prompt: 'geoFilters',
-       value: ''
-   },
-   {
-       prompt: 'maFilters',
-       value: ''
-   },
-   {
-       prompt: 'segmentFilters',
-       value: ''
-   },
-   {
-       prompt: 'subscriptionFilters',
-       value: ''
-   },
-   {
-       prompt: 'productFilters',
-       value: ''
-   }
-];
-renewParamsAdobeCom = [
-   {
-       prompt: 'quarterFilters',
-       value: ''
-   },
-   {
-       prompt: 'geoFilters',
-       value: ''
-   },
-   {
-       prompt: 'maFilters',
-       value: ''
-   },
-   {
-       prompt: 'segment_NonDMFilters',
-       value: ''
-   },
-   {
-       prompt: 'subscriptionFilters',
-       value: ''
-   }
-
-];
-renewParamsERetail = [
-   {
-       prompt: 'quarterFilters',
-       value: ''
-   },
-   {
-       prompt: 'geoFilters',
-       value: ''
-   },
-   {
-       prompt: 'maFilters',
-       value: ''
-   },
-   
-   {
-       prompt: 'segment_NonDMFilters',
-       value: ''
-   },
-   {
-       prompt: 'subscriptionFilters',
-       value: ''
-   }
-
-];
-renewParams = [
-   {
-       prompt: 'quarterFilters',
-       value: ''
-   },
-   {
-       prompt: 'geoFilters',
-       value: ''
-   },
-   {
-       prompt: 'maFilters',
-       value: ''
-   },
-   {
-       prompt: 'routeFilters',
-       value: ''
-   },
-   {
-       prompt: 'segment_NonDMFilters',
-       value: ''
-   },
-   {
-       prompt: 'subscriptionFilters',
-       value: ''
-   }
-
-];
-}
-
+/**
+ * @name filterPrimaryData
+ * @description Utility function that makes a call request to  Infoburst FinanceTune1, Traffic, Use, Buy  Try, And Renew XDC's Asynchronous mode for all Primary KPI values of actuals, targets (QRF), vsQrf, and FQTarget.
+ * @param  {Array} allFilters
+ * @param {Array} _parameters
+ * @returns Promise Array containing all 6 objects. Each containing values for the Primary KPI.
+ */
 export function filterPrimaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -2310,7 +2024,7 @@ export function filterPrimaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-  
+
     const primaryFinancial = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetPrimary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -2342,6 +2056,13 @@ export function filterPrimaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+/**
+ * @name filterDiscoverSecondary
+ * @description Utility function that makes a call request to  Infoburst  FinanceTune1 and FinanceTune2 XDC's Asynchronous mode for all Secondary KPI values of actuals, targets (QRF), vsQrf, and FQTarget.
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Finance Secondary KPIs.
+ */
 export function filterDiscoverSecondary(allFilters, _parameters) {
     responseArray = [];
 
@@ -2409,6 +2130,13 @@ export function filterDiscoverSecondary(allFilters, _parameters) {
 
     return promiseArr;
 }
+/**
+ * @name filterFinanceSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  FinanceTune1 and FinanceTune2 XDC's Asynchronous mode for all Secondary KPI values of actuals, targets (QRF), vsQrf, and FQTarget.
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Finance Secondary KPIs.
+ */
 export function filterFinanceSecondaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -2430,12 +2158,19 @@ export function filterFinanceSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
- 
+
     responseArray.push(financeSecondary, finance2Secondary);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
 }
+/**
+ * @name filterFinanceXdc1SecondaryData
+ * @description Utility function that makes a call request to  Infoburst  FinanceTune1   XDC's Asynchronous mode for all Net New and Gross New ARR Details  values .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Finance Net New and Gross New ARR Details.
+ */
 export function filterFinanceXdc1SecondaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -2490,6 +2225,13 @@ export function filterFinanceXdc1SecondaryData(allFilters, _parameters) {
     let promiseArr = Promise.all(responseArray);
     return promiseArr;
 }
+/**
+ * @name filterFinanceXdc2SecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Traffic and UQFM   XDC's Asynchronous mode for all Traffic, Bounce Rate and UQFM Details  values .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Discover Traffic, Bounce Rate and UQFM Details.
+ */
 export function filterFinanceXdc2SecondaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -2544,7 +2286,13 @@ export function filterFinanceXdc2SecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
-
+/**
+ * @name filterTrafficSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Traffic and UQFM   XDC's Asynchronous mode for all Traffic, Bounce Rate and UQFM Details  values .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Discover Traffic, Bounce Rate and UQFM Details.
+ */
 export function filterTrafficSecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(5, trafficParams, allFilters, _parameters);
@@ -2658,7 +2406,13 @@ export function filterTrafficSecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
-
+/**
+ * @name filterMKTGSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Market   XDC's Asynchronous mode for all Marketable U, Paid Media (s) Details  values .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Discover MU, Paid Media Spend and Sourced Details.
+ */
 export function filterMKTGSecondaryData(allFilters, _parameters) {
     // console.log('requesting marketing data');
     responseArray = [];
@@ -2753,6 +2507,13 @@ export function filterMKTGSecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+/**
+ * @name filterTrySecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Try   XDC's Asynchronous mode for all Try KPI  Details  values .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Try KPI Details.
+ */
 export function filterTrySecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(2, tryParams, allFilters, _parameters);
@@ -2812,6 +2573,13 @@ export function filterTrySecondaryData(allFilters, _parameters) {
     return promiseArr;
 
 }
+/**
+ * @name filterBuySecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Traffic, Market and Finance   XDC's Asynchronous mode for all Buy Secondary KPI  values .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Buy Secondary KPI value.
+ */
 export function filterBuySecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(10, buyMktgParams, allFilters, _parameters);
@@ -2869,6 +2637,13 @@ export function filterBuySecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+/**
+ * @name filterBuyTrafficSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Traffic  XDC's Asynchronous mode for Gross Conversion KPI details .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Buy Conversion KPI Details
+ */
 export function filterBuyTrafficSecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(5, trafficParams, allFilters, _parameters);
@@ -2949,6 +2724,13 @@ export function filterBuyTrafficSecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+/**
+ * @name filterBuyMarketSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Market  XDC's Asynchronous mode for Mktg Sourced and PAid Media Spend KPI details .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Buy Mktg Sourced and PAid Media Spend KPI Details
+ */
 export function filterBuyMarketSecondaryData(allFilters, _parameters) {
     // console.log('requesting marketing data');
     responseArray = [];
@@ -2997,16 +2779,16 @@ export function filterBuyMarketSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
-       // Channel QTD
-   const mktgSegment = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMKTGSourcedARRSegmentQTD + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-   // Channel QTD
-   const mktgProd   = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMarektingSourceARRProdQTD + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
+    // Channel QTD
+    const mktgSegment = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMKTGSourcedARRSegmentQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    // Channel QTD
+    const mktgProd = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMarektingSourceARRProdQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
     // console.log("Paid Media Spend and Source NEtwork request:", Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMSecondary + params6 + '&json=1');
     //Paid Media Sourced and Spend
     const pmssSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyPMSpendSecondary + params6 + '&json=1', {
@@ -3050,6 +2832,13 @@ export function filterBuyMarketSecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
+/**
+ * @name filterBuyFinanceSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  FinanceTune1  XDC's Asynchronous mode for Gross New ARR And Subs KPI details .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Buy Gross New ARR And Subs KPI Details
+ */
 export function filterBuyFinanceSecondaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -3105,7 +2894,13 @@ export function filterBuyFinanceSecondaryData(allFilters, _parameters) {
 
     return promiseArr;
 }
-
+/**
+ * @name filterUseSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Use  XDC's Asynchronous mode for all Use KPIs details .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Use KPIs Details
+ */
 export function filterUseSecondaryData(allFilters, _parameters) {
     responseArray = [];
 
@@ -3152,14 +2947,20 @@ export function filterUseSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    
-    responseArray.push(useSecondary, useMultichart, useQTDTotals, useGeoQTD, useMarketQTD, useSegmentQTD, useSubsQTD,UseCumuMembers);
+
+    responseArray.push(useSecondary, useMultichart, useQTDTotals, useGeoQTD, useMarketQTD, useSegmentQTD, useSubsQTD, UseCumuMembers);
 
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
 }
-
+/**
+ * @name filterRenewCancelSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  FinanceTune2  XDC's Asynchronous mode for all Cancellation KPIs details .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the FinanceTune2  Cancellations KPIs Details
+ */
 export function filterRenewCancelSecondaryData(allFilters, _parameters) {
     responseArray = [];
     resetRenewParams();
@@ -3167,11 +2968,11 @@ export function filterRenewCancelSecondaryData(allFilters, _parameters) {
     generateFilterParams(14, cancelAdobeParams, allFilters, _parameters);
     generateFilterParams(14, cancelRetailParams, allFilters, _parameters);
 
-    cancelRetailParams.push( {
+    cancelRetailParams.push({
         prompt: 'routeFilters',
         value: `'E-TAIL/RETAIL','RESELLER'`
     })
-    cancelAdobeParams.push(  {
+    cancelAdobeParams.push({
         prompt: 'routeFilters',
         value: `'ADOBE.COM/CC.COM'`
     });
@@ -3194,7 +2995,7 @@ export function filterRenewCancelSecondaryData(allFilters, _parameters) {
     }, '');
 
     // Blank Renew Calls for Cancellations
- 
+
     const financeSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params9 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -3220,7 +3021,7 @@ export function filterRenewCancelSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-  
+
     const financeProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ProductQTD + params9 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -3228,7 +3029,7 @@ export function filterRenewCancelSecondaryData(allFilters, _parameters) {
     responseArray.push(financeSecondary, financeMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeProductQTD);
 
     // AdobeCom Cancellations
- 
+
     const cancelAdobeSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params7 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -3258,7 +3059,7 @@ export function filterRenewCancelSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    responseArray.push(cancelAdobeSecondary, cancelAdobeMultichart, cancelAdobeQTD, cancelAdobeGeo, cancelAdobeMarket,cancelAdobeSegment,cancelAdobeProduct);
+    responseArray.push(cancelAdobeSecondary, cancelAdobeMultichart, cancelAdobeQTD, cancelAdobeGeo, cancelAdobeMarket, cancelAdobeSegment, cancelAdobeProduct);
 
     //Etail Retail Cancellations
     const cancelEtailSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params6 + '&json=1', {
@@ -3291,12 +3092,20 @@ export function filterRenewCancelSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
-    responseArray.push(cancelEtailSecondary, cancelEtailMultichart, cancelEtailQTD, cancelEtailGeo, cancelEtailMarket,cancelEtailSegment,cancelEtailProduct);
+    responseArray.push(cancelEtailSecondary, cancelEtailMultichart, cancelEtailQTD, cancelEtailGeo, cancelEtailMarket, cancelEtailSegment, cancelEtailProduct);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
 }
+/**
+ * @name filterRenewDetailsSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Renew  XDC's Asynchronous mode for all QTR and EOT  KPIs details .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Renew  QTR and EOT KPIs Details
+ */
 export function filterRenewDetailsSecondaryData(allFilters, _parameters) {
+    console.log('HITTING THE ASYNC MODE');
     responseArray = [];
     resetRenewParams();
 
@@ -3305,16 +3114,16 @@ export function filterRenewDetailsSecondaryData(allFilters, _parameters) {
     generateFilterParams(4, renewParamsAdobeCom, allFilters, _parameters);
     generateFilterParams(13, renewParamsReseller, allFilters, _parameters);
 
-    renewParamsERetail.push( {
+    renewParamsERetail.push({
         prompt: 'routeFilters',
         value: `'E-TAIL/RETAIL'`
-    })
-   
-    renewParamsAdobeCom.push(  {
+    });
+
+    renewParamsAdobeCom.push({
         prompt: 'routeFilters',
         value: `'ADOBE.COM/CC.COM'`
     });
-    renewParamsReseller.push(  {
+    renewParamsReseller.push({
         prompt: 'routeFilters',
         value: `'RESELLER'`
     });
@@ -3323,121 +3132,127 @@ export function filterRenewDetailsSecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-    
+
     let params6 = renewParamsReseller.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-    
+
     let params5 = renewParamsAdobeCom.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
 
-  //Etail Renew
-  const renewEtailSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewEtailMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMultiChartQuery + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
+    //Etail Renew
+    const renewEtailSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewEtailMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMultiChartQuery + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
-const renewEtailQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFQTD + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewEtailGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFGeoQTD + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewEtailMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMAQTD + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewEtailSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSegmentsQTD + params5 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-// const renewEtailSubsQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSubsOfferQTD + params5 + '&json=1', {
-//     headers: headers,
-//     responseType: 'text'
-// });
-responseArray.push(renewEtailSecondary, renewEtailMultichart, renewEtailQTDTotals, renewEtailGeoQTD, renewEtailMarketQTD, renewEtailSegmentQTD);
+    const renewEtailQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewEtailGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFGeoQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewEtailMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMAQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewEtailSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSegmentsQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewEtailSubsQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFProdQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    responseArray.push(renewEtailSecondary, renewEtailMultichart, renewEtailQTDTotals, renewEtailGeoQTD, renewEtailMarketQTD, renewEtailSegmentQTD);
 
-//Renew  RESELLER
-  
-const renewSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params8 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMultiChartQuery + params8 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
+    //Renew  RESELLER
+    const renewSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMultiChartQuery + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
-const renewQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewQTD + params8 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewGeoQTD + params8 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMAQTD + params8 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSegmentsQTD + params8 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-// const renewProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewProductCategoryQTD + params8 + '&json=1', {
-//     headers: headers,
-//     responseType: 'text'
-// });
-responseArray.push(renewSecondary, renewMultichart, renewQTDTotals, renewGeoQTD, renewMarketQTD, renewSegmentQTD);
-const renewResellerSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params6 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewResellerMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMultiChartQuery + params6 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
+    const renewQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewGeoQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewMAQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSegmentsQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    // const renewProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewProductCategoryQTD + params8 + '&json=1', {
+    //     headers: headers,
+    //     responseType: 'text'
+    // });
+    responseArray.push(renewSecondary, renewMultichart, renewQTDTotals, renewGeoQTD, renewMarketQTD, renewSegmentQTD);
+    const renewResellerSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewResellerMultichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMultiChartQuery + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewResellerQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewResellerGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFGeoQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewResellerMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMAQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewResellerSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSegmentsQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewResellerProductQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFProdQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    responseArray.push(renewResellerSecondary, renewResellerMultichart, renewResellerQTDTotals, renewResellerGeoQTD, renewResellerMarketQTD, renewResellerSegmentQTD,renewEtailSubsQTD,renewResellerProductQTD);
 
-const renewResellerQTDTotals = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFQTD + params6 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewResellerGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFGeoQTD + params6 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewResellerMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFMAQTD + params6 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
-const renewResellerSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSegmentsQTD + params6 + '&json=1', {
-    headers: headers,
-    responseType: 'text'
-});
 
-responseArray.push(renewResellerSecondary, renewResellerMultichart, renewResellerQTDTotals, renewResellerGeoQTD, renewResellerMarketQTD, renewResellerSegmentQTD);
-    
-    
 
-  
-    
+
+
 
     let promiseArr = Promise.all(responseArray);
     return promiseArr;
 }
-
-
+/**
+ * @name filterRenewSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  FinanceTune2 and Renew  XDC's Asynchronous mode for all Renew Secondary Card Values
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Renew  Seccondary Card Values
+ */
 export function filterRenewSecondaryData(allFilters, _parameters) {
     responseArray = [];
     resetRenewParams();
@@ -3449,25 +3264,25 @@ export function filterRenewSecondaryData(allFilters, _parameters) {
     generateFilterParams(13, renewParamsReseller, allFilters, _parameters);
     generateFilterParams(4, renewParamsAdobeCom, allFilters, _parameters);
 
-    renewParamsERetail.push( {
+    renewParamsERetail.push({
         prompt: 'routeFilters',
         value: `'E-TAIL/RETAIL'`
     })
-   
-    renewParamsAdobeCom.push(  {
+
+    renewParamsAdobeCom.push({
         prompt: 'routeFilters',
         value: `'ADOBE.COM/CC.COM'`
     });
-    renewParamsReseller.push(  {
+    renewParamsReseller.push({
         prompt: 'routeFilters',
         value: `'RESELLER'`
     });
- 
-    cancelRetailParams.push( {
+
+    cancelRetailParams.push({
         prompt: 'routeFilters',
         value: `'E-TAIL/RETAIL','RESELLER'`
     })
-    cancelAdobeParams.push(  {
+    cancelAdobeParams.push({
         prompt: 'routeFilters',
         value: `'ADOBE.COM/CC.COM'`
     });
@@ -3534,50 +3349,374 @@ export function filterRenewSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
-    
-    
 
 
-    responseArray.push(cancelSecondary, cancelAdobeSecondary, renewUIPFSecondaryAdobe, cancelEtailResellerSecondary,  renewSecondaryResller, renewUIPFSecondaryEtail);
+
+
+    responseArray.push(cancelSecondary, cancelAdobeSecondary, renewUIPFSecondaryAdobe, cancelEtailResellerSecondary, renewSecondaryResller, renewUIPFSecondaryEtail);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
 }
-export async function addUserToDB(user,quarter,segment,nondm) {
-    console.log(nondm);
+/**
+ * @name retrieveUpdatedAndQuarter
+ * @description Utility function that makes a call request to  Infoburst  FinanceTune1  XDC's In Memory Cache for the Updated As Of Date and Current Quarter Week
+ * @returns Promise Array containing values for the Updated as of Date and Current Quarter/Week
+ */
+export function retrieveUpdatedAndQuarter() {
     responseArray = [];
-    promiseArr = [];
-    let body = {
-        "conn": `${Infoburst.appXDCID}`,
-        "qry": 'NewUser',
-        "columnNames": 'true',
-        "params": {
-            "userId": user.sub,
-            "fname": `${user.given_name}`,
-            "lname": `${user.family_name}`,
-            "email": `'${user.email}'`,
-            "quarter": `${quarter}`,
-            "segment":`${segment}`,
-            "nonDmSegments":`${nondm}`
 
-        }
-    }
-    responseArray = axios.post(Infoburst.dbQuery, body, {
+
+
+    let updatedData = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.UpdatedDate + '&json=1', {
         headers: headers,
         responseType: 'text'
-    })
-        .then((res) => {
-            console.log("Posted User to DB",res);
-      return res;
-        })
-        .catch((err) => {
-            // console.log('posting user error: ', err);
+    });
 
-        })
-        let responseARr = Promise.all([responseArray]);
-        return responseARr;
+    responseArray.push(updatedData);
+    promiseArr = Promise.all(responseArray);
+    return promiseArr;
+
 }
 
+
+/** Utility Functions */
+/**
+ * @name convertFilterList
+ * @description Utility function that converts the filters list into a string parameter for URL
+ * @param {*} arrayList 
+ * @returns String List of Values seperated by commas
+ */
+export function convertFilterList(arrayList) {
+    return "'" + arrayList.join("', '") + "' ";
+}
+/**
+ * @name getParamValues
+ * @description Utility function that converts the filters list into a string parameter for URL
+ * @param {*} activeParams Active filters chosen for this dimensions
+ * @param {*} allFilters All Available filters for this dimension
+ */
+export function getParamValues(activeParams, allFilters) {
+    let paramValue;
+    if (activeParams.length === 0) {
+        // Add all the values from allFilters to the Param Value
+        paramValue = [];
+        allFilters.forEach(item => {
+            if (item.value !== '#N/A' && item.value !== 'K12+EEA') {
+                paramValue.push(item.value);
+            } else if (item.value === '#N/A') {
+                paramValue.push('%23N%2FA');
+            } else if (item.value === 'K12+EEA') {
+                paramValue.push('K12%2BEEA')
+            }
+        })
+        paramValue = convertFilterList(paramValue);
+        return paramValue;
+    } else {
+        paramValue = [];
+        activeParams.forEach(item => {
+            if (item.value !== '#N/A' && item.value !== 'K12+EEA') {
+                paramValue.push(item.value);
+            } else if (item.value === '#N/A') {
+                paramValue.push('%23N%2FA');
+            } else if (item.value === 'K12+EEA') {
+                paramValue.push('K12%2BEEA')
+            }
+        })
+        paramValue = convertFilterList(paramValue);
+        return paramValue;
+    }
+}
+
+/**
+ * @name generateFilterParams
+ * @description Utility function that creates the array of values to be converted in a list format for Infoburst Call
+ * @param {*} type - Type Descriptor that lets app know what KPI to generate the filter params for
+ * @param {*} filterParams  - The Array to hold the values for each filter dimension that the user has chosen
+ * @param {*} allFilters  - The necessary filter dimensions with all available filters
+ * @param {*} _activeParams  - The necessary filter dimensions with all chosen filters
+ */
+export function generateFilterParams(type, filterParams, allFilters, _activeParams) {
+    switch (type) {
+        case 1:
+            //Use
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
+            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            break;
+        //Try
+        case 2:
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.signupcat, allFilters.signupcat);
+            break;
+        case 3:
+            //Renew
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.route, allFilters.routeTomarket);
+            filterParams[4].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[5].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            break;
+        case 4:
+            //  Renew AdobeCom
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
+            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            break;
+        //Traffic
+        case 5:
+            filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.websegment, allFilters.websegment);
+            filterParams[4].value = getParamValues(_activeParams.visits, allFilters.visits);
+            filterParams[5].value = getParamValues(_activeParams.lastTouchChannel, allFilters.lastTouchChannel);
+            filterParams[6].value = getParamValues(_activeParams.convType, allFilters.convType);
+            break;
+        //Marketable Universe - Discover
+        case 6:
+            // console.log('Gen PArams ', _activeParams, allFilters);
+            filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.channelMU, allFilters.channelMU);
+            break;
+        //PMSS - Discover
+        case 7:
+            filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.channelPM, allFilters.channelPM);
+            break;
+        //UQFM - Discover
+        case 8:
+            filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            break;
+        // case 9 = Finance = Default
+        case 10: /* Buy Market */
+            filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[4].value = getParamValues(_activeParams.channelPM, allFilters.channelPM);
+            filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
+
+            break;
+        case 11: //Repeat User Mau
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            break;
+        case 12:  // Buy Gross 
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.route, allFilters.routeTomarket);
+            filterParams[4].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[5].value = getParamValues(_activeParams.pvw, allFilters.pvw);
+
+            break;
+        case 13:
+            //  Renew ERetail
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
+            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            break;
+        // cancel Adobe / Etail 
+        case 14:
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
+            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
+            break;
+
+        default:
+            filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.route, allFilters.routeTomarket);
+            filterParams[4].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[5].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            filterParams[6].value = getParamValues(_activeParams.product, allFilters.product);
+
+            break;
+    }
+}
+/**
+ * @name resetRenewParams
+ * @description Utility function that resets the Renews Filter Parameter Arrays back to empty
+ */
+export function resetRenewParams() {
+    renewParamsReseller = [
+        {
+            prompt: 'quarterFilters',
+            value: ''
+        },
+        {
+            prompt: 'geoFilters',
+            value: ''
+        },
+        {
+            prompt: 'maFilters',
+            value: ''
+        },
+        {
+            prompt: 'segment_NonDMFilters',
+            value: ''
+        },
+        {
+            prompt: 'subscriptionFilters',
+            value: ''
+        }
+
+    ];
+    cancelAdobeParams = [
+        {
+            prompt: 'quarterFilters',
+            value: ''
+        },
+        {
+            prompt: 'geoFilters',
+            value: ''
+        },
+        {
+            prompt: 'maFilters',
+            value: ''
+        },
+
+        {
+            prompt: 'segmentFilters',
+            value: ''
+        },
+        {
+            prompt: 'subscriptionFilters',
+            value: ''
+        },
+        {
+            prompt: 'productFilters',
+            value: ''
+        }
+    ];
+    cancelRetailParams = [
+        {
+            prompt: 'quarterFilters',
+            value: ''
+        },
+        {
+            prompt: 'geoFilters',
+            value: ''
+        },
+        {
+            prompt: 'maFilters',
+            value: ''
+        },
+        {
+            prompt: 'segmentFilters',
+            value: ''
+        },
+        {
+            prompt: 'subscriptionFilters',
+            value: ''
+        },
+        {
+            prompt: 'productFilters',
+            value: ''
+        }
+    ];
+    renewParamsAdobeCom = [
+        {
+            prompt: 'quarterFilters',
+            value: ''
+        },
+        {
+            prompt: 'geoFilters',
+            value: ''
+        },
+        {
+            prompt: 'maFilters',
+            value: ''
+        },
+        {
+            prompt: 'segment_NonDMFilters',
+            value: ''
+        },
+        {
+            prompt: 'subscriptionFilters',
+            value: ''
+        }
+
+    ];
+    renewParamsERetail = [
+        {
+            prompt: 'quarterFilters',
+            value: ''
+        },
+        {
+            prompt: 'geoFilters',
+            value: ''
+        },
+        {
+            prompt: 'maFilters',
+            value: ''
+        },
+
+        {
+            prompt: 'segment_NonDMFilters',
+            value: ''
+        },
+        {
+            prompt: 'subscriptionFilters',
+            value: ''
+        }
+
+    ];
+    renewParams = [
+        {
+            prompt: 'quarterFilters',
+            value: ''
+        },
+        {
+            prompt: 'geoFilters',
+            value: ''
+        },
+        {
+            prompt: 'maFilters',
+            value: ''
+        },
+        {
+            prompt: 'routeFilters',
+            value: ''
+        },
+        {
+            prompt: 'segment_NonDMFilters',
+            value: ''
+        },
+        {
+            prompt: 'subscriptionFilters',
+            value: ''
+        }
+
+    ];
+}
+/**
+ * @name includes
+ * @description Utility function that determines if the 
+ */
 export function includes(container, value) {
     // console.log(container, value);
     let returnValue = false;
@@ -3588,14 +3727,6 @@ export function includes(container, value) {
         }
     }
     return returnValue;
-}
-
-// Heartbeat
-export function getHeartbeat() {
-    return axios.get(Infoburst.sysInfo, {
-        headers: headers,
-        responseType: 'text'
-    });
 }
 
 export function convertFilterListForDBQuery(arrayList) {
@@ -3892,7 +4023,7 @@ export function requestUserSettings(sub) {
 }
 
 export function postUserSettings(params) {
-    console.log('Params',params);
+    console.log('Params', params);
     let body = {
         "conn": `${Infoburst.appXDCID}`,
         "qry": 'UpdateSettings',
@@ -3916,49 +4047,6 @@ export function postUserSettings(params) {
         headers: headers,
         responseType: 'text'
     });
-}
-export function postMultiValueSettings(activeFilters, setting, availableFilters) {
-    let body = {
-        "conn": '18',
-        "qry": 'NewMultivalueSetting',
-        params: {
-            "setting": '',
-            "filter": '',
-            "type": ''
-        }
-
-    }
-    if (activeFilters.geo[0].value === 'All Data') {
-        availableFilters.geo.map(item => {
-            body.params = {
-                "setting": setting,
-                "filter": item.value,
-                "type": 'geo'
-            }
-            return axios.post(Infoburst.dbQuery, body, {
-                headers: headers,
-                responseType: 'text'
-            })
-        })
-    } else {
-        activeFilters.geo.map(item => {
-            body.params = {
-                "setting": setting,
-                "filter": item.value,
-                "type": 'geo'
-            }
-            return axios.post(Infoburst.dbQuery, body, {
-                headers: headers,
-                responseType: 'text'
-            })
-        })
-    }
-
-
-    return axios.post(Infoburst.dbQuery, body, {
-        headers: headers,
-        responseType: 'text'
-    })
 }
 
 export function renderUnits(value) {
@@ -4230,8 +4318,8 @@ export function getLabelColor(value, target, secondaryCardIndex) {
     let retColor = "";
 
     if (secondaryCardIndex === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || secondaryCardIndex === SUMMARY_FILTERS.RENEW_CANCEL ||
-        secondaryCardIndex === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || secondaryCardIndex ===SUMMARY_FILTERS.RENEW_QTR_PF ||
-        secondaryCardIndex === SUMMARY_FILTERS.RENEW_QTR_UI || secondaryCardIndex ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
+        secondaryCardIndex === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || secondaryCardIndex === SUMMARY_FILTERS.RENEW_QTR_PF ||
+        secondaryCardIndex === SUMMARY_FILTERS.RENEW_QTR_UI || secondaryCardIndex === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
         if (target === 0) {
             retColor = 'neutralBG';
         } else if (value >= target) {
@@ -4257,28 +4345,28 @@ export function getLabelColor(value, target, secondaryCardIndex) {
 export function getLabelColorPrimary(value, target, mobile, index) {
     console.log(mobile)
     let retColor = "";
-    if(index!==5){
+    if (index !== 5) {
         if (target === 0) {
             if (mobile === true) {
                 retColor = 'selectedMobileCardFontColorNeutral';
-    
+
             } else {
                 retColor = 'selectedCardFontColorNeutral';
-    
+
             }
         } else if (value >= target) {
             retColor = 'selectedCardFontColorGreen';
         } else {
             retColor = 'selectedCardFontColorRed';
         }
-    } else{
+    } else {
         if (target === 0) {
             if (mobile === true) {
                 retColor = 'selectedMobileCardFontColorNeutral';
-    
+
             } else {
                 retColor = 'selectedCardFontColorNeutral';
-    
+
             }
         } else if (value <= target) {
             retColor = 'selectedCardFontColorGreen';
@@ -4286,23 +4374,7 @@ export function getLabelColorPrimary(value, target, mobile, index) {
             retColor = 'selectedCardFontColorRed';
         }
     }
-   
+
     return retColor;
-}
-
-export function retrieveUpdatedAndQuarter(){
-    responseArray = [];
-
-
-
-  let updatedData =   axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.UpdatedDate + '&json=1', {
-        headers: headers,
-        responseType: 'text'
-    });
-
-    responseArray.push(updatedData);
-    promiseArr = Promise.all(responseArray);
-    return promiseArr;
-
 }
 

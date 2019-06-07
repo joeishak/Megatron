@@ -12,7 +12,6 @@ import { DIMENSIONS } from "../../Constants/consts";
 import Loading from '../../Views/Loading/Loading'
 class SecondarySquares extends Component {
   // Need to Refactor
-  
   getColor(value, target, type, header) {
     let retColor = "";
     if (type === "financial") {
@@ -58,9 +57,9 @@ class SecondarySquares extends Component {
   getTitlePill(kpi) {
     switch (kpi) {
       case 34:
-        return <span style={{'margin-left': '2px', marginBottom: '2px', fontSize: '10px !important'}} className="badge badge-light">Reseller</span>;
+        return <span style={{marginLeft: '2px', marginBottom: '2px', fontSize: '10px !important'}} className="badge badge-light">Reseller</span>;
       case 35:
-        return <span style={{'margin-left': '2px', marginBottom: '2px'}} className="badge badge-light">E&R</span>
+        return <span style={{marginLeft: '2px', marginBottom: '2px'}} className="badge badge-light">E&R</span>
     }
   }
 
@@ -318,7 +317,7 @@ class SecondarySquares extends Component {
               ? 'journeyBoxAlert'
               : ""
             }`}
-          onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index)}
+          // onClick={e => this.props.onJourneyCardClicked(e, this.props.item.index)}
         >
           <div
             className={`${secondaryBoxHeader} `} 
@@ -353,7 +352,6 @@ class SecondarySquares extends Component {
               {formattedValue} <span className={`QRF-Percent ` + (this.props.item.value <= 0 ? ` ${this.getColor(this.props.item.index, 'red')}` : ` ${this.getColor(this.props.item.index, 'green')}`)}>(
               {utils.formatMetric({ valueType: 'percent', value: this.props.item.details.stats[0].value }, 'value')})</span>
             </div>
-            {/* {console.log(this.props.statsDetails)} */}
             <div className={boxBullet}>
               <KendoBulletChart
                 isMobileOrTablet={utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet')}

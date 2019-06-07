@@ -15,16 +15,13 @@ class FilterBarHeader extends Component {
     //When the component is constructed
     constructor(props) {
         super(props);
-
         // Initialize state
         this.state = {
-
             filterButtonTitle: 'Add Filters',
             filterBarArr: [],
             totalFilterPills: 0
         }
     }
-
 
     // Function that renders the Filter Pills
     renderFilterPills() {
@@ -34,16 +31,6 @@ class FilterBarHeader extends Component {
         filters.quarter.valueFilters.forEach(item => {
             filterBarArr.push(item);
         });
-        if (filters.geo.valueFilters.length !== 0) {
-            filters.geo.valueFilters.forEach(item => {
-                filterBarArr.push(item);
-            });
-        }
-        if (filters.market.valueFilters.length !== 0) {
-            filters.market.valueFilters.forEach(item => {
-                filterBarArr.push(item);
-            });
-        }
         if (filterBarArr.length > 0) {
             // Return this 
             return (
@@ -57,12 +44,9 @@ class FilterBarHeader extends Component {
             )
         }
         else return null;
-
     }
 
-
     changeFilterPanelStatus = () => {
-
         this.props.handleNewFilterClick();
         if (this.props.filterPanelIsOpen) {
             this.setState({
@@ -85,7 +69,7 @@ class FilterBarHeader extends Component {
         return (
             <div className="filterContainer container-fluid row">
                 <div className="pillsContainer col-8">
-                    {this.renderFilterPills()}
+                    {/* {this.renderFilterPills()} */}
                 </div>
 
                 <div className="newFilterDiv col-2">

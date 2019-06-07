@@ -6,7 +6,7 @@ import { Navbar } from "react-bootstrap";
 class CompanyHeader extends Component {
 
   render() {
-    const { deviceType, filterIcon, isLaptop, isFilterPageVisible, show, onFilterToggled, logos } = this.props;
+    const { deviceType, filterIcon, isLaptop, onFilterToggled, logos } = this.props;
 
     const filterButton = utils.includes(deviceType, 'tablet') || utils.includes(deviceType, 'mobile') ? (
       <div className="filterButton">

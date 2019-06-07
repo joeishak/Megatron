@@ -174,7 +174,6 @@ class PrimarySquare extends Component {
         {/* Desktop View */}
         <div
           className={responsiveSquareSize  }
-          onClick={this.props.enableChart}
           key={this.props.item.index}
         >
           {/* Card */}

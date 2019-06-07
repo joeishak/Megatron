@@ -9047,19 +9047,10 @@ export function processRenewProductQTDData(data, newState, Etail) {
             ww: adobeData.PFRateWW
         }
         qtrPfWeek.push(pfWeek);
-
-
-
-
     }
     for (let i = 0; i < Etail.length; i++) {
         let
             etail = Etail[i];
-
-
-
-
-
         let finEtail = {
             index: i,
             actuals: etail.RetRateActual,

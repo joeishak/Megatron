@@ -166,13 +166,13 @@ class FilterPanel extends Component{
     openDialogFilterPanel = () => {
         // Opening the panel
         if (this.state.filterPanelIsOpen===false) {
-        this.setState({ showDropDowns: true });
+        // this.setState({ showDropDowns: true });
         this.setState({ filterPanelIsOpen: true });
         } else {
             console.log('Toggling Panel',this.state.selectedFilters)
             this.submitFilters()
         /* Closing the Panel */
-        this.setState({ showDropDowns: false });
+        // this.setState({ showDropDowns: false });
         // this.setState({filterPanelIsOpen: false});
         this.time = setTimeout(() => {
             this.setState({ filterPanelIsOpen: false });
@@ -257,13 +257,14 @@ class FilterPanel extends Component{
               availableFilters={availableFilters}
             />
           ) : this.props.isMobileOrTablet===false ? <div>
-          <FilterBarHeader handleNewFilterClick={this.openDialogFilterPanel} filterPanelIsOpen={this.state.filterPanelIsOpen} />
+          <FilterBarHeader 
+            handleNewFilterClick={this.openDialogFilterPanel}
+             filterPanelIsOpen={this.state.filterPanelIsOpen} />
           <CustomDropDownPanel
             updateSingleValue={this.updateSingleValue}
             updateMultiValue={(e,type) => {  this.updateMultiValue(e, type) }}
             handleClose={this.openDialogFilterPanel}
             showContainer={this.state.filterPanelIsOpen}
-            showSlide={this.state.showDropDowns}
             activePrimary={this.props.activePrimary}
             selectedFilters={this.state.selectedFilters}
             isMobileOrTablet={this.props.isMobileOrTablet}
@@ -276,9 +277,7 @@ class FilterPanel extends Component{
 }
 function mapStateToProps(state) {
     return {
-        activeFilters: state.activeFilters,
         filters: state.filters,
-        availableFilters: state.availableFilters,
         mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible
 };
 }

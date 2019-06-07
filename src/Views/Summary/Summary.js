@@ -52,10 +52,6 @@ class Summary extends Component {
     /* Initializing local state */
     this.state = {
       authenticated: null,
-      window: {
-        height: window.innerHeight,
-        width: window.innerWidth
-      },
       //Once the app initially requests all the necessary data to present dashboard for first time
       initialDataLoadIsComplete: false,
       isLoading: true,
@@ -65,10 +61,8 @@ class Summary extends Component {
       requestingRemainingRenewData: false,
       requestingRemainingBuyData: false,
       //Data/Filters Management booleans 
-      filtersChanged: false,
       subFiltersChanged: false,
       secondaryKpiChanged: false,
-      userChangedCards: false
     };
 
     /*Bindings  */
@@ -131,10 +125,7 @@ class Summary extends Component {
       buySecondaryIsLoaded,
       preferencesAreAdded,
       preferencesAreLoaded,
-      globalFiltersSubmitted,
-      subFiltersSubmitted,
-      resetFilters,
-      filtersAreDefault,
+   
       isDefaultFilters,
       buyGrossIsLoaded,
       buyMarketIsLoaded,
@@ -1303,8 +1294,6 @@ class Summary extends Component {
         toggleCommentary={this.props.toggleCommentary}
         activeCard={this.props.activePrimaryCard}
         data={this.props.primaryData}
-        enableChart={() => {
-        }}
         selectedCard={(e, index) => {
           this.updateActivePrimary(index);
         }}
@@ -1363,57 +1352,56 @@ class Summary extends Component {
   }
 
   render() {
-    const { user } = this.props;
-    const kdialog = this.props.dialogIsOpen ? <KendoDialog /> : null;
-    const feedbackDialog = this.props.feedbackIsOpen ? <FeedBackDialog /> : null;
-
-    const isMobileOrTablet = utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet');
-    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails isLoading={this.state.isLoading} subFiltersSubmit={(newFilters) => { this.updateSecondaryLoading(newFilters) }} secondaryData={this.props.secondaryData} />;
+    // REDUX PROPS 
+    const {
+      user,
+      dialogIsOpen,
+      window,
+      mobileFiltersIsShown,
+      mobileIsPrimary,
+      activePrimaryCard,
+      secondaryData } = this.props;
+    // Preferences Dialog  
+    const kdialog = dialogIsOpen ? <KendoDialog /> : null;
+    const isMobileOrTablet = utils.includes(utils.getDeviceType(window), 'mobile') || utils.includes(utils.getDeviceType(window), 'tablet');
+    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails isLoading={this.state.isLoading} subFiltersSubmit={(newFilters) => { this.updateSecondaryLoading(newFilters) }} secondaryData={secondaryData} />;
     return (
-
-
-      <div style={isMobileOrTablet ? { height: `${this.props.window.height}px` } : (this.props.dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
+      <div style={isMobileOrTablet ? { height: `${window.height}px` } : (dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
         {this.state.authenticated && (
           <span>
             {kdialog}
-            {feedbackDialog}
 
             {/* Navigation*/}
-            <Navigation mobileFiltersIsShown={this.props.mobileFiltersIsShown} onFeedbackChange={this.takeDomScreenshot} />
-            <FilterPanel isMobileOrTablet={isMobileOrTablet} window={this.props.window} activePrimary={this.props.activePrimaryCard} />
-
+            <Navigation
+              mobileFiltersIsShown={mobileFiltersIsShown}
+              onFeedbackChange={this.takeDomScreenshot} />
+            <FilterPanel
+              isMobileOrTablet={isMobileOrTablet}
+              window={window}
+              activePrimary={activePrimaryCard} />
             {
               this.state.isLoading === true ? <LoadingScreen /> :
                 (
-
                   <span>
-
                     {/* Data Preferences */}
                     <div>
                       <div>
-                        <CommentPanel user={this.props.user} />
-
+                        <CommentPanel user={user} />
                         {/* Primary */}
-
-                        {this.props.mobileFiltersIsShown
-                          ? null : this.props.mobileIsPrimary === true ? this.getPrimaryContent() : null}
-                        {/* (this.props.activePrimaryCard === 4 || this.props.activePrimaryCard === 5) ?
-                      <div id="commingSoon">Coming Soon</div> : */
-                          this.state.isLoading === true ? <LoadingScreen /> :
-                            <span>
-                              {isMobileOrTablet === false ? this.getSecondaryContent() : (this.props.mobileFiltersIsShown ? null : this.getSecondaryContent())}
-                              {summaryViewDetails}</span>
+                        {mobileFiltersIsShown
+                          ? null : mobileIsPrimary === true ? this.getPrimaryContent() : null}
+                        {this.state.isLoading === true ? <LoadingScreen /> :
+                          <span>
+                            {isMobileOrTablet === false ?
+                              this.getSecondaryContent() : (this.props.mobileFiltersIsShown ? null : this.getSecondaryContent())}
+                            {summaryViewDetails}</span>
                         }
-
-                        {/* {this.state.isFilterPageVisible && this.props.mobileIsPrimary ? null : null} */}
-
                       </div>
                     </div>
                   </span>
                 )
             }
           </span>)}
-
       </div>
     );
   }
@@ -1424,10 +1412,7 @@ function mapStateToProps(state) {
   console.log(state);
 
   return {
-    authenticated: state.authenticated,
     dialogIsOpen: state.isDialogOpen,
-    detailIsOpen: state.detailsIsOpen,
-    availableFilters: state.availableFilters,
     user: state.user,
     preferences: state.preferences,
     primaryData: state.summaryData.primary,
@@ -1440,12 +1425,10 @@ function mapStateToProps(state) {
     window: state.appSettings.window,
     mobileIsPrimary: state.appSettings.views.primaryIsVisible,
     mobileIsSecondary: state.appSettings.views.secondaryIsVisible,
-    summaryData: state.summaryData,
     mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible,
     filters: state.filters,
 
     commentsPackage: state.commentsPackage,
-    feedbackIsOpen: state.isFeedBackDialogOpen,
     dataIsReset: state.summaryData.dataIsReset,
     primaryIsLoaded: state.summaryData.primaryIsLoaded,
     discoverSecondaryIsLoaded: state.summaryData.discoverSecondaryIsLoaded,

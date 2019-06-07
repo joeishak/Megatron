@@ -52,8 +52,6 @@ class SummaryViewDetails extends Component {
         ...this.props.filters.product.valueFilters.map(item => {
           return { ...item, label: item.value }
         })],
-      activeDataFilters: [],
-      stringList: '',
 
     };
 
@@ -61,8 +59,7 @@ class SummaryViewDetails extends Component {
 
   }
   componentDidMount() {
-    let filterList;
-    let stringList;
+
     this.setState({
       selectedFilters: [
         ...this.props.filters.visits.valueFilters.map(item => {
@@ -95,8 +92,6 @@ class SummaryViewDetails extends Component {
   }
   componentDidUpdate(prevProps) {
 
-    let filterList;
-    let stringList;
 
   }
   updateQTDPercentageFilter = (e) => {
@@ -715,7 +710,6 @@ class SummaryViewDetails extends Component {
 
 function mapStateToProps(state) {
   return {
-    previousViewWasJourneys: state.switchFilter,
     activePrimary: state.activeCards.primary,
     activeSecondary: state.activeCards.secondary,
     activeItem: state.summaryData.secondary[state.activeCards.secondary],

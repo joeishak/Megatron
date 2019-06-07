@@ -201,7 +201,6 @@ class SecondaryContentList extends Component {
             <SecondarySquares
               window={this.props.window}
               deviceType={this.props.deviceType}
-              statsDetails={this.props.statsDetails}
               key={item.index}
               item={item}
               activeJourneyCard={isActive}
@@ -269,7 +268,7 @@ class SecondaryContentList extends Component {
         {/* Commnets */}
         <div style={{ paddingLeft: '9px', paddingRight: '9px' }}>
           <h6>Comments</h6>
-          <MobileCommentBox comments={this.props.comments} commentsPackage={this.props.commentsPackage}></MobileCommentBox>
+          <MobileCommentBox comments={this.props.commentsPackage.comments} commentsPackage={this.props.commentsPackage}></MobileCommentBox>
         </div>
 
       </div>
@@ -301,10 +300,7 @@ class SecondaryContentList extends Component {
 
 function mapStateToProps(state) {
   return {
-    deviceType: state.appSettings.deviceType,
     activeJourneyCard: state.activeCards.secondary,
-    activePrimary: state.activeCards.primary,
-    comments: state.commentsPackage.comments
   };
 }
 export default connect(

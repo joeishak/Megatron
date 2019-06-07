@@ -34,7 +34,6 @@ class PrimaryContentList extends Component {
                                 deviceType={this.props.deviceType}
                                 onCommentIconClick={(e, type, index) => { this.props.onCommentIconClick(e, type, index) }}
                                 toggleCommentary={this.props.toggleCommentary}
-                                enableChart={this.props.enableChart1Arrow}
                                 selectedCard={(e, index) => { this.props.selectedCard(e, index) }}
                                 activeCard={isActive}
                                 item={item}>  </PrimarySquare>

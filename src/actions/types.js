@@ -3,6 +3,8 @@ export const GENERATE_FILTER_DATA = "generate_filter_data";
 export const ADD_MULTI_FILTER = "add_multi_filter";
 export const REMOVE_MULTI_FILTER = "remove_multi_filter";
 export const RESET_FILTERS = "reset_filter";
+export const RESET_FILTERS_TO_DEFAULT_STATE = "reset_filter_to_default_state";
+
 export const ADD_PREFERENCES_TO_ACTIVE_FILTERS = "add_preferences_to_active_filters";
 export const SUBMIT_FILTERS = "submit_filters";
 export const SUBMIT_SUB_FILTERS = "submit_sub_filters";

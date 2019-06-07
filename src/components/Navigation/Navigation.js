@@ -9,17 +9,13 @@ import {
 import styles from "./Navigation.css";
 import ReactPiwik from 'react-piwik';
 import logo from "../../assets/images/adobe-logo-nav.png";
-import userIcon from "./user-icon.svg";
 import filterUnselected from "./assets/filter-unselected.svg";
 import filterSelected from "./assets/filter-selected.svg";
-import commentIconOff from "./assets/images/comment-icon-off.svg";
-import commentIconOn from "./assets/images/comment-icon-on.svg";
 import * as utils from '../../utilities';
 // Redux
 import { connect } from "react-redux";
 import * as actions from "actions";
 // HTML 2 canvas
-import html2canvas from 'html2canvas';
 import CompanyHeader from './CompanyHeader.js';
 import UserNav from './UserNav.js';
 
@@ -31,11 +27,6 @@ class Navigation extends Component {
     // Initialize state
     this.state = {
       show: false,
-      activeTab: "tab1",
-      dataPrefDialogVisible: this.props.dialogIsOpen,
-      commentsAreActive: false,
-      authenticated: null,
-      isFilterPageVisible: false,
     };
     //Binding functions to this
     this.checkAuthentication = checkAuthentication.bind(this);
@@ -83,7 +74,6 @@ class Navigation extends Component {
       : filterUnselected;
     const { show } = this.state;
     const logos = show ? <img alt="" src={logo} className="imgLogo" /> : null;
-    const { activeTab } = this.state;
 
 
     return (
@@ -93,7 +83,6 @@ class Navigation extends Component {
           deviceType={this.props.deviceType}
           isFilterPageVisible={this.props.mobileFiltersIsShown}
           isLaptop={isLaptop}
-          show={show}
           filterIcon={filterIcon}
           onFilterToggled={(e) => { this.onFilterToggled(e) }}
           logos={logos}

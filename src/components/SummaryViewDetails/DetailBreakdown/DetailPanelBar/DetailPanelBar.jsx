@@ -621,9 +621,6 @@ class DetailPanelBar extends Component {
 
 function mapStateToProps(state) {
     return {
-
-        activeSummary: state.summaryData.secondary[state.activeCards.secondary],
-        activeGeo: state.summaryData.secondary[state.activeCards.secondary].details.geo.qtd,
         activePrimary: state.activeCards.primary,
         activeSecondary: state.activeCards.secondary
     }

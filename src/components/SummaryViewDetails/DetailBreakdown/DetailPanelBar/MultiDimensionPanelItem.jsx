@@ -109,12 +109,12 @@ class MultiDimensionPanelItem extends Component {
         _.keys(groupedQTD).forEach(item => {
             console.log(groupedQTD[item]);
             qtdARR.push(...groupedQTD[item])
-           qtdARR.push({...this.getJourneyQTDSubTotals(groupedQTD[item]),marketArea: <span>&nbsp;</span>, type: item + ' Subtotal'});
+           qtdARR.push({...this.getJourneyQTDSubTotals(groupedQTD[item]),marketArea: 'Total', type: <span>&nbsp;</span>});
         });
         _.keys(groupedWeek).forEach(item => {
             console.log(groupedWeek[item]);
             weekARR.push(...groupedWeek[item])
-           weekARR.push({...this.getJourneyWeekSubTotals(groupedWeek[item]),marketArea: <span>&nbsp;</span>, type: item + ' Subtotal'});
+           weekARR.push({...this.getJourneyWeekSubTotals(groupedWeek[item]),marketArea: 'Total', type: <span>&nbsp;</span>});
         });
         switch (this.props.timeMetric) {
             case 'qtd':
@@ -128,35 +128,36 @@ class MultiDimensionPanelItem extends Component {
                         }
                     }
 
+                    let TotalStyle = item.marketArea === 'Total'? ' boldFont ' : ''; 
                     prevGeo = item.type;
                     return (<span key={marketCount++}>
-                        <div className={`${qtdColumnClass}` + " qtdGeoHeader col"}>
+                        <div className={`${qtdColumnClass}`+ TotalStyle  + " qtdGeoHeader col"}>
                             {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
-                        <div className={`${qtdColumnClass}` + " qtdMaHeader col"} >
+                        <div className={`${qtdColumnClass}`  + TotalStyle + " qtdMaHeader col"} >
                             {item.marketArea}
                         </div>
-                        <div className={`${qtdColumnClass}` + " col"}>
+                        <div className={`${qtdColumnClass}` + TotalStyle +" col"}>
                             {utils.formatMetric({ valueType: this.props.valueType, value: item.actuals }, 'value')}
                         </div>
 
-                        <div className={`${qtdColumnClass}` + " col"}>
+                        <div className={`${qtdColumnClass}`+ TotalStyle + " col"}>
                             {utils.formatMetric({ valueType: this.props.valueType, value: item.qrf }, 'value')}
                         </div>
-                        <div className={`${qtdColumnClass}` + " col"}>
+                        <div className={`${qtdColumnClass}` + TotalStyle+ " col"}>
                             {utils.formatMetric({ valueType: this.props.valueType, value: item.qrfDiff }, 'value')}
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
-                            ? `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'red')}`
-                            : `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'green')}`}>
+                            ? `${qtdColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'red')}`
+                            : `${qtdColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'green')}`}>
 
                             {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
                         </div>
-                        <div className={`${qtdColumnClass}` + " col"}>
+                        <div className={`${qtdColumnClass}` + TotalStyle+ " col"}>
                             {utils.formatMetric({ valueType: 'percent', value: item.qq }, 'value')}
                         </div>
-                        <div className={`${qtdColumnClass}` + " col"}>
+                        <div className={`${qtdColumnClass}`+ TotalStyle + " col"}>
                             {utils.formatMetric({ valueType: 'percent', value: item.yy }, 'value')}
                         </div>
                     </span>
@@ -175,32 +176,33 @@ class MultiDimensionPanelItem extends Component {
                             calculatedGeo = item.type;
                         }
                     }
+                    let TotalStyle = item.marketArea === 'Total'? ' boldFont ' : ''; 
 
                     prevGeo = item.type;
                     return (<span key={marketCount++}>
-                        <div className={`${weekColumnClass}` + " qtdGeoHeader col"}>
+                        <div className={`${weekColumnClass}`+ TotalStyle + " qtdGeoHeader col"}>
                             {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
-                        <div className={`${weekColumnClass}` + " qtdMaHeader col"} >
+                        <div className={`${weekColumnClass}`+ TotalStyle + " qtdMaHeader col"} >
                             {item.marketArea}
                         </div>
-                        <div className={`${weekColumnClass}` + " col"}>
+                        <div className={`${weekColumnClass}`+ TotalStyle + " col"}>
                             {utils.formatMetric({ valueType: this.props.valueType, value: item.actuals }, 'value')}
                         </div>
 
-                        <div className={`${weekColumnClass}` + " col"}>
+                        <div className={`${weekColumnClass}`+ TotalStyle + " col"}>
                             {utils.formatMetric({ valueType: this.props.valueType, value: item.qrf }, 'value')}
                         </div>
-                        <div className={`${weekColumnClass}` + " col"}>
+                        <div className={`${weekColumnClass}` + TotalStyle+ " col"}>
                             {utils.formatMetric({ valueType: this.props.valueType, value: item.qrfDiff }, 'value')}
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
-                            ? `${weekColumnClass}` + " col " + `${this.getColor(activeSecondary, 'red')}`
-                            : `${weekColumnClass}` + " col " + `${this.getColor(activeSecondary, 'green')}`}>
+                            ? `${weekColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'red')}`
+                            : `${weekColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'green')}`}>
                             {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
                         </div>
-                        <div className={`${weekColumnClass}` + " col"}>
+                        <div className={`${weekColumnClass}`+ TotalStyle + " col"}>
                             {utils.formatMetric({ valueType: 'percent', value: item.ww }, 'value')}
                         </div>
                     </span>)
@@ -224,12 +226,12 @@ class MultiDimensionPanelItem extends Component {
         _.keys(groupedQTD).forEach(item => {
             console.log(groupedQTD[item]);
             qtdARR.push(...groupedQTD[item])
-           qtdARR.push({...this.getQTDSubTotals(groupedQTD[item]),marketArea: <span>&nbsp;</span>, type: item + ' Subtotal'});
+           qtdARR.push({...this.getQTDSubTotals(groupedQTD[item]),marketArea: 'Total', type: <span>&nbsp;</span>});
         });
         _.keys(groupedWeek).forEach(item => {
             console.log(groupedWeek[item]);
             weekARR.push(...groupedWeek[item])
-           weekARR.push({...this.getWeekSubTotals(groupedWeek[item]),marketArea: <span>&nbsp;</span>, type: item + ' Subtotal'});
+           weekARR.push({...this.getWeekSubTotals(groupedWeek[item]),marketArea: 'Total', type: <span>&nbsp;</span>});
         });
         switch (this.props.timeMetric) {
             case 'qtd':
@@ -245,38 +247,39 @@ class MultiDimensionPanelItem extends Component {
                         }
                     }
                     count++;
+                    let TotalStyle = item.marketArea === 'Total'? ' boldFont ' : ''; 
                     prevGeo = item.type;
                     return (
                         <div key={marketCount++}>
-                            <div className={`${qtdColumnClass}` + " qtdGeoHeader col"}>
+                            <div className={`${qtdColumnClass}`+ TotalStyle + " qtdGeoHeader col"}>
                                 {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                             </div>
-                            <div className={`${qtdColumnClass}` + " qtdMaHeader col"} >
+                            <div className={`${qtdColumnClass}`+ TotalStyle + " qtdMaHeader col"} >
                                 {item.marketArea}
                             </div>
-                            <div className={`${qtdColumnClass}` + " col"}>
+                            <div className={`${qtdColumnClass}`+ TotalStyle + " col"}>
                                 {utils.formatMetric({ valueType: 'currency', value: item.actuals }, 'value')}
                             </div>
-                            <div className={`${qtdColumnClass}` + " col"}>
+                            <div className={`${qtdColumnClass}`+ TotalStyle + " col"}>
                                 {utils.formatMetric({ valueType: 'units', value: item.units }, 'value')}
                             </div>
-                            <div className={`${qtdColumnClass}` + " col"}>
+                            <div className={`${qtdColumnClass}`+ TotalStyle + " col"}>
                                 {utils.formatMetric({ valueType: 'currency', value: item.qrf }, 'value')}
                             </div>
-                            <div className={`${qtdColumnClass}` + " col"}>
+                            <div className={`${qtdColumnClass}`+ TotalStyle + " col"}>
                                 {utils.formatMetric({ valueType: 'currency', value: item.qrfDiff }, 'value')}
                             </div>
                             <div className={(
                                 item.vsQrf <= 0)
-                                ? `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'red')}`
-                                : `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'green')}`}>
+                                ? `${qtdColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'red')}`
+                                : `${qtdColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'green')}`}>
 
                                 {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
                             </div>
-                            <div className={`${qtdColumnClass}` + " col"}>
+                            <div className={`${qtdColumnClass}`+ TotalStyle + " col"}>
                                 {utils.formatMetric({ valueType: 'percent', value: item.qq }, 'value')}
                             </div>
-                            <div className={`${qtdColumnClass}` + " col"}>
+                            <div className={`${qtdColumnClass}`+ TotalStyle + " col"}>
                                 {utils.formatMetric({ valueType: 'percent', value: item.yy }, 'value')}
                             </div>
                         </div>)
@@ -291,32 +294,33 @@ class MultiDimensionPanelItem extends Component {
                             calculatedGeo = item.type;
                         }
                     }
+                    let TotalStyle = item.marketArea === 'Total'? ' boldFont ' : ''; 
                     return (<span key={marketCount++}>
-                        <div className={`${weekColumnClass}` + " weekGeoHeader col"}>
+                        <div className={`${weekColumnClass}`+ TotalStyle + " weekGeoHeader col"}>
                             {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
-                        <div className={`${weekColumnClass}` + " weekMaHeader col"}>
+                        <div className={`${weekColumnClass}`+ TotalStyle + " weekMaHeader col"}>
                             {item.marketArea}
                         </div>
-                        <div className={`${weekColumnClass}` + " col"}>
+                        <div className={`${weekColumnClass}`+ TotalStyle + " col"}>
                             {utils.formatMetric({ valueType: 'currency', value: item.actuals }, 'value')}
                         </div>
-                        <div className={`${weekColumnClass}` + " col"}>
+                        <div className={`${weekColumnClass}`+ TotalStyle + " col"}>
                             {utils.formatMetric({ valueType: 'units', value: item.units }, 'value')}
                         </div>
-                        <div className={`${weekColumnClass}` + " col"}>
+                        <div className={`${weekColumnClass}`+ TotalStyle + " col"}>
                             {utils.formatMetric({ valueType: 'currency', value: item.qrf }, 'value')}
                         </div>
-                        <div className={`${weekColumnClass}` + " col"}>
+                        <div className={`${weekColumnClass}`+ TotalStyle + " col"}>
                             {utils.formatMetric({ valueType: 'currency', value: item.qrfDiff }, 'value')}
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
-                            ? `${weekColumnClass}` + " col " + `${this.getColor(activeSecondary, 'red')}`
-                            : `${weekColumnClass}` + " col " + `${this.getColor(activeSecondary, 'green')}`}>
+                            ? `${weekColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'red')}`
+                            : `${weekColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'green')}`}>
                             {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
                         </div>
-                        <div className={`${weekColumnClass}` + " col"}>
+                        <div className={`${weekColumnClass}`+ TotalStyle + " col"}>
                             {utils.formatMetric({ valueType: 'percent', value: item.ww }, 'value')}
                         </div>
                     </span>)

@@ -1069,29 +1069,10 @@ class ExcelWorkbook extends Component {
 }
 function mapStateToProps(state) {
     return {
-        previousViewWasJourneys: state.switchFilter,
         activePrimary: state.activeCards.primary,
         activeSecondary: state.activeCards.secondary,
-        // activeItem: state.summaryData.secondary[state.activeCards.secondary],
-        activeFilters: state.filters,
-        availableFilters: state.availableFilters,
-        qtdwData: state.summaryData.secondary[state.activeCards.secondary].details.qtdw,
-        summaryData: state.adobeData,
         secondaryData: state.summaryData.secondary,
-        multichartIsArr: state.multichartIsArr,
         filters: state.filters,
-        financeXDC1IsLoaded: state.summaryData.financeXDC1IsLoaded,
-        financeXDC2IsLoaded: state.summaryData.financeXDC2IsLoaded,
-        trafficIsLoaded: state.summaryData.trafficIsLoaded,
-        muIsLoaded: state.summaryData.muIsLoaded,
-        buyGrossIsLoaded: state.summaryData.buyGrossIsLoaded,
-        buyMarketIsLoaded: state.summaryData.buyMarketIsLoaded,
-        buyConversionIsLoaded: state.summaryData.buyConversionIsLoaded,
-        tryIsLoaded: state.summaryData.tryIsLoaded,
-        useIsLoaded: state.summaryData.useIsLoaded,
-        renewIsLoaded: state.summaryData.renewIsLoaded,
-        renewCancelIsLoaded: state.summaryData.renewCancelIsLoaded,
-        renewDetailsIsLoaded: state.summaryData.renewDetailsIsLoaded,
     };
 }
 

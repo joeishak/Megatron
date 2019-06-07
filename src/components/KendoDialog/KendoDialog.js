@@ -292,7 +292,8 @@ class KendoDialog extends Component {
             nonDMSegment: this.props.filters.defaultState.nonDMSegment.valueFilters
         };
         this.props.updateUserSettings(newFilters, this.props.user);
-        this.props.submitFilters(newFilters);
+        this.props.resetFiltersToDefaultState(newFilters);
+        // this.props.submitFilters(newFilters);
         this.setState({ savedClicked: true });
 
         setTimeout(() => this.closeDialog(), 1500);
@@ -333,8 +334,8 @@ class KendoDialog extends Component {
 
     }
   
-    closeDrowDown = (e) => {
-        // console.log('Closing Single Value',e);
+    closeDropDown = (e) => {
+        console.log('Closing Single Value',e);
     }
    
     submitFilters = (e) => {
@@ -527,9 +528,9 @@ class KendoDialog extends Component {
 
                                 <div className="filterPillsContainer">
                                     <ul className="filterList">
-                                        {filters.combined.valueFilters.filter(item => item.category === QUARTER || item.category === MARKET || item.category === GEO).map((item) => {
+                                        {/* {filters.combined.valueFilters.filter(item => item.category === QUARTER || item.category === MARKET || item.category === GEO).map((item) => {
                                             return <li key={item.index} className="filterListLi">{item.value}</li>
-                                        })}
+                                        })} */}
                                     </ul>
                                 </div>
                                 <div className="dropdowns contentpad">
