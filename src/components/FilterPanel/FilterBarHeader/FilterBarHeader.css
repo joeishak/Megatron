@@ -28,7 +28,12 @@
     padding-top:6px;
     padding-right:5px;
 }
-
+.newFilterStateDiv{
+    float: right;
+    color: #ffffff;
+    padding-top:12px;
+    padding-right:10px;
+}
 .newFilterText{
     padding-bottom: 5px;
     padding-right: 10px;
@@ -38,27 +43,36 @@
 .newFilterButton{
     width:30px;
     height:30px;
-    display: inline-block;
     /* border: 1px solid #ffffff; */
-    border-radius: 50%;
     text-align: center;
+    font-weight: bolder;
+
 }
 
 /* Animate when clicking and closing */
 .newFilterButton-selected{
-    -webkit-transform: rotate(360deg);
-    -webkit-transition-duration: .5s;
-    background-color: #1573e6;
-    border: #1573e6;
+    background-color: transparent;
     cursor: pointer;
 }
 
 .newFilterButton-close{
-    -webkit-transform: rotate(-360deg);
-    -webkit-transition-duration: .5s;
-    cursor: pointer;
+    background: #0D87FD; 
+    border-radius: 30px;
+    padding:5px 15px 5px 15px;
+     margin-top: -5px !important;
+    color: white;
+   /* font-weight: bold; */
+   cursor: pointer;
+   display:inline;
 }
+.newFilterButton-close:hover{
+    border: 1px solid #dad7d7;
+    font-weight: bolder;
+    border-radius: 30px;
+    background: rgb(9, 102, 196); 
+    box-shadow: 0px 0px 2px 2px rgba(255, 255, 255, 0.555); 
 
+}
 /* Disable images from being selected */
 img {
     -khtml-user-select: none;
@@ -71,6 +85,29 @@ img {
 
 
 
+.filter-state{
+    /* background: #0D7FEE; */
+    background: #0D87FD; 
+    border-radius: 5px;
+    padding:5px 15px 5px 15px;
+     margin-top: -5px !important;
+    color: white;
+   /* font-weight: bold; */
+   cursor: pointer;
+}
+.filter-state:hover{
+    border: 1px solid #e7e7e7;
+    font-weight: bolder;
+    background: rgb(9, 92, 175); 
 
+    /* box-shadow: 0px 0px 2px 2px rgba(255, 255, 255, 0.555);  */
+}
 
+.cancelIcon{
+   background-image: url('../../../assets/images/cancel.svg');
+   width:30px;
+   height:30px;
+   background-size: 100%;
+   background-repeat:none;
 
+}

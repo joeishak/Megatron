@@ -1,5 +1,4 @@
 
-
 .ddFilter-appear {
     opacity: 0;
     transform: translateY(-200px);
@@ -16,14 +15,14 @@
 }
 
 .panelDropDownContainer{
-    height: 165px;
+    height: 95px;
     width: 100%;
     background-color: #3c3c3c;
     -webkit-transition: height 1s; /* For Safari 3.1 to 6.0 */
     transition: height 1s;
 }
 .panelDropDownExtendedContainer{
- height: 300px;
+ height: 210px;
 }
 /* .panelBarContainer-open{
     color: white;
@@ -231,12 +230,80 @@ padding-top: 15px;
     background: #131313 !important;
     font-weight:normal !important;
 }
+.picky__filter__input{
+    color: black !important;
+
+}
 .picky__dropdown .option, .picky__dropdown li{
     background: #131313 !important;
     font-weight:normal !important;
     color: white !important;
+    border-bottom: 1px solid #3c3c3c !important;
+
 }
 
 .picky{
     color: white !important;
 }
+
+.resetFilters{
+    padding-right:25px !important;
+}
+
+.resetFiltersButton{
+background: transparent;
+border: 2px solid #e7e7e7;
+padding:5px 34px 5px 15px;
+border-radius: 30px;
+color: white;
+background-image: url('../../../assets/images/sync-solid.svg');
+background-position-x: 93%;
+background-repeat: no-repeat;
+background-size: 18%;
+background-position-y: 50%;
+
+}
+.resetFiltersButton:hover{
+    box-shadow: 0px 0px 2px 2px rgba(255, 255, 255, 0.555); 
+    background:  #e7e7e7;
+   font-weight: bolder;
+   color: black;
+   background-image: url('../../../assets/images/sync-solid-dark.svg');
+   background-position-x: 93%;
+   background-repeat: no-repeat;
+   background-size: 18%;
+   background-position-y: 50%;
+    }
+
+
+.submitFiltersButton{
+    background: transparent;
+    border: 2px solid #e7e7e7;
+    /*Top Right Bottom Left*/
+    padding:5px 25px 5px 15px;
+    border-radius: 30px;
+    color: white;
+    background-image: url('../../../assets/images/filter-solid-white.svg');
+    background-position-x: 93%;
+    background-repeat: no-repeat;
+    background-size: 18%;
+    background-position-y: 50%;
+
+}
+.submitFiltersButton:hover{
+   box-shadow: 0px 0px 2px 2px rgba(255, 255, 255, 0.555); 
+   background:  #e7e7e7;
+   font-weight: bolder;
+   color: black;
+   background-image: url('../../../assets/images/filter-solid.svg');
+   background-position-x: 93%;
+   background-repeat: no-repeat;
+   background-size: 18%;
+   background-position-y: 50%;
+    }
+
+.submitFilterIcon{
+    width: 15px;
+    margin:0px;
+}
+

@@ -7,13 +7,17 @@ import Picky from "react-picky";
 class MultiValueSelect extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            options: this.props.options,
-            value: this.props.values
-        }
     }
 
+    componentDidUpdate(){
+        if(this.props.value){
+            if(this.props.value[0]){
+                if(this.props.value[0].category && this.props.value[0].category === 'nonDMSegment'){
+                    console.log('Multiselect', this.props.value)
+                }
+            }
+        }
+    }
     transformList = (objList) => {
 
         let newObjList = [];
@@ -55,6 +59,11 @@ class MultiValueSelect extends Component {
     render() {
         return (
             <Picky
+                placeholder="All Selected"
+                numberDisplayed= '1'
+                manySelectedPlaceholder={'Multiple Values ('+this.props.value.length +')'}
+                allSelectedPlaceholder = "All Selected"
+                filterPlaceholder ="Search. . . "
                 className='pickyDropDown'
                 value={this.props.value}
                 options={this.props.options}

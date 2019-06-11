@@ -109,7 +109,7 @@ export default function (state = {
         case SUBMIT_FILTERS:
             // Make a copy of state
             copyOfState = JSON.parse(JSON.stringify(state));
-            console.log('New Filters === Default State', state.defaultState)
+            console.log('New Filters === Default State', action.payload)
             // Reset the combined value filters
             copyOfState.combined.valueFilters = [];
             // For each key in action . payload
@@ -660,7 +660,9 @@ function processDropDownListFilterValue(type, data) {
                 return {
                     index: count++,
                     category: type,
-                    value: item['segment_pivot']
+                    value: item['segment_pivot'],
+                    label: item['segment_pivot']
+
                 }
             });
             return newArr;

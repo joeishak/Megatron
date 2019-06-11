@@ -1,3 +1,6 @@
+/**
+ * @summary Two Types of Utility functions. One makes calls to InfoBurst. The others are strictly utility functions. 
+ */
 import _ from 'lodash';
 import {
     Infoburst
@@ -459,7 +462,6 @@ export async function addUserToDB(user, quarter, segment, nondm) {
     let responseARr = Promise.all([responseArray]);
     return responseARr;
 }
-
 /**
  * @name initiateFilterDataRequests
  * @description Utility function that makes a call request to Infoburst FILTERS XDC In Memory Cache for all possible filter values.
@@ -3379,6 +3381,354 @@ export function retrieveUpdatedAndQuarter() {
 
 }
 
+/**
+ * @name fetchComments
+ * @description Utility function that makes a call request to  Infoburst  GTMPOC Database Query to fetch comments
+ * @param {Integer} metricId
+ * @returns Returns an Promise Array  with comments for this metric
+ */
+export function fetchComments(metricId) {
+    let body = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'fetchComments',
+        "columnNames": 'true',
+        "params": {
+            "metric": metricId
+        }
+    };
+    // console.log(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' })
+
+    const res1 = axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' }).then((response) => {
+
+        console.log(response);
+        if (response !== []) {
+
+            const commentIdsArray = response.data.map(ele => { return ele.id; });
+            const params = convertFilterListForDBQuery(commentIdsArray);
+            let responseBody = {
+                "conn": `${Infoburst.appXDCID}`,
+                "qry": 'fetchReplies',
+                "columnNames": 'true',
+                "params": {
+                    "params": params
+                }
+            };
+            const replies = axios.post(Infoburst.dbQuery, responseBody, { headers: headers, responseType: 'text' }).then((res) => {
+                let body1 = {
+                    "conn": `${Infoburst.appXDCID}`,
+                    "qry": 'fetchCommentsCount',
+                    "columnNames": 'true',
+                    "params": {}
+                };
+
+                let post = axios.post(Infoburst.dbQuery, body1, { headers: headers, responseType: 'text' }).then((res1) => {
+                    const commentsComplete = { comment: response.data, replies: res.data, allComments: res1.data };
+
+                    return commentsComplete;
+                });
+                return post;
+            });
+
+            return replies;
+        } else {
+            return [];
+        }
+
+    });
+
+    let responseARr = Promise.all([res1]);
+
+    return responseARr;
+}
+/**
+ * @name fetchCommentsCount
+ * @description Utility function that makes a call request to  Infoburst  GTMPOC Database Query to fetch comments
+ * @param {Integer} metricId
+ * @returns Returns an Promise Array with the total comments for this metric
+ */
+export function fetchCommentsCount() {
+    let body = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'fetchCommentsCount',
+        "columnNames": 'true',
+        "params": {}
+    };
+
+    let post = axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' }).then((res) => {
+        // console.log(res.data);
+        return res.data;
+    });
+
+    return Promise.all([post]);
+}
+/**
+ * @name postComment
+ * @description Utility function that makes a call request to  Infoburst  GTMPOC Database Query to post a comment
+ * @param {Integer} metricId
+ * @param {Object} params - 
+ * @returns Returns an Promise Array with the new comments for this metric
+ */
+export function postComment(params, metric) {
+    // INSERT INTO Comments values('@userId', @metricId, CONVERT(datetime,'@postDateTime'), '@comment');
+    let body = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'postComments',
+        "columnNames": 'true',
+        "params": {
+            "userId": params.userId,
+            "metricId": params.metricId,
+            "postDateTime": params.postDateTime,
+            "comment": params.comment
+        }
+    }
+
+    let fetchBody = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'fetchComments',
+        "columnNames": 'true',
+        "params": {
+            "metric": metric
+        }
+    };
+    let post = axios.post(Infoburst.dbQuery, body, {
+        headers: headers,
+        responseType: 'text'
+    }).then((res) => {
+        console.log(res);
+        const res1 = axios.post(Infoburst.dbQuery, fetchBody, { headers: headers, responseType: 'text' }).then((response) => {
+
+            if (response !== []) {
+
+                const commentIdsArray = response.data.map(ele => { return ele.id; });
+                const params = convertFilterListForDBQuery(commentIdsArray);
+                let responseBody = {
+                    "conn": `${Infoburst.appXDCID}`,
+                    "qry": 'fetchReplies',
+                    "columnNames": 'true',
+                    "params": {
+                        "params": params
+                    }
+                };
+                const replies = axios.post(Infoburst.dbQuery, responseBody, { headers: headers, responseType: 'text' }).then((res) => {
+                    let body1 = {
+                        "conn": `${Infoburst.appXDCID}`,
+                        "qry": 'fetchCommentsCount',
+                        "columnNames": 'true',
+                        "params": {}
+                    };
+
+                    let post = axios.post(Infoburst.dbQuery, body1, { headers: headers, responseType: 'text' }).then((res1) => {
+                        const commentsComplete = { comment: response.data, replies: res.data, allComments: res1.data };
+
+                        return commentsComplete;
+                    });
+                    return post;
+                });
+
+                return replies;
+            } else {
+                return [];
+            }
+
+        });
+
+        return res1;
+    });
+
+    return Promise.all([post]);
+
+}
+
+
+export function postReply(params, metric) {
+    let body = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'postReply',
+        "columnNames": 'true',
+        "params": {
+            "userId": params.userId,
+            "commentId": params.commentId,
+            "postDateTime": params.postDateTime,
+            "comment": params.comment
+        }
+    }
+    let fetchBody = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'fetchComments',
+        "columnNames": 'true',
+        "params": {
+            "metric": metric
+        }
+    };
+    let post = axios.post(Infoburst.dbQuery, body, {
+        headers: headers,
+        responseType: 'text'
+    }).then((res) => {
+        console.log(res);
+        const res1 = axios.post(Infoburst.dbQuery, fetchBody, { headers: headers, responseType: 'text' }).then((response) => {
+
+            if (response !== []) {
+
+                const commentIdsArray = response.data.map(ele => { return ele.id; });
+                const params = convertFilterListForDBQuery(commentIdsArray);
+                let responseBody = {
+                    "conn": `${Infoburst.appXDCID}`,
+                    "qry": 'fetchReplies',
+                    "columnNames": 'true',
+                    "params": {
+                        "params": params
+                    }
+                };
+                const replies = axios.post(Infoburst.dbQuery, responseBody, { headers: headers, responseType: 'text' }).then((res) => {
+                    const commentsComplete = { comment: response.data, replies: res.data };
+                    return commentsComplete;
+                });
+
+                return replies;
+            } else {
+                return [];
+            }
+
+        });
+
+        return res1;
+    });
+    return Promise.all([post]);
+
+}
+
+/**
+ * @name removeComment
+ * @description Utility function that makes a call request to  Infoburst  GTMPOC Database Query to remove a comment
+ * @param {Integer} metricId
+ * @param {Object} params 
+ * @returns Returns an Promise Array with the new comments for this metric
+ */
+export function removeComment(params, metric) {
+    let body = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'deleteComment',
+        "columnNames": 'true',
+        "params": {
+            "id": parseInt(params.id),
+            "metric": metric
+        }
+    }
+    let fetchBody = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'fetchComments',
+        "columnNames": 'true',
+        "params": {
+            "metric": metric
+        }
+    };
+    console.log(body);
+    let post = axios.post(Infoburst.dbQuery, body, {
+        headers: headers
+    }).then((res) => {
+        const res1 = axios.post(Infoburst.dbQuery, fetchBody, { headers: headers, responseType: 'text' }).then((response) => {
+
+            if (response !== []) {
+
+                const commentIdsArray = response.data.map(ele => { return ele.id; });
+                const params = convertFilterListForDBQuery(commentIdsArray);
+                let responseBody = {
+                    "conn": `${Infoburst.appXDCID}`,
+                    "qry": 'fetchReplies',
+                    "columnNames": 'true',
+                    "params": {
+                        "params": params
+                    }
+                };
+                const replies = axios.post(Infoburst.dbQuery, responseBody, { headers: headers, responseType: 'text' }).then((res) => {
+                    let body1 = {
+                        "conn": `${Infoburst.appXDCID}`,
+                        "qry": 'fetchCommentsCount',
+                        "columnNames": 'true',
+                        "params": {}
+                    };
+
+                    let post = axios.post(Infoburst.dbQuery, body1, { headers: headers, responseType: 'text' }).then((res1) => {
+                        const commentsComplete = { comment: response.data, replies: res.data, allComments: res1.data };
+
+                        return commentsComplete;
+                    });
+                    return post;
+                });
+
+                return replies;
+            } else {
+                return [];
+            }
+
+        });
+
+        return res1;
+
+
+
+    }).catch(error => {
+
+    });
+
+
+    return Promise.all([post]);
+
+}
+
+/**
+ * @name requestUserSettings
+ * @description Utility function that makes a call request to  Infoburst  GTMPOC Database Query to get user preferences
+ * @param {String} sub - Users unique OKTA ID
+ * @returns Returns an Promise Array with the preferences for this user
+ */
+export function requestUserSettings(sub) {
+    let body = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'GetUserSettings',
+        "columnNames": 'true',
+        "params": {
+            "sub": sub
+        }
+    }
+
+    return axios.post(Infoburst.dbQuery, body, {
+        headers: headers,
+        responseType: 'text'
+    })
+}
+/**
+ * @name postUserSettings
+ * @description Utility function that makes a call request to  Infoburst  GTMPOC Database Query to update a preference setting
+ * @param {String} sub - Users unique OKTA ID
+ * @returns Returns an Promise Array with the preferences for this user
+ */
+export function postUserSettings(params) {
+    console.log('Params', params);
+    let body = {
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'UpdateSettings',
+        "columnNames": 'true',
+        "params": {
+            "quarter": params.quarter,
+            "segment": params.segment,
+            "user": params.user,
+            "products": params.product,
+            "geos": params.geo,
+            "subscriptions": params.subscription,
+            "routes": params.route,
+            "markets": params.market,
+            "nonDmSegment": params.nonDMSegment,
+            "signupsource": params.signupCategory
+
+        }
+    }
+
+    return axios.post(Infoburst.dbQuery, body, {
+        headers: headers,
+        responseType: 'text'
+    });
+}
 
 /** Utility Functions */
 /**
@@ -3715,7 +4065,9 @@ export function resetRenewParams() {
 }
 /**
  * @name includes
- * @description Utility function that determines if the 
+ * @description Utility function that determines if the string container contains the text of value
+ * @param {*} container 
+ * @param {*} value  
  */
 export function includes(container, value) {
     // console.log(container, value);
@@ -3729,326 +4081,21 @@ export function includes(container, value) {
     return returnValue;
 }
 
+/**
+ * @name convertFilterListForDBQuery
+ * @description Utility function that concats the array into a comma seperated string list
+ * @param {*} container 
+ * @param {*} value  
+ */
 export function convertFilterListForDBQuery(arrayList) {
     return arrayList.join(", ");
 }
 
-// Fetch Comments
-export function fetchComments(metricId) {
-    let body = {
-        "conn": `${Infoburst.appXDCID}`,
-        "qry": 'fetchComments',
-        "columnNames": 'true',
-        "params": {
-            "metric": metricId
-        }
-    };
-    // console.log(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' })
-
-    const res1 = axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' }).then((response) => {
-
-        console.log(response);
-        if (response !== []) {
-
-            const commentIdsArray = response.data.map(ele => { return ele.id; });
-            const params = convertFilterListForDBQuery(commentIdsArray);
-            let responseBody = {
-                "conn": `${Infoburst.appXDCID}`,
-                "qry": 'fetchReplies',
-                "columnNames": 'true',
-                "params": {
-                    "params": params
-                }
-            };
-            const replies = axios.post(Infoburst.dbQuery, responseBody, { headers: headers, responseType: 'text' }).then((res) => {
-                let body1 = {
-                    "conn": `${Infoburst.appXDCID}`,
-                    "qry": 'fetchCommentsCount',
-                    "columnNames": 'true',
-                    "params": {}
-                };
-
-                let post = axios.post(Infoburst.dbQuery, body1, { headers: headers, responseType: 'text' }).then((res1) => {
-                    const commentsComplete = { comment: response.data, replies: res.data, allComments: res1.data };
-
-                    return commentsComplete;
-                });
-                return post;
-            });
-
-            return replies;
-        } else {
-            return [];
-        }
-
-    });
-
-    let responseARr = Promise.all([res1]);
-
-    return responseARr;
-}
-
-export function fetchCommentsCount() {
-    let body = {
-        "conn": `${Infoburst.appXDCID}`,
-        "qry": 'fetchCommentsCount',
-        "columnNames": 'true',
-        "params": {}
-    };
-
-    let post = axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' }).then((res) => {
-        // console.log(res.data);
-        return res.data;
-    });
-
-    return Promise.all([post]);
-}
-
-export function postComment(params, metric) {
-    // INSERT INTO Comments values('@userId', @metricId, CONVERT(datetime,'@postDateTime'), '@comment');
-    let body = {
-        "conn": `${Infoburst.appXDCID}`,
-        "qry": 'postComments',
-        "columnNames": 'true',
-        "params": {
-            "userId": params.userId,
-            "metricId": params.metricId,
-            "postDateTime": params.postDateTime,
-            "comment": params.comment
-        }
-    }
-
-    let fetchBody = {
-        "conn": `${Infoburst.appXDCID}`,
-        "qry": 'fetchComments',
-        "columnNames": 'true',
-        "params": {
-            "metric": metric
-        }
-    };
-    let post = axios.post(Infoburst.dbQuery, body, {
-        headers: headers,
-        responseType: 'text'
-    }).then((res) => {
-        console.log(res);
-        const res1 = axios.post(Infoburst.dbQuery, fetchBody, { headers: headers, responseType: 'text' }).then((response) => {
-
-            if (response !== []) {
-
-                const commentIdsArray = response.data.map(ele => { return ele.id; });
-                const params = convertFilterListForDBQuery(commentIdsArray);
-                let responseBody = {
-                    "conn": `${Infoburst.appXDCID}`,
-                    "qry": 'fetchReplies',
-                    "columnNames": 'true',
-                    "params": {
-                        "params": params
-                    }
-                };
-                const replies = axios.post(Infoburst.dbQuery, responseBody, { headers: headers, responseType: 'text' }).then((res) => {
-                    let body1 = {
-                        "conn": `${Infoburst.appXDCID}`,
-                        "qry": 'fetchCommentsCount',
-                        "columnNames": 'true',
-                        "params": {}
-                    };
-
-                    let post = axios.post(Infoburst.dbQuery, body1, { headers: headers, responseType: 'text' }).then((res1) => {
-                        const commentsComplete = { comment: response.data, replies: res.data, allComments: res1.data };
-
-                        return commentsComplete;
-                    });
-                    return post;
-                });
-
-                return replies;
-            } else {
-                return [];
-            }
-
-        });
-
-        return res1;
-    });
-
-    return Promise.all([post]);
-
-}
-
-
-export function postReply(params, metric) {
-    let body = {
-        "conn": `${Infoburst.appXDCID}`,
-        "qry": 'postReply',
-        "columnNames": 'true',
-        "params": {
-            "userId": params.userId,
-            "commentId": params.commentId,
-            "postDateTime": params.postDateTime,
-            "comment": params.comment
-        }
-    }
-    let fetchBody = {
-        "conn": `${Infoburst.appXDCID}`,
-        "qry": 'fetchComments',
-        "columnNames": 'true',
-        "params": {
-            "metric": metric
-        }
-    };
-    let post = axios.post(Infoburst.dbQuery, body, {
-        headers: headers,
-        responseType: 'text'
-    }).then((res) => {
-        console.log(res);
-        const res1 = axios.post(Infoburst.dbQuery, fetchBody, { headers: headers, responseType: 'text' }).then((response) => {
-
-            if (response !== []) {
-
-                const commentIdsArray = response.data.map(ele => { return ele.id; });
-                const params = convertFilterListForDBQuery(commentIdsArray);
-                let responseBody = {
-                    "conn": `${Infoburst.appXDCID}`,
-                    "qry": 'fetchReplies',
-                    "columnNames": 'true',
-                    "params": {
-                        "params": params
-                    }
-                };
-                const replies = axios.post(Infoburst.dbQuery, responseBody, { headers: headers, responseType: 'text' }).then((res) => {
-                    const commentsComplete = { comment: response.data, replies: res.data };
-                    return commentsComplete;
-                });
-
-                return replies;
-            } else {
-                return [];
-            }
-
-        });
-
-        return res1;
-    });
-    return Promise.all([post]);
-
-}
-
-
-export function removeComment(params, metric) {
-    let body = {
-        "conn": `${Infoburst.appXDCID}`,
-        "qry": 'deleteComment',
-        "columnNames": 'true',
-        "params": {
-            "id": parseInt(params.id),
-            "metric": metric
-        }
-    }
-    let fetchBody = {
-        "conn": `${Infoburst.appXDCID}`,
-        "qry": 'fetchComments',
-        "columnNames": 'true',
-        "params": {
-            "metric": metric
-        }
-    };
-    console.log(body);
-    let post = axios.post(Infoburst.dbQuery, body, {
-        headers: headers
-    }).then((res) => {
-        const res1 = axios.post(Infoburst.dbQuery, fetchBody, { headers: headers, responseType: 'text' }).then((response) => {
-
-            if (response !== []) {
-
-                const commentIdsArray = response.data.map(ele => { return ele.id; });
-                const params = convertFilterListForDBQuery(commentIdsArray);
-                let responseBody = {
-                    "conn": `${Infoburst.appXDCID}`,
-                    "qry": 'fetchReplies',
-                    "columnNames": 'true',
-                    "params": {
-                        "params": params
-                    }
-                };
-                const replies = axios.post(Infoburst.dbQuery, responseBody, { headers: headers, responseType: 'text' }).then((res) => {
-                    let body1 = {
-                        "conn": `${Infoburst.appXDCID}`,
-                        "qry": 'fetchCommentsCount',
-                        "columnNames": 'true',
-                        "params": {}
-                    };
-
-                    let post = axios.post(Infoburst.dbQuery, body1, { headers: headers, responseType: 'text' }).then((res1) => {
-                        const commentsComplete = { comment: response.data, replies: res.data, allComments: res1.data };
-
-                        return commentsComplete;
-                    });
-                    return post;
-                });
-
-                return replies;
-            } else {
-                return [];
-            }
-
-        });
-
-        return res1;
-
-
-
-    }).catch(error => {
-
-    });
-
-
-    return Promise.all([post]);
-
-}
-
-export function requestUserSettings(sub) {
-    let body = {
-        "conn": `${Infoburst.appXDCID}`,
-        "qry": 'GetUserSettings',
-        "columnNames": 'true',
-        "params": {
-            "sub": sub
-        }
-    }
-
-    return axios.post(Infoburst.dbQuery, body, {
-        headers: headers,
-        responseType: 'text'
-    })
-}
-
-export function postUserSettings(params) {
-    console.log('Params', params);
-    let body = {
-        "conn": `${Infoburst.appXDCID}`,
-        "qry": 'UpdateSettings',
-        "columnNames": 'true',
-        "params": {
-            "quarter": params.quarter,
-            "segment": params.segment,
-            "user": params.user,
-            "products": params.product,
-            "geos": params.geo,
-            "subscriptions": params.subscription,
-            "routes": params.route,
-            "markets": params.market,
-            "nonDmSegment": params.nonDMSegment,
-            "signupsource": params.signupCategory
-
-        }
-    }
-
-    return axios.post(Infoburst.dbQuery, body, {
-        headers: headers,
-        responseType: 'text'
-    });
-}
-
+/**
+ * @name renderUnits
+ * @description Utility function that formats the number into units
+ * @param {*} value  
+ */
 export function renderUnits(value) {
 
     let returnValue = '';
@@ -4107,6 +4154,12 @@ export function renderUnits(value) {
         return returnValue.toString() + suffix;
     }
 }
+
+/**
+ * @name renderDollarValue
+ * @description Utility function that formats the number into dollars
+ * @param {*} value  
+ */
 export function renderDollarValue(value) {
     let returnValue = '';
     let abs;
@@ -4164,7 +4217,11 @@ export function renderDollarValue(value) {
         return prefix + returnValue.toString() + suffix;
     }
 }
-//Check Logic Here
+/**
+ * @name formatPercentage
+ * @description Utility function that formats the number into percent
+ * @param {*} value  
+ */
 export function formatPercentage(value) {
     //convert to percentage
     let percentage = (value === undefined) ? 0 : parseFloat(value * 100);
@@ -4206,7 +4263,13 @@ export function formatPercentage(value) {
         return '--';
     }
 }
-
+/**
+ * @name formatMetric
+ * @description Utility function that determines the type of metric this should be formatted to 
+ * @param {*} value  
+ * @param {*} type - Can be either value, target, or qrf
+ * @returns The formatted metric for this type
+ */
 export function formatMetric(item, type) {
 
 
@@ -4247,7 +4310,10 @@ export function formatMetric(item, type) {
     }
 }
 /**
- * Gets the device type depending on the screen size, Mobile
+ * @name getDeviceType
+ * @description Utility function that determines the device type base on window size 
+ * @param {*} window  
+ * @returns The an object with a type and width property
  */
 export function getDeviceType(window) {
 
@@ -4302,7 +4368,12 @@ export function getDeviceType(window) {
     return deviceType;
 
 }
-
+/**
+ * @name getDateFormat
+ * @description Utility function that formats the date for Comment Box
+ * @param {*} _date  
+ * @returns The formatted date
+ */
 export function getDateFormat(_date) {
 
     let date = new Date(_date);
@@ -4313,7 +4384,14 @@ export function getDateFormat(_date) {
 
     return new Date(_date).toDateString() + ' at ' + returnTime;
 }
-
+/**
+ * @name getLabelColor
+ * @description Utility function that gets the color coding for labels
+ * @param {*} value 
+ * @param {*} target  
+ * @param {*} secondaryCardIndex  
+ * @returns The label color class for css
+ */
 export function getLabelColor(value, target, secondaryCardIndex) {
     let retColor = "";
 
@@ -4341,7 +4419,15 @@ export function getLabelColor(value, target, secondaryCardIndex) {
 
     return retColor;
 }
-
+/**
+ * @name getLabelColorPrimary
+ * @description Utility function that gets the color coding for primary labels
+ * @param {*} value 
+ * @param {*} target  
+ * @param {*} mobile
+ * @param {*} index  
+ * @returns The label color class for css
+ */
 export function getLabelColorPrimary(value, target, mobile, index) {
     console.log(mobile)
     let retColor = "";

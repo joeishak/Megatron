@@ -6,6 +6,7 @@ import classNames from 'classnames';
 // Custom Components and Styles
 import addIcon from '../../../assets/images/add-icon-white.svg';
 import checkIcon from '../../../assets/images/check.svg';
+import cancel from '../../../assets/images/cancel.svg';
 
 import * as actions from 'actions';
 import FilterPillBox from '../FilterPillBox/FilterPillBox.js';
@@ -17,7 +18,7 @@ class FilterBarHeader extends Component {
         super(props);
         // Initialize state
         this.state = {
-            filterButtonTitle: 'Add Filters',
+            filterButtonTitle: 'View Filters',
             filterBarArr: [],
             totalFilterPills: 0
         }
@@ -50,11 +51,11 @@ class FilterBarHeader extends Component {
         this.props.handleNewFilterClick();
         if (this.props.filterPanelIsOpen) {
             this.setState({
-                filterButtonTitle: 'Add Filters',
+                filterButtonTitle: 'View Filters',
             });
         } else {
             this.setState({
-                filterButtonTitle: 'Submit Filters',
+                filterButtonTitle: 'Hide Filters ',
             });
         }
     }
@@ -71,29 +72,14 @@ class FilterBarHeader extends Component {
                 <div className="pillsContainer col-8">
                     {/* {this.renderFilterPills()} */}
                 </div>
-
-                <div className="newFilterDiv col-2">
-                    <span className="newFilterText" >{this.props.filterPanelIsOpen ? 'Submit Filters' : 'Add Filters'}</span>
-                    {this.props.filterPanelIsOpen ?
-                        <img
-                            src={checkIcon} alt=""
-                            className={newFilterButtonClass}
-                            onClick={this.changeFilterPanelStatus}></img> :
-                        <img
-                            src={addIcon} alt=""
-                            className={newFilterButtonClass}
-                            onClick={this.changeFilterPanelStatus}></img>}
+                <div className="newFilterStateDiv col-2">
+                    <div
+                        onClick={this.changeFilterPanelStatus}
+                        className={newFilterButtonClass} >{this.props.filterPanelIsOpen ? <div className="cancelIcon"  /> : 'View Filters'}</div>
 
                 </div>
 
-                <div className="newFilterDiv col-2">
-                    <span
-                        className="badge badge-pill badge-primary"
-                        style={{ marginTop: '5px', cursor: 'pointer' }}
-                        onClick={e => { this.props.resetFilters(this.props.preferences) }}>
-                        Reset Filters
-                    </span>
-                </div>
+               
 
             </div>
         )

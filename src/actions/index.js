@@ -83,8 +83,8 @@ import { dispatch } from 'rxjs/internal/observable/pairs';
 let promiseArr = [];
 
 /**
- * Change the state of Authentication for the user.
- *
+ * 
+ * @description Action to  Change the state of Authentication for the user.
  * @param {boolean} isLoggedIn
  */
 export function changeAuth(isLoggedIn) {
@@ -95,7 +95,7 @@ export function changeAuth(isLoggedIn) {
 }
 
 /**
- * Reset the data back to users preferences.
+ * @description Action to Reset the data back to users preferences.
  *
  */
 export function resetData() {
@@ -106,7 +106,7 @@ export function resetData() {
 }
 
 /**
- * Submit a request for user preferences.
+ * @description Action to  Submit a request for user preferences.
  *
  */
 export function getUserSettings(sub) {
@@ -117,7 +117,7 @@ export function getUserSettings(sub) {
     }
 }
 /**
- * Adds the retrieved user to the Redux State.
+ * @description Action toAdds the retrieved user to the Redux State.
  *
  */
 export function addUser(user){
@@ -128,7 +128,7 @@ export function addUser(user){
     }
 }
 /***
- * Update User In Database From Okta
+ * @description Action toUpdate User In Database From Okta
  */
 export function updateOKTAUser(user, quarter, segment, nondm) {
     let usersResponse = utils.addUserToDB(user,quarter,segment,nondm);
@@ -139,7 +139,7 @@ export function updateOKTAUser(user, quarter, segment, nondm) {
 }
 
 /**
- * Update the User Settings in the database.
+ * @description Action toUpdate the User Settings in the database.
  * @param {*} activeFilters
  * @param {*} user
  * @param {*} defaultSummary
@@ -177,7 +177,7 @@ export function updateUserSettings(activeFilters, user) {
 }
 
 /**
- * Set the app settings  for window and device type
+ * @description Action toSet the app settings  for window and device type
  * @param {object} settings
  *
  */
@@ -191,7 +191,7 @@ export function setAppSettings(settings) {
 }
 
 /**
- * Updates the app settings that denote what component is showing for different view ports
+ * @description Action to Updates the app settings that denote what component is showing for different view ports
  * @param {*} param0 
  */
 export function setViewAppSettings({ component, isShowing }) {
@@ -204,7 +204,7 @@ export function setViewAppSettings({ component, isShowing }) {
 }
 
 /**
- * Organizes the filters pertaining only to Primary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to organize the filters pertaining only to Primary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -261,7 +261,7 @@ export function getFilteredPrimaryData(filters) {
     }
 }
 /**
- * Organizes the filters pertaining only to Discover Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Discover Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -314,7 +314,7 @@ export function getFilteredDiscoverSecondary(filters) {
     }
 }
 /**
- * Organizes the filters pertaining only to Finance filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Finance filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -349,7 +349,7 @@ export function getFilteredFinanceSecondaryData(filters) {
 }
 
 /**
- * Organizes the filters pertaining only to Finance Net NEw and Gross New Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Finance Net NEw and Gross New Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -384,7 +384,7 @@ export function getFilteredFinanceXDC1SecondaryData(filters) {
 }
 
 /**
- * Organizes the filters pertaining only to Finance Cancellations and Renewal Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Finance Cancellations and Renewal Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -418,7 +418,7 @@ export function getFilteredFinanceXDC2SecondaryData(filters) {
     }
 }
 /**
- * Organizes the filters pertaining only to Traffic, and Bounce Rate Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Traffic, and Bounce Rate Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -461,7 +461,7 @@ export function getFilteredTrafficSecondaryData(filters) {
 }
 
 /**
- * Organizes the filters pertaining only to Discover Marketing Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Discover Marketing Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -499,7 +499,7 @@ export function getFilteredMarketingSecondaryData(filters) {
 }
 
 /**
- * Organizes the filters pertaining only to Try Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Try Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -532,7 +532,7 @@ export function getFilteredTrySecondaryData(filters) {
 
 
 /**
- * Organizes the filters pertaining only to Buy Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Buy Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -586,7 +586,7 @@ export function getFilteredBuySecondaryData(filters) {
 
 
 /**
- * Organizes the filters pertaining only to Buy Gross New ARR and Subs Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Buy Gross New ARR and Subs Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -627,7 +627,7 @@ export function getFilteredBuyFinanceSecondaryData(filters) {
 }
 
 /**
- * Organizes the filters pertaining only to Buy Marketing Sourced ARR and Paid Media Spend Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Buy Marketing Sourced ARR and Paid Media Spend Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -666,7 +666,7 @@ export function getFilteredBuyMarketSecondaryData(filters) {
 }
 
 /**
- * Organizes the filters pertaining only to Buy Gross A Conversions Secondary filters, then passes those filters to Utilities to submit the data request.
+ *@description Action to  Organizes the filters pertaining only to Buy Gross A Conversions Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -712,7 +712,7 @@ export function getFilteredBuyTrafficSecondaryData(filters) {
 }
 
 /**
- * Organizes the filters pertaining only to Use Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Use Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -744,7 +744,7 @@ export function getFilteredUseSecondaryData(filters) {
 }
 
 /**
- * Organizes the filters pertaining only to Renew Secondary filters, then passes those filters to Utilities to submit the data request.
+ *@description Action to  Organizes the filters pertaining only to Renew Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -782,7 +782,7 @@ export function getFilteredRenewSecondaryData(filters) {
 }
 
 /**
- * Organizes the filters pertaining only to Renew Details for QTR and PF Rate Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Renew Details for QTR and PF Rate Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -819,7 +819,7 @@ export function getFilteredRenewDetailsSecondaryData(filters) {
     }
 }
 /**
- * Organizes the filters pertaining only to Renew Details for Cancellations Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Renew Details for Cancellations Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -857,7 +857,7 @@ export function getFilteredRenewCancelSecondaryData(filters) {
     }
 }
 /**
- * Organizes the filters pertaining only to Primary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Primary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -915,7 +915,7 @@ export function getPrimaryData(filters) {
 }
 
 /**
- * Organizes the filters pertaining only to Discover Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Discover Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -968,7 +968,7 @@ export function getDiscoverSecondary(filters) {
     }
 }
 /**
- * Organizes the filters pertaining only to Finance filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Finance filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -1003,7 +1003,7 @@ export function getFinanceSecondaryData(filters) {
 }
 
 /**
- * Organizes the filters pertaining only to Finance Net NEw and Gross New Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Finance Net NEw and Gross New Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -1037,7 +1037,7 @@ export function getFinanceXDC1SecondaryData(filters) {
     }
 }
 /**
- * Organizes the filters pertaining only to Finance Cancellations and Renewal Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Finance Cancellations and Renewal Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -1071,7 +1071,7 @@ export function getFinanceXDC2SecondaryData(filters) {
     }
 }
 /**
- * Organizes the filters pertaining only to Traffic, and Bounce Rate Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Traffic, and Bounce Rate Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -1116,7 +1116,7 @@ export function getTrafficSecondaryData(filters) {
     }
 }
 /**
- * Organizes the filters pertaining only to Discover Marketing Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Discover Marketing Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -1153,7 +1153,7 @@ export function getMarketingSecondaryData(filters) {
     }
 }
 /**
- * Organizes the filters pertaining only to Try Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Try Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE  IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -1184,7 +1184,7 @@ export function getTrySecondaryData(filters) {
     }
 }
 /**
- * Organizes the filters pertaining only to Buy Secondary filters, then passes those filters to Utilities to submit the data request.
+ * @description Action to Organizes the filters pertaining only to Buy Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -1233,7 +1233,7 @@ export function getBuySecondaryData(filters) {
     }
 }
 /**
- * Organizes the filters pertaining only to Buy Gross New ARR and Subs Secondary filters, then passes those filters to Utilities to submit the data request.
+ *@description Action to  Organizes the filters pertaining only to Buy Gross New ARR and Subs Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -1273,7 +1273,7 @@ export function getBuyFinanceSecondaryData(filters) {
 }
 
 /**
- * Organizes the filters pertaining only to Buy Marketing Sourced ARR and Paid Media Spend Secondary filters, then passes those filters to Utilities to submit the data request.
+ *@description Action to  Organizes the filters pertaining only to Buy Marketing Sourced ARR and Paid Media Spend Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -1311,7 +1311,7 @@ export function getBuyMarketSecondaryData(filters) {
 }
 
 /**
- * Organizes the filters pertaining only to Use Secondary filters, then passes those filters to Utilities to submit the data request.
+ *@description Action to  Organizes the filters pertaining only to Use Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -1356,7 +1356,7 @@ export function getBuyTrafficSecondaryData(filters) {
     }
 }
 /**
- * Organizes the filters pertaining only to Use Secondary filters, then passes those filters to Utilities to submit the data request.
+ *@description Action to  Organizes the filters pertaining only to Use Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -1388,7 +1388,7 @@ export function getUseSecondaryData(filters) {
 }
 
 /**
- * Organizes the filters pertaining only to Renew Details for QTR and PF Rate Secondary filters, then passes those filters to Utilities to submit the data request.
+ *@description Action to  Organizes the filters pertaining only to Renew Details for QTR and PF Rate Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -1425,7 +1425,7 @@ export function getRenewDetailsSecondaryData(filters) {
     }
 }
 /**
- * Organizes the filters pertaining only to Renew Details for Cancellations Secondary filters, then passes those filters to Utilities to submit the data request.
+ *@description Action to  Organizes the filters pertaining only to Renew Details for Cancellations Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -1463,7 +1463,7 @@ export function getRenewCancelSecondaryData(filters) {
     }
 }
 /**
- * Organizes the filters pertaining only to Renew Secondary filters, then passes those filters to Utilities to submit the data request.
+ *@description Action to  Organizes the filters pertaining only to Renew Secondary filters, then passes those filters to Utilities to submit the data request.
  * This is used only when the filters ARE IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
  * except PDF Services and Sign.
  * @param {*} filters 
@@ -1501,7 +1501,7 @@ export function getRenewSecondaryData(filters) {
 }
 
 /**
- * Update the visibility of the Modal Dialog Box
+ *@description Action to  Update the visibility of the Modal Dialog Box
  *
  * @param {boolean} isDialogVisible
  */
@@ -1520,7 +1520,7 @@ export function updateFeedbackFormVisibility(isFeedbackFormVisible) {
 }
 
 /**
- * To update whether the application is still loading the primary data
+ *@description Action to  To update whether the application is still loading the primary data
  * @param {*} isLoading 
  */
 export function updatePrimaryIsLoading(isLoading) {
@@ -1531,7 +1531,7 @@ export function updatePrimaryIsLoading(isLoading) {
 }
 
 /**
- * To update whether the application is still loading the Discover SEcondary KPIs data
+ *@description Action to  To update whether the application is still loading the Discover SEcondary KPIs data
  * @param {*} isLoading 
  */
 export function updateDiscoverSecondaryIsLoading(isLoading) {
@@ -1542,7 +1542,7 @@ export function updateDiscoverSecondaryIsLoading(isLoading) {
 }
 
 /**
- * To update whether the application is still loading the Finance SEcondary KPIs data
+ *@description Action to  To update whether the application is still loading the Finance SEcondary KPIs data
  * @param {*} isLoading 
  */
 export function updateFinanceSecondaryIsLoading(isLoading) {
@@ -1553,7 +1553,7 @@ export function updateFinanceSecondaryIsLoading(isLoading) {
 }
 
 /**
- * To update whether the application is still loading the Try SEcondary KPIs data
+ * @description Action to To update whether the application is still loading the Try SEcondary KPIs data
  * @param {*} isLoading 
  */
 export function updateTrySecondaryIsLoading(isLoading) {
@@ -1564,7 +1564,7 @@ export function updateTrySecondaryIsLoading(isLoading) {
 }
 
 /**
- * To update whether the application is still loading the Traffic and Bounce Rate SEcondary KPIs data
+ * @description Action to To update whether the application is still loading the Traffic and Bounce Rate SEcondary KPIs data
  * @param {*} isLoading 
  */
 export function updateTrafficSecondaryIsLoading(isLoading) {
@@ -1574,7 +1574,7 @@ export function updateTrafficSecondaryIsLoading(isLoading) {
     }
 }
 /**
- * To update whether the application is still loading the Marketable Universe and Paid Media  SEcondary KPIs data
+ * @description Action to To update whether the application is still loading the Marketable Universe and Paid Media  SEcondary KPIs data
  * @param {*} isLoading 
  */
 export function updateMuSecondaryIsLoading(isLoading) {
@@ -1585,7 +1585,7 @@ export function updateMuSecondaryIsLoading(isLoading) {
 }
 
 /**
- * To update whether the application is still loading the Finance NEt New and Gross New  SEcondary KPIs data
+ *@description Action to  To update whether the application is still loading the Finance NEt New and Gross New  SEcondary KPIs data
  * @param {*} isLoading 
  */
 export function updateFinanceXDC1IsLoading(isLoading) {
@@ -1596,7 +1596,7 @@ export function updateFinanceXDC1IsLoading(isLoading) {
 }
 
 /**
- * To update whether the application is still loading the  Buy Gross New  SEcondary KPIs data
+ *@description Action to  To update whether the application is still loading the  Buy Gross New  SEcondary KPIs data
  * @param {*} isLoading 
  */
 export function updateBuyGrossIsLoading(isLoading) {
@@ -1607,7 +1607,7 @@ export function updateBuyGrossIsLoading(isLoading) {
 }
 
 /**
- * To update whether the application is still loading the  Buy Marketing and Paid Media  SEcondary KPIs data
+ *@description Action to  To update whether the application is still loading the  Buy Marketing and Paid Media  SEcondary KPIs data
  * @param {*} isLoading 
  */
 export function updateBuyMarketIsLoading(isLoading) {
@@ -1617,7 +1617,7 @@ export function updateBuyMarketIsLoading(isLoading) {
     }
 }
 /**
- * To update whether the application is still loading the  Buy Gross New Conversion  SEcondary KPIs data
+ *@description Action to  To update whether the application is still loading the  Buy Gross New Conversion  SEcondary KPIs data
  * @param {*} isLoading 
  */
 export function updateBuyConversionIsLoading(isLoading) {
@@ -1627,7 +1627,7 @@ export function updateBuyConversionIsLoading(isLoading) {
     }
 }
 /**
- * To update whether the application is still loading the  Use  SEcondary KPIs data
+ *@description Action to  To update whether the application is still loading the  Use  SEcondary KPIs data
  * @param {*} isLoading 
  */
 export function updateUseIsLoading(isLoading) {
@@ -1637,7 +1637,7 @@ export function updateUseIsLoading(isLoading) {
     }
 }
 /**
- * To update whether the application is still loading the Renew  SEcondary KPIs data
+ *@description Action to  To update whether the application is still loading the Renew  SEcondary KPIs data
  * @param {*} isLoading 
  */
 export function updateRenewIsLoading(isLoading) {
@@ -1648,7 +1648,7 @@ export function updateRenewIsLoading(isLoading) {
 }
 
 /**
- * To update whether the application is still loading the  Renew Details   data
+ *@description Action to  To update whether the application is still loading the  Renew Details   data
  * @param {*} isLoading 
  */
 export function updateRenewDetailsIsLoading(isLoading) {
@@ -1658,7 +1658,7 @@ export function updateRenewDetailsIsLoading(isLoading) {
     }
 }
 /**
- * To update whether the application is still loading the  Renew Cancel Details data
+ *@description Action to  To update whether the application is still loading the  Renew Cancel Details data
  * @param {*} isLoading 
  */
 export function updateRenewCancelIsLoading(isLoading) {
@@ -1669,7 +1669,7 @@ export function updateRenewCancelIsLoading(isLoading) {
 }
 
 /**
- * To update whether the application is still loading the  Finance Renew & Cancel Details data
+ *@description Action to  To update whether the application is still loading the  Finance Renew & Cancel Details data
  * @param {*} isLoading 
  */
 export function updateFinanceXDC2IsLoading(isLoading) {
@@ -1681,7 +1681,7 @@ export function updateFinanceXDC2IsLoading(isLoading) {
 
 
 /**
- * Generate the data that goes into the filter box
+ *@description Action to  Generate the data that goes into the filter box
  *
  */
 export function generateFilterData() {
@@ -1695,7 +1695,7 @@ export function generateFilterData() {
 
 
 /**
- * Adds the users preferences to the active filters
+ *@description Action to Adds the users preferences to the active filters
  * @param {*} prefs 
  */
 export function addPreferencesToActiveFilters(prefs) {
@@ -1706,7 +1706,7 @@ export function addPreferencesToActiveFilters(prefs) {
 }
 
 /**
- * Submits the chosens sub filters to active filters
+ *@description Action to  Submits the chosens sub filters to active filters
  * @param {*} newFilters 
  */
 export function submitSubFilters(newFilters) {
@@ -1717,7 +1717,7 @@ export function submitSubFilters(newFilters) {
 }
 
 /**
- * Submits the chosen global filters to active filters
+ * @description Action to Submits the chosen global filters to active filters
  * @param {*} newFilters 
  */
 export function submitFilters(newFilters) {
@@ -1727,7 +1727,7 @@ export function submitFilters(newFilters) {
     }
 }
 /**
- * Add a value to the active filters for the multi filter
+ *@description Action to  Add a value to the active filters for the multi filter
  *
  * @param {object} filter
  */
@@ -1740,7 +1740,7 @@ export function addValueToActiveMultiFilter(filter) {
 }
 
 /**
- * Resets the active filters to default preferences
+ *@description Action to  Resets the active filters to default preferences
  * @param {} preferences 
  */
 export function resetFilters(preferences) {
@@ -1752,7 +1752,7 @@ export function resetFilters(preferences) {
     }
 }
 /**
- * Resets the active filters to default state
+ *@description Action to  Resets the active filters to default state
  * @param {} preferences 
  */
 export function resetFiltersToDefaultState() {
@@ -1765,7 +1765,7 @@ export function resetFiltersToDefaultState() {
 }
 RESET_FILTERS_TO_DEFAULT_STATE
 /**
-* Remove a value to the active filters for the multi filter
+*@description Action to  Remove a value to the active filters for the multi filter
 *
 * @param {object} filter
 */
@@ -1777,7 +1777,7 @@ export function removeMultiFilter(filter) {
 }
 
 /**
- * Set the visibility of the Summary View Details to True
+ *@description Action to  Set the visibility of the Summary View Details to True
  */
 export function showSummaryDetails(filter) {
     return {
@@ -1787,7 +1787,7 @@ export function showSummaryDetails(filter) {
 }
 
 /**
- * Set the visibility of the Summary View Details to False
+ *@description Action to  Set the visibility of the Summary View Details to False
  */
 export function hideSummaryDetails(filter) {
     return {
@@ -1798,7 +1798,7 @@ export function hideSummaryDetails(filter) {
 
 
 /**
- * Update the active primary card
+ *@description Action to  Update the active primary card
  * @param {} index
  */
 export function updateActivePrimaryCard(index) {
@@ -1809,7 +1809,7 @@ export function updateActivePrimaryCard(index) {
     }
 }
 /**
- * Update the active Secondary Card
+ *@description Action to  Update the active Secondary Card
  * @param {*} index
  */
 export function updateActiveSecondaryCard(index) {
@@ -1820,14 +1820,10 @@ export function updateActiveSecondaryCard(index) {
 }
 
 
-/**
- *
- * @param {*} _parameters
- * @param {*} availableFilters
- */
+
 
 /**
- * Get the data for Excel Multichart
+ * @description Action to Get the data for Excel Multichart
  * @param {} _parameters
  * @param {*} availableFilters
  */
@@ -1839,7 +1835,7 @@ export function getExcelMultichartData(_parameters, availableFilters) {
 }
 
 /**
- * Show the comment box
+ *@description Action to  Show the comment box
  */
 export function showCommentBox() {
     return {
@@ -1849,7 +1845,7 @@ export function showCommentBox() {
 }
 
 /**
- * Hide the Comment Box
+ *@description Action to  Hide the Comment Box
  */
 export function hideCommentBox() {
     return {
@@ -1859,7 +1855,7 @@ export function hideCommentBox() {
 }
 
 /**
- * Hide/Show the comment icon on the metric squares
+ *@description Action to  Hide/Show the comment icon on the metric squares
  * @param {} _toggleStatus
  */
 export function toggleCommentBox(_toggleStatus) {
@@ -1870,7 +1866,7 @@ export function toggleCommentBox(_toggleStatus) {
 }
 
 /**
- * Add a comment to the active Primarysquare
+ * @description Action to Add a comment to the active Primarysquare
  * @param {} activeSquareID
  * @param {*} comment
  */
@@ -1885,7 +1881,7 @@ export function addNewCommentToPrimaryMetric(activeSquareID, comment) {
 }
 
 /**
- * Add a reply to a comment in this metric
+ * @description Action to Add a reply to a comment in this metric
  * @param {} activeSquareID
  * @param {*} commentId
  * @param {*} reply
@@ -1901,7 +1897,7 @@ export function addNewReplyToPrimaryMetricComment(activeSquareID, commentId, rep
     }
 }
 /**
- * Add a comment to the active Secondary Square
+ * @description Action to Add a comment to the active Secondary Square
  * @param {} activeSquareID
  * @param {*} comment
  */
@@ -1917,7 +1913,7 @@ export function addNewCommentToSecondaryMetric(params, metric) {
 }
 
 /**
- * Add a reply to a commen tin this metric
+ * @description Action to Add a reply to a commen tin this metric
  * @param {} activeSquareID
  * @param {*} commentId
  * @param {*} reply
@@ -1932,7 +1928,7 @@ export function addNewReplyToSecondaryMetric(params, metric) {
 
 }
 /**
- * Remove the comment from a specific KPI Square
+ * @description Action to Remove the comment from a specific KPI Square
  * @param {*} commentId 
  * @param {*} activeSquareID 
  */
@@ -1948,7 +1944,7 @@ export function removeComment(commentId, activeSquareID) {
 }
 
 /**
- * Get data for excel
+ *@description Action to  Get data for excel
  * @param {} value
  */
 export function updateMultichartMetric(value) {
@@ -1967,7 +1963,7 @@ export function getIbHeartbeat() {
     }
 }
 /**
- * Update which view is currently showing/ hiding
+ * @description Action to Update which view is currently showing/ hiding
  * @param {*} component
  * @param {*} isShowing
  */
@@ -1981,7 +1977,7 @@ export function updateViewSetting(component, isShowing) {
 }
 
 /**
- * Fethch the comments for current active comment box clicked
+ * @description Action to Fethch the comments for current active comment box clicked
  * @param {*} metricId
  */
 
@@ -1995,7 +1991,7 @@ export const fetchComments = (metricId) => {
 
 
 /**
- * Fetch the total number of comments for ametric. Used for the yellow comment identifier
+ *@description Action to  Fetch the total number of comments for ametric. Used for the yellow comment identifier
  * @param {*} metric 
  */
 export function fetchCommentsCount(metric) {
@@ -2007,7 +2003,7 @@ export function fetchCommentsCount(metric) {
 }
 
 /**
- * Denote whether dashboard is still loading the comments for a metric
+ * @description Action to Denote whether dashboard is still loading the comments for a metric
  * @param {*} state 
  */
 export function isFetching(state) {
@@ -2019,7 +2015,7 @@ export function isFetching(state) {
 
 
 /**
- * Retrieve the latest quarter and date the dashboards data was refreshed
+ * @description Action to Retrieve the latest quarter and date the dashboards data was refreshed
  */
 export function getUpdatedAsOfDateAndQuarter() {
 

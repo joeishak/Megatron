@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {connect } from 'react-redux';
-import  classNames from 'classnames';
+import { connect } from 'react-redux';
+import classNames from 'classnames';
 import * as actions from 'actions';
 import FilterBarHeader from './FilterBarHeader/FilterBarHeader.js';
 import FilterPage from "../MobileComponents/FitlerPage/FilterPage.jsx";
@@ -8,10 +8,10 @@ import * as _ from 'lodash';
 import { DIMENSIONS } from '../../Constants/consts';
 
 import CustomDropDownPanel from './CustomDropDownPanel/CustomDropDownPanel.js';
-class FilterPanel extends Component{
-    constructor(props){
+class FilterPanel extends Component {
+    constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             // Controls whether the Custom Drop Down Panel should show
             filterPanelIsOpen: false,
             showDropDowns: false,
@@ -46,8 +46,9 @@ class FilterPanel extends Component{
         };
 
     }
- 
-    componentDidMount(){
+
+    componentDidMount() {
+        console.log('Filter Panel Mounting');
         this.setState({
             selectedFilters: [
                 ...this.props.filters.subscription.valueFilters.map(item => {
@@ -81,45 +82,73 @@ class FilterPanel extends Component{
     }
     componentDidUpdate(prevProps) {
 
-        console.log('Setting Select Filters in Component Did Update', this.state.selectedFilters);
 
-        if (this.props.filters !== prevProps.filters) {
-            this.setState({ loading: true }, () => {
+
+        if (this.props.filters.nonDMSegment !== prevProps.filters.nonDMSegment) {
+            this.setState({ loading: true,selectedFilters: [
+                ...this.props.filters.subscription.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.signupCategory.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.nonDMSegment.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.product.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.route.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.geo.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.market.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.quarter.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.segment.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                })] }, () => {
                 setTimeout(() => {
                     this.setState({ loading: false })
-                }, 1);
+                }, 10);
             })
-            this.setState({
-                selectedFilters: [
-                    ...this.props.filters.subscription.valueFilters.map(item => {
-                        return { ...item, label: item.value }
-                    }),
-                    ...this.props.filters.signupCategory.valueFilters.map(item => {
-                        return { ...item, label: item.value }
-                    }),
-                    ...this.props.filters.nonDMSegment.valueFilters.map(item => {
-                        return { ...item, label: item.value }
-                    }),
-                    ...this.props.filters.product.valueFilters.map(item => {
-                        return { ...item, label: item.value }
-                    }),
-                    ...this.props.filters.route.valueFilters.map(item => {
-                        return { ...item, label: item.value }
-                    }),
-                    ...this.props.filters.geo.valueFilters.map(item => {
-                        return { ...item, label: item.value }
-                    }),
-                    ...this.props.filters.market.valueFilters.map(item => {
-                        return { ...item, label: item.value }
-                    }),
-                    ...this.props.filters.quarter.valueFilters.map(item => {
-                        return { ...item, label: item.value }
-                    }),
-                    ...this.props.filters.segment.valueFilters.map(item => {
-                        return { ...item, label: item.value }
-                    })]
-            })
+            // this.setState({
+            //     selectedFilters: [
+            //         ...this.props.filters.subscription.valueFilters.map(item => {
+            //             return { ...item, label: item.value }
+            //         }),
+            //         ...this.props.filters.signupCategory.valueFilters.map(item => {
+            //             return { ...item, label: item.value }
+            //         }),
+            //         ...this.props.filters.nonDMSegment.valueFilters.map(item => {
+            //             return { ...item, label: item.value }
+            //         }),
+            //         ...this.props.filters.product.valueFilters.map(item => {
+            //             return { ...item, label: item.value }
+            //         }),
+            //         ...this.props.filters.route.valueFilters.map(item => {
+            //             return { ...item, label: item.value }
+            //         }),
+            //         ...this.props.filters.geo.valueFilters.map(item => {
+            //             return { ...item, label: item.value }
+            //         }),
+            //         ...this.props.filters.market.valueFilters.map(item => {
+            //             return { ...item, label: item.value }
+            //         }),
+            //         ...this.props.filters.quarter.valueFilters.map(item => {
+            //             return { ...item, label: item.value }
+            //         }),
+            //         ...this.props.filters.segment.valueFilters.map(item => {
+            //             return { ...item, label: item.value }
+            //         })]
+            // })
         }
+        console.log('Setting Select Filters in Component Did Update', this.state.selectedFilters);
 
     }
     updateSingleValue = (e) => {
@@ -155,8 +184,17 @@ class FilterPanel extends Component{
             _.remove(copy, item => { return item.category === type });
             this.setState({ selectedFilters: [...copy] })
 
-        } else {
+        }/*  else if (e[1] && e[1].category === DIMENSIONS.NONDMSEGMENT) {
+            console.log('Updating Multi Value', copy)
             _.remove(copy, item => { return item.category === e[0].category });
+            console.log('Updating Multi Value', copy)
+
+            this.setState({ selectedFilters: [...copy, ...e] })
+        } */ else {
+            console.log('Updating Multi Value', copy)
+            _.remove(copy, item => { return item.category === e[0].category });
+            console.log('Updating Multi Value', copy)
+
             this.setState({ selectedFilters: [...copy, ...e] })
         }
 
@@ -165,18 +203,48 @@ class FilterPanel extends Component{
     /* Event Handler for the Filter Box to open the filter panel with the drop downs */
     openDialogFilterPanel = () => {
         // Opening the panel
-        if (this.state.filterPanelIsOpen===false) {
-        // this.setState({ showDropDowns: true });
-        this.setState({ filterPanelIsOpen: true });
+        if (this.state.filterPanelIsOpen === false) {
+            // this.setState({ showDropDowns: true });
+            this.setState({ filterPanelIsOpen: true });
         } else {
-            console.log('Toggling Panel',this.state.selectedFilters)
-            this.submitFilters()
-        /* Closing the Panel */
-        // this.setState({ showDropDowns: false });
-        // this.setState({filterPanelIsOpen: false});
-        this.time = setTimeout(() => {
-            this.setState({ filterPanelIsOpen: false });
-        }, 300);
+            console.log('Toggling Panel', this.state.selectedFilters)
+            // this.submitFilters()
+            /* Closing the Panel */
+            // this.setState({ showDropDowns: false });
+            // this.setState({filterPanelIsOpen: false});
+            this.setState({
+                selectedFilters: [
+                    ...this.props.filters.subscription.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.signupCategory.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.nonDMSegment.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.product.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.route.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.geo.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.market.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.quarter.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.segment.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    })]
+            })
+            this.time = setTimeout(() => {
+                this.setState({ filterPanelIsOpen: false });
+            }, 300);
         }
     }
     submitFilters = (e) => {
@@ -212,8 +280,8 @@ class FilterPanel extends Component{
             geo: [],
             signupCategory: [],
             nonDMSegment: []
-
         };
+        
         Object.keys(newFilters).forEach(item => {
             switch (item) {
                 case QUARTER:
@@ -242,36 +310,34 @@ class FilterPanel extends Component{
             }
 
         });
-
-
-
         this.props.submitFilters(newFilters);
-        // this.props.handleClose();
+        this.setState({ filterPanelIsOpen: false });
     }
-    render(){
-        let {activeFilters,filters, availableFilters, mobileFiltersIsShown,window} = this.props;
-        const filtersPage = this.props.mobileFiltersIsShown===true ? (
+    render() {
+        let { activeFilters, filters, availableFilters, mobileFiltersIsShown, window } = this.props;
+        const filtersPage = this.props.mobileFiltersIsShown === true ? (
             <FilterPage
-              windowHeight={window.height}
-              filters={filters}
-              availableFilters={availableFilters}
+                windowHeight={window.height}
+                filters={filters}
+                availableFilters={availableFilters}
             />
-          ) : this.props.isMobileOrTablet===false ? <div>
-          <FilterBarHeader 
-            handleNewFilterClick={this.openDialogFilterPanel}
-             filterPanelIsOpen={this.state.filterPanelIsOpen} />
-          <CustomDropDownPanel
-            updateSingleValue={this.updateSingleValue}
-            updateMultiValue={(e,type) => {  this.updateMultiValue(e, type) }}
-            handleClose={this.openDialogFilterPanel}
-            showContainer={this.state.filterPanelIsOpen}
-            activePrimary={this.props.activePrimary}
-            selectedFilters={this.state.selectedFilters}
-            isMobileOrTablet={this.props.isMobileOrTablet}
-          />
-          </div>:null;
-        return(
-           filtersPage
+        ) : this.props.isMobileOrTablet === false ? <div>
+            <FilterBarHeader
+                handleNewFilterClick={this.openDialogFilterPanel}
+                filterPanelIsOpen={this.state.filterPanelIsOpen} />
+            <CustomDropDownPanel
+                updateSingleValue={this.updateSingleValue}
+                updateMultiValue={(e, type) => { this.updateMultiValue(e, type) }}
+                handleClose={this.openDialogFilterPanel}
+                showContainer={this.state.filterPanelIsOpen}
+                activePrimary={this.props.activePrimary}
+                selectedFilters={this.state.selectedFilters}
+                isMobileOrTablet={this.props.isMobileOrTablet}
+                submitGlobalFilters={this.submitFilters}
+            />
+        </div> : null;
+        return (
+            filtersPage
         )
     }
 }
@@ -279,6 +345,6 @@ function mapStateToProps(state) {
     return {
         filters: state.filters,
         mobileFiltersIsShown: state.appSettings.views.mobileFilterPageIsVisible
-};
+    };
 }
-export default connect(mapStateToProps,actions) (FilterPanel)
+export default connect(mapStateToProps, actions)(FilterPanel)

@@ -15,13 +15,20 @@ import { DIMENSIONS } from '../../../Constants/consts';
 import Loading from '../../../Views/Loading/Loading'
 import * as _ from 'lodash';
 import "react-picky/dist/picky.css";
+import filterIcon from '../../../assets/images/filter-solid.svg'
+import filterBlackIcon from '../../../assets/images/filter.svg'
+
+// import resetFilterIcon from '../../../assets/images/reset-filter.svg'
+import resetFilterIcon from '../../../assets/images/sync-solid.svg'
+
 class CustomDropDownPanel extends Component {
     //When the component is constructed
     constructor(props) {
         super(props);
         // Initialize state
         this.state = {
-            loading: false
+            loading: false,
+            isHovering: false,
         }
     }
     componentDidUpdate(prevProps) {
@@ -41,7 +48,7 @@ class CustomDropDownPanel extends Component {
                     this.setState({ loading: false })
                 }, 1);
             })
-           
+
         }
 
     }
@@ -81,7 +88,7 @@ class CustomDropDownPanel extends Component {
                 return (
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
-                        <div className={quarterFilterContainer + ' col-lg-3'} >
+                        <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p>  Route To Market</p>
                             <MultiValueSelect
                                 value={_.filter(this.props.selectedFilters, item => { return item.category === ROUTE })}
@@ -102,7 +109,7 @@ class CustomDropDownPanel extends Component {
                             />
 
                         </div>
-                        <div className={quarterFilterContainer + ' col-lg-4'} >
+                        <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p> Subscription Offering</p>
                             <MultiValueSelect
                                 value={_.filter(this.props.selectedFilters, item => { return item.category === SUBSCRIPTION })}
@@ -111,7 +118,7 @@ class CustomDropDownPanel extends Component {
                                 onMenuClose={this.closeDropDown}
                             />
                         </div>
-                        <div className={quarterFilterContainer + ' col-lg-3'} >
+                        <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p> Product Category</p>
                             <MultiValueSelect
                                 options={filters.product.availableFilters}
@@ -129,7 +136,7 @@ class CustomDropDownPanel extends Component {
                 return (
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
-                        <div className={quarterFilterContainer + ' col-lg-6'} >
+                        <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p style={{ whiteSpace: 'nowrap' }}> Sign Up Source </p>
                             <MultiValueSelect
                                 value={_.filter(this.props.selectedFilters, item => { return item.category === SIGNCAT })}
@@ -145,8 +152,8 @@ class CustomDropDownPanel extends Component {
                 return (
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
-                        <div className={quarterFilterContainer + ' col-lg-4'} >
-                            <p> Segments {this.props.filters.isDefaultFilters === true ? '- Excluding PDF Services & Sign' : ''}</p>
+                        <div className={quarterFilterContainer + ' col-lg-2'} >
+                            <p> Segments </p>
                             <MultiValueSelect
                                 options={filters.nonDMSegment.availableFilters}
                                 onValueChange={(e) => { let type = NONDMSEGMENT; this.props.updateMultiValue(e, type) }}
@@ -154,7 +161,7 @@ class CustomDropDownPanel extends Component {
                                 value={_.filter(this.props.selectedFilters, item => { return item.category === NONDMSEGMENT })}
                             />
                         </div>
-                        <div className={quarterFilterContainer + ' col-lg-4'} >
+                        <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p> Subscription Offering</p>
                             <MultiValueSelect
                                 options={filters.subscription.availableFilters}
@@ -169,7 +176,7 @@ class CustomDropDownPanel extends Component {
                 return (
                     <div className="col-lg-12 globalPrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
-                        <div className={quarterFilterContainer + ' col-lg-4'} >
+                        <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p> Segments  {this.props.filters.isDefaultFilters === true ? '- Excluding PDF Services & Sign' : ''} </p>
                             <MultiValueSelect
                                 options={filters.nonDMSegment.availableFilters}
@@ -179,7 +186,7 @@ class CustomDropDownPanel extends Component {
                             />
 
                         </div>
-                        <div className={quarterFilterContainer + ' col-lg-4'} >
+                        <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p> Subscription Offering</p>
                             <MultiValueSelect
                                 options={filters.subscription.availableFilters}
@@ -193,6 +200,12 @@ class CustomDropDownPanel extends Component {
                 );
             default:
                 break;
+        }
+    }
+    onSubmitFilterHover=()=>{
+
+        if(this.state.isHovering){
+
         }
     }
     render() {
@@ -216,9 +229,9 @@ class CustomDropDownPanel extends Component {
             'quarterFilterContainer-closed': (this.props.showContainer) ? false : true
         });
         return (
-            (this.state.loading ===true && this.props.showContainer === true ? <Loading /> :
+            (this.state.loading === true && this.props.showContainer === true ? <Loading /> :
                 <div className={panelDropDownContainer} >
-                    <div className={quarterFilterContainer + ' col-lg-1'} >
+                    <div className={quarterFilterContainer + ' col-lg-2'} >
                         <p> Quarter</p>
                         <SingleValueSelect
                             activeFilters={filters.quarter.valueFilters}
@@ -247,16 +260,40 @@ class CustomDropDownPanel extends Component {
                             value={_.filter(this.props.selectedFilters, (item => { return item.category === MARKET }))}
                         />
                     </div>
+                    <div className="newFilterDiv resetFilters col-3">
+                        <span
+                            className=" resetFiltersButton"
+                            style={{ marginTop: '5px', cursor: 'pointer' }}
+                            onClick={e => { this.props.resetFilters(this.props.preferences) }}>
+                            Reset {/* <img className="submitFilterIcon" src={resetFilterIcon} /> */}
+                        </span>
+
+                    </div>
+                    
+                    <div className="newFilterDiv  col-3">
+                        <span
+                            className=" submitFiltersButton"
+                            style={{ marginTop: '5px', cursor: 'pointer' }}
+                            onClick={e => { this.props.submitGlobalFilters(e) }}
+                            onMouseEnter={e=>{this.onSubmitFilterHover}}>
+                            Submit {/* <img className="submitFilterIcon" src={filterIcon} /> */}
+                        </span>
+
+                    </div>
+                    
                     {this.getGlobalSubFilters(filters, quarterFilterContainer)}
                 </div>)
         )
     }
 }
+
+
 function mapStateToProps(state) {
     return {
         filters: state.filters,
         summaryData: state.summaryData,
         activeCards: state.activeCards,
+        preferences: state.preferences
 
     };
 }
