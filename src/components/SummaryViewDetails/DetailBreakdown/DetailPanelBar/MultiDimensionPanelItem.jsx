@@ -109,16 +109,16 @@ class MultiDimensionPanelItem extends Component {
         _.keys(groupedQTD).forEach(item => {
             console.log(groupedQTD[item]);
             qtdARR.push(...groupedQTD[item])
-           qtdARR.push({...this.getJourneyQTDSubTotals(groupedQTD[item]),marketArea: 'Total', type: <span>&nbsp;</span>});
+           qtdARR.push({...this.getJourneyQTDSubTotals(groupedQTD[item]),marketArea: 'Total', type: item});
         });
         _.keys(groupedWeek).forEach(item => {
             console.log(groupedWeek[item]);
             weekARR.push(...groupedWeek[item])
-           weekARR.push({...this.getJourneyWeekSubTotals(groupedWeek[item]),marketArea: 'Total', type: <span>&nbsp;</span>});
+           weekARR.push({...this.getJourneyWeekSubTotals(groupedWeek[item]),marketArea: 'Total', type: item});
         });
         switch (this.props.timeMetric) {
             case 'qtd':
-                let journeyQTD = (qtdARR.map(item => {
+                let journeyQTD = (qtdARR.map((item,index) => {
 
                     if (this.props.type === DIMENSIONS.GEO || this.props.type === DIMENSIONS.SIGNAPP || this.props.type === DIMENSIONS.LTC) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
@@ -129,9 +129,11 @@ class MultiDimensionPanelItem extends Component {
                     }
 
                     let TotalStyle = item.marketArea === 'Total'? ' boldFont ' : ''; 
+                    let NoBorder = calculatedGeo === "" ? ' NoBorder' : ' BottomBorderTransparent';
+                    let KeepBottomBorder= (weekARR.length-1)=== index ? ' KeepBottomBorder': '';
                     prevGeo = item.type;
                     return (<span key={marketCount++}>
-                        <div className={`${qtdColumnClass}`+ TotalStyle  + " qtdGeoHeader col"}>
+                        <div className={`${qtdColumnClass}`+ NoBorder  + ` ${KeepBottomBorder} qtdGeoHeader col`}>
                             {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
                         <div className={`${qtdColumnClass}`  + TotalStyle + " qtdMaHeader col"} >
@@ -167,7 +169,7 @@ class MultiDimensionPanelItem extends Component {
                 console.log('Journey QTD', journeyQTD);
                 return journeyQTD;
             default:
-                return (weekARR.map(item => {
+                return (weekARR.map((item, index) => {
 
                     if (this.props.type === DIMENSIONS.GEO || this.props.type === DIMENSIONS.LTC || this.props.type === DIMENSIONS.SIGNAPP) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
@@ -177,10 +179,12 @@ class MultiDimensionPanelItem extends Component {
                         }
                     }
                     let TotalStyle = item.marketArea === 'Total'? ' boldFont ' : ''; 
-
-                    prevGeo = item.type;
+                    let NoBorder = calculatedGeo === "" ? ' NoBorder' : ' BottomBorderTransparent';
+                    let KeepBottomBorder= (weekARR.length-1)=== index ? ' KeepBottomBorder': '';
+                    
+                    prevGeo = item.type;    
                     return (<span key={marketCount++}>
-                        <div className={`${weekColumnClass}`+ TotalStyle + " qtdGeoHeader col"}>
+                        <div className={`${weekColumnClass}` + NoBorder +  ` ${KeepBottomBorder} qtdGeoHeader col`}>
                             {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
                         <div className={`${weekColumnClass}`+ TotalStyle + " qtdMaHeader col"} >
@@ -226,17 +230,17 @@ class MultiDimensionPanelItem extends Component {
         _.keys(groupedQTD).forEach(item => {
             console.log(groupedQTD[item]);
             qtdARR.push(...groupedQTD[item])
-           qtdARR.push({...this.getQTDSubTotals(groupedQTD[item]),marketArea: 'Total', type: <span>&nbsp;</span>});
+           qtdARR.push({...this.getQTDSubTotals(groupedQTD[item]),marketArea: 'Total', type: item});
         });
         _.keys(groupedWeek).forEach(item => {
             console.log(groupedWeek[item]);
             weekARR.push(...groupedWeek[item])
-           weekARR.push({...this.getWeekSubTotals(groupedWeek[item]),marketArea: 'Total', type: <span>&nbsp;</span>});
+           weekARR.push({...this.getWeekSubTotals(groupedWeek[item]),marketArea: 'Total', type: item});
         });
         switch (this.props.timeMetric) {
             case 'qtd':
                 // console.log('Multi', activeSecondary);
-                return (qtdARR.map(item => {
+                return (qtdARR.map((item,index) => {
                     let subTotalRow;
                     // console.log('HERE',item);
                     if (this.props.type === DIMENSIONS.GEO) {
@@ -248,10 +252,12 @@ class MultiDimensionPanelItem extends Component {
                     }
                     count++;
                     let TotalStyle = item.marketArea === 'Total'? ' boldFont ' : ''; 
+                    let NoBorder = calculatedGeo === "" ? ' NoBorder' : ' BottomBorderTransparent';
+                    let KeepBottomBorder= (weekARR.length-1)=== index ? ' KeepBottomBorder': '';
                     prevGeo = item.type;
                     return (
                         <div key={marketCount++}>
-                            <div className={`${qtdColumnClass}`+ TotalStyle + " qtdGeoHeader col"}>
+                            <div className={`${qtdColumnClass}`+ NoBorder + ` ${KeepBottomBorder} qtdGeoHeader col`}>
                                 {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                             </div>
                             <div className={`${qtdColumnClass}`+ TotalStyle + " qtdMaHeader col"} >
@@ -286,7 +292,7 @@ class MultiDimensionPanelItem extends Component {
                 }));
             default:
                 // console.log('Multi', activeSecondary);
-                return (weekARR.map(item => {
+                return (weekARR.map((item,index) => {
                     if (this.props.type === DIMENSIONS.GEO || this.props.type === DIMENSIONS.LTC) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
                             calculatedGeo = "";
@@ -294,9 +300,13 @@ class MultiDimensionPanelItem extends Component {
                             calculatedGeo = item.type;
                         }
                     }
+                    
                     let TotalStyle = item.marketArea === 'Total'? ' boldFont ' : ''; 
+                    let NoBorder = calculatedGeo === "" ? ' NoBorder' : ' BottomBorderTransparent';
+                    let KeepBottomBorder= (weekARR.length-1)=== index ? ' KeepBottomBorder': '';
+                    prevGeo = item.type;
                     return (<span key={marketCount++}>
-                        <div className={`${weekColumnClass}`+ TotalStyle + " weekGeoHeader col"}>
+                        <div className={`${weekColumnClass}`+ NoBorder + ` ${KeepBottomBorder} weekGeoHeader col`}>
                             {calculatedGeo === "" ? <span>&nbsp;</span> : calculatedGeo}
                         </div>
                         <div className={`${weekColumnClass}`+ TotalStyle + " weekMaHeader col"}>

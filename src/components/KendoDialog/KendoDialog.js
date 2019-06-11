@@ -523,9 +523,15 @@ class KendoDialog extends Component {
                         <div className="container-fluid">
                             <div className="col-lg-12 col-md-12">
                                 {/* Filters */}
+                                
+                                <button className="saveButton" onClick={this.saveChanges}>Save</button>
+                                
+                                <button className="resetButton" onClick={this.handleResetFiltersClick}>Reset</button>
+                                
                                 <p className="dialogTitles">Filters</p>
+                                
                                 <p>Select which filters (if any) you would like applied:</p>
-
+                                
                                 <div className="filterPillsContainer">
                                     <ul className="filterList">
                                         {/* {filters.combined.valueFilters.filter(item => item.category === QUARTER || item.category === MARKET || item.category === GEO).map((item) => {
@@ -568,13 +574,13 @@ class KendoDialog extends Component {
                                         {this.getGlobalSubFilters(filters)}
                                     </div>
                                 </div>
-                                <div className="col-lg-6 col-md-6">
+                                {/* <div className="col-lg-6 col-md-6">
                                     <a id="filter-reset" onClick={this.handleResetFiltersClick}>Re-set all Preferences</a>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         {/* Save Button */}
-                        <button className="saveButton" onClick={this.saveChanges}>Save Changes</button>
+                        {/* <button className="saveButton" onClick={this.saveChanges}>Save Changes</button> */}
                     </Dialog>
                 </div>
                 <div className="mobileDialog">

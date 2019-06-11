@@ -361,5 +361,21 @@
     font-weight: 800;
     border-top: 1px solid #a4a4a4;
     border-bottom:1px solid #a4a4a4;
-    color:white !important;
+    /* color: rgb(136, 9, 9) !important; */
+    background-color: #3f3f3f;
 }
+
+
+.NoBorder{
+    border-top: 1px solid #1f1f1f !important;
+    border-bottom: 1px solid #1f1f1f !important; 
+
+}  
+.BottomBorderTransparent{
+    border-bottom: 1px solid #1f1f1f !important;
+}
+.KeepBottomBorder{
+    border-bottom: 1px solid #3c3c3c !important;
+}
+
+
