@@ -38,7 +38,10 @@ class DetailPanelBar extends Component {
     /* Return Contents for */
     getPanelContents(type) {
         //If type is aMulti Dimension
-        if(type === DIMENSIONS.GEO || type ===DIMENSIONS.SIGNAPP || type === DIMENSIONS.LTC){
+        if(type === DIMENSIONS.GEO || type ===DIMENSIONS.SIGNAPP || type === DIMENSIONS.LTC 
+               || (type === DIMENSIONS.QFMTYPE && 
+                      (this.props.activeSecondary === SUMMARY_FILTERS.TRY_CUMU_QFM || 
+                           this.props.activeSecondary === SUMMARY_FILTERS.TRY_NEW_QFM))){
             return (
                 <div className='row'>
                     <div className='col-md-12 topPanelHeader'>
@@ -54,7 +57,8 @@ class DetailPanelBar extends Component {
                             qtdIsPercent={this.props.qtdIsPercent}
                             timeMetric={this.props.timeMetric}
                             activeSummary={this.props.activeSummary}
-                            type={type} />
+                            type={type}
+                            activeSecondary={this.props.activeSecondary} />
                     </div>
                     <div className=' geoTableContainer'>
                         {/* {this.getTable(type)} */}
@@ -84,7 +88,8 @@ class DetailPanelBar extends Component {
                             qtdIsPercent={this.props.qtdIsPercent}
                             timeMetric={this.props.timeMetric}
                             activeSummary={this.props.activeSummary}
-                            type={type} />
+                            type={type} 
+                            activeSecondary={this.props.activeSecondary}/>
                     </div>
                     <div className='geoTableContainer'>
                         {/* {this.getTable(type)} */}
@@ -94,6 +99,9 @@ class DetailPanelBar extends Component {
                             type={type}
                             activeSummary={this.props.activeSummary}
                             timeMetric={this.props.timeMetric}
+                            isQFMMultidimensional = { (type === DIMENSIONS.QFMTYPE && 
+                                (this.props.activeSecondary === SUMMARY_FILTERS.TRY_CUMU_QFM || 
+                                     this.props.activeSecondary === SUMMARY_FILTERS.TRY_NEW_QFM))}
                         />
                     </div>
                 </div>
@@ -270,6 +278,9 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Sign Up Source'>
                                     {this.getPanelContents(DIMENSIONS.SIGNCAT)}
                                 </ PanelBarItem>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
+                                    {this.getPanelContents(DIMENSIONS.QFMTYPE)}
+                                </ PanelBarItem>
                             </PanelBar>
                         )
                     case SUMMARY_FILTERS.TRY_NEW_UQFM:
@@ -284,6 +295,9 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Sign Up Source'>
                                     {this.getPanelContents(DIMENSIONS.SIGNAPP)}
                                 </ PanelBarItem>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
+                                    {this.getPanelContents(DIMENSIONS.QFMTYPE)}
+                                </ PanelBarItem>
                             </PanelBar>
                         )
                     case SUMMARY_FILTERS.TRY_CUMU_UQFM:
@@ -297,6 +311,9 @@ class DetailPanelBar extends Component {
                                 </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Sign Up Source'>
                                     {this.getPanelContents(DIMENSIONS.SIGNAPP)}
+                                </ PanelBarItem>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
+                                    {this.getPanelContents(DIMENSIONS.QFMTYPE)}
                                 </ PanelBarItem>
 
                             </PanelBar>
@@ -313,6 +330,9 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Sign Up Source'>
                                     {this.getPanelContents(DIMENSIONS.SIGNCAT)}
                                 </ PanelBarItem>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
+                                    {this.getPanelContents(DIMENSIONS.QFMTYPE)}
+                                </ PanelBarItem>
                             </PanelBar>
                         )
                     case SUMMARY_FILTERS.TRY_DAY_28:
@@ -327,6 +347,9 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Sign Up Source'>
                                     {this.getPanelContents(DIMENSIONS.SIGNCAT)}
                                 </ PanelBarItem>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
+                                    {this.getPanelContents(DIMENSIONS.QFMTYPE)}
+                                </ PanelBarItem>
                             </PanelBar>
                         )
                     case SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM:
@@ -340,6 +363,9 @@ class DetailPanelBar extends Component {
                                 </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Sign Up Source'>
                                     {this.getPanelContents(DIMENSIONS.SIGNCAT)}
+                                </ PanelBarItem>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
+                                    {this.getPanelContents(DIMENSIONS.QFMTYPE)}
                                 </ PanelBarItem>
                             </PanelBar>
                         )

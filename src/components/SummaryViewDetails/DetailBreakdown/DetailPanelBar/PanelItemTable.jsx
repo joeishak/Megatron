@@ -158,6 +158,31 @@ class PanelItemTable extends Component {
                     type={DIMENSIONS.VISITS}
                     valueType={this.props.activeSummary.valueType}
                 />
+            case DIMENSIONS.QFMTYPE:
+            
+                if (this.props.isQFMMultidimensional){
+                    
+                    return <MultiDimensionPanelItem
+                    activeSecondary={this.props.activeSecondary}
+                    timeMetric={this.props.timeMetric}
+                    data={this.props.activeSummary.details.geo}
+                    isJourney={this.state.isJourney}
+                    type={DIMENSIONS.QFMTYPE}
+                    valueType={this.props.activeSummary.valueType}
+                    />
+                }else{
+                    return <SingleDimensionPanelItem
+                    activeSecondary={this.props.activeSecondary}
+                    timeMetric={this.props.timeMetric}
+                    data={this.props.activeSummary.details.geo}
+                    isJourney={this.state.isJourney}
+                    type={DIMENSIONS.QFMTYPE}
+                    valueType={this.props.activeSummary.valueType}
+                />
+
+                }
+                
+                
             default:
                 return <MultiDimensionPanelItem
                     activeSecondary={this.props.activeSecondary}

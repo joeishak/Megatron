@@ -1235,7 +1235,7 @@ class Summary extends Component {
         break;
       case (4):
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.USE_PAID_USER_SUCCESS);
+        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.USE_PERCENT_ACTIVATED);
         break;
       default:
         this.props.updateMultichartMetric(true);

@@ -61,7 +61,7 @@ export const PrimaryData = [
     }
 
 ]
-export const SecondaryData = [
+export const SecondaryData_Old = [
     /* Finance */
     {
         index: 0,
@@ -17398,7 +17398,7 @@ export const SecondaryData = [
     }
 ]
 
-export const StagedSecondaryData = [
+export const SecondaryData = [
     /* Finance */
     {
         index: 0,
@@ -28476,7 +28476,7 @@ export const StagedSecondaryData = [
     {
         index: 22,
         category: 4,
-        header: '%Activated',
+        header: '%Activated (New)',
         value: .77,
         target: 0,
         comments: [
@@ -28992,7 +28992,7 @@ export const StagedSecondaryData = [
     {
         index: 23,
         category: 4,
-        header: 'Wk 4 WAU Rate',
+        header: 'Week 04 WAU Rate',
         value: .5042,
         target: .5774,
         comments: [
@@ -29510,7 +29510,7 @@ export const StagedSecondaryData = [
     {
         index: 24,
         category: 4,
-        header: 'Month 1 Return Rate',
+        header: 'Month 1 Return Rate (Coming Soon)',
         value: .77,
         target: 0,
         comments: [
@@ -32091,7 +32091,7 @@ export const StagedSecondaryData = [
     {
         index: 29,
         category: 4,
-        header: 'Repeat User MAU',
+        header: 'Repeat Paid User MAU',
         value: .6054,
         target: .6411,
         comments: [

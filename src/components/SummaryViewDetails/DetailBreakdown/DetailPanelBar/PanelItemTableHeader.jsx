@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { DIMENSIONS } from '../../../../Constants/consts';
+import { DIMENSIONS, SUMMARY_FILTERS } from '../../../../Constants/consts';
 
 class PanelItemTableHeader extends Component {
     constructor(props) {
@@ -41,7 +41,9 @@ class PanelItemTableHeader extends Component {
             case DIMENSIONS.CHANNELMU:
                 return 'Channel';
             case DIMENSIONS.SUBSCRIPTION:
-                return 'Subscription'
+                return 'Subscription';
+            case DIMENSIONS.QFMTYPE:
+                return 'QFM Type'
             default:
                 return 'Product';
         }
@@ -62,6 +64,8 @@ class PanelItemTableHeader extends Component {
         let isGeo = type === DIMENSIONS.GEO 
         let isLTC =  type === DIMENSIONS.LTC 
         let isSignApp = type === DIMENSIONS.SIGNAPP;
+        let isQFMType = type === DIMENSIONS.QFMTYPE && (this.props.activeSecondary === SUMMARY_FILTERS.TRY_CUMU_QFM 
+                    || this.props.activeSecondary === SUMMARY_FILTERS.TRY_NEW_QFM)
         let qtdColumnClass, weekColumnClass;
         let isJourney = this.props.activeSummary.index > 3
         if (isJourney) {
@@ -90,7 +94,9 @@ class PanelItemTableHeader extends Component {
             Last Touch Channel
            </div> : (isSignApp) ? <div className={`${qtdColumnClass}  header qtdMaHeader col`}>
             Sign Up App
-           </div> : <span></span>
+           </div> : (isQFMType)? <div className={`${qtdColumnClass}  header qtdMaHeader col`}>
+            Download Type
+           </div> :<span></span>
         switch (this.props.timeMetric) {
             case 'qtd':
                 return (<div className="lowerHeaderBar ">

@@ -342,6 +342,17 @@ class SummaryViewDetails extends Component {
                 value={_.filter(this.state.selectedFilters, item => { return item.category === WEBSEGMENT })}
               />
             </div>
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              <div>Customer Type </div>
+
+              <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CONVERSION })}
+                options={convType.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
+                onMenuClose={this.closeMultiValue}
+              />
+            </div>
+
           </div>
         );
       case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
@@ -414,6 +425,16 @@ class SummaryViewDetails extends Component {
                 value={_.filter(this.state.selectedFilters, item => { return item.category === WEBSEGMENT })}
               />
             </div>
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              <div>Customer Type </div>
+
+              <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CONVERSION })}
+                options={convType.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
+                onMenuClose={this.closeMultiValue}
+              />
+            </div>
           </div>
         );
       //Buy
@@ -451,6 +472,16 @@ class SummaryViewDetails extends Component {
                 onValueChange={e => { this.updateSingleValue(e) }}
                 onMenuClose={e => { this.closeSingleValue(e) }}
                 value={_.filter(this.state.selectedFilters, item => { return item.category === WEBSEGMENT })}
+              />
+            </div>
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              <div>QFM Type</div>
+
+              <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CONVERSION })}
+                options={convType.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
+                onMenuClose={this.closeMultiValue}
               />
             </div>
           </div>

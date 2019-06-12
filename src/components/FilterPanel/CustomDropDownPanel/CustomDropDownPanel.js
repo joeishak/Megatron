@@ -145,6 +145,17 @@ class CustomDropDownPanel extends Component {
                             />
 
                         </div>
+
+                        <div className={quarterFilterContainer + ' col-lg-2'} >
+                            <p style={{ whiteSpace: 'nowrap' }}> QFM Type </p>
+                            <MultiValueSelect
+                                value={_.filter(this.props.selectedFilters, item => { return item.category === SIGNCAT })}
+                                options={filters.signupCategory.availableFilters}
+                                onValueChange={(e) => { let type = SIGNCAT; this.props.updateMultiValue(e, type); }}
+                                onMenuClose={this.closeDropDown}
+                            />
+
+                        </div>
                     </div>
                 );
             case 4:

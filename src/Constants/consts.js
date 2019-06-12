@@ -27,9 +27,11 @@ export const DIMENSIONS = {
     VISITS: "visits",
     CHANNELMU: "channelMU",
     CHANNELPM:"channelPM",
-    NONDMSEGMENT: "nonDMSegment"
+    NONDMSEGMENT: "nonDMSegment",
+    QFMTYPE: "qfmType",
+    CUSTOMERTYPE: "customerType"
 };
-export const SUMMARY_FILTERS = {
+export const SUMMARY_FILTERS_OLD = {
     FINANCE_NET_NEW_ARR: 0,
     FINANCE_GROSS_NEW_ARR: 1,
     FINANCE_CANCEL_ARR: 2,
@@ -68,7 +70,7 @@ export const SUMMARY_FILTERS = {
     RENEW_EOT_RESELLER:34,
     RENEW_QTR_FIN_RETAIL: 35
 };
-export const STAGED_SUMMARY_FILTERS = {
+export const SUMMARY_FILTERS = {
     FINANCE_NET_NEW_ARR: 0,
     FINANCE_GROSS_NEW_ARR: 1,
     FINANCE_CANCEL_ARR: 2,

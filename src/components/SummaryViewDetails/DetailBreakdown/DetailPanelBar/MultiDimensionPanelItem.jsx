@@ -118,7 +118,8 @@ class MultiDimensionPanelItem extends Component {
             case 'qtd':
                 let journeyQTD = (qtdARR.map((item,index) => {
 
-                    if (this.props.type === DIMENSIONS.GEO || this.props.type === DIMENSIONS.SIGNAPP || this.props.type === DIMENSIONS.LTC) {
+                    if (this.props.type === DIMENSIONS.GEO || this.props.type === DIMENSIONS.SIGNAPP || this.props.type === DIMENSIONS.LTC ||
+                         this.props.type === DIMENSIONS.QFMTYPE) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
                             calculatedGeo = "";
                         } else if (calculatedGeo === undefined || item.type !== calculatedGeo) {
@@ -168,7 +169,8 @@ class MultiDimensionPanelItem extends Component {
             default:
                 return (weekARR.map((item, index) => {
 
-                    if (this.props.type === DIMENSIONS.GEO || this.props.type === DIMENSIONS.LTC || this.props.type === DIMENSIONS.SIGNAPP) {
+                    if (this.props.type === DIMENSIONS.GEO || this.props.type === DIMENSIONS.LTC || this.props.type === DIMENSIONS.SIGNAPP 
+                            || this.props.type === DIMENSIONS.QFMTYPE) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
                             calculatedGeo = "";
                         } else if (calculatedGeo === undefined || item.type !== calculatedGeo) {

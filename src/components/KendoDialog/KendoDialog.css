@@ -196,17 +196,21 @@
     /* transition: background-color 0.5s; */
     background-repeat: no-repeat;
     background-position: right;
-    background-size: 40% 40%;
-}
+    background-size: 45% 45%;
+    background-position-x:100%;
+}   
 
 .saveButton{
-    /* background-image: url('../../assets/images/save-regular.svg'); */
-    background-size: 50% 50%;
+    background-image: url('../../assets/images/save-regular.svg');
+    background-size: 55% 55%;
+    
+    padding-right: 30px;
     
 }
 
 .resetButton{
-    /* background-image: url('../../assets/images/sync-solid.svg'); */
+    background-image: url('../../assets/images/sync-solid.svg');
+    padding-right: 30px;
     
 }
 .saveButton:hover,
