@@ -68,6 +68,9 @@ class DetailPanelBar extends Component {
                             type={type}
                             activeSummary={this.props.activeSummary}
                             timeMetric={this.props.timeMetric}
+                            isQFMMultidimensional = { (type === DIMENSIONS.QFMTYPE && 
+                                (this.props.activeSecondary === SUMMARY_FILTERS.TRY_CUMU_QFM || 
+                                     this.props.activeSecondary === SUMMARY_FILTERS.TRY_NEW_QFM))}
                         />
                     </div>
                 </div>

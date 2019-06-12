@@ -10,7 +10,6 @@ import SingleValueSelect from '../../SingleValueSelect/SingleValueSelect';
 import MultiValueSelect from '../../MultiValueSelect/MultiValueSelect';
 
 import Picky from "react-picky";
-import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
 import { DIMENSIONS } from '../../../Constants/consts';
 import Loading from '../../../Views/Loading/Loading'
 import * as _ from 'lodash';

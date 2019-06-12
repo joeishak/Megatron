@@ -70,7 +70,7 @@ class PanelItemTableHeader extends Component {
         let isJourney = this.props.activeSummary.index > 3
         if (isJourney) {
             // Journeys
-            if (isGeo || isLTC || isSignApp) {
+            if (isGeo || isLTC || isSignApp || isQFMType) {
                 qtdColumnClass = 'qtdJourneyMarketColumn';
                 weekColumnClass = 'weekJourneyMarketColumn';
             } else {
