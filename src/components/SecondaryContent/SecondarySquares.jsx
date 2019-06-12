@@ -140,7 +140,6 @@ class SecondarySquares extends Component {
           ) : null}
           <div className={secondaryBoxContent}>
             <div>{this.props.item.header}{this.getTitlePill(this.props.item.index)}</div>
-            {/* {console.log(this.props.item)} */}
             <div className={`  ${seconaryBoxContentAmount} ${utils.getLabelColor(this.props.item.value, this.props.item.target, this.props.item.index)}`} 
 >
               {formattedValue}
@@ -240,7 +239,6 @@ class SecondarySquares extends Component {
           ) : null}
           <div className={secondaryBoxContent}>
             <div>{this.props.item.header}{this.getTitlePill(this.props.item.index)}</div>
-            {/* {console.log(this.props.item)} */}
             <div className={`  ${seconaryBoxContentAmount} ${utils.getLabelColor(this.props.item.value, this.props.item.target, this.props.item.index)}`} 
 >
               {formattedValue}

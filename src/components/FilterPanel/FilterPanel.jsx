@@ -48,7 +48,6 @@ class FilterPanel extends Component {
     }
 
     componentDidMount() {
-        console.log('Filter Panel Mounting');
         this.setState({
             selectedFilters: [
                 ...this.props.filters.subscription.valueFilters.map(item => {
@@ -117,42 +116,10 @@ class FilterPanel extends Component {
                     this.setState({ loading: false })
                 }, 10);
             })
-            // this.setState({
-            //     selectedFilters: [
-            //         ...this.props.filters.subscription.valueFilters.map(item => {
-            //             return { ...item, label: item.value }
-            //         }),
-            //         ...this.props.filters.signupCategory.valueFilters.map(item => {
-            //             return { ...item, label: item.value }
-            //         }),
-            //         ...this.props.filters.nonDMSegment.valueFilters.map(item => {
-            //             return { ...item, label: item.value }
-            //         }),
-            //         ...this.props.filters.product.valueFilters.map(item => {
-            //             return { ...item, label: item.value }
-            //         }),
-            //         ...this.props.filters.route.valueFilters.map(item => {
-            //             return { ...item, label: item.value }
-            //         }),
-            //         ...this.props.filters.geo.valueFilters.map(item => {
-            //             return { ...item, label: item.value }
-            //         }),
-            //         ...this.props.filters.market.valueFilters.map(item => {
-            //             return { ...item, label: item.value }
-            //         }),
-            //         ...this.props.filters.quarter.valueFilters.map(item => {
-            //             return { ...item, label: item.value }
-            //         }),
-            //         ...this.props.filters.segment.valueFilters.map(item => {
-            //             return { ...item, label: item.value }
-            //         })]
-            // })
         }
-        console.log('Setting Select Filters in Component Did Update', this.state.selectedFilters);
 
     }
     updateSingleValue = (e) => {
-        // console.log('Updating SingleValue',e);
         let copy = this.state.selectedFilters;
         if (this.state.selectedFilters.length === 0) {
             this.setState({ selectedFilters: [e] })
@@ -177,7 +144,6 @@ class FilterPanel extends Component {
     updateMultiValue = (e, type) => {
 
 
-        console.log('Picky', e);
         let copy = this.state.selectedFilters;
 
         if (e.length === 0) {
@@ -185,15 +151,11 @@ class FilterPanel extends Component {
             this.setState({ selectedFilters: [...copy] })
 
         }/*  else if (e[1] && e[1].category === DIMENSIONS.NONDMSEGMENT) {
-            console.log('Updating Multi Value', copy)
             _.remove(copy, item => { return item.category === e[0].category });
-            console.log('Updating Multi Value', copy)
 
             this.setState({ selectedFilters: [...copy, ...e] })
         } */ else {
-            console.log('Updating Multi Value', copy)
             _.remove(copy, item => { return item.category === e[0].category });
-            console.log('Updating Multi Value', copy)
 
             this.setState({ selectedFilters: [...copy, ...e] })
         }
@@ -207,7 +169,6 @@ class FilterPanel extends Component {
             // this.setState({ showDropDowns: true });
             this.setState({ filterPanelIsOpen: true });
         } else {
-            console.log('Toggling Panel', this.state.selectedFilters)
             // this.submitFilters()
             /* Closing the Panel */
             // this.setState({ showDropDowns: false });

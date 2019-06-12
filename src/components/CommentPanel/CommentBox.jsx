@@ -68,12 +68,10 @@ class CommentBox extends Component {
             // Post Comment
             // this.props.addNewCommentToSecondaryMetric(this.props.currentMetric,comment);
             // Write to DB, Refresh the metrics from the DB, then refresh Comments count for the comment Indicators
-            // console.log('checking user privelages...', this.props.user.Groups);
             //check if undefined and comin back from okta
 
             if (this.props.user.Groups !== undefined) {
                 isCommenter = this.props.user.Groups.includes('Commenters');
-                // console.log('is commenter:', isCommenter);
             } else {
                 // theres no groups coming back from okta, post the comments
                 // this.forceUpdate(() => {
@@ -105,7 +103,6 @@ class CommentBox extends Component {
             }
             if (this.props.user.Groups !== undefined) {
                 isCommenter = this.props.user.Groups.includes('Commenters');
-                // console.log('is commenter:', isCommenter);
             } else {
                
                 this.props.isFetching(true);

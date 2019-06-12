@@ -13,7 +13,6 @@ class MultiValueSelect extends Component {
         if(this.props.value){
             if(this.props.value[0]){
                 if(this.props.value[0].category && this.props.value[0].category === 'nonDMSegment'){
-                    console.log('Multiselect', this.props.value)
                 }
             }
         }
@@ -22,7 +21,6 @@ class MultiValueSelect extends Component {
 
         let newObjList = [];
         if (objList !== undefined && objList !== [] && objList.length !== 0) {
-            // console.log('The length of the value filters: ',objList);
             // Iterate through each list of objects and convert
             for (let i = 0; i < objList.length; i++) {
                 newObjList.push(

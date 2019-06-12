@@ -107,12 +107,10 @@ class MultiDimensionPanelItem extends Component {
 
         let qtdARR = [],weekARR=[];
         _.keys(groupedQTD).forEach(item => {
-            console.log(groupedQTD[item]);
             qtdARR.push(...groupedQTD[item])
            qtdARR.push({...this.getJourneyQTDSubTotals(groupedQTD[item]),marketArea: 'Total', type: item});
         });
         _.keys(groupedWeek).forEach(item => {
-            console.log(groupedWeek[item]);
             weekARR.push(...groupedWeek[item])
            weekARR.push({...this.getJourneyWeekSubTotals(groupedWeek[item]),marketArea: 'Total', type: item});
         });
@@ -166,7 +164,6 @@ class MultiDimensionPanelItem extends Component {
                     )
                 }));
 
-                console.log('Journey QTD', journeyQTD);
                 return journeyQTD;
             default:
                 return (weekARR.map((item, index) => {
@@ -228,21 +225,17 @@ class MultiDimensionPanelItem extends Component {
 
         let qtdARR = [],weekARR=[];
         _.keys(groupedQTD).forEach(item => {
-            console.log(groupedQTD[item]);
             qtdARR.push(...groupedQTD[item])
            qtdARR.push({...this.getQTDSubTotals(groupedQTD[item]),marketArea: 'Total', type: item});
         });
         _.keys(groupedWeek).forEach(item => {
-            console.log(groupedWeek[item]);
             weekARR.push(...groupedWeek[item])
            weekARR.push({...this.getWeekSubTotals(groupedWeek[item]),marketArea: 'Total', type: item});
         });
         switch (this.props.timeMetric) {
             case 'qtd':
-                // console.log('Multi', activeSecondary);
                 return (qtdARR.map((item,index) => {
                     let subTotalRow;
-                    // console.log('HERE',item);
                     if (this.props.type === DIMENSIONS.GEO) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {
                             calculatedGeo = "";
@@ -291,7 +284,6 @@ class MultiDimensionPanelItem extends Component {
                         </div>)
                 }));
             default:
-                // console.log('Multi', activeSecondary);
                 return (weekARR.map((item,index) => {
                     if (this.props.type === DIMENSIONS.GEO || this.props.type === DIMENSIONS.LTC) {
                         if (item.type === calculatedGeo || item.type === prevGeo) {

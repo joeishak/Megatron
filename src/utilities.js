@@ -429,7 +429,6 @@ export function getHeartbeat() {
  * @returns Promise Array containing the OKTA information for this user.
  */
 export async function addUserToDB(user, quarter, segment, nondm) {
-    console.log(nondm);
     responseArray = [];
     promiseArr = [];
     let body = {
@@ -452,7 +451,7 @@ export async function addUserToDB(user, quarter, segment, nondm) {
         responseType: 'text'
     })
         .then((res) => {
-            console.log("Posted User to DB", res);
+            // console.log("Posted User to DB", res);
             return res;
         })
         .catch((err) => {
@@ -761,7 +760,6 @@ export function requestFinanceSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    console.log('Params 8', params8);
     const financeSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -1072,7 +1070,6 @@ export function requestMKTGSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
-    console.log("Paid Media Spend and Source NEtwork request:", Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMSecondary + params6 + '&json=1');
     //Paid Media Sourced and Spend
     const pmssSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMSecondary + params6 + '&json=1', {
         headers: headers,
@@ -1131,7 +1128,6 @@ export function requestTrySecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-    console.log('Try Params', params2)
 
 
     // Secondary
@@ -1337,7 +1333,6 @@ export function requestBuyTrafficSecondaryData(allFilters, _parameters) {
  * @returns Promise Array containing values for the Buy Mktg Sourced and PAid Media Spend KPI Details
  */
 export function requestBuyMarketSecondaryData(allFilters, _parameters) {
-    console.log('requesting marketing data', _parameters);
     responseArray = [];
     generateFilterParams(10, buyMktgParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
@@ -1354,8 +1349,6 @@ export function requestBuyMarketSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    console.log('MKTG Params before reduce', buyMktgParams);
-    console.log('PMSS Params before reduce', pmssParams);
 
     //Marketing
     const mktgSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMarketSourceARRSecondary + params5 + '&json=1', {
@@ -1459,7 +1452,6 @@ export function requestBuyFinanceSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    console.log(params8);
     const financeSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.BuyGrossActualTargetSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -1520,7 +1512,6 @@ export function requestUseSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    console.log(params8);
     const useSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -1602,7 +1593,6 @@ export function requestRenewCancelSecondaryData(allFilters, _parameters) {
     }, '');
 
     // Blank Renew Calls for Cancellations
-    console.log('Renew Cancel All Routes PArams', params9);
     const financeSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params9 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -1712,7 +1702,6 @@ export function requestRenewCancelSecondaryData(allFilters, _parameters) {
  * @returns Promise Array containing values for the Renew  QTR and EOT KPIs Details
  */
 export function requestRenewDetailsSecondaryData(allFilters, _parameters) {
-    console.log('HITTING THE CACHE MODE');
 
     responseArray = [];
     resetRenewParams();
@@ -1813,7 +1802,6 @@ export function requestRenewDetailsSecondaryData(allFilters, _parameters) {
     });
  
     responseArray.push(renewSecondary, renewMultichart, renewQTDTotals, renewGeoQTD, renewMarketQTD, renewSegmentQTD);
-    console.log('Requesting Renew Details with paramas', params6)
     const renewResellerSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -1922,7 +1910,6 @@ export function requestRenewSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    console.log(params9);
     //All Routes
     const cancelSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params9 + '&json=1', {
         headers: headers,
@@ -1943,7 +1930,6 @@ export function requestRenewSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    console.log('Requesting use secondary EOT Reseller with these params', params10);
     const renewSecondaryResller = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewSecondary + params10 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -2151,7 +2137,6 @@ export function filterFinanceSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    console.log('Params 8', params8);
     const financeSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -2310,7 +2295,6 @@ export function filterTrafficSecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-    console.log('Traffic Params', params5, 'uqfm params', params6);
 
     // console.log("Traffic Network filter: ", Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1');
     // Traffic  & Bounce
@@ -2416,12 +2400,9 @@ export function filterTrafficSecondaryData(allFilters, _parameters) {
  * @returns Promise Array containing values for the Discover MU, Paid Media Spend and Sourced Details.
  */
 export function filterMKTGSecondaryData(allFilters, _parameters) {
-    // console.log('requesting marketing data');
     responseArray = [];
     generateFilterParams(6, mktgParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
-    // console.log('MKTG Params before reduce', mktgParams);
-    // console.log('PMSS Params before reduce', pmssParams);
     let params5 = mktgParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
@@ -2433,9 +2414,7 @@ export function filterMKTGSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    console.log('MKtble Univ Params', params5, 'Paid Media SS params', params6);
 
-    // console.log("MU NEtwork request:", Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUSecondary + params5 + '&json=1');
     //Marketing
     const mktgSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUSecondary + params5 + '&json=1', {
         headers: headers,
@@ -2467,7 +2446,6 @@ export function filterMKTGSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
-    console.log("Paid Media Spend and Source NEtwork request:", Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMSecondary + params6 + '&json=1');
     //Paid Media Sourced and Spend
     const pmssSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMSecondary + params6 + '&json=1', {
         headers: headers,
@@ -2526,7 +2504,6 @@ export function filterTrySecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-    console.log('Try Params', params2)
 
 
     // Secondary
@@ -2853,7 +2830,6 @@ export function filterBuyFinanceSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    console.log(params8);
     const financeSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.BuyGrossActualTargetSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -2915,7 +2891,6 @@ export function filterUseSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-    console.log(params8);
     const useSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseSecondary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -3107,7 +3082,6 @@ export function filterRenewCancelSecondaryData(allFilters, _parameters) {
  * @returns Promise Array containing values for the Renew  QTR and EOT KPIs Details
  */
 export function filterRenewDetailsSecondaryData(allFilters, _parameters) {
-    console.log('HITTING THE ASYNC MODE');
     responseArray = [];
     resetRenewParams();
 
@@ -3400,7 +3374,6 @@ export function fetchComments(metricId) {
 
     const res1 = axios.post(Infoburst.dbQuery, body, { headers: headers, responseType: 'text' }).then((response) => {
 
-        console.log(response);
         if (response !== []) {
 
             const commentIdsArray = response.data.map(ele => { return ele.id; });
@@ -3494,7 +3467,6 @@ export function postComment(params, metric) {
         headers: headers,
         responseType: 'text'
     }).then((res) => {
-        console.log(res);
         const res1 = axios.post(Infoburst.dbQuery, fetchBody, { headers: headers, responseType: 'text' }).then((response) => {
 
             if (response !== []) {
@@ -3564,7 +3536,6 @@ export function postReply(params, metric) {
         headers: headers,
         responseType: 'text'
     }).then((res) => {
-        console.log(res);
         const res1 = axios.post(Infoburst.dbQuery, fetchBody, { headers: headers, responseType: 'text' }).then((response) => {
 
             if (response !== []) {
@@ -3622,7 +3593,6 @@ export function removeComment(params, metric) {
             "metric": metric
         }
     };
-    console.log(body);
     let post = axios.post(Infoburst.dbQuery, body, {
         headers: headers
     }).then((res) => {
@@ -3704,7 +3674,6 @@ export function requestUserSettings(sub) {
  * @returns Returns an Promise Array with the preferences for this user
  */
 export function postUserSettings(params) {
-    console.log('Params', params);
     let body = {
         "conn": `${Infoburst.appXDCID}`,
         "qry": 'UpdateSettings',
@@ -4255,7 +4224,6 @@ export function formatPercentage(value) {
     // const num =  (percentage * 100).toFixed(2);
     // percentage = (num > 1) ? 1 : num;
     // return (percentage * 100).toFixed(2) + '%';
-    console.log()
     if (percentage !== 0) {
         return (percentage).toFixed(2) + '%';
 
@@ -4429,7 +4397,6 @@ export function getLabelColor(value, target, secondaryCardIndex) {
  * @returns The label color class for css
  */
 export function getLabelColorPrimary(value, target, mobile, index) {
-    console.log(mobile)
     let retColor = "";
     if (index !== 5) {
         if (target === 0) {

@@ -6,7 +6,6 @@ class MobileMultiChart extends Component {
     render () {
 
         const bottomHeight = this.props.bottomContainerHeight - 100;
-        // console.log('size', bottomHeight);
 
 
         return (

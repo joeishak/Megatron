@@ -245,7 +245,6 @@ class KendoDialog extends Component {
                     break;
                 default:
                     let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category === item }));
-                    // console.log(grouped);
                     if (grouped.false !== this.state.selectedFilters.length) {
 
                         if (grouped.true !== undefined) {
@@ -300,7 +299,6 @@ class KendoDialog extends Component {
     }
 
     updateSingleValue = (e) => {
-        // console.log('Updating SingleValue',e);
         let copy = this.state.selectedFilters;
         if (this.state.selectedFilters.length === 0) {
             this.setState({ selectedFilters: [e] })
@@ -335,11 +333,9 @@ class KendoDialog extends Component {
     }
   
     closeDropDown = (e) => {
-        console.log('Closing Single Value',e);
     }
    
     submitFilters = (e) => {
-        // console.log('Submitting Filters . . . ');
         const { GEO,
             MARKET,
             PRODUCT,
@@ -385,7 +381,6 @@ class KendoDialog extends Component {
                     break;
                 default:
                     let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category === item }));
-                    // console.log(grouped);
                     if (grouped.false !== this.state.selectedFilters.length) {
 
                         if (grouped.true !== undefined) {
@@ -431,7 +426,6 @@ class KendoDialog extends Component {
             VISITS,
             NONDMSEGMENT
         } = DIMENSIONS;
-        console.log('Kendo Filters', this.state.selectedFilters);
         return (
             <div>
                 <div>

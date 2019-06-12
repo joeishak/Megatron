@@ -29,7 +29,6 @@ class Playground extends Component {
     }
 
     onNavigateClick = (type, e) => {
-        // console.log('Navigate Click Started');
 
         e.preventDefault();
         let copyOfState = this.state.activeItem;
@@ -55,7 +54,6 @@ class Playground extends Component {
     }
 
     onMouseMove = (event) => {
-        // console.log('On Mouse Move Started');
 
         let clientX;
 
@@ -89,8 +87,7 @@ class Playground extends Component {
 
     }
     onTouchStart = (e) => {
-        // console.log('On Touch Start Started');
-        // console.log(e);
+      
         this.setState({ initialX: e.touches[0].clientX, touched: true })
         // let isDragging = false;
 
@@ -125,7 +122,6 @@ class Playground extends Component {
         // }
     }
     onTouchEnd = (e) => {
-        // console.log('On Touch End Started');
         this.setState({ touched: false })
         let isDragging = false;
 
@@ -160,9 +156,7 @@ class Playground extends Component {
         }
     }
     onMouseDown = (event) => {
-        // console.log('On Mouse Down Started');
-        // console.log('On Touch Start Started');
-        // console.log(event);
+       
         // let clientX;
         // this.setState({ isDragging: true });
         if (this.isTouchDevice() === false) {

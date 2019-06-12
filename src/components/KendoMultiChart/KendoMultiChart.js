@@ -254,7 +254,6 @@ class KendoMultiChart extends Component {
 
 }
 function mapStateToProps(state) {
-    // console.log('STATE', state);
     return {
         multichartMetric: state.multichartIsArr,
         activePrimary: state.activeCards.primary,

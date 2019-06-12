@@ -109,7 +109,6 @@ export default function (state = {
         case SUBMIT_FILTERS:
             // Make a copy of state
             copyOfState = JSON.parse(JSON.stringify(state));
-            console.log('New Filters === Default State', action.payload)
             // Reset the combined value filters
             copyOfState.combined.valueFilters = [];
             // For each key in action . payload
@@ -148,7 +147,6 @@ export default function (state = {
 
         case ADD_PREFERENCES_TO_ACTIVE_FILTERS:
             // Get the current quarter from Utilities Function
-            console.log('Current Quarter ', action.payload);
             // Make a copy of state
             let copyOfState1 = JSON.parse(JSON.stringify(state))
             let nonDmSegs = action.payload.nondmsegments;
@@ -358,7 +356,6 @@ export default function (state = {
             return { ...newState, ...obj, defaultState: obj, isDefaultFilters: true, filtersAreLoaded: true };
 
         case RESET_FILTERS_TO_DEFAULT_STATE:
-            console.log(state.defaultState);
             copyOfState = JSON.parse(JSON.stringify(state))
             // Set filter group value filters to corresponding preference/ default state
             copyOfState.geo.valueFilters = [];
@@ -397,7 +394,6 @@ export default function (state = {
             { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
             { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' }];
 
-            console.log(copyOfState);;
             return {...copyOfState, isDefaultFilters: true};
         case RESET_FILTERS:
             // Extract Preferences from Payload

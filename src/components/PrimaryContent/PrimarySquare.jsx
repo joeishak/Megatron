@@ -13,7 +13,6 @@ class PrimarySquare extends Component {
   
   // Need to Refactor
   getColor(value, target, type, header) {
-    // console.log('value', value);
     let retColor = "";
     if(this.props.item.index !==5){
       if (type === "financial") {

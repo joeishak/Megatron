@@ -34,7 +34,6 @@ class CustomDropDownPanel extends Component {
     componentDidUpdate(prevProps) {
         // Do a quick load to make sure all proper filters show when the container opens
         if (this.props.showContainer !== prevProps.showContainer) {
-            console.log('Opening the container');
             this.setState({ loading: true }, () => {
                 setTimeout(() => {
                     this.setState({ loading: false })

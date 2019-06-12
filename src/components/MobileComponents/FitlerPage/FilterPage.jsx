@@ -126,7 +126,6 @@ class FilterPage extends Component {
 
     }
     updateSingleValue = (e) => {
-        // console.log('Updating SingleValue',e);
         let copy = this.state.selectedFilters;
         if (this.state.selectedFilters.length === 0) {
             this.setState({ selectedFilters: [e] })
@@ -414,9 +413,6 @@ class FilterPage extends Component {
 
         });
 
-
-
-        console.log('Submitting Mobile Filteres', this.state.selectedFilters, newFilters);
         this.props.submitFilters(newFilters);
         // this.props.handleClose();
         this.props.updateViewSetting(MOBILE_FILTER_PAGE, false);

@@ -143,12 +143,7 @@ class Summary extends Component {
       // If the users properties in Redux State are not empty and subID exists
       if (this.props.user.sub) {
         // Push the setUserId event to Matomo with the users given name (John) + users family name (Doe) and their LDAP name (jdoe)
-        console.groupCollapsed('Sending AUTH To Piwik');
-        console.log('SETTING PIWIK USER', user, filters, `${user.given_name + ' ' + user.family_name}(${user.email.split('@')[0]})`);
         ReactPiwik.push(['setUserId', `${user.given_name + ' ' + user.family_name}(${user.email.split('@')[0]})`]);
-        console.groupEnd()
-
-
       }
       // If the user details exist in Redux, and the filtersAreLoaded prop changes
       if (this.props.user.sub !== null && filtersAreLoaded !== prevProps.filtersAreLoaded) {
@@ -160,7 +155,6 @@ class Summary extends Component {
 
       // For when the user changes primary cards on top 1/6
       if (activePrimaryCard !== prevProps.activePrimaryCard) {
-        console.log('Sending data to piwik');
         // Push the trackEvent to Matomo, with the text primaryKPI and the category of the KPI they have chosen (Finance, Discover, etc etc)
         ReactPiwik.push(['trackEvent', 3, 'primaryKPI', this.props.primaryData[activePrimaryCard].category, 'page']);
       }
@@ -1408,9 +1402,6 @@ class Summary extends Component {
 }
 
 function mapStateToProps(state) {
-
-  console.log(state);
-
   return {
     dialogIsOpen: state.isDialogOpen,
     user: state.user,
