@@ -1224,12 +1224,20 @@ export function requestTrySecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    const TryDownloadTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryDownloadTypeQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const TryQFMTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryQFMTypeQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
 
 
     responseArray.push(
         TrySecondary, TryMutlichart, TryQTD, TryGeoQTD, TryMarketQTD,
-        TryProdQTD, TrySignAppQTD, TrySignCatQTD
+        TryProdQTD, TrySignAppQTD, TrySignCatQTD, TryDownloadTypeQTD, TryQFMTypeQTD
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -1247,12 +1255,12 @@ export function requestBuySecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(10, buyMktgParams, allFilters, _parameters);
     generateFilterParams(12, buyGrossParams, allFilters, _parameters);
-    generateFilterParams(5, trafficParams, allFilters, _parameters);
+    generateFilterParams(15, buyConversionParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
 
 
 
-    let params5 = trafficParams.reduce((prev, param) => {
+    let params5 = buyConversionParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
@@ -1309,10 +1317,10 @@ export function requestBuySecondaryData(allFilters, _parameters) {
  */
 export function requestBuyTrafficSecondaryData(allFilters, _parameters) {
     responseArray = [];
-    generateFilterParams(5, trafficParams, allFilters, _parameters);
+    generateFilterParams(15, buyConversionParams, allFilters, _parameters);
 
 
-    let params5 = trafficParams.reduce((prev, param) => {
+    let params5 = buyConversionParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
@@ -2032,6 +2040,7 @@ export function filterPrimaryData(allFilters, _parameters) {
     generateFilterParams(8, uqfmParams, allFilters, _parameters);
     generateFilterParams(1, useParams, allFilters, _parameters);
     generateFilterParams(4, renewParamsAdobeCom, allFilters, _parameters);
+    generateFilterParams(15, buyConversionParams, allFilters, _parameters);
 
 
     //turn each list into a string
@@ -2072,6 +2081,12 @@ export function filterPrimaryData(allFilters, _parameters) {
         return p;
     }, '');
 
+    let params15 = buyConversionParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
 
     const primaryFinancial = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetPrimary + params8 + '&json=1', {
         headers: headers,
@@ -2086,7 +2101,7 @@ export function filterPrimaryData(allFilters, _parameters) {
         responseType: 'text'
     });
     //Secondary
-    const primaryBuy = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
+    const primaryBuy = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params15 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -2623,12 +2638,12 @@ export function filterBuySecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(10, buyMktgParams, allFilters, _parameters);
     generateFilterParams(12, buyGrossParams, allFilters, _parameters);
-    generateFilterParams(5, trafficParams, allFilters, _parameters);
+    generateFilterParams(15, buyConversionParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
 
 
 
-    let params5 = trafficParams.reduce((prev, param) => {
+    let params5 = buyConversionParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
@@ -2685,8 +2700,8 @@ export function filterBuySecondaryData(allFilters, _parameters) {
  */
 export function filterBuyTrafficSecondaryData(allFilters, _parameters) {
     responseArray = [];
-    generateFilterParams(5, trafficParams, allFilters, _parameters);
-    let params5 = trafficParams.reduce((prev, param) => {
+    generateFilterParams(15, buyConversionParams, allFilters, _parameters);
+    let params5 = buyConversionParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;

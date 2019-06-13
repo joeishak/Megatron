@@ -278,6 +278,9 @@ export default function (state = {
             processTryProductQTDData(action.payload[5].data, newState.secondary);
             processTrySignUpAppQTDData(action.payload[6].data, newState.secondary);
             processTrySignUpCatQTDData(action.payload[7].data, newState.secondary);
+            processTryDownloadQTDData(action.payload[8].data, newState.secondary);
+            processTryQFMQTDData(action.payload[9].data, newState.secondary);
+
             return { ...newState, tryIsLoaded: true };
         case GET_BUY_SECONDARY_DATA:
             console.log('Request for Buy Secondary Data: ', action.payload);
@@ -4367,6 +4370,188 @@ export function processTrySignUpCatQTDData(data, newState) {
 
     }
 }
+
+export function processTryDownloadQTDData(data, newState){
+       //Clear old Values
+       newState[SUMMARY_FILTERS.TRY_NEW_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_NEW_QFM].details, qfm: { qtd: [], week: [] } };
+
+       newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details, qfm: { qtd: [], week: [] } };
+       
+   
+       //New QFM
+       for (let i = 0; i < data.length; i++) {
+           let item = data[i];
+           //New QFM
+           let newQFM = {
+               index: i,
+               actuals: item.NewQFMsActuals,
+               marketArea: item.download_type,
+               type: item.qfm_type,
+               qq: item.NewQFMsQQTY,
+               qrf: item.NewQFMsTarget,
+               qrfDiff: item.NewQFMsVsQrfDiff,
+               vsQrf: item.NewQFMsVsQrf,
+               yy: item.NewQFMsYY
+           }
+           let newQFMWeek =
+           {
+               index: i,
+               type: item.qfm_type,
+               marketArea: item.download_type,
+               actuals: item.NewQFMsCW,
+               qrf: item.NewQFMsTargetCW,
+               qrfDiff: item.NewQFMsCWVsQrfDiff,
+               vsQrf: item.NewQFMsCWVsQrf,
+               ww: item.NewQFMsWW,
+           }
+   
+           //Cumu QFM
+           let cumuQFM = {
+               index: i,
+               actuals: item.CumQFMsActuals,
+               type: item.qfm_type,
+               marketArea: item.download_type,
+               qq: item.CumQFMsQQTY,
+               qrf: item.CumQFMsTarget,
+               qrfDiff: item.CumQFMsVsQrfDiff,
+               vsQrf: item.CumQFMsVsQrf,
+               yy: item.CumQFMsYY
+           }
+           let cumuQFMWeek =
+           {
+               index: i,
+               type: item.qfm_type,
+               marketArea: item.download_type,
+               actuals: item.CumQFMsCW,
+               qrf: item.CumQFMsTargetCW,
+               qrfDiff: item.CumQFMsCWVsQrfDiff,
+               vsQrf: item.CumQFMsCWVsQrf,
+               ww: item.CumQFMsWW,
+           }
+           
+           
+   
+           newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.qfm.qtd.push(newQFM);
+           newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.qfm.week.push(newQFMWeek);
+   
+           newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details.qfm.qtd.push(cumuQFM);
+           newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details.qfm.week.push(cumuQFMWeek);
+           
+   
+       }
+
+}
+export function processTryQFMQTDData(data, newState) {
+    //Clear old Values
+    newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details = { ...newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details, qfm: { qtd: [], week: [] } };
+    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details = { ...newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details, qfm: { qtd: [], week: [] } };
+   
+    newState[SUMMARY_FILTERS.TRY_DAY_28].details = { ...newState[SUMMARY_FILTERS.TRY_DAY_28].details, qfm: { qtd: [], week: [] } };
+    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details, qfm: { qtd: [], week: [] } };
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+      
+        
+        //New UQFM
+        let newUQFM = {
+            index: i,
+            actuals: item.NewUQFMsActuals,
+            type: item.qfm_type,
+            qq: item.NewUQFMsQQTY,
+            qrf: item.NewUQFMsTarget,
+            qrfDiff: item.NewUQFMsVsQrfDiff,
+            vsQrf: item.NewUQFMsVsQrf,
+            yy: item.NewUQFMsYY
+        }
+        let newUQFMWeek =
+        {
+            index: i,
+            type: item.qfm_type,
+            actuals: item.NewUQFMsCW,
+            qrf: item.NewUQFMsTargetCW,
+            qrfDiff: item.NewUQFMsCWVsQrfDiff,
+            vsQrf: item.NewUQFMsCWVsQrf,
+            ww: item.NewUQFMsWW,
+        }
+        //Cumu UQFM
+        let cumuUQFM = {
+            index: i,
+            actuals: item.CumUQFMsActuals,
+            type: item.qfm_type,
+            qq: item.CumUQFMsQQTY,
+            qrf: item.CumUQFMsTarget,
+            qrfDiff: item.CumUQFMsVsQrfDiff,
+            vsQrf: item.CumUQFMsVsQrf,
+            yy: item.CumUQFMsYY
+        }
+        let cumuUQFMWeek =
+        {
+            index: i,
+            type: item.qfm_type,
+            actuals: item.CumUQFMsCW,
+            qrf: item.CumUQFMsTargetCW,
+            qrfDiff: item.CumUQFMsCWVsQrfDiff,
+            vsQrf: item.CumUQFMsCWVsQrf,
+            ww: item.CumUQFMsWW,
+        }
+        
+        //Day 28
+        let day28 = {
+            index: i,
+            actuals: item.Day28NewUQFMActuals,
+            type: item.qfm_type,
+            qq: item.Day28NewUQFMQQTY,
+            qrf: item.Day28NewUQFMTarget,
+            qrfDiff: item.Day28NewUQFMVsQrfDiff,
+            vsQrf: item.Day28NewUQFMVsQrf,
+            yy: item.Day28NewUQFMYY
+        }
+        let day28Week =
+        {
+            index: i,
+            type: item.qfm_type,
+            actuals: item.Day28NewUQFMCW,
+            qrf: item.Day28NewUQFMTargetCW,
+            qrfDiff: item.Day28NewUQFMCWVsQrfDiff,
+            vsQrf: item.Day28NewUQFMCWVsQrf,
+            ww: item.Day28NewUQFMWW,
+        }
+        //Cumu UQFM to QFM
+        let cumuUTQ = {
+            index: i,
+            actuals: item.CumUQFMToQFMActuals,
+            type: item.qfm_type,
+            qq: item.CumUQFMToQFMQQTY,
+            qrf: item.CumUQFMToQFMTarget,
+            qrfDiff: item.CumUQFMToQFMVsQrfDiff,
+            vsQrf: item.CumUQFMToQFMVsQrf,
+            yy: item.CumUQFMToQFMYY
+        }
+        let cumuUTQWeek =
+        {
+            index: i,
+            type: item.qfm_type,
+            actuals: item.CumUQFMToQFMCW,
+            qrf: item.CumUQFMToQFMTargetCW,
+            qrfDiff: item.CumUQFMToQFMCWVsQrfDiff,
+            vsQrf: item.CumUQFMToQFMCWVsQrf,
+            ww: item.CumUQFMToQFMWW,
+        }
+
+     
+        newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details.qfm.qtd.push(newUQFM);
+        newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details.qfm.week.push(newUQFMWeek);
+        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details.qfm.qtd.push(cumuUQFM);
+        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details.qfm.week.push(cumuUQFMWeek);
+        
+        newState[SUMMARY_FILTERS.TRY_DAY_28].details.qfm.qtd.push(day28);
+        newState[SUMMARY_FILTERS.TRY_DAY_28].details.qfm.week.push(day28Week);
+        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details.qfm.qtd.push(cumuUTQ);
+        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details.qfm.week.push(cumuUTQWeek);
+
+    }
+}
 /**End Try */
 
 /**Buy */
@@ -5639,49 +5824,55 @@ export function processBuyGrossProductWeek(newState, data) {
 }
 
 export function processUseSecondaryData(data, newState, cumuData) {
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].value = data.CEIActual;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].targetFQ = data.CEITargetFQ;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].target = data.CEITarget;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].vsQrf = data.CEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].cumuMembers = cumuData.CumuPaidMembersActual;
-
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].value = data.PaidMAUActual;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].targetFQ = data.PaidMAUTargetFQ;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].target = data.PaidMAUTarget;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].vsQrf = data.PaidMAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].cumuMembers = cumuData.CumuPaidMembersActual;
-
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].value = data.RepeatMAUActual;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].targetFQ = data.RepeatMAUTargetFQ;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].target = data.RepeatMAUTarget;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].vsQrf = data.RepeatMAUVsQRF;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].cumuMembers = cumuData.CumuPaidMembersActual;
-
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].value = data.PaidUserDownloadActual;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].targetFQ = data.PaidUserDownloadTarget;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].target = data.PaidUserDownloadTarget;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].vsQrf = data.PaidUserDownloadVsQrf;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].cumuMembers = cumuData.CumuPaidMembersActual;
-
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].value = data.PaidUserLaunchActual;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].targetFQ = data.PaidUserLaunchTargetFQ;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].target = data.PaidUserLaunchTarget;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].vsQrf = data.PaidUserLaunchVsQRF;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].cumuMembers = cumuData.CumuPaidMembersActual;
-
-
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].value = data.Week00WAUActual;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].targetFQ = data.Week00WAUTargetFQ;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].target = data.Week00WAUTarget;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].vsQrf = data.Week00WAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].cumuMembers = cumuData.CumuPaidMembersActual;
-
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].value = data.ActivatedActual;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].targetFQ = data.ActivatedTargetFQ;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].target = data.ActivatedTarget;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].vsQrf = data.ActivatedVsQRF;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].cumuMembers = cumuData.CumuPaidMembersActual;
 
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].value = data.Week04WAUActual;
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].targetFQ = data.Week04WAUTargetFQ;
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].target = data.Week04WAUTarget;
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].vsQrf = data.Week04WAUVsQRF;
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].cumuMembers = cumuData.CumuPaidMembersActual;
+
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].value = data.PaidMAUActual;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].targetFQ = data.PaidMAUTargetFQ;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].target = data.PaidMAUTarget;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].vsQrf = data.PaidMAUVsQrf;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].cumuMembers = cumuData.CumuPaidMembersActual;
+
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].value = data.LowCEIActual;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].targetFQ = data.LowCEITargetFQ;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].target = data.LowCEITarget;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].vsQrf = data.LowCEIVsQRF;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].cumuMembers = cumuData.CumuPaidMembersActual;
+
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].value = data.MediumCEIActual;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].targetFQ = data.MediumCEITargetFQ;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].target = data.MediumCEITarget;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].vsQrf = data.MediumCEIVsQRF;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].cumuMembers = cumuData.CumuPaidMembersActual;
+
+
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].value = data.HighCEIActual;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].targetFQ = data.HighCEITargetFQ;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].target = data.HighCEITarget;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].vsQrf = data.HighCEIVsQRF;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].cumuMembers = cumuData.CumuPaidMembersActual;
+
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].value = data.ZeroCEIActual;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].targetFQ = data.ZeroCEITargetFQ;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].target = data.ZeroCEITarget;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].vsQrf = data.ZeroCEIVsQRF;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].cumuMembers = cumuData.CumuPaidMembersActual;
+
+    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].value = data.RepeatMAUActual;
+    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].targetFQ = data.RepeatMAUTargetFQ;
+    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].target = data.RepeatMAUTarget;
+    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].vsQrf = data.RepeatMAUVsQRF;
+    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].cumuMembers = cumuData.CumuPaidMembersActual;
+    
 
 }
 export function processUseMultichartData(data, newState) {
@@ -5693,40 +5884,7 @@ export function processUseMultichartData(data, newState) {
 
     let newData = _.orderBy(weekFlag, ['weekNo'], ['asc']);
 
-    let ei = {
-        actual: [],
-        target: [],
-        lq: [],
-        ly: []
-    }
-
-    let pum = {
-        actual: [],
-        target: [],
-        lq: [],
-        ly: []
-    }
-
-    let rum = {
-        actual: [],
-        target: [],
-        lq: [],
-        ly: []
-    }
-    let pus = {
-        actual: [],
-        target: [],
-        lq: [],
-        ly: []
-    }
-
-    let pusl = {
-        actual: [],
-        target: [],
-        lq: [],
-        ly: []
-    }
-    let wk0 = {
+    let activated = {
         actual: [],
         target: [],
         lq: [],
@@ -5739,114 +5897,175 @@ export function processUseMultichartData(data, newState) {
         ly: []
     }
 
+    let monthreturn  = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+    let lowcei = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+    let highcei = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+    let mediumcei = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+    let rum = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+    let zerocei = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+   
+
     //Get Financial Multichart values
     for (let i = 0; i < data.length; i++) {
         let item = newData[i];
-        ei.actual.push(item.CEIActual);
-        ei.target.push(item.CEITarget);
-        ei.ly.push(item.CEILY);
-        ei.lq.push(item.CEILQ);
-        pum.actual.push(item.PaidMAUActual);
-        pum.target.push(item.PaidMAUTarget);
-        pum.ly.push(item.PaidMAULY);
-        pum.lq.push(item.PaidMAULQ);
-        rum.actual.push(item.RepeatMAUActual);
-        rum.target.push(item.RepeatMAUTarget);
-        rum.ly.push(item.RepeatMAULY);
-        rum.lq.push(item.RepeatMAULQ);
-        pus.actual.push(item.PaidUserDownloadActual);
-        pus.target.push(item.PaidUserDownloadTarget);
-        pus.ly.push(item.PaidUserDownloadLY);
-        pus.lq.push(item.PaidUserDownloadLQ);
-        pusl.actual.push(item.PaidUserLaunchActual);
-        pusl.target.push(item.PaidUserLaunchTarget);
-        pusl.ly.push(item.PaidUserLaunchLY);
-        pusl.lq.push(item.PaidUserLaunchLQ);
-        wk0.actual.push(item.Week00WAUActual);
-        wk0.target.push(item.Week00WAUTarget);
-        wk0.ly.push(item.Week00WAULY);
-        wk0.lq.push(item.Week00WAULQ);
+        activated.actual.push(item.ActivatedActual);
+        activated.target.push(item.ActivatedTarget);
+        activated.ly.push(item.ActivatedLY);
+        activated.lq.push(item.ActivatedLQ);
+
         wk4.actual.push(item.Week04WAUActual);
         wk4.target.push(item.Week04WAUTarget);
         wk4.ly.push(item.Week04WAULY);
         wk4.lq.push(item.Week04WAULQ);
+
+        monthreturn.actual.push(item.PaidMAUActual);
+        monthreturn.target.push(item.PaidMAUTarget);
+        monthreturn.ly.push(item.PaidMAULY);
+        monthreturn.lq.push(item.PaidMAULQ);
+
+        lowcei.actual.push(item.LowCEIActual);
+        lowcei.target.push(item.LowCEITarget);
+        lowcei.ly.push(item.LowCEILY);
+        lowcei.lq.push(item.LowCIELQ);
+
+        highcei.actual.push(item.HighCEIActual);
+        highcei.target.push(item.HighCEITarget);
+        highcei.ly.push(item.HighCEILY);
+        highcei.lq.push(item.HighCEILQ);
+
+        mediumcei.actual.push(item.MediumCEIActual);
+        mediumcei.target.push(item.MediumCEITarget);
+        mediumcei.ly.push(item.MediumCEILY);
+        mediumcei.lq.push(item.MediumCEILQ);
+
+        rum.actual.push(item.RepeatMAUActual);
+        rum.target.push(item.RepeatMAUTarget);
+        rum.ly.push(item.RepeatMAULY);
+        rum.lq.push(item.RepeatMAULQ);
+
+        zerocei.actual.push(item.ZeroCEIActual);
+        zerocei.target.push(item.ZeroCEITarget);
+        zerocei.ly.push(item.ZeroCEILY);
+        zerocei.lq.push(item.ZeroCEILQ);
+        
+ 
+        
     };
 
 
 
-    console.log('Multichart', ei, pum, rum, pus, wk0, wk4)
+    console.log('Multichart', activated, zerocei, rum, monthreturn, lowcei, highcei, mediumcei, wk4)
 
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX]['details'].multichart = [ei.actual, ei.target, ei.ly, ei.lq];
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU]['details'].multichart = [pum.actual, pum.target, pum.ly, pum.lq];
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED]['details'].multichart = [activated.actual, activated.target, activated.ly, activated.lq];
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI]['details'].multichart = [zerocei.actual, zerocei.target, zerocei.ly, zerocei.lq];
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU]['details'].multichart = [rum.actual, rum.target, rum.ly, rum.lq];
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS]['details'].multichart = [pus.actual, pus.target, pus.ly, pus.lq];
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES]['details'].multichart = [pusl.actual, pusl.target, pusl.ly, pusl.lq];
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE]['details'].multichart = [wk0.actual, wk0.target, wk0.ly, wk0.lq];
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE]['details'].multichart = [monthreturn.actual, monthreturn.target, monthreturn.ly, monthreturn.lq];
+    newState[SUMMARY_FILTERS.USE_LOW_CEI]['details'].multichart = [lowcei.actual, lowcei.target, lowcei.ly, lowcei.lq];
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI]['details'].multichart = [highcei.actual, highcei.target, highcei.ly, highcei.lq];
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI]['details'].multichart = [mediumcei.actual, mediumcei.target, mediumcei.ly, mediumcei.lq];
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE]['details'].multichart = [wk4.actual, wk4.target, wk4.ly, wk4.lq];
 
 }
 export function processUseQTDData(data, newState) {
 
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.qtdw.qtd[0].value = data[0].CEIActual;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.qtdw.qtd[1].value = data[0].CEITarget;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.qtdw.qtd[2].value = data[0].CEIVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.qtdw.qtd[3].value = data[0].CEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.qtdw.qtd[4].value = data[0].CEIQQTY;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.qtdw.qtd[5].value = data[0].CEIYY;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.qtdw.week[0].value = data[0].CEIActual;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.qtdw.week[1].value = data[0].CEITarget;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.qtdw.week[2].value = data[0].CEIVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.qtdw.week[3].value = data[0].CEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.qtdw.week[4].value = data[0].CEIWW;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.stats[0].value = data[0].CEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.stats[1].value = data[0].CEIQQTY;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.stats[2].value = data[0].CEIQQLY;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.stats[3].value = data[0].CEIYY;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.qtdw.qtd[0].value = data[0].PaidMAUActual;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.qtdw.qtd[1].value = data[0].PaidMAUTarget;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.qtdw.qtd[2].value = data[0].PaidMAUVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.qtdw.qtd[3].value = data[0].PaidMAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.qtdw.qtd[4].value = data[0].PaidMAUQQTY;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.qtdw.qtd[5].value = data[0].PaidMAUYY;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.qtdw.week[0].value = data[0].PaidMAUActual;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.qtdw.week[1].value = data[0].PaidMAUTarget;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.qtdw.week[2].value = data[0].PaidMAUVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.qtdw.week[3].value = data[0].PaidMAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.qtdw.week[4].value = data[0].PaidMAUWW;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.stats[0].value = data[0].PaidMAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.stats[1].value = data[0].PaidMAUQQTY;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.stats[2].value = data[0].PaidMAUQQLY;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.stats[3].value = data[0].PaidMAUYY;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.qtd[0].value = data[0].PaidUserDownloadActual;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.qtd[1].value = data[0].PaidUserDownloadTarget;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.qtd[2].value = data[0].PaidUserDownloadVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.qtd[3].value = data[0].PaidUserDownloadVsQrf;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.qtd[4].value = data[0].PaidUserDownloadQQTY;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.qtd[5].value = data[0].PaidUserDownloadYY;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.week[0].value = data[0].PaidUserDownloadActual;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.week[1].value = data[0].PaidUserDownloadTarget;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.week[2].value = data[0].PaidUserDownloadVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.week[3].value = data[0].PaidUserDownloadVsQrf;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.qtdw.week[4].value = data[0].PaidUserDownloadWW;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.stats[0].value = data[0].PaidUserDownloadVsQrf;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.stats[1].value = data[0].PaidUserDownloadQQTY;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.stats[2].value = data[0].PaidUserDownloadQQLY;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.stats[3].value = data[0].PaidUserDownloadYY;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.qtd[0].value = data[0].PaidUserLaunchActual;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.qtd[1].value = data[0].PaidUserLaunchTarget;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.qtd[2].value = data[0].PaidUserLaunchVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.qtd[3].value = data[0].PaidUserLaunchVsQrf;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.qtd[4].value = data[0].PaidUserLaunchQQTY;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.qtd[5].value = data[0].PaidUserLaunchYY;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.week[0].value = data[0].PaidUserLaunchActual;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.week[1].value = data[0].PaidUserLaunchTarget;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.week[2].value = data[0].PaidUserLaunchVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.week[3].value = data[0].PaidUserLaunchVsQrf;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.qtdw.week[4].value = data[0].PaidUserLaunchWW;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.stats[0].value = data[0].PaidUserLaunchVsQrf;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.stats[1].value = data[0].PaidUserLaunchQQTY;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.stats[2].value = data[0].PaidUserLaunchQQLY;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.stats[3].value = data[0].PaidUserLaunchYY;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[0].value = data[0].ActivatedActual;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[1].value = data[0].ActivatedTarget;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[2].value = data[0].ActivatedVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[3].value = data[0].ActivatedVsQrf;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[4].value = data[0].ActivatedQQTY;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[5].value = data[0].ActivatedYY;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.week[0].value = data[0].ActivatedActual;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.week[1].value = data[0].ActivatedTarget;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.week[2].value = data[0].ActivatedVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.week[3].value = data[0].ActivatedVsQrf;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.week[4].value = data[0].ActivatedWW;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.stats[0].value = data[0].ActivatedVsQrf;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.stats[1].value = data[0].ActivatedQQTY;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.stats[2].value = data[0].ActivatedQQLY;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.stats[3].value = data[0].ActivatedYY;
+
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[0].value = data[0].PaidMAUActual;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[1].value = data[0].PaidMAUTarget;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[2].value = data[0].PaidMAUVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[3].value = data[0].PaidMAUVsQrf;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[4].value = data[0].PaidMAUQQTY;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[5].value = data[0].PaidMAUYY;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.week[0].value = data[0].PaidMAUActual;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.week[1].value = data[0].PaidMAUTarget;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.week[2].value = data[0].PaidMAUVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.week[3].value = data[0].PaidMAUVsQrf;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.week[4].value = data[0].PaidMAUWW;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.stats[0].value = data[0].PaidMAUVsQrf;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.stats[1].value = data[0].PaidMAUQQTY;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.stats[2].value = data[0].PaidMAUQQLY;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.stats[3].value = data[0].PaidMAUYY;
+
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.qtd[0].value = data[0].LowCEIActual;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.qtd[1].value = data[0].LowCEITarget;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.qtd[2].value = data[0].LowCEIVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.qtd[3].value = data[0].LowCEIVsQrf;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.qtd[4].value = data[0].LowCEIQQTY;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.qtd[5].value = data[0].LowCEIYY;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.week[0].value = data[0].LowCEIActual;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.week[1].value = data[0].LowCEITarget;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.week[2].value = data[0].LowCEIVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.week[3].value = data[0].LowCEIVsQrf;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.week[4].value = data[0].LowCEIWW;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.stats[0].value = data[0].LowCEIVsQrf;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.stats[1].value = data[0].LowCEIQQTY;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.stats[2].value = data[0].LowCEIQQLY;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.stats[3].value = data[0].LowCEIYY;
+
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.qtd[0].value = data[0].MediumCEIActual;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.qtd[1].value = data[0].MediumCEITarget;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.qtd[2].value = data[0].MediumCEIVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.qtd[3].value = data[0].MediumCEIVsQrf;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.qtd[4].value = data[0].MediumCEIQQTY;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.qtd[5].value = data[0].MediumCEIYY;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.week[0].value = data[0].MediumCEIActual;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.week[1].value = data[0].MediumCEITarget;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.week[2].value = data[0].MediumCEIVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.week[3].value = data[0].MediumCEIVsQrf;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.week[4].value = data[0].MediumCEIWW;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.stats[0].value = data[0].MediumCEIVsQrf;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.stats[1].value = data[0].MediumCEIQQTY;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.stats[2].value = data[0].MediumCEIQQLY;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.stats[3].value = data[0].MediumCEIYY;
+
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.qtd[0].value = data[0].RepeatMAUActual;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.qtd[1].value = data[0].RepeatMAUTarget;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.qtd[2].value = data[0].RepeatMAUVsQRFDiff;
@@ -5862,21 +6081,23 @@ export function processUseQTDData(data, newState) {
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.stats[1].value = data[0].RepeatMAUQQTY;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.stats[2].value = data[0].RepeatMAUQQLY;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.stats[3].value = data[0].RepeatMAUYY;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.qtdw.qtd[0].value = data[0].Week00WAUActual;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.qtdw.qtd[1].value = data[0].Week00WAUTarget;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.qtdw.qtd[2].value = data[0].Week00WAUVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.qtdw.qtd[3].value = data[0].Week00WAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.qtdw.qtd[4].value = data[0].Week00WAUQQTY;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.qtdw.qtd[5].value = data[0].Week00WAUYY;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.qtdw.week[0].value = data[0].Week00WAUTarget;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.qtdw.week[1].value = data[0].Week00WAUVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.qtdw.week[2].value = data[0].Week00WAUVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.qtdw.week[3].value = data[0].Week00WAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.qtdw.week[4].value = data[0].Week00WAUWW;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.stats[0].value = data[0].Week00WAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.stats[1].value = data[0].Week00WAUQQTY;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.stats[2].value = data[0].Week00WAUQQLY;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.stats[3].value = data[0].Week00WAUYY;
+
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.qtd[0].value = data[0].HighCEIActual;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.qtd[1].value = data[0].HighCEITarget;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.qtd[2].value = data[0].HighCEIVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.qtd[3].value = data[0].HighCEIVsQrf;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.qtd[4].value = data[0].HighCEIQQTY;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.qtd[5].value = data[0].HighCEIYY;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.week[0].value = data[0].HighCEITarget;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.week[1].value = data[0].HighCEIVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.week[2].value = data[0].HighCEIVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.week[3].value = data[0].HighCEIVsQrf;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.week[4].value = data[0].HighCEIWW;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.stats[0].value = data[0].HighCEIVsQrf;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.stats[1].value = data[0].HighCEIQQTY;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.stats[2].value = data[0].HighCEIQQLY;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.stats[3].value = data[0].HighCEIYY;
+
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.qtdw.qtd[0].value = data[0].Week04WAUActual;
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.qtdw.qtd[1].value = data[0].Week04WAUTarget;
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.qtdw.qtd[2].value = data[0].Week04WAUVsQRFDiff;
@@ -5892,6 +6113,22 @@ export function processUseQTDData(data, newState) {
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.stats[1].value = data[0].Week04WAUQQTY;
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.stats[2].value = data[0].Week04WAUQQLY;
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.stats[3].value = data[0].Week04WAUYY;
+
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.qtd[0].value = data[0].ZeroCEIActual;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.qtd[1].value = data[0].ZeroCEITarget;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.qtd[2].value = data[0].ZeroCEIVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.qtd[3].value = data[0].ZeroCEIVsQrf;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.qtd[4].value = data[0].ZeroCEIQQTY;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.qtd[5].value = data[0].ZeroCEIYY;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.week[0].value = data[0].ZeroCEIActual;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.week[1].value = data[0].ZeroCEITarget;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.week[2].value = data[0].ZeroCEIVsQRFDiff;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.week[3].value = data[0].ZeroCEIVsQrf;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.week[4].value = data[0].ZeroCEIWW;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.stats[0].value = data[0].ZeroCEIVsQrf;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.stats[1].value = data[0].ZeroCEIQQTY;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.stats[2].value = data[0].ZeroCEIQQLY;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.stats[3].value = data[0].ZeroCEIYY;
 }
 export function processUseGeoQTDData(data, newState) {
 
@@ -5901,34 +6138,35 @@ export function processUseGeoQTDData(data, newState) {
         item4 = [], item4Week = [],
         item5 = [], item5Week = [],
         item6 = [], item6Week = [],
-        item7 = [], item7Week = [];
+        item7 = [], item7Week = [],
+        item8 = [], item8Week = []
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
-        let ei = {
+        let activated = {
             index: i,
-            actuals: item.CEIActual,
+            actuals: item.ActivatedActual,
             marketArea: item.market_area_group,
-            qq: item.CEIQQTY,
-            qrf: item.CEITarget,
-            qrfDiff: item.CEIVsQRFDiff,
+            qq: item.ActivatedQQTY,
+            qrf: item.ActivatedTarget,
+            qrfDiff: item.ActivatedVsQRFDiff,
             type: item.geo_code,
-            vsQrf: item.CEIVsQrf,
-            yy: item.CEIYY
+            vsQrf: item.ActivatedVsQRF,
+            yy: item.ActivatedYY
         }
-        let eiWeek = {
+        let activatedWeek = {
             index: i,
-            actuals: item.CEIActual,
+            actuals: item.ActivatedActual,
             marketArea: item.market_area_group,
-            qq: item.CEIQQTY,
-            qrf: item.CEITarget,
-            qrfDiff: item.CEIVsQRFDiff,
+            qq: item.ActivatedQQTY,
+            qrf: item.ActivatedTarget,
+            qrfDiff: item.ActivatedVsQRFDiff,
             type: item.geo_code,
-            vsQrf: item.CEIVsQrf,
-            ww: item.CEIWW
+            vsQrf: item.ActivatedVsQRF,
+            ww: item.ActivatedWW
         }
 
-        let pum = {
+        let monthreturn = {
             index: i,
             actuals: item.PaidMAUActual,
             marketArea: item.market_area_group,
@@ -5939,7 +6177,7 @@ export function processUseGeoQTDData(data, newState) {
             vsQrf: item.PaidMAUVsQrf,
             yy: item.PaidMAUYY
         }
-        let pumWeek = {
+        let monthreturnWeek = {
             index: i,
             actuals: item.PaidMAUActual,
             marketArea: item.market_area_group,
@@ -5974,72 +6212,72 @@ export function processUseGeoQTDData(data, newState) {
             ww: item.RepeatMAUWW
         }
 
-        let pus = {
+        let lowcei = {
             index: i,
-            actuals: item.PaidUserDownloadActual,
+            actuals: item.LowCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserDownloadQQTY,
-            qrf: item.PaidUserDownloadTarget,
-            qrfDiff: item.PaidUserDownloadVsQRFDiff,
+            qq: item.LowCEIQQTY,
+            qrf: item.LowCEITarget,
+            qrfDiff: item.LowCEIVsQRFDiff,
             type: item.geo_code,
-            vsQrf: item.PaidUserDownloadVsQrf,
-            yy: item.PaidUserDownloadYY
+            vsQrf: item.LowCEIVsQRF,
+            yy: item.LowCEIYY
         }
-        let pusWeek = {
+        let lowceiWeek = {
             index: i,
-            actuals: item.PaidUserDownloadActual,
+            actuals: item.LowCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserDownloadQQTY,
-            qrf: item.PaidUserDownloadTarget,
-            qrfDiff: item.PaidUserDownloadVsQRFDiff,
+            qq: item.LowCEIQQTY,
+            qrf: item.LowCEITarget,
+            qrfDiff: item.LowCEIVsQRFDiff,
             type: item.geo_code,
-            vsQrf: item.PaidUserDownloadVsQrf,
-            ww: item.PaidUserDownloadWW
+            vsQrf: item.LowCEIVsQRF,
+            ww: item.LowCEIWW
         }
-        let pusl = {
+        let mediumcei = {
             index: i,
-            actuals: item.PaidUserLaucnhActual,
+            actuals: item.MediumCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserLaucnhQQTY,
-            qrf: item.PaidUserLaucnhTarget,
-            qrfDiff: item.PaidUserLaucnhVsQRFDiff,
+            qq: item.MediumCEIQQTY,
+            qrf: item.MediumCEITarget,
+            qrfDiff: item.MediumCEIVsQRFDiff,
             type: item.geo_code,
-            vsQrf: item.PaidUserLaucnhVsQrf,
-            yy: item.PaidUserLaucnhYY
+            vsQrf: item.MediumCEIVsQrf,
+            yy: item.MediumCEIYY
         }
 
-        let puslWeek = {
+        let mediumceiWeek = {
             index: i,
-            actuals: item.PaidUserLaucnhActual,
+            actuals: item.MediumCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserLaucnhQQTY,
-            qrf: item.PaidUserLaucnhTarget,
-            qrfDiff: item.PaidUserLaucnhVsQRFDiff,
+            qq: item.MediumCEIQQTY,
+            qrf: item.MediumCEITarget,
+            qrfDiff: item.MediumCEIVsQRFDiff,
             type: item.geo_code,
-            vsQrf: item.PaidUserLaucnhVsQrf,
-            ww: item.PaidUserLaucnhWW
+            vsQrf: item.MediumCEIVsQrf,
+            ww: item.MediumCEIWW
         }
-        let wk0 = {
+        let highcei = {
             index: i,
-            actuals: item.Week00WAUActual,
+            actuals: item.HighCEIActual,
             marketArea: item.market_area_group,
-            qq: item.Week00WAUQQTY,
-            qrf: item.Week00WAUTarget,
-            qrfDiff: item.Week00WAUVsQRFDiff,
+            qq: item.HighCEIQQTY,
+            qrf: item.HighCEITarget,
+            qrfDiff: item.HighCEIVsQRFDiff,
             type: item.geo_code,
-            vsQrf: item.Week00WAUVsQrf,
-            yy: item.Week00WAUYY
+            vsQrf: item.HighCEIVsQrf,
+            yy: item.HighCEIYY
         }
-        let wk0Week = {
+        let highceiWeek = {
             index: i,
-            actuals: item.Week00WAUActual,
+            actuals: item.HighCEIActual,
             marketArea: item.market_area_group,
-            qq: item.Week00WAUQQTY,
-            qrf: item.Week00WAUTarget,
-            qrfDiff: item.Week00WAUVsQRFDiff,
+            qq: item.HighCEIQQTY,
+            qrf: item.HighCEITarget,
+            qrfDiff: item.HighCEIVsQRFDiff,
             type: item.geo_code,
-            vsQrf: item.Week00WAUVsQrf,
-            ww: item.Week00WAUWW
+            vsQrf: item.HighCEIVsQrf,
+            ww: item.HighCEIWW
         }
         let wk4 = {
             index: i,
@@ -6063,87 +6301,118 @@ export function processUseGeoQTDData(data, newState) {
             vsQrf: item.Week04WAUVsQrf,
             ww: item.Week04WAUWW
         }
-        item1.push(ei);
-        item1Week.push(eiWeek);
+        let zerocei = {
+            index: i,
+            actuals: item.ZeroCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.ZeroCEIQQTY,
+            qrf: item.ZeroCEITarget,
+            qrfDiff: item.ZeroCEIVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.ZeroCEIVsQrf,
+            yy: item.ZeroCEIYY
+        }
+        let zeroceiWeek = {
+            index: i,
+            actuals: item.ZeroCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.ZeroCEIQQTY,
+            qrf: item.ZeroCEITarget,
+            qrfDiff: item.ZeroCEIVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.ZeroCEIVsQrf,
+            ww: item.ZeroCEIWW
+        }
 
-        item2.push(pum);
-        item2Week.push(pumWeek);
+        item1.push(activated);
+        item1Week.push(activatedWeek);
+
+        item2.push(monthreturn);
+        item2Week.push(monthreturnWeek);
 
         item3.push(rum);
         item3Week.push(rumWeek);
 
-        item4.push(pus);
-        item4Week.push(pusWeek);
+        item4.push(lowcei);
+        item4Week.push(lowceiWeek);
 
-        item5.push(wk0);
-        item5Week.push(eiWeek);
+        item5.push(highcei);
+        item5Week.push(highceiWeek);
 
         item6.push(wk4);
         item6Week.push(wk4Week);
 
-        item7.push(pusl);
-        item7Week.push(puslWeek);
+        item7.push(mediumcei);
+        item7Week.push(mediumceiWeek);
+
+        item8.push(zerocei);
+        item8Week.push(zeroceiWeek);
 
     }
 
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.geo.qtd = processQTDOrder(item1);
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.geo.week = processQTDOrder(item1Week);
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.geo.qtd = processQTDOrder(item1);
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.geo.week = processQTDOrder(item1Week);
 
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.geo.qtd = processQTDOrder(item2);
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.geo.week = processQTDOrder(item2Week);
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.geo.qtd = processQTDOrder(item2);
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.geo.week = processQTDOrder(item2Week);
 
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.geo.qtd = processQTDOrder(item3);
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.geo.week = processQTDOrder(item3Week);
 
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.geo.qtd = processQTDOrder(item4);
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.geo.week = processQTDOrder(item4Week);
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.geo.qtd = processQTDOrder(item4);
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.geo.week = processQTDOrder(item4Week);
 
 
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.geo.qtd = processQTDOrder(item7);
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.geo.week = processQTDOrder(item7Week);
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.geo.qtd = processQTDOrder(item7);
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.geo.week = processQTDOrder(item7Week);
 
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.geo.qtd = processQTDOrder(item5);
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.geo.week = processQTDOrder(item5Week);
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.geo.qtd = processQTDOrder(item5);
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.geo.week = processQTDOrder(item5Week);
 
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.geo.qtd = processQTDOrder(item6);
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.geo.week = processQTDOrder(item6Week);
 
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.geo.qtd = processQTDOrder(item8);
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.geo.week = processQTDOrder(item8Week);
+
 }
 export function processUseMarketQTDData(data, newState) {
+    
     let item1 = [], item1Week = [],
         item2 = [], item2Week = [],
         item3 = [], item3Week = [],
         item4 = [], item4Week = [],
         item5 = [], item5Week = [],
         item6 = [], item6Week = [],
-        item7 = [], item7Week = [];
+        item7 = [], item7Week = [],
+        item8 = [], item8Week = []
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
-        let ei = {
+        let activated = {
             index: i,
-            actuals: item.CEIActual,
+            actuals: item.ActivatedActual,
             marketArea: item.market_area_group,
-            qq: item.CEIQQTY,
-            qrf: item.CEITarget,
-            qrfDiff: item.CEIVsQRFDiff,
+            qq: item.ActivatedQQTY,
+            qrf: item.ActivatedTarget,
+            qrfDiff: item.ActivatedVsQRFDiff,
             type: item.market_area_code,
-            vsQrf: item.CEIVsQrf,
-            yy: item.CEIYY
+            vsQrf: item.ActivatedVsQRF,
+            yy: item.ActivatedYY
         }
-        let eiWeek = {
+        let activatedWeek = {
             index: i,
-            actuals: item.CEIActual,
+            actuals: item.ActivatedActual,
             marketArea: item.market_area_group,
-            qq: item.CEIQQTY,
-            qrf: item.CEITarget,
-            qrfDiff: item.CEIVsQRFDiff,
+            qq: item.ActivatedQQTY,
+            qrf: item.ActivatedTarget,
+            qrfDiff: item.ActivatedVsQRFDiff,
             type: item.market_area_code,
-            vsQrf: item.CEIVsQrf,
-            ww: item.CEIWW
+            vsQrf: item.ActivatedVsQRF,
+            ww: item.ActivatedWW
         }
 
-        let pum = {
+        let monthreturn = {
             index: i,
             actuals: item.PaidMAUActual,
             marketArea: item.market_area_group,
@@ -6154,7 +6423,7 @@ export function processUseMarketQTDData(data, newState) {
             vsQrf: item.PaidMAUVsQrf,
             yy: item.PaidMAUYY
         }
-        let pumWeek = {
+        let monthreturnWeek = {
             index: i,
             actuals: item.PaidMAUActual,
             marketArea: item.market_area_group,
@@ -6189,72 +6458,72 @@ export function processUseMarketQTDData(data, newState) {
             ww: item.RepeatMAUWW
         }
 
-        let pus = {
+        let lowcei = {
             index: i,
-            actuals: item.PaidUserDownloadActual,
+            actuals: item.LowCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserDownloadQQTY,
-            qrf: item.PaidUserDownloadTarget,
-            qrfDiff: item.PaidUserDownloadVsQRFDiff,
+            qq: item.LowCEIQQTY,
+            qrf: item.LowCEITarget,
+            qrfDiff: item.LowCEIVsQRFDiff,
             type: item.market_area_code,
-            vsQrf: item.PaidUserDownloadVsQrf,
-            yy: item.PaidUserDownloadYY
+            vsQrf: item.LowCEIVsQRF,
+            yy: item.LowCEIYY
         }
-        let pusWeek = {
+        let lowceiWeek = {
             index: i,
-            actuals: item.PaidUserDownloadActual,
+            actuals: item.LowCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserDownloadQQTY,
-            qrf: item.PaidUserDownloadTarget,
-            qrfDiff: item.PaidUserDownloadVsQRFDiff,
+            qq: item.LowCEIQQTY,
+            qrf: item.LowCEITarget,
+            qrfDiff: item.LowCEIVsQRFDiff,
             type: item.market_area_code,
-            vsQrf: item.PaidUserDownloadVsQrf,
-            ww: item.PaidUserDownloadWW
+            vsQrf: item.LowCEIVsQRF,
+            ww: item.LowCEIWW
         }
-        let pusl = {
+        let mediumcei = {
             index: i,
-            actuals: item.PaidUserLaucnhActual,
+            actuals: item.MediumCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserLaucnhQQTY,
-            qrf: item.PaidUserLaucnhTarget,
-            qrfDiff: item.PaidUserLaucnhVsQRFDiff,
+            qq: item.MediumCEIQQTY,
+            qrf: item.MediumCEITarget,
+            qrfDiff: item.MediumCEIVsQRFDiff,
             type: item.market_area_code,
-            vsQrf: item.PaidUserLaucnhVsQrf,
-            yy: item.PaidUserLaucnhYY
+            vsQrf: item.MediumCEIVsQrf,
+            yy: item.MediumCEIYY
         }
 
-        let puslWeek = {
+        let mediumceiWeek = {
             index: i,
-            actuals: item.PaidUserLaucnhActual,
+            actuals: item.MediumCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserLaucnhQQTY,
-            qrf: item.PaidUserLaucnhTarget,
-            qrfDiff: item.PaidUserLaucnhVsQRFDiff,
+            qq: item.MediumCEIQQTY,
+            qrf: item.MediumCEITarget,
+            qrfDiff: item.MediumCEIVsQRFDiff,
             type: item.market_area_code,
-            vsQrf: item.PaidUserLaucnhVsQrf,
-            ww: item.PaidUserLaucnhWW
+            vsQrf: item.MediumCEIVsQrf,
+            ww: item.MediumCEIWW
         }
-        let wk0 = {
+        let highcei = {
             index: i,
-            actuals: item.Week00WAUActual,
+            actuals: item.HighCEIActual,
             marketArea: item.market_area_group,
-            qq: item.Week00WAUQQTY,
-            qrf: item.Week00WAUTarget,
-            qrfDiff: item.Week00WAUVsQRFDiff,
+            qq: item.HighCEIQQTY,
+            qrf: item.HighCEITarget,
+            qrfDiff: item.HighCEIVsQRFDiff,
             type: item.market_area_code,
-            vsQrf: item.Week00WAUVsQrf,
-            yy: item.Week00WAUYY
+            vsQrf: item.HighCEIVsQrf,
+            yy: item.HighCEIYY
         }
-        let wk0Week = {
+        let highceiWeek = {
             index: i,
-            actuals: item.Week00WAUActual,
+            actuals: item.HighCEIActual,
             marketArea: item.market_area_group,
-            qq: item.Week00WAUQQTY,
-            qrf: item.Week00WAUTarget,
-            qrfDiff: item.Week00WAUVsQRFDiff,
+            qq: item.HighCEIQQTY,
+            qrf: item.HighCEITarget,
+            qrfDiff: item.HighCEIVsQRFDiff,
             type: item.market_area_code,
-            vsQrf: item.Week00WAUVsQrf,
-            ww: item.Week00WAUWW
+            vsQrf: item.HighCEIVsQrf,
+            ww: item.HighCEIWW
         }
         let wk4 = {
             index: i,
@@ -6278,86 +6547,118 @@ export function processUseMarketQTDData(data, newState) {
             vsQrf: item.Week04WAUVsQrf,
             ww: item.Week04WAUWW
         }
-        item1.push(ei);
-        item1Week.push(eiWeek);
+        let zerocei = {
+            index: i,
+            actuals: item.ZeroCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.ZeroCEIQQTY,
+            qrf: item.ZeroCEITarget,
+            qrfDiff: item.ZeroCEIVsQRFDiff,
+            type: item.market_area_code,
+            vsQrf: item.ZeroCEIVsQrf,
+            yy: item.ZeroCEIYY
+        }
+        let zeroceiWeek = {
+            index: i,
+            actuals: item.ZeroCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.ZeroCEIQQTY,
+            qrf: item.ZeroCEITarget,
+            qrfDiff: item.ZeroCEIVsQRFDiff,
+            type: item.market_area_code,
+            vsQrf: item.ZeroCEIVsQrf,
+            ww: item.ZeroCEIWW
+        }
 
-        item2.push(pum);
-        item2Week.push(pumWeek);
+        item1.push(activated);
+        item1Week.push(activatedWeek);
+
+        item2.push(monthreturn);
+        item2Week.push(monthreturnWeek);
 
         item3.push(rum);
         item3Week.push(rumWeek);
 
-        item4.push(pus);
-        item4Week.push(pusWeek);
+        item4.push(lowcei);
+        item4Week.push(lowceiWeek);
 
-        item5.push(wk0);
-        item5Week.push(eiWeek);
+        item5.push(highcei);
+        item5Week.push(highceiWeek);
 
         item6.push(wk4);
         item6Week.push(wk4Week);
 
-        item7.push(pusl);
-        item7Week.push(puslWeek);
+        item7.push(mediumcei);
+        item7Week.push(mediumceiWeek);
+
+        item8.push(zerocei);
+        item8Week.push(zeroceiWeek);
 
     }
 
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.market.qtd = item1;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.market.week = item1Week;
 
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.market.qtd = item2;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.market.week = item2Week;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.market.qtd = item1;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.market.week = item1Week;
+
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.market.qtd = item2;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.market.week = item2Week;
 
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.market.qtd = item3;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.market.week = item3Week;
 
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.market.qtd = item4;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.market.week = item4Week;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.market.qtd = item4;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.market.week = item4Week;
 
 
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.market.qtd = item7;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.market.week = item7Week;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.market.qtd = item7;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.market.week = item7Week;
 
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.market.qtd = item5;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.market.week = item5Week;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.market.qtd = item5;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.market.week = item5Week;
 
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.market.qtd = item6;
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.market.week = item6Week;
+
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.market.qtd = item8;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.market.week = item8Week;
 }
 export function processUseSubscriptionQTDData(data, newState) {
+      
     let item1 = [], item1Week = [],
         item2 = [], item2Week = [],
         item3 = [], item3Week = [],
         item4 = [], item4Week = [],
         item5 = [], item5Week = [],
         item6 = [], item6Week = [],
-        item7 = [], item7Week = [];
+        item7 = [], item7Week = [],
+        item8 = [], item8Week = []
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
-        let ei = {
+        let activated = {
             index: i,
-            actuals: item.CEIActual,
+            actuals: item.ActivatedActual,
             marketArea: item.market_area_group,
-            qq: item.CEIQQTY,
-            qrf: item.CEITarget,
-            qrfDiff: item.CEIVsQRFDiff,
+            qq: item.ActivatedQQTY,
+            qrf: item.ActivatedTarget,
+            qrfDiff: item.ActivatedVsQRFDiff,
             type: item.subscription_offering,
-            vsQrf: item.CEIVsQrf,
-            yy: item.CEIYY
+            vsQrf: item.ActivatedVsQRF,
+            yy: item.ActivatedYY
         }
-        let eiWeek = {
+        let activatedWeek = {
             index: i,
-            actuals: item.CEIActual,
+            actuals: item.ActivatedActual,
             marketArea: item.market_area_group,
-            qq: item.CEIQQTY,
-            qrf: item.CEITarget,
-            qrfDiff: item.CEIVsQRFDiff,
+            qq: item.ActivatedQQTY,
+            qrf: item.ActivatedTarget,
+            qrfDiff: item.ActivatedVsQRFDiff,
             type: item.subscription_offering,
-            vsQrf: item.CEIVsQrf,
-            ww: item.CEIWW
+            vsQrf: item.ActivatedVsQRF,
+            ww: item.ActivatedWW
         }
 
-        let pum = {
+        let monthreturn = {
             index: i,
             actuals: item.PaidMAUActual,
             marketArea: item.market_area_group,
@@ -6368,7 +6669,7 @@ export function processUseSubscriptionQTDData(data, newState) {
             vsQrf: item.PaidMAUVsQrf,
             yy: item.PaidMAUYY
         }
-        let pumWeek = {
+        let monthreturnWeek = {
             index: i,
             actuals: item.PaidMAUActual,
             marketArea: item.market_area_group,
@@ -6403,72 +6704,72 @@ export function processUseSubscriptionQTDData(data, newState) {
             ww: item.RepeatMAUWW
         }
 
-        let pus = {
+        let lowcei = {
             index: i,
-            actuals: item.PaidUserDownloadActual,
+            actuals: item.LowCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserDownloadQQTY,
-            qrf: item.PaidUserDownloadTarget,
-            qrfDiff: item.PaidUserDownloadVsQRFDiff,
+            qq: item.LowCEIQQTY,
+            qrf: item.LowCEITarget,
+            qrfDiff: item.LowCEIVsQRFDiff,
             type: item.subscription_offering,
-            vsQrf: item.PaidUserDownloadVsQrf,
-            yy: item.PaidUserDownloadYY
+            vsQrf: item.LowCEIVsQRF,
+            yy: item.LowCEIYY
         }
-        let pusWeek = {
+        let lowceiWeek = {
             index: i,
-            actuals: item.PaidUserDownloadActual,
+            actuals: item.LowCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserDownloadQQTY,
-            qrf: item.PaidUserDownloadTarget,
-            qrfDiff: item.PaidUserDownloadVsQRFDiff,
+            qq: item.LowCEIQQTY,
+            qrf: item.LowCEITarget,
+            qrfDiff: item.LowCEIVsQRFDiff,
             type: item.subscription_offering,
-            vsQrf: item.PaidUserDownloadVsQrf,
-            ww: item.PaidUserDownloadWW
+            vsQrf: item.LowCEIVsQRF,
+            ww: item.LowCEIWW
         }
-        let pusl = {
+        let mediumcei = {
             index: i,
-            actuals: item.PaidUserLaucnhActual,
+            actuals: item.MediumCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserLaucnhQQTY,
-            qrf: item.PaidUserLaucnhTarget,
-            qrfDiff: item.PaidUserLaucnhVsQRFDiff,
+            qq: item.MediumCEIQQTY,
+            qrf: item.MediumCEITarget,
+            qrfDiff: item.MediumCEIVsQRFDiff,
             type: item.subscription_offering,
-            vsQrf: item.PaidUserLaucnhVsQrf,
-            yy: item.PaidUserLaucnhYY
+            vsQrf: item.MediumCEIVsQrf,
+            yy: item.MediumCEIYY
         }
 
-        let puslWeek = {
+        let mediumceiWeek = {
             index: i,
-            actuals: item.PaidUserLaucnhActual,
+            actuals: item.MediumCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserLaucnhQQTY,
-            qrf: item.PaidUserLaucnhTarget,
-            qrfDiff: item.PaidUserLaucnhVsQRFDiff,
+            qq: item.MediumCEIQQTY,
+            qrf: item.MediumCEITarget,
+            qrfDiff: item.MediumCEIVsQRFDiff,
             type: item.subscription_offering,
-            vsQrf: item.PaidUserLaucnhVsQrf,
-            ww: item.PaidUserLaucnhWW
+            vsQrf: item.MediumCEIVsQrf,
+            ww: item.MediumCEIWW
         }
-        let wk0 = {
+        let highcei = {
             index: i,
-            actuals: item.Week00WAUActual,
+            actuals: item.HighCEIActual,
             marketArea: item.market_area_group,
-            qq: item.Week00WAUQQTY,
-            qrf: item.Week00WAUTarget,
-            qrfDiff: item.Week00WAUVsQRFDiff,
+            qq: item.HighCEIQQTY,
+            qrf: item.HighCEITarget,
+            qrfDiff: item.HighCEIVsQRFDiff,
             type: item.subscription_offering,
-            vsQrf: item.Week00WAUVsQrf,
-            yy: item.Week00WAUYY
+            vsQrf: item.HighCEIVsQrf,
+            yy: item.HighCEIYY
         }
-        let wk0Week = {
+        let highceiWeek = {
             index: i,
-            actuals: item.Week00WAUActual,
+            actuals: item.HighCEIActual,
             marketArea: item.market_area_group,
-            qq: item.Week00WAUQQTY,
-            qrf: item.Week00WAUTarget,
-            qrfDiff: item.Week00WAUVsQRFDiff,
+            qq: item.HighCEIQQTY,
+            qrf: item.HighCEITarget,
+            qrfDiff: item.HighCEIVsQRFDiff,
             type: item.subscription_offering,
-            vsQrf: item.Week00WAUVsQrf,
-            ww: item.Week00WAUWW
+            vsQrf: item.HighCEIVsQrf,
+            ww: item.HighCEIWW
         }
         let wk4 = {
             index: i,
@@ -6492,85 +6793,118 @@ export function processUseSubscriptionQTDData(data, newState) {
             vsQrf: item.Week04WAUVsQrf,
             ww: item.Week04WAUWW
         }
-        item1.push(ei);
-        item1Week.push(eiWeek);
+        let zerocei = {
+            index: i,
+            actuals: item.ZeroCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.ZeroCEIQQTY,
+            qrf: item.ZeroCEITarget,
+            qrfDiff: item.ZeroCEIVsQRFDiff,
+            type: item.subscription_offering,
+            vsQrf: item.ZeroCEIVsQrf,
+            yy: item.ZeroCEIYY
+        }
+        let zeroceiWeek = {
+            index: i,
+            actuals: item.ZeroCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.ZeroCEIQQTY,
+            qrf: item.ZeroCEITarget,
+            qrfDiff: item.ZeroCEIVsQRFDiff,
+            type: item.subscription_offering,
+            vsQrf: item.ZeroCEIVsQrf,
+            ww: item.ZeroCEIWW
+        }
 
-        item2.push(pum);
-        item2Week.push(pumWeek);
+        item1.push(activated);
+        item1Week.push(activatedWeek);
+
+        item2.push(monthreturn);
+        item2Week.push(monthreturnWeek);
 
         item3.push(rum);
         item3Week.push(rumWeek);
 
-        item4.push(pus);
-        item4Week.push(pusWeek);
+        item4.push(lowcei);
+        item4Week.push(lowceiWeek);
 
-        item5.push(wk0);
-        item5Week.push(eiWeek);
+        item5.push(highcei);
+        item5Week.push(highceiWeek);
 
         item6.push(wk4);
         item6Week.push(wk4Week);
 
-        item7.push(pusl);
-        item7Week.push(puslWeek);
+        item7.push(mediumcei);
+        item7Week.push(mediumceiWeek);
+
+        item8.push(zerocei);
+        item8Week.push(zeroceiWeek);
+
     }
 
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.subscription.qtd = item1;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.subscription.week = item1Week;
 
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.subscription.qtd = item2;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.subscription.week = item2Week;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.subscription.qtd = item1;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.subscription.week = item1Week;
+
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.subscription.qtd = item2;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.subscription.week = item2Week;
 
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.subscription.qtd = item3;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.subscription.week = item3Week;
 
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.subscription.qtd = item4;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.subscription.week = item4Week;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.subscription.qtd = item4;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.subscription.week = item4Week;
 
 
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.subscription.qtd = item7;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.subscription.week = item7Week;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.subscription.qtd = item7;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.subscription.week = item7Week;
 
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.subscription.qtd = item5;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.subscription.week = item5Week;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.subscription.qtd = item5;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.subscription.week = item5Week;
 
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.subscription.qtd = item6;
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.subscription.week = item6Week;
+
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.subscription.qtd = item8;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.subscription.week = item8Week;
 }
 export function processUseSegmentQTDData(data, newState) {
+      
     let item1 = [], item1Week = [],
         item2 = [], item2Week = [],
         item3 = [], item3Week = [],
         item4 = [], item4Week = [],
         item5 = [], item5Week = [],
         item6 = [], item6Week = [],
-        item7 = [], item7Week = [];
+        item7 = [], item7Week = [],
+        item8 = [], item8Week = []
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
-        let ei = {
+        let activated = {
             index: i,
-            actuals: item.CEIActual,
+            actuals: item.ActivatedActual,
             marketArea: item.market_area_group,
-            qq: item.CEIQQTY,
-            qrf: item.CEITarget,
-            qrfDiff: item.CEIVsQRFDiff,
+            qq: item.ActivatedQQTY,
+            qrf: item.ActivatedTarget,
+            qrfDiff: item.ActivatedVsQRFDiff,
             type: item.segment_pivot,
-            vsQrf: item.CEIVsQrf,
-            yy: item.CEIYY
+            vsQrf: item.ActivatedVsQRF,
+            yy: item.ActivatedYY
         }
-        let eiWeek = {
+        let activatedWeek = {
             index: i,
-            actuals: item.CEIActual,
+            actuals: item.ActivatedActual,
             marketArea: item.market_area_group,
-            qq: item.CEIQQTY,
-            qrf: item.CEITarget,
-            qrfDiff: item.CEIVsQRFDiff,
+            qq: item.ActivatedQQTY,
+            qrf: item.ActivatedTarget,
+            qrfDiff: item.ActivatedVsQRFDiff,
             type: item.segment_pivot,
-            vsQrf: item.CEIVsQrf,
-            ww: item.CEIWW
+            vsQrf: item.ActivatedVsQRF,
+            ww: item.ActivatedWW
         }
 
-        let pum = {
+        let monthreturn = {
             index: i,
             actuals: item.PaidMAUActual,
             marketArea: item.market_area_group,
@@ -6581,7 +6915,7 @@ export function processUseSegmentQTDData(data, newState) {
             vsQrf: item.PaidMAUVsQrf,
             yy: item.PaidMAUYY
         }
-        let pumWeek = {
+        let monthreturnWeek = {
             index: i,
             actuals: item.PaidMAUActual,
             marketArea: item.market_area_group,
@@ -6616,72 +6950,72 @@ export function processUseSegmentQTDData(data, newState) {
             ww: item.RepeatMAUWW
         }
 
-        let pus = {
+        let lowcei = {
             index: i,
-            actuals: item.PaidUserDownloadActual,
+            actuals: item.LowCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserDownloadQQTY,
-            qrf: item.PaidUserDownloadTarget,
-            qrfDiff: item.PaidUserDownloadVsQRFDiff,
+            qq: item.LowCEIQQTY,
+            qrf: item.LowCEITarget,
+            qrfDiff: item.LowCEIVsQRFDiff,
             type: item.segment_pivot,
-            vsQrf: item.PaidUserDownloadVsQrf,
-            yy: item.PaidUserDownloadYY
+            vsQrf: item.LowCEIVsQRF,
+            yy: item.LowCEIYY
         }
-        let pusWeek = {
+        let lowceiWeek = {
             index: i,
-            actuals: item.PaidUserDownloadActual,
+            actuals: item.LowCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserDownloadQQTY,
-            qrf: item.PaidUserDownloadTarget,
-            qrfDiff: item.PaidUserDownloadVsQRFDiff,
+            qq: item.LowCEIQQTY,
+            qrf: item.LowCEITarget,
+            qrfDiff: item.LowCEIVsQRFDiff,
             type: item.segment_pivot,
-            vsQrf: item.PaidUserDownloadVsQrf,
-            ww: item.PaidUserDownloadWW
+            vsQrf: item.LowCEIVsQRF,
+            ww: item.LowCEIWW
         }
-        let pusl = {
+        let mediumcei = {
             index: i,
-            actuals: item.PaidUserLaucnhActual,
+            actuals: item.MediumCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserLaucnhQQTY,
-            qrf: item.PaidUserLaucnhTarget,
-            qrfDiff: item.PaidUserLaucnhVsQRFDiff,
+            qq: item.MediumCEIQQTY,
+            qrf: item.MediumCEITarget,
+            qrfDiff: item.MediumCEIVsQRFDiff,
             type: item.segment_pivot,
-            vsQrf: item.PaidUserLaucnhVsQrf,
-            yy: item.PaidUserLaucnhYY
+            vsQrf: item.MediumCEIVsQrf,
+            yy: item.MediumCEIYY
         }
 
-        let puslWeek = {
+        let mediumceiWeek = {
             index: i,
-            actuals: item.PaidUserLaucnhActual,
+            actuals: item.MediumCEIActual,
             marketArea: item.market_area_group,
-            qq: item.PaidUserLaucnhQQTY,
-            qrf: item.PaidUserLaucnhTarget,
-            qrfDiff: item.PaidUserLaucnhVsQRFDiff,
+            qq: item.MediumCEIQQTY,
+            qrf: item.MediumCEITarget,
+            qrfDiff: item.MediumCEIVsQRFDiff,
             type: item.segment_pivot,
-            vsQrf: item.PaidUserLaucnhVsQrf,
-            ww: item.PaidUserLaucnhWW
+            vsQrf: item.MediumCEIVsQrf,
+            ww: item.MediumCEIWW
         }
-        let wk0 = {
+        let highcei = {
             index: i,
-            actuals: item.Week00WAUActual,
+            actuals: item.HighCEIActual,
             marketArea: item.market_area_group,
-            qq: item.Week00WAUQQTY,
-            qrf: item.Week00WAUTarget,
-            qrfDiff: item.Week00WAUVsQRFDiff,
+            qq: item.HighCEIQQTY,
+            qrf: item.HighCEITarget,
+            qrfDiff: item.HighCEIVsQRFDiff,
             type: item.segment_pivot,
-            vsQrf: item.Week00WAUVsQrf,
-            yy: item.Week00WAUYY
+            vsQrf: item.HighCEIVsQrf,
+            yy: item.HighCEIYY
         }
-        let wk0Week = {
+        let highceiWeek = {
             index: i,
-            actuals: item.Week00WAUActual,
+            actuals: item.HighCEIActual,
             marketArea: item.market_area_group,
-            qq: item.Week00WAUQQTY,
-            qrf: item.Week00WAUTarget,
-            qrfDiff: item.Week00WAUVsQRFDiff,
+            qq: item.HighCEIQQTY,
+            qrf: item.HighCEITarget,
+            qrfDiff: item.HighCEIVsQRFDiff,
             type: item.segment_pivot,
-            vsQrf: item.Week00WAUVsQrf,
-            ww: item.Week00WAUWW
+            vsQrf: item.HighCEIVsQrf,
+            ww: item.HighCEIWW
         }
         let wk4 = {
             index: i,
@@ -6705,48 +7039,80 @@ export function processUseSegmentQTDData(data, newState) {
             vsQrf: item.Week04WAUVsQrf,
             ww: item.Week04WAUWW
         }
-        item1.push(ei);
-        item1Week.push(eiWeek);
+        let zerocei = {
+            index: i,
+            actuals: item.ZeroCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.ZeroCEIQQTY,
+            qrf: item.ZeroCEITarget,
+            qrfDiff: item.ZeroCEIVsQRFDiff,
+            type: item.segment_pivot,
+            vsQrf: item.ZeroCEIVsQrf,
+            yy: item.ZeroCEIYY
+        }
+        let zeroceiWeek = {
+            index: i,
+            actuals: item.ZeroCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.ZeroCEIQQTY,
+            qrf: item.ZeroCEITarget,
+            qrfDiff: item.ZeroCEIVsQRFDiff,
+            type: item.segment_pivot,
+            vsQrf: item.ZeroCEIVsQrf,
+            ww: item.ZeroCEIWW
+        }
 
-        item2.push(pum);
-        item2Week.push(pumWeek);
+        item1.push(activated);
+        item1Week.push(activatedWeek);
+
+        item2.push(monthreturn);
+        item2Week.push(monthreturnWeek);
 
         item3.push(rum);
         item3Week.push(rumWeek);
 
-        item4.push(pus);
-        item4Week.push(pusWeek);
+        item4.push(lowcei);
+        item4Week.push(lowceiWeek);
 
-        item5.push(wk0);
-        item5Week.push(eiWeek);
+        item5.push(highcei);
+        item5Week.push(highceiWeek);
 
         item6.push(wk4);
         item6Week.push(wk4Week);
-        item7.push(pusl);
-        item7Week.push(puslWeek);
+
+        item7.push(mediumcei);
+        item7Week.push(mediumceiWeek);
+
+        item8.push(zerocei);
+        item8Week.push(zeroceiWeek);
 
     }
 
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.segment.qtd = item1;
-    newState[SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX].details.segment.week = item1Week;
 
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.segment.qtd = item2;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_MAU].details.segment.week = item2Week;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.segment.qtd = item1;
+    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.segment.week = item1Week;
+
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.segment.qtd = item2;
+    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.segment.week = item2Week;
 
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.segment.qtd = item3;
     newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.segment.week = item3Week;
 
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.segment.qtd = item4;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS].details.segment.week = item4Week;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.segment.qtd = item4;
+    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.segment.week = item4Week;
 
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.segment.qtd = item7;
-    newState[SUMMARY_FILTERS.USE_PAID_USER_SUCCESS_LAUNCHES].details.segment.week = item7Week;
 
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.segment.qtd = item5;
-    newState[SUMMARY_FILTERS.USE_WK0_WAU_RATE].details.segment.week = item5Week;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.segment.qtd = item7;
+    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.segment.week = item7Week;
+
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.segment.qtd = item5;
+    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.segment.week = item5Week;
 
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.segment.qtd = item6;
     newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.segment.week = item6Week;
+
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.segment.qtd = item8;
+    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.segment.week = item8Week;
 }
 
 export function processRenewCancelSecondaryData(g1, newState, AdobeData, EtailData) {

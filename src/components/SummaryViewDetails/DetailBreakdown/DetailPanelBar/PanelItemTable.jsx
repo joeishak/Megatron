@@ -165,7 +165,7 @@ class PanelItemTable extends Component {
                     return <MultiDimensionPanelItem
                     activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
-                    data={this.props.activeSummary.details.geo}
+                    data={this.props.activeSummary.details.qfm}
                     isJourney={this.state.isJourney}
                     type={DIMENSIONS.QFMTYPE}
                     valueType={this.props.activeSummary.valueType}
@@ -174,7 +174,7 @@ class PanelItemTable extends Component {
                     return <SingleDimensionPanelItem
                     activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
-                    data={this.props.activeSummary.details.geo}
+                    data={this.props.activeSummary.details.qfm}
                     isJourney={this.state.isJourney}
                     type={DIMENSIONS.QFMTYPE}
                     valueType={this.props.activeSummary.valueType}

@@ -22845,6 +22845,32 @@ export const SecondaryData = [
                     }
                 ]
             },
+            qfm: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             signUpApp: { qtd: [], week: [] },
             stats: [
                 {
@@ -23273,6 +23299,32 @@ export const SecondaryData = [
                     }
                 ]
             },
+            qfm: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             stats: [
                 {
                     value: -2.6,
@@ -23697,6 +23749,32 @@ export const SecondaryData = [
                         type: 'ANZ'
                     }
                 ]
+            },
+            qfm: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
             },
             stats: [
                 {
@@ -24125,6 +24203,32 @@ export const SecondaryData = [
                         type: 'ANZ'
                     }
                 ]
+            },
+            qfm: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
             },
             stats: [
                 {
@@ -24555,6 +24659,32 @@ export const SecondaryData = [
                     }
                 ]
             },
+            qfm: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             stats: [
                 {
                     value: -2.6,
@@ -24983,6 +25113,32 @@ export const SecondaryData = [
                         type: 'ANZ'
                     }
                 ]
+            },
+            qfm: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
             },
             stats: [
                 {

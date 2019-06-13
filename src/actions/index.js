@@ -224,11 +224,14 @@ export function getFilteredPrimaryData(filters) {
         visits: Object.keys(filters.visits.availableFilters).map(e => filters.visits.availableFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.availableFilters).map(e => filters.lastTouchChannel.availableFilters[e]),
         convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
+        customerType: Object.keys(filters.customerType.availableFilters).map(e => filters.customerType.availableFilters[e]),
+        
         //Try
         signupcat: Object.keys(filters.signupCategory.availableFilters).map(e => filters.signupCategory.availableFilters[e]),
         //Buy
         channelMU: Object.keys(filters.channelMU.availableFilters).map(e => filters.channelMU.availableFilters[e]),
         channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
+        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e]),
         // userenew
         nonDMSegment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
 
@@ -246,8 +249,10 @@ export function getFilteredPrimaryData(filters) {
         visits: Object.keys(filters.visits.valueFilters).map(e => filters.visits.valueFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.valueFilters).map(e => filters.lastTouchChannel.valueFilters[e]),
         convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
+        customerType: Object.keys(filters.customerType.valueFilters).map(e => filters.customerType.valueFilters[e]),
         //Try
         signupcat: Object.keys(filters.signupCategory.valueFilters).map(e => filters.signupCategory.valueFilters[e]),
+        qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e]),
         channelMU: Object.keys(filters.channelMU.valueFilters).map(e => filters.channelMU.valueFilters[e]),
         channelPM: Object.keys(filters.channelPM.valueFilters).map(e => filters.channelPM.valueFilters[e]),
         nonDMSegment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
@@ -281,6 +286,7 @@ export function getFilteredDiscoverSecondary(filters) {
         visits: Object.keys(filters.visits.availableFilters).map(e => filters.visits.availableFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.availableFilters).map(e => filters.lastTouchChannel.availableFilters[e]),
         convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
+        customerType: Object.keys(filters.customerType.availableFilters).map(e => filters.customerType.availableFilters[e]),
         //Try
         signupcat: Object.keys(filters.signupCategory.availableFilters).map(e => filters.signupCategory.availableFilters[e]),
         //Buy
@@ -301,10 +307,12 @@ export function getFilteredDiscoverSecondary(filters) {
         visits: Object.keys(filters.visits.valueFilters).map(e => filters.visits.valueFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.valueFilters).map(e => filters.lastTouchChannel.valueFilters[e]),
         convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
+        customerType: Object.keys(filters.customerType.valueFilters).map(e => filters.customerType.valueFilters[e]),
         //Try
         signupcat: Object.keys(filters.signupCategory.valueFilters).map(e => filters.signupCategory.valueFilters[e]),
         channelMU: Object.keys(filters.channelMU.valueFilters).map(e => filters.channelMU.valueFilters[e]),
-        channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
+        // channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
+        channelPM: Object.keys(filters.channelPM.valueFilters).map(e => filters.channelPM.valueFilters[e]),
     };
 
     promiseArr = utils.filterDiscoverSecondary(allFilters, _parameters);
@@ -436,7 +444,8 @@ export function getFilteredTrafficSecondaryData(filters) {
         websegment: Object.keys(filters.websegment.availableFilters).map(e => filters.websegment.availableFilters[e]),
         visits: Object.keys(filters.visits.availableFilters).map(e => filters.visits.availableFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.availableFilters).map(e => filters.lastTouchChannel.availableFilters[e]),
-        convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e])
+        convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
+        customerType: Object.keys(filters.customerType.availableFilters).map(e => filters.customerType.availableFilters[e])
     }
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
@@ -449,7 +458,8 @@ export function getFilteredTrafficSecondaryData(filters) {
         websegment: Object.keys(filters.websegment.valueFilters).map(e => filters.websegment.valueFilters[e]),
         visits: Object.keys(filters.visits.valueFilters).map(e => filters.visits.valueFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.valueFilters).map(e => filters.lastTouchChannel.valueFilters[e]),
-        convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e])
+        convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
+        customerType: Object.keys(filters.customerType.valueFilters).map(e => filters.customerType.valueFilters[e])
     };
     // console.log(filters);
     promiseArr = utils.filterTrafficSecondaryData(allFilters, _parameters);
@@ -511,6 +521,7 @@ export function getFilteredTrySecondaryData(filters) {
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
         signupcat: Object.keys(filters.signupCategory.availableFilters).map(e => filters.signupCategory.availableFilters[e]),
+        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e]),
 
     }
     let _parameters = {
@@ -518,6 +529,7 @@ export function getFilteredTrySecondaryData(filters) {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         signupcat: Object.keys(filters.signupCategory.valueFilters).map(e => filters.signupCategory.valueFilters[e]),
+        qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e]),
     };
 
     console.log(allFilters);
@@ -553,7 +565,8 @@ export function getFilteredBuySecondaryData(filters) {
         visits: Object.keys(filters.visits.availableFilters).map(e => filters.visits.availableFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.availableFilters).map(e => filters.lastTouchChannel.availableFilters[e]),
         convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
-        pvw: Object.keys(filters.pvw.availableFilters).map(e => filters.pvw.availableFilters[e])
+        pvw: Object.keys(filters.pvw.availableFilters).map(e => filters.pvw.availableFilters[e]),
+        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e]),
 
 
     }
@@ -571,7 +584,8 @@ export function getFilteredBuySecondaryData(filters) {
         visits: Object.keys(filters.visits.valueFilters).map(e => filters.visits.valueFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.valueFilters).map(e => filters.lastTouchChannel.valueFilters[e]),
         convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
-        pvw: Object.keys(filters.pvw.valueFilters).map(e => filters.pvw.valueFilters[e])
+        pvw: Object.keys(filters.pvw.valueFilters).map(e => filters.pvw.valueFilters[e]),
+        qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e]),
 
     };
 
@@ -684,7 +698,8 @@ export function getFilteredBuyTrafficSecondaryData(filters) {
         websegment: Object.keys(filters.websegment.availableFilters).map(e => filters.websegment.availableFilters[e]),
         visits: Object.keys(filters.visits.availableFilters).map(e => filters.visits.availableFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.availableFilters).map(e => filters.lastTouchChannel.availableFilters[e]),
-        convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e])
+        convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
+        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e]),
 
 
     }
@@ -699,7 +714,8 @@ export function getFilteredBuyTrafficSecondaryData(filters) {
         websegment: Object.keys(filters.websegment.valueFilters).map(e => filters.websegment.valueFilters[e]),
         visits: Object.keys(filters.visits.valueFilters).map(e => filters.visits.valueFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.valueFilters).map(e => filters.lastTouchChannel.valueFilters[e]),
-        convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e])
+        convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
+        qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e]),
 
     };
     // console.log(filters);
@@ -967,7 +983,7 @@ export function getDiscoverSecondary(filters) {
         //Try
         signupcat: Object.keys(filters.signupCategory.valueFilters).map(e => filters.signupCategory.valueFilters[e]),
         channelMU: Object.keys(filters.channelMU.valueFilters).map(e => filters.channelMU.valueFilters[e]),
-        channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
+        channelPM: Object.keys(filters.channelPM.valueFilters).map(e => filters.channelPM.valueFilters[e]),
     };
 
     promiseArr = utils.requestDiscoverSecondary(allFilters, _parameters);
@@ -1098,7 +1114,8 @@ export function getTrafficSecondaryData(filters) {
         websegment: Object.keys(filters.websegment.availableFilters).map(e => filters.websegment.availableFilters[e]),
         visits: Object.keys(filters.visits.availableFilters).map(e => filters.visits.availableFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.availableFilters).map(e => filters.lastTouchChannel.availableFilters[e]),
-        convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e])
+        convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
+        customerType: Object.keys(filters.customerType.availableFilters).map(e => filters.customerType.availableFilters[e]),
 
 
     }
@@ -1113,7 +1130,8 @@ export function getTrafficSecondaryData(filters) {
         websegment: Object.keys(filters.websegment.valueFilters).map(e => filters.websegment.valueFilters[e]),
         visits: Object.keys(filters.visits.valueFilters).map(e => filters.visits.valueFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.valueFilters).map(e => filters.lastTouchChannel.valueFilters[e]),
-        convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e])
+        convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
+        customerType: Object.keys(filters.customerType.valueFilters).map(e => filters.customerType.valueFilters[e]),
 
     };
     // console.log(filters);
@@ -1344,7 +1362,8 @@ export function getBuyTrafficSecondaryData(filters) {
         websegment: Object.keys(filters.websegment.availableFilters).map(e => filters.websegment.availableFilters[e]),
         visits: Object.keys(filters.visits.availableFilters).map(e => filters.visits.availableFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.availableFilters).map(e => filters.lastTouchChannel.availableFilters[e]),
-        convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e])
+        convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
+        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e])
 
 
     }
@@ -1359,7 +1378,8 @@ export function getBuyTrafficSecondaryData(filters) {
         websegment: Object.keys(filters.websegment.valueFilters).map(e => filters.websegment.valueFilters[e]),
         visits: Object.keys(filters.visits.valueFilters).map(e => filters.visits.valueFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.valueFilters).map(e => filters.lastTouchChannel.valueFilters[e]),
-        convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e])
+        convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
+        qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e])
 
     };
     // console.log(filters);
