@@ -173,7 +173,13 @@ let tryParams = [
     {
         prompt: 'SignupCatFilters',
         value: ''
-    },];
+    },
+    {
+        prompt: 'QFMTypeFilters',
+        value: ''
+    },
+    
+   ];
 
 let financeParams = [
     {
@@ -571,11 +577,19 @@ export function initiateFilterDataRequests() {
         headers: headers,
         responseType: 'text'
     });
+    const QFMType = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.QFMTypeFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
+    const CustomerType = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.filtersXDCID + Infoburst.filterQueryNames.CustomerTypeFilters, {
+        headers: headers,
+        responseType: 'text'
+    });
     responseArray.push(quarterResponse, maResponse, productResponse, segementsResponse,
         subscriptionResponse, routeResponse, geoResponse, channelResponse, visitResponse,
         CloudTypeFilters, ConvTypeFilters, DiscoverVsBuyFilters, LastTouchChannelFilters,
         MobileVsDesktopFilters, NewVsRepeatFilters, ProdNameFilters, SignupAppFilters, SignupCatFilters,
-        WebSegFilters, ChannelMUFilters, ChannelPMFilters, NonDMSegment, PVW);
+        WebSegFilters, ChannelMUFilters, ChannelPMFilters, NonDMSegment, PVW, QFMType, CustomerType);
     let promiseArr1 = Promise.all(responseArray);
     return promiseArr1;
 }
@@ -3771,6 +3785,8 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.signupcat, allFilters.signupcat);
+            console.log(_activeParams, allFilters)
+            filterParams[4].value = getParamValues(_activeParams.qfmType, allFilters.qfmType)
             break;
         case 3:
             //Renew

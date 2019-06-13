@@ -285,7 +285,7 @@ class SummaryViewDetails extends Component {
       VISITS
     } = DIMENSIONS;
 
-    let { lastTouchChannel, convType, websegment, segment, product, pvw, visits, channelMU, channelPM } = this.props.filters;
+    let { lastTouchChannel, convType, websegment, segment, product, pvw, visits, channelMU, channelPM, qfmType, customerType } = this.props.filters;
     switch (activeItem) {
 
       case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
@@ -346,9 +346,9 @@ class SummaryViewDetails extends Component {
               <div>Customer Type </div>
 
               <MultiValueSelect
-                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CONVERSION })}
-                options={convType.availableFilters}
-                onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CUSTOMERTYPE })}
+                options={customerType.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.CUSTOMERTYPE; this.updateMultiValue(e, type) }}
                 onMenuClose={this.closeMultiValue}
               />
             </div>
@@ -429,9 +429,9 @@ class SummaryViewDetails extends Component {
               <div>Customer Type </div>
 
               <MultiValueSelect
-                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CONVERSION })}
-                options={convType.availableFilters}
-                onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CUSTOMERTYPE })}
+                options={customerType.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.CUSTOMERTYPE; this.updateMultiValue(e, type) }}
                 onMenuClose={this.closeMultiValue}
               />
             </div>
@@ -478,9 +478,9 @@ class SummaryViewDetails extends Component {
               <div>QFM Type</div>
 
               <MultiValueSelect
-                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CONVERSION })}
-                options={convType.availableFilters}
-                onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.QFMTYPE })}
+                options={qfmType.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.QFMTYPE; this.updateMultiValue(e, type) }}
                 onMenuClose={this.closeMultiValue}
               />
             </div>

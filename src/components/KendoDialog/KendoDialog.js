@@ -424,7 +424,8 @@ class KendoDialog extends Component {
             MOBILEVSDESKTOP,
             CONVERSION,
             VISITS,
-            NONDMSEGMENT
+            NONDMSEGMENT,
+            QFMTYPE
         } = DIMENSIONS;
         return (
             <div>
@@ -475,12 +476,21 @@ class KendoDialog extends Component {
                 <div>
                     <h4 className="dialog-sub-category col-lg-6">Try</h4>
                 </div>
-                <div className={'dialog-dropdown col-lg-12'} >
+                <div className={'dialog-dropdown col-lg-6'} >
                     <p> Sign Up Source</p>
                     <MultiValueSelect
                         value={_.filter(this.state.selectedFilters, item => { return item.category === SIGNCAT })}
                         options={filters.signupCategory.availableFilters}
                         onValueChange={(e) => { let type = SIGNCAT; this.updateMultiValue(e, type); }}
+                        onMenuClose={this.closeDropDown}
+                    />
+                </div>
+                <div className={'dialog-dropdown col-lg-6'} >
+                    <p> QFM Type</p>
+                    <MultiValueSelect
+                        value={_.filter(this.state.selectedFilters, item => { return item.category === QFMTYPE })}
+                        options={filters.qfmType.availableFilters}
+                        onValueChange={(e) => { let type = QFMTYPE; this.updateMultiValue(e, type); }}
                         onMenuClose={this.closeDropDown}
                     />
                 </div>

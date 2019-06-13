@@ -43,7 +43,9 @@ const { GEO,
     VISITS,
     CHANNELMU,
     CHANNELPM,
-    NONDMSEGMENT
+    NONDMSEGMENT,
+    QFMTYPE,
+    CUSTOMERTYPE
 } = DIMENSIONS;
 
 // Reducer Function with a default state set for filters
@@ -93,6 +95,14 @@ export default function (state = {
         valueFilters: []
     },
     signupCategory: {
+        availableFilters: [],
+        valueFilters: []
+    },
+    qfmType: {
+        availableFilters: [],
+        valueFilters: []
+    },
+    customerType: {
         availableFilters: [],
         valueFilters: []
     },
@@ -202,6 +212,8 @@ export default function (state = {
             let chanPmFilters = action.payload[20].data
             let nonDMFilters = action.payload[21].data
             let pvw = action.payload[22].data
+            let qfmType = action.payload[23].data
+            let customerType= action.payload[24].data
             // Call processDropDownList on all filters
             let newgeotate = processDropDownListFilterValue(GEO, geoFilter);
             let newMAState = processDropDownListFilterValue(MARKET, marketFilter);
@@ -225,11 +237,13 @@ export default function (state = {
             let chanPM = processDropDownListFilterValue(CHANNELPM, chanPmFilters);
             let segNonDM = processDropDownListFilterValue(NONDMSEGMENT, nonDMFilters);
             let pvwFilters = processDropDownListFilterValue('pvw', pvw);
+            let qfmTypeFilters = processDropDownListFilterValue(QFMTYPE, qfmType);
+            let customerTypeFilters = processDropDownListFilterValue(CUSTOMERTYPE, customerType);
 
             // Create the combined value filters
             let arr = [...newquarterState, ...newgeotate, ...newMAState, ...newproducttate, ...newroutetate, ...newsegmentState, ...newsubscriptiontate,
             ...newChannelState, ...newVisitState, ...newCloud, ...newConv, ...newDiscBuy, ...newMobileDesk, ...newVsRepeat, ...newProdName, ...newSignApp,
-            ...newSignCat, ...newWeb, ...chanMU, ...chanPM, segNonDM, ...pvwFilters];
+            ...newSignCat, ...newWeb, ...chanMU, ...chanPM, segNonDM, ...pvwFilters, ...qfmTypeFilters, ...customerTypeFilters];
             // Create the filters state object
             let obj =
             {
@@ -348,6 +362,14 @@ export default function (state = {
                 },
                 pvw: {
                     availableFilters: pvwFilters,
+                    valueFilters: []
+                },
+                qfmType: {
+                    availableFilters: qfmTypeFilters,
+                    valueFilters: []
+                },
+                customerType: {
+                    availableFilters: customerTypeFilters,
                     valueFilters: []
                 }
             }
@@ -669,6 +691,26 @@ function processDropDownListFilterValue(type, data) {
                     index: count++,
                     category: type,
                     value: item['pwv']
+                }
+            });
+            return newArr;
+        case QFMTYPE:
+
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['qfm_type']
+                }
+            });
+            return newArr;
+        case CUSTOMERTYPE:
+
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['customer_type']
                 }
             });
             return newArr;

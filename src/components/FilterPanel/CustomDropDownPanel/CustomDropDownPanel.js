@@ -75,7 +75,8 @@ class CustomDropDownPanel extends Component {
             NEWVSREPEAT,
             MOBILEVSDESKTOP,
             CONVERSION,
-            VISITS
+            VISITS,
+            QFMTYPE
         } = DIMENSIONS;
 
         switch (this.props.summaryData.primary[this.props.activeCards.primary].index) {
@@ -148,9 +149,9 @@ class CustomDropDownPanel extends Component {
                         <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p style={{ whiteSpace: 'nowrap' }}> QFM Type </p>
                             <MultiValueSelect
-                                value={_.filter(this.props.selectedFilters, item => { return item.category === SIGNCAT })}
-                                options={filters.signupCategory.availableFilters}
-                                onValueChange={(e) => { let type = SIGNCAT; this.props.updateMultiValue(e, type); }}
+                                value={_.filter(this.props.selectedFilters, item => { return item.category === QFMTYPE })}
+                                options={filters.qfmType.availableFilters}
+                                onValueChange={(e) => { let type = QFMTYPE; this.props.updateMultiValue(e, type); }}
                                 onMenuClose={this.closeDropDown}
                             />
 

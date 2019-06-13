@@ -877,8 +877,11 @@ export function getPrimaryData(filters) {
         visits: Object.keys(filters.visits.availableFilters).map(e => filters.visits.availableFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.availableFilters).map(e => filters.lastTouchChannel.availableFilters[e]),
         convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
+        customerType: Object.keys(filters.customerType.availableFilters).map(e => filters.customerType.availableFilters[e]),
         //Try
         signupcat: Object.keys(filters.signupCategory.availableFilters).map(e => filters.signupCategory.availableFilters[e]),
+        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e]),
+        
         //Buy
         channelMU: Object.keys(filters.channelMU.availableFilters).map(e => filters.channelMU.availableFilters[e]),
         channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
@@ -899,8 +902,11 @@ export function getPrimaryData(filters) {
         visits: Object.keys(filters.visits.valueFilters).map(e => filters.visits.valueFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.valueFilters).map(e => filters.lastTouchChannel.valueFilters[e]),
         convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
+        customerType: Object.keys(filters.customerType.valueFilters).map(e => filters.customerType.valueFilters[e]),
+        
         //Try
         signupcat: Object.keys(filters.signupCategory.valueFilters).map(e => filters.signupCategory.valueFilters[e]),
+        qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e]),
         channelMU: Object.keys(filters.channelMU.valueFilters).map(e => filters.channelMU.valueFilters[e]),
         channelPM: Object.keys(filters.channelPM.valueFilters).map(e => filters.channelPM.valueFilters[e]),
         nonDMSegment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
