@@ -77,8 +77,47 @@ let trafficParams = [
     {
         prompt: 'ConvTypeFilters',
         value: ''
-    }
-];
+    },
+    {
+        prompt: 'CustomerTypeFilters',
+        value: ''
+    },
+    ];
+
+let buyConversionParams = [
+        {
+            prompt: 'geoFilters',
+            value: ''
+        },
+        {
+            prompt: 'quarterFilters',
+            value: ''
+        },
+        {
+            prompt: 'maFilters',
+            value: ''
+        },
+        {
+            prompt: 'WebSegFilters',
+            value: ''
+        },
+        {
+            prompt: 'VisitTypeFilters',
+            value: ''
+        },
+        {
+            prompt: 'LastTouchChannelFilters',
+            value: ''
+        },
+        {
+            prompt: 'ConvTypeFilters',
+            value: ''
+        },
+        {
+            prompt: 'QFMTypeFilters',
+            value: ''
+        },
+        ];
 let mktgParams = [
     {
         prompt: 'geoFilters',
@@ -611,6 +650,7 @@ export function requestPrimaryData(allFilters, _parameters) {
     generateFilterParams(8, uqfmParams, allFilters, _parameters);
     generateFilterParams(1, useParams, allFilters, _parameters);
     generateFilterParams(4, renewParamsAdobeCom, allFilters, _parameters);
+    generateFilterParams(15, buyConversionParams, allFilters, _parameters);
     //turn each list into a string
     renewParamsAdobeCom.push({
         prompt: 'routeFilters',
@@ -650,6 +690,12 @@ export function requestPrimaryData(allFilters, _parameters) {
         return p;
     }, '');
 
+    let params15 = buyConversionParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
     const primaryFinancial = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8ActualTargetPrimary + params8 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -663,7 +709,7 @@ export function requestPrimaryData(allFilters, _parameters) {
         responseType: 'text'
     });
     //Secondary
-    const primaryBuy = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
+    const primaryBuy = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params15 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -3785,8 +3831,8 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.signupcat, allFilters.signupcat);
-            console.log(_activeParams, allFilters)
             filterParams[4].value = getParamValues(_activeParams.qfmType, allFilters.qfmType)
+
             break;
         case 3:
             //Renew
@@ -3814,6 +3860,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[4].value = getParamValues(_activeParams.visits, allFilters.visits);
             filterParams[5].value = getParamValues(_activeParams.lastTouchChannel, allFilters.lastTouchChannel);
             filterParams[6].value = getParamValues(_activeParams.convType, allFilters.convType);
+            filterParams[7].value = getParamValues(_activeParams.customerType, allFilters.customerType);
             break;
         //Marketable Universe - Discover
         case 6:
@@ -3879,7 +3926,17 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
             break;
-
+        case 15:
+           
+            filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.websegment, allFilters.websegment);
+            filterParams[4].value = getParamValues(_activeParams.visits, allFilters.visits);
+            filterParams[5].value = getParamValues(_activeParams.lastTouchChannel, allFilters.lastTouchChannel);
+            filterParams[6].value = getParamValues(_activeParams.convType, allFilters.convType);
+            filterParams[7].value = getParamValues(_activeParams.qfmType, allFilters.qfmType)
+            break;   
         default:
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
