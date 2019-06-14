@@ -326,6 +326,16 @@ export default function (state = {
             processBuyPMSSMarketQTDData(action.payload[10].data, newState.secondary);
             processBuyPMSSChannelQTDData(action.payload[11].data, newState.secondary);
 
+
+            processBuyLTVSourcedSecondary(action.payload[14].data[0], newState.secondary);
+            processBuyLTVSourcedMultichart(action.payload[15].data, newState.secondary);
+            processBuyLTVSourcedQTD(action.payload[16].data[0], newState.secondary);
+            processBuyLTVSourcedGeoQTD(action.payload[17].data, newState.secondary);
+            processBuyLTVSourcedMAQTD(action.payload[18].data, newState.secondary);
+            processBuyLTVSourcedProductQTD(action.payload[19].data, newState.secondary);
+            processBuyLTVSourcedSegmentQTD(action.payload[20].data, newState.secondary);
+            processBuyLTVSourcedSubscriptionQTD(action.payload[21].data, newState.secondary);
+
             return { ...newState, buyMarketIsLoaded: true };
         case GET_BUY_FINANCE_SECONDARY_DATA:
             newState = JSON.parse(JSON.stringify(state));
@@ -5260,6 +5270,233 @@ export function processBuyPMSSChannelQTDData(data, newState) {
     }
 }
 
+export function processBuyLTVSourcedSecondary(data,newState) {
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].value = data.LTVROIActual;
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].target = data.LTVROITarget;
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].targetFQ = data.LTVROITargetFQ;
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].vsQrf = data.LTVROIVsQrf;
+
+}
+export function processBuyLTVSourcedMultichart(data,newState) {
+    let weekData = data.map(item => {
+        return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
+    })
+    // _.orderBy(weekFlag, weekNo, ['asc'])
+
+
+    let newData = _.orderBy(weekData, ['weekNo'], ['asc']);
+
+    let ltv = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+
+
+    //Get Discover G5 Multichart values
+    for (let i = 0; i < data.length; i++) {
+        let item = newData[i];
+        //traffic
+        ltv.actual.push(item.LTVROIActual);
+        ltv.target.push(item.LTVROITarget);
+        ltv.ly.push(item.LTVROILY);
+        ltv.lq.push(item.LTVROILQ);
+    };
+
+    currentMulti = [ltv.actual, ltv.target, ltv.ly, ltv.lq];
+
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI]['details'].multichart = currentMulti;
+}
+export function processBuyLTVSourcedQTD(data,newState) {
+
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.qtd[0].value = data.LTVROIActuals;
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.qtd[1].value = data.LTVROITarget;
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.qtd[2].value = data.LTVROIVsQrfDiff
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.qtd[3].value = data.LTVROIVsQrf;
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.qtd[4].value = data.LTVROIQQTY;
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.qtd[5].value = data.LTVROIYY;
+
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.week[0].value = data.LTVROICW;
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.week[1].value = data.LTVROITargetCW;
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.week[2].value = data.LTVROICWVsQrfDiff;
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.week[3].value = data.LTVROICWVsQrf;
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.week[4].value = data.LTVROIWW;
+
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.stats[0].value = data.LTVROIVsQrf;
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.stats[1].value = data.LTVROIQQTY;
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.stats[2].value = data.LTVROIQQLY;
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.stats[3].value = data.LTVROIYY;
+}
+export function processBuyLTVSourcedGeoQTD(data,newState) {
+//Clear old Values
+newState[SUMMARY_FILTERS.BUY_LTV_ROI].details = { ...newState[SUMMARY_FILTERS.BUY_LTV_ROI].details, geo: { qtd: [], week: [] } };
+
+for (let i = 0; i < data.length; i++) {
+    let item = data[i];
+    let ltv = {
+        index: i,
+        actuals: item.LTVROIActuals,
+        marketArea: item.market_area_group,
+        qq: item.LTVROIQQTY,
+        qrf: item.LTVROITarget,
+        qrfDiff: item.LTVROIVsQrfDiff,
+        type: item.geo_code,
+        vsQrf: item.LTVROIVsQrf,
+        yy: item.LTVROIYY
+    }
+    let ltvWeek =
+    {
+        index: i,
+        marketArea: item.market_area_group,
+        actuals: item.LTVROICW,
+        qrf: item.LTVROITargetCW,
+        qrfDiff: item.LTVROICWVsQrfDiff,
+        vsQrf: item.LTVROICWVsQrf,
+        ww: item.LTVROIWW,
+        type: item.geo_code,
+    }
+
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.geo.qtd.push(ltv);
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.geo.week.push(ltvWeek);
+}
+
+newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.geo.qtd);
+newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.geo.week);
+
+}
+export function processBuyLTVSourcedMAQTD(data,newState) {
+//Clear old Values
+newState[SUMMARY_FILTERS.BUY_LTV_ROI].details = { ...newState[SUMMARY_FILTERS.BUY_LTV_ROI].details, market: { qtd: [], week: [] } };
+
+for (let i = 0; i < data.length; i++) {
+    let item = data[i];
+    let ltv = {
+        index: i,
+        actuals: item.LTVROIActuals,
+        qq: item.LTVROIQQTY,
+        qrf: item.LTVROITarget,
+        qrfDiff: item.LTVROIVsQrfDiff,
+        type: item.market_area_code,
+        vsQrf: item.LTVROIVsQrf,
+        yy: item.LTVROIYY
+    }
+    let ltvWeek =
+    {
+        index: i,
+        type: item.market_area_code,
+        marketArea: item.market_area_code,
+        actuals: item.LTVROICW,
+        qrf: item.LTVROITargetCW,
+        qrfDiff: item.LTVROICWVsQrfDiff,
+        vsQrf: item.LTVROICWVsQrf,
+        ww: item.LTVROIWW,
+    }
+
+
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.market.qtd.push(ltv);
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.market.week.push(ltvWeek);
+}
+}
+export function processBuyLTVSourcedProductQTD(data,newState) {
+//Clear old Values
+newState[SUMMARY_FILTERS.BUY_LTV_ROI].details = { ...newState[SUMMARY_FILTERS.BUY_LTV_ROI].details, product: { qtd: [], week: [] } };
+
+for (let i = 0; i < data.length; i++) {
+    let item = data[i];
+    let ltv = {
+        index: i,
+        actuals: item.LTVROIActuals,
+        qq: item.LTVROIQQTY,
+        qrf: item.LTVROITarget,
+        qrfDiff: item.LTVROIVsQrfDiff,
+        type: item.product_category,
+        vsQrf: item.LTVROIVsQrf,
+        yy: item.LTVROIYY
+    }
+    let ltvWeek =
+    {
+        index: i,
+        type: item.product_category,
+        marketArea: item.market_area_code,
+        actuals: item.LTVROICW,
+        qrf: item.LTVROITargetCW,
+        qrfDiff: item.LTVROICWVsQrfDiff,
+        vsQrf: item.LTVROICWVsQrf,
+        ww: item.LTVROIWW,
+    }
+
+
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.product.qtd.push(ltv);
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.product.week.push(ltvWeek);
+}
+}
+export function processBuyLTVSourcedSegmentQTD(data,newState) {
+//Clear old Values
+newState[SUMMARY_FILTERS.BUY_LTV_ROI].details = { ...newState[SUMMARY_FILTERS.BUY_LTV_ROI].details, segment: { qtd: [], week: [] } };
+
+for (let i = 0; i < data.length; i++) {
+    let item = data[i];
+    let ltv = {
+        index: i,
+        actuals: item.LTVROIActuals,
+        qq: item.LTVROIQQTY,
+        qrf: item.LTVROITarget,
+        qrfDiff: item.LTVROIVsQrfDiff,
+        type: item.segment_pivot,
+        vsQrf: item.LTVROIVsQrf,
+        yy: item.LTVROIYY
+    }
+    let ltvWeek =
+    {
+        index: i,
+        type: item.segment_pivot,
+        marketArea: item.market_area_code,
+        actuals: item.LTVROICW,
+        qrf: item.LTVROITargetCW,
+        qrfDiff: item.LTVROICWVsQrfDiff,
+        vsQrf: item.LTVROICWVsQrf,
+        ww: item.LTVROIWW,
+    }
+
+
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.segment.qtd.push(ltv);
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.segment.week.push(ltvWeek);
+}
+}
+export function processBuyLTVSourcedSubscriptionQTD(data,newState) {
+//Clear old Values
+newState[SUMMARY_FILTERS.BUY_LTV_ROI].details = { ...newState[SUMMARY_FILTERS.BUY_LTV_ROI].details, subscription: { qtd: [], week: [] } };
+
+for (let i = 0; i < data.length; i++) {
+    let item = data[i];
+    let ltv = {
+        index: i,
+        actuals: item.LTVROIActuals,
+        qq: item.LTVROIQQTY,
+        qrf: item.LTVROITarget,
+        qrfDiff: item.LTVROIVsQrfDiff,
+        type: item.subscription_offering,
+        vsQrf: item.LTVROIVsQrf,
+        yy: item.LTVROIYY
+    }
+    let ltvWeek =
+    {
+        index: i,
+        type: item.subscription_offering,
+        marketArea: item.market_area_code,
+        actuals: item.LTVROICW,
+        qrf: item.LTVROITargetCW,
+        qrfDiff: item.LTVROICWVsQrfDiff,
+        vsQrf: item.LTVROICWVsQrf,
+        ww: item.LTVROIWW,
+    }
+
+
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.subscription.qtd.push(ltv);
+    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.subscription.week.push(ltvWeek);
+}
+}
 //Gross
 export function processBuyGrossSecondaryData(g1, newState) {
 

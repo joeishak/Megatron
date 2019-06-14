@@ -222,7 +222,8 @@ class Summary extends Component {
           // Else If the user is on Discover (Traffic, Bounce) or UQFM
           // Traffic / UQFM XDC
           else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
-            activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND) {
+            activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND ||
+            activeSecondaryCard === SUMMARY_FILTERS.BUY_LTV_ROI) {
             this.setState({ isLoading: true });
             this.props.getFilteredBuyMarketSecondaryData(this.props.filters);
           }
@@ -355,7 +356,8 @@ class Summary extends Component {
           }
           // If the user is on Buy MArketables, or Paid Media(s)
           else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
-            activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND) {
+            activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND || 
+            activeSecondaryCard === SUMMARY_FILTERS.BUY_LTV_ROI) {
 
             // If filters are default
             if (isDefaultFilters) {
@@ -384,7 +386,7 @@ class Summary extends Component {
             }
           }
           // If the user is on a USE KPI
-          else if (activeSecondaryCard >= SUMMARY_FILTERS.USE_PAID_USER_SUCCESS && activeSecondaryCard <= SUMMARY_FILTERS.USE_REPEAT_USER_MAU) {
+          else if (activeSecondaryCard >= SUMMARY_FILTERS.USE_PERCENT_ACTIVATED && activeSecondaryCard <= SUMMARY_FILTERS.USE_REPEAT_USER_MAU) {
             // If filters are default
             if (isDefaultFilters) {
               // Call Action to get USE from cache-memory
@@ -643,7 +645,7 @@ class Summary extends Component {
         }
         // If the user changed cards to Buy Marketing
         else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
-          activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND) {
+          activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND||activeSecondaryCard===SUMMARY_FILTERS.BUY_LTV_ROI) {
           // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingBuyData === false) {
             // And Buy MArket has not loaded
@@ -1012,7 +1014,7 @@ class Summary extends Component {
 
           }
           else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
-            activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND) {
+            activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND || activeSecondaryCard === SUMMARY_FILTERS.BUY_LTV_ROI) {
 
             if (this.state.secondaryKpiChanged === true) {
               if (buyMarketIsLoaded === true && buySecondaryIsLoaded === true) {
@@ -1388,7 +1390,7 @@ class Summary extends Component {
                           <span>
                             {isMobileOrTablet === false ?
                               this.getSecondaryContent() : (this.props.mobileFiltersIsShown ? null : this.getSecondaryContent())}
-                            {summaryViewDetails}</span>
+                            {this.props.activeSecondaryCard===SUMMARY_FILTERS.USE_MONTH_RETURN_RATE ? <div id='commingSoon'>Coming Soon</div> :  summaryViewDetails}</span>
                         }
                       </div>
                     </div>

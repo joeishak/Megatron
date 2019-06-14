@@ -82,42 +82,42 @@ let trafficParams = [
         prompt: 'CustomerTypeFilters',
         value: ''
     },
-    ];
+];
 
 let buyConversionParams = [
-        {
-            prompt: 'geoFilters',
-            value: ''
-        },
-        {
-            prompt: 'quarterFilters',
-            value: ''
-        },
-        {
-            prompt: 'maFilters',
-            value: ''
-        },
-        {
-            prompt: 'WebSegFilters',
-            value: ''
-        },
-        {
-            prompt: 'VisitTypeFilters',
-            value: ''
-        },
-        {
-            prompt: 'LastTouchChannelFilters',
-            value: ''
-        },
-        {
-            prompt: 'ConvTypeFilters',
-            value: ''
-        },
-        {
-            prompt: 'QFMTypeFilters',
-            value: ''
-        },
-        ];
+    {
+        prompt: 'geoFilters',
+        value: ''
+    },
+    {
+        prompt: 'quarterFilters',
+        value: ''
+    },
+    {
+        prompt: 'maFilters',
+        value: ''
+    },
+    {
+        prompt: 'WebSegFilters',
+        value: ''
+    },
+    {
+        prompt: 'VisitTypeFilters',
+        value: ''
+    },
+    {
+        prompt: 'LastTouchChannelFilters',
+        value: ''
+    },
+    {
+        prompt: 'ConvTypeFilters',
+        value: ''
+    },
+    {
+        prompt: 'QFMTypeFilters',
+        value: ''
+    },
+];
 let mktgParams = [
     {
         prompt: 'geoFilters',
@@ -155,6 +155,32 @@ let buyMktgParams = [
     },
     {
         prompt: 'channelPMFilters',
+        value: ''
+    },
+    {
+        prompt: 'productFilters',
+        value: ''
+    }
+];
+let buyLTVParams = [
+    {
+        prompt: 'geoFilters',
+        value: ''
+    },
+    {
+        prompt: 'quarterFilters',
+        value: ''
+    },
+    {
+        prompt: 'maFilters',
+        value: ''
+    },
+    {
+        prompt: 'segmentFilters',
+        value: ''
+    },
+    {
+        prompt: 'subscriptionFilters',
         value: ''
     },
     {
@@ -217,8 +243,8 @@ let tryParams = [
         prompt: 'QFMTypeFilters',
         value: ''
     },
-    
-   ];
+
+];
 
 let financeParams = [
     {
@@ -1086,6 +1112,7 @@ export function requestMKTGSecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(6, mktgParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
+
     // console.log('MKTG Params before reduce', mktgParams);
     // console.log('PMSS Params before reduce', pmssParams);
     let params5 = mktgParams.reduce((prev, param) => {
@@ -1098,6 +1125,7 @@ export function requestMKTGSecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
+ 
     // console.log("MU NEtwork request:", Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUSecondary + params5 + '&json=1');
     //Marketing
     const mktgSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUSecondary + params5 + '&json=1', {
@@ -1161,11 +1189,10 @@ export function requestMKTGSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
-
-
+    
     responseArray.push(
         mktgSecondary, mktgMultichart, mktgQTD, mktgGeo, mktgMarket, mktgChannelMu
-        , pmssSecondary, pmssMultichart, pmssQTD, pmssGeo, pmssMarket, pmssChannelMu
+        , pmssSecondary, pmssMultichart, pmssQTD, pmssGeo, pmssMarket, pmssChannelMu,
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -1404,6 +1431,7 @@ export function requestBuyMarketSecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(10, buyMktgParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
+    generateFilterParams(16, buyLTVParams, allFilters, _parameters);
 
 
     let params5 = buyMktgParams.reduce((prev, param) => {
@@ -1417,7 +1445,11 @@ export function requestBuyMarketSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
 
-
+    let params7 = buyLTVParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
     //Marketing
     const mktgSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMarketSourceARRSecondary + params5 + '&json=1', {
         headers: headers,
@@ -1490,12 +1522,47 @@ export function requestBuyMarketSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
+// LTV ROI
+const ltvSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROISecondary + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
 
+const ltvMulti = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROIMultiChart + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const ltvQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROIQTD + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const ltvGeo = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROIGeoQTD + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const ltvMarket = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROIMAQTD + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const ltvProduct = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROIProdQTD + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const ltvSegment = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROISegmentQTD + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const ltvSubs = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROISubsOfferQTD + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
 
     responseArray.push(
         mktgSecondary, mktgMultichart, mktgQTD, mktgGeo, mktgMarket, mktgChannelMu
         , pmssSecondary, pmssMultichart, pmssQTD, pmssGeo, pmssMarket, pmssChannelMu, mktgProd,
-        mktgSegment
+        mktgSegment,
+        ltvSecondary,ltvMulti,ltvQTD,ltvGeo,ltvMarket,ltvProduct,ltvSegment,ltvSubs
+
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -1868,7 +1935,7 @@ export function requestRenewDetailsSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
- 
+
     responseArray.push(renewSecondary, renewMultichart, renewQTDTotals, renewGeoQTD, renewMarketQTD, renewSegmentQTD);
     const renewResellerSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFSecondary + params8 + '&json=1', {
         headers: headers,
@@ -2623,11 +2690,11 @@ export function filterTrySecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-   
+
 
     responseArray.push(
         TrySecondary, TryMutlichart, TryQTD, TryGeoQTD, TryMarketQTD,
-        TryProdQTD, TrySignAppQTD, TrySignCatQTD, TryDownloadQTD,TryQFMQTD
+        TryProdQTD, TrySignAppQTD, TrySignCatQTD, TryDownloadQTD, TryQFMQTD
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -2797,6 +2864,7 @@ export function filterBuyMarketSecondaryData(allFilters, _parameters) {
     responseArray = [];
     generateFilterParams(10, buyMktgParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
+    generateFilterParams(16,buyLTVParams, allFilters, _parameters);
 
 
     let params5 = buyMktgParams.reduce((prev, param) => {
@@ -2805,6 +2873,11 @@ export function filterBuyMarketSecondaryData(allFilters, _parameters) {
         return p;
     }, '');
     let params6 = pmssParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params7 = buyLTVParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
@@ -2882,12 +2955,47 @@ export function filterBuyMarketSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
+  // LTV ROI
+  const ltvSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROISecondary + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
 
+const ltvMulti = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROIMultiChart + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const ltvQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROIQTD + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const ltvGeo = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROIGeoQTD + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const ltvMarket = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROIMAQTD + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const ltvProduct = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROIProdQTD + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const ltvSegment = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROISegmentQTD + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const ltvSubs = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROISubsOfferQTD + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
 
+console.log('ltv subs',ltvSubs);
     responseArray.push(
         mktgSecondary, mktgMultichart, mktgQTD, mktgGeo, mktgMarket, mktgChannelMu
         , pmssSecondary, pmssMultichart, pmssQTD, pmssGeo, pmssMarket, pmssChannelMu,
-        mktgProd, mktgSegment
+        mktgProd, mktgSegment,        ltvSecondary,ltvMulti,ltvQTD,ltvGeo,ltvMarket,ltvProduct,ltvSegment,ltvSubs
+
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -3294,7 +3402,7 @@ export function filterRenewDetailsSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    responseArray.push(renewResellerSecondary, renewResellerMultichart, renewResellerQTDTotals, renewResellerGeoQTD, renewResellerMarketQTD, renewResellerSegmentQTD,renewEtailSubsQTD,renewResellerProductQTD);
+    responseArray.push(renewResellerSecondary, renewResellerMultichart, renewResellerQTDTotals, renewResellerGeoQTD, renewResellerMarketQTD, renewResellerSegmentQTD, renewEtailSubsQTD, renewResellerProductQTD);
 
 
 
@@ -3949,7 +4057,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
             break;
         case 15:
-           
+
             filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
@@ -3958,7 +4066,15 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[5].value = getParamValues(_activeParams.lastTouchChannel, allFilters.lastTouchChannel);
             filterParams[6].value = getParamValues(_activeParams.convType, allFilters.convType);
             filterParams[7].value = getParamValues(_activeParams.qfmType, allFilters.qfmType)
-            break;   
+            break;
+        case 16:
+            filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
+            break;
         default:
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);

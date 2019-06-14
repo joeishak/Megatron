@@ -436,6 +436,26 @@ class DetailPanelBar extends Component {
                          </ PanelBarItem>
                      </PanelBar>
                  )
+                 case SUMMARY_FILTERS.BUY_LTV_ROI:
+                    return (
+                        <PanelBar >
+                            <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                                {this.getPanelContents(DIMENSIONS.GEO)}
+                            </ PanelBarItem>
+                            <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                                {this.getPanelContents(DIMENSIONS.MARKET)}
+                            </ PanelBarItem>
+                            <PanelBarItem className="panelItemTitle" expanded={false} title='Product'>
+                                {this.getPanelContents(DIMENSIONS.PRODUCTCAT)}
+                            </ PanelBarItem>
+                            <PanelBarItem className="panelItemTitle" expanded={false} title={'Segment'}>
+                                {this.getPanelContents(DIMENSIONS.SEGMENT)}
+                            </ PanelBarItem>
+                            <PanelBarItem className="panelItemTitle" expanded={false} title='Subscription'>
+                                {this.getPanelContents(DIMENSIONS.SUBSCRIPTION)}
+                            </ PanelBarItem>
+                        </PanelBar>
+                    )
                  case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
                  return (
                      <PanelBar >

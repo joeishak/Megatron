@@ -653,6 +653,7 @@ export function getFilteredBuyMarketSecondaryData(filters) {
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
+        subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         //Traffic
         channelMU: Object.keys(filters.channelMU.availableFilters).map(e => filters.channelMU.availableFilters[e]),
         channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
@@ -666,12 +667,13 @@ export function getFilteredBuyMarketSecondaryData(filters) {
         //Traffic
         channelMU: Object.keys(filters.channelMU.valueFilters).map(e => filters.channelMU.valueFilters[e]),
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
+        subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         channelPM: Object.keys(filters.channelPM.valueFilters).map(e => filters.channelPM.valueFilters[e]),
     };
 
-    // console.log(filters);
 
     promiseArr = utils.filterBuyMarketSecondaryData(allFilters, _parameters);
+    console.log(promiseArr);
 
     return {
         type: GET_BUY_MKTG_SECONDARY_DATA,
@@ -1155,23 +1157,26 @@ export function getMarketingSecondaryData(filters) {
         geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
         quarter: Object.keys(filters.quarter.availableFilters).map(e => filters.quarter.availableFilters[e]),
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
+        product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
+        segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
+        subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         //Traffic
         channelMU: Object.keys(filters.channelMU.availableFilters).map(e => filters.channelMU.availableFilters[e]),
         channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
-
     }
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
         quarter: Object.keys(filters.quarter.valueFilters).map(e => filters.quarter.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
+        segment: Object.keys(filters.segment.valueFilters).map(e => filters.segment.valueFilters[e]),
         //Traffic
         channelMU: Object.keys(filters.channelMU.valueFilters).map(e => filters.channelMU.valueFilters[e]),
+        product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
+        subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         channelPM: Object.keys(filters.channelPM.valueFilters).map(e => filters.channelPM.valueFilters[e]),
     };
 
 
-
-    // console.log(filters);
     promiseArr = utils.requestMKTGSecondaryData(allFilters, _parameters);
 
     return {
@@ -1318,6 +1323,7 @@ export function getBuyMarketSecondaryData(filters) {
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
+        subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         //Traffic
         channelMU: Object.keys(filters.channelMU.availableFilters).map(e => filters.channelMU.availableFilters[e]),
         channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
@@ -1331,11 +1337,13 @@ export function getBuyMarketSecondaryData(filters) {
         //Traffic
         channelMU: Object.keys(filters.channelMU.valueFilters).map(e => filters.channelMU.valueFilters[e]),
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
-        channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
+        subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
+        channelPM: Object.keys(filters.channelPM.valueFilters).map(e => filters.channelPM.valueFilters[e]),
     };
 
     // console.log(filters);
     promiseArr = utils.requestBuyMarketSecondaryData(allFilters, _parameters);
+    console.log(promiseArr);
 
     return {
         type: GET_BUY_MKTG_SECONDARY_DATA,
