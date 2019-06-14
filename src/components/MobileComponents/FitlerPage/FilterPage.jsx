@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import DropDownFilter from './components/DropDownFilter.jsx';
 import classNames from 'classnames';
 import { Button } from '@progress/kendo-react-buttons';
-import { DIMENSIONS, SUMMARY_FILTERS } from '../../../Constants/consts';
+import { DIMENSIONS, SUMMARY_KPIS } from '../../../Constants/consts';
 import {
     PRIMARY,
     MOBILE_FILTER_PAGE
@@ -457,7 +457,7 @@ class FilterPage extends Component {
         let { lastTouchChannel, convType, websegment, segment, product, pvw, visits, channelMU, channelPM } = this.props.filters;
         switch (activeItem) {
 
-            case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
+            case SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE:
                 //Marketable Universe
                 return (
 
@@ -475,7 +475,7 @@ class FilterPage extends Component {
 
                 );
             //Discover 
-            case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
+            case SUMMARY_KPIS.DISCOVER_TRAFFIC:
                 return (
                     <div className="row">
                         <div className="col-md-3 col-lg-3 mobilePrimaryKPIFilters" style={{ paddingBottom: '10px' }}>
@@ -509,7 +509,7 @@ class FilterPage extends Component {
                         </div>
                     </div>
                 );
-            case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
+            case SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND:
                 //Paid Media Spend
                 return (
                     <div className="row">
@@ -526,7 +526,7 @@ class FilterPage extends Component {
 
                     </div>
                 );
-            case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
+            case SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED:
                 //Paid Media Sourced
                 return (
                     <div className="row">
@@ -544,7 +544,7 @@ class FilterPage extends Component {
                     </div>
                 );
 
-            case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
+            case SUMMARY_KPIS.DISCOVER_BOUNCE_RATE:
                 return (
                     //Bounce Rate
                     <div className="row">
@@ -590,7 +590,7 @@ class FilterPage extends Component {
                     </div>
                 );
             //Buy
-            case SUMMARY_FILTERS.BUY_CONVERSION:
+            case SUMMARY_KPIS.BUY_CONVERSION:
                 return (
                     //Conversion
                     <div className="row">
@@ -636,7 +636,7 @@ class FilterPage extends Component {
                         </div>
                     </div>
                 );
-            case SUMMARY_FILTERS.BUY_PAID_MEDIASPEND:
+            case SUMMARY_KPIS.BUY_PAID_MEDIASPEND:
                 return (
                     // Paid Media Spend
                     <div className="row">
@@ -654,7 +654,7 @@ class FilterPage extends Component {
                         </div>
                     </div>
                 );
-            case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
+            case SUMMARY_KPIS.BUY_MARKETING_SOURCED:
                 return (
                     // Marketing Sourced ARR
                     <div className="row">
@@ -682,7 +682,7 @@ class FilterPage extends Component {
 
                     </div>
                 );
-            case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
+            case SUMMARY_KPIS.BUY_GROSS_NEWARR:
                 return (
                     // Gross New ARR
                     <div className="row">
@@ -700,7 +700,7 @@ class FilterPage extends Component {
 
                     </div>
                 );
-            case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
+            case SUMMARY_KPIS.BUY_GROSS_NEWUNITS:
                 return (
                     // Gross New Units
                     <div className="row">

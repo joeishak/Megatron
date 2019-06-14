@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 // import classNames from 'classnames'
 import styles from './DetailPanelBar.css';
 import '@progress/kendo-theme-default/dist/all.css';
-import { DIMENSIONS, SUMMARY_FILTERS } from '../../../../Constants/consts';
+import { DIMENSIONS, SUMMARY_KPIS } from '../../../../Constants/consts';
 import * as utils from "../../../../utilities.js";
 import SingleDimensionDetailPanelItemTimeHeader from './SingleDimensionDetailPanelItemTimeHeader';
 
@@ -40,8 +40,8 @@ class DetailPanelBar extends Component {
         //If type is aMulti Dimension
         if(type === DIMENSIONS.GEO || type ===DIMENSIONS.SIGNAPP || type === DIMENSIONS.LTC 
                || (type === DIMENSIONS.QFMTYPE && 
-                      (this.props.activeSecondary === SUMMARY_FILTERS.TRY_CUMU_QFM || 
-                           this.props.activeSecondary === SUMMARY_FILTERS.TRY_NEW_QFM))){
+                      (this.props.activeSecondary === SUMMARY_KPIS.TRY_CUMU_QFM || 
+                           this.props.activeSecondary === SUMMARY_KPIS.TRY_NEW_QFM))){
             return (
                 <div className='row'>
                     <div className='col-md-12 topPanelHeader'>
@@ -69,8 +69,8 @@ class DetailPanelBar extends Component {
                             activeSummary={this.props.activeSummary}
                             timeMetric={this.props.timeMetric}
                             isQFMMultidimensional = { (type === DIMENSIONS.QFMTYPE && 
-                                (this.props.activeSecondary === SUMMARY_FILTERS.TRY_CUMU_QFM || 
-                                     this.props.activeSecondary === SUMMARY_FILTERS.TRY_NEW_QFM))}
+                                (this.props.activeSecondary === SUMMARY_KPIS.TRY_CUMU_QFM || 
+                                     this.props.activeSecondary === SUMMARY_KPIS.TRY_NEW_QFM))}
                         />
                     </div>
                 </div>
@@ -103,8 +103,8 @@ class DetailPanelBar extends Component {
                             activeSummary={this.props.activeSummary}
                             timeMetric={this.props.timeMetric}
                             isQFMMultidimensional = { (type === DIMENSIONS.QFMTYPE && 
-                                (this.props.activeSecondary === SUMMARY_FILTERS.TRY_CUMU_QFM || 
-                                     this.props.activeSecondary === SUMMARY_FILTERS.TRY_NEW_QFM))}
+                                (this.props.activeSecondary === SUMMARY_KPIS.TRY_CUMU_QFM || 
+                                     this.props.activeSecondary === SUMMARY_KPIS.TRY_NEW_QFM))}
                         />
                     </div>
                 </div>
@@ -160,7 +160,7 @@ class DetailPanelBar extends Component {
             case 1:
                 //Disocver
                 switch (this.props.activeSecondary) {
-                    case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
+                    case SUMMARY_KPIS.DISCOVER_TRAFFIC:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -186,7 +186,7 @@ class DetailPanelBar extends Component {
                                 </ PanelBarItem>
                             </PanelBar>
                         )
-                    case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
+                    case SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -200,7 +200,7 @@ class DetailPanelBar extends Component {
                                 </ PanelBarItem>
                             </PanelBar>
                         )
-                    case SUMMARY_FILTERS.DISCOVER_UQFM:
+                    case SUMMARY_KPIS.DISCOVER_UQFM:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -211,7 +211,7 @@ class DetailPanelBar extends Component {
                                 </ PanelBarItem>
                             </PanelBar>
                         )
-                    case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
+                    case SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -222,7 +222,7 @@ class DetailPanelBar extends Component {
                                 </ PanelBarItem>
                             </PanelBar>
                         )
-                    case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
+                    case SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -236,7 +236,7 @@ class DetailPanelBar extends Component {
                                 </ PanelBarItem>
                             </PanelBar>
                         )
-                    case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
+                    case SUMMARY_KPIS.DISCOVER_BOUNCE_RATE:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -266,7 +266,7 @@ class DetailPanelBar extends Component {
 
             case 2:
                 switch (this.props.activeSecondary) {
-                    case SUMMARY_FILTERS.TRY_NEW_QFM:
+                    case SUMMARY_KPIS.TRY_NEW_QFM:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -286,7 +286,7 @@ class DetailPanelBar extends Component {
                                 </ PanelBarItem>
                             </PanelBar>
                         )
-                    case SUMMARY_FILTERS.TRY_NEW_UQFM:
+                    case SUMMARY_KPIS.TRY_NEW_UQFM:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -303,7 +303,7 @@ class DetailPanelBar extends Component {
                                 </ PanelBarItem>
                             </PanelBar>
                         )
-                    case SUMMARY_FILTERS.TRY_CUMU_UQFM:
+                    case SUMMARY_KPIS.TRY_CUMU_UQFM:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -321,7 +321,7 @@ class DetailPanelBar extends Component {
 
                             </PanelBar>
                         )
-                    case SUMMARY_FILTERS.TRY_CUMU_QFM:
+                    case SUMMARY_KPIS.TRY_CUMU_QFM:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -338,7 +338,7 @@ class DetailPanelBar extends Component {
                                 </ PanelBarItem>
                             </PanelBar>
                         )
-                    case SUMMARY_FILTERS.TRY_DAY_28:
+                    case SUMMARY_KPIS.TRY_DAY_28:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -355,7 +355,7 @@ class DetailPanelBar extends Component {
                                 </ PanelBarItem>
                             </PanelBar>
                         )
-                    case SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM:
+                    case SUMMARY_KPIS.TRY_CUMU_UQFM_QFM:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -378,7 +378,7 @@ class DetailPanelBar extends Component {
                 case 3:
                 //Disocver
                 switch (this.props.activeSecondary) {
-                 case SUMMARY_FILTERS.BUY_PAID_MEDIASPEND:
+                 case SUMMARY_KPIS.BUY_PAID_MEDIASPEND:
                      return (
                          <PanelBar >
                              <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -389,7 +389,7 @@ class DetailPanelBar extends Component {
                              </ PanelBarItem>
                          </PanelBar>
                      )
-                 case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
+                 case SUMMARY_KPIS.BUY_MARKETING_SOURCED:
                      return (
                          <PanelBar >
                          <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -410,7 +410,7 @@ class DetailPanelBar extends Component {
 
                      </PanelBar>
                      )
-                 case SUMMARY_FILTERS.BUY_CONVERSION:
+                 case SUMMARY_KPIS.BUY_CONVERSION:
                  return (
                      <PanelBar >
                          <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -436,7 +436,7 @@ class DetailPanelBar extends Component {
                          </ PanelBarItem>
                      </PanelBar>
                  )
-                 case SUMMARY_FILTERS.BUY_LTV_ROI:
+                 case SUMMARY_KPIS.BUY_LTV_ROI:
                     return (
                         <PanelBar >
                             <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -456,7 +456,7 @@ class DetailPanelBar extends Component {
                             </ PanelBarItem>
                         </PanelBar>
                     )
-                 case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
+                 case SUMMARY_KPIS.BUY_GROSS_NEWARR:
                  return (
                      <PanelBar >
                          <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -476,7 +476,7 @@ class DetailPanelBar extends Component {
                          </PanelBarItem>
                      </PanelBar>
                  )
-                 case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
+                 case SUMMARY_KPIS.BUY_GROSS_NEWUNITS:
                      return (
                         <PanelBar >
                          <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -499,7 +499,7 @@ class DetailPanelBar extends Component {
              }
             case 4:
                 switch (this.props.activeSecondary) {
-                    case SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX:
+                    case SUMMARY_KPIS.USE_ENGAGEMENT_INDEX:
                         //Enagement Index
                         return (
                             <PanelBar >
@@ -518,7 +518,7 @@ class DetailPanelBar extends Component {
                             </PanelBarItem>
                         </PanelBar>
                         )
-                    case SUMMARY_FILTERS.USE_PAID_USER_MAU:
+                    case SUMMARY_KPIS.USE_PAID_USER_MAU:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -536,7 +536,7 @@ class DetailPanelBar extends Component {
                                 </PanelBarItem>
                             </PanelBar>
                         )
-                    case SUMMARY_FILTERS.USE_PERCENT_ACTIVATED:
+                    case SUMMARY_KPIS.USE_PERCENT_ACTIVATED:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -554,7 +554,7 @@ class DetailPanelBar extends Component {
                                 </PanelBarItem>
                             </PanelBar>
                         )
-                        case SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES:
+                        case SUMMARY_KPIS.USE_PERCENT_ACTIVATED_LAUNCHES:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -572,7 +572,7 @@ class DetailPanelBar extends Component {
                                 </PanelBarItem>
                             </PanelBar>
                         )
-                    case SUMMARY_FILTERS.USE_REPEAT_USER_MAU:
+                    case SUMMARY_KPIS.USE_REPEAT_USER_MAU:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -590,7 +590,7 @@ class DetailPanelBar extends Component {
                                 </PanelBarItem>
                             </PanelBar>
                         )
-                    case SUMMARY_FILTERS.USE_WK0_WAU_RATE:
+                    case SUMMARY_KPIS.USE_WK0_WAU_RATE:
                         return (
                             <PanelBar >
                             <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -608,7 +608,7 @@ class DetailPanelBar extends Component {
                             </PanelBarItem>
                         </PanelBar>
                         )
-                    case SUMMARY_FILTERS.USE_WK4_WAU_RATE:
+                    case SUMMARY_KPIS.USE_WK4_WAU_RATE:
                         return (
                             <PanelBar >
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
@@ -629,7 +629,7 @@ class DetailPanelBar extends Component {
                 }
             case 5:
                 switch(this.props.activeSecondary){
-                    case SUMMARY_FILTERS.RENEW_EOT_RESELLER: 
+                    case SUMMARY_KPIS.RENEW_EOT_RESELLER: 
                     return ( <PanelBar >
                         <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                             {this.getPanelContents(DIMENSIONS.GEO)}

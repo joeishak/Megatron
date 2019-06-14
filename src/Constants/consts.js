@@ -32,7 +32,7 @@ export const DIMENSIONS = {
     QFMTYPE: "qfmType",
     CUSTOMERTYPE: "customerType"
 };
-export const SUMMARY_FILTERS_OLD = {
+export const SUMMARY_KPIS_OLD = {
     FINANCE_NET_NEW_ARR: 0,
     FINANCE_GROSS_NEW_ARR: 1,
     FINANCE_CANCEL_ARR: 2,
@@ -73,7 +73,7 @@ export const SUMMARY_FILTERS_OLD = {
 };
 
 // Secondary KPI's Indexes
-export const SUMMARY_FILTERS = {
+export const SUMMARY_KPIS = {
     FINANCE_NET_NEW_ARR: 0,
     FINANCE_GROSS_NEW_ARR: 1,
     FINANCE_CANCEL_ARR: 2,

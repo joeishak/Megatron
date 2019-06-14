@@ -13,7 +13,7 @@ import SingleValueSelect from '../SingleValueSelect/SingleValueSelect';
 import KendoMultiChart from "../KendoMultiChart/KendoMultiChart";
 import DetailBreakdown from './DetailBreakdown/DetailBreakdown';
 import ExcelWorkbook from './ExcelWorkbook';
-import { SUMMARY_FILTERS, DIMENSIONS } from '../../Constants/consts.js';
+import { SUMMARY_KPIS, DIMENSIONS } from '../../Constants/consts.js';
 import * as _ from 'lodash';
 
 class SummaryViewDetails extends Component {
@@ -291,7 +291,7 @@ class SummaryViewDetails extends Component {
     let { lastTouchChannel, convType, websegment, segment, product, pvw, visits, channelMU, channelPM, qfmType, customerType } = this.props.filters;
     switch (activeItem) {
 
-      case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
+      case SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE:
         //Marketable Universe
         return (
           <div className="row">
@@ -310,7 +310,7 @@ class SummaryViewDetails extends Component {
           </div>
         );
       //Discover 
-      case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
+      case SUMMARY_KPIS.DISCOVER_TRAFFIC:
         return (
           <div className="row">
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
@@ -357,7 +357,7 @@ class SummaryViewDetails extends Component {
 
           </div>
         );
-      case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
+      case SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND:
         //Paid Media Spend
         return (
           <div className="row">
@@ -374,7 +374,7 @@ class SummaryViewDetails extends Component {
 
           </div>
         );
-      case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
+      case SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED:
         //Paid Media Sourced
         return (
           <div className="row">
@@ -391,7 +391,7 @@ class SummaryViewDetails extends Component {
           </div>
         );
 
-      case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
+      case SUMMARY_KPIS.DISCOVER_BOUNCE_RATE:
         return (
           //Bounce Rate
           <div className="row">
@@ -440,7 +440,7 @@ class SummaryViewDetails extends Component {
           </div>
         );
       //Buy
-      case SUMMARY_FILTERS.BUY_CONVERSION:
+      case SUMMARY_KPIS.BUY_CONVERSION:
         return (
           //Conversion
           <div className="row">
@@ -488,7 +488,7 @@ class SummaryViewDetails extends Component {
             </div>
           </div>
         );
-      case SUMMARY_FILTERS.BUY_PAID_MEDIASPEND:
+      case SUMMARY_KPIS.BUY_PAID_MEDIASPEND:
         return (
           // Paid Media Spend
           <div className="row">
@@ -505,7 +505,7 @@ class SummaryViewDetails extends Component {
             </div>
           </div>
         );
-      case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
+      case SUMMARY_KPIS.BUY_MARKETING_SOURCED:
         return (
           // Marketing Sourced ARR
           <div className="row">
@@ -534,7 +534,7 @@ class SummaryViewDetails extends Component {
 
           </div>
         );
-      case SUMMARY_FILTERS.BUY_LTV_ROI:
+      case SUMMARY_KPIS.BUY_LTV_ROI:
         return (
           // Marketing Sourced ARR
           <div className="row">
@@ -562,7 +562,7 @@ class SummaryViewDetails extends Component {
 
           </div>
         );
-      case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
+      case SUMMARY_KPIS.BUY_GROSS_NEWARR:
         return (
           // Gross New ARR
           <div className="row">
@@ -580,7 +580,7 @@ class SummaryViewDetails extends Component {
 
           </div>
         );
-      case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
+      case SUMMARY_KPIS.BUY_GROSS_NEWUNITS:
         return (
           // Gross New Units
           <div className="row">
@@ -606,17 +606,17 @@ class SummaryViewDetails extends Component {
 
 
   getOneWeekBehindMarker(activeSecondary, type) {
-    return activeSecondary === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
-      activeSecondary === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND ||
-      activeSecondary === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
-      activeSecondary === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND ||
-      activeSecondary === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
-      activeSecondary === SUMMARY_FILTERS.USE_PERCENT_ACTIVATED ||
-      activeSecondary === SUMMARY_FILTERS.USE_PERCENT_ACTIVATED_LAUNCHES ||
-      activeSecondary === SUMMARY_FILTERS.USE_WK0_WAU_RATE ||
-      activeSecondary === SUMMARY_FILTERS.USE_WK4_WAU_RATE ||
-      activeSecondary === SUMMARY_FILTERS.USE_ENGAGEMENT_INDEX ||
-      activeSecondary === SUMMARY_FILTERS.USE_PAID_USER_MAU ? (type === 'marker' ? '*' : 'One Week Behind') : null;
+    return activeSecondary === SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE ||
+      activeSecondary === SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND ||
+      activeSecondary === SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED ||
+      activeSecondary === SUMMARY_KPIS.BUY_PAID_MEDIASPEND ||
+      activeSecondary === SUMMARY_KPIS.BUY_MARKETING_SOURCED ||
+      activeSecondary === SUMMARY_KPIS.USE_PERCENT_ACTIVATED ||
+      activeSecondary === SUMMARY_KPIS.USE_PERCENT_ACTIVATED_LAUNCHES ||
+      activeSecondary === SUMMARY_KPIS.USE_WK0_WAU_RATE ||
+      activeSecondary === SUMMARY_KPIS.USE_WK4_WAU_RATE ||
+      activeSecondary === SUMMARY_KPIS.USE_ENGAGEMENT_INDEX ||
+      activeSecondary === SUMMARY_KPIS.USE_PAID_USER_MAU ? (type === 'marker' ? '*' : 'One Week Behind') : null;
   }
 
   render() {
@@ -680,9 +680,9 @@ class SummaryViewDetails extends Component {
 
             {this.props.isLoading === true ? null : <ExcelWorkbook activeItem={this.props.secondaryData[this.props.activeSecondary]} />}
             <div className="stats-container-main">{this.props.activeItem.details.stats.map(item => {
-              if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
-                activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary === SUMMARY_FILTERS.RENEW_QTR_PF ||
-                activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
+              if (activeSecondary === SUMMARY_KPIS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_KPIS.RENEW_CANCEL ||
+                activeSecondary === SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM || activeSecondary === SUMMARY_KPIS.RENEW_QTR_PF ||
+                activeSecondary === SUMMARY_KPIS.RENEW_QTR_UI || activeSecondary === SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E) {
                 return (
                   <div className="statsHeader" key={item.text}>
                     <div className={(item.value <= 0) ? 'stats green' : 'stats red '}>

@@ -8,7 +8,7 @@ import {
 import axios from 'axios';
 import * as actions from 'actions';
 import { dispatch } from 'rxjs/internal/observable/range';
-import { DIMENSIONS, SUMMARY_FILTERS } from './Constants/consts';
+import { DIMENSIONS, SUMMARY_KPIS } from './Constants/consts';
 
 
 
@@ -2092,15 +2092,7 @@ export function requestRenewSecondaryData(allFilters, _parameters) {
  */
 export function filterPrimaryData(allFilters, _parameters) {
     responseArray = [];
-
-    // filterParams[1].value = _parameters.product.length > 0 ? _parameters.product[0].value : allFilters.product;
-    // filterParams[2].value = _parameters.geo.length > 0 ? _parameters.geo[0].value : allFilters.geo;
-    // filterParams[3].value = _parameters.subscription.length > 0 ? _parameters.subscription[0].value : allFilters.subscriptios;
-    // filterParams[4].value = _parameters.market.length > 0 ? _parameters.market[0].value : allFilters.market;
-    // filterParams[5].value = _parameters.route.length > 0 ? _parameters.route[0].value : allFilters.route;
-
     //Generate the filter list 
-    // console.log('Utils 556: ', allFilters, _parameters)
     generateFilterParams(2, tryParams, allFilters, _parameters);
     generateFilterParams(5, trafficParams, allFilters, _parameters);
     generateFilterParams(9, financeParams, allFilters, _parameters);
@@ -2109,9 +2101,7 @@ export function filterPrimaryData(allFilters, _parameters) {
     generateFilterParams(4, renewParamsAdobeCom, allFilters, _parameters);
     generateFilterParams(15, buyConversionParams, allFilters, _parameters);
 
-
     //turn each list into a string
-
     let params2 = tryParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
@@ -3701,7 +3691,6 @@ export function postComment(params, metric) {
 
 }
 
-
 export function postReply(params, metric) {
     let body = {
         "conn": `${Infoburst.appXDCID}`,
@@ -3757,7 +3746,6 @@ export function postReply(params, metric) {
     return Promise.all([post]);
 
 }
-
 /**
  * @name removeComment
  * @description Utility function that makes a call request to  Infoburst  GTMPOC Database Query to remove a comment
@@ -3890,6 +3878,7 @@ export function postUserSettings(params) {
 }
 
 /** Utility Functions */
+
 /**
  * @name convertFilterList
  * @description Utility function that converts the filters list into a string parameter for URL
@@ -3936,7 +3925,6 @@ export function getParamValues(activeParams, allFilters) {
         return paramValue;
     }
 }
-
 /**
  * @name generateFilterParams
  * @description Utility function that creates the array of values to be converted in a list format for Infoburst Call
@@ -4260,7 +4248,6 @@ export function includes(container, value) {
     }
     return returnValue;
 }
-
 /**
  * @name convertFilterListForDBQuery
  * @description Utility function that concats the array into a comma seperated string list
@@ -4270,7 +4257,6 @@ export function includes(container, value) {
 export function convertFilterListForDBQuery(arrayList) {
     return arrayList.join(", ");
 }
-
 /**
  * @name renderUnits
  * @description Utility function that formats the number into units
@@ -4334,7 +4320,6 @@ export function renderUnits(value) {
         return returnValue.toString() + suffix;
     }
 }
-
 /**
  * @name renderDollarValue
  * @description Utility function that formats the number into dollars
@@ -4397,8 +4382,6 @@ export function renderDollarValue(value) {
         return prefix + returnValue.toString() + suffix;
     }
 }
-
-
 /**
  * @name formatPercentage
  * @description Utility function that formats the number into percent
@@ -4548,9 +4531,9 @@ export function getDateFormat(_date) {
 export function getLabelColor(value, target, secondaryCardIndex) {
     let retColor = "";
 
-    if (secondaryCardIndex === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || secondaryCardIndex === SUMMARY_FILTERS.RENEW_CANCEL ||
-        secondaryCardIndex === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || secondaryCardIndex === SUMMARY_FILTERS.RENEW_QTR_PF ||
-        secondaryCardIndex === SUMMARY_FILTERS.RENEW_QTR_UI || secondaryCardIndex === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
+    if (secondaryCardIndex === SUMMARY_KPIS.FINANCE_CANCEL_ARR || secondaryCardIndex === SUMMARY_KPIS.RENEW_CANCEL ||
+        secondaryCardIndex === SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM || secondaryCardIndex === SUMMARY_KPIS.RENEW_QTR_PF ||
+        secondaryCardIndex === SUMMARY_KPIS.RENEW_QTR_UI || secondaryCardIndex === SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E) {
         if (target === 0) {
             retColor = 'neutralBG';
         } else if (value >= target) {

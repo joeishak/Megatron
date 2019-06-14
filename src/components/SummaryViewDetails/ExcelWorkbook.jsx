@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import excelLogoGreen from "../../assets/images/excel-logo-green.svg";
 import Workbook from "react-excel-workbook";
-import { DIMENSIONS, SUMMARY_FILTERS } from '../../Constants/consts';
+import { DIMENSIONS, SUMMARY_KPIS } from '../../Constants/consts';
 import { connect } from "react-redux";
 import * as actions from "actions";
 import LoadingScreen from '../../Views/Loading/Loading.jsx';
@@ -1002,9 +1002,9 @@ class ExcelWorkbook extends Component {
             return this.getFinanceWorkBook();
         }
         else if (primary === 2) {
-            if (secondary === SUMMARY_FILTERS.TRY_CUMU_UQFM || secondary === SUMMARY_FILTERS.TRY_NEW_UQFM) {
+            if (secondary === SUMMARY_KPIS.TRY_CUMU_UQFM || secondary === SUMMARY_KPIS.TRY_NEW_UQFM) {
                 return this.getNewCumuUQFMWorkbook();
-            } else if (secondary === SUMMARY_FILTERS.TRY_CUMU_QFM || secondary === SUMMARY_FILTERS.TRY_DAY_28 || secondary === SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM) {
+            } else if (secondary === SUMMARY_KPIS.TRY_CUMU_QFM || secondary === SUMMARY_KPIS.TRY_DAY_28 || secondary === SUMMARY_KPIS.TRY_CUMU_UQFM_QFM) {
                 return this.getWorkBookForBottomThreeTryKPIS();
             } else {
                 return this.getNewQFMWorkbook();
@@ -1015,7 +1015,7 @@ class ExcelWorkbook extends Component {
         } 
         else if(primary === 5){
 
-            if(secondary !== SUMMARY_FILTERS.RENEW_EOT_RESELLER){
+            if(secondary !== SUMMARY_KPIS.RENEW_EOT_RESELLER){
                 return this.getGeneralRenewWorkbook();
             }else {
                return  this.getRenewEOTWorkbook();
@@ -1023,30 +1023,30 @@ class ExcelWorkbook extends Component {
         }
         else {
             switch (secondary) {
-                case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
+                case SUMMARY_KPIS.DISCOVER_TRAFFIC:
                     return this.getDiscoverTrafficWorkbook();
-                case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
+                case SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED:
                     return this.getDiscoverPMSpendWorkbook();
-                case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
+                case SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE:
                     return this.getDiscoverMUWorkbook();
-                case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND: 
+                case SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND: 
                     return this.getDiscoverPMSpendWorkbook();
-                case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
+                case SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED:
                     return this.getDiscoverPMSourcedWorkbook();
-                case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
+                case SUMMARY_KPIS.DISCOVER_BOUNCE_RATE:
                     return this.getDiscoverTrafficWorkbook();
-                case SUMMARY_FILTERS.DISCOVER_UQFM:
+                case SUMMARY_KPIS.DISCOVER_UQFM:
                     return this.getDiscoverUQFMWorkbook();
                 // Create Functions for these
-                case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
+                case SUMMARY_KPIS.BUY_GROSS_NEWARR:
                    return this.getBuyGrossWorkBook();
-                case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
+                case SUMMARY_KPIS.BUY_GROSS_NEWUNITS:
                     return this.getBuyGrossWorkBook();
-                case SUMMARY_FILTERS.BUY_CONVERSION:
+                case SUMMARY_KPIS.BUY_CONVERSION:
                     return this.getDiscoverTrafficWorkbook();
-                case SUMMARY_FILTERS.BUY_PAID_MEDIASPEND:
+                case SUMMARY_KPIS.BUY_PAID_MEDIASPEND:
                     return this.getBuyPaidMediaSpendWorkbook();
-                case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
+                case SUMMARY_KPIS.BUY_MARKETING_SOURCED:
                     return this.getBuyMktgSourcedWorkbook();
 
 

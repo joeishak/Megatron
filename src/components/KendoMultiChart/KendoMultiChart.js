@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from 'actions';
 import styles from './KendoMultiChart.css';
 import * as utils from '../../utilities.js';
-import {SUMMARY_FILTERS} from '../../Constants/consts';
+import {SUMMARY_KPIS} from '../../Constants/consts';
 
 import {
     Chart,
@@ -97,32 +97,32 @@ class KendoMultiChart extends Component {
             case 'red':
                 switch (type) {
                     case 'bg':
-                        if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
-                            activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
-                            activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) { return 'ttBGGreen' } else { return 'ttBGRed' }
+                        if (activeSecondary === SUMMARY_KPIS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_KPIS.RENEW_CANCEL ||
+                            activeSecondary === SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_KPIS.RENEW_QTR_PF ||
+                            activeSecondary === SUMMARY_KPIS.RENEW_QTR_UI || activeSecondary ===SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E) { return 'ttBGGreen' } else { return 'ttBGRed' }
                     case  'txt':
-                        if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
-                            activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
-                            activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) { return 'textGreen' } else { return 'textRed' }
+                        if (activeSecondary === SUMMARY_KPIS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_KPIS.RENEW_CANCEL ||
+                            activeSecondary === SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_KPIS.RENEW_QTR_PF ||
+                            activeSecondary === SUMMARY_KPIS.RENEW_QTR_UI || activeSecondary ===SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E) { return 'textGreen' } else { return 'textRed' }
                     case 'border':
-                        if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
-                            activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
-                            activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) { return '#0DB16E' } else { return '#FF0000' }
+                        if (activeSecondary === SUMMARY_KPIS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_KPIS.RENEW_CANCEL ||
+                            activeSecondary === SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_KPIS.RENEW_QTR_PF ||
+                            activeSecondary === SUMMARY_KPIS.RENEW_QTR_UI || activeSecondary ===SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E) { return '#0DB16E' } else { return '#FF0000' }
                 }
             default:
             switch (type) {
                 case 'bg':
-                    if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
-                        activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
-                        activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) { return 'ttBGRed' } else { return 'ttBGGreen' }
+                    if (activeSecondary === SUMMARY_KPIS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_KPIS.RENEW_CANCEL ||
+                        activeSecondary === SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_KPIS.RENEW_QTR_PF ||
+                        activeSecondary === SUMMARY_KPIS.RENEW_QTR_UI || activeSecondary ===SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E) { return 'ttBGRed' } else { return 'ttBGGreen' }
                 case  'txt':
-                    if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
-                        activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
-                        activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) { return 'textRed' } else { return 'textGreen' }
+                    if (activeSecondary === SUMMARY_KPIS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_KPIS.RENEW_CANCEL ||
+                        activeSecondary === SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_KPIS.RENEW_QTR_PF ||
+                        activeSecondary === SUMMARY_KPIS.RENEW_QTR_UI || activeSecondary ===SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E) { return 'textRed' } else { return 'textGreen' }
                 case 'border':
-                    if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
-                        activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
-                        activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) { return '#FF0000' } else { return '#0DB16E' }
+                    if (activeSecondary === SUMMARY_KPIS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_KPIS.RENEW_CANCEL ||
+                        activeSecondary === SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_KPIS.RENEW_QTR_PF ||
+                        activeSecondary === SUMMARY_KPIS.RENEW_QTR_UI || activeSecondary ===SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E) { return '#FF0000' } else { return '#0DB16E' }
             }
         }
     }

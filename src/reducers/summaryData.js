@@ -40,7 +40,7 @@ import {
     UPDATE_FINANCE_XDC_2_IS_LOADING,
     // FETCH_COMMENTS
 } from 'actions/types';
-import { SUMMARY_FILTERS } from '../Constants/consts';
+import { SUMMARY_KPIS } from '../Constants/consts';
 import _ from 'lodash'
 import {
     SecondaryData
@@ -472,16 +472,16 @@ function processQTDOrder(data) {
 export function processXDC1FinanceSecondaryData(g1, newState) {
     //Finance
     // Assigns the values from the first item in the g1 data array to Net New ARR for actual, target, targetFQ, and vsQrf
-    newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].value = g1.data[0].NewARRActual;
-    newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].target = g1.data[0].NewARRTarget;
-    newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].targetFQ = g1.data[0].NewARRTargetFQ;
-    newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].vsQrf = g1.data[0].NewVsQrf;
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].value = g1.data[0].NewARRActual;
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].target = g1.data[0].NewARRTarget;
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].targetFQ = g1.data[0].NewARRTargetFQ;
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].vsQrf = g1.data[0].NewVsQrf;
     // //Gross New Arr
     // Assigns the values from the first item in the g1 data array to Gross New ARR for actual, target, targetFQ, and vsQrf
-    newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].value = g1.data[0].GrossARRActual;
-    newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].targetFQ = g1.data[0].GrossARRTargetFQ;
-    newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].target = g1.data[0].GrossARRTarget;
-    newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].vsQrf = g1.data[0].GrossVsQrf;
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].value = g1.data[0].GrossARRActual;
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].targetFQ = g1.data[0].GrossARRTargetFQ;
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].target = g1.data[0].GrossARRTarget;
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].vsQrf = g1.data[0].GrossVsQrf;
 
 }
 export function processXDC1FinancialMultichart(newState, data) {
@@ -742,10 +742,10 @@ export function processXDC1FinancialGeoQTD(newState, data) {
     }
 
     // console.log('YO', item1);
-    newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.geo.qtd = processQTDOrder(item1);
-    newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.geo.qtd = processQTDOrder(item2);
-    // newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.geo.qtd = processQTDOrder(item3);
-    // newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.geo.qtd = processQTDOrder(item4);
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.geo.qtd = processQTDOrder(item1);
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.geo.qtd = processQTDOrder(item2);
+    // newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.geo.qtd = processQTDOrder(item3);
+    // newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.geo.qtd = processQTDOrder(item4);
 }
 export function processXDC1FinancialGeoWeek(newState, data) {
     // console.log(data);
@@ -808,16 +808,16 @@ export function processXDC1FinancialGeoWeek(newState, data) {
         item3.push(canc);
         item4.push(ren);
     }
-    newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.geo.week = processQTDOrder(item1);
-    newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.geo.week = processQTDOrder(item2);
-    // newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.geo.week = processQTDOrder(item3);
-    // newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.geo.week = processQTDOrder(item4);
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.geo.week = processQTDOrder(item1);
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.geo.week = processQTDOrder(item2);
+    // newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.geo.week = processQTDOrder(item3);
+    // newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.geo.week = processQTDOrder(item4);
 }
 export function processXDC1FinancialMarketQTD(newState, data) {
 
     //Clear old Values
-    newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.market.qtd = [];
-    newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.market.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.market.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.market.qtd = [];
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -870,10 +870,10 @@ export function processXDC1FinancialMarketQTD(newState, data) {
             yy: item.RenewalARRYY
         }
 
-        newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.market.qtd.push(net);
-        newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.market.qtd.push(gross);
-        // newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.market.qtd.push(canc);
-        // newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.market.qtd.push(ren);
+        newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.market.qtd.push(net);
+        newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.market.qtd.push(gross);
+        // newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.market.qtd.push(canc);
+        // newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.market.qtd.push(ren);
 
     }
 
@@ -938,16 +938,16 @@ export function processXDC1FinancialMarketWeek(newState, data) {
         item3.push(canc);
         item4.push(ren);
     }
-    newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.market.week = item1;
-    newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.market.week = item2;
-    // newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.market.week = item3;
-    // newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.market.week = item4;
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.market.week = item1;
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.market.week = item2;
+    // newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.market.week = item3;
+    // newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.market.week = item4;
 }
 export function processXDC1FinancialrouteQTD(newState, data) {
 
     //Clear old Values
-    newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.route.qtd = [];
-    newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.route.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.route.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.route.qtd = [];
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -1000,10 +1000,10 @@ export function processXDC1FinancialrouteQTD(newState, data) {
             yy: item.RenewalARRYY
         }
 
-        newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.route.qtd.push(net);
-        newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.route.qtd.push(gross);
-        // newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.route.qtd.push(canc);
-        // newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.route.qtd.push(ren);
+        newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.route.qtd.push(net);
+        newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.route.qtd.push(gross);
+        // newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.route.qtd.push(canc);
+        // newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.route.qtd.push(ren);
 
     }
 
@@ -1068,18 +1068,18 @@ export function processXDC1FinancialrouteWeek(newState, data) {
         item3.push(canc);
         item4.push(ren);
     }
-    newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.route.week = item1;
-    newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.route.week = item2;
-    // newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.route.week = item3;
-    // newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.route.week = item4;
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.route.week = item1;
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.route.week = item2;
+    // newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.route.week = item3;
+    // newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.route.week = item4;
 }
 export function processXDC1FinancialSegmentQTD(newState, data) {
 
     //Clear old Values
-    newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.segment.qtd = [];
-    newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.segment.qtd = [];
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.segment.qtd = [];
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.segment.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.segment.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.segment.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.segment.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.segment.qtd = [];
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         let net = {
@@ -1131,10 +1131,10 @@ export function processXDC1FinancialSegmentQTD(newState, data) {
             yy: item.RenewalARRYY
         }
 
-        newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.segment.qtd.push(net);
-        newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.segment.qtd.push(gross);
-        // newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.segment.qtd.push(canc);
-        // newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.segment.qtd.push(ren);
+        newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.segment.qtd.push(net);
+        newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.segment.qtd.push(gross);
+        // newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.segment.qtd.push(canc);
+        // newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.segment.qtd.push(ren);
 
     }
 
@@ -1199,15 +1199,15 @@ export function processXDC1FinancialSegmentWeek(newState, data) {
         item3.push(canc);
         item4.push(ren);
     }
-    newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.segment.week = item1;
-    newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.segment.week = item2;
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.segment.week = item1;
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.segment.week = item2;
 
 }
 export function processXDC1FinancialproductQTD(newState, data) {
 
     //Clear old Values
-    newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.product.qtd = [];
-    newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.product.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.product.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.product.qtd = [];
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -1260,8 +1260,8 @@ export function processXDC1FinancialproductQTD(newState, data) {
             yy: item.RenewalARRYY
         }
 
-        newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.product.qtd.push(net);
-        newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.product.qtd.push(gross);
+        newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.product.qtd.push(net);
+        newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.product.qtd.push(gross);
 
 
     }
@@ -1327,32 +1327,32 @@ export function processXDC1FinancialProductWeek(newState, data) {
         item3.push(canc);
         item4.push(ren);
     }
-    newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.product.week = item1;
-    newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.product.week = item2;
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.product.week = item1;
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.product.week = item2;
 
 }
 //XDC2
 export function processXDC2FinanceSecondaryData(g1, newState) {
     //Finance
-    // newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].value = g1.data[0].NewARRActual;
-    // newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].target = g1.data[0].NewARRTarget;
-    // newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].targetFQ = g1.data[0].NewARRTargetFQ;
-    // newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].vsQrf = g1.data[0].NewVsQrf;
+    // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].value = g1.data[0].NewARRActual;
+    // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].target = g1.data[0].NewARRTarget;
+    // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].targetFQ = g1.data[0].NewARRTargetFQ;
+    // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].vsQrf = g1.data[0].NewVsQrf;
     // // //Gross New Arr
-    // newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].value = g1.data[0].GrossARRActual;
-    // newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].targetFQ = g1.data[0].GrossARRTargetFQ;
-    // newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].target = g1.data[0].GrossARRTarget;
-    // newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].vsQrf = g1.data[0].GrossVsQrf;
+    // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].value = g1.data[0].GrossARRActual;
+    // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].targetFQ = g1.data[0].GrossARRTargetFQ;
+    // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].target = g1.data[0].GrossARRTarget;
+    // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].vsQrf = g1.data[0].GrossVsQrf;
     //  //Cacncellations
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].value = g1.data[0].CancelARRActual;
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].targetFQ = g1.data[0].CancelARRTargetFQ;
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].target = g1.data[0].CancelARRTarget;
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].vsQrf = g1.data[0].CancelVsQrf;
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].value = g1.data[0].CancelARRActual;
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].targetFQ = g1.data[0].CancelARRTargetFQ;
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].target = g1.data[0].CancelARRTarget;
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].vsQrf = g1.data[0].CancelVsQrf;
     //   //Renewal
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].value = g1.data[0].RenewActuals;
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].targetFQ = g1.data[0].RenewARRTargetFQ;
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].target = g1.data[0].RenewARRTarget;
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].vsQrf = g1.data[0].RenewVSQRF;
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].value = g1.data[0].RenewActuals;
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].targetFQ = g1.data[0].RenewARRTargetFQ;
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].target = g1.data[0].RenewARRTarget;
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].vsQrf = g1.data[0].RenewVSQRF;
     // console.log('New State AT the end of secondary',newState);
 }
 export function processXDC2FinancialMultichart(newState, data) {
@@ -1410,8 +1410,8 @@ export function processXDC2FinancialMultichart(newState, data) {
 
     let canc = [netCancellations.actual, netCancellations.target, netCancellations.ly, netCancellations.lq];
     let ren = [termRenewal.actual, termRenewal.target, termRenewal.ly, termRenewal.lq];
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR]['details'].multichart = canc;
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR]['details'].multichart = ren;
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR]['details'].multichart = canc;
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR]['details'].multichart = ren;
 
 }
 export function processXDC2FinancialUnitsMultichart(newState, data) {
@@ -1677,10 +1677,10 @@ export function processXDC2FinancialGeoQTD(newState, data) {
     }
 
     // console.log('YO', item1);
-    // newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.geo.qtd = processQTDOrder(item1);
-    // newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.geo.qtd = processQTDOrder(item2);
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.geo.qtd = processQTDOrder(item3);
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.geo.qtd = processQTDOrder(item4);
+    // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.geo.qtd = processQTDOrder(item1);
+    // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.geo.qtd = processQTDOrder(item2);
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.geo.qtd = processQTDOrder(item3);
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.geo.qtd = processQTDOrder(item4);
 }
 export function processXDC2FinancialGeoWeek(newState, data) {
     // console.log(data);
@@ -1743,17 +1743,17 @@ export function processXDC2FinancialGeoWeek(newState, data) {
         item3.push(canc);
         item4.push(ren);
     }
-    // newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.geo.week = processQTDOrder(item1);
-    // newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.geo.week = processQTDOrder(item2);
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.geo.week = processQTDOrder(item3);
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.geo.week = processQTDOrder(item4);
+    // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.geo.week = processQTDOrder(item1);
+    // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.geo.week = processQTDOrder(item2);
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.geo.week = processQTDOrder(item3);
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.geo.week = processQTDOrder(item4);
 }
 export function processXDC2FinancialMarketQTD(newState, data) {
 
     //Clear old Values
 
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.market.qtd = [];
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.market.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.market.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.market.qtd = [];
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         let net = {
@@ -1805,10 +1805,10 @@ export function processXDC2FinancialMarketQTD(newState, data) {
             yy: item.RenewalARRYY
         }
 
-        // newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.market.qtd.push(net);
-        // newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.market.qtd.push(gross);
-        newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.market.qtd.push(canc);
-        newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.market.qtd.push(ren);
+        // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.market.qtd.push(net);
+        // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.market.qtd.push(gross);
+        newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.market.qtd.push(canc);
+        newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.market.qtd.push(ren);
 
     }
 
@@ -1873,17 +1873,17 @@ export function processXDC2FinancialMarketWeek(newState, data) {
         item3.push(canc);
         item4.push(ren);
     }
-    // newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.market.week = item1;
-    // newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.market.week = item2;
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.market.week = item3;
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.market.week = item4;
+    // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.market.week = item1;
+    // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.market.week = item2;
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.market.week = item3;
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.market.week = item4;
 }
 export function processXDC2FinancialrouteQTD(newState, data) {
 
     //Clear old Values
 
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.route.qtd = [];
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.route.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.route.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.route.qtd = [];
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         let net = {
@@ -1935,10 +1935,10 @@ export function processXDC2FinancialrouteQTD(newState, data) {
             yy: item.RenewalARRYY
         }
 
-        // newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.route.qtd.push(net);
-        // newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.route.qtd.push(gross);
-        newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.route.qtd.push(canc);
-        newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.route.qtd.push(ren);
+        // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.route.qtd.push(net);
+        // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.route.qtd.push(gross);
+        newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.route.qtd.push(canc);
+        newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.route.qtd.push(ren);
 
     }
 
@@ -2003,17 +2003,17 @@ export function processXDC2FinancialrouteWeek(newState, data) {
         item3.push(canc);
         item4.push(ren);
     }
-    // newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.route.week = item1;
-    // newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.route.week = item2;
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.route.week = item3;
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.route.week = item4;
+    // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.route.week = item1;
+    // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.route.week = item2;
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.route.week = item3;
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.route.week = item4;
 }
 export function processXDC2FinancialSegmentQTD(newState, data) {
 
     //Clear old Values
 
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.segment.qtd = [];
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.segment.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.segment.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.segment.qtd = [];
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         let net = {
@@ -2065,10 +2065,10 @@ export function processXDC2FinancialSegmentQTD(newState, data) {
             yy: item.RenewalARRYY
         }
 
-        // newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.segment.qtd.push(net);
-        // newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.segment.qtd.push(gross);
-        newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.segment.qtd.push(canc);
-        newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.segment.qtd.push(ren);
+        // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.segment.qtd.push(net);
+        // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.segment.qtd.push(gross);
+        newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.segment.qtd.push(canc);
+        newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.segment.qtd.push(ren);
 
     }
 
@@ -2133,17 +2133,17 @@ export function processXDC2FinancialSegmentWeek(newState, data) {
         item3.push(canc);
         item4.push(ren);
     }
-    // newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.segment.week = item1;
-    // newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.segment.week = item2;
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.segment.week = item3;
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.segment.week = item4;
+    // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.segment.week = item1;
+    // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.segment.week = item2;
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.segment.week = item3;
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.segment.week = item4;
 }
 export function processXDC2FinancialproductQTD(newState, data) {
 
     //Clear old Values
 
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.product.qtd = [];
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.product.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.product.qtd = [];
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.product.qtd = [];
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         let net = {
@@ -2195,10 +2195,10 @@ export function processXDC2FinancialproductQTD(newState, data) {
             yy: item.RenewalARRYY
         }
 
-        // newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.product.qtd.push(net);
-        // newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.product.qtd.push(gross);
-        newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.product.qtd.push(canc);
-        newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.product.qtd.push(ren);
+        // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.product.qtd.push(net);
+        // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.product.qtd.push(gross);
+        newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.product.qtd.push(canc);
+        newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.product.qtd.push(ren);
 
     }
 
@@ -2263,27 +2263,27 @@ export function processXDC2FinancialProductWeek(newState, data) {
         item3.push(canc);
         item4.push(ren);
     }
-    // newState[SUMMARY_FILTERS.FINANCE_NET_NEW_ARR].details.product.week = item1;
-    // newState[SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR].details.product.week = item2;
-    newState[SUMMARY_FILTERS.FINANCE_CANCEL_ARR].details.product.week = item3;
-    newState[SUMMARY_FILTERS.FINANCE_RENEW_ARR].details.product.week = item4;
+    // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.product.week = item1;
+    // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.product.week = item2;
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.product.week = item3;
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.product.week = item4;
 }
 /**Discover**/
 //Traffic
 export function processTrafficSecondaryData(g5, newState) {
     // console.log(g5, newState);
 
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].value = g5.TrafficActual;
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].target = g5.TrafficTarget;
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].targetFQ = g5.TrafficTargetFQ;
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].vsQrf = g5.TrafficVsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].value = g5.TrafficActual;
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].target = g5.TrafficTarget;
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].targetFQ = g5.TrafficTargetFQ;
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].vsQrf = g5.TrafficVsQrf;
     //Bounce Rate
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].value = g5.BounceRateActual;
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].target = g5.BounceRateTarget;
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].targetFQ = g5.BounceRateTargetFQ;
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].vsQrf = g5.BounceRateVsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].value = g5.BounceRateActual;
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].target = g5.BounceRateTarget;
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].targetFQ = g5.BounceRateTargetFQ;
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].vsQrf = g5.BounceRateVsQrf;
 
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].target = 0;
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].target = 0;
 
 }
 export function processTrafficMultichartData(g5, newState) {
@@ -2323,8 +2323,8 @@ export function processTrafficMultichartData(g5, newState) {
     //Set Multichart Values
     let trafMulti = [traffic.actual, traffic.target, traffic.ly, traffic.lq];
     let bounceMulti = [bounceRate.actual, bounceRate.target, bounceRate.ly, bounceRate.lq];
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC]['details'].multichart = trafMulti;
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE]['details'].multichart = bounceMulti;
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC]['details'].multichart = trafMulti;
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE]['details'].multichart = bounceMulti;
 }
 export function processTrafficQTDData(g5, newState) {
     // console.log(g5, newState);
@@ -2378,10 +2378,10 @@ export function processTrafficQTDData(g5, newState) {
 export function processTrafficGeoQTDData(g5, newState) {
     // console.log(g5)
     //Clear old Values
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.geo.qtd = [];
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.geo.qtd = [];
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.geo.week = [];
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.geo.week = [];
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geo.qtd = [];
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geo.qtd = [];
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geo.week = [];
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geo.week = [];
 
     for (let i = 0; i < g5.length; i++) {
         let item = g5[i];
@@ -2429,22 +2429,22 @@ export function processTrafficGeoQTDData(g5, newState) {
             ww: item.BounceRateWW,
             type: item.geo_code,
         }
-        newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.geo.qtd.push(traffic);
-        newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.geo.qtd.push(bounce);
-        newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.geo.week.push(trafficPM);
-        newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.geo.week.push(bouncePM);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geo.qtd.push(traffic);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geo.qtd.push(bounce);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geo.week.push(trafficPM);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geo.week.push(bouncePM);
     }
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.geo.qtd)
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.geo.qtd)
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.geo.week)
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.geo.week)
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geo.qtd)
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geo.qtd)
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geo.week)
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geo.week)
 }
 export function processTrafficMarketQTDData(g5, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.market.qtd = [];
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.market.qtd = [];
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.market.week = [];
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.market.week = [];
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.market.qtd = [];
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.market.qtd = [];
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.market.week = [];
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.market.week = [];
 
 
     for (let i = 0; i < g5.length; i++) {
@@ -2489,21 +2489,21 @@ export function processTrafficMarketQTDData(g5, newState) {
             ww: item.BounceRateWW,
             type: item.market_area_code,
         }
-        newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.market.qtd.push(traffic);
-        newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.market.qtd.push(bounce);
-        newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.market.week.push(trafficPM);
-        newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.market.week.push(bouncePM);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.market.qtd.push(traffic);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.market.qtd.push(bounce);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.market.week.push(trafficPM);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.market.week.push(bouncePM);
     }
 
 }
 export function processTrafficWebSegmentQTDData(g5, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.segment.qtd = [];
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.segment.qtd = [];
 
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.segment.qtd = [];
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.segment.week = [];
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.segment.qtd = [];
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.segment.week = [];
 
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.segment.week = [];
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.segment.week = [];
 
     for (let i = 0; i < g5.length; i++) {
         let item = g5[i];
@@ -2551,17 +2551,17 @@ export function processTrafficWebSegmentQTDData(g5, newState) {
             ww: item.BounceRateWW,
             type: item.web_segment,
         }
-        newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.segment.qtd.push(traffic);
-        newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.segment.qtd.push(bounce);
-        newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.segment.week.push(trafficPM);
-        newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.segment.week.push(bouncePM);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.segment.qtd.push(traffic);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.segment.qtd.push(bounce);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.segment.week.push(trafficPM);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.segment.week.push(bouncePM);
     }
 }
 export function processTrafficLTCQTDData(g5, newState) {
 
     //Clear old Values
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details = { ...newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details, ltc: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details = { ...newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details, ltc: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details = { ...newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details, ltc: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details = { ...newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details, ltc: { qtd: [], week: [] } };
 
     for (let i = 0; i < g5.length; i++) {
         let item = g5[i];
@@ -2610,20 +2610,20 @@ export function processTrafficLTCQTDData(g5, newState) {
             type: item.visit_type,
 
         }
-        newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.ltc.qtd.push(traffic);
-        newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.ltc.qtd.push(bounce);
-        newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.ltc.week.push(trafficPM);
-        newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.ltc.week.push(bouncePM);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.ltc.qtd.push(traffic);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.ltc.qtd.push(bounce);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.ltc.week.push(trafficPM);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.ltc.week.push(bouncePM);
     }
 }
 export function processTrafficConvQTDData(g5, newState) {
     // console.log(g5);
     // console.log(newState);
     //Clear old Values
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.conversion.qtd = [];
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.conversion.qtd = [];
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.conversion.week = [];
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.conversion.week = [];
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.conversion.qtd = [];
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.conversion.qtd = [];
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.conversion.week = [];
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.conversion.week = [];
 
     for (let i = 0; i < g5.length; i++) {
         let item = g5[i];
@@ -2668,19 +2668,19 @@ export function processTrafficConvQTDData(g5, newState) {
             ww: item.BounceRateWW,
             type: item.conversion_type,
         }
-        newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.conversion.qtd.push(traffic);
-        newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.conversion.qtd.push(bounce);
-        newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.conversion.week.push(trafficPM);
-        newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.conversion.week.push(bouncePM);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.conversion.qtd.push(traffic);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.conversion.qtd.push(bounce);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.conversion.week.push(trafficPM);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.conversion.week.push(bouncePM);
     }
 }
 export function processTrafficMobDeskQTDData(g5, newState) {
 
     //Clear old Values
 
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details = { ...newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details, mvd: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details = { ...newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details, mvd: { qtd: [], week: [] } };
 
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details = { ...newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details, mvd: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details = { ...newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details, mvd: { qtd: [], week: [] } };
 
 
 
@@ -2750,13 +2750,13 @@ export function processTrafficMobDeskQTDData(g5, newState) {
             type: item.mobile_or_desktop,
         }
 
-        newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.mvd.qtd.push(traffic);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.mvd.qtd.push(traffic);
 
-        newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.mvd.qtd.push(bounce);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.mvd.qtd.push(bounce);
 
-        newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.mvd.week.push(trafficPM);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.mvd.week.push(trafficPM);
 
-        newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.mvd.week.push(bouncePM);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.mvd.week.push(bouncePM);
 
     }
 
@@ -2765,9 +2765,9 @@ export function processTrafficNewRepQTDData(g5, newState) {
 
     //Clear old Values
 
-    newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details = { ...newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details, nvr: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details = { ...newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details, nvr: { qtd: [], week: [] } };
 
-    newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details = { ...newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details, nvr: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details = { ...newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details, nvr: { qtd: [], week: [] } };
 
 
 
@@ -2863,13 +2863,13 @@ export function processTrafficNewRepQTDData(g5, newState) {
 
         }
 
-        newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.nvr.qtd.push(traffic);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.nvr.qtd.push(traffic);
 
-        newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.nvr.qtd.push(bounce);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.nvr.qtd.push(bounce);
 
-        newState[SUMMARY_FILTERS.DISCOVER_TRAFFIC].details.nvr.week.push(trafficPM);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.nvr.week.push(trafficPM);
 
-        newState[SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE].details.nvr.week.push(bouncePM);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.nvr.week.push(bouncePM);
 
     }
 
@@ -2878,10 +2878,10 @@ export function processTrafficNewRepQTDData(g5, newState) {
 
 // UQFM
 export function processUQFMSecondaryData(data, newState) {
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].value = data.UQFMConvActual;
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].target = data.UQFMConvTarget;
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].targetFQ = data.UQFMConvTargetFQ;
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].vsQrf = data.UQFMConvVsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].value = data.UQFMConvActual;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].target = data.UQFMConvTarget;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].targetFQ = data.UQFMConvTargetFQ;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].vsQrf = data.UQFMConvVsQrf;
 }
 export function processUQFMMultichartData(data, newState) {
 
@@ -2911,36 +2911,36 @@ export function processUQFMMultichartData(data, newState) {
         uqfm.lq.push(item.UQFMConvLQ);
     };
     currentMulti = [uqfm.actual, uqfm.target, uqfm.ly, uqfm.lq];
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM]['details'].multichart = currentMulti;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM]['details'].multichart = currentMulti;
 
 
 }
 export function processUQFMQTDData(data, newState) {
 
 
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.qtdw.qtd[0].value = data.UQFMConvActuals;
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.qtdw.qtd[1].value = data.UQFMConvTarget;
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.qtdw.qtd[2].value = data.UQFMConvVsQrfDiff
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.qtdw.qtd[3].value = data.UQFMConvvsQrf;
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.qtdw.qtd[4].value = data.UQFMConvQQTY;
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.qtdw.qtd[5].value = data.UQFMConvYY;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.qtdw.qtd[0].value = data.UQFMConvActuals;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.qtdw.qtd[1].value = data.UQFMConvTarget;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.qtdw.qtd[2].value = data.UQFMConvVsQrfDiff
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.qtdw.qtd[3].value = data.UQFMConvvsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.qtdw.qtd[4].value = data.UQFMConvQQTY;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.qtdw.qtd[5].value = data.UQFMConvYY;
 
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.qtdw.week[0].value = data.UQFMConvCW;
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.qtdw.week[1].value = data.UQFMConvTargetCW;
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.qtdw.week[2].value = data.UQFMConvCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.qtdw.week[3].value = data.UQFMConvCWVsQrf;
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.qtdw.week[4].value = data.UQFMConvWW;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.qtdw.week[0].value = data.UQFMConvCW;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.qtdw.week[1].value = data.UQFMConvTargetCW;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.qtdw.week[2].value = data.UQFMConvCWVsQrfDiff;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.qtdw.week[3].value = data.UQFMConvCWVsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.qtdw.week[4].value = data.UQFMConvWW;
 
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.stats[0].value = data.UQFMConvvsQrf;
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.stats[1].value = data.UQFMConvQQTY;
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.stats[2].value = data.UQFMConvQQLY;
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.stats[3].value = data.UQFMConvYY;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.stats[0].value = data.UQFMConvvsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.stats[1].value = data.UQFMConvQQTY;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.stats[2].value = data.UQFMConvQQLY;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.stats[3].value = data.UQFMConvYY;
 
 }
 export function processUQFMGeoQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.geo.qtd = [];
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.geo.week = [];
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geo.qtd = [];
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geo.week = [];
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -2967,17 +2967,17 @@ export function processUQFMGeoQTDData(data, newState) {
             type: item.geo_code,
         }
 
-        newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.geo.qtd.push(uqfm);
-        newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.geo.week.push(uqfmWeek);
+        newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geo.qtd.push(uqfm);
+        newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geo.week.push(uqfmWeek);
     }
 
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.geo.qtd);
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.geo.week);
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geo.qtd);
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geo.week);
 }
 export function processUQFMMarketQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.market.qtd = [];
-    newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.market.week = [];
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.market.qtd = [];
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.market.week = [];
 
 
     for (let i = 0; i < data.length; i++) {
@@ -3002,8 +3002,8 @@ export function processUQFMMarketQTDData(data, newState) {
             vsQrf: item.UQFMConvCWVsQrf,
             ww: item.UQFMConvWW,
         }
-        newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.market.qtd.push(uqfm);
-        newState[SUMMARY_FILTERS.DISCOVER_UQFM].details.market.week.push(uqfmWeek);
+        newState[SUMMARY_KPIS.DISCOVER_UQFM].details.market.qtd.push(uqfm);
+        newState[SUMMARY_KPIS.DISCOVER_UQFM].details.market.week.push(uqfmWeek);
     }
 }
 //End UQFM
@@ -3011,14 +3011,14 @@ export function processUQFMMarketQTDData(data, newState) {
 // Marketable  Universe
 export function processMUSecondaryData(data, newState) {
 
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].value = data.NetChangeMUActual;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].target = data.NetChangeMUTarget;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].targetFQ = data.NetChangeMUTargetFQ;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].vsQrf = data.NetChangeMUVsQrf;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.value = data.CumuMUActual;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.target = data.CumuMUTarget;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.targetFQ = data.CumuMUTargetFQ;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.vsQrf = data.CumuMUVsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].value = data.NetChangeMUActual;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].target = data.NetChangeMUTarget;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].targetFQ = data.NetChangeMUTargetFQ;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].vsQrf = data.NetChangeMUVsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.value = data.CumuMUActual;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.target = data.CumuMUTarget;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.targetFQ = data.CumuMUTargetFQ;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.vsQrf = data.CumuMUVsQrf;
 }
 export function processMUMultichartData(data, newState) {
     let weekFlag = data.map(item => {
@@ -3055,52 +3055,52 @@ export function processMUMultichartData(data, newState) {
     };
     let currentMuMulti = [netMu.actual, netMu.target, netMu.ly, netMu.lq];
     let currentCumuMulti = [cumuMu.actual, cumuMu.target, cumuMu.ly, cumuMu.lq];
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE]['details'].multichart = currentMuMulti;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.multichart = currentCumuMulti;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE]['details'].multichart = currentMuMulti;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.multichart = currentCumuMulti;
 
 }
 export function processMUQTDData(data, newState) {
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.qtd[0].value = data.NetChangeMUActuals;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.qtd[1].value = data.NetChangeMUTarget;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.qtd[2].value = data.NetChangeMUVsQrfDiff
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.qtd[3].value = data.NetChangeMUVsQrf;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.qtd[4].value = data.NetChangeMUQQTY;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.qtd[5].value = data.NetChangeMUYY;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.qtd[0].value = data.NetChangeMUActuals;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.qtd[1].value = data.NetChangeMUTarget;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.qtd[2].value = data.NetChangeMUVsQrfDiff
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.qtd[3].value = data.NetChangeMUVsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.qtd[4].value = data.NetChangeMUQQTY;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.qtd[5].value = data.NetChangeMUYY;
 
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.week[0].value = data.NetChangeMUCW;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.week[1].value = data.NetChangeMUTargetCW;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.week[2].value = data.NetChangeMUCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.week[3].value = data.NetChangeMUCWVsQrf;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.week[4].value = data.NetChangeMUWW;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.week[0].value = data.NetChangeMUCW;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.week[1].value = data.NetChangeMUTargetCW;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.week[2].value = data.NetChangeMUCWVsQrfDiff;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.week[3].value = data.NetChangeMUCWVsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.qtdw.week[4].value = data.NetChangeMUWW;
 
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.stats[0].value = data.NetChangeMUVsQrf;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.stats[1].value = data.NetChangeMUQQTY;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.stats[2].value = data.NetChangeMUQQLY;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.stats[3].value = data.NetChangeMUYY;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.stats[0].value = data.NetChangeMUVsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.stats[1].value = data.NetChangeMUQQTY;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.stats[2].value = data.NetChangeMUQQLY;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.stats[3].value = data.NetChangeMUYY;
 
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.qtd[0].value = data.CumuMUActuals;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.qtd[1].value = data.CumuMUTarget;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.qtd[2].value = data.CumuMUVsQrfDiff;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.qtd[3].value = data.CumuMUVsQrf;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.qtd[4].value = data.CumuMUQQTY;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.qtd[5].value = data.CumuMUYY;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.qtd[0].value = data.CumuMUActuals;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.qtd[1].value = data.CumuMUTarget;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.qtd[2].value = data.CumuMUVsQrfDiff;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.qtd[3].value = data.CumuMUVsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.qtd[4].value = data.CumuMUQQTY;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.qtd[5].value = data.CumuMUYY;
 
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.week[0].value = data.CumuMUCW;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.week[1].value = data.CumuMUTargetCW;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.week[2].value = data.CumuMUCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.week[3].value = data.CumuMUCWVsQrf;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.week[4].value = data.CumuMUWW;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.week[0].value = data.CumuMUCW;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.week[1].value = data.CumuMUTargetCW;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.week[2].value = data.CumuMUCWVsQrfDiff;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.week[3].value = data.CumuMUCWVsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.qtdw.week[4].value = data.CumuMUWW;
 
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.stats[0].value = data.CumuMUVsQrf;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.stats[1].value = data.CumuMUQQTY;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.stats[2].value = data.CumuMUQQLY;
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.stats[3].value = data.CumuMUYY;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.stats[0].value = data.CumuMUVsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.stats[1].value = data.CumuMUQQTY;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.stats[2].value = data.CumuMUQQLY;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.stats[3].value = data.CumuMUYY;
 
 }
 export function processMUGeoQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details = { ...newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details, geo: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details = { ...newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details, geo: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details = { ...newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details, geo: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details = { ...newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details, geo: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -3151,21 +3151,21 @@ export function processMUGeoQTDData(data, newState) {
             ww: item.CumuMUWW,
             type: item.geo_code,
         }
-        newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.geo.qtd.push(netMu);
-        newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.qtd.push(cumuMu);
-        newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.week.push(cumuWeek);
-        newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.geo.week.push(netWeek);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.geo.qtd.push(netMu);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.qtd.push(cumuMu);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.week.push(cumuWeek);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.geo.week.push(netWeek);
     }
 
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.geo.qtd);
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.qtd);
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.week);
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.geo.week);
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.geo.qtd);
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.qtd);
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.week);
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.geo.week);
 }
 export function processMUMarketQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details = { ...newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details, market: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details = { ...newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details, market: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details = { ...newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details, market: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details = { ...newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details, market: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -3212,16 +3212,16 @@ export function processMUMarketQTDData(data, newState) {
             vsQrf: item.CumuMUCWVsQrf,
             ww: item.CumuMUWW,
         }
-        newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.market.qtd.push(netMu);
-        newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.market.qtd.push(cumuMu);
-        newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.market.week.push(cumuWeek);
-        newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.market.week.push(netWeek);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.market.qtd.push(netMu);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.market.qtd.push(cumuMu);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.market.week.push(cumuWeek);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.market.week.push(netWeek);
     }
 }
 export function processMUChannelQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details = { ...newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details, channel: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details = { ...newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details, channel: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details = { ...newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details, channel: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details = { ...newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details, channel: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -3268,10 +3268,10 @@ export function processMUChannelQTDData(data, newState) {
             vsQrf: item.CumuMUCWVsQrf,
             ww: item.CumuMUWW,
         }
-        newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.channel.qtd.push(netMu);
-        newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.channel.qtd.push(cumuMu);
-        newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.channel.week.push(cumuWeek);
-        newState[SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE].details.channel.week.push(netWeek);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.channel.qtd.push(netMu);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.channel.qtd.push(cumuMu);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.channel.week.push(cumuWeek);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.channel.week.push(netWeek);
     }
 }
 //End Marketable Universe 
@@ -3279,15 +3279,15 @@ export function processMUChannelQTDData(data, newState) {
 //  Paid Media spend and sourced
 export function processPMSSSecondaryData(data, newState) {
 
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].value = data.PMSpendDiscoverActual;
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].target = data.PMSpendDiscoverTarget;
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].targetFQ = data.PMSpendDiscoverTargetFQ;
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].vsQrf = data.PMSpendDiscoverVsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].value = data.PMSpendDiscoverActual;
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].target = data.PMSpendDiscoverTarget;
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].targetFQ = data.PMSpendDiscoverTargetFQ;
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].vsQrf = data.PMSpendDiscoverVsQrf;
     //Bounce Rate
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].value = data.PMUQFMActual;
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].target = data.PMUQFMTarget;
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].targetFQ = data.PMUQFMTargetFQ;
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].vsQrf = data.PMUQFMVsQrf;
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].value = data.PMUQFMActual;
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].target = data.PMUQFMTarget;
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].targetFQ = data.PMUQFMTargetFQ;
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].vsQrf = data.PMUQFMVsQrf;
 }
 export function processPMSSMultichartData(data, newState) {
 
@@ -3394,8 +3394,8 @@ export function processPMSSQTDData(data, newState) {
 }
 export function processPMSSGeoQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details = { ...newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details, geo: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details = { ...newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details, geo: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details = { ...newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details, geo: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details = { ...newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details, geo: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -3444,21 +3444,21 @@ export function processPMSSGeoQTDData(data, newState) {
             ww: item.PMUQFMWW,
             type: item.geo_code,
         }
-        newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details.geo.qtd.push(pm);
-        newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.qtd.push(pmuqfm);
-        newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details.geo.week.push(pmWeek);
-        newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.week.push(pmuqfmWeek);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.geo.qtd.push(pm);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.qtd.push(pmuqfm);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.geo.week.push(pmWeek);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.week.push(pmuqfmWeek);
     }
 
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details.geo.qtd);
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.qtd);
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details.geo.week);
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.week);
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.geo.qtd);
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.qtd);
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.geo.week);
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.week);
 }
 export function processPMSSMarketQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details = { ...newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details, market: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details = { ...newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details, market: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details = { ...newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details, market: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details = { ...newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details, market: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -3504,17 +3504,17 @@ export function processPMSSMarketQTDData(data, newState) {
             vsQrf: item.PMUQFMCWVsQrf,
             ww: item.PMUQFMWW,
         }
-        newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details.market.qtd.push(pm);
-        newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details.market.qtd.push(pmuqfm);
-        newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details.market.week.push(pmWeek);
-        newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details.market.week.push(pmuqfmWeek);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.market.qtd.push(pm);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.market.qtd.push(pmuqfm);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.market.week.push(pmWeek);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.market.week.push(pmuqfmWeek);
     }
 }
 
 export function processPMSSChannelQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details = { ...newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details, channel: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details = { ...newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details, channel: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details = { ...newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details, channel: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details = { ...newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details, channel: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -3559,10 +3559,10 @@ export function processPMSSChannelQTDData(data, newState) {
             vsQrf: item.PMUQFMCWVsQrf,
             ww: item.PMUQFMWW,
         }
-        newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details.channel.qtd.push(pm);
-        newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details.channel.qtd.push(pmuqfm);
-        newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND].details.channel.week.push(pmWeek);
-        newState[SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED].details.channel.week.push(pmuqfmWeek);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.channel.qtd.push(pm);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.channel.qtd.push(pmuqfm);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.channel.week.push(pmWeek);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.channel.week.push(pmuqfmWeek);
     }
 }
 //End  Paid Media spend and sourced
@@ -3572,35 +3572,35 @@ export function processTrySecondaryData(data, newState) {
 
 
     //   New UQFMS
-    newState[SUMMARY_FILTERS.TRY_NEW_UQFM].value = data.NewUQFMSActual;
-    newState[SUMMARY_FILTERS.TRY_NEW_UQFM].targetFQ = data.NewUQFMSTargetFQ;
-    newState[SUMMARY_FILTERS.TRY_NEW_UQFM].target = data.NewUQFMsTarget;
-    newState[SUMMARY_FILTERS.TRY_NEW_UQFM].vsQrf = data.NewUQFMsVsQrf;
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].value = data.NewUQFMSActual;
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].targetFQ = data.NewUQFMSTargetFQ;
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].target = data.NewUQFMsTarget;
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].vsQrf = data.NewUQFMsVsQrf;
     // Cumulative UQFMS
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].value = data.CumUQFMsActual;
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].targetFQ = data.CumUQFMsTargetFQ;
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].target = data.CumUQFMsTarget;
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].vsQrf = data.CumUQFMsVsQrf;
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].value = data.CumUQFMsActual;
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].targetFQ = data.CumUQFMsTargetFQ;
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].target = data.CumUQFMsTarget;
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].vsQrf = data.CumUQFMsVsQrf;
     //  New QFMS
-    newState[SUMMARY_FILTERS.TRY_NEW_QFM].value = data.NewQFMSActual;
-    newState[SUMMARY_FILTERS.TRY_NEW_QFM].targetFQ = data.NewQFMSTargetFQ;
-    newState[SUMMARY_FILTERS.TRY_NEW_QFM].target = data.NewQFMsTarget;
-    newState[SUMMARY_FILTERS.TRY_NEW_QFM].vsQrf = data.NewQFMsVsQrf;
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].value = data.NewQFMSActual;
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].targetFQ = data.NewQFMSTargetFQ;
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].target = data.NewQFMsTarget;
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].vsQrf = data.NewQFMsVsQrf;
     //Cumulative QFMs
-    newState[SUMMARY_FILTERS.TRY_CUMU_QFM].value = data.CumQFMsActual;
-    newState[SUMMARY_FILTERS.TRY_CUMU_QFM].targetFQ = data.CumQFMsTargetFQ;
-    newState[SUMMARY_FILTERS.TRY_CUMU_QFM].target = data.CumQFMsTarget;
-    newState[SUMMARY_FILTERS.TRY_CUMU_QFM].vsQrf = data.CumQFMsVsQrf;
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].value = data.CumQFMsActual;
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].targetFQ = data.CumQFMsTargetFQ;
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].target = data.CumQFMsTarget;
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].vsQrf = data.CumQFMsVsQrf;
     //28 Day New UQFM to QFM
-    newState[SUMMARY_FILTERS.TRY_DAY_28].value = data.Day28NewUQFMActual;
-    newState[SUMMARY_FILTERS.TRY_DAY_28].targetFQ = data.Day28NewUQFMTargetFQ;
-    newState[SUMMARY_FILTERS.TRY_DAY_28].vsQrf = data.Day28NewUQFMVsQrf;
-    newState[SUMMARY_FILTERS.TRY_DAY_28].target = data.Day28NewUQFMTarget;
+    newState[SUMMARY_KPIS.TRY_DAY_28].value = data.Day28NewUQFMActual;
+    newState[SUMMARY_KPIS.TRY_DAY_28].targetFQ = data.Day28NewUQFMTargetFQ;
+    newState[SUMMARY_KPIS.TRY_DAY_28].vsQrf = data.Day28NewUQFMVsQrf;
+    newState[SUMMARY_KPIS.TRY_DAY_28].target = data.Day28NewUQFMTarget;
     //Cum. UQFM to QFM
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].value = data.CumUQFMToQFMActual;
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].targetFQ = data.CumUQFMToQFMTargetFQ;
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].vsQrf = data.CumUQFMToQFMVsQrf;
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].target = data.CumUQFMToQFMTarget;
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].value = data.CumUQFMToQFMActual;
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].targetFQ = data.CumUQFMToQFMTargetFQ;
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].vsQrf = data.CumUQFMToQFMVsQrf;
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].target = data.CumUQFMToQFMTarget;
 
 }
 export function processTryMultichartData(g2, newState) {
@@ -3715,7 +3715,7 @@ export function processTryMultichartData(g2, newState) {
         newState[i]['details'].multichart = currentMulti;
         console.log('Checking Mutltichart', newState[i]['details'].multichart);
     }
-    console.log(newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details.multichart);
+    console.log(newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.multichart);
 }
 export function processTryQTDData(data, newState) {
     for (let i = 10; i <= 15; i++) {
@@ -3841,12 +3841,12 @@ export function processTryQTDData(data, newState) {
 }
 export function processTryGeoQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details = { ...newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details, geo: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details = { ...newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details, geo: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.TRY_NEW_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_NEW_QFM].details, geo: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details, geo: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.TRY_DAY_28].details = { ...newState[SUMMARY_FILTERS.TRY_DAY_28].details, geo: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details, geo: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_UQFM].details, geo: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details, geo: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_QFM].details, geo: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_QFM].details, geo: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_DAY_28].details = { ...newState[SUMMARY_KPIS.TRY_DAY_28].details, geo: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details, geo: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -3989,41 +3989,41 @@ export function processTryGeoQTDData(data, newState) {
             type: item.geo_code,
         }
 
-        newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.geo.qtd.push(newQFM);
-        newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.geo.week.push(newQFMWeek);
-        newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details.geo.qtd.push(newUQFM);
-        newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details.geo.week.push(newUQFMWeek);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details.geo.qtd.push(cumuUQFM);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details.geo.week.push(cumuUQFMWeek);
-        newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details.geo.qtd.push(cumuQFM);
-        newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details.geo.week.push(cumuQFMWeek);
-        newState[SUMMARY_FILTERS.TRY_DAY_28].details.geo.qtd.push(day28);
-        newState[SUMMARY_FILTERS.TRY_DAY_28].details.geo.week.push(day28Week);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details.geo.qtd.push(cumuUTQ);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details.geo.week.push(cumuUTQWeek);
+        newState[SUMMARY_KPIS.TRY_NEW_QFM].details.geo.qtd.push(newQFM);
+        newState[SUMMARY_KPIS.TRY_NEW_QFM].details.geo.week.push(newQFMWeek);
+        newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.geo.qtd.push(newUQFM);
+        newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.geo.week.push(newUQFMWeek);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.geo.qtd.push(cumuUQFM);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.geo.week.push(cumuUQFMWeek);
+        newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.geo.qtd.push(cumuQFM);
+        newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.geo.week.push(cumuQFMWeek);
+        newState[SUMMARY_KPIS.TRY_DAY_28].details.geo.qtd.push(day28);
+        newState[SUMMARY_KPIS.TRY_DAY_28].details.geo.week.push(day28Week);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geo.qtd.push(cumuUTQ);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geo.week.push(cumuUTQWeek);
     }
 
-    newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.geo.qtd);
-    newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.geo.week);
-    newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details.geo.qtd);
-    newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details.geo.week);
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details.geo.qtd);
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details.geo.week);
-    newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details.geo.qtd);
-    newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details.geo.week);
-    newState[SUMMARY_FILTERS.TRY_DAY_28].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.TRY_DAY_28].details.geo.qtd);
-    newState[SUMMARY_FILTERS.TRY_DAY_28].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.TRY_DAY_28].details.geo.week);
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details.geo.qtd);
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details.geo.week);
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.TRY_NEW_QFM].details.geo.qtd);
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.TRY_NEW_QFM].details.geo.week);
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.geo.qtd);
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.geo.week);
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.geo.qtd);
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.geo.week);
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.geo.qtd);
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.geo.week);
+    newState[SUMMARY_KPIS.TRY_DAY_28].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.TRY_DAY_28].details.geo.qtd);
+    newState[SUMMARY_KPIS.TRY_DAY_28].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.TRY_DAY_28].details.geo.week);
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geo.qtd);
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geo.week);
 }
 export function processTryMarketQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details = { ...newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details, market: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details = { ...newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details, market: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.TRY_NEW_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_NEW_QFM].details, market: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details, market: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.TRY_DAY_28].details = { ...newState[SUMMARY_FILTERS.TRY_DAY_28].details, market: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details, market: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_UQFM].details, market: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details, market: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_QFM].details, market: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_QFM].details, market: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_DAY_28].details = { ...newState[SUMMARY_KPIS.TRY_DAY_28].details, market: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details, market: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -4154,24 +4154,24 @@ export function processTryMarketQTDData(data, newState) {
             ww: item.CumUQFMToQFMWW,
         }
 
-        newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.market.qtd.push(newQFM);
-        newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.market.week.push(newQFMWeek);
-        newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details.market.qtd.push(newUQFM);
-        newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details.market.week.push(newUQFMWeek);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details.market.qtd.push(cumuUQFM);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details.market.week.push(cumuUQFMWeek);
-        newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details.market.qtd.push(cumuQFM);
-        newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details.market.week.push(cumuQFMWeek);
-        newState[SUMMARY_FILTERS.TRY_DAY_28].details.market.qtd.push(day28);
-        newState[SUMMARY_FILTERS.TRY_DAY_28].details.market.week.push(day28Week);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details.market.qtd.push(cumuUTQ);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details.market.week.push(cumuUTQWeek);
+        newState[SUMMARY_KPIS.TRY_NEW_QFM].details.market.qtd.push(newQFM);
+        newState[SUMMARY_KPIS.TRY_NEW_QFM].details.market.week.push(newQFMWeek);
+        newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.market.qtd.push(newUQFM);
+        newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.market.week.push(newUQFMWeek);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.market.qtd.push(cumuUQFM);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.market.week.push(cumuUQFMWeek);
+        newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.market.qtd.push(cumuQFM);
+        newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.market.week.push(cumuQFMWeek);
+        newState[SUMMARY_KPIS.TRY_DAY_28].details.market.qtd.push(day28);
+        newState[SUMMARY_KPIS.TRY_DAY_28].details.market.week.push(day28Week);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.market.qtd.push(cumuUTQ);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.market.week.push(cumuUTQWeek);
 
     }
 }
 export function processTryProductQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.TRY_NEW_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_NEW_QFM].details, product: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_QFM].details, product: { qtd: [], week: [] } };
 
 
 
@@ -4201,16 +4201,16 @@ export function processTryProductQTDData(data, newState) {
         }
 
 
-        newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.product.qtd.push(newQFM);
-        newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.product.week.push(newQFMWeek);
+        newState[SUMMARY_KPIS.TRY_NEW_QFM].details.product.qtd.push(newQFM);
+        newState[SUMMARY_KPIS.TRY_NEW_QFM].details.product.week.push(newQFMWeek);
 
 
     }
 }
 export function processTrySignUpAppQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details = { ...newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details, signUpApp: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details = { ...newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details, signUpApp: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_UQFM].details, signUpApp: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details, signUpApp: { qtd: [], week: [] } };
 
 
     //New QFM
@@ -4263,20 +4263,20 @@ export function processTrySignUpAppQTDData(data, newState) {
             ww: item.CumUQFMsWW,
         }
 
-        newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details.signUpApp.qtd.push(newUQFM);
-        newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details.signUpApp.week.push(newUQFMWeek);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details.signUpApp.qtd.push(cumuUQFM);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details.signUpApp.week.push(cumuUQFMWeek);
+        newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.signUpApp.qtd.push(newUQFM);
+        newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.signUpApp.week.push(newUQFMWeek);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.signUpApp.qtd.push(cumuUQFM);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.signUpApp.week.push(cumuUQFMWeek);
 
     }
 }
 export function processTrySignUpCatQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.TRY_NEW_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_NEW_QFM].details, signUpCat: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_QFM].details, signUpCat: { qtd: [], week: [] } };
 
-    newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details, signUpCat: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.TRY_DAY_28].details = { ...newState[SUMMARY_FILTERS.TRY_DAY_28].details, signUpCat: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details, signUpCat: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_QFM].details, signUpCat: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_DAY_28].details = { ...newState[SUMMARY_KPIS.TRY_DAY_28].details, signUpCat: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details, signUpCat: { qtd: [], week: [] } };
 
 
     //New QFM
@@ -4368,24 +4368,24 @@ export function processTrySignUpCatQTDData(data, newState) {
             ww: item.CumUQFMToQFMWW,
         }
 
-        newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.signUpCat.qtd.push(newQFM);
-        newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.signUpCat.week.push(newQFMWeek);
+        newState[SUMMARY_KPIS.TRY_NEW_QFM].details.signUpCat.qtd.push(newQFM);
+        newState[SUMMARY_KPIS.TRY_NEW_QFM].details.signUpCat.week.push(newQFMWeek);
 
-        newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details.signUpCat.qtd.push(cumuQFM);
-        newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details.signUpCat.week.push(cumuQFMWeek);
-        newState[SUMMARY_FILTERS.TRY_DAY_28].details.signUpCat.qtd.push(day28);
-        newState[SUMMARY_FILTERS.TRY_DAY_28].details.signUpCat.week.push(day28Week);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details.signUpCat.qtd.push(cumuUTQ);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details.signUpCat.week.push(cumuUTQWeek);
+        newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.signUpCat.qtd.push(cumuQFM);
+        newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.signUpCat.week.push(cumuQFMWeek);
+        newState[SUMMARY_KPIS.TRY_DAY_28].details.signUpCat.qtd.push(day28);
+        newState[SUMMARY_KPIS.TRY_DAY_28].details.signUpCat.week.push(day28Week);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.signUpCat.qtd.push(cumuUTQ);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.signUpCat.week.push(cumuUTQWeek);
 
     }
 }
 
 export function processTryDownloadQTDData(data, newState){
        //Clear old Values
-       newState[SUMMARY_FILTERS.TRY_NEW_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_NEW_QFM].details, qfm: { qtd: [], week: [] } };
+       newState[SUMMARY_KPIS.TRY_NEW_QFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_QFM].details, qfm: { qtd: [], week: [] } };
 
-       newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details, qfm: { qtd: [], week: [] } };
+       newState[SUMMARY_KPIS.TRY_CUMU_QFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_QFM].details, qfm: { qtd: [], week: [] } };
        
    
        //New QFM
@@ -4441,11 +4441,11 @@ export function processTryDownloadQTDData(data, newState){
            
            
    
-           newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.qfm.qtd.push(newQFM);
-           newState[SUMMARY_FILTERS.TRY_NEW_QFM].details.qfm.week.push(newQFMWeek);
+           newState[SUMMARY_KPIS.TRY_NEW_QFM].details.qfm.qtd.push(newQFM);
+           newState[SUMMARY_KPIS.TRY_NEW_QFM].details.qfm.week.push(newQFMWeek);
    
-           newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details.qfm.qtd.push(cumuQFM);
-           newState[SUMMARY_FILTERS.TRY_CUMU_QFM].details.qfm.week.push(cumuQFMWeek);
+           newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.qfm.qtd.push(cumuQFM);
+           newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.qfm.week.push(cumuQFMWeek);
            
    
        }
@@ -4453,11 +4453,11 @@ export function processTryDownloadQTDData(data, newState){
 }
 export function processTryQFMQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details = { ...newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details, qfm: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details = { ...newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details, qfm: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_UQFM].details, qfm: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details, qfm: { qtd: [], week: [] } };
    
-    newState[SUMMARY_FILTERS.TRY_DAY_28].details = { ...newState[SUMMARY_FILTERS.TRY_DAY_28].details, qfm: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details = { ...newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details, qfm: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_DAY_28].details = { ...newState[SUMMARY_KPIS.TRY_DAY_28].details, qfm: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details, qfm: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -4550,15 +4550,15 @@ export function processTryQFMQTDData(data, newState) {
         }
 
      
-        newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details.qfm.qtd.push(newUQFM);
-        newState[SUMMARY_FILTERS.TRY_NEW_UQFM].details.qfm.week.push(newUQFMWeek);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details.qfm.qtd.push(cumuUQFM);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM].details.qfm.week.push(cumuUQFMWeek);
+        newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.qfm.qtd.push(newUQFM);
+        newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.qfm.week.push(newUQFMWeek);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.qfm.qtd.push(cumuUQFM);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.qfm.week.push(cumuUQFMWeek);
         
-        newState[SUMMARY_FILTERS.TRY_DAY_28].details.qfm.qtd.push(day28);
-        newState[SUMMARY_FILTERS.TRY_DAY_28].details.qfm.week.push(day28Week);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details.qfm.qtd.push(cumuUTQ);
-        newState[SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM].details.qfm.week.push(cumuUTQWeek);
+        newState[SUMMARY_KPIS.TRY_DAY_28].details.qfm.qtd.push(day28);
+        newState[SUMMARY_KPIS.TRY_DAY_28].details.qfm.week.push(day28Week);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.qfm.qtd.push(cumuUTQ);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.qfm.week.push(cumuUTQWeek);
 
     }
 }
@@ -4568,10 +4568,10 @@ export function processTryQFMQTDData(data, newState) {
 
 //Conversion
 export function processBuyConversionSecondaryData(data, newState) {
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].value = data.ConversionActual;
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].target = data.ConversionTarget;
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].targetFQ = data.ConversionTargetFQ;
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].vsQrf = data.ConversionVsQrf;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].value = data.ConversionActual;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].target = data.ConversionTarget;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].targetFQ = data.ConversionTargetFQ;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].vsQrf = data.ConversionVsQrf;
 }
 export function processBuyConversionMultichartData(data, newState) {
 
@@ -4601,36 +4601,36 @@ export function processBuyConversionMultichartData(data, newState) {
         uqfm.lq.push(item.ConversionLQ);
     };
     currentMulti = [uqfm.actual, uqfm.target, uqfm.ly, uqfm.lq];
-    newState[SUMMARY_FILTERS.BUY_CONVERSION]['details'].multichart = currentMulti;
+    newState[SUMMARY_KPIS.BUY_CONVERSION]['details'].multichart = currentMulti;
 
 
 }
 export function processBuyConversionQTDData(data, newState) {
 
 
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.qtdw.qtd[0].value = data.ConversionActuals;
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.qtdw.qtd[1].value = data.ConversionTarget;
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.qtdw.qtd[2].value = data.ConversionVsQrfDiff
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.qtdw.qtd[3].value = data.ConversionVsQrf;
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.qtdw.qtd[4].value = data.ConversionQQTY;
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.qtdw.qtd[5].value = data.ConversionYY;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.qtdw.qtd[0].value = data.ConversionActuals;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.qtdw.qtd[1].value = data.ConversionTarget;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.qtdw.qtd[2].value = data.ConversionVsQrfDiff
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.qtdw.qtd[3].value = data.ConversionVsQrf;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.qtdw.qtd[4].value = data.ConversionQQTY;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.qtdw.qtd[5].value = data.ConversionYY;
 
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.qtdw.week[0].value = data.ConversionCW;
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.qtdw.week[1].value = data.ConversionTargetCW;
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.qtdw.week[2].value = data.ConversionCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.qtdw.week[3].value = data.ConversionCWVsQrf;
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.qtdw.week[4].value = data.ConversionWW;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.qtdw.week[0].value = data.ConversionCW;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.qtdw.week[1].value = data.ConversionTargetCW;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.qtdw.week[2].value = data.ConversionCWVsQrfDiff;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.qtdw.week[3].value = data.ConversionCWVsQrf;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.qtdw.week[4].value = data.ConversionWW;
 
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.stats[0].value = data.ConversionVsQrf;
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.stats[1].value = data.ConversionQQTY;
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.stats[2].value = data.ConversionQQLY;
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.stats[3].value = data.ConversionYY;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.stats[0].value = data.ConversionVsQrf;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.stats[1].value = data.ConversionQQTY;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.stats[2].value = data.ConversionQQLY;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.stats[3].value = data.ConversionYY;
 
 }
 export function processBuyConversionGeoQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.geo.qtd = [];
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.geo.week = [];
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.geo.qtd = [];
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.geo.week = [];
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -4657,17 +4657,17 @@ export function processBuyConversionGeoQTDData(data, newState) {
             type: item.geo_code,
         }
 
-        newState[SUMMARY_FILTERS.BUY_CONVERSION].details.geo.qtd.push(uqfm);
-        newState[SUMMARY_FILTERS.BUY_CONVERSION].details.geo.week.push(uqfmWeek);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.geo.qtd.push(uqfm);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.geo.week.push(uqfmWeek);
     }
 
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.BUY_CONVERSION].details.geo.qtd);
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.BUY_CONVERSION].details.geo.week);
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.BUY_CONVERSION].details.geo.qtd);
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.BUY_CONVERSION].details.geo.week);
 }
 export function processBuyConversionMarketQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.market.qtd = [];
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.market.week = [];
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.market.qtd = [];
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.market.week = [];
 
 
     for (let i = 0; i < data.length; i++) {
@@ -4692,15 +4692,15 @@ export function processBuyConversionMarketQTDData(data, newState) {
             ww: item.ConversionWW,
             type: item.market_area_code,
         }
-        newState[SUMMARY_FILTERS.BUY_CONVERSION].details.market.qtd.push(uqfm);
-        newState[SUMMARY_FILTERS.BUY_CONVERSION].details.market.week.push(uqfmWeek);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.market.qtd.push(uqfm);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.market.week.push(uqfmWeek);
     }
 }
 export function processBuyConversionWebSegmentQTDData(g5, newState) {
     //Clear old Values
 
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.segment.qtd = [];
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.segment.week = [];
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.segment.qtd = [];
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.segment.week = [];
     for (let i = 0; i < g5.length; i++) {
         let item = g5[i];
         let uqfm = {
@@ -4723,15 +4723,15 @@ export function processBuyConversionWebSegmentQTDData(g5, newState) {
             ww: item.ConversionWW,
             type: item.web_segment,
         }
-        newState[SUMMARY_FILTERS.BUY_CONVERSION].details.segment.qtd.push(uqfm);
-        newState[SUMMARY_FILTERS.BUY_CONVERSION].details.segment.week.push(uqfmWeek);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.segment.qtd.push(uqfm);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.segment.week.push(uqfmWeek);
     }
 }
 export function processBuyConversionLTCQTDData(g5, newState) {
 
     //Clear old Values
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details = { ...newState[SUMMARY_FILTERS.BUY_CONVERSION].details, ltc: { qtd: [], week: [] } };
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details = { ...newState[SUMMARY_FILTERS.BUY_CONVERSION].details, ltc: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details = { ...newState[SUMMARY_KPIS.BUY_CONVERSION].details, ltc: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details = { ...newState[SUMMARY_KPIS.BUY_CONVERSION].details, ltc: { qtd: [], week: [] } };
 
     for (let i = 0; i < g5.length; i++) {
         let item = g5[i];
@@ -4757,16 +4757,16 @@ export function processBuyConversionLTCQTDData(g5, newState) {
             ww: item.ConversionWW,
             type: item.visit_type,
         }
-        newState[SUMMARY_FILTERS.BUY_CONVERSION].details.ltc.qtd.push(uqfm);
-        newState[SUMMARY_FILTERS.BUY_CONVERSION].details.ltc.week.push(uqfmWeek);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.ltc.qtd.push(uqfm);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.ltc.week.push(uqfmWeek);
     }
 }
 export function processBuyConversionConvQTDData(g5, newState) {
     // console.log(g5);
     // console.log(newState);
     //Clear old Values
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.conversion.qtd = [];
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details.conversion.week = [];
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.conversion.qtd = [];
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.conversion.week = [];
 
     for (let i = 0; i < g5.length; i++) {
         let item = g5[i];
@@ -4790,17 +4790,17 @@ export function processBuyConversionConvQTDData(g5, newState) {
             ww: item.ConversionWW,
             type: item.conversion_type,
         }
-        newState[SUMMARY_FILTERS.BUY_CONVERSION].details.conversion.qtd.push(uqfm);
-        newState[SUMMARY_FILTERS.BUY_CONVERSION].details.conversion.week.push(uqfmWeek);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.conversion.qtd.push(uqfm);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.conversion.week.push(uqfmWeek);
     }
 }
 export function processBuyConversionMobDeskQTDData(g5, newState) {
 
     //Clear old Values
 
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details = { ...newState[SUMMARY_FILTERS.BUY_CONVERSION].details, mvd: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details = { ...newState[SUMMARY_KPIS.BUY_CONVERSION].details, mvd: { qtd: [], week: [] } };
 
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details = { ...newState[SUMMARY_FILTERS.BUY_CONVERSION].details, mvd: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details = { ...newState[SUMMARY_KPIS.BUY_CONVERSION].details, mvd: { qtd: [], week: [] } };
 
 
 
@@ -4830,9 +4830,9 @@ export function processBuyConversionMobDeskQTDData(g5, newState) {
         }
 
 
-        newState[SUMMARY_FILTERS.BUY_CONVERSION].details.mvd.qtd.push(uqfm);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.mvd.qtd.push(uqfm);
 
-        newState[SUMMARY_FILTERS.BUY_CONVERSION].details.mvd.week.push(uqfmWeek);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.mvd.week.push(uqfmWeek);
 
 
     }
@@ -4842,9 +4842,9 @@ export function processBuyConversionNewRepQTDData(g5, newState) {
 
     //Clear old Values
 
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details = { ...newState[SUMMARY_FILTERS.BUY_CONVERSION].details, nvr: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details = { ...newState[SUMMARY_KPIS.BUY_CONVERSION].details, nvr: { qtd: [], week: [] } };
 
-    newState[SUMMARY_FILTERS.BUY_CONVERSION].details = { ...newState[SUMMARY_FILTERS.BUY_CONVERSION].details, nvr: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details = { ...newState[SUMMARY_KPIS.BUY_CONVERSION].details, nvr: { qtd: [], week: [] } };
 
 
 
@@ -4874,18 +4874,18 @@ export function processBuyConversionNewRepQTDData(g5, newState) {
         }
 
 
-        newState[SUMMARY_FILTERS.BUY_CONVERSION].details.nvr.qtd.push(uqfm);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.nvr.qtd.push(uqfm);
 
-        newState[SUMMARY_FILTERS.BUY_CONVERSION].details.nvr.week.push(uqfmWeek);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.nvr.week.push(uqfmWeek);
     }
 
 }
 //MKTG Srouced
 export function processBuyMKTSourcedSecondary(data, newState) {
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].value = data.MktgSourcedARRActual;
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].target = data.MktgSourcedARRTarget;
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].targetFQ = data.MktgSourcedARRTargetFQ;
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].vsQrf = data.MktgSourcedARRVsQrf;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].value = data.MktgSourcedARRActual;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].target = data.MktgSourcedARRTarget;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].targetFQ = data.MktgSourcedARRTargetFQ;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].vsQrf = data.MktgSourcedARRVsQrf;
 }
 export function processBuyMKTSourcedMultichart(data, newState) {
 
@@ -4914,32 +4914,32 @@ export function processBuyMKTSourcedMultichart(data, newState) {
         mktg.lq.push(item.MktgSourcedARRLQ);
     };
     currentMulti = [mktg.actual, mktg.target, mktg.ly, mktg.lq];
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED]['details'].multichart = currentMulti;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED]['details'].multichart = currentMulti;
 
 }
 export function processBuyMKTSourcedQTD(data, newState) {
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.qtdw.qtd[0].value = data.MktgSourcedARRActuals;
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.qtdw.qtd[1].value = data.MktgSourcedARRTarget;
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.qtdw.qtd[2].value = data.MktgSourcedARRVsQrfDiff
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.qtdw.qtd[3].value = data.MktgSourcedARRVsQrf;
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.qtdw.qtd[4].value = data.MktgSourcedARRQQTY;
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.qtdw.qtd[5].value = data.MktgSourcedARRYY;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.qtdw.qtd[0].value = data.MktgSourcedARRActuals;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.qtdw.qtd[1].value = data.MktgSourcedARRTarget;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.qtdw.qtd[2].value = data.MktgSourcedARRVsQrfDiff
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.qtdw.qtd[3].value = data.MktgSourcedARRVsQrf;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.qtdw.qtd[4].value = data.MktgSourcedARRQQTY;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.qtdw.qtd[5].value = data.MktgSourcedARRYY;
 
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.qtdw.week[0].value = data.MktgSourcedARRCW;
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.qtdw.week[1].value = data.MktgSourcedARRTargetCW;
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.qtdw.week[2].value = data.MktgSourcedARRCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.qtdw.week[3].value = data.MktgSourcedARRCWVsQrf;
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.qtdw.week[4].value = data.MktgSourcedARRWW;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.qtdw.week[0].value = data.MktgSourcedARRCW;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.qtdw.week[1].value = data.MktgSourcedARRTargetCW;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.qtdw.week[2].value = data.MktgSourcedARRCWVsQrfDiff;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.qtdw.week[3].value = data.MktgSourcedARRCWVsQrf;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.qtdw.week[4].value = data.MktgSourcedARRWW;
 
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.stats[0].value = data.MktgSourcedARRVsQrf;
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.stats[1].value = data.MktgSourcedARRQQTY;
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.stats[2].value = data.MktgSourcedARRQQLY;
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.stats[3].value = data.MktgSourcedARRYY;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.stats[0].value = data.MktgSourcedARRVsQrf;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.stats[1].value = data.MktgSourcedARRQQTY;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.stats[2].value = data.MktgSourcedARRQQLY;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.stats[3].value = data.MktgSourcedARRYY;
 }
 export function processBuyMKTSourcedGeoQTD(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.geo.qtd = [];
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.geo.week = [];
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geo.qtd = [];
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geo.week = [];
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -4966,16 +4966,16 @@ export function processBuyMKTSourcedGeoQTD(data, newState) {
             type: item.geo_code,
         }
 
-        newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.geo.qtd.push(mktg);
-        newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.geo.week.push(mktgWeek);
+        newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geo.qtd.push(mktg);
+        newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geo.week.push(mktgWeek);
     }
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.geo.qtd);
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.geo.week);
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geo.qtd);
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geo.week);
 }
 export function processBuyMKTSourcedMAQTD(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.market.qtd = [];
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.market.week = [];
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.market.qtd = [];
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.market.week = [];
 
 
     for (let i = 0; i < data.length; i++) {
@@ -5000,8 +5000,8 @@ export function processBuyMKTSourcedMAQTD(data, newState) {
             ww: item.MktgSourcedARRWW,
             type: item.market_area_code,
         }
-        newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.market.qtd.push(mktg);
-        newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.market.week.push(mktgWeek);
+        newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.market.qtd.push(mktg);
+        newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.market.week.push(mktgWeek);
     }
 }
 
@@ -5009,7 +5009,7 @@ export function processBuyMKTSourcedMAQTD(data, newState) {
 
 export function processBuyMKTSourcedChannelQTD(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details = { ...newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details, channel: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details = { ...newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details, channel: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -5035,14 +5035,14 @@ export function processBuyMKTSourcedChannelQTD(data, newState) {
         }
 
 
-        newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.channel.qtd.push(mktg);
-        newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.channel.week.push(mktgWeek);
+        newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.channel.qtd.push(mktg);
+        newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.channel.week.push(mktgWeek);
     }
 }
 export function processBuyMKTSourcedSegmentQTD(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.segment.qtd = [];
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.segment.week = [];
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.segment.qtd = [];
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.segment.week = [];
 
 
     for (let i = 0; i < data.length; i++) {
@@ -5067,14 +5067,14 @@ export function processBuyMKTSourcedSegmentQTD(data, newState) {
             ww: item.MktgSourcedARRWW,
             type: item.segment_pivot,
         }
-        newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.segment.qtd.push(mktg);
-        newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.segment.week.push(mktgWeek);
+        newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.segment.qtd.push(mktg);
+        newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.segment.week.push(mktgWeek);
     }
 }
 export function processBuyMKTSourcedProductQTD(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.product.qtd = [];
-    newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.product.week = [];
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.product.qtd = [];
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.product.week = [];
 
 
     for (let i = 0; i < data.length; i++) {
@@ -5099,18 +5099,18 @@ export function processBuyMKTSourcedProductQTD(data, newState) {
             ww: item.MktgSourcedARRWW,
             type: item.product_category,
         }
-        newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.product.qtd.push(mktg);
-        newState[SUMMARY_FILTERS.BUY_MARKETING_SOURCED].details.product.week.push(mktgWeek);
+        newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.product.qtd.push(mktg);
+        newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.product.week.push(mktgWeek);
     }
 }
 //END MKTg
 // Paid Media Spend Sourced
 export function processBuyPMSSSecondaryData(data, newState) {
 
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].value = data.PMSpendBuyActual;
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].target = data.PMSpendBuyTarget;
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].targetFQ = data.PMSpendBuyTargetFQ;
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].vsQrf = data.PMSpendBuyVsQrf;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].value = data.PMSpendBuyActual;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].target = data.PMSpendBuyTarget;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].targetFQ = data.PMSpendBuyTargetFQ;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].vsQrf = data.PMSpendBuyVsQrf;
 
 }
 export function processBuyPMSSMultichartData(data, newState) {
@@ -5143,33 +5143,33 @@ export function processBuyPMSSMultichartData(data, newState) {
 
     currentMulti = [pm.actual, pm.target, pm.ly, pm.lq];
 
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND]['details'].multichart = currentMulti;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND]['details'].multichart = currentMulti;
 }
 export function processBuyPMSSQTDData(data, newState) {
 
 
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.qtdw.qtd[0].value = data.PMSpendBuyActuals;
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.qtdw.qtd[1].value = data.PMSpendBuyTarget;
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.qtdw.qtd[2].value = data.PMSpendBuyVsQrfDiff
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.qtdw.qtd[3].value = data.PMSpendBuyVsQrf;
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.qtdw.qtd[4].value = data.PMSpendBuyQQTY;
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.qtdw.qtd[5].value = data.PMSpendBuyYY;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.qtdw.qtd[0].value = data.PMSpendBuyActuals;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.qtdw.qtd[1].value = data.PMSpendBuyTarget;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.qtdw.qtd[2].value = data.PMSpendBuyVsQrfDiff
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.qtdw.qtd[3].value = data.PMSpendBuyVsQrf;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.qtdw.qtd[4].value = data.PMSpendBuyQQTY;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.qtdw.qtd[5].value = data.PMSpendBuyYY;
 
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.qtdw.week[0].value = data.PMSpendBuyCW;
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.qtdw.week[1].value = data.PMSpendBuyTargetCW;
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.qtdw.week[2].value = data.PMSpendBuyCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.qtdw.week[3].value = data.PMSpendBuyCWVsQrf;
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.qtdw.week[4].value = data.PMSpendBuyWW;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.qtdw.week[0].value = data.PMSpendBuyCW;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.qtdw.week[1].value = data.PMSpendBuyTargetCW;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.qtdw.week[2].value = data.PMSpendBuyCWVsQrfDiff;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.qtdw.week[3].value = data.PMSpendBuyCWVsQrf;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.qtdw.week[4].value = data.PMSpendBuyWW;
 
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.stats[0].value = data.PMSpendBuyVsQrf;
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.stats[1].value = data.PMSpendBuyQQTY;
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.stats[2].value = data.PMSpendBuyQQLY;
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.stats[3].value = data.PMSpendBuyYY;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.stats[0].value = data.PMSpendBuyVsQrf;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.stats[1].value = data.PMSpendBuyQQTY;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.stats[2].value = data.PMSpendBuyQQLY;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.stats[3].value = data.PMSpendBuyYY;
 
 }
 export function processBuyPMSSGeoQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details = { ...newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details, geo: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details = { ...newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details, geo: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -5196,16 +5196,16 @@ export function processBuyPMSSGeoQTDData(data, newState) {
             type: item.geo_code,
         }
 
-        newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.geo.qtd.push(pm);
-        newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.geo.week.push(pmWeek);
+        newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geo.qtd.push(pm);
+        newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geo.week.push(pmWeek);
     }
 
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.geo.qtd);
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.geo.week);
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geo.qtd);
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geo.week);
 }
 export function processBuyPMSSMarketQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details = { ...newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details, market: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details = { ...newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details, market: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -5232,14 +5232,14 @@ export function processBuyPMSSMarketQTDData(data, newState) {
         }
 
 
-        newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.market.qtd.push(pm);
-        newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.market.week.push(pmWeek);
+        newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.market.qtd.push(pm);
+        newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.market.week.push(pmWeek);
     }
 }
 
 export function processBuyPMSSChannelQTDData(data, newState) {
     //Clear old Values
-    newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details = { ...newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details, channel: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details = { ...newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details, channel: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -5265,16 +5265,16 @@ export function processBuyPMSSChannelQTDData(data, newState) {
         }
 
 
-        newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.channel.qtd.push(pm);
-        newState[SUMMARY_FILTERS.BUY_PAID_MEDIASPEND].details.channel.week.push(pmWeek);
+        newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.channel.qtd.push(pm);
+        newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.channel.week.push(pmWeek);
     }
 }
 
 export function processBuyLTVSourcedSecondary(data,newState) {
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].value = data.LTVROIActual;
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].target = data.LTVROITarget;
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].targetFQ = data.LTVROITargetFQ;
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].vsQrf = data.LTVROIVsQrf;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].value = data.LTVROIActual;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].target = data.LTVROITarget;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].targetFQ = data.LTVROITargetFQ;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].vsQrf = data.LTVROIVsQrf;
 
 }
 export function processBuyLTVSourcedMultichart(data,newState) {
@@ -5306,31 +5306,31 @@ export function processBuyLTVSourcedMultichart(data,newState) {
 
     currentMulti = [ltv.actual, ltv.target, ltv.ly, ltv.lq];
 
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI]['details'].multichart = currentMulti;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI]['details'].multichart = currentMulti;
 }
 export function processBuyLTVSourcedQTD(data,newState) {
 
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.qtd[0].value = data.LTVROIActuals;
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.qtd[1].value = data.LTVROITarget;
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.qtd[2].value = data.LTVROIVsQrfDiff
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.qtd[3].value = data.LTVROIVsQrf;
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.qtd[4].value = data.LTVROIQQTY;
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.qtd[5].value = data.LTVROIYY;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.qtd[0].value = data.LTVROIActuals;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.qtd[1].value = data.LTVROITarget;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.qtd[2].value = data.LTVROIVsQrfDiff
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.qtd[3].value = data.LTVROIVsQrf;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.qtd[4].value = data.LTVROIQQTY;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.qtd[5].value = data.LTVROIYY;
 
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.week[0].value = data.LTVROICW;
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.week[1].value = data.LTVROITargetCW;
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.week[2].value = data.LTVROICWVsQrfDiff;
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.week[3].value = data.LTVROICWVsQrf;
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.qtdw.week[4].value = data.LTVROIWW;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.week[0].value = data.LTVROICW;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.week[1].value = data.LTVROITargetCW;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.week[2].value = data.LTVROICWVsQrfDiff;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.week[3].value = data.LTVROICWVsQrf;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.week[4].value = data.LTVROIWW;
 
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.stats[0].value = data.LTVROIVsQrf;
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.stats[1].value = data.LTVROIQQTY;
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.stats[2].value = data.LTVROIQQLY;
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.stats[3].value = data.LTVROIYY;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.stats[0].value = data.LTVROIVsQrf;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.stats[1].value = data.LTVROIQQTY;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.stats[2].value = data.LTVROIQQLY;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.stats[3].value = data.LTVROIYY;
 }
 export function processBuyLTVSourcedGeoQTD(data,newState) {
 //Clear old Values
-newState[SUMMARY_FILTERS.BUY_LTV_ROI].details = { ...newState[SUMMARY_FILTERS.BUY_LTV_ROI].details, geo: { qtd: [], week: [] } };
+newState[SUMMARY_KPIS.BUY_LTV_ROI].details = { ...newState[SUMMARY_KPIS.BUY_LTV_ROI].details, geo: { qtd: [], week: [] } };
 
 for (let i = 0; i < data.length; i++) {
     let item = data[i];
@@ -5357,17 +5357,17 @@ for (let i = 0; i < data.length; i++) {
         type: item.geo_code,
     }
 
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.geo.qtd.push(ltv);
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.geo.week.push(ltvWeek);
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.geo.qtd.push(ltv);
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.geo.week.push(ltvWeek);
 }
 
-newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.geo.qtd = processQTDOrder(newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.geo.qtd);
-newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.geo.week = processQTDOrder(newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.geo.week);
+newState[SUMMARY_KPIS.BUY_LTV_ROI].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.BUY_LTV_ROI].details.geo.qtd);
+newState[SUMMARY_KPIS.BUY_LTV_ROI].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.BUY_LTV_ROI].details.geo.week);
 
 }
 export function processBuyLTVSourcedMAQTD(data,newState) {
 //Clear old Values
-newState[SUMMARY_FILTERS.BUY_LTV_ROI].details = { ...newState[SUMMARY_FILTERS.BUY_LTV_ROI].details, market: { qtd: [], week: [] } };
+newState[SUMMARY_KPIS.BUY_LTV_ROI].details = { ...newState[SUMMARY_KPIS.BUY_LTV_ROI].details, market: { qtd: [], week: [] } };
 
 for (let i = 0; i < data.length; i++) {
     let item = data[i];
@@ -5394,13 +5394,13 @@ for (let i = 0; i < data.length; i++) {
     }
 
 
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.market.qtd.push(ltv);
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.market.week.push(ltvWeek);
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.market.qtd.push(ltv);
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.market.week.push(ltvWeek);
 }
 }
 export function processBuyLTVSourcedProductQTD(data,newState) {
 //Clear old Values
-newState[SUMMARY_FILTERS.BUY_LTV_ROI].details = { ...newState[SUMMARY_FILTERS.BUY_LTV_ROI].details, product: { qtd: [], week: [] } };
+newState[SUMMARY_KPIS.BUY_LTV_ROI].details = { ...newState[SUMMARY_KPIS.BUY_LTV_ROI].details, product: { qtd: [], week: [] } };
 
 for (let i = 0; i < data.length; i++) {
     let item = data[i];
@@ -5427,13 +5427,13 @@ for (let i = 0; i < data.length; i++) {
     }
 
 
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.product.qtd.push(ltv);
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.product.week.push(ltvWeek);
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.product.qtd.push(ltv);
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.product.week.push(ltvWeek);
 }
 }
 export function processBuyLTVSourcedSegmentQTD(data,newState) {
 //Clear old Values
-newState[SUMMARY_FILTERS.BUY_LTV_ROI].details = { ...newState[SUMMARY_FILTERS.BUY_LTV_ROI].details, segment: { qtd: [], week: [] } };
+newState[SUMMARY_KPIS.BUY_LTV_ROI].details = { ...newState[SUMMARY_KPIS.BUY_LTV_ROI].details, segment: { qtd: [], week: [] } };
 
 for (let i = 0; i < data.length; i++) {
     let item = data[i];
@@ -5460,13 +5460,13 @@ for (let i = 0; i < data.length; i++) {
     }
 
 
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.segment.qtd.push(ltv);
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.segment.week.push(ltvWeek);
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.segment.qtd.push(ltv);
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.segment.week.push(ltvWeek);
 }
 }
 export function processBuyLTVSourcedSubscriptionQTD(data,newState) {
 //Clear old Values
-newState[SUMMARY_FILTERS.BUY_LTV_ROI].details = { ...newState[SUMMARY_FILTERS.BUY_LTV_ROI].details, subscription: { qtd: [], week: [] } };
+newState[SUMMARY_KPIS.BUY_LTV_ROI].details = { ...newState[SUMMARY_KPIS.BUY_LTV_ROI].details, subscription: { qtd: [], week: [] } };
 
 for (let i = 0; i < data.length; i++) {
     let item = data[i];
@@ -5493,22 +5493,22 @@ for (let i = 0; i < data.length; i++) {
     }
 
 
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.subscription.qtd.push(ltv);
-    newState[SUMMARY_FILTERS.BUY_LTV_ROI].details.subscription.week.push(ltvWeek);
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.subscription.qtd.push(ltv);
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.subscription.week.push(ltvWeek);
 }
 }
 //Gross
 export function processBuyGrossSecondaryData(g1, newState) {
 
     // //Gross New Arr
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].value = g1.GrossARRActual;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].targetFQ = g1.GrossARRTargetFQ;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].target = g1.GrossARRTarget;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].vsQrf = g1.GrossVsQrf;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].value = g1.GrossUnitsActual;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].targetFQ = g1.GrossUnitsTargetFQ;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].target = g1.GrossUnitsTarget;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].vsQrf = g1.GrossUnitsVsQrf;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].value = g1.GrossARRActual;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].targetFQ = g1.GrossARRTargetFQ;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].target = g1.GrossARRTarget;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].vsQrf = g1.GrossVsQrf;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].value = g1.GrossUnitsActual;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].targetFQ = g1.GrossUnitsTargetFQ;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].target = g1.GrossUnitsTarget;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].vsQrf = g1.GrossUnitsVsQrf;
 
 }
 export function processBuyGrossMultichart(newState, data) {
@@ -5551,8 +5551,8 @@ export function processBuyGrossMultichart(newState, data) {
 
 
 
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR]['details'].multichart = [grossArr.actual, grossArr.target, grossArr.ly, grossArr.lq];
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS]['details'].multichart = [grossUnitsArr.actual, grossUnitsArr.target, grossUnitsArr.ly, grossUnitsArr.lq];
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR]['details'].multichart = [grossArr.actual, grossArr.target, grossArr.ly, grossArr.lq];
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS]['details'].multichart = [grossUnitsArr.actual, grossUnitsArr.target, grossUnitsArr.ly, grossUnitsArr.lq];
 
 }
 
@@ -5560,38 +5560,38 @@ export function processBuyGrossQTD(newState, data) {
     newState = Object.assign([], newState);
     console.log(data)
     // State Order: Actual, Units, QRF, QRFDiff, VSQrf, QQ, YY
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.qtdw.qtd[0].value = data[0].GrossActuals;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.qtdw.qtd[1].value = data[0].GrossTarget;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.qtdw.qtd[2].value = data[0].GrossVsQrfDiff;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.qtdw.qtd[3].value = data[0].GrossARRVsQrf;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.qtdw.qtd[4].value = data[0].GrossARRQQTY;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.qtdw.qtd[5].value = data[0].GrossARRYY;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.qtdw.week[0].value = data[0].GrossARRCW
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.qtdw.week[1].value = data[0].GrossARRTargetCW
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.qtdw.week[2].value = data[0].GrossCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.qtdw.week[3].value = data[0].GrossCWVsQrf;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.qtdw.week[4].value = data[0].GrossWW;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.stats[0].value = data[0].GrossARRVsQrf;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.stats[1].value = data[0].GrossARRQQTY;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.stats[2].value = data[0].GrossARRQQLY;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.stats[3].value = data[0].GrossARRYY;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.qtdw.qtd[0].value = data[0].GrossActuals;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.qtdw.qtd[1].value = data[0].GrossTarget;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.qtdw.qtd[2].value = data[0].GrossVsQrfDiff;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.qtdw.qtd[3].value = data[0].GrossARRVsQrf;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.qtdw.qtd[4].value = data[0].GrossARRQQTY;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.qtdw.qtd[5].value = data[0].GrossARRYY;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.qtdw.week[0].value = data[0].GrossARRCW
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.qtdw.week[1].value = data[0].GrossARRTargetCW
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.qtdw.week[2].value = data[0].GrossCWVsQrfDiff;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.qtdw.week[3].value = data[0].GrossCWVsQrf;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.qtdw.week[4].value = data[0].GrossWW;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.stats[0].value = data[0].GrossARRVsQrf;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.stats[1].value = data[0].GrossARRQQTY;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.stats[2].value = data[0].GrossARRQQLY;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.stats[3].value = data[0].GrossARRYY;
 
 
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[0].value = data[0].GrossUnitsActuals;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[1].value = data[0].GrossUnitsTarget;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[2].value = data[0].GrossUnitsVsQrfDiff;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[3].value = data[0].GrossUnitsVsQrf;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[4].value = data[0].GrossUnitsQQLY;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[5].value = data[0].GrossUnitsYY;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.qtdw.week[0].value = data[0].GrossUnitsCW
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.qtdw.week[1].value = data[0].GrossUnitsTargetCW;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.qtdw.week[2].value = data[0].GrossUnitsCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.qtdw.week[3].value = data[0].GrossUnitsCWVsQrf;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.qtdw.week[4].value = data[0].GrossUnitsWW;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.stats[0].value = data[0].GrossUnitsVsQrf;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.stats[1].value = data[0].GrossUnitsQQTY;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.stats[2].value = data[0].GrossUnitsQQLY;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.stats[3].value = data[0].GrossUnitsYY;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[0].value = data[0].GrossUnitsActuals;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[1].value = data[0].GrossUnitsTarget;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[2].value = data[0].GrossUnitsVsQrfDiff;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[3].value = data[0].GrossUnitsVsQrf;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[4].value = data[0].GrossUnitsQQLY;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[5].value = data[0].GrossUnitsYY;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.week[0].value = data[0].GrossUnitsCW
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.week[1].value = data[0].GrossUnitsTargetCW;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.week[2].value = data[0].GrossUnitsCWVsQrfDiff;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.week[3].value = data[0].GrossUnitsCWVsQrf;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.week[4].value = data[0].GrossUnitsWW;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.stats[0].value = data[0].GrossUnitsVsQrf;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.stats[1].value = data[0].GrossUnitsQQTY;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.stats[2].value = data[0].GrossUnitsQQLY;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.stats[3].value = data[0].GrossUnitsYY;
 
 }
 export function processBuyGrossGeoQTD(newState, data) {
@@ -5635,8 +5635,8 @@ export function processBuyGrossGeoQTD(newState, data) {
     }
 
     // console.log('YO', item1);
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.geo.qtd = processQTDOrder(item2);
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.geo.qtd = processQTDOrder(item1);
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.geo.qtd = processQTDOrder(item2);
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.geo.qtd = processQTDOrder(item1);
 
 }
 
@@ -5725,8 +5725,8 @@ export function processBuyGrossGeoWeek(newState, data) {
         item2.push(gross);
         item3.push(grossUnits);
     }
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.geo.week = processQTDOrder(item2);
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.geo.week = processQTDOrder(item3);
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.geo.week = processQTDOrder(item2);
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.geo.week = processQTDOrder(item3);
 
 }
 export function processBuyGrossMarketQTD(newState, data) {
@@ -5767,8 +5767,8 @@ export function processBuyGrossMarketQTD(newState, data) {
     }
 
     // console.log('YO', item1);
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.market.qtd = item2;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.market.qtd = item1;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.market.qtd = item2;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.market.qtd = item1;
 
 }
 export function processBuyGrossMarketWeek(newState, data) {
@@ -5805,8 +5805,8 @@ export function processBuyGrossMarketWeek(newState, data) {
         item2.push(gross);
         item3.push(grossUnits);
     }
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.market.week = item2;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.market.week = item3;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.market.week = item2;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.market.week = item3;
 }
 export function processBuyGrossrouteQTD(newState, data) {
 
@@ -5848,8 +5848,8 @@ export function processBuyGrossrouteQTD(newState, data) {
     }
 
     // console.log('YO', item1);
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.route.qtd = item2;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.route.qtd = item1;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.route.qtd = item2;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.route.qtd = item1;
 
 }
 export function processBuyGrossrouteWeek(newState, data) {
@@ -5888,8 +5888,8 @@ export function processBuyGrossrouteWeek(newState, data) {
         item2.push(gross);
         item3.push(grossUnits);
     }
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.route.week = item2;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.route.week = item3;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.route.week = item2;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.route.week = item3;
 }
 export function processBuyGrossSegmentQTD(newState, data) {
 
@@ -5931,8 +5931,8 @@ export function processBuyGrossSegmentQTD(newState, data) {
     }
 
     // console.log('YO', item1);
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.segment.qtd = item2;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.segment.qtd = item1;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.segment.qtd = item2;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.segment.qtd = item1;
 
 }
 export function processBuyGrossSegmentWeek(newState, data) {
@@ -5971,8 +5971,8 @@ export function processBuyGrossSegmentWeek(newState, data) {
         item2.push(gross);
         item3.push(grossUnits);
     }
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.segment.week = item2;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.segment.week = item3;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.segment.week = item2;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.segment.week = item3;
 
 }
 export function processBuyGrossproductQTD(newState, data) {
@@ -6015,8 +6015,8 @@ export function processBuyGrossproductQTD(newState, data) {
     }
 
     // console.log('YO', item1);
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.product.qtd = item2;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.product.qtd = item1;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.product.qtd = item2;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.product.qtd = item1;
 
 }
 export function processBuyGrossProductWeek(newState, data) {
@@ -6055,60 +6055,60 @@ export function processBuyGrossProductWeek(newState, data) {
         item2.push(gross);
         item3.push(grossUnits);
     }
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWARR].details.product.week = item2;
-    newState[SUMMARY_FILTERS.BUY_GROSS_NEWUNITS].details.product.week = item3;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.product.week = item2;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.product.week = item3;
 
 }
 
 export function processUseSecondaryData(data, newState, cumuData) {
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].value = data.ActivatedActual;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].targetFQ = data.ActivatedTargetFQ;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].target = data.ActivatedTarget;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].vsQrf = data.ActivatedVsQRF;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].cumuMembers = cumuData.CumuPaidMembersActual;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].value = data.ActivatedActual;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].targetFQ = data.ActivatedTargetFQ;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].target = data.ActivatedTarget;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].vsQrf = data.ActivatedVsQRF;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].cumuMembers = cumuData.CumuPaidMembersActual;
 
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].value = data.Week04WAUActual;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].targetFQ = data.Week04WAUTargetFQ;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].target = data.Week04WAUTarget;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].vsQrf = data.Week04WAUVsQRF;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].cumuMembers = cumuData.CumuPaidMembersActual;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].value = data.Week04WAUActual;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].targetFQ = data.Week04WAUTargetFQ;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].target = data.Week04WAUTarget;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].vsQrf = data.Week04WAUVsQRF;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].cumuMembers = cumuData.CumuPaidMembersActual;
 
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].value = data.PaidMAUActual;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].targetFQ = data.PaidMAUTargetFQ;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].target = data.PaidMAUTarget;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].vsQrf = data.PaidMAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].cumuMembers = cumuData.CumuPaidMembersActual;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].value = data.PaidMAUActual;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].targetFQ = data.PaidMAUTargetFQ;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].target = data.PaidMAUTarget;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].vsQrf = data.PaidMAUVsQrf;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].cumuMembers = cumuData.CumuPaidMembersActual;
 
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].value = data.LowCEIActual;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].targetFQ = data.LowCEITargetFQ;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].target = data.LowCEITarget;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].vsQrf = data.LowCEIVsQRF;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].cumuMembers = cumuData.CumuPaidMembersActual;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].value = data.LowCEIActual;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].targetFQ = data.LowCEITargetFQ;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].target = data.LowCEITarget;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].vsQrf = data.LowCEIVsQRF;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].cumuMembers = cumuData.CumuPaidMembersActual;
 
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].value = data.MediumCEIActual;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].targetFQ = data.MediumCEITargetFQ;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].target = data.MediumCEITarget;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].vsQrf = data.MediumCEIVsQRF;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].cumuMembers = cumuData.CumuPaidMembersActual;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].value = data.MediumCEIActual;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].targetFQ = data.MediumCEITargetFQ;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].target = data.MediumCEITarget;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].vsQrf = data.MediumCEIVsQRF;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].cumuMembers = cumuData.CumuPaidMembersActual;
 
 
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].value = data.HighCEIActual;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].targetFQ = data.HighCEITargetFQ;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].target = data.HighCEITarget;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].vsQrf = data.HighCEIVsQRF;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].cumuMembers = cumuData.CumuPaidMembersActual;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].value = data.HighCEIActual;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].targetFQ = data.HighCEITargetFQ;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].target = data.HighCEITarget;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].vsQrf = data.HighCEIVsQRF;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].cumuMembers = cumuData.CumuPaidMembersActual;
 
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].value = data.ZeroCEIActual;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].targetFQ = data.ZeroCEITargetFQ;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].target = data.ZeroCEITarget;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].vsQrf = data.ZeroCEIVsQRF;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].cumuMembers = cumuData.CumuPaidMembersActual;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].value = data.ZeroCEIActual;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].targetFQ = data.ZeroCEITargetFQ;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].target = data.ZeroCEITarget;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].vsQrf = data.ZeroCEIVsQRF;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].cumuMembers = cumuData.CumuPaidMembersActual;
 
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].value = data.RepeatMAUActual;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].targetFQ = data.RepeatMAUTargetFQ;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].target = data.RepeatMAUTarget;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].vsQrf = data.RepeatMAUVsQRF;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].cumuMembers = cumuData.CumuPaidMembersActual;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].value = data.RepeatMAUActual;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].targetFQ = data.RepeatMAUTargetFQ;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].target = data.RepeatMAUTarget;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].vsQrf = data.RepeatMAUVsQRF;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].cumuMembers = cumuData.CumuPaidMembersActual;
     
 
 }
@@ -6227,145 +6227,145 @@ export function processUseMultichartData(data, newState) {
 
     console.log('Multichart', activated, zerocei, rum, monthreturn, lowcei, highcei, mediumcei, wk4)
 
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED]['details'].multichart = [activated.actual, activated.target, activated.ly, activated.lq];
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI]['details'].multichart = [zerocei.actual, zerocei.target, zerocei.ly, zerocei.lq];
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU]['details'].multichart = [rum.actual, rum.target, rum.ly, rum.lq];
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE]['details'].multichart = [monthreturn.actual, monthreturn.target, monthreturn.ly, monthreturn.lq];
-    newState[SUMMARY_FILTERS.USE_LOW_CEI]['details'].multichart = [lowcei.actual, lowcei.target, lowcei.ly, lowcei.lq];
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI]['details'].multichart = [highcei.actual, highcei.target, highcei.ly, highcei.lq];
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI]['details'].multichart = [mediumcei.actual, mediumcei.target, mediumcei.ly, mediumcei.lq];
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE]['details'].multichart = [wk4.actual, wk4.target, wk4.ly, wk4.lq];
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED]['details'].multichart = [activated.actual, activated.target, activated.ly, activated.lq];
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI]['details'].multichart = [zerocei.actual, zerocei.target, zerocei.ly, zerocei.lq];
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU]['details'].multichart = [rum.actual, rum.target, rum.ly, rum.lq];
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE]['details'].multichart = [monthreturn.actual, monthreturn.target, monthreturn.ly, monthreturn.lq];
+    newState[SUMMARY_KPIS.USE_LOW_CEI]['details'].multichart = [lowcei.actual, lowcei.target, lowcei.ly, lowcei.lq];
+    newState[SUMMARY_KPIS.USE_HIGH_CEI]['details'].multichart = [highcei.actual, highcei.target, highcei.ly, highcei.lq];
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI]['details'].multichart = [mediumcei.actual, mediumcei.target, mediumcei.ly, mediumcei.lq];
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE]['details'].multichart = [wk4.actual, wk4.target, wk4.ly, wk4.lq];
 
 }
 export function processUseQTDData(data, newState) {
 
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[0].value = data[0].ActivatedActual;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[1].value = data[0].ActivatedTarget;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[2].value = data[0].ActivatedVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[3].value = data[0].ActivatedVsQrf;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[4].value = data[0].ActivatedQQTY;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[5].value = data[0].ActivatedYY;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.week[0].value = data[0].ActivatedActual;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.week[1].value = data[0].ActivatedTarget;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.week[2].value = data[0].ActivatedVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.week[3].value = data[0].ActivatedVsQrf;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.qtdw.week[4].value = data[0].ActivatedWW;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.stats[0].value = data[0].ActivatedVsQrf;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.stats[1].value = data[0].ActivatedQQTY;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.stats[2].value = data[0].ActivatedQQLY;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.stats[3].value = data[0].ActivatedYY;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[0].value = data[0].ActivatedActual;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[1].value = data[0].ActivatedTarget;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[2].value = data[0].ActivatedVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[3].value = data[0].ActivatedVsQrf;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[4].value = data[0].ActivatedQQTY;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.qtdw.qtd[5].value = data[0].ActivatedYY;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.qtdw.week[0].value = data[0].ActivatedActual;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.qtdw.week[1].value = data[0].ActivatedTarget;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.qtdw.week[2].value = data[0].ActivatedVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.qtdw.week[3].value = data[0].ActivatedVsQrf;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.qtdw.week[4].value = data[0].ActivatedWW;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.stats[0].value = data[0].ActivatedVsQrf;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.stats[1].value = data[0].ActivatedQQTY;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.stats[2].value = data[0].ActivatedQQLY;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.stats[3].value = data[0].ActivatedYY;
 
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[0].value = data[0].PaidMAUActual;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[1].value = data[0].PaidMAUTarget;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[2].value = data[0].PaidMAUVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[3].value = data[0].PaidMAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[4].value = data[0].PaidMAUQQTY;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[5].value = data[0].PaidMAUYY;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.week[0].value = data[0].PaidMAUActual;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.week[1].value = data[0].PaidMAUTarget;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.week[2].value = data[0].PaidMAUVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.week[3].value = data[0].PaidMAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.qtdw.week[4].value = data[0].PaidMAUWW;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.stats[0].value = data[0].PaidMAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.stats[1].value = data[0].PaidMAUQQTY;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.stats[2].value = data[0].PaidMAUQQLY;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.stats[3].value = data[0].PaidMAUYY;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[0].value = data[0].PaidMAUActual;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[1].value = data[0].PaidMAUTarget;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[2].value = data[0].PaidMAUVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[3].value = data[0].PaidMAUVsQrf;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[4].value = data[0].PaidMAUQQTY;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.qtdw.qtd[5].value = data[0].PaidMAUYY;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.qtdw.week[0].value = data[0].PaidMAUActual;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.qtdw.week[1].value = data[0].PaidMAUTarget;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.qtdw.week[2].value = data[0].PaidMAUVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.qtdw.week[3].value = data[0].PaidMAUVsQrf;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.qtdw.week[4].value = data[0].PaidMAUWW;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.stats[0].value = data[0].PaidMAUVsQrf;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.stats[1].value = data[0].PaidMAUQQTY;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.stats[2].value = data[0].PaidMAUQQLY;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.stats[3].value = data[0].PaidMAUYY;
 
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.qtd[0].value = data[0].LowCEIActual;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.qtd[1].value = data[0].LowCEITarget;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.qtd[2].value = data[0].LowCEIVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.qtd[3].value = data[0].LowCEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.qtd[4].value = data[0].LowCEIQQTY;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.qtd[5].value = data[0].LowCEIYY;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.week[0].value = data[0].LowCEIActual;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.week[1].value = data[0].LowCEITarget;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.week[2].value = data[0].LowCEIVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.week[3].value = data[0].LowCEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.qtdw.week[4].value = data[0].LowCEIWW;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.stats[0].value = data[0].LowCEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.stats[1].value = data[0].LowCEIQQTY;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.stats[2].value = data[0].LowCEIQQLY;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.stats[3].value = data[0].LowCEIYY;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.qtdw.qtd[0].value = data[0].LowCEIActual;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.qtdw.qtd[1].value = data[0].LowCEITarget;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.qtdw.qtd[2].value = data[0].LowCEIVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.qtdw.qtd[3].value = data[0].LowCEIVsQrf;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.qtdw.qtd[4].value = data[0].LowCEIQQTY;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.qtdw.qtd[5].value = data[0].LowCEIYY;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.qtdw.week[0].value = data[0].LowCEIActual;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.qtdw.week[1].value = data[0].LowCEITarget;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.qtdw.week[2].value = data[0].LowCEIVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.qtdw.week[3].value = data[0].LowCEIVsQrf;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.qtdw.week[4].value = data[0].LowCEIWW;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.stats[0].value = data[0].LowCEIVsQrf;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.stats[1].value = data[0].LowCEIQQTY;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.stats[2].value = data[0].LowCEIQQLY;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.stats[3].value = data[0].LowCEIYY;
 
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.qtd[0].value = data[0].MediumCEIActual;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.qtd[1].value = data[0].MediumCEITarget;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.qtd[2].value = data[0].MediumCEIVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.qtd[3].value = data[0].MediumCEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.qtd[4].value = data[0].MediumCEIQQTY;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.qtd[5].value = data[0].MediumCEIYY;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.week[0].value = data[0].MediumCEIActual;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.week[1].value = data[0].MediumCEITarget;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.week[2].value = data[0].MediumCEIVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.week[3].value = data[0].MediumCEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.qtdw.week[4].value = data[0].MediumCEIWW;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.stats[0].value = data[0].MediumCEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.stats[1].value = data[0].MediumCEIQQTY;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.stats[2].value = data[0].MediumCEIQQLY;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.stats[3].value = data[0].MediumCEIYY;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.qtdw.qtd[0].value = data[0].MediumCEIActual;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.qtdw.qtd[1].value = data[0].MediumCEITarget;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.qtdw.qtd[2].value = data[0].MediumCEIVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.qtdw.qtd[3].value = data[0].MediumCEIVsQrf;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.qtdw.qtd[4].value = data[0].MediumCEIQQTY;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.qtdw.qtd[5].value = data[0].MediumCEIYY;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.qtdw.week[0].value = data[0].MediumCEIActual;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.qtdw.week[1].value = data[0].MediumCEITarget;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.qtdw.week[2].value = data[0].MediumCEIVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.qtdw.week[3].value = data[0].MediumCEIVsQrf;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.qtdw.week[4].value = data[0].MediumCEIWW;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.stats[0].value = data[0].MediumCEIVsQrf;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.stats[1].value = data[0].MediumCEIQQTY;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.stats[2].value = data[0].MediumCEIQQLY;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.stats[3].value = data[0].MediumCEIYY;
 
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.qtd[0].value = data[0].RepeatMAUActual;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.qtd[1].value = data[0].RepeatMAUTarget;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.qtd[2].value = data[0].RepeatMAUVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.qtd[3].value = data[0].RepeatMAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.qtd[4].value = data[0].RepeatMAUQQTY;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.qtd[5].value = data[0].RepeatMAUYY;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.week[0].value = data[0].RepeatMAUActual;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.week[1].value = data[0].RepeatMAUTarget;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.week[2].value = data[0].RepeatMAUVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.week[3].value = data[0].RepeatMAUQQTY;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.qtdw.week[4].value = data[0].RepeatMAUWW;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.stats[0].value = data[0].RepeatMAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.stats[1].value = data[0].RepeatMAUQQTY;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.stats[2].value = data[0].RepeatMAUQQLY;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.stats[3].value = data[0].RepeatMAUYY;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.qtd[0].value = data[0].RepeatMAUActual;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.qtd[1].value = data[0].RepeatMAUTarget;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.qtd[2].value = data[0].RepeatMAUVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.qtd[3].value = data[0].RepeatMAUVsQrf;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.qtd[4].value = data[0].RepeatMAUQQTY;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.qtd[5].value = data[0].RepeatMAUYY;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.week[0].value = data[0].RepeatMAUActual;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.week[1].value = data[0].RepeatMAUTarget;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.week[2].value = data[0].RepeatMAUVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.week[3].value = data[0].RepeatMAUQQTY;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.week[4].value = data[0].RepeatMAUWW;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.stats[0].value = data[0].RepeatMAUVsQrf;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.stats[1].value = data[0].RepeatMAUQQTY;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.stats[2].value = data[0].RepeatMAUQQLY;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.stats[3].value = data[0].RepeatMAUYY;
 
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.qtd[0].value = data[0].HighCEIActual;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.qtd[1].value = data[0].HighCEITarget;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.qtd[2].value = data[0].HighCEIVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.qtd[3].value = data[0].HighCEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.qtd[4].value = data[0].HighCEIQQTY;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.qtd[5].value = data[0].HighCEIYY;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.week[0].value = data[0].HighCEITarget;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.week[1].value = data[0].HighCEIVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.week[2].value = data[0].HighCEIVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.week[3].value = data[0].HighCEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.qtdw.week[4].value = data[0].HighCEIWW;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.stats[0].value = data[0].HighCEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.stats[1].value = data[0].HighCEIQQTY;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.stats[2].value = data[0].HighCEIQQLY;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.stats[3].value = data[0].HighCEIYY;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.qtd[0].value = data[0].HighCEIActual;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.qtd[1].value = data[0].HighCEITarget;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.qtd[2].value = data[0].HighCEIVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.qtd[3].value = data[0].HighCEIVsQrf;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.qtd[4].value = data[0].HighCEIQQTY;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.qtd[5].value = data[0].HighCEIYY;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.week[0].value = data[0].HighCEITarget;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.week[1].value = data[0].HighCEIVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.week[2].value = data[0].HighCEIVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.week[3].value = data[0].HighCEIVsQrf;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.week[4].value = data[0].HighCEIWW;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.stats[0].value = data[0].HighCEIVsQrf;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.stats[1].value = data[0].HighCEIQQTY;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.stats[2].value = data[0].HighCEIQQLY;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.stats[3].value = data[0].HighCEIYY;
 
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.qtdw.qtd[0].value = data[0].Week04WAUActual;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.qtdw.qtd[1].value = data[0].Week04WAUTarget;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.qtdw.qtd[2].value = data[0].Week04WAUVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.qtdw.qtd[3].value = data[0].Week04WAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.qtdw.qtd[4].value = data[0].Week04WAUQQTY;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.qtdw.qtd[5].value = data[0].Week04WAUYY;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.qtdw.week[0].value = data[0].Week04WAUActual;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.qtdw.week[1].value = data[0].Week04WAUTarget;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.qtdw.week[2].value = data[0].Week04WAUVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.qtdw.week[3].value = data[0].Week04WAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.qtdw.week[4].value = data[0].Week04WAUWW;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.stats[0].value = data[0].Week04WAUVsQrf;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.stats[1].value = data[0].Week04WAUQQTY;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.stats[2].value = data[0].Week04WAUQQLY;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.stats[3].value = data[0].Week04WAUYY;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.qtdw.qtd[0].value = data[0].Week04WAUActual;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.qtdw.qtd[1].value = data[0].Week04WAUTarget;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.qtdw.qtd[2].value = data[0].Week04WAUVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.qtdw.qtd[3].value = data[0].Week04WAUVsQrf;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.qtdw.qtd[4].value = data[0].Week04WAUQQTY;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.qtdw.qtd[5].value = data[0].Week04WAUYY;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.qtdw.week[0].value = data[0].Week04WAUActual;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.qtdw.week[1].value = data[0].Week04WAUTarget;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.qtdw.week[2].value = data[0].Week04WAUVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.qtdw.week[3].value = data[0].Week04WAUVsQrf;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.qtdw.week[4].value = data[0].Week04WAUWW;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.stats[0].value = data[0].Week04WAUVsQrf;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.stats[1].value = data[0].Week04WAUQQTY;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.stats[2].value = data[0].Week04WAUQQLY;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.stats[3].value = data[0].Week04WAUYY;
 
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.qtd[0].value = data[0].ZeroCEIActual;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.qtd[1].value = data[0].ZeroCEITarget;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.qtd[2].value = data[0].ZeroCEIVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.qtd[3].value = data[0].ZeroCEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.qtd[4].value = data[0].ZeroCEIQQTY;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.qtd[5].value = data[0].ZeroCEIYY;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.week[0].value = data[0].ZeroCEIActual;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.week[1].value = data[0].ZeroCEITarget;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.week[2].value = data[0].ZeroCEIVsQRFDiff;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.week[3].value = data[0].ZeroCEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.qtdw.week[4].value = data[0].ZeroCEIWW;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.stats[0].value = data[0].ZeroCEIVsQrf;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.stats[1].value = data[0].ZeroCEIQQTY;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.stats[2].value = data[0].ZeroCEIQQLY;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.stats[3].value = data[0].ZeroCEIYY;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.qtdw.qtd[0].value = data[0].ZeroCEIActual;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.qtdw.qtd[1].value = data[0].ZeroCEITarget;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.qtdw.qtd[2].value = data[0].ZeroCEIVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.qtdw.qtd[3].value = data[0].ZeroCEIVsQrf;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.qtdw.qtd[4].value = data[0].ZeroCEIQQTY;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.qtdw.qtd[5].value = data[0].ZeroCEIYY;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.qtdw.week[0].value = data[0].ZeroCEIActual;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.qtdw.week[1].value = data[0].ZeroCEITarget;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.qtdw.week[2].value = data[0].ZeroCEIVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.qtdw.week[3].value = data[0].ZeroCEIVsQrf;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.qtdw.week[4].value = data[0].ZeroCEIWW;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.stats[0].value = data[0].ZeroCEIVsQrf;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.stats[1].value = data[0].ZeroCEIQQTY;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.stats[2].value = data[0].ZeroCEIQQLY;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.stats[3].value = data[0].ZeroCEIYY;
 }
 export function processUseGeoQTDData(data, newState) {
 
@@ -6587,30 +6587,30 @@ export function processUseGeoQTDData(data, newState) {
 
     }
 
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.geo.qtd = processQTDOrder(item1);
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.geo.week = processQTDOrder(item1Week);
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.geo.qtd = processQTDOrder(item1);
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.geo.week = processQTDOrder(item1Week);
 
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.geo.qtd = processQTDOrder(item2);
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.geo.week = processQTDOrder(item2Week);
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.geo.qtd = processQTDOrder(item2);
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.geo.week = processQTDOrder(item2Week);
 
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.geo.qtd = processQTDOrder(item3);
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.geo.week = processQTDOrder(item3Week);
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.geo.qtd = processQTDOrder(item3);
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.geo.week = processQTDOrder(item3Week);
 
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.geo.qtd = processQTDOrder(item4);
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.geo.week = processQTDOrder(item4Week);
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.geo.qtd = processQTDOrder(item4);
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.geo.week = processQTDOrder(item4Week);
 
 
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.geo.qtd = processQTDOrder(item7);
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.geo.week = processQTDOrder(item7Week);
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.geo.qtd = processQTDOrder(item7);
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.geo.week = processQTDOrder(item7Week);
 
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.geo.qtd = processQTDOrder(item5);
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.geo.week = processQTDOrder(item5Week);
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.geo.qtd = processQTDOrder(item5);
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.geo.week = processQTDOrder(item5Week);
 
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.geo.qtd = processQTDOrder(item6);
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.geo.week = processQTDOrder(item6Week);
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.geo.qtd = processQTDOrder(item6);
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.geo.week = processQTDOrder(item6Week);
 
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.geo.qtd = processQTDOrder(item8);
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.geo.week = processQTDOrder(item8Week);
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.geo.qtd = processQTDOrder(item8);
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.geo.week = processQTDOrder(item8Week);
 
 }
 export function processUseMarketQTDData(data, newState) {
@@ -6834,30 +6834,30 @@ export function processUseMarketQTDData(data, newState) {
     }
 
 
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.market.qtd = item1;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.market.week = item1Week;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.market.qtd = item1;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.market.week = item1Week;
 
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.market.qtd = item2;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.market.week = item2Week;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.market.qtd = item2;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.market.week = item2Week;
 
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.market.qtd = item3;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.market.week = item3Week;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.market.qtd = item3;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.market.week = item3Week;
 
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.market.qtd = item4;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.market.week = item4Week;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.market.qtd = item4;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.market.week = item4Week;
 
 
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.market.qtd = item7;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.market.week = item7Week;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.market.qtd = item7;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.market.week = item7Week;
 
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.market.qtd = item5;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.market.week = item5Week;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.market.qtd = item5;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.market.week = item5Week;
 
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.market.qtd = item6;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.market.week = item6Week;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.market.qtd = item6;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.market.week = item6Week;
 
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.market.qtd = item8;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.market.week = item8Week;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.market.qtd = item8;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.market.week = item8Week;
 }
 export function processUseSubscriptionQTDData(data, newState) {
       
@@ -7080,30 +7080,30 @@ export function processUseSubscriptionQTDData(data, newState) {
     }
 
 
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.subscription.qtd = item1;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.subscription.week = item1Week;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.subscription.qtd = item1;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.subscription.week = item1Week;
 
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.subscription.qtd = item2;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.subscription.week = item2Week;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.subscription.qtd = item2;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.subscription.week = item2Week;
 
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.subscription.qtd = item3;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.subscription.week = item3Week;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.subscription.qtd = item3;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.subscription.week = item3Week;
 
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.subscription.qtd = item4;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.subscription.week = item4Week;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.subscription.qtd = item4;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.subscription.week = item4Week;
 
 
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.subscription.qtd = item7;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.subscription.week = item7Week;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.subscription.qtd = item7;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.subscription.week = item7Week;
 
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.subscription.qtd = item5;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.subscription.week = item5Week;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.subscription.qtd = item5;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.subscription.week = item5Week;
 
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.subscription.qtd = item6;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.subscription.week = item6Week;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.subscription.qtd = item6;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.subscription.week = item6Week;
 
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.subscription.qtd = item8;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.subscription.week = item8Week;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.subscription.qtd = item8;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.subscription.week = item8Week;
 }
 export function processUseSegmentQTDData(data, newState) {
       
@@ -7326,49 +7326,49 @@ export function processUseSegmentQTDData(data, newState) {
     }
 
 
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.segment.qtd = item1;
-    newState[SUMMARY_FILTERS.USE_PERCENT_ACTIVATED].details.segment.week = item1Week;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.segment.qtd = item1;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.segment.week = item1Week;
 
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.segment.qtd = item2;
-    newState[SUMMARY_FILTERS.USE_MONTH_RETURN_RATE].details.segment.week = item2Week;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.segment.qtd = item2;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.segment.week = item2Week;
 
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.segment.qtd = item3;
-    newState[SUMMARY_FILTERS.USE_REPEAT_USER_MAU].details.segment.week = item3Week;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.segment.qtd = item3;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.segment.week = item3Week;
 
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.segment.qtd = item4;
-    newState[SUMMARY_FILTERS.USE_LOW_CEI].details.segment.week = item4Week;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.segment.qtd = item4;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.segment.week = item4Week;
 
 
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.segment.qtd = item7;
-    newState[SUMMARY_FILTERS.USE_MEDIUM_CEI].details.segment.week = item7Week;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.segment.qtd = item7;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.segment.week = item7Week;
 
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.segment.qtd = item5;
-    newState[SUMMARY_FILTERS.USE_HIGH_CEI].details.segment.week = item5Week;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.segment.qtd = item5;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.segment.week = item5Week;
 
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.segment.qtd = item6;
-    newState[SUMMARY_FILTERS.USE_WK4_WAU_RATE].details.segment.week = item6Week;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.segment.qtd = item6;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.segment.week = item6Week;
 
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.segment.qtd = item8;
-    newState[SUMMARY_FILTERS.USE_0_INACTIVE_CEI].details.segment.week = item8Week;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.segment.qtd = item8;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.segment.week = item8Week;
 }
 
 export function processRenewCancelSecondaryData(g1, newState, AdobeData, EtailData) {
 
     //  //Cacncellations
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].value = g1.data[0].CancelARRActual;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].targetFQ = g1.data[0].CancelARRTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].target = g1.data[0].CancelARRTarget;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].vsQrf = g1.data[0].CancelVsQrf;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].value = g1.data[0].CancelARRActual;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].targetFQ = g1.data[0].CancelARRTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].target = g1.data[0].CancelARRTarget;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].vsQrf = g1.data[0].CancelVsQrf;
 
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].value = AdobeData.data[0].CancelARRActual;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].targetFQ = AdobeData.data[0].CancelARRTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].target = AdobeData.data[0].CancelARRTarget;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].vsQrf = AdobeData.data[0].CancelVsQrf;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].value = AdobeData.data[0].CancelARRActual;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].targetFQ = AdobeData.data[0].CancelARRTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].target = AdobeData.data[0].CancelARRTarget;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].vsQrf = AdobeData.data[0].CancelVsQrf;
 
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].value = EtailData.data[0].CancelARRActual;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].targetFQ = EtailData.data[0].CancelARRTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].target = EtailData.data[0].CancelARRTarget;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].vsQrf = EtailData.data[0].CancelVsQrf;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].value = EtailData.data[0].CancelARRActual;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].targetFQ = EtailData.data[0].CancelARRTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].target = EtailData.data[0].CancelARRTarget;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].vsQrf = EtailData.data[0].CancelVsQrf;
     // console.log('New State AT the end of secondary',newState);
 }
 export function processRenewCancelMultichart(newState, data, AdobeData, EtailData) {
@@ -7434,69 +7434,69 @@ export function processRenewCancelMultichart(newState, data, AdobeData, EtailDat
     let cancA = [netCancellationsAdobe.actual, netCancellationsAdobe.target, netCancellationsAdobe.ly, netCancellationsAdobe.lq];
     let cancE = [netCancellationsEatil.actual, netCancellationsEatil.target, netCancellationsEatil.ly, netCancellationsEatil.lq];
 
-    newState[SUMMARY_FILTERS.RENEW_CANCEL]['details'].multichart = canc;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM]['details'].multichart = cancA;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E]['details'].multichart = cancE;
+    newState[SUMMARY_KPIS.RENEW_CANCEL]['details'].multichart = canc;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM]['details'].multichart = cancA;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E]['details'].multichart = cancE;
 
 }
 export function processRenewCancelQTD(newState, findata, AdobeData, EtailData) {
     newState = Object.assign([], newState);
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.qtdw.qtd[0].value = findata.CancelActuals;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.qtdw.qtd[1].value = findata.CancelUnitsActual;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.qtdw.qtd[2].value = findata.CancelTarget;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.qtdw.qtd[3].value = findata.CancelVsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.qtdw.qtd[4].value = findata.CancelARRVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.qtdw.qtd[5].value = findata.CancelARRQQTY;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.qtdw.qtd[6].value = findata.CancelARRYY;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.qtdw.week[0].value = findata.CancelARRCW;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.qtdw.week[1].value = findata.CancelUnitsCW;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.qtdw.week[2].value = findata.CancelARRTargetCW
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.qtdw.week[3].value = findata.CancelCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.qtdw.week[4].value = findata.CancelCWVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.qtdw.week[5].value = findata.CancelWW;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.qtdw.qtd[0].value = findata.CancelActuals;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.qtdw.qtd[1].value = findata.CancelUnitsActual;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.qtdw.qtd[2].value = findata.CancelTarget;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.qtdw.qtd[3].value = findata.CancelVsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.qtdw.qtd[4].value = findata.CancelARRVsQrf;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.qtdw.qtd[5].value = findata.CancelARRQQTY;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.qtdw.qtd[6].value = findata.CancelARRYY;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.qtdw.week[0].value = findata.CancelARRCW;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.qtdw.week[1].value = findata.CancelUnitsCW;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.qtdw.week[2].value = findata.CancelARRTargetCW
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.qtdw.week[3].value = findata.CancelCWVsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.qtdw.week[4].value = findata.CancelCWVsQrf;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.qtdw.week[5].value = findata.CancelWW;
 
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.stats[0].value = findata.CancelARRVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.stats[1].value = findata.CancelARRQQTY;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.stats[2].value = findata.CancelARRQQLY;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.stats[3].value = findata.CancelARRYY;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.stats[0].value = findata.CancelARRVsQrf;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.stats[1].value = findata.CancelARRQQTY;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.stats[2].value = findata.CancelARRQQLY;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.stats[3].value = findata.CancelARRYY;
 
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.qtdw.qtd[0].value = AdobeData.CancelActuals;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.qtdw.qtd[1].value = AdobeData.CancelUnitsActual;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.qtdw.qtd[2].value = AdobeData.CancelTarget;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.qtdw.qtd[3].value = AdobeData.CancelVsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.qtdw.qtd[4].value = AdobeData.CancelARRVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.qtdw.qtd[5].value = AdobeData.CancelARRQQTY;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.qtdw.qtd[6].value = AdobeData.CancelARRYY;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.qtdw.week[0].value = AdobeData.CancelARRCW;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.qtdw.week[1].value = AdobeData.CancelUnitsCW;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.qtdw.week[2].value = AdobeData.CancelARRTargetCW
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.qtdw.week[3].value = AdobeData.CancelCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.qtdw.week[4].value = AdobeData.CancelCWVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.qtdw.week[5].value = AdobeData.CancelWW;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.qtdw.qtd[0].value = AdobeData.CancelActuals;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.qtdw.qtd[1].value = AdobeData.CancelUnitsActual;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.qtdw.qtd[2].value = AdobeData.CancelTarget;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.qtdw.qtd[3].value = AdobeData.CancelVsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.qtdw.qtd[4].value = AdobeData.CancelARRVsQrf;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.qtdw.qtd[5].value = AdobeData.CancelARRQQTY;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.qtdw.qtd[6].value = AdobeData.CancelARRYY;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.qtdw.week[0].value = AdobeData.CancelARRCW;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.qtdw.week[1].value = AdobeData.CancelUnitsCW;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.qtdw.week[2].value = AdobeData.CancelARRTargetCW
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.qtdw.week[3].value = AdobeData.CancelCWVsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.qtdw.week[4].value = AdobeData.CancelCWVsQrf;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.qtdw.week[5].value = AdobeData.CancelWW;
 
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.stats[0].value = AdobeData.CancelARRVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.stats[1].value = AdobeData.CancelARRQQTY;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.stats[2].value = AdobeData.CancelARRQQLY;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.stats[3].value = AdobeData.CancelARRYY;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.stats[0].value = AdobeData.CancelARRVsQrf;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.stats[1].value = AdobeData.CancelARRQQTY;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.stats[2].value = AdobeData.CancelARRQQLY;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.stats[3].value = AdobeData.CancelARRYY;
 
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.qtdw.qtd[0].value = EtailData.CancelActuals;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.qtdw.qtd[1].value = EtailData.CancelUnitsActual;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.qtdw.qtd[2].value = EtailData.CancelTarget;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.qtdw.qtd[3].value = EtailData.CancelVsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.qtdw.qtd[4].value = EtailData.CancelARRVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.qtdw.qtd[5].value = EtailData.CancelARRQQTY;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.qtdw.qtd[6].value = EtailData.CancelARRYY;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.qtdw.week[0].value = EtailData.CancelARRCW;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.qtdw.week[1].value = EtailData.CancelUnitsCW;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.qtdw.week[2].value = EtailData.CancelARRTargetCW
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.qtdw.week[3].value = EtailData.CancelCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.qtdw.week[4].value = EtailData.CancelCWVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.qtdw.week[5].value = EtailData.CancelWW;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.qtdw.qtd[0].value = EtailData.CancelActuals;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.qtdw.qtd[1].value = EtailData.CancelUnitsActual;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.qtdw.qtd[2].value = EtailData.CancelTarget;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.qtdw.qtd[3].value = EtailData.CancelVsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.qtdw.qtd[4].value = EtailData.CancelARRVsQrf;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.qtdw.qtd[5].value = EtailData.CancelARRQQTY;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.qtdw.qtd[6].value = EtailData.CancelARRYY;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.qtdw.week[0].value = EtailData.CancelARRCW;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.qtdw.week[1].value = EtailData.CancelUnitsCW;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.qtdw.week[2].value = EtailData.CancelARRTargetCW
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.qtdw.week[3].value = EtailData.CancelCWVsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.qtdw.week[4].value = EtailData.CancelCWVsQrf;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.qtdw.week[5].value = EtailData.CancelWW;
 
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.stats[0].value = EtailData.CancelARRVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.stats[1].value = EtailData.CancelARRQQTY;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.stats[2].value = EtailData.CancelARRQQLY;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.stats[3].value = EtailData.CancelARRYY;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.stats[0].value = EtailData.CancelARRVsQrf;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.stats[1].value = EtailData.CancelARRQQTY;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.stats[2].value = EtailData.CancelARRQQLY;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.stats[3].value = EtailData.CancelARRYY;
 }
 export function processRenewCancelGeoQTD(newState, data, AdobeData, EtailData) {
     //Clear old Values
@@ -7563,9 +7563,9 @@ export function processRenewCancelGeoQTD(newState, data, AdobeData, EtailData) {
         item3.push(cancEtail);
     }
 
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.geo.qtd = processQTDOrder(item1);
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.geo.qtd = processQTDOrder(item2);
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.geo.qtd = processQTDOrder(item3);
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.geo.qtd = processQTDOrder(item1);
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.geo.qtd = processQTDOrder(item2);
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.geo.qtd = processQTDOrder(item3);
 
 }
 export function processRenewCancelGeoWeek(newState, data, AdobeData, EtailData) {
@@ -7632,9 +7632,9 @@ export function processRenewCancelGeoWeek(newState, data, AdobeData, EtailData) 
         }
         item3.push(cancEtail);
     }
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.geo.week = processQTDOrder(item1);
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.geo.week = processQTDOrder(item2);
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.geo.week = processQTDOrder(item3);
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.geo.week = processQTDOrder(item1);
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.geo.week = processQTDOrder(item2);
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.geo.week = processQTDOrder(item3);
 }
 export function processRenewCancelMarketQTD(newState, data, AdobeData, EtailData) {
     //Clear old Values
@@ -7697,9 +7697,9 @@ export function processRenewCancelMarketQTD(newState, data, AdobeData, EtailData
         item3.push(cancEtail);
 
     }
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.market.qtd = item1;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.market.qtd = item2;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.market.qtd = item3;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.market.qtd = item1;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.market.qtd = item2;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.market.qtd = item3;
 
 }
 export function processRenewCancelMarketWeek(newState, data, AdobeData, EtailData) {
@@ -7758,9 +7758,9 @@ export function processRenewCancelMarketWeek(newState, data, AdobeData, EtailDat
         item3.push(cancEtail);
 
     }
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.market.week = item1;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.market.week = item2;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.market.week = item3;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.market.week = item1;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.market.week = item2;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.market.week = item3;
 }
 export function processRenewCancelSegmentQTD(newState, data, AdobeData, EtailData) {
     //Clear old Values
@@ -7823,9 +7823,9 @@ export function processRenewCancelSegmentQTD(newState, data, AdobeData, EtailDat
         item3.push(cancEtail);
 
     }
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.segment.qtd = item1;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.segment.qtd = item2;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.segment.qtd = item3;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.segment.qtd = item1;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.segment.qtd = item2;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.segment.qtd = item3;
 }
 export function processRenewCancelSegmentWeek(newState, data, AdobeData, EtailData) {
     let item1 = [];
@@ -7883,9 +7883,9 @@ export function processRenewCancelSegmentWeek(newState, data, AdobeData, EtailDa
         item3.push(cancEtail);
 
     }
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.segment.week = item1;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.segment.week = item2;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.segment.week = item3;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.segment.week = item1;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.segment.week = item2;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.segment.week = item3;
 }
 export function processRenewCancelproductQTD(newState, data, AdobeData, EtailData) {
     //Clear old Values
@@ -7948,9 +7948,9 @@ export function processRenewCancelproductQTD(newState, data, AdobeData, EtailDat
         item3.push(cancEtail);
 
     }
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.product.qtd = item1;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.product.qtd = item2;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.product.qtd = item3;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.product.qtd = item1;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.product.qtd = item2;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.product.qtd = item3;
 
 }
 export function processRenewCancelProductWeek(newState, data, AdobeData, EtailData) {
@@ -8009,37 +8009,37 @@ export function processRenewCancelProductWeek(newState, data, AdobeData, EtailDa
         item3.push(cancEtail);
 
     }
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].details.product.week = item1;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].details.product.week = item2;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].details.product.week = item3;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.product.week = item1;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.product.week = item2;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.product.week = item3;
 }
 export function processRenewDetailSecondaryData(data, newState, Reseller, Etail) {
 
 
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].value = data.data[0].QFRRActual;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].targetFQ = data.data[0].QFRRTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].target = data.data[0].QFRRTarget;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].vsQrf = data.data[0].QFRRVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].value = data.data[0].QFRRActual;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].targetFQ = data.data[0].QFRRTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].target = data.data[0].QFRRTarget;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].vsQrf = data.data[0].QFRRVsQrf;
 
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].value = data.data[0].UIRateActual;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].targetFQ = data.data[0].UIRateTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].target = data.data[0].UIRateTarget;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].vsQrf = data.data[0].UIRateVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].value = data.data[0].UIRateActual;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].targetFQ = data.data[0].UIRateTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].target = data.data[0].UIRateTarget;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].vsQrf = data.data[0].UIRateVsQrf;
 
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].value = data.data[0].PFRateActual;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].targetFQ = data.data[0].PFRateTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].target = data.data[0].PFRateTarget;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].vsQrf = data.data[0].PFRateVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].value = data.data[0].PFRateActual;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].targetFQ = data.data[0].PFRateTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].target = data.data[0].PFRateTarget;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].vsQrf = data.data[0].PFRateVsQrf;
 
 
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].value = Reseller.data[0].EOTRateActual;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].targetFQ = Reseller.data[0].EOTRateTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].target = Reseller.data[0].EOTRateTarget;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].vsQrf = Reseller.data[0].EOTRateVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].value = Etail.data[0].QFRRActual;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].targetFQ = Etail.data[0].QFRRTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].target = Etail.data[0].QFRRTarget;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].vsQrf = Etail.data[0].QFRRVsQrf;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].value = Reseller.data[0].EOTRateActual;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].targetFQ = Reseller.data[0].EOTRateTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].target = Reseller.data[0].EOTRateTarget;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].vsQrf = Reseller.data[0].EOTRateVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].value = Etail.data[0].QFRRActual;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].targetFQ = Etail.data[0].QFRRTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].target = Etail.data[0].QFRRTarget;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].vsQrf = Etail.data[0].QFRRVsQrf;
 }
 export function processRenewMultichartData(data, newState, Reseller, Etail) {
     let weekFlag = data.map(item => {
@@ -8128,98 +8128,98 @@ export function processRenewMultichartData(data, newState, Reseller, Etail) {
 
 
 
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN]['details'].multichart = [qtrFin.actual, qtrFin.target, qtrFin.ly, qtrFin.lq];
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI]['details'].multichart = [qtrUI.actual, qtrUI.target, qtrUI.ly, qtrUI.lq];
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF]['details'].multichart = [qtrPF.actual, qtrPF.target, qtrPF.ly, qtrPF.lq];
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER]['details'].multichart = [eot.actual, eot.target, eot.ly, eot.lq];
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL]['details'].multichart = [qtrFinRetail.actual, qtrFinRetail.target, qtrFinRetail.ly, qtrFinRetail.lq];
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN]['details'].multichart = [qtrFin.actual, qtrFin.target, qtrFin.ly, qtrFin.lq];
+    newState[SUMMARY_KPIS.RENEW_QTR_UI]['details'].multichart = [qtrUI.actual, qtrUI.target, qtrUI.ly, qtrUI.lq];
+    newState[SUMMARY_KPIS.RENEW_QTR_PF]['details'].multichart = [qtrPF.actual, qtrPF.target, qtrPF.ly, qtrPF.lq];
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER]['details'].multichart = [eot.actual, eot.target, eot.ly, eot.lq];
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL]['details'].multichart = [qtrFinRetail.actual, qtrFinRetail.target, qtrFinRetail.ly, qtrFinRetail.lq];
 
 }
 export function processRenewQTDData(data, newState, Reseller, Etail) {
 
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.qtdw.qtd[0].value = data.RetRateActual;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.qtdw.qtd[1].value = data.RetRateTarget;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.qtdw.qtd[2].value = data.RetRatevsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.qtdw.qtd[3].value = data.RetRateVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.qtdw.qtd[4].value = data.RetRateQQTY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.qtdw.qtd[5].value = data.RetRateYY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.qtdw.week[0].value = data.RetRateCW;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.qtdw.week[1].value = data.RetRateTargetCW;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.qtdw.week[2].value = data.RetRateCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.qtdw.week[3].value = data.RetRateCWVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.qtdw.week[4].value = data.RetRateWW;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.stats[0].value = data.RetRateVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.stats[1].value = data.RetRateQQTY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.stats[2].value = data.RetRateQQLY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.stats[3].value = data.RetRateYY;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.qtdw.qtd[0].value = data.RetRateActual;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.qtdw.qtd[1].value = data.RetRateTarget;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.qtdw.qtd[2].value = data.RetRatevsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.qtdw.qtd[3].value = data.RetRateVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.qtdw.qtd[4].value = data.RetRateQQTY;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.qtdw.qtd[5].value = data.RetRateYY;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.qtdw.week[0].value = data.RetRateCW;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.qtdw.week[1].value = data.RetRateTargetCW;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.qtdw.week[2].value = data.RetRateCWVsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.qtdw.week[3].value = data.RetRateCWVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.qtdw.week[4].value = data.RetRateWW;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.stats[0].value = data.RetRateVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.stats[1].value = data.RetRateQQTY;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.stats[2].value = data.RetRateQQLY;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.stats[3].value = data.RetRateYY;
 
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.qtdw.qtd[0].value = data.UIRateActual;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.qtdw.qtd[1].value = data.UIRateTarget;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.qtdw.qtd[2].value = data.UIRatevsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.qtdw.qtd[3].value = data.UIRateVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.qtdw.qtd[4].value = data.UIRateQQTY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.qtdw.qtd[5].value = data.UIRateYY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.qtdw.week[0].value = data.UIRateCW;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.qtdw.week[1].value = data.UIRateTargetCW;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.qtdw.week[2].value = data.UIRateCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.qtdw.week[3].value = data.UIRateCWVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.qtdw.week[4].value = data.UIRateWW;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.stats[0].value = data.UIRateVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.stats[1].value = data.UIRateQQTY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.stats[2].value = data.UIRateQQLY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.stats[3].value = data.UIRateYY;
-
-
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.qtdw.qtd[0].value = data.PFRateActual;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.qtdw.qtd[1].value = data.PFRateTarget;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.qtdw.qtd[2].value = data.PFRatevsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.qtdw.qtd[3].value = data.PFRateVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.qtdw.qtd[4].value = data.PFRateQQTY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.qtdw.qtd[5].value = data.PFRateYY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.qtdw.week[0].value = data.PFRateCW;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.qtdw.week[1].value = data.PFRateTargetCW;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.qtdw.week[2].value = data.PFRateCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.qtdw.week[3].value = data.PFRateCWVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.qtdw.week[4].value = data.PFRateWW;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.stats[0].value = data.PFRateVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.stats[1].value = data.PFRateQQTY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.stats[2].value = data.PFRateQQLY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.stats[3].value = data.PFRateYY;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.qtdw.qtd[0].value = data.UIRateActual;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.qtdw.qtd[1].value = data.UIRateTarget;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.qtdw.qtd[2].value = data.UIRatevsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.qtdw.qtd[3].value = data.UIRateVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.qtdw.qtd[4].value = data.UIRateQQTY;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.qtdw.qtd[5].value = data.UIRateYY;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.qtdw.week[0].value = data.UIRateCW;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.qtdw.week[1].value = data.UIRateTargetCW;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.qtdw.week[2].value = data.UIRateCWVsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.qtdw.week[3].value = data.UIRateCWVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.qtdw.week[4].value = data.UIRateWW;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.stats[0].value = data.UIRateVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.stats[1].value = data.UIRateQQTY;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.stats[2].value = data.UIRateQQLY;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.stats[3].value = data.UIRateYY;
 
 
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.qtdw.qtd[0].value = data.PFRateActual;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.qtdw.qtd[1].value = data.PFRateTarget;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.qtdw.qtd[2].value = data.PFRatevsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.qtdw.qtd[3].value = data.PFRateVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.qtdw.qtd[4].value = data.PFRateQQTY;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.qtdw.qtd[5].value = data.PFRateYY;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.qtdw.week[0].value = data.PFRateCW;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.qtdw.week[1].value = data.PFRateTargetCW;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.qtdw.week[2].value = data.PFRateCWVsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.qtdw.week[3].value = data.PFRateCWVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.qtdw.week[4].value = data.PFRateWW;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.stats[0].value = data.PFRateVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.stats[1].value = data.PFRateQQTY;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.stats[2].value = data.PFRateQQLY;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.stats[3].value = data.PFRateYY;
 
 
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.qtdw.qtd[0].value = Reseller.EOTRateActuals;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.qtdw.qtd[1].value = Reseller.EOTRateTarget;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.qtdw.qtd[2].value = Reseller.EOTRateVsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.qtdw.qtd[3].value = Reseller.EOTRatevsQrf;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.qtdw.qtd[4].value = Reseller.EOTRateQQTY;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.qtdw.qtd[5].value = Reseller.EOTRateYY;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.qtdw.week[0].value = Reseller.EOTRateCW;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.qtdw.week[1].value = Reseller.EOTRateTargetCW;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.qtdw.week[2].value = Reseller.EOTRateCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.qtdw.week[3].value = Reseller.EOTRateCWVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.qtdw.week[4].value = Reseller.EOTRateWW;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.stats[0].value = Reseller.EOTRatevsQrf;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.stats[1].value = Reseller.EOTRateQQTY;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.stats[2].value = Reseller.EOTRateQQLY;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.stats[3].value = Reseller.EOTRateYY;
 
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.qtdw.qtd[0].value = Etail.RetRateActual;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.qtdw.qtd[1].value = Etail.RetRateTarget;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.qtdw.qtd[2].value = Etail.RetRatevsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.qtdw.qtd[3].value = Etail.RetRateVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.qtdw.qtd[4].value = Etail.RetRateQQTY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.qtdw.qtd[5].value = Etail.RetRateYY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.qtdw.week[0].value = Etail.RetRateCW;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.qtdw.week[1].value = Etail.RetRateTargetCW;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.qtdw.week[2].value = Etail.RetRateCWVsQrfDiff;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.qtdw.week[3].value = Etail.RetRateCWVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.qtdw.week[4].value = Etail.RetRateWW;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.stats[0].value = Etail.RetRateVsQrf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.stats[1].value = Etail.RetRateQQTY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.stats[2].value = Etail.RetRateQQLY;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.stats[3].value = Etail.RetRateYY;
+
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.qtdw.qtd[0].value = Reseller.EOTRateActuals;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.qtdw.qtd[1].value = Reseller.EOTRateTarget;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.qtdw.qtd[2].value = Reseller.EOTRateVsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.qtdw.qtd[3].value = Reseller.EOTRatevsQrf;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.qtdw.qtd[4].value = Reseller.EOTRateQQTY;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.qtdw.qtd[5].value = Reseller.EOTRateYY;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.qtdw.week[0].value = Reseller.EOTRateCW;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.qtdw.week[1].value = Reseller.EOTRateTargetCW;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.qtdw.week[2].value = Reseller.EOTRateCWVsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.qtdw.week[3].value = Reseller.EOTRateCWVsQrf;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.qtdw.week[4].value = Reseller.EOTRateWW;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.stats[0].value = Reseller.EOTRatevsQrf;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.stats[1].value = Reseller.EOTRateQQTY;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.stats[2].value = Reseller.EOTRateQQLY;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.stats[3].value = Reseller.EOTRateYY;
+
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.qtdw.qtd[0].value = Etail.RetRateActual;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.qtdw.qtd[1].value = Etail.RetRateTarget;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.qtdw.qtd[2].value = Etail.RetRatevsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.qtdw.qtd[3].value = Etail.RetRateVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.qtdw.qtd[4].value = Etail.RetRateQQTY;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.qtdw.qtd[5].value = Etail.RetRateYY;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.qtdw.week[0].value = Etail.RetRateCW;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.qtdw.week[1].value = Etail.RetRateTargetCW;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.qtdw.week[2].value = Etail.RetRateCWVsQrfDiff;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.qtdw.week[3].value = Etail.RetRateCWVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.qtdw.week[4].value = Etail.RetRateWW;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.stats[0].value = Etail.RetRateVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.stats[1].value = Etail.RetRateQQTY;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.stats[2].value = Etail.RetRateQQLY;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.stats[3].value = Etail.RetRateYY;
 }
 export function processRenewGeoQTDData(data, newState, Reseller, Etail) {
 
@@ -8379,16 +8379,16 @@ export function processRenewGeoQTDData(data, newState, Reseller, Etail) {
         }
         qtrFinEtailWeek.push(finEtailWeek);
     }
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.geo.qtd = processQTDOrder(qtrFin);
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.geo.week = processQTDOrder(qtrFinWeek);
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.geo.qtd = processQTDOrder(qtrUi);
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.geo.week = processQTDOrder(qtrUiWeek);
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.geo.qtd = processQTDOrder(qtrPf);
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.geo.week = processQTDOrder(qtrPfWeek);
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.geo.qtd = processQTDOrder(eot);
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.geo.week = processQTDOrder(eotWeek);
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.geo.qtd = processQTDOrder(qtrFinEtail);
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.geo.week = processQTDOrder(qtrFinEtailWeek);
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.geo.qtd = processQTDOrder(qtrFin);
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.geo.week = processQTDOrder(qtrFinWeek);
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.geo.qtd = processQTDOrder(qtrUi);
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.geo.week = processQTDOrder(qtrUiWeek);
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.geo.qtd = processQTDOrder(qtrPf);
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.geo.week = processQTDOrder(qtrPfWeek);
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.geo.qtd = processQTDOrder(eot);
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.geo.week = processQTDOrder(eotWeek);
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.geo.qtd = processQTDOrder(qtrFinEtail);
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.geo.week = processQTDOrder(qtrFinEtailWeek);
 
 
 }
@@ -8556,16 +8556,16 @@ export function processRenewMarketQTDData(data, newState, Reseller, Etail) {
 
     }
 
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.market.qtd = qtrFin;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.market.week = qtrFinWeek;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.market.qtd = qtrUi;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.market.week = qtrUiWeek;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.market.qtd = qtrPf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.market.week = qtrPfWeek;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.market.qtd = eot;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.market.week = eotWeek;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.market.qtd = qtrFinEtail;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.market.week = qtrFinEtailWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.market.qtd = qtrFin;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.market.week = qtrFinWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.market.qtd = qtrUi;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.market.week = qtrUiWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.market.qtd = qtrPf;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.market.week = qtrPfWeek;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.market.qtd = eot;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.market.week = eotWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.market.qtd = qtrFinEtail;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.market.week = qtrFinEtailWeek;
 }
 export function processRenewProductQTDData(data, newState, Etail) {
     console.log('Processing Product Renew QTD: ', data, Etail)
@@ -8679,16 +8679,16 @@ export function processRenewProductQTDData(data, newState, Etail) {
         }
         qtrFinEtailWeek.push(finEtailWeek);
     }
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.product.qtd = qtrFin;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.product.week = qtrFinWeek;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.product.qtd = qtrUi;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.product.week = qtrUiWeek;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.product.qtd = qtrPf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.product.week = qtrPfWeek;
-    // newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.product.qtd = eot;
-    // newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.product.week = eotWeek;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.product.qtd = qtrFinEtail;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.product.week = qtrFinEtailWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.product.qtd = qtrFin;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.product.week = qtrFinWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.product.qtd = qtrUi;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.product.week = qtrUiWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.product.qtd = qtrPf;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.product.week = qtrPfWeek;
+    // newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.product.qtd = eot;
+    // newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.product.week = eotWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.product.qtd = qtrFinEtail;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.product.week = qtrFinEtailWeek;
 }
 export function processRenewSegmentQTDData(data, newState, Reseller, Etail) {
     let qtrFin = [], qtrFinWeek = [],
@@ -8844,56 +8844,56 @@ export function processRenewSegmentQTDData(data, newState, Reseller, Etail) {
         }
         qtrFinEtailWeek.push(finEtailWeek);
     }
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.segment.qtd = qtrFin;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].details.segment.week = qtrFinWeek;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.segment.qtd = qtrUi;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].details.segment.week = qtrUiWeek;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.segment.qtd = qtrPf;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].details.segment.week = qtrPfWeek;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.segment.qtd = eot;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].details.segment.week = eotWeek;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.segment.qtd = qtrFinEtail;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].details.segment.week = qtrFinEtailWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.segment.qtd = qtrFin;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.segment.week = qtrFinWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.segment.qtd = qtrUi;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.segment.week = qtrUiWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.segment.qtd = qtrPf;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.segment.week = qtrPfWeek;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.segment.qtd = eot;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.segment.week = eotWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.segment.qtd = qtrFinEtail;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.segment.week = qtrFinEtailWeek;
 }
 export function processRenewSecondaryData(data, newState) {
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].value = data[0].data[0].CancelARRActual;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].targetFQ = data[0].data[0].CancelARRTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].target = data[0].data[0].CancelARRTarget;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL].vsQrf = data[0].data[0].CancelVsQrf;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].value = data[0].data[0].CancelARRActual;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].targetFQ = data[0].data[0].CancelARRTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].target = data[0].data[0].CancelARRTarget;
+    newState[SUMMARY_KPIS.RENEW_CANCEL].vsQrf = data[0].data[0].CancelVsQrf;
 
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].value = data[1].data[0].CancelARRActual;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].targetFQ = data[1].data[0].CancelARRTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].target = data[1].data[0].CancelARRTarget;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM].vsQrf = data[1].data[0].CancelVsQrf;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].value = data[1].data[0].CancelARRActual;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].targetFQ = data[1].data[0].CancelARRTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].target = data[1].data[0].CancelARRTarget;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].vsQrf = data[1].data[0].CancelVsQrf;
 
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].value = data[2].data[0].QFRRActual;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].targetFQ = data[2].data[0].QFRRTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].target = data[2].data[0].QFRRTarget;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN].vsQrf = data[2].data[0].QFRRVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].value = data[2].data[0].QFRRActual;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].targetFQ = data[2].data[0].QFRRTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].target = data[2].data[0].QFRRTarget;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].vsQrf = data[2].data[0].QFRRVsQrf;
 
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].value = data[2].data[0].UIRateActual;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].targetFQ = data[2].data[0].UIRateTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].target = data[2].data[0].UIRateTarget;
-    newState[SUMMARY_FILTERS.RENEW_QTR_UI].vsQrf = data[2].data[0].UIRateVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].value = data[2].data[0].UIRateActual;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].targetFQ = data[2].data[0].UIRateTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].target = data[2].data[0].UIRateTarget;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].vsQrf = data[2].data[0].UIRateVsQrf;
 
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].value = data[2].data[0].PFRateActual;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].targetFQ = data[2].data[0].PFRateTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].target = data[2].data[0].PFRateTarget;
-    newState[SUMMARY_FILTERS.RENEW_QTR_PF].vsQrf = data[2].data[0].PFRateVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].value = data[2].data[0].PFRateActual;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].targetFQ = data[2].data[0].PFRateTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].target = data[2].data[0].PFRateTarget;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].vsQrf = data[2].data[0].PFRateVsQrf;
 
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].value = data[3].data[0].CancelARRActual;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].targetFQ = data[3].data[0].CancelARRTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].target = data[3].data[0].CancelARRTarget;
-    newState[SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E].vsQrf = data[3].data[0].CancelVsQrf;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].value = data[3].data[0].CancelARRActual;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].targetFQ = data[3].data[0].CancelARRTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].target = data[3].data[0].CancelARRTarget;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].vsQrf = data[3].data[0].CancelVsQrf;
 
 
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].value = data[4].data[0].EOTRateActual;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].targetFQ = data[4].data[0].EOTRateTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].target = data[4].data[0].EOTRateTarget;
-    newState[SUMMARY_FILTERS.RENEW_EOT_RESELLER].vsQrf = data[4].data[0].EOTRateVsQrf;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].value = data[4].data[0].EOTRateActual;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].targetFQ = data[4].data[0].EOTRateTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].target = data[4].data[0].EOTRateTarget;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].vsQrf = data[4].data[0].EOTRateVsQrf;
 
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].value = data[5].data[0].QFRRActual;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].targetFQ = data[5].data[0].QFRRTargetFQ;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].target = data[5].data[0].QFRRTarget;
-    newState[SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL].vsQrf = data[5].data[0].QFRRVsQrf;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].value = data[5].data[0].QFRRActual;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].targetFQ = data[5].data[0].QFRRTargetFQ;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].target = data[5].data[0].QFRRTarget;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].vsQrf = data[5].data[0].QFRRVsQrf;
 }

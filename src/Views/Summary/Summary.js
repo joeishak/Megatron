@@ -39,7 +39,7 @@ import {
   TABLET,
   LAPTOP,
   DIMENSIONS,
-  SUMMARY_FILTERS
+  SUMMARY_KPIS
 } from "../../Constants/consts.js";
 
 // Class Summary - Single Page APP - Main Entry Point
@@ -193,9 +193,9 @@ class Summary extends Component {
         if (this.state.subFiltersChanged) {
           // If the user is on Discover (Marketable Universe, Padi Media Spend, or Sourced)
           // Market XDC
-          if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
-            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
-            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND) {
+          if (activeSecondaryCard === SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE ||
+            activeSecondaryCard === SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED ||
+            activeSecondaryCard === SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND) {
             // Set the local state for isLoading to true
             this.setState({ isLoading: true });
             // Call action to request filtered Market XDC
@@ -203,9 +203,9 @@ class Summary extends Component {
           }
           // Else If the user is on Discover (Traffic, Bounce) or UQFM
           // Traffic / UQFM XDC
-          else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_TRAFFIC ||
-            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE ||
-            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_UQFM) {
+          else if (activeSecondaryCard === SUMMARY_KPIS.DISCOVER_TRAFFIC ||
+            activeSecondaryCard === SUMMARY_KPIS.DISCOVER_BOUNCE_RATE ||
+            activeSecondaryCard === SUMMARY_KPIS.DISCOVER_UQFM) {
             // Set the local state for isLoading to true
             this.setState({ isLoading: true });
             // Call action to request filtered Traffic XDC
@@ -213,7 +213,7 @@ class Summary extends Component {
           }
           // Else If the user is on Buy Conversion
           // Traffic 
-          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
+          else if (activeSecondaryCard === SUMMARY_KPIS.BUY_CONVERSION) {
             // Set the local state for isLoading to true
             this.setState({ isLoading: true });
             // Call action to request filtered Traffic XDC
@@ -221,16 +221,16 @@ class Summary extends Component {
           }
           // Else If the user is on Discover (Traffic, Bounce) or UQFM
           // Traffic / UQFM XDC
-          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
-            activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND ||
-            activeSecondaryCard === SUMMARY_FILTERS.BUY_LTV_ROI) {
+          else if (activeSecondaryCard === SUMMARY_KPIS.BUY_MARKETING_SOURCED ||
+            activeSecondaryCard === SUMMARY_KPIS.BUY_PAID_MEDIASPEND ||
+            activeSecondaryCard === SUMMARY_KPIS.BUY_LTV_ROI) {
             this.setState({ isLoading: true });
             this.props.getFilteredBuyMarketSecondaryData(this.props.filters);
           }
           // Else If the user is on Discover (Traffic, Bounce) or UQFM
           // Traffic / UQFM XDC
-          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWARR ||
-            activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWUNITS) {
+          else if (activeSecondaryCard === SUMMARY_KPIS.BUY_GROSS_NEWARR ||
+            activeSecondaryCard === SUMMARY_KPIS.BUY_GROSS_NEWUNITS) {
             this.setState({ isLoading: true });
             this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
           }
@@ -267,8 +267,8 @@ class Summary extends Component {
           this.props.updateRenewDetailsIsLoading(false);
 
           // If the user is on Finance Net New ARR or Gros New ARR 
-          if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_NET_NEW_ARR ||
-            activeSecondaryCard === SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR) {
+          if (activeSecondaryCard === SUMMARY_KPIS.FINANCE_NET_NEW_ARR ||
+            activeSecondaryCard === SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR) {
             // If filters are default
             if (isDefaultFilters) {
               // Call Action to get Finance XDC1 Data and Finance Secondary Data from XDC 2 from cache-memory
@@ -283,8 +283,8 @@ class Summary extends Component {
 
           }
           // If the user is on Finance Cancellations or Renewal
-          else if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_CANCEL_ARR ||
-            activeSecondaryCard === SUMMARY_FILTERS.FINANCE_RENEW_ARR) {
+          else if (activeSecondaryCard === SUMMARY_KPIS.FINANCE_CANCEL_ARR ||
+            activeSecondaryCard === SUMMARY_KPIS.FINANCE_RENEW_ARR) {
             // If filters are default
             if (isDefaultFilters) {
               // Call Action to get Finance XDC 2 Data and Finance Secondary Data from XDC 1 from cache-memory
@@ -297,9 +297,9 @@ class Summary extends Component {
             }
           }
           // If the user is on Discover MArketable or Paid Media(s)
-          else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
-            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
-            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND) {
+          else if (activeSecondaryCard === SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE ||
+            activeSecondaryCard === SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED ||
+            activeSecondaryCard === SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND) {
             // If filters are default
             if (isDefaultFilters) {
               // Call Action to get Market XDC from cache-memory
@@ -313,9 +313,9 @@ class Summary extends Component {
 
           }
           // If the user is on Discover Traffic, UQFM or Bounce
-          else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_TRAFFIC ||
-            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE ||
-            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_UQFM) {
+          else if (activeSecondaryCard === SUMMARY_KPIS.DISCOVER_TRAFFIC ||
+            activeSecondaryCard === SUMMARY_KPIS.DISCOVER_BOUNCE_RATE ||
+            activeSecondaryCard === SUMMARY_KPIS.DISCOVER_UQFM) {
 
             // If filters are default
             if (isDefaultFilters) {
@@ -330,7 +330,7 @@ class Summary extends Component {
 
           }
           // If the user is on Try
-          else if (activeSecondaryCard >= SUMMARY_FILTERS.TRY_NEW_UQFM && activeSecondaryCard <= SUMMARY_FILTERS.TRY_CUMU_UQFM_QFM) {
+          else if (activeSecondaryCard >= SUMMARY_KPIS.TRY_NEW_UQFM && activeSecondaryCard <= SUMMARY_KPIS.TRY_CUMU_UQFM_QFM) {
             // If filters are default
             if (isDefaultFilters) {
               // Call Action to get Try from cache-memory
@@ -342,7 +342,7 @@ class Summary extends Component {
             }
           }
           // If the user is on Buy Conversion 
-          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
+          else if (activeSecondaryCard === SUMMARY_KPIS.BUY_CONVERSION) {
             // If filters are default
             if (isDefaultFilters) {
               // Call Action to get Traffic Conversion  from cache-memory
@@ -355,9 +355,9 @@ class Summary extends Component {
             }
           }
           // If the user is on Buy MArketables, or Paid Media(s)
-          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
-            activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND || 
-            activeSecondaryCard === SUMMARY_FILTERS.BUY_LTV_ROI) {
+          else if (activeSecondaryCard === SUMMARY_KPIS.BUY_MARKETING_SOURCED ||
+            activeSecondaryCard === SUMMARY_KPIS.BUY_PAID_MEDIASPEND || 
+            activeSecondaryCard === SUMMARY_KPIS.BUY_LTV_ROI) {
 
             // If filters are default
             if (isDefaultFilters) {
@@ -371,8 +371,8 @@ class Summary extends Component {
             }
           }
           // If the user is on Buy Gross New or Subs 
-          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWARR ||
-            activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWUNITS) {
+          else if (activeSecondaryCard === SUMMARY_KPIS.BUY_GROSS_NEWARR ||
+            activeSecondaryCard === SUMMARY_KPIS.BUY_GROSS_NEWUNITS) {
 
             // If filters are default
             if (isDefaultFilters) {
@@ -386,7 +386,7 @@ class Summary extends Component {
             }
           }
           // If the user is on a USE KPI
-          else if (activeSecondaryCard >= SUMMARY_FILTERS.USE_PERCENT_ACTIVATED && activeSecondaryCard <= SUMMARY_FILTERS.USE_REPEAT_USER_MAU) {
+          else if (activeSecondaryCard >= SUMMARY_KPIS.USE_PERCENT_ACTIVATED && activeSecondaryCard <= SUMMARY_KPIS.USE_REPEAT_USER_MAU) {
             // If filters are default
             if (isDefaultFilters) {
               // Call Action to get USE from cache-memory
@@ -399,8 +399,8 @@ class Summary extends Component {
             }
           }
           // If the user is on Renew Cancellations
-          else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
-            || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
+          else if ((activeSecondaryCard >= SUMMARY_KPIS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM)
+            || activeSecondaryCard === SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E) {
             // If filters are default
             if (isDefaultFilters) {
               // Call Action to get Renew Cancellations from cache-memory
@@ -415,8 +415,8 @@ class Summary extends Component {
             }
           }
           // If the user is on Renew QTR or PF, EOT, and Fin
-          else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_PF)
-            || (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL)) {
+          else if ((activeSecondaryCard >= SUMMARY_KPIS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_KPIS.RENEW_QTR_PF)
+            || (activeSecondaryCard >= SUMMARY_KPIS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL)) {
             // If filters are default
             if (isDefaultFilters) {
               // Call Action to get Renew QTR or PF, EOT, and Fin from cache-memory
@@ -443,8 +443,8 @@ class Summary extends Component {
         // Set local state secondaryKpiChanged to true
         this.setState({ secondaryKpiChanged: true });
         // If the user changed cards to Finance Net New or Gros New ARR
-        if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_NET_NEW_ARR ||
-          activeSecondaryCard === SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR) {
+        if (activeSecondaryCard === SUMMARY_KPIS.FINANCE_NET_NEW_ARR ||
+          activeSecondaryCard === SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR) {
 
           // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingFinanceData === false) {
@@ -490,8 +490,8 @@ class Summary extends Component {
           }
         }
         // If the user changed cards to Finance Cancellations and Renewal
-        else if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_CANCEL_ARR ||
-          activeSecondaryCard === SUMMARY_FILTERS.FINANCE_RENEW_ARR) {
+        else if (activeSecondaryCard === SUMMARY_KPIS.FINANCE_CANCEL_ARR ||
+          activeSecondaryCard === SUMMARY_KPIS.FINANCE_RENEW_ARR) {
           // If finance XDC2 has not laoded
           if (!financeXDC2IsLoaded) {
             // And Filters are default
@@ -507,9 +507,9 @@ class Summary extends Component {
           }
         }
         // If the user changed cards to Discover Marketable and Paid Media (S)
-        else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND) {
+        else if (activeSecondaryCard === SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE ||
+          activeSecondaryCard === SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED ||
+          activeSecondaryCard === SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND) {
           // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingDiscoverData === false) {
             // If Market XDC has not laoded
@@ -548,9 +548,9 @@ class Summary extends Component {
           }
         }
         // If the user changed cards to Discover Traffic, Bounce and UQFM
-        else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_TRAFFIC ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE ||
-          activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_UQFM) {
+        else if (activeSecondaryCard === SUMMARY_KPIS.DISCOVER_TRAFFIC ||
+          activeSecondaryCard === SUMMARY_KPIS.DISCOVER_BOUNCE_RATE ||
+          activeSecondaryCard === SUMMARY_KPIS.DISCOVER_UQFM) {
           // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingDiscoverData === false) {
             // And Traffic has not loaded
@@ -588,7 +588,7 @@ class Summary extends Component {
           }
         }
         // If the user changed cards to Try
-        else if (activeSecondaryCard === SUMMARY_FILTERS.TRY_NEW_UQFM) {
+        else if (activeSecondaryCard === SUMMARY_KPIS.TRY_NEW_UQFM) {
           // If try is not loaded
           if (!tryIsLoaded) {
             // And Filters are default
@@ -604,7 +604,7 @@ class Summary extends Component {
           }
         }
         // If the user changed cards to Buy Conversion
-        else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
+        else if (activeSecondaryCard === SUMMARY_KPIS.BUY_CONVERSION) {
 
           // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingBuyData === false) {
@@ -644,8 +644,8 @@ class Summary extends Component {
           }
         }
         // If the user changed cards to Buy Marketing
-        else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
-          activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND||activeSecondaryCard===SUMMARY_FILTERS.BUY_LTV_ROI) {
+        else if (activeSecondaryCard === SUMMARY_KPIS.BUY_MARKETING_SOURCED ||
+          activeSecondaryCard === SUMMARY_KPIS.BUY_PAID_MEDIASPEND||activeSecondaryCard===SUMMARY_KPIS.BUY_LTV_ROI) {
           // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingBuyData === false) {
             // And Buy MArket has not loaded
@@ -685,8 +685,8 @@ class Summary extends Component {
           }
         }
         // If the user changed cards to Buy Gross Units or ARR
-        else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWARR ||
-          activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWUNITS) {
+        else if (activeSecondaryCard === SUMMARY_KPIS.BUY_GROSS_NEWARR ||
+          activeSecondaryCard === SUMMARY_KPIS.BUY_GROSS_NEWUNITS) {
           // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingBuyData === false) {
 
@@ -726,7 +726,7 @@ class Summary extends Component {
           }
         }
         // If the user changed cards to Finance Net New or Gros New ARR
-        else if (activeSecondaryCard === SUMMARY_FILTERS.USE_PERCENT_ACTIVATED) {
+        else if (activeSecondaryCard === SUMMARY_KPIS.USE_PERCENT_ACTIVATED) {
           if (!useIsLoaded) {
             if (isDefaultFilters) {
               this.props.getUseSecondaryData(this.props.filters);
@@ -739,8 +739,8 @@ class Summary extends Component {
           }
         }
         // If the user changed cards to Renew Finance
-        else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
-          || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
+        else if ((activeSecondaryCard >= SUMMARY_KPIS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM)
+          || activeSecondaryCard === SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E) {
           // If Renew Cancel has not loaded
           if (!renewCancelIsLoaded) {
             // And Filters are default
@@ -760,8 +760,8 @@ class Summary extends Component {
           }
         }
         // If the user changed cards to Renew Details
-        else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_PF)
-          || (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL)) {
+        else if ((activeSecondaryCard >= SUMMARY_KPIS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_KPIS.RENEW_QTR_PF)
+          || (activeSecondaryCard >= SUMMARY_KPIS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL)) {
           // If Renew Details has not loaded
           if (!renewDetailsIsLoaded) {
             // And Filters are default
@@ -800,8 +800,8 @@ class Summary extends Component {
           } // Else when the user switches cards or submits filters
           else {
             //Stop Loading in either New New Or Gros New ARR
-            if (activeSecondaryCard === SUMMARY_FILTERS.FINANCE_NET_NEW_ARR ||
-              activeSecondaryCard === SUMMARY_FILTERS.FINANCE_GROSS_NEW_ARR) {
+            if (activeSecondaryCard === SUMMARY_KPIS.FINANCE_NET_NEW_ARR ||
+              activeSecondaryCard === SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR) {
               // If the user switched secondary cards
               if (this.state.secondaryKpiChanged === true) {
                 // and if finance xdc1 is loaded, and the finance secondary data is loaded
@@ -891,9 +891,9 @@ class Summary extends Component {
           break;
         // On Discover Primary
         case 1:
-          if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE ||
-            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED ||
-            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND) {
+          if (activeSecondaryCard === SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE ||
+            activeSecondaryCard === SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED ||
+            activeSecondaryCard === SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND) {
             if (this.state.secondaryKpiChanged === true) {
               if (muIsLoaded === true && discoverSecondaryIsLoaded === true) {
 
@@ -926,9 +926,9 @@ class Summary extends Component {
             }
 
           }
-          else if (activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_TRAFFIC ||
-            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE ||
-            activeSecondaryCard === SUMMARY_FILTERS.DISCOVER_UQFM) {
+          else if (activeSecondaryCard === SUMMARY_KPIS.DISCOVER_TRAFFIC ||
+            activeSecondaryCard === SUMMARY_KPIS.DISCOVER_BOUNCE_RATE ||
+            activeSecondaryCard === SUMMARY_KPIS.DISCOVER_UQFM) {
 
             if (this.state.secondaryKpiChanged === true) {
               if (trafficIsLoaded === true && discoverSecondaryIsLoaded === true) {
@@ -976,7 +976,7 @@ class Summary extends Component {
           break;
         // On Buy Primary
         case 3:
-          if (activeSecondaryCard === SUMMARY_FILTERS.BUY_CONVERSION) {
+          if (activeSecondaryCard === SUMMARY_KPIS.BUY_CONVERSION) {
             if (this.state.secondaryKpiChanged === true) {
               if (buyConversionIsLoaded === true && buySecondaryIsLoaded === true) {
 
@@ -1013,8 +1013,8 @@ class Summary extends Component {
             }
 
           }
-          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_MARKETING_SOURCED ||
-            activeSecondaryCard === SUMMARY_FILTERS.BUY_PAID_MEDIASPEND || activeSecondaryCard === SUMMARY_FILTERS.BUY_LTV_ROI) {
+          else if (activeSecondaryCard === SUMMARY_KPIS.BUY_MARKETING_SOURCED ||
+            activeSecondaryCard === SUMMARY_KPIS.BUY_PAID_MEDIASPEND || activeSecondaryCard === SUMMARY_KPIS.BUY_LTV_ROI) {
 
             if (this.state.secondaryKpiChanged === true) {
               if (buyMarketIsLoaded === true && buySecondaryIsLoaded === true) {
@@ -1051,8 +1051,8 @@ class Summary extends Component {
             }
 
           }
-          else if (activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWUNITS ||
-            activeSecondaryCard === SUMMARY_FILTERS.BUY_GROSS_NEWARR) {
+          else if (activeSecondaryCard === SUMMARY_KPIS.BUY_GROSS_NEWUNITS ||
+            activeSecondaryCard === SUMMARY_KPIS.BUY_GROSS_NEWARR) {
 
             if (this.state.secondaryKpiChanged === true) {
               if (buyGrossIsLoaded === true && buySecondaryIsLoaded === true) {
@@ -1105,8 +1105,8 @@ class Summary extends Component {
           break;
         // On Renew Primary
         case 5:
-          if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM)
-            || activeSecondaryCard === SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
+          if ((activeSecondaryCard >= SUMMARY_KPIS.RENEW_CANCEL && activeSecondaryCard <= SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM)
+            || activeSecondaryCard === SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E) {
             if (this.state.secondaryKpiChanged === true) {
               if (renewCancelIsLoaded === true && renewIsLoaded === true) {
                 this.setState({ isLoading: false, secondaryKpiChanged: false });
@@ -1141,8 +1141,8 @@ class Summary extends Component {
               }
             }
           }
-          else if ((activeSecondaryCard >= SUMMARY_FILTERS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_PF)
-            || (activeSecondaryCard >= SUMMARY_FILTERS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_FILTERS.RENEW_QTR_FIN_RETAIL)) {
+          else if ((activeSecondaryCard >= SUMMARY_KPIS.RENEW_QTR_FIN && activeSecondaryCard <= SUMMARY_KPIS.RENEW_QTR_PF)
+            || (activeSecondaryCard >= SUMMARY_KPIS.RENEW_EOT_RESELLER && activeSecondaryCard <= SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL)) {
             if (this.state.secondaryKpiChanged === true) {
               if (renewDetailsIsLoaded === true && renewIsLoaded === true) {
                 this.setState({ isLoading: false, secondaryKpiChanged: false });
@@ -1181,37 +1181,37 @@ class Summary extends Component {
     this.setState({ subFiltersChanged: true })
     this.props.submitFilters(newFilters);
     switch (this.props.activeSecondaryCard) {
-      case SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE:
+      case SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE:
         this.props.updateMuSecondaryIsLoading(false);
         break;
-      case SUMMARY_FILTERS.DISCOVER_TRAFFIC:
+      case SUMMARY_KPIS.DISCOVER_TRAFFIC:
         this.props.updateTrafficSecondaryIsLoading(false);
         this.props.updateBuyConversionIsLoading(false);
-      case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SPEND:
+      case SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND:
         this.props.updateMuSecondaryIsLoading(false);
         break;
-      case SUMMARY_FILTERS.DISCOVER_PAID_MEDIA_SOURCED:
+      case SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED:
         this.props.updateMuSecondaryIsLoading(false);
         break;
-      case SUMMARY_FILTERS.DISCOVER_BOUNCE_RATE:
+      case SUMMARY_KPIS.DISCOVER_BOUNCE_RATE:
         this.props.updateTrafficSecondaryIsLoading(false);
         this.props.updateBuyConversionIsLoading(false);
         break;
-      case SUMMARY_FILTERS.BUY_MARKETING_SOURCED:
+      case SUMMARY_KPIS.BUY_MARKETING_SOURCED:
         this.props.updateBuyMarketIsLoading(false);
         break;
-      case SUMMARY_FILTERS.BUY_PAID_MEDIASPEND:
+      case SUMMARY_KPIS.BUY_PAID_MEDIASPEND:
         this.props.updateBuyMarketIsLoading(false);
         break;
-      case SUMMARY_FILTERS.BUY_CONVERSION:
+      case SUMMARY_KPIS.BUY_CONVERSION:
         this.props.updateBuyConversionIsLoading(false);
         this.props.updateTrafficSecondaryIsLoading(false);
 
         break;
-      case SUMMARY_FILTERS.BUY_GROSS_NEWARR:
+      case SUMMARY_KPIS.BUY_GROSS_NEWARR:
         this.props.updateBuyGrossIsLoading(false);
         break;
-      case SUMMARY_FILTERS.BUY_GROSS_NEWUNITS:
+      case SUMMARY_KPIS.BUY_GROSS_NEWUNITS:
         this.props.updateBuyGrossIsLoading(false);
         break;
     }
@@ -1221,27 +1221,27 @@ class Summary extends Component {
     this.props.updateActivePrimaryCard(index);
     switch (index) {
       case (0):
-        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.FINANCE_NET_NEW_ARR);
+        this.props.updateActiveSecondaryCard(SUMMARY_KPIS.FINANCE_NET_NEW_ARR);
         break;
       case (1):
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.DISCOVER_MARKETABLE_UNIVERSE);
+        this.props.updateActiveSecondaryCard(SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE);
         break;
       case (2):
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.TRY_NEW_UQFM);
+        this.props.updateActiveSecondaryCard(SUMMARY_KPIS.TRY_NEW_UQFM);
         break;
       case (3):
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.BUY_GROSS_NEWARR);
+        this.props.updateActiveSecondaryCard(SUMMARY_KPIS.BUY_GROSS_NEWARR);
         break;
       case (4):
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.USE_PERCENT_ACTIVATED);
+        this.props.updateActiveSecondaryCard(SUMMARY_KPIS.USE_PERCENT_ACTIVATED);
         break;
       default:
         this.props.updateMultichartMetric(true);
-        this.props.updateActiveSecondaryCard(SUMMARY_FILTERS.RENEW_CANCEL);
+        this.props.updateActiveSecondaryCard(SUMMARY_KPIS.RENEW_CANCEL);
         break;
     }
     if (
@@ -1390,7 +1390,7 @@ class Summary extends Component {
                           <span>
                             {isMobileOrTablet === false ?
                               this.getSecondaryContent() : (this.props.mobileFiltersIsShown ? null : this.getSecondaryContent())}
-                            {this.props.activeSecondaryCard===SUMMARY_FILTERS.USE_MONTH_RETURN_RATE ? <div id='commingSoon'>Coming Soon</div> :  summaryViewDetails}</span>
+                            {this.props.activeSecondaryCard===SUMMARY_KPIS.USE_MONTH_RETURN_RATE ? <div id='commingSoon'>Coming Soon</div> :  summaryViewDetails}</span>
                         }
                       </div>
                     </div>

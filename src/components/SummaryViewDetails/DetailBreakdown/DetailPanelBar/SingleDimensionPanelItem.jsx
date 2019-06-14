@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import * as utils from "../../../../utilities.js";
-import {SUMMARY_FILTERS} from '../../../../Constants/consts';
+import {SUMMARY_KPIS} from '../../../../Constants/consts';
 
 class SingleDimensionPanelItem extends Component {
 
     getColor(activeSecondary, originalColor) {
         switch (originalColor) {
             case 'red':
-                if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
-                    activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
-                    activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
+                if (activeSecondary === SUMMARY_KPIS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_KPIS.RENEW_CANCEL ||
+                    activeSecondary === SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_KPIS.RENEW_QTR_PF ||
+                    activeSecondary === SUMMARY_KPIS.RENEW_QTR_UI || activeSecondary ===SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E) {
                     return 'greenBG';
                 } else {
                     return 'redBG';
                 }
             default:
-            if (activeSecondary === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL ||
-                activeSecondary === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_FILTERS.RENEW_QTR_PF ||
-                activeSecondary === SUMMARY_FILTERS.RENEW_QTR_UI || activeSecondary ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
+            if (activeSecondary === SUMMARY_KPIS.FINANCE_CANCEL_ARR || activeSecondary === SUMMARY_KPIS.RENEW_CANCEL ||
+                activeSecondary === SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM || activeSecondary ===SUMMARY_KPIS.RENEW_QTR_PF ||
+                activeSecondary === SUMMARY_KPIS.RENEW_QTR_UI || activeSecondary ===SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E) {
                 return 'redBG';
             } else {
                 return 'greenBG';

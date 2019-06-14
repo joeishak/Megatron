@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from 'actions';
 import * as utils from '../../utilities.js'
 
-import {SUMMARY_FILTERS} from '../../Constants/consts';
+import {SUMMARY_KPIS} from '../../Constants/consts';
 import {
   Chart,
   ChartTooltip,
@@ -61,9 +61,9 @@ class KendoBulletChart extends Component {
 
     const colorRender = () => {
       let color = '';
-      if (this.props.cardIndex !== undefined && this.props.cardIndex === SUMMARY_FILTERS.FINANCE_CANCEL_ARR || this.props.cardIndex === SUMMARY_FILTERS.RENEW_CANCEL ||
-        this.props.cardIndex === SUMMARY_FILTERS.RENEW_CANCEL_ADOBECOM || this.props.cardIndex ===SUMMARY_FILTERS.RENEW_QTR_PF ||
-        this.props.cardIndex === SUMMARY_FILTERS.RENEW_QTR_UI || this.props.cardIndex ===SUMMARY_FILTERS.RENEW_CANCEL_RESLLER_E) {
+      if (this.props.cardIndex !== undefined && this.props.cardIndex === SUMMARY_KPIS.FINANCE_CANCEL_ARR || this.props.cardIndex === SUMMARY_KPIS.RENEW_CANCEL ||
+        this.props.cardIndex === SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM || this.props.cardIndex ===SUMMARY_KPIS.RENEW_QTR_PF ||
+        this.props.cardIndex === SUMMARY_KPIS.RENEW_QTR_UI || this.props.cardIndex ===SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E) {
         if (this.props.values[1] === 0 ) {
           color = '#3C3C3C';
         } else if (this.props.values[0] <= this.props.values[1]) {
