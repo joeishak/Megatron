@@ -2615,12 +2615,19 @@ export function filterTrySecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-
-
+    const TryDownloadQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryDownloadTypeQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const TryQFMQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryQFMTypeQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+   
 
     responseArray.push(
         TrySecondary, TryMutlichart, TryQTD, TryGeoQTD, TryMarketQTD,
-        TryProdQTD, TrySignAppQTD, TrySignCatQTD
+        TryProdQTD, TrySignAppQTD, TrySignCatQTD, TryDownloadQTD,TryQFMQTD
     );
     let promiseArr = Promise.all(responseArray);
 
