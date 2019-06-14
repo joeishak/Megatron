@@ -30693,7 +30693,7 @@ export const SecondaryData = [
                 }
             ]
         },
-        valueType: 'units'
+        valueType: 'percent'
     },
     {
         index: 26,
@@ -31209,7 +31209,7 @@ export const SecondaryData = [
                 }
             ]
         },
-        valueType: 'units'
+        valueType: 'percent'
     },
     {
         index: 27,
@@ -31727,7 +31727,7 @@ export const SecondaryData = [
             ]
         },
 
-        valueType: 'units'
+        valueType: 'percent'
     },
     {
         index: 28,

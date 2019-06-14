@@ -4397,6 +4397,8 @@ export function renderDollarValue(value) {
         return prefix + returnValue.toString() + suffix;
     }
 }
+
+
 /**
  * @name formatPercentage
  * @description Utility function that formats the number into percent
@@ -4407,37 +4409,9 @@ export function formatPercentage(value) {
     let percentage = (value === undefined) ? 0 : parseFloat(value * 100);
     // console.log('debug', percentage) 
 
-    // if (isNegative) {
-    //     percentage = value * 100;
-    //     console.log('debug', percentage)
-    // } else {
-    //     percentage = value * 100;
-    //     console.log('debug', percentage)
-    // }
-    // let isNegative = (value < 0) ? true : false;
-    // let percentage = value;
-    // let absVal = Math.abs(percentage);
-    // // Greater than or less than 100 
-    // // set value to 100
-    // if (absVal >= 100) {
-    //     if (isNegative) {
-    //         percentage = -100;
-    //     } else {
-    //         percentage = 100;
-    //     }
-    // } else {
-    //     if (parseFloat(value)) {
-    //         percentage = value;
-    //     } else {
-    //         percentage = 0;
-    //     }
-    // }
-    // const num =  (percentage * 100).toFixed(2);
-    // percentage = (num > 1) ? 1 : num;
-    // return (percentage * 100).toFixed(2) + '%';
-    if (percentage !== 0) {
+    
+    if (percentage !== 0 && parseInt(percentage)) {
         return (percentage).toFixed(2) + '%';
-
     } else {
         return '--';
     }

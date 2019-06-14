@@ -39,6 +39,8 @@ class FilterPanel extends Component {
                 }),
                 ...this.props.filters.quarter.valueFilters.map(item => {
                     return { ...item, label: item.value }
+                }),  ...this.props.filters.qfmType.valueFilters.map(item => {
+                    return { ...item, label: item.value }
                 }),
                 ...this.props.filters.segment.valueFilters.map(item => {
                     return { ...item, label: item.value }
@@ -72,6 +74,8 @@ class FilterPanel extends Component {
                     return { ...item, label: item.value }
                 }),
                 ...this.props.filters.quarter.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),  ...this.props.filters.qfmType.valueFilters.map(item => {
                     return { ...item, label: item.value }
                 }),
                 ...this.props.filters.segment.valueFilters.map(item => {
@@ -107,6 +111,9 @@ class FilterPanel extends Component {
                     return { ...item, label: item.value }
                 }),
                 ...this.props.filters.quarter.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.qfmType.valueFilters.map(item => {
                     return { ...item, label: item.value }
                 }),
                 ...this.props.filters.segment.valueFilters.map(item => {
@@ -199,6 +206,9 @@ class FilterPanel extends Component {
                     ...this.props.filters.quarter.valueFilters.map(item => {
                         return { ...item, label: item.value }
                     }),
+                    ...this.props.filters.qfmType.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
                     ...this.props.filters.segment.valueFilters.map(item => {
                         return { ...item, label: item.value }
                     })]
@@ -240,7 +250,8 @@ class FilterPanel extends Component {
             subscription: [],
             geo: [],
             signupCategory: [],
-            nonDMSegment: []
+            nonDMSegment: [],
+            qfmType: []
         };
         
         Object.keys(newFilters).forEach(item => {

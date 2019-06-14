@@ -189,6 +189,7 @@ class SummaryViewDetails extends Component {
       CHANNELMU,
       CHANNELPM
     } = DIMENSIONS;
+    
     let newFilters = {
       lastTouchChannel: [],
       convType: [],
@@ -196,7 +197,9 @@ class SummaryViewDetails extends Component {
       visits: [],
       channelMU: [],
       channelPM: [],
-      pvw: []
+      pvw: [],
+      customerType:[],
+      qfmType: []
     };
 
     Object.keys(newFilters).forEach(item => {
@@ -344,7 +347,6 @@ class SummaryViewDetails extends Component {
             </div>
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
               <div>Customer Type </div>
-
               <MultiValueSelect
                 value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CUSTOMERTYPE })}
                 options={customerType.availableFilters}
