@@ -34,7 +34,8 @@ class MultiDimensionPanelItem extends Component {
             actuals += obj['actuals'];
             units += obj['units'];
             qrf += obj['qrf'];
-            vsQrf += obj['vsQrf'];
+            // vsQrf += obj['vsQrf'];
+            vsQrf= (actuals-qrf)/qrf
             qrfDiff += obj['qrfDiff'];
             qq += obj['qq'];
             yy += obj['yy'];
@@ -51,7 +52,8 @@ class MultiDimensionPanelItem extends Component {
             actuals += obj['actuals'];
             units += obj['units'];
             qrf += obj['qrf'];
-            vsQrf += obj['vsQrf'];
+            // vsQrf += obj['vsQrf'];
+            vsQrf= ((actuals-qrf)/qrf).toFixed(2)
             qrfDiff += obj['qrfDiff'];
             ww += obj['ww'];
         });
@@ -66,7 +68,8 @@ class MultiDimensionPanelItem extends Component {
        let b =  arr.forEach(function(obj){
             actuals += obj['actuals'];
             qrf += obj['qrf'];
-            vsQrf += obj['vsQrf'];
+            // vsQrf += obj['vsQrf'];
+            vsQrf= ((actuals-qrf)/qrf).toFixed(2)
             qrfDiff += obj['qrfDiff'];
             qq += obj['qq'];
             yy += obj['yy'];
@@ -83,7 +86,8 @@ class MultiDimensionPanelItem extends Component {
             actuals += obj['actuals'];
           
             qrf += obj['qrf'];
-            vsQrf += obj['vsQrf'];
+            // vsQrf += obj['vsQrf'];
+            vsQrf= ((actuals-qrf)/qrf).toFixed(2)
             qrfDiff += obj['qrfDiff'];
             ww += obj['ww'];
         });
@@ -104,7 +108,8 @@ class MultiDimensionPanelItem extends Component {
         weekColumnClass = 'weekJourneyMarketColumn';
         let groupedQTD = _.groupBy(this.props.data.qtd, function (item) { return item.type });
         let groupedWeek = _.groupBy(this.props.data.week, function (item) { return item.type });
-
+        
+        
         let qtdARR = [],weekARR=[];
         _.keys(groupedQTD).forEach(item => {
             console.log(groupedQTD[item]);
@@ -116,6 +121,9 @@ class MultiDimensionPanelItem extends Component {
             weekARR.push(...groupedWeek[item])
            weekARR.push({...this.getJourneyWeekSubTotals(groupedWeek[item]),marketArea: 'Total', type: item});
         });
+        
+        console.log("MultiDimensionPanelItem Journey")
+        console.log(groupedQTD)
         switch (this.props.timeMetric) {
             case 'qtd':
                 let journeyQTD = (qtdARR.map((item,index) => {
@@ -237,6 +245,9 @@ class MultiDimensionPanelItem extends Component {
             weekARR.push(...groupedWeek[item])
            weekARR.push({...this.getWeekSubTotals(groupedWeek[item]),marketArea: 'Total', type: item});
         });
+        
+        console.log("MultiDimensionPanelItem")
+        console.log(groupedQTD)
         switch (this.props.timeMetric) {
             case 'qtd':
                 // console.log('Multi', activeSecondary);
@@ -337,7 +348,9 @@ class MultiDimensionPanelItem extends Component {
                 }));
         }
     }
+    
     render() {
+        console.log("Rendering MultiDimensionalPanelItem")
         let activeSecondary = this.props.activeSecondary !== undefined ? this.props.activeSecondary : 0;
         let MultiDimensionPanelItem = (this.props.isJourney === true) ? this.getMultiDimensionJourneyPanelItem(activeSecondary) : this.getMultiDimensionPanelItem(activeSecondary);
         return (MultiDimensionPanelItem)
