@@ -35,7 +35,7 @@ class MultiDimensionPanelItem extends Component {
             units += obj['units'];
             qrf += obj['qrf'];
             // vsQrf += obj['vsQrf'];
-            vsQrf= qrf !==0 ? (actuals-qrf)/qrf : '--'
+            vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf 
             qrfDiff += obj['qrfDiff'];
             // qq += obj['qq'];
             // yy += obj['yy'];
@@ -55,7 +55,7 @@ class MultiDimensionPanelItem extends Component {
             units += obj['units'];
             qrf += obj['qrf'];
             // vsQrf += obj['vsQrf'];
-            vsQrf= qrf !==0 ? (actuals-qrf)/qrf : '--'
+            vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf 
             qrfDiff += obj['qrfDiff'];
            // ww += obj['ww'];
            ww=0
@@ -72,7 +72,7 @@ class MultiDimensionPanelItem extends Component {
             actuals += obj['actuals'];
             qrf += obj['qrf'];
             // vsQrf += obj['vsQrf'];
-            vsQrf= qrf !==0 ? (actuals-qrf)/qrf : '--'
+            vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf 
             qrfDiff += obj['qrfDiff'];
             //qq += obj['qq'];
             //yy += obj['yy'];
@@ -92,7 +92,7 @@ class MultiDimensionPanelItem extends Component {
           
             qrf += obj['qrf'];
             // vsQrf += obj['vsQrf'];
-            vsQrf= qrf !==0 ? (actuals-qrf)/qrf : '--'
+            vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf 
             qrfDiff += obj['qrfDiff'];
             //ww += obj['ww'];
             ww=0
