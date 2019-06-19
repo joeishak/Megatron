@@ -34,10 +34,18 @@ class MultiDimensionPanelItem extends Component {
             actuals += obj['actuals'];
             units += obj['units'];
             qrf += obj['qrf'];
-            vsQrf += obj['vsQrf'];
+
+            //Calculating the vsQrf 
+            // vsQrf += obj['vsQrf'];
+            vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf ;
+
             qrfDiff += obj['qrfDiff'];
-            qq += obj['qq'];
-            yy += obj['yy'];
+
+            // Q/Q% , W/W%and Y/Y% cannot be calculated therefore removing them as short term solution
+            // qq += obj['qq'];
+            // yy += obj['yy'];
+            qq=0;
+            yy=0;
         });
 
         return {
@@ -51,9 +59,16 @@ class MultiDimensionPanelItem extends Component {
             actuals += obj['actuals'];
             units += obj['units'];
             qrf += obj['qrf'];
-            vsQrf += obj['vsQrf'];
+
+            //Calculating the vsQrf 
+            // vsQrf += obj['vsQrf'];
+            vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf ;
+            
             qrfDiff += obj['qrfDiff'];
-            ww += obj['ww'];
+
+            // Q/Q% , W/W%and Y/Y% cannot be calculated therefore removing them as short term solution
+            // ww += obj['ww'];
+            ww=0;
         });
 
         return {
@@ -66,10 +81,18 @@ class MultiDimensionPanelItem extends Component {
        let b =  arr.forEach(function(obj){
             actuals += obj['actuals'];
             qrf += obj['qrf'];
-            vsQrf += obj['vsQrf'];
+
+            //Calculating the vsQrf 
+            // vsQrf += obj['vsQrf'];
+            vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf ;
+
             qrfDiff += obj['qrfDiff'];
-            qq += obj['qq'];
-            yy += obj['yy'];
+
+            // Q/Q% , W/W%and Y/Y% cannot be calculated therefore removing them as short term solution
+            //qq += obj['qq'];
+            //yy += obj['yy'];
+            qq=0;
+            yy=0;
         });
 
         return {
@@ -83,9 +106,16 @@ class MultiDimensionPanelItem extends Component {
             actuals += obj['actuals'];
           
             qrf += obj['qrf'];
-            vsQrf += obj['vsQrf'];
+
+            //Calculating the vsQrf 
+            // vsQrf += obj['vsQrf'];
+            vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf ;
+
             qrfDiff += obj['qrfDiff'];
-            ww += obj['ww'];
+
+            // Q/Q% , W/W%and Y/Y% cannot be calculated therefore removing them as short term solution
+            // ww += obj['ww'];
+            ww=0;
         });
 
         return {
