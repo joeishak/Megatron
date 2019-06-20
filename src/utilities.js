@@ -1284,6 +1284,7 @@ export function requestBuySecondaryData(allFilters, _parameters) {
     generateFilterParams(12, buyGrossParams, allFilters, _parameters);
     generateFilterParams(15, buyConversionParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
+    generateFilterParams(16, buyLTVParams, allFilters, _parameters);
 
 
 
@@ -1307,6 +1308,12 @@ export function requestBuySecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
+    let params9 = buyLTVParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
     // Traffic  & Bounce
     const DiscoverG5Secondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
         headers: headers,
@@ -1314,6 +1321,11 @@ export function requestBuySecondaryData(allFilters, _parameters) {
     });
 
     //Marketing
+    const ltvSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROISecondary + params9 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
     const mktgSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMarketSourceARRSecondary + params6 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -1329,8 +1341,9 @@ export function requestBuySecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
     responseArray.push(DiscoverG5Secondary, mktgSecondary, pmssSecondary,
-        financeSecondary
+        financeSecondary, ltvSecondary
     );
+    
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
@@ -1523,6 +1536,7 @@ export function requestBuyMarketSecondaryData(allFilters, _parameters) {
     });
 
 // LTV ROI
+console.log('Running LTV Secondary')
 const ltvSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROISecondary + params7 + '&json=1', {
     headers: headers,
     responseType: 'text'
@@ -2704,6 +2718,7 @@ export function filterBuySecondaryData(allFilters, _parameters) {
     generateFilterParams(12, buyGrossParams, allFilters, _parameters);
     generateFilterParams(15, buyConversionParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
+    generateFilterParams(16, buyLTVParams, allFilters, _parameters);
 
 
 
@@ -2727,6 +2742,11 @@ export function filterBuySecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
+    let params9 = buyLTVParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
     // Traffic  & Bounce
     const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
         headers: headers,
@@ -2734,6 +2754,11 @@ export function filterBuySecondaryData(allFilters, _parameters) {
     });
 
     //Marketing
+    const ltvSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROISecondary + params9 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
     const mktgSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMarketSourceARRSecondary + params6 + '&json=1', {
         headers: headers,
         responseType: 'text'
@@ -2749,7 +2774,7 @@ export function filterBuySecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
     responseArray.push(DiscoverG5Secondary, mktgSecondary, pmssSecondary,
-        financeSecondary
+        financeSecondary, ltvSecondary
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -4392,8 +4417,10 @@ export function formatPercentage(value) {
     let percentage = (value === undefined) ? 0 : parseFloat(value * 100);
     // console.log('debug', percentage) 
 
-    
+    //Modification by Rakesh Grewal to display percentage values less than 1, commented out
     if (percentage !== 0 && parseInt(percentage)) {
+
+    // if (percentage !== 0 ) {  
         return (percentage).toFixed(2) + '%';
     } else {
         return '--';

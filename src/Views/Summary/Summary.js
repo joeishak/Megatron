@@ -653,6 +653,7 @@ class Summary extends Component {
               // And Filters are default
               if (isDefaultFilters) {
                 // Call action to get Market XDC from in memory cache
+                
                 this.props.getBuyMarketSecondaryData(this.props.filters);
                 this.props.getBuySecondaryData(this.props.filters);
               } else {
@@ -976,6 +977,7 @@ class Summary extends Component {
           break;
         // On Buy Primary
         case 3:
+          
           if (activeSecondaryCard === SUMMARY_KPIS.BUY_CONVERSION) {
             if (this.state.secondaryKpiChanged === true) {
               if (buyConversionIsLoaded === true && buySecondaryIsLoaded === true) {
@@ -1208,6 +1210,10 @@ class Summary extends Component {
         this.props.updateTrafficSecondaryIsLoading(false);
 
         break;
+        case SUMMARY_KPIS.BUY_LTV_ROI:
+            this.props.updateBuyMarketIsLoading(false);
+  
+          break;
       case SUMMARY_KPIS.BUY_GROSS_NEWARR:
         this.props.updateBuyGrossIsLoading(false);
         break;

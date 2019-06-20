@@ -199,7 +199,8 @@ class SummaryViewDetails extends Component {
       channelPM: [],
       pvw: [],
       customerType:[],
-      qfmType: []
+      qfmType: [],
+      segment:[]
     };
 
     Object.keys(newFilters).forEach(item => {
@@ -214,7 +215,7 @@ class SummaryViewDetails extends Component {
           newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === SEGMENT })) ?
             [_.find(this.state.selectedFilters, (item => { return item.category === SEGMENT }))] :
             [...this.props.filters.segment.valueFilters];
-          break;
+            break;
         case LTC:
           newFilters[item] = _.find(this.state.selectedFilters, (item => { return item.category === LTC })) ? /* Then */
             [_.find(this.state.selectedFilters, (item => { return item.category === LTC }))] : /* Else */

@@ -289,6 +289,7 @@ export default function (state = {
             processBuyPMSSSecondaryData(action.payload[2].data[0], newState.secondary);
             processBuyGrossSecondaryData(action.payload[3].data[0], newState.secondary);
             processBuyConversionSecondaryData(action.payload[0].data[0], newState.secondary);
+            processBuyLTVSourcedSecondary(action.payload[4].data[0], newState.secondary);
 
             return { ...newState, buySecondaryIsLoaded: true };
         case GET_BUY_TRAFFIC_SECONDARY_DATA:
@@ -4882,6 +4883,7 @@ export function processBuyConversionNewRepQTDData(g5, newState) {
 }
 //MKTG Srouced
 export function processBuyMKTSourcedSecondary(data, newState) {
+    
     newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].value = data.MktgSourcedARRActual;
     newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].target = data.MktgSourcedARRTarget;
     newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].targetFQ = data.MktgSourcedARRTargetFQ;
@@ -5271,6 +5273,7 @@ export function processBuyPMSSChannelQTDData(data, newState) {
 }
 
 export function processBuyLTVSourcedSecondary(data,newState) {
+    console.log('Updating Redux Store LTV Secondary')
     newState[SUMMARY_KPIS.BUY_LTV_ROI].value = data.LTVROIActual;
     newState[SUMMARY_KPIS.BUY_LTV_ROI].target = data.LTVROITarget;
     newState[SUMMARY_KPIS.BUY_LTV_ROI].targetFQ = data.LTVROITargetFQ;

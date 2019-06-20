@@ -168,6 +168,8 @@ class PrimarySquare extends Component {
       tabletBullet: isTablet,
       laptopBullet: isLaptop
     });
+    // console.log('Logging Primary Item')
+    // console.log(this.props.item, formattedValue)
     return (
       <div>
         {/* Desktop View */}
