@@ -326,13 +326,22 @@ class SummaryViewDetails extends Component {
               />
             </div>
             {/* Conversion Type */}
-            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+            {/* <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
               <div>Conversion </div>
 
               <MultiValueSelect
                 value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CONVERSION })}
                 options={convType.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
+                onMenuClose={this.closeMultiValue}
+              />
+            </div> */}
+             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              <div>Customer Type </div>
+              <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CUSTOMERTYPE })}
+                options={customerType.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.CUSTOMERTYPE; this.updateMultiValue(e, type) }}
                 onMenuClose={this.closeMultiValue}
               />
             </div>
@@ -346,15 +355,7 @@ class SummaryViewDetails extends Component {
                 value={_.filter(this.state.selectedFilters, item => { return item.category === WEBSEGMENT })}
               />
             </div>
-            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div>Customer Type </div>
-              <MultiValueSelect
-                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CUSTOMERTYPE })}
-                options={customerType.availableFilters}
-                onValueChange={(e) => { let type = DIMENSIONS.CUSTOMERTYPE; this.updateMultiValue(e, type) }}
-                onMenuClose={this.closeMultiValue}
-              />
-            </div>
+           
 
           </div>
         );
@@ -408,13 +409,23 @@ class SummaryViewDetails extends Component {
               />
             </div>
             {/* Conversion Type */}
-            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+            {/* <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
               <div>Conversion</div>
 
               <MultiValueSelect
                 value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CONVERSION })}
                 options={convType.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
+                onMenuClose={this.closeMultiValue}
+              />
+            </div> */}
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              <div>Customer Type </div>
+
+              <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CUSTOMERTYPE })}
+                options={customerType.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.CUSTOMERTYPE; this.updateMultiValue(e, type) }}
                 onMenuClose={this.closeMultiValue}
               />
             </div>
@@ -428,16 +439,7 @@ class SummaryViewDetails extends Component {
                 value={_.filter(this.state.selectedFilters, item => { return item.category === WEBSEGMENT })}
               />
             </div>
-            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-              <div>Customer Type </div>
-
-              <MultiValueSelect
-                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CUSTOMERTYPE })}
-                options={customerType.availableFilters}
-                onValueChange={(e) => { let type = DIMENSIONS.CUSTOMERTYPE; this.updateMultiValue(e, type) }}
-                onMenuClose={this.closeMultiValue}
-              />
-            </div>
+            
           </div>
         );
       //Buy

@@ -735,7 +735,7 @@ export function requestPrimaryData(allFilters, _parameters) {
         responseType: 'text'
     });
     //Secondary
-    const primaryBuy = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params15 + '&json=1', {
+    const primaryBuy = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionSecondaryPrimary + params15 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -1285,6 +1285,7 @@ export function requestBuySecondaryData(allFilters, _parameters) {
     generateFilterParams(15, buyConversionParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
     generateFilterParams(16, buyLTVParams, allFilters, _parameters);
+    generateFilterParams(5, trafficParams, allFilters, _parameters)
 
 
 
@@ -1313,9 +1314,11 @@ export function requestBuySecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
+    
+
 
     // Traffic  & Bounce
-    const DiscoverG5Secondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
+    const DiscoverG5Secondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionSecondaryPrimary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -1368,55 +1371,61 @@ export function requestBuyTrafficSecondaryData(allFilters, _parameters) {
 
     // console.log("Traffic Network Request: ", Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1');
     // Traffic  & Bounce
-    const DiscoverG5Secondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
+    const DiscoverG5Secondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionSecondaryPrimary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Multichart
-    const DiscoverG5Multichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficMutlichart + params5 + '&json=1', {
+    const DiscoverG5Multichart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionMultiChart + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //QTD
-    const DiscoverG5QTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficQTD + params5 + '&json=1', {
+    const DiscoverG5QTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionQTDQuery + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Geo QTD
-    const DiscoverG5GeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficGeoQTD + params5 + '&json=1', {
+    const DiscoverG5GeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionGeoQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Market QTD
-    const DiscoverG5MarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficMAQTD + params5 + '&json=1', {
+    const DiscoverG5MarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionMAQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     // Web Segment QTD
-    const DiscoverG5SegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficWebSegQTD + params5 + '&json=1', {
+    const DiscoverG5SegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionWebSegQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Last touch channelQTD 
-    const DiscoverGLTCQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficLTCQTD + params5 + '&json=1', {
+    const DiscoverGLTCQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionLTCQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Conversion Type QTD
-    const DiscoverG5ConvQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficConvTypeQTD + params5 + '&json=1', {
+    const DiscoverG5ConvQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionConvTypeQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Mobile Vs Desktop QTD
-    const DiscoverMobDesk = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficMobDeskQTD + params5 + '&json=1', {
+    const DiscoverMobDesk = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionMobVsDesQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //NEw Vs Repeat QTD
-    const DiscoverNewRep = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficNewRepQTD + params5 + '&json=1', {
+    const DiscoverNewRep = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionNewVsRepQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
+    const DiscoverQFM = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionQFMQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    
+
     responseArray.push(
         DiscoverG5Secondary,
         DiscoverG5Multichart,
@@ -1428,6 +1437,7 @@ export function requestBuyTrafficSecondaryData(allFilters, _parameters) {
         DiscoverG5ConvQTD,
         DiscoverMobDesk,
         DiscoverNewRep,
+        DiscoverQFM
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -2748,7 +2758,7 @@ export function filterBuySecondaryData(allFilters, _parameters) {
         return p;
     }, '');
     // Traffic  & Bounce
-    const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
+    const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionSecondaryPrimary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -2799,52 +2809,56 @@ export function filterBuyTrafficSecondaryData(allFilters, _parameters) {
 
     // console.log("Traffic Network filter: ", Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1');
     // Traffic  & Bounce
-    const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1', {
+    const DiscoverG5Secondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionSecondaryPrimary + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Multichart
-    const DiscoverG5Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficMutlichart + params5 + '&json=1', {
+    const DiscoverG5Multichart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionMultiChart + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //QTD
-    const DiscoverG5QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficQTD + params5 + '&json=1', {
+    const DiscoverG5QTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionQTDQuery + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Geo QTD
-    const DiscoverG5GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficGeoQTD + params5 + '&json=1', {
+    const DiscoverG5GeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionGeoQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Market QTD
-    const DiscoverG5MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficMAQTD + params5 + '&json=1', {
+    const DiscoverG5MarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionMAQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     // Web Segment QTD
-    const DiscoverG5SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficWebSegQTD + params5 + '&json=1', {
+    const DiscoverG5SegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionWebSegQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Last touch channelQTD 
-    const DiscoverGLTCQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficLTCQTD + params5 + '&json=1', {
+    const DiscoverGLTCQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionLTCQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Conversion Type QTD
-    const DiscoverG5ConvQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficConvTypeQTD + params5 + '&json=1', {
+    const DiscoverG5ConvQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionConvTypeQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //Mobile Vs Desktop QTD
-    const DiscoverMobDesk = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficMobDeskQTD + params5 + '&json=1', {
+    const DiscoverMobDesk = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionMobVsDesQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
     //NEw Vs Repeat QTD
-    const DiscoverNewRep = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficNewRepQTD + params5 + '&json=1', {
+    const DiscoverNewRep = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionNewVsRepQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const DiscoverQFM = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionQFMQTD + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -2861,6 +2875,7 @@ export function filterBuyTrafficSecondaryData(allFilters, _parameters) {
         DiscoverG5ConvQTD,
         DiscoverMobDesk,
         DiscoverNewRep,
+        DiscoverQFM
 
     );
     let promiseArr = Promise.all(responseArray);
@@ -4418,9 +4433,9 @@ export function formatPercentage(value) {
     // console.log('debug', percentage) 
 
     //Modification by Rakesh Grewal to display percentage values less than 1, commented out
-    if (percentage !== 0 && parseInt(percentage)) {
+    // if (percentage !== 0 && parseInt(percentage)) {
 
-    // if (percentage !== 0 ) {  
+    if (percentage !== 0 ) {  
         return (percentage).toFixed(2) + '%';
     } else {
         return '--';

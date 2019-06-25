@@ -44,6 +44,8 @@ class PanelItemTableHeader extends Component {
                 return 'Subscription';
             case DIMENSIONS.QFMTYPE:
                 return 'QFM Type'
+            case DIMENSIONS.CUSTOMERTYPE:
+                return 'Customer Type'
             default:
                 return 'Product';
         }

@@ -181,6 +181,15 @@ class PanelItemTable extends Component {
                 />
 
                 }
+            case DIMENSIONS.CUSTOMERTYPE:
+                    return <SingleDimensionPanelItem
+                    activeSecondary={this.props.activeSecondary}
+                    timeMetric={this.props.timeMetric}
+                    data={this.props.activeSummary.details.customer}
+                    isJourney={this.state.isJourney}
+                    type={DIMENSIONS.CUSTOMERTYPE}
+                    valueType={this.props.activeSummary.valueType}
+                />
                 
                 
             default:

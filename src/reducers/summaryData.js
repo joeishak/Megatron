@@ -235,7 +235,9 @@ export default function (state = {
             processTrafficMarketQTDData(action.payload[4].data, newState.secondary);
             processTrafficWebSegmentQTDData(action.payload[5].data, newState.secondary);
             processTrafficLTCQTDData(action.payload[6].data, newState.secondary);
-            processTrafficConvQTDData(action.payload[7].data, newState.secondary);
+            //Replacing Conversion with Customer
+            // processTrafficConvQTDData(action.payload[7].data, newState.secondary);
+            processTrafficCustomerQTDData(action.payload[7].data, newState.secondary );
             processTrafficMobDeskQTDData(action.payload[8].data, newState.secondary);
             processTrafficNewRepQTDData(action.payload[9].data, newState.secondary);
 
@@ -2673,6 +2675,65 @@ export function processTrafficConvQTDData(g5, newState) {
         newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.conversion.qtd.push(bounce);
         newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.conversion.week.push(trafficPM);
         newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.conversion.week.push(bouncePM);
+    }
+}
+
+export function processTrafficCustomerQTDData(g5, newState) {
+    // console.log(g5);
+    // console.log(newState);
+    //Clear old Values
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.customer.qtd = [];
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.customer.qtd = [];
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.customer.week = [];
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.customer.week = [];
+
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let traffic = {
+            index: i,
+            actuals: item.TrafficActuals,
+            qq: item.TrafficQQTY,
+            qrf: item.TrafficTarget,
+            qrfDiff: item.TrafficActuals - item.TrafficTarget,
+            type: item.customer_type,
+            vsQrf: item.TrafficVsQrf,
+            yy: item.TrafficYY
+        }
+        let trafficPM =
+        {
+            index: i,
+            actuals: item.TrafficCW,
+            qrf: item.TrafficTargetCW,
+            qrfDiff: item.TrafficCWVsQrfDiff,
+            vsQrf: item.TrafficCWVsQrf,
+            ww: item.TrafficWW,
+            type: item.customer_type,
+        }
+
+        let bounce = {
+            index: i,
+            actuals: item.BounceRateActuals,
+            qq: item.BounceRateQQTY,
+            qrf: item.BounceRateTarget,
+            qrfDiff: item.BounceRateVsQrfDiff,
+            type: item.customer_type,
+            vsQrf: item.BounceRateVsQrf,
+            yy: item.BounceRateYY
+        }
+        let bouncePM =
+        {
+            index: i,
+            actuals: item.BounceRateCW,
+            qrf: item.BounceRateTargetCW,
+            qrfDiff: item.BounceRateCWVsQrfDiff,
+            vsQrf: item.BounceRateCWVsQrf,
+            ww: item.BounceRateWW,
+            type: item.customer_type,
+        }
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.customer.qtd.push(traffic);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.customer.qtd.push(bounce);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.customer.week.push(trafficPM);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.customer.week.push(bouncePM);
     }
 }
 export function processTrafficMobDeskQTDData(g5, newState) {

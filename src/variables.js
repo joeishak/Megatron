@@ -20170,6 +20170,56 @@ export const SecondaryData = [
                     }
                 ]
             },
+            customer: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'LAPSED',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'UKNOWN'
+                    },
+                    {
+                        index: 1,
+                        segment: 'UNKNOWN',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'UNKNOWN'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'LAPSED',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'LAPSED'
+                    },
+                    {
+                        index: 1,
+                        segment: 'UNKNOWN',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'UNKNOWN'
+                    }
+                ]
+            },
             mvd: {
                 qtd: [
                     {
@@ -22235,6 +22285,56 @@ export const SecondaryData = [
                         vsQrf: -.0495,
                         ww: -20.00,
                         type: 'ANZ'
+                    }
+                ]
+            },
+            customer: {
+                qtd: [
+                    {
+                        index: 0,
+                        segment: 'LAPSED',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'UKNOWN'
+                    },
+                    {
+                        index: 1,
+                        segment: 'UNKNOWN',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'UNKNOWN'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        segment: 'LAPSED',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'LAPSED'
+                    },
+                    {
+                        index: 1,
+                        segment: 'UNKNOWN',
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'UNKNOWN'
                     }
                 ]
             },

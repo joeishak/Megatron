@@ -133,7 +133,8 @@ class DetailPanelBar extends Component {
             NEWVSREPEAT,
             MOBILEVSDESKTOP,
             CONVERSION,
-            VISITS
+            VISITS,
+            CUSTOMERTYPE
         } = DIMENSIONS;
         switch (this.props.activePrimary) {
             case 0:
@@ -175,8 +176,8 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title={'Last Touch Channel'}>
                                     {this.getPanelContents(DIMENSIONS.LTC)}
                                 </ PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion Type'>
-                                    {this.getPanelContents(DIMENSIONS.CONVERSION)}
+                                <PanelBarItem className="panelItemTitle" expanded={false} title='Customer Type'>
+                                    {this.getPanelContents(DIMENSIONS.CUSTOMERTYPE)}
                                 </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Mobile Vs Desktop'>
                                     {this.getPanelContents(DIMENSIONS.MOBILEVSDESKTOP)}
@@ -251,8 +252,11 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title={'Channel'}>
                                     {this.getPanelContents(DIMENSIONS.LTC)}
                                 </ PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion'>
+                                {/* <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion'>
                                     {this.getPanelContents(DIMENSIONS.CONVERSION)}
+                                </ PanelBarItem> */}
+                                <PanelBarItem className="panelItemTitle" expanded={false} title='Customer Type'>
+                                    {this.getPanelContents(DIMENSIONS.CUSTOMERTYPE)}
                                 </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Mobile Vs Desktop'>
                                     {this.getPanelContents(DIMENSIONS.MOBILEVSDESKTOP)}
