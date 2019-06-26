@@ -292,6 +292,7 @@ export default function (state = {
             processBuyGrossSecondaryData(action.payload[3].data[0], newState.secondary);
             processBuyConversionSecondaryData(action.payload[0].data[0], newState.secondary);
             processBuyLTVSourcedSecondary(action.payload[4].data[0], newState.secondary);
+            
 
             return { ...newState, buySecondaryIsLoaded: true };
         case GET_BUY_TRAFFIC_SECONDARY_DATA:
@@ -307,6 +308,7 @@ export default function (state = {
             processBuyConversionConvQTDData(action.payload[7].data, newState.secondary);
             processBuyConversionMobDeskQTDData(action.payload[8].data, newState.secondary);
             processBuyConversionNewRepQTDData(action.payload[9].data, newState.secondary);
+            processBuyConversionQFMData(action.payload[10].data, newState.secondary);
 
             return { ...newState, buyConversionIsLoaded: true };
         case GET_BUY_MKTG_SECONDARY_DATA:
@@ -356,6 +358,7 @@ export default function (state = {
             processBuyGrossSegmentWeek(newState.secondary, action.payload[5].data);
             processBuyGrossproductQTD(newState.secondary, action.payload[7].data);
             processBuyGrossProductWeek(newState.secondary, action.payload[7].data);
+            processBuyGrossQFMTypeQTD(newState.secondary, action.payload[8].data);
 
             return { ...newState, buyGrossIsLoaded: true };
         case GET_USE_SECONDARY_DATA:
@@ -4516,10 +4519,10 @@ export function processTryDownloadQTDData(data, newState){
 export function processTryQFMQTDData(data, newState) {
     //Clear old Values
     newState[SUMMARY_KPIS.TRY_NEW_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_UQFM].details, qfm: { qtd: [], week: [] } };
-    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details, qfm: { qtd: [], week: [] } };
+    // newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details, qfm: { qtd: [], week: [] } };
    
-    newState[SUMMARY_KPIS.TRY_DAY_28].details = { ...newState[SUMMARY_KPIS.TRY_DAY_28].details, qfm: { qtd: [], week: [] } };
-    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details, qfm: { qtd: [], week: [] } };
+    // newState[SUMMARY_KPIS.TRY_DAY_28].details = { ...newState[SUMMARY_KPIS.TRY_DAY_28].details, qfm: { qtd: [], week: [] } };
+    // newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details, qfm: { qtd: [], week: [] } };
 
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
@@ -4547,87 +4550,124 @@ export function processTryQFMQTDData(data, newState) {
             ww: item.NewUQFMsWW,
         }
         //Cumu UQFM
-        let cumuUQFM = {
-            index: i,
-            actuals: item.CumUQFMsActuals,
-            type: item.qfm_type,
-            qq: item.CumUQFMsQQTY,
-            qrf: item.CumUQFMsTarget,
-            qrfDiff: item.CumUQFMsVsQrfDiff,
-            vsQrf: item.CumUQFMsVsQrf,
-            yy: item.CumUQFMsYY
-        }
-        let cumuUQFMWeek =
-        {
-            index: i,
-            type: item.qfm_type,
-            actuals: item.CumUQFMsCW,
-            qrf: item.CumUQFMsTargetCW,
-            qrfDiff: item.CumUQFMsCWVsQrfDiff,
-            vsQrf: item.CumUQFMsCWVsQrf,
-            ww: item.CumUQFMsWW,
-        }
+        // let cumuUQFM = {
+        //     index: i,
+        //     actuals: item.CumUQFMsActuals,
+        //     type: item.qfm_type,
+        //     qq: item.CumUQFMsQQTY,
+        //     qrf: item.CumUQFMsTarget,
+        //     qrfDiff: item.CumUQFMsVsQrfDiff,
+        //     vsQrf: item.CumUQFMsVsQrf,
+        //     yy: item.CumUQFMsYY
+        // }
+        // let cumuUQFMWeek =
+        // {
+        //     index: i,
+        //     type: item.qfm_type,
+        //     actuals: item.CumUQFMsCW,
+        //     qrf: item.CumUQFMsTargetCW,
+        //     qrfDiff: item.CumUQFMsCWVsQrfDiff,
+        //     vsQrf: item.CumUQFMsCWVsQrf,
+        //     ww: item.CumUQFMsWW,
+        // }
         
-        //Day 28
-        let day28 = {
-            index: i,
-            actuals: item.Day28NewUQFMActuals,
-            type: item.qfm_type,
-            qq: item.Day28NewUQFMQQTY,
-            qrf: item.Day28NewUQFMTarget,
-            qrfDiff: item.Day28NewUQFMVsQrfDiff,
-            vsQrf: item.Day28NewUQFMVsQrf,
-            yy: item.Day28NewUQFMYY
-        }
-        let day28Week =
-        {
-            index: i,
-            type: item.qfm_type,
-            actuals: item.Day28NewUQFMCW,
-            qrf: item.Day28NewUQFMTargetCW,
-            qrfDiff: item.Day28NewUQFMCWVsQrfDiff,
-            vsQrf: item.Day28NewUQFMCWVsQrf,
-            ww: item.Day28NewUQFMWW,
-        }
-        //Cumu UQFM to QFM
-        let cumuUTQ = {
-            index: i,
-            actuals: item.CumUQFMToQFMActuals,
-            type: item.qfm_type,
-            qq: item.CumUQFMToQFMQQTY,
-            qrf: item.CumUQFMToQFMTarget,
-            qrfDiff: item.CumUQFMToQFMVsQrfDiff,
-            vsQrf: item.CumUQFMToQFMVsQrf,
-            yy: item.CumUQFMToQFMYY
-        }
-        let cumuUTQWeek =
-        {
-            index: i,
-            type: item.qfm_type,
-            actuals: item.CumUQFMToQFMCW,
-            qrf: item.CumUQFMToQFMTargetCW,
-            qrfDiff: item.CumUQFMToQFMCWVsQrfDiff,
-            vsQrf: item.CumUQFMToQFMCWVsQrf,
-            ww: item.CumUQFMToQFMWW,
-        }
+        // //Day 28
+        // let day28 = {
+        //     index: i,
+        //     actuals: item.Day28NewUQFMActuals,
+        //     type: item.qfm_type,
+        //     qq: item.Day28NewUQFMQQTY,
+        //     qrf: item.Day28NewUQFMTarget,
+        //     qrfDiff: item.Day28NewUQFMVsQrfDiff,
+        //     vsQrf: item.Day28NewUQFMVsQrf,
+        //     yy: item.Day28NewUQFMYY
+        // }
+        // let day28Week =
+        // {
+        //     index: i,
+        //     type: item.qfm_type,
+        //     actuals: item.Day28NewUQFMCW,
+        //     qrf: item.Day28NewUQFMTargetCW,
+        //     qrfDiff: item.Day28NewUQFMCWVsQrfDiff,
+        //     vsQrf: item.Day28NewUQFMCWVsQrf,
+        //     ww: item.Day28NewUQFMWW,
+        // }
+        // //Cumu UQFM to QFM
+        // let cumuUTQ = {
+        //     index: i,
+        //     actuals: item.CumUQFMToQFMActuals,
+        //     type: item.qfm_type,
+        //     qq: item.CumUQFMToQFMQQTY,
+        //     qrf: item.CumUQFMToQFMTarget,
+        //     qrfDiff: item.CumUQFMToQFMVsQrfDiff,
+        //     vsQrf: item.CumUQFMToQFMVsQrf,
+        //     yy: item.CumUQFMToQFMYY
+        // }
+        // let cumuUTQWeek =
+        // {
+        //     index: i,
+        //     type: item.qfm_type,
+        //     actuals: item.CumUQFMToQFMCW,
+        //     qrf: item.CumUQFMToQFMTargetCW,
+        //     qrfDiff: item.CumUQFMToQFMCWVsQrfDiff,
+        //     vsQrf: item.CumUQFMToQFMCWVsQrf,
+        //     ww: item.CumUQFMToQFMWW,
+        // }
 
      
         newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.qfm.qtd.push(newUQFM);
         newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.qfm.week.push(newUQFMWeek);
-        newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.qfm.qtd.push(cumuUQFM);
-        newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.qfm.week.push(cumuUQFMWeek);
+        // newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.qfm.qtd.push(cumuUQFM);
+        // newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.qfm.week.push(cumuUQFMWeek);
         
-        newState[SUMMARY_KPIS.TRY_DAY_28].details.qfm.qtd.push(day28);
-        newState[SUMMARY_KPIS.TRY_DAY_28].details.qfm.week.push(day28Week);
-        newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.qfm.qtd.push(cumuUTQ);
-        newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.qfm.week.push(cumuUTQWeek);
+        // newState[SUMMARY_KPIS.TRY_DAY_28].details.qfm.qtd.push(day28);
+        // newState[SUMMARY_KPIS.TRY_DAY_28].details.qfm.week.push(day28Week);
+        // newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.qfm.qtd.push(cumuUTQ);
+        // newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.qfm.week.push(cumuUTQWeek);
 
     }
 }
 /**End Try */
 
 /**Buy */
+export function processBuyConversionQFMData(data, newState) {
+    //Clear old Values
+    
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details = { ...newState[SUMMARY_KPIS.BUY_CONVERSION].details, qfm: { qtd: [], week: [] } };
+        
 
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+      
+        
+        //conversion QFM
+        let convQFM = {
+            index: i,
+            actuals: item.ConversionActuals,
+            type: item.qfm_type,
+            qq: item.ConversionQQTY,
+            qrf: item.ConversionTarget,
+            qrfDiff: item.ConversionVsQrfDiff,
+            vsQrf: item.ConversionVsQrf,
+            yy: item.ConversionYY
+        }
+        let convQFMWeek =
+        {
+            index: i,
+            type: item.qfm_type,
+            actuals: item.ConversionCW,
+            qrf: item.ConversionTargetCW,
+            qrfDiff: item.ConversionCWVsQrfDiff,
+            vsQrf: item.ConversionCWVsQrf,
+            ww: item.ConversionWW,
+        }
+       
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.qfm.qtd.push(convQFM);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.qfm.week.push(convQFMWeek);
+        
+
+    }
+}
 //Conversion
 export function processBuyConversionSecondaryData(data, newState) {
     newState[SUMMARY_KPIS.BUY_CONVERSION].value = data.ConversionActual;
@@ -5702,6 +5742,67 @@ export function processBuyGrossGeoQTD(newState, data) {
     newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.geo.qtd = processQTDOrder(item2);
     newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.geo.qtd = processQTDOrder(item1);
 
+}
+export function processBuyGrossQFMTypeQTD(newState, data) {
+    //Clear old Values
+    
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details = { ...newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details, qfm: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details = { ...newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details, qfm: { qtd: [], week: [] } };   
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+      
+        
+        
+        let newARRQFM = {
+            index: i,
+            actuals: item.GrossActuals,
+            type: item.qfm_type,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let newARRQFMWeek =
+        {
+            index: i,
+            type: item.qfm_type,
+            actuals: item.GrossARRCW,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW,
+        }
+        let newSubQFM = {
+            index: i,
+            actuals: item.GrossUnitsActuals,
+            type: item.qfm_type,
+            qq: item.GrossUnitsQQTY,
+            qrf: item.GrossUnitsTarget,
+            qrfDiff: item.GrossUnitsVsQrfDiff,
+            vsQrf: item.GrossUnitsVsQrf,
+            yy: item.GrossUnitsYY
+        }
+        let newSubQFMWeek =
+        {
+            index: i,
+            type: item.qfm_type,
+            actuals: item.GrossUnitsCW,
+            qrf: item.GrossUnitsTargetCW,
+            qrfDiff: item.GrossUnitsCWVsQrfDiff,
+            vsQrf: item.GrossUnitsCWVsQrf,
+            ww: item.GrossUnitsWW,
+        }
+       
+        newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.qfm.qtd.push(newARRQFM);
+        newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.qfm.week.push(newARRQFMWeek);
+
+        newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qfm.qtd.push(newSubQFM);
+        newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qfm.week.push(newSubQFMWeek);
+        
+
+    }
 }
 
 /** Custom function to Reorder QTD Details with row always last */

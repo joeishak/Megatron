@@ -17,6 +17,45 @@ body {
     font-weight: bold;
     color: white;
 }
+.maskBanner{
+    
+    width: 90%;
+    /* height: 400px; */
+    margin: auto;
+    background-color: white;
+    text-align: center;
+    color: white;
+    z-index: 100;
+    margin-top: 40px;
+    /* box-shadow: 0 0 100px lavender; */
+    border-radius: 5px;
+}
+
+/* @keyframes showHide {
+    /* 0% { color: #a22e2e size}
+    33% { color: orange}
+    67% { color: red}
+    100% {color: #a22e2e} 
+    0% {font-size: 0em}
+    
+    30% {font-size: 1.7em}
+    100% {font-size: 1.7em}
+} */
+
+.maskBanner p{
+    display: block;
+    
+    /* padding-top: 10%; */
+    font-size: 1.7em;
+    /* animation-name: showHide ;
+    -webkit-animation-name: showHide;
+    animation-duration: 5s;
+    -webkit-animation-duration: 5s; */
+    margin-left: 2%;
+    margin-right: 2%;
+    color: red;
+    
+}
 .example-appear {
     opacity: 0;
     transform: translateY(-200px);

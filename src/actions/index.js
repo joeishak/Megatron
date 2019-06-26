@@ -616,7 +616,9 @@ export function getFilteredBuyFinanceSecondaryData(filters) {
         websegment: Object.keys(filters.websegment.availableFilters).map(e => filters.websegment.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
-        pvw: Object.keys(filters.pvw.availableFilters).map(e => filters.pvw.availableFilters[e])
+        pvw: Object.keys(filters.pvw.availableFilters).map(e => filters.pvw.availableFilters[e]),
+        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e])
+        
 
     }
     let _parameters = {
@@ -628,7 +630,8 @@ export function getFilteredBuyFinanceSecondaryData(filters) {
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
-        pvw: Object.keys(filters.pvw.valueFilters).map(e => filters.pvw.valueFilters[e])
+        pvw: Object.keys(filters.pvw.valueFilters).map(e => filters.pvw.valueFilters[e]),
+        qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e])
 
     };
     // console.log(filters);
@@ -1285,7 +1288,9 @@ export function getBuyFinanceSecondaryData(filters) {
         segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
-        pvw: Object.keys(filters.pvw.availableFilters).map(e => filters.pvw.availableFilters[e])
+        pvw: Object.keys(filters.pvw.availableFilters).map(e => filters.pvw.availableFilters[e]),
+        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e])
+
 
     }
     let _parameters = {

@@ -580,6 +580,16 @@ class SummaryViewDetails extends Component {
                 onMenuClose={this.closeMultiValue}
               />
             </div>
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              <div>QFM Type</div>
+
+              <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.QFMTYPE })}
+                options={qfmType.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.QFMTYPE; this.updateMultiValue(e, type) }}
+                onMenuClose={this.closeMultiValue}
+              />
+            </div>
 
           </div>
         );
@@ -594,6 +604,16 @@ class SummaryViewDetails extends Component {
                 value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.PVW })}
                 options={pvw.availableFilters}
                 onValueChange={(e) => { let type = DIMENSIONS.PVW; this.updateMultiValue(e, type) }}
+                onMenuClose={this.closeMultiValue}
+              />
+            </div>
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              <div>QFM Type</div>
+
+              <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.QFMTYPE })}
+                options={qfmType.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.QFMTYPE; this.updateMultiValue(e, type) }}
                 onMenuClose={this.closeMultiValue}
               />
             </div>
@@ -644,6 +664,7 @@ class SummaryViewDetails extends Component {
 
     return (
       <div className="sumViewContainer">
+                
         {/* First Row for Ttle Bar and Metric Filter */}
         <div className="row container-fluid titleBarHeader">
 

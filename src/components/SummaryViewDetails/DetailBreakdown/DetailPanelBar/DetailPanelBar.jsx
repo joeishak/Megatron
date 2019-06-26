@@ -319,9 +319,9 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Sign Up Source'>
                                     {this.getPanelContents(DIMENSIONS.SIGNAPP)}
                                 </ PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
+                                {/* <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
                                     {this.getPanelContents(DIMENSIONS.QFMTYPE)}
-                                </ PanelBarItem>
+                                </ PanelBarItem> */}
 
                             </PanelBar>
                         )
@@ -354,9 +354,9 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Sign Up Source'>
                                     {this.getPanelContents(DIMENSIONS.SIGNCAT)}
                                 </ PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
+                                {/* <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
                                     {this.getPanelContents(DIMENSIONS.QFMTYPE)}
-                                </ PanelBarItem>
+                                </ PanelBarItem> */}
                             </PanelBar>
                         )
                     case SUMMARY_KPIS.TRY_CUMU_UQFM_QFM:
@@ -371,9 +371,9 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Sign Up Source'>
                                     {this.getPanelContents(DIMENSIONS.SIGNCAT)}
                                 </ PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
+                                {/* <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
                                     {this.getPanelContents(DIMENSIONS.QFMTYPE)}
-                                </ PanelBarItem>
+                                </ PanelBarItem> */}
                             </PanelBar>
                         )
                 }
@@ -438,6 +438,9 @@ class DetailPanelBar extends Component {
                          <PanelBarItem className="panelItemTitle" expanded={false} title='New Vs Repeat'>
                              {this.getPanelContents(DIMENSIONS.NEWVSREPEAT)}
                          </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
+                             {this.getPanelContents(DIMENSIONS.QFMTYPE)}
+                         </ PanelBarItem>
                      </PanelBar>
                  )
                  case SUMMARY_KPIS.BUY_LTV_ROI:
@@ -478,6 +481,9 @@ class DetailPanelBar extends Component {
                          <PanelBarItem className="panelItemTitle" expanded={false} title='Product Category'>
                              {this.getPanelContents(DIMENSIONS.PRODUCT)}
                          </PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
+                             {this.getPanelContents(DIMENSIONS.QFMTYPE)}
+                         </ PanelBarItem>
                      </PanelBar>
                  )
                  case SUMMARY_KPIS.BUY_GROSS_NEWUNITS:
@@ -498,6 +504,9 @@ class DetailPanelBar extends Component {
                          <PanelBarItem className="panelItemTitle" expanded={false} title='Product Category'>
                              {this.getPanelContents(DIMENSIONS.PRODUCT)}
                          </PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
+                             {this.getPanelContents(DIMENSIONS.QFMTYPE)}
+                         </ PanelBarItem>
                      </PanelBar>
                      )
              }

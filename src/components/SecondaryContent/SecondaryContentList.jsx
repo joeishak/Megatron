@@ -293,6 +293,7 @@ class SecondaryContentList extends Component {
         {navigationTitle}
         {secondaryContentTop}
         {mobileBottom}
+        }
       </div>
     );
   }

@@ -300,6 +300,10 @@ let buyGrossParams = [
     {
         prompt: 'PVWFilters',
         value: ''
+    },
+    {
+        prompt: 'QFMTypeFilters',
+        value: ''
     }
 ];
 
@@ -1285,7 +1289,7 @@ export function requestBuySecondaryData(allFilters, _parameters) {
     generateFilterParams(15, buyConversionParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
     generateFilterParams(16, buyLTVParams, allFilters, _parameters);
-    generateFilterParams(5, trafficParams, allFilters, _parameters)
+    // generateFilterParams(5, trafficParams, allFilters, _parameters)
 
 
 
@@ -1647,8 +1651,14 @@ export function requestBuyFinanceSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    const financeQFMQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.BuyGrossNewQFMTypeQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
-    responseArray.push(financeSecondary, financeMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, financeProductQTD);
+    
+
+    responseArray.push(financeSecondary, financeMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, financeProductQTD,financeQFMQTD);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
@@ -2182,7 +2192,7 @@ export function filterPrimaryData(allFilters, _parameters) {
         responseType: 'text'
     });
     //Secondary
-    const primaryBuy = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params15 + '&json=1', {
+    const primaryBuy = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionSecondaryPrimary + params15 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -4065,6 +4075,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[3].value = getParamValues(_activeParams.route, allFilters.routeTomarket);
             filterParams[4].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[5].value = getParamValues(_activeParams.pvw, allFilters.pvw);
+            filterParams[6].value = getParamValues(_activeParams.qfmType, allFilters.qfmType);
 
             break;
         case 13:
