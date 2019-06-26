@@ -3096,8 +3096,12 @@ export function filterBuyFinanceSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    const financeQFMQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.BuyGrossNewQFMTypeQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
-    responseArray.push(financeSecondary, financeMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, financeProductQTD);
+    responseArray.push(financeSecondary, financeMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, financeProductQTD,financeQFMQTD);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
