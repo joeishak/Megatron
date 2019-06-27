@@ -74,10 +74,10 @@ let trafficParams = [
         prompt: 'LastTouchChannelFilters',
         value: ''
     },
-    {
-        prompt: 'ConvTypeFilters',
-        value: ''
-    },
+    // {
+    //     prompt: 'ConvTypeFilters',
+    //     value: ''
+    // },
     {
         prompt: 'CustomerTypeFilters',
         value: ''
@@ -4031,8 +4031,8 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[3].value = getParamValues(_activeParams.websegment, allFilters.websegment);
             filterParams[4].value = getParamValues(_activeParams.visits, allFilters.visits);
             filterParams[5].value = getParamValues(_activeParams.lastTouchChannel, allFilters.lastTouchChannel);
-            filterParams[6].value = getParamValues(_activeParams.convType, allFilters.convType);
-            filterParams[7].value = getParamValues(_activeParams.customerType, allFilters.customerType);
+            // filterParams[6].value = getParamValues(_activeParams.convType, allFilters.convType);
+            filterParams[6].value = getParamValues(_activeParams.customerType, allFilters.customerType);
             break;
         //Marketable Universe - Discover
         case 6:
@@ -4456,6 +4456,21 @@ export function formatPercentage(value) {
         return '--';
     }
 }
+
+export function formatIndex(value){
+    if (isNaN(value)){
+        return '--'
+    }else{
+        value= parseFloat(value)
+        if(value===0){
+            return '--'
+        }else{
+            return value.toFixed(2)
+        }
+    }
+    
+}
+
 /**
  * @name formatMetric
  * @description Utility function that determines the type of metric this should be formatted to 
@@ -4476,6 +4491,8 @@ export function formatMetric(item, type) {
                 return (renderDollarValue(item.value)) ? renderDollarValue(item.value) : '--';
             case 'percent':
                 return (formatPercentage(item.value) !== NaN) ? formatPercentage(item.value) : '--';
+            case 'index':
+                return (formatIndex(item.value) !== NaN) ? formatIndex(item.value): '--'
         }
     } else if (type === 'target') {
 
@@ -4492,7 +4509,9 @@ export function formatMetric(item, type) {
             case 'percent':
 
                 return (formatPercentage(item.value) !== NaN) ? formatPercentage(item.value) : 0;
-
+            
+            case 'index':
+                return (formatIndex(item.value) !== NaN) ? formatIndex(item.value): '--'
 
         }
 

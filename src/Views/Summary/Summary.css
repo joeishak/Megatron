@@ -22,12 +22,14 @@ body {
     width: 90%;
     /* height: 400px; */
     margin: auto;
-    background-color: white;
+    background-color: rgb(206, 203, 203);
+    /* background-color:white; */
     text-align: center;
     color: white;
     z-index: 100;
     margin-top: 40px;
     /* box-shadow: 0 0 100px lavender; */
+    
     border-radius: 5px;
 }
 
@@ -56,6 +58,20 @@ body {
     color: red;
     
 }
+@media only screen and (max-width: 425px){
+    .maskBanner{
+        position: relative;
+        top: 50px;
+        
+        background-color: rgb(206, 203, 203);
+        padding-bottom: 70px;
+
+    }
+    
+    
+}
+
+
 .example-appear {
     opacity: 0;
     transform: translateY(-200px);

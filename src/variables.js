@@ -26988,7 +26988,7 @@ export const SecondaryData = [
     {
         index: 19,
         category: 3,
-        header: 'LTV ROI',
+        header: 'LTV/CAC Index',
         value: .0102,
         target: .0099,
         comments: [
@@ -27770,7 +27770,7 @@ export const SecondaryData = [
                 }
             ]
         },
-        valueType: 'percent'
+        valueType: 'index'
     },
     {
         index: 20,

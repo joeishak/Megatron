@@ -1414,7 +1414,25 @@ class Summary extends Component {
                           <span>
                             {isMobileOrTablet === false ?
                               this.getSecondaryContent() : (this.props.mobileFiltersIsShown ? null : this.getSecondaryContent())}
-                            {this.props.activeSecondaryCard===SUMMARY_KPIS.USE_MONTH_RETURN_RATE ? <div id='commingSoon'>Coming Soon</div> :  summaryViewDetails}</span>
+                            {/* {this.props.activeSecondaryCard===SUMMARY_KPIS.USE_MONTH_RETURN_RATE ? <div id='commingSoon'>Coming Soon</div> :  summaryViewDetails}</span> */}
+                            {/* {this.props.activePrimaryCard===4 && 
+                          // //      ((isMobileOrTablet && this.props.secondaryIsVisible) || (!isMobileOrTablet) && this.props.primaryIsVisible)  ? 
+                          // //   <div className="maskBanner">
+                          // //   <p>USE KPIs are in the works and not available. The new USE functionality will be available by the end of Q3.
+                          // //     Meanwhile please use <a href="https://dashdiscovery.corp.adobe.com/#/views/ccea_engagement/Summary" target="_blank">Engagement dashboard</a>
+                          // //   </p>
+                          // // </div> :  summaryViewDetails} */}
+                          
+                          {/* // </span> */}
+
+                          {this.props.activePrimaryCard===4 
+                          && ((isMobileOrTablet && !this.props.mobileIsPrimary) ||
+                          (!isMobileOrTablet))
+                          ? <div className="maskBanner">
+                          <p>USE KPIs are in the works and not available. The new USE functionality will be available by the end of Q3.
+                            Meanwhile please use <a href="https://dashdiscovery.corp.adobe.com/#/views/ccea_engagement/Summary" target="_blank">Engagement dashboard</a>
+                          </p>
+                        </div> :  summaryViewDetails}</span>
 
                         }
                         

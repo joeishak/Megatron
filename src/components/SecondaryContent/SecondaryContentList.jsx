@@ -274,6 +274,15 @@ class SecondaryContentList extends Component {
       </div>
     ) : null;
 
+    let topBottomContent = (
+      <React.Fragment>
+        {secondaryContentTop}
+        {mobileBottom}
+      </React.Fragment>
+        
+      
+    )
+
     return (
       <div
         style={renderContainerStyle}
@@ -286,13 +295,18 @@ class SecondaryContentList extends Component {
           <span><div className="renew-overlay"><p className="renew-overlay-vertext">ADOBE.com Direct Sales</p></div>
             <div className="renew-overlay-two"><p className="renew-overlay-vertext-two">Reseller and E-Tail / Retail</p></div></span> : null}
 
-        {this.props.activePrimary === 4 && ((this.props.mobileSecondaryIsActive && !this.state.clicked) || utils.includes(this.props.deviceType, 'laptop')) ?
+        {/* Disabling temporarily */}
+        {/* {this.props.activePrimary === 4 && ((this.props.mobileSecondaryIsActive && !this.state.clicked) || utils.includes(this.props.deviceType, 'laptop')) ?
           <span><div className="use-overlay"><p className="use-overlay-vertext">Inactive Paid Users</p></div>
             <div className="use-overlay-three"><p className="use-overlay-vertext-three">Engaged</p></div>
-            <div className="use-overlay-two"><p className="use-overlay-vertext-two">New Paid Users</p></div></span> : null}
+            <div className="use-overlay-two"><p className="use-overlay-vertext-two">New Paid Users</p></div></span> : null} */}
         {navigationTitle}
-        {secondaryContentTop}
-        {mobileBottom}
+
+        {/* {secondaryContentTop}
+        {mobileBottom} */}
+        {this.props.activePrimary === 4? null:topBottomContent }
+
+
         }
       </div>
     );
