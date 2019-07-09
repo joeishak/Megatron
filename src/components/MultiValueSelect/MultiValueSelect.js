@@ -59,7 +59,7 @@ class MultiValueSelect extends Component {
             <Picky
                 placeholder="All Selected"
                 numberDisplayed= '1'
-                manySelectedPlaceholder={'Multiple Values ('+this.props.value.length +')'}
+                manySelectedPlaceholder={this.props.options.length>this.props.value.length?'Multiple Values ('+this.props.value.length +')':"All Selected"}
                 allSelectedPlaceholder = "All Selected"
                 filterPlaceholder ="Search. . . "
                 className='pickyDropDown'

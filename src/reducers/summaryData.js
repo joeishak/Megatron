@@ -2364,7 +2364,7 @@ export function processTrafficQTDData(g5, newState) {
                 newState[i].details.qtdw.qtd[1].value = g5.BounceRateTarget;
                 newState[i].details.qtdw.qtd[2].value = g5.BounceRateVsQrfDiff;
                 newState[i].details.qtdw.qtd[3].value = g5.BounceRateVsQrf;
-                newState[i].details.qtdw.qtd[4].value = g5.BounceRateQQLY;
+                newState[i].details.qtdw.qtd[4].value = g5.BounceRateQQTY;
                 newState[i].details.qtdw.qtd[5].value = g5.BounceRateYY;
 
                 newState[i].details.qtdw.week[0].value = g5.BounceRateCW;
@@ -3886,8 +3886,8 @@ export function processTryQTDData(data, newState) {
                 newState[i].details.qtdw.qtd[0].value = data.CumUQFMToQFMActuals;
                 newState[i].details.qtdw.qtd[1].value = data.CumUQFMToQFMTarget;
                 newState[i].details.qtdw.qtd[2].value = data.CumUQFMToQFMVsQrfDiff;
-                newState[i].details.qtdw.qtd[3].value = data.CumUQFMToQFMQQTY;
-                newState[i].details.qtdw.qtd[4].value = data.CumUQFMToQFMVsQrf;
+                newState[i].details.qtdw.qtd[3].value =  data.CumUQFMToQFMVsQrf;
+                newState[i].details.qtdw.qtd[4].value = data.CumUQFMToQFMQQTY;
                 newState[i].details.qtdw.qtd[5].value = data.CumUQFMToQFMYY;
 
                 newState[i].details.qtdw.week[0].value = data.CumUQFMToQFMCW;
@@ -5414,14 +5414,14 @@ export function processBuyLTVSourcedMultichart(data,newState) {
 }
 export function processBuyLTVSourcedQTD(data,newState) {
 
-    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.qtd[0].value = data.LTVROIActuals;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.qtd[0].value = data.LTVROIActual;
     newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.qtd[1].value = data.LTVROITarget;
     newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.qtd[2].value = data.LTVROIVsQrfDiff
     newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.qtd[3].value = data.LTVROIVsQrf;
     newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.qtd[4].value = data.LTVROIQQTY;
     newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.qtd[5].value = data.LTVROIYY;
 
-    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.week[0].value = data.LTVROICW;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.week[0].value = data.LTVROIActualCW;
     newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.week[1].value = data.LTVROITargetCW;
     newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.week[2].value = data.LTVROICWVsQrfDiff;
     newState[SUMMARY_KPIS.BUY_LTV_ROI].details.qtdw.week[3].value = data.LTVROICWVsQrf;
@@ -5685,7 +5685,7 @@ export function processBuyGrossQTD(newState, data) {
     newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[1].value = data[0].GrossUnitsTarget;
     newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[2].value = data[0].GrossUnitsVsQrfDiff;
     newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[3].value = data[0].GrossUnitsVsQrf;
-    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[4].value = data[0].GrossUnitsQQLY;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[4].value = data[0].GrossUnitsQQTY;
     newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.qtd[5].value = data[0].GrossUnitsYY;
     newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.week[0].value = data[0].GrossUnitsCW
     newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.qtdw.week[1].value = data[0].GrossUnitsTargetCW;

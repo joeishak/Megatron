@@ -4060,7 +4060,8 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+            // filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[3].value = getParamValues(_activeParams.ltvSegment, allFilters.ltvSegment);
             filterParams[4].value = getParamValues(_activeParams.channelPM, allFilters.channelPM);
             filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
 
@@ -4114,7 +4115,8 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+            // filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
+            filterParams[3].value = getParamValues(_activeParams.ltvSegment, allFilters.ltvSegment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
             break;

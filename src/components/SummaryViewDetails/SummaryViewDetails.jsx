@@ -49,6 +49,9 @@ class SummaryViewDetails extends Component {
         ...this.props.filters.segment.valueFilters.map(item => {
           return { ...item, label: item.value }
         }),
+        ...this.props.filters.ltvSegment.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
         ...this.props.filters.product.valueFilters.map(item => {
           return { ...item, label: item.value }
         })],
@@ -81,6 +84,9 @@ class SummaryViewDetails extends Component {
           return { ...item, label: item.value }
         }),
         ...this.props.filters.segment.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.ltvSegment.valueFilters.map(item => {
           return { ...item, label: item.value }
         }),
         ...this.props.filters.product.valueFilters.map(item => {
@@ -187,7 +193,8 @@ class SummaryViewDetails extends Component {
       CONVERSION,
       VISITS,
       CHANNELMU,
-      CHANNELPM
+      CHANNELPM,
+      LTVSEGMENT
     } = DIMENSIONS;
     
     let newFilters = {
@@ -200,7 +207,8 @@ class SummaryViewDetails extends Component {
       pvw: [],
       customerType:[],
       qfmType: [],
-      segment:[]
+      segment:[],
+      ltvSegment:[]
     };
 
     Object.keys(newFilters).forEach(item => {
@@ -236,6 +244,7 @@ class SummaryViewDetails extends Component {
             [_.find(this.state.selectedFilters, (item => { return item.category === CHANNELMU }))] : /* Else */
             [...this.props.filters.channelMU.valueFilters];
           break;
+        
         default:
           let grouped = _.groupBy(this.state.selectedFilters, (obj => { return obj.category === item }));
           if (grouped.false !== this.state.selectedFilters.length) {
@@ -289,7 +298,7 @@ class SummaryViewDetails extends Component {
       VISITS
     } = DIMENSIONS;
 
-    let { lastTouchChannel, convType, websegment, segment, product, pvw, visits, channelMU, channelPM, qfmType, customerType } = this.props.filters;
+    let { lastTouchChannel, convType, websegment, segment, product, pvw, visits, channelMU, channelPM, qfmType, customerType, ltvSegment } = this.props.filters;
     switch (activeItem) {
 
       case SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE:
@@ -516,12 +525,18 @@ class SummaryViewDetails extends Component {
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
               <div>Segment</div>
 
-              <SingleValueSelect
+              {/* <SingleValueSelect
                 value={_.filter(this.state.selectedFilters, item => { return item.category === SEGMENT })}
                 activeFilters={segment.valueFilters}
                 options={segment.availableFilters}
                 onValueChange={this.updateSingleValue}
                 onMenuClose={this.closeSingleValue}
+              /> */}
+              <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.LTVSEGMENT })}
+                options={ltvSegment.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.LTVSEGMENT; this.updateMultiValue(e, type) }}
+                onMenuClose={this.closeMultiValue}
               />
             </div>
             {/* Product Category*/}
@@ -544,12 +559,18 @@ class SummaryViewDetails extends Component {
             {/* segment*/}
             <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
               <div>Segment</div>
-              <SingleValueSelect
+              {/* <SingleValueSelect
                 value={_.filter(this.state.selectedFilters, item => { return item.category === SEGMENT })}
                 activeFilters={segment.valueFilters}
                 options={segment.availableFilters}
                 onValueChange={this.updateSingleValue}
                 onMenuClose={this.closeSingleValue}
+              /> */}
+              <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.LTVSEGMENT })}
+                options={ltvSegment.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.LTVSEGMENT; this.updateMultiValue(e, type) }}
+                onMenuClose={this.closeMultiValue}
               />
             </div>
             {/* Product Category*/}

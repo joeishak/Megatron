@@ -302,9 +302,10 @@ class SecondaryContentList extends Component {
             <div className="use-overlay-two"><p className="use-overlay-vertext-two">New Paid Users</p></div></span> : null} */}
         {navigationTitle}
 
-        {/* {secondaryContentTop}
-        {mobileBottom} */}
-        {this.props.activePrimary === 4? null:topBottomContent }
+        {secondaryContentTop}
+        {mobileBottom}
+        {/* This is used to hide the content
+        {this.props.activePrimary === 4? null:topBottomContent } */}
 
 
         }

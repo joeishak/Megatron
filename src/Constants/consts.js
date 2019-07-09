@@ -29,6 +29,7 @@ export const DIMENSIONS = {
     CHANNELMU: "channelMU",
     CHANNELPM: "channelPM",
     NONDMSEGMENT: "nonDMSegment",
+    LTVSEGMENT: "ltvSegment", 
     QFMTYPE: "qfmType",
     CUSTOMERTYPE: "customerType"
 };

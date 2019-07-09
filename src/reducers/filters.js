@@ -45,7 +45,8 @@ const { GEO,
     CHANNELPM,
     NONDMSEGMENT,
     QFMTYPE,
-    CUSTOMERTYPE
+    CUSTOMERTYPE,
+    LTVSEGMENT
 } = DIMENSIONS;
 
 // Reducer Function with a default state set for filters
@@ -91,6 +92,10 @@ export default function (state = {
         valueFilters: []
     },
     nonDMSegment: {
+        availableFilters: [],
+        valueFilters: []
+    },
+    ltvSegment: {
         availableFilters: [],
         valueFilters: []
     },
@@ -175,6 +180,8 @@ export default function (state = {
             copyOfState.visits.valueFilters.push({ index: 114, category: VISITS, value: 'All Visits' });
             copyOfState.channelMU.valueFilters.push({ index: 213, category: CHANNELMU, value: 'ALL' });
             copyOfState.nonDMSegment.valueFilters = nonDmSegs;
+            //LTV Segments are same as nonDmSegs
+            // copyOfState.ltvSegment.valueFilters = nonDmSegs; 
             // Create the combined values filters
             copyOfState.combined.valueFilters = [...copyOfState.quarter.valueFilters, ...copyOfState.segment.valueFilters, ...copyOfState.route.valueFilters || {},
             ...copyOfState.market.valueFilters || {}, ...copyOfState.product.valueFilters || {}, ...copyOfState.subscription.valueFilters || {}, ...copyOfState.geo.valueFilters || {},
@@ -211,6 +218,7 @@ export default function (state = {
             let chanMuFilters = action.payload[19].data
             let chanPmFilters = action.payload[20].data
             let nonDMFilters = action.payload[21].data
+            let ltvSegmentFilters= action.payload[21].data //initial state same as nonDMFilters
             let pvw = action.payload[22].data
             let qfmType = action.payload[23].data
             let customerType= action.payload[24].data
@@ -236,6 +244,7 @@ export default function (state = {
             let chanMU = processDropDownListFilterValue(CHANNELMU, chanMuFilters);
             let chanPM = processDropDownListFilterValue(CHANNELPM, chanPmFilters);
             let segNonDM = processDropDownListFilterValue(NONDMSEGMENT, nonDMFilters);
+            let ltvSeg = processDropDownListFilterValue(LTVSEGMENT, ltvSegmentFilters);
             let pvwFilters = processDropDownListFilterValue('pvw', pvw);
             let qfmTypeFilters = processDropDownListFilterValue(QFMTYPE, qfmType);
             let customerTypeFilters = processDropDownListFilterValue(CUSTOMERTYPE, customerType);
@@ -243,7 +252,7 @@ export default function (state = {
             // Create the combined value filters
             let arr = [...newquarterState, ...newgeotate, ...newMAState, ...newproducttate, ...newroutetate, ...newsegmentState, ...newsubscriptiontate,
             ...newChannelState, ...newVisitState, ...newCloud, ...newConv, ...newDiscBuy, ...newMobileDesk, ...newVsRepeat, ...newProdName, ...newSignApp,
-            ...newSignCat, ...newWeb, ...chanMU, ...chanPM, segNonDM, ...pvwFilters, ...qfmTypeFilters, ...customerTypeFilters];
+            ...newSignCat, ...newWeb, ...chanMU, ...chanPM, segNonDM, ...pvwFilters, ...qfmTypeFilters, ...customerTypeFilters, ...ltvSeg];
             // Create the filters state object
             let obj =
             {
@@ -262,7 +271,8 @@ export default function (state = {
                     { index: 239, category: NONDMSEGMENT, value: 'STOCK' },
                     { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
                     { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
-                    { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' }]
+                    { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },
+                   ]
                 },
                 market: {
                     availableFilters: newMAState,
@@ -347,6 +357,7 @@ export default function (state = {
                 },
                 nonDMSegment: {
                     availableFilters: segNonDM,
+                    // valueFilters: segNonDM
                     valueFilters: [{ index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
                     { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
                     { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
@@ -359,6 +370,11 @@ export default function (state = {
                     { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
                     { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
                     { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },]
+                },
+                //Creating LTV Segment with the same values as NonDM Segment
+                ltvSegment: {
+                    availableFilters: ltvSeg,
+                    valueFilters: ltvSeg
                 },
                 pvw: {
                     availableFilters: pvwFilters,
@@ -373,7 +389,7 @@ export default function (state = {
                     valueFilters: []
                 }
             }
-
+            
             // Return Filters State
             return { ...newState, ...obj, defaultState: obj, isDefaultFilters: true, filtersAreLoaded: true };
 
@@ -415,6 +431,9 @@ export default function (state = {
             { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
             { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
             { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' }];
+
+            //Setting the value of ltvSegment same as nonDMSegment
+            copyOfState.ltvSegment.valueFilters = copyOfState.nonDMSegment.valueFilters
 
             return {...copyOfState, isDefaultFilters: true};
         case RESET_FILTERS:
@@ -674,6 +693,17 @@ function processDropDownListFilterValue(type, data) {
             });
             return newArr;
         case NONDMSEGMENT:
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['segment_pivot'],
+                    label: item['segment_pivot']
+
+                }
+            });
+            return newArr;
+        case LTVSEGMENT:
             newArr = newArr.map(item => {
                 return {
                     index: count++,
