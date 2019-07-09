@@ -208,7 +208,8 @@ class SummaryViewDetails extends Component {
       customerType:[],
       qfmType: [],
       segment:[],
-      ltvSegment:[]
+      ltvSegment:[],
+      product:[]
     };
 
     Object.keys(newFilters).forEach(item => {
