@@ -56,13 +56,15 @@ class KendoMultiChart extends Component {
             return true;
         }
         if (this.props.activeMultichart !== nextProps.activeMultichart) {
-            if(this.props.activeMultichart[0][0] === nextProps.activeMultichart[0][0]){
-                return false
-            }
+            // if(this.props.activeMultichart[0][0] === nextProps.activeMultichart[0][0] &&
+            //     this.props.activeMultichart[1][0] === nextProps.activeMultichart[1][0]){
+            //     return false
+            // }
             return true;
         }
         return false;
     }
+    
     formatDataValues(arr) {
         let newArr;
         if (arr !== undefined) {

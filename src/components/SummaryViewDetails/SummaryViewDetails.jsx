@@ -54,6 +54,9 @@ class SummaryViewDetails extends Component {
         }),
         ...this.props.filters.product.valueFilters.map(item => {
           return { ...item, label: item.value }
+        }),
+        ...this.props.filters.qfmType.valueFilters.map(item => {
+          return { ...item, label: item.value }
         })],
 
     };
@@ -90,6 +93,9 @@ class SummaryViewDetails extends Component {
           return { ...item, label: item.value }
         }),
         ...this.props.filters.product.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.qfmType.valueFilters.map(item => {
           return { ...item, label: item.value }
         })]
     })

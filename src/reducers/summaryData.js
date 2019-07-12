@@ -196,7 +196,9 @@ export default function (state = {
             processXDC1FinancialUnitsMultichart(newState.secondary, action.payload[2].data);
             processXDC1FinancialQTD(newState.secondary, action.payload[3].data);
             processXDC1FinancialGeoQTD(newState.secondary, action.payload[4].data);
+            processXDC1FinancialGeoQTDTotal(newState.secondary, action.payload[9].data);
             processXDC1FinancialGeoWeek(newState.secondary, action.payload[4].data)
+            processXDC1FinancialGeoWeekTotal(newState.secondary, action.payload[9].data)
             processXDC1FinancialMarketQTD(newState.secondary, action.payload[5].data);
             processXDC1FinancialMarketWeek(newState.secondary, action.payload[5].data);
             processXDC1FinancialrouteQTD(newState.secondary, action.payload[7].data);
@@ -214,7 +216,9 @@ export default function (state = {
             processXDC2FinancialUnitsMultichart(newState.secondary, action.payload[2].data);
             processXDC2FinancialQTD(newState.secondary, action.payload[3].data);
             processXDC2FinancialGeoQTD(newState.secondary, action.payload[4].data);
+            processXDC2FinancialGeoQTDTotal(newState.secondary, action.payload[9].data);
             processXDC2FinancialGeoWeek(newState.secondary, action.payload[4].data)
+            processXDC2FinancialGeoWeekTotal(newState.secondary, action.payload[9].data)
             processXDC2FinancialMarketQTD(newState.secondary, action.payload[5].data);
             processXDC2FinancialMarketWeek(newState.secondary, action.payload[5].data);
             processXDC2FinancialrouteQTD(newState.secondary, action.payload[7].data);
@@ -232,9 +236,11 @@ export default function (state = {
             processTrafficMultichartData(action.payload[1].data, newState.secondary);
             processTrafficQTDData(action.payload[2].data[0], newState.secondary);
             processTrafficGeoQTDData(action.payload[3].data, newState.secondary);
+            processTrafficGeoQTDDataTotal(action.payload[15].data, newState.secondary);
             processTrafficMarketQTDData(action.payload[4].data, newState.secondary);
             processTrafficWebSegmentQTDData(action.payload[5].data, newState.secondary);
             processTrafficLTCQTDData(action.payload[6].data, newState.secondary);
+            processTrafficLTCQTDDataTotal(action.payload[17].data, newState.secondary);
             //Replacing Conversion with Customer
             // processTrafficConvQTDData(action.payload[7].data, newState.secondary);
             processTrafficCustomerQTDData(action.payload[7].data, newState.secondary );
@@ -246,6 +252,7 @@ export default function (state = {
             processUQFMMultichartData(action.payload[11].data, newState.secondary);
             processUQFMQTDData(action.payload[12].data[0], newState.secondary);
             processUQFMGeoQTDData(action.payload[13].data, newState.secondary);
+            processUQFMGeoQTDDataTotal(action.payload[16].data, newState.secondary);
             processUQFMMarketQTDData(action.payload[14].data, newState.secondary);
             return { ...newState, trafficIsLoaded: true };
         case GET_MKTG_SECONDARY_DATA:
@@ -257,6 +264,7 @@ export default function (state = {
             processMUMultichartData(action.payload[1].data, newState.secondary);
             processMUQTDData(action.payload[2].data[0], newState.secondary);
             processMUGeoQTDData(action.payload[3].data, newState.secondary);
+            processMUGeoQTDDataTotal(action.payload[12].data, newState.secondary);
             processMUMarketQTDData(action.payload[4].data, newState.secondary);
             processMUChannelQTDData(action.payload[5].data, newState.secondary);
 
@@ -264,6 +272,7 @@ export default function (state = {
             processPMSSMultichartData(action.payload[7].data, newState.secondary);
             processPMSSQTDData(action.payload[8].data[0], newState.secondary);
             processPMSSGeoQTDData(action.payload[9].data, newState.secondary);
+            processPMSSGeoQTDDataTotal(action.payload[13].data, newState.secondary);
             processPMSSMarketQTDData(action.payload[10].data, newState.secondary);
             processPMSSChannelQTDData(action.payload[11].data, newState.secondary);
 
@@ -276,11 +285,14 @@ export default function (state = {
             processTryMultichartData(action.payload[1].data, newState.secondary);
             processTryQTDData(action.payload[2].data[0], newState.secondary);
             processTryGeoQTDData(action.payload[3].data, newState.secondary);
+            processTryGeoQTDDataTotal(action.payload[10].data, newState.secondary);
             processTryMarketQTDData(action.payload[4].data, newState.secondary);
             processTryProductQTDData(action.payload[5].data, newState.secondary);
             processTrySignUpAppQTDData(action.payload[6].data, newState.secondary);
+            processTrySignUpAppQTDDataTotal(action.payload[11].data, newState.secondary);
             processTrySignUpCatQTDData(action.payload[7].data, newState.secondary);
             processTryDownloadQTDData(action.payload[8].data, newState.secondary);
+            processTryDownloadQTDDataTotal(action.payload[12].data, newState.secondary);
             processTryQFMQTDData(action.payload[9].data, newState.secondary);
 
             return { ...newState, tryIsLoaded: true };
@@ -302,9 +314,11 @@ export default function (state = {
             processBuyConversionMultichartData(action.payload[1].data, newState.secondary);
             processBuyConversionQTDData(action.payload[2].data[0], newState.secondary);
             processBuyConversionGeoQTDData(action.payload[3].data, newState.secondary);
+            processBuyConversionGeoQTDDataTotal(action.payload[11].data, newState.secondary);
             processBuyConversionMarketQTDData(action.payload[4].data, newState.secondary);
             processBuyConversionWebSegmentQTDData(action.payload[5].data, newState.secondary);
             processBuyConversionLTCQTDData(action.payload[6].data, newState.secondary);
+            processBuyConversionLTCQTDDataTotal(action.payload[12].data, newState.secondary);
             processBuyConversionConvQTDData(action.payload[7].data, newState.secondary);
             processBuyConversionMobDeskQTDData(action.payload[8].data, newState.secondary);
             processBuyConversionNewRepQTDData(action.payload[9].data, newState.secondary);
@@ -319,6 +333,7 @@ export default function (state = {
             processBuyMKTSourcedMultichart(action.payload[1].data, newState.secondary);
             processBuyMKTSourcedQTD(action.payload[2].data[0], newState.secondary);
             processBuyMKTSourcedGeoQTD(action.payload[3].data, newState.secondary);
+            processBuyMKTSourcedGeoQTDTotal(action.payload[22].data, newState.secondary);
             processBuyMKTSourcedMAQTD(action.payload[4].data, newState.secondary);
             processBuyMKTSourcedChannelQTD(action.payload[5].data, newState.secondary);
             processBuyPMSSSecondaryData(action.payload[6].data[0], newState.secondary);
@@ -328,6 +343,7 @@ export default function (state = {
             processBuyPMSSMultichartData(action.payload[7].data, newState.secondary);
             processBuyPMSSQTDData(action.payload[8].data[0], newState.secondary);
             processBuyPMSSGeoQTDData(action.payload[9].data, newState.secondary);
+            processBuyPMSSGeoQTDDataTotal(action.payload[23].data, newState.secondary);
             processBuyPMSSMarketQTDData(action.payload[10].data, newState.secondary);
             processBuyPMSSChannelQTDData(action.payload[11].data, newState.secondary);
 
@@ -336,6 +352,7 @@ export default function (state = {
             processBuyLTVSourcedMultichart(action.payload[15].data, newState.secondary);
             processBuyLTVSourcedQTD(action.payload[16].data[0], newState.secondary);
             processBuyLTVSourcedGeoQTD(action.payload[17].data, newState.secondary);
+            processBuyLTVSourcedGeoQTDTotal(action.payload[24].data, newState.secondary);
             processBuyLTVSourcedMAQTD(action.payload[18].data, newState.secondary);
             processBuyLTVSourcedProductQTD(action.payload[19].data, newState.secondary);
             processBuyLTVSourcedSegmentQTD(action.payload[20].data, newState.secondary);
@@ -349,7 +366,9 @@ export default function (state = {
             processBuyGrossMultichart(newState.secondary, action.payload[1].data);
             processBuyGrossQTD(newState.secondary, action.payload[2].data);
             processBuyGrossGeoQTD(newState.secondary, action.payload[3].data);
+            processBuyGrossGeoQTDTotal(newState.secondary, action.payload[9].data);
             processBuyGrossGeoWeek(newState.secondary, action.payload[3].data)
+            processBuyGrossGeoWeekTotal(newState.secondary, action.payload[9].data)
             processBuyGrossMarketQTD(newState.secondary, action.payload[4].data);
             processBuyGrossMarketWeek(newState.secondary, action.payload[4].data);
             processBuyGrossrouteQTD(newState.secondary, action.payload[6].data);
@@ -367,6 +386,7 @@ export default function (state = {
             processUseMultichartData(action.payload[1].data, newState.secondary);
             processUseQTDData(action.payload[2].data, newState.secondary);
             processUseGeoQTDData(action.payload[3].data, newState.secondary);
+            processUseGeoQTDDataTotal(action.payload[8].data, newState.secondary);
             processUseMarketQTDData(action.payload[4].data, newState.secondary);
             processUseSegmentQTDData(action.payload[5].data, newState.secondary);
             processUseSubscriptionQTDData(action.payload[6].data, newState.secondary);
@@ -389,7 +409,9 @@ export default function (state = {
             processRenewCancelMultichart(newState.secondary, action.payload[1].data, action.payload[8].data, action.payload[15].data);
             processRenewCancelQTD(newState.secondary, action.payload[2].data[0], action.payload[9].data[0], action.payload[16].data[0]);
             processRenewCancelGeoQTD(newState.secondary, action.payload[3].data, action.payload[10].data, action.payload[17].data);
+            processRenewCancelGeoQTDTotal(newState.secondary, action.payload[21].data, action.payload[22].data, action.payload[23].data);
             processRenewCancelGeoWeek(newState.secondary, action.payload[3].data, action.payload[10].data, action.payload[17].data)
+            processRenewCancelGeoWeekTotal(newState.secondary, action.payload[21].data, action.payload[22].data, action.payload[23].data)
             processRenewCancelMarketQTD(newState.secondary, action.payload[4].data, action.payload[11].data, action.payload[18].data);
             processRenewCancelMarketWeek(newState.secondary, action.payload[4].data, action.payload[11].data, action.payload[18].data);
             processRenewCancelSegmentQTD(newState.secondary, action.payload[5].data, action.payload[12].data, action.payload[19].data);
@@ -405,6 +427,8 @@ export default function (state = {
             processRenewMultichartData(action.payload[1].data, newState.secondary, action.payload[7].data, action.payload[13].data);
             processRenewQTDData(action.payload[2].data[0], newState.secondary, action.payload[8].data[0], action.payload[14].data[0]);
             processRenewGeoQTDData(action.payload[3].data, newState.secondary, action.payload[9].data, action.payload[15].data);
+            processRenewGeoQTDDataTotal(action.payload[21].data, newState.secondary, action.payload[20].data, action.payload[22].data);
+            
             processRenewMarketQTDData(action.payload[4].data, newState.secondary, action.payload[10].data, action.payload[16].data);
             processRenewSegmentQTDData(action.payload[5].data, newState.secondary, action.payload[11].data, action.payload[17].data);
             processRenewProductQTDData(action.payload[18].data, newState.secondary, action.payload[19].data);
@@ -753,6 +777,80 @@ export function processXDC1FinancialGeoQTD(newState, data) {
     // newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.geo.qtd = processQTDOrder(item3);
     // newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.geo.qtd = processQTDOrder(item4);
 }
+export function processXDC1FinancialGeoQTDTotal(newState, data) {
+    // console.log('YO', data);
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            // marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        // console.log(net);
+        let gross = {
+            index: i,
+            actuals: item.GrossActuals,
+            // marketArea: item.market_area_group,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.geo_code,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelActuals,
+            // marketArea: item.market_area_group,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
+            type: item.geo_code,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelARRVsQrf,
+            yy: item.CancelARRYY
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalActuals,
+            marketArea: item.market_area_group,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
+            type: item.geo_code,
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
+        }
+
+        item1.push(net);
+        item2.push(gross);
+
+    }
+
+    // console.log('YO', item1);
+    // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.geo.qtd = processQTDOrder(item1);
+    // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.geo.qtd = processQTDOrder(item2);
+    // newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.geo.qtd = processQTDOrder(item3);
+    // newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.geo.qtd = processQTDOrder(item4);
+
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.geoTotal.qtd = item1;
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.geoTotal.qtd = item2;
+}
+
 export function processXDC1FinancialGeoWeek(newState, data) {
     // console.log(data);
     //Clear old Values
@@ -818,6 +916,74 @@ export function processXDC1FinancialGeoWeek(newState, data) {
     newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.geo.week = processQTDOrder(item2);
     // newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.geo.week = processQTDOrder(item3);
     // newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.geo.week = processQTDOrder(item4);
+}
+export function processXDC1FinancialGeoWeekTotal(newState, data) {
+    // console.log(data);
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewUnitsCW,
+            // marketArea: item.market_area_group,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossARRCW,
+            units: item.GrossUnitsCW,
+            // marketArea: item.market_area_group,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelARRCW,
+            units: item.CancelUnitsCW,
+            // marketArea: item.market_area_group,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.CancelCWVsQrf,
+            ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
+            // marketArea: item.market_area_group,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
+        }
+
+        item1.push(net);
+        item2.push(gross);
+        item3.push(canc);
+        item4.push(ren);
+    }
+    // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.geo.week = processQTDOrder(item1);
+    // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.geo.week = processQTDOrder(item2);
+    // newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.geo.week = processQTDOrder(item3);
+    // newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.geo.week = processQTDOrder(item4);
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.geoTotal.week = item1;
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.geoTotal.week = item2;
 }
 export function processXDC1FinancialMarketQTD(newState, data) {
 
@@ -1688,6 +1854,80 @@ export function processXDC2FinancialGeoQTD(newState, data) {
     newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.geo.qtd = processQTDOrder(item3);
     newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.geo.qtd = processQTDOrder(item4);
 }
+export function processXDC2FinancialGeoQTDTotal(newState, data) {
+    // console.log('YO', data);
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewActuals,
+            units: item.NewUnitsActual,
+            // marketArea: item.market_area_group,
+            qq: item.NewARRQQTY,
+            qrf: item.NewTarget,
+            qrfDiff: item.NewVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewARRVsQrf,
+            yy: item.NewARRYY
+        }
+        // console.log(net);
+        let gross = {
+            index: i,
+            actuals: item.GrossActuals,
+            // marketArea: item.market_area_group,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.geo_code,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelActuals,
+            // marketArea: item.market_area_group,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
+            type: item.geo_code,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelARRVsQrf,
+            yy: item.CancelARRYY
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalActuals,
+            // marketArea: item.market_area_group,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
+            type: item.geo_code,
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
+        }
+
+        item1.push(net);
+        item2.push(gross);
+        item3.push(canc);
+        item4.push(ren);
+    }
+
+    // console.log('YO', item1);
+    // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.geo.qtd = processQTDOrder(item1);
+    // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.geo.qtd = processQTDOrder(item2);
+    // newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.geo.qtd = processQTDOrder(item3);
+    // newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.geo.qtd = processQTDOrder(item4);
+
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.geoTotal.qtd = item3;
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.geoTotal.qtd = item4;
+}
 export function processXDC2FinancialGeoWeek(newState, data) {
     // console.log(data);
     //Clear old Values
@@ -1754,6 +1994,75 @@ export function processXDC2FinancialGeoWeek(newState, data) {
     newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.geo.week = processQTDOrder(item3);
     newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.geo.week = processQTDOrder(item4);
 }
+export function processXDC2FinancialGeoWeekTotal(newState, data) {
+    // console.log(data);
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let net = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewUnitsCW,
+            // marketArea: item.market_area_group,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+
+        }
+        let gross = {
+            index: i,
+            actuals: item.GrossARRCW,
+            units: item.GrossUnitsCW,
+            // marketArea: item.market_area_group,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+        let canc = {
+            index: i,
+            actuals: item.CancelARRCW,
+            units: item.CancelUnitsCW,
+            // marketArea: item.market_area_group,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.CancelCWVsQrf,
+            ww: item.CancelWW
+        }
+        let ren = {
+            index: i,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
+            // marketArea: item.market_area_group,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
+        }
+
+        item1.push(net);
+        item2.push(gross);
+        item3.push(canc);
+        item4.push(ren);
+    }
+    // newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.geo.week = processQTDOrder(item1);
+    // newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.geo.week = processQTDOrder(item2);
+    // newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.geo.week = processQTDOrder(item3);
+    // newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.geo.week = processQTDOrder(item4);
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.geoTotal.week = item3;
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.geoTotal.week = item4;
+}
+
 export function processXDC2FinancialMarketQTD(newState, data) {
 
     //Clear old Values
@@ -2445,6 +2754,70 @@ export function processTrafficGeoQTDData(g5, newState) {
     newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geo.week)
     newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geo.week)
 }
+export function processTrafficGeoQTDDataTotal(g5, newState) {
+    // console.log(g5)
+    //Clear old Values
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geoTotal.qtd = [];
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geoTotal.qtd = [];
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geoTotal.week = [];
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geoTotal.week = [];
+
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let traffic = {
+            index: i,
+            actuals: item.TrafficActuals,
+            // marketArea: item.market_area_group,
+            qq: item.TrafficQQTY,
+            qrf: item.TrafficTarget,
+            qrfDiff: item.TrafficActuals - item.TrafficTarget,
+            type: item.geo_code,
+            vsQrf: item.TrafficVsQrf,
+            yy: item.TrafficYY
+        }
+        let trafficPM =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.TrafficCW,
+            qrf: item.TrafficTargetCW,
+            qrfDiff: item.TrafficCWVsQrfDiff,
+            vsQrf: item.TrafficCWVsQrf,
+            ww: item.TrafficWW,
+            type: item.geo_code,
+        }
+        let bounce = {
+            index: i,
+            actuals: item.BounceRateActuals,
+            // marketArea: item.market_area_group,
+            qq: item.BounceRateQQTY,
+            qrf: item.BounceRateTarget,
+            qrfDiff: item.BounceRateVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.BounceRatevsQrf,
+            yy: item.BounceRateYY
+        }
+        let bouncePM =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.BounceRateCW,
+            qrf: item.BounceRateTargetCW,
+            qrfDiff: item.BounceRateCWVsQrfDiff,
+            vsQrf: item.BounceRateCWVsQrf,
+            ww: item.BounceRateWW,
+            type: item.geo_code,
+        }
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geoTotal.qtd.push(traffic);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geoTotal.qtd.push(bounce);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geoTotal.week.push(trafficPM);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geoTotal.week.push(bouncePM);
+    }
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geoTotal.qtd = newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geoTotal.qtd
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geoTotal.qtd = newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geoTotal.qtd
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geoTotal.week = newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.geoTotal.week
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geoTotal.week = newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.geoTotal.week
+}
 export function processTrafficMarketQTDData(g5, newState) {
     //Clear old Values
     newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.market.qtd = [];
@@ -2620,6 +2993,65 @@ export function processTrafficLTCQTDData(g5, newState) {
         newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.ltc.qtd.push(bounce);
         newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.ltc.week.push(trafficPM);
         newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.ltc.week.push(bouncePM);
+    }
+}
+export function processTrafficLTCQTDDataTotal(g5, newState) {
+
+    //Clear old Values
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details = { ...newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details, ltcTotal: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details = { ...newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details, ltcTotal: { qtd: [], week: [] } };
+
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let traffic = {
+            index: i,
+            // marketArea: item.last_touch_channel,
+            actuals: item.TrafficActuals,
+            qq: item.TrafficQQTY,
+            qrf: item.TrafficTarget,
+            qrfDiff: item.TrafficActuals - item.TrafficTarget,
+            type: item.visit_type,
+            vsQrf: item.TrafficVsQrf,
+            yy: item.TrafficYY
+        }
+        let trafficPM =
+        {
+            index: i,
+            // marketArea: item.last_touch_channel,
+            actuals: item.TrafficCW,
+            qrf: item.TrafficTargetCW,
+            qrfDiff: item.TrafficCWVsQrfDiff,
+            vsQrf: item.TrafficCWVsQrf,
+            ww: item.TrafficWW,
+            type: item.visit_type,
+        }
+        let bounce = {
+            index: i,
+            // marketArea: item.last_touch_channel,
+            actuals: item.BounceRateActuals,
+            qq: item.BounceRateQQTY,
+            qrf: item.BounceRateTarget,
+            qrfDiff: item.BounceRateVsQrfDiff,
+            type: item.visit_type,
+            vsQrf: item.BounceRateVsQrf,
+            yy: item.BounceRateYY
+        }
+        let bouncePM =
+        {
+            index: i,
+            // marketArea: item.last_touch_channel,
+            actuals: item.BounceRateCW,
+            qrf: item.BounceRateTargetCW,
+            qrfDiff: item.BounceRateCWVsQrfDiff,
+            vsQrf: item.BounceRateCWVsQrf,
+            ww: item.BounceRateWW,
+            type: item.visit_type,
+
+        }
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.ltcTotal.qtd.push(traffic);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.ltcTotal.qtd.push(bounce);
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.ltcTotal.week.push(trafficPM);
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.ltcTotal.week.push(bouncePM);
     }
 }
 export function processTrafficConvQTDData(g5, newState) {
@@ -3039,6 +3471,43 @@ export function processUQFMGeoQTDData(data, newState) {
     newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geo.qtd);
     newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geo.week);
 }
+export function processUQFMGeoQTDDataTotal(data, newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geoTotal.qtd = [];
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geoTotal.week = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let uqfm = {
+            index: i,
+            actuals: item.UQFMConvActuals,
+            // marketArea: item.market_area_group,
+            qq: item.UQFMConvQQTY,
+            qrf: item.UQFMConvTarget,
+            qrfDiff: item.UQFMConvVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.UQFMConvvsQrf,
+            yy: item.UQFMConvYY
+        }
+        let uqfmWeek =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.UQFMConvCW,
+            qrf: item.UQFMConvTargetCW,
+            qrfDiff: item.UQFMConvCWVsQrfDiff,
+            vsQrf: item.UQFMConvCWVsQrf,
+            ww: item.UQFMConvWW,
+            type: item.geo_code,
+        }
+
+        newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geoTotal.qtd.push(uqfm);
+        newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geoTotal.week.push(uqfmWeek);
+    }
+
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geoTotal.qtd = newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geoTotal.qtd;
+    newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geoTotal.week = newState[SUMMARY_KPIS.DISCOVER_UQFM].details.geoTotal.week;
+}
 export function processUQFMMarketQTDData(data, newState) {
     //Clear old Values
     newState[SUMMARY_KPIS.DISCOVER_UQFM].details.market.qtd = [];
@@ -3226,6 +3695,72 @@ export function processMUGeoQTDData(data, newState) {
     newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.qtd);
     newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geo.week);
     newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.geo.week);
+}
+
+export function processMUGeoQTDDataTotal(data, newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details = { ...newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details, geoTotal: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details = { ...newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details, geoTotal: { qtd: [], week: [] } };
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let netMu = {
+            index: i,
+            actuals: item.NetChangeMUActuals,
+            // marketArea: item.market_area_group,
+            qq: item.NetChangeMUQQTY,
+            qrf: item.NetChangeMUTarget,
+            qrfDiff: item.NetChangeMUVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NetChangeMUVsQrf,
+            yy: item.NetChangeMUYY
+        }
+
+        let cumuMu =
+        {
+            index: i,
+            actuals: item.CumuMUActuals,
+            // marketArea: item.market_area_group,
+            qq: item.CumuMUQQTY,
+            qrf: item.CumuMUTarget,
+            qrfDiff: item.CumuMUVsQrfDif,
+            type: item.geo_code,
+            vsQrf: item.CumuMUVsQrf,
+            yy: item.CumuMUYY
+        }
+
+        let netWeek = {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.NetChangeMUCW,
+            qrf: item.NetChangeMUTargetCW,
+            qrfDiff: item.NetChangeMUCWVsQrfDiff,
+            vsQrf: item.NetChangeMUCWVsQrf,
+            ww: item.NetChangeMUWW,
+            type: item.geo_code,
+        }
+
+        let cumuWeek =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.CumuMUCW,
+            qrf: item.CumuMUTargetCW,
+            qrfDiff: item.CumuMUCWVsQrfDiff,
+            vsQrf: item.CumuMUCWVsQrf,
+            ww: item.CumuMUWW,
+            type: item.geo_code,
+        }
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.geoTotal.qtd.push(netMu);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geoTotal.qtd.push(cumuMu);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geoTotal.week.push(cumuWeek);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.geoTotal.week.push(netWeek);
+    }
+
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.geoTotal.qtd = newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.geoTotal.qtd;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geoTotal.qtd = newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geoTotal.qtd;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geoTotal.week = newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.geoTotal.week;
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.geoTotal.week = newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.geoTotal.week;
 }
 export function processMUMarketQTDData(data, newState) {
     //Clear old Values
@@ -3519,6 +4054,69 @@ export function processPMSSGeoQTDData(data, newState) {
     newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.qtd);
     newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.geo.week);
     newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geo.week);
+}
+export function processPMSSGeoQTDDataTotal(data, newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details = { ...newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details, geoTotal: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details = { ...newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details, geoTotal: { qtd: [], week: [] } };
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let pm = {
+            index: i,
+            actuals: item.PMSpendDiscoverActuals,
+            // marketArea: item.market_area_group,
+            qq: item.PMSpendDiscoverQQTY,
+            qrf: item.PMSpendDiscoverTarget,
+            qrfDiff: item.PMSpendDiscoverVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.PMSpendDiscoverVsQrf,
+            yy: item.PMSpendDiscoverYY
+        }
+        let pmWeek =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.PMSpendDiscoverCW,
+            qrf: item.PMSpendDiscoverTargetCW,
+            qrfDiff: item.PMSpendDiscoverCWVsQrfDiff,
+            vsQrf: item.PMSpendDiscoverCWVsQrf,
+            ww: item.PMSpendDiscoverWW,
+            type: item.geo_code,
+        }
+
+        let pmuqfm = {
+            index: i,
+            actuals: item.PMUQFMActuals,
+            // marketArea: item.market_area_group,
+            qq: item.PMUQFMQQTY,
+            qrf: item.PMUQFMTarget,
+            qrfDiff: item.PMUQFMVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.PMUQFMVsQrf,
+            yy: item.PMUQFMYY
+        }
+        let pmuqfmWeek =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.PMUQFMCW,
+            qrf: item.PMUQFMTargetCW,
+            qrfDiff: item.PMUQFMCWVsQrfDiff,
+            vsQrf: item.PMUQFMCWVsQrf,
+            ww: item.PMUQFMWW,
+            type: item.geo_code,
+        }
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.geoTotal.qtd.push(pm);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geoTotal.qtd.push(pmuqfm);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.geoTotal.week.push(pmWeek);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geoTotal.week.push(pmuqfmWeek);
+    }
+
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.geoTotal.qtd = newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.geoTotal.qtd;
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geoTotal.qtd = newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geoTotal.qtd;
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.geoTotal.week = newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.geoTotal.week;
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geoTotal.week = newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.geoTotal.week;
 }
 export function processPMSSMarketQTDData(data, newState) {
     //Clear old Values
@@ -4081,6 +4679,183 @@ export function processTryGeoQTDData(data, newState) {
     newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geo.qtd);
     newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geo.week);
 }
+export function processTryGeoQTDDataTotal(data, newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_UQFM].details, geoTotal: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details, geoTotal: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_QFM].details, geoTotal: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_QFM].details, geoTotal: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_DAY_28].details = { ...newState[SUMMARY_KPIS.TRY_DAY_28].details, geoTotal: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details, geoTotal: { qtd: [], week: [] } };
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        //New QFM
+        let newQFM = {
+            index: i,
+            actuals: item.NewQFMsActuals,
+            // marketArea: item.market_area_group,
+            qq: item.NewQFMsQQTY,
+            qrf: item.NewQFMsTarget,
+            qrfDiff: item.NewQFMsVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewQFMsVsQrf,
+            yy: item.NewQFMsYY
+        }
+        let newQFMWeek =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.NewQFMsCW,
+            qrf: item.NewQFMsTargetCW,
+            qrfDiff: item.NewQFMsCWVsQrfDiff,
+            vsQrf: item.NewQFMsCWVsQrf,
+            ww: item.NewQFMsWW,
+            type: item.geo_code,
+        }
+        //New UQFM
+        let newUQFM = {
+            index: i,
+            actuals: item.NewUQFMsActuals,
+            // marketArea: item.market_area_group,
+            qq: item.NewUQFMsQQTY,
+            qrf: item.NewUQFMsTarget,
+            qrfDiff: item.NewUQFMsVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.NewUQFMsVsQrf,
+            yy: item.NewUQFMsYY
+        }
+        let newUQFMWeek =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.NewUQFMsCW,
+            qrf: item.NewUQFMsTargetCW,
+            qrfDiff: item.NewUQFMsCWVsQrfDiff,
+            vsQrf: item.NewUQFMsCWVsQrf,
+            ww: item.NewUQFMsWW,
+            type: item.geo_code,
+        }
+        //Cumu UQFM
+        let cumuUQFM = {
+            index: i,
+            actuals: item.CumUQFMsActuals,
+            marketArea: item.market_area_group,
+            qq: item.CumUQFMsQQTY,
+            qrf: item.CumUQFMsTarget,
+            qrfDiff: item.CumUQFMsVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.CumUQFMsVsQrf,
+            yy: item.CumUQFMsYY
+        }
+        let cumuUQFMWeek =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.CumUQFMsCW,
+            qrf: item.CumUQFMsTargetCW,
+            qrfDiff: item.CumUQFMsCWVsQrfDiff,
+            vsQrf: item.CumUQFMsCWVsQrf,
+            ww: item.CumUQFMsWW,
+            type: item.geo_code,
+        }
+        //Cumu QFM
+        let cumuQFM = {
+            index: i,
+            actuals: item.CumQFMsActuals,
+            // marketArea: item.market_area_group,
+            qq: item.CumQFMsQQTY,
+            qrf: item.CumQFMsTarget,
+            qrfDiff: item.CumQFMsVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.CumQFMsVsQrf,
+            yy: item.CumQFMsYY
+        }
+        let cumuQFMWeek =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.CumQFMsCW,
+            qrf: item.CumQFMsTargetCW,
+            qrfDiff: item.CumQFMsCWVsQrfDiff,
+            vsQrf: item.CumQFMsCWVsQrf,
+            ww: item.CumQFMsWW,
+            type: item.geo_code,
+        }
+        //Day 28
+        let day28 = {
+            index: i,
+            actuals: item.Day28NewUQFMActuals,
+            // marketArea: item.market_area_group,
+            qq: item.Day28NewUQFMQQTY,
+            qrf: item.Day28NewUQFMTarget,
+            qrfDiff: item.Day28NewUQFMVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.Day28NewUQFMVsQrf,
+            yy: item.Day28NewUQFMYY
+        }
+        let day28Week =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.Day28NewUQFMCW,
+            qrf: item.Day28NewUQFMTargetCW,
+            qrfDiff: item.Day28NewUQFMCWVsQrfDiff,
+            vsQrf: item.Day28NewUQFMCWVsQrf,
+            ww: item.Day28NewUQFMWW,
+            type: item.geo_code,
+        }
+        //Cumu UQFM to QFM
+        let cumuUTQ = {
+            index: i,
+            actuals: item.CumUQFMToQFMActuals,
+            // marketArea: item.market_area_group,
+            qq: item.CumUQFMToQFMQQTY,
+            qrf: item.CumUQFMToQFMTarget,
+            qrfDiff: item.CumUQFMToQFMVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.CumUQFMToQFMVsQrf,
+            yy: item.CumUQFMToQFMYY
+        }
+        let cumuUTQWeek =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.CumUQFMToQFMCW,
+            qrf: item.CumUQFMToQFMTargetCW,
+            qrfDiff: item.CumUQFMToQFMCWVsQrfDiff,
+            vsQrf: item.CumUQFMToQFMCWVsQrf,
+            ww: item.CumUQFMToQFMWW,
+            type: item.geo_code,
+        }
+
+        newState[SUMMARY_KPIS.TRY_NEW_QFM].details.geoTotal.qtd.push(newQFM);
+        newState[SUMMARY_KPIS.TRY_NEW_QFM].details.geoTotal.week.push(newQFMWeek);
+        newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.geoTotal.qtd.push(newUQFM);
+        newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.geoTotal.week.push(newUQFMWeek);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.geoTotal.qtd.push(cumuUQFM);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.geoTotal.week.push(cumuUQFMWeek);
+        newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.geoTotal.qtd.push(cumuQFM);
+        newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.geoTotal.week.push(cumuQFMWeek);
+        newState[SUMMARY_KPIS.TRY_DAY_28].details.geoTotal.qtd.push(day28);
+        newState[SUMMARY_KPIS.TRY_DAY_28].details.geoTotal.week.push(day28Week);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geoTotal.qtd.push(cumuUTQ);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geoTotal.week.push(cumuUTQWeek);
+    }
+
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].details.geoTotal.qtd = newState[SUMMARY_KPIS.TRY_NEW_QFM].details.geoTotal.qtd;
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].details.geoTotal.week = newState[SUMMARY_KPIS.TRY_NEW_QFM].details.geoTotal.week;
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.geoTotal.qtd = newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.geoTotal.qtd;
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.geoTotal.week = newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.geoTotal.week;
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.geoTotal.qtd = newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.geoTotal.qtd;
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.geoTotal.week = newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.geoTotal.week;
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.geoTotal.qtd = newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.geoTotal.qtd;
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.geoTotal.week = newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.geoTotal.week;
+    newState[SUMMARY_KPIS.TRY_DAY_28].details.geoTotal.qtd = newState[SUMMARY_KPIS.TRY_DAY_28].details.geoTotal.qtd;
+    newState[SUMMARY_KPIS.TRY_DAY_28].details.geoTotal.week = newState[SUMMARY_KPIS.TRY_DAY_28].details.geoTotal.week;
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geoTotal.qtd = newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geoTotal.qtd;
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geoTotal.week = newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.geoTotal.week;
+}
 export function processTryMarketQTDData(data, newState) {
     //Clear old Values
     newState[SUMMARY_KPIS.TRY_NEW_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_UQFM].details, market: { qtd: [], week: [] } };
@@ -4335,6 +5110,69 @@ export function processTrySignUpAppQTDData(data, newState) {
 
     }
 }
+export function processTrySignUpAppQTDDataTotal(data, newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_UQFM].details, signUpAppTotal: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details, signUpAppTotal: { qtd: [], week: [] } };
+
+
+    //New QFM
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        //New UQFM
+        let newUQFM = {
+            index: i,
+            actuals: item.NewUQFMsActuals,
+            // marketArea: item.signup_app,
+            type: item.signup_category,
+            qq: item.NewUQFMsQQTY,
+            qrf: item.NewUQFMsTarget,
+            qrfDiff: item.NewUQFMsVsQrfDiff,
+            vsQrf: item.NewUQFMsVsQrf,
+            yy: item.NewUQFMsYY
+        }
+        let newUQFMWeek =
+        {
+            index: i,
+            // marketArea: item.signup_app,
+            type: item.signup_category,
+            actuals: item.NewUQFMsCW,
+            qrf: item.NewUQFMsTargetCW,
+            qrfDiff: item.NewUQFMsCWVsQrfDiff,
+            vsQrf: item.NewUQFMsCWVsQrf,
+            ww: item.NewUQFMsWW,
+        }
+        //Cumu UQFM
+        let cumuUQFM = {
+            index: i,
+            // marketArea: item.signup_app,
+            type: item.signup_category,
+            actuals: item.CumUQFMsActuals,
+            qq: item.CumUQFMsQQTY,
+            qrf: item.CumUQFMsTarget,
+            qrfDiff: item.CumUQFMsVsQrfDiff,
+            vsQrf: item.CumUQFMsVsQrf,
+            yy: item.CumUQFMsYY
+        }
+        let cumuUQFMWeek =
+        {
+            index: i,
+            // marketArea: item.signup_app,
+            type: item.signup_category,
+            actuals: item.CumUQFMsCW,
+            qrf: item.CumUQFMsTargetCW,
+            qrfDiff: item.CumUQFMsCWVsQrfDiff,
+            vsQrf: item.CumUQFMsCWVsQrf,
+            ww: item.CumUQFMsWW,
+        }
+
+        newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.signUpAppTotal.qtd.push(newUQFM);
+        newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.signUpAppTotal.week.push(newUQFMWeek);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.signUpAppTotal.qtd.push(cumuUQFM);
+        newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.signUpAppTotal.week.push(cumuUQFMWeek);
+
+    }
+}
 export function processTrySignUpCatQTDData(data, newState) {
     //Clear old Values
     newState[SUMMARY_KPIS.TRY_NEW_QFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_QFM].details, signUpCat: { qtd: [], week: [] } };
@@ -4514,6 +5352,76 @@ export function processTryDownloadQTDData(data, newState){
            
    
        }
+
+}
+export function processTryDownloadQTDDataTotal(data, newState){
+    //Clear old Values
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_QFM].details, qfmTotal: { qtd: [], week: [] } };
+
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_QFM].details, qfmTotal: { qtd: [], week: [] } };
+    
+
+    //New QFM
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        //New QFM
+        let newQFM = {
+            index: i,
+            actuals: item.NewQFMsActuals,
+            // marketArea: item.download_type,
+            type: item.qfm_type,
+            qq: item.NewQFMsQQTY,
+            qrf: item.NewQFMsTarget,
+            qrfDiff: item.NewQFMsVsQrfDiff,
+            vsQrf: item.NewQFMsVsQrf,
+            yy: item.NewQFMsYY
+        }
+        let newQFMWeek =
+        {
+            index: i,
+            type: item.qfm_type,
+            // marketArea: item.download_type,
+            actuals: item.NewQFMsCW,
+            qrf: item.NewQFMsTargetCW,
+            qrfDiff: item.NewQFMsCWVsQrfDiff,
+            vsQrf: item.NewQFMsCWVsQrf,
+            ww: item.NewQFMsWW,
+        }
+
+        //Cumu QFM
+        let cumuQFM = {
+            index: i,
+            actuals: item.CumQFMsActuals,
+            type: item.qfm_type,
+            // marketArea: item.download_type,
+            qq: item.CumQFMsQQTY,
+            qrf: item.CumQFMsTarget,
+            qrfDiff: item.CumQFMsVsQrfDiff,
+            vsQrf: item.CumQFMsVsQrf,
+            yy: item.CumQFMsYY
+        }
+        let cumuQFMWeek =
+        {
+            index: i,
+            type: item.qfm_type,
+            // marketArea: item.download_type,
+            actuals: item.CumQFMsCW,
+            qrf: item.CumQFMsTargetCW,
+            qrfDiff: item.CumQFMsCWVsQrfDiff,
+            vsQrf: item.CumQFMsCWVsQrf,
+            ww: item.CumQFMsWW,
+        }
+        
+        
+
+        newState[SUMMARY_KPIS.TRY_NEW_QFM].details.qfmTotal.qtd.push(newQFM);
+        newState[SUMMARY_KPIS.TRY_NEW_QFM].details.qfmTotal.week.push(newQFMWeek);
+
+        newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.qfmTotal.qtd.push(cumuQFM);
+        newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.qfmTotal.week.push(cumuQFMWeek);
+        
+
+    }
 
 }
 export function processTryQFMQTDData(data, newState) {
@@ -4766,6 +5674,43 @@ export function processBuyConversionGeoQTDData(data, newState) {
     newState[SUMMARY_KPIS.BUY_CONVERSION].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.BUY_CONVERSION].details.geo.qtd);
     newState[SUMMARY_KPIS.BUY_CONVERSION].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.BUY_CONVERSION].details.geo.week);
 }
+export function processBuyConversionGeoQTDDataTotal(data, newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.geoTotal.qtd = [];
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.geoTotal.week = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let uqfm = {
+            index: i,
+            actuals: item.ConversionActuals,
+            // marketArea: item.market_area_group,
+            qq: item.ConversionQQTY,
+            qrf: item.ConversionTarget,
+            qrfDiff: item.ConversionVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.ConversionVsQrf,
+            yy: item.ConversionYY
+        }
+        let uqfmWeek =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.ConversionCW,
+            qrf: item.ConversionTargetCW,
+            qrfDiff: item.ConversionCWVsQrfDiff,
+            vsQrf: item.ConversionCWVsQrf,
+            ww: item.ConversionWW,
+            type: item.geo_code,
+        }
+
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.geoTotal.qtd.push(uqfm);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.geoTotal.week.push(uqfmWeek);
+    }
+
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.geoTotal.qtd = newState[SUMMARY_KPIS.BUY_CONVERSION].details.geoTotal.qtd;
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details.geoTotal.week = newState[SUMMARY_KPIS.BUY_CONVERSION].details.geoTotal.week;
+}
 export function processBuyConversionMarketQTDData(data, newState) {
     //Clear old Values
     newState[SUMMARY_KPIS.BUY_CONVERSION].details.market.qtd = [];
@@ -4861,6 +5806,40 @@ export function processBuyConversionLTCQTDData(g5, newState) {
         }
         newState[SUMMARY_KPIS.BUY_CONVERSION].details.ltc.qtd.push(uqfm);
         newState[SUMMARY_KPIS.BUY_CONVERSION].details.ltc.week.push(uqfmWeek);
+    }
+}
+export function processBuyConversionLTCQTDDataTotal(g5, newState) {
+
+    //Clear old Values
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details = { ...newState[SUMMARY_KPIS.BUY_CONVERSION].details, ltcTotal: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details = { ...newState[SUMMARY_KPIS.BUY_CONVERSION].details, ltcTotal: { qtd: [], week: [] } };
+
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let uqfm = {
+            index: i,
+            actuals: item.ConversionActuals,
+            // marketArea: item.last_touch_channel,
+            qq: item.ConversionQQTY,
+            qrf: item.ConversionTarget,
+            qrfDiff: item.ConversionVsQrfDiff,
+            type: item.visit_type,
+            vsQrf: item.ConversionVsQrf,
+            yy: item.ConversionYY
+        }
+        let uqfmWeek =
+        {
+            index: i,
+            actuals: item.ConversionCW,
+            qrf: item.ConversionTargetCW,
+            // marketArea: item.last_touch_channel,
+            qrfDiff: item.ConversionCWVsQrfDiff,
+            vsQrf: item.ConversionCWVsQrf,
+            ww: item.ConversionWW,
+            type: item.visit_type,
+        }
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.ltcTotal.qtd.push(uqfm);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.ltcTotal.week.push(uqfmWeek);
     }
 }
 export function processBuyConversionConvQTDData(g5, newState) {
@@ -5074,6 +6053,42 @@ export function processBuyMKTSourcedGeoQTD(data, newState) {
     }
     newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geo.qtd);
     newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geo.week);
+}
+export function processBuyMKTSourcedGeoQTDTotal(data, newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geoTotal.qtd = [];
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geoTotal.week = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let mktg = {
+            index: i,
+            actuals: item.MktgSourcedARRActuals,
+            // marketArea: item.market_area_group,
+            qq: item.MktgSourcedARRQQTY,
+            qrf: item.MktgSourcedARRTarget,
+            qrfDiff: item.MktgSourcedARRVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.MktgSourcedARRVsQrf,
+            yy: item.MktgSourcedARRYY
+        }
+        let mktgWeek =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.MktgSourcedARRCW,
+            qrf: item.MktgSourcedARRTargetCW,
+            qrfDiff: item.MktgSourcedARRCWVsQrfDiff,
+            vsQrf: item.MktgSourcedARRCWVsQrf,
+            ww: item.MktgSourcedARRWW,
+            type: item.geo_code,
+        }
+
+        newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geoTotal.qtd.push(mktg);
+        newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geoTotal.week.push(mktgWeek);
+    }
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geoTotal.qtd = newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geoTotal.qtd;
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geoTotal.week = newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.geoTotal.week;
 }
 export function processBuyMKTSourcedMAQTD(data, newState) {
     //Clear old Values
@@ -5306,6 +6321,42 @@ export function processBuyPMSSGeoQTDData(data, newState) {
     newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geo.qtd);
     newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geo.week);
 }
+export function processBuyPMSSGeoQTDDataTotal(data, newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details = { ...newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details, geoTotal: { qtd: [], week: [] } };
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let pm = {
+            index: i,
+            actuals: item.PMSpendBuyActuals,
+            // marketArea: item.market_area_group,
+            qq: item.PMSpendBuyQQTY,
+            qrf: item.PMSpendBuyTarget,
+            qrfDiff: item.PMSpendBuyVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.PMSpendBuyVsQrf,
+            yy: item.PMSpendBuyYY
+        }
+        let pmWeek =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.PMSpendBuyCW,
+            qrf: item.PMSpendBuyTargetCW,
+            qrfDiff: item.PMSpendBuyCWVsQrfDiff,
+            vsQrf: item.PMSpendBuyCWVsQrf,
+            ww: item.PMSpendBuyWW,
+            type: item.geo_code,
+        }
+
+        newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geoTotal.qtd.push(pm);
+        newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geoTotal.week.push(pmWeek);
+    }
+
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geoTotal.qtd = newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geoTotal.qtd;
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geoTotal.week = newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.geoTotal.week;
+}
 export function processBuyPMSSMarketQTDData(data, newState) {
     //Clear old Values
     newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details = { ...newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details, market: { qtd: [], week: [] } };
@@ -5469,6 +6520,43 @@ newState[SUMMARY_KPIS.BUY_LTV_ROI].details.geo.qtd = processQTDOrder(newState[SU
 newState[SUMMARY_KPIS.BUY_LTV_ROI].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.BUY_LTV_ROI].details.geo.week);
 
 }
+export function processBuyLTVSourcedGeoQTDTotal(data,newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details = { ...newState[SUMMARY_KPIS.BUY_LTV_ROI].details, geoTotal: { qtd: [], week: [] } };
+    
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let ltv = {
+            index: i,
+            actuals: item.LTVROIActuals,
+            // marketArea: item.market_area_group,
+            qq: item.LTVROIQQTY,
+            qrf: item.LTVROITarget,
+            qrfDiff: item.LTVROIVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.LTVROIVsQrf,
+            yy: item.LTVROIYY
+        }
+        let ltvWeek =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.LTVROICW,
+            qrf: item.LTVROITargetCW,
+            qrfDiff: item.LTVROICWVsQrfDiff,
+            vsQrf: item.LTVROICWVsQrf,
+            ww: item.LTVROIWW,
+            type: item.geo_code,
+        }
+    
+        newState[SUMMARY_KPIS.BUY_LTV_ROI].details.geoTotal.qtd.push(ltv);
+        newState[SUMMARY_KPIS.BUY_LTV_ROI].details.geoTotal.week.push(ltvWeek);
+    }
+    
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.geoTotal.qtd = newState[SUMMARY_KPIS.BUY_LTV_ROI].details.geoTotal.qtd;
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details.geoTotal.week = newState[SUMMARY_KPIS.BUY_LTV_ROI].details.geoTotal.week;
+    
+    }
 export function processBuyLTVSourcedMAQTD(data,newState) {
 //Clear old Values
 newState[SUMMARY_KPIS.BUY_LTV_ROI].details = { ...newState[SUMMARY_KPIS.BUY_LTV_ROI].details, market: { qtd: [], week: [] } };
@@ -5743,6 +6831,51 @@ export function processBuyGrossGeoQTD(newState, data) {
     newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.geo.qtd = processQTDOrder(item1);
 
 }
+export function processBuyGrossGeoQTDTotal(newState, data) {
+    // console.log('YO', data);
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+
+        let gross = {
+            index: i,
+            actuals: item.GrossActuals,
+            // marketArea: item.market_area_group,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.geo_code,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let grossUnits = {
+            index: i,
+            actuals: item.GrossUnitsActuals,
+            // marketArea: item.market_area_group,
+            qq: item.GrossUnitsQQTY,
+            qrf: item.GrossUnitsTarget,
+            qrfDiff: item.GrossUnitsVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.GrossUnitsVsQrf,
+            yy: item.GrossUnitsYY
+        }
+
+
+        item1.push(grossUnits);
+        item2.push(gross);
+
+    }
+
+    // console.log('YO', item1);
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.geoTotal.qtd = item2;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.geoTotal.qtd = item1;
+
+}
 export function processBuyGrossQFMTypeQTD(newState, data) {
     //Clear old Values
     
@@ -5892,6 +7025,48 @@ export function processBuyGrossGeoWeek(newState, data) {
     }
     newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.geo.week = processQTDOrder(item2);
     newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.geo.week = processQTDOrder(item3);
+
+}
+export function processBuyGrossGeoWeekTotal(newState, data) {
+    // console.log(data);
+    //Clear old Values
+
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+
+        let gross = {
+            index: i,
+            actuals: item.GrossARRCW,
+            units: item.GrossUnitsCW,
+            // marketArea: item.market_area_group,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+
+        let grossUnits = {
+            index: i,
+            actuals: item.GrossUnitsCW,
+            units: item.GrossUnitsCW,
+            // marketArea: item.market_area_group,
+            qrf: item.GrossUnitsTargetCW,
+            qrfDiff: item.GrossUnitsCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.GrossUnitsCWVsQrf,
+            ww: item.GrossUnitsWW
+        }
+
+        item2.push(gross);
+        item3.push(grossUnits);
+    }
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.geoTotal.week = item2;
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.geoTotal.week = item3;
 
 }
 export function processBuyGrossMarketQTD(newState, data) {
@@ -6776,6 +7951,252 @@ export function processUseGeoQTDData(data, newState) {
 
     newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.geo.qtd = processQTDOrder(item8);
     newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.geo.week = processQTDOrder(item8Week);
+
+}
+export function processUseGeoQTDDataTotal(data, newState) {
+
+    let item1 = [], item1Week = [],
+        item2 = [], item2Week = [],
+        item3 = [], item3Week = [],
+        item4 = [], item4Week = [],
+        item5 = [], item5Week = [],
+        item6 = [], item6Week = [],
+        item7 = [], item7Week = [],
+        item8 = [], item8Week = []
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let activated = {
+            index: i,
+            actuals: item.ActivatedActual,
+            // marketArea: item.market_area_group,
+            qq: item.ActivatedQQTY,
+            qrf: item.ActivatedTarget,
+            qrfDiff: item.ActivatedVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.ActivatedVsQRF,
+            yy: item.ActivatedYY
+        }
+        let activatedWeek = {
+            index: i,
+            actuals: item.ActivatedActual,
+            // marketArea: item.market_area_group,
+            qq: item.ActivatedQQTY,
+            qrf: item.ActivatedTarget,
+            qrfDiff: item.ActivatedVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.ActivatedVsQRF,
+            ww: item.ActivatedWW
+        }
+
+        let monthreturn = {
+            index: i,
+            actuals: item.PaidMAUActual,
+            // marketArea: item.market_area_group,
+            qq: item.PaidMAUQQTY,
+            qrf: item.PaidMAUTarget,
+            qrfDiff: item.PaidMAUVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.PaidMAUVsQrf,
+            yy: item.PaidMAUYY
+        }
+        let monthreturnWeek = {
+            index: i,
+            actuals: item.PaidMAUActual,
+            marketArea: item.market_area_group,
+            qq: item.PaidMAUQQTY,
+            qrf: item.PaidMAUTarget,
+            qrfDiff: item.PaidMAUVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.PaidMAUVsQrf,
+            ww: item.PaidMAUWW
+        }
+
+        let rum = {
+            index: i,
+            actuals: item.RepeatMAUActual,
+            // marketArea: item.market_area_group,
+            qq: item.RepeatMAUQQTY,
+            qrf: item.RepeatMAUTarget,
+            qrfDiff: item.RepeatMAUVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.RepeatMAUVsQrf,
+            yy: item.RepeatMAUYY
+        }
+        let rumWeek = {
+            index: i,
+            actuals: item.RepeatMAUActual,
+            // marketArea: item.market_area_group,
+            qq: item.RepeatMAUQQTY,
+            qrf: item.RepeatMAUTarget,
+            qrfDiff: item.RepeatMAUVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.RepeatMAUVsQrf,
+            ww: item.RepeatMAUWW
+        }
+
+        let lowcei = {
+            index: i,
+            actuals: item.LowCEIActual,
+            // marketArea: item.market_area_group,
+            qq: item.LowCEIQQTY,
+            qrf: item.LowCEITarget,
+            qrfDiff: item.LowCEIVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.LowCEIVsQRF,
+            yy: item.LowCEIYY
+        }
+        let lowceiWeek = {
+            index: i,
+            actuals: item.LowCEIActual,
+            // marketArea: item.market_area_group,
+            qq: item.LowCEIQQTY,
+            qrf: item.LowCEITarget,
+            qrfDiff: item.LowCEIVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.LowCEIVsQRF,
+            ww: item.LowCEIWW
+        }
+        let mediumcei = {
+            index: i,
+            actuals: item.MediumCEIActual,
+            // marketArea: item.market_area_group,
+            qq: item.MediumCEIQQTY,
+            qrf: item.MediumCEITarget,
+            qrfDiff: item.MediumCEIVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.MediumCEIVsQrf,
+            yy: item.MediumCEIYY
+        }
+
+        let mediumceiWeek = {
+            index: i,
+            actuals: item.MediumCEIActual,
+            // marketArea: item.market_area_group,
+            qq: item.MediumCEIQQTY,
+            qrf: item.MediumCEITarget,
+            qrfDiff: item.MediumCEIVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.MediumCEIVsQrf,
+            ww: item.MediumCEIWW
+        }
+        let highcei = {
+            index: i,
+            actuals: item.HighCEIActual,
+            // marketArea: item.market_area_group,
+            qq: item.HighCEIQQTY,
+            qrf: item.HighCEITarget,
+            qrfDiff: item.HighCEIVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.HighCEIVsQrf,
+            yy: item.HighCEIYY
+        }
+        let highceiWeek = {
+            index: i,
+            actuals: item.HighCEIActual,
+            // marketArea: item.market_area_group,
+            qq: item.HighCEIQQTY,
+            qrf: item.HighCEITarget,
+            qrfDiff: item.HighCEIVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.HighCEIVsQrf,
+            ww: item.HighCEIWW
+        }
+        let wk4 = {
+            index: i,
+            actuals: item.Week04WAUActual,
+            // marketArea: item.market_area_group,
+            qq: item.Week04WAUQQTY,
+            qrf: item.Week04WAUTarget,
+            qrfDiff: item.Week04WAUVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.Week04WAUVsQrf,
+            yy: item.Week04WAUYY
+        }
+        let wk4Week = {
+            index: i,
+            actuals: item.Week04WAUActual,
+            // marketArea: item.market_area_group,
+            qq: item.Week04WAUQQTY,
+            qrf: item.Week04WAUTarget,
+            qrfDiff: item.Week04WAUVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.Week04WAUVsQrf,
+            ww: item.Week04WAUWW
+        }
+        let zerocei = {
+            index: i,
+            actuals: item.ZeroCEIActual,
+            // marketArea: item.market_area_group,
+            qq: item.ZeroCEIQQTY,
+            qrf: item.ZeroCEITarget,
+            qrfDiff: item.ZeroCEIVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.ZeroCEIVsQrf,
+            yy: item.ZeroCEIYY
+        }
+        let zeroceiWeek = {
+            index: i,
+            actuals: item.ZeroCEIActual,
+            // marketArea: item.market_area_group,
+            qq: item.ZeroCEIQQTY,
+            qrf: item.ZeroCEITarget,
+            qrfDiff: item.ZeroCEIVsQRFDiff,
+            type: item.geo_code,
+            vsQrf: item.ZeroCEIVsQrf,
+            ww: item.ZeroCEIWW
+        }
+
+        item1.push(activated);
+        item1Week.push(activatedWeek);
+
+        item2.push(monthreturn);
+        item2Week.push(monthreturnWeek);
+
+        item3.push(rum);
+        item3Week.push(rumWeek);
+
+        item4.push(lowcei);
+        item4Week.push(lowceiWeek);
+
+        item5.push(highcei);
+        item5Week.push(highceiWeek);
+
+        item6.push(wk4);
+        item6Week.push(wk4Week);
+
+        item7.push(mediumcei);
+        item7Week.push(mediumceiWeek);
+
+        item8.push(zerocei);
+        item8Week.push(zeroceiWeek);
+
+    }
+
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.geoTotal.qtd = item1;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.geoTotal.week = item1Week;
+
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.geoTotal.qtd = item2;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.geoTotal.week = item2Week;
+
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.geoTotal.qtd = item3;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.geoTotal.week = item3Week;
+
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.geoTotal.qtd = item4;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.geoTotal.week = item4Week;
+
+
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.geoTotal.qtd = item7;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.geoTotal.week = item7Week;
+
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.geoTotal.qtd = item5;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.geoTotal.week = item5Week;
+
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.geoTotal.qtd = item6;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.geoTotal.week = item6Week;
+
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.geoTotal.qtd = item8;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.geoTotal.week = item8Week;
 
 }
 export function processUseMarketQTDData(data, newState) {
@@ -7733,6 +9154,76 @@ export function processRenewCancelGeoQTD(newState, data, AdobeData, EtailData) {
     newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.geo.qtd = processQTDOrder(item3);
 
 }
+export function processRenewCancelGeoQTDTotal(newState, data, AdobeData, EtailData) {
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        // console.log(net);
+        let canc = {
+            index: i,
+            actuals: item.CancelActuals,
+            // marketArea: item.market_area_group,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
+            type: item.geo_code,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelARRVsQrf,
+            yy: item.CancelARRYY
+        }
+
+
+        item1.push(canc);
+
+    }
+    for (let i = 0; i < AdobeData.length; i++) {
+        let itemAdobe = AdobeData[i];
+        // console.log(net);
+
+        let cancAdobe = {
+            index: i,
+            actuals: itemAdobe.CancelActuals,
+            // marketArea: itemAdobe.market_area_group,
+            qq: itemAdobe.CancelARRQQTY,
+            qrf: itemAdobe.CancelTarget,
+            qrfDiff: itemAdobe.CancelVsQrfDiff,
+            type: itemAdobe.geo_code,
+            units: itemAdobe.CancelUnitsActual,
+            vsQrf: itemAdobe.CancelARRVsQrf,
+            yy: itemAdobe.CancelARRYY
+        }
+
+
+        item2.push(cancAdobe);
+    }
+
+    for (let i = 0; i < EtailData.length; i++) {
+
+        let itemEtail = EtailData[i];
+        let cancEtail = {
+            index: i,
+            actuals: itemEtail.CancelActuals,
+            // marketArea: itemEtail.market_area_group,
+            qq: itemEtail.CancelARRQQTY,
+            qrf: itemEtail.CancelTarget,
+            qrfDiff: itemEtail.CancelVsQrfDiff,
+            type: itemEtail.geo_code,
+            units: itemEtail.CancelUnitsActual,
+            vsQrf: itemEtail.CancelARRVsQrf,
+            yy: itemEtail.CancelARRYY
+        }
+
+        item3.push(cancEtail);
+    }
+
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.geoTotal.qtd = item1;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.geoTotal.qtd = item2;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.geoTotal.qtd = item3;
+
+}
 export function processRenewCancelGeoWeek(newState, data, AdobeData, EtailData) {
     // console.log(data);
     //Clear old Values
@@ -7800,6 +9291,74 @@ export function processRenewCancelGeoWeek(newState, data, AdobeData, EtailData) 
     newState[SUMMARY_KPIS.RENEW_CANCEL].details.geo.week = processQTDOrder(item1);
     newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.geo.week = processQTDOrder(item2);
     newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.geo.week = processQTDOrder(item3);
+}
+export function processRenewCancelGeoWeekTotal(newState, data, AdobeData, EtailData) {
+    // console.log(data);
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+
+        let canc = {
+            index: i,
+            actuals: item.CancelARRCW,
+            units: item.CancelUnitsCW,
+            // marketArea: item.market_area_group,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.geo_code,
+            vsQrf: item.CancelCWVsQrf,
+            ww: item.CancelWW
+        }
+
+        item1.push(canc);
+
+    }
+
+    for (let i = 0; i < AdobeData.length; i++) {
+        let itemAdobe = AdobeData[i];
+
+        let cancAdobe = {
+            index: i,
+            actuals: itemAdobe.CancelARRCW,
+            units: itemAdobe.CancelUnitsCW,
+            // marketArea: itemAdobe.market_area_group,
+            qrf: itemAdobe.CancelARRTargetCW,
+            qrfDiff: itemAdobe.CancelCWVsQrfDiff,
+            type: itemAdobe.geo_code,
+            vsQrf: itemAdobe.CancelCWVsQrf,
+            ww: itemAdobe.CancelWW
+        }
+
+
+        item2.push(cancAdobe);
+    }
+
+    for (let i = 0; i < EtailData.length; i++) {
+
+        let itemEtail = EtailData[i];
+
+
+        let cancEtail = {
+            index: i,
+            actuals: itemEtail.CancelARRCW,
+            units: itemEtail.CancelUnitsCW,
+            // marketArea: itemEtail.market_area_group,
+            qrf: itemEtail.CancelARRTargetCW,
+            qrfDiff: itemEtail.CancelCWVsQrfDiff,
+            type: itemEtail.geo_code,
+            vsQrf: itemEtail.CancelCWVsQrf,
+            ww: itemEtail.CancelWW
+        }
+        item3.push(cancEtail);
+    }
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.geoTotal.week = item1;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.geoTotal.week = item2;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.geoTotal.week = item3;
 }
 export function processRenewCancelMarketQTD(newState, data, AdobeData, EtailData) {
     //Clear old Values
@@ -8554,6 +10113,177 @@ export function processRenewGeoQTDData(data, newState, Reseller, Etail) {
     newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.geo.week = processQTDOrder(eotWeek);
     newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.geo.qtd = processQTDOrder(qtrFinEtail);
     newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.geo.week = processQTDOrder(qtrFinEtailWeek);
+
+
+}
+export function processRenewGeoQTDDataTotal(data, newState, Reseller, Etail) {
+
+
+    let qtrFin = [], qtrFinWeek = [],
+        qtrUi = [], qtrUiWeek = [],
+        qtrPf = [], qtrPfWeek = [],
+        eot = [], eotWeek = [],
+        qtrFinEtail = [], qtrFinEtailWeek = []
+
+
+    for (let i = 0; i < data.length; i++) {
+        let adobeData = data[i];
+
+
+        let finAdobe = {
+            index: i,
+            actuals: adobeData.RetRateActual,
+            // marketArea: adobeData.market_area_group,
+            qq: adobeData.RetRateQQTY,
+            qrf: adobeData.RetRateTarget,
+            qrfDiff: adobeData.RetRatevsQrfDiff,
+            type: adobeData.geo_code,
+            units: adobeData.CancelUnitsActual,
+            vsQrf: adobeData.RetRateVsQrf,
+            yy: adobeData.RetRateYY
+        }
+        qtrFin.push(finAdobe);
+
+        let finAdobeWeek = {
+            index: i,
+            actuals: adobeData.RetRateCW,
+            // marketArea: adobeData.market_area_group,
+            qrf: adobeData.RetRateTargetCW,
+            qrfDiff: adobeData.RetRateCWVsQrfDiff,
+            type: adobeData.geo_code,
+            vsQrf: adobeData.RetRateCWVsQrf,
+            ww: adobeData.RetRateWW
+        }
+        qtrFinWeek.push(finAdobeWeek);
+
+        let ui = {
+            index: i,
+            actuals: adobeData.UIRateActual,
+            // marketArea: adobeData.market_area_group,
+            qq: adobeData.UIRateQQTY,
+            qrf: adobeData.UIRateTarget,
+            qrfDiff: adobeData.UIRatevsQrfDiff,
+            type: adobeData.geo_code,
+            units: adobeData.CancelUnitsActual,
+            vsQrf: adobeData.UIRateVsQrf,
+            yy: adobeData.UIRateYY
+        }
+        qtrUi.push(ui);
+
+        let uiWeek = {
+            index: i,
+            actuals: adobeData.UIRateCW,
+            // marketArea: adobeData.market_area_group,
+            qrf: adobeData.UIRateTargetCW,
+            qrfDiff: adobeData.UIRateCWVsQrfDiff,
+            type: adobeData.geo_code,
+            vsQrf: adobeData.UIRateCWVsQrf,
+            ww: adobeData.UIRateWW
+        }
+        qtrUiWeek.push(uiWeek);
+        let pfAdobe = {
+            index: i,
+            actuals: adobeData.PFRateActual,
+            // marketArea: adobeData.market_area_group,
+            qq: adobeData.PFRateQQTY,
+            qrf: adobeData.PFRateTarget,
+            qrfDiff: adobeData.PFRatevsQrfDiff,
+            type: adobeData.geo_code,
+            units: adobeData.CancelUnitsActual,
+            vsQrf: adobeData.PFRateVsQrf,
+            yy: adobeData.PFRateYY
+        }
+        qtrPf.push(pfAdobe);
+
+        let pfWeek = {
+            index: i,
+            actuals: adobeData.PFRateCW,
+            // marketArea: adobeData.market_area_group,
+            qrf: adobeData.PFRateTargetCW,
+            qrfDiff: adobeData.PFRateCWVsQrfDiff,
+            type: adobeData.geo_code,
+            vsQrf: adobeData.PFRateCWVsQrf,
+            ww: adobeData.PFRateWW
+        }
+        qtrPfWeek.push(pfWeek);
+
+
+    }
+    for (let i = 0; i < Reseller.length; i++) {
+        let reseller = Reseller[i];
+
+
+
+
+        let eotItem = {
+            index: i,
+            actuals: reseller.EOTRateActuals,
+            // marketArea: reseller.market_area_group,
+            qq: reseller.EOTRateQQTY,
+            qrf: reseller.EOTRateTarget,
+            qrfDiff: reseller.EOTRateVsQrfDiff,
+            type: reseller.geo_code,
+            units: reseller.CancelUnitsActual,
+            vsQrf: reseller.EOTRatevsQrf,
+            yy: reseller.EOTRateYY
+        }
+        eot.push(eotItem);
+
+        let eotWeekItem = {
+            index: i,
+            actuals: reseller.EOTRateCW,
+            // marketArea: reseller.market_area_group,
+            qrf: reseller.EOTRateTargetCW,
+            qrfDiff: reseller.EOTRateCWVsQrfDiff,
+            type: reseller.geo_code,
+            vsQrf: reseller.EOTRateCWVsQrf,
+            ww: reseller.EOTRateWW
+        }
+        eotWeek.push(eotWeekItem);
+
+
+    }
+    for (let i = 0; i < Etail.length; i++) {
+        let etail = Etail[i];
+
+
+
+        let finEtail = {
+            index: i,
+            actuals: etail.RetRateActual,
+            // marketArea: etail.market_area_group,
+            qq: etail.RetRateQQTY,
+            qrf: etail.RetRateTarget,
+            qrfDiff: etail.RetRatevsQrfDiff,
+            type: etail.geo_code,
+            units: etail.CancelUnitsActual,
+            vsQrf: etail.RetRateVsQrf,
+            yy: etail.RetRateYY
+        }
+        qtrFinEtail.push(finEtail);
+
+        let finEtailWeek = {
+            index: i,
+            actuals: etail.RetRateCW,
+            // marketArea: etail.market_area_group,
+            qrf: etail.RetRateTargetCW,
+            qrfDiff: etail.RetRateCWVsQrfDiff,
+            type: etail.geo_code,
+            vsQrf: etail.RetRateCWVsQrf,
+            ww: etail.RetRateWW
+        }
+        qtrFinEtailWeek.push(finEtailWeek);
+    }
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.geoTotal.qtd = qtrFin;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.geoTotal.week = qtrFinWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.geoTotal.qtd = qtrUi;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.geoTotal.week = qtrUiWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.geoTotal.qtd = qtrPf;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.geoTotal.week = qtrPfWeek;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.geoTotal.qtd = eot;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.geoTotal.week = eotWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.geoTotal.qtd = qtrFinEtail;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.geoTotal.week = qtrFinEtailWeek;
 
 
 }

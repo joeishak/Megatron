@@ -72,6 +72,7 @@ class PanelItemTable extends Component {
                     activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.ltc}
+                    dataTotal={this.props.activeSummary.details.ltcTotal}
                     isJourney={true}
                     type={DIMENSIONS.LTC}
                     valueType={this.props.activeSummary.valueType}
@@ -145,6 +146,7 @@ class PanelItemTable extends Component {
                     activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.signUpApp}
+                    dataTotal={this.props.activeSummary.details.signUpAppTotal}
                     isJourney={true}
                     type={DIMENSIONS.SIGNAPP}
                     valueType={this.props.activeSummary.valueType}
@@ -166,6 +168,7 @@ class PanelItemTable extends Component {
                     activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.qfm}
+                    dataTotal={this.props.activeSummary.details.qfmTotal}
                     isJourney={this.state.isJourney}
                     type={DIMENSIONS.QFMTYPE}
                     valueType={this.props.activeSummary.valueType}
@@ -197,6 +200,7 @@ class PanelItemTable extends Component {
                     activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.geo}
+                    dataTotal={this.props.activeSummary.details.geoTotal}
                     isJourney={this.state.isJourney}
                     type={DIMENSIONS.GEO}
                     valueType={this.props.activeSummary.valueType}

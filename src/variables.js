@@ -17521,6 +17521,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -17964,6 +17992,34 @@ export const SecondaryData = [
                 ]
             },
             geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
+            geoTotal: {
                 qtd: [
                     {
                         index: 0,
@@ -18461,6 +18517,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -18904,6 +18988,34 @@ export const SecondaryData = [
                 ]
             },
             geo: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
+            geoTotal: {
                 qtd: [
                     {
                         index: 0,
@@ -19384,6 +19496,34 @@ export const SecondaryData = [
                     ],
                   
                 },
+                geoTotal: {
+                    qtd: [
+                        {
+                            index: 0,
+                            actuals: 66.7,
+                            units: 751.1,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            qq: -20.00,
+                            yy: -.0733,
+                            type: 'AMER'
+                        }
+                    ],
+                    week: [
+                        {
+                            index: 0,
+                            actuals: 66.7,
+                            units: 751.1,
+                            qrf: 70.2,
+                            qrfDiff: -3.48,
+                            vsQrf: -.0495,
+                            ww: -20.00,
+                            type: 'AMER'
+                        }
+                    ],
+                  
+                },
                 market: {
                     qtd: [
                         {
@@ -19526,6 +19666,34 @@ export const SecondaryData = [
                     {
                         index: 0,
                         actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
                         qrf: 70.2,
                         qrfDiff: -3.48,
                         vsQrf: -.0495,
@@ -19691,6 +19859,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -19810,6 +20006,7 @@ export const SecondaryData = [
                 ]
             },
             ltc: { qtd: [], week: [] },
+            ltcTotal: { qtd: [], week: [] },
             segment: {
                 qtd: [
                     {
@@ -20529,6 +20726,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -20946,6 +21171,34 @@ export const SecondaryData = [
                     {
                         index: 0,
                         actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
                         qrf: 70.2,
                         qrfDiff: -3.48,
                         vsQrf: -.0495,
@@ -21382,6 +21635,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -21809,6 +22090,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -21928,6 +22237,7 @@ export const SecondaryData = [
                 ]
             },
             ltc: { qtd: [], week: [] },
+            ltcTotal: { qtd: [], week: [] },
             segment: {
                 qtd: [
                     {
@@ -22647,6 +22957,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -22972,6 +23310,7 @@ export const SecondaryData = [
               
             },
             signUpApp: { qtd: [], week: [] },
+            signUpAppTotal: { qtd: [], week: [] },
             stats: [
                 {
                     value: -2.6,
@@ -23101,6 +23440,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -23219,6 +23586,7 @@ export const SecondaryData = [
                 ]
             },
             signUpApp: { qtd: [], week: [] },
+            signUpAppTotal: { qtd: [], week: [] },
             segment: {
                 qtd: [
                     {
@@ -23553,6 +23921,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -23851,6 +24247,32 @@ export const SecondaryData = [
                 ]
             },
             qfm: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
+            qfmTotal: {
                 qtd: [
                     {
                         index: 0,
@@ -24004,6 +24426,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -24330,6 +24780,32 @@ export const SecondaryData = [
                 ],
               
             },
+            qfmTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             stats: [
                 {
                     value: -2.6,
@@ -24452,6 +24928,34 @@ export const SecondaryData = [
                     {
                         index: 0,
                         actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
                         qrf: 70.2,
                         qrfDiff: -3.48,
                         vsQrf: -.0495,
@@ -24916,6 +25420,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -25371,6 +25903,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -25814,6 +26374,34 @@ export const SecondaryData = [
                     {
                         index: 0,
                         actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
                         qrf: 70.2,
                         qrfDiff: -3.48,
                         vsQrf: -.0495,
@@ -26275,6 +26863,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -26394,6 +27010,7 @@ export const SecondaryData = [
                 ]
             },
             ltc: { qtd: [], week: [] },
+            ltcTotal: { qtd: [], week: [] },
             segment: {
                 qtd: [
                     {
@@ -27079,6 +27696,34 @@ export const SecondaryData = [
                     {
                         index: 0,
                         actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
                         qrf: 70.2,
                         qrfDiff: -3.48,
                         vsQrf: -.0495,
@@ -27875,6 +28520,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -28383,6 +29056,34 @@ export const SecondaryData = [
                     {
                         index: 0,
                         actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
                         qrf: 70.2,
                         qrfDiff: -3.48,
                         vsQrf: -.0495,
@@ -28910,6 +29611,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -29418,6 +30147,34 @@ export const SecondaryData = [
                     {
                         index: 0,
                         actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
                         qrf: 70.2,
                         qrfDiff: -3.48,
                         vsQrf: -.0495,
@@ -29944,6 +30701,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -30460,6 +31245,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -30967,6 +31780,34 @@ export const SecondaryData = [
                     {
                         index: 0,
                         actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
                         qrf: 70.2,
                         qrfDiff: -3.48,
                         vsQrf: -.0495,
@@ -31493,6 +32334,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -32010,6 +32879,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -32516,6 +33413,34 @@ export const SecondaryData = [
                     {
                         index: 0,
                         actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
                         qrf: 70.2,
                         qrfDiff: -3.48,
                         vsQrf: -.0495,
@@ -33052,6 +33977,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -33489,6 +34442,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -33905,6 +34886,34 @@ export const SecondaryData = [
                     {
                         index: 0,
                         actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
                         qrf: 70.2,
                         qrfDiff: -3.48,
                         vsQrf: -.0495,
@@ -34339,6 +35348,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -34756,6 +35793,34 @@ export const SecondaryData = [
                     {
                         index: 0,
                         actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
                         qrf: 70.2,
                         qrfDiff: -3.48,
                         vsQrf: -.0495,
@@ -35201,6 +36266,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -35627,6 +36720,34 @@ export const SecondaryData = [
                 ],
               
             },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
             market: {
                 qtd: [
                     {
@@ -36044,6 +37165,34 @@ export const SecondaryData = [
                     {
                         index: 0,
                         actuals: 66.7,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        ww: -20.00,
+                        type: 'AMER'
+                    }
+                ],
+              
+            },
+            geoTotal: {
+                qtd: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
+                        qrf: 70.2,
+                        qrfDiff: -3.48,
+                        vsQrf: -.0495,
+                        qq: -20.00,
+                        yy: -.0733,
+                        type: 'AMER'
+                    }
+                ],
+                week: [
+                    {
+                        index: 0,
+                        actuals: 66.7,
+                        units: 751.1,
                         qrf: 70.2,
                         qrfDiff: -3.48,
                         vsQrf: -.0495,

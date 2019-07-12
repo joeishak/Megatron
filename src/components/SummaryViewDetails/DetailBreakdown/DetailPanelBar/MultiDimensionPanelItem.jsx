@@ -28,95 +28,133 @@ class MultiDimensionPanelItem extends Component {
     }
 
 
-     getQTDSubTotals(arr){
+     getQTDSubTotals(arr,item){
         let  actuals = 0, units = 0, qrf = 0, vsQrf= 0, qrfDiff=0, qq=0,yy=0
-       let b =  arr.forEach(function(obj){
-            actuals += obj['actuals'];
-            units += obj['units'];
-            qrf += obj['qrf'];
+    //    let b =  arr.forEach(function(obj){
+    //         actuals += obj['actuals'];
+    //         units += obj['units'];
+    //         qrf += obj['qrf'];
 
-            //Calculating the vsQrf 
-            // vsQrf += obj['vsQrf'];
-            vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf ;
+    //         //Calculating the vsQrf 
+    //         // vsQrf += obj['vsQrf'];
+    //         // vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf ;
 
-            qrfDiff += obj['qrfDiff'];
+    //         qrfDiff += obj['qrfDiff'];
 
-            // Q/Q% , W/W%and Y/Y% cannot be calculated therefore removing them as short term solution
-            // qq += obj['qq'];
-            // yy += obj['yy'];
-            qq=0;
-            yy=0;
-        });
+    //         // Q/Q% , W/W%and Y/Y% cannot be calculated therefore removing them as short term solution
+    //         // qq += obj['qq'];
+    //         // yy += obj['yy'];
+    //         // qq=0;
+    //         // yy=0;
+            
+    //     });
+        // console.log('DataTotal')
+        // console.log(this.props.dataTotal)
+        // console.log(_.find(this.props.dataTotal.qtd, ['type',item]))
+        let totalRow = (_.find(this.props.dataTotal.qtd, ['type',item]))
+        qq = totalRow.qq
+        yy = totalRow.yy
+        vsQrf= totalRow.vsQrf
+        qrfDiff= totalRow.qrfDiff
+        actuals = totalRow.actuals
+        units = totalRow.units
+        qrf = totalRow.qrf
 
         return {
         actuals,units,qrf,vsQrf,qrfDiff,qq,yy
         };
         
     }
-    getWeekSubTotals(arr){
+    getWeekSubTotals(arr,item){
         let  actuals = 0, units = 0, qrf = 0, vsQrf= 0, qrfDiff=0, ww=0
-       let b =  arr.forEach(function(obj){
-            actuals += obj['actuals'];
-            units += obj['units'];
-            qrf += obj['qrf'];
+    //    let b =  arr.forEach(function(obj){
+    //         actuals += obj['actuals'];
+    //         units += obj['units'];
+    //         qrf += obj['qrf'];
 
-            //Calculating the vsQrf 
-            // vsQrf += obj['vsQrf'];
-            vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf ;
+    //         //Calculating the vsQrf 
+    //         // vsQrf += obj['vsQrf'];
+    //         // vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf ;
             
-            qrfDiff += obj['qrfDiff'];
+    //         qrfDiff += obj['qrfDiff'];
 
-            // Q/Q% , W/W%and Y/Y% cannot be calculated therefore removing them as short term solution
-            // ww += obj['ww'];
-            ww=0;
-        });
+    //         // Q/Q% , W/W%and Y/Y% cannot be calculated therefore removing them as short term solution
+    //         // ww += obj['ww'];
+    //         ww=0;
+    //     });
+        let totalRow = (_.find(this.props.dataTotal.qtd, ['type',item]))
+        ww = totalRow.ww
+        
+        vsQrf= totalRow.vsQrf
+        qrfDiff= totalRow.qrfDiff
+        actuals = totalRow.actuals
+        units = totalRow.units
+        qrf = totalRow.qrf
 
         return {
         actuals,units,qrf,vsQrf,qrfDiff,ww
         };
         
     }
-    getJourneyQTDSubTotals(arr){
+    getJourneyQTDSubTotals(arr,item){
         let  actuals = 0,  qrf = 0, vsQrf= 0, qrfDiff=0, qq=0,yy=0
-       let b =  arr.forEach(function(obj){
-            actuals += obj['actuals'];
-            qrf += obj['qrf'];
+    //    let b =  arr.forEach(function(obj){
+    //         actuals += obj['actuals'];
+    //         qrf += obj['qrf'];
 
-            //Calculating the vsQrf 
-            // vsQrf += obj['vsQrf'];
-            vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf ;
+    //         //Calculating the vsQrf 
+    //         // vsQrf += obj['vsQrf'];
+    //         // vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf ;
 
-            qrfDiff += obj['qrfDiff'];
+    //         qrfDiff += obj['qrfDiff'];
 
-            // Q/Q% , W/W%and Y/Y% cannot be calculated therefore removing them as short term solution
-            //qq += obj['qq'];
-            //yy += obj['yy'];
-            qq=0;
-            yy=0;
-        });
+    //         // Q/Q% , W/W%and Y/Y% cannot be calculated therefore removing them as short term solution
+    //         //qq += obj['qq'];
+    //         //yy += obj['yy'];
+    //         qq=0;
+    //         yy=0;
+    //     });
+        let totalRow = (_.find(this.props.dataTotal.qtd, ['type',item]))
+        qq = totalRow.qq
+        yy = totalRow.yy
+        vsQrf= totalRow.vsQrf
+        qrfDiff= totalRow.qrfDiff
+        actuals = totalRow.actuals
+        // units = totalRow.units
+        qrf = totalRow.qrf
+
 
         return {
         actuals,qrf,vsQrf,qrfDiff,qq,yy
         };
         
     }
-    getJourneyWeekSubTotals(arr){
+    getJourneyWeekSubTotals(arr,item){
         let  actuals = 0, qrf = 0, vsQrf= 0, qrfDiff=0, ww=0
-       let b =  arr.forEach(function(obj){
-            actuals += obj['actuals'];
+    //    let b =  arr.forEach(function(obj){
+    //         actuals += obj['actuals'];
           
-            qrf += obj['qrf'];
+    //         qrf += obj['qrf'];
 
-            //Calculating the vsQrf 
-            // vsQrf += obj['vsQrf'];
-            vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf ;
+    //         //Calculating the vsQrf 
+    //         // vsQrf += obj['vsQrf'];
+    //         // vsQrf= (qrf==0 || actuals==0)? 0:(actuals-qrf)/qrf ;
 
-            qrfDiff += obj['qrfDiff'];
+    //         qrfDiff += obj['qrfDiff'];
 
-            // Q/Q% , W/W%and Y/Y% cannot be calculated therefore removing them as short term solution
-            // ww += obj['ww'];
-            ww=0;
-        });
+    //         // Q/Q% , W/W%and Y/Y% cannot be calculated therefore removing them as short term solution
+    //         // ww += obj['ww'];
+    //         ww=0;
+    //     });
+        console.log('DataTotal')
+        console.log(arr, item)
+        let totalRow = (_.find(this.props.dataTotal.qtd, ['type',item]))
+        ww = totalRow.ww
+        
+        vsQrf= totalRow.vsQrf
+        qrfDiff= totalRow.qrfDiff
+        actuals = totalRow.actuals
+        qrf = totalRow.qrf
 
         return {
         actuals,qrf,vsQrf,qrfDiff,ww
@@ -136,14 +174,17 @@ class MultiDimensionPanelItem extends Component {
         let groupedWeek = _.groupBy(this.props.data.week, function (item) { return item.type });
 
         let qtdARR = [],weekARR=[];
+        
+ 
         _.keys(groupedQTD).forEach(item => {
             qtdARR.push(...groupedQTD[item])
-           qtdARR.push({...this.getJourneyQTDSubTotals(groupedQTD[item]),marketArea: 'Total', type: item});
+           qtdARR.push({...this.getJourneyQTDSubTotals(groupedQTD[item],item),marketArea: 'Total', type: item});
         });
         _.keys(groupedWeek).forEach(item => {
             weekARR.push(...groupedWeek[item])
-           weekARR.push({...this.getJourneyWeekSubTotals(groupedWeek[item]),marketArea: 'Total', type: item});
+           weekARR.push({...this.getJourneyWeekSubTotals(groupedWeek[item],item),marketArea: 'Total', type: item});
         });
+       
         switch (this.props.timeMetric) {
             case 'qtd':
                 let journeyQTD = (qtdARR.map((item,index) => {
@@ -255,14 +296,16 @@ class MultiDimensionPanelItem extends Component {
         let groupedQTD = _.groupBy(this.props.data.qtd, function (item) { return item.type });
         let groupedWeek = _.groupBy(this.props.data.week, function (item) { return item.type });
 
+        console.log('GroupedQTD')
+        console.log(groupedQTD)
         let qtdARR = [],weekARR=[];
         _.keys(groupedQTD).forEach(item => {
             qtdARR.push(...groupedQTD[item])
-           qtdARR.push({...this.getQTDSubTotals(groupedQTD[item]),marketArea: 'Total', type: item});
+           qtdARR.push({...this.getQTDSubTotals(groupedQTD[item],item),marketArea: 'Total', type: item});
         });
         _.keys(groupedWeek).forEach(item => {
             weekARR.push(...groupedWeek[item])
-           weekARR.push({...this.getWeekSubTotals(groupedWeek[item]),marketArea: 'Total', type: item});
+           weekARR.push({...this.getWeekSubTotals(groupedWeek[item],item),marketArea: 'Total', type: item});
         });
         switch (this.props.timeMetric) {
             case 'qtd':
