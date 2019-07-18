@@ -38,6 +38,7 @@ class DetailPanelBar extends Component {
     /* Return Contents for */
     getPanelContents(type) {
         //If type is aMulti Dimension
+        
         if(type === DIMENSIONS.GEO || type ===DIMENSIONS.SIGNAPP || type === DIMENSIONS.LTC 
                || (type === DIMENSIONS.QFMTYPE && 
                       (this.props.activeSecondary === SUMMARY_KPIS.TRY_CUMU_QFM || 
@@ -68,6 +69,7 @@ class DetailPanelBar extends Component {
                             type={type}
                             activeSummary={this.props.activeSummary}
                             timeMetric={this.props.timeMetric}
+                            nullifyQrf={this.props.nullifyQrf}
                             isQFMMultidimensional = { (type === DIMENSIONS.QFMTYPE && 
                                 (this.props.activeSecondary === SUMMARY_KPIS.TRY_CUMU_QFM || 
                                      this.props.activeSecondary === SUMMARY_KPIS.TRY_NEW_QFM))}
@@ -102,6 +104,7 @@ class DetailPanelBar extends Component {
                             type={type}
                             activeSummary={this.props.activeSummary}
                             timeMetric={this.props.timeMetric}
+                            nullifyQrf={this.props.nullifyQrf}
                             isQFMMultidimensional = { (type === DIMENSIONS.QFMTYPE && 
                                 (this.props.activeSecondary === SUMMARY_KPIS.TRY_CUMU_QFM || 
                                      this.props.activeSecondary === SUMMARY_KPIS.TRY_NEW_QFM))}
@@ -675,6 +678,7 @@ class DetailPanelBar extends Component {
         }
     }
     render() {
+        // console.log('Rendering DetailPanelBar Condition ', this.props.nullifyQrf)
         return (<div className={'panel-wrapper'}>
             {this.state.isLoading ? null : this.getDynamicPanelBar()}
         </div>)

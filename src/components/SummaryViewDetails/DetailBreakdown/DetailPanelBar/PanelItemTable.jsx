@@ -22,6 +22,7 @@ class PanelItemTable extends Component {
                         timeMetric={this.props.timeMetric}
                         data={this.props.activeSummary.details.market}
                         isJourney={this.state.isJourney}
+                        nullifyQrf={this.props.nullifyQrf}
                         valueType={this.props.activeSummary.valueType}
                     />
                 )
@@ -65,6 +66,7 @@ class PanelItemTable extends Component {
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.segment}
                     isJourney={this.state.isJourney}
+                    nullifyQrf={this.props.nullifyQrf}
                     valueType={this.props.activeSummary.valueType}
                 />
             case DIMENSIONS.LTC:
@@ -74,6 +76,7 @@ class PanelItemTable extends Component {
                     data={this.props.activeSummary.details.ltc}
                     dataTotal={this.props.activeSummary.details.ltcTotal}
                     isJourney={true}
+                    nullifyQrf={this.props.nullifyQrf}
                     type={DIMENSIONS.LTC}
                     valueType={this.props.activeSummary.valueType}
                 />
@@ -83,6 +86,7 @@ class PanelItemTable extends Component {
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.conversion}
                     isJourney={this.state.isJourney}
+                    nullifyQrf={this.props.nullifyQrf}
                     type={DIMENSIONS.CONVERSION}
                     valueType={this.props.activeSummary.valueType}
                 />
@@ -92,6 +96,7 @@ class PanelItemTable extends Component {
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.nvr}
                     isJourney={this.state.isJourney}
+                    nullifyQrf={this.props.nullifyQrf}
                     type={DIMENSIONS.NEWVSREPEAT}
                     valueType={this.props.activeSummary.valueType}
                 />
@@ -101,6 +106,7 @@ class PanelItemTable extends Component {
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.mvd}
                     isJourney={this.state.isJourney}
+                    nullifyQrf={this.props.nullifyQrf}
                     type={DIMENSIONS.MOBILEVSDESKTOP}
                     valueType={this.props.activeSummary.valueType}
                 />
@@ -170,6 +176,7 @@ class PanelItemTable extends Component {
                     data={this.props.activeSummary.details.qfm}
                     dataTotal={this.props.activeSummary.details.qfmTotal}
                     isJourney={this.state.isJourney}
+                    nullifyQrf={this.props.nullifyQrf}
                     type={DIMENSIONS.QFMTYPE}
                     valueType={this.props.activeSummary.valueType}
                     />
@@ -179,6 +186,7 @@ class PanelItemTable extends Component {
                     timeMetric={this.props.timeMetric}
                     data={this.props.activeSummary.details.qfm}
                     isJourney={this.state.isJourney}
+                    nullifyQrf={this.props.nullifyQrf}
                     type={DIMENSIONS.QFMTYPE}
                     valueType={this.props.activeSummary.valueType}
                 />
@@ -202,6 +210,7 @@ class PanelItemTable extends Component {
                     data={this.props.activeSummary.details.geo}
                     dataTotal={this.props.activeSummary.details.geoTotal}
                     isJourney={this.state.isJourney}
+                    nullifyQrf={this.props.nullifyQrf}
                     type={DIMENSIONS.GEO}
                     valueType={this.props.activeSummary.valueType}
                 />
@@ -211,6 +220,7 @@ class PanelItemTable extends Component {
 
 
     render() {
+        // console.log('Rendering PanelItemTable Condition ', this.props.nullifyQrf)
         return (
 
             this.getDataContent(this.props.type)

@@ -221,6 +221,8 @@ export default function (state = {
             let ltvSegmentFilters= action.payload[21].data //initial state same as nonDMFilters
             let pvw = action.payload[22].data
             let qfmType = action.payload[23].data
+            // let convQfmType= _.filter(action.payload[23].data, function(o){ return o.qfm_type!='UNKNOWN'})
+            // console.log('convQfmType ', convQfmType)
             let customerType= action.payload[24].data
             // Call processDropDownList on all filters
             let newgeotate = processDropDownListFilterValue(GEO, geoFilter);
@@ -247,6 +249,7 @@ export default function (state = {
             let ltvSeg = processDropDownListFilterValue(LTVSEGMENT, ltvSegmentFilters);
             let pvwFilters = processDropDownListFilterValue('pvw', pvw);
             let qfmTypeFilters = processDropDownListFilterValue(QFMTYPE, qfmType);
+            // let convQfmTypeFilters = processDropDownListFilterValue(QFMTYPE, convQfmType);
             let customerTypeFilters = processDropDownListFilterValue(CUSTOMERTYPE, customerType);
 
             // Create the combined value filters
@@ -384,6 +387,10 @@ export default function (state = {
                     availableFilters: qfmTypeFilters,
                     valueFilters: []
                 },
+                // convQfmType: {
+                //     availableFilters: convQfmTypeFilters,
+                //     valueFilters: []
+                // },
                 customerType: {
                     availableFilters: customerTypeFilters,
                     valueFilters: []

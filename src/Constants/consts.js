@@ -31,6 +31,7 @@ export const DIMENSIONS = {
     NONDMSEGMENT: "nonDMSegment",
     LTVSEGMENT: "ltvSegment", 
     QFMTYPE: "qfmType",
+    CONVQFMTYPE: 'convQfmType',
     CUSTOMERTYPE: "customerType"
 };
 export const SUMMARY_KPIS_OLD = {

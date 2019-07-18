@@ -6491,7 +6491,7 @@ for (let i = 0; i < data.length; i++) {
     let item = data[i];
     let ltv = {
         index: i,
-        actuals: item.LTVROIActuals,
+        actuals: item.LTVROIActual,
         marketArea: item.market_area_group,
         qq: item.LTVROIQQTY,
         qrf: item.LTVROITarget,
@@ -6504,7 +6504,7 @@ for (let i = 0; i < data.length; i++) {
     {
         index: i,
         marketArea: item.market_area_group,
-        actuals: item.LTVROICW,
+        actuals: item.LTVROIActualCW,
         qrf: item.LTVROITargetCW,
         qrfDiff: item.LTVROICWVsQrfDiff,
         vsQrf: item.LTVROICWVsQrf,
@@ -6528,7 +6528,7 @@ export function processBuyLTVSourcedGeoQTDTotal(data,newState) {
         let item = data[i];
         let ltv = {
             index: i,
-            actuals: item.LTVROIActuals,
+            actuals: item.LTVROIActual,
             // marketArea: item.market_area_group,
             qq: item.LTVROIQQTY,
             qrf: item.LTVROITarget,
@@ -6541,7 +6541,7 @@ export function processBuyLTVSourcedGeoQTDTotal(data,newState) {
         {
             index: i,
             // marketArea: item.market_area_group,
-            actuals: item.LTVROICW,
+            actuals: item.LTVROIActualCW,
             qrf: item.LTVROITargetCW,
             qrfDiff: item.LTVROICWVsQrfDiff,
             vsQrf: item.LTVROICWVsQrf,
@@ -6565,7 +6565,7 @@ for (let i = 0; i < data.length; i++) {
     let item = data[i];
     let ltv = {
         index: i,
-        actuals: item.LTVROIActuals,
+        actuals: item.LTVROIActual,
         qq: item.LTVROIQQTY,
         qrf: item.LTVROITarget,
         qrfDiff: item.LTVROIVsQrfDiff,
@@ -6578,7 +6578,7 @@ for (let i = 0; i < data.length; i++) {
         index: i,
         type: item.market_area_code,
         marketArea: item.market_area_code,
-        actuals: item.LTVROICW,
+        actuals: item.LTVROIActualCW,
         qrf: item.LTVROITargetCW,
         qrfDiff: item.LTVROICWVsQrfDiff,
         vsQrf: item.LTVROICWVsQrf,
@@ -6598,7 +6598,7 @@ for (let i = 0; i < data.length; i++) {
     let item = data[i];
     let ltv = {
         index: i,
-        actuals: item.LTVROIActuals,
+        actuals: item.LTVROIActual,
         qq: item.LTVROIQQTY,
         qrf: item.LTVROITarget,
         qrfDiff: item.LTVROIVsQrfDiff,
@@ -6611,7 +6611,7 @@ for (let i = 0; i < data.length; i++) {
         index: i,
         type: item.product_category,
         marketArea: item.market_area_code,
-        actuals: item.LTVROICW,
+        actuals: item.LTVROIActualCW,
         qrf: item.LTVROITargetCW,
         qrfDiff: item.LTVROICWVsQrfDiff,
         vsQrf: item.LTVROICWVsQrf,
@@ -6631,7 +6631,7 @@ for (let i = 0; i < data.length; i++) {
     let item = data[i];
     let ltv = {
         index: i,
-        actuals: item.LTVROIActuals,
+        actuals: item.LTVROIActual,
         qq: item.LTVROIQQTY,
         qrf: item.LTVROITarget,
         qrfDiff: item.LTVROIVsQrfDiff,
@@ -6644,7 +6644,7 @@ for (let i = 0; i < data.length; i++) {
         index: i,
         type: item.segment_pivot,
         marketArea: item.market_area_code,
-        actuals: item.LTVROICW,
+        actuals: item.LTVROIActualCW,
         qrf: item.LTVROITargetCW,
         qrfDiff: item.LTVROICWVsQrfDiff,
         vsQrf: item.LTVROICWVsQrf,
@@ -6664,7 +6664,7 @@ for (let i = 0; i < data.length; i++) {
     let item = data[i];
     let ltv = {
         index: i,
-        actuals: item.LTVROIActuals,
+        actuals: item.LTVROIActual,
         qq: item.LTVROIQQTY,
         qrf: item.LTVROITarget,
         qrfDiff: item.LTVROIVsQrfDiff,
@@ -6677,7 +6677,7 @@ for (let i = 0; i < data.length; i++) {
         index: i,
         type: item.subscription_offering,
         marketArea: item.market_area_code,
-        actuals: item.LTVROICW,
+        actuals: item.LTVROIActualCW,
         qrf: item.LTVROITargetCW,
         qrfDiff: item.LTVROICWVsQrfDiff,
         vsQrf: item.LTVROICWVsQrf,

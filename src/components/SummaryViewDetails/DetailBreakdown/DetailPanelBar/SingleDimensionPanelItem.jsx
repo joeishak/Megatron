@@ -44,16 +44,16 @@ class SingleDimensionPanelItem extends Component {
                             {utils.formatMetric({ valueType: this.props.valueType, value: item.actuals }, 'value')}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: this.props.valueType, value: item.qrf }, 'value')}
+                            {utils.formatMetric({ valueType: this.props.valueType, value: (this.props.nullifyQrf? 0: item.qrf) }, 'value')}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: this.props.valueType, value: item.qrfDiff }, 'value')}
+                            {utils.formatMetric({ valueType: this.props.valueType, value: (this.props.nullifyQrf? 0: item.qrfDiff)}, 'value')}
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
                             ? `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'red')}`
                             : `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'green')}`}>
-                            {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
+                            {utils.formatMetric({ valueType: 'percent', value: (this.props.nullifyQrf? 0: item.vsQrf)  }, 'value')}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'percent', value: item.qq }, 'value')}
@@ -73,16 +73,16 @@ class SingleDimensionPanelItem extends Component {
                             {utils.formatMetric({ valueType: this.props.valueType, value: item.actuals }, 'value')}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: this.props.valueType, value: item.qrf }, 'value')}
+                            {utils.formatMetric({ valueType: this.props.valueType, value: (this.props.nullifyQrf? 0: item.qrf) }, 'value')}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: this.props.valueType, value: item.qrfDiff }, 'value')}
+                            {utils.formatMetric({ valueType: this.props.valueType, value: (this.props.nullifyQrf? 0: item.qrfDiff)}, 'value')}
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
                             ? `${weekColumnClass}` + " col " + `${this.getColor(activeSecondary, 'red')}`
                             : `${weekColumnClass}` + " col " + `${this.getColor(activeSecondary, 'green')}`}>
-                            {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
+                            {utils.formatMetric({ valueType: 'percent', value: (this.props.nullifyQrf? 0: item.vsQrf)  }, 'value')}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'percent', value: item.ww }, 'value')}
@@ -114,16 +114,16 @@ class SingleDimensionPanelItem extends Component {
                             {utils.formatMetric({ valueType: 'units', value: item.units }, 'value')}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: 'currency', value: item.qrf }, 'value')}
+                            {utils.formatMetric({ valueType: 'currency', value: (this.props.nullifyQrf? 0: item.qrf) }, 'value')}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: 'currency', value: item.qrfDiff }, 'value')}
+                            {utils.formatMetric({ valueType: 'currency', value: (this.props.nullifyQrf? 0: item.qrfDiff) }, 'value')}
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
                             ? `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'red')}`
                             : `${qtdColumnClass}` + " col " + `${this.getColor(activeSecondary, 'green')}`}>
-                              {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
+                              {utils.formatMetric({ valueType: 'percent', value: (this.props.nullifyQrf? 0: item.vsQrf) }, 'value')}
                         </div>
                         <div className={`${qtdColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'percent', value: item.qq }, 'value')}
@@ -146,16 +146,16 @@ class SingleDimensionPanelItem extends Component {
                             {utils.formatMetric({ valueType: 'currency', value: item.units }, 'value')}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: 'currency', value: item.qrf }, 'value')}
+                            {utils.formatMetric({ valueType: 'currency', value: (this.props.nullifyQrf? 0: item.qrf)}, 'value')}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
-                            {utils.formatMetric({ valueType: 'currency', value: item.qrfDiff }, 'value')}
+                            {utils.formatMetric({ valueType: 'currency', value: (this.props.nullifyQrf? 0: item.qrfDiff) }, 'value')}
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
                             ? `${weekColumnClass}` + " col " + `${this.getColor(activeSecondary, 'red')}`
                             : `${weekColumnClass}` + " col " + `${this.getColor(activeSecondary, 'green')}`}>
-                            {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
+                            {utils.formatMetric({ valueType: 'percent', value: (this.props.nullifyQrf? 0: item.vsQrf)  }, 'value')}
                         </div>
                         <div className={`${weekColumnClass}` + " col"}>
                             {utils.formatMetric({ valueType: 'percent', value: item.ww }, 'value')}

@@ -47,6 +47,7 @@ const SingleValueSelect = ({ options, value, defaultValue, onValueChange, onMenu
             className='pickyDropDown'
             value={value}
             options={options}
+            filterPlaceholder ="Search. . . "
             onChange={(e) => onValueChange(e)}
             valueKey="index"
             labelKey="value"

@@ -31,7 +31,13 @@ class DetailBreakdown extends Component {
       item.header === "Units"
     ) {
       return utils.formatMetric({ valueType: 'units', value: item.value }, 'value');
-    } else if (item.header === 'Vs Qrf' || item.header === 'Q/Q' || item.header == 'W/W' || item.header == 'Y/Y') {
+    } else if (item.header === 'Vs Qrf'){
+      return utils.formatMetric({ valueType: 'percent', value: (this.props.nullifyQrf? 0: item.value) }, 'value');
+    }
+    else if (item.header === 'QRF Diff' || item.header === 'QRF'){
+      return utils.formatMetric({ valueType: this.props.activeSummary.valueType, value: (this.props.nullifyQrf? 0: item.value) }, 'value');
+    }
+    else if (item.header === 'Q/Q' || item.header == 'W/W' || item.header == 'Y/Y') {
       return utils.formatMetric({ valueType: 'percent', value: item.value }, 'value');
     } else {
       return utils.formatMetric({ valueType: this.props.activeSummary.valueType, value: item.value }, 'value');
@@ -141,6 +147,7 @@ class DetailBreakdown extends Component {
     }
   }
   render() {
+    console.log('Rendering Detail Breakdown Condition ',this.props.nullifyQrf)
     let { activeTimeMetric, activeSummary, activeSecondary } = this.props;
     var qtdwColSizes = classNames({
       colContainer: true,
@@ -177,6 +184,7 @@ class DetailBreakdown extends Component {
             qtdIsPercent={this.props.qtdIsPercent}
             activeSummary={activeSummary}
             timeMetric={activeTimeMetric}
+            nullifyQrf={this.props.nullifyQrf}
             background="white"
           />
         </div>

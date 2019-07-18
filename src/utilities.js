@@ -3176,7 +3176,7 @@ const ltvGeo = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + In
     headers: headers,
     responseType: 'text'
 });
-const ltvGeoTotal = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROIGeoQTD + params7 + '&json=1', {
+const ltvGeoTotal = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROIGeoQTDTotal + params7 + '&json=1', {
     headers: headers,
     responseType: 'text'
 });

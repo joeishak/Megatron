@@ -82,7 +82,7 @@ class MultiDimensionPanelItem extends Component {
     //         // ww += obj['ww'];
     //         ww=0;
     //     });
-        let totalRow = (_.find(this.props.dataTotal.qtd, ['type',item]))
+        let totalRow = (_.find(this.props.dataTotal.week, ['type',item]))
         ww = totalRow.ww
         
         vsQrf= totalRow.vsQrf
@@ -146,9 +146,9 @@ class MultiDimensionPanelItem extends Component {
     //         // ww += obj['ww'];
     //         ww=0;
     //     });
-        console.log('DataTotal')
-        console.log(arr, item)
-        let totalRow = (_.find(this.props.dataTotal.qtd, ['type',item]))
+        // console.log('DataTotal')
+        // console.log(arr, item)
+        let totalRow = (_.find(this.props.dataTotal.week, ['type',item]))
         ww = totalRow.ww
         
         vsQrf= totalRow.vsQrf
@@ -214,17 +214,17 @@ class MultiDimensionPanelItem extends Component {
                         </div>
 
                         <div className={`${qtdColumnClass}`+ TotalStyle + " col"}>
-                            {utils.formatMetric({ valueType: this.props.valueType, value: item.qrf }, 'value')}
+                            {utils.formatMetric({ valueType: this.props.valueType, value: (this.props.nullifyQrf? 0: item.qrf) }, 'value')}
                         </div>
                         <div className={`${qtdColumnClass}` + TotalStyle+ " col"}>
-                            {utils.formatMetric({ valueType: this.props.valueType, value: item.qrfDiff }, 'value')}
+                            {utils.formatMetric({ valueType: this.props.valueType, value: (this.props.nullifyQrf? 0:item.qrfDiff) }, 'value')}
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
                             ? `${qtdColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'red')}`
                             : `${qtdColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'green')}`}>
 
-                            {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
+                            {utils.formatMetric({ valueType: 'percent', value: (this.props.nullifyQrf? 0:item.vsQrf) }, 'value')}
                         </div>
                         <div className={`${qtdColumnClass}` + TotalStyle+ " col"}>
                             {utils.formatMetric({ valueType: 'percent', value: item.qq }, 'value')}
@@ -265,16 +265,16 @@ class MultiDimensionPanelItem extends Component {
                         </div>
 
                         <div className={`${weekColumnClass}`+ TotalStyle + " col"}>
-                            {utils.formatMetric({ valueType: this.props.valueType, value: item.qrf }, 'value')}
+                            {utils.formatMetric({ valueType: this.props.valueType, value: (this.props.nullifyQrf? 0: item.qrf) }, 'value')}
                         </div>
                         <div className={`${weekColumnClass}` + TotalStyle+ " col"}>
-                            {utils.formatMetric({ valueType: this.props.valueType, value: item.qrfDiff }, 'value')}
+                            {utils.formatMetric({ valueType: this.props.valueType, value: (this.props.nullifyQrf? 0:item.qrfDiff) }, 'value')}
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
                             ? `${weekColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'red')}`
                             : `${weekColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'green')}`}>
-                            {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
+                            {utils.formatMetric({ valueType: 'percent', value: (this.props.nullifyQrf? 0:item.vsQrf) }, 'value')}
                         </div>
                         <div className={`${weekColumnClass}`+ TotalStyle + " col"}>
                             {utils.formatMetric({ valueType: 'percent', value: item.ww }, 'value')}
@@ -338,17 +338,17 @@ class MultiDimensionPanelItem extends Component {
                                 {utils.formatMetric({ valueType: 'units', value: item.units }, 'value')}
                             </div>
                             <div className={`${qtdColumnClass}`+ TotalStyle + " col"}>
-                                {utils.formatMetric({ valueType: 'currency', value: item.qrf }, 'value')}
+                                {utils.formatMetric({ valueType: 'currency', value: (this.props.nullifyQrf? 0: item.qrf) }, 'value')}
                             </div>
                             <div className={`${qtdColumnClass}`+ TotalStyle + " col"}>
-                                {utils.formatMetric({ valueType: 'currency', value: item.qrfDiff }, 'value')}
+                                {utils.formatMetric({ valueType: 'currency', value: (this.props.nullifyQrf? 0:item.qrfDiff) }, 'value')}
                             </div>
                             <div className={(
                                 item.vsQrf <= 0)
                                 ? `${qtdColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'red')}`
                                 : `${qtdColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'green')}`}>
 
-                                {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
+                                {utils.formatMetric({ valueType: 'percent', value: (this.props.nullifyQrf? 0:item.vsQrf) }, 'value')}
                             </div>
                             <div className={`${qtdColumnClass}`+ TotalStyle + " col"}>
                                 {utils.formatMetric({ valueType: 'percent', value: item.qq }, 'value')}
@@ -386,16 +386,16 @@ class MultiDimensionPanelItem extends Component {
                             {utils.formatMetric({ valueType: 'units', value: item.units }, 'value')}
                         </div>
                         <div className={`${weekColumnClass}`+ TotalStyle + " col"}>
-                            {utils.formatMetric({ valueType: 'currency', value: item.qrf }, 'value')}
+                            {utils.formatMetric({ valueType: 'currency', value: (this.props.nullifyQrf? 0: item.qrf) }, 'value')}
                         </div>
                         <div className={`${weekColumnClass}`+ TotalStyle + " col"}>
-                            {utils.formatMetric({ valueType: 'currency', value: item.qrfDiff }, 'value')}
+                            {utils.formatMetric({ valueType: 'currency', value: (this.props.nullifyQrf? 0:item.qrfDiff) }, 'value')}
                         </div>
                         <div className={(
                             item.vsQrf <= 0)
                             ? `${weekColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'red')}`
                             : `${weekColumnClass}`+ TotalStyle + " col " + `${this.getColor(activeSecondary, 'green')}`}>
-                            {utils.formatMetric({ valueType: 'percent', value: item.vsQrf }, 'value')}
+                            {utils.formatMetric({ valueType: 'percent', value: (this.props.nullifyQrf? 0:item.vsQrf) }, 'value')}
                         </div>
                         <div className={`${weekColumnClass}`+ TotalStyle + " col"}>
                             {utils.formatMetric({ valueType: 'percent', value: item.ww }, 'value')}
@@ -405,6 +405,8 @@ class MultiDimensionPanelItem extends Component {
         }
     }
     render() {
+        // console.log('Rendering MultidimensionalPanelItem Condition ', this.props.nullifyQrf)
+        
         let activeSecondary = this.props.activeSecondary !== undefined ? this.props.activeSecondary : 0;
         let MultiDimensionPanelItem = (this.props.isJourney === true) ? this.getMultiDimensionJourneyPanelItem(activeSecondary) : this.getMultiDimensionPanelItem(activeSecondary);
         return (MultiDimensionPanelItem)

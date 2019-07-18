@@ -17,7 +17,9 @@ import {
   SECONDARY,
   MOBILE,
   TABLET,
-  LAPTOP
+  LAPTOP,
+  SUMMARY_KPIS
+
 } from "../../Constants/consts.js";
 
 import * as utils from '../../utilities';
@@ -187,7 +189,7 @@ class SecondaryContentList extends Component {
       let filtered = data.filter((ele) => { return ele.category === this.props.activePrimary });
       numberOfSecondarySquares = filtered.length;
     }
-
+    
     let secondaryContentTop = (this.props.mobileSecondaryIsActive === true &&
       isMobileAndTablet === true) || isMobileAndTablet === false
       ? data.map(item => {
@@ -210,6 +212,7 @@ class SecondaryContentList extends Component {
               }}
               toggleCommentary={this.props.toggleCommentary}
               onCommentIconClick={this.props.onCommentIconClick}
+              nullifyQrf={item.index==SUMMARY_KPIS.BUY_CONVERSION && this.props.isTWPOrNonTWP}
             />
           );
         } else return null;

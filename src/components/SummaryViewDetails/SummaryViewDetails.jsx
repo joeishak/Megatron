@@ -58,9 +58,13 @@ class SummaryViewDetails extends Component {
         ...this.props.filters.qfmType.valueFilters.map(item => {
           return { ...item, label: item.value }
         }),
+        // ...this.props.filters.convQfmType.valueFilters.map(item => {
+        //   return { ...item, label: item.value }
+        // }),
         ...this.props.filters.customerType.valueFilters.map(item => {
           return { ...item, label: item.value }
         })],
+
 
     };
 
@@ -101,6 +105,9 @@ class SummaryViewDetails extends Component {
         ...this.props.filters.qfmType.valueFilters.map(item => {
           return { ...item, label: item.value }
         }),
+        // ...this.props.filters.convQfmType.valueFilters.map(item => {
+        //   return { ...item, label: item.value }
+        // }),
         ...this.props.filters.customerType.valueFilters.map(item => {
           return { ...item, label: item.value }
         })]
@@ -171,6 +178,7 @@ class SummaryViewDetails extends Component {
       this.setState({ selectedFilters: [...copy, ...e] }, () => {
       });
     }
+    
   }
   getExcelFilters(activeFilters) {
     let newArr;
@@ -219,6 +227,7 @@ class SummaryViewDetails extends Component {
       pvw: [],
       customerType:[],
       qfmType: [],
+      // convQfmType:[],
       segment:[],
       ltvSegment:[],
       product:[]
@@ -274,7 +283,6 @@ class SummaryViewDetails extends Component {
     });
 
 
-
     this.props.subFiltersSubmit(newFilters);
 
   }
@@ -282,6 +290,7 @@ class SummaryViewDetails extends Component {
   }
 
   closeMultiValue = (e) => {
+    // console.log('Firing submit filters')
     this.submitFilters({});
   }
   getSummaryFilters(activeItem) {
@@ -766,7 +775,18 @@ class SummaryViewDetails extends Component {
             {this.getSummaryFilters(this.props.activeSecondary)}
           </div>
           <div className="chartContainer col-md-12">
-            <KendoMultiChart color="white" chartHeight={350} deviceType="laptop" />
+            <KendoMultiChart color="white" 
+                              chartHeight={350} 
+                              deviceType="laptop" 
+                              nullifyQrf={this.props.activeSecondary==SUMMARY_KPIS.BUY_CONVERSION &&
+                              (
+                                (!_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) && 
+                                      _.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP'])) 
+                                ||
+                                (_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) &&
+                                      !_.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP']))) 
+                              }
+                      />
           </div>
         </div>
         {/* Second Row for Quarterly to Date title header */}
@@ -790,6 +810,14 @@ class SummaryViewDetails extends Component {
           activeSummary={activeItem}
           activePrimary={activePrimary}
           activeTimeMetric={this.state.activeTimeMetric}
+          nullifyQrf={this.props.activeSecondary==SUMMARY_KPIS.BUY_CONVERSION &&
+                       (
+                        (!_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) && 
+                              _.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP'])) 
+                        ||
+                        (_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) &&
+                              !_.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP']))) 
+                      }
           background="white" />
         <div className="iconfooter">
           <img className='rtbIconFooter' src={rtbIcon} />

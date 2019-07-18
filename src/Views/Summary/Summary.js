@@ -14,6 +14,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { withAuth } from "@okta/okta-react";
 // Import helper to check authentication
 import { checkAuthentication } from "../../helper";
+
+import * as _ from 'lodash'
 // Import KENDO Theme Default
 import "@progress/kendo-theme-default/dist/all.css";
 // Import Custom Components
@@ -213,11 +215,13 @@ class Summary extends Component {
           }
           // Else If the user is on Buy Conversion
           // Traffic 
-          else if (activeSecondaryCard === SUMMARY_KPIS.BUY_CONVERSION) {
+          else if (activeSecondaryCard === SUMMARY_KPIS.BUY_CONVERSION ) {
             // Set the local state for isLoading to true
             this.setState({ isLoading: true });
             // Call action to request filtered Traffic XDC
+            this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
             this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
+            
           }
           // Else If the user is on Discover (Traffic, Bounce) or UQFM
           // Traffic / UQFM XDC
@@ -232,7 +236,9 @@ class Summary extends Component {
           else if (activeSecondaryCard === SUMMARY_KPIS.BUY_GROSS_NEWARR ||
             activeSecondaryCard === SUMMARY_KPIS.BUY_GROSS_NEWUNITS) {
             this.setState({ isLoading: true });
+            this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
             this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
+            
           }
 
         } // End If for Sub Filter submit
@@ -698,6 +704,7 @@ class Summary extends Component {
                 // Call action to get Finance XDC from in memory cache
                 this.props.getBuyFinanceSecondaryData(this.props.filters);
                 this.props.getBuySecondaryData(this.props.filters);
+
               } else {
                 // Call action to get Finance XDC from in memory cache
                 this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
@@ -1208,6 +1215,7 @@ class Summary extends Component {
       case SUMMARY_KPIS.BUY_CONVERSION:
         this.props.updateBuyConversionIsLoading(false);
         this.props.updateTrafficSecondaryIsLoading(false);
+        // this.props.updateBuyGrossIsLoading(false);
 
         break;
         case SUMMARY_KPIS.BUY_LTV_ROI:
@@ -1215,10 +1223,13 @@ class Summary extends Component {
   
           break;
       case SUMMARY_KPIS.BUY_GROSS_NEWARR:
+        
         this.props.updateBuyGrossIsLoading(false);
+        // this.props.updateBuyConversionIsLoading(false);
         break;
       case SUMMARY_KPIS.BUY_GROSS_NEWUNITS:
         this.props.updateBuyGrossIsLoading(false);
+        // this.props.updateBuyConversionIsLoading(false);
         break;
     }
   }
@@ -1328,6 +1339,15 @@ class Summary extends Component {
         window={this.props.window}
         commentsPackage={this.props.commentsPackage}
         resetSecondaryList={(index) => this.updateActivePrimary(index)}
+        isTWPOrNonTWP={
+          (
+           (!_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) && 
+                 _.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP'])) 
+           ||
+           (_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) &&
+                 !_.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP']))) 
+         }
+         
       />
     );
   };
@@ -1362,11 +1382,15 @@ class Summary extends Component {
       mobileFiltersIsShown,
       mobileIsPrimary,
       activePrimaryCard,
+      activeSecondaryCard,
       secondaryData } = this.props;
     // Preferences Dialog  
+    // console.log('Rendering Summary ', activePrimaryCard + ' ' + this.props.activeSecondaryCard)
+    // console.log(`Summary Condition  ${activeSecondaryCard==SUMMARY_KPIS.BUY_CONVERSION} ${activeSecondaryCard} ${SUMMARY_KPIS.BUY_CONVERSION}`)
     const kdialog = dialogIsOpen ? <KendoDialog /> : null;
     const isMobileOrTablet = utils.includes(utils.getDeviceType(window), 'mobile') || utils.includes(utils.getDeviceType(window), 'tablet');
-    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails isLoading={this.state.isLoading} subFiltersSubmit={(newFilters) => { this.updateSecondaryLoading(newFilters) }} secondaryData={secondaryData} />;
+    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails isLoading={this.state.isLoading} subFiltersSubmit={(newFilters) => { this.updateSecondaryLoading(newFilters) }} secondaryData={secondaryData} 
+                nullifyQrf={activeSecondaryCard==SUMMARY_KPIS.BUY_CONVERSION} />;
     return (
       <div style={isMobileOrTablet ? { height: `${window.height}px` } : (dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
         {this.state.authenticated && (
