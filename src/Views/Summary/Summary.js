@@ -96,7 +96,9 @@ class Summary extends Component {
     // Call action to get the updated as of date and quarter for dashboard data refresh
     this.props.getUpdatedAsOfDateAndQuarter();
     // Add event listener for when the dashboard is resized
-    window.addEventListener("resize", this.resize.bind(this));
+    if (window.innerWidth>425){
+        window.addEventListener("resize", this.resize.bind(this));
+    }
     // Call this.resize to instanstiate
     this.resize();
     this.props.getIbHeartbeat();

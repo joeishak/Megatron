@@ -21082,6 +21082,7 @@ export const SecondaryData = [
         header: 'PM Spend - Discover',
         value: .746,
         target: .97766,
+        vsQrf: 11.4,
         comments: [
 
         ],

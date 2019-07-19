@@ -110,7 +110,7 @@ class PanelItemTable extends Component {
                     type={DIMENSIONS.MOBILEVSDESKTOP}
                     valueType={this.props.activeSummary.valueType}
                 />
-            case DIMENSIONS.PRODUCT:
+            case DIMENSIONS.PRODUCTCAT:
                 return <SingleDimensionPanelItem
                     activeSecondary={this.props.activeSecondary}
                     timeMetric={this.props.timeMetric}
