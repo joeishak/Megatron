@@ -1250,8 +1250,8 @@ export function processXDC1FinancialSegmentQTD(newState, data) {
     //Clear old Values
     newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.segment.qtd = [];
     newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.segment.qtd = [];
-    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.segment.qtd = [];
-    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.segment.qtd = [];
+    // newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.segment.qtd = [];
+    // newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.segment.qtd = [];
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         let net = {
@@ -1373,6 +1373,8 @@ export function processXDC1FinancialSegmentWeek(newState, data) {
     }
     newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.segment.week = item1;
     newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.segment.week = item2;
+    // newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.segment.week= item3;
+    // newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.segment.week=item4;
 
 }
 export function processXDC1FinancialproductQTD(newState, data) {
@@ -4399,7 +4401,7 @@ export function processTryQTDData(data, newState) {
                 newState[i].details.qtdw.week[4].value = data.NewUQFMsWW;
 
 
-                newState[i].details.stats[0].value = data.NewUQFMsCWVsQrf;
+                newState[i].details.stats[0].value = data.NewUQFMsVsQrf;
                 newState[i].details.stats[1].value = data.NewUQFMsQQTY;
                 newState[i].details.stats[2].value = data.NewUQFMsQQLY;
                 newState[i].details.stats[3].value = data.NewUQFMsYY;
