@@ -96,3 +96,117 @@ body {
 }
 
 /* Styling */
+
+/* CSS Rules for Top Banner */
+
+@-webkit-keyframes scrollLeft{
+    0% { left: 100%;}
+    100% { left: -60%;}
+}
+@keyframes scrollLeft{
+    0% { left: 100%;}
+    100% { left: -60%;}
+}
+
+.Banner{
+    color: red;
+    display: -ms-flexbox;
+    display: flex;
+    font-size:25px;
+    
+    background-color:#ffeb3b;
+    height: 40px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+
+}
+
+.Banner div{
+    display: block;
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+    -webkit-animation: scrollLeft 35s linear infinite;
+            animation: scrollLeft 35s linear infinite;
+}
+
+.Banner p{
+    float: left;
+    width: 100%;
+    
+
+}
+
+
+@media only screen and (min-width: 900px )and (max-width: 1024px){
+    @-webkit-keyframes scrollLeft{
+        0% { left: 100%;}
+        100% { left: -100%;}
+    }
+    @keyframes scrollLeft{
+        0% { left: 100%;}
+        100% { left: -100%;}
+    }
+    
+    .Banner div{
+        display: block;
+        width: 200%;
+        position: absolute;
+        overflow: hidden;
+        -webkit-animation: scrollLeft 35s linear infinite;
+                animation: scrollLeft 35s linear infinite;
+    }
+    
+    .Banner p{
+        float: left;
+        width: 100%;
+        
+    
+    }
+}
+
+.BannerButton{
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: none;
+    background-image: url('../../assets/images/times-circle-regular.svg');
+    background-size: 100% 100%;
+    background-color: #ffeb3b;
+    width: 50px;
+    
+    display:none;
+    
+    
+}
+
+@media only screen and (max-width: 425px){
+    @-webkit-keyframes scrollLeft{
+        0% { left: 100%;}
+        100% { left: -250%;}
+    }
+    @keyframes scrollLeft{
+        0% { left: 100%;}
+        100% { left: -250%;}
+    }
+    
+        .Banner div{
+            display: block;
+            width: 500%;
+            position: absolute;
+            overflow: hidden;
+            -webkit-animation: scrollLeft 35s linear infinite;
+                    animation: scrollLeft 35s linear infinite;
+        }
+        .Banner p{
+            float: left;
+            width: 100%;
+            
+        
+        }
+    
+}
+
+/* End CSS Rules for Top Banner */

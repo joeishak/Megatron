@@ -65,6 +65,7 @@ class Summary extends Component {
       //Data/Filters Management booleans 
       subFiltersChanged: false,
       secondaryKpiChanged: false,
+      showBanner: true
     };
 
     /*Bindings  */
@@ -1375,6 +1376,30 @@ class Summary extends Component {
     mail.click();
   }
 
+  //Code to display Banner
+  getBanner = (message)=>{
+    return (
+      <div className="Banner">
+      {/* <marquee>
+        {message}
+      </marquee> */}
+      <div>
+      <p>
+        {message} 
+      </p>
+      
+      
+      </div>
+      <button onClick={this.toggleBannerDisplay} className="BannerButton"></button>
+      </div>
+    )
+  }
+
+  toggleBannerDisplay=()=>{
+    this.setState({showBanner : !this.state.showBanner})
+  }
+
+
   render() {
     // REDUX PROPS 
     const {
@@ -1393,10 +1418,15 @@ class Summary extends Component {
     const isMobileOrTablet = utils.includes(utils.getDeviceType(window), 'mobile') || utils.includes(utils.getDeviceType(window), 'tablet');
     const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails isLoading={this.state.isLoading} subFiltersSubmit={(newFilters) => { this.updateSecondaryLoading(newFilters) }} secondaryData={secondaryData} 
                 nullifyQrf={activeSecondaryCard==SUMMARY_KPIS.BUY_CONVERSION} />;
+    
+    //Code for the Banner 
+    const banner  = this.state.showBanner ? this.getBanner('"Data validations are in progress, please do not use this data for analysis"') : null;
+    
     return (
       <div style={isMobileOrTablet ? { height: `${window.height}px` } : (dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
         {this.state.authenticated && (
           <span>
+            {banner}
             {kdialog}
 
             {/* Navigation*/}
