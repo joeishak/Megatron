@@ -7654,7 +7654,7 @@ export function processUseQTDData(data, newState) {
     newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.week[0].value = data[0].RepeatMAUActual;
     newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.week[1].value = data[0].RepeatMAUTarget;
     newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.week[2].value = data[0].RepeatMAUVsQRFDiff;
-    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.week[3].value = data[0].RepeatMAUQQTY;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.week[3].value = data[0].RepeatMAUVsQrf;
     newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.qtdw.week[4].value = data[0].RepeatMAUWW;
     newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.stats[0].value = data[0].RepeatMAUVsQrf;
     newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.stats[1].value = data[0].RepeatMAUQQTY;

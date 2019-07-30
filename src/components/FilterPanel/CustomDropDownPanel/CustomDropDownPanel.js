@@ -185,7 +185,7 @@ class CustomDropDownPanel extends Component {
             case 5:
                 return (
                     <div className="col-lg-12 globalPrimaryKPIFilters">
-                        <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
+                        {/* <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p> Segments  {this.props.filters.isDefaultFilters === true ? '- Excluding PDF Services & Sign' : ''} </p>
                             <MultiValueSelect
@@ -195,7 +195,19 @@ class CustomDropDownPanel extends Component {
                                 value={_.filter(this.props.selectedFilters, item => { return item.category === NONDMSEGMENT })}
                             />
 
+                        </div> */}
+                        <div className={quarterFilterContainer + ' col-lg-2'} >
+                            <p> Segment </p>
+                            <SingleValueSelect
+                                value={_.filter(this.props.selectedFilters, item => { return item.category === SEGMENT })}
+                                activeFilters={filters.segment.valueFilters}
+                                options={filters.segment.availableFilters}
+                                onValueChange={this.props.updateSingleValue}
+                                onMenuClose={this.closeDropDownValue}
+                            />
+
                         </div>
+
                         <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p> Subscription Offering</p>
                             <MultiValueSelect

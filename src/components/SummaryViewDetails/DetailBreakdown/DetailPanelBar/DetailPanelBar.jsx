@@ -515,7 +515,64 @@ class DetailPanelBar extends Component {
              }
             case 4:
                 switch (this.props.activeSecondary) {
-                    case SUMMARY_KPIS.USE_ENGAGEMENT_INDEX:
+                    // case SUMMARY_KPIS.USE_ENGAGEMENT_INDEX:
+                    //     //Enagement Index
+                    //     return (
+                    //         <PanelBar >
+                    //         <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                    //             {this.getPanelContents(DIMENSIONS.GEO)}
+                    //         </ PanelBarItem>
+                    //         <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                    //             {this.getPanelContents(DIMENSIONS.MARKET)}
+                    //         </ PanelBarItem>
+                    //         <PanelBarItem className="panelItemTitle" expanded={false} title={'Segment'}>
+                    //             {this.getPanelContents(DIMENSIONS.SEGMENT)}
+                    //         </ PanelBarItem>
+
+                    //         <PanelBarItem className="panelItemTitle" expanded={false} title='Subscription Offering'>
+                    //             {this.getPanelContents(DIMENSIONS.SUBSCRIPTION)}
+                    //         </PanelBarItem>
+                    //     </PanelBar>
+                    //     )
+                 case SUMMARY_KPIS.USE_LOW_CEI:
+                            //Enagement Index
+                            return (
+                                <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                                    {this.getPanelContents(DIMENSIONS.GEO)}
+                                </ PanelBarItem>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                                    {this.getPanelContents(DIMENSIONS.MARKET)}
+                                </ PanelBarItem>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title={'Segment'}>
+                                    {this.getPanelContents(DIMENSIONS.SEGMENT)}
+                                </ PanelBarItem>
+    
+                                {/* <PanelBarItem className="panelItemTitle" expanded={false} title='Subscription Offering'>
+                                    {this.getPanelContents(DIMENSIONS.SUBSCRIPTION)}
+                                </PanelBarItem> */}
+                            </PanelBar>
+                            )
+                  case SUMMARY_KPIS.USE_MEDIUM_CEI:
+                                //Enagement Index
+                                return (
+                                    <PanelBar >
+                                    <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                                        {this.getPanelContents(DIMENSIONS.GEO)}
+                                    </ PanelBarItem>
+                                    <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                                        {this.getPanelContents(DIMENSIONS.MARKET)}
+                                    </ PanelBarItem>
+                                    <PanelBarItem className="panelItemTitle" expanded={false} title={'Segment'}>
+                                        {this.getPanelContents(DIMENSIONS.SEGMENT)}
+                                    </ PanelBarItem>
+        
+                                    {/* <PanelBarItem className="panelItemTitle" expanded={false} title='Subscription Offering'>
+                                        {this.getPanelContents(DIMENSIONS.SUBSCRIPTION)}
+                                    </PanelBarItem> */}
+                                </PanelBar>
+                                )
+                    case SUMMARY_KPIS.USE_HIGH_CEI:
                         //Enagement Index
                         return (
                             <PanelBar >
@@ -529,9 +586,28 @@ class DetailPanelBar extends Component {
                                 {this.getPanelContents(DIMENSIONS.SEGMENT)}
                             </ PanelBarItem>
 
-                            <PanelBarItem className="panelItemTitle" expanded={false} title='Subscription Offering'>
+                            {/* <PanelBarItem className="panelItemTitle" expanded={false} title='Subscription Offering'>
                                 {this.getPanelContents(DIMENSIONS.SUBSCRIPTION)}
-                            </PanelBarItem>
+                            </PanelBarItem> */}
+                        </PanelBar>
+                        )
+                    case SUMMARY_KPIS.USE_0_INACTIVE_CEI:
+                        //Enagement Index
+                        return (
+                            <PanelBar >
+                            <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                                {this.getPanelContents(DIMENSIONS.GEO)}
+                            </ PanelBarItem>
+                            <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                                {this.getPanelContents(DIMENSIONS.MARKET)}
+                            </ PanelBarItem>
+                            <PanelBarItem className="panelItemTitle" expanded={false} title={'Segment'}>
+                                {this.getPanelContents(DIMENSIONS.SEGMENT)}
+                            </ PanelBarItem>
+
+                            {/* <PanelBarItem className="panelItemTitle" expanded={false} title='Subscription Offering'>
+                                {this.getPanelContents(DIMENSIONS.SUBSCRIPTION)}
+                            </PanelBarItem> */}
                         </PanelBar>
                         )
                     case SUMMARY_KPIS.USE_PAID_USER_MAU:
@@ -552,6 +628,8 @@ class DetailPanelBar extends Component {
                                 </PanelBarItem>
                             </PanelBar>
                         )
+                    
+                    
                     case SUMMARY_KPIS.USE_PERCENT_ACTIVATED:
                         return (
                             <PanelBar >
@@ -565,9 +643,9 @@ class DetailPanelBar extends Component {
                                     {this.getPanelContents(DIMENSIONS.SEGMENT)}
                                 </ PanelBarItem>
 
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Subscription Offering'>
+                                {/* <PanelBarItem className="panelItemTitle" expanded={false} title='Subscription Offering'>
                                     {this.getPanelContents(DIMENSIONS.SUBSCRIPTION)}
-                                </PanelBarItem>
+                                </PanelBarItem> */}
                             </PanelBar>
                         )
                         case SUMMARY_KPIS.USE_PERCENT_ACTIVATED_LAUNCHES:

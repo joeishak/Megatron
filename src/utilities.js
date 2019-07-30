@@ -374,7 +374,7 @@ let renewParamsAdobeCom = [
         value: ''
     },
     {
-        prompt: 'segment_NonDMFilters',
+        prompt: 'segmentFilters',
         value: ''
     },
     {
@@ -398,7 +398,7 @@ let renewParamsERetail = [
     },
 
     {
-        prompt: 'segment_NonDMFilters',
+        prompt: 'segmentFilters',
         value: ''
     },
     {
@@ -421,7 +421,7 @@ let renewParamsReseller = [
         value: ''
     },
     {
-        prompt: 'segment_NonDMFilters',
+        prompt: 'segmentFilters',
         value: ''
     },
     {
@@ -448,7 +448,7 @@ let renewParams = [
         value: ''
     },
     {
-        prompt: 'segment_NonDMFilters',
+        prompt: 'segmentFilters',
         value: ''
     },
     {
@@ -1959,7 +1959,7 @@ export function requestRenewCancelSecondaryData(allFilters, _parameters) {
  * @returns Promise Array containing values for the Renew  QTR and EOT KPIs Details
  */
 export function requestRenewDetailsSecondaryData(allFilters, _parameters) {
-
+    
     responseArray = [];
     resetRenewParams();
 
@@ -4223,7 +4223,8 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
+            // filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
+            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             break;
         //Traffic
@@ -4291,7 +4292,8 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
+            // filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
+            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             break;
         // cancel Adobe / Etail 
@@ -4299,7 +4301,8 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
+            // filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
+            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
             break;
@@ -4354,7 +4357,7 @@ export function resetRenewParams() {
             value: ''
         },
         {
-            prompt: 'segment_NonDMFilters',
+            prompt: 'segmentFilters',
             value: ''
         },
         {
@@ -4430,7 +4433,7 @@ export function resetRenewParams() {
             value: ''
         },
         {
-            prompt: 'segment_NonDMFilters',
+            prompt: 'segmentFilters',
             value: ''
         },
         {
@@ -4454,7 +4457,7 @@ export function resetRenewParams() {
         },
 
         {
-            prompt: 'segment_NonDMFilters',
+            prompt: 'segmentFilters',
             value: ''
         },
         {
@@ -4481,7 +4484,7 @@ export function resetRenewParams() {
             value: ''
         },
         {
-            prompt: 'segment_NonDMFilters',
+            prompt: 'segmentFilters',
             value: ''
         },
         {
