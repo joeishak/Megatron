@@ -295,13 +295,24 @@ class FilterPage extends Component {
                 return (
                     <div className="col-lg-12 mobilePrimaryKPIFilters">
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
-                        <div className={'mobileDropDownStyle col-xs-12 col-sm-12'} >
+                        {/* <div className={'mobileDropDownStyle col-xs-12 col-sm-12'} >
                             <p> Segments  {this.props.filters.isDefaultFilters === true ? '- Excluding PDF Services & Sign' : ''} </p>
                             <MultiValueSelect
                                 options={filters.nonDMSegment.availableFilters}
                                 onValueChange={(e) => { let type = NONDMSEGMENT; this.updateMultiValue(e, type) }}
                                 onMenuClose={this.closeMultiValue}
                                 value={_.filter(this.state.selectedFilters, item => { return item.category === NONDMSEGMENT })}
+                            />
+
+                        </div> */}
+                        <div className={'mobileDropDownStyle col-xs-12 col-sm-12'} >
+                            <p> Segment - {filters.segment.valueFilters[0].value}</p>
+                            <SingleValueSelect
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === SEGMENT })}
+                                activeFilters={filters.segment.valueFilters}
+                                options={filters.segment.availableFilters}
+                                onValueChange={this.updateSingleValue}
+                                onMenuClose={this.closeSingleValue}
                             />
 
                         </div>

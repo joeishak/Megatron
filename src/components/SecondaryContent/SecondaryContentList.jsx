@@ -181,8 +181,11 @@ class SecondaryContentList extends Component {
           </div>
         ) : null;
 
-    let data = this.props.data;
-
+    //  let data = this.props.data   
+    let data = _.filter(this.props.data, 
+                (d)=>{ return ((d.index != SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED) && 
+                                (d.index != SUMMARY_KPIS.DISCOVER_UQFM)) })
+     
 
     let numberOfSecondarySquares = 0;
     if (data !== undefined) {
