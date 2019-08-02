@@ -170,6 +170,9 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title='Customer Type'>
+                                    {this.getPanelContents(DIMENSIONS.CUSTOMERTYPE)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
                                     {this.getPanelContents(DIMENSIONS.MARKET)}
                                 </ PanelBarItem>
@@ -179,9 +182,7 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={false} title={'Last Touch Channel'}>
                                     {this.getPanelContents(DIMENSIONS.LTC)}
                                 </ PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Customer Type'>
-                                    {this.getPanelContents(DIMENSIONS.CUSTOMERTYPE)}
-                                </ PanelBarItem>
+                                
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Mobile Vs Desktop'>
                                     {this.getPanelContents(DIMENSIONS.MOBILEVSDESKTOP)}
                                 </ PanelBarItem>
@@ -246,21 +247,22 @@ class DetailPanelBar extends Component {
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
+                                <PanelBarItem className="panelItemTitle" expanded={false} title='Customer Type'>
+                                    {this.getPanelContents(DIMENSIONS.CUSTOMERTYPE)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
                                     {this.getPanelContents(DIMENSIONS.MARKET)}
                                 </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
                                     {this.getPanelContents(DIMENSIONS.WEBSEGMENT)}
                                 </ PanelBarItem>
-                                <PanelBarItem className="panelItemTitle" expanded={false} title={'Channel'}>
+                                {/* <PanelBarItem className="panelItemTitle" expanded={false} title={'Channel'}>
                                     {this.getPanelContents(DIMENSIONS.LTC)}
-                                </ PanelBarItem>
+                                </ PanelBarItem> */}
                                 {/* <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion'>
                                     {this.getPanelContents(DIMENSIONS.CONVERSION)}
                                 </ PanelBarItem> */}
-                                <PanelBarItem className="panelItemTitle" expanded={false} title='Customer Type'>
-                                    {this.getPanelContents(DIMENSIONS.CUSTOMERTYPE)}
-                                </ PanelBarItem>
+                                
                                 <PanelBarItem className="panelItemTitle" expanded={false} title='Mobile Vs Desktop'>
                                     {this.getPanelContents(DIMENSIONS.MOBILEVSDESKTOP)}
                                 </ PanelBarItem>
@@ -423,6 +425,9 @@ class DetailPanelBar extends Component {
                          <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                              {this.getPanelContents(DIMENSIONS.GEO)}
                          </ PanelBarItem>
+                         <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion Type'>
+                             {this.getPanelContents(DIMENSIONS.CONVERSION)}
+                         </ PanelBarItem>
                          <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
                              {this.getPanelContents(DIMENSIONS.MARKET)}
                          </ PanelBarItem>
@@ -432,9 +437,7 @@ class DetailPanelBar extends Component {
                          <PanelBarItem className="panelItemTitle" expanded={false} title={'Last Touch Channel'}>
                              {this.getPanelContents(DIMENSIONS.LTC)}
                          </ PanelBarItem>
-                         <PanelBarItem className="panelItemTitle" expanded={false} title='Conversion'>
-                             {this.getPanelContents(DIMENSIONS.CONVERSION)}
-                         </ PanelBarItem>
+                         
                          <PanelBarItem className="panelItemTitle" expanded={false} title='Mobile Vs Desktop'>
                              {this.getPanelContents(DIMENSIONS.MOBILEVSDESKTOP)}
                          </ PanelBarItem>
@@ -461,7 +464,7 @@ class DetailPanelBar extends Component {
                             <PanelBarItem className="panelItemTitle" expanded={false} title={'Segment'}>
                                 {this.getPanelContents(DIMENSIONS.SEGMENT)}
                             </ PanelBarItem>
-                            <PanelBarItem className="panelItemTitle" expanded={false} title='Subscription'>
+                            <PanelBarItem className="panelItemTitle" expanded={false} title='Subscription Offering'>
                                 {this.getPanelContents(DIMENSIONS.SUBSCRIPTION)}
                             </ PanelBarItem>
                         </PanelBar>
@@ -746,7 +749,7 @@ class DetailPanelBar extends Component {
                         <PanelBarItem className="panelItemTitle" expanded={false} title={'Segment'}>
                             {this.getPanelContents(DIMENSIONS.SEGMENT)}
                         </ PanelBarItem>
-                        <PanelBarItem className="panelItemTitle" expanded={false} title={'Product'}>
+                        <PanelBarItem className="panelItemTitle" expanded={false} title={'Product Category'}>
                             {this.getPanelContents(DIMENSIONS.PRODUCT)}
                         </ PanelBarItem>
                     </PanelBar>);

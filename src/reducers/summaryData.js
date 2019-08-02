@@ -417,7 +417,7 @@ export default function (state = {
             processRenewCancelSegmentQTD(newState.secondary, action.payload[5].data, action.payload[12].data, action.payload[19].data);
             processRenewCancelSegmentWeek(newState.secondary, action.payload[5].data, action.payload[12].data, action.payload[19].data);
             processRenewCancelproductQTD(newState.secondary, action.payload[6].data, action.payload[13].data, action.payload[20].data);
-            processRenewCancelProductWeek(newState.secondary, action.payload[7].data, action.payload[13].data, action.payload[20].data);
+            processRenewCancelProductWeek(newState.secondary, action.payload[6].data, action.payload[13].data, action.payload[20].data);
 
             return { ...newState, renewCancelIsLoaded: true };
         case GET_RENEW_DETAILS_DATA:
@@ -3286,7 +3286,7 @@ export function processTrafficNewRepQTDData(g5, newState) {
 
             qrf: item.TrafficTarget,
 
-            qrfDiff: item.TrafficActuals - item.TarfficTarget,
+            qrfDiff: item.TrafficActuals - item.TrafficTarget,
 
             type: item.new_or_repeat,
 
@@ -7667,8 +7667,8 @@ export function processUseQTDData(data, newState) {
     newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.qtd[3].value = data[0].HighCEIVsQrf;
     newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.qtd[4].value = data[0].HighCEIQQTY;
     newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.qtd[5].value = data[0].HighCEIYY;
-    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.week[0].value = data[0].HighCEITarget;
-    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.week[1].value = data[0].HighCEIVsQRFDiff;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.week[0].value = data[0].HighCEIActual;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.week[1].value = data[0].HighCEITarget;
     newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.week[2].value = data[0].HighCEIVsQRFDiff;
     newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.week[3].value = data[0].HighCEIVsQrf;
     newState[SUMMARY_KPIS.USE_HIGH_CEI].details.qtdw.week[4].value = data[0].HighCEIWW;
@@ -9684,7 +9684,7 @@ export function processRenewCancelProductWeek(newState, data, AdobeData, EtailDa
     let item2 = [];
     let item3 = [];
     let item4 = [];
-
+    
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         let canc = {
@@ -9735,6 +9735,10 @@ export function processRenewCancelProductWeek(newState, data, AdobeData, EtailDa
         item3.push(cancEtail);
 
     }
+    // console.log('Setting up the Renew Product Week')
+    // console.log(data)
+    // console.log(AdobeData)
+    // console.log(EtailData)
     newState[SUMMARY_KPIS.RENEW_CANCEL].details.product.week = item1;
     newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.product.week = item2;
     newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.product.week = item3;

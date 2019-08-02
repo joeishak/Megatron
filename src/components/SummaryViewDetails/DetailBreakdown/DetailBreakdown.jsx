@@ -132,7 +132,8 @@ class DetailBreakdown extends Component {
                     }
                   >
                     <span className="contHeader"> {(item.header==="Vs Qrf") ? "VS QRF" : item.header} </span>
-                    <span className={`valHeader ` + (item.header === "Vs Qrf" ? ` ${this.getColor(activeSecondary, 'red')}` : " ")}>
+                    <span className={`valHeader ` + (item.header === "Vs Qrf" ? item.value<=0? 
+                                                            `${this.getColor(activeSecondary, 'red')}`: `${this.getColor(activeSecondary, 'green')}`: " ")}>
                       {this.renderDollarValuePanelBarItems(item.value, item)} 
                     </span>
                   </div>
