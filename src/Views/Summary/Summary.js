@@ -1426,7 +1426,7 @@ class Summary extends Component {
       <div style={isMobileOrTablet ? { height: `${window.height}px` } : (dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
         {this.state.authenticated && (
           <span>
-            {banner}
+            {/*banner*/}
             {kdialog}
 
             {/* Navigation*/}

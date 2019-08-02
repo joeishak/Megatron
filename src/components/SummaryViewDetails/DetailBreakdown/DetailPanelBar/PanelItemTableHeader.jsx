@@ -17,13 +17,13 @@ class PanelItemTableHeader extends Component {
             case DIMENSIONS.GEO:
                 return 'Geo';
             case DIMENSIONS.MARKET:
-                return 'Market';
+                return 'Market Area';
             case DIMENSIONS.ROUTE:
-                return 'Route';
+                return 'Route To Market';
             case DIMENSIONS.SEGMENT:
                 return 'Segment';
             case DIMENSIONS.CONVERSION:
-                return 'Conversion'
+                return 'Conversion Type'
             case DIMENSIONS.SIGNAPP:
                 return 'Sign Up Source'
                 case DIMENSIONS.SIGNCAT:
@@ -41,11 +41,13 @@ class PanelItemTableHeader extends Component {
             case DIMENSIONS.CHANNELMU:
                 return 'Channel';
             case DIMENSIONS.SUBSCRIPTION:
-                return 'Subscription';
+                return 'Subscription Offering';
             case DIMENSIONS.QFMTYPE:
                 return 'QFM Type'
             case DIMENSIONS.CUSTOMERTYPE:
                 return 'Customer Type'
+            case DIMENSIONS.PRODUCTCAT:
+                return 'Product Category'
             default:
                 return 'Product';
         }

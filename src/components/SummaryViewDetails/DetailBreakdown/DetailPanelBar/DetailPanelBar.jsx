@@ -157,7 +157,7 @@ class DetailPanelBar extends Component {
                             {this.getPanelContents(DIMENSIONS.SEGMENT)}
                         </ PanelBarItem>
                         <PanelBarItem className="panelItemTitle" expanded={false} title='Product Category'>
-                            {this.getPanelContents(DIMENSIONS.PRODUCT)}
+                            {this.getPanelContents(DIMENSIONS.PRODUCTCAT)}
                         </PanelBarItem>
                     </PanelBar>
                 )
@@ -414,7 +414,7 @@ class DetailPanelBar extends Component {
                              {this.getPanelContents(DIMENSIONS.SEGMENT)}
                          </ PanelBarItem>
                          <PanelBarItem className="panelItemTitle" expanded={false} title='Product'>
-                             {this.getPanelContents(DIMENSIONS.PRODUCT)}
+                             {this.getPanelContents(DIMENSIONS.PRODUCTCAT)}
                          </ PanelBarItem>
 
                      </PanelBar>
@@ -458,7 +458,7 @@ class DetailPanelBar extends Component {
                             <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
                                 {this.getPanelContents(DIMENSIONS.MARKET)}
                             </ PanelBarItem>
-                            <PanelBarItem className="panelItemTitle" expanded={false} title='Product'>
+                            <PanelBarItem className="panelItemTitle" expanded={false} title='Product Category'>
                                 {this.getPanelContents(DIMENSIONS.PRODUCTCAT)}
                             </ PanelBarItem>
                             <PanelBarItem className="panelItemTitle" expanded={false} title={'Segment'}>
@@ -485,7 +485,7 @@ class DetailPanelBar extends Component {
                              {this.getPanelContents(DIMENSIONS.SEGMENT)}
                          </ PanelBarItem>
                          <PanelBarItem className="panelItemTitle" expanded={false} title='Product Category'>
-                             {this.getPanelContents(DIMENSIONS.PRODUCT)}
+                             {this.getPanelContents(DIMENSIONS.PRODUCTCAT)}
                          </PanelBarItem>
                          <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
                              {this.getPanelContents(DIMENSIONS.QFMTYPE)}
@@ -508,7 +508,7 @@ class DetailPanelBar extends Component {
                              {this.getPanelContents(DIMENSIONS.SEGMENT)}
                          </ PanelBarItem>
                          <PanelBarItem className="panelItemTitle" expanded={false} title='Product Category'>
-                             {this.getPanelContents(DIMENSIONS.PRODUCT)}
+                             {this.getPanelContents(DIMENSIONS.PRODUCTCAT)}
                          </PanelBarItem>
                          <PanelBarItem className="panelItemTitle" expanded={false} title='QFM Type'>
                              {this.getPanelContents(DIMENSIONS.QFMTYPE)}
@@ -750,7 +750,7 @@ class DetailPanelBar extends Component {
                             {this.getPanelContents(DIMENSIONS.SEGMENT)}
                         </ PanelBarItem>
                         <PanelBarItem className="panelItemTitle" expanded={false} title={'Product Category'}>
-                            {this.getPanelContents(DIMENSIONS.PRODUCT)}
+                            {this.getPanelContents(DIMENSIONS.PRODUCTCAT)}
                         </ PanelBarItem>
                     </PanelBar>);
                 }
