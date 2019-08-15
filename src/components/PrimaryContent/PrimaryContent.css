@@ -352,6 +352,7 @@
 }
 .mobilePrimaryRow{
 	background-color:black ;
+	/* padding-top: 55px; */
 }
 @media only screen and (max-width: 1024px) {
 	body {
@@ -576,7 +577,7 @@
 
 .container-primary {
 	padding: 10px;
-}
+	}
 
 
 .secondaryHeader{
@@ -587,4 +588,8 @@
 	.secondaryHeader{
 			font-size: 13px;
 }
+}
+
+.mobilePrimaryContentList{
+	margin-top: 55px;
 }

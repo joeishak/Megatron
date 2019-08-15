@@ -1301,8 +1301,8 @@ class Summary extends Component {
   };
 
   getPrimaryContent = () => {
-    return (
-      <PrimaryContentList
+      return (
+      <PrimaryContentList 
         window={this.props.window}
         onCommentIconClick={(e, type, index) => {
           this.onCommentIconClick(e, type, index);

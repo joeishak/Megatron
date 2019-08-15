@@ -21,6 +21,7 @@ class FilterPage extends Component {
         super(props);
         // Initialize state
         this.state = {
+            mobileButton: classNames({'mobileButton_top':true}),
             showContainer: this.props.showContainer,
             selectedFilters: [
                 ...this.props.filters.subscription.valueFilters.map(item => {
@@ -53,6 +54,15 @@ class FilterPage extends Component {
             activeDataFilters: [],
         }
     }
+
+    listenScrollEvent = e => {
+        if (window.scrollY > 20 || window.scrollY<0) {
+            this.setState({mobileButton: classNames({'mobileButton_scrolled':true})})
+      } else{
+        this.setState({mobileButton: classNames({'mobileButton_top':true})})
+      }
+    }
+
     componentDidMount() {
         this.setState({
             selectedFilters: [
@@ -84,6 +94,8 @@ class FilterPage extends Component {
                     return { ...item, label: item.value }
                 })]
         })
+        //Adding scroll event listener
+        // window.addEventListener('scroll', this.listenScrollEvent)
     }
     componentDidUpdate(prevProps) {
         if (this.props.filters.preferencesAreAdded !== prevProps.filters.preferencesAreAdded) {
@@ -760,19 +772,29 @@ class FilterPage extends Component {
         return (
             <div className="filterMobileContainer" >
 
-                <div className="filterMobilePillsContainer">
+                {/* <div className="filterMobilePillsContainer">
                     <ul className="filterListMobile">
                         {filters.combined.valueFilters.filter(item => item.category === QUARTER || item.category === MARKET || item.category === GEO).map((item) => {
                             return <li key={item.index} className="filterListMobileLi">{item.value}</li>
                         })}
                     </ul>
+                                        
+                   
+                </div>  */}
+
+                <div className={'col-xs-12 col-sm-12 col-md-12 '}>
+                        <button className={this.state.mobileButton} type='button'  onClick={this.submitFilters} >Submit</button>
                 </div>
+                {/* <div className={'col-xs-12 col-sm-12 col-md-12 '}>
+                        <button className={this.state.mobileButton} type='button'  onClick={e=>this.props.resetFilters(this.props.preferences)} >Reset</button>
+                </div> */}
 
                 <div className="filterMobileDropDownContainer">
                     <div className="dropdowns contentpad">
                         {/* first row */}
                         <div className="row dropRow">
                             <div className="col-xs-12 col-sm-12 col-md-12 defaultFilters ">
+                            
                                 <p>Quarter</p>
                                 <SingleValueSelect
                                     activeFilters={filters.quarter.valueFilters}
@@ -799,9 +821,9 @@ class FilterPage extends Component {
                                 />                                        </div>
                             {this.getGlobalSubFilters(filters, quarterFilterContainer)}
                                 {this.getSummaryFilters(this.props.activeCards.secondary)}
-                            <div className={'col-xs-12 col-sm-12 col-md-12 '}>
+                            {/* <div className={'col-xs-12 col-sm-12 col-md-12 '}>
                                 <button className="mobileButton" type='button'  onClick={this.submitFilters} >Submit</button>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="row dropRow">
                         </div>
@@ -828,6 +850,7 @@ function mapStateToProps(state) {
         filters: state.filters,
         summaryData: state.summaryData,
         activeCards: state.activeCards,
+        preferences: state.preferences
 
     };
 }

@@ -1,11 +1,13 @@
 .filterMobileContainer {
     background-color: #3c3c3c;
+    
     width: 100%;
     color: white;
     -webkit-animation: slideFilter 1s forwards;
     -webkit-animation-delay: 2s;
     animation: slideFilter 1s forwards;
     animation-delay: 2s;
+    /* padding-top: 55px; */
 }
 .quarterFilterContainer{
     float:left;
@@ -51,6 +53,7 @@
     margin: auto;
     margin-left: 15px;
     margin-right: 15px;
+    
 }
 .defaultFilters{
     padding:0px;
@@ -95,10 +98,47 @@
     margin-bottom:10px;
   } 
 
-  .mobileButton{
+  .mobileButton_top{
+      /* position: fixed; */
+      /* display: block; */
+      /* left: -10px;
+      top: 55px; */
       color: white !important;
-      background: transparent;
+      /* background: transparent; */
       text-align:center;
       border: 1px solid white !important;
-      width:100%;
+      /* border: none; */
+      border-radius: 30px;
+      height: 2.25em;
+      width:80%;
+      margin-left: 10%;
+      margin-right:5%;
+      /* margin-left:60%; */
+      margin-top: 10px;
+      background-color: rgba(13, 135, 253, 1);
+      z-index: 100;
+      margin-bottom:10px;
+      
   }
+
+
+  .mobileButton_scrolled{
+    /* position: fixed; */
+    top: 100px;
+    left: 0px;
+    color: white !important;
+    /* background: transparent; */
+    text-align:center;
+    /* border: 1px solid white !important; */
+    border: none;
+    border-radius: 30px;
+    width:60%;
+    margin:auto;
+    margin-left:25%;
+    margin-right:20%;
+    background-color: rgba(13, 135, 253, .5);
+    z-index: 100;
+    
+}
+
+ 

@@ -546,6 +546,322 @@
 	overflow-x: scroll;
 }
 
+
+@media screen and (max-width: 768px){
+	.secondaryBoxHeaderTitle {
+			font-family: Ubuntu;
+			font-style: normal;
+			line-height: normal;
+			padding-top: 10px;
+			padding-left: 40px;
+			height: 100%;
+			width: 55% !important;
+			font-size: 1.4em;
+			float: left;
+			color: white;
+			white-space: nowrap;
+			overflow-x: scroll;
+	}
+
+	.mobileSecondaryContentTarget { 
+		float:left; 
+		padding-left: 40px;
+		color:white; 
+		font-size: 1.2 !important; 
+	}
+
+	.renew-overlay {
+		height: 382px;
+		border: 2px solid #ffffff;
+		background-color: #3c3c3c;
+		position: absolute;
+		top: 140px;
+		left: 0;
+		z-index: 10;
+		width: 35px;
+	}
+	 
+	
+	.renew-overlay-two {
+		height: 282px ; /*407px;*/
+		border: 2px solid #ffffff;
+		background-color: #3c3c3c;
+		position: absolute;
+		top: 520px;  /* 675px */
+		left: 0;
+		z-index: 10;
+		width: 35px;
+	}
+	 
+	.renew-overlay-vertext {
+		transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		-webkit-transform: rotate(-90deg);
+		position: absolute;
+		color: rgb(255, 255, 255);
+		font-size: 16px;
+		font-weight: 600;
+		text-align: center;
+		top: 180px ;/*250px;*/
+		left: -100px;
+		width: 230px;
+	}
+	 
+	.renew-overlay-vertext-two {
+		transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		-webkit-transform: rotate(-90deg);
+		position: absolute;
+		color: rgb(255, 255, 255);
+		font-size: 16px;
+		font-weight: 600;
+		text-align: center;
+		top: 130px ; /*185px; */
+		left: -100px;
+		width: 230px;
+	}
+	 
+	/*Use Overlay */
+	.use-overlay {
+		/* height: 190px; */
+		height: 192px;
+		border: 2px solid #ffffff;
+		background-color: #3c3c3c;
+		position: absolute;
+		top:610px;
+		left: 0;
+		z-index: 10;
+		width: 35px;
+	}
+	.use-overlay-two {
+		/* height: 372px; */
+		height: 281px;
+		
+		border: 2px solid #ffffff;
+		background-color: #3c3c3c;
+		position: absolute;
+		top: 52px;
+		left: 0;
+		z-index: 10;
+		width: 35px;
+	}
+	.use-overlay-three {
+		height: 282px;
+		border: 2px solid #ffffff;
+		background-color: #3c3c3c;
+		position: absolute;
+		top: 331px;
+		left: 0;
+		z-index: 10;
+		width: 35px;
+	}
+	 
+	
+	.use-overlay-vertext {
+		transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		-webkit-transform: rotate(-90deg);
+		position: absolute;
+		color: rgb(255, 255, 255);
+		font-size: 16px;
+		font-weight: 600;
+		text-align: center;
+		top: 80px;
+		left: -100px;
+		width: 230px;
+	}
+	 
+	
+	.use-overlay-vertext-two {
+		transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		-webkit-transform: rotate(-90deg);
+		position: absolute;
+		color: rgb(255, 255, 255);
+		font-size: 16px;
+		font-weight: 600;
+		text-align: center;
+		top: 125px;
+		left: -100px;
+		width: 230px;
+	}
+	 
+	.use-overlay-vertext-three {
+		transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		-webkit-transform: rotate(-90deg);
+		position: absolute;
+		color: rgb(255, 255, 255);
+		font-size: 16px;
+		font-weight: 600;
+		text-align: center;
+		top: 125px;
+		left: -100px;
+		width: 230px;
+	}
+	
+
+}
+
+/* For ipad 10.5 inch portrait mode */
+
+@media screen and (max-width: 1024px){
+	.secondaryBoxHeaderTitle {
+			font-family: Ubuntu;
+			font-style: normal;
+			line-height: normal;
+			padding-top: 10px;
+			padding-left: 40px;
+			height: 100%;
+			width: 55% !important;
+			font-size: 1.4em;
+			float: left;
+			color: white;
+			white-space: nowrap;
+			overflow-x: scroll;
+	}
+
+	.mobileSecondaryContentTarget { 
+		float:left; 
+		padding-left: 40px;
+		color:white; 
+		font-size: 1.2 !important; 
+	}
+
+	.renew-overlay {
+		height: 382px;
+		border: 2px solid #ffffff;
+		background-color: #3c3c3c;
+		position: absolute;
+		top: 140px;
+		left: 2px;
+		z-index: 10;
+		width: 35px;
+	}
+	 
+	
+	.renew-overlay-two {
+		height: 282px ; /*407px;*/
+		border: 2px solid #ffffff;
+		background-color: #3c3c3c;
+		position: absolute;
+		top: 520px;  /* 675px */
+		left: 2px;
+		z-index: 10;
+		width: 35px;
+	}
+	 
+	.renew-overlay-vertext {
+		transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		-webkit-transform: rotate(-90deg);
+		position: absolute;
+		color: rgb(255, 255, 255);
+		font-size: 16px;
+		font-weight: 600;
+		text-align: center;
+		top: 180px ;/*250px;*/
+		left: -100px;
+		width: 230px;
+	}
+	 
+	.renew-overlay-vertext-two {
+		transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		-webkit-transform: rotate(-90deg);
+		position: absolute;
+		color: rgb(255, 255, 255);
+		font-size: 16px;
+		font-weight: 600;
+		text-align: center;
+		top: 130px ; /*185px; */
+		left: -100px;
+		width: 230px;
+	}
+	 
+	/*Use Overlay */
+	.use-overlay {
+		/* height: 190px; */
+		height: 192px;
+		border: 2px solid #ffffff;
+		background-color: #3c3c3c;
+		position: absolute;
+		top:610px;
+		left: 0;
+		z-index: 10;
+		width: 35px;
+	}
+	.use-overlay-two {
+		/* height: 372px; */
+		height: 281px;
+		
+		border: 2px solid #ffffff;
+		background-color: #3c3c3c;
+		position: absolute;
+		top: 52px;
+		left: 0;
+		z-index: 10;
+		width: 35px;
+	}
+	.use-overlay-three {
+		height: 282px;
+		border: 2px solid #ffffff;
+		background-color: #3c3c3c;
+		position: absolute;
+		top: 331px;
+		left: 0;
+		z-index: 10;
+		width: 35px;
+	}
+	 
+	
+	.use-overlay-vertext {
+		transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		-webkit-transform: rotate(-90deg);
+		position: absolute;
+		color: rgb(255, 255, 255);
+		font-size: 16px;
+		font-weight: 600;
+		text-align: center;
+		top: 80px;
+		left: -100px;
+		width: 230px;
+	}
+	 
+	
+	.use-overlay-vertext-two {
+		transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		-webkit-transform: rotate(-90deg);
+		position: absolute;
+		color: rgb(255, 255, 255);
+		font-size: 16px;
+		font-weight: 600;
+		text-align: center;
+		top: 125px;
+		left: -100px;
+		width: 230px;
+	}
+	 
+	.use-overlay-vertext-three {
+		transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		-webkit-transform: rotate(-90deg);
+		position: absolute;
+		color: rgb(255, 255, 255);
+		font-size: 16px;
+		font-weight: 600;
+		text-align: center;
+		top: 125px;
+		left: -100px;
+		width: 230px;
+	}
+	
+
+}
+
+
 @media screen and (max-width: 418px){
 	.secondaryBoxHeaderTitle {
 			font-family: Ubuntu;
@@ -562,6 +878,10 @@
 			overflow-x: scroll;
 	}
 }
+
+/* .secondaryCLContainer{
+	margin-top: 55px;
+} */
 
 
 /* Primary Data Category Navigation and Title */

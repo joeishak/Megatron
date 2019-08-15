@@ -6,6 +6,7 @@
 }
 .navContainer{
     margin-bottom: 0px !important;
+    width: 100%;
 }
 nav.navContainer.navbar.navbar-default{
     height:70px;
@@ -252,6 +253,12 @@ nav.navContainer.navbar.navbar-default{
         padding-right: 40px;
         /* margin-top: 10px; */
     }
+    /* .navContainer{
+        margin-bottom: 0px !important;
+        position: fixed;
+        z-index: 200;
+        width: 100%;
+    } */
 
     }
     @media only screen and (max-width: 1024px){
