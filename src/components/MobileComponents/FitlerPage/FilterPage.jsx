@@ -67,6 +67,12 @@ class FilterPage extends Component {
                 }),
                 ...this.props.filters.ltvSegment.valueFilters.map(item => {
                   return { ...item, label: item.value }
+                }),
+                ...this.props.filters.channelMU.valueFilters.map(item => {
+                  return { ...item, label: item.value }
+                }),
+                ...this.props.filters.pvw.valueFilters.map(item => {
+                  return { ...item, label: item.value }
                 })],
                 
             activeDataFilters: [],
@@ -118,6 +124,12 @@ class FilterPage extends Component {
                   return { ...item, label: item.value }
                 }),
                 ...this.props.filters.ltvSegment.valueFilters.map(item => {
+                  return { ...item, label: item.value }
+                }),
+                ...this.props.filters.channelMU.valueFilters.map(item => {
+                  return { ...item, label: item.value }
+                }),
+                ...this.props.filters.pvw.valueFilters.map(item => {
                   return { ...item, label: item.value }
                 })],
         })
@@ -171,6 +183,12 @@ class FilterPage extends Component {
                       return { ...item, label: item.value }
                     }),
                     ...this.props.filters.ltvSegment.valueFilters.map(item => {
+                      return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.channelMU.valueFilters.map(item => {
+                      return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.pvw.valueFilters.map(item => {
                       return { ...item, label: item.value }
                     })],
             })
@@ -344,7 +362,7 @@ class FilterPage extends Component {
                                 options={filters.nonDMSegment.availableFilters}
                                 onValueChange={(e) => { let type = NONDMSEGMENT; this.updateMultiValue(e, type) }}
                                 onMenuClose={this.closeMultiValue}
-                                value={_.filter(this.state.selectedFilters, item => { return item.category === NONDMSEGMENT })}
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.NONDMSEGMENT })}
                             />
                         </div>
                         <div className={' col-xs-12 col-sm-12'} >
@@ -557,7 +575,7 @@ class FilterPage extends Component {
             CUSTOMERTYPE,
             LTVSEGMENT
         } = DIMENSIONS;
-        let { lastTouchChannel, convType, websegment, segment, product, pvw, visits, channelMU, channelPM, customerType, qfmType, ltvSegment } = this.props.filters;
+        let { lastTouchChannel, convType, websegment, segment, product, pvw, visits, channelMU, channelPM, customerType, qfmType, ltvSegment, nonDMSegment } = this.props.filters;
         switch (activeItem) {
 
             case SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE:
@@ -903,6 +921,7 @@ class FilterPage extends Component {
             MARKET,
             PRODUCT,
             SEGMENT,
+            NONDMSEGMENT,
             SUBSCRIPTION,
             QUARTER,
             ROUTE,
