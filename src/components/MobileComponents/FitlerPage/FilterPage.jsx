@@ -21,11 +21,16 @@ class FilterPage extends Component {
         super(props);
         // Initialize state
         this.state = {
-            mobileButton: classNames({'mobileButton_top':true}),
             showContainer: this.props.showContainer,
             selectedFilters: [
+                ...this.props.filters.visits.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                  }),
                 ...this.props.filters.subscription.valueFilters.map(item => {
                     return { ...item, label: item.value }
+                }),
+                ...this.props.filters.channelPM.valueFilters.map(item => {
+                  return { ...item, label: item.value }
                 }),
                 ...this.props.filters.signupCategory.valueFilters.map(item => {
                     return { ...item, label: item.value }
@@ -50,24 +55,34 @@ class FilterPage extends Component {
                 }),
                 ...this.props.filters.segment.valueFilters.map(item => {
                     return { ...item, label: item.value }
+                }),
+                ...this.props.filters.customerType.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.websegment.valueFilters.map(item => {
+                return { ...item, label: item.value }
+                }),
+                ...this.props.filters.qfmType.valueFilters.map(item => {
+                  return { ...item, label: item.value }
+                }),
+                ...this.props.filters.ltvSegment.valueFilters.map(item => {
+                  return { ...item, label: item.value }
                 })],
+                
             activeDataFilters: [],
         }
     }
-
-    listenScrollEvent = e => {
-        if (window.scrollY > 20 || window.scrollY<0) {
-            this.setState({mobileButton: classNames({'mobileButton_scrolled':true})})
-      } else{
-        this.setState({mobileButton: classNames({'mobileButton_top':true})})
-      }
-    }
-
     componentDidMount() {
         this.setState({
             selectedFilters: [
+                ...this.props.filters.visits.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                  }),
                 ...this.props.filters.subscription.valueFilters.map(item => {
                     return { ...item, label: item.value }
+                }),
+                ...this.props.filters.channelPM.valueFilters.map(item => {
+                  return { ...item, label: item.value }
                 }),
                 ...this.props.filters.signupCategory.valueFilters.map(item => {
                     return { ...item, label: item.value }
@@ -92,10 +107,20 @@ class FilterPage extends Component {
                 }),
                 ...this.props.filters.segment.valueFilters.map(item => {
                     return { ...item, label: item.value }
-                })]
+                }),
+                ...this.props.filters.customerType.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+                ...this.props.filters.websegment.valueFilters.map(item => {
+                return { ...item, label: item.value }
+                }),
+                ...this.props.filters.qfmType.valueFilters.map(item => {
+                  return { ...item, label: item.value }
+                }),
+                ...this.props.filters.ltvSegment.valueFilters.map(item => {
+                  return { ...item, label: item.value }
+                })],
         })
-        //Adding scroll event listener
-        // window.addEventListener('scroll', this.listenScrollEvent)
     }
     componentDidUpdate(prevProps) {
         if (this.props.filters.preferencesAreAdded !== prevProps.filters.preferencesAreAdded) {
@@ -106,6 +131,9 @@ class FilterPage extends Component {
             })
             this.setState({
                 selectedFilters: [
+                    ...this.props.filters.visits.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                      }),
                     ...this.props.filters.subscription.valueFilters.map(item => {
                         return { ...item, label: item.value }
                     }),
@@ -132,7 +160,19 @@ class FilterPage extends Component {
                     }),
                     ...this.props.filters.segment.valueFilters.map(item => {
                         return { ...item, label: item.value }
-                    })]
+                    }),
+                    ...this.props.filters.customerType.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.websegment.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.qfmType.valueFilters.map(item => {
+                      return { ...item, label: item.value }
+                    }),
+                    ...this.props.filters.ltvSegment.valueFilters.map(item => {
+                      return { ...item, label: item.value }
+                    })],
             })
         }
 
@@ -205,7 +245,11 @@ class FilterPage extends Component {
             NEWVSREPEAT,
             MOBILEVSDESKTOP,
             CONVERSION,
-            VISITS
+            VISITS,
+            CHANNELPM,
+            CUSTOMERTYPE,
+            QFMTYPE,
+            LTVSEGMENT
         } = DIMENSIONS;
 
         switch (this.props.summaryData.primary[this.props.activeCards.primary].index) {
@@ -275,6 +319,17 @@ class FilterPage extends Component {
                             />
 
                         </div>
+                        <div className={'mobileDropDownStyle col-xs-12 col-sm-12'} >
+
+                            <p style={{ whiteSpace: 'nowrap' }}> QFM Type </p>
+                            <MultiValueSelect
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.QFMTYPE })}
+                                options={filters.qfmType.availableFilters}
+                                onValueChange={(e) => { let type = DIMENSIONS.QFMTYPE; this.updateMultiValue(e, type); }}
+                                onMenuClose={this.closeMultiValue}
+                            />
+
+                        </div>
                     </div>
                 );
             case 3:
@@ -315,7 +370,6 @@ class FilterPage extends Component {
                                 onMenuClose={this.closeMultiValue}
                                 value={_.filter(this.state.selectedFilters, item => { return item.category === NONDMSEGMENT })}
                             />
-
                         </div> */}
                         <div className={'mobileDropDownStyle col-xs-12 col-sm-12'} >
                             <p> Segment - {filters.segment.valueFilters[0].value}</p>
@@ -332,7 +386,7 @@ class FilterPage extends Component {
                             <p> Subscription Offering</p>
                             <MultiValueSelect
                                 options={filters.subscription.availableFilters}
-                                onValueChange={(e) => { let type = SUBSCRIPTION; this.updateMultiValue(e, type) }}
+                                onValueChange={(e) => { let type = DIMENSIONS.SUBSCRIPTION; this.updateMultiValue(e, type) }}
                                 onMenuClose={this.closeMultiValue}
                                 value={_.filter(this.state.selectedFilters, item => { return item.category === SUBSCRIPTION })}
 
@@ -366,7 +420,9 @@ class FilterPage extends Component {
             VISITS,
             SIGNCAT,
             CHANNELMU,
-            CHANNELPM
+            CHANNELPM,
+            CUSTOMERTYPE,
+            LTVSEGMENT
         } = DIMENSIONS;
         this.setState({ isButtonHighlighted: false })
         let newFilters = {
@@ -381,13 +437,35 @@ class FilterPage extends Component {
             nonDMSegment: [],
             lastTouchChannel: [],
             convType: [],
+            customerType:[],
             websegment: [],
             visits: [],
             channelMU: [],
             channelPM: [],
-            pvw: []
+            pvw: [],
+            qfmType: [],
+            ltvSegment: []
 
         };
+        // newFilters = {
+        //     geo:[],
+        //     market:[],
+        //     quarter:[],
+        //     lastTouchChannel: [],
+        //     convType: [],
+        //     websegment: [],
+        //     visits: [],
+        //     channelMU: [],
+        //     channelPM: [],
+        //     pvw: [],
+        //     customerType:[],
+        //     qfmType: [],
+        //     // convQfmType:[],
+        //     segment:[],
+        //     ltvSegment:[],
+        //     product:[],
+        //     subscription:[]
+        //   };
         Object.keys(newFilters).forEach(item => {
             switch (item) {
                 case QUARTER:
@@ -475,9 +553,11 @@ class FilterPage extends Component {
             VISITS,
             SIGNCAT,
             CHANNELMU,
-            CHANNELPM
+            CHANNELPM,
+            CUSTOMERTYPE,
+            LTVSEGMENT
         } = DIMENSIONS;
-        let { lastTouchChannel, convType, websegment, segment, product, pvw, visits, channelMU, channelPM } = this.props.filters;
+        let { lastTouchChannel, convType, websegment, segment, product, pvw, visits, channelMU, channelPM, customerType, qfmType, ltvSegment } = this.props.filters;
         switch (activeItem) {
 
             case SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE:
@@ -493,6 +573,7 @@ class FilterPage extends Component {
                                 options={channelMU.availableFilters}
                                 onValueChange={e => { this.updateSingleValue(e) }}
                                 onMenuClose={e => { this.closeSingleValue(e) }}
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === CHANNELMU })}
                             />
                         </div>
 
@@ -509,16 +590,18 @@ class FilterPage extends Component {
                                 options={visits.availableFilters}
                                 onValueChange={e => { this.updateSingleValue(e) }}
                                 onMenuClose={e => { this.closeSingleValue(e) }}
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.VISITS })}
                             />
                         </div>
-                        {/* Conversion Type */}
+                        {/* Customer Type */}
                         <div className="col-md-3 col-lg-3 mobileSubFilter" style={{ paddingBottom: '10px' }}>
-                            <div>Conversion </div>
+                            <div>Customer Type </div>
                             <MultiValueSelect
-                                value={_.filter(this.state.selectedFilters, item => { return item.category === CONVERSION })}
-                                options={convType.availableFilters}
-                                onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CUSTOMERTYPE })}
+                                options={customerType.availableFilters}
+                                onValueChange={(e) => {let type = DIMENSIONS.CUSTOMERTYPE; this.updateMultiValue(e, type) }}
                                 onMenuClose={(e) => { this.closeMultiValue(e) }}
+                                
                             />
                         </div>
                         <div className="col-md-3 col-lg-3 mobileSubFilter" style={{ paddingBottom: '10px' }}>
@@ -528,6 +611,7 @@ class FilterPage extends Component {
                                 options={websegment.availableFilters}
                                 onValueChange={e => { this.updateSingleValue(e) }}
                                 onMenuClose={e => { this.closeSingleValue(e) }}
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === WEBSEGMENT })}
                             />
                         </div>
                     </div>
@@ -569,7 +653,6 @@ class FilterPage extends Component {
 
             case SUMMARY_KPIS.DISCOVER_BOUNCE_RATE:
                 return (
-                    //Bounce Rate
                     <div className="row">
                         <div className="col-md-3 col-lg-3 mobilePrimaryKPIFilters" style={{ paddingBottom: '10px' }}>
                             {/* Visit Type */}
@@ -579,26 +662,18 @@ class FilterPage extends Component {
                                 options={visits.availableFilters}
                                 onValueChange={e => { this.updateSingleValue(e) }}
                                 onMenuClose={e => { this.closeSingleValue(e) }}
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.VISITS })}
                             />
                         </div>
-                        {/* Last Touch Channel */}
-                        {/* <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
-                <div> {'Last Touch Channel - '+ lastTouchChannel.valueFilters[0].value} </div>
-                <SingleValueSelect
-                  activeFilters={[]}
-                  options={lastTouchChannel.availableFilters}
-                  onValueChange={e => { this.updateSingleValue(e) }}
-                  onMenuClose={e => { this.closeSingleValue(e) }}
-                />
-              </div> */}
-                        {/* Conversion Type */}
+                        {/* Customer Type */}
                         <div className="col-md-3 col-lg-3 mobileSubFilter" style={{ paddingBottom: '10px' }}>
-                            <div>Conversion </div>
+                            <div>Customer Type </div>
                             <MultiValueSelect
-                                value={_.filter(this.state.selectedFilters, item => { return item.category === CONVERSION })}
-                                options={convType.availableFilters}
-                                onValueChange={(e) => { let type = DIMENSIONS.CONVERSION; this.updateMultiValue(e, type) }}
-                                onMenuClose={this.closeMultiValue}
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CUSTOMERTYPE })}
+                                options={customerType.availableFilters}
+                                onValueChange={(e) => {let type = DIMENSIONS.CUSTOMERTYPE; this.updateMultiValue(e, type) }}
+                                onMenuClose={(e) => { this.closeMultiValue(e) }}
+                                
                             />
                         </div>
                         <div className="col-md-3 col-lg-3 mobileSubFilter" style={{ paddingBottom: '10px' }}>
@@ -608,6 +683,7 @@ class FilterPage extends Component {
                                 options={websegment.availableFilters}
                                 onValueChange={e => { this.updateSingleValue(e) }}
                                 onMenuClose={e => { this.closeSingleValue(e) }}
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === WEBSEGMENT })}
                             />
                         </div>
                     </div>
@@ -625,6 +701,7 @@ class FilterPage extends Component {
                                 options={visits.availableFilters}
                                 onValueChange={e => { this.updateSingleValue(e) }}
                                 onMenuClose={e => { this.closeSingleValue(e) }}
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.VISITS })}
                             />
                         </div>
                         {/* Last Touch Channel */}
@@ -655,16 +732,57 @@ class FilterPage extends Component {
                                 options={websegment.availableFilters}
                                 onValueChange={e => { this.updateSingleValue(e) }}
                                 onMenuClose={e => { this.closeSingleValue(e) }}
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === WEBSEGMENT })}
                             />
                         </div>
+                         <div className="col-md-3 col-lg-3 mobileSubFilter" style={{ paddingBottom: '10px' }} >
+
+                            <div>QFM Type</div>  
+                            <MultiValueSelect
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.QFMTYPE })}
+                                options={qfmType.availableFilters}
+                                onValueChange={(e) => { let type = DIMENSIONS.QFMTYPE; this.updateMultiValue(e, type); }}
+                                onMenuClose={this.closeMultiValue}
+                            />
+
+                        </div>
+                         
                     </div>
                 );
+            case SUMMARY_KPIS.BUY_LTV_ROI:
+                return (
+                    // Marketing Sourced ARR
+                    <div className="row">
+                    <div className="col-md-3 col-lg-3 mobilePrimaryKPIFilters" style={{ paddingBottom: '10px' }}>
+                        <div>Segment</div>
+                        
+                        <MultiValueSelect
+                        value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.LTVSEGMENT })}
+                        options={ltvSegment.availableFilters}
+                        onValueChange={(e) => { let type = DIMENSIONS.LTVSEGMENT; this.updateMultiValue(e, type) }}
+                        onMenuClose={this.closeMultiValue}
+                        />
+                    </div>
+                    {/* Product Category*/}
+                    <div className="col-md-3 col-lg-3 mobileSubFilter" style={{ paddingBottom: '10px' }}>
+                        <div> Product</div>
+                        <MultiValueSelect
+                        value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.PRODUCT })}
+                        options={product.availableFilters}
+                        onValueChange={(e) => { let type = DIMENSIONS.PRODUCT; this.updateMultiValue(e, type) }}
+                        onMenuClose={this.closeMultiValue}
+                        />
+                    </div>
+        
+                    </div>
+                );
+
             case SUMMARY_KPIS.BUY_PAID_MEDIASPEND:
                 return (
                     // Paid Media Spend
                     <div className="row">
                         {/* Channel*/}
-                        <div className="col-md-4 col-lg-4 mobilePrimaryKPIFilters" style={{ paddingBottom: '10px' }}>
+                        <div className="col-md-3 col-lg-3 mobilePrimaryKPIFilters" style={{ paddingBottom: '10px' }}>
                             {/* Channel */}
                             <div> Channel </div>
                             <MultiValueSelect
@@ -683,13 +801,20 @@ class FilterPage extends Component {
                     <div className="row">
                         {/* segment*/}
                         <div className="col-md-3 col-lg-3 mobilePrimaryKPIFilters" style={{ paddingBottom: '10px' }}>
-                            <div>{'Segment - ' + segment.valueFilters[0].value}</div>
+                            {/* <div>{'Segment - ' + ltvSegment.valueFilters[0].value}</div> */}
+                            <div>Segment</div>
 
-                            <SingleValueSelect
+                            {/* <SingleValueSelect
                                 activeFilters={[]}
                                 options={segment.availableFilters}
                                 onValueChange={e => { this.updateSingleValue(e) }}
                                 onMenuClose={e => { this.closeSingleValue(e) }}
+                            /> */}
+                            <MultiValueSelect
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.LTVSEGMENT })}
+                                options={ltvSegment.availableFilters}
+                                onValueChange={(e) => { let type = DIMENSIONS.LTVSEGMENT; this.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeMultiValue}
                             />
                         </div>
                         {/* Product Category*/}
@@ -721,14 +846,28 @@ class FilterPage extends Component {
                             />
                         </div>
 
+
+                        <div className="col-md-3 col-lg-3 mobileSubFilter" style={{ paddingBottom: '10px' }} >
+
+                            <div>QFM Type</div>  
+                            <MultiValueSelect
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.QFMTYPE })}
+                                options={qfmType.availableFilters}
+                                onValueChange={(e) => { let type = DIMENSIONS.QFMTYPE; this.updateMultiValue(e, type); }}
+                                onMenuClose={this.closeMultiValue}
+                            />
+
+                        </div>
+
                     </div>
                 );
             case SUMMARY_KPIS.BUY_GROSS_NEWUNITS:
                 return (
-                    // Gross New Units
+                    // Gross New ARR
                     <div className="row">
                         {/* PVW*/}
-                        <div className="col-md-3 col-lg-3 mobilePrimaryKPIFilters" style={{ paddingBottom: '10px' }}>
+                        <div className="col-md-3 col-lg-3 mobilePrimaryKPIFilters" style={{ paddingBottom: '10px' }} >
+
                             <div> Phone VS Web </div>
                             <MultiValueSelect
                                 value={_.filter(this.state.selectedFilters, item => { return item.category === 'pvw' })}
@@ -737,6 +876,20 @@ class FilterPage extends Component {
                                 onMenuClose={(e) => { this.closeMultiValue(e) }}
                             />
                         </div>
+
+
+                        <div className="col-md-3 col-lg-3 mobileSubFilter" style={{ paddingBottom: '10px' }} >
+
+                            <div>QFM Type</div>  
+                            <MultiValueSelect
+                                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.QFMTYPE })}
+                                options={qfmType.availableFilters}
+                                onValueChange={(e) => { let type = DIMENSIONS.QFMTYPE; this.updateMultiValue(e, type); }}
+                                onMenuClose={this.closeMultiValue}
+                            />
+
+                        </div>
+
                     </div>
                 );
             default:
@@ -778,23 +931,16 @@ class FilterPage extends Component {
                             return <li key={item.index} className="filterListMobileLi">{item.value}</li>
                         })}
                     </ul>
-                                        
-                   
-                </div>  */}
-
-                <div className={'col-xs-12 col-sm-12 col-md-12 '}>
-                        <button className={this.state.mobileButton} type='button'  onClick={this.submitFilters} >Submit</button>
-                </div>
-                {/* <div className={'col-xs-12 col-sm-12 col-md-12 '}>
-                        <button className={this.state.mobileButton} type='button'  onClick={e=>this.props.resetFilters(this.props.preferences)} >Reset</button>
                 </div> */}
+                <div className={'col-xs-12 col-sm-12 col-md-12 '}>
+                                <button className={"mobileButton"} type='button'  onClick={this.submitFilters} >Submit</button>
+                </div>
 
                 <div className="filterMobileDropDownContainer">
                     <div className="dropdowns contentpad">
                         {/* first row */}
                         <div className="row dropRow">
                             <div className="col-xs-12 col-sm-12 col-md-12 defaultFilters ">
-                            
                                 <p>Quarter</p>
                                 <SingleValueSelect
                                     activeFilters={filters.quarter.valueFilters}
@@ -803,27 +949,27 @@ class FilterPage extends Component {
                                     onMenuClose={this.closeSingleValue}
                                     value={_.filter(this.state.selectedFilters, item => { return item.category === QUARTER })}
                                 />                                        </div>
-                            <div className="col-xs-12 col-sm-12 col-md-12 defaultFilters">
+                            
+                            <div className="col-xs-12 col-sm-12 col-md-12 defaultFilters ">
                                 <p>Geo</p>
                                 <MultiValueSelect
                                     options={filters.geo.availableFilters}
                                     onValueChange={(e) => { let type = 'geo'; this.updateMultiValue(e, type) }}
                                     onMenuClose={this.closeMultiValue}
-                                    value={_.filter(this.state.selectedFilters, item => { return item.category === GEO })}
-                                />                                        </div>
-                            <div className="col-xs-12 col-sm-12 col-md-12 defaultFilters">
+                                    value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.GEO })}
+                                /> 
+                            </div>
+                            <div className="col-xs-12 col-sm-12 col-md-12 defaultFilters ">
                                 <p>Market Area</p>
                                 <MultiValueSelect
                                     options={filters.market.availableFilters}
-                                    onValueChange={(e) => { let type = MARKET; this.updateMultiValue(e, type) }}
+                                    onValueChange={(e) => { let type = DIMENSIONS.MARKET; this.updateMultiValue(e, type) }}
                                     onMenuClose={this.closeMultiValue}
-                                    value={_.filter(this.state.selectedFilters, item => { return item.category === MARKET })}
+                                    value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.MARKET })}
                                 />                                        </div>
                             {this.getGlobalSubFilters(filters, quarterFilterContainer)}
                                 {this.getSummaryFilters(this.props.activeCards.secondary)}
-                            {/* <div className={'col-xs-12 col-sm-12 col-md-12 '}>
-                                <button className="mobileButton" type='button'  onClick={this.submitFilters} >Submit</button>
-                            </div> */}
+                            
                         </div>
                         <div className="row dropRow">
                         </div>
@@ -850,7 +996,6 @@ function mapStateToProps(state) {
         filters: state.filters,
         summaryData: state.summaryData,
         activeCards: state.activeCards,
-        preferences: state.preferences
 
     };
 }

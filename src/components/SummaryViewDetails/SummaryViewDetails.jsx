@@ -230,7 +230,8 @@ class SummaryViewDetails extends Component {
       // convQfmType:[],
       segment:[],
       ltvSegment:[],
-      product:[]
+      product:[],
+      subscription:[]
     };
 
     Object.keys(newFilters).forEach(item => {

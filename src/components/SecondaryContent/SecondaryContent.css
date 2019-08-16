@@ -547,7 +547,7 @@
 }
 
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 768px) and (min-width: 458px){
 	.secondaryBoxHeaderTitle {
 			font-family: Ubuntu;
 			font-style: normal;
@@ -576,7 +576,7 @@
 		background-color: #3c3c3c;
 		position: absolute;
 		top: 140px;
-		left: 0;
+		left: 2px;
 		z-index: 10;
 		width: 35px;
 	}
@@ -588,7 +588,7 @@
 		background-color: #3c3c3c;
 		position: absolute;
 		top: 520px;  /* 675px */
-		left: 0;
+		left: 2px;
 		z-index: 10;
 		width: 35px;
 	}
@@ -705,7 +705,7 @@
 
 /* For ipad 10.5 inch portrait mode */
 
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1024px) and (min-width:770px){
 	.secondaryBoxHeaderTitle {
 			font-family: Ubuntu;
 			font-style: normal;
@@ -1295,7 +1295,7 @@
     background-color: #3c3c3c;
     position: absolute;
     top: 140px;
-    left: 0;
+    left: 2px;
     z-index: 10;
     width: 30px;
 }
@@ -1306,7 +1306,7 @@
     background-color: #3c3c3c;
     position: absolute;
     top: 520px;  /* 675px */
-    left: 0;
+    left: 2px;
     z-index: 10;
     width: 30px;
 }
