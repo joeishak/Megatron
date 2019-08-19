@@ -169,7 +169,7 @@ class CustomDropDownPanel extends Component {
                                 onValueChange={(e) => { let type = NONDMSEGMENT; this.props.updateMultiValue(e, type) }}
                                 onMenuClose={this.closeDropDown}
                                 value={_.filter(this.props.selectedFilters, item => { return item.category === NONDMSEGMENT })}
-                            />
+                                                          />
                         </div>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p> Subscription Offering</p>

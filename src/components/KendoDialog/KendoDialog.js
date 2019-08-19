@@ -495,7 +495,7 @@ class KendoDialog extends Component {
                     />
                 </div>
                 <div>
-                    <h4 className="dialog-sub-category col-lg-12">Use & Renew</h4>
+                    <h4 className="dialog-sub-category col-lg-12">Use</h4>
                 </div>
                 <div className={'dialog-dropdown col-lg-12'} >
                     <p> Segments</p>

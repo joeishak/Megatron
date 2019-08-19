@@ -360,19 +360,20 @@ export default function (state = {
                 },
                 nonDMSegment: {
                     availableFilters: segNonDM,
-                    // valueFilters: segNonDM
-                    valueFilters: [{ index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
-                    { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
-                    { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
-                    { index: 233, category: NONDMSEGMENT, value: 'HED' },
-                    { index: 232, category: NONDMSEGMENT, value: 'K12+EEA' },
-                    { index: 234, category: NONDMSEGMENT, value: 'INDIVIDUAL' },
-                    { index: 236, category: NONDMSEGMENT, value: 'OTHER' },
-                    { index: 237, category: NONDMSEGMENT, value: 'PHOTOGRAPHY' },
-                    { index: 239, category: NONDMSEGMENT, value: 'STOCK' },
-                    { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
-                    { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
-                    { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },]
+                    valueFilters: segNonDM
+                    
+                    // valueFilters: [{ index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
+                    // { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
+                    // { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
+                    // { index: 233, category: NONDMSEGMENT, value: 'HED' },
+                    // { index: 232, category: NONDMSEGMENT, value: 'K12+EEA' },
+                    // { index: 234, category: NONDMSEGMENT, value: 'INDIVIDUAL' },
+                    // { index: 236, category: NONDMSEGMENT, value: 'OTHER' },
+                    // { index: 237, category: NONDMSEGMENT, value: 'PHOTOGRAPHY' },
+                    // { index: 239, category: NONDMSEGMENT, value: 'STOCK' },
+                    // { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
+                    // { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
+                    // { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },]
                 },
                 //Creating LTV Segment with the same values as NonDM Segment
                 ltvSegment: {

@@ -214,7 +214,8 @@ class SummaryViewDetails extends Component {
       VISITS,
       CHANNELMU,
       CHANNELPM,
-      LTVSEGMENT
+      LTVSEGMENT,
+      NONDMSEGMENT
     } = DIMENSIONS;
     
     let newFilters = {
@@ -231,7 +232,8 @@ class SummaryViewDetails extends Component {
       segment:[],
       ltvSegment:[],
       product:[],
-      subscription:[]
+      subscription:[],
+      nonDMsegment:[]
     };
 
     Object.keys(newFilters).forEach(item => {
@@ -706,6 +708,15 @@ class SummaryViewDetails extends Component {
       activeTimeMetric: this.state.activeTimeMetric === "week" ? true : false
     });
 
+    var nullifyQrf = this.props.activeSecondary==SUMMARY_KPIS.BUY_CONVERSION &&
+      (
+        (!_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) && 
+              _.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP'])) 
+        ||
+        (_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) &&
+              !_.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP']))) 
+      
+
     return (
       <div className="sumViewContainer">
                 
@@ -754,7 +765,7 @@ class SummaryViewDetails extends Component {
                 return (
                   <div className="statsHeader" key={item.text}>
                     <div className={(item.value <= 0) ? 'stats green' : 'stats red '}>
-                      {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
+                      {utils.formatMetric({ valueType: 'percent', value: ((nullifyQrf && item.text=='vs QRF')? '': item.value) }, 'value')}
                     </div>
                     <div className="footer"> {item.text}</div>
                   </div>
@@ -763,7 +774,7 @@ class SummaryViewDetails extends Component {
                 return (
                   <div className="statsHeader" key={item.text}>
                     <div className={(item.value <= 0) ? 'stats red' : 'stats green '}>
-                      {utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}
+                      {utils.formatMetric({ valueType: 'percent', value: ((nullifyQrf && item.text=='vs QRF')? '': item.value) }, 'value')}
                     </div>
                     <div className="footer"> {item.text}</div>
                   </div>
