@@ -192,7 +192,7 @@ export default function (state = {
             let isDefault = copyOfState.quarter.valueFilters[0].value === state.quarter.valueFilters[0].value
                 && copyOfState.segment.valueFilters[0].valueFilters === state.segment.valueFilters[0].valueFilters &&
                 copyOfState.geo.valueFilters.length === 0 && copyOfState.market.valueFilters.length === 0 && copyOfState.subscription.valueFilters.length === 0
-                && copyOfState.route.valueFilters.length === 0 && copyOfState.signupCategory.valueFilters.length === 0 && copyOfState.nonDMSegment.valueFilters.length === 12;
+                && copyOfState.route.valueFilters.length === 0 && copyOfState.signupCategory.valueFilters.length === 0 && copyOfState.nonDMSegment.valueFilters.length === 0;
             console.log('Filters ARe Default', isDefault, nonDmSegs);
             return { ...copyOfState, preferencesAreAdded: true, isDefaultFilters: isDefault };
         case GENERATE_FILTER_DATA:
@@ -265,18 +265,18 @@ export default function (state = {
                     availableFilters: arr,
                     valueFilters: [{ index: 211, category: QUARTER, value: newquarterState[0].value },
                     { index: 209, category: SEGMENT, value: 'DIGITAL MEDIA' },
-                    { index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
-                    { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
-                    { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
-                    { index: 233, category: NONDMSEGMENT, value: 'HED' },
-                    { index: 232, category: NONDMSEGMENT, value: 'K12+EEA' },
-                    { index: 234, category: NONDMSEGMENT, value: 'INDIVIDUAL' },
-                    { index: 236, category: NONDMSEGMENT, value: 'OTHER' },
-                    { index: 237, category: NONDMSEGMENT, value: 'PHOTOGRAPHY' },
-                    { index: 239, category: NONDMSEGMENT, value: 'STOCK' },
-                    { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
-                    { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
-                    { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },
+                    // { index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
+                    // { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
+                    // { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
+                    // { index: 233, category: NONDMSEGMENT, value: 'HED' },
+                    // { index: 232, category: NONDMSEGMENT, value: 'K12+EEA' },
+                    // { index: 234, category: NONDMSEGMENT, value: 'INDIVIDUAL' },
+                    // { index: 236, category: NONDMSEGMENT, value: 'OTHER' },
+                    // { index: 237, category: NONDMSEGMENT, value: 'PHOTOGRAPHY' },
+                    // { index: 239, category: NONDMSEGMENT, value: 'STOCK' },
+                    // { index: 240, category: NONDMSEGMENT, value: 'STUDENT' },
+                    // { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
+                    // { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' },
                    ]
                 },
                 market: {
@@ -362,7 +362,7 @@ export default function (state = {
                 },
                 nonDMSegment: {
                     availableFilters: segNonDM,
-                    valueFilters: segNonDM
+                    valueFilters: []
                     
                     // valueFilters: [{ index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
                     // { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
