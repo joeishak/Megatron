@@ -128,8 +128,10 @@ export default function (state = {
             copyOfState.combined.valueFilters = [];
             // For each key in action . payload
             // goes,market,product,quarter,route,segment,subscription
+            // console.log(copyOfState)
             Object.keys(action.payload).forEach(item => {
                 // Set the value filter for the item which matches this key
+                // console.log(item)
                 copyOfState[item].valueFilters = action.payload[item];
                 // Set the value filter for the combined filters
                 copyOfState.combined.valueFilters = [...copyOfState.combined.valueFilters, ...action.payload[item]];

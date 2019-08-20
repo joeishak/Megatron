@@ -232,8 +232,7 @@ class SummaryViewDetails extends Component {
       segment:[],
       ltvSegment:[],
       product:[],
-      subscription:[],
-      nonDMsegment:[]
+      subscription:[]
     };
 
     Object.keys(newFilters).forEach(item => {
