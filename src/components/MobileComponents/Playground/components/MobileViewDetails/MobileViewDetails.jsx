@@ -79,12 +79,13 @@ class MobileViewDetails extends Component {
 
                     {/* <div className="mobile-divider-details col-xs-12"></div> */}
 
-                    {detailsDataTwo.map(ele => {
+                    {detailsDataTwo.map((ele, index) => {
                         return (
                             <div key={ele.header}>
                                 <div className="col-xs-4 text-align-mid" ><p>{ele.header}</p></div>
-                                <div className={`col-xs-4 text-align-mid ${(ele.header === 'Vs Qrf') ? vsQRFcolor: ''}`} ><p>{utils.formatMetric({valueType: ele.valueType, value: ele.qtdValue}, 'value')}</p></div>
-                                <div className={`col-xs-4 text-align-mid ${(ele.header === 'Vs Qrf') ? vsQRFcolor: ''}`} ><p>{utils.formatMetric({valueType: ele.valueType, value: ele.weekValue}, 'value')}</p></div>
+                                <div className={`col-xs-4 text-align-mid ${(ele.header === 'Vs Qrf') ? vsQRFcolor: ''}`} >
+                                           <p>{utils.formatMetric({valueType: ele.valueType, value: ((this.props.nullifyQrf && index>=2 && index<=4)? 0: ele.qtdValue)}, 'value')}</p></div>
+                                <div className={`col-xs-4 text-align-mid ${(ele.header === 'Vs Qrf') ? vsQRFcolor: ''}`} ><p>{utils.formatMetric({valueType: ele.valueType, value: ((this.props.nullifyQrf && index>=2 && index<=4)? 0: ele.weekValue)}, 'value')}</p></div>
                             </div>
                         )
                     })}

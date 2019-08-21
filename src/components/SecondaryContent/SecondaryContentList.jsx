@@ -233,6 +233,7 @@ class SecondaryContentList extends Component {
       : { height: "100%", marginTop: "30px", width: "20%" };
 
     const box4Style = { top: `-${(secondaryRowHeight * numberOfSecondarySquares) - 65}px` }
+    var nullifyQrf = this.props.activeJourneyCard==SUMMARY_KPIS.BUY_CONVERSION && this.props.isTWPOrNonTWP
 
     const mobileBottom = isMobileAndTablet && this.props.mobileSecondaryIsActive && this.state.clicked ? (
       <div className={`box4 ${this.state.detailsClassState}`} style={box4Style}>
@@ -244,11 +245,11 @@ class SecondaryContentList extends Component {
 
         </div>
         <div className="row four-squares">
-          {this.props.statsDetails.map(item => {
+          {this.props.statsDetails.map((item, index) => {
             return (
               <div style={{ float: 'left', margin: '5px' }} key={Math.random()}>
                 <div className={(item.value <= 0 ? 'red' : 'green') + ` stats-detail`}>
-                  <b>{utils.formatMetric({ valueType: 'percent', value: item.value }, 'value')}</b>
+                  <b>{utils.formatMetric({ valueType: 'percent', value: ((nullifyQrf && index==0)? 0: item.value) }, 'value')}</b>
                 </div>
                 <div className="stats-detail">
                   <b>{item.text}</b>
@@ -259,14 +260,20 @@ class SecondaryContentList extends Component {
         </div>
         {/*Mobile Multi Chart*/}
         <div className="row" style={{ paddingLeft: '9px' }}>
-          <MobileMultiChart bottomContainerHeight={250}></MobileMultiChart>
+          <MobileMultiChart 
+                        bottomContainerHeight={250} 
+                        nullifyQrf={this.props.activeJourneyCard==SUMMARY_KPIS.BUY_CONVERSION && this.props.isTWPOrNonTWP}   >
+          </MobileMultiChart>
         </div>
         {/* Bottom Section */}
         <div className="sliderContainer">
           <div className="scrolling-wrapper">
             <div className="slider-content">
               <div className="sliderSquareContainerInner slider_box_inner">
-                <MobileViewDetails detailsData={this.props.detailsData} valueType={this.props.valueType}></MobileViewDetails>
+                <MobileViewDetails 
+                        detailsData={this.props.detailsData} 
+                        valueType={this.props.valueType}
+                        nullifyQrf={this.props.activeJourneyCard==SUMMARY_KPIS.BUY_CONVERSION && this.props.isTWPOrNonTWP}></MobileViewDetails>
               </div>
             </div>
           </div>

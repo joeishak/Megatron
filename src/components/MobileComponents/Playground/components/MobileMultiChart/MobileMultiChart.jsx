@@ -10,7 +10,7 @@ class MobileMultiChart extends Component {
 
         return (
             <div className="mobile-multichart-container" style={{height: `${bottomHeight}px`}}>
-                <KendoMultiChart color='white' deviceType='mobileTablet' chartHeight={bottomHeight}></KendoMultiChart>
+                <KendoMultiChart color='white' deviceType='mobileTablet' chartHeight={bottomHeight} nullifyQrf={this.props.nullifyQrf}></KendoMultiChart>
             </div>
         )
     }
