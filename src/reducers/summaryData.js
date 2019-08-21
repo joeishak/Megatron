@@ -8960,7 +8960,7 @@ export function processRenewCancelSecondaryData(g1, newState, AdobeData, EtailDa
     // console.log('New State AT the end of secondary',newState);
 }
 export function processRenewCancelMultichart(newState, data, AdobeData, EtailData) {
-
+    
     let weekFlag = data.map(item => {
         return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
     })
@@ -9007,16 +9007,37 @@ export function processRenewCancelMultichart(newState, data, AdobeData, EtailDat
         netCancellations.ly.push(item.CancelARRLY);
         netCancellations.lq.push(item.CancelARRLQ);
 
+        // netCancellationsAdobe.actual.push(itemAdobe.CancelARRActual);
+        // netCancellationsAdobe.target.push(itemAdobe.CancelARRTargetFQ);
+        // netCancellationsAdobe.ly.push(itemAdobe.CancelARRLY);
+        // netCancellationsAdobe.lq.push(itemAdobe.CancelARRLQ);
+
+        // netCancellationsEatil.actual.push(itemEtail.CancelARRActual);
+        // netCancellationsEatil.target.push(itemEtail.CancelARRTargetFQ);
+        // netCancellationsEatil.ly.push(itemEtail.CancelARRLY);
+        // netCancellationsEatil.lq.push(itemEtail.CancelARRLQ);
+    };
+
+    for (let i = 0; i < AdobeData.length; i++) {
+        
+        let itemAdobe = newDataAdobe[i];
+        
+
         netCancellationsAdobe.actual.push(itemAdobe.CancelARRActual);
         netCancellationsAdobe.target.push(itemAdobe.CancelARRTargetFQ);
         netCancellationsAdobe.ly.push(itemAdobe.CancelARRLY);
         netCancellationsAdobe.lq.push(itemAdobe.CancelARRLQ);
+    }
+    for (let i = 0; i < EtailData.length; i++) {
+        
+        let itemEtail = newDataEtail[i];
+        
 
         netCancellationsEatil.actual.push(itemEtail.CancelARRActual);
         netCancellationsEatil.target.push(itemEtail.CancelARRTargetFQ);
         netCancellationsEatil.ly.push(itemEtail.CancelARRLY);
         netCancellationsEatil.lq.push(itemEtail.CancelARRLQ);
-    };
+    }
 
     let canc = [netCancellations.actual, netCancellations.target, netCancellations.ly, netCancellations.lq];
     let cancA = [netCancellationsAdobe.actual, netCancellationsAdobe.target, netCancellationsAdobe.ly, netCancellationsAdobe.lq];

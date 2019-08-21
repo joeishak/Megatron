@@ -28395,7 +28395,7 @@ export const SecondaryData = [
             },
             stats: [
                 {
-                    value: -2.6,
+                    value: 0,
                     color: 'red',
                     text: 'vs QRF'
                 },
@@ -28939,7 +28939,7 @@ export const SecondaryData = [
             },
             stats: [
                 {
-                    value: -2.6,
+                    value: 0,
                     color: 'red',
                     text: 'vs QRF'
                 },

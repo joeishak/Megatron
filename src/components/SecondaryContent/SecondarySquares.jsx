@@ -174,14 +174,14 @@ class SecondarySquares extends Component {
       "value"
     );
     const formattedTarget = utils.formatMetric(
-      { valueType: this.props.item.valueType, value: this.props.item.targetFQ },
+      { valueType: this.props.item.valueType, value: (this.props.nullifyQrf? 0 :this.props.item.targetFQ) },
       "value"
     );
     const formattedQRF = utils.formatMetric(
       {
         valueType: this.props.item.valueType,
         value:
-          this.props.item.vsQrf
+        (this.props.nullifyQrf? 0 :this.props.item.vsQrf)
       },
       "qrf"
     );
@@ -272,7 +272,7 @@ class SecondarySquares extends Component {
       "value"
     );
     const formattedTarget = utils.formatMetric(
-      { valueType: this.props.item.valueType, value: this.props.item.target },
+      { valueType: this.props.item.valueType, value: (this.props.nullifyQrf? 0 :this.props.item.targetFQ) },
       "target"
     );
 
@@ -345,18 +345,19 @@ class SecondarySquares extends Component {
               {this.props.item.header}
             </div>
             <div
-              className={`  ${seconaryBoxContentAmount} ${utils.getLabelColor(this.props.item.value, (this.props.nullifyQrf ? '0':this.props.item.target), this.props.item.index)}`}
+              className={`  ${seconaryBoxContentAmount} ${utils.getLabelColor(this.props.item.value, (this.props.nullifyQrf ? 0:this.props.item.target), this.props.item.index)}`}
             >
               {formattedValue} <span className={`QRF-Percent ` + (this.props.item.value <= 0 ? ` ${this.getColor(this.props.item.index, 'red')}` : ` ${this.getColor(this.props.item.index, 'green')}`)}>(
-              {utils.formatMetric({ valueType: 'percent', value: this.props.item.details.stats[0].value }, 'value')})</span>
+              {/* {utils.formatMetric({ valueType: 'percent', value: this.props.item.details.stats[0].value }, 'value')})</span> */}
+              {utils.formatMetric({ valueType: 'percent', value: (this.props.nullifyQrf? 0 :this.props.item.vsQrf) }, 'value')})</span>
             </div>
             <div className={boxBullet}>
               <KendoBulletChart
                 isMobileOrTablet={utils.includes(utils.getDeviceType(this.props.window), 'mobile') || utils.includes(utils.getDeviceType(this.props.window), 'tablet')}
                 width={175}
                 cardIndex={"hello"}
-                values={[this.props.item.value, this.props.item.target, this.props.item.targetFQ]}
-                fqTarget={this.props.item.targetFQ}
+                values={[this.props.item.value, (this.props.nullifyQrf ? 0 :this.props.item.target), (this.props.nullifyQrf ? 0 :this.props.item.targetFQ)]}
+                fqTarget={(this.props.nullifyQrf ? 0 :this.props.item.targetFQ)}
                 valueType={this.props.item.valueType}
                 color="white"
                 targetColor="white"
