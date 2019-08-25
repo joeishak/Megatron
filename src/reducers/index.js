@@ -17,12 +17,12 @@ import commentsReducer from 'reducers/comments.js';
 import filtersReducer from 'reducers/filters.js';
 import feedbackDialogReducer from 'reducers/feedback.js';
 import currentRefreshDateReducer from 'reducers/currentRefreshDates.js';
+import correlationDataReducer from 'reducers/correlationData.js'
 
 export default combineReducers({
     auth: authReducer,
     user: userReducer,
     isDialogOpen: dialogReducer,
-
     detailsIsOpen: detailsReducer,
     excelData: excelDataReducer,
     commentBoxIsOpen: commentBoxVisibilityReducer,
@@ -36,5 +36,6 @@ export default combineReducers({
     filters: filtersReducer,
     commentsPackage: commentsReducer,
     isFeedBackDialogOpen: feedbackDialogReducer,
-    currentRefreshDates: currentRefreshDateReducer
+    currentRefreshDates: currentRefreshDateReducer,
+    correlationData: correlationDataReducer
 });

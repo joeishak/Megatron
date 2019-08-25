@@ -22,6 +22,7 @@ let cat;
 
 // Extract Variables from Dimensions
 const { GEO,
+    CORGEO,
     MARKET,
     PRODUCT,
     SEGMENT,
@@ -60,6 +61,10 @@ export default function (state = {
         valueFilters: []
     },
     geo: {
+        availableFilters: [],
+        valueFilters: []
+    },
+    corgeo:{
         availableFilters: [],
         valueFilters: []
     },
@@ -226,6 +231,26 @@ export default function (state = {
             // let convQfmType= _.filter(action.payload[23].data, function(o){ return o.qfm_type!='UNKNOWN'})
             // console.log('convQfmType ', convQfmType)
             let customerType= action.payload[24].data
+
+            //Correlation Filters
+            let corgeo=[
+                {
+                    'corgeo': 'AMER'
+                },
+                {
+                    'corgeo': 'EMEA'
+                },
+                {
+                    'corgeo': 'JPN'
+                }, 
+                {
+                    'corgeo': 'ASIA'
+                },
+                {
+                    'corgeo': 'Global'
+                },
+            ]
+
             // Call processDropDownList on all filters
             let newgeotate = processDropDownListFilterValue(GEO, geoFilter);
             let newMAState = processDropDownListFilterValue(MARKET, marketFilter);
@@ -253,12 +278,14 @@ export default function (state = {
             let qfmTypeFilters = processDropDownListFilterValue(QFMTYPE, qfmType);
             // let convQfmTypeFilters = processDropDownListFilterValue(QFMTYPE, convQfmType);
             let customerTypeFilters = processDropDownListFilterValue(CUSTOMERTYPE, customerType);
+            let corgeoFilters = processDropDownListFilterValue(CORGEO, corgeo)
 
             // Create the combined value filters
             let arr = [...newquarterState, ...newgeotate, ...newMAState, ...newproducttate, ...newroutetate, ...newsegmentState, ...newsubscriptiontate,
             ...newChannelState, ...newVisitState, ...newCloud, ...newConv, ...newDiscBuy, ...newMobileDesk, ...newVsRepeat, ...newProdName, ...newSignApp,
-            ...newSignCat, ...newWeb, ...chanMU, ...chanPM, segNonDM, ...pvwFilters, ...qfmTypeFilters, ...customerTypeFilters, ...ltvSeg];
+            ...newSignCat, ...newWeb, ...chanMU, ...chanPM, segNonDM, ...pvwFilters, ...qfmTypeFilters, ...customerTypeFilters, ...ltvSeg, ...corgeoFilters];
             // Create the filters state object
+            // console.log('Filters printing ' + arr)
             let obj =
             {
                 combined: {
@@ -290,6 +317,10 @@ export default function (state = {
                 geo: {
                     availableFilters: newgeotate,
                     valueFilters: []
+                },
+                corgeo: {
+                    availableFilters: corgeoFilters,
+                    valueFilters: [{ index: 236, category: CORGEO, value: 'ASIA' }]
                 },
                 product: {
                     availableFilters: newproducttate,
@@ -520,6 +551,16 @@ function processDropDownListFilterValue(type, data) {
                 }
             });
             return newArr;
+        case CORGEO:
+            newArr = newArr.map(item => {
+                return {
+                    index: count++,
+                    category: type,
+                    value: item['corgeo'],
+                    label: item['corgeo']
+                }
+            });
+            return newArr
         case QUARTER:
             newArr = newArr.map(item => {
                 return {

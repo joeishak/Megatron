@@ -7,6 +7,7 @@ export const TV = "tv";
 // Filter Dimensions
 export const DIMENSIONS = {
     GEO: "geo",
+    CORGEO: "corgeo",
     MARKET: "market",
     PRODUCT: "product",
     SEGMENT: "segment",

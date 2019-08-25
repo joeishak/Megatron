@@ -73,6 +73,8 @@ import {
     DELETE_COMMENT,
     ADD_FEEDBACK,
     GET_UPDATED_AS_OF_DATE_AND_QUARTER,
+    GET_CORRELATION_DATA,
+    UPDATE_CORRELATION_DATA_IS_LOADING
 
 } from 'actions/types';
 import * as utils from '../utilities';
@@ -1410,6 +1412,46 @@ export function getBuyTrafficSecondaryData(filters) {
 
     return {
         type: GET_BUY_TRAFFIC_SECONDARY_DATA,
+        payload: promiseArr
+    }
+}
+
+export function getCorrelationData(filters,  oktaToken){
+    let allFilters = {
+        quarter: Object.keys(filters.quarter.availableFilters).map(e => filters.quarter.availableFilters[e]),
+        geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
+        market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
+        product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
+        subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
+        routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
+        //MArketing
+        websegment: Object.keys(filters.websegment.availableFilters).map(e => filters.websegment.availableFilters[e]),
+        visits: Object.keys(filters.visits.availableFilters).map(e => filters.visits.availableFilters[e]),
+        lastTouchChannel: Object.keys(filters.lastTouchChannel.availableFilters).map(e => filters.lastTouchChannel.availableFilters[e]),
+        convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
+        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e])
+
+
+    }
+    let _parameters = {
+        geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
+        quarter: Object.keys(filters.quarter.valueFilters).map(e => filters.quarter.valueFilters[e]),
+        subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
+        market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
+        route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
+        product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
+        //Traffic
+        websegment: Object.keys(filters.websegment.valueFilters).map(e => filters.websegment.valueFilters[e]),
+        visits: Object.keys(filters.visits.valueFilters).map(e => filters.visits.valueFilters[e]),
+        lastTouchChannel: Object.keys(filters.lastTouchChannel.valueFilters).map(e => filters.lastTouchChannel.valueFilters[e]),
+        convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
+        qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e])
+
+    };
+    promiseArr = utils.requestCorrelationData(allFilters, _parameters, oktaToken)
+    
+    return {
+        type: GET_CORRELATION_DATA,
         payload: promiseArr
     }
 }

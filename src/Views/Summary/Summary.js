@@ -15,7 +15,7 @@ import { withAuth } from "@okta/okta-react";
 // Import helper to check authentication
 import { checkAuthentication } from "../../helper";
 
-import * as _ from 'lodash'
+import * as _ from 'lodash' 
 // Import KENDO Theme Default
 import "@progress/kendo-theme-default/dist/all.css";
 // Import Custom Components
@@ -70,6 +70,7 @@ class Summary extends Component {
 
     /*Bindings  */
     this.checkAuthentication = checkAuthentication.bind(this);
+    
   }
   /***
    * Calls the action setAppSettings which updates the viewport size in redux
@@ -155,6 +156,7 @@ class Summary extends Component {
         // Call the action to update the user and preferences in InfoBurst/ GTMPOC Database
         this.props.updateOKTAUser(user, filters.quarter.valueFilters[0].value, filters.segment.valueFilters[0].value, JSON.stringify(filters.nonDMSegment.valueFilters));
       }
+
       // Declare a variable to denote whether user has changes cards
       let userChangedCards = activeSecondaryCard !== prevProps.activeSecondaryCard;
 
@@ -352,11 +354,14 @@ class Summary extends Component {
           }
           // If the user is on Buy Conversion 
           else if (activeSecondaryCard === SUMMARY_KPIS.BUY_CONVERSION) {
+              console.log('Firing Correlation Action')
+              this.props.getCorrelationData(this.props.filters, this.props.accessToken)
             // If filters are default
             if (isDefaultFilters) {
               // Call Action to get Traffic Conversion  from cache-memory
               this.props.getBuyTrafficSecondaryData(this.props.filters);
               this.props.getBuySecondaryData(this.props.filters);
+              
             } else {
               // Call Action to Traffic Conversion asynchronous XDC
               this.props.getFilteredBuyTrafficSecondaryData(this.props.filters);
@@ -614,7 +619,8 @@ class Summary extends Component {
         }
         // If the user changed cards to Buy Conversion
         else if (activeSecondaryCard === SUMMARY_KPIS.BUY_CONVERSION) {
-
+          console.log('Firing Correlation Action ')
+          this.props.getCorrelationData(this.props.filters, this.state.accessToken)
           // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingBuyData === false) {
             // And Conversion has not loaded

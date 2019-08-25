@@ -27601,7 +27601,7 @@ export const SecondaryData = [
                 }
             ]
         },
-        valueType: 'percent'
+        valueType: 'percent',
     },
     {
         index: 19,
@@ -37527,3 +37527,25 @@ export const SecondaryData = [
         valueType: 'percent'
     }
 ]
+
+export const correlationData = {
+    chart: [
+    {
+        gross_new_arr: 4574564.601002505,
+        new_qfms: 42121,
+        new_uqfms: 142987,
+        organic_visits: 597764,
+        paid_visits: 220473,
+        total_downloads_free: 195142,
+        time_interval: "2017-02-03T00:00:00"
+    }
+    ],
+    analysis: [
+        {
+            feature_name: "total-downloads-free (1 day prior)",
+            delta_x: 82272.5,
+            marginal: 34.39
+        }
+        ],
+    prediction: 23.4
+}
