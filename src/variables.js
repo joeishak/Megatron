@@ -37547,5 +37547,7 @@ export const correlationData = {
             marginal: 34.39
         }
         ],
-    prediction: 23.4
+    prediction: 23.4,
+    showCorrelationPanel: false,
+    correlationDataIsLoaded: false
 }

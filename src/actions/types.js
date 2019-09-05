@@ -58,6 +58,7 @@ export const GET_BUY_TRAFFIC_SECONDARY_DATA = 'get_buy_traffic_secondary_data';
 
 export const GET_CORRELATION_DATA = 'get_correlation_data';
 export const UPDATE_CORRELATION_DATA_IS_LOADING = 'update_correlation_data_is_loading';
+export const SHOW_CORRELATION_PANEL = "show_correlation_panel"
 
 
 

@@ -65,7 +65,8 @@ class Summary extends Component {
       //Data/Filters Management booleans 
       subFiltersChanged: false,
       secondaryKpiChanged: false,
-      showBanner: true
+      showBanner: true,
+      
     };
 
     /*Bindings  */
@@ -165,7 +166,7 @@ class Summary extends Component {
         // Push the trackEvent to Matomo, with the text primaryKPI and the category of the KPI they have chosen (Finance, Discover, etc etc)
         ReactPiwik.push(['trackEvent', 3, 'primaryKPI', this.props.primaryData[activePrimaryCard].category, 'page']);
       }
-
+      
       // If the filters and preferences are loaded, and the preferences have not yet been added to filters
       if (filtersAreLoaded && preferencesAreLoaded && preferencesAreAdded === false) {
         // Call the action to add the prefernces to active Filters in REdux
@@ -179,10 +180,13 @@ class Summary extends Component {
         // Begin requesting data
         // Call Action to request Primary Data passing in current filters
         this.props.getPrimaryData(this.props.filters);
+        
         // Call Action to request Finance NEt New and Gross NEw data passing in current filters
         this.props.getFinanceXDC1SecondaryData(this.props.filters);
         // Call Action to request secondary KPI data for Cancellations and Renewal
         this.props.getFinanceSecondaryData(this.props.filters);
+        //Call Action to request Correlation Data
+        this.props.getCorrelationData(this.props.filters, this.props.accessToken)
         // Set state for isLoading to true, which shows the spinner, 
         // and initialDataLoadComplete to true, since the request for data has been made
         this.setState({
@@ -245,6 +249,10 @@ class Summary extends Component {
             this.props.getFilteredBuyFinanceSecondaryData(this.props.filters);
             
           }
+          else if (activeSecondaryCard === SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR){
+            this.setState({ isLoading: true});
+            this.props.getCorrelationData(this.props.filters, this.props.accessToken);
+          }
 
         } // End If for Sub Filter submit
         // Else the user submitted Global Filters
@@ -281,6 +289,7 @@ class Summary extends Component {
           if (activeSecondaryCard === SUMMARY_KPIS.FINANCE_NET_NEW_ARR ||
             activeSecondaryCard === SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR) {
             // If filters are default
+            this.props.getCorrelationData(this.props.filters, this.props.accessToken)
             if (isDefaultFilters) {
               // Call Action to get Finance XDC1 Data and Finance Secondary Data from XDC 2 from cache-memory
               this.props.getFinanceXDC1SecondaryData(this.props.filters);
@@ -354,8 +363,7 @@ class Summary extends Component {
           }
           // If the user is on Buy Conversion 
           else if (activeSecondaryCard === SUMMARY_KPIS.BUY_CONVERSION) {
-              console.log('Firing Correlation Action')
-              this.props.getCorrelationData(this.props.filters, this.props.accessToken)
+              
             // If filters are default
             if (isDefaultFilters) {
               // Call Action to get Traffic Conversion  from cache-memory
@@ -459,7 +467,7 @@ class Summary extends Component {
         // If the user changed cards to Finance Net New or Gros New ARR
         if (activeSecondaryCard === SUMMARY_KPIS.FINANCE_NET_NEW_ARR ||
           activeSecondaryCard === SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR) {
-
+            this.props.getCorrelationData(this.props.filters, this.state.accessToken)
           // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingFinanceData === false) {
             // if false, app may not have requested this data 
@@ -619,8 +627,7 @@ class Summary extends Component {
         }
         // If the user changed cards to Buy Conversion
         else if (activeSecondaryCard === SUMMARY_KPIS.BUY_CONVERSION) {
-          console.log('Firing Correlation Action ')
-          this.props.getCorrelationData(this.props.filters, this.state.accessToken)
+                    
           // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingBuyData === false) {
             // And Conversion has not loaded
@@ -802,11 +809,12 @@ class Summary extends Component {
       switch (this.props.activePrimaryCard) {
         // On Finance Primary
         case 0:
-          // When the initial load is complete
+          // When the initial load is complete          
           if (primaryIsLoaded && financeSecondaryIsLoaded && financeXDC1IsLoaded && this.state.initialDataLoadIsComplete === true) {
             // Set Local state for initialDataLoadIsComplete to undefined telling the dashboard it has loaded initially,
             // isLoading to false telling the dashboard to take the loading screen away
             // requestRemainingFinanceData to true telling dashboard data is loading in the background
+            
             this.setState({
               initialDataLoadIsComplete: undefined,
               isLoading: false,
@@ -859,6 +867,10 @@ class Summary extends Component {
                   // Get Filtered Finance XDC 2 Data in Background
                   this.props.getFilteredFinanceXDC2SecondaryData(this.props.filters);
                 }
+              } else if(this.props.correlationIsLoaded && this.state.isLoading){
+                this.setState({
+                  isLoading: false
+                })
               }
             }
             //Stop Loading in either Cancellation or Renewal
@@ -1240,6 +1252,8 @@ class Summary extends Component {
         this.props.updateBuyGrossIsLoading(false);
         // this.props.updateBuyConversionIsLoading(false);
         break;
+      case SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR:
+        this.props.updateCorrelationDataIsLoading(false)
     }
   }
 
@@ -1405,6 +1419,7 @@ class Summary extends Component {
     this.setState({showBanner : !this.state.showBanner})
   }
 
+  
 
   render() {
     // REDUX PROPS 
@@ -1555,7 +1570,8 @@ function mapStateToProps(state) {
     filtersAreDefault: state.filters.filtersAreDefault,
     preferencesAreAdded: state.filters.preferencesAreAdded,
     preferencesAreLoaded: state.preferences.preferencesAreLoaded,
-    isDefaultFilters: state.filters.isDefaultFilters
+    isDefaultFilters: state.filters.isDefaultFilters,
+    correlationIsLoaded: state.correlationData.correlationDataIsLoaded
   };
 }
 export default connect(

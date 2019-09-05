@@ -11,22 +11,30 @@ import "@progress/kendo-theme-default/dist/all.css";
 import MultiValueSelect from '../MultiValueSelect/MultiValueSelect';
 import SingleValueSelect from '../SingleValueSelect/SingleValueSelect';
 import KendoMultiChart from "../KendoMultiChart/KendoMultiChart";
+import KendoPanZoomChart from "../KendoPanZoomChart/KendoPanZoomChart"
+import { PanelBar, PanelBarItem } from '@progress/kendo-react-layout';
 import DetailBreakdown from './DetailBreakdown/DetailBreakdown';
 import ExcelWorkbook from './ExcelWorkbook';
 import { SUMMARY_KPIS, DIMENSIONS } from '../../Constants/consts.js';
+import { Slider, SliderLabel, NumericTextBox } from '@progress/kendo-react-inputs';
 import * as _ from 'lodash';
 
 class SummaryViewDetails extends Component {
   constructor(props) {
     super(props);
+    this.qfmSliderRef = React.createRef()
     /* Initializing local state */
     this.state = {
 
       header: "Net New ARR",
       activeMetric: "arr",
       activeTimeMetric: "qtd",
-
       qtdIsPercent: true,
+      qfmSliderValue: null,
+      uqfmSliderValue: null,
+      organicVisitsSliderValue: null,
+      paidVisitsSliderValue: null,
+      totalFreeDownloadsSliderValue: null,
       selectedFilters: [
         ...this.props.filters.visits.valueFilters.map(item => {
           return { ...item, label: item.value }
@@ -62,6 +70,9 @@ class SummaryViewDetails extends Component {
         //   return { ...item, label: item.value }
         // }),
         ...this.props.filters.customerType.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.corgeo.valueFilters.map(item => {
           return { ...item, label: item.value }
         })],
 
@@ -109,6 +120,9 @@ class SummaryViewDetails extends Component {
         //   return { ...item, label: item.value }
         // }),
         ...this.props.filters.customerType.valueFilters.map(item => {
+          return { ...item, label: item.value }
+        }),
+        ...this.props.filters.corgeo.valueFilters.map(item => {
           return { ...item, label: item.value }
         })]
     })
@@ -194,6 +208,7 @@ class SummaryViewDetails extends Component {
   }
   submitFilters = (e) => {
     const { GEO,
+      CORGEO,
       MARKET,
       PRODUCT,
       SEGMENT,
@@ -232,7 +247,8 @@ class SummaryViewDetails extends Component {
       segment:[],
       ltvSegment:[],
       product:[],
-      subscription:[]
+      subscription:[],
+      corgeo:[]
     };
 
     Object.keys(newFilters).forEach(item => {
@@ -283,7 +299,6 @@ class SummaryViewDetails extends Component {
           break;
       }
     });
-
 
     this.props.subFiltersSubmit(newFilters);
 
@@ -687,7 +702,277 @@ class SummaryViewDetails extends Component {
       activeSecondary === SUMMARY_KPIS.USE_PAID_USER_MAU ? (type === 'marker' ? '*' : 'One Week Behind') : null;
   }
 
+  showHideCorrelationPanel = ()=>{
+    this.props.updateShowCorrelationPanel(!this.props.showCorrelationPanel)
+
+  }
+
+  showCorrelationButton = ()=>{
+
+        if (this.props.activeSecondary === SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR){
+      return (
+        <div className="correlationButtonSlider">
+          <button className={!this.props.showCorrelationPanel?'correlationButtonLeft correlationButtonSelection': 'correlationButtonLeft correlationButtonNonSelection'}
+                  onClick = {()=>this.showHideCorrelationPanel()}>
+                    {this.props.showCorrelationPanel? 'GROSS NEW ARR':'GROSS NEW ARR'}
+          </button>
+          <button className={!this.props.showCorrelationPanel?'correlationButtonRight correlationButtonNonSelection':'correlationButtonRight correlationButtonSelection'}
+              onClick = {()=>this.showHideCorrelationPanel()}>
+            {this.props.showCorrelationPanel? 'CORRELATION':'CORRELATION'}
+          </button>
+        </div>
+
+      )
+    }
+   }
+   setValue=(e, sliderId)=>{
+      switch(sliderId){
+        case 'qfm':
+          this.setState({qfmSliderValue: Math.floor(e.value)})
+          break;
+
+        case 'uqfm':
+          this.setState({uqfmSliderValue: Math.floor(e.value)})
+          break;
+
+        case 'organicVisits':
+          this.setState({organicVisitsSliderValue: Math.floor(e.value)})
+          break;
+
+        case 'paidVisits':
+        this.setState({paidVisitsSliderValue: Math.floor(e.value)})
+          break;
+
+        case 'totalFreeDownloads':
+        this.setState({totalFreeDownloadsSliderValue: Math.floor(e.value)})
+          break;
+      }
+    }
+
+  updateSliderText = (e)=>{
+    // console.log(e)
+    this.setState({qfmSliderValue: e.value})
+    
+  }
+  getCorrelationPredictPanelBarItem = ()=>{
+    return (
+      <div className="predictComponent">
+        <div className="miniTutorial">
+        <p>Adjust the percentage values using Slider(or Type above the Text line) for QFM, UQFM , Organic Visits, Paid Visits, 
+              Free Downloads and Click the <span className="showImportance">Magic Button</span> to predict the Gross New ARR using <span className="showImportance">Machine Learnig Model</span></p>
+        </div>
+
+      <div className="predictedValueContainer">
+        <div className="predictedValuePanelRed">
+        <p className="predictedValueText">$234.5M   </p>
+        </div>
+        OR
+        <div className="predictedValuePanelGreen">
+        <p className="predictedValueText">$470.5M   </p>
+        </div>
+       
+      </div>
+
+      <div className="predictButton">
+        <button> Magic </button>
+      </div>
+
+      <div className="sliderListContainer">
+       <div className='sliderBlock'>
+       {/* <label className="sliderValue"> */}
+           <NumericTextBox className="sliderNumericText"
+                    value={this.state.qfmSliderValue}
+                    onChange={(e)=>this.setValue(e,'qfm')} 
+                    spinners={false}
+                    max={100}
+                    min={-100}
+                    placeholder={'%'}/>
+                    {/* %</label> */}
+       
+        <Slider className='kendoSlider'
+            buttons={true}
+            step={5}
+            defaultValue={0}
+            min={-100}
+            max={100}
+            onChange={(e)=>this.setValue(e,'qfm')}
+            vertical={true}
+            name={'username'}
+            value={this.state.qfmSliderValue}
+            
+            
+        >
+            <SliderLabel position={-100}></SliderLabel>
+            <SliderLabel position={-50}></SliderLabel>
+            <SliderLabel position={-0}></SliderLabel>
+            <SliderLabel position={50}></SliderLabel>
+            <SliderLabel position={100}></SliderLabel>
+          
+        </Slider>
+        <p className="sliderTitle">QFM</p>
+        </div>
+        <div className='sliderBlock'>
+        <NumericTextBox className="sliderNumericText"
+                    value={this.state.uqfmSliderValue}
+                    onChange={(e)=>this.setValue(e,'uqfm')} 
+                    max={100}
+                    min={-100}
+                    spinners={false}
+                    placeholder={'%'}/>
+        <Slider className='kendoSlider' ref={this.qfmSliderRef}
+            buttons={true}
+            step={5}
+            defaultValue={0}
+            min={-100}
+            max={100}
+            onChange={(e)=>this.setValue(e, 'uqfm')}
+            vertical={true}
+            value={this.state.uqfmSliderValue}
+        >
+            <SliderLabel position={-100}></SliderLabel>
+            <SliderLabel position={-50}></SliderLabel>
+            <SliderLabel position={-0}></SliderLabel>
+            <SliderLabel position={50}></SliderLabel>
+            <SliderLabel position={100}></SliderLabel>
+          
+        </Slider>
+        <p className="sliderTitle">UQFM</p>
+        
+        
+        </div>
+        <div className='sliderBlock'>
+        <NumericTextBox className="sliderNumericText"
+                    value={this.state.organicVisitsSliderValue}
+                    onChange={(e)=>this.setValue(e,'organicVisits')} 
+                    max={100}
+                    min={-100}
+                    spinners={false}
+                    placeholder={'%'}/>
+        <Slider className='kendoSlider'
+            buttons={true}
+            step={5}
+            defaultValue={0}
+            min={-100}
+            max={100}
+            onChange={(e)=>this.setValue(e,'organicVisits')}
+            vertical={true}
+            value={this.state.organicVisitsSliderValue}
+        >
+            <SliderLabel position={-100}></SliderLabel>
+            <SliderLabel position={-50}></SliderLabel>
+            <SliderLabel position={-0}></SliderLabel>
+            <SliderLabel position={50}></SliderLabel>
+            <SliderLabel position={100}></SliderLabel>
+          
+        </Slider>
+        <p className="sliderTitle">Organic Visits</p>
+        
+        </div>
+        <div className='sliderBlock'>
+        {/* <p className="sliderValue">{this.state.paidVisitsSliderValue} %</p> */}
+        <NumericTextBox className="sliderNumericText"
+                    value={this.state.paidVisitsSliderValue}
+                    onChange={(e)=>this.setValue(e,'paidVisits')} 
+                    spinners={false}
+                    max={100}
+                    min={-100}
+                    placeholder={'%'}/>
+        <Slider className='kendoSlider'
+            buttons={true}
+            step={5}
+            defaultValue={0}
+            min={-100}
+            max={100}
+            onChange={(e)=>this.setValue(e,'paidVisits')}
+            vertical={true}
+            value={this.state.paidVisitsSliderValue}
+            
+        >
+            <SliderLabel position={-100}></SliderLabel>
+            <SliderLabel position={-50}></SliderLabel>
+            <SliderLabel position={-0}></SliderLabel>
+            <SliderLabel position={50}></SliderLabel>
+            <SliderLabel position={100}></SliderLabel>
+          
+        </Slider>
+        <p className="sliderTitle">Paid Visits</p>
+        
+        </div>
+        <div className='sliderBlock'>
+        {/* <p className="sliderValue">{this.state.totalFreeDownloadsSliderValue} %</p> */}
+        <NumericTextBox className="sliderNumericText"
+                    value={this.state.totalFreeDownloadsSliderValue}
+                    onChange={(e)=>this.setValue(e,'totalFreeDownloads')} 
+                    spinners={false}
+                    max={100}
+                    min={-100}
+                    placeholder={'%'}/>
+        <Slider className='kendoSlider'
+            buttons={true}
+            step={5}
+            defaultValue={0}
+            min={-100}
+            max={100}
+            onChange={(e)=>this.setValue(e,'totalFreeDownloads')}
+            vertical={true}
+            value={this.state.totalFreeDownloadsSliderValue}
+            
+        >
+            <SliderLabel position={-100}></SliderLabel>
+            <SliderLabel position={-50}></SliderLabel>
+            <SliderLabel position={-0}></SliderLabel>
+            <SliderLabel position={50}></SliderLabel>
+            <SliderLabel position={100}></SliderLabel>
+          
+        </Slider>
+        <p className="sliderTitle">Free Downloads</p>
+        
+        </div>
+        
+        </div>
+        
+       
+        </div>
+    );
+  }
+
+  getCorrelationAnalysisTable = ()=>{
+    return (
+      <table className='correlationAnalysis'>
+        <thead>
+          <tr>
+            <th>
+                Feature Name
+            </th>
+            {/* <th>
+                Week of Interest - Reference Week
+            </th> */}
+            <th>
+                Contribution(%)
+            </th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          {this.props.correlationDataAnalysis.map((item, index)=>{
+            return(
+              <tr key={index}>
+                <td>{item.feature_name}</td>
+                {/* <td>{item.delta_x}</td> */}
+                <td>{item.marginal} %</td>
+              </tr>
+            )
+          })}
+
+        </tbody>
+        
+      </table>
+    )
+  }
+
   render() {
+    
     let { activeFilters, activePrimary, secondaryData, activeSecondary, filters, activeItem } = this.props;
     // let activeItem = secondaryData[this.props.activeSecondary];
     var UnitStyles = classNames({
@@ -717,6 +1002,72 @@ class SummaryViewDetails extends Component {
       
 
     return (
+      this.props.showCorrelationPanel && this.props.activeSecondary===SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR? 
+      
+      <div className="sumViewContainer">
+       <div className="row container-fluid titleBarHeader">
+         <div className="row">
+         <span className="col-md-2 col-lg-4 detailTitle2 ">
+              {'Correlation'} {this.getOneWeekBehindMarker(this.props.activeSecondary, 'marker')}
+          </span>
+          <span style={{ width: '100px' }}>
+              <div className="oneWeekBehind">
+                {this.getOneWeekBehindMarker(this.props.activeSecondary, 'message')}
+              </div>
+            </span>
+          {this.showCorrelationButton()}
+          </div>
+          <div className='row'>
+            <div className="col-md-4 col-lg-4">
+              
+              <div>Geo </div>
+              <SingleValueSelect
+                activeFilters={[]}
+                options={this.props.filters.corgeo.availableFilters}
+                onValueChange={e => { this.updateSingleValue(e) }}
+                onMenuClose={e => { this.closeSingleValue(e) }}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CORGEO })}
+              />
+
+              
+            </div>
+            
+
+          </div>
+        <div className="chartContainer col-md-12">
+            <KendoPanZoomChart color="white" 
+                              chartHeight={350} 
+                              deviceType="laptop" 
+                              nullifyQrf={this.props.activeSecondary==SUMMARY_KPIS.BUY_CONVERSION &&
+                              (
+                                (!_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) && 
+                                      _.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP'])) 
+                                ||
+                                (_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) &&
+                                      !_.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP']))) 
+                              }
+                      />
+          </div>
+      
+      <div className="correlationPanelBar">
+        <PanelBar >
+          <PanelBarItem title="Contributors" expanded={false}>{this.getCorrelationAnalysisTable()}</PanelBarItem>
+          <PanelBarItem title="Predict- Gross New ARR" expanded={false}>
+                    {this.getCorrelationPredictPanelBarItem()}
+          </PanelBarItem>
+        </PanelBar>
+
+      </div>
+     
+                       
+      </div>
+      
+        <div className="iconfooter" style={{marginTop: '20px'}}>
+          <img className='rtbIconFooter' src={rtbIcon} />
+        </div>
+      </div>
+      
+      :
       <div className="sumViewContainer">
                 
         {/* First Row for Ttle Bar and Metric Filter */}
@@ -737,6 +1088,8 @@ class SummaryViewDetails extends Component {
                 {this.getOneWeekBehindMarker(this.props.activeSecondary, 'message')}
               </div>
             </span>
+            {this.showCorrelationButton()}
+
             {this.props.activePrimary < 1 ?
               <div className="col-lg-2 col-md-3 flRight">
                 <div className=" multiChartMetricContainer ">
@@ -833,7 +1186,7 @@ class SummaryViewDetails extends Component {
         <div className="iconfooter">
           <img className='rtbIconFooter' src={rtbIcon} />
         </div>
-      </div>
+      </div> 
     );
   }
 }
@@ -846,7 +1199,9 @@ function mapStateToProps(state) {
     qtdwData: state.summaryData.secondary[state.activeCards.secondary].details.qtdw,
     secondaryData: state.summaryData.secondary,
     multichartIsArr: state.multichartIsArr,
-    filters: state.filters
+    filters: state.filters,
+    showCorrelationPanel: state.correlationData.showCorrelationPanel,
+    correlationDataAnalysis: state.correlationData.analysis
   };
 }
 

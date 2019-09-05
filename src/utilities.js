@@ -1509,8 +1509,10 @@ export function requestBuyTrafficSecondaryData(allFilters, _parameters) {
     return promiseArr;
 }
 
+
 export function requestCorrelationData(allFilters, _parameters, oktaToken){
     responseArray = [];
+    
     generateFilterParams(17, correlationParams, allFilters, _parameters);
     let params1 = correlationParams.reduce((prev, param) => {
         let p = '';
@@ -1527,9 +1529,12 @@ export function requestCorrelationData(allFilters, _parameters, oktaToken){
     // console.log("Response Headers")
     // console.log(response.headers)
 
-    const correlationAnalysis = axios.post(Adobe.correlation.analysisURL, {accessToken: oktaToken})
+    const correlationAnalysis = axios.post(Adobe.correlation.analysisURL + `best_lag=14&chosen_period=180&filter_dimensions=geo,market_area&geo=${correlationParams[0].value}&market_area=Global&interest=${Math.floor((new Date()).getTime()/1000)- (24*7*60*60)}`, {accessToken: oktaToken})
 
-    const correlationPrediction = axios.post(Adobe.correlation.predictionURL, {accessToken: oktaToken})
+    const correlationPrediction = axios.post(Adobe.correlation.predictionURL , {accessToken: oktaToken})
+    // correlationPrediction=0;
+    console.log('Prediction')
+    console.log(correlationPrediction)
 
     responseArray.push(correlationChart, correlationAnalysis, correlationPrediction)
     const promiseArr = Promise.all(responseArray)
@@ -4184,6 +4189,13 @@ export function postUserSettings(params) {
 export function convertFilterList(arrayList) {
     return "'" + arrayList.join("', '") + "' ";
 }
+
+export function getParamValuesCorrelation(activeParams, allFilters){
+    // console.log(activeParams)
+    return [activeParams[0].value]    
+    
+
+}
 /**
  * @name getParamValues
  * @description Utility function that converts the filters list into a string parameter for URL
@@ -4366,7 +4378,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
             break;
         case 17:
-            filterParams[0].value = getParamValues(_activeParams.corgeo, allFilters.corgeo)
+            filterParams[0].value = getParamValuesCorrelation(_activeParams.corgeo, allFilters.corgeo)
             break
         default:
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
