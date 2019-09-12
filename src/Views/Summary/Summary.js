@@ -186,7 +186,7 @@ class Summary extends Component {
         // Call Action to request secondary KPI data for Cancellations and Renewal
         this.props.getFinanceSecondaryData(this.props.filters);
         //Call Action to request Correlation Data
-        this.props.getCorrelationData(this.props.filters, this.props.accessToken)
+        this.props.getCorrelationData(this.props.filters, this.state.accessToken)
         // Set state for isLoading to true, which shows the spinner, 
         // and initialDataLoadComplete to true, since the request for data has been made
         this.setState({
@@ -251,7 +251,7 @@ class Summary extends Component {
           }
           else if (activeSecondaryCard === SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR){
             this.setState({ isLoading: true});
-            this.props.getCorrelationData(this.props.filters, this.props.accessToken);
+            this.props.getCorrelationData(this.props.filters, this.state.accessToken);
           }
 
         } // End If for Sub Filter submit
@@ -289,7 +289,7 @@ class Summary extends Component {
           if (activeSecondaryCard === SUMMARY_KPIS.FINANCE_NET_NEW_ARR ||
             activeSecondaryCard === SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR) {
             // If filters are default
-            this.props.getCorrelationData(this.props.filters, this.props.accessToken)
+            this.props.getCorrelationData(this.props.filters, this.state.accessToken)
             if (isDefaultFilters) {
               // Call Action to get Finance XDC1 Data and Finance Secondary Data from XDC 2 from cache-memory
               this.props.getFinanceXDC1SecondaryData(this.props.filters);
@@ -1437,7 +1437,7 @@ class Summary extends Component {
     // console.log(`Summary Condition  ${activeSecondaryCard==SUMMARY_KPIS.BUY_CONVERSION} ${activeSecondaryCard} ${SUMMARY_KPIS.BUY_CONVERSION}`)
     const kdialog = dialogIsOpen ? <KendoDialog /> : null;
     const isMobileOrTablet = utils.includes(utils.getDeviceType(window), 'mobile') || utils.includes(utils.getDeviceType(window), 'tablet');
-    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails isLoading={this.state.isLoading} subFiltersSubmit={(newFilters) => { this.updateSecondaryLoading(newFilters) }} secondaryData={secondaryData} 
+    const summaryViewDetails = isMobileOrTablet ? null : <SummaryViewDetails token = {this.state.accessToken} isLoading={this.state.isLoading} subFiltersSubmit={(newFilters) => { this.updateSecondaryLoading(newFilters) }} secondaryData={secondaryData} 
                 nullifyQrf={activeSecondaryCard==SUMMARY_KPIS.BUY_CONVERSION} />;
     
     //Code for the Banner 

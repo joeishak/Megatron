@@ -5,6 +5,7 @@ import * as actions from 'actions';
 import styles from './KendoPanZoomChart.css';
 import * as utils from '../../utilities.js';
 import {SUMMARY_KPIS} from '../../Constants/consts';
+import * as _ from 'lodash'
 
 import {
     Chart,
@@ -154,7 +155,13 @@ class KendoPanZoomChart extends Component {
             // let borderColor = ( (points[0] && points[1]) ? (points[0].value - points[1].value) > 0 ?`${this.getColor(activeSecondary, 'green', 'border')}` :`${this.getColor(activeSecondary, 'red', 'border')}` : '');
             let borderColor = '#2990c4'
             const title = props.categoryText;
-            
+            let dateparts = props.categoryText.split('/')
+                                        let dateString = dateparts[2]+ "-"
+                                                        + (dateparts[0].length==2? dateparts[0]: ('0'+dateparts[0])) +"-"
+                                                            + (dateparts[1].length==2? dateparts[1]: ('0'+dateparts[1])) 
+                                                              + "T00:00:00"
+
+            let originalRecord = _.find(this.props.correlationChart, {time_interval: dateString})  
            
                 return (
                     <div className="tooltipContainer" style={{ border: `5px solid ${borderColor}`, borderRadius: '5px'}}>
@@ -165,28 +172,35 @@ class KendoPanZoomChart extends Component {
                                 let textColor
                                 switch(point.series.name){
                                     case 'Gross New ARR':
-                                        toolTipValue = `${parseFloat(this.props.correlationChart[point.categoryIndex].gross_new_arr/1000000).toFixed(2)} M`
+                                          
+                                        toolTipValue = `${parseFloat(originalRecord.gross_new_arr/1000000).toFixed(2)} M`                           
+                                        // toolTipValue = `${parseFloat(this.props.correlationChart[point.categoryIndex].gross_new_arr/1000000).toFixed(2)} M`
                                         textColor= '#fbbc05'
                                         break;
                                             
                                     case 'New QFMs':
-                                            toolTipValue = this.props.correlationChart[point.categoryIndex].new_qfms
+                                            toolTipValue= originalRecord.new_qfms
+                                            // toolTipValue = this.props.correlationChart[point.categoryIndex].new_qfms
                                             textColor= '#fbbc05'
                                             break;
                                     case 'New UQFMs':
-                                            toolTipValue = this.props.correlationChart[point.categoryIndex].new_uqfms
+                                            toolTipValue= originalRecord.new_uqfms
+                                            // toolTipValue = this.props.correlationChart[point.categoryIndex].new_uqfms
                                             textColor= '#fbbc05'
                                             break;
                                     case 'Organic Visits':
-                                            toolTipValue = this.props.correlationChart[point.categoryIndex].organic_visits
+                                            toolTipValue= originalRecord.organic_visits
+                                            // toolTipValue = this.props.correlationChart[point.categoryIndex].organic_visits
                                             textColor= '#fbbc05'
                                             break;
                                     case 'Paid Visits':
-                                            toolTipValue = this.props.correlationChart[point.categoryIndex].paid_visits
+                                            toolTipValue= originalRecord.paid_visits
+                                            // toolTipValue = this.props.correlationChart[point.categoryIndex].paid_visits
                                             textColor= '#fbbc05'
                                             break;
                                     case 'Total Downloads Free':
-                                            toolTipValue = this.props.correlationChart[point.categoryIndex].total_downloads_free
+                                            toolTipValue= originalRecord.total_downloads_free
+                                            // toolTipValue = this.props.correlationChart[point.categoryIndex].total_downloads_free
                                             textColor= '#fbbc05'
                                             break;
                                 }

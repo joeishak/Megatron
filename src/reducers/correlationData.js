@@ -24,7 +24,9 @@ export default function(
             // console.log(action.payload[0])
             newState.chart=[...action.payload[0].data.data]
             newState.analysis=[...action.payload[1].data.data]
+            if (action.payload.length >2){
             newState.prediction= action.payload[2].data.percentage_change_in_dependent
+            }
             return { ...newState, correlationDataIsLoaded: true }
 
         case UPDATE_CORRELATION_DATA_IS_LOADING:

@@ -1510,7 +1510,7 @@ export function requestBuyTrafficSecondaryData(allFilters, _parameters) {
 }
 
 
-export function requestCorrelationData(allFilters, _parameters, oktaToken){
+export function requestCorrelationData(allFilters, _parameters, oktaToken, sliderValues){
     responseArray = [];
     
     generateFilterParams(17, correlationParams, allFilters, _parameters);
@@ -1530,13 +1530,23 @@ export function requestCorrelationData(allFilters, _parameters, oktaToken){
     // console.log(response.headers)
 
     const correlationAnalysis = axios.post(Adobe.correlation.analysisURL + `best_lag=14&chosen_period=180&filter_dimensions=geo,market_area&geo=${correlationParams[0].value}&market_area=Global&interest=${Math.floor((new Date()).getTime()/1000)- (24*7*60*60)}`, {accessToken: oktaToken})
-
-    const correlationPrediction = axios.post(Adobe.correlation.predictionURL , {accessToken: oktaToken})
+    responseArray.push(correlationChart, correlationAnalysis)
+    if (sliderValues){
+    const correlationPrediction = axios.post(
+                            Adobe.correlation.predictionURL +
+                            `&geo=${correlationParams[0].value}&market_area=Global&interest=${Math.floor((new Date()).getTime()/1000)- (24*7*60*60)}
+                                    &features=paid_visits,organic_visits, new_qfms, new_uqfms,total_downloads_free
+                                    &percentages=${sliderValues.paid_visits},${sliderValues.organic_visits},${sliderValues.new_qfms},${sliderValues.new_uqfms},${sliderValues.total_free_downloads}`,
+                                                                                   
+                            {accessToken: oktaToken}
+                            )
+    responseArray.push(correlationPrediction)
+    }
     // correlationPrediction=0;
-    console.log('Prediction')
-    console.log(correlationPrediction)
+    // console.log('Prediction')
+    // console.log(correlationPrediction)
 
-    responseArray.push(correlationChart, correlationAnalysis, correlationPrediction)
+    // responseArray.push(correlationChart, correlationAnalysis)
     const promiseArr = Promise.all(responseArray)
     return promiseArr
     // }).catch(err=>{

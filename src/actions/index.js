@@ -1417,7 +1417,7 @@ export function getBuyTrafficSecondaryData(filters) {
     }
 }
 
-export function getCorrelationData(filters,  oktaToken){
+export function getCorrelationData(filters,  oktaToken, sliderValues){
     let allFilters = {
         corgeo: Object.keys(filters.corgeo.availableFilters).map(e => filters.corgeo.availableFilters[e])
 
@@ -1427,7 +1427,7 @@ export function getCorrelationData(filters,  oktaToken){
         corgeo: Object.keys(filters.corgeo.valueFilters).map(e => filters.corgeo.valueFilters[e])
 
     };
-    promiseArr = utils.requestCorrelationData(allFilters, _parameters, oktaToken)
+    promiseArr = utils.requestCorrelationData(allFilters, _parameters, oktaToken, sliderValues)
     
     return {
         type: GET_CORRELATION_DATA,

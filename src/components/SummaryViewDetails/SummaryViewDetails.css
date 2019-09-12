@@ -647,6 +647,7 @@ iPad Pro 10.5 inch , 1112px
          border-radius: 40px;
          outline: none;
          color: white;
+         border: none;
          /* border: 2px solid orange; */
          
      }
@@ -689,8 +690,11 @@ iPad Pro 10.5 inch , 1112px
         display: flex;
         justify-content: center;
         margin-top: 20px;
+        animation: showPrediction 4s;
       
          }
+
+     
 
     .predictedValuePanelGreen{
         margin-left:20px;
@@ -702,7 +706,13 @@ iPad Pro 10.5 inch , 1112px
         color: rgb(63, 187, 63);
         display: flex;
         justify-content: center;
+        animation: showPredictionGreen 2s;
     }
+
+    @keyframes showPredictionGreen {
+        from {background-color: black; color: black; box-shadow: none}
+        to {background-color: black; color: rgb(63, 187, 63); box-shadow: 0 0 50px 15px greenyellow;}
+      }
 
     .predictedValuePanelRed{
         
@@ -714,7 +724,26 @@ iPad Pro 10.5 inch , 1112px
         color: red;
         display: flex;
         justify-content: center;
+        animation: showPredictionRed 2s;
     }
+
+    @keyframes showPredictionRed {
+        from {background-color: black; color: black; box-shadow: none}
+        to {background-color: black; color: red; box-shadow: 0 0 50px 15px salmon;}
+      }
+
+    .predictedValuePanelNeutral{
+        
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        /* box-shadow: 0 0 10px 10px rgb(189, 184, 184); */
+        box-shadow: 0 0 50px 15px white;
+        color: rgb(212, 208, 208);
+        display: flex;
+        justify-content: center;
+    }
+
     .predictedValueText{
         margin-top: 30%;
         /* color:white; */
@@ -806,9 +835,68 @@ iPad Pro 10.5 inch , 1112px
         font-weight: bolder;
     }
     
-    
+    .predicteValuePercentageRed{
+       
+        font-size: .5em;
+        /* display: inline-block; */
+        text-align:center;
+        margin-left: 5%;
+        margin-right: 15%;
+        color: red;
+        /* background-color: rgba(230, 225, 225, 0.2); */
+        border-radius: 3px;
+        background-image: url('../../assets/images/downarrow.svg');
+        background-repeat: no-repeat;
+        background-position: 100% 100%;
+        background-attachment: scroll;
+        animation: showRedArrow 2s;
         
+             
+    }
 
-      
+    @keyframes showRedArrow{
+        from { background-image: none; color: black; background-position: 100% -5000%}
+        to { background-image: url('../../assets/images/downarrow.svg'); color: red ; background-position: 100% 100%}
+    }
 
-  
+
+    .predicteValuePercentageGreen{
+       
+        font-size: .5em;
+        /* display: inline-block; */
+        text-align:center;
+        margin-left: 5%;
+        margin-right: 15%;
+        color: '#3fbb3f';
+        /* background-color: rgba(230, 225, 225, 0.2); */
+        border-radius: 3px;
+        background-image: url('../../assets/images/uparrow.svg');
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-position: 100% 100%;
+        animation: showGreenArrow 2s;
+        
+             
+    }
+    @keyframes showGreenArrow{
+        from { background-image: none; color: black; background-position: 100% 5000%;}
+        to { background-image: url('../../assets/images/uparrow.svg'); color: #3fbb3f; background-position: 100% 100%;}
+    }
+
+
+    .predicteValuePercentageNeutral{
+       
+        font-size: .5em;
+        /* display: inline-block; */
+        text-align:center;
+        margin-left: 15%;
+        margin-right: 15%;
+        
+        /* background-color: rgba(230, 225, 225, 0.2); */
+        /* border-radius: 3px; */
+        /* background-image: url('../../assets/images/uparrow.svg'); */
+        /* background-repeat: no-repeat; */
+        /* background-position: 100% ; */
+        
+             
+    }

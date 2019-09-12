@@ -17,6 +17,7 @@ import DetailBreakdown from './DetailBreakdown/DetailBreakdown';
 import ExcelWorkbook from './ExcelWorkbook';
 import { SUMMARY_KPIS, DIMENSIONS } from '../../Constants/consts.js';
 import { Slider, SliderLabel, NumericTextBox } from '@progress/kendo-react-inputs';
+import SpinnerLoader from '../Spinner/Spinner'
 import * as _ from 'lodash';
 
 class SummaryViewDetails extends Component {
@@ -180,6 +181,39 @@ class SummaryViewDetails extends Component {
 
     }
   }
+
+  updateSingleValueCorrelation = (e) => {
+    this.props.updateCorrelationDataIsLoading(false)
+    this.props.getCorrelationData(this.props.filters, this.props.token, 
+          { new_qfms :  0,
+          new_uqfms:  0,
+          organic_visits:  0,
+          paid_visits: 0,
+          total_free_downloads: 0})
+    this.setState({ singleValueSubmitted: true });
+    let copy = this.state.selectedFilters;
+    if (this.state.selectedFilters.length === 0) {
+      this.setState({ selectedFilters: [e] }, () => {
+        this.submitFilters({});
+      })
+    } else {
+      //Find any with the same category
+      _.remove(copy, item => { return item.category === e.category });
+      _.remove(copy, item => { return item.index === e.index });
+      if (copy.length === 0) {
+        this.setState({ selectedFilters: [e] }, () => {
+          this.submitFilters({});
+        })
+      } else {
+        this.setState({ selectedFilters: [...copy, e] }, () => {
+          this.submitFilters({});
+        })
+
+      }
+
+    }
+  }
+
   updateMultiValue = (e, type) => {
     this.setState({ multiValueSubmitted: true });
     let copy = this.state.selectedFilters;
@@ -709,7 +743,8 @@ class SummaryViewDetails extends Component {
 
   showCorrelationButton = ()=>{
 
-        if (this.props.activeSecondary === SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR){
+        if ((this.props.activeSecondary === SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR) || 
+            (this.props.activeSecondary === SUMMARY_KPIS.BUY_GROSS_NEWARR)){
       return (
         <div className="correlationButtonSlider">
           <button className={!this.props.showCorrelationPanel?'correlationButtonLeft correlationButtonSelection': 'correlationButtonLeft correlationButtonNonSelection'}
@@ -754,26 +789,58 @@ class SummaryViewDetails extends Component {
     this.setState({qfmSliderValue: e.value})
     
   }
+
+  predictGrossNewARR = ()=>{
+    console.log('Magic Clicked')
+    this.props.updateCorrelationDataIsLoading(false)
+    this.props.getCorrelationData(this.props.filters, this.props.token, 
+          { new_qfms : this.state.qfmSliderValue? this.state.qfmSliderValue: 0,
+          new_uqfms: this.state.uqfmSliderValue ? this.state.uqfmSliderValue: 0,
+          organic_visits: this.state.organicVisitsSliderValue? this.state.organicVisitsSliderValue : 0,
+          paid_visits: this.state.paidVisitsSliderValue? this.state.paidVisitsSliderValue: 0,
+          total_free_downloads: this.state.totalFreeDownloadsSliderValue? this.state.totalFreeDownloadsSliderValue:0})
+  }
+  
   getCorrelationPredictPanelBarItem = ()=>{
+
+    let shadowColor = classNames({
+      'predictedValuePanelNeutral': this.props.correlationDataPrediction==0,
+      'predictedValuePanelGreen': this.props.correlationDataPrediction>0,
+      'predictedValuePanelRed': this.props.correlationDataPrediction<0
+    })
+
+    let predictionDirection= classNames(
+      {
+        'predicteValuePercentageNeutral': this.props.correlationDataPrediction==0,
+        'predicteValuePercentageGreen': this.props.correlationDataPrediction>0,
+        'predicteValuePercentageRed': this.props.correlationDataPrediction<0
+      }
+    )
     return (
+      
       <div className="predictComponent">
+    
+        
         <div className="miniTutorial">
         <p>Adjust the percentage values using Slider(or Type above the Text line) for QFM, UQFM , Organic Visits, Paid Visits, 
               Free Downloads and Click the <span className="showImportance">Magic Button</span> to predict the Gross New ARR using <span className="showImportance">Machine Learnig Model</span></p>
         </div>
-
+      { this.props.isCorrelationDataLoaded?
       <div className="predictedValueContainer">
-        <div className="predictedValuePanelRed">
-        <p className="predictedValueText">$234.5M   </p>
+        <div className={shadowColor}>
+        <div className="predictedValueText">$234.5M  
+              <div className={predictionDirection}>
+                {parseFloat(this.props.correlationDataPrediction).toFixed(2)}%
+              
+              </div> 
+              </div>
         </div>
-        OR
-        <div className="predictedValuePanelGreen">
-        <p className="predictedValueText">$470.5M   </p>
-        </div>
-       
-      </div>
+        
+      </div>: <SpinnerLoader />
+      }
 
-      <div className="predictButton">
+      <div className="predictButton"
+           onClick = {()=>{this.predictGrossNewARR()}}>
         <button> Magic </button>
       </div>
 
@@ -931,8 +998,8 @@ class SummaryViewDetails extends Component {
         
         </div>
         
-       
-        </div>
+        </div> 
+        
     );
   }
 
@@ -1002,7 +1069,9 @@ class SummaryViewDetails extends Component {
       
 
     return (
-      this.props.showCorrelationPanel && this.props.activeSecondary===SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR? 
+      this.props.showCorrelationPanel && ((this.props.activeSecondary===SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR)
+                                                ||(this.props.activeSecondary === SUMMARY_KPIS.BUY_GROSS_NEWARR))
+       ? 
       
       <div className="sumViewContainer">
        <div className="row container-fluid titleBarHeader">
@@ -1024,7 +1093,7 @@ class SummaryViewDetails extends Component {
               <SingleValueSelect
                 activeFilters={[]}
                 options={this.props.filters.corgeo.availableFilters}
-                onValueChange={e => { this.updateSingleValue(e) }}
+                onValueChange={e => { this.updateSingleValueCorrelation(e) }}
                 onMenuClose={e => { this.closeSingleValue(e) }}
                 value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CORGEO })}
               />
@@ -1201,7 +1270,9 @@ function mapStateToProps(state) {
     multichartIsArr: state.multichartIsArr,
     filters: state.filters,
     showCorrelationPanel: state.correlationData.showCorrelationPanel,
-    correlationDataAnalysis: state.correlationData.analysis
+    correlationDataAnalysis: state.correlationData.analysis,
+    isCorrelationDataLoaded: state.correlationData.correlationDataIsLoaded,
+    correlationDataPrediction: state.correlationData.prediction
   };
 }
 
