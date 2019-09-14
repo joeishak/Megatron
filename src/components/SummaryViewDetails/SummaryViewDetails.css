@@ -710,8 +710,8 @@ iPad Pro 10.5 inch , 1112px
     }
 
     @keyframes showPredictionGreen {
-        from {background-color: black; color: black; box-shadow: none}
-        to {background-color: black; color: rgb(63, 187, 63); box-shadow: 0 0 50px 15px greenyellow;}
+        from {background-color: #202020; color: #202020; box-shadow: none}
+        to {background-color: #202020; color: rgb(63, 187, 63); box-shadow: 0 0 50px 15px greenyellow;}
       }
 
     .predictedValuePanelRed{
@@ -728,8 +728,8 @@ iPad Pro 10.5 inch , 1112px
     }
 
     @keyframes showPredictionRed {
-        from {background-color: black; color: black; box-shadow: none}
-        to {background-color: black; color: red; box-shadow: 0 0 50px 15px salmon;}
+        from {background-color: #202020; color: #202020; box-shadow: none}
+        to {background-color: #202020; color: red; box-shadow: 0 0 50px 15px salmon;}
       }
 
     .predictedValuePanelNeutral{
@@ -847,7 +847,7 @@ iPad Pro 10.5 inch , 1112px
         border-radius: 3px;
         background-image: url('../../assets/images/downarrow.svg');
         background-repeat: no-repeat;
-        background-position: 100% 100%;
+        background-position: 103% 100%;
         background-attachment: scroll;
         animation: showRedArrow 2s;
         
@@ -855,8 +855,8 @@ iPad Pro 10.5 inch , 1112px
     }
 
     @keyframes showRedArrow{
-        from { background-image: none; color: black; background-position: 100% -5000%}
-        to { background-image: url('../../assets/images/downarrow.svg'); color: red ; background-position: 100% 100%}
+        from { background-image: none; color: #202020; background-position: 103% -5000%}
+        to { background-image: url('../../assets/images/downarrow.svg'); color: red ; background-position: 103% 100%}
     }
 
 
@@ -867,20 +867,20 @@ iPad Pro 10.5 inch , 1112px
         text-align:center;
         margin-left: 5%;
         margin-right: 15%;
-        color: '#3fbb3f';
+        color: rgb(63, 187, 63);
         /* background-color: rgba(230, 225, 225, 0.2); */
         border-radius: 3px;
         background-image: url('../../assets/images/uparrow.svg');
         background-repeat: no-repeat;
         background-attachment: scroll;
-        background-position: 100% 100%;
+        background-position: 103% 100%;
         animation: showGreenArrow 2s;
         
              
     }
     @keyframes showGreenArrow{
-        from { background-image: none; color: black; background-position: 100% 5000%;}
-        to { background-image: url('../../assets/images/uparrow.svg'); color: #3fbb3f; background-position: 100% 100%;}
+        from { background-image: none; color: #202020; background-position: 103% 5000%;}
+        to { background-image: url('../../assets/images/uparrow.svg'); color: rgb(63, 187, 63); background-position: 103% 100%;}
     }
 
 

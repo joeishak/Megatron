@@ -128,11 +128,9 @@ class SummaryViewDetails extends Component {
         })]
     })
 
-
   }
   componentDidUpdate(prevProps) {
-
-
+    
   }
   updateQTDPercentageFilter = (e) => {
     let metric = e.target.innerHTML.toLowerCase();
@@ -816,6 +814,9 @@ class SummaryViewDetails extends Component {
         'predicteValuePercentageRed': this.props.correlationDataPrediction<0
       }
     )
+
+    let grossNewArrLastWeek = _.sumBy(this.props.correlationDataChart.slice(-7), day=>{ return day.gross_new_arr})/1000000
+    let predictedGrossNewArr = parseFloat(grossNewArrLastWeek +  (grossNewArrLastWeek*this.props.correlationDataPrediction*0.01)).toFixed(2)
     return (
       
       <div className="predictComponent">
@@ -828,7 +829,7 @@ class SummaryViewDetails extends Component {
       { this.props.isCorrelationDataLoaded?
       <div className="predictedValueContainer">
         <div className={shadowColor}>
-        <div className="predictedValueText">$234.5M  
+        <div className="predictedValueText">{predictedGrossNewArr}M
               <div className={predictionDirection}>
                 {parseFloat(this.props.correlationDataPrediction).toFixed(2)}%
               
@@ -1038,8 +1039,32 @@ class SummaryViewDetails extends Component {
     )
   }
 
-  render() {
+  resetSliders = (e)=>{
     
+    if(e.target.props.id==='predictionPanelBarItem'){
+      if (this.props.correlationDataPrediction !==0){
+        this.props.updateCorrelationDataIsLoading(false)
+        this.props.getCorrelationData(this.props.filters, this.props.token, 
+          { new_qfms :  0,
+          new_uqfms:  0,
+          organic_visits:  0,
+          paid_visits: 0,
+          total_free_downloads: 0})
+          }
+      
+
+        this.setState({ qfmSliderValue: null,
+          uqfmSliderValue: null,
+          organicVisitsSliderValue: null,
+          paidVisitsSliderValue: null,
+          totalFreeDownloadsSliderValue: null})
+      
+    }
+    }
+    
+
+  render() {
+        
     let { activeFilters, activePrimary, secondaryData, activeSecondary, filters, activeItem } = this.props;
     // let activeItem = secondaryData[this.props.activeSecondary];
     var UnitStyles = classNames({
@@ -1067,7 +1092,7 @@ class SummaryViewDetails extends Component {
         (_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) &&
               !_.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP']))) 
       
-
+    
     return (
       this.props.showCorrelationPanel && ((this.props.activeSecondary===SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR)
                                                 ||(this.props.activeSecondary === SUMMARY_KPIS.BUY_GROSS_NEWARR))
@@ -1119,9 +1144,9 @@ class SummaryViewDetails extends Component {
           </div>
       
       <div className="correlationPanelBar">
-        <PanelBar >
-          <PanelBarItem title="Contributors" expanded={false}>{this.getCorrelationAnalysisTable()}</PanelBarItem>
-          <PanelBarItem title="Predict- Gross New ARR" expanded={false}>
+        <PanelBar onSelect={(e)=>this.resetSliders(e)}>
+          <PanelBarItem  title="Contributors" expanded={false}>{this.getCorrelationAnalysisTable()}</PanelBarItem>
+          <PanelBarItem id='predictionPanelBarItem' title="Predict- Gross New ARR" expanded={false}>
                     {this.getCorrelationPredictPanelBarItem()}
           </PanelBarItem>
         </PanelBar>
@@ -1272,7 +1297,10 @@ function mapStateToProps(state) {
     showCorrelationPanel: state.correlationData.showCorrelationPanel,
     correlationDataAnalysis: state.correlationData.analysis,
     isCorrelationDataLoaded: state.correlationData.correlationDataIsLoaded,
-    correlationDataPrediction: state.correlationData.prediction
+    correlationDataPrediction: state.correlationData.prediction,
+    correlationDataChart : state.correlationData.chart,
+    sliderValues: state.correlationData.sliderValues
+    
   };
 }
 

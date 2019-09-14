@@ -1,3 +1,5 @@
+import { ENGINE_METHOD_NONE } from "constants";
+
 export const PrimaryData = [
     {
         index: 0,
@@ -37548,6 +37550,16 @@ export const correlationData = {
         }
         ],
     prediction: 0,
+    // sliderValues :{
+    //     qfmSliderValue: null,
+    //     uqfmSliderValue: null,
+    //     organicVisitsSliderValue: null,
+    //     paidVisitsSliderValue: null,
+    //     totalFreeDownloadsSliderValue: null,
+    // },
     showCorrelationPanel: false,
-    correlationDataIsLoaded: false
+    correlationDataIsLoaded: false,
+    
+
+
 }
