@@ -154,6 +154,7 @@ class Summary extends Component {
       if (this.props.user.sub !== null && filtersAreLoaded !== prevProps.filtersAreLoaded) {
         // Call the action to update the user and preferences in InfoBurst/ GTMPOC Database
         this.props.updateOKTAUser(user, filters.quarter.valueFilters[0].value, filters.segment.valueFilters[0].value, JSON.stringify(filters.nonDMSegment.valueFilters));
+        this.props.setBannerMessage()
       }
       // Declare a variable to denote whether user has changes cards
       let userChangedCards = activeSecondaryCard !== prevProps.activeSecondaryCard;
@@ -1420,13 +1421,13 @@ class Summary extends Component {
                 nullifyQrf={activeSecondaryCard==SUMMARY_KPIS.BUY_CONVERSION} />;
     
     //Code for the Banner 
-    const banner  = this.state.showBanner ? this.getBanner('"Data validations are in progress, please do not use this data for analysis"') : null;
+    const banner  = this.state.showBanner ? this.getBanner('"Due to issues with the upstream data loads QFM/UQFM KPIs have partial data for the latest week. IDS is working on fixing the issue."') : null;
     
     return (
       <div style={isMobileOrTablet ? { height: `${window.height}px` } : (dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
         {this.state.authenticated && (
           <span>
-            {/*banner*/}
+            {this.props.bannerMessage.length>0? this.getBanner(this.props.bannerMessage): null}
             {kdialog}
 
             {/* Navigation*/}
@@ -1549,7 +1550,8 @@ function mapStateToProps(state) {
     filtersAreDefault: state.filters.filtersAreDefault,
     preferencesAreAdded: state.filters.preferencesAreAdded,
     preferencesAreLoaded: state.preferences.preferencesAreLoaded,
-    isDefaultFilters: state.filters.isDefaultFilters
+    isDefaultFilters: state.filters.isDefaultFilters,
+    bannerMessage: state.bannerMessage
   };
 }
 export default connect(

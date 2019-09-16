@@ -4134,6 +4134,31 @@ export function postUserSettings(params) {
     });
 }
 
+/**
+ * @name requestBannermessage
+ * @description Utility function that makes a call request to  Infoburst  GTMPOC Database Query to query if any banner message id enabled
+ * @param {}  - no params
+ * @returns Returns an Promise Array with the preferences for this user
+ */
+export function requestBannerMessage(){
+    let responseArr = []
+    let body={
+        "conn": `${Infoburst.appXDCID}`,
+        "qry": 'fetchmessage',
+        "columnNames": 'true',
+        "params":{}
+    }
+    let bannermessage =axios.post(Infoburst.dbQuery, body, {
+        headers: headers,
+        responseType: 'text'
+    });
+    responseArr.push(bannermessage)
+    let promiseArr = Promise.all(responseArr)
+    return promiseArr
+
+
+}
+
 /** Utility Functions */
 
 /**

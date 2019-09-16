@@ -16,6 +16,7 @@ export const UPDATE_OKTA_USER = 'update_okta_user';
 // User SEttings
 export const UPDATE_USER_SETTINGS = 'update_user_settings';
 export const GET_USER_SETTINGS = 'get_user_settings';
+
 // Modal Dialog Box
 export const UPDATE_DIALOG_VISIBILITY = "update_dialog_visibility";
 export const UPDATE_FEEDBACKFORM_DIALOG_VISIBILITY = 'update_feedbackform_dialog_visibility';
@@ -91,7 +92,7 @@ export const UPDATE_COMMENT_VISIBILITITY = 'update_comment_visibility';
 export const UPDATE_PRIMARY_VISIBILITITY = 'update_primary_visibility';
 export const UPDATE_SECONDARY_VISIBILITITY = 'update_primary_visibility';
 export const UPDATE_MOBILE_FILTER_PAGE_VISIBILITY = 'update_mobile_filter_page_visibility';
-
+export const SET_BANNER_MESSAGE = 'set_banner_message'
 // Comments and responses
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const FETCH_COMMENTS_COUNT = 'FETCH_COMMENTS_COUNT';
