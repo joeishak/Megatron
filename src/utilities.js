@@ -1512,7 +1512,11 @@ export function requestBuyTrafficSecondaryData(allFilters, _parameters) {
 
 export function requestCorrelationData(allFilters, _parameters, oktaToken, sliderValues){
     responseArray = [];
-    
+    let headers= {
+        headers: {
+            Authorization: `Bearer ${oktaToken}`
+        }
+      }
     generateFilterParams(17, correlationParams, allFilters, _parameters);
     let params1 = correlationParams.reduce((prev, param) => {
         let p = '';
@@ -1521,7 +1525,7 @@ export function requestCorrelationData(allFilters, _parameters, oktaToken, slide
     }, '');
 
     // const correlationChart = axios.get(Adobe.correlation.chartURL + params1 + '&accessToken='+ encodeURI(oktaToken))
-    const correlationChart = axios.post(Adobe.correlation.chartURL + params1 , { accessToken: oktaToken})
+    const correlationChart = axios.post(Adobe.correlation.chartURL + params1 , { accessToken: oktaToken}, headers)
     
     // console.log('Correlation Chart')
     // console.log(correlationChart)
@@ -1529,7 +1533,7 @@ export function requestCorrelationData(allFilters, _parameters, oktaToken, slide
     // console.log("Response Headers")
     // console.log(response.headers)
 
-    const correlationAnalysis = axios.post(Adobe.correlation.analysisURL + `best_lag=14&chosen_period=180&filter_dimensions=geo,market_area&geo=${correlationParams[0].value}&market_area=Global&interest=${Math.floor((new Date()).getTime()/1000)- (24*7*60*60)}`, {accessToken: oktaToken})
+    const correlationAnalysis = axios.post(Adobe.correlation.analysisURL + `best_lag=14&chosen_period=180&filter_dimensions=geo,market_area&geo=${correlationParams[0].value}&market_area=Global&interest=${Math.floor((new Date()).getTime()/1000)- (24*7*60*60)}`, {accessToken: oktaToken}, headers)
     responseArray.push(correlationChart, correlationAnalysis)
     if (sliderValues){
     const correlationPrediction = axios.post(
@@ -1538,7 +1542,7 @@ export function requestCorrelationData(allFilters, _parameters, oktaToken, slide
                                     &features=paid_visits,organic_visits, new_qfms, new_uqfms,total_downloads_free
                                     &percentages=${sliderValues.paid_visits},${sliderValues.organic_visits},${sliderValues.new_qfms},${sliderValues.new_uqfms},${sliderValues.total_free_downloads}`,
                                                                                    
-                            {accessToken: oktaToken}
+                            {accessToken: oktaToken}, headers
                             )
     responseArray.push(correlationPrediction)
     }

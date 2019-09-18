@@ -1418,6 +1418,7 @@ export function getBuyTrafficSecondaryData(filters) {
 }
 
 export function getCorrelationData(filters,  oktaToken, sliderValues){
+    
     let allFilters = {
         corgeo: Object.keys(filters.corgeo.availableFilters).map(e => filters.corgeo.availableFilters[e])
 

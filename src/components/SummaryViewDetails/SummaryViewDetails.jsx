@@ -181,13 +181,14 @@ class SummaryViewDetails extends Component {
   }
 
   updateSingleValueCorrelation = (e) => {
-    this.props.updateCorrelationDataIsLoading(false)
-    this.props.getCorrelationData(this.props.filters, this.props.token, 
-          { new_qfms :  0,
-          new_uqfms:  0,
-          organic_visits:  0,
-          paid_visits: 0,
-          total_free_downloads: 0})
+    // console.log('Value Changed for Filter Corgeo')
+    // this.props.updateCorrelationDataIsLoading(false)
+    // this.props.getCorrelationData(this.props.filters, this.props.token, 
+    //       { new_qfms :  0,
+    //       new_uqfms:  0,
+    //       organic_visits:  0,
+    //       paid_visits: 0,
+    //       total_free_downloads: 0})
     this.setState({ singleValueSubmitted: true });
     let copy = this.state.selectedFilters;
     if (this.state.selectedFilters.length === 0) {
@@ -331,7 +332,7 @@ class SummaryViewDetails extends Component {
           break;
       }
     });
-
+    
     this.props.subFiltersSubmit(newFilters);
 
   }

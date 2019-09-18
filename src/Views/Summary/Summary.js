@@ -186,6 +186,7 @@ class Summary extends Component {
         // Call Action to request secondary KPI data for Cancellations and Renewal
         this.props.getFinanceSecondaryData(this.props.filters);
         //Call Action to request Correlation Data
+        // console.log('I am here 1')
         this.props.getCorrelationData(this.props.filters, this.state.accessToken)
         // Set state for isLoading to true, which shows the spinner, 
         // and initialDataLoadComplete to true, since the request for data has been made
@@ -251,6 +252,7 @@ class Summary extends Component {
           }
           else if (activeSecondaryCard === SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR){
             this.setState({ isLoading: true});
+            // console.log('I am here 2')
             this.props.getCorrelationData(this.props.filters, this.state.accessToken);
           }
 
@@ -289,6 +291,7 @@ class Summary extends Component {
           if (activeSecondaryCard === SUMMARY_KPIS.FINANCE_NET_NEW_ARR ||
             activeSecondaryCard === SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR) {
             // If filters are default
+            // console.log('I am here 3')
             this.props.getCorrelationData(this.props.filters, this.state.accessToken)
             if (isDefaultFilters) {
               // Call Action to get Finance XDC1 Data and Finance Secondary Data from XDC 2 from cache-memory
@@ -460,6 +463,7 @@ class Summary extends Component {
         // Set trackEvent in Matomo for secondaryKPI to this kpi header
         ReactPiwik.push(['trackEvent', 3, 'secondaryKPI', this.props.secondaryData[activeSecondaryCard].header, 'page']);
         if(this.props.correlationDataPrediction !==0 ){
+          // console.log('I am here 4')
           this.props.updateCorrelationDataIsLoading(false)
           this.props.getCorrelationData(this.props.filters, this.props.token, 
           { new_qfms :  0,
@@ -475,6 +479,7 @@ class Summary extends Component {
         // If the user changed cards to Finance Net New or Gros New ARR
         if (activeSecondaryCard === SUMMARY_KPIS.FINANCE_NET_NEW_ARR ||
           activeSecondaryCard === SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR) {
+            // console.log('I am here 5')
             this.props.getCorrelationData(this.props.filters, this.state.accessToken)
           // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingFinanceData === false) {
@@ -1255,6 +1260,7 @@ class Summary extends Component {
         
         this.props.updateBuyGrossIsLoading(false);
         // this.props.updateBuyConversionIsLoading(false);
+        this.props.updateCorrelationDataIsLoading(false)
         break;
       case SUMMARY_KPIS.BUY_GROSS_NEWUNITS:
         this.props.updateBuyGrossIsLoading(false);
