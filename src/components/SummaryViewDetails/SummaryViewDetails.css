@@ -900,3 +900,11 @@ iPad Pro 10.5 inch , 1112px
         
              
     }
+
+    .authenticateRequestMessage{
+        margin-left: 150px;
+        margin-top: 100px;
+        font-size: 2em;
+        color: yellow;
+
+    }

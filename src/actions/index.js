@@ -75,7 +75,8 @@ import {
     GET_UPDATED_AS_OF_DATE_AND_QUARTER,
     GET_CORRELATION_DATA,
     UPDATE_CORRELATION_DATA_IS_LOADING,
-    SHOW_CORRELATION_PANEL
+    SHOW_CORRELATION_PANEL,
+    SET_BANNER_MESSAGE
 
 } from 'actions/types';
 import * as utils from '../utilities';
@@ -191,6 +192,17 @@ export function setAppSettings(settings) {
         type: SET_APP_SETTINGS,
         payload: { settings, deviceType }
     }
+}
+
+export function setBannerMessage(){
+
+    let promiseArr = utils.requestBannerMessage()
+
+    return {
+        type: SET_BANNER_MESSAGE,
+        payload: promiseArr
+    }
+
 }
 
 /**

@@ -1129,20 +1129,26 @@ class SummaryViewDetails extends Component {
             
 
           </div>
+        {this.props.correlationDataChart.length>5?
         <div className="chartContainer col-md-12">
-            <KendoPanZoomChart color="white" 
-                              chartHeight={350} 
-                              deviceType="laptop" 
-                              nullifyQrf={this.props.activeSecondary==SUMMARY_KPIS.BUY_CONVERSION &&
-                              (
-                                (!_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) && 
-                                      _.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP'])) 
-                                ||
-                                (_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) &&
-                                      !_.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP']))) 
-                              }
-                      />
-          </div>
+        <KendoPanZoomChart color="white" 
+                          chartHeight={350} 
+                          deviceType="laptop" 
+                          nullifyQrf={this.props.activeSecondary==SUMMARY_KPIS.BUY_CONVERSION &&
+                          (
+                            (!_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) && 
+                                  _.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP'])) 
+                            ||
+                            (_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) &&
+                                  !_.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP']))) 
+                          }
+                  />
+      </div>: 
+      <div className= "authenticateRequestMessage">
+           Please authenticate for financial APIs <a href="https://financial-kpi.corp.adobe.com/login/">here </a>
+           and refresh the dashboard.
+      </div>}
+        
       
       <div className="correlationPanelBar">
         <PanelBar onSelect={(e)=>this.resetSliders(e)}>

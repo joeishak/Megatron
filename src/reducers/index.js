@@ -17,7 +17,8 @@ import commentsReducer from 'reducers/comments.js';
 import filtersReducer from 'reducers/filters.js';
 import feedbackDialogReducer from 'reducers/feedback.js';
 import currentRefreshDateReducer from 'reducers/currentRefreshDates.js';
-import correlationDataReducer from 'reducers/correlationData.js'
+import correlationDataReducer from 'reducers/correlationData.js';
+import bannerMessageReducer from 'reducers/bannerMessage'
 
 export default combineReducers({
     auth: authReducer,
@@ -37,5 +38,6 @@ export default combineReducers({
     commentsPackage: commentsReducer,
     isFeedBackDialogOpen: feedbackDialogReducer,
     currentRefreshDates: currentRefreshDateReducer,
-    correlationData: correlationDataReducer
+    correlationData: correlationDataReducer,
+    bannerMessage: bannerMessageReducer,
 });

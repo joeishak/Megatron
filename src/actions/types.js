@@ -95,7 +95,7 @@ export const UPDATE_COMMENT_VISIBILITITY = 'update_comment_visibility';
 export const UPDATE_PRIMARY_VISIBILITITY = 'update_primary_visibility';
 export const UPDATE_SECONDARY_VISIBILITITY = 'update_primary_visibility';
 export const UPDATE_MOBILE_FILTER_PAGE_VISIBILITY = 'update_mobile_filter_page_visibility';
-
+export const SET_BANNER_MESSAGE = 'set_banner_message'
 // Comments and responses
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const FETCH_COMMENTS_COUNT = 'FETCH_COMMENTS_COUNT';

@@ -156,6 +156,7 @@ class Summary extends Component {
       if (this.props.user.sub !== null && filtersAreLoaded !== prevProps.filtersAreLoaded) {
         // Call the action to update the user and preferences in InfoBurst/ GTMPOC Database
         this.props.updateOKTAUser(user, filters.quarter.valueFilters[0].value, filters.segment.valueFilters[0].value, JSON.stringify(filters.nonDMSegment.valueFilters));
+        this.props.setBannerMessage()
       }
 
       // Declare a variable to denote whether user has changes cards
@@ -1461,7 +1462,7 @@ class Summary extends Component {
       <div style={isMobileOrTablet ? { height: `${window.height}px` } : (dialogIsOpen ? { height: `100%`, marginTop: '-20px' } : { height: '100%' })}>
         {this.state.authenticated && (
           <span>
-            {/*banner*/}
+            {this.props.bannerMessage.length>0? this.getBanner(this.props.bannerMessage): null}
             {kdialog}
 
             {/* Navigation*/}
@@ -1586,7 +1587,8 @@ function mapStateToProps(state) {
     preferencesAreLoaded: state.preferences.preferencesAreLoaded,
     isDefaultFilters: state.filters.isDefaultFilters,
     correlationIsLoaded: state.correlationData.correlationDataIsLoaded,
-    correlationDataPrediction: state.correlationData.prediction
+    correlationDataPrediction: state.correlationData.prediction,
+    bannerMessage: state.bannerMessage
   };
 }
 export default connect(
