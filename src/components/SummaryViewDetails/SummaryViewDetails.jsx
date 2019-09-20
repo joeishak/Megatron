@@ -828,7 +828,7 @@ class SummaryViewDetails extends Component {
         
         <div className="miniTutorial">
         <p>Adjust the percentage values using Slider(or Type above the Text line) for QFM, UQFM , Organic Visits, Paid Visits, 
-              Free Downloads and Click the <span className="showImportance">Magic Button</span> to predict the Gross New ARR using <span className="showImportance">Machine Learnig Model</span></p>
+              Free Downloads and Click the <span className="showImportance">Magic Button</span> to predict the Gross New ARR using <span className="showImportance">Machine Learning Model</span></p>
         </div>
       { this.props.isCorrelationDataLoaded?
       <div className="predictedValueContainer">
