@@ -37544,9 +37544,9 @@ export const correlationData = {
     ],
     analysis: [
         {
-            feature_name: "total-downloads-free (1 day prior)",
-            delta_x: 82272.5,
-            marginal: 34.39
+            feature_name: "No Data Available",
+            delta_x: 0,
+            marginal: 0
         }
         ],
     prediction: 0,

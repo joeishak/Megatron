@@ -1514,9 +1514,11 @@ export function requestCorrelationData(allFilters, _parameters, oktaToken, slide
     responseArray = [];
     let headers= {
         headers: {
-            Authorization: `Bearer ${oktaToken}`
+            Authorization: `Bearer ${oktaToken}`,
+            'Authorization-Type': 'okta'
         }
       }
+    // headers.headers.Authorization='Bearer eyJraWQiOiI0ekpuQloydWIzWWF2TWRHaWswZnNqRmxaZDlJR3dxSDhYcjdfSnlDdjlBIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULktMSUU5cmd3MFhCUzJYcGFNVGdlMXB3ZU14alQtSkpMbm5ENDdWTUU2dkUiLCJpc3MiOiJodHRwczovL2Fkb2JlLm9rdGEuY29tL29hdXRoMi9hdXMxZ2FuMzF3bm1DUHlCNjBoOCIsImF1ZCI6ImFwaTovL2RlZmF1bHQiLCJpYXQiOjE1Njg5NDc3OTAsImV4cCI6MTU2ODk1MTM5MCwiY2lkIjoiMG9hMWdwdDlrZDZYMkVOdzYwaDgiLCJ1aWQiOiIwMHUxNTg4dnVkMmE1ellZYTBoOCIsInNjcCI6WyJwcm9maWxlIiwiZW1haWwiLCJvcGVuaWQiXSwic3ViIjoibmV4MDMzNDNAYWRvYmUuY29tIn0.huZZBnerwfSB_wb5nG50jR7ZKrovfFDcJ6_uA_r1nt6fyrQ5cIBP3FMtO9HHtvBzzY08-sAJzlh8XrrHGrARThWoehF1kTqGRQ3_MMLTPIS1fNcvV99m6QvtESIubKG48joXkNzg9Nus4DNZRudf0POAJp1Ula_P-v8i8I8Q7b1Yn4LJ6-_UrWDhatefF7AT_d-yHhGXumAvk6MG0jK6fBaWbLOB68LjMiwGxr5XpemYQOarXitvaSxOWogVfiEoQNWA0wNz43FlaT2X2EFemXOmTqbFe30MO_goWHi3XVj3kQQ3HUsYBwV1CxjhAV4Xp5bD5djnXlaW7VxV66mgJA'
     generateFilterParams(17, correlationParams, allFilters, _parameters);
     let params1 = correlationParams.reduce((prev, param) => {
         let p = '';

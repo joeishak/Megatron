@@ -22,8 +22,8 @@ export default function(
     switch(action.type){
         case GET_CORRELATION_DATA:
             // console.log('Correlation Data')
-            // console.log(action.payload[0])
-            
+            console.log('Correlation',action.payload)
+            if (action.payload[0].data.data && action.payload[1].data.data){
             let dataTillLastFriday = _.filter(action.payload[0].data.data, item =>{
                 let currentDate = new Date()
                 let lastFriday = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()-currentDate.getDay()-2)
@@ -31,18 +31,13 @@ export default function(
                 return ((new Date(item.time_interval))<=lastFriday)
               })
 
-            // newState.chart=[...action.payload[0].data.data]
             newState.chart = [...dataTillLastFriday]
-             
             newState.analysis=[...action.payload[1].data.data]
-            if (action.payload.length >2){
-            newState.prediction= action.payload[2].data.percentage_change_in_dependent
-            // let grossNewArrLastWeek = _.sumBy(dataTillLastFriday.slice(-7), day=>{ return day.gross_new_arr})/1000000
-            // let predictedGrossNewArr = parseFloat(newState.prediction*.01*grossNewArrLastWeek + grossNewArrLastWeek).toFixed(2)
-            // console.log('In Reducer ',grossNewArrLastWeek, predictedGrossNewArr, newState.prediction)
-
-            // newState.predictionAbsolute= predictedGrossNewArr
             }
+            if (action.payload.length >2){
+                newState.prediction= action.payload[2].data.percentage_change_in_dependent
+            }
+           
             return { ...newState, correlationDataIsLoaded: true }
 
         case UPDATE_CORRELATION_DATA_IS_LOADING:

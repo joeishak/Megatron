@@ -840,14 +840,14 @@ iPad Pro 10.5 inch , 1112px
         font-size: .5em;
         /* display: inline-block; */
         text-align:center;
-        margin-left: 5%;
-        margin-right: 15%;
+        margin-left: 0%;
+        margin-right: 5%;
         color: red;
         /* background-color: rgba(230, 225, 225, 0.2); */
         border-radius: 3px;
         background-image: url('../../assets/images/downarrow.svg');
         background-repeat: no-repeat;
-        background-position: 103% 100%;
+        background-position: 105% 100%;
         background-attachment: scroll;
         animation: showRedArrow 2s;
         
@@ -855,8 +855,8 @@ iPad Pro 10.5 inch , 1112px
     }
 
     @keyframes showRedArrow{
-        from { background-image: none; color: #202020; background-position: 103% -5000%}
-        to { background-image: url('../../assets/images/downarrow.svg'); color: red ; background-position: 103% 100%}
+        from { background-image: none; color: #202020; background-position: 105% -5000%}
+        to { background-image: url('../../assets/images/downarrow.svg'); color: red ; background-position: 105% 100%}
     }
 
 
@@ -865,22 +865,24 @@ iPad Pro 10.5 inch , 1112px
         font-size: .5em;
         /* display: inline-block; */
         text-align:center;
-        margin-left: 5%;
-        margin-right: 15%;
+        /* margin-left: 5%;
+        margin-right: 15%; */
+        margin-left: 0%;
+        margin-right: 5%;
         color: rgb(63, 187, 63);
         /* background-color: rgba(230, 225, 225, 0.2); */
         border-radius: 3px;
         background-image: url('../../assets/images/uparrow.svg');
         background-repeat: no-repeat;
         background-attachment: scroll;
-        background-position: 103% 100%;
+        background-position: 105% 100%;
         animation: showGreenArrow 2s;
         
              
     }
     @keyframes showGreenArrow{
-        from { background-image: none; color: #202020; background-position: 103% 5000%;}
-        to { background-image: url('../../assets/images/uparrow.svg'); color: rgb(63, 187, 63); background-position: 103% 100%;}
+        from { background-image: none; color: #202020; background-position: 105% 5000%;}
+        to { background-image: url('../../assets/images/uparrow.svg'); color: rgb(63, 187, 63); background-position: 105% 100%;}
     }
 
 
@@ -906,5 +908,69 @@ iPad Pro 10.5 inch , 1112px
         margin-top: 100px;
         font-size: 2em;
         color: yellow;
+        
 
+    }
+
+    .chartInformationContainer{
+        position:relative;
+        
+        
+    }
+
+    .chartInformationButton{
+        margin-left: 62%;
+        margin-top:20px;
+        
+        
+        
+    }
+    .chartInformation{
+        /* background: #ffeb3a; */
+        /* background: rgba(12, 12, 12, 0.63); */
+        background: rgba(12, 12, 12, 0.9);
+        color: white;
+        position: absolute;
+        left: calc(100% - 335px);
+        top: 40px;
+        z-index: 400;
+        height: 250px;
+        width: 300px;
+        border: 2px solid white;
+        border-color: white;
+        text-align: center;
+        border-radius: 40px;
+        animation: chartInformationAnimation 2s 
+        
+    }
+    .instructionsHeader{
+        font-weight: bold;
+        font-size: 1.5em;
+        border-bottom: 2px solid rgb(202, 199, 199);
+        padding-bottom: 5px;
+        background-color: rgba(33,149,211,1);
+        color: rgb(233, 230, 230);
+        border-top-right-radius: 40px;
+        border-top-left-radius: 40px;
+    }
+    .chartInstructions{
+        text-align: left;
+        padding-left: 5px;
+        margin-top: -15px;
+        color: rgb(209, 209, 209);
+    }
+    .chartInstructions span{
+        font-weight: normal;
+        color: yellow;
+        animation: chartInstructionsAnimation 2s;
+    }
+
+    @keyframes chartInformationAnimation{
+        from { background-color: rgba(12, 12, 12, 0.5); color: rgb(209, 209, 209);}
+        to {  background-color: rgba(12, 12, 12, 0.9);  color: rgb(209, 209, 209);;}
+    }
+
+    @keyframes chartInstructionsAnimation{
+        from { color:rgb(209, 209, 209);}
+        to {  color: yellow;}
     }

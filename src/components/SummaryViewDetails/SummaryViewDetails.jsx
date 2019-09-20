@@ -6,6 +6,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import * as utils from "../../utilities.js";
 import classNames from "classnames";
 import rtbIcon from "../../assets/images/rtbIcon.png";
+import chartInfoIcon from "../../assets/images/infoicon.svg"
+import deleteIcon from "../../assets/images/delete-button.svg"
 
 import "@progress/kendo-theme-default/dist/all.css";
 import MultiValueSelect from '../MultiValueSelect/MultiValueSelect';
@@ -31,6 +33,7 @@ class SummaryViewDetails extends Component {
       activeMetric: "arr",
       activeTimeMetric: "qtd",
       qtdIsPercent: true,
+      showChartInformationPanel: false,
       qfmSliderValue: null,
       uqfmSliderValue: null,
       organicVisitsSliderValue: null,
@@ -1062,6 +1065,9 @@ class SummaryViewDetails extends Component {
       
     }
     }
+  toggleshowChartInformationPanel =()=>{
+    this.setState({showChartInformationPanel: !this.state.showChartInformationPanel})
+  }
     
 
   render() {
@@ -1123,8 +1129,23 @@ class SummaryViewDetails extends Component {
                 onMenuClose={e => { this.closeSingleValue(e) }}
                 value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CORGEO })}
               />
-
               
+                        
+            </div>
+            <div className="chartInformationContainer">
+              {this.state.showChartInformationPanel?
+                              <img className="chartInformationButton" src={deleteIcon}  onClick={()=>this.toggleshowChartInformationPanel()}/>
+                             :<img className="chartInformationButton" src={chartInfoIcon}  onClick={()=>this.toggleshowChartInformationPanel()}/>}
+              {this.state.showChartInformationPanel?
+              <div className="chartInformation">
+                 <p className="instructionsHeader">Chart Shortcut Keys </p><br/>
+                 <div className='chartInstructions'>
+                    <span>Hold Shift+Select</span> Zoom selected area<br/>
+                    <span>Scroll wheel</span> Zoom in or zoom out complete chart<br/>
+                    <span>Hold Click+Drag </span>  Drag chart left/right<br/>
+                    <span>Click Legend</span> Hide/show KPIs <br/>
+                    <span>Click Chart Area</span> Reset Chart <br/>
+                  </div></div>: null}
             </div>
             
 
@@ -1145,8 +1166,8 @@ class SummaryViewDetails extends Component {
                   />
       </div>: 
       <div className= "authenticateRequestMessage">
-           Please authenticate for financial APIs <a href="https://financial-kpi.corp.adobe.com/login/">here </a>
-           and refresh the dashboard.
+           APIs are not reachable.Please authenticate for financial APIs <a href="https://financial-kpi.corp.adobe.com/login/">here </a>
+           and refresh the dashboard. If the issue persists please reachout to RTB 2.0 team.
       </div>}
         
       
