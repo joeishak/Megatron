@@ -466,7 +466,7 @@ class Summary extends Component {
         if(this.props.correlationDataPrediction !==0 ){
           // console.log('I am here 4')
           this.props.updateCorrelationDataIsLoading(false)
-          this.props.getCorrelationData(this.props.filters, this.props.token, 
+          this.props.getCorrelationData(this.props.filters, this.state.accessToken, 
           { new_qfms :  0,
           new_uqfms:  0,
           organic_visits:  0,
@@ -481,7 +481,9 @@ class Summary extends Component {
         if (activeSecondaryCard === SUMMARY_KPIS.FINANCE_NET_NEW_ARR ||
           activeSecondaryCard === SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR) {
             // console.log('I am here 5')
-            this.props.getCorrelationData(this.props.filters, this.state.accessToken)
+            //if (activeSecondaryCard=== SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR){
+              this.props.getCorrelationData(this.props.filters, this.state.accessToken)
+            //}
           // Check if the state variable requestRemainingData  === false
           if (this.state.requestingRemainingFinanceData === false) {
             // if false, app may not have requested this data 

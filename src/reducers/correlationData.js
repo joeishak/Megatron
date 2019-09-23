@@ -22,7 +22,7 @@ export default function(
     switch(action.type){
         case GET_CORRELATION_DATA:
             // console.log('Correlation Data')
-            console.log('Correlation',action.payload)
+            // console.log('Correlation',action.payload)
             if (action.payload[0].data.data && action.payload[1].data.data){
             let dataTillLastFriday = _.filter(action.payload[0].data.data, item =>{
                 let currentDate = new Date()

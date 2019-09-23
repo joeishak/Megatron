@@ -1518,7 +1518,7 @@ export function requestCorrelationData(allFilters, _parameters, oktaToken, slide
             'Authorization-Type': 'okta'
         }
       }
-    // headers.headers.Authorization='Bearer eyJraWQiOiI0ekpuQloydWIzWWF2TWRHaWswZnNqRmxaZDlJR3dxSDhYcjdfSnlDdjlBIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULktMSUU5cmd3MFhCUzJYcGFNVGdlMXB3ZU14alQtSkpMbm5ENDdWTUU2dkUiLCJpc3MiOiJodHRwczovL2Fkb2JlLm9rdGEuY29tL29hdXRoMi9hdXMxZ2FuMzF3bm1DUHlCNjBoOCIsImF1ZCI6ImFwaTovL2RlZmF1bHQiLCJpYXQiOjE1Njg5NDc3OTAsImV4cCI6MTU2ODk1MTM5MCwiY2lkIjoiMG9hMWdwdDlrZDZYMkVOdzYwaDgiLCJ1aWQiOiIwMHUxNTg4dnVkMmE1ellZYTBoOCIsInNjcCI6WyJwcm9maWxlIiwiZW1haWwiLCJvcGVuaWQiXSwic3ViIjoibmV4MDMzNDNAYWRvYmUuY29tIn0.huZZBnerwfSB_wb5nG50jR7ZKrovfFDcJ6_uA_r1nt6fyrQ5cIBP3FMtO9HHtvBzzY08-sAJzlh8XrrHGrARThWoehF1kTqGRQ3_MMLTPIS1fNcvV99m6QvtESIubKG48joXkNzg9Nus4DNZRudf0POAJp1Ula_P-v8i8I8Q7b1Yn4LJ6-_UrWDhatefF7AT_d-yHhGXumAvk6MG0jK6fBaWbLOB68LjMiwGxr5XpemYQOarXitvaSxOWogVfiEoQNWA0wNz43FlaT2X2EFemXOmTqbFe30MO_goWHi3XVj3kQQ3HUsYBwV1CxjhAV4Xp5bD5djnXlaW7VxV66mgJA'
+    // headers.headers.Authorization='Bearer eyJraWQiOiI0ekpuQloydWIzWWF2TWRHaWswZnNqRmxaZDlJR3dxSDhYcjdfSnlDdjlBIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULmZJQ2UxNk9QV093MllWdDloa0dfWHNwaENpNEZ2eGFUeVJFS0tNNWhOUzAiLCJpc3MiOiJodHRwczovL2Fkb2JlLm9rdGEuY29tL29hdXRoMi9hdXMxZ2FuMzF3bm1DUHlCNjBoOCIsImF1ZCI6ImFwaTovL2RlZmF1bHQiLCJpYXQiOjE1NjkyMDQ2NjQsImV4cCI6MTU2OTIwODI2NCwiY2lkIjoiMG9hMWdwdDlrZDZYMkVOdzYwaDgiLCJ1aWQiOiIwMHUxNTg4dnVkMmE1ellZYTBoOCIsInNjcCI6WyJvcGVuaWQiLCJwcm9maWxlIiwiZW1haWwiXSwic3ViIjoibmV4MDMzNDNAYWRvYmUuY29tIn0.nyy4YNVYfqXLuvlPg3BPvXwNoaDPbq6rdKmYMnWWl2qJ8tX9qpqmV2BipFlpgMZF3QRyIsmK9mYeeE-6KccYXAZWW8E2YmG1aW0DaUB6WIdVBV95ZW-KNCvb4qeIosKmS5Or1UK4GGxAnp1rmWAPvjtWPzwy74kOnbh3OTBKS6md3SH9LtmbAiydHE3h_JeMR_UUzsmI7D78p4e0Jov9Ygvohfiff-qipCH6Ci_lFTy_MFUkq6FjYX-ta9I8B8rMcjw3aeCCG5V8q9EK3RnbSCcTSpl5ajNBi11RjzqoaHr779F9o2cCXkWnMerWklQM7syapjq3d22m7jm2kL6yDQ'
     generateFilterParams(17, correlationParams, allFilters, _parameters);
     let params1 = correlationParams.reduce((prev, param) => {
         let p = '';
@@ -1534,13 +1534,14 @@ export function requestCorrelationData(allFilters, _parameters, oktaToken, slide
     // correlationChart.then(response=>{
     // console.log("Response Headers")
     // console.log(response.headers)
-
-    const correlationAnalysis = axios.post(Adobe.correlation.analysisURL + `best_lag=14&chosen_period=180&filter_dimensions=geo,market_area&geo=${correlationParams[0].value}&market_area=Global&interest=${Math.floor((new Date()).getTime()/1000)- (24*7*60*60)}`, {accessToken: oktaToken}, headers)
+    // Date Multiplier decides the week for which the data is pulled
+    let dateMultiplier = (new Date()).getDay()===0? 8 : 7
+    const correlationAnalysis = axios.post(Adobe.correlation.analysisURL + `best_lag=14&chosen_period=180&filter_dimensions=geo,market_area&geo=${correlationParams[0].value}&market_area=Global&interest=${Math.floor((new Date()).getTime()/1000)- (24*dateMultiplier*60*60)}`, {accessToken: oktaToken}, headers)
     responseArray.push(correlationChart, correlationAnalysis)
     if (sliderValues){
     const correlationPrediction = axios.post(
                             Adobe.correlation.predictionURL +
-                            `&geo=${correlationParams[0].value}&market_area=Global&interest=${Math.floor((new Date()).getTime()/1000)- (24*7*60*60)}
+                            `&geo=${correlationParams[0].value}&market_area=Global&interest=${Math.floor((new Date()).getTime()/1000)- (24*dateMultiplier*60*60)}
                                     &features=paid_visits,organic_visits, new_qfms, new_uqfms,total_downloads_free
                                     &percentages=${sliderValues.paid_visits},${sliderValues.organic_visits},${sliderValues.new_qfms},${sliderValues.new_uqfms},${sliderValues.total_free_downloads}`,
                                                                                    

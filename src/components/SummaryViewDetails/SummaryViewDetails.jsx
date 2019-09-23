@@ -793,7 +793,7 @@ class SummaryViewDetails extends Component {
   }
 
   predictGrossNewARR = ()=>{
-    console.log('Magic Clicked')
+    // console.log('Magic Clicked')
     this.props.updateCorrelationDataIsLoading(false)
     this.props.getCorrelationData(this.props.filters, this.props.token, 
           { new_qfms : this.state.qfmSliderValue? this.state.qfmSliderValue: 0,
@@ -1166,8 +1166,7 @@ class SummaryViewDetails extends Component {
                   />
       </div>: 
       <div className= "authenticateRequestMessage">
-           APIs are not reachable.Please authenticate for financial APIs <a href="https://financial-kpi.corp.adobe.com/login/">here </a>
-           and refresh the dashboard. If the issue persists please reachout to RTB 2.0 team.
+           APIs are not reachable or Data is not available.Please reachout to RTB 2.0 team for immediate attention.
       </div>}
         
       
