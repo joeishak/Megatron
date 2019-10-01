@@ -4,10 +4,13 @@
     height: 10px !important;
     border-radius: 50% !important;
 }
-.k-chart-tooltip-wrapper{
-    margin-left: 30px;
-    margin-top: 100px;
+
+.k-chart-tooltip-wrapper {
+    margin-left:20px;
+    margin-top: 10px;
+   
 }
+
 
 .actualMarker {
     display: inline-block;
@@ -21,6 +24,7 @@
 .tooltipActual {
     background-color: white;
     border: 1px solid black;
+    
 }
 
 .ttBGRed {
@@ -78,7 +82,9 @@
 .tooltipContainer {
     /* background-color: white; */
     margin: -10px;
-}
+    /* margin-left: 30px; */
+    /* background-color: black; */
+   }
 
 .innerContainer {
     margin: 10px;

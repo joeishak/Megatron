@@ -921,6 +921,8 @@ iPad Pro 10.5 inch , 1112px
     .chartInformationButton{
         margin-left: 62%;
         margin-top:20px;
+        margin-right: 20px;
+        float:right;
         
         
         
@@ -973,6 +975,10 @@ iPad Pro 10.5 inch , 1112px
     @keyframes chartInstructionsAnimation{
         from { color:rgb(209, 209, 209);}
         to {  color: yellow;}
+    }
+
+    .correlationGeo .picky__input{
+        z-index: 400;
     }
 
   

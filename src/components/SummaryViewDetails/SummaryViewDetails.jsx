@@ -845,8 +845,8 @@ class SummaryViewDetails extends Component {
       }
 
       <div className="predictButton"
-           onClick = {()=>{this.predictGrossNewARR()}}>
-        <button> Magic </button>
+           >
+        <button onClick = {()=>{this.predictGrossNewARR()}}> Magic </button>
       </div>
 
       <div className="sliderListContainer">
