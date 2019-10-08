@@ -83,6 +83,11 @@ let trafficParams = [
         prompt: 'CustomerTypeFilters',
         value: ''
     },
+    {
+        prompt: 'cloudtypeFilters',
+        value: ''
+    },
+    
 ];
 
 let buyConversionParams = [
@@ -118,6 +123,10 @@ let buyConversionParams = [
         prompt: 'QFMTypeFilters',
         value: ''
     },
+    {
+        prompt: 'cloudtypeFilters',
+        value: ''
+    },
 ];
 let mktgParams = [
     {
@@ -135,7 +144,11 @@ let mktgParams = [
     {
         prompt: 'channelMUFilters',
         value: ''
-    }
+    },
+    {
+        prompt: 'cloudtypeFilters',
+        value: ''
+    },
 ];
 let buyMktgParams = [
     {
@@ -280,6 +293,10 @@ let financeParams = [
     {
         prompt: 'productFilters',
         value: ''
+    },
+    {
+        prompt: 'cloudtypeFilters',
+        value: ''
     }
 ];
 let buyGrossParams = [
@@ -385,6 +402,10 @@ let renewParamsAdobeCom = [
     },
     {
         prompt: 'subscriptionFilters',
+        value: ''
+    },
+    {
+        prompt: 'cloudtypeFilters',
         value: ''
     }
 
@@ -2672,7 +2693,7 @@ export function filterTrafficSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-    const DiscoverGLTCQTDTotal = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficLTCQTD + params5 + '&json=1', {
+    const DiscoverGLTCQTDTotal = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficLTCQTDTotal + params5 + '&json=1', {
         headers: headers,
         responseType: 'text'
     });
@@ -4319,6 +4340,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             // filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
             filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            filterParams[5].value = getParamValues(_activeParams.cloud, allFilters.cloud);
             break;
         //Traffic
         case 5:
@@ -4330,6 +4352,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[5].value = getParamValues(_activeParams.lastTouchChannel, allFilters.lastTouchChannel);
             // filterParams[6].value = getParamValues(_activeParams.convType, allFilters.convType);
             filterParams[6].value = getParamValues(_activeParams.customerType, allFilters.customerType);
+            filterParams[7].value = getParamValues(_activeParams.cloud, allFilters.cloud);
             break;
         //Marketable Universe - Discover
         case 6:
@@ -4338,6 +4361,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.channelMU, allFilters.channelMU);
+            filterParams[4].value = getParamValues(_activeParams.cloud, allFilters.cloud);
             break;
         //PMSS - Discover
         case 7:
@@ -4408,7 +4432,8 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[4].value = getParamValues(_activeParams.visits, allFilters.visits);
             filterParams[5].value = getParamValues(_activeParams.lastTouchChannel, allFilters.lastTouchChannel);
             filterParams[6].value = getParamValues(_activeParams.convType, allFilters.convType);
-            filterParams[7].value = getParamValues(_activeParams.qfmType, allFilters.qfmType)
+            filterParams[7].value = getParamValues(_activeParams.qfmType, allFilters.qfmType);
+            filterParams[8].value = getParamValues(_activeParams.cloud, allFilters.cloud)
             break;
         case 16:
             filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
@@ -4430,6 +4455,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[4].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[5].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             filterParams[6].value = getParamValues(_activeParams.product, allFilters.product);
+            filterParams[7].value = getParamValues(_activeParams.cloud, allFilters.cloud);
 
             break;
     }
@@ -4535,7 +4561,12 @@ export function resetRenewParams() {
         {
             prompt: 'subscriptionFilters',
             value: ''
-        }
+        },
+        {
+            prompt: 'cloudtypeFilters',
+            value: ''
+        },
+
 
     ];
     renewParamsERetail = [

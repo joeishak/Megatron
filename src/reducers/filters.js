@@ -47,7 +47,8 @@ const { GEO,
     NONDMSEGMENT,
     QFMTYPE,
     CUSTOMERTYPE,
-    LTVSEGMENT
+    LTVSEGMENT,
+    CLOUD
 } = DIMENSIONS;
 
 // Reducer Function with a default state set for filters
@@ -113,6 +114,10 @@ export default function (state = {
         valueFilters: []
     },
     customerType: {
+        availableFilters: [],
+        valueFilters: []
+    },
+    cloud: {
         availableFilters: [],
         valueFilters: []
     },
@@ -199,6 +204,8 @@ export default function (state = {
                 copyOfState.geo.valueFilters.length === 0 && copyOfState.market.valueFilters.length === 0 && copyOfState.subscription.valueFilters.length === 0
                 && copyOfState.route.valueFilters.length === 0 && copyOfState.signupCategory.valueFilters.length === 0 && copyOfState.nonDMSegment.valueFilters.length === 0;
             console.log('Filters ARe Default', isDefault, nonDmSegs);
+            console.log(copyOfState.quarter.valueFilters[0].value === state.quarter.valueFilters[0].value 
+                        , copyOfState.nonDMSegment.valueFilters.length === 0)
             return { ...copyOfState, preferencesAreAdded: true, isDefaultFilters: isDefault };
         case GENERATE_FILTER_DATA:
             // Make a copy of state
@@ -250,6 +257,12 @@ export default function (state = {
                     'corgeo': 'Global'
                 },
             ]
+            // console.log('Action payload ', action.payload[9].data)
+            // CloudTypeFilters=[
+            //     { 'cloud_type': 'DMe'},
+            //     { 'cloud_type': 'CC'},
+            //     { 'cloud_type': 'DC'}
+            // ]
 
             // Call processDropDownList on all filters
             let newgeotate = processDropDownListFilterValue(GEO, geoFilter);
@@ -260,7 +273,7 @@ export default function (state = {
             let newsubscriptiontate = processDropDownListFilterValue(SUBSCRIPTION, subscriptionFilter);
             let newquarterState = processDropDownListFilterValue(QUARTER, quarterFilter);
             let newVisitState = processDropDownListFilterValue(VISITS, visitFilters);
-            let newCloud = processDropDownListFilterValue('cloud', CloudTypeFilters);
+            let newCloud = processDropDownListFilterValue(CLOUD, CloudTypeFilters);
             let newConv = processDropDownListFilterValue(CONVERSION, ConvTypeFilters);
             let newDiscBuy = processDropDownListFilterValue('discoverbuy', DiscoverVsBuyFilters);
             let newChannelState = processDropDownListFilterValue(LTC, LastTouchChannelFilters);
@@ -363,9 +376,9 @@ export default function (state = {
                     availableFilters: newWeb,
                     valueFilters: []
                 },
-                cloudType: {
+                cloud: {
                     availableFilters: newCloud,
-                    valueFilters: []
+                    valueFilters: [{ index: 119, category: CLOUD, value: 'DMe' }]
                 },
                 convType: {
                     availableFilters: newConv,

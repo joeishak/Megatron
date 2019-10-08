@@ -44,7 +44,11 @@ class FilterPanel extends Component {
                 }),
                 ...this.props.filters.segment.valueFilters.map(item => {
                     return { ...item, label: item.value }
-                })],
+                }),
+                ...this.props.filters.cloud.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),
+            ],
         };
 
     }
@@ -80,7 +84,10 @@ class FilterPanel extends Component {
                 }),
                 ...this.props.filters.segment.valueFilters.map(item => {
                     return { ...item, label: item.value }
-                })]
+                }),
+                ...this.props.filters.cloud.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),]
         })
     }
     componentDidUpdate(prevProps) {
@@ -118,7 +125,10 @@ class FilterPanel extends Component {
                 }),
                 ...this.props.filters.segment.valueFilters.map(item => {
                     return { ...item, label: item.value }
-                })] }, () => {
+                }),
+                ...this.props.filters.cloud.valueFilters.map(item => {
+                    return { ...item, label: item.value }
+                }),] }, () => {
                 setTimeout(() => {
                     this.setState({ loading: false })
                 }, 10);
@@ -211,7 +221,10 @@ class FilterPanel extends Component {
                     }),
                     ...this.props.filters.segment.valueFilters.map(item => {
                         return { ...item, label: item.value }
-                    })]
+                    }),
+                    ...this.props.filters.cloud.valueFilters.map(item => {
+                        return { ...item, label: item.value }
+                    }),]
             })
             this.time = setTimeout(() => {
                 this.setState({ filterPanelIsOpen: false });
@@ -251,7 +264,8 @@ class FilterPanel extends Component {
             geo: [],
             signupCategory: [],
             nonDMSegment: [],
-            qfmType: []
+            qfmType: [],
+            cloud:[]
         };
         
         Object.keys(newFilters).forEach(item => {

@@ -76,7 +76,8 @@ class CustomDropDownPanel extends Component {
             MOBILEVSDESKTOP,
             CONVERSION,
             VISITS,
-            QFMTYPE
+            QFMTYPE,
+            CLOUD
         } = DIMENSIONS;
 
         switch (this.props.summaryData.primary[this.props.activeCards.primary].index) {
@@ -237,6 +238,7 @@ class CustomDropDownPanel extends Component {
         const { GEO,
             MARKET,
             QUARTER,
+            CLOUD
         } = DIMENSIONS;
 
         var panelDropDownContainer = classNames({
@@ -264,6 +266,16 @@ class CustomDropDownPanel extends Component {
                         />
                     </div>
                     <div className={quarterFilterContainer + ' col-lg-2'} >
+                        <p> Cloud Type</p>
+                        <SingleValueSelect
+                            activeFilters={filters.cloud.valueFilters}
+                            options={filters.cloud.availableFilters}
+                            onValueChange={this.props.updateSingleValue}
+                            onMenuClose={this.closeDropDownValue}
+                            value={_.filter(this.props.selectedFilters, (item => { return item.category === CLOUD }))}
+                        />
+                    </div>
+                    <div className={quarterFilterContainer + ' col-lg-2'} >
                         <p> Geo</p>
                         <MultiValueSelect
                             options={filters.geo.availableFilters}
@@ -282,6 +294,8 @@ class CustomDropDownPanel extends Component {
                             value={_.filter(this.props.selectedFilters, (item => { return item.category === MARKET }))}
                         />
                     </div>
+                    
+
                     <div className="newFilterDiv resetFilters col-3">
                         <span
                             className=" resetFiltersButton"

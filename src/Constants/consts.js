@@ -33,7 +33,8 @@ export const DIMENSIONS = {
     LTVSEGMENT: "ltvSegment", 
     QFMTYPE: "qfmType",
     CONVQFMTYPE: 'convQfmType',
-    CUSTOMERTYPE: "customerType"
+    CUSTOMERTYPE: "customerType",
+    CLOUD: "cloud"
 };
 export const SUMMARY_KPIS_OLD = {
     FINANCE_NET_NEW_ARR: 0,
