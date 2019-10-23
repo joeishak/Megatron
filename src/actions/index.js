@@ -19,6 +19,8 @@ import {
     GET_TRY_SECONDARY_DATA,
     GET_BUY_SECONDARY_DATA,
     GET_BUY_MKTG_SECONDARY_DATA,
+    GET_BUY_WEB_ORDERS_SECONDARY_DATA,
+    UPDATE_BUY_WEB_ORDERS_IS_LOADING,
     GET_BUY_FINANCE_SECONDARY_DATA,
     UPDATE_USE_IS_LOADING,
     GET_BUY_TRAFFIC_SECONDARY_DATA,
@@ -499,6 +501,56 @@ export function getFilteredTrafficSecondaryData(filters) {
         payload: promiseArr
     }
 }
+/**
+ * @description Action to Organizes the filters pertaining only to Traffic, and Bounce Rate Secondary filters, then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE NOT IN a default state of Current Quarter, DIGITAL MEDIA, and all NON DM Segments 
+ * except PDF Services and Sign.
+ * @param {*} filters 
+ */
+export function getFilteredBuyWebOrdersSecondaryData(filters) {
+    // console.log('Filters:', filters);
+    let allFilters = {
+        quarter: Object.keys(filters.quarter.availableFilters).map(e => filters.quarter.availableFilters[e]),
+        geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
+        market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
+        product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
+        subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
+        routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
+        //MArketing
+        websegment: Object.keys(filters.websegment.availableFilters).map(e => filters.websegment.availableFilters[e]),
+        visits: Object.keys(filters.visits.availableFilters).map(e => filters.visits.availableFilters[e]),
+        lastTouchChannel: Object.keys(filters.lastTouchChannel.availableFilters).map(e => filters.lastTouchChannel.availableFilters[e]),
+        convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
+        customerType: Object.keys(filters.customerType.availableFilters).map(e => filters.customerType.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
+        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e]),
+
+    }
+    let _parameters = {
+        geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
+        quarter: Object.keys(filters.quarter.valueFilters).map(e => filters.quarter.valueFilters[e]),
+        subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
+        market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
+        route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
+        product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
+        //Traffic
+        websegment: Object.keys(filters.websegment.valueFilters).map(e => filters.websegment.valueFilters[e]),
+        visits: Object.keys(filters.visits.valueFilters).map(e => filters.visits.valueFilters[e]),
+        lastTouchChannel: Object.keys(filters.lastTouchChannel.valueFilters).map(e => filters.lastTouchChannel.valueFilters[e]),
+        convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
+        customerType: Object.keys(filters.customerType.valueFilters).map(e => filters.customerType.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
+        qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e]),
+
+    };
+    // console.log(filters);
+    promiseArr = utils.filterBuyWebOrdersSecondaryData(allFilters, _parameters);
+
+    return {
+        type: GET_BUY_WEB_ORDERS_SECONDARY_DATA,
+        payload: promiseArr
+    }
+}
 
 /**
  * @description Action to Organizes the filters pertaining only to Discover Marketing Secondary filters, then passes those filters to Utilities to submit the data request.
@@ -554,6 +606,7 @@ export function getFilteredTrySecondaryData(filters) {
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
         signupcat: Object.keys(filters.signupCategory.availableFilters).map(e => filters.signupCategory.availableFilters[e]),
         qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
 
     }
     let _parameters = {
@@ -562,6 +615,7 @@ export function getFilteredTrySecondaryData(filters) {
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         signupcat: Object.keys(filters.signupCategory.valueFilters).map(e => filters.signupCategory.valueFilters[e]),
         qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
     };
 
     console.log(allFilters);
@@ -600,6 +654,8 @@ export function getFilteredBuySecondaryData(filters) {
         convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
         pvw: Object.keys(filters.pvw.availableFilters).map(e => filters.pvw.availableFilters[e]),
         qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
+        customerType: Object.keys(filters.customerType.availableFilters).map(e => filters.customerType.availableFilters[e]),
 
 
     }
@@ -620,6 +676,8 @@ export function getFilteredBuySecondaryData(filters) {
         convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
         pvw: Object.keys(filters.pvw.valueFilters).map(e => filters.pvw.valueFilters[e]),
         qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
+        customerType: Object.keys(filters.customerType.valueFilters).map(e => filters.customerType.valueFilters[e]),
 
     };
 
@@ -651,7 +709,8 @@ export function getFilteredBuyFinanceSecondaryData(filters) {
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
         pvw: Object.keys(filters.pvw.availableFilters).map(e => filters.pvw.availableFilters[e]),
-        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e])
+        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e])
         
 
     }
@@ -665,7 +724,8 @@ export function getFilteredBuyFinanceSecondaryData(filters) {
         route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
         pvw: Object.keys(filters.pvw.valueFilters).map(e => filters.pvw.valueFilters[e]),
-        qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e])
+        qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e])
 
     };
     // console.log(filters);
@@ -696,6 +756,7 @@ export function getFilteredBuyMarketSecondaryData(filters) {
         //Traffic
         channelMU: Object.keys(filters.channelMU.availableFilters).map(e => filters.channelMU.availableFilters[e]),
         channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
 
     }
     let _parameters = {
@@ -710,6 +771,7 @@ export function getFilteredBuyMarketSecondaryData(filters) {
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         channelPM: Object.keys(filters.channelPM.valueFilters).map(e => filters.channelPM.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
     };
 
 
@@ -743,6 +805,7 @@ export function getFilteredBuyTrafficSecondaryData(filters) {
         lastTouchChannel: Object.keys(filters.lastTouchChannel.availableFilters).map(e => filters.lastTouchChannel.availableFilters[e]),
         convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
         qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
 
 
     }
@@ -759,6 +822,7 @@ export function getFilteredBuyTrafficSecondaryData(filters) {
         lastTouchChannel: Object.keys(filters.lastTouchChannel.valueFilters).map(e => filters.lastTouchChannel.valueFilters[e]),
         convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
         qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
 
     };
     // console.log(filters);
@@ -784,6 +848,7 @@ export function getFilteredUseSecondaryData(filters) {
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
         nonDMSegment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
     }
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
@@ -791,6 +856,7 @@ export function getFilteredUseSecondaryData(filters) {
         nonDMSegment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
     };
 
     // console.log(filters);
@@ -818,7 +884,8 @@ export function getFilteredRenewSecondaryData(filters) {
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         nonDMSegment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
-        routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e])
+        routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
     }
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
@@ -829,6 +896,7 @@ export function getFilteredRenewSecondaryData(filters) {
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
     };
 
     // console.log(filters);
@@ -856,7 +924,8 @@ export function getFilteredRenewDetailsSecondaryData(filters) {
         segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
-        routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e])
+        routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
     }
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
@@ -867,6 +936,7 @@ export function getFilteredRenewDetailsSecondaryData(filters) {
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
         route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
     };
 
     // console.log(filters);
@@ -894,7 +964,8 @@ export function getFilteredRenewCancelSecondaryData(filters) {
         segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
-        routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e])
+        routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
     }
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
@@ -905,6 +976,7 @@ export function getFilteredRenewCancelSecondaryData(filters) {
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
         route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
     };
 
     // console.log(filters);
@@ -1169,6 +1241,7 @@ export function getTrafficSecondaryData(filters) {
         lastTouchChannel: Object.keys(filters.lastTouchChannel.availableFilters).map(e => filters.lastTouchChannel.availableFilters[e]),
         convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
         customerType: Object.keys(filters.customerType.availableFilters).map(e => filters.customerType.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
 
 
     }
@@ -1185,6 +1258,7 @@ export function getTrafficSecondaryData(filters) {
         lastTouchChannel: Object.keys(filters.lastTouchChannel.valueFilters).map(e => filters.lastTouchChannel.valueFilters[e]),
         convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
         customerType: Object.keys(filters.customerType.valueFilters).map(e => filters.customerType.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
 
     };
     // console.log(filters);
@@ -1192,6 +1266,57 @@ export function getTrafficSecondaryData(filters) {
 
     return {
         type: GET_TRAFFIC_SECONDARY_DATA,
+        payload: promiseArr
+    }
+}
+
+/**
+ * @description Action to Organizes the filters pertaining only to Buy Web Orders,  then passes those filters to Utilities to submit the data request.
+ * This is used only when the filters ARE  IN a default state.
+ * @param {*} filters 
+ */
+export function getBuyWebOrdersSecondaryData(filters) {
+    console.log('Filters:', filters);
+    let allFilters = {
+        quarter: Object.keys(filters.quarter.availableFilters).map(e => filters.quarter.availableFilters[e]),
+        geo: Object.keys(filters.geo.availableFilters).map(e => filters.geo.availableFilters[e]),
+        market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
+        product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
+        subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
+        routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
+        //MArketing
+        websegment: Object.keys(filters.websegment.availableFilters).map(e => filters.websegment.availableFilters[e]),
+        visits: Object.keys(filters.visits.availableFilters).map(e => filters.visits.availableFilters[e]),
+        lastTouchChannel: Object.keys(filters.lastTouchChannel.availableFilters).map(e => filters.lastTouchChannel.availableFilters[e]),
+        convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
+        customerType: Object.keys(filters.customerType.availableFilters).map(e => filters.customerType.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
+        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e]),
+
+
+    }
+    let _parameters = {
+        geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
+        quarter: Object.keys(filters.quarter.valueFilters).map(e => filters.quarter.valueFilters[e]),
+        subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
+        market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
+        route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
+        product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
+        //Traffic
+        websegment: Object.keys(filters.websegment.valueFilters).map(e => filters.websegment.valueFilters[e]),
+        visits: Object.keys(filters.visits.valueFilters).map(e => filters.visits.valueFilters[e]),
+        lastTouchChannel: Object.keys(filters.lastTouchChannel.valueFilters).map(e => filters.lastTouchChannel.valueFilters[e]),
+        convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
+        customerType: Object.keys(filters.customerType.valueFilters).map(e => filters.customerType.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
+        qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e]),
+
+    };
+    // console.log(filters);
+    promiseArr = utils.requestBuyWebOrdersSecondaryData(allFilters, _parameters);
+
+    return {
+        type: GET_BUY_WEB_ORDERS_SECONDARY_DATA,
         payload: promiseArr
     }
 }
@@ -1251,6 +1376,7 @@ export function getTrySecondaryData(filters) {
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
         signupcat: Object.keys(filters.signupCategory.availableFilters).map(e => filters.signupCategory.availableFilters[e]),
         qfmType:  Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
 
     }
     let _parameters = {
@@ -1259,6 +1385,7 @@ export function getTrySecondaryData(filters) {
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         signupcat: Object.keys(filters.signupCategory.valueFilters).map(e => filters.signupCategory.valueFilters[e]),
         qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
 
     };
 
@@ -1295,6 +1422,8 @@ export function getBuySecondaryData(filters) {
         channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
         pvw: Object.keys(filters.pvw.availableFilters).map(e => filters.pvw.availableFilters[e]),
         qfmType:  Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e]),
+        cloud:  Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
+        customerType: Object.keys(filters.customerType.availableFilters).map(e => filters.customerType.availableFilters[e]),
 
     }
     let _parameters = {
@@ -1313,6 +1442,8 @@ export function getBuySecondaryData(filters) {
         channelPM: Object.keys(filters.channelPM.valueFilters).map(e => filters.channelPM.valueFilters[e]),
         pvw: Object.keys(filters.pvw.valueFilters).map(e => filters.pvw.valueFilters[e]),
         qfmType:  Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
+        customerType: Object.keys(filters.customerType.valueFilters).map(e => filters.customerType.valueFilters[e]),
 
     };
 
@@ -1341,7 +1472,8 @@ export function getBuyFinanceSecondaryData(filters) {
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
         pvw: Object.keys(filters.pvw.availableFilters).map(e => filters.pvw.availableFilters[e]),
-        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e])
+        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e])
 
 
     }
@@ -1355,6 +1487,7 @@ export function getBuyFinanceSecondaryData(filters) {
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
         pvw: Object.keys(filters.pvw.valueFilters).map(e => filters.pvw.valueFilters[e]),
         qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e])
 
     };
 
@@ -1385,6 +1518,7 @@ export function getBuyMarketSecondaryData(filters) {
         //Traffic
         channelMU: Object.keys(filters.channelMU.availableFilters).map(e => filters.channelMU.availableFilters[e]),
         channelPM: Object.keys(filters.channelPM.availableFilters).map(e => filters.channelPM.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
 
     }
     let _parameters = {
@@ -1398,6 +1532,7 @@ export function getBuyMarketSecondaryData(filters) {
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         channelPM: Object.keys(filters.channelPM.valueFilters).map(e => filters.channelPM.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
     };
 
     // console.log(filters);
@@ -1430,7 +1565,8 @@ export function getBuyTrafficSecondaryData(filters) {
         visits: Object.keys(filters.visits.availableFilters).map(e => filters.visits.availableFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.availableFilters).map(e => filters.lastTouchChannel.availableFilters[e]),
         convType: Object.keys(filters.convType.availableFilters).map(e => filters.convType.availableFilters[e]),
-        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e])
+        qfmType: Object.keys(filters.qfmType.availableFilters).map(e => filters.qfmType.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
 
 
     }
@@ -1446,7 +1582,8 @@ export function getBuyTrafficSecondaryData(filters) {
         visits: Object.keys(filters.visits.valueFilters).map(e => filters.visits.valueFilters[e]),
         lastTouchChannel: Object.keys(filters.lastTouchChannel.valueFilters).map(e => filters.lastTouchChannel.valueFilters[e]),
         convType: Object.keys(filters.convType.valueFilters).map(e => filters.convType.valueFilters[e]),
-        qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e])
+        qfmType: Object.keys(filters.qfmType.valueFilters).map(e => filters.qfmType.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
 
     };
     // console.log(filters);
@@ -1497,6 +1634,7 @@ export function getUseSecondaryData(filters) {
         market: Object.keys(filters.market.availableFilters).map(e => filters.market.availableFilters[e]),
         nonDMSegment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
     }
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
@@ -1504,6 +1642,7 @@ export function getUseSecondaryData(filters) {
         nonDMSegment: Object.keys(filters.nonDMSegment.valueFilters).map(e => filters.nonDMSegment.valueFilters[e]),
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
     };
 
     // console.log(filters);
@@ -1531,7 +1670,8 @@ export function getRenewDetailsSecondaryData(filters) {
         segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
-        routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e])
+        routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
     }
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
@@ -1542,6 +1682,7 @@ export function getRenewDetailsSecondaryData(filters) {
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
         route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
     };
 
     // console.log(filters);
@@ -1569,7 +1710,8 @@ export function getRenewCancelSecondaryData(filters) {
         segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
-        routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e])
+        routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
     }
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
@@ -1580,6 +1722,7 @@ export function getRenewCancelSecondaryData(filters) {
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
         route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
     };
 
     // console.log(filters);
@@ -1606,7 +1749,8 @@ export function getRenewSecondaryData(filters) {
         segment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
         product: Object.keys(filters.product.availableFilters).map(e => filters.product.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
-        routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e])
+        routeTomarket: Object.keys(filters.route.availableFilters).map(e => filters.route.availableFilters[e]),
+        cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
     }
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
@@ -1617,6 +1761,7 @@ export function getRenewSecondaryData(filters) {
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         product: Object.keys(filters.product.valueFilters).map(e => filters.product.valueFilters[e]),
         route: Object.keys(filters.route.valueFilters).map(e => filters.route.valueFilters[e]),
+        cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
     };
 
     // console.log(filters);
@@ -1744,6 +1889,17 @@ export function updateBuyMarketIsLoading(isLoading) {
         payload: isLoading,
     }
 }
+/**
+ *@description Action to  To update whether the application is still loading the  Buy Web Orders KPIs data
+ * @param {*} isLoading 
+ */
+export function updateBuyWebOrdersIsLoading(isLoading) {
+    return {
+        type: UPDATE_BUY_WEB_ORDERS_IS_LOADING,
+        payload: isLoading,
+    }
+}
+
 /**
  *@description Action to  To update whether the application is still loading the  Buy Gross New Conversion  SEcondary KPIs data
  * @param {*} isLoading 

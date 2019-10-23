@@ -144,6 +144,9 @@ class DetailPanelBar extends Component {
                 //Finance
                 return (
                     <PanelBar >
+                        <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                {this.getPanelContents(DIMENSIONS.CLOUD)}
+                            </ PanelBarItem>
                         <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                             {this.getPanelContents(DIMENSIONS.GEO)}
                         </ PanelBarItem>
@@ -166,7 +169,10 @@ class DetailPanelBar extends Component {
                 switch (this.props.activeSecondary) {
                     case SUMMARY_KPIS.DISCOVER_TRAFFIC:
                         return (
-                            <PanelBar >
+                                <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -194,6 +200,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -208,6 +217,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.DISCOVER_UQFM:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -219,6 +231,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -230,6 +245,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -244,6 +262,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.DISCOVER_BOUNCE_RATE:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -278,6 +299,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.TRY_NEW_QFM:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -298,6 +322,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.TRY_NEW_UQFM:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -315,6 +342,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.TRY_CUMU_UQFM:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -333,6 +363,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.TRY_CUMU_QFM:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -350,6 +383,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.TRY_DAY_28:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -367,6 +403,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.TRY_CUMU_UQFM_QFM:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -390,6 +429,9 @@ class DetailPanelBar extends Component {
                  case SUMMARY_KPIS.BUY_PAID_MEDIASPEND:
                      return (
                          <PanelBar >
+                             <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                             </ PanelBarItem>
                              <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                  {this.getPanelContents(DIMENSIONS.GEO)}
                              </ PanelBarItem>
@@ -401,6 +443,9 @@ class DetailPanelBar extends Component {
                  case SUMMARY_KPIS.BUY_MARKETING_SOURCED:
                      return (
                          <PanelBar >
+                         <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                         </ PanelBarItem>
                          <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                              {this.getPanelContents(DIMENSIONS.GEO)}
                          </ PanelBarItem>
@@ -422,6 +467,9 @@ class DetailPanelBar extends Component {
                  case SUMMARY_KPIS.BUY_CONVERSION:
                  return (
                      <PanelBar >
+                         <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                         </ PanelBarItem>
                          <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                              {this.getPanelContents(DIMENSIONS.GEO)}
                          </ PanelBarItem>
@@ -452,6 +500,9 @@ class DetailPanelBar extends Component {
                  case SUMMARY_KPIS.BUY_LTV_ROI:
                     return (
                         <PanelBar >
+                            <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                            </ PanelBarItem>
                             <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                 {this.getPanelContents(DIMENSIONS.GEO)}
                             </ PanelBarItem>
@@ -472,6 +523,9 @@ class DetailPanelBar extends Component {
                  case SUMMARY_KPIS.BUY_GROSS_NEWARR:
                  return (
                      <PanelBar >
+                         <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                         </ PanelBarItem>
                          <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                              {this.getPanelContents(DIMENSIONS.GEO)}
                          </ PanelBarItem>
@@ -495,6 +549,9 @@ class DetailPanelBar extends Component {
                  case SUMMARY_KPIS.BUY_GROSS_NEWUNITS:
                      return (
                         <PanelBar >
+                         <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                         </ PanelBarItem>
                          <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                              {this.getPanelContents(DIMENSIONS.GEO)}
                          </ PanelBarItem>
@@ -515,6 +572,36 @@ class DetailPanelBar extends Component {
                          </ PanelBarItem>
                      </PanelBar>
                      )
+                case SUMMARY_KPIS.BUY_WEB_ORDERS:
+                    return (
+                        <PanelBar >
+                            <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                {this.getPanelContents(DIMENSIONS.CLOUD)}
+                            </ PanelBarItem>
+                            <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
+                                {this.getPanelContents(DIMENSIONS.GEO)}
+                            </ PanelBarItem>
+                            <PanelBarItem className="panelItemTitle" expanded={false} title='Customer Type'>
+                                {this.getPanelContents(DIMENSIONS.CUSTOMERTYPE)}
+                            </ PanelBarItem>
+                            <PanelBarItem className="panelItemTitle" expanded={false} title='Market Area'>
+                                {this.getPanelContents(DIMENSIONS.MARKET)}
+                            </ PanelBarItem>
+                            <PanelBarItem className="panelItemTitle" expanded={false} title='Web segment'>
+                                {this.getPanelContents(DIMENSIONS.WEBSEGMENT)}
+                            </ PanelBarItem>
+                            <PanelBarItem className="panelItemTitle" expanded={false} title={'Last Touch Channel'}>
+                                {this.getPanelContents(DIMENSIONS.LTC)}
+                            </ PanelBarItem>
+                            
+                            <PanelBarItem className="panelItemTitle" expanded={false} title='Mobile Vs Desktop'>
+                                {this.getPanelContents(DIMENSIONS.MOBILEVSDESKTOP)}
+                            </ PanelBarItem>
+                            <PanelBarItem className="panelItemTitle" expanded={false} title='New Vs Repeat'>
+                                {this.getPanelContents(DIMENSIONS.NEWVSREPEAT)}
+                            </ PanelBarItem>
+                        </PanelBar>
+                    )
              }
             case 4:
                 switch (this.props.activeSecondary) {
@@ -541,6 +628,9 @@ class DetailPanelBar extends Component {
                             //Enagement Index
                             return (
                                 <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -560,6 +650,9 @@ class DetailPanelBar extends Component {
                                 //Enagement Index
                                 return (
                                     <PanelBar >
+                                    <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                        {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                    </ PanelBarItem>
                                     <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                         {this.getPanelContents(DIMENSIONS.GEO)}
                                     </ PanelBarItem>
@@ -579,6 +672,9 @@ class DetailPanelBar extends Component {
                         //Enagement Index
                         return (
                             <PanelBar >
+                            <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                            </ PanelBarItem>
                             <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                 {this.getPanelContents(DIMENSIONS.GEO)}
                             </ PanelBarItem>
@@ -598,6 +694,9 @@ class DetailPanelBar extends Component {
                         //Enagement Index
                         return (
                             <PanelBar >
+                            <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                {this.getPanelContents(DIMENSIONS.CLOUD)}
+                            </ PanelBarItem>
                             <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                 {this.getPanelContents(DIMENSIONS.GEO)}
                             </ PanelBarItem>
@@ -616,6 +715,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.USE_PAID_USER_MAU:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -636,6 +738,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.USE_PERCENT_ACTIVATED:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -654,6 +759,9 @@ class DetailPanelBar extends Component {
                         case SUMMARY_KPIS.USE_PERCENT_ACTIVATED_LAUNCHES:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -672,6 +780,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.USE_REPEAT_USER_MAU:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -690,6 +801,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.USE_WK0_WAU_RATE:
                         return (
                             <PanelBar >
+                            <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                            </ PanelBarItem>
                             <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                 {this.getPanelContents(DIMENSIONS.GEO)}
                             </ PanelBarItem>
@@ -708,6 +822,9 @@ class DetailPanelBar extends Component {
                     case SUMMARY_KPIS.USE_WK4_WAU_RATE:
                         return (
                             <PanelBar >
+                                <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                                </ PanelBarItem>
                                 <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                                     {this.getPanelContents(DIMENSIONS.GEO)}
                                 </ PanelBarItem>
@@ -728,6 +845,9 @@ class DetailPanelBar extends Component {
                 switch(this.props.activeSecondary){
                     case SUMMARY_KPIS.RENEW_EOT_RESELLER: 
                     return ( <PanelBar >
+                        <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                        </ PanelBarItem>
                         <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                             {this.getPanelContents(DIMENSIONS.GEO)}
                         </ PanelBarItem>
@@ -740,6 +860,9 @@ class DetailPanelBar extends Component {
                     </PanelBar>);
                     default: 
                     return ( <PanelBar >
+                        <PanelBarItem className="panelItemTitle" expanded={true} title='Cloud Type'>
+                                    {this.getPanelContents(DIMENSIONS.CLOUD)}
+                        </ PanelBarItem>
                         <PanelBarItem className="panelItemTitle" expanded={true} title='Geo'>
                             {this.getPanelContents(DIMENSIONS.GEO)}
                         </ PanelBarItem>

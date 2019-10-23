@@ -48,6 +48,8 @@ class PanelItemTableHeader extends Component {
                 return 'Customer Type'
             case DIMENSIONS.PRODUCTCAT:
                 return 'Product Category'
+            case DIMENSIONS.CLOUD:
+                return 'Cloud Type'
             default:
                 return 'Product';
         }

@@ -53,7 +53,7 @@ export default function (state = { data: [], comments: [[], [], [], []], isLoadi
             copyOfState.comments = [];
             let found = false;
             // Start for as many KPIS showing 
-            for (let i = 0; i <= 37; i++) {
+            for (let i = 0; i <= 38; i++) {
                 // Start For as many comments posted
                 for (let j = 0; j < commentsCount.length; j++) {
                     // Start if to determine if the comment belongs to this metric

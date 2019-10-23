@@ -63,6 +63,7 @@ class Summary extends Component {
       requestingRemainingRenewData: false,
       requestingRemainingBuyData: false,
       //Data/Filters Management booleans 
+      // requestingRemainingWebOrdersData:false,
       subFiltersChanged: false,
       secondaryKpiChanged: false,
       showBanner: true,
@@ -134,6 +135,7 @@ class Summary extends Component {
       preferencesAreLoaded,
    
       isDefaultFilters,
+      buyWebOrdersIsLoaded,
       buyGrossIsLoaded,
       buyMarketIsLoaded,
       buyConversionIsLoaded,
@@ -765,6 +767,44 @@ class Summary extends Component {
 
           }
         }
+        //If the user changed cards to Web Orders
+        else if(activeSecondaryCard === SUMMARY_KPIS.BUY_WEB_ORDERS){
+          //console.log('I am here')
+          if (this.state.requestingRemainingBuyData === false) {
+
+            // And Buy Gross has not loaded
+            if (!buyWebOrdersIsLoaded /* || this.state.requestingRemainingDiscoverData === true */) {
+              // And Filters are default
+              if (isDefaultFilters) {
+                // Call action to get Finance XDC from in memory cache
+                this.props.getBuyWebOrdersSecondaryData(this.props.filters);
+
+              } else {
+                // Call action to get Finance XDC from in memory cache
+                this.props.getFilteredBuyWebOrdersSecondaryData(this.props.filters);
+              }
+              // Set local loading state to true
+              this.setState({ isLoading: true });
+            }
+          } else if (!buyWebOrdersIsLoaded) {
+            // And Filters are default
+            if (isDefaultFilters) {
+              // Call action to get Finance XDC from in memory cache
+              this.props.getBuyWebOrdersSecondaryData(this.props.filters);
+             } else {
+              // Call action to get Finance XDC from in memory cache
+              this.props.getFilteredBuyWebOrdersSecondaryData(this.props.filters);
+              
+            }
+            // Set local loading state to true
+            this.setState({ isLoading: true });
+
+          } else {
+            // Set local loading state to false
+            this.setState({ isLoading: false });
+
+          }
+        }
         // If the user changed cards to Finance Net New or Gros New ARR
         else if (activeSecondaryCard === SUMMARY_KPIS.USE_PERCENT_ACTIVATED) {
           if (!useIsLoaded) {
@@ -1138,6 +1178,46 @@ class Summary extends Component {
             }
 
           }
+          else if(activeSecondaryCard=== SUMMARY_KPIS.BUY_WEB_ORDERS){
+              if (this.state.secondaryKpiChanged === true) {
+                if (buyWebOrdersIsLoaded === true) {
+  
+                  this.setState({ isLoading: false, secondaryKpiChanged: false });
+                  if (buyWebOrdersIsLoaded === false) {
+                    this.props.getBuyWebOrdersSecondaryData()
+  
+                  } else {
+                    this.setState({ requestingRemainingWebOrdersData: false });
+                  }
+                }
+              } else if (this.state.filtersUpdated === true) {
+                // Market Filters loaded
+                if (buyWebOrdersIsLoaded === true) {
+  
+                  this.setState({ isLoading: false, filtersUpdated: false });
+                  if (buyWebOrdersIsLoaded === false) {
+                    this.setState({ requestingRemainingWebOrdersData: true });
+                    this.props.getBuyWebOrdersSecondaryData()
+  
+                  } else {
+                    this.setState({ requestingRemainingWebOrdersData: false });
+                  }
+                }
+              } else if (this.state.subFiltersChanged) {
+                if (buyWebOrdersIsLoaded === true) {
+  
+                  this.setState({
+                    isLoading: false,
+                    subFiltersChanged: false
+                  });
+                }else{if (!this.state.isLoading){
+                  this.props.getBuyWebOrdersSecondaryData(this.props.filters)
+                  this.setState({isLoading: true})
+                }
+              }
+              }
+  
+            }
           break;
         // On Use Primary
         case 4:
@@ -1255,10 +1335,10 @@ class Summary extends Component {
         // this.props.updateBuyGrossIsLoading(false);
 
         break;
-        case SUMMARY_KPIS.BUY_LTV_ROI:
-            this.props.updateBuyMarketIsLoading(false);
-  
-          break;
+      case SUMMARY_KPIS.BUY_LTV_ROI:
+          this.props.updateBuyMarketIsLoading(false);
+
+        break;
       case SUMMARY_KPIS.BUY_GROSS_NEWARR:
         
         this.props.updateBuyGrossIsLoading(false);
@@ -1269,6 +1349,9 @@ class Summary extends Component {
         this.props.updateBuyGrossIsLoading(false);
         // this.props.updateBuyConversionIsLoading(false);
         break;
+        case SUMMARY_KPIS.BUY_WEB_ORDERS:
+          this.props.updateBuyWebOrdersIsLoading(false);
+           break;
       case SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR:
         this.props.updateCorrelationDataIsLoading(false)
     }
@@ -1575,6 +1658,7 @@ function mapStateToProps(state) {
     buyMarketIsLoaded: state.summaryData.buyMarketIsLoaded,
     buySecondaryIsLoaded: state.summaryData.buySecondaryIsLoaded,
     buyConversionIsLoaded: state.summaryData.buyConversionIsLoaded,
+    buyWebOrdersIsLoaded: state.summaryData.webOrdersIsLoaded,
     tryIsLoaded: state.summaryData.tryIsLoaded,
     useIsLoaded: state.summaryData.useIsLoaded,
     renewIsLoaded: state.summaryData.renewIsLoaded,

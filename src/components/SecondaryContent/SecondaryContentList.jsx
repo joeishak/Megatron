@@ -186,7 +186,7 @@ class SecondaryContentList extends Component {
                 (d)=>{ return ((d.index != SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED) && 
                                 (d.index != SUMMARY_KPIS.DISCOVER_UQFM)) })
      
-
+    //console.log('Secondary Squares ',data)
     let numberOfSecondarySquares = 0;
     if (data !== undefined) {
       let filtered = data.filter((ele) => { return ele.category === this.props.activePrimary });

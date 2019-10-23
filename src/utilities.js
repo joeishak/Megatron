@@ -89,6 +89,49 @@ let trafficParams = [
     },
     
 ];
+let webOrderParams = [
+    {
+        prompt: 'geoFilters',
+        value: ''
+    },
+    {
+        prompt: 'quarterFilters',
+        value: ''
+    },
+    {
+        prompt: 'maFilters',
+        value: ''
+    },
+    {
+        prompt: 'WebSegFilters',
+        value: ''
+    },
+    {
+        prompt: 'VisitTypeFilters',
+        value: ''
+    },
+    {
+        prompt: 'LastTouchChannelFilters',
+        value: ''
+    },
+    // {
+    //     prompt: 'ConvTypeFilters',
+    //     value: ''
+    // },
+    {
+        prompt: 'CustomerTypeFilters',
+        value: ''
+    },
+    {
+        prompt: 'cloudtypeFilters',
+        value: ''
+    },
+    {
+        prompt: 'QFMTypeFilters',
+        value: ''
+    },
+    
+];
 
 let buyConversionParams = [
     {
@@ -174,6 +217,10 @@ let buyMktgParams = [
     {
         prompt: 'productFilters',
         value: ''
+    },
+    {
+        prompt: 'cloudtypeFilters',
+        value: ''
     }
 ];
 let buyLTVParams = [
@@ -200,6 +247,10 @@ let buyLTVParams = [
     {
         prompt: 'productFilters',
         value: ''
+    },
+    {
+        prompt: 'cloudtypeFilters',
+        value: ''
     }
 ];
 let uqfmParams = [
@@ -213,6 +264,10 @@ let uqfmParams = [
     },
     {
         prompt: 'maFilters',
+        value: ''
+    },
+    {
+        prompt: 'cloudtypeFilters',
         value: ''
     }
 ];
@@ -231,6 +286,10 @@ let pmssParams = [
     },
     {
         prompt: 'channelPMFilters',
+        value: ''
+    },
+    {
+        prompt: 'cloudtypeFilters',
         value: ''
     }
 ]
@@ -260,6 +319,10 @@ let tryParams = [
     },
     {
         prompt: 'QFMTypeFilters',
+        value: ''
+    },
+    {
+        prompt: 'cloudtypeFilters',
         value: ''
     },
 
@@ -327,6 +390,10 @@ let buyGrossParams = [
     {
         prompt: 'QFMTypeFilters',
         value: ''
+    },
+    {
+        prompt: 'cloudtypeFilters',
+        value: ''
     }
 ];
 
@@ -355,6 +422,10 @@ let cancelAdobeParams = [
     {
         prompt: 'productFilters',
         value: ''
+    },
+    {
+        prompt: 'cloudtypeFilters',
+        value: ''
     }
 ];
 let cancelRetailParams = [
@@ -380,6 +451,10 @@ let cancelRetailParams = [
     },
     {
         prompt: 'productFilters',
+        value: ''
+    },
+    {
+        prompt: 'cloudtypeFilters',
         value: ''
     }
 ];
@@ -431,6 +506,10 @@ let renewParamsERetail = [
     {
         prompt: 'subscriptionFilters',
         value: ''
+    },
+    {
+        prompt: 'cloudtypeFilters',
+        value: ''
     }
 
 ];
@@ -453,6 +532,10 @@ let renewParamsReseller = [
     },
     {
         prompt: 'subscriptionFilters',
+        value: ''
+    },
+    {
+        prompt: 'cloudtypeFilters',
         value: ''
     }
 
@@ -481,6 +564,10 @@ let renewParams = [
     {
         prompt: 'subscriptionFilters',
         value: ''
+    },
+    {
+        prompt: 'cloudtypeFilters',
+        value: ''
     }
 
 ];
@@ -503,6 +590,10 @@ let useParams = [
     },
     {
         prompt: 'subscriptionFilters',
+        value: ''
+    },
+    {
+        prompt: 'cloudtypeFilters',
         value: ''
     }
 ]
@@ -951,8 +1042,12 @@ export function requestFinanceXdc1SecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    const financeCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8CloudTypeQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
-    responseArray.push(financeSecondary, financeMultichart, financeUnitsMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, financeProductQTD,financeGeoQTDTotal);
+    responseArray.push(financeSecondary, financeMultichart, financeUnitsMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, financeProductQTD,financeGeoQTDTotal,financeCloudTypeQTD);
     let promiseArr = Promise.all(responseArray);
     return promiseArr;
 }
@@ -1015,8 +1110,12 @@ export function requestFinanceXdc2SecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    const financeCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8CloudTypeQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
-    responseArray.push(financeSecondary, financeMultichart, financeUnitsMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, financeProductQTD,financeGeoQTDTotal);
+    responseArray.push(financeSecondary, financeMultichart, financeUnitsMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, financeProductQTD,financeGeoQTDTotal,financeCloudTypeQTD);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
@@ -1134,6 +1233,16 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    //Cloud Type for Discover and UQFM
+    const DiscoverCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficCloudTypeQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    // const uqfmCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.uqfmXDCID + Infoburst.summaryQueryNames.Dis + params6 + '&json=1', {
+    //     headers: headers,
+    //     responseType: 'text'
+    // });
+
     responseArray.push(
         DiscoverG5Secondary,
         DiscoverG5Multichart,
@@ -1148,7 +1257,8 @@ export function requestTrafficSecondaryData(allFilters, _parameters) {
         uqfmSecondary, uqfmMultichart, uqfmQTD, uqfmGeoQTD, uqfmMarketQTD,
         DiscoverG5GeoQTDTotal,
         uqfmGeoQTDTotal,
-        DiscoverGLTCQTDTotal
+        DiscoverGLTCQTDTotal,
+        DiscoverCloudTypeQTD
 
     );
     let promiseArr = Promise.all(responseArray);
@@ -1251,12 +1361,21 @@ export function requestMKTGSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    //Cloud Type for Marketing
+    const mktgCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUCloudTypeQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const pmssCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMCloudTypeQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
     
     responseArray.push(
         mktgSecondary, mktgMultichart, mktgQTD, mktgGeo, mktgMarket, mktgChannelMu
         , pmssSecondary, pmssMultichart, pmssQTD, pmssGeo, pmssMarket, pmssChannelMu,
-        mktgGeoTotal, pmssGeoTotal
+        mktgGeoTotal, pmssGeoTotal,mktgCloudTypeQTD,pmssCloudTypeQTD
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -1335,12 +1454,16 @@ export function requestTrySecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    const TryCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryCloudTypeQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
 
 
     responseArray.push(
         TrySecondary, TryMutlichart, TryQTD, TryGeoQTD, TryMarketQTD,
-        TryProdQTD, TrySignAppQTD, TrySignCatQTD, TryDownloadTypeQTD, TryQFMTypeQTD, TryGeoQTDTotal,TrySignAppQTDTotal,TryDownloadTypeQTDTotal
+        TryProdQTD, TrySignAppQTD, TrySignCatQTD, TryDownloadTypeQTD, TryQFMTypeQTD, TryGeoQTDTotal,TrySignAppQTDTotal,TryDownloadTypeQTDTotal,TryCloudTypeQTD
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -1361,7 +1484,8 @@ export function requestBuySecondaryData(allFilters, _parameters) {
     generateFilterParams(15, buyConversionParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
     generateFilterParams(16, buyLTVParams, allFilters, _parameters);
-    // generateFilterParams(5, trafficParams, allFilters, _parameters)
+    generateFilterParams(5, trafficParams, allFilters, _parameters);
+    generateFilterParams(18, webOrderParams, allFilters, _parameters)
 
 
 
@@ -1390,7 +1514,11 @@ export function requestBuySecondaryData(allFilters, _parameters) {
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
     }, '');
-    
+    let params10 = webOrderParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
 
 
     // Traffic  & Bounce
@@ -1419,12 +1547,17 @@ export function requestBuySecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+
+    const webOrdersSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersSecondary + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
     responseArray.push(DiscoverG5Secondary, mktgSecondary, pmssSecondary,
-        financeSecondary, ltvSecondary
+        financeSecondary, ltvSecondary, webOrdersSecondary
     );
     
     let promiseArr = Promise.all(responseArray);
-
+    console.log('Promise Array',promiseArr)
     return promiseArr;
 }
 /**
@@ -1508,6 +1641,10 @@ export function requestBuyTrafficSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    const DiscoverCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionCloudTypeQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
     
 
     responseArray.push(
@@ -1523,13 +1660,115 @@ export function requestBuyTrafficSecondaryData(allFilters, _parameters) {
         DiscoverNewRep,
         DiscoverQFM,
         DiscoverG5GeoQTDTotal,
-        DiscoverGLTCQTDTotal
+        DiscoverGLTCQTDTotal,
+        DiscoverCloudTypeQTD
     );
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
 }
+/**
+ * @name requestBuyWebOrdersSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Traffic  XDC's In Memory Cache for Web Orders KPI details .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Web Orders KPI Details
+ */
+export function requestBuyWebOrdersSecondaryData(allFilters, _parameters) {
+    responseArray = [];
+    generateFilterParams(18, webOrderParams, allFilters, _parameters)
 
+
+    let params10 = webOrderParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
+    // console.log("Traffic Network Request: ", Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1');
+    // Traffic  & Bounce
+    const webOrdersSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersSecondary + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Multichart
+    const webOrdersMultiChart = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersMultichart + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //QTD
+    const webOrdersQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Geo QTD
+    const webOrdersGeoQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersGeoQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const webOrdersGeoQTDTotal = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersGeoQTDTotal + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Market QTD
+    const webOrdersMarketQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersMAQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    // Web Segment QTD
+    const webOrdersSegmentQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersWebSegQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Last touch channelQTD 
+    const webOrdersLTCQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersLTCQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const webOrdersLTCQTDTotal = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersLTCQTDTotal + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Conversion Type QTD
+    const webOrdersConvQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersCustTypeQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Mobile Vs Desktop QTD
+    const webOrdersMobDesk = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersMobVsDesQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //NEw Vs Repeat QTD
+    const webOrdersNewRep = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersNewVsRepQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const webOrdersCloudType = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersCloudTypeQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    
+
+    responseArray.push(
+        webOrdersSecondary,
+        webOrdersMultiChart,
+        webOrdersQTD,
+        webOrdersGeoQTD,
+        webOrdersMarketQTD,
+        webOrdersSegmentQTD,
+        webOrdersLTCQTD,
+        webOrdersConvQTD,
+        webOrdersMobDesk,
+        webOrdersNewRep,
+        webOrdersGeoQTDTotal,
+        webOrdersLTCQTDTotal,
+        webOrdersCloudType
+    );
+    let promiseArr = Promise.all(responseArray);
+
+    return promiseArr;
+}
 
 export function requestCorrelationData(allFilters, _parameters, oktaToken, sliderValues){
     responseArray = [];
@@ -1693,6 +1932,7 @@ export function requestBuyMarketSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    
 
 // LTV ROI
 console.log('Running LTV Secondary')
@@ -1734,18 +1974,34 @@ const ltvSubs = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID 
     responseType: 'text'
 });
 
+//Cloud Type QTDs
+const mktgCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMarketingSourceARRCloudTypeQTD + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+
+const pmssCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyPMSpendCloudTypeQTD + params6 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+const ltvCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROICloudType + params7 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+});
+
     responseArray.push(
         mktgSecondary, mktgMultichart, mktgQTD, mktgGeo, mktgMarket, mktgChannelMu
         , pmssSecondary, pmssMultichart, pmssQTD, pmssGeo, pmssMarket, pmssChannelMu, mktgProd,
         mktgSegment,
         ltvSecondary,ltvMulti,ltvQTD,ltvGeo,ltvMarket,ltvProduct,ltvSegment,ltvSubs,
-        mktgGeoTotal, pmssGeoTotal, ltvGeoTotal
+        mktgGeoTotal, pmssGeoTotal, ltvGeoTotal,mktgCloudTypeQTD,pmssCloudTypeQTD,ltvCloudTypeQTD
 
     );
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
 }
+
 /**
  * @name requestBuyFinanceSecondaryData
  * @description Utility function that makes a call request to  Infoburst  FinanceTune1  XDC's In Memory Cache for Gross New ARR And Subs KPI details .
@@ -1809,10 +2065,25 @@ export function requestBuyFinanceSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    const financeCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.BuyGrossNewCloudTypeQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
     
 
-    responseArray.push(financeSecondary, financeMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, financeProductQTD,financeQFMQTD,financeGeoQTDTotal);
+    responseArray.push(
+        financeSecondary, 
+        financeMultichart, 
+        financeQTDTotals, 
+        financeGeoQTD, 
+        financeMarketQTD, 
+        financeSegmentQTD, 
+        financeRouteQTD, 
+        financeProductQTD,
+        financeQFMQTD,
+        financeGeoQTDTotal,
+        financeCloudTypeQTD);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
@@ -1872,8 +2143,21 @@ export function requestUseSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
-
-    responseArray.push(useSecondary, useMultichart, useQTDTotals, useGeoQTD, useMarketQTD, useSegmentQTD, useSubsQTD, UseCumuMembers, useGeoQTDTotal);
+    const useCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseCloudTypeQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    responseArray.push(
+        useSecondary, 
+        useMultichart, 
+        useQTDTotals, 
+        useGeoQTD, 
+        useMarketQTD, 
+        useSegmentQTD, 
+        useSubsQTD, 
+        UseCumuMembers, 
+        useGeoQTDTotal,
+        useCloudTypeQTD);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
@@ -2028,7 +2312,35 @@ export function requestRenewCancelSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
-    responseArray.push(cancelEtailSecondary, cancelEtailMultichart, cancelEtailQTD, cancelEtailGeo, cancelEtailMarket, cancelEtailSegment, cancelEtailProduct,financeGeoQTDTotal,cancelAdobeGeoTotal,cancelEtailGeoTotal);
+    //Cloud Type QTDs
+    const financeCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8CloudTypeQTD + params9 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const cancelAdobeCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8CloudTypeQTD + params7 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const cancelEtailCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8CloudTypeQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
+    responseArray.push(
+            cancelEtailSecondary, 
+            cancelEtailMultichart, 
+            cancelEtailQTD, 
+            cancelEtailGeo, 
+            cancelEtailMarket, 
+            cancelEtailSegment, 
+            cancelEtailProduct,
+            financeGeoQTDTotal,
+            cancelAdobeGeoTotal,
+            cancelEtailGeoTotal,
+            financeCloudTypeQTD,
+            cancelAdobeCloudTypeQTD,
+            cancelEtailCloudTypeQTD
+            );
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
@@ -2181,8 +2493,24 @@ export function requestRenewDetailsSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+
+    //Cloud Type QTDs
+    const renewEtailCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFCloudTypeQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewCloudTypeQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewResellerCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFCloudTypeQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
     responseArray.push(renewResellerSecondary, renewResellerMultichart, renewResellerQTDTotals, renewResellerGeoQTD, renewResellerMarketQTD, 
-         renewResellerSegmentQTD, renewEtailSubsQTD, renewResellerProductQTD, renewGeoQTDTotal,renewEtailGeoQTDTotal,renewResellerGeoQTDTotal);
+         renewResellerSegmentQTD, renewEtailSubsQTD, renewResellerProductQTD, renewGeoQTDTotal,renewEtailGeoQTDTotal,renewResellerGeoQTDTotal,
+         renewResellerCloudTypeQTD,renewEtailCloudTypeQTD,renewCloudTypeQTD);
 
     let promiseArr = Promise.all(responseArray);
     return promiseArr;
@@ -2560,8 +2888,23 @@ export function filterFinanceXdc1SecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    const financeCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.FinancialG8CloudTypeQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
-    responseArray.push(financeSecondary, financeMultichart, financeUnitsMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, financeProductQTD,financeGeoQTDTotal);
+    responseArray.push(
+            financeSecondary, 
+            financeMultichart, 
+            financeUnitsMultichart, 
+            financeQTDTotals, 
+            financeGeoQTD, 
+            financeMarketQTD, 
+            financeSegmentQTD, 
+            financeRouteQTD, 
+            financeProductQTD,
+            financeGeoQTDTotal,
+            financeCloudTypeQTD);
     let promiseArr = Promise.all(responseArray);
     return promiseArr;
 }
@@ -2624,8 +2967,23 @@ export function filterFinanceXdc2SecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    const financeCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8CloudTypeQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
-    responseArray.push(financeSecondary, financeMultichart, financeUnitsMultichart, financeQTDTotals, financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, financeProductQTD,financeGeoQTDTotal);
+    responseArray.push(
+            financeSecondary, 
+            financeMultichart, 
+            financeUnitsMultichart, 
+            financeQTDTotals, 
+            financeGeoQTD, 
+            financeMarketQTD, 
+            financeSegmentQTD, 
+            financeRouteQTD, 
+            financeProductQTD,
+            financeGeoQTDTotal,
+            financeCloudTypeQTD);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
@@ -2744,6 +3102,11 @@ export function filterTrafficSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+
+    const DiscoverCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficCloudTypeQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
     responseArray.push(
         DiscoverG5Secondary,
         DiscoverG5Multichart,
@@ -2758,7 +3121,8 @@ export function filterTrafficSecondaryData(allFilters, _parameters) {
         uqfmSecondary, uqfmMultichart, uqfmQTD, uqfmGeoQTD, uqfmMarketQTD,
         DiscoverG5GeoQTDTotal,
         uqfmGeoQTDTotal,
-        DiscoverGLTCQTDTotal
+        DiscoverGLTCQTDTotal,
+        DiscoverCloudTypeQTD
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -2857,12 +3221,20 @@ export function filterMKTGSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
-
+   //Cloud Type QTD
+   const mktgCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverMUCloudTypeQTD + params5 + '&json=1', {
+    headers: headers,
+    responseType: 'text'
+    });
+    const pmssCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.DiscoverPMSUQFMCloudTypeQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
     responseArray.push(
         mktgSecondary, mktgMultichart, mktgQTD, mktgGeo, mktgMarket, mktgChannelMu
         , pmssSecondary, pmssMultichart, pmssQTD, pmssGeo, pmssMarket, pmssChannelMu,
-        mktgGeoTotal,pmssGeoTotal
+        mktgGeoTotal,pmssGeoTotal,mktgCloudTypeQTD,pmssCloudTypeQTD
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -2941,11 +3313,16 @@ export function filterTrySecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    const TryCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.tryXDCID + Infoburst.summaryQueryNames.TryCloudTypeQTD + params2 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
 
     responseArray.push(
         TrySecondary, TryMutlichart, TryQTD, TryGeoQTD, TryMarketQTD,
-        TryProdQTD, TrySignAppQTD, TrySignCatQTD, TryDownloadQTD, TryQFMQTD, TryGeoQTDTotal,TrySignAppQTDTotal,TryDownloadQTDTotal
+        TryProdQTD, TrySignAppQTD, TrySignCatQTD, TryDownloadQTD, TryQFMQTD, TryGeoQTDTotal,TrySignAppQTDTotal,
+        TryDownloadQTDTotal,TryCloudTypeQTD
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -2966,6 +3343,8 @@ export function filterBuySecondaryData(allFilters, _parameters) {
     generateFilterParams(15, buyConversionParams, allFilters, _parameters);
     generateFilterParams(7, pmssParams, allFilters, _parameters);
     generateFilterParams(16, buyLTVParams, allFilters, _parameters);
+    generateFilterParams(5, trafficParams, allFilters, _parameters);
+    generateFilterParams(18, webOrderParams, allFilters, _parameters);
 
 
 
@@ -2990,6 +3369,11 @@ export function filterBuySecondaryData(allFilters, _parameters) {
         return p;
     }, '');
     let params9 = buyLTVParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+    let params10 = webOrderParams.reduce((prev, param) => {
         let p = '';
         p = prev + '&' + param.prompt + '=' + param.value;
         return p;
@@ -3020,8 +3404,12 @@ export function filterBuySecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    const webOrdersSecondary = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersSecondary + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
     responseArray.push(DiscoverG5Secondary, mktgSecondary, pmssSecondary,
-        financeSecondary, ltvSecondary
+        financeSecondary, ltvSecondary, webOrdersSecondary
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -3107,6 +3495,10 @@ export function filterBuyTrafficSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    const DiscoverCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyConversionCloudTypeQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
 
     responseArray.push(
@@ -3122,8 +3514,111 @@ export function filterBuyTrafficSecondaryData(allFilters, _parameters) {
         DiscoverNewRep,
         DiscoverQFM,
         DiscoverG5GeoQTDTotal,
-        DiscoverGLTCQTDTotal
+        DiscoverGLTCQTDTotal,
+        DiscoverCloudTypeQTD
 
+    );
+    let promiseArr = Promise.all(responseArray);
+
+    return promiseArr;
+}
+/**
+ * @name filterBuyWebOrdersSecondaryData
+ * @description Utility function that makes a call request to  Infoburst  Traffic  XDC's In Memory Cache for Web Orders KPI details .
+ * @param  {Array} allFilters An array of each necessary filter dimension with all its possible values
+ * @param {Array} _parameters An array of each necessary filter dimension with the users chosen values
+ * @returns Promise Array containing values for the Web Orders KPI Details
+ */
+export function filterBuyWebOrdersSecondaryData(allFilters, _parameters) {
+    responseArray = [];
+    generateFilterParams(18, webOrderParams, allFilters, _parameters)
+
+
+    let params10 = webOrderParams.reduce((prev, param) => {
+        let p = '';
+        p = prev + '&' + param.prompt + '=' + param.value;
+        return p;
+    }, '');
+
+    // console.log("Traffic Network Request: ", Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.TrafficSecondary + params5 + '&json=1');
+    // Traffic  & Bounce
+    const webOrdersSecondary = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersSecondary + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Multichart
+    const webOrdersMultiChart = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersMultichart + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //QTD
+    const webOrdersQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Geo QTD
+    const webOrdersGeoQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersGeoQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const webOrdersGeoQTDTotal = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersGeoQTDTotal + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Market QTD
+    const webOrdersMarketQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersMAQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    // Web Segment QTD
+    const webOrdersSegmentQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersWebSegQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Last touch channelQTD 
+    const webOrdersLTCQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersLTCQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const webOrdersLTCQTDTotal = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersLTCQTDTotal + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Conversion Type QTD
+    const webOrdersConvQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersCustTypeQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //Mobile Vs Desktop QTD
+    const webOrdersMobDesk = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersMobVsDesQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    //NEw Vs Repeat QTD
+    const webOrdersNewRep = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersNewVsRepQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const webOrdersCloudType = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.trafficXDCID + Infoburst.summaryQueryNames.BuyWebOrdersCloudTypeQTD + params10 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    
+
+    responseArray.push(
+        webOrdersSecondary, //0
+        webOrdersMultiChart, //1
+        webOrdersQTD, //2
+        webOrdersGeoQTD, //3
+        webOrdersMarketQTD, //4
+        webOrdersSegmentQTD, //5
+        webOrdersLTCQTD, //6
+        webOrdersConvQTD, //7
+        webOrdersMobDesk, //8
+        webOrdersNewRep, //9
+        webOrdersGeoQTDTotal, //10
+        webOrdersLTCQTDTotal,//11
+        webOrdersCloudType//12
     );
     let promiseArr = Promise.all(responseArray);
 
@@ -3279,12 +3774,26 @@ const ltvSubs = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + I
     responseType: 'text'
 });
 
+    //Cloud Type QTDs
+    const mktgCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyMarketingSourceARRCloudTypeQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const pmssCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyPMSpendCloudTypeQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const ltvCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.marketXDCID + Infoburst.summaryQueryNames.BuyLTVROICloudType + params7 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
 console.log('ltv subs',ltvSubs);
     responseArray.push(
         mktgSecondary, mktgMultichart, mktgQTD, mktgGeo, mktgMarket, mktgChannelMu
         , pmssSecondary, pmssMultichart, pmssQTD, pmssGeo, pmssMarket, pmssChannelMu,
         mktgProd, mktgSegment,        ltvSecondary,ltvMulti,ltvQTD,ltvGeo,ltvMarket,ltvProduct,ltvSegment,ltvSubs,
-        mktgGeoTotal, pmssGeoTotal, ltvGeoTotal
+        mktgGeoTotal, pmssGeoTotal, ltvGeoTotal,mktgCloudTypeQTD,pmssCloudTypeQTD,ltvCloudTypeQTD
 
     );
     let promiseArr = Promise.all(responseArray);
@@ -3354,9 +3863,14 @@ export function filterBuyFinanceSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+    const financeCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.newFinanceXDC1ID + Infoburst.summaryQueryNames.BuyGrossNewCloudTypeQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
 
     responseArray.push(financeSecondary, financeMultichart, financeQTDTotals, 
-         financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, financeProductQTD,financeQFMQTD,financeGeoQTDTotal);
+         financeGeoQTD, financeMarketQTD, financeSegmentQTD, financeRouteQTD, 
+         financeProductQTD,financeQFMQTD,financeGeoQTDTotal,financeCloudTypeQTD);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
@@ -3418,7 +3932,13 @@ export function filterUseSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
-    responseArray.push(useSecondary, useMultichart, useQTDTotals, useGeoQTD, useMarketQTD, useSegmentQTD, useSubsQTD, UseCumuMembers, useGeoQTDTotal);
+    const useCloudTypeQTD = axios.get(Infoburst.xdcMemCacheQueryURL + Infoburst.useXDCID + Infoburst.summaryQueryNames.UseCloudTypeQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    responseArray.push(useSecondary, useMultichart, useQTDTotals, 
+        useGeoQTD, useMarketQTD, useSegmentQTD, 
+        useSubsQTD, UseCumuMembers, useGeoQTDTotal,useCloudTypeQTD);
 
     let promiseArr = Promise.all(responseArray);
 
@@ -3574,8 +4094,25 @@ export function filterRenewCancelSecondaryData(allFilters, _parameters) {
         responseType: 'text'
     });
 
+    //Cloud Type QTDs
+    const financeCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8CloudTypeQTD + params9 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const cancelAdobeCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8CloudTypeQTD + params7 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const cancelEtailCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.newFinanceXDC2ID + Infoburst.summaryQueryNames.FinancialG8CloudTypeQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+
     responseArray.push(cancelEtailSecondary, cancelEtailMultichart, cancelEtailQTD, cancelEtailGeo, cancelEtailMarket, cancelEtailSegment, 
-         cancelEtailProduct,financeGeoQTDTotal,cancelAdobeGeoTotal,cancelEtailGeoTotal);
+         cancelEtailProduct,financeGeoQTDTotal,cancelAdobeGeoTotal,cancelEtailGeoTotal,
+         financeCloudTypeQTD,
+         cancelAdobeCloudTypeQTD,
+         cancelEtailCloudTypeQTD);
     let promiseArr = Promise.all(responseArray);
 
     return promiseArr;
@@ -3730,13 +4267,26 @@ export function filterRenewDetailsSecondaryData(allFilters, _parameters) {
         headers: headers,
         responseType: 'text'
     });
+
+
+    //Cloud Type QTDs
+    const renewEtailCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFCloudTypeQTD + params5 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewCloudTypeQTD + params8 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
+    const renewResellerCloudTypeQTD = axios.get(Infoburst.xdcCacheQueryURL + Infoburst.renewXDCID + Infoburst.summaryQueryNames.RenewUIPFCloudTypeQTD + params6 + '&json=1', {
+        headers: headers,
+        responseType: 'text'
+    });
     responseArray.push(renewResellerSecondary, renewResellerMultichart, renewResellerQTDTotals, renewResellerGeoQTD, 
-        renewResellerMarketQTD, renewResellerSegmentQTD, renewEtailSubsQTD, renewResellerProductQTD, renewGeoQTDTotal,renewEtailGeoQTDTotal, renewResellerGeoQTDTotal );
-
-
-
-
-
+        renewResellerMarketQTD, renewResellerSegmentQTD, 
+        renewEtailSubsQTD, renewResellerProductQTD, 
+        renewGeoQTDTotal,renewEtailGeoQTDTotal, renewResellerGeoQTDTotal,
+        renewResellerCloudTypeQTD,renewEtailCloudTypeQTD,renewCloudTypeQTD);
 
     let promiseArr = Promise.all(responseArray);
     return promiseArr;
@@ -4313,6 +4863,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            filterParams[5].value = getParamValues(_activeParams.cloud, allFilters.cloud);
             break;
         //Try
         case 2:
@@ -4321,6 +4872,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.signupcat, allFilters.signupcat);
             filterParams[4].value = getParamValues(_activeParams.qfmType, allFilters.qfmType)
+            filterParams[5].value = getParamValues(_activeParams.cloud, allFilters.cloud)
 
             break;
         case 3:
@@ -4331,6 +4883,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[3].value = getParamValues(_activeParams.route, allFilters.routeTomarket);
             filterParams[4].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[5].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            filterParams[6].value = getParamValues(_activeParams.cloud, allFilters.cloud);
             break;
         case 4:
             //  Renew AdobeCom
@@ -4369,12 +4922,14 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.channelPM, allFilters.channelPM);
+            filterParams[4].value = getParamValues(_activeParams.cloud, allFilters.cloud);
             break;
         //UQFM - Discover
         case 8:
             filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.cloud, allFilters.cloud);
             break;
         // case 9 = Finance = Default
         case 10: /* Buy Market */
@@ -4385,6 +4940,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[3].value = getParamValues(_activeParams.ltvSegment, allFilters.ltvSegment);
             filterParams[4].value = getParamValues(_activeParams.channelPM, allFilters.channelPM);
             filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
+            filterParams[6].value = getParamValues(_activeParams.cloud, allFilters.cloud);
 
             break;
         case 11: //Repeat User Mau
@@ -4393,6 +4949,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
             filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            filterParams[5].value = getParamValues(_activeParams.cloud, allFilters.cloud);
             break;
         case 12:  // Buy Gross 
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
@@ -4402,6 +4959,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[4].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[5].value = getParamValues(_activeParams.pvw, allFilters.pvw);
             filterParams[6].value = getParamValues(_activeParams.qfmType, allFilters.qfmType);
+            filterParams[7].value = getParamValues(_activeParams.cloud, allFilters.cloud);
 
             break;
         case 13:
@@ -4412,6 +4970,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             // filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
             filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
+            filterParams[5].value = getParamValues(_activeParams.cloud, allFilters.cloud);
             break;
         // cancel Adobe / Etail 
         case 14:
@@ -4422,6 +4981,7 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
+            filterParams[6].value = getParamValues(_activeParams.cloud, allFilters.cloud);
             break;
         case 15:
 
@@ -4443,10 +5003,23 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[3].value = getParamValues(_activeParams.ltvSegment, allFilters.ltvSegment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             filterParams[5].value = getParamValues(_activeParams.product, allFilters.product);
+            filterParams[6].value = getParamValues(_activeParams.cloud , allFilters.cloud);
             break;
         case 17:
             filterParams[0].value = getParamValuesCorrelation(_activeParams.corgeo, allFilters.corgeo)
             break
+        case 18:
+            filterParams[0].value = getParamValues(_activeParams.geo, allFilters.geo);
+            filterParams[1].value = getParamValues(_activeParams.quarter, allFilters.quarter);
+            filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
+            filterParams[3].value = getParamValues(_activeParams.websegment, allFilters.websegment);
+            filterParams[4].value = getParamValues(_activeParams.visits, allFilters.visits);
+            filterParams[5].value = getParamValues(_activeParams.lastTouchChannel, allFilters.lastTouchChannel);
+            // filterParams[6].value = getParamValues(_activeParams.convType, allFilters.convType);
+            filterParams[6].value = getParamValues(_activeParams.customerType, allFilters.customerType);
+            filterParams[7].value = getParamValues(_activeParams.cloud, allFilters.cloud);
+            filterParams[8].value = getParamValues(_activeParams.qfmType, allFilters.qfmType);
+            break;
         default:
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
@@ -4485,7 +5058,12 @@ export function resetRenewParams() {
         {
             prompt: 'subscriptionFilters',
             value: ''
+        },
+        {
+            prompt: 'cloudtypeFilters',
+            value: ''
         }
+
 
     ];
     cancelAdobeParams = [
@@ -4513,6 +5091,10 @@ export function resetRenewParams() {
         {
             prompt: 'productFilters',
             value: ''
+        },
+        {
+            prompt: 'cloudtypeFilters',
+            value: ''
         }
     ];
     cancelRetailParams = [
@@ -4538,6 +5120,10 @@ export function resetRenewParams() {
         },
         {
             prompt: 'productFilters',
+            value: ''
+        },
+        {
+            prompt: 'cloudtypeFilters',
             value: ''
         }
     ];
@@ -4590,6 +5176,10 @@ export function resetRenewParams() {
         {
             prompt: 'subscriptionFilters',
             value: ''
+        },
+        {
+            prompt: 'cloudtypeFilters',
+            value: ''
         }
 
     ];
@@ -4616,6 +5206,10 @@ export function resetRenewParams() {
         },
         {
             prompt: 'subscriptionFilters',
+            value: ''
+        },
+        {
+            prompt: 'cloudtypeFilters',
             value: ''
         }
 

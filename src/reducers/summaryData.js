@@ -25,11 +25,13 @@ import {
     GET_BUY_MKTG_SECONDARY_DATA,
     GET_BUY_FINANCE_SECONDARY_DATA,
     GET_USE_SECONDARY_DATA,
+    GET_BUY_WEB_ORDERS_SECONDARY_DATA,
     DELETE_COMMENT,
     RESET_DATA,
     UPDATE_BUY_CONVERSION_IS_LOADING,
     UPDATE_BUY_MARKET_IS_LOADING,
     UPDATE_BUY_GROSS_IS_LOADING,
+    UPDATE_BUY_WEB_ORDERS_IS_LOADING,
     UPDATE_PRIMARY_IS_LOADING,
     UPDATE_DISCOVER_SECONDARY_IS_LOADING,
     UPDATE_FINANCE_SECONDARY_IS_LOADING,
@@ -46,6 +48,7 @@ import {
     SecondaryData
 } from '../variables.js';
 import { PrimaryData } from '../variables.js';
+// import { start } from 'repl';
 let newState;
 let copyOfSquare;
 let index = 0;
@@ -60,6 +63,7 @@ export default function (state = {
     renewCancelIsLoaded: false,
     renewIsLoaded: false,
     renewDetailsIsLoaded: false,
+    webOrdersIsLoaded: false
 }, action) {
     switch (action.type) {
         case UPDATE_PRIMARY_IS_LOADING:
@@ -105,6 +109,10 @@ export default function (state = {
         case UPDATE_BUY_MARKET_IS_LOADING:
             return {
                 ...state, buyMarketIsLoaded: action.payload
+            }
+        case UPDATE_BUY_WEB_ORDERS_IS_LOADING:
+            return {
+                ...state, webOrdersIsLoaded: action.payload
             }
         case UPDATE_RENEW_IS_LOADING:
             return {
@@ -207,6 +215,7 @@ export default function (state = {
             processXDC1FinancialSegmentWeek(newState.secondary, action.payload[6].data);
             processXDC1FinancialproductQTD(newState.secondary, action.payload[8].data);
             processXDC1FinancialProductWeek(newState.secondary, action.payload[8].data);
+            processXDC1FinancialCloudTypeQTD(newState.secondary, action.payload[10].data);
             return { ...newState, financeXDC1IsLoaded: true };
         case GET_FINANCE_XDC2_SECONDARY_DATA:
             console.log("Request for XDC 2 Finance: ", action.payload);
@@ -227,6 +236,7 @@ export default function (state = {
             processXDC2FinancialSegmentWeek(newState.secondary, action.payload[6].data);
             processXDC2FinancialproductQTD(newState.secondary, action.payload[8].data);
             processXDC2FinancialProductWeek(newState.secondary, action.payload[8].data);
+            processXDC2FinancialCloudTypeQTD(newState.secondary, action.payload[10].data);
             console.log('New State for XDC2', newState);
             return { ...newState, financeXDC2IsLoaded: true };
         case GET_TRAFFIC_SECONDARY_DATA:
@@ -246,7 +256,7 @@ export default function (state = {
             processTrafficCustomerQTDData(action.payload[7].data, newState.secondary );
             processTrafficMobDeskQTDData(action.payload[8].data, newState.secondary);
             processTrafficNewRepQTDData(action.payload[9].data, newState.secondary);
-
+            processTrafficCloudTypeQTDData(action.payload[18].data, newState.secondary);
 
             processUQFMSecondaryData(action.payload[10].data[0], newState.secondary);
             processUQFMMultichartData(action.payload[11].data, newState.secondary);
@@ -255,6 +265,27 @@ export default function (state = {
             processUQFMGeoQTDDataTotal(action.payload[16].data, newState.secondary);
             processUQFMMarketQTDData(action.payload[14].data, newState.secondary);
             return { ...newState, trafficIsLoaded: true };
+        
+        case GET_BUY_WEB_ORDERS_SECONDARY_DATA:
+            console.log('Request Web Orders Secondary Details Data: ', action.payload);
+            newState = JSON.parse(JSON.stringify(state));
+            processWebOrdersSecondaryData(action.payload[0].data[0], newState.secondary);
+            processWebOrdersMultichartData(action.payload[1].data, newState.secondary);
+            processWebOrdersQTDData(action.payload[2].data[0], newState.secondary);
+            processWebOrdersGeoQTDData(action.payload[3].data, newState.secondary);
+            processWebOrdersGeoQTDDataTotal(action.payload[10].data, newState.secondary);
+            processWebOrdersMarketQTDData(action.payload[4].data, newState.secondary);
+            processWebOrdersWebSegmentQTDData(action.payload[5].data, newState.secondary);
+            processWebOrdersLTCQTDData(action.payload[6].data, newState.secondary);
+            processWebOrdersLTCQTDDataTotal(action.payload[11].data, newState.secondary);
+            
+            processWebOrdersCustomerQTDData(action.payload[7].data, newState.secondary );
+            processWebOrdersMobDeskQTDData(action.payload[8].data, newState.secondary);
+            processWebOrdersNewRepQTDData(action.payload[9].data, newState.secondary);
+            processWebOrdersCloudTypeData(action.payload[12].data, newState.secondary);
+
+            return { ...newState, webOrdersIsLoaded: true };
+
         case GET_MKTG_SECONDARY_DATA:
             console.log('Request For Marketable Universe Secondary Details Data: ', action.payload);
             newState = JSON.parse(JSON.stringify(state));
@@ -267,6 +298,7 @@ export default function (state = {
             processMUGeoQTDDataTotal(action.payload[12].data, newState.secondary);
             processMUMarketQTDData(action.payload[4].data, newState.secondary);
             processMUChannelQTDData(action.payload[5].data, newState.secondary);
+            processMUCloudTypeQTDData(action.payload[14].data, newState.secondary)
 
             processPMSSSecondaryData(action.payload[6].data[0], newState.secondary);
             processPMSSMultichartData(action.payload[7].data, newState.secondary);
@@ -275,6 +307,8 @@ export default function (state = {
             processPMSSGeoQTDDataTotal(action.payload[13].data, newState.secondary);
             processPMSSMarketQTDData(action.payload[10].data, newState.secondary);
             processPMSSChannelQTDData(action.payload[11].data, newState.secondary);
+            processPMSSCloudTypeQTDData(action.payload[15].data, newState.secondary)
+
 
             return { ...newState, muIsLoaded: true };
         case GET_TRY_SECONDARY_DATA:
@@ -294,6 +328,7 @@ export default function (state = {
             processTryDownloadQTDData(action.payload[8].data, newState.secondary);
             processTryDownloadQTDDataTotal(action.payload[12].data, newState.secondary);
             processTryQFMQTDData(action.payload[9].data, newState.secondary);
+            processTryCloudTypeQTDData(action.payload[13].data, newState.secondary);
 
             return { ...newState, tryIsLoaded: true };
         case GET_BUY_SECONDARY_DATA:
@@ -304,6 +339,7 @@ export default function (state = {
             processBuyGrossSecondaryData(action.payload[3].data[0], newState.secondary);
             processBuyConversionSecondaryData(action.payload[0].data[0], newState.secondary);
             processBuyLTVSourcedSecondary(action.payload[4].data[0], newState.secondary);
+            processBuyWebOrdersSecondary(action.payload[5].data[0], newState.secondary)
             
 
             return { ...newState, buySecondaryIsLoaded: true };
@@ -323,6 +359,7 @@ export default function (state = {
             processBuyConversionMobDeskQTDData(action.payload[8].data, newState.secondary);
             processBuyConversionNewRepQTDData(action.payload[9].data, newState.secondary);
             processBuyConversionQFMData(action.payload[10].data, newState.secondary);
+            processBuyConversionCloudTypeData(action.payload[13].data, newState.secondary);
 
             return { ...newState, buyConversionIsLoaded: true };
         case GET_BUY_MKTG_SECONDARY_DATA:
@@ -339,6 +376,7 @@ export default function (state = {
             processBuyPMSSSecondaryData(action.payload[6].data[0], newState.secondary);
             processBuyMKTSourcedSegmentQTD(action.payload[13].data, newState.secondary);
             processBuyMKTSourcedProductQTD(action.payload[12].data, newState.secondary);
+            processBuyMKTSourcedCloudTypeQTD(action.payload[25].data, newState.secondary);
 
             processBuyPMSSMultichartData(action.payload[7].data, newState.secondary);
             processBuyPMSSQTDData(action.payload[8].data[0], newState.secondary);
@@ -346,6 +384,7 @@ export default function (state = {
             processBuyPMSSGeoQTDDataTotal(action.payload[23].data, newState.secondary);
             processBuyPMSSMarketQTDData(action.payload[10].data, newState.secondary);
             processBuyPMSSChannelQTDData(action.payload[11].data, newState.secondary);
+            processBuyPMSSCloudTypeQTDData(action.payload[26].data, newState.secondary);
 
 
             processBuyLTVSourcedSecondary(action.payload[14].data[0], newState.secondary);
@@ -357,6 +396,7 @@ export default function (state = {
             processBuyLTVSourcedProductQTD(action.payload[19].data, newState.secondary);
             processBuyLTVSourcedSegmentQTD(action.payload[20].data, newState.secondary);
             processBuyLTVSourcedSubscriptionQTD(action.payload[21].data, newState.secondary);
+            processBuyLTVSourcedCloudTypeQTD(action.payload[27].data, newState.secondary);
 
             return { ...newState, buyMarketIsLoaded: true };
         case GET_BUY_FINANCE_SECONDARY_DATA:
@@ -378,6 +418,7 @@ export default function (state = {
             processBuyGrossproductQTD(newState.secondary, action.payload[7].data);
             processBuyGrossProductWeek(newState.secondary, action.payload[7].data);
             processBuyGrossQFMTypeQTD(newState.secondary, action.payload[8].data);
+            processBuyGrossCloudTypeTypeQTD(newState.secondary, action.payload[10].data);
 
             return { ...newState, buyGrossIsLoaded: true };
         case GET_USE_SECONDARY_DATA:
@@ -390,6 +431,7 @@ export default function (state = {
             processUseMarketQTDData(action.payload[4].data, newState.secondary);
             processUseSegmentQTDData(action.payload[5].data, newState.secondary);
             processUseSubscriptionQTDData(action.payload[6].data, newState.secondary);
+            processUseCloudTypeQTDData(action.payload[9].data, newState.secondary);
             return { ...newState, useIsLoaded: true };
         case GET_RENEW_SECONDARY_DATA:
             newState = JSON.parse(JSON.stringify(state));
@@ -418,7 +460,8 @@ export default function (state = {
             processRenewCancelSegmentWeek(newState.secondary, action.payload[5].data, action.payload[12].data, action.payload[19].data);
             processRenewCancelproductQTD(newState.secondary, action.payload[6].data, action.payload[13].data, action.payload[20].data);
             processRenewCancelProductWeek(newState.secondary, action.payload[6].data, action.payload[13].data, action.payload[20].data);
-
+            processRenewCancelCloudTypeQTD(newState.secondary, action.payload[24].data, action.payload[25].data, action.payload[26].data);
+            processRenewCancelCloudTypeWeek(newState.secondary, action.payload[24].data, action.payload[25].data, action.payload[26].data);
             return { ...newState, renewCancelIsLoaded: true };
         case GET_RENEW_DETAILS_DATA:
             newState = JSON.parse(JSON.stringify(state));
@@ -432,7 +475,8 @@ export default function (state = {
             processRenewMarketQTDData(action.payload[4].data, newState.secondary, action.payload[10].data, action.payload[16].data);
             processRenewSegmentQTDData(action.payload[5].data, newState.secondary, action.payload[11].data, action.payload[17].data);
             processRenewProductQTDData(action.payload[18].data, newState.secondary, action.payload[19].data);
-            return { ...newState, renewDetailsIsLoaded: true };
+            processRenewCloudTypeQTDData(action.payload[24].data, newState.secondary, action.payload[23].data, action.payload[25].data);
+             return { ...newState, renewDetailsIsLoaded: true };
         default:
             return state;
     }
@@ -1505,6 +1549,81 @@ export function processXDC1FinancialProductWeek(newState, data) {
     newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.product.week = item2;
 
 }
+export function processXDC1FinancialCloudTypeQTD(newState, data) {
+    //Clear old Values
+    let netQTD = [];
+    let netWeek = [];
+    let grossQTD = [];
+    let grossWeek = [];
+    
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let netCloudQTD = {
+                index: i,
+                actuals: item.NewActuals,
+                units: item.NewUnitsActual,
+                marketArea: item.market_area_code,
+                qq: item.NewARRQQTY,
+                qrf: item.NewTarget,
+                qrfDiff: item.NewVsQrfDiff,
+                type: item.cloud_type,
+                vsQrf: item.NewARRVsQrf,
+                yy: item.NewARRYY
+      
+
+        }
+        let netCloudWeek = {
+            index: i,
+            actuals: item.NewARRCW,
+            units: item.NewUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.NewARRTargetCW,
+            qrfDiff: item.NewCWVsQrfDiff,
+            type: item.cloud_type,
+            vsQrf: item.NewCWVsQrf,
+            ww: item.NewWW
+
+        }
+        let grossCloudQTD = {
+            index: i,
+            actuals: item.GrossActuals,
+            marketArea: item.market_area_code,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            type: item.cloud_type,
+            units: item.GrossUnitsActual,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let grossCloudWeek = {
+            index: i,
+            actuals: item.GrossARRCW,
+            units: item.GrossUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            type: item.cloud_type,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW
+        }
+       
+        
+        
+
+        netQTD.push(netCloudQTD);
+        netWeek.push(netCloudWeek);
+        grossQTD.push(grossCloudQTD);
+        grossWeek.push(grossCloudWeek);
+        
+    }
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.cloud.qtd = netQTD;
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.cloud.qtd = grossQTD;
+    newState[SUMMARY_KPIS.FINANCE_NET_NEW_ARR].details.cloud.week = netWeek;
+    newState[SUMMARY_KPIS.FINANCE_GROSS_NEW_ARR].details.cloud.week = grossWeek;
+
+}
+
 //XDC2
 export function processXDC2FinanceSecondaryData(g1, newState) {
     //Finance
@@ -2585,6 +2704,80 @@ export function processXDC2FinancialProductWeek(newState, data) {
     newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.product.week = item3;
     newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.product.week = item4;
 }
+export function processXDC2FinancialCloudTypeQTD(newState, data) {
+    //Clear old Values
+    let cancelQTD = [];
+    let cancelWeek = [];
+    let renewQTD = [];
+    let renewWeek = [];
+    
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let cancelCloudQTD = {
+                index: i,
+                actuals: item.CancelActuals,
+                units: item.CancelUnitsActual,
+                marketArea: item.market_area_code,
+                qq: item.CancelARRQQTY,
+                qrf: item.CancelTarget,
+                qrfDiff: item.CancelVsQrfDiff,
+                type: item.cloud_type,
+                vsQrf: item.CancelARRVsQrf,
+                yy: item.CancelARRYY
+      
+
+        }
+        let cancelCloudWeek = {
+            index: i,
+            actuals: item.CancelARRCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.cloud_type,
+            vsQrf: item.CancelCWVsQrf,
+            ww: item.CancelWW
+
+        }
+        let renewCloudQTD = {
+            index: i,
+            actuals: item.RenewalActuals,
+            marketArea: item.market_area_code,
+            qq: item.RenewalARRQQTY,
+            qrf: item.RenewalTarget,
+            qrfDiff: item.RenewalVsQrfDiff,
+            type: item.cloud_type,
+            units: item.RenewalUnitsActual,
+            vsQrf: item.RenewalARRVsQrf,
+            yy: item.RenewalARRYY
+        }
+        let renewCloudWeek = {
+            index: i,
+            actuals: item.RenewalARRCW,
+            units: item.RenewalUnitsCW,
+            marketArea: item.market_area_code,
+            qrf: item.RenewalARRTargetCW,
+            qrfDiff: item.RenewalCWVsQrfDiff,
+            type: item.cloud_type,
+            vsQrf: item.RenewalCWVsQrf,
+            ww: item.RenewalWW
+        }
+       
+        
+        
+
+        cancelQTD.push(cancelCloudQTD);
+        cancelWeek.push(cancelCloudWeek);
+        renewQTD.push(renewCloudQTD);
+        renewWeek.push(renewCloudWeek);
+        
+    }
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.cloud.qtd = cancelQTD;
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.cloud.qtd = renewQTD;
+    newState[SUMMARY_KPIS.FINANCE_CANCEL_ARR].details.cloud.week = cancelWeek;
+    newState[SUMMARY_KPIS.FINANCE_RENEW_ARR].details.cloud.week = renewWeek;
+
+}
 /**Discover**/
 //Traffic
 export function processTrafficSecondaryData(g5, newState) {
@@ -3373,6 +3566,120 @@ export function processTrafficNewRepQTDData(g5, newState) {
     }
 
 }
+export function processTrafficCloudTypeQTDData(g5, newState) {
+
+    //Clear old Values
+
+    newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details = { ...newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details, cloud: { qtd: [], week: [] } };
+
+    newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details = { ...newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details, cloud: { qtd: [], week: [] } };
+
+
+
+    for (let i = 0; i < g5.length; i++) {
+
+        let item = g5[i];
+
+        let traffic = {
+
+            index: i,
+
+            actuals: item.TrafficActuals,
+
+            marketArea: item.market_area_group,
+
+            qq: item.TrafficQQTY,
+
+            qrf: item.TrafficTarget,
+
+            qrfDiff: item.TrafficActuals - item.TrafficTarget,
+
+            type: item.cloud_type,
+
+            vsQrf: item.TrafficVsQrf,
+
+            yy: item.TrafficYY
+
+        }
+
+        let trafficPM =
+
+        {
+
+            index: i,
+
+            marketArea: item.market_area_group,
+
+            actuals: item.TrafficCW,
+
+            qrf: item.TrafficTargetCW,
+
+            qrfDiff: item.TrafficCWVsQrfDiff,
+
+            vsQrf: item.TrafficCWVsQrf,
+
+            ww: item.TrafficWW,
+
+            type: item.cloud_type,
+
+        }
+
+        let bounce = {
+
+            index: i,
+
+            actuals: item.BounceRateActuals,
+
+            marketArea: item.market_area_group,
+
+            qq: item.BounceRateQQTY,
+
+            qrf: item.BounceRateTarget,
+
+            qrfDiff: item.BounceRateVsQrfDiff,
+
+            type: item.cloud_type,
+
+            vsQrf: item.BounceRateVsQrf,
+
+            yy: item.BounceRateYY
+
+        }
+
+        let bouncePM =
+
+        {
+
+            index: i,
+
+            marketArea: item.market_area_group,
+
+            actuals: item.BounceRateCW,
+
+            qrf: item.BounceRateTargetCW,
+
+            qrfDiff: item.BounceRateCWVsQrfDiff,
+
+            vsQrf: item.BounceRateCWVsQrf,
+
+            ww: item.BounceRateWW,
+
+            type: item.cloud_type,
+
+        }
+
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.cloud.qtd.push(traffic);
+
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.cloud.qtd.push(bounce);
+
+        newState[SUMMARY_KPIS.DISCOVER_TRAFFIC].details.cloud.week.push(trafficPM);
+
+        newState[SUMMARY_KPIS.DISCOVER_BOUNCE_RATE].details.cloud.week.push(bouncePM);
+
+    }
+
+}
+
 //End Traffic
 
 // UQFM
@@ -3876,6 +4183,63 @@ export function processMUChannelQTDData(data, newState) {
         newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.channel.week.push(netWeek);
     }
 }
+export function processMUCloudTypeQTDData(data, newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details = { ...newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details, cloud: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details = { ...newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details, cloud: { qtd: [], week: [] } };
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let netMu = {
+            index: i,
+            actuals: item.NetChangeMUActuals,
+            type: item.cloud_type,
+            qq: item.NetChangeMUQQTY,
+            qrf: item.NetChangeMUTarget,
+            qrfDiff: item.NetChangeMUVsQrfDiff,
+            vsQrf: item.NetChangeMUVsQrf,
+            yy: item.NetChangeMUYY
+        }
+        let cumuMu =
+        {
+            index: i,
+            actuals: item.CumuMUActuals,
+            marketArea: item.market_area_group,
+            qq: item.CumuMUQQTY,
+            qrf: item.CumuMUTarget,
+            qrfDiff: item.CumuMUVsQrfDif,
+            type: item.cloud_type,
+            vsQrf: item.CumuMUVsQrf,
+            yy: item.CumuMUYY
+        }
+
+        let netWeek = {
+            index: i,
+            type: item.cloud_type,
+            actuals: item.NetChangeMUCW,
+            qrf: item.NetChangeMUTargetCW,
+            qrfDiff: item.NetChangeMUCWVsQrfDiff,
+            vsQrf: item.NetChangeMUCWVsQrf,
+            ww: item.NetChangeMUWW,
+        }
+
+        let cumuWeek =
+        {
+            index: i,
+            type: item.cloud_type,
+            actuals: item.CumuMUCW,
+            qrf: item.CumuMUTargetCW,
+            qrfDiff: item.CumuMUCWVsQrfDiff,
+            vsQrf: item.CumuMUCWVsQrf,
+            ww: item.CumuMUWW,
+        }
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.cloud.qtd.push(netMu);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.cloud.qtd.push(cumuMu);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].cumulative.details.cloud.week.push(cumuWeek);
+        newState[SUMMARY_KPIS.DISCOVER_MARKETABLE_UNIVERSE].details.cloud.week.push(netWeek);
+    }
+}
+
 //End Marketable Universe 
 
 //  Paid Media spend and sourced
@@ -4230,6 +4594,41 @@ export function processPMSSChannelQTDData(data, newState) {
         newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details.channel.week.push(pmuqfmWeek);
     }
 }
+export function processPMSSCloudTypeQTDData(data, newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details = { ...newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details, cloud: { qtd: [], week: [] } };
+    // newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details = { ...newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SOURCED].details, channel: { qtd: [], week: [] } };
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let pm = {
+            index: i,
+            actuals: item.PMSpendDiscoverActuals,
+            qq: item.PMSpendDiscoverQQTY,
+            qrf: item.PMSpendDiscoverTarget,
+            qrfDiff: item.PMSpendDiscoverVsQrfDiff,
+            type: item.cloud_type,
+            vsQrf: item.PMSpendDiscoverVsQrf,
+            yy: item.PMSpendDiscoverYY
+        }
+        let pmWeek =
+        {
+            index: i,
+            type: item.cloud_type,
+            actuals: item.PMSpendDiscoverCW,
+            qrf: item.PMSpendDiscoverTargetCW,
+            qrfDiff: item.PMSpendDiscoverCWVsQrfDiff,
+            vsQrf: item.PMSpendDiscoverCWVsQrf,
+            ww: item.PMSpendDiscoverWW,
+        }
+
+        
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.channel.qtd.push(pm);
+        newState[SUMMARY_KPIS.DISCOVER_PAID_MEDIA_SPEND].details.channel.week.push(pmWeek);
+        
+    }
+}
+
 //End  Paid Media spend and sourced
 
 /**Try**/
@@ -5537,6 +5936,198 @@ export function processTryQFMQTDData(data, newState) {
 
     }
 }
+
+export function processTryCloudTypeQTDData(data, newState) {
+    let newQFM_QTD=[]
+    let newQFM_Week=[]
+    let newUQFM_QTD=[]
+    let newUQFM_Week=[]
+    let cumuUQFM_QTD=[]
+    let cumuUQFM_Week=[]
+    let cumuQFM_QTD = []
+    let cumuQFM_Week=[]
+    let day28_QTD=[]
+    let day28_Week=[]
+    let cumuUTQ_QTD=[]
+    let cumuUTQ_Week=[]
+
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_UQFM].details, cloud: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details, cloud: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].details = { ...newState[SUMMARY_KPIS.TRY_NEW_QFM].details, cloud: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_QFM].details, cloud: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_DAY_28].details = { ...newState[SUMMARY_KPIS.TRY_DAY_28].details, cloud: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details = { ...newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details, cloud: { qtd: [], week: [] } };
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        //New QFM
+        let newQFM = {
+            index: i,
+            actuals: item.NewQFMsActuals,
+            marketArea: item.market_area_group,
+            qq: item.NewQFMsQQTY,
+            qrf: item.NewQFMsTarget,
+            qrfDiff: item.NewQFMsVsQrfDiff,
+            type: item.cloud_type,
+            vsQrf: item.NewQFMsVsQrf,
+            yy: item.NewQFMsYY
+        }
+        let newQFMWeek =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.NewQFMsCW,
+            qrf: item.NewQFMsTargetCW,
+            qrfDiff: item.NewQFMsCWVsQrfDiff,
+            vsQrf: item.NewQFMsCWVsQrf,
+            ww: item.NewQFMsWW,
+            type: item.cloud_type,
+        }
+        //New UQFM
+        let newUQFM = {
+            index: i,
+            actuals: item.NewUQFMsActuals,
+            marketArea: item.market_area_group,
+            qq: item.NewUQFMsQQTY,
+            qrf: item.NewUQFMsTarget,
+            qrfDiff: item.NewUQFMsVsQrfDiff,
+            type: item.cloud_type,
+            vsQrf: item.NewUQFMsVsQrf,
+            yy: item.NewUQFMsYY
+        }
+        let newUQFMWeek =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.NewUQFMsCW,
+            qrf: item.NewUQFMsTargetCW,
+            qrfDiff: item.NewUQFMsCWVsQrfDiff,
+            vsQrf: item.NewUQFMsCWVsQrf,
+            ww: item.NewUQFMsWW,
+            type: item.cloud_type,
+        }
+        //Cumu UQFM
+        let cumuUQFM = {
+            index: i,
+            actuals: item.CumUQFMsActuals,
+            marketArea: item.market_area_group,
+            qq: item.CumUQFMsQQTY,
+            qrf: item.CumUQFMsTarget,
+            qrfDiff: item.CumUQFMsVsQrfDiff,
+            type: item.cloud_type,
+            vsQrf: item.CumUQFMsVsQrf,
+            yy: item.CumUQFMsYY
+        }
+        let cumuUQFMWeek =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.CumUQFMsCW,
+            qrf: item.CumUQFMsTargetCW,
+            qrfDiff: item.CumUQFMsCWVsQrfDiff,
+            vsQrf: item.CumUQFMsCWVsQrf,
+            ww: item.CumUQFMsWW,
+            type: item.cloud_type,
+        }
+        //Cumu QFM
+        let cumuQFM = {
+            index: i,
+            actuals: item.CumQFMsActuals,
+            marketArea: item.market_area_group,
+            qq: item.CumQFMsQQTY,
+            qrf: item.CumQFMsTarget,
+            qrfDiff: item.CumQFMsVsQrfDiff,
+            type: item.cloud_type,
+            vsQrf: item.CumQFMsVsQrf,
+            yy: item.CumQFMsYY
+        }
+        let cumuQFMWeek =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.CumQFMsCW,
+            qrf: item.CumQFMsTargetCW,
+            qrfDiff: item.CumQFMsCWVsQrfDiff,
+            vsQrf: item.CumQFMsCWVsQrf,
+            ww: item.CumQFMsWW,
+            type: item.cloud_type,
+        }
+        //Day 28
+        let day28 = {
+            index: i,
+            actuals: item.Day28NewUQFMActuals,
+            marketArea: item.market_area_group,
+            qq: item.Day28NewUQFMQQTY,
+            qrf: item.Day28NewUQFMTarget,
+            qrfDiff: item.Day28NewUQFMVsQrfDiff,
+            type: item.cloud_type,
+            vsQrf: item.Day28NewUQFMVsQrf,
+            yy: item.Day28NewUQFMYY
+        }
+        let day28Week =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.Day28NewUQFMCW,
+            qrf: item.Day28NewUQFMTargetCW,
+            qrfDiff: item.Day28NewUQFMCWVsQrfDiff,
+            vsQrf: item.Day28NewUQFMCWVsQrf,
+            ww: item.Day28NewUQFMWW,
+            type: item.cloud_type,
+        }
+        //Cumu UQFM to QFM
+        let cumuUTQ = {
+            index: i,
+            actuals: item.CumUQFMToQFMActuals,
+            marketArea: item.market_area_group,
+            qq: item.CumUQFMToQFMQQTY,
+            qrf: item.CumUQFMToQFMTarget,
+            qrfDiff: item.CumUQFMToQFMVsQrfDiff,
+            type: item.cloud_type,
+            vsQrf: item.CumUQFMToQFMVsQrf,
+            yy: item.CumUQFMToQFMYY
+        }
+        let cumuUTQWeek =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.CumUQFMToQFMCW,
+            qrf: item.CumUQFMToQFMTargetCW,
+            qrfDiff: item.CumUQFMToQFMCWVsQrfDiff,
+            vsQrf: item.CumUQFMToQFMCWVsQrf,
+            ww: item.CumUQFMToQFMWW,
+            type: item.cloud_type,
+        }
+
+        newQFM_QTD.push(newQFM)
+        newQFM_Week.push(newQFMWeek)
+        newUQFM_QTD.push(newUQFM)
+        newUQFM_Week.push(newUQFMWeek)
+        cumuUQFM_QTD.push(cumuUQFM)
+        cumuUQFM_Week.push(cumuUQFMWeek)
+        cumuQFM_QTD.push(cumuQFM)
+        cumuQFM_Week.push(cumuQFMWeek)
+        day28_QTD.push(day28)
+        day28_Week.push(day28Week)
+        cumuUTQ_QTD.push(cumuUTQ)
+        cumuUTQ_Week.push(cumuUTQWeek)
+    }
+
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].details.cloud.qtd = newQFM_QTD
+    newState[SUMMARY_KPIS.TRY_NEW_QFM].details.cloud.week = newQFM_Week
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.cloud.qtd = newUQFM_QTD
+    newState[SUMMARY_KPIS.TRY_NEW_UQFM].details.cloud.week = newUQFM_Week
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.cloud.qtd = cumuUQFM_QTD
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM].details.cloud.week = cumuUQFM_Week
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.cloud.qtd = cumuQFM_QTD
+    newState[SUMMARY_KPIS.TRY_CUMU_QFM].details.cloud.week = cumuQFM_Week
+    newState[SUMMARY_KPIS.TRY_DAY_28].details.cloud.qtd = day28_QTD
+    newState[SUMMARY_KPIS.TRY_DAY_28].details.cloud.week = day28_Week
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.cloud.qtd = cumuUTQ_QTD
+    newState[SUMMARY_KPIS.TRY_CUMU_UQFM_QFM].details.cloud.week = cumuUTQ_Week
+
+}
+
 /**End Try */
 
 /**Buy */
@@ -5578,6 +6169,45 @@ export function processBuyConversionQFMData(data, newState) {
 
     }
 }
+export function processBuyConversionCloudTypeData(data, newState) {
+    //Clear old Values
+    
+    newState[SUMMARY_KPIS.BUY_CONVERSION].details = { ...newState[SUMMARY_KPIS.BUY_CONVERSION].details, cloud: { qtd: [], week: [] } };
+        
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+      
+        
+        //conversion QFM
+        let convCloud = {
+            index: i,
+            actuals: item.ConversionActuals,
+            type: item.cloud_type,
+            qq: item.ConversionQQTY,
+            qrf: item.ConversionTarget,
+            qrfDiff: item.ConversionVsQrfDiff,
+            vsQrf: item.ConversionVsQrf,
+            yy: item.ConversionYY
+        }
+        let convCloudWeek =
+        {
+            index: i,
+            type: item.cloud_type,
+            actuals: item.ConversionCW,
+            qrf: item.ConversionTargetCW,
+            qrfDiff: item.ConversionCWVsQrfDiff,
+            vsQrf: item.ConversionCWVsQrf,
+            ww: item.ConversionWW,
+        }
+       
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.cloud.qtd.push(convCloud);
+        newState[SUMMARY_KPIS.BUY_CONVERSION].details.cloud.week.push(convCloudWeek);
+        
+
+    }
+}
+
 //Conversion
 export function processBuyConversionSecondaryData(data, newState) {
     newState[SUMMARY_KPIS.BUY_CONVERSION].value = data.ConversionActual;
@@ -6223,7 +6853,527 @@ export function processBuyMKTSourcedProductQTD(data, newState) {
         newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.product.week.push(mktgWeek);
     }
 }
+export function processBuyMKTSourcedCloudTypeQTD(data, newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.cloud.qtd = [];
+    newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.cloud.week = [];
+
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let mktg = {
+            index: i,
+            actuals: item.MktgSourcedARRActuals,
+            qq: item.MktgSourcedARRQQTY,
+            qrf: item.MktgSourcedARRTarget,
+            qrfDiff: item.MktgSourcedARRVsQrfDiff,
+            type: item.cloud_type,
+            vsQrf: item.MktgSourcedARRVsQrf,
+            yy: item.MktgSourcedARRYY
+        }
+        let mktgWeek =
+        {
+            index: i,
+            actuals: item.MktgSourcedARRCW,
+            qrf: item.MktgSourcedARRTargetCW,
+            qrfDiff: item.MktgSourcedARRCWVsQrfDiff,
+            vsQrf: item.MktgSourcedARRCWVsQrf,
+            ww: item.MktgSourcedARRWW,
+            type: item.cloud_type,
+        }
+        newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.cloud.qtd.push(mktg);
+        newState[SUMMARY_KPIS.BUY_MARKETING_SOURCED].details.cloud.week.push(mktgWeek);
+    }
+}
+
 //END MKTg
+
+//Web Orders
+export function processWebOrdersSecondaryData(g5, newState) {
+    // console.log(g5, newState);
+
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].value = g5.OrdersActual;
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].target = g5.OrdersTarget;
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].targetFQ = g5.OrdersTargetFQ;
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].vsQrf = g5.OrdersVsQrf;
+    
+
+}
+export function processWebOrdersMultichartData(g5, newState) {
+    let weekG5Flag = g5.map(item => {
+        return { ...item, weekNo: parseInt(item.week) ? parseInt(item.week) : 1 }
+    })
+    // _.orderBy(weekFlag, weekNo, ['asc'])
+    let newG5 = _.orderBy(weekG5Flag, ['weekNo'], ['asc']);
+
+    let webOrders = {
+        actual: [],
+        target: [],
+        lq: [],
+        ly: []
+    }
+    //Get Discover G5 Multichart values
+    for (let i = 0; i < g5.length; i++) {
+        let item = newG5[i];
+        //web orders
+        webOrders.actual.push(item.OrdersActual);
+        webOrders.target.push(item.OrdersTarget);
+        webOrders.ly.push(item.OrdersLY);
+        webOrders.lq.push(item.OrdersLQ);
+        
+
+    };
+    //Set Multichart Values
+    let webOrdersMulti = [webOrders.actual, webOrders.target, webOrders.ly, webOrders.lq];
+    
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS]['details'].multichart = webOrdersMulti;
+    
+}
+export function processWebOrdersQTDData(g5, newState) {
+    // console.log(g5, newState);
+
+            //Web Orders
+            
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.qtdw.qtd[0].value = g5.OrdersActuals;
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.qtdw.qtd[1].value = g5.OrdersTarget;
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.qtdw.qtd[2].value = g5.OrdersVsQrfDiff
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.qtdw.qtd[3].value = g5.OrdersVsQrf;
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.qtdw.qtd[4].value = g5.OrdersQQTY;
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.qtdw.qtd[5].value = g5.OrdersYY;
+
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.qtdw.week[0].value = g5.OrdersCW;
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.qtdw.week[1].value = g5.OrdersTargetCW;
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.qtdw.week[2].value = g5.OrdersCWVsQrfDiff;
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.qtdw.week[3].value = g5.OrdersCWVsQrf;
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.qtdw.week[4].value = g5.OrdersWW;
+
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.stats[0].value = g5.OrdersVsQrf;
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.stats[1].value = g5.OrdersQQTY;
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.stats[2].value = g5.OrdersQQLY;
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.stats[3].value = g5.OrdersYY;
+                
+}
+export function processWebOrdersGeoQTDData(g5, newState) {
+    // console.log(g5)
+    //Clear old Values
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geo.qtd = [];
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geo.week = [];
+    
+
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let webOrders = {
+            index: i,
+            actuals: item.OrdersActuals,
+            marketArea: item.market_area_group,
+            qq: item.OrdersQQTY,
+            qrf: item.OrdersTarget,
+            qrfDiff: item.OrdersActuals - item.OrdersTarget,
+            type: item.geo_code,
+            vsQrf: item.OrdersVsQrf,
+            yy: item.OrdersYY
+        }
+        let webOrdersPM =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.OrdersCW,
+            qrf: item.OrdersTargetCW,
+            qrfDiff: item.OrdersCWVsQrfDiff,
+            vsQrf: item.OrdersCWVsQrf,
+            ww: item.OrdersWW,
+            type: item.geo_code,
+        }
+        
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geo.qtd.push(webOrders);
+        
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geo.week.push(webOrdersPM);
+        
+    }
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geo.qtd = processQTDOrder(newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geo.qtd)
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geo.week = processQTDOrder(newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geo.week)
+
+}
+export function processWebOrdersGeoQTDDataTotal(g5, newState) {
+    // console.log(g5)
+    //Clear old Values
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geoTotal.qtd = [];
+    
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geoTotal.week = [];
+    
+
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let webOrders = {
+            index: i,
+            actuals: item.OrdersActuals,
+            // marketArea: item.market_area_group,
+            qq: item.OrdersQQTY,
+            qrf: item.OrdersTarget,
+            qrfDiff: item.OrdersActuals - item.OrdersTarget,
+            type: item.geo_code,
+            vsQrf: item.OrdersVsQrf,
+            yy: item.OrdersYY
+        }
+        let webOrdersPM =
+        {
+            index: i,
+            // marketArea: item.market_area_group,
+            actuals: item.OrdersCW,
+            qrf: item.OrdersTargetCW,
+            qrfDiff: item.OrdersCWVsQrfDiff,
+            vsQrf: item.OrdersCWVsQrf,
+            ww: item.OrdersWW,
+            type: item.geo_code,
+        }
+        
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geoTotal.qtd.push(webOrders);
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geoTotal.week.push(webOrdersPM);
+        
+    }
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geoTotal.qtd = newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geoTotal.qtd
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geoTotal.week = newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.geoTotal.week
+ 
+}
+export function processWebOrdersMarketQTDData(g5, newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.market.qtd = [];
+    
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.market.week = [];
+    
+
+
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let Orders = {
+            index: i,
+            actuals: item.OrdersActuals,
+            qq: item.OrdersQQTY,
+            qrf: item.OrdersTarget,
+            qrfDiff: item.OrdersActuals - item.OrdersTarget,
+            type: item.market_area_code,
+            vsQrf: item.OrdersVsQrf,
+            yy: item.OrdersYY
+        }
+        let OrdersPM =
+        {
+            index: i,
+            actuals: item.OrdersCW,
+            qrf: item.OrdersTargetCW,
+            qrfDiff: item.OrdersCWVsQrfDiff,
+            vsQrf: item.OrdersCWVsQrf,
+            ww: item.OrdersWW,
+            type: item.market_area_code,
+        }
+       
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.market.qtd.push(Orders);
+        
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.market.week.push(OrdersPM);
+        
+    }
+
+}
+export function processWebOrdersWebSegmentQTDData(g5, newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.segment.qtd = [];
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.segment.week = [];
+
+
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let Orders = {
+            index: i,
+            actuals: item.OrdersActuals,
+            marketArea: item.market_area_group,
+            qq: item.OrdersQQTY,
+            qrf: item.OrdersTarget,
+            qrfDiff: item.OrdersActuals - item.OrdersTarget,
+            type: item.web_segment,
+            vsQrf: item.OrdersVsQrf,
+            yy: item.OrdersYY
+        }
+        let OrdersPM =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.OrdersCW,
+            qrf: item.OrdersTargetCW,
+            qrfDiff: item.OrdersCWVsQrfDiff,
+            vsQrf: item.OrdersCWVsQrf,
+            ww: item.OrdersWW,
+            type: item.web_segment,
+        }
+       
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.segment.qtd.push(Orders);
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.segment.week.push(OrdersPM);
+    }
+}
+export function processWebOrdersLTCQTDData(g5, newState) {
+
+    //Clear old Values
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details = { ...newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details, ltc: { qtd: [], week: [] } };
+
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let Orders = {
+            index: i,
+            marketArea: item.last_touch_channel,
+            actuals: item.OrdersActuals,
+            qq: item.OrdersQQTY,
+            qrf: item.OrdersTarget,
+            qrfDiff: item.OrdersActuals - item.OrdersTarget,
+            type: item.visit_type,
+            vsQrf: item.OrdersVsQrf,
+            yy: item.OrdersYY
+        }
+        let OrdersPM =
+        {
+            index: i,
+            marketArea: item.last_touch_channel,
+            actuals: item.OrdersCW,
+            qrf: item.OrdersTargetCW,
+            qrfDiff: item.OrdersCWVsQrfDiff,
+            vsQrf: item.OrdersCWVsQrf,
+            ww: item.OrdersWW,
+            type: item.visit_type,
+        }
+        
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.ltc.qtd.push(Orders);
+       
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.ltc.week.push(OrdersPM);
+        
+    }
+}
+export function processWebOrdersLTCQTDDataTotal(g5, newState) {
+
+    //Clear old Values
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details = { ...newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details, ltcTotal: { qtd: [], week: [] } };
+
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let Orders = {
+            index: i,
+            // marketArea: item.last_touch_channel,
+            actuals: item.OrdersActuals,
+            qq: item.OrdersQQTY,
+            qrf: item.OrdersTarget,
+            qrfDiff: item.OrdersActuals - item.OrdersTarget,
+            type: item.visit_type,
+            vsQrf: item.OrdersVsQrf,
+            yy: item.OrdersYY
+        }
+        let OrdersPM =
+        {
+            index: i,
+            // marketArea: item.last_touch_channel,
+            actuals: item.OrdersCW,
+            qrf: item.OrdersTargetCW,
+            qrfDiff: item.OrdersCWVsQrfDiff,
+            vsQrf: item.OrdersCWVsQrf,
+            ww: item.OrdersWW,
+            type: item.visit_type,
+        }
+        
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.ltcTotal.qtd.push(Orders);
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.ltcTotal.week.push(OrdersPM);
+        
+    }
+}
+
+export function processWebOrdersCustomerQTDData(g5, newState) {
+    // console.log(g5);
+    // console.log(newState);
+    //Clear old Values
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.customer.qtd = [];
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.customer.week = [];
+    
+
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let Orders = {
+            index: i,
+            actuals: item.OrdersActuals,
+            qq: item.OrdersQQTY,
+            qrf: item.OrdersTarget,
+            qrfDiff: item.OrdersActuals - item.OrdersTarget,
+            type: item.customer_type,
+            vsQrf: item.OrdersVsQrf,
+            yy: item.OrdersYY
+        }
+        let OrdersPM =
+        {
+            index: i,
+            actuals: item.OrdersCW,
+            qrf: item.OrdersTargetCW,
+            qrfDiff: item.OrdersCWVsQrfDiff,
+            vsQrf: item.OrdersCWVsQrf,
+            ww: item.OrdersWW,
+            type: item.customer_type,
+        }
+
+       
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.customer.qtd.push(Orders);
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.customer.week.push(OrdersPM);
+    }
+}
+export function processWebOrdersMobDeskQTDData(g5, newState) {
+
+    //Clear old Values
+
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details = { ...newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details, mvd: { qtd: [], week: [] } };
+
+
+
+
+    for (let i = 0; i < g5.length; i++) {
+
+        let item = g5[i];
+
+        let Orders = {
+
+            index: i,
+
+            actuals: item.OrdersActuals,
+
+            qq: item.OrdersQQTY,
+
+            qrf: item.OrdersTarget,
+
+            qrfDiff: item.OrdersActuals - item.OrdersTarget,
+
+            type: item.mobile_or_desktop,
+
+            vsQrf: item.OrdersVsQrf,
+
+            yy: item.OrdersYY
+
+        }
+
+        let OrdersPM =
+        {
+            index: i,
+
+            actuals: item.OrdersCW,
+
+            qrf: item.OrdersTargetCW,
+
+            qrfDiff: item.OrdersCWVsQrfDiff,
+
+            vsQrf: item.OrdersVsQrfCW,
+
+            ww: item.OrdersWW,
+
+            type: item.mobile_or_desktop,
+
+
+
+        }
+
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.mvd.qtd.push(Orders);
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.mvd.week.push(OrdersPM);
+    }
+
+}
+export function processWebOrdersNewRepQTDData(g5, newState) {
+
+    //Clear old Values
+
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details = { ...newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details, nvr: { qtd: [], week: [] } };
+
+
+    for (let i = 0; i < g5.length; i++) {
+
+        let item = g5[i];
+
+        let Orders = {
+
+            index: i,
+
+            actuals: item.OrdersActuals,
+
+            marketArea: item.market_area_group,
+
+            qq: item.OrdersQQTY,
+
+            qrf: item.OrdersTarget,
+
+            qrfDiff: item.OrdersActuals - item.OrdersTarget,
+
+            type: item.new_or_repeat,
+
+            vsQrf: item.OrdersVsQrf,
+
+            yy: item.OrdersYY
+
+        }
+
+        let OrdersPM =
+        {
+
+            index: i,
+
+            marketArea: item.market_area_group,
+
+            actuals: item.OrdersCW,
+
+            qrf: item.OrdersTargetCW,
+
+            qrfDiff: item.OrdersCWVsQrfDiff,
+
+            vsQrf: item.OrdersCWVsQrf,
+
+            ww: item.OrdersWW,
+
+            type: item.new_or_repeat,
+
+        }
+
+        
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.nvr.qtd.push(Orders);
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.nvr.week.push(OrdersPM);
+
+    }
+
+}
+export function processWebOrdersCloudTypeData(g5, newState){
+    
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details = { ...newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details, cloud: { qtd: [], week: [] } };
+
+    for (let i = 0; i < g5.length; i++) {
+        let item = g5[i];
+        let Orders = {
+            index: i,
+            actuals: item.OrdersActuals,
+            marketArea: item.market_area_group,
+            qq: item.OrdersQQTY,
+            qrf: item.OrdersTarget,
+            qrfDiff: item.OrdersActuals - item.OrdersTarget,
+            type: item.cloud_type,
+            vsQrf: item.OrdersVsQrf,
+            yy: item.OrdersYY
+        }
+
+        let OrdersPM =
+        {
+            index: i,
+            marketArea: item.market_area_group,
+            actuals: item.OrdersCW,
+            qrf: item.OrdersTargetCW,
+            qrfDiff: item.OrdersCWVsQrfDiff,
+            vsQrf: item.OrdersCWVsQrf,
+            ww: item.OrdersWW,
+            type: item.cloud_type,
+
+        }
+
+        
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.cloud.qtd.push(Orders);
+        newState[SUMMARY_KPIS.BUY_WEB_ORDERS].details.cloud.week.push(OrdersPM);
+
+    }
+  
+}
+
 // Paid Media Spend Sourced
 export function processBuyPMSSSecondaryData(data, newState) {
 
@@ -6425,6 +7575,38 @@ export function processBuyPMSSChannelQTDData(data, newState) {
         newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.channel.week.push(pmWeek);
     }
 }
+export function processBuyPMSSCloudTypeQTDData(data, newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details = { ...newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details, cloud: { qtd: [], week: [] } };
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let pm = {
+            index: i,
+            actuals: item.PMSpendBuyActuals,
+            qq: item.PMSpendBuyQQTY,
+            qrf: item.PMSpendBuyTarget,
+            qrfDiff: item.PMSpendBuyVsQrfDiff,
+            type: item.cloud_type,
+            vsQrf: item.PMSpendBuyVsQrf,
+            yy: item.PMSpendBuyYY
+        }
+        let pmWeek =
+        {
+            index: i,
+            type: item.cloud_type,
+            actuals: item.PMSpendBuyCW,
+            qrf: item.PMSpendBuyTargetCW,
+            qrfDiff: item.PMSpendBuyCWVsQrfDiff,
+            vsQrf: item.PMSpendBuyCWVsQrf,
+            ww: item.PMSpendBuyWW,
+        }
+
+
+        newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.cloud.qtd.push(pm);
+        newState[SUMMARY_KPIS.BUY_PAID_MEDIASPEND].details.cloud.week.push(pmWeek);
+    }
+}
 
 export function processBuyLTVSourcedSecondary(data,newState) {
     console.log('Updating Redux Store LTV Secondary')
@@ -6432,6 +7614,15 @@ export function processBuyLTVSourcedSecondary(data,newState) {
     newState[SUMMARY_KPIS.BUY_LTV_ROI].target = data.LTVROITarget;
     newState[SUMMARY_KPIS.BUY_LTV_ROI].targetFQ = data.LTVROITargetFQ;
     newState[SUMMARY_KPIS.BUY_LTV_ROI].vsQrf = data.LTVROIVsQrf;
+
+}
+
+export function processBuyWebOrdersSecondary(data,newState) {
+    console.log('Updating Redux Store LTV Secondary')
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].value = data.OrdersActual;
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].target = data.OrdersTarget;
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].targetFQ = data.OrdersTargetFQ;
+    newState[SUMMARY_KPIS.BUY_WEB_ORDERS].vsQrf = data.OrdersVsQrf;
 
 }
 export function processBuyLTVSourcedMultichart(data,newState) {
@@ -6691,6 +7882,40 @@ for (let i = 0; i < data.length; i++) {
     newState[SUMMARY_KPIS.BUY_LTV_ROI].details.subscription.week.push(ltvWeek);
 }
 }
+export function processBuyLTVSourcedCloudTypeQTD(data,newState) {
+    //Clear old Values
+    newState[SUMMARY_KPIS.BUY_LTV_ROI].details = { ...newState[SUMMARY_KPIS.BUY_LTV_ROI].details, cloud: { qtd: [], week: [] } };
+    
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let ltv = {
+            index: i,
+            actuals: item.LTVROIActual,
+            qq: item.LTVROIQQTY,
+            qrf: item.LTVROITarget,
+            qrfDiff: item.LTVROIVsQrfDiff,
+            type: item.cloud_type,
+            vsQrf: item.LTVROIVsQrf,
+            yy: item.LTVROIYY
+        }
+        let ltvWeek =
+        {
+            index: i,
+            type: item.cloud_type,
+            marketArea: item.market_area_code,
+            actuals: item.LTVROIActualCW,
+            qrf: item.LTVROITargetCW,
+            qrfDiff: item.LTVROICWVsQrfDiff,
+            vsQrf: item.LTVROICWVsQrf,
+            ww: item.LTVROIWW,
+        }
+    
+    
+        newState[SUMMARY_KPIS.BUY_LTV_ROI].details.cloud.qtd.push(ltv);
+        newState[SUMMARY_KPIS.BUY_LTV_ROI].details.cloud.week.push(ltvWeek);
+    }
+    }
+
 //Gross
 export function processBuyGrossSecondaryData(g1, newState) {
 
@@ -6939,6 +8164,68 @@ export function processBuyGrossQFMTypeQTD(newState, data) {
 
     }
 }
+export function processBuyGrossCloudTypeTypeQTD(newState, data) {
+    //Clear old Values
+    
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details = { ...newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details, cloud: { qtd: [], week: [] } };
+    newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details = { ...newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details, cloud: { qtd: [], week: [] } };   
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+      
+        
+        
+        let newARRCloud = {
+            index: i,
+            actuals: item.GrossActuals,
+            type: item.cloud_type,
+            qq: item.GrossARRQQTY,
+            qrf: item.GrossTarget,
+            qrfDiff: item.GrossVsQrfDiff,
+            vsQrf: item.GrossARRVsQrf,
+            yy: item.GrossARRYY
+        }
+        let newARRCloudWeek =
+        {
+            index: i,
+            type: item.cloud_type,
+            actuals: item.GrossARRCW,
+            qrf: item.GrossARRTargetCW,
+            qrfDiff: item.GrossCWVsQrfDiff,
+            vsQrf: item.GrossCWVsQrf,
+            ww: item.GrossWW,
+        }
+        let newSubCloud = {
+            index: i,
+            actuals: item.GrossUnitsActuals,
+            type: item.cloud_type,
+            qq: item.GrossUnitsQQTY,
+            qrf: item.GrossUnitsTarget,
+            qrfDiff: item.GrossUnitsVsQrfDiff,
+            vsQrf: item.GrossUnitsVsQrf,
+            yy: item.GrossUnitsYY
+        }
+        let newSubCloudWeek =
+        {
+            index: i,
+            type: item.cloud_type,
+            actuals: item.GrossUnitsCW,
+            qrf: item.GrossUnitsTargetCW,
+            qrfDiff: item.GrossUnitsCWVsQrfDiff,
+            vsQrf: item.GrossUnitsCWVsQrf,
+            ww: item.GrossUnitsWW,
+        }
+       
+        newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.cloud.qtd.push(newARRCloud);
+        newState[SUMMARY_KPIS.BUY_GROSS_NEWARR].details.cloud.week.push(newARRCloudWeek);
+
+        newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.cloud.qtd.push(newSubCloud);
+        newState[SUMMARY_KPIS.BUY_GROSS_NEWUNITS].details.cloud.week.push(newSubCloudWeek);
+        
+
+    }
+}
+
 
 /** Custom function to Reorder QTD Details with row always last */
 function processQTDOrder(data) {
@@ -8693,6 +9980,253 @@ export function processUseSubscriptionQTDData(data, newState) {
     newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.subscription.qtd = item8;
     newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.subscription.week = item8Week;
 }
+export function processUseCloudTypeQTDData(data, newState) {
+      
+    let item1 = [], item1Week = [],
+        item2 = [], item2Week = [],
+        item3 = [], item3Week = [],
+        item4 = [], item4Week = [],
+        item5 = [], item5Week = [],
+        item6 = [], item6Week = [],
+        item7 = [], item7Week = [],
+        item8 = [], item8Week = []
+
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let activated = {
+            index: i,
+            actuals: item.ActivatedActual,
+            marketArea: item.market_area_group,
+            qq: item.ActivatedQQTY,
+            qrf: item.ActivatedTarget,
+            qrfDiff: item.ActivatedVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.ActivatedVsQRF,
+            yy: item.ActivatedYY
+        }
+        let activatedWeek = {
+            index: i,
+            actuals: item.ActivatedActual,
+            marketArea: item.market_area_group,
+            qq: item.ActivatedQQTY,
+            qrf: item.ActivatedTarget,
+            qrfDiff: item.ActivatedVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.ActivatedVsQRF,
+            ww: item.ActivatedWW
+        }
+
+        let monthreturn = {
+            index: i,
+            actuals: item.PaidMAUActual,
+            marketArea: item.market_area_group,
+            qq: item.PaidMAUQQTY,
+            qrf: item.PaidMAUTarget,
+            qrfDiff: item.PaidMAUVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.PaidMAUVsQrf,
+            yy: item.PaidMAUYY
+        }
+        let monthreturnWeek = {
+            index: i,
+            actuals: item.PaidMAUActual,
+            marketArea: item.market_area_group,
+            qq: item.PaidMAUQQTY,
+            qrf: item.PaidMAUTarget,
+            qrfDiff: item.PaidMAUVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.PaidMAUVsQrf,
+            ww: item.PaidMAUWW
+        }
+
+        let rum = {
+            index: i,
+            actuals: item.RepeatMAUActual,
+            marketArea: item.market_area_group,
+            qq: item.RepeatMAUQQTY,
+            qrf: item.RepeatMAUTarget,
+            qrfDiff: item.RepeatMAUVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.RepeatMAUVsQrf,
+            yy: item.RepeatMAUYY
+        }
+        let rumWeek = {
+            index: i,
+            actuals: item.RepeatMAUActual,
+            marketArea: item.market_area_group,
+            qq: item.RepeatMAUQQTY,
+            qrf: item.RepeatMAUTarget,
+            qrfDiff: item.RepeatMAUVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.RepeatMAUVsQrf,
+            ww: item.RepeatMAUWW
+        }
+
+        let lowcei = {
+            index: i,
+            actuals: item.LowCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.LowCEIQQTY,
+            qrf: item.LowCEITarget,
+            qrfDiff: item.LowCEIVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.LowCEIVsQRF,
+            yy: item.LowCEIYY
+        }
+        let lowceiWeek = {
+            index: i,
+            actuals: item.LowCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.LowCEIQQTY,
+            qrf: item.LowCEITarget,
+            qrfDiff: item.LowCEIVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.LowCEIVsQRF,
+            ww: item.LowCEIWW
+        }
+        let mediumcei = {
+            index: i,
+            actuals: item.MediumCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.MediumCEIQQTY,
+            qrf: item.MediumCEITarget,
+            qrfDiff: item.MediumCEIVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.MediumCEIVsQrf,
+            yy: item.MediumCEIYY
+        }
+
+        let mediumceiWeek = {
+            index: i,
+            actuals: item.MediumCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.MediumCEIQQTY,
+            qrf: item.MediumCEITarget,
+            qrfDiff: item.MediumCEIVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.MediumCEIVsQrf,
+            ww: item.MediumCEIWW
+        }
+        let highcei = {
+            index: i,
+            actuals: item.HighCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.HighCEIQQTY,
+            qrf: item.HighCEITarget,
+            qrfDiff: item.HighCEIVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.HighCEIVsQrf,
+            yy: item.HighCEIYY
+        }
+        let highceiWeek = {
+            index: i,
+            actuals: item.HighCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.HighCEIQQTY,
+            qrf: item.HighCEITarget,
+            qrfDiff: item.HighCEIVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.HighCEIVsQrf,
+            ww: item.HighCEIWW
+        }
+        let wk4 = {
+            index: i,
+            actuals: item.Week04WAUActual,
+            marketArea: item.market_area_group,
+            qq: item.Week04WAUQQTY,
+            qrf: item.Week04WAUTarget,
+            qrfDiff: item.Week04WAUVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.Week04WAUVsQrf,
+            yy: item.Week04WAUYY
+        }
+        let wk4Week = {
+            index: i,
+            actuals: item.Week04WAUActual,
+            marketArea: item.market_area_group,
+            qq: item.Week04WAUQQTY,
+            qrf: item.Week04WAUTarget,
+            qrfDiff: item.Week04WAUVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.Week04WAUVsQrf,
+            ww: item.Week04WAUWW
+        }
+        let zerocei = {
+            index: i,
+            actuals: item.ZeroCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.ZeroCEIQQTY,
+            qrf: item.ZeroCEITarget,
+            qrfDiff: item.ZeroCEIVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.ZeroCEIVsQrf,
+            yy: item.ZeroCEIYY
+        }
+        let zeroceiWeek = {
+            index: i,
+            actuals: item.ZeroCEIActual,
+            marketArea: item.market_area_group,
+            qq: item.ZeroCEIQQTY,
+            qrf: item.ZeroCEITarget,
+            qrfDiff: item.ZeroCEIVsQRFDiff,
+            type: item.cloud_type,
+            vsQrf: item.ZeroCEIVsQrf,
+            ww: item.ZeroCEIWW
+        }
+
+        item1.push(activated);
+        item1Week.push(activatedWeek);
+
+        item2.push(monthreturn);
+        item2Week.push(monthreturnWeek);
+
+        item3.push(rum);
+        item3Week.push(rumWeek);
+
+        item4.push(lowcei);
+        item4Week.push(lowceiWeek);
+
+        item5.push(highcei);
+        item5Week.push(highceiWeek);
+
+        item6.push(wk4);
+        item6Week.push(wk4Week);
+
+        item7.push(mediumcei);
+        item7Week.push(mediumceiWeek);
+
+        item8.push(zerocei);
+        item8Week.push(zeroceiWeek);
+
+    }
+
+
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.cloud.qtd = item1;
+    newState[SUMMARY_KPIS.USE_PERCENT_ACTIVATED].details.cloud.week = item1Week;
+
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.cloud.qtd = item2;
+    newState[SUMMARY_KPIS.USE_MONTH_RETURN_RATE].details.cloud.week = item2Week;
+
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.cloud.qtd = item3;
+    newState[SUMMARY_KPIS.USE_REPEAT_USER_MAU].details.cloud.week = item3Week;
+
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.cloud.qtd = item4;
+    newState[SUMMARY_KPIS.USE_LOW_CEI].details.cloud.week = item4Week;
+
+
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.cloud.qtd = item7;
+    newState[SUMMARY_KPIS.USE_MEDIUM_CEI].details.cloud.week = item7Week;
+
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.cloud.qtd = item5;
+    newState[SUMMARY_KPIS.USE_HIGH_CEI].details.cloud.week = item5Week;
+
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.cloud.qtd = item6;
+    newState[SUMMARY_KPIS.USE_WK4_WAU_RATE].details.cloud.week = item6Week;
+
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.cloud.qtd = item8;
+    newState[SUMMARY_KPIS.USE_0_INACTIVE_CEI].details.cloud.week = item8Week;
+}
+
 export function processUseSegmentQTDData(data, newState) {
       
     let item1 = [], item1Week = [],
@@ -9700,6 +11234,73 @@ export function processRenewCancelproductQTD(newState, data, AdobeData, EtailDat
     newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.product.qtd = item3;
 
 }
+export function processRenewCancelCloudTypeQTD(newState, data, AdobeData, EtailData) {
+    //Clear old Values
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let canc = {
+            index: i,
+            actuals: item.CancelActuals,
+            marketArea: item.market_area_group,
+            qq: item.CancelARRQQTY,
+            qrf: item.CancelTarget,
+            qrfDiff: item.CancelVsQrfDiff,
+            type: item.cloud_type,
+            units: item.CancelUnitsActual,
+            vsQrf: item.CancelARRVsQrf,
+            yy: item.CancelARRYY
+        }
+
+
+
+        item1.push(canc);
+    }
+
+    for (let i = 0; i < AdobeData.length; i++) {
+        let itemAdobe = AdobeData[i];
+
+        let cancAdobe = {
+            index: i,
+            actuals: itemAdobe.CancelActuals,
+            marketArea: itemAdobe.market_area_group,
+            qq: itemAdobe.CancelARRQQTY,
+            qrf: itemAdobe.CancelTarget,
+            qrfDiff: itemAdobe.CancelVsQrfDiff,
+            type: itemAdobe.cloud_type,
+            units: itemAdobe.CancelUnitsActual,
+            vsQrf: itemAdobe.CancelARRVsQrf,
+            yy: itemAdobe.CancelARRYY
+        }
+        item2.push(cancAdobe);
+
+    }
+    for (let i = 0; i < EtailData.length; i++) {
+        let itemEtail = EtailData[i];
+
+        let cancEtail = {
+            index: i,
+            actuals: itemEtail.CancelActuals,
+            marketArea: itemEtail.market_area_group,
+            qq: itemEtail.CancelARRQQTY,
+            qrf: itemEtail.CancelTarget,
+            qrfDiff: itemEtail.CancelVsQrfDiff,
+            type: itemEtail.cloud_type,
+            units: itemEtail.CancelUnitsActual,
+            vsQrf: itemEtail.CancelARRVsQrf,
+            yy: itemEtail.CancelARRYY
+        }
+        item3.push(cancEtail);
+
+    }
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.cloud.qtd = item1;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.cloud.qtd = item2;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.cloud.qtd = item3;
+
+}
+
 export function processRenewCancelProductWeek(newState, data, AdobeData, EtailData) {
     let item1 = [];
     let item2 = [];
@@ -9764,6 +11365,71 @@ export function processRenewCancelProductWeek(newState, data, AdobeData, EtailDa
     newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.product.week = item2;
     newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.product.week = item3;
 }
+export function processRenewCancelCloudTypeWeek(newState, data, AdobeData, EtailData) {
+    let item1 = [];
+    let item2 = [];
+    let item3 = [];
+    let item4 = [];
+    
+    for (let i = 0; i < data.length; i++) {
+        let item = data[i];
+        let canc = {
+            index: i,
+            actuals: item.CancelARRCW,
+            units: item.CancelUnitsCW,
+            marketArea: item.market_area_group,
+            qrf: item.CancelARRTargetCW,
+            qrfDiff: item.CancelCWVsQrfDiff,
+            type: item.cloud_type,
+            vsQrf: item.CancelCWVsQrf,
+            ww: item.CancelWW
+        }
+
+        item1.push(canc);
+    }
+    for (let i = 0; i < AdobeData.length; i++) {
+        let itemAdobe = AdobeData[i];
+
+        let cancAdobe = {
+            index: i,
+            actuals: itemAdobe.CancelARRCW,
+            units: itemAdobe.CancelUnitsCW,
+            marketArea: itemAdobe.market_area_group,
+            qrf: itemAdobe.CancelARRTargetCW,
+            qrfDiff: itemAdobe.CancelCWVsQrfDiff,
+            type: itemAdobe.cloud_type,
+            vsQrf: itemAdobe.CancelCWVsQrf,
+            ww: itemAdobe.CancelWW
+        }
+        item2.push(cancAdobe);
+    }
+
+    for (let i = 0; i < EtailData.length; i++) {
+        let itemEtail = EtailData[i];
+
+        let cancEtail = {
+            index: i,
+            actuals: itemEtail.CancelARRCW,
+            units: itemEtail.CancelUnitsCW,
+            marketArea: itemEtail.market_area_group,
+            qrf: itemEtail.CancelARRTargetCW,
+            qrfDiff: itemEtail.CancelCWVsQrfDiff,
+            type: itemEtail.cloud_type,
+            vsQrf: itemEtail.CancelCWVsQrf,
+            ww: itemEtail.CancelWW
+        }
+        item3.push(cancEtail);
+
+    }
+    // console.log('Setting up the Renew Product Week')
+    // console.log(data)
+    // console.log(AdobeData)
+    // console.log(EtailData)
+    newState[SUMMARY_KPIS.RENEW_CANCEL].details.cloud.week = item1;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_ADOBECOM].details.cloud.week = item2;
+    newState[SUMMARY_KPIS.RENEW_CANCEL_RESLLER_E].details.cloud.week = item3;
+}
+
 export function processRenewDetailSecondaryData(data, newState, Reseller, Etail) {
 
 
@@ -10777,6 +12443,169 @@ export function processRenewSegmentQTDData(data, newState, Reseller, Etail) {
     newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.segment.qtd = qtrFinEtail;
     newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.segment.week = qtrFinEtailWeek;
 }
+export function processRenewCloudTypeQTDData(data, newState, Etail, Reseller) {
+    let qtrFin = [], qtrFinWeek = [],
+        qtrUi = [], qtrUiWeek = [],
+        qtrPf = [], qtrPfWeek = [],
+        eot = [], eotWeek = [],
+        qtrFinEtail = [], qtrFinEtailWeek = []
+
+
+    for (let i = 0; i < data.length; i++) {
+        let adobeData = data[i]
+            // reseller = Reseller[i],
+            // etail = Etail[i];
+
+        let finAdobe = {
+            index: i,
+            actuals: adobeData.RetRateActual,
+            qq: adobeData.RetRateQQTY,
+            qrf: adobeData.RetRateTarget,
+            qrfDiff: adobeData.RetRatevsQrfDiff,
+            type: adobeData.cloud_type,
+            units: adobeData.CancelUnitsActual,
+            vsQrf: adobeData.RetRateVsQrf,
+            yy: adobeData.RetRateYY
+        }
+        qtrFin.push(finAdobe);
+
+        let finAdobeWeek = {
+            index: i,
+            actuals: adobeData.RetRateCW,
+            qrf: adobeData.RetRateTargetCW,
+            qrfDiff: adobeData.RetRateCWVsQrfDiff,
+            type: adobeData.cloud_type,
+            vsQrf: adobeData.RetRateCWVsQrf,
+            ww: adobeData.RetRateWW
+        }
+        qtrFinWeek.push(finAdobeWeek);
+
+        //TODO: MAp to correct fields for QTR UI Rate
+        let ui = {
+            index: i,
+            actuals: adobeData.UIRateActual,
+            qq: adobeData.UIRateQQTY,
+            qrf: adobeData.UIRateTarget,
+            qrfDiff: adobeData.UIRatevsQrfDiff,
+            type: adobeData.cloud_type,
+            units: adobeData.CancelUnitsActual,
+            vsQrf: adobeData.UIRateVsQrf,
+            yy: adobeData.UIRateYY
+        }
+        qtrUi.push(ui);
+
+        let uiWeek = {
+            index: i,
+            actuals: adobeData.UIRateCW,
+            qrf: adobeData.UIRateTargetCW,
+            qrfDiff: adobeData.UIRateCWVsQrfDiff,
+            type: adobeData.cloud_type,
+            vsQrf: adobeData.UIRateCWVsQrf,
+            ww: adobeData.UIRateWW
+        }
+        qtrUiWeek.push(uiWeek);
+        // TODO: Use correct fields for PF Rate 
+        let pfAdobe = {
+            index: i,
+            actuals: adobeData.PFRateActual,
+            qq: adobeData.PFRateQQTY,
+            qrf: adobeData.PFRateTarget,
+            qrfDiff: adobeData.PFRatevsQrfDiff,
+            type: adobeData.cloud_type,
+            units: adobeData.CancelUnitsActual,
+            vsQrf: adobeData.PFRateVsQrf,
+            yy: adobeData.PFRateYY
+        }
+        qtrPf.push(pfAdobe);
+
+        let pfWeek = {
+            index: i,
+            actuals: adobeData.PFRateCW,
+            qrf: adobeData.PFRateTargetCW,
+            qrfDiff: adobeData.PFRateCWVsQrfDiff,
+            type: adobeData.cloud_type,
+            vsQrf: adobeData.PFRateCWVsQrf,
+            ww: adobeData.PFRateWW
+        }
+        qtrPfWeek.push(pfWeek);
+
+    }
+
+    for (let i = 0; i < Reseller.length; i++) {
+        let reseller = Reseller[i];
+
+        // TODO: Use correct fields for EOT
+
+        let eotItem = {
+            index: i,
+            actuals: reseller.EOTRateActuals,
+            marketArea: reseller.market_area_group,
+            qq: reseller.EOTRateQQTY,
+            qrf: reseller.EOTRateTarget,
+            qrfDiff: reseller.EOTRateVsQrfDiff,
+            type: reseller.cloud_type,
+            units: reseller.CancelUnitsActual,
+            vsQrf: reseller.EOTRatevsQrf,
+            yy: reseller.EOTRateYY
+        }
+        eot.push(eotItem);
+
+        let eotWeekItem = {
+            index: i,
+            actuals: reseller.EOTRateCW,
+            marketArea: reseller.market_area_group,
+            qrf: reseller.EOTRateTargetCW,
+            qrfDiff: reseller.EOTRateCWVsQrfDiff,
+            type: reseller.cloud_type,
+            vsQrf: reseller.EOTRateCWVsQrf,
+            ww: reseller.EOTRateWW
+        }
+        eotWeek.push(eotWeekItem);
+
+
+    }
+
+    for (let i = 0; i < Etail.length; i++) {
+        let etail = Etail[i];
+
+
+
+        let finEtail = {
+            index: i,
+            actuals: etail.RetRateActual,
+            qq: etail.RetRateQQTY,
+            qrf: etail.RetRateTarget,
+            qrfDiff: etail.RetRatevsQrfDiff,
+            type: etail.cloud_type,
+            units: etail.CancelUnitsActual,
+            vsQrf: etail.RetRateVsQrf,
+            yy: etail.RetRateYY
+        }
+        qtrFinEtail.push(finEtail);
+
+        let finEtailWeek = {
+            index: i,
+            actuals: etail.RetRateCW,
+            qrf: etail.RetRateTargetCW,
+            qrfDiff: etail.RetRateCWVsQrfDiff,
+            type: etail.cloud_type,
+            vsQrf: etail.RetRateCWVsQrf,
+            ww: etail.RetRateWW
+        }
+        qtrFinEtailWeek.push(finEtailWeek);
+    }
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.cloud.qtd = qtrFin;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN].details.cloud.week = qtrFinWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.cloud.qtd = qtrUi;
+    newState[SUMMARY_KPIS.RENEW_QTR_UI].details.cloud.week = qtrUiWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.cloud.qtd = qtrPf;
+    newState[SUMMARY_KPIS.RENEW_QTR_PF].details.cloud.week = qtrPfWeek;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.cloud.qtd = eot;
+    newState[SUMMARY_KPIS.RENEW_EOT_RESELLER].details.cloud.week = eotWeek;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.cloud.qtd = qtrFinEtail;
+    newState[SUMMARY_KPIS.RENEW_QTR_FIN_RETAIL].details.cloud.week = qtrFinEtailWeek;
+}
+
 export function processRenewSecondaryData(data, newState) {
     newState[SUMMARY_KPIS.RENEW_CANCEL].value = data[0].data[0].CancelARRActual;
     newState[SUMMARY_KPIS.RENEW_CANCEL].targetFQ = data[0].data[0].CancelARRTargetFQ;

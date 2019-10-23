@@ -201,6 +201,15 @@ class PanelItemTable extends Component {
                     type={DIMENSIONS.CUSTOMERTYPE}
                     valueType={this.props.activeSummary.valueType}
                 />
+                case DIMENSIONS.CLOUD:
+                    return <SingleDimensionPanelItem
+                    activeSecondary={this.props.activeSecondary}
+                    timeMetric={this.props.timeMetric}
+                    data={this.props.activeSummary.details.cloud}
+                    isJourney={this.state.isJourney}
+                    type={DIMENSIONS.CLOUD}
+                    valueType={this.props.activeSummary.valueType}
+                />
                 
                 
             default:

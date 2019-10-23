@@ -575,6 +575,54 @@ class SummaryViewDetails extends Component {
             </div>
           </div>
         );
+        case SUMMARY_KPIS.BUY_WEB_ORDERS:
+        return (
+          //Conversion
+          <div className="row">
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              {/* Visit Type */}
+              <div>Visits</div>
+              <SingleValueSelect
+                activeFilters={[]}
+                options={visits.availableFilters}
+                onValueChange={e => { this.updateSingleValue(e) }}
+                onMenuClose={e => { this.closeSingleValue(e) }}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === VISITS })}
+              />
+            </div>
+            {/* Conversion Type */}
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              <div>Customer Type</div>
+
+              <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.CUSTOMERTYPE })}
+                options={customerType.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.CUSTOMERTYPE; this.updateMultiValue(e, type) }}
+                onMenuClose={this.closeMultiValue}
+              />
+            </div>
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              <div>Web Segment</div>
+              <SingleValueSelect
+                activeFilters={[]}
+                options={websegment.availableFilters}
+                onValueChange={e => { this.updateSingleValue(e) }}
+                onMenuClose={e => { this.closeSingleValue(e) }}
+                value={_.filter(this.state.selectedFilters, item => { return item.category === WEBSEGMENT })}
+              />
+            </div>
+            <div className="col-md-3 col-lg-3" style={{ paddingBottom: '10px' }}>
+              <div>QFM Type</div>
+
+              <MultiValueSelect
+                value={_.filter(this.state.selectedFilters, item => { return item.category === DIMENSIONS.QFMTYPE })}
+                options={qfmType.availableFilters}
+                onValueChange={(e) => { let type = DIMENSIONS.QFMTYPE; this.updateMultiValue(e, type) }}
+                onMenuClose={this.closeMultiValue}
+              />
+            </div>
+          </div>
+        );
       case SUMMARY_KPIS.BUY_PAID_MEDIASPEND:
         return (
           // Paid Media Spend
@@ -1263,7 +1311,7 @@ class SummaryViewDetails extends Component {
             <KendoMultiChart color="white" 
                               chartHeight={350} 
                               deviceType="laptop" 
-                              nullifyQrf={this.props.activeSecondary==SUMMARY_KPIS.BUY_CONVERSION &&
+                              nullifyQrf={this.props.activeSecondary==SUMMARY_KPIS.BUY_CONVERSION&&
                               (
                                 (!_.find(this.props.filters.qfmType.valueFilters, ['value','TWP']) && 
                                       _.find(this.props.filters.qfmType.valueFilters, ['value','NON-TWP'])) 

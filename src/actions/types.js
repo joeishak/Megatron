@@ -55,6 +55,8 @@ export const GET_RENEW_SECONDARY_DATA = "get_renew_secondary_data";
 export const GET_RENEW_DETAILS_DATA = "get_renew_detail_data";
 export const GET_RENEW_CANCEL_DATA = "get_renew_cancel_data";
 export const GET_BUY_TRAFFIC_SECONDARY_DATA = 'get_buy_traffic_secondary_data';
+export const GET_BUY_WEB_ORDERS_SECONDARY_DATA = 'get_buy_web_orders_secondary_data'
+export const UPDATE_BUY_WEB_ORDERS_IS_LOADING = 'update_buy_web_orders_is_loading'
 
 export const GET_CORRELATION_DATA = 'get_correlation_data';
 export const UPDATE_CORRELATION_DATA_IS_LOADING = 'update_correlation_data_is_loading';
