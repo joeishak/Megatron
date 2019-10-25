@@ -584,8 +584,12 @@ let useParams = [
         prompt: 'maFilters',
         value: ''
     },
+    // {
+    //     prompt: 'segment_NonDMFilters',
+    //     value: ''
+    // },
     {
-        prompt: 'segment_NonDMFilters',
+        prompt: 'segmentFilters',
         value: ''
     },
     {
@@ -4861,7 +4865,8 @@ export function generateFilterParams(type, filterParams, allFilters, _activePara
             filterParams[0].value = getParamValues(_activeParams.quarter, allFilters.quarter);
             filterParams[1].value = getParamValues(_activeParams.geo, allFilters.geo);
             filterParams[2].value = getParamValues(_activeParams.market, allFilters.market);
-            filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
+            // filterParams[3].value = getParamValues(_activeParams.nonDMSegment, allFilters.nonDMSegment);
+            filterParams[3].value = getParamValues(_activeParams.segment, allFilters.segment);
             filterParams[4].value = getParamValues(_activeParams.subscription, allFilters.subscriptionOfferings);
             filterParams[5].value = getParamValues(_activeParams.cloud, allFilters.cloud);
             break;

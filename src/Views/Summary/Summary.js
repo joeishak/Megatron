@@ -157,7 +157,8 @@ class Summary extends Component {
       // If the user details exist in Redux, and the filtersAreLoaded prop changes
       if (this.props.user.sub !== null && filtersAreLoaded !== prevProps.filtersAreLoaded) {
         // Call the action to update the user and preferences in InfoBurst/ GTMPOC Database
-        this.props.updateOKTAUser(user, filters.quarter.valueFilters[0].value, filters.segment.valueFilters[0].value, JSON.stringify(filters.nonDMSegment.valueFilters));
+        // this.props.updateOKTAUser(user, filters.quarter.valueFilters[0].value, filters.segment.valueFilters[0].value, JSON.stringify(filters.nonDMSegment.valueFilters));
+        this.props.updateOKTAUser(user, filters.quarter.valueFilters[0].value, '[]', JSON.stringify([]));
         this.props.setBannerMessage()
       }
 

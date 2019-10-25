@@ -849,6 +849,7 @@ export function getFilteredUseSecondaryData(filters) {
         nonDMSegment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
+        segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
     }
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
@@ -857,6 +858,8 @@ export function getFilteredUseSecondaryData(filters) {
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
+        segment: Object.keys(filters.segment.valueFilters).map(e => filters.segment.valueFilters[e]),
+        
     };
 
     // console.log(filters);
@@ -1635,6 +1638,7 @@ export function getUseSecondaryData(filters) {
         nonDMSegment: Object.keys(filters.nonDMSegment.availableFilters).map(e => filters.nonDMSegment.availableFilters[e]),
         subscriptionOfferings: Object.keys(filters.subscription.availableFilters).map(e => filters.subscription.availableFilters[e]),
         cloud: Object.keys(filters.cloud.availableFilters).map(e => filters.cloud.availableFilters[e]),
+        segment: Object.keys(filters.segment.availableFilters).map(e => filters.segment.availableFilters[e]),
     }
     let _parameters = {
         geo: Object.keys(filters.geo.valueFilters).map(e => filters.geo.valueFilters[e]),
@@ -1643,6 +1647,7 @@ export function getUseSecondaryData(filters) {
         subscription: Object.keys(filters.subscription.valueFilters).map(e => filters.subscription.valueFilters[e]),
         market: Object.keys(filters.market.valueFilters).map(e => filters.market.valueFilters[e]),
         cloud: Object.keys(filters.cloud.valueFilters).map(e => filters.cloud.valueFilters[e]),
+        segment: Object.keys(filters.segment.valueFilters).map(e => filters.segment.valueFilters[e]),
     };
 
     // console.log(filters);

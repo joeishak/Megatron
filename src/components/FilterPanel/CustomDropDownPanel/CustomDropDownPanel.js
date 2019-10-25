@@ -100,12 +100,19 @@ class CustomDropDownPanel extends Component {
                         </div>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p> Segment </p>
-                            <SingleValueSelect
+                            {/* <SingleValueSelect
                                 value={_.filter(this.props.selectedFilters, item => { return item.category === SEGMENT })}
                                 activeFilters={filters.segment.valueFilters}
                                 options={filters.segment.availableFilters}
                                 onValueChange={this.props.updateSingleValue}
                                 onMenuClose={this.closeDropDownValue}
+                            /> */}
+                            <MultiValueSelect
+                                value={_.filter(this.props.selectedFilters, item => { return item.category === SEGMENT })}
+                                options={filters.segment.availableFilters}
+                                onValueChange={(e) => { let type = SEGMENT; this.props.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeDropDown}
+
                             />
 
                         </div>
@@ -165,12 +172,19 @@ class CustomDropDownPanel extends Component {
                         <p>{this.props.summaryData.primary[this.props.activeCards.primary].category} Global Sub Filters</p>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p> Segments </p>
-                            <MultiValueSelect
+                            {/* <MultiValueSelect
                                 options={filters.nonDMSegment.availableFilters}
                                 onValueChange={(e) => { let type = NONDMSEGMENT; this.props.updateMultiValue(e, type) }}
                                 onMenuClose={this.closeDropDown}
                                 value={_.filter(this.props.selectedFilters, item => { return item.category === NONDMSEGMENT })}
-                                                          />
+                                                          /> */}
+                            <MultiValueSelect
+                                value={_.filter(this.props.selectedFilters, item => { return item.category === SEGMENT })}
+                                options={filters.segment.availableFilters}
+                                onValueChange={(e) => { let type = SEGMENT; this.props.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeDropDown}
+
+                            />
                         </div>
                         <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p> Subscription Offering</p>
@@ -199,12 +213,19 @@ class CustomDropDownPanel extends Component {
                         </div> */}
                         <div className={quarterFilterContainer + ' col-lg-2'} >
                             <p> Segment </p>
-                            <SingleValueSelect
+                            {/* <SingleValueSelect
                                 value={_.filter(this.props.selectedFilters, item => { return item.category === SEGMENT })}
                                 activeFilters={filters.segment.valueFilters}
                                 options={filters.segment.availableFilters}
                                 onValueChange={this.props.updateSingleValue}
                                 onMenuClose={this.closeDropDownValue}
+                            /> */}
+                            <MultiValueSelect
+                                value={_.filter(this.props.selectedFilters, item => { return item.category === SEGMENT })}
+                                options={filters.segment.availableFilters}
+                                onValueChange={(e) => { let type = SEGMENT; this.props.updateMultiValue(e, type) }}
+                                onMenuClose={this.closeDropDown}
+
                             />
 
                         </div>

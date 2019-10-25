@@ -180,7 +180,7 @@ export default function (state = {
             // Set state value filters to preferences
             copyOfState = JSON.parse(JSON.stringify(state))
             copyOfState.quarter.valueFilters = [{ index: 211, category: QUARTER, value: action.payload.defaultQuarter }];
-            copyOfState.segment.valueFilters.push({ index: 209, category: SEGMENT, value: action.payload.defaultQuarter });
+            // copyOfState.segment.valueFilters.push({ index: 209, category: SEGMENT, value: action.payload.defaultQuarter });
             copyOfState.market.valueFilters = action.payload.marketFilters;
             copyOfState.geo.valueFilters = action.payload.geoFilters;
             copyOfState.route.valueFilters = action.payload.routeFilters;
@@ -199,8 +199,14 @@ export default function (state = {
             ...copyOfState.market.valueFilters || {}, ...copyOfState.product.valueFilters || {}, ...copyOfState.subscription.valueFilters || {}, ...copyOfState.geo.valueFilters || {},
             ...copyOfState.nonDMSegment.valueFilters || {}]
             // Perform a check on all filter dimensions to determine if filters are in a default State
+            // let isDefault = copyOfState.quarter.valueFilters[0].value === state.quarter.valueFilters[0].value
+            //     && copyOfState.segment.valueFilters[0].valueFilters === state.segment.valueFilters[0].valueFilters &&
+            //     copyOfState.geo.valueFilters.length === 0 && copyOfState.market.valueFilters.length === 0 && copyOfState.subscription.valueFilters.length === 0
+            //     && copyOfState.route.valueFilters.length === 0 && copyOfState.signupCategory.valueFilters.length === 0 && copyOfState.nonDMSegment.valueFilters.length === 0;
+            
             let isDefault = copyOfState.quarter.valueFilters[0].value === state.quarter.valueFilters[0].value
-                && copyOfState.segment.valueFilters[0].valueFilters === state.segment.valueFilters[0].valueFilters &&
+                // && copyOfState.segment.valueFilters[0].valueFilters === state.segment.valueFilters[0].valueFilters &&
+                copyOfState.segment.valueFilters.length===0 &&
                 copyOfState.geo.valueFilters.length === 0 && copyOfState.market.valueFilters.length === 0 && copyOfState.subscription.valueFilters.length === 0
                 && copyOfState.route.valueFilters.length === 0 && copyOfState.signupCategory.valueFilters.length === 0 && copyOfState.nonDMSegment.valueFilters.length === 0;
             console.log('Filters ARe Default', isDefault, nonDmSegs);
@@ -304,7 +310,7 @@ export default function (state = {
                 combined: {
                     availableFilters: arr,
                     valueFilters: [{ index: 211, category: QUARTER, value: newquarterState[0].value },
-                    { index: 209, category: SEGMENT, value: 'DIGITAL MEDIA' },
+                    // { index: 209, category: SEGMENT, value: 'DIGITAL MEDIA' },
                     // { index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
                     // { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
                     // { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
@@ -341,7 +347,8 @@ export default function (state = {
                 },
                 segment: {
                     availableFilters: newsegmentState,
-                    valueFilters: [{ index: 209, category: SEGMENT, value: 'DIGITAL MEDIA' }]
+                    // valueFilters: [{ index: 209, category: SEGMENT, value: 'DIGITAL MEDIA' }]
+                    valueFilters: []
                 },
                 subscription: {
                     availableFilters: newsubscriptiontate,
@@ -453,7 +460,8 @@ export default function (state = {
             copyOfState.geo.valueFilters = [];
             copyOfState.quarter.valueFilters = [{ index: 211, category: QUARTER, value: copyOfState.quarter.availableFilters[0].value }];
             copyOfState.subscription.valueFilters = [];
-            copyOfState.segment.valueFilters = [{ index: 209, category: SEGMENT, value:'DIGITAL MEDIA' }];
+            // copyOfState.segment.valueFilters = [{ index: 209, category: SEGMENT, value:'DIGITAL MEDIA' }];
+            copyOfState.segment.valueFilters = [];
             copyOfState.market.valueFilters = [];
             copyOfState.product.valueFilters = [];
             copyOfState.route.valueFilters = [];
@@ -472,7 +480,7 @@ export default function (state = {
             { index: 241, category: NONDMSEGMENT, value: 'TEAM' },
             { index: 243, category: NONDMSEGMENT, value: 'UNKNOWN' }];
             copyOfState.combined.valueFilters = [{ index: 211, category: QUARTER, value: copyOfState.quarter.availableFilters[0] },
-            { index: 209, category: SEGMENT, value: 'DIGITAL MEDIA' },
+            // { index: 209, category: SEGMENT, value: 'DIGITAL MEDIA' },
             { index: 229, category: NONDMSEGMENT, value: 'ACROBAT CC' },
             { index: 230, category: NONDMSEGMENT, value: 'ACROBAT DC' },
             { index: 231, category: NONDMSEGMENT, value: 'CSMB ETLA' },
@@ -499,7 +507,8 @@ export default function (state = {
             copyOfState.geo.valueFilters = geoFilters;
             copyOfState.quarter.valueFilters = [{ index: 211, category: "quarter", value: defaultQuarter }];
             copyOfState.subscription.valueFilters = subscriptionFilters;
-            copyOfState.segment.valueFilters = [{ index: 209, category: "segment", value: defaultSegment }];
+            // copyOfState.segment.valueFilters = [{ index: 209, category: "segment", value: defaultSegment }];
+            copyOfState.segment.valueFilters = [];
             copyOfState.market.valueFilters = marketFilters;
             copyOfState.product.valueFilters = productFilters;
             copyOfState.route.valueFilters = routeFilters;
