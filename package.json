@@ -15,7 +15,7 @@
     "@progress/kendo-theme-default": "^2.59.0",
     "@progress/kendo-ui": "^2018.3.1107",
     "axios": "^0.18.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "classnames": "^2.2.6",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
